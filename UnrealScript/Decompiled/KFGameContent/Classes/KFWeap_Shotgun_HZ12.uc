@@ -69,7 +69,6 @@ simulated state WeaponSingleFiring
 defaultproperties
 {
     PumpFireInterval=0.66
-    NumPellets=/* Array type was not detected. */
     PackageKey="HZ12"
     FirstPersonMeshName="WEP_1P_HZ12_MESH.Wep_1stP_HZ12_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -99,6 +98,7 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=20,Y=7.6,Z=-3)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_HZ12.MeleeHelper'
+    NumPellets=/* Array type was not detected. */
     maxRecoilPitch=900
     minRecoilPitch=775
     maxRecoilYaw=500

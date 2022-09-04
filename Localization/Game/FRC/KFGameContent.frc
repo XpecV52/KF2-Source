@@ -37,7 +37,7 @@ AlternateFireDescription="La plupart des armes principales ont un mode de tir al
 FlashLightBatteryTitleKey="Utiliser une Lampe torche"
 FlashLightBatteryDescriptionKey="Il peut faire noir ici-bas. Appuyez sur <font color="#caab05">%x%</font> pour allumer ou éteindre votre <font color="#caab05">LAMPE TORCHE</font>. La batterie de votre lampe torche se décharge progressivement. Quand elle est vide, elle s'éteint et commence à se recharger automatiquement."
 GrenadeTitleKey="Utiliser des grenades"
-GrenadeDescriptionKey="Les grenades vous permettent d'infliger des dégâts aux groupes de Zeds compacts. Les Classes ont différentes grenades dans leurs <font color="#caab05">PAQUETAGES D'ARMES</font>. Elles blessent toutes les Zeds mais peuvent avoir d'autres effets. Appuyez sur <font color="#caab05">%x%</font> pour lancer une grenade." "
+GrenadeDescriptionKey="Les grenades vous permettent d'infliger des dégâts aux groupes de Zeds compacts. Les Classes ont différentes grenades dans leurs <font color="#caab05">PAQUETAGES D'ARMES</font>. Elles blessent toutes les Zeds mais peuvent avoir d'autres effets. Appuyez sur <font color="#caab05">%x%</font> pour lancer une grenade."
 
 ;Wave 1 end
 TraderTimeTitleKey="Un tour chez la marchande."
@@ -116,48 +116,48 @@ ItemDescription="•L'armure de combat vous protège des différents dégâts, m
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 bâton de Dynamite"
-ItemCategory =" "Explosifs"
-ItemDescription="•Un petit morceau de dynamite avec un fusible.\n•Il peut également vous blesser alors soyez prudent !" "
+ItemCategory ="Explosifs"
+ItemDescription="•Un petit morceau de dynamite avec un fusible.\n•Il peut également vous blesser alors soyez prudent !"
 
 [KFProj_MedicGrenade]
 ItemName="Grenade de médecin"
-ItemCategory =" "Explosifs"
-ItemDescription="•Libère un gaz qui empoisonne les Zeds et soigne les humains.\n\n•Rester dans le gaz bleu pour vous soigner.\nPour citer un de nos scientifiques : "L'agent contenu dans ces grenades revigore l'Homo-sapiens tout en éradiquant l'Homo Zedicus." Faites en bon usage." "
+ItemCategory ="Explosifs"
+ItemDescription="•Libère un gaz qui empoisonne les Zeds et soigne les humains.\n\n•Rester dans le gaz bleu pour vous soigner.\nPour citer un de nos scientifiques : "L'agent contenu dans ces grenades revigore l'Homo-sapiens tout en éradiquant l'Homo Zedicus." Faites en bon usage."
 
 [KFProj_MolotovGrenade]
 ItemName="Cocktail Molotov"
 ItemCategory="Explosifs"
-ItemDescription="•Tout simplement une grenade incendiaire qui brûle les Zeds.\n\nNommée par les Finlandais pour insulter Vyacheslav Mikhailovich Molotov, ministre sous Staline pendant la Guerre d'Hiver de 1939-1940... Oh pardon ! Pas envie d'un cours d'histoire ?" "
+ItemDescription="•Tout simplement une grenade incendiaire qui brûle les Zeds.\n\nNommée par les Finlandais pour insulter Vyacheslav Mikhailovich Molotov, ministre sous Staline pendant la Guerre d'Hiver de 1939-1940... Oh pardon ! Pas envie d'un cours d'histoire ?"
 
 [KFProj_EMPGrenade]
 ItemName="Grenade IEM"
 ItemCategory="Explosifs"
-ItemDescription="•Génère une impulsion électrique qui inflige des dégâts aux Zeds et peut les assommer un court instant.\n\nLa détonation génère une impulsion électromagnétique d'une nanoseconde qui arrête tous les systèmes électriques proches. En particulier ceux des Zeds. Pratique." "
+ItemDescription="•Génère une impulsion électrique qui inflige des dégâts aux Zeds et peut les assommer un court instant.\n\nLa détonation génère une impulsion électromagnétique d'une nanoseconde qui arrête tous les systèmes électriques proches. En particulier ceux des Zeds. Pratique."
 
 [KFProj_HEGrenade]
 ItemName="Grenade HE"
 ItemCategory="Explosifs"
-ItemDescription="•Une grenade hautement explosive très simple. Blesse les Zeds et les humains.\n\nOn ne peut pas faire plus simple. HE - Hautement Explosive - Ça fait BOUM et ça fait tout péter. Il faut vraiment vous expliquer ?" "
+ItemDescription="•Une grenade hautement explosive très simple. Blesse les Zeds et les humains.\n\nOn ne peut pas faire plus simple. HE - Hautement Explosive - Ça fait BOUM et ça fait tout péter. Il faut vraiment vous expliquer ?"
 
 [KFProj_FragGrenade]
 ItemName="Grenade frag"
 ItemCategory="Explosifs"
-ItemDescription="•La classique grenade à fragmentation : envoie de vilains bouts de métal tout autour, blessant tout le monde.\n\nVous avez joué à bien assez de jeux vidéo pour savoir ce qu'est une grenade à fragmentation. Et arrêtez de dire que c'est faux. Personne ne vous croira." "
+ItemDescription="•La classique grenade à fragmentation : envoie de vilains bouts de métal tout autour, blessant tout le monde.\n\nVous avez joué à bien assez de jeux vidéo pour savoir ce qu'est une grenade à fragmentation. Et arrêtez de dire que c'est faux. Personne ne vous croira."
 
 [KFProj_NailBombGrenade]
 ItemName="Bombe à clous"
-ItemCategory =" "Explosifs"
+ItemCategory ="Explosifs"
 ItemDescription="•Une simple boîte remplie de vieux clous avec une petite charge explosive au milieu.\n\nPas le moyen le plus plaisant ni le plus subtil de s'occuper des Zeds, mais eux-mêmes ne sont ni subtils, ni plaisants, n'est-ce pas ?"
 
 [KFProj_FreezeGrenade]
 ItemName="Grenade de glace"
-ItemCategory =" "Explosifs"
+ItemCategory ="Explosifs"
 ItemDescription="•Une bombe technologiquement avancée remplie d'azote liquide sous pression.\n\nAu contact du contenu, les Zeds gèlent sur place pour un moment. Les résultats peuvent être fracassants. "
 
 [KFProj_FlashBangGrenade]
 ItemName="Grenade éblouissante"
-ItemCategory =" "Explosifs"
-ItemDescription="•Brillantes et bruyantes à la fois. Ne les regardez pas directement. Essayez de ne pas les entendre non plus.\n•Bien qu'elles ne soient pas mortelles, les grenades éblouissantes peuvent quand même vous blesser, alors, prenez garde!" "
+ItemCategory ="Explosifs"
+ItemDescription="•Brillantes et bruyantes à la fois. Ne les regardez pas directement. Essayez de ne pas l'entendre non plus.\n•Bien qu'elles ne soient pas mortelles, les grenades éblouissantes peuvent quand-même vous blesser, alors soyez prudent !"
 
 [KFWeap_Healer_Syringe]
 ItemName="Seringue médicale"
@@ -312,6 +312,11 @@ ItemName="VLAD-1000 Cloueuse"
 ItemCategory="Fusil à pompe"
 ItemDescription="•Tirs de clous uniques ou multiples.\n•Alt-Feu pour alterner entre les modes de tir.\n•Il semblerait que l'un des chercheurs de Horzine ait emprunté la cloueuse originale à un employé (décédé) du service d'entretien."
 
+[KFWeap_HRG_Nailgun]
+ItemName="Cloueuse HRG"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="•Modes automatique tir simple 500 cpm et automatique rafale de 3 coups 857 cpm.\n•Alt + tir pour passer d'un mode à l'autre.\n•Le clou du progrès!"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Rédempteur de route"
 ItemCategory="Mêlée"
@@ -370,6 +375,11 @@ ItemName="Lance-flammes"
 ItemCategory="Incendiaire"
 ItemDescription="•Lance des flammes. Tout simplement.\n•Un classique pour toutes les générations. Au moindre doute, brûlez tout ce qui bouge."
 
+[KFWeap_HRG_Healthrower]
+ItemName="Lance-soin HRG"
+ItemCategory="Incendiaire"
+ItemDescription="•Tire du gaz qui soigne les joueurs et empoisonne les Zeds.\n•Le mode de tir alternatif projette des fléchettes qui soignent les équipiers.\n•Le gaz sent le citron et la menthe. Les Zeds n'aiment pas le citron et la menthe."
+
 [KFWeap_Beam_Microwave]
 ItemName="Pistolet à micro-ondes"
 ItemCategory="Incendiaire"
@@ -425,6 +435,18 @@ ItemName="Double Desert Eagle .50"
 ItemCategory="Arme de poing"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de Desert Eagle."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Rhino"
+ItemCategory="Arme de poing"
+ItemDescription="•Tire des munitions à fragmentation.\n•Les munitions à fragmentation explosent à l'impact en 3 morceaux de shrapnel.\n•Change les Zeds en gruyère!"
+SharedUnlockSource="Rhino"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Double Rhinos"
+ItemCategory="Arme de poing"
+ItemDescription="•Tire des munitions à fragmentation.\n•Les munitions à fragmentation explosent à l'impact en 3 morceaux de shrapnel.\n•Tir alternatif quand vous utilisez la mire.\n•Change les Zeds en gruyère deux fois plus vite!"
+SharedUnlockSource="Double Rhinos"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="Revolver 1858"
 ItemCategory="Arme de poing"
@@ -444,6 +466,16 @@ ItemDescription="•Mode de tir manuel seulement.\n•Véritable pièce d'artill
 ItemName="Double .500 Magnum"
 ItemCategory="Arme de poing"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Une paire de revolvers .500 Magnum Bone Collector."
+
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="GRH Chevrotine"
+ItemCategory="Arme de poing"
+ItemDescription="•Mode de tir manuel seulement.\n•Viser est optionnel."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="Double GRH Chevrotine"
+ItemCategory="Arme de poing"
+ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Viser n'est pas nécessaire."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -516,6 +548,18 @@ ItemName="Canon à Bogue"
 ItemCategory="Incendiaire"
 ItemDescription="• Se recharge lorsque vous appuyez sur le bouton de tir et se décharge lorsque vous le relâchez. \n• La version officielle du canon à Bogue signée Horzine. Ce modèle a 95 % de chance de ne pas exploser."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Rhino"
+ItemCategory="Arme de poing"
+ItemDescription="•Tire des munitions à fragmentation.\n•Les munitions à fragmentation explosent à l'impact en 3 morceaux de shrapnel.\n•Change les Zeds en gruyère!"
+SharedUnlockSource="Rhino"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Double Rhinos"
+ItemCategory="Arme de poing"
+ItemDescription="•Tire des munitions à fragmentation.\n•Les munitions à fragmentation explosent à l'impact en 3 morceaux de shrapnel.\n•Tir alternatif quand vous utilisez la mire.\n•Change les Zeds en gruyère deux fois plus vite!"
+SharedUnlockSource="Double Rhinos"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Carabine MKb.42(H)"
 ItemCategory="Fusil d'assaut"
@@ -531,6 +575,12 @@ ItemDescription="• Mode semi-automatique uniquement.\n• Dès qu'on rajoute d
 ItemName="Double AF2011-A2"
 ItemCategory="Arme de poing"
 ItemDescription="• Mode de tir semi-automatique seulement.\n• Tir alternatif quand vous utilisez la mire.\n• Deux pistolets avec deux canons chacun. Quatre fois plus de puissance de tir. C'est mathématique. On ne discute pas avec les maths."
+
+[KFWeap_Edged_IonThruster]
+ItemName="Trancheur ionique"
+ItemCategory="Mêlée"
+ItemDescription="•Principal – attaque tranchante rapide qui brûle; maintenir pour enchaîner.\n•Secondaire – attaque tranchante puissante qui brûle.\n•Recharger – attaque spéciale quand la charge est à 100 %.\n•Alt – bloquer/parer.\n•Idéal pour les barbecues."
+SharedUnlockSource="Trancheur ionique"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Doomstick"
@@ -585,7 +635,7 @@ ItemDescription="•Tir auto uniquement.\n•Tir alternatif pour lancer des gren
 SecondaryAmmo="Grenade de médecin"
 
 [KFWeap_AssaultRifle_Thompson]
-ItemName="Mitraillette Thompson"
+ItemName="Tommy Gun"
 ItemCategory="Fusil d'assaut"
 ItemDescription="•Modes automatique et semi-automatique.\n•Tir alternatif pour passer d'un mode à l'autre.\n•Appelée « Chicago Typewriter » par certains, c'est l'arme idéale pour écrire son nom."
 

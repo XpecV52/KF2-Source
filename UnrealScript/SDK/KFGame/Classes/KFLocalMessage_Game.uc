@@ -260,6 +260,7 @@ static function string GetKilledByZedMessage( Object KillerObject )
 				// Bloat damagetypes
 				case 'KFDT_BloatPuke':
 				case 'KFDT_Toxic_BloatPukeMine':
+				case 'KFDT_Toxic_BloatKingPukeMine':
 					return default.KillzedBy_ZedBloatString;
 
 				// Husk damagetypes

@@ -11,7 +11,7 @@ class KFExplosion_BloatKingFart extends KFExplosionActorLingering;
 DefaultProperties
 {
 	Interval=1
-	MaxTime=10 //15
+	MaxTime=5 //15
 	DamageScalePerStack=0.f
 
 	bExplodeMoreThanOnce=true

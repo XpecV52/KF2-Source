@@ -644,7 +644,7 @@ exec function HansGunsOut()
 
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
-        KFPM.DoSpecialMove(38, false, none, 1);        
+        KFPM.DoSpecialMove(39, false, none, 1);        
     }    
 }
 
@@ -654,7 +654,7 @@ exec function HansGunsAway()
 
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
     {
-        KFPM.DoSpecialMove(38, false, none, 0);        
+        KFPM.DoSpecialMove(39, false, none, 0);        
     }    
 }
 
@@ -713,25 +713,6 @@ exec function HideMenus()
     else
     {
         LogInternal("MENU MANAGER NOT READY");
-    }
-}
-
-exec function RequestSkipTraderTimer()
-{
-    local KFGameReplicationInfo KFGRI;
-    local KFPlayerReplicationInfo KFPRI;
-
-    KFPRI = KFPlayerReplicationInfo(Outer.PlayerReplicationInfo);
-    KFGRI = KFGameReplicationInfo(KFPRI.WorldInfo.GRI);
-    if(KFPRI != none)
-    {
-        if(KFGRI.bMatchHasBegun)
-        {
-            if(KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
-            {
-                KFPRI.RequestSkiptTrader(KFPRI);
-            }
-        }
     }
 }
 
@@ -877,6 +858,7 @@ simulated exec function Pistols()
 {
     GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
     GiveWeapon("KFGameContent.KFWeap_Pistol_Deagle");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
 }
 
 simulated exec function Dualies()
@@ -886,6 +868,7 @@ simulated exec function Dualies()
     GiveWeapon("KFGameContent.KFWeap_Pistol_DualColt1911");
     GiveWeapon("KFGameContent.KFWeap_Revolver_DualRem1858");
     GiveWeapon("KFGameContent.KFWeap_Revolver_DualSW500");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhinoDual");
 }
 
 simulated exec function Singles()
@@ -895,6 +878,7 @@ simulated exec function Singles()
     GiveWeapon("KFGameContent.KFWeap_Pistol_Colt1911");
     GiveWeapon("KFGameContent.KFWeap_Revolver_Rem1858");
     GiveWeapon("KFGameContent.KFWeap_Revolver_SW500");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
 }
 
 simulated exec function DummyWeapon()
@@ -969,6 +953,7 @@ simulated exec function Summer()
     GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_M32");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Thompson");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_MKB42");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhinoDual");
 }
 
 simulated exec function Demo()
@@ -1018,6 +1003,7 @@ simulated exec function Sharpshooter()
     GiveWeapon("KFGameContent.KFWeap_Rifle_M14EBR");
     GiveWeapon("KFGameContent.KFWeap_Rifle_RailGun");
     GiveWeapon("KFGameContent.KFWeap_Rifle_CenterfireMB464");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
 }
 
 simulated exec function Swat()

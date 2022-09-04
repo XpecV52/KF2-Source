@@ -658,6 +658,10 @@ DefaultProperties
    	ZedTimeModifyingStates(2)="WeaponSingleFiring"
    	ZedTimeModifyingStates(3)="SprayingFire"
 	ZedTimeModifyingStates(4)="HuskCannonCharge"
+	ZedTimeModifyingStates(5)="MeleeChainAttacking"
+	ZedTimeModifyingStates(6)="MeleeAttackBasic"
+	ZedTimeModifyingStates(7)="MeleeHeavyAttacking"
+	ZedTimeModifyingStates(8)="MeleeSustained"
 
    	SecondaryXPModifier(0)=2
 	SecondaryXPModifier(1)=3
@@ -679,7 +683,7 @@ DefaultProperties
 		ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
 
 		// Camera Shake
-		CamShake=CameraShake'FX_CameraShake_Arch.Misc_Explosions.Perk_ShrapnelCombustion'
+		CamShake=CameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
 		CamShakeInnerRadius=450
 		CamShakeOuterRadius=900
 		CamShakeFalloff=1.f

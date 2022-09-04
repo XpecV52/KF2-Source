@@ -529,7 +529,7 @@ DefaultProperties
 	IncapSettings(AF_Poison)=	(Vulnerability=(0.15),	                      Cooldown=20.5, Duration=5.0)
 	IncapSettings(AF_Microwave)=(Vulnerability=(0.5),                         Cooldown=17.0, Duration=2.5)
 	IncapSettings(AF_FirePanic)=(Vulnerability=(0.4),                         Cooldown=10.0, Duration=3.5)
-	IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                        Cooldown=10.0, Duration=2.2)
+	IncapSettings(AF_EMP)=		(Vulnerability=(0.95),                        Cooldown=10.0, ChildAfflictionCooldown=10.0, Duration=2.2)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(0.95),                        Cooldown=10.5,  Duration=1.0)
 	IncapSettings(AF_Snare)=	(Vulnerability=(1.0, 2.0, 1.0, 1.0, 2.0),     Cooldown=8.5,  Duration=5.0)
     IncapSettings(AF_Bleed)=    (Vulnerability=(0.75)) //0.25

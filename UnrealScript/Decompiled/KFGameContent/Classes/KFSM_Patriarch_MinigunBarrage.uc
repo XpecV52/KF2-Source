@@ -182,7 +182,7 @@ function Timer_CheckIfFireAllowed()
     foreach MyPatPawn.WorldInfo.AllPawns(Class'KFPawn', KFP)
     {
         OtherProjection = KFP.Location - MyPatPawn.Location;
-        if((((((KFP != MyPatController.Enemy) && KFP.IsAliveAndWell()) && KFP.GetTeamNum() != MyPatPawn.GetTeamNum()) && VSizeSq(OtherProjection) < DistSq) && (PawnDir Dot Normal(OtherProjection)) >= 0.8) && MyPatPawn.FastTrace(KFP.Location, MyPatPawn.Location,, true))
+        if(((((((KFP != MyPatController.Enemy) && KFP.IsAliveAndWell()) && KFP.GetTeamNum() != MyPatPawn.GetTeamNum()) && VSizeSq(OtherProjection) < DistSq) && (PawnDir Dot Normal(OtherProjection)) >= 0.8) && MyPatPawn.FastTrace(KFP.Location, MyPatPawn.Location,, true)) && KFP.CanAITargetThisPawn(MyPatController))
         {
             MyPatController.ChangeEnemy(KFP, false);
             MyPatPawn.SetTimer(2, true, 'Timer_SearchForMinigunTargets', self);

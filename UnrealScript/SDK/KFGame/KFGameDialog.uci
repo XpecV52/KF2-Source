@@ -525,7 +525,7 @@
 `define TRAD_PATTY_WAVE_99           	254
 `define TRAD_PATTY_WAVE_100				255
 `define TRAD_PATTY_WAVE_100Plus			256
-										  
+
 `define TRAD_PATTY_KILLBOSS_1			257
 `define TRAD_PATTY_KILLBOSS_2			258
 `define TRAD_PATTY_KILLBOSS_3			259
@@ -541,7 +541,7 @@
 `define TRAD_PATTY_KILLBOSS_13			269
 `define TRAD_PATTY_KILLBOSS_14			270
 `define TRAD_PATTY_KILLBOSS_15			271
-										  
+
 `define TRAD_SPECIALWAVE_1				272
 `define TRAD_SPECIALWAVE_2				273
 `define TRAD_SPECIALWAVE_3				274

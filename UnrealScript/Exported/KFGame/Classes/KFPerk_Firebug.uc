@@ -664,6 +664,10 @@ defaultproperties
    ZedTimeModifyingStates(2)="WeaponSingleFiring"
    ZedTimeModifyingStates(3)="SprayingFire"
    ZedTimeModifyingStates(4)="HuskCannonCharge"
+   ZedTimeModifyingStates(5)="MeleeChainAttacking"
+   ZedTimeModifyingStates(6)="MeleeAttackBasic"
+   ZedTimeModifyingStates(7)="MeleeHeavyAttacking"
+   ZedTimeModifyingStates(8)="MeleeSustained"
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_CaulkBurn'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Firebug'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Firebug'

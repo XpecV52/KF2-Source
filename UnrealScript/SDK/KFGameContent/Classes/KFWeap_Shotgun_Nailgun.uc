@@ -134,25 +134,25 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Nail_Nailgun'
-	InstantHitDamage(DEFAULT_FIREMODE)=25 //30
+	InstantHitDamage(DEFAULT_FIREMODE)=35
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_NailShotgun'
-	Spread(DEFAULT_FIREMODE)=0.185
-	PenetrationPower(DEFAULT_FIREMODE)=2.0
-	FireInterval(DEFAULT_FIREMODE)=0.3 // 0.4   150 RPM
+	Spread(DEFAULT_FIREMODE)=0.16
+	PenetrationPower(DEFAULT_FIREMODE)=3.0
+	FireInterval(DEFAULT_FIREMODE)=0.3 // 200 RPM
 	FireOffset=(X=30,Y=5,Z=-4)
 	// Shotgun
-	NumPellets(DEFAULT_FIREMODE)=8 //7
+	NumPellets(DEFAULT_FIREMODE)=7
 
 	// ALT_FIREMODE
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Nail'
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponAltFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Nail_Nailgun'
-	InstantHitDamage(ALTFIRE_FIREMODE)=25 //30
+	InstantHitDamage(ALTFIRE_FIREMODE)=35
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_NailShotgun'
 	Spread(ALTFIRE_FIREMODE)=0.02
-	PenetrationPower(ALTFIRE_FIREMODE)=2.0
-	FireInterval(ALTFIRE_FIREMODE)=0.3 // 0.4  150 RPM
+	PenetrationPower(ALTFIRE_FIREMODE)=3.0
+	FireInterval(ALTFIRE_FIREMODE)=0.2 // 300 RPM
 	AltFireRecoilModifier=0.5
 	// Shotgun
 	NumPellets(ALTFIRE_FIREMODE)=1
@@ -175,7 +175,7 @@ defaultproperties
 	// Ammo
 	MagazineCapacity[0]=42
 	SpareAmmoCapacity[0]=336
-	InitialSpareMags[0]=4
+	InitialSpareMags[0]=3
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -207,6 +207,6 @@ defaultproperties
 	//WeaponUpgrades[3]=(IncrementDamage=1.4f, IncrementWeight=3)
 
 	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.2f), (Stat=EWUS_Damage1, Scale=1.2f), (Stat=EWUS_Weight, Add=1)))
-	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.25f), (Stat=EWUS_Damage1, Scale=1.25f), (Stat=EWUS_Weight, Add=2)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.3f), (Stat=EWUS_Damage1, Scale=1.3f), (Stat=EWUS_Weight, Add=2)))
 	WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Damage1, Scale=1.4f), (Stat=EWUS_Weight, Add=3)))
 }

@@ -442,6 +442,9 @@ native function SetNeedsReload();
 // Export UKFGameInfo::execStaticSetNeedsRestart(FFrame&, void* const)
 native static function StaticSetNeedsRestart();
 
+// Export UKFGameInfo::execGameModeSupportsMap(FFrame&, void* const)
+native static final function bool GameModeSupportsMap(int GameMode, string MapName);
+
 event InitGame(string Options, out string ErrorMessage)
 {
     super(GameInfo).InitGame(Options, ErrorMessage);
@@ -795,6 +798,7 @@ function InitGRIVariables()
 {
     MyKFGRI.GameDifficulty = byte(GameDifficulty);
     MyKFGRI.GameLength = byte(GameLength);
+    MyKFGRI.ReceivedGameLength();
     MyKFGRI.bVersusGame = bIsVersusGame;
     MyKFGRI.MaxHumanCount = MaxPlayers;
     SetBossIndex();
@@ -1970,12 +1974,12 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
                     {
                         KFTeamInfo_Human(DamagerKFPRI.Team).AddScore(EarnedDosh);
                     }
-                    if(!ValidateMonsterClassForXP(MonsterClass))
+                    if(DamageHistory[I].DamagePerks.Length <= 0)
                     {                        
                     }
                     else
                     {
-                        if(DamageHistory[I].DamagePerks.Length <= 0)
+                        if(!ValidateForXP(MonsterClass, DamageHistory[I].DamageCausers, DamageHistory[I].DamageTypes))
                         {                            
                         }
                         else
@@ -1992,13 +1996,13 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
                                 {
                                     XP = MonsterClass.static.GetXPValue(byte(GameDifficulty)) / float(DamageHistory[I].DamagePerks.Length);
                                     J = 0;
-                                    J0x679:
+                                    J0x6C5:
 
                                     if(J < DamageHistory[I].DamagePerks.Length)
                                     {
                                         AddPlayerXP(KFPC, FCeil(XP), DamageHistory[I].DamagePerks[J], true);
                                         ++ J;
-                                        goto J0x679;
+                                        goto J0x6C5;
                                     }
                                 }
                             }
@@ -2012,8 +2016,8 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
     }
 }
 
-// Export UKFGameInfo::execValidateMonsterClassForXP(FFrame&, void* const)
-private native final function bool ValidateMonsterClassForXP(class<KFPawn_Monster> MonsterClass);
+// Export UKFGameInfo::execValidateForXP(FFrame&, void* const)
+private native final function bool ValidateForXP(class<KFPawn_Monster> MonsterClass, const out array< class<Actor> > DamageCausers, const out array< class<KFDamageType> > DamageTypes);
 
 // Export UKFGameInfo::execAddPlayerXP(FFrame&, void* const)
 private native final function AddPlayerXP(KFPlayerController PC, int XP, class<KFPerk> PerkClass, optional bool bApplyPrestigeBonus)
@@ -3105,33 +3109,49 @@ auto state PendingMatch
         {
             if(ShouldStartMatch())
             {
-                if(!IsTimerActive('LobbyCountdownComplete') && MajorityPlayersReady())
+                if(!IsTimerActive('LobbyCountdownComplete'))
                 {
-                    MyKFGRI.RemainingTime = ReadyUpDelay;
-                    MyKFGRI.bStopCountDown = false;
-                    SetCountdown(false, byte(ReadyUpDelay));                    
-                }
-                else
-                {
-                    if(IsTimerActive('LobbyCountdownComplete') && !MajorityPlayersReady())
+                    if(MajorityPlayersReady())
                     {
-                        ClearTimer('LobbyCountdownComplete');
-                        MyKFGRI.bStopCountDown = true;
-                        ResetCountDown();
-                    }
-                }
-                if(CheckAllPlayersReady())
-                {
-                    if(!bStartFinalCount)
-                    {
-                        SetCountdown(true, byte(GameStartDelay));
+                        MyKFGRI.RemainingTime = ReadyUpDelay;
+                        MyKFGRI.bStopCountDown = false;
+                        SetCountdown(false, byte(MyKFGRI.RemainingTime));
                     }                    
                 }
                 else
                 {
-                    if(bStartFinalCount)
+                    if(!MajorityPlayersReady())
                     {
-                        SetCountdown(false, byte(MyKFGRI.RemainingTime));
+                        ClearTimer('LobbyCountdownComplete');
+                        MyKFGRI.bStopCountDown = true;
+                        ResetCountDown();                        
+                    }
+                    else
+                    {
+                        if(MyKFGRI.RemainingTime <= GameStartDelay)
+                        {
+                            if(!bStartFinalCount)
+                            {
+                                SetCountdown(true, byte(GameStartDelay));
+                            }                            
+                        }
+                        else
+                        {
+                            if(CheckAllPlayersReady())
+                            {
+                                if(!bStartFinalCount)
+                                {
+                                    SetCountdown(true, byte(GameStartDelay));
+                                }                                
+                            }
+                            else
+                            {
+                                if(bStartFinalCount)
+                                {
+                                    SetCountdown(false, byte(MyKFGRI.RemainingTime));
+                                }
+                            }
+                        }
                     }
                 }                
             }
@@ -3203,7 +3223,7 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway","KF-SteamFortress"))
+    GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway","KF-SteamFortress","KF-AshwoodAsylum"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

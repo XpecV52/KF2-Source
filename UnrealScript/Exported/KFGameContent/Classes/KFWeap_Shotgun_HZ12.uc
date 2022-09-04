@@ -108,8 +108,6 @@ simulated state WeaponSingleFiring
 defaultproperties
 {
    PumpFireInterval=0.660000
-   NumPellets(0)=10
-   NumPellets(1)=()
    PackageKey="HZ12"
    FirstPersonMeshName="WEP_1P_HZ12_MESH.Wep_1stP_HZ12_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_HZ12_ANIM.Wep_1stP_HZ12_Anim"
@@ -148,6 +146,13 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_HZ12:MeleeHelper_0'
+   NumPellets(0)=10
+   NumPellets(1)=()
+   NumPellets(2)=()
+   NumPellets(3)=()
+   NumPellets(4)=()
+   NumPellets(5)=()
+   NumPellets(6)=()
    maxRecoilPitch=900
    minRecoilPitch=775
    maxRecoilYaw=500

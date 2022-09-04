@@ -67,10 +67,10 @@ defaultproperties
         ExploLightFadeOutTime=0.2
 
         // Camera Shake
-        CamShake=CameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
-        CamShakeInnerRadius=0
-        CamShakeOuterRadius=0
-        CamShakeFalloff=1.f
+        CamShake=CameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
+        CamShakeInnerRadius=200
+        CamShakeOuterRadius=900
+        CamShakeFalloff=1.5f
         bOrientCameraShakeTowardsEpicenter=true
     End Object
     ExplosionTemplate=ExploTemplate0

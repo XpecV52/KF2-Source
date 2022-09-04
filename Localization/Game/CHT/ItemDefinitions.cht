@@ -25,8 +25,11 @@ MrsFosterBundleName="佛斯特夫人"
 SteampunkOutfitBundleName="蒸汽龐克裝備包"
 CyberpunkOutfitBundleName="賽博龐克服飾同捆包"
 CyberpunkOutfitObjectiveBundleName="賽博龐克服飾目標同捆包"
+HalloweenOutfitBundleName="女巫獵人服飾同捆包"
 HeadshotFXBundle1Name="爆頭 FX 同捆包 1"
 HeadshotFXBundle2Name="爆頭 FX 同捆包2"
+RhinoRevolverBundleName="犀牛左輪同捆包"
+IonThrusterBundleName="離子推進器同捆包"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Horzine 補給妝容箱子 | #4系列青銅包"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Horzine 補給妝容箱子 | #4系列白銀包"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Horzine 補給妝容箱子 | #4系列黃金包"
@@ -101,10 +104,10 @@ HorzineSupplyWeaponCrateSeries15BronzeBundlePackName="Horzine 補給武器箱 | 
 HorzineSupplyWeaponCrateSeries15SilverBundlePackName="Horzine 補給武器箱 | #15 系列白銀包"
 HorzineSupplyWeaponCrateSeries15GoldBundlePackName="Horzine 補給武器箱 | #15 系列黃金包"
 HorzineSupplyCosmeticCrateSeries6BronzeBundlePackName="Horzine 補給妝容箱 | #6 系列青銅包"
-HorzineSupplyCosmeticCrateSeries6SilverBundlePackName="Horzine 補給妝容箱 | #6 系列白銀包"
-HorzineSupplyCosmeticCrateSeries6GoldBundlePackName="Horzine 補給妝容箱 | #6 系列黃金包"
-HorzineSupplyCosmeticCrateSeries10BronzeBundlePackName="Horzine 補給妝容箱 | #10 系列青銅包"
-HorzineSupplyCosmeticnCrateSeries10SilverBundlePackName="Horzine 補給妝容箱 | #10 系列白銀包"
+HorzineSupplyCosmeticCrateSeries6SilverBundlePackName="Horzine 補給妝容箱子 | #6系列白銀包"
+HorzineSupplyCosmeticCrateSeries6GoldBundlePackName="Horzine 補給妝容箱子 | #6系列黃金包"
+HorzineSupplyCosmeticCrateSeries10BronzeBundlePackName="Horzine 補給妝容箱子 | #6系列青銅包"
+HorzineSupplyCosmeticCrateSeries10SilverBundlePackName="Horzine 補給妝容箱 | #10 系列白銀包"
 HorzineSupplyCosmeticCrateSeries10GoldBundlePackName="Horzine 補給妝容箱 | #10 系列黃金包"
 HorzineSupplyCrateSeriesDARBronzeBundlePackName="Horzine 補給箱 | DAR 系列青銅包"
 HorzineSupplyCrateSeriesDARSilverBundlePackName="Horzine 補給箱 | DAR 系列白銀包"
@@ -112,10 +115,33 @@ HorzineSupplyCrateSeriesDARGoldBundlePackName="Horzine 補給箱 | DAR 系列黃
 HorzineSupplyCrateSeriesProjectHBronzeBundlePackName="Horzine 補給箱 | 計畫 H 系列青銅包"
 HorzineSupplyCrateSeriesProjectHSilverBundlePackName="Horzine 補給箱 | 計畫 H 系列白銀包"
 HorzineSupplyCrateSeriesProjectHGoldBundlePackName="Horzine 補給箱 | 計畫 H 系列黃金包"
-DragonKoiTier1BundlePackName="Horzine 補給箱 | 計畫 H 系列黃金包"
-DragonKoiTier2BundlePackName="Horzine 補給箱 | 計畫 H 系列黃金包"
+DragonKoiTier1BundlePackName="龍鯉等級 1 同捆包"
+DragonKoiTier2BundlePackName="龍鯉等級 2 同捆包"
 ClotBackpackBundleName="凝塊背包同捆包"
-
+DragonKoiTier3BundlePackName="龍鯉等級 3 同捆包"
+DragonKoiTier4BundlePackName="龍鯉等級 4 同捆包"
+DragonKoiCompleteBundlePackName="龍鯉完整武器飾品套件"
+HorzineSupplyCosmeticCrateSeries11BronzeBundlePackName="Horzine 補給妝容箱子 | #11系列青銅包"
+HorzineSupplyCosmeticCrateSeries11SilverBundlePackName="Horzine 補給妝容箱子 | #11系列白銀包"
+HorzineSupplyCosmeticCrateSeries11GoldBundlePackName="Horzine 補給妝容箱子 | #11系列黃金包"
+HorzineSupplyWeaponCrateSeries16BronzeBundlePackName="Horzine 補給武器箱子 | #16系列青銅包"
+HorzineSupplyWeaponCrateSeries16SilverBundlePackName="Horzine 補給武器箱 | #16系列白銀包"
+HorzineSupplyWeaponCrateSeries16GoldBundlePackName="Horzine 補給武器箱 | #16系列黃金包"
+HorzineSupplyWeaponCrateSeries11BronzeBundlePackName="Horzine 補給武器箱子 | #11系列青銅包"
+HorzineSupplyWeaponCrateSeries11SilverBundlePackName="Horzine 補給武器箱 | #11系列白銀包"
+HorzineSupplyWeaponCrateSeries11GoldBundlePackName="Horzine 補給武器箱 | #11系列黃金包"
+HorzineSupplyCrateSeriesBoneyardBronzeBundlePackName="Horzine 補給箱 | 墓地系列青銅包"
+HorzineSupplyCrateSeriesBoneyardSilverBundlePackName="Horzine 補給箱 | 墓地系列白銀包"
+HorzineSupplyCrateSeriesBoneyardGoldBundlePackName="Horzine 補給箱 | 墓地系列黃金包"
+BeyondHorizonEncryptedUSBBronzeBundlePackName="超越地平線加密 USB 青銅包"
+BeyondHorizonEncryptedUSBSilverBundlePackName="超越地平線加密 USB 白銀包"
+BeyondHorizonEncryptedUSBGoldBundlePackName="超越地平線加密 USB 黃金包"
+PremiumHalloweenBronzeBundlePackName="高級萬聖節青銅票券同捆包"
+PremiumHalloweenSilverBundlePackName="高級萬聖節白銀票券同捆包"
+PremiumHalloweenGoldBundlePackName="高級萬聖節黃金票券同捆包"
+NeonMKIIEncryptedUSBBronzeBundlePackName="霓虹 MKIII 加密 USB 青銅包"
+NeonMKIIEncryptedUSBSilverBundlePackName="霓虹 MKIII 加密 USB 白銀包"
+NeonMKIIEncryptedUSBGoldBundlePackName="霓虹 MKIII 加密 USB 黃金包"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="內含布萊爾的倫敦制服（5 種配色）以及警官帽妝容配件（3 種配色）"
@@ -137,8 +163,11 @@ MrsFosterBundleDescription="扮演佛斯特夫人，倫敦最成功的商人之�
 SteampunkOutfitBundleDescription="包括女性和男性蒸汽龐克裝備（每種均含 6 種配色）。適用於大部分的角色。"
 CyberpunkOutfitBundleDescription="包括男性賽博龐克服飾（每種均含 6 種配色）。適用於大部分的角色。"
 CyberpunkOutfitObjectiveBundleDescription="包括男性賽博龐克服飾（每種均含 1 種配色）。適用於大部分的角色。"
+HalloweenOutfitBundleDescription="包括女巫獵人服飾（含 6 種配色）。大部分角色皆可使用。"
 HeadshotFXBundle1Description="伴隨 5 次爆頭 FX財源滾滾、搞笑動作、派對時間、一見鐘情以及恐怖幽靈"
 HeadshotFXBundle2Description="包括 5 個爆頭 FX。卡通飛濺、煙火、花瓣、干擾以及 Horzine 電路板。"
+RhinoRevolverBundleDescription="削 Zed 如泥。犀牛左輪專為槍砲工和神射手職業設計，含 5 種獨特武器飾品可供選擇。"
+IonThrusterBundleDescription="烤肉的絕佳工具。離子推進器的設計，專為狂戰士職業而設，並附帶有 5 種獨特飾品變種可選。"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="包含5個 Horzine 補給妝容箱子 | #4系列，及5把相應的鑰匙。"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="包含10個 Horzine 補給妝容箱子 | #4系列，及10把相應的鑰匙。"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="包含20個 Horzine 補給妝容箱子 | #4系列，及20把相應的鑰匙。"
@@ -159,7 +188,7 @@ HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="包含10個 Horzine 
 HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="包含20個 Horzine 補給武器箱子 | #4系列，及20把相應的鑰匙。"
 HorzineSupplyWeaponCrateSeries7BronzeBundlePackDescription="包含7個 Horzine 補給武器箱子 | #5系列，及5把相應的鑰匙。"
 HorzineSupplyWeaponCrateSeries7SilverBundlePackDescription="包含10個 Horzine 補給武器箱子 | #7系列，及10把相應的鑰匙。"
-HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription=包含20個 Horzine 補給武器箱子 | #7系列，及20把相應的鑰匙。"
+HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription="包含20個 Horzine 補給武器箱子 | #7系列，及20把相應的鑰匙。"
 HorzineSupplyWeaponCrateSeries8BronzeBundlePackDescription="包含8個 Horzine 補給武器箱子 | #5系列，及5把相應的鑰匙。"
 HorzineSupplyWeaponCrateSeries8SilverBundlePackDescription="包含10個 Horzine 補給武器箱子 | #8系列，及10把相應的鑰匙。"
 HorzineSupplyWeaponCrateSeries8GoldBundlePackDescription="包含20個 Horzine 補給武器箱子 | #8系列，及20把相應的鑰匙。"
@@ -175,7 +204,7 @@ HorzineSupplyWeaponCrateSeries14GoldBundlePackDescription="包含20個 Horzine �
 HorzineSupplyCrateSeries15BronzeBundlePackDescription="包含5個 Horzine 補給箱子 | #15系列，及5把相應的鑰匙。"
 HorzineSupplyCrateSeries15SilverBundlePackDescription="包含10個 Horzine 補給箱子 | #15系列，及10把相應的鑰匙。"
 HorzineSupplyCrateSeries15GoldBundlePackDescription="包含20個 Horzine 補給箱子 | #15系列，及20把相應的鑰匙。"
-HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription=包含5個 Horzine 補給箱子 | 賽博武士系列，及5把相應的鑰匙。"
+HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription="包含5個 Horzine 補給箱子 | 賽博武士系列，及5把相應的鑰匙。"
 HorzineSupplyCrateSeriesCyberSamuraiSilverBundlePackDescription="包含10個 Horzine 補給箱子 | 賽博武士系列，及10把相應的鑰匙。"
 HorzineSupplyCrateSeriesCyberSamuraiGoldBundlePackDescription="包含20個 Horzine 補給箱子 | 賽博武士系列，及20把相應的鑰匙。"
 EmoteCrateSeries1BronzeBundlePackDescription="包含5個表情箱子 | #1系列，及5把相應的鑰匙。"
@@ -189,7 +218,7 @@ NeonEncryptedUSBSilverBundlePackDescription="包含10個霓虹加密 USB 箱子�
 NeonEncryptedUSBGoldBundlePackDescription="包含20個霓虹加密 USB 箱子，及20把相應的鑰匙。"
 WeaponCollectorsUSBBronzeBundlePackDescription="包含5個武器收集者包 1 USB 箱子，及5把相應的鑰匙。"
 WeaponCollectorsUSBSilverBundlePackDescription="包含10個武器收集者包 1 USB 箱子，及10把相應的鑰匙。"
-WeaponCollectorsUSBGoldBundlePackDescription=包含20個武器收集者包 1 USB 箱子，及20把相應的鑰匙。"
+WeaponCollectorsUSBGoldBundlePackDescription="包含20個武器收集者包 1 USB 箱子，及20把相應的鑰匙。"
 NeonMKIIEncryptedUSBBronzeBundlePackDescription="包含5個霓虹 MKII 加密 USB 箱子，及5把相應的鑰匙。"
 NeonMKIIEncryptedUSBSilverBundlePackDescription="包含10個霓虹 MKII 加密 USB 箱子，及10把相應的鑰匙。"
 NeonMKIIEncryptedUSBGoldBundlePackDescription="包含20個霓虹 MKII 加密 USB 箱子，及20把相應的鑰匙。"
@@ -206,9 +235,9 @@ DragonwaveEncryptedUSBGoldBundlePackDescription="包含20個霓虹龍波加密 U
 HorzineSupplyCrateSeriesDeityBronzeBundlePackDescription="包含5個 Horzine 補給箱 | 女神系列，及5把相應的鑰匙。"
 HorzineSupplyCrateSeriesDeitySilverBundlePackDescription="包含10個 Horzine 補給箱 | 女神系列，及10把相應的鑰匙。"
 HorzineSupplyCrateSeriesDeityGoldBundlePackDescription="包含20個 Horzine 補給箱 | 女神系列，及20把相應的鑰匙。"
-HorzineSupplyCosmeticCrateSeries6BronzeBundlePackDescription="包含 5 個 Horzine 補給妝容箱 | #6 系列，及 5 把相應的鑰匙。"
+HorzineSupplyCosmeticCrateSeries6BronzeBundlePackDescription="包含5個 Horzine 補給妝容箱子 | #6系列，及5把相應的鑰匙。"
 HorzineSupplyCosmeticCrateSeries6SilverBundlePackDescription="包含 10 個 Horzine 補給妝容箱 | #6 系列，及 10 把相應的鑰匙。"
-HorzineSupplyCosmeticCrateSeries6GoldBundlePackDescription="包含 20 個 Horzine 補給妝容箱 | #6 系列，及 20 把相應的鑰匙。"
+HorzineSupplyCosmeticCrateSeries6GoldBundlePackDescription="包含20個 Horzine 補給妝容箱子 | #6系列，及20把相應的鑰匙。"
 HorzineSupplyCosmeticCrateSeries10BronzeBundlePackDescription="包含 5 個 Horzine 補給妝容箱 | #10 系列，及 5 把相應的鑰匙。"
 HorzineSupplyCosmeticCrateSeries10SilverBundlePackDescription="包含 10 個 Horzine 補給妝容箱 | #10 系列，及 10 把相應的鑰匙。"
 HorzineSupplyCosmeticCrateSeries10GoldBundlePackDescription="包含 20 個 Horzine 補給妝容箱 | #10 系列，及 20 把相應的鑰匙。"
@@ -227,6 +256,30 @@ SteampunkEncryptedUSBGoldBundlePackDescription="包含 20 個蒸汽龐克加密 
 DragonKoiTier1BundlePackDescription="包括適合所有職業的 10 個等級 1 珍貴度的龍鯉飾品。內容物：改造鏟子、AR15、HX25、裝好就燒、1858 左輪、HMTech-101 手槍、溫徹斯特 1894、SG 500、MP7 和 9 毫米。"
 DragonKoiTier2BundlePackDescription="包括適合所有職業的 10 個等級 2 珍貴度的龍鯉飾品。內容物：日本刀、L85A2、M79、火槍、M1911、HMTech-201 衝鋒槍、十字弓、霰彈槍、湯普森衝鋒槍、MP5RAS。"
 ClotBackpackBundleDescription="内含所有已推出的季節性凝塊背包配件和配色。"
+DragonKoiTier3BundlePackDescription="包括適合所有職業的 10 個等級 3 珍貴度的龍鯉飾品。包括：M4、P90、冰凍噴射器、M14EBR、HMTech-301 散彈槍、沙漠之鷹、火焰噴射器、M16 M203、AK12 以及粉碎器"
+DragonKoiTier4BundlePackDescription="包括適合所有職業的 10 個等級 4 珍貴度的龍鯉飾品。包括：Scar、RPG-7、微波槍、.500 馬格南左輪、軌道槍、HMTech-01 突擊步槍、AA-12、雷霆殺手、Kriss 以及剔骨器。"
+DragonKoiCompleteBundlePackDescription="包括適合所有職業的等級 1 - 4、40 珍貴度的龍鯉飾品。內容物：改造鏟子、AR15、HX25、裝好就燒、1858 左輪、HMTech-101 手槍、溫徹斯特 1894、SG 500、MP7、9 毫米、日本刀、L85A2、M79、火槍、M1911、HMTech-201 衝鋒槍、十字弓、散彈槍、湯普森衝鋒槍、MP5RAS、M4、P90、冰凍噴射器、M14EBR、HMTech-301 霰彈槍、沙漠之鷹、火焰噴射器、M16 M203、AK12、粉碎器、Scar、RPG-7、微波炮、.500 馬格南左輪、軌道槍、HMTech-01 突擊步槍、AA-12、雷霆殺手、Kriss 以及剔骨器。"
+HorzineSupplyCosmeticCrateSeries11BronzeBundlePackDescription="包含5個 Horzine 補給妝容箱子 | #11系列，及5把相應的鑰匙。"
+HorzineSupplyCosmeticCrateSeries11SilverBundlePackDescription="包含10個 Horzine 補給妝容箱子 | #11系列，及10把相應的鑰匙。"
+HorzineSupplyCosmeticCrateSeries11GoldBundlePackDescription="包含20個 Horzine 補給妝容箱子 | #11系列，及20把相應的鑰匙。"
+HorzineSupplyWeaponCrateSeries16BronzeBundlePackDescription="包含16個 Horzine 補給武器箱子 | #16系列，及5把相應的鑰匙。"
+HorzineSupplyWeaponCrateSeries16SilverBundlePackDescription="包含10個 Horzine 補給武器箱子 | #16系列，及10把相應的鑰匙。"
+HorzineSupplyWeaponCrateSeries16GoldBundlePackDescription="包含20個 Horzine 補給武器箱子 | #16系列，及20把相應的鑰匙。"
+HorzineSupplyWeaponCrateSeries11BronzeBundlePackDescription="包含11個 Horzine 補給武器箱子 | #11系列，及5把相應的鑰匙。"
+HorzineSupplyWeaponCrateSeries11SilverBundlePackDescription="包含10個 Horzine 補給武器箱子 | #11系列，及10把相應的鑰匙。"
+HorzineSupplyWeaponCrateSeries11GoldBundlePackDescription="包含20個 Horzine 補給武器箱子 | #11系列，及20把相應的鑰匙。"
+BeyondHorizonEncryptedUSBBronzeBundlePackDescription="包含 5 個超越地平線加密 USB 箱，及 5 把相應的鑰匙。"
+BeyondHorizonEncryptedUSBSilverBundlePackDescription="包含 10 個超越地平線加密 USB 箱，及 10 把相應的鑰匙。"
+BeyondHorizonEncryptedUSBGoldBundlePackDescription="包含 20 個超越地平線加密 USB 箱，及 20 把相應的鑰匙。"
+HorzineSupplyCrateSeriesBoneyardBronzeBundlePackDescription="包含 5 個 Horzine 補給箱 | 墓地系列，及 5 把相應的鑰匙。"
+HorzineSupplyCrateSeriesBoneyardSilverBundlePackDescription="包含 10 個 Horzine 補給箱 | 女神系列，及 10 把相應的鑰匙。"
+HorzineSupplyCrateSeriesBoneyardGoldBundlePackDescription="包含 20 個 Horzine 補給箱 | 女神系列，及 20 把相應的鑰匙。"
+PremiumHalloweenTicketBronzeBundlePackDescription="5 張高級萬聖節優待票券低價合併出售。只限特惠期間販售！"
+PremiumHalloweenTicketSilverBundlePackDescription="10 張高級萬聖節優待票券以及 1 張額外的獎勵萬聖節黃金票券低價合併出售。只限特惠期間販售！"
+PremiumHalloweenTicketGoldBundlePackDescription="20 張高級萬聖節優待票券以及 3 張額外的獎勵萬聖節黃金票券低價合併出售。只限特惠期間販售！"
+NeonMKIIIEncryptedUSBBronzeBundlePackDescription="包含5個霓虹 MKIII 加密 USB 箱子，及5把相應的鑰匙。"
+NeonMKIIIEncryptedUSBSilverBundlePackDescription="包含10個霓虹 MKIII 加密 USB 箱子，及10把相應的鑰匙。"
+NeonMKIIIEncryptedUSBGoldBundlePackDescription="包含20個霓虹 MKIII 加密 USB 箱子，及20把相應的鑰匙。"
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="取得遊戲角色 PC 羅伯布萊爾的經典倫敦警察制服內含布萊爾的倫敦制服（5 種配色）以及警官帽妝容配件（3 種配色）"
@@ -325,6 +378,8 @@ CyberpunkHelmetName="賽博龐克頭盔"
 CyberpunkOutfitName="賽博龐克服飾"
 CyberpunkHelmetEventName="賽博龐克活動頭盔"
 CyberpunkOutfitEventName="賽博龐克活動服飾"
+HalloweenHatName="女巫獵人帽子"
+HalloweenOutfitName="女巫獵人服飾"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="麥斯特森中尉 | 賽博龐克 | 綠"
@@ -491,7 +546,8 @@ HorzineSupplyCrateSeriesDARName="Horzine 補給箱｜D.A.R. 系列。"
 HorzineSupplyCrateSeriesLocoName="Horzine 補給箱｜屠宰場 機車系列"
 HorzineSupplyCrateSeriesCyberSamuraiName="Horzine 補給箱子｜賽博武士系列"
 HorzineSupplyCrateSeriesDiety="Horzine 補給箱｜女神系列"
-HorzineSupplyCrateSeriesProjectH="Horzine 補給箱 | 計畫 H #1 系列"
+HorzineSupplyCrateSeriesProjectHName="Horzine 補給箱 | 計畫 H #1 系列"
+HorzineSupplyCrateSeriesBoneyardName="Horzine 補給箱 | 墓地系列"
 
 
 ;Crate Descriptions
@@ -542,7 +598,9 @@ HorzineSupplyCrateSeriesCyberSamuraiDescription="需要賽博武士 Horzine 補�
 
 HorzineSupplyCrateSeriesDeityDescription="需要 Horzine 補給箱鑰匙才能打開。內含下列其中一個稀有或更好的<br><font color="#4b69cd">護甲頭罩 | 藍</font><br><font color="#4b69cd">護甲頭罩 | 綠</font><br><font color="#4b69cd">無臉面具 | 藍</font><br><font color="#4b69cd">無臉面具 | 綠</font><br><font color="#4b69cd">科幻頭罩 | 藍</font><br><font color="#4b69cd">科幻頭罩 | 綠</font><br><font color="#4b69cd">無表情面具 | 藍</font><br><font color="#4b69cd">無表情面具 | 綠</font><br><font color="#6600a1">護甲頭罩 | 紅</font><br><font color="#6600a1">無臉面具 | 紅</font><br><font color="#6600a1">科幻頭罩 | 紅</font><br><font color="#6600a1">無表情面具 | 紅</font><br><font color="#6600a1">芭斯特 | 紅</font><br><font color="#6600a1">芭斯特 | 黃</font><br><font color="#6600a1">芭斯特 | 綠</font><br><font color="#6600a1">芭斯特 | 藍</font><br><font color="#6600a1">索貝克 | 紅</font><br><font color="#6600a1">索貝克 | 黃</font><br><font color="#6600a1">索貝克 | 綠</font><br><font color="#6600a1">索貝克 | 藍</font><br><font color="#8847ff">護甲頭罩 | 黑</font><br><font color="#8847ff">無臉面具 | 黑</font><br><font color="#8847ff">無臉面具 | 白</font><br><font color="#8847ff">科幻頭罩 | 黑</font><br><font color="#8847ff">無表情面具 | 黑</font><br><font color="#8847ff">無表情面具 | 白</font><br><font color="#8847ff">阿努比斯 | 紅</font><br><font color="#8847ff">阿努比斯 | 藍</font><br><font color="#8847ff">阿努比斯 | 綠</font><br><font color="#8847ff">阿努比斯 | 黃</font><br><font color="#8847ff">拉 | 紅</font><br><font color="#8847ff">拉 | 藍</font><br><font color="#8847ff">拉 | 綠</font><br><font color="#8847ff">拉 | 黃</font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeriesProjectHDescription="需要計畫 H #1系列 Horzine 補給箱鑰匙才能開啟。包含下列一樣稀有級以上的物品：<br><font color="#4b69cd">計畫 H-01 | 基本</font><br><font color="#4b69cd">計畫 H-01 | 開心 | 綠 </font><br><font color="#4b69cd">計畫 H-01 | 開心開啟 | 綠 </font><br><font color="#4b69cd">計畫 H-01 | 臭臉 | 藍</font><br><font color="#4b69cd">計畫 H-01 | 臭臉開啟 | Blue</font><br><font color="#4b69cd">計畫 H-01 | 不開心 | 紅</font><br><font color="#4b69cd">計畫 H-01 | 不開心開啟 | 紅</font><br><font color="#4b69cd">計畫 H-02 | 基本</font><br><font color="#4b69cd">計畫 H-02 | 開心 | 綠 </font><br><font color="#4b69cd">計畫 H-02 | 開心開啟 | 綠 </font><br><font color="#4b69cd">計畫 H-02 | 臭臉 | 藍</font><br><font color="#4b69cd">計畫 H-02 | 臭臉開啟 | 藍</font><br><font color="#4b69cd">計畫 H-02 | 不開心 | 紅</font><br><font color="#4b69cd">計畫 H-02 | 不開心開啟 | 紅</font><br><font color="#6600a1">計畫 H-01 | 開心 | 紅</font><br><font color="#6600a1">計畫 H-01 | 開心開啟 | 紅</font><br><font color="#6600a1">計畫 H-01 | 臭臉 | 綠 </font><br><font color="#6600a1">計畫 H-01 | 臭臉開啟 | 綠 </font><br><font color="#6600a1">計畫 H-01 | 不開心 | 藍</font><br><font color="#6600a1">計畫 H-01 | 不開心開啟 | 藍</font><br>.<font color="#6600a1">計畫 H-02 | 開心 | 紅</font><br><font color="#6600a1">計畫 H-02 | 開心開啟 | 紅</font><br><font color="#6600a1">計畫 H-02 | 臭臉 | 綠 </font><br><font color="#6600a1">計畫 H-02 | 臭臉開啟 | 綠 </font><br><font color="#6600a1">計畫 H-02 | 不開心 | 藍</font><br><font color="#6600a1">計畫 H-02 | 不開心開啟 | 藍</font><br><font color="#8847ff">計畫 H-01 | 開心 | 藍</font><br><font color="#8847ff">計畫 H-01 | 開心開啟 | 藍</font><br><font color="#8847ff">計畫 H-01 | 臭臉 | 紅</font><br><font color="#8847ff">計畫 H-01 | 臭臉開啟 | 紅</font><br><font color="#8847ff">計畫 H-01 | 不開心 | 綠 </font><br><font color="#8847ff">計畫 H-01 | 不開心開啟 | 綠 </font><br><font color="#8847ff">計畫 H-02 | 開心 | 藍</font><br><font color="#8847ff">計畫 H-02 | 開心開啟 | 藍</font><br><font color="#8847ff">計畫 H-02 | 臭臉 | 紅</font><br><font color="#8847ff">計畫 H-02 | 臭臉開啟 | 紅</font><br><font color="#8847ff">計畫 H-02 | 不開心 | 綠 </font><br><font color="#8847ff">計畫 H-02 | 不開心開啟 | 綠 </font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
+HorzineSupplyCrateSeriesProjectHDescription="需要計畫 H #1系列 Horzine 補給箱鑰匙才能開啟。包含下列一樣稀有級以上的物品：<br><font color="#4b69cd">計畫 H-01 | 計畫 </font><br><font color="#4b69cd">計畫 H-01 | 開心 </font><br><font color="#4b69cd">計畫 H-01 | 開心開啟 </font><br><font color="#4b69cd">計畫 H-01 | 臭臉 </font><br><font color="#4b69cd">計畫 H-01 | 臭臉開啟 </font><br><font color="#4b69cd">計畫 H-01 | 不開心 </font><br><font color="#4b69cd">計畫 H-01 | 不開心開啟 </font><br><font color="#4b69cd">計畫 H-02 | 基本 </font><br><font color="#4b69cd">計畫 H-02 | 開心 </font><br><font color="#4b69cd">計畫 H-02 | 開心開啟 </font><br><font color="#4b69cd">計畫 H-02 | 臭臉 </font><br><font color="#4b69cd">計畫 H-02 | 臭臉開啟 </font><br><font color="#4b69cd">計劃 H-02 | 不開心 </font><br><font color="#4b69cd">計畫 H-02 | 不開心開啟 </font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
+
+HorzineSupplyCrateSeriesBoneyardDescription="需要墓地系列的Horzine補給箱鑰匙才能開啟。包含一個珍貴或更高級的下列物品：<br><font color="#4b69cd">激痛 </font><br><font color="#4b69cd">痛苦 </font><br><font color="#4b69cd">絕望  </font><br><font color="#4b69cd">憂難 </font><br><font color="#4b69cd">悲難 </font><br><font color="#4b69cd">激情 </font><br><font color="#4b69cd">久痛 </font><br><font color="#4b69cd">折磨 </font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Horzine 補給箱子鑰匙｜系列 1"
@@ -568,6 +626,7 @@ HorzineSupplyCrateKeySeriesLocoName="Horzine 補給箱鑰匙｜D.A.R. 機車系�
 HorzineSupplyCrateKeySeriesCyberSamuraiName="Horzine 補給箱子鑰匙｜賽博武士系列"
 HorzineSupplyCrateKeySeriesDeityName="Horzine 補給箱鑰匙｜女神系列"
 HorzineSupplyCrateKeySeriesProjectHName="Horzine 補給箱鑰匙 | 計畫 H #1 系列"
+HorzineSupplyCrateKeySeriesBoneyardName="Horzine 補給箱鑰匙 | 墓地系列"
 
 ;Key Descriptions
 HorzineSupplyCrateKeySeries1Description="這把鑰匙只能開啟 Horzine 系列 1 補給箱子。"
@@ -593,6 +652,7 @@ HorzineSupplyCrateKeySeriesLocoDescription="這把鑰匙只能開啟機車系列
 HorzineSupplyCrateKeySeriesCyberSamuraiDescription="這把鑰匙只能開啟 Horzine 賽博武士系列的補給箱子。"
 HorzineSupplyCrateKeySeriesDeityDescription="這把鑰匙只能打開 Horzine 女神系列的補給箱。"
 HorzineSupplyCrateKeySeriesProjectHDescription="這把鑰匙只能開啟 Horzine 計畫 H #1 系列補給箱。"
+HorzineSupplyCrateKeySeriesBoneyardDescription="這把鑰匙只能開啟墓地系列的補給箱。"
 
 ;UsbNames
 CyberboneEncryptedUSBName="生化骨加密 USB"
@@ -625,6 +685,7 @@ NeonMKIVEncryptedUSBName="霓虹 MKIV 加密 USB"
 DragonwaveEncryptedUSBName="龍波加密 USB"
 NeonMKVEncryptedUSBName="霓虹 MKV 加密 USB"
 SteampunkEncryptedUSBName="蒸汽龐克加密 USB"
+BeyondHorizonEncryptedUSBName="超越地平線加密 USB"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="需要生化骨藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">AR15 | 生化骨</font><br><font color="#4b69cd">AK-12 | 生化骨</font><br><font color="#4b69cd">AA-12 | 生化骨</font><br><font color="#4b69cd">日本刀 | 生化骨</font><br><font color="#8847ff">M79 | 爛膽</font><br><font color="#8847ff">AR15 | 控制</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
@@ -687,6 +748,8 @@ NeonMKVEncryptedUSBDescription="需要霓虹 MKV 藍圖鑰匙才能打開。內�
 
 SteampunkEncryptedUSBDescription="需要蒸汽龐克藍圖鑰匙才能開啟。包含下列一樣稀有級以上的武器飾品：<br><font color="#4b69cd">湯普森衝鋒槍 | 蒸汽龐克</font><br><font color="#4b69cd">溫徹斯特 1894 | 蒸汽龐克</font><br><font color="#4b69cd">MP5RAS | 蒸汽龐克</font><br><font color="#6600a1">龍息 | 蒸汽龐克</font><br><font color="#6600a1">M79 | 蒸汽龐克</font><br><font color="#6600a1">雙手劍 | 蒸汽龐克</font><br><font color="#6600A1">MAC 10 | 蒸汽龐克</font><br><font color="#8847ff">500 馬格南左輪 | 蒸汽龐克</font><br><font color="#8847ff">AA12 | 蒸汽龐克</font><br><font color="#8847ff">M99 | 蒸汽龐克</font><br><font color="#8847ff">沙漠之鷹 | 蒸汽龐克</font><br><font color="#caab05">或者一款極其罕見的珍貴飾品！</font>"
 
+BeyondHorizonEncryptedUSBDescription="需要超越地平線藍圖鑰匙才能開啟。包含以下珍貴或更好的武器飾品：<br><font color="#4b69cd">靜電打擊者 | 超越地平線</font><br><font color="#4b69cd">HMTech-401 突擊步槍 | 超越地平線</font><br><font color="#4b69cd">HMTech-301 散彈槍 | 超越地平線</font><br><font color="#6600a1">RPG-7 | 超越地平線</font><br><font color="#6600a1">火焰噴射器 | 超越地平線</font><br><font color="#6600a1">Scar | 超越地平線</font><br><font color="#6600A1">HMTech-201 衝鋒槍 | 超越地平線</font><br><font color="#8847ff">Kriss | 超越地平線</font><br><font color="#8847ff">M99 | 超越地平線</font><br><font color="#8847ff">赫利奧斯步槍 | 超越地平線</font><br><font color="#8847ff">沙漠之鷹 | 超越地平線</font><br><font color="#caab05">或 1 件特別珍貴的飾品！</font>"
+
 
 ;usb key names
 CyberboneUSBKeyName="生化骨 USB 鑰匙"
@@ -719,6 +782,7 @@ NeonMKIVUSBKeyName="霓虹 MKIV USB 鑰匙"
 DragonwaveUSBKeyName="龍波 USB 密鑰"
 NeonMKVUSBKeyName="霓虹 MKV USB 鑰匙"
 SteampunkUSBKeyName="蒸汽龐克 USB 鑰匙"
+BeyondHorizonUSBKeyName="超越地平線 USB 鑰匙"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="這把鑰匙只能開啟生化骨加密藍圖"
@@ -751,6 +815,7 @@ NeonMKIVUSBKeyDescription="這把鑰匙只能開啟 霓虹 MKIV 加密藍圖"
 DragonwaveUSBKeyDescription="這把鑰匙只能開啟 霓虹 MKIV 加密藍圖"
 NeonMKVUSBKeyDescription="這把鑰匙只能開啟 霓虹 MKIV 加密藍圖"
 SteampunkUSBKeyDescription="這把鑰匙只能開啟蒸汽龐克加密藍圖"
+BeyondHorizonUSBKeyDescription="這把鑰匙只能開啟超越地平線加密藍圖"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Horzine 補給妝容箱子 | 系列 1"
@@ -763,6 +828,7 @@ HorzineSupplyCosmeticCrateSeries7Name="Horzine 補給妝容箱子 | #7系列"
 HorzineSupplyCosmeticCrateSeries8Name="Horzine 補給妝容箱子 | #8系列"
 HorzineSupplyCosmeticCrateSeries9Name="Horzine 補給妝容箱 | #9系列"
 HorzineSupplyCosmeticCrateSeries10Name="Horzine 補給妝容箱 | #10 系列"
+HorzineSupplyCosmeticCrateSeries11Name="Horzine 補給妝容箱子 | #11系列"
 HorzineSupplyWeaponSkinCrateSeries1Name="Horzine 補給武器飾品箱子 | 系列 1"
 HorzineSupplyWeaponSkinCrateSeries2Name="Horzine 補給武器飾品箱子 | 系列 2"
 HorzineSupplyWeaponSkinCrateSeries3Name="Horzine 補給武器飾品箱子 | 系列 3"
@@ -778,7 +844,7 @@ HorzineSupplyWeaponSkinCrateSeries12Name="Horzine 補給武器皮膚箱子 | #12
 HorzineSupplyWeaponSkinCrateSeries13Name="Horzine 補給武器飾品箱 | #13系列"
 HorzineSupplyWeaponSkinCrateSeries14Name="Horzine 補給武器飾品箱 | #14系列"
 HorzineSupplyWeaponSkinCrateSeries15Name="Horzine 補給武器飾品箱 | #15 系列"
-
+HorzineSupplyWeaponSkinCrateSeries16Name="Horzine 補給武器飾品箱子 | #16系列"
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description="需要 Horzine 補給箱子鑰匙才能開啟。內含一樣珍貴級以上的物品：<br><font color="#4b69cd">防彈面具</font><br><font color="#4b69cd">美國防毒面具</font><br><font color="#4b69cd">滑雪面罩</font><br><font color="#4b69cd">棒球帽</font><br><font color="#6600a1">戰術背包</font><br><font color="#6600a1">德國防毒面具</font><br><font color="#6600a1">化學防毒面具</font><br><font color="#6600a1">RPG7 背包</font><br><font color="#8847ff">M2 噴火坦克</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
@@ -831,9 +897,13 @@ HorzineSupplyWeaponSkinCrateSeries14Description="需要 Horzine 補給箱鑰匙�
 
 HorzineSupplyCosmeticCrateSeries9Description="需要 Horzine 補給箱鑰匙才能開啟。包含下列一樣稀有級以上的物品：<br><font color="#4b69cd">護甲頭罩 | 藍</font><br><font color="#4b69cd">護甲頭罩 | 綠</font><br><font color="#4b69cd">無臉面具 | 藍</font><br><font color="#4b69cd">無臉面具 | 綠</font><br><font color="#4b69cd">科幻頭罩 | 藍</font><br><font color="#4b69cd">科幻頭罩 | 綠</font><br><font color="#4b69cd">無表情面具 | 藍</font><br><font color="#4b69cd">無表情面具 | 綠</font><br><font color="#6600a1">護甲頭罩 | 紅</font><br><font color="#6600a1">無表情面具 | 紅</font><br><font color="#6600a1">科幻頭罩 | 紅</font><br><font color="#6600a1">無表情面具 | 紅</font><br><font color="#6600a1">芭斯特 | 紅</font><br><font color="#6600a1">芭斯特 | 黃</font><br><font color="#6600a1">芭斯特 | 綠</font><br><font color="#6600a1">芭斯特 | 藍</font><br><font color="#6600a1">索貝克 | 紅</font><br><font color="#6600a1">索貝克 | 黃</font><br><font color="#6600a1">索貝克 | 綠</font><br><font color="#6600a1">索貝克 | 藍</font><br><font color="#8847ff">護甲頭罩 | 黑</font><br><font color="#8847ff">無臉面具 | 黑</font><br><font color="#8847ff">無臉面具 | 白</font><br><font color="#8847ff">科幻頭罩 | 黑</font><br><font color="#8847ff">無表情面具 | 黑</font><br><font color="#8847ff">無表情面具 | 白</font><br><font color="#8847ff">阿努比斯 | 紅</font><br><font color="#8847ff">阿努比斯 | 藍</font><br><font color="#8847ff">阿努比斯 | 綠</font><br><font color="#8847ff">阿努比斯 | 黃</font><br><font color="#8847ff">拉 | 紅</font><br><font color="#8847ff">拉 | 藍</font><br><font color="#8847ff">拉 | 綠</font><br><font color="#8847ff">拉 | 黃</font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
 
-HorzineSupplyCosmeticCrateSeries10Description="需要 Horzine 補給箱鑰匙才能開啟。包含下列一樣稀有級以上的物品：<br><font color="#4b69cd">計畫 H-01 | 基本</font><br><font color="#4b69cd">計畫 H-01 | 開心 | 綠 </font><br><font color="#4b69cd">計畫 H-01 | 開心開啟 | 綠 </font><br><font color="#4b69cd">計畫 H-01 | 臭臉 | 藍</font><br><font color="#4b69cd">計畫 H-01 | 臭臉開啟 | Blue</font><br><font color="#4b69cd">計畫 H-01 | 不開心 | 紅</font><br><font color="#4b69cd">計畫 H-01 | 不開心開啟 | 紅</font><br><font color="#4b69cd">計畫 H-02 | 基本</font><br><font color="#4b69cd">計畫 H-02 | 開心 | 綠 </font><br><font color="#4b69cd">計畫 H-02 | 開心開啟 | 綠 </font><br><font color="#4b69cd">計畫 H-02 | 臭臉 | 藍</font><br><font color="#4b69cd">計畫 H-02 | 臭臉開啟 | 藍</font><br><font color="#4b69cd">計畫 H-02 | 不開心 | 紅</font><br><font color="#4b69cd">計畫 H-02 | 不開心開啟 | 紅</font><br><font color="#6600a1">計畫 H-01 | 開心 | 紅</font><br><font color="#6600a1">計畫 H-01 | 開心開啟 | 紅</font><br><font color="#6600a1">計畫 H-01 | 臭臉 | 綠 </font><br><font color="#6600a1">計畫 H-01 | 臭臉開啟 | 綠 </font><br><font color="#6600a1">計畫 H-01 | 不開心 | 藍</font><br><font color="#6600a1">計畫 H-01 | 不開心開啟 | 藍</font><br>.<font color="#6600a1">計畫 H-02 | 開心 | 紅</font><br><font color="#6600a1">計畫 H-02 | 開心開啟 | 紅</font><br><font color="#6600a1">計畫 H-02 | 臭臉 | 綠 </font><br><font color="#6600a1">計畫 H-02 | 臭臉開啟 | 綠 </font><br><font color="#6600a1">計畫 H-02 | 不開心 | 藍</font><br><font color="#6600a1">計畫 H-02 | 不開心開啟 | 藍</font><br><font color="#8847ff">計畫 H-01 | 開心 | 藍</font><br><font color="#8847ff">計畫 H-01 | 開心開啟 | 藍</font><br><font color="#8847ff">計畫 H-01 | 臭臉 | 紅</font><br><font color="#8847ff">計畫 H-01 | 臭臉開啟 | 紅</font><br><font color="#8847ff">計畫 H-01 | 不開心 | 綠 </font><br><font color="#8847ff">計畫 H-01 | 不開心開啟 | 綠 </font><br><font color="#8847ff">計畫 H-02 | 開心 | 藍</font><br><font color="#8847ff">計畫 H-02 | 開心開啟 | 藍</font><br><font color="#8847ff">計畫 H-02 | 臭臉 | 紅</font><br><font color="#8847ff">計畫 H-02 | 臭臉開啟 | 紅</font><br><font color="#8847ff">計畫 H-02 | 不開心 | 綠 </font><br><font color="#8847ff">計畫 H-02 | 不開心開啟 | 綠 </font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
+HorzineSupplyCosmeticCrateSeries10Description="需要 Horzine 補給箱鑰匙才能開啟。包含下列一樣稀有級以上的物品：<br><font color="#4b69cd">計畫 H-01 | 計畫 </font><br><font color="#4b69cd">計畫 H-01 | 開心 </font><br><font color="#4b69cd">計畫 H-01 | 開心開啟 </font><br><font color="#4b69cd">計畫 H-01 | 臭臉 </font><br><font color="#4b69cd">計畫 H-01 | 臭臉開啟 </font><br><font color="#4b69cd">計畫 H-01 | 不開心 </font><br><font color="#4b69cd">計畫 H-01 | 不開心開啟 </font><br><font color="#4b69cd">計畫 H-02 | 基本 </font><br><font color="#4b69cd">計畫 H-02 | 開心 </font><br><font color="#4b69cd">計畫 H-02 | 開心開啟 </font><br><font color="#4b69cd">計畫 H-02 | 臭臉 </font><br><font color="#4b69cd">計畫 H-02 | 臭臉開啟 </font><br><font color="#4b69cd">計劃 H-02 | 不開心 </font><br><font color="#4b69cd">計畫 H-02 | 不開心開啟 </font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries15Description="需要蒸汽龐克藍圖鑰匙才能開啟。包含下列一樣稀有級以上的武器飾品：<br><font color="#4b69cd">湯普森衝鋒槍 | 蒸汽龐克</font><br><font color="#4b69cd">溫徹斯特 1894 | 蒸汽龐克</font><br><font color="#4b69cd">MP5RAS | 蒸汽龐克</font><br><font color="#6600a1">龍息 | 蒸汽龐克</font><br><font color="#6600a1">M79 | 蒸汽龐克</font><br><font color="#6600a1">雙手劍 | 蒸汽龐克</font><br><font color="#6600A1">MAC 10 | 蒸汽龐克</font><br><font color="#8847ff">500 馬格南左輪 | 蒸汽龐克</font><br><font color="#8847ff">AA12 | 蒸汽龐克</font><br><font color="#8847ff">M99 | 蒸汽龐克</font><br><font color="#8847ff">沙漠之鷹 | 蒸汽龐克</font><br><font color="#caab05">或者一款極其罕見的珍貴飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries15Description="需要 Horzine 補給箱鑰匙才能開啟。包含下列一樣稀有級以上的武器飾品：<br><font color="#4b69cd">湯普森衝鋒槍 | 蒸汽龐克</font><br><font color="#4b69cd">溫徹斯特 1894 | 蒸汽龐克</font><br><font color="#4b69cd">MP5RAS | 蒸汽龐克</font><br><font color="#6600a1">龍息 | 蒸汽龐克</font><br><font color="#6600a1">M79 | 蒸汽龐克</font><br><font color="#6600a1">雙手劍 | 蒸汽龐克</font><br><font color="#6600A1">MAC 10 | 蒸汽龐克</font><br><font color="#8847ff">500 馬格南左輪 | 蒸汽龐克</font><br><font color="#8847ff">AA12 | 蒸汽龐克</font><br><font color="#8847ff">M99 | 蒸汽龐克</font><br><font color="#8847ff">沙漠之鷹 | 蒸汽龐克</font><br><font color="#caab05">或者一款極其罕見的珍貴飾品！</font>"
+
+HorzineSupplyWeaponSkinCrateSeries16Description="需要 Horzine 補給箱子鑰匙才能開啟。包含以下珍貴或更好的武器飾品：<br><font color="#4b69cd">靜電打擊者 | 超越地平線</font><br><font color="#4b69cd">HMTech-401 突擊步槍 | 超越地平線</font><br><font color="#4b69cd">HMTech-301 散彈槍 | 超越地平線</font><br><font color="#6600a1">RPG-7 | 超越地平線</font><br><font color="#6600a1">火焰噴射器 | 超越地平線</font><br><font color="#6600a1">Scar | 超越地平線</font><br><font color="#6600A1">HMTech-201 衝鋒槍 | 超越地平線</font><br><font color="#8847ff">Kriss | 超越地平線</font><br><font color="#8847ff">M99 | 超越地平線</font><br><font color="#8847ff">赫利奧斯步槍 | 超越地平線</font><br><font color="#8847ff">沙漠之鷹 | 超越地平線</font><br><font color="#caab05">或 1 件特別珍貴的飾品！</font>"
+
+HorzineSupplyCosmeticCrateSeries11Description="需要 Horzine 補給箱鑰匙才能開啟。包含一個珍貴或更高級的下列物品：<br><font color="#4b69cd">激痛 </font><br><font color="#4b69cd">痛苦 </font><br><font color="#4b69cd">絕望  </font><br><font color="#4b69cd">憂難 </font><br><font color="#4b69cd">悲難 </font><br><font color="#4b69cd">激情 </font><br><font color="#4b69cd">久痛 </font><br><font color="#4b69cd">折磨 </font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="Horzine 補給箱子鑰匙"
@@ -950,7 +1020,7 @@ CraftingGoldenCyberPunkDescription="獲得黃金票券！<font color="#4b69cd">�
 HMTechHealerMintDescription="外觀：全新 | HMTech 治療道具"
 HMTechHealerFieldTestedDescription="外觀：中古 | HMTech 治療道具"
 HMTechHealerBattleScarredDescription="外觀：破舊 | HMTech 治療道具"
-HMTechHealerPreciousDescription="外觀：珍貴 | 治療道具"
+HMTechHealerPreciousDescription="外觀：珍貴 | HMTech 治療道具"
 
 ;HMTech Healer Names
 HMTechHealerPrecious="外觀：珍貴 | HMTech 治療道具"
@@ -1029,10 +1099,11 @@ HMTechHealerSynthwaveBattleScarredName="HMTech 治療道具 | 合成器浪潮 | 
 500MagnumRevolverYinYangFieldTestedName="500 馬格南左輪 | 太極 | 中古"
 500MagnumRevolverYinYangMintName="500 馬格南左輪 | 太極 | 全新"
 500MagnumRevolverPrestigePreciousName=".500 馬格南左輪 | 聲望 | 珍貴"
-500MagnumRevolverSteampunkBattleScarredName=".500 馬格南左輪 | 蒸汽龐克 | 全新 | 破舊"
-500MagnumRevolverSteampunkFieldTestedName=".500 馬格南左輪 | 蒸汽龐克 | 全新 | 中古"
-500MagnumRevolverSteampunkMintName=".500 馬格南左輪 | 蒸汽龐克 | 全新 | 全新"
+500MagnumRevolverSteampunkBattleScarredName=".500 馬格南左輪 | 蒸汽龐克 | 破舊"
+500MagnumRevolverSteampunkFieldTestedName=".500 馬格南左輪 | 蒸汽龐克 | 中古"
+500MagnumRevolverSteampunkMintName=".500 馬格南左輪 | 蒸汽龐克 | 全新"
 500MagnumRevolverSteampunkPreciousName=".500 馬格南左輪 | 蒸汽龐克 | 珍貴"
+500MagnumRevolverDragonKoiPreciousName=".500 馬格南左輪 | 龍鯉 | 珍貴"
 
 ;9mm Descriptions
 9MMMintDescription="外觀：全新 | 簡單便宜（對你來說非常便宜），所有 Horizine 人員的基本配備。"
@@ -1159,10 +1230,11 @@ AA12NeonBattleScarredName="AA12 | 霓虹燈 | 身經百戰"
 AA12NeonRGBPreciousName="AA12 | 霓虹燈RGB | 珍貴" 
 AA12VaultVoshPreciousName="AA12 | 金庫 | V 字 | 珍貴"
 AA12PrestigePreciousName="AA12 | 聲望 | 珍貴"
-AA12SteampunkBattleScarredName="AA12 | 蒸汽龐克 | 全新 | 破舊"
-AA12SteampunkFieldTestedName="AA12 | 蒸汽龐克 | 全新 | 中古"
-AA12SteampunkMintName="AA12 | 蒸汽龐克 | 全新 | 全新"
+AA12SteampunkBattleScarredName="AA12 | 蒸汽龐克 | 破舊"
+AA12SteampunkFieldTestedName="AA12 | 蒸汽龐克 | 中古"
+AA12SteampunkMintName="AA12 | 蒸汽龐克 | 全新"
 AA12SteampunkPreciousName="AA12 | 蒸汽龐克 | 珍貴"
+AA12DragonKoiPreciousName="AA12 | 龍鯉 | 珍貴"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="外觀：全新 | 你在上面放更多桶，所有事就會變更好。就像加更多培根。"
@@ -1251,6 +1323,7 @@ AK12SynthwaveMintName="AK-12 | 合成器浪潮 | 全新"
 AK12SynthwaveFieldTestedName="AK-12 | 合成器浪潮 | 中古"
 AK12SynthwaveBattleScarredName="AK-12 | 合成器浪潮 | 破舊"
 AK12PrestigePreciousName="AK-12 | 聲望 | 珍貴"
+AK12DragonKoiPreciousName="AK-12 | 龍鯉 | 珍貴"
 
 ;AR15 Descriptions
 AR15MintDescription="外觀：全新 | 這是打 Zed 用的，不是打惡棍。"
@@ -1498,10 +1571,11 @@ DesertEagleNeonRGBPreciousName="沙漠之鷹 | 霓虹 RGB | 珍貴"
 DesertEagleSynthwaveMintName="沙漠之鷹 | 合成器浪潮 | 全新"
 DesertEagleSynthwaveFieldTestedName="沙漠之鷹 | 合成器浪潮 | 中古"
 DesertEagleSynthwaveBattleScarredName="沙漠之鷹 | 合成器浪潮 | 破舊"
-DesertEagleSteampunkBattleScarredName="沙漠之鷹 | 蒸汽龐克 | 全新 | 破舊"
-DesertEagleSteampunkFieldTestedName="沙漠之鷹 | 蒸汽龐克 | 全新 | 中古"
+DesertEagleSteampunkBattleScarredName="沙漠之鷹 | 蒸汽龐克 | 破舊"
+DesertEagleSteampunkFieldTestedName="沙漠之鷹 | 蒸汽龐克 | 中古"
 DesertEagleSteampunkMintName="沙漠之鷹 | 蒸汽龐克 | 全新 | 全新"
 DesertEagleSteampunkPreciousName="沙漠之鷹 | 蒸汽龐克 | 珍貴"
+DesertEagleDragonKoiPreciousName="沙漠之鷹 | 龍鯉 | 珍貴"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="外觀：全新 | 如果雙倍快樂還不夠，那就來四倍的！"
@@ -1543,9 +1617,9 @@ DragonsbreathHeirloomFieldTestedName="龍的呼吸 | 傳世 | 中古"
 DragonsbreathHeirloomBattleScarredName="龍的呼吸 | 傳世 | 破舊"
 DragonsbreathVaultVoshPreciousName="龍息 | 金庫 | V 字 | 珍貴"
 DragonsbreathPrestigePreciousName="龍的呼吸 | 聲望 | 珍貴"
-DragonsbreathSteampunkBattleScarredName="龍息 | 蒸汽龐克 | 全新 | 破舊"
-DragonsbreathSteampunkFieldTestedName="龍息 | 蒸汽龐克 | 全新 | 中古"
-DragonsbreathSteampunkMintName="龍息 | 蒸汽龐克 | 全新 | 全新"
+DragonsbreathSteampunkBattleScarredName="龍的呼吸 | 蒸汽龐克 | 破舊"
+DragonsbreathSteampunkFieldTestedName="龍的呼吸 | 蒸汽龐克 | 中古"
+DragonsbreathSteampunkMintName="龍的呼吸 | 蒸汽龐克 | 全新"
 DragonsbreathSteampunkPreciousName="龍息 | 蒸汽龐克 | 珍貴"
 DragonsbreathDragonKoiPreciousName="龍息 | 龍鯉 | 珍貴"
 
@@ -1565,6 +1639,7 @@ EvisceratorBlackGoldenFieldTestedName="剔骨器 | 黑金 | 中古"
 EvisceratorBlackGoldenBattleScarredName="剔骨器 | 黑金 | 破舊"
 EvisceratorVaultVoshPreciousName="剔骨器 | 金庫 | V 字 | 珍貴"
 EvisceratorPrestigePreciousName="剔骨器 | 聲望 | 珍貴"
+EvisceratorDragonKoiPreciousName="剔骨器 | 龍鯉 | 珍貴"
 
 ;Firemans Knife Descriptions
 FiremansKnifeMintDescription="外觀：全新 | 消防員用刀。你是消防員，所以我們應該不用再為你說明使用方法。"
@@ -1604,6 +1679,11 @@ FlamethrowerNeonBattleScarredName="火焰噴射器 | 霓虹燈 | 身經百戰"
 FlamethrowerNeonRGBPreciousName="火焰噴射器 | 霓虹燈RGB | 珍貴" 
 FlamethrowerVaultVoshPreciousName="火焰噴射器 | 金庫 | V字| 珍貴"
 FlamethrowerPrestigePreciousName="火焰噴射器 | 聲望 | 珍貴"
+FlamethrowerBeyondHorizonMintName="火焰噴射器 | 超越地平線 | 全新"
+FlamethrowerBeyondHorizonFieldTestedName="火焰噴射器 | 超越地平線 | 中古"
+FlamethrowerBeyondHorizonBattleScarredName="火焰噴射器 | 超越地平線 | 破舊"
+FlamethrowerBeyondHorizonSpaceEliteName="火焰噴射器 | 超越地平線 | 太空菁英"
+FlamethrowerDragonKoiPreciousName="火焰噴射器 | 龍鯉 | 珍貴"
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="外觀：全新 | 在一個較為便利、可攜式的大小包裝下發射砲火系統。"
@@ -1675,6 +1755,7 @@ FreezeThrowerNeonMintName="冰凍噴射器 | 霓虹 | 全新"
 FreezeThrowerNeonFieldTestedName="冰凍噴射器 | 霓虹 | 中古"
 FreezeThrowerNeonBattleScarredName="冰凍噴射器 | 霓虹 | 破舊"
 FreezeThrowerNeonRGBPreciousName="冰凍噴射器 | 霓虹RGB | 珍貴"
+FreezeThrowerDragonKoiPreciousName="冰凍噴射器 | 龍鯉 | 珍貴"
 
 ;Freeze Thrower Descriptions
 FreezeThrowerMintDescription="外觀：全新|僅有生物才能抵擋低溫。"
@@ -1780,6 +1861,10 @@ HMTech101PistolNeonFieldTestedName="HMTech-101 手槍 | 霓虹 | 中古"
 HMTech101PistolNeonBattleScarredName="HMTech-101 手槍 | 霓虹 | 破舊"
 HMTech101PistolNeonRGBPreciousName="HMTech-101 手槍 | 霓虹RGB | 珍貴"
 HMTech101PistolDragonKoiPreciousName="HMTech-101 手槍 | 龍鯉 | 珍貴"
+HMTech101PistolBeyondHorizonMintName="HMTech-101 手槍 | 超越地平線 | 全新"
+HMTech101PistolBeyondHorizonFieldTestedName="HMTech-101 手槍 | 超越地平線 | 中古"
+HMTech101PistolBeyondHorizonBattleScarredName="HMTech-101 手槍 | 超越地平線 | 破舊"
+HMTech101PistolBeyondHorizonSpaceEliteName="HMTech-101 手槍 | 超越地平線 | 太空菁英"
 
 ;HMTech-201 SMG Descriptions
 HMTech201SMGMintDescription="外觀：全新 | 射擊式治療鏢，用來治療隊友。你的手槍已改造！"
@@ -1805,6 +1890,10 @@ HMTech201SMGNeonBattleScarredName="HMTech-201 衝鋒槍 | 霓虹 | 破舊"
 HMTech201SMGPrestigePreciousName="HMTech-201 衝鋒槍 | 聲望 | 珍貴"
 HMTech201SMGNeonRGBPreciousName="HMTech-201 衝鋒槍 | 霓虹RGB | 珍貴"
 HMTech201SMGDragonKoiPreciousName="HMTech-201 衝鋒槍 | 龍鯉 | 珍貴"
+HMTech201SMGBeyondHorizonMintName="HMTech-201 衝鋒槍 | 超越地平線 | 全新"
+HMTech201SMGBeyondHorizonFieldTestedName="HMTech-201 衝鋒槍 | 超越地平線 | 中古"
+HMTech201SMGBeyondHorizonBattleScarredName="HMTech-201 衝鋒槍 | 超越地平線 | 破舊"
+HMTech201SMGBeyondHorizonSpaceEliteName="HMTech-201 衝鋒槍 | 超越地平線 | 太空菁英"
 
 ;HMTech-301 Shotgun Descriptions
 HMTech301ShotgunMintDescription="外觀：全新 | HMTech 手槍的戰鬥霰彈槍版本。"
@@ -1827,11 +1916,17 @@ HMTech301ShotgunNeonFieldTestedName="HMTech-301 霰彈槍 | 霓虹 | 中古"
 HMTech301ShotgunNeonBattleScarredName="HMTech-301 霰彈槍 | 霓虹 | 破舊"
 HMTech301ShotgunNeonRGBPreciousName="HMTech-301 霰彈槍 | 霓虹RGB | 珍貴"
 HMTech301ShotgunPrestigePreciousName="HMTech-301 霰彈槍 | 聲望 | 珍貴"
+HMTech301ShotgunBeyondHorizonMintName="HMTech-301 散彈槍 | 超越地平線 | 全新"
+HMTech301ShotgunBeyondHorizonFieldTestedName="HMTech-301 散彈槍 | 超越地平線 | 中古"
+HMTech301ShotgunBeyondHorizonBattleScarredName="HMTech-301 散彈槍 | 超越地平線 | 破舊"
+HMTech301ShotgunBeyondHorizonSpaceEliteName="HMTech-301 散彈槍 | 超越地平線 | 太空菁英"
+HMTech301ShotgunDragonKoiPreciousName="HMTech-301 散彈槍 | 龍鯉 | 珍貴"
 
 ;HMTech-401 Assault Rifle Descriptions
 HMTech401AssaultRifleMintDescription="外觀：全新 | HMTech 手槍的完整突擊步槍版本。"
 HMTech401AssaultRifleFieldTestedDescription="外觀：中古 | HMTech 手槍的完整突擊步槍版本。"
 HMTech401AssaultRifleBattleScarredDescription="外觀：破舊 | HMTech 手槍的完整突擊步槍版本。"
+HMTech401AssaultRiflePreciousDescription="外觀：珍貴 | HMTech 手槍的完整突擊步槍版本。"
 HMTech401AssaultPreciousDescription="外觀：珍貴 | HMTech 手槍的完整突擊步槍版本。"
 
 ;HMTech-401 Assault Rifle Names
@@ -1866,6 +1961,11 @@ HMTech401AssaultRifleNeonBattleScarredName="HMTech-401 突擊步槍 | 霓虹 | �
 HMTech401AssaultRifleNeonRGBPreciousName="HMTech-401 突擊步槍 | 霓虹RGB | 珍貴"
 HMTech401VaultVoshPreciousName="HMTech-401 | 金庫 | V 字 | 珍貴"
 HMTech401AssaultRiflePrestigePreciousName="HMTech-401 突擊步槍 | 聲望 | 珍貴"
+HMTech401AssaultRifleBeyondHorizonMintName="HMTech-401 突擊步槍 | 超越地平線 | 全新"
+HMTech401AssaultRifleBeyondHorizonFieldTestedName="HMTech-401 突擊步槍 | 超越地平線 | 中古"
+HMTech401AssaultRifleBeyondHorizonBattleScarredName="HMTech-401 突擊步槍 | 超越地平線 | 破舊"
+HMTech401AssaultRifleBeyondHorizonSpaceEliteName="HMTech-401 突擊步槍 | 超越地平線 | 太空菁英"
+HMTech401AssaultRifleDragonKoiPreciousName="HMTech-401 突擊步槍 | 龍鯉 | 珍貴"
 
 ;HMTech-501 Grenade Launcher Descriptions
 HMTech501GrenadeLauncherMintDescription="外觀：全新 | 這是唯一一種可以用它將榴彈射向隊友的武器！"
@@ -2026,6 +2126,11 @@ KrissSynthwaveMintName="克里斯衝鋒槍 | 合成器浪潮 | 全新"
 KrissSynthwaveFieldTestedName="克里斯衝鋒槍 | 合成器浪潮 | 中古"
 KrissSynthwaveBattleScarredName="克里斯衝鋒槍 | 合成器浪潮 | 破舊"
 KrissPrestigePreciousName="克里斯衝鋒槍 | 聲望 | 珍貴"
+KrissBeyondHorizonMintName="Kriss | 超越地平線 | 全新"
+KrissBeyondHorizonFieldTestedName="Kriss | 超越地平線 | 中古"
+KrissBeyondHorizonBattleScarredName="Kriss | 超越地平線 | 破舊"
+KrissBeyondHorizonSpaceEliteName="Kriss | 超越地平線 | 太空菁英"
+KrissDragonKoiPreciousName="Kriss | 龍鯉 | 珍貴"
 
 ;L85A2 Descriptions
 L85A2MintDescription="外觀：全新 | SA80是英國陸軍的標準配備，直到陸軍，呃，被吃掉。"
@@ -2102,6 +2207,7 @@ M14EBRNeonBattleScarredName="M14EBR | 霓虹燈 | 身經百戰"
 M14EBRNeonRGBPreciousName="M14EBR | 霓虹燈RGB | 珍貴" 
 M14EBRVaultVoshPreciousName="M14EBR | 金庫 | V字 | 珍貴"
 M14EBRPrestigePreciousName="M14EBR | 聲望 | 珍貴"
+M14EBRDragonKoiPreciousName="M14EBR | 龍鯉 | 珍貴"
 
 ;M16M203 Descriptions
 M16M203MintDescription="外觀：全新|適合難以決定使用子彈還是炸藥的人。"
@@ -2125,6 +2231,7 @@ M16M2036NeonMintName="M16 M203 | 霓虹 | 全新"
 M16M2036NeonRGBPreciousName="M16 M203 | 霓虹 RGB | 珍貴"
 M16M203PrestigePreciousName="M16 M203 | 聲望 | 珍貴"
 M16M203VaultVoshPreciousName="M16 M203 | 金庫 | V 字 | 珍貴"
+M16M203DragonKoiPreciousName="M16 M203 | 龍鯉 | 珍貴"
 
 
 ;M1911 Descriptions
@@ -2190,6 +2297,7 @@ M4NeonFieldTestedName="M4 | 霓虹 | 中古"
 M4NeonBattleScarredName="M4 | 霓虹 | 破舊"
 M4NeonRGBPreciousName="M4 | 霓虹 RGB | 珍貴"
 M4PrestigePreciousName="M4 | 聲望 | 珍貴"
+M4DragonKoiPreciousName="M4 | 龍鯉 | 珍貴"
 
 ;M79 Descriptions
 M79MintDescription="外觀：全新 | 射出後才會解除保險，所以你不會炸爛自己的臉。"
@@ -2229,9 +2337,9 @@ M79HorzineFirstEncounterBattleScarredName="M79 | Horzine 初次相遇 | 身經�
 M79VaultVoshPreciousName="M79 | 金庫 | V字 | 珍貴"
 M79PrestigePreciousName="M79 | 聲望 | 珍貴"
 M79DragonKoiPreciousName="M79 | 龍鯉 | 珍貴"
-M79SteampunkBattleScarredName="M79 | 蒸汽龐克 | 全新 | 破舊"
-M79SteampunkFieldTestedName="M79 | 蒸汽龐克 | 全新 | 中古"
-M79SteampunkMintName="M79 | 蒸汽龐克 | 全新 | 全新"
+M79SteampunkBattleScarredName="M79 | 蒸汽龐克 | 破舊"
+M79SteampunkFieldTestedName="M79 | 蒸汽龐克 | 中古"
+M79SteampunkMintName="M79 | 蒸汽龐克 | 全新"
 M79SteampunkPreciousName="M79 | 蒸汽龐克 | 珍貴"
 
 ;Bone Crusher Descriptions
@@ -2251,10 +2359,14 @@ M99NeonMintName="M99 | 霓虹 | 全新"
 M99NeonFieldTestedName="M99 | 霓虹 | 中古" 
 M99NeonBattleScarredName="M99 | 霓虹 | 破舊" 
 M99NeonRGBPreciousName="M99 | 霓虹 RGB | 珍貴" 
-M99SteampunkBattleScarredName="M99 | 蒸汽龐克 | 全新 | 破舊"
-M99SteampunkFieldTestedName="M99 | 蒸汽龐克 | 全新 | 中古"
-M99SteampunkMintName="M99 | 蒸汽龐克 | 全新 | 全新"
+M99SteampunkBattleScarredName="M99 | 蒸汽龐克 | 破舊"
+M99SteampunkFieldTestedName="M99 | 蒸汽龐克 | 中古"
+M99SteampunkMintName="M99 | 蒸汽龐克 | 全新"
 M99SteampunkPreciousName="M99 | 蒸汽龐克 | 珍貴"
+M99BeyondHorizonMintName="M99 | 超越地平線 | 全新"
+M99BeyondHorizonFieldTestedName="M99 | 超越地平線 | 中古"
+M99BeyondHorizonBattleScarredName="M99 | 超越地平線 | 破舊"
+M99BeyondHorizonSpaceEliteName="M99 | 超越地平線 | 太空菁英"
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="碎骨者 | 巡迴 | 全新"
@@ -2297,17 +2409,21 @@ Mac10NeonMintName="MAC 10 | 霓虹 | 全新"
 Mac10NeonFieldTestedName="MAC 10 | 霓虹 | 中古" 
 Mac10NeonBattleScarredName="MAC 10 | 霓虹 | 破舊" 
 Mac10NeonRGBPreciousName="MAC 10 | 霓虹 RGB | 珍貴" 
-Mac10SteampunkBattleScarredName="MAC 10 | 蒸汽龐克 | 全新 | 破舊"
-Mac10SteampunkFieldTestedName="MAC 10 | 蒸汽龐克 | 全新 | 中古"
-Mac10SteampunkMintName="MAC 10 | 蒸汽龐克 | 全新 | 全新"
+Mac10SteampunkBattleScarredName="MAC 10 | 蒸汽龐克 | 破舊"
+Mac10SteampunkFieldTestedName="MAC 10 | 蒸汽龐克 | 中古"
+Mac10SteampunkMintName="MAC 10 | 蒸汽龐克 | 全新"
 Mac10SteampunkPreciousName="MAC 10 | 蒸汽龐克 | 珍貴"
 Mac10VaultVoshPreciousName="MAC 10 | 金庫 | V 字 | 珍貴"
 
 ;Medic Bat Descriptions
-MedicBatPreciousDescription="外觀：珍貴 | 治療棒"
+MedicBatMintDescription="外觀：全新 | 對於那些不知道好好治療的人來說，要是用它在他們頭頂上來上一記"
+MedicBatFieldTestedDescription="外觀：中古 | 對於那些不知道好好治療的人來說，要是用它在他們頭頂上來上一記"
+MedicBatBattleScarredDescription="外觀：破舊 | 對於那些不知道好好治療的人來說，要是用它在他們頭頂上來上一記"
+MedicBatPreciousDescription="外觀：珍貴 | 對於那些不知道好好治療的人來說，要是用它在他們頭頂上來上一記"
 
 ;Medic Bat Names
-MedicBatPreciousName="治療棒 | 珍貴"
+MedicBatPreciousName="血腥痛擊者 | 珍貴"
+MedicBatVaultVoshPreciousName="血腥痛擊者 | 金庫 | V 字 | 珍貴"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="外觀：全新 | 高科技的好產物：手拿式 Zed 料理工具。"
@@ -2329,6 +2445,7 @@ MicrowaveGunNeonBattleScarredName="微波砲 | 霓虹燈 | 身經百戰"
 MicrowaveGunNeonRGBPreciousName="微波砲 | 霓虹燈RGB | 珍貴"
 MicrowaveGunVaultVoshPreciousName="微波槍 | 金庫 | V 字 | 珍貴"
 MicrowaveGunPrestigePreciousName="微波砲 | 聲望 | 珍貴"
+MicrowaveGunDragonKoiPreciousName="微波槍 | 龍鯉 | 珍貴"
 
 ;MP5RAS Descriptions
 MP5RASMintDescription="外觀：全新 | 全世界最常用的衝鋒槍之一的最新一代。"
@@ -2365,9 +2482,9 @@ MP5RASHorzineFirstEncounterFieldTestedName="MP5RAS | Horzine 初次相遇 | 久�
 MP5RASHorzineFirstEncounterBattleScarredName="MP5RAS | Horzine 初次相遇 | 身經百戰" 
 MP5RASPrestigePreciousName="MP5RAS | 聲望 | 珍貴"
 MP5RASDragonKoiPreciousName="MP5RAS | 龍鯉 | 珍貴"
-MP5RASSteampunkBattleScarredName="MP5RAS | 蒸汽龐克 | 全新 | 破舊"
-MP5RASSteampunkFieldTestedName="MP5RAS | 蒸汽龐克 | 全新 | 中古"
-MP5RASSteampunkMintName="MP5RAS | 蒸汽龐克 | 全新 | 全新"
+MP5RASSteampunkBattleScarredName="MP5RAS | 蒸汽龐克 | 破舊"
+MP5RASSteampunkFieldTestedName="MP5RAS | 蒸汽龐克 | 中古"
+MP5RASSteampunkMintName="MP5RAS | 蒸汽龐克 | 全新"
 MP5RASSteampunkPreciousName="MP5RAS | 蒸汽龐克 | 珍貴"
 
 ;MP7 Descriptions
@@ -2414,6 +2531,7 @@ P90NeonFieldTestedName="P90 | 霓虹 | 中古"
 P90NeonMintName="P90 | 霓虹 | 全新"
 P90NeonRGBPreciousName="P90 | 霓虹 RGB | 珍貴"
 P90VaultVoshPreciousName="P90 | 金庫 | V字 | 珍貴"
+P90DragonKoiPreciousName="P90 | 龍鯉 | 珍貴"
 
 ;Pulverizer Descriptions
 PulverizerMintDescription="外觀：全新 | 你怎能抗拒霰彈槍與大鐵槌的結合？"
@@ -2444,6 +2562,11 @@ PulverizerPrestigePreciousName="粉碎器 | 聲望 | 珍貴"
 PulverizerSynthwaveMintName="粉碎器 | 合成器浪潮 | 全新"
 PulverizerSynthwaveFieldTestedName="粉碎器 | 合成器浪潮 | 中古"
 PulverizerSynthwaveBattleScarredName="粉碎器 | 合成器浪潮 | 破舊"
+PulverizerBeyondHorizonMintName="粉碎器 | 超越地平線 | 全新"
+PulverizerBeyondHorizonFieldTestedName="粉碎器 | 超越地平線 | 中古"
+PulverizerBeyondHorizonBattleScarredName="粉碎器 | 超越地平線 | 破舊"
+PulverizerBeyondHorizonSpaceEliteName="粉碎器 | 超越地平線 | 太空菁英"
+PulverizerDragonKoiPreciousName="粉碎器 | 龍鯉 | 珍貴"
 
 ;Railgun Descriptions
 RailgunMintDescription="外觀：全新 | 這項武器利用磁力發射鋼製子彈，可以像穿過衛生紙一樣打穿 Zed。"
@@ -2464,6 +2587,7 @@ RailgunBluefireFieldTestedName="軌道槍 | 藍焰 | 久經沙場"
 RailgunBluefireBattleScarredName="軌道槍 | 藍焰 | 身經百戰" 
 RailgunVaultVoshPreciousName="軌道槍 | 金庫 | V 字 | 珍貴"
 RailgunPrestigePreciousName="磁軌砲 | 聲望 | 珍貴"
+RailgunDragonKoiPreciousName="軌道槍 | 龍鯉 | 珍貴"
 
 ;RPG-7 Descriptions
 RPG7MintDescription="外觀：全新 | 射出後才會解除保險，所以你不會炸爛自己的臉。小心後座力！"
@@ -2502,6 +2626,11 @@ RPG7HorzineFirstEncounterFieldTestedName="RPG-7 | Horzine 初次相遇 | 久經�
 RPG7HorzineFirstEncounterBattleScarredName="RPG-7 | Horzine 初次相遇 | 身經百戰" 
 RPG7VaultVoshPreciousName="RPG-7 | 金庫 | V 字 | 珍貴"
 RPG7PrestigePreciousName="RPG-7 | 聲望 | 珍貴"
+RPG7BeyondHorizonMintName="RPG-7 | 超越地平線 | 全新"
+RPG7BeyondHorizonFieldTestedName="RPG-7 | 超越地平線 | 中古"
+RPG7BeyondHorizonBattleScarredName="RPG-7 | 超越地平線 | 破舊"
+RPG7BeyondHorizonSpaceEliteName="RPG-7 | 超越地平線 | 太空菁英"
+RPG7DragonKoiPreciousName="RPG-7 | 龍鯉 | 珍貴"
 
 ;Scar Descriptions
 ScarMintDescription="外觀：全新 | 本來是設計給美國特種部隊使用的，真的很特別！"
@@ -2564,6 +2693,11 @@ ScarSynthwaveMintName="傷疤 | 合成器浪潮 | 全新"
 ScarSynthwaveFieldTestedName="傷疤 | 合成器浪潮 | 中古"
 ScarSynthwaveBattleScarredName="傷疤 | 合成器浪潮 | 破舊"
 ScarPrestigePreciousName="Scar | 聲望 | 珍貴"
+ScarBeyondHorizonMintName="Scar | 超越地平線 | 全新"
+ScarBeyondHorizonFieldTestedName="Scar | 超越地平線 | 中古"
+ScarBeyondHorizonBattleScarredName="Scar | 超越地平線 | 破舊"
+ScarBeyondHorizonSpaceEliteName="Scar | 超越地平線 | 太空菁英"
+ScarDragonKoiPreciousName="Scar | 龍鯉 | 珍貴"
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="外觀：全新 | 一種多功能，高爆炸性的武器，可一次追蹤並打擊多個目標。"
@@ -2640,6 +2774,10 @@ StaticStrikersNeonMintName="靜電打擊者 | 霓虹 | 全新"
 StaticStrikersNeonFieldTestedName="靜電打擊者 | 霓虹 | 中古" 
 StaticStrikersNeonBattleScarredName="靜電打擊者 | 霓虹 | 破舊" 
 StaticStrikersNeonRGBPreciousName="靜電打擊者 | 霓虹 RGB | 珍貴" 
+StaticStrikersBeyondHorizonMintName="靜電打擊者 | 超越地平線 | 全新"
+StaticStrikersBeyondHorizonFieldTestedName="靜電打擊者 | 超越地平線 | 中古"
+StaticStrikersBeyondHorizonBattleScarredName="靜電打擊者 | 超越地平線 | 破舊"
+StaticStrikersBeyondHorizonSpaceEliteName="靜電打擊者 | 超越地平線 | 太空菁英"
 
 ;Stoner 63A Descriptions
 Stoner63AMintDescription="外觀：全新 | 美國海軍海豹部隊在越南戰爭主要使用的武器之一， 斯通納63A配備高攜彈量並具有強大的火力。"
@@ -2753,9 +2891,9 @@ Winchester1894HeirloomFieldTestedName="溫徹斯特1894 | 傳世 | 中古"
 Winchester1894HeirloomBattleScarredName="溫徹斯特1894 | 傳世 | 破舊"
 Winchester1894PrestigePreciousName="溫徹斯特 1894 | 聲望 | 珍貴"
 Winchester1894DragonKoiPreciousName="溫徹斯特 1894 | 龍鯉 | 珍貴"
-Winchester1894SteampunkBattleScarredName="溫徹斯特 1894 | 蒸汽龐克 | 全新 | 破舊"
-Winchester1894SteampunkFieldTestedName="溫徹斯特 1894 | 蒸汽龐克 | 全新 | 中古"
-Winchester1894SteampunkMintName="溫徹斯特 1894 | 蒸汽龐克 | 全新 | 全新"
+Winchester1894SteampunkBattleScarredName="溫徹斯特 1894 | 蒸汽龐克 | 破舊"
+Winchester1894SteampunkFieldTestedName="溫徹斯特 1894 | 蒸汽龐克 | 中古"
+Winchester1894SteampunkMintName="溫徹斯特 1894 | 蒸汽龐克 | 全新"
 Winchester1894SteampunkPreciousName="溫徹斯特 1894 | 蒸汽龐克 | 珍貴"
 
 ;Zweihander Descriptions
@@ -2769,9 +2907,9 @@ ZweihanderBlackGoldenMintName="雙手大劍 | 黑金 | 全新"
 ZweihanderBlackGoldenFieldTestedName="雙手大劍 | 黑金 | 中古"
 ZweihanderBlackGoldenBattleScarredName="雙手大劍 | 黑金 | 破舊"
 ZweihanderPreciousName="雙手大劍 | 珍貴"
-ZweihanderSteampunkBattleScarredName="雙手劍 | 蒸汽龐克 | 全新 | 破舊"
-ZweihanderSteampunkFieldTestedName="雙手劍 | 蒸汽龐克 | 全新 | 中古"
-ZweihanderSteampunkMintName="雙手劍 | 蒸汽龐克 | 全新 | 全新"
+ZweihanderSteampunkBattleScarredName="雙手劍 | 蒸汽龐克 | 破舊"
+ZweihanderSteampunkFieldTestedName="雙手劍 | 蒸汽龐克 | 中古"
+ZweihanderSteampunkMintName="雙手劍 | 蒸汽龐克 | 全新"
 ZweihanderSteampunkPreciousName="雙手劍 | 蒸汽龐克 | 珍貴"
 
 ;GunslingerKnife Descriptions
@@ -2869,9 +3007,9 @@ TommyGunNeonFieldTestedName="湯普森衝鋒槍 | 霓虹 | 中古"
 TommyGunNeonBattleScarredName="湯普森衝鋒槍 | 霓虹 | 破舊"
 TommyGunNeonRGBPreciousName="湯普森衝鋒槍 | 霓虹 RGB | 珍貴"
 TommyGunDragonKoiPreciousName="湯普森衝鋒槍 | 龍鯉 | 珍貴"
-TommyGunSteampunkBattleScarredName="湯普森衝鋒槍 | 蒸汽龐克 | 全新 | 破舊"
-TommyGunSteampunkFieldTestedName="湯普森衝鋒槍 | 蒸汽龐克 | 全新 | 中古"
-TommyGunSteampunkMintName="湯普森衝鋒槍 | 蒸汽龐克 | 全新 | 全新"
+TommyGunSteampunkBattleScarredName="湯普森衝鋒槍 | 蒸汽龐克 | 破舊"
+TommyGunSteampunkFieldTestedName="湯普森衝鋒槍 | 蒸汽龐克 | 中古"
+TommyGunSteampunkMintName="湯普森衝鋒槍 | 蒸汽龐克 | 全新"
 TommyGunSteampunkPreciousName="湯普森衝鋒槍 | 蒸汽龐克 | 珍貴"
 
 ;Laser Cutter Descriptions
@@ -2882,6 +3020,12 @@ LaserCutterPreciousDescription="外觀：珍貴 | 過載模式：按下開火按
 
 ;Laser Cutter Names
 LaserCutterPrestigePreciousName="雷霆殺手 | 聲望 | 珍貴"
+LaserCutterBeyondHorizonMintName="雷霆殺手 | 超越地平線 | 全新"
+LaserCutterBeyondHorizonFieldTestedName="雷霆殺手 | 超越地平線 | 中古"
+LaserCutterBeyondHorizonBattleScarredName="雷霆殺手 | 超越地平線 | 破舊"
+LaserCutterBeyondHorizonSpaceEliteName="雷霆殺手 | 超越地平線 | 太空菁英"
+LaserCutterVaultVoshPreciousName="雷霆殺手 | 金庫 | V 字 | 珍貴"
+LaserCutterDragonKoiPreciousName="雷霆殺手 | 龍鯉 | 珍貴"
 
 ;FNFAL Descriptions
 FNFALMintDescription="外觀：全新 | 你可能會說，這把槍並不是FN FAL……是的，這可真是糟糕。"
@@ -2921,6 +3065,58 @@ M32NeonFieldTestedName="M32 | 霓虹 | 中古"
 M32NeonBattleScarredName="M32 | 霓虹 | 破舊"
 M32NeonRGBPreciousName="M32 | 霓虹 RGB | 珍貴"
 M32VaultVoshPreciousName="M32 | 金庫 | V 字 | 珍貴"
+
+;IonSword Descriptions
+IonSwordMintDescription="外觀：全新 | 拿來烤肉的好東西。"
+IonSwordFieldTestedDescription="外觀：中古 | 拿來烤肉的好工具。"
+IonSwordBattleScarredDescription="外觀：破舊 | 拿來烤肉的好工具。"
+IonSwordPreciousDescription="外觀：珍貴 | 拿來烤肉的好工具。"
+
+;IonSword Names
+IonSwordVaultVoshPreciousName="離子推進器 | 金庫 | V 字 | 珍貴"
+IonSwordStandardName="離子推進器 | 標準 | 珍貴"
+IonSwordDoshRoyaleName="離子推進器 | 金錢大比拼 | 珍貴"
+IonSwordLightningName="離子推進器 | 閃電 | 珍貴"
+IonSwordLuciferName="離子推進器 | 撒旦 | 珍貴"
+IonSwordRoyalShockName="離子推進器 | 皇家電震 | 珍貴"
+IonSwordShatterName="離子推進器 | 粉碎 | 珍貴"
+
+;Seal Squeal Descriptions
+SealSquealMintDescription="外觀：全新 | Horzine 給這件東西打上了他們的認可印記！"
+SealSquealFieldTestedDescription="外觀：中古 | Horzine 給這件東西打上了他們的認可印記！"
+SealSquealBattleScarredDescription="外觀：破舊 | Horzine 給這件東西打上了他們的認可印記！"
+SealSquealPreciousDescription="外觀：珍貴 | Horzine 給這件東西打上了他們的認可印記！"
+
+;SealSqueal Names
+SealSquealVaultVoshPreciousName="海豹長聲尖叫 | 金庫 | V 字 | 珍貴"
+
+;MIcrowaveAssault Descriptions
+MIcrowaveAssaultMintDescription="外觀：全新 | 愿火焰護佑著你。"
+MIcrowaveAssaultFieldTestedDescription="外觀：中古 | 愿火焰護佑著你。"
+MIcrowaveAssaultBattleScarredDescription="外觀：破舊 | 愿火焰護佑著你。"
+MIcrowaveAssaultPreciousDescription="外觀：珍貴 | 愿火焰護佑著你。"
+
+;MIcrowaveAssault Names
+MIcrowaveAssaultBeyondHorizonMintName="赫利奧斯步槍 | 超越地平線 | 全新"
+MIcrowaveAssaultBeyondHorizonFieldTestedName="赫利奧斯步槍 | 超越地平線 | 中古"
+MIcrowaveAssaultBeyondHorizonBattleScarredName="赫利奧斯步槍 | 超越地平線 | 破舊"
+MIcrowaveAssaultBeyondHorizonSpaceEliteName="赫利奧斯步槍 | 超越地平線 | 太空菁英"
+MIcrowaveAssaultVaultVoshPreciousName="赫利奧斯步槍 | 金庫 | V 字 | 珍貴"
+
+;Rhino Descriptions
+RhinoMintDescription="外觀：全新 | 削 Zed 如泥"
+RhinoFieldTestedDescription="外觀：中古 | 削 Zed 如泥"
+RhinoBattleScarredDescription="外觀：破舊 | 削 Zed 如泥"
+RhinoPreciousDescription="外觀：珍貴 | 削 Zed 如泥"
+
+;Rhino Names
+RhinoVaultVoshPreciousName="犀牛 | 金庫 | V 字 | 珍貴"
+RhinoStandardName="犀牛 | 標準 | 珍貴"
+RhinoDoshRoyaleName="犀牛 | 金錢大比拼 | 珍貴"
+RhinoLightningName="犀牛 | 閃電 | 珍貴"
+RhinoLuciferName="犀牛 | 撒旦 | 珍貴"
+RhinoRoyalShockName="犀牛 | 皇家電震 | 珍貴"
+RhinoShatterName="犀牛 | 粉碎 | 珍貴"
 
 [CosmeticSection]
 
@@ -4081,16 +4277,16 @@ DARC3HZHelmetMarbleName="D.A.R.| C3HZ頭盔 | 大理石"
 DARC3HZHelmetObsidianName="D.A.R.| C3HZ頭盔 | 黑曜石"
 DARC3HZHelmetPreciousName="D.A.R.| C3HZ頭盔 | 珍貴"
 DARC3HZHelmetSpaceName="D.A.R.| C3HZ頭盔 | 空白鍵"
-DARClassicArmorBloodyName="D.A.R.| 經典護甲 | 染血
-DARClassicArmorLoaderName="D.A.R.| 經典護甲 | 裝彈手
-DARClassicArmorPreciousName="D.A.R.| 經典護甲 | 珍貴
-DARClassicArmorScullyName="D.A.R.| 經典護甲 | 頭骨
-DARClassicArmorStandardName="D.A.R.| 經典護甲 | 標準
-DARClassicHelmetBloodyName="D.A.R.| 經典頭盔 | 染血
-DARClassicHelmetLoaderName="D.A.R.| 經典頭盔 | 裝彈手
-DARClassicHelmetPreciousName="D.A.R.| 經典頭盔 | 珍貴
-DARClassicHelmetScullyName="D.A.R.| 經典頭盔 | 頭盔
-DARClassicHelmetStandardName="D.A.R.| 經典頭盔 | 標準
+DARClassicArmorBloodyName="D.A.R.| 經典護甲 | 染血"
+DARClassicArmorLoaderName="D.A.R.| 經典護甲 | 裝彈手"
+DARClassicArmorPreciousName="D.A.R.| 經典護甲 | 珍貴"
+DARClassicArmorScullyName="D.A.R.| 經典護甲 | 頭骨"
+DARClassicArmorStandardName="D.A.R.| 經典護甲 | 標準"
+DARClassicHelmetBloodyName="D.A.R.| 經典頭盔 | 染血"
+DARClassicHelmetLoaderName="D.A.R.| 經典頭盔 | 裝彈手"
+DARClassicHelmetPreciousName="D.A.R.| 經典頭盔 | 珍貴"
+DARClassicHelmetScullyName="D.A.R.| 經典頭盔 | 頭盔"
+DARClassicHelmetStandardName="D.A.R.| 經典頭盔 | 標準"
 
 ;Steampunk Cosmetic Names
 SteampunkTopHatBlueName="蒸汽龐克 | 大禮帽 | 藍色"
@@ -4313,7 +4509,7 @@ CyberpunkSkullHelmPreciousName="賽博龐克 | 骷髏頭頭盔 | 珍貴"
 CyberpunkEyeandFacemaskStandardName="賽博龐克 | 眼與面罩 | 標準"
 CyberpunkEyeandFacemaskJetBlackName="賽博龐克 | 眼與面罩 | 墨黑"
 CyberpunkEyeandFacemaskPreciousName="賽博龐克 | 眼與面罩 | 珍貴"
-CyberpunkDigitalEyeDisplayABlueName="賽博龐克 | 數位眼睛顯示 A| 藍"
+CyberpunkDigitalEyeDisplayABlueName="賽博龐克 | 數位眼睛顯示 A | 藍"
 CyberpunkDigitalEyeDisplayARedName="賽博龐克 | 數位眼睛顯示 A| 紅"
 CyberpunkDigitalEyeDisplayAPreciousName="賽博龐克 | 數位眼睛顯示 A| 珍貴"
 CyberpunkDigitalEyeDisplayBBlueName="賽博龐克 | 數位眼睛顯示 B| 藍"
@@ -4450,7 +4646,7 @@ ProjectH01HappyPreciousName="計畫 H-01 | 開心 | 珍貴"
 ProjectH01HappyRedName="計畫 H-01 | 開心 | 紅"
 ProjectH01HappyOpenBlueName="計畫 H-01 | 開心開啟 | 藍"
 ProjectH01HappyOpenGreenName="計畫 H-01 | 開心開啟 | 綠"
-ProjectH01HappyOpenPreciousName"計畫 H-01 | 開心開啟 | 珍貴
+ProjectH01HappyOpenPreciousName="計畫 H-01 | 開心開啟 | 珍貴"
 ProjectH01HappyOpenRedName="計畫 H-01 | 開心開啟 | 紅"
 ProjectH01PokerfaceBlueName="計畫 H-01 | 臭臉 | 藍"
 ProjectH01PokerfaceGreenName="計畫 H-01 | 臭臉 | 綠"
@@ -4488,13 +4684,101 @@ ProjectH02PokerfaceOpenPreciousName="計畫 H-02 | 臭臉開啟 | 珍貴"
 ProjectH02PokerfaceOpenRedName="計畫 H-02 | 臭臉開啟 | 紅"
 ProjectH02UnhappyBlueName="計畫 H-02 | 不開心 | 藍"
 ProjectH02UnhappyGreenName="計畫 H-02 | 不開心 | 綠"
-ProjectH02UnhappyPreciousName="計畫 H-02 | 不開心 | 珍貴"
-ProjectH02UnhappyRedName="計畫 H-02 | 不開心 | 紅"
+ProjectH02UnhappyPreciousName="計畫 H-01 | 不開心 | 珍貴"
+ProjectH02UnhappyRedName="計畫 H-01 | 不開心 | 紅"
 ProjectH02UnhappyOpenBlueName="計畫 H-02 | 不開心開啟 | 藍"
 ProjectH02UnhappyOpenGreenName="計畫 H-02 | 不開心開啟 | 綠"
 ProjectH02UnhappyOpenPreciousName="計畫 H-02 | 不開心開啟 | 珍貴"
 ProjectH02UnhappyOpenRedName="計畫 H-02 | 不開心開啟 | 紅"
 
+;Cosmetic Item Set 21
+BoneyardAfflictionBoneName="墓地 | 苦惱 | 骨頭"
+BoneyardAfflictionBloodyName="墓地 | 苦惱 | 血色"
+BoneyardAfflictionBleachedName="墓地 | 苦惱 | 漂白"
+BoneyardAfflictionPreciousName="墓地 | 苦惱 | 珍貴"
+BoneyardAgonyBoneName="墓地 | 激痛 | 骨頭"
+BoneyardAgonyBloodyName="墓地 | 激痛 | 血色"
+BoneyardAgonyBleachedName="墓地 | 激痛 | 漂白"
+BoneyardAgonyPreciousName="墓地 | 激痛 | 珍貴"
+BoneyardAnguishBoneName="墓地 | 痛苦 | 骨頭"
+BoneyardAnguishBloodyName="墓地 | 痛苦 | 血色"
+BoneyardAnguishBleachedName="墓地 | 痛苦 | 漂白"
+BoneyardAnguishPreciousName="墓地 | 痛苦 | 珍貴"
+BoneyardDespairBoneName="墓地 | 絕望 | 骨頭"
+BoneyardDespairBloodyName="墓地 | 絕望 | 血色"
+BoneyardDespairBleachedName="墓地 | 絕望 | 漂白"
+BoneyardDespairPreciousName="墓地 | 絕望 | 珍貴"
+BoneyardDistressBoneName="墓地 | 憂難 | 骨頭"
+BoneyardDistressBloodyName="墓地 | 憂難 | 血色"
+BoneyardDistressBleachedName="墓地 | 憂難 | 漂白"
+BoneyardDistressPreciousName="墓地 | 憂難 | 珍貴"
+BoneyardMiseryBoneName="墓地 | 悲難 | 骨頭"
+BoneyardMiseryBloodyName="墓地 | 悲難 | 血色"
+BoneyardMiseryBleachedName="墓地 | 悲難 | 漂白"
+BoneyardMiseryPreciousName="墓地 | 悲難 | 珍貴"
+BoneyardPassionBoneName="墓地 | 激情 | 骨頭"
+BoneyardPassionBloodyName="墓地 | 激情 | 血色"
+BoneyardPassionBleachedName="墓地 | 激情 | 漂白"
+BoneyardPassionPreciousName="墓地 | 激情 | 珍貴"
+BoneyardSorrowBoneName="墓地 | 悲傷 | 骨頭"
+BoneyardSorrowBloodyName="墓地 | 悲傷 | 血色"
+BoneyardSorrowBleachedName="墓地 | 悲傷 | 漂白"
+BoneyardSorrowPreciousName="墓地 | 悲傷 | 珍貴"
+BoneyardTormentBoneName="墓地 | 久痛 | 骨頭"
+BoneyardTormentBloodyName="墓地 | 久痛 | 血色"
+BoneyardTormentBleachedName="墓地 | 久痛 | 漂白"
+BoneyardTormentPreciousName="墓地 | 久痛 | 珍貴"
+BoneyardTortureBoneName="墓地 | 折磨 | 骨頭"
+BoneyardTortureBloodyName="墓地 | 折磨 | 血色"
+BoneyardTortureBleachedName="墓地 | 折磨 | 漂白"
+BoneyardTorturePreciousName="墓地 | 折磨 | 珍貴"
+
+;Halloween 2019 Cosmetic Names
+HalloweenBatCatHatPurpleName="萬聖節 | 蝙蝠貓帽子 | 紫"
+HalloweenBatCatHatGreenName="萬聖節 | 蝙蝠貓帽子 | 綠"
+HalloweenBatCatHatSkinPreciousName="萬聖節 | 蝙蝠貓帽子 | 珍貴"
+HalloweenPrivatePauldronIronName="萬聖節 | 列兵肩甲 | 鐵灰"
+HalloweenPrivatePauldronSilverName="萬聖節 | 列兵肩甲 | 銀"
+HalloweenPrivatePauldronPreciousName="萬聖節 | 列兵肩甲 | 珍貴"
+HalloweenOfficerPauldronIronName="萬聖節 | 長官肩甲 | 鐵灰"
+HalloweenOfficerPauldronSilverName="萬聖節 | 長官肩甲 | 銀"
+HalloweenOfficerPauldronPreciousName="萬聖節 | 長官肩甲 | 珍貴"
+HalloweenPilgrimHatBlackName="萬聖節 | 朝聖帽子 | 黑色"
+HalloweenPilgrimHatPurpleName="萬聖節 | 朝聖帽子 | 紫"
+HalloweenPilgrimHatPreciousName="萬聖節 | 朝聖帽子 | 珍貴"
+HalloweenBiohazardHatBlackName="萬聖節 | 生化危機帽 | 黑"
+HalloweenBiohazardHatPurpleName="萬聖節 | 生化危機帽 | 紫"
+HalloweenBiohazardHatPreciousName="萬聖節 | 生化危機帽 | 珍貴"
+HalloweenMonsterWitchHatBrownName="萬聖節 | 魔物女巫帽 | 棕"
+HalloweenMonsterWitchHatRedName="萬聖節 | 魔物女巫帽 | 紅"
+HalloweenMonsterWitchHatPreciousName="萬聖節 | 魔物女巫帽 | 珍貴"
+HalloweenPumpkinClawJawOrangeName="萬聖節 | 南瓜刺顎 | 橙"
+HalloweenPumpkinClawJawPurpleName="萬聖節 | 南瓜刺顎 | 紫"
+HalloweenPumpkinClawJawPreciousName="萬聖節 | 南瓜刺顎 | 珍貴"
+HalloweenBatCatBackpackPurpleName="萬聖節 | 蝙蝠貓背包 | 紫"
+HalloweenBatCatBackpackGreenName="萬聖節 | 蝙蝠貓背包 | 綠"
+HalloweenBatCatBackpackPreciousName="萬聖節 | 蝙蝠貓背包 | 珍貴"
+HalloweenPumpkinHatOrangeName="萬聖節 | 南瓜帽 | 橙"
+HalloweenPumpkinHatPurpleName="萬聖節 | 南瓜帽 | 紫"
+HalloweenPumpkinHatPreciousName="萬聖節 | 南瓜帽 | 珍貴"
+HalloweenWebShoulderpadWhiteName="萬聖節 | 蛛網墊肩 | 白"
+HalloweenWebShoulderpadGreenName="萬聖節 | 蛛網墊肩 | 綠"
+HalloweenWebShoulderpadPreciousName="萬聖節 | 蛛網墊肩 | 珍貴"
+HalloweenInfinityScarfBlackName="萬聖節 | 無限圍巾 | 黑"
+HalloweenInfinityScarfPurpleName="萬聖節 | 無限圍巾 | 紫"
+HalloweenInfinityScarfPreciousName="萬聖節 | 無限圍巾 | 珍貴"
+HalloweenPlagueMaskBrownName="萬聖節 | 瘟疫面具 | 棕"
+HalloweenPlagueMaskPurpleName="萬聖節 | 瘟疫面具 | 紫"
+HalloweenPlagueMaskPreciousName="萬聖節 | 瘟疫面具 | 珍貴"
+HalloweenScarecrowMaskBrownName="萬聖節 | 稻草人面具 | 棕"
+HalloweenScarecrowMaskPurpleName="萬聖節 | 稻草人面具 | 紫"
+HalloweenScarecrowMaskPreciousName="萬聖節 | 稻草人面具 | 珍貴"
+HalloweenStitchedMouthMaskBrownName="萬聖節 | 縫口面具 | 棕"
+HalloweenStitchedMouthMaskPurpleName="萬聖節 | 縫口面具 | 紫"
+HalloweenStitchedMouthMaskPreciousName="萬聖節 | 縫口面具 | 珍貴"
+HalloweenGarlicClotBackpackBlackName="萬聖節 | 大蒜凝塊背包 | 黑"
+HalloweenGarlicClotBackpackPurpleName="萬聖節 | 大蒜凝塊背包 | 紫"
+HalloweenGarlicClotBackpackPreciousName="萬聖節 | 大蒜凝塊背包 | 珍貴"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="可從裝備選單裝備；適用於大部分的角色。這是「夏日餘興節目」季節性活動的特有未解鎖道具。回收換為 1 張餘興節目獎券。"

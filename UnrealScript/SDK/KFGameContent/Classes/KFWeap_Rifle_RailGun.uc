@@ -27,70 +27,8 @@ var LinearColor BlueIconColor;
  * @name Weapon lock on support
  **********************************************************************************************/
 
-/** How far out should we be considering actors for a lock */
-var(Locking) float		LockRange;
-
-/** How long does the player need to target an actor to lock on to it*/
-var(Locking) float		LockAcquireTime;
-
-/** How long does the player need to target a large zed to lock on to it */
-var(Locking) float		LockAcquireTime_Large;
-
-/** How long does the player need to target a boss to lock on to it*/
-var(Locking) float		LockAcquireTime_Boss;
-
-/** How long does the player need to target a versus zed to lock on to it */
-var(Locking) float		LockAcquireTime_Versus;
-
-/** Once locked, how long can the player go without painting the object before they lose the lock */
-var(Locking) float		LockTolerance;
-
-/** When true, this weapon is locked on target */
-var bool         		bLockedOnTarget;
-
-/** What "target" is this weapon locked on to */
-var KFPawn_Monster		LockedTarget;
-
-/** What hitzone is this weapon locked on to */
-var int                 LockedHitZone;
-
-/** What "target" is current pending to be locked on to */
-var KFPawn_Monster		PendingLockedTarget;
-
-/** What hitzone is this weapon trying to lock on to */
-var int                 PendingHitZone;
-
-/** angle for locking for lock targets */
-var(Locking) float 		LockAim;
-
 /** angle of the maximum FOV extents of the scope for rending things onto the scope canvas */
-var(Locking) float 		MaxScopeScreenDot;
-
-/** The frequency with which we play the Lock Targeting sound */
-var(Locking) float		LockTargetingSoundInterval;
-
-/** Sound Effects to play when Locking */
-var AkBaseSoundObject   LockAcquiredSoundFirstPerson;
-//var AkBaseSoundObject   LockTargetingStopEvent;
-//var AkBaseSoundObject   LockTargetingStopEventFirstPerson;
-var AkBaseSoundObject   LockLostSoundFirstPerson;
-var AkBaseSoundObject   LockTargetingSoundFirstPerson;
-
-/** How much time is left before pending lock-on can be acquired */
-var float PendingLockAcquireTimeLeft;
-/** How much time is left before pending lock-on is lost */
-var float PendingLockTimeout;
-/** How much time is left before lock-on is lost */
-var float LockedOnTimeout;
-
-/** Location on an enemy we're currently locked onto */
-var vector LockedAimLocation;
-
-/** Vulnerable zones on an enemy we're currently locked onto */
-var array<vector> TargetVulnerableLocations;
-
-/** The frequency with which we replicate the targeting location to the server. Only matters for showing other players where we shot */
-var float         TargetLocationReplicationInterval;
+var float MaxScopeScreenDot;
 
 /*********************************************************************************************
  * @name Ambient sound
@@ -237,380 +175,9 @@ simulated event Tick(float DeltaTime)
 {
     super.Tick(DeltaTime);
 
-    if( Instigator != none && Instigator.Controller != none && Instigator.IsLocallyControlled() )
-    {
-        CheckTargetLock(DeltaTime);
-    }
-}
-
-/**
-* Given an potential target TA determine if we can lock on to it.  By default only allow locking on
-* to pawns.
-*/
-simulated function bool CanLockOnTo(Actor TA)
-{
-	Local KFPawn PawnTarget;
-
-    PawnTarget = KFPawn(TA);
-
-    // Make sure the pawn is legit, isn't dead, and isn't already at full health
-    if ( (TA == None) || !TA.bProjTarget || TA.bDeleteMe || (PawnTarget == None) ||
-         (TA == Instigator) || (PawnTarget.Health <= 0)  ||
-         !HasAmmo( DEFAULT_FIREMODE ) )
+	if (Instigator != none && Instigator.Controller != none && Instigator.IsLocallyControlled())
 	{
-		return false;
-	}
-
-	// Make sure and only lock onto players on the same team
-    return !WorldInfo.GRI.OnSameTeam(Instigator,TA);
-}
-
-/**
- *  This function is used to adjust the LockTarget.
- */
-simulated function AdjustLockTarget(KFPawn_Monster NewLockTarget )
-{
-	if ( LockedTarget == NewLockTarget )
-	{
-		// no need to update
-		return;
-	}
-
-	if (NewLockTarget == None)
-	{
-		// Clear the lock
-		if (bLockedOnTarget)
-		{
-			bLockedOnTarget = false;
-			LockedTarget = None;
-			TargetVulnerableLocations.Length = 0;
-			LockedAimLocation=vect(0,0,0);
-			ServerSetTargetingLocation(LockedAimLocation);
-
-//			if (OpticsUI != none && PendingLockedTarget == none)
-//			{
-//				// Optics UI only exists for local players
-//				OpticsUI.ClearLockOn();
-//			}
-
-			if ( Instigator != None && Instigator.IsHumanControlled() )
-    		{
-    			PlaySoundBase(LockLostSoundFirstPerson, true);
-    		}
-		}
-	}
-	else
-	{
-		// Set the lock
-		bLockedOnTarget = true;
-		LockedTarget = NewLockTarget;
-
-//		if (OpticsUI != none)
-//		{
-//			// Optics UI only exists for local players
-//			OpticsUI.LockedOn();
-//		}
-
-		if ( Instigator != None && Instigator.IsHumanControlled() )
-		{
-			PlaySoundBase(LockAcquiredSoundFirstPerson, true);
-		}
-	}
-}
-
-/** returns true if lock-on is possible */
-simulated function bool AllowTargetLockOn()
-{
-	return !Instigator.bNoWeaponFiring && bUsingSights && !bUseAltFireMode;
-}
-
-/**
-* This function checks to see if we are locked on a target
-*/
-simulated function CheckTargetLock(float DeltaTime)
-{
-    local KFPawn_Monster KFP;
-    local vector StartTrace;
-    local rotator ViewRotation;
-    local vector X,Y,Z;
-    local Actor BestTarget, HitActor, TA;
-	local vector EndTrace, Aim, HitLocation, HitNormal;
-	local float BestAim, BestDist;
-	local vector BestZoneLocation;
-	local KFPlayerController KFPC;
-	local int OldHitZone;
-
-    KFPC = KFPlayerController(Instigator.Controller);
-
-	if ( (Instigator == None) || (Instigator.Controller == None) || (self != Instigator.Weapon)
-        || KFPC == none )
-	{
-		return;
-	}
-
-    TargetVulnerableLocations.Length = 0;
-
-	if ( !AllowTargetLockOn() )
-	{
-		AdjustLockTarget(None);
-		PendingLockedTarget = None;
-		LockedAimLocation=vect(0,0,0);
-		ClearTimer(nameof(PlayTargetingBeepTimer));
-		return;
-	}
-
-    // Need to update the scope targeting boxes if we're aiming
-    if( bUsingSights )
-    {
-        CanvasTexture.bNeedsUpdate = true;
-    }
-
-	// clear lock if target is destroyed
-	if ( LockedTarget != None )
-	{
-		if ( LockedTarget.bDeleteMe )
-		{
-			AdjustLockTarget(None);
-		}
-	}
-
-	// Get the location and rotation that a shot would take
-	StartTrace = GetSafeStartTraceLocation();
-    ViewRotation = Instigator.GetViewRotation();
-
-	// Add in the free-aim rotation
-	ViewRotation += KFPC.WeaponBufferRotation;
-
-    GetAxes(ViewRotation, X, Y, Z);
-
-	BestTarget = None;
-
-	// Begin by tracing the shot to see if it hits anyone
-	Aim = vector(ViewRotation);
-	EndTrace = StartTrace + Aim * LockRange;
-	HitActor = Trace(HitLocation, HitNormal, EndTrace, StartTrace, true,,, TRACEFLAG_Bullet);
-
-	// Check for a hit
-	if ( (HitActor == None) || !CanLockOnTo(HitActor) )
-	{
-		// We didn't hit a valid target, have the controller attempt to pick a good target
-		BestAim = LockAim;
-		BestDist = 0.0;
-		TA = KFPC.GetPickedAimAtTarget(BestAim, BestDist, Aim, StartTrace, LockRange, False);
-
-		if ( TA != None && CanLockOnTo(TA) )
-		{
-            // Trace to see if we hit a destructible, as the PickTarget code only traces against world geometry
-            // @todo: Set up pick target to ignore pawns (as it should), but not trace through destructibles
-            HitActor = Trace(HitLocation, HitNormal, TA.Location, StartTrace, true,,, TRACEFLAG_Bullet);
-
-            // Make sure we didn't hit a destructible
-            if( KFFracturedMeshActor(HitActor) != none || KFDestructibleActor(HitActor) != none )
-            {
-                BestTarget = none;
-            }
-            else
-            {
-                BestTarget = TA;
-        	}
-		}
-	}
-	else	// We hit a valid target
-	{
-		BestTarget = HitActor;
-	}
-
-    KFP = KFPawn_Monster(BestTarget);
-
-	// If we have a "possible" target, note its time mark
-	if ( BestTarget != None && KFP != none )
-	{
-		if ( BestTarget == LockedTarget )
-		{
-			LockedOnTimeout = LockTolerance;
-			if( PendingLockedTarget != none )
-			{
-    			ClearTimer(nameof(PlayTargetingBeepTimer));
-    			PendingLockedTarget = None;
-			}
-		}
-		// We have our best target, see if they should become our current target.
-		// Check for a new Pending Lock
-		else if (PendingLockedTarget != BestTarget)
-		{
-			PendingLockedTarget = KFP; // BestTarget
-			PendingLockTimeout = LockTolerance;
-
-			if(KFP.IsABoss())
-			{
-				PendingLockAcquireTimeLeft	= LockAcquireTime_Boss;
-			}
-			else if(KFP.bVersusZed)
-			{
-				PendingLockAcquireTimeLeft	= LockAcquireTime_Versus;
-			}
-			else
-			{
-				if(KFP.IsLargeZed())
-				{
-					PendingLockAcquireTimeLeft	= LockAcquireTime_Large;
-				}
-				else
-				{
-					PendingLockAcquireTimeLeft	= LockAcquireTime;
-				}
-			}
-
-			SetTimer(LockTargetingSoundInterval, true, nameof(PlayTargetingBeepTimer));
-
-//			if (OpticsUI != none)
-//			{
-//				// Optics UI only exists for local players
-//				OpticsUI.StartLockOn();
-//			}
-
-			// Play the "targeting" beep when we begin attempting to lock onto a target
-			// that we haven't locked onto yet
-    		if ( Instigator != None && Instigator.IsHumanControlled() )
-    		{
-    			PlaySoundBase(LockTargetingSoundFirstPerson, true);
-    		}
-		}
-		// Acquire new target if LockAcquireTime has passed
-		if ( PendingLockedTarget != None )
-		{
-			PendingLockAcquireTimeLeft -= DeltaTime;
-			if ( PendingLockedTarget == BestTarget && PendingLockAcquireTimeLeft <= 0 )
-			{
-				AdjustLockTarget(PendingLockedTarget);
-				PendingLockedTarget = None;
-				ClearTimer(nameof(PlayTargetingBeepTimer));
-			}
-		}
-	}
-	// If we lost a target, attempt to invalidate the pending target
-	else if ( PendingLockedTarget != None )
-	{
-		PendingLockTimeout -= DeltaTime;
-		if ( PendingLockTimeout <= 0 || !CanLockOnTo(PendingLockedTarget) )
-		{
-			PendingLockedTarget = None;
-//			if (OpticsUI != none)
-//			{
-//				// Optics UI only exists for local players
-//				OpticsUI.ClearLockOn();
-//			}
-			ClearTimer(nameof(PlayTargetingBeepTimer));
-		}
-	}
-
-	// If the new target is not the same, attempt to invalidate current locked on target
-	if ( LockedTarget != None && BestTarget != LockedTarget )
-	{
-		LockedOnTimeout -= DeltaTime;
-		if ( LockedOnTimeout <= 0.f || !CanLockOnTo(LockedTarget) )
-		{
-			AdjustLockTarget(None);
-		}
-	}
-
-	// Set the aiming location if we have a target lock
-    if ( LockedTarget != none )
-	{
-        OldHitZone = LockedHitZone;
-        LockedHitZone = AddTargetingZones(LockedTarget, StartTrace, Aim, BestZoneLocation);
-        if( OldHitZone != LockedHitZone )
-        {
-       		if ( Instigator != None && Instigator.IsHumanControlled() )
-			{
-				PlaySoundBase(LockTargetingSoundFirstPerson, true);
-			}
-        }
-
-        TargetLocationReplicationInterval -= DeltaTime;
-
-        if( TargetLocationReplicationInterval <= 0 || IsZero(LockedAimLocation) )
-        {
-            TargetLocationReplicationInterval = default.TargetLocationReplicationInterval;
-            ServerSetTargetingLocation(LockedAimLocation);
-        }
-
-        // Set the location where the shot will go
-        LockedAimLocation = BestZoneLocation;
-	}
-	else
-	{
-        LockedHitZone = -1;
-	}
-
-	// Set the pending target location
-    if ( PendingLockedTarget != none )
-	{
-        PendingHitZone = AddTargetingZones(PendingLockedTarget, StartTrace, Aim, BestZoneLocation);
-	}
-	else
-	{
-	   PendingHitZone = -1;
-	}
-}
-
-/**
- * Handles calling the zoom in function on the server
- *
- * @param bAnimateTransition whether or not to animate this zoom transition
- */
-reliable server private function ServerSetTargetingLocation(vector NewTargetingLocation)
-{
-	LockedAimLocation = NewTargetingLocation;
-}
-
-/**
-* Add targeting locations to the targeting array
-*/
-simulated function int AddTargetingZones(KFPawn_Monster KFPTarget, vector StartTrace, vector Aim, out vector BestZoneLocation)
-{
-	local vector ZoneLocation;
-	local int BestZoneIndex;
-	local float BestZoneDot;
-	local vector DirToZone;
-	local float DotToZone;
-	local int i;
-
-	BestZoneIndex = -1;
-
-	// Get all the vulnerable hit zones
-	for (i = 0; i < KFPTarget.WeakSpotSocketNames.Length; i++)
-	{
-		KFPTarget.Mesh.GetSocketWorldLocationAndRotation(KFPTarget.WeakSpotSocketNames[i], ZoneLocation);
-
-		if(!IsZero(ZoneLocation))
-		{
-			TargetVulnerableLocations.AddItem(ZoneLocation);
-
-			// Figure out which target zone we are closest to
-			DirToZone = ZoneLocation - StartTrace;
-			DotToZone = Normal(Aim) dot Normal(DirToZone);
-
-			if( DotToZone > BestZoneDot )
-			{
-				BestZoneIndex = TargetVulnerableLocations.Length - 1;
-				BestZoneDot = DotToZone;
-
-				// Set the location for the zone we are closest targeting
-				BestZoneLocation = ZoneLocation;
-			}
-		}
-	}
-
-	return BestZoneIndex;
-}
-
-/** Called while we have a new pending lock-on target */
-simulated function PlayTargetingBeepTimer()
-{
-	if ( Instigator != None && Instigator.IsHumanControlled() )
-	{
-		PlaySoundBase(LockTargetingSoundFirstPerson, true);
+		CanvasTexture.bNeedsUpdate = bUsingSights && TargetingComp.bTargetingUpdated;
 	}
 }
 
@@ -647,9 +214,9 @@ simulated function InstantFireClient()
 	// define range to use for CalcWeaponFire()
 	StartTrace = GetSafeStartTraceLocation();
 
-	if( !IsZero(LockedAimLocation) )
+	if (!IsZero(TargetingComp.LockedAimLocation))
 	{
-    	AimRot = rotator(Normal(LockedAimLocation - StartTrace));
+		AimRot = rotator(Normal(TargetingComp.LockedAimLocation - StartTrace));
     	EndTrace = StartTrace + vector(AimRot) * GetTraceRange();
 	}
 	else
@@ -718,10 +285,10 @@ simulated function OnRender(Canvas C)
        return;
     }
 
-    // Draw the targeting locations on the scope
-    for (i = 0; i < TargetVulnerableLocations.Length; i++)
+	// Draw the targeting locations on the scope
+	for (i = 0; i < TargetingComp.TargetVulnerableLocations.Length; i++)
     {
-        if( !IsZero(TargetVulnerableLocations[i]) )
+        if( !IsZero(TargetingComp.TargetVulnerableLocations[i]) )
         {
             DrawTargetingIcon( C, i );
         }
@@ -743,7 +310,7 @@ simulated function DrawTargetingIcon( Canvas Canvas, int index )
     local vector2d ScreenPos;
 
     // Project world pos to canvas
-    WorldPos = TargetVulnerableLocations[index];
+	WorldPos = TargetingComp.TargetVulnerableLocations[index];
     ScreenPos = WorldToCanvas(Canvas, WorldPos);
 
     // calculate scale based on resolution and distance
@@ -764,12 +331,12 @@ simulated function DrawTargetingIcon( Canvas Canvas, int index )
 
     Canvas.SetPos( ScreenPos.X, ScreenPos.Y );
 
-    // Pick the color of the targeting box to draw
-    if( LockedHitZone >= 0 && index == LockedHitZone )
+	// Pick the color of the targeting box to draw
+	if( TargetingComp.LockedHitZone >= 0 && index == TargetingComp.LockedHitZone )
     {
         Canvas.DrawTile( LockedHitZoneIcon, IconSize, IconSize, 0, 0, LockedHitZoneIcon.SizeX, LockedHitZoneIcon.SizeY, RedIconColor);
     }
-    else if( PendingHitZone >= 0 && index == PendingHitZone )
+    else if( TargetingComp.PendingHitZone >= 0 && index == TargetingComp.PendingHitZone )
     {
         Canvas.DrawTile( LockedHitZoneIcon, IconSize, IconSize, 0, 0, LockedHitZoneIcon.SizeX, LockedHitZoneIcon.SizeY, YellowIconColor);
     }
@@ -835,8 +402,6 @@ auto simulated state Inactive
 	{
 		Super.BeginState(PreviousStateName);
 		StopAmbientSound();
-		AdjustLockTarget(None);
-		ClearTimer(nameof(PlayTargetingBeepTimer));
 	}
 }
 
@@ -1009,28 +574,13 @@ defaultproperties
     AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Railgun.Stop_Railgun_Loop'
 	AmbientSoundSocketName=AmbientSound
 
-    // Lock on sounds
-    LockTargetingSoundInterval=0.09
-	LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locked'
-	LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Lost'
-	LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locking'
-
-    // Lock on icons
+	// Lock on
+	TargetingCompClass=class'KFTargetingWeaponComponent_RailGun'
     LockedHitZoneIcon=Texture2D'Wep_Scope_TEX.Wep_1stP_Yellow_Red_Target'
     DefaultHitZoneIcon=Texture2D'Wep_Scope_TEX.Wep_1stP_Blue_Target'
     RedIconColor=(R=1.f, G=0.f, B=0.f)
     YellowIconColor=(R=1.f, G=1.f, B=0.f)
     BlueIconColor=(R=0.25, G=0.6f, B=1.f)
-
-	// Lock On Functionality
-    LockRange=200000
-	LockAim=0.995
-	LockAcquireTime=0.35
-	LockAcquireTime_Large=0.6
-	LockAcquireTime_Boss=1.1
-	LockAcquireTime_Versus=1.1
-	LockTolerance=0.2
-	TargetLocationReplicationInterval=0.016
 
 	WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
 

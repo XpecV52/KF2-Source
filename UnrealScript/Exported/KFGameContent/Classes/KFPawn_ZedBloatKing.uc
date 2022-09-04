@@ -227,8 +227,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
 	if (EnrageHealthThresholds.Length > 0 && (float(Health) / float(HealthMax)) < EnrageHealthThresholds[0])
 	{
-		EnrageHealthThresholds.Remove(0, 1);
-		KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
+		if (IsCombatCapable())
+		{
+			EnrageHealthThresholds.Remove(0, 1);
+			KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
+		}
 	}
 }
 
@@ -243,22 +246,6 @@ function int GetHitZoneIndex(name BoneName)
 	return super.GetHitZoneIndex(BoneName);
 }
 
-function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, class<DamageType> damageType, vector Momentum, TraceHitInfo HitInfo)
-{
-	//TODO: Figure out how to separate 0 damage armor hits from valid 0 damage hits if needed
-	if (Damage == 0)
-	{
-		HitInfo.BoneName = 'KBArmor';
-
-		//Passing 1 damage to minimize need to rewrite for a single pawn
-		super.PlayHit(1, InstigatedBy, HitLocation, damageType, Momentum, HitInfo);
-	}
-	else
-	{
-		super.PlayHit(Damage, InstigatedBy, HitLocation, damageType, Momentum, HitInfo);
-	}
-}
-
 simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 {
 	if (HitZoneIdx == OverrideArmorFXIndex)
@@ -271,7 +258,8 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 {
 	super.ZedExplodeArmor(ArmorZoneIdx, ArmorZoneName);
-	KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
+	Knockdown( Velocity != vect(0,0,0) ? -Velocity*2 : 3*(-vector(Rotation) * GroundSpeed), vect(1,1,1),,,,, Location );
+	//KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
 }
 
 simulated event bool CanDoSpecialMove(ESpecialMove AMove, optional bool bForceCheck)
@@ -624,12 +612,15 @@ defaultproperties
    PoopMonsterSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Bile_Spawn'
    PoopMonsterFXSocket="Poop_Attach"
    PoopMonsterSpawnDelay=2.000000
-   RageSprintSpeedMultiplier=1.620000
-   EnrageHealthThresholds(0)=0.750000
-   EnrageHealthThresholds(1)=0.500000
-   EnrageHealthThresholds(2)=0.200000
+   RageSprintSpeedMultiplier=1.300000
+   EnrageHealthThresholds(0)=0.800000
+   EnrageHealthThresholds(1)=0.600000
+   EnrageHealthThresholds(2)=0.400000
+   EnrageHealthThresholds(3)=0.200000
    FootstepCameraShakePitchAmplitude=120.000000
    FootstepCameraShakeRollAmplitude=60.000000
+   VomitRange=400.000000
+   VomitDamage=20
    PukeMineProjectileClass=Class'kfgamecontent.KFProj_BloatKingPukeMine'
    bCanRage=True
    MonsterArchPath="ZED_ARCH.ZED_BloatKing_Archetype"
@@ -666,6 +657,10 @@ defaultproperties
    DamageTypeModifiers(24)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.500000))
    DamageTypeModifiers(25)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
    DamageTypeModifiers(26)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingFart',DamageScale=(0.000000))
+   DamageTypeModifiers(27)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingPukeMine',DamageScale=(0.000000))
+   DamageTypeModifiers(28)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingSubspawnExplosion',DamageScale=(0.750000))
+   DamageTypeModifiers(29)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower')
+   DamageTypeModifiers(30)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MicrowaveRifle',DamageScale=(0.700000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_BloatKing'
    FootstepCameraShakeInnerRadius=200.000000
    FootstepCameraShakeOuterRadius=900.000000
@@ -696,9 +691,9 @@ defaultproperties
    End Object
    ThirdPersonHeadMeshComponent=ThirdPersonHead0
    bCanBePinned=False
-   HitZones(0)=(GoreHealth=2147483647,DmgScale=1.100000)
+   HitZones(0)=(GoreHealth=2147483647,DmgScale=1.200000)
    HitZones(1)=()
-   HitZones(2)=()
+   HitZones(2)=(DmgScale=1.200000)
    HitZones(3)=()
    HitZones(4)=()
    HitZones(5)=()
@@ -706,8 +701,8 @@ defaultproperties
    HitZones(7)=()
    HitZones(8)=()
    HitZones(9)=()
-   HitZones(10)=()
-   HitZones(11)=()
+   HitZones(10)=(DmgScale=1.200000)
+   HitZones(11)=(DmgScale=1.200000)
    HitZones(12)=()
    HitZones(13)=()
    HitZones(14)=()
@@ -725,18 +720,18 @@ defaultproperties
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedBloatKing:Afflictions_0'
    IncapSettings(0)=(Duration=2.200000,Cooldown=10.000000,Vulnerability=(0.500000))
-   IncapSettings(1)=(Duration=1.200000,Cooldown=15.000000,Vulnerability=(0.320000))
-   IncapSettings(2)=(Cooldown=2.000000,Vulnerability=(0.050000,0.950000,0.050000,0.050000,0.750000))
-   IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.050000,0.100000,0.050000,0.050000,0.500000))
-   IncapSettings(4)=(Cooldown=10.000000,Vulnerability=(0.050000,0.300000,0.050000,0.050000,0.400000))
-   IncapSettings(5)=(Duration=1.250000,Cooldown=17.000000,Vulnerability=(0.050000,0.550000,0.050000,0.050000,0.550000))
+   IncapSettings(1)=(Duration=1.200000,Cooldown=15.000000,Vulnerability=(0.650000))
+   IncapSettings(2)=(Cooldown=2.000000,Vulnerability=(0.100000,0.950000,0.100000,0.100000,0.750000))
+   IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.100000,0.100000,0.100000,0.100000,0.500000))
+   IncapSettings(4)=(Cooldown=10.000000,Vulnerability=(0.100000,0.300000,0.100000,0.100000,0.400000))
+   IncapSettings(5)=(Duration=1.250000,Cooldown=17.000000,Vulnerability=(0.100000,0.550000,0.100000,0.100000,0.550000))
    IncapSettings(6)=(Vulnerability=(0.000000))
    IncapSettings(7)=(Cooldown=10.500000,Vulnerability=(1.000000,2.000000,1.000000,1.000000,2.000000))
-   IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.050000,0.400000,0.050000,0.050000,0.250000))
-   IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.250000))
+   IncapSettings(8)=(Cooldown=20.000000,Vulnerability=(0.100000,0.400000,0.100000,0.100000,0.250000))
+   IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.500000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
    IncapSettings(11)=(Cooldown=10.000000,Vulnerability=(0.150000))
-   SprintSpeed=380.000000
+   SprintSpeed=450.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedBloat:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -787,13 +782,14 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
-      SpecialMoveClasses(38)=None
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       SpecialMoveClasses(39)=None
       SpecialMoveClasses(40)=None
       SpecialMoveClasses(41)=None
       SpecialMoveClasses(42)=None
-      SpecialMoveClasses(43)=Class'kfgamecontent.KFSM_BloatKing_Enrage'
+      SpecialMoveClasses(43)=None
+      SpecialMoveClasses(44)=Class'kfgamecontent.KFSM_BloatKing_Enrage'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedBloat:SpecialMoveHandler_0'
    End Object
@@ -834,7 +830,7 @@ defaultproperties
    End Object
    DialogAkComponent=DialogAkSoundComponent
    Mass=400.000000
-   GroundSpeed=345.000000
+   GroundSpeed=450.000000
    Health=9000
    ControllerClass=Class'kfgamecontent.KFAIController_ZedBloatKing'
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedBloat:KFPawnSkeletalMeshComponent'

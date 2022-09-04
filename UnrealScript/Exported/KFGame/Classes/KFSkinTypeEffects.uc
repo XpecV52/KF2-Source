@@ -37,9 +37,10 @@ enum EEffectDamageGroup
 	FXG_Freeze,
 	FXG_Bludgeon_Chains,
 	FXG_MicrowaveProj,
-	FXG_Electricity
+	FXG_Electricity,
+	FXG_Slashing_Ion
 };
-const FXG_MAX = 19; //!! Update me when the enum gets modified !!
+const FXG_MAX = 20; //!! Update me when the enum gets modified !!
 
 struct native SkinEffectInfo
 {

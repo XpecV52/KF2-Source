@@ -37,7 +37,7 @@ AlternateFireDescription="대부분의 기본 무기는 대체 사격 모드를 
 FlashLightBatteryTitleKey="플래시 이용"
 FlashLightBatteryDescriptionKey="어두운 곳이 나타날 수 있습니다. <font color="#caab05">%x%</font>을(를) 누르면 <font color="#caab05">플래시</font>를 켜고 끕니다. 플래시 배터리는 천천히 소진됩니다. 전력이 소진되면 꺼지고 다시 충전을 시작합니다."
 GrenadeTitleKey="수류탄 사용"
-GrenadeDescriptionKey="수류탄을 이용하여 가까이 뭉쳐 있는 제드 집단에 데미지를 가할 수 있습니다. 병과에 따라 <font color="#caab05">장착 무기</font>에 있는 수류탄은 다르며 모두 제드를 공격하지만 부가적인 효과가 들어갑니다. <font color="#caab05">%x%</font>을(를) 누르면 수류탄을 투척합니다." "
+GrenadeDescriptionKey="수류탄을 이용하여 가까이 뭉쳐 있는 제드 집단에 데미지를 가할 수 있습니다. 병과에 따라 <font color="#caab05">장착 무기</font>에 있는 수류탄은 다르며 모두 제드를 공격하지만 부가적인 효과가 들어갑니다. <font color="#caab05">%x%</font>을(를) 누르면 수류탄을 투척합니다."
 
 ;Wave 1 end
 TraderTimeTitleKey="상점 시간"
@@ -116,48 +116,48 @@ ItemDescription="•전투 장갑은 다양한 데미지로부터 플레이어�
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 다이너마이트 부착"
-ItemCategory =" "폭발물"
-ItemDescription="•퓨즈를 장착한 작은 다이너마이트 조각\n•본인도 부상을 당할 수 있으므로 조심하십시오!" "
+ItemCategory ="폭발물"
+ItemDescription="•퓨즈를 장착한 작은 다이너마이트 조각\n•본인도 부상을 당할 수 있으므로 조심하십시오!"
 
 [KFProj_MedicGrenade]
 ItemName="치료용 수류탄"
-ItemCategory =" "폭발물"
-ItemDescription="•가스를 방출하여 제드는 중독시키지만 사람은 치료합니다.\n\n•파란색 가스 안개 속에 서 있으면 치료됩니다.\n우리 과학자 한 명은 이렇게 설명하였습니다. '이 수류탄에서 방출된 약제는 호모 사피엔스에게는 새 생명을 주지만 호모 제디쿠스는 안락사를 시키죠.’ 도움이 되기를 바랍니다." "
+ItemCategory ="폭발물"
+ItemDescription="•가스를 방출하여 제드는 중독시키지만 사람은 치료합니다.\n\n•파란색 가스 안개 속에 서 있으면 치료됩니다.\n우리 과학자 한 명은 이렇게 설명하였습니다. '이 수류탄에서 방출된 약제는 호모 사피엔스에게는 새 생명을 주지만 호모 제디쿠스는 안락사를 시키죠.’ 도움이 되기를 바랍니다."
 
 [KFProj_MolotovGrenade]
 ItemName="화염병"
 ItemCategory="폭발물"
-ItemDescription="•제드를 불태우는 아주 간단한 화염 투척무기입니다.\n\n화염병은 몰로토프 칵테일이라는 이름으로도 불리는데 핀란드인들이 1939-40년 겨울전쟁에서 스탈린 치하 외교부 수상인 바체슬라프 비하일로비치 몰로토프가... 죄송합니다, 역사수업은 싫으시죠?" "
+ItemDescription="•제드를 불태우는 아주 간단한 화염 투척무기입니다.\n\n화염병은 몰로토프 칵테일이라는 이름으로도 불리는데 핀란드인들이 1939-40년 겨울전쟁에서 스탈린 치하 외교부 수상인 바체슬라프 비하일로비치 몰로토프가... 죄송합니다, 역사수업은 싫으시죠?"
 
 [KFProj_EMPGrenade]
 ItemName="EMP 수류탄"
 ItemCategory="폭발물"
-ItemDescription="•전자파를 발생시켜 제드에게 데미지를 가하고 잠시 멈추게 만듭니다.\n\n좀 더 자세히 설명하자면, 폭발하였을 때 나노초 동안 전자기 파장을 발생시켜 짧은 시간 동안 전기 시스템을 교란시킵니다. 특별히 제드 안에 존재하는 전기 시스템을 교란시킵니다. 편리하죠." "
+ItemDescription="•전자파를 발생시켜 제드에게 데미지를 가하고 잠시 멈추게 만듭니다.\n\n좀 더 자세히 설명하자면, 폭발하였을 때 나노초 동안 전자기 파장을 발생시켜 짧은 시간 동안 전기 시스템을 교란시킵니다. 특별히 제드 안에 존재하는 전기 시스템을 교란시킵니다. 편리하죠."
 
 [KFProj_HEGrenade]
 ItemName="HE 수류탄"
-ItemCategory="폭발물" 
-ItemDescription="•아주 단순한 고성능 수류탄. 제드와 인간 모두에게 피해를 줍니다.\n\n이보다 단순할 수는 없죠. HE - 폭발성이 뛰어나다는 말입니다. 폭발하면 모든걸 날려버리죠. 설명이 필요한가요?" "
+ItemCategory="폭발물"
+ItemDescription="•아주 단순한 고성능 수류탄. 제드와 인간 모두에게 피해를 줍니다.\n\n이보다 단순할 수는 없죠. HE - 폭발성이 뛰어나다는 말입니다. 폭발하면 모든걸 날려버리죠. 설명이 필요한가요?"
 
 [KFProj_FragGrenade]
 ItemName="파쇄성 수류탄"
 ItemCategory="폭발물"
-ItemDescription="•전통적인 파쇄성 수류탄입니다. 이 작은 금속 조각을 던지면 모두가 다칩니다.\n\n여러분 모두 아웃브레이크가 발생하기 전에 비디오 게임을 많이 해봤으니 파쇄성 수류탄이 뭔지 잘 알고 있으리라 생각합니다. 게임 안해본 척 하지 마세요. 아무도 안 믿으니까요." "
+ItemDescription="•전통적인 파쇄성 수류탄입니다. 이 작은 금속 조각을 던지면 모두가 다칩니다.\n\n여러분 모두 아웃브레이크가 발생하기 전에 비디오 게임을 많이 해봤으니 파쇄성 수류탄이 뭔지 잘 알고 있으리라 생각합니다. 게임 안해본 척 하지 마세요. 아무도 안 믿으니까요."
 
 [KFProj_NailBombGrenade]
 ItemName="네일밤"
-ItemCategory =" "폭발물"
+ItemCategory ="폭발물"
 ItemDescription="•가운데 약간의 폭발물과 함께 오래된 못이 가득 들어있는 단순한 깡통.\n\n제드를 우아하고 기분 좋게 처치하는 방법은 아니지만, 어찌 되었든 제드와 함께 우아하고 기분 좋은 시간을 보낼 방법 따위는 없잖아요?"
 
 [KFProj_FreezeGrenade]
 ItemName="프리즈 수류탄"
-ItemCategory ="" 폭발물"
+ItemCategory ="폭발물"
 ItemDescription="•기술적으로 진보된 압축 액화질소 통.\n\n내용물과 충분히 접촉하게 되면 제드를 얼마 동안 제자리에 멈춰 놓습니다. 그 결과로 큰 피해를 줄 수 있죠."
 
 [KFProj_FlashBangGrenade]
 ItemName="플래시뱅"
-ItemCategory =" "폭발물"
-ItemDescription="•밝고 소리도 크니 직접 바라보지 마십시오. 소리도 듣지 마십시오.\n•치명적이지는 않지만 플래시뱅은 본인에게도 피해를 줄 수 있습니다. 조심하십시오!" "
+ItemCategory ="폭발물"
+ItemDescription="•밝고 소리도 크니 직접 바라보지 마세요. 소리도 듣지 마십시오.\n•치명적이지는 않지만 플래시뱅은 본인에게도 피해를 줄 수 있습니다. 조심하세요!"
 
 [KFWeap_Healer_Syringe]
 ItemName="의료용 주사기"
@@ -312,6 +312,11 @@ ItemName="VLAD-1000 네일건"
 ItemCategory="샷건"
 ItemDescription="•단발이나 연사 못 발사 모드 선택.\n•대체 사격으로 발사 모드를 전환할 수 있습니다.\n•Horzine 과학자 중 한 명이 (사망한) 수리 작업자에게 네일건을 빌렸던 걸로 알고 있습니다."
 
+[KFWeap_HRG_Nailgun]
+ItemName="HRG 네일건"
+ItemCategory="서브머신건"
+ItemDescription="•500 rpm 전자동 단발 사격 및 857 rpm 전자동 3발 연사 모드를 선택할 수 있습니다.\n•사격 모드를 변경할 수 있습니다.\n•창의적으로 적을 제압하세요!"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="구세주의 길"
 ItemCategory="백병전"
@@ -370,6 +375,11 @@ ItemName="화염방사기"
 ItemCategory="화염"
 ItemDescription="•사격 모드에서 화염 발사. 그게 다입니다.\n•세대가 지나도 변치 않는 고전. 의심스럽다면 불을 질러보세요."
 
+[KFWeap_HRG_Healthrower]
+ItemName="HRG 치유방사기"
+ItemCategory="화염"
+ItemDescription="•사격 모드 시 플레이어를 치료하고 제드를 중독시키는 가스를 발사합니다.\n•사격 모드 변경 시 팀원을 치료하는 다트를 발사합니다.\n•가스에서 레몬과 민트 향이 납니다. 제드는 레몬과 민트를 싫어하죠."
+
 [KFWeap_Beam_Microwave]
 ItemName="마이크로웨이브 건"
 ItemCategory="화염"
@@ -425,6 +435,18 @@ ItemName="듀얼 .50 데저트 이글"
 ItemCategory="핸드건"
 ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•데저트 이글 핸드 캐논 한 쌍입니다."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="라이노"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드 사용 시 파편 탄환을 발사합니다.\n•파편 탄환은 충격을 받으면 폭발하면서 3개의 파편이 발사됩니다.\n•제드를 버터처럼 썰어보세요!"
+SharedUnlockSource="라이노"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="듀얼 라이노"
+ItemCategory="핸드건"
+ItemDescription="•사격 모드 사용 시 파편 탄환을 발사합니다.\n•파편 탄환은 충격을 받으면 폭발하면서 3개의 파편이 발사됩니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•두 배 많이 제드를 버터처럼 썰어보세요!"
+SharedUnlockSource="듀얼 라이노"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 리볼버"
 ItemCategory="핸드건"
@@ -444,6 +466,16 @@ ItemDescription="•사격 모드는 단발 전용.\n•긴 배럴을 가진 50 
 ItemName="듀얼 .500 매그넘"
 ItemCategory="핸드건"
 ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•.500 매그넘 ‘본 콜렉터’ 리볼버 한 쌍입니다."
+
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="HRG 산탄"
+ItemCategory="핸드건"
+ItemDescription="•기본 사격은 단발 전용입니다.\n•총알을 흩뿌리며 새 레벨과 새 세상이 오기를 빌어보세요."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="듀얼 HRG 산탄"
+ItemCategory="핸드건"
+ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•총알을 흩뿌리며 새 레벨과 새 세상이 오기를 빌어보세요."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="윈체스터 1894"
@@ -516,6 +548,18 @@ ItemName="Husk 캐논"
 ItemCategory="화염"
 ItemDescription="•발사 버튼을 누르는 동안 충전되며 발사 버튼에서 손을 떼면 발사됩니다. \n•Husk 캐논의 공식 Horzine 버전입니다. 이 모델은 95% 확률로 폭발하지 않습니다."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="라이노"
+ItemCategory="권총"
+ItemDescription="•사격 모드 사용 시 파편 탄환을 발사합니다.\n•파편 탄환은 충격을 받으면 폭발하면서 3개의 파편이 발사됩니다.\n•제드를 버터처럼 썰어보세요!"
+SharedUnlockSource="라이노"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="듀얼 라이노"
+ItemCategory="권총"
+ItemDescription="•사격 모드 사용 시 파편 탄환을 발사합니다.\n•파편 탄환은 충격을 받으면 폭발하면서 3개의 파편이 발사됩니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•두 배 많이 제드를 버터처럼 썰어보세요!"
+SharedUnlockSource="듀얼 라이노"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H) 카빈 소총"
 ItemCategory="돌격소총"
@@ -532,6 +576,12 @@ ItemName="듀얼 AF2011-A2"
 ItemCategory="권총"
 ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•2개의 총구가 있는 총 두 정입니다. 화력이 네 배입니다. 산수죠. 너무 쉬운 산수입니다."
 
+[KFWeap_Edged_IonThruster]
+ItemName="이온 스러스터"
+ItemCategory="백병전"
+ItemDescription="•기본 - 화상을 입히는 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 화상을 입히는 세게 베기 공격\n•재장전 - 100% 충전 상태에서는 특별 공격\n•대체 - 차단/회피\n•바베큐에 딱입니다."
+SharedUnlockSource="이온 스러스터"
+
 [KFWeap_Shotgun_ElephantGun]
 ItemName="둠스틱"
 ItemCategory="산탄총"
@@ -544,7 +594,7 @@ ItemDescription="•기본 - 빠른 둔기 공격, 오래 누르면 콤보 공�
 
 [KFWeap_RocketLauncher_SealSqueal]
 ItemName="씰 스퀼"
-ItemCategory="폭탄"
+ItemCategory="폭발물"
 ItemDescription="•기본 발사는 4초 후에 폭발하는 작살을 발사합니다.\n•보조 발사는 모든 작살을 직접 폭발시킵니다.\n•Horzine에서도 승인의 인장을 주겠군요!"
 
 [KFWeap_AssaultRifle_LazerCutter]

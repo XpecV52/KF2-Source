@@ -53,7 +53,7 @@ replication
 
 simulated event ReplicatedEvent(name VarName)
 {
-    super(Actor).ReplicatedEvent(VarName);
+    super.ReplicatedEvent(VarName);
     if(VarName == 'bIsAmmoRecharging')
     {
         if(!bIsAmmoRecharging && Owner != none)

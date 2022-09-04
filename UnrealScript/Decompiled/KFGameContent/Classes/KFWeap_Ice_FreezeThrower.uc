@@ -17,8 +17,6 @@ var(Animations) const editconst name FireLastHeavyAnim;
 var(Animations) const editconst name FireLastHeavySightedAnim;
 /** Alt-fire explosion template */
 var() GameExplosion ExplosionTemplate;
-/** For Ice Blast */
-var(Weapon) protected array<byte> NumPellets;
 var protected const float AltFireRecoilScale;
 
 simulated function name GetWeaponFireAnim(byte FireModeNum)
@@ -80,54 +78,9 @@ simulated function AltFireMode()
     StartFire(1);
 }
 
-simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
-{
-    local int I;
-    local Rotator AimRot;
-
-    if(CurrentFireMode == 4)
-    {
-        return super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
-    }
-    AimRot = rotator(AimDir);
-    I = 0;
-    J0x58:
-
-    if(I < GetNumProjectilesToFire(CurrentFireMode))
-    {
-        super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, Spread[CurrentFireMode], byte(I))));
-        ++ I;
-        goto J0x58;
-    }
-    return none;
-}
-
-simulated function byte GetNumProjectilesToFire(byte FireModeNum)
-{
-    return NumPellets[CurrentFireMode];
-}
-
 simulated function Rotator AddSpread(Rotator BaseAim)
 {
     return BaseAim;
-}
-
-static function Rotator AddMultiShotSpread(Rotator BaseAim, float CurrentSpread, byte PelletNum)
-{
-    local Vector X, Y, Z;
-    local float RandY, RandZ;
-
-    if(CurrentSpread == float(0))
-    {
-        return BaseAim;        
-    }
-    else
-    {
-        GetAxes(BaseAim, X, Y, Z);
-        RandY = FRand() - 0.5;
-        RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
-        return rotator((X + ((RandY * CurrentSpread) * Y)) + ((RandZ * CurrentSpread) * Z));
-    }
 }
 
 simulated function bool ShouldAutoReload(byte FireModeNum)
@@ -179,8 +132,6 @@ defaultproperties
     FireHeavyAnim=Shoot_Heavy
     FireLastHeavyAnim=Shoot_Heavy_Last
     FireLastHeavySightedAnim=Shoot_Heavy_Iron_Last
-    NumPellets(0)=0
-    NumPellets(1)=12
     AltFireRecoilScale=4
     bWarnAIWhenFiring=true
     FlameSprayArchetype=SprayActor_Flame'WEP_CryoGun_ARCH.Wep_CryoGun_IceSpray'
@@ -229,6 +180,7 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=6,Y=15,Z=-5)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Ice_FreezeThrower.MeleeHelper'
+    NumPellets=/* Array type was not detected. */
     maxRecoilPitch=150
     minRecoilPitch=115
     maxRecoilYaw=115

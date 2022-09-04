@@ -302,8 +302,22 @@ simulated state HuskCannonCharge extends WeaponFiring
 
     simulated event EndState(name NextStateName)
     {
+        ClearZedTimeResist();
+        ClearPendingFire(CurrentFireMode);
+        ClearTimer('RefireCheckTimer');
+        KFPawn(Instigator).bHasStartedFire = false;
+        KFPawn(Instigator).bNetDirty = true;
+        if(ChargingPSC != none)
+        {
+            ChargingPSC.DeactivateSystem();
+        }
+        KFPawn(Instigator).SetWeaponAmbientSound(none);
+    }
+
+    simulated function HandleFinishedFiring()
+    {
         global.FireAmmunition();
-        if(bPlayingLoopingFireAnim || bPlayingLoopingFireAnim)
+        if(bPlayingLoopingFireAnim)
         {
             StopLoopingFireEffects(CurrentFireMode);
         }
@@ -315,16 +329,8 @@ simulated state HuskCannonCharge extends WeaponFiring
         {
             SetTimer(0.3, false, 'Timer_StopFireEffects');
         }
-        ClearZedTimeResist();
-        ClearPendingFire(CurrentFireMode);
-        ClearTimer('RefireCheckTimer');
         NotifyWeaponFinishedFiring(CurrentFireMode);
-        KFPawn(Instigator).bHasStartedFire = false;
-        KFPawn(Instigator).bNetDirty = true;
-        if(ChargingPSC != none)
-        {
-            ChargingPSC.DeactivateSystem();
-        }
+        super(Weapon).HandleFinishedFiring();
     }
     stop;    
 }

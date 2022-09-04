@@ -11,7 +11,7 @@ DifficultyStrings[0]="Normal"
 DifficultyStrings[1]="Hard"
 DifficultyStrings[2]="Suicidal"
 DifficultyStrings[3]="Hell on Earth"
-BonusDoshString="ボーナスDOSH"
+BonusDoshString="報酬"
 LengthStrings[0]="ショート(4ウェーブ)"
 LengthStrings[1]="ショート(7ウェーブ)"
 LengthStrings[2]="ロング(10ウェーブ)"
@@ -142,9 +142,9 @@ CompleteMapString="マップでマッチを終了："
 KillZedsString="Zedを殺す："
 KillBossString="ボス討伐："
 KillBossDescriptionString="サバイバルまたはウィークリーで"
-VersusKillsString=次のロールで対戦プレイヤーを殺す：
-DealVersusDamageString=次のロールで対戦プレイヤーにダメージを与える：
-VersusCompletionString=次のロールででマッチを終了：
+VersusKillsString="次のロールで対戦プレイヤーを殺す："
+DealVersusDamageString="次のロールで対戦プレイヤーにダメージを与える："
+VersusCompletionString="次のロールででマッチを終了："
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="マッチが見つかりませんでした"
@@ -1321,6 +1321,7 @@ GBA_SwitchWeapon3="近接武器"
 GBA_SwitchWeapon4="装備"
 GBA_VoteYes="「はい」に投票(長押し)"
 GBA_VoteNo="「いいえ」に投票(長押し)"
+GBA_RequestSkipTrader="トレーダーをスキップするよう要請"
 
 GBA_VoiceCommReqHealing="回復リクエスト"
 GBA_VoiceCommReqDosh="doshリクエスト"
@@ -1740,7 +1741,7 @@ Vampire="吸血鬼"
 VampireDescription="Perk武器でzedをキルする毎に、ヘルスを4ポイント回復する。Perk近接武器での攻撃が20%速くなる。"
 
 Speed="肉屋"
-SpeedDescription="Perk近接武器により攻撃が20%速くなり、ダメージが20%増加する。"
+SpeedDescription="Perk近接武器により攻撃が 20% 速くなり、ダメージが 20% 増加する。"
 
 Resistance="耐性"
 ResistanceDescription="全ダメージに対して20%耐性を得る。毒および音波攻撃に対しては、さらに20%耐性を得る。"
@@ -1773,7 +1774,7 @@ Passives[0]=(Title="Perk武器ダメージ",Description="レベル毎に、Perk�
 Passives[1]=(Title="クロークした敵＆ヘルスバー検知",Description="レベル毎に、レンジが5m+%x%m");
 Passives[2]=(Title="Zed Time更新",Description="5レベル毎に、Zed-Timeが%x%増加する");
 Passives[3]=(Title="リロード速度",Description="5レベル毎に、Perk武器のリロード速度が%x%%増加する");
-Passives[4]=(Title="暗視能力",Description="懐中電灯―プラス暗視ゴーグル");
+Passives[4]=(Title="反動軽減",Description="レベル毎に、反動が%x%減少する");
 Passives[5]=(Title="クロークしたZedの存在を知らせる",Description="チームメイトはクロークしたユニットを見れる");
 
 EXPAction1="コマンドー武器ダメージを与える"
@@ -1798,7 +1799,7 @@ AmmoVest="準備済み"
 AmmoVestDescription="各Perk武器毎に、運べる弾薬が20%増加する。"
 
 HollowPoints="ホローポイント弾"
-HollowPointsDescription="Perk武器によるダメージが30%増加し、反動が50%減少する。"
+HollowPointsDescription="Perk武器によるダメージが30%増加する。"
 
 EatLead="鉛を食らえ"
 EatLeadDescription="Perk武器のマガジン容量が100%増加する。"
@@ -1969,7 +1970,7 @@ SkillCatagories[4]="マスターテクニック"
 Passives[0]=(Title="Perk武器ダメージ",Description="レベル毎に、Perk武器ダメージが%x%増加する");
 Passives[1]=(Title="銃弾耐性",Description="発射武器ダメージに対する耐性が5%増加し、レベル毎にさらに%x%");
 Passives[2]=(Title="移動速度",Description="5レベル毎に、移動速度が%x%増加する");
-Passives[3]=(Title="反動",Description="レベル毎に、Perk武器の反動が%x%減少する");
+Passives[3]=(Title="反動軽減",Description="レベル毎に、Perk武器の反動が%x%減少する");
 Passives[4]=(Title="Zed-Timeリロード",Description="レベル毎に、Zed-Time中のリロード速度が%x%増加する");
 
 ShootnMove="安定"
@@ -2015,7 +2016,7 @@ SkillCatagories[3]="装備"
 SkillCatagories[4]="マスターテクニック"
 
 Passives[0]=(Title="ヘッドショットダメージ",Description="レベル毎に、ヘッドショットダメージが%x%増加する");
-Passives[1]=(Title="反動",Description="レベル毎に、反動が%x%減少する");
+Passives[1]=(Title="反動軽減",Description="レベル毎に、反動が%x%減少する");
 Passives[2]=(Title="武器切り替え",Description="レベル毎に、武器切り替え速度が%x%増加する");
 
 StationaryAim="スナイパー"
@@ -2656,10 +2657,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="終わらないスチーム",Desc
 SpecialEventObjectiveInfoList[3]=(TitleString="致命的な往復の旅",DescriptionString="任務Hardかそれ以上の難易度で、Zed Landingをクリアする")
 SpecialEventObjectiveInfoList[4]=(TitleString="冷ややかな見返り",DescriptionString="任務Hardかそれ以上の難易度で、Outpostをクリアする")
 
-AllCompleteRewardDescriptionString="男性用と女性用のスチームパンク衣装"
+AllCompleteRewardDescriptionString="スチームパンクファッション + M99 AMR スキン"
 
 ChanceDropDescriptionStrings[0]="景品チケット"
 ChanceDropDescriptionStrings[1]="黄金チケット"
+
+[KFGFxFall2019ObjectivesContainer]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="精神科病院の急襲",DescriptionString="サバイバルHardかそれ以上の難易度でアッシュウッド精神科病院にてボスを倒す")
+SpecialEventObjectiveInfoList[1]=(TitleString="長期治療",DescriptionString="エンドレスHardかそれ以上の難易度でアッシュウッド精神科病院でのウェーブ15をクリアする")
+SpecialEventObjectiveInfoList[2]=(TitleString="ウィークリー点検",DescriptionString="アッシュウッド精神科病院でウィークリーをクリア")
+SpecialEventObjectiveInfoList[3]=(TitleString="病棟を清掃",DescriptionString="アッシュウッド精神科病院で Zed を 1500 体殺す")
+SpecialEventObjectiveInfoList[4]=(TitleString="吹き飛ばせ！",DescriptionString="任務 Hard 以上の難易度で Nuked をクリアする")
+
+AllCompleteRewardDescriptionString="クリス | ビヨンドホライゾン | スペースエリート"
+
+ChanceDropDescriptionStrings[0]="景品チケット"
+ChanceDropDescriptionStrings[1]="ゴールデン景品チケット"
 
 ;============================================
 ; Daily Localization
@@ -3246,6 +3261,9 @@ DisplayName="Spillway"
 
 [KF-SteamFortress KFMapSummary]
 DisplayName="Steam Fortress"
+
+[KF-AshwoodAsylum KFMapSummary]
+DisplayName="アッシュウッド精神科病院"
 
 [KFMapInfo]
 ; defaults

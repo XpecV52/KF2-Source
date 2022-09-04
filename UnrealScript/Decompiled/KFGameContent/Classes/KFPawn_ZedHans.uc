@@ -98,7 +98,7 @@ simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'bGunsEquipped')
     {
-        if(SpecialMove != 38)
+        if(SpecialMove != 39)
         {
             SetWeaponStance(bGunsEquipped);
         }        
@@ -465,7 +465,7 @@ function bool IsThrowingGrenade()
     {
         return false;
     }
-    return ((IsDoingSpecialMove(39) || IsDoingSpecialMove(41)) || IsDoingSpecialMove(40)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
+    return ((IsDoingSpecialMove(40) || IsDoingSpecialMove(42)) || IsDoingSpecialMove(41)) || AICommand_ThrowGrenade(MyKFAIC.GetActiveCommand()) != none;
 }
 
 function DrawDebugOverheadText(KFHUDBase HUD, out Vector2D ScreenPos)
@@ -1031,6 +1031,7 @@ defaultproperties
         ImpactFXArray[16]=(Type=EEffectDamageGroup.FXG_Bludgeon_Chains)
         ImpactFXArray[17]=(Type=EEffectDamageGroup.FXG_MicrowaveProj)
         ImpactFXArray[18]=(Type=EEffectDamageGroup.FXG_Electricity)
+        ImpactFXArray[19]=(Type=EEffectDamageGroup.FXG_Slashing_Ion)
     object end
     // Reference: KFSkinTypeEffects_HansShield'Default__KFPawn_ZedHans.ShieldEffects'
     ShieldImpactEffects=ShieldEffects

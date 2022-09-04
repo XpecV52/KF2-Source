@@ -37,7 +37,7 @@ AlternateFireDescription="多くのプライマリ武器は、オルトファイ
 FlashLightBatteryTitleKey="懐中電灯を使用する"
 FlashLightBatteryDescriptionKey="暗くなることもあります。<font color="#caab05">%x%</font>を押して、<font color="#caab05">懐中電灯</font>のオン/オフを切り替えます。懐中電灯の電池は、少しずつ減っていきます。電池が切れるとオフになり、自動的に充電が開始します。"
 GrenadeTitleKey="手榴弾を使う"
-GrenadeDescriptionKey="手榴弾によって、密集したzedの集団に対処することができます。Perkはそれぞれの<font color="#caab05">武器ロードアウト</font>に異なる手榴弾を持ちます。いずれもzedにダメージを与えますが、追加効果がある場合があります。<font color="#caab05">%x%</font>を押して手榴弾を投げます。" "
+GrenadeDescriptionKey="手榴弾によって、密集したzedの集団に対処することができます。Perkはそれぞれの<font color="#caab05">武器ロードアウト</font>に異なる手榴弾を持ちます。いずれもzedにダメージを与えますが、追加効果がある場合があります。<font color="#caab05">%x%</font>を押して手榴弾を投げます。"
 
 ;Wave 1 end
 TraderTimeTitleKey="トレーダータイム"
@@ -116,48 +116,48 @@ ItemDescription="•コンバットアーマーは様々な形態のダメージ
 
 [KFProj_DynamiteGrenade]
 ItemName="ダイナマイト1/2本"
-ItemCategory =" "爆発物"
-ItemDescription="•信管が取り付けられた、ただの小さなダイナマイト。\n•あなたに危害を与えることもあるので、注意しましょう！" "
+ItemCategory ="爆発物"
+ItemDescription="•信管が取り付けられた、ただの小さなダイナマイト。\n•あなたに危害を与えることもあるので、注意しましょう！"
 
 [KFProj_MedicGrenade]
 ItemName="メディック手榴弾"
-ItemCategory =" "爆発物"
-ItemDescription="•zedには毒を与えるが、人間は回復するガスを放出します。\n\n•回復するには青いガス雲の中に立ちましょう。\n我々の科学者の言葉を引用するなら：『これらの手榴弾から放出される化学物質はホモサピエンスを生き返らせるが、ホモゼディカスを安楽死させる。』お役に立てれば幸いです。" "
+ItemCategory ="爆発物"
+ItemDescription="•zedには毒を与えるが、人間は回復するガスを放出します。\n\n•回復するには青いガス雲の中に立ちましょう。\n我々の科学者の言葉を引用するなら：『これらの手榴弾から放出される化学物質はホモサピエンスを生き返らせるが、ホモゼディカスを安楽死させる。』お役に立てれば幸いです。"
 
 [KFProj_MolotovGrenade]
 ItemName="モロトフ火炎手榴弾"
 ItemCategory="爆発物"
-ItemDescription="•ごく単純に、zedを燃やす炎の手榴弾です。\n\n1939-1940年の冬戦争中に、スターリンの下のソビエト外務大臣、ヴャチェスラフ・ミハイロヴィチ・モロトフから、侮辱的に名付けられ...すいません、歴史の授業は不要でしたか？" "
+ItemDescription="•ごく単純に、zedを燃やす炎の手榴弾です。\n\n1939-1940年の冬戦争中に、スターリンの下のソビエト外務大臣、ヴャチェスラフ・ミハイロヴィチ・モロトフから、侮辱的に名付けられ...すいません、歴史の授業は不要でしたか？"
 
 [KFProj_EMPGrenade]
 ItemName="EMP手榴弾"
 ItemCategory="爆発物"
-ItemDescription="•zedにダメージを与え、さらに短時間スタンさせることもある、電気パルスを発生させます。\n\n詳細を加えるなら―爆発の際、ナノ秒電磁気パルスが発生し、短距離内の電気系統を妨害します。特にzed内にあるものを。便利ですね。" "
+ItemDescription="•zedにダメージを与え、さらに短時間スタンさせることもある、電気パルスを発生させます。\n\n詳細を加えるなら―爆発の際、ナノ秒電磁気パルスが発生し、短距離内の電気系統を妨害します。特にzed内にあるものを。便利ですね。"
 
 [KFProj_HEGrenade]
 ItemName="HE手榴弾"
 ItemCategory="爆発物"
-ItemDescription="•とてもシンプルな高性能手榴弾です。zedにも人間にも同様にダメージを与えます。\n\nこの上なくシンプルです。HE―高性能―これはドカン！といろいろなものを爆破します。こんなこと説明する必要ありますか？" "
+ItemDescription="•とてもシンプルな高性能手榴弾です。zedにも人間にも同様にダメージを与えます。\n\nこの上なくシンプルです。HE―高性能―これはドカン！といろいろなものを爆破します。こんなこと説明する必要ありますか？"
 
 [KFProj_FragGrenade]
 ItemName="フラググレネード"
 ItemCategory="爆発物"
-ItemDescription="•かの有名なフラググレネード：小さな鉄片を周りに飛ばし、何もかも傷つける。\n\n君たちはアウトブレイク前に十分ビデオゲームで遊んだはずなので、フラググレネードが何であるかは知ってるでしょう。知らないフリはやめなさい。誰も君のことを信じませんよ。" "
+ItemDescription="•かの有名なフラググレネード：小さな鉄片を周りに飛ばし、何もかも傷つける。\n\n君たちはアウトブレイク前に十分ビデオゲームで遊んだはずなので、フラググレネードが何であるかは知ってるでしょう。知らないフリはやめなさい。誰も君のことを信じませんよ。"
 
 [KFProj_NailBombGrenade]
 ItemName="釘爆弾"
-ItemCategory =" "爆発物"
+ItemCategory ="爆発物"
 ItemDescription="•古い釘と、小さな爆薬を中央にセットした、シンプルな筒。\n\nzedに対処するにはあまり愉快でも繊細でもない方法でもありませんが、zedに関して愉快なことも繊細なこともありませんよね？"
 
 [KFProj_FreezeGrenade]
 ItemName="凍結手榴弾"
-ItemCategory =" "爆発物"
+ItemCategory ="爆発物"
 ItemDescription="•技術的に高度な、加圧液体窒素の缶。\n\nこの中身と十分に触れさせると、zedを一定時間その場に凍らせます。打ち砕かれるような結果になります。"
 
 [KFProj_FlashBangGrenade]
 ItemName="フラッシュバン"
-ItemCategory =" "爆発物"
-ItemDescription="•眩しく、音が大きいため、直視しないこと。できたら聞かないように。\n•厳密には致命的ではありませんが、フラッシュバンで危害が加わることもありますので、ご注意ください！" "
+ItemCategory ="爆発物"
+ItemDescription="眩しく、音が大きいため、直視しないこと。できたら聞かないように。\n•厳密には致命的ではありませんが、フラッシュバンで怪我をすることもありますので、ご注意ください！"
 
 [KFWeap_Healer_Syringe]
 ItemName="医療注射器"
@@ -312,6 +312,11 @@ ItemName="VLAD-1000 ネイルガン"
 ItemCategory="ショットガン"
 ItemDescription="•単発または複数発のネイルファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•ホージンの科学者がオリジナルのネイルガンを(死亡した)整備員から借りたと認識しております。"
 
+[KFWeap_HRG_Nailgun]
+ItemName="HRG ネイルガン"
+ItemCategory="サブマシンガン"
+ItemDescription="•単発式の 500 rpm フルオートおよび3点バースト 857 rpm フルオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•革新の勝利！"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="ロードレディーマー"
 ItemCategory="近接"
@@ -370,6 +375,11 @@ ItemName="火炎放射器"
 ItemCategory="火炎"
 ItemDescription="•ファイアモードは火炎を発射します。それだけです。\n•どの世代でもクラシック。迷ったら、すべて焼きつくしましょう。"
 
+[KFWeap_HRG_Healthrower]
+ItemName="HRG 回復放射器"
+ItemCategory="火炎"
+ItemDescription="•ファイアモードではプレイヤーを回復して Zed に毒ダメージを与えるガスを発射します。\n•オルトファイアでは、チームメンバーを回復する回復ダーツを発射します。\n•このガスはわずかにレモンとミントの香りがします。どちらも Zed が苦手とするものです。"
+
 [KFWeap_Beam_Microwave]
 ItemName="マイクロ波銃"
 ItemCategory="火炎"
@@ -425,6 +435,18 @@ ItemName="デュアル.50デザートイーグル"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•デザートイーグル・ハンドキャノン2丁です。"
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="ライノ"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードでは破砕弾を発射します。\n•破砕弾は着弾時に爆発して、3 つの榴散弾を発射します。\n•Zed をバターのように切り裂く！"
+SharedUnlockSource="ライノ"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="デュアルライノ"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードでは破砕弾を発射します。\n•破砕弾は着弾時に爆発して、3 つの榴散弾を発射します。\n•オルトファイアはアイアンサイト使用時、エイムスタイルを切り替えます。\n•Zed をバターのように切り裂く！"
+SharedUnlockSource="デュアルライノ"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="1858リボルバー"
 ItemCategory="ハンドガン"
@@ -444,6 +466,16 @@ ItemDescription="•ファイアモードは単発のみ。\n•ロングバレ�
 ItemName="デュアル.500マグナム"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•.500マグナム「ボーンコレクター」リボルバー2丁です。"
+
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="HRG バックショット"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードは単発のみ。\n•運任せの乱射もついにこのレベルまで来た。"
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="デュアル HRG バックショット"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•運任せの乱射をさらに、上の上のレベルへと昇華しました。"
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="ウィンチェスター1894"
@@ -516,6 +548,18 @@ ItemName="ハスクキャノン"
 ItemCategory="火炎"
 ItemDescription="•発射ボタンを押している間はチャージされ、発射ボタンを離すと解放されます。\n•ハスクキャノンのホージン社公式バージョン。このモデルは95%の保証付きで爆発しません。"
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="ライノ"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードでは破砕弾を発射します。\n•破砕弾は着弾時に爆発して、3 つの榴散弾を発射します。\n•Zed をバターのように切り裂く！"
+SharedUnlockSource="ライノ"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="デュアルライノ"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードでは破砕弾を発射します。\n•破砕弾は着弾時に爆発して、3 つの榴散弾を発射します。\n•オルトファイアはアイアンサイト使用時、エイムスタイルを切り替えます。\n•Zed をバターのように切り裂く！"
+SharedUnlockSource="デュアルライノ"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H)カービンライフル"
 ItemCategory="アサルトライフル"
@@ -531,6 +575,12 @@ ItemDescription="•ファイアモードはセミオートのみです。\n•�
 ItemName="デュアルAF2011-A2"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードはセミオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•それぞれにバレルがついた2丁の拳銃。4倍の火力です。これは数学です。数学に議論する余地はありません。"
+
+[KFWeap_Edged_IonThruster]
+ItemName="イオンスラスター"
+ItemCategory="近接"
+ItemDescription="•プライマリ - 焼けるような素早い切り裂き攻撃、プライマリ長押しでコンボ攻撃。\n•セカンダリ - 焼けるような重い切り裂き攻撃。\n•リロード - 100% のとき特殊攻撃を実行します。\n•オルト - ブロック/受け流し。\n•バーベキューに最適。"
+SharedUnlockSource="イオンスラスター"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="ドゥームスティック"

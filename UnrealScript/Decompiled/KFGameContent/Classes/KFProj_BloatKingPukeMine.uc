@@ -8,12 +8,42 @@
 class KFProj_BloatKingPukeMine extends KFProj_BloatPukeMine
     hidecategories(Navigation);
 
+simulated function bool ValidTouch(Pawn Other)
+{
+    if((Other.GetTeamNum() == TeamNum) || !Other.IsAliveAndWell())
+    {
+        return false;
+    }
+    if(Physics != 0)
+    {
+        return false;
+    }
+    return FastTrace(Other.Location, Location,, true);
+}
+
+singular event TakeDamage(int InDamage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
+{
+    if(((bFadingOut || DamageCauser.Class == Class) || DamageType == ExplosionTemplate.MyDamageType) || Physics != 0)
+    {
+        return;
+    }
+    if((((Health > 0) && InDamage > 0) && InstigatedBy != none) && (InstigatedBy.GetTeamNum() != TeamNum) || InstigatedBy == InstigatorController)
+    {
+        Health -= InDamage;
+        if(Health <= 0)
+        {
+            TriggerExplosion(Location, vect(0, 0, 1), none);
+        }
+    }
+}
+
 defaultproperties
 {
     GroundFXTemplate=ParticleSystem'ZED_BloatKing_EMIT.FX_Bloatking_Mine_01'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_BloatKing_ARCH.Bloatking_Mine_Explosion'
         Damage=18
+        MyDamageType=Class'KFDT_Toxic_BloatKingPukeMine'
     object end
     // Reference: KFGameExplosion'Default__KFProj_BloatKingPukeMine.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

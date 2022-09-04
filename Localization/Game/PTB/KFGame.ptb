@@ -11,7 +11,7 @@ DifficultyStrings[0]="Normal"
 DifficultyStrings[1]="Difícil"
 DifficultyStrings[2]="Suicida"
 DifficultyStrings[3]="Inferno na Terra"
-BonusDoshString="GRANA BÔNUS"
+BonusDoshString="RECOMPENSAS"
 LengthStrings[0]="Curto (4 levas)"
 LengthStrings[1]="Médio (7 levas)"
 LengthStrings[2]="Longo (10 levas)"
@@ -142,9 +142,9 @@ CompleteMapString="Complete a partida no mapa:"
 KillZedsString="Mate Zeds:"
 KillBossString="Matar chefe:"
 KillBossDescriptionString="Em sobrevivência ou semanal"
-VersusKillsString=Mate jogadores como:
-DealVersusDamageString=Cause dano em jogadores como:
-VersusCompletionString=Complete uma partida como:
+VersusKillsString="Mate jogadores como:"
+DealVersusDamageString="Cause dano em jogadores como:"
+VersusCompletionString="Complete uma partida como:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FALHA AO LOCALIZAR PARTIDA"
@@ -204,8 +204,8 @@ SoloString="Jogar solo off-line"
 TutorialString="Treinamento básico"
 
 [StartMenuHelperText]
-modeList0="Enfrente ondas definidas de Zeds controlados por IA"
-modeList1="Enfrente ondas definidas de Zeds controlados por IA em um modo de jogo semanal único"
+modeList0="Enfrente ondas programadas de Zeds controlados por IA"
+modeList1="Enfrente ondas programadas de Zeds controlados por IA em um modo de jogo semanal único"
 modeList2="Mercenários Horzine contra levas de jogadores e Zeds controlados por IA"
 modeList3="Enfrente ondas ilimitadas de Zeds controlados por IA"
 modeList4="Enfrente ondas definidas de Zeds controlados por IA enquanto conclui objetivos"
@@ -1008,7 +1008,7 @@ FinalString="Final"
 
 [KFGFxHUD_WeaponSelectWidget]
 PrimaryString="PRINCIPAL"
-EquiptmentString="APETRECHOS"
+EquiptmentString="EQUIPAMENTO"
 MeleeString="CORPO A CORPO"
 SecondaryString="SECUNDÁRIA"
 ThrowString="ARMA DE LANÇAMENTO"
@@ -1318,9 +1318,10 @@ GBA_LastWeapon="Última arma usada"
 GBA_SwitchWeapon1="Arma principal"
 GBA_SwitchWeapon2="Arma secundária"
 GBA_SwitchWeapon3="Arma corpo a corpo"
-GBA_SwitchWeapon4="Apetrechos"
+GBA_SwitchWeapon4="Equipamento"
 GBA_VoteYes="Votar Sim (segurar)"
 GBA_VoteNo="Votar Não (segurar)"
+GBA_RequestSkipTrader="Solicitar Ignorar Comerciante"
 
 GBA_VoiceCommReqHealing="PEDIR CURA"
 GBA_VoiceCommReqDosh="PEDIR GRANA"
@@ -1773,7 +1774,7 @@ Passives[0]=(Title="Dano de arma de classe",Description="Aumenta em %x% o dano d
 Passives[1]=(Title="Inimigo oculto e detecção de vida",Description="Distância de 5 m mais %x% m por nível");
 Passives[2]=(Title="Atualização da Hora dos Zeds",Description="A hora dos Zeds aumenta %x% a cada 5 níveis");
 Passives[3]=(Title="Velocidade de recarga",Description="Aumenta em %x%% a velocidade de recarga de arma da classe a cada 5 níveis");
-Passives[4]=(Title="Capacidade de visão noturna",Description="Lanternas - *e* óculos de visão noturna");
+Passives[4]=(Title="Redução de recuo",Description="Reduz em %x% o recuo por nível");
 Passives[5]=(Title="Chamado de Zeds ocultos",Description="Permite aos aliados ver as unidades ocultas");
 
 EXPAction1="Causando dano de arma comando"
@@ -1798,7 +1799,7 @@ AmmoVest="Preparado"
 AmmoVestDescription="Carrega até 20% mais munição para cada arma."
 
 HollowPoints="Rodadas de pontos nulos"
-HollowPointsDescription="Aumenta em 30% o dano de armas de classe e reduz em 50% o recuo."
+HollowPointsDescription="Aumenta em 30% o dano de armas de classe"
 
 EatLead="Toma chumbo"
 EatLeadDescription="Aumenta em 100% a capacidade de munição de armas de classe."
@@ -1969,7 +1970,7 @@ SkillCatagories[4]="Técnicas de mestre"
 Passives[0]=(Title="Dano de arma de classe",Description="Aumenta em %x% o dano de arma de classe por nível");
 Passives[1]=(Title="Resistência a bala",Description="Aumenta em 5% a resistência a dano de projéteis mais %x% por nível");
 Passives[2]=(Title="Velocidade de movimento",Description="Aumenta em %x% a velocidade de movimento a cada cinco níveis");
-Passives[3]=(Title="Recuo",Description="Reduz em %x% o recuo de armas de classe por nível");
+Passives[3]=(Title="Redução de recuo",Description="Reduz em %x% o recuo de armas de classe por nível");
 Passives[4]=(Title="Recarga da hora dos Zeds",Description="Aumenta em %x% por nível a velocidade de recarga na Hora dos Zeds");
 
 ShootnMove="Estável"
@@ -2011,11 +2012,11 @@ EXPAction2="Tiros na cabeça com armas de atirador exímio"
 SkillCatagories[0]="Movimento"
 SkillCatagories[1]="Técnica básica"
 SkillCatagories[2]="Habilidade"
-SkillCatagories[3]="Apetrechos"
+SkillCatagories[3]="Equipamento"
 SkillCatagories[4]="Técnicas de mestre"
 
 Passives[0]=(Title="Dano de tiro na cabeça",Description="Aumenta em %x% o dano de tiro na cabeça por nível");
-Passives[1]=(Title="Recuo",Description="Reduz em %x% o recuo por nível");
+Passives[1]=(Title="Redução de recuo",Description="Reduz em %x% o recuo por nível");
 Passives[2]=(Title="Troca de armas",Description="Aumenta em %x% a velocidade de troca de arma por nível");
 
 StationaryAim="Atirador de elite"
@@ -2104,7 +2105,7 @@ EXPAction2="Abatendo coágulos com armas SWAT"
 
 SkillCatagories[0]="Especialização"
 SkillCatagories[1]="Técnicas de assalto"
-SkillCatagories[2]="Apetrechos"
+SkillCatagories[2]="Equipamento"
 SkillCatagories[3]="Técnicas defensivas"
 SkillCatagories[4]="Treinamento especialista"
 
@@ -2150,7 +2151,7 @@ EXPAction2="Abatendo coágulos com qualquer arma"
 
 SkillCatagories[0]="Manuseio de armas"
 SkillCatagories[1]="Técnicas de sobrevivência"
-SkillCatagories[2]="Apetrechos"
+SkillCatagories[2]="Equipamento"
 SkillCatagories[3]="Destruição"
 SkillCatagories[4]="Treinamento especialista"
 
@@ -2351,7 +2352,7 @@ DescriptionDoshHold="Deixe os Zeds fora da área demarcada"
 DescriptionDoshHoldShort="Proteja a Área (Opcional)"
 RepairObjective="SOLDAR E REPARAR"
 UseWelderToRepair="Use o Soldador para consertar as máquinas quebradas"
-UseWelderToRepairShort="Soldar máquina quebrada"
+UseWelderToRepairShort="Soldar máquinas quebradas"
 UseWelderToRepairTraderPod="Use o Soldador para consertar os pontos de comércio quebrados"
 UseWelderToRepairTraderPodShort="Soldar pontos de comércio"
 RepairObjectiveRequired="Máquinas quebradas para consertar:"
@@ -2376,18 +2377,18 @@ ExterminateWaveObjective="EXTERMINAÇÃO"
 ExterminateWaveDescription="Mate todos os Zeds"
 ExterminateWaveDescriptionShort="Matar todos os Zeds"
 ExterminateWaveRequired="Zeds para exterminar:"
-HoldZoneObjective="MANTENHA A POSIÇÃO"
+HoldZoneObjective="DEFENDA SUA POSIÇÃO"
 HoldZoneDescription="Proteja a área destacada contra os Zeds"
 HoldZoneDescriptionShort="Proteger a área destacada"
 HoldZoneRequired="Tempo para proteger:"
 TransportWaveObjective="TRANSPORTE"
-TransportWaveDescription="Transporte o Tablet de Dados ao local de entrega"
-TransportWaveDescriptionShort="Transporte o Tablet de Dados"
-TransportWaveDescriptionGear="Transporte os equipamentos ao local de entrega"
-TransportWaveDescriptionGearShort="Transporte os equipamentos"
+TransportWaveDescription="Transporte os Tablets de Dados ao local de entrega."
+TransportWaveDescriptionShort="Transporte os Tablets de Dados"
+TransportWaveDescriptionGear="Transporte as Engrenagens ao local de entrega."
+TransportWaveDescriptionGearShort="Transporte as Engrenagens"
 RequiredCollectActor="Entregas necessárias:"
 FailedString="FALHA"
-SuccessString="FEITO"
+SuccessString="PRONTO"
 RepairObjSantaWorkshopCustomTitle1="CONSERTAR A ENERGIA"
 RepairObjSantaWorkshopCustomDescr1="Conserte 3 placas de circuitos com o soldador"
 RepairObjSantaWorkshopCustomTitle2="CONSERTAR OS PORTÕES"
@@ -2415,7 +2416,7 @@ NeedsRepair="PRECISA DE CONSERTO"
 Dropped="DERRUBADO"
 PickedUp="PEGOU"
 PickupTransportItem="PEGUE O TRANSPORTE"
-Reset="REINICIAR"
+Reset="REDEFINIR"
 Ready="PRONTO"
 NotReady="NÃO ESTÁ PRONTO"
 
@@ -2602,7 +2603,7 @@ SpecialEventObjectiveInfoList[0]=(TitleString="Travessuras ou armadilhas!",Descr
 SpecialEventObjectiveInfoList[1]=(TitleString="Mortos não contam histórias",DescriptionString="Quebre 10 caveiras reluzentes colecionáveis.")
 SpecialEventObjectiveInfoList[2]=(TitleString="Sopa de Monstros",DescriptionString="Mate 2500 Zeds.")
 SpecialEventObjectiveInfoList[3]=(TitleString="Festa a noite toda",DescriptionString="Conclua a 25º leva no modo Difícil Infinito ou maior.")
-SpecialEventObjectiveInfoList[4]=(TitleString="Senhor do Castelo",DescriptionString="Derrote o Conde Hans no modo Sobrevivência na dificuldade Difícil ou maior.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Senhor do Castelo",DescriptionString="Derrote o Conde Hans no modo Sobrevivência Difícil ou maior.")
 
 AllCompleteRewardDescriptionString="MKB de Hans: Arma + AP Hallow."
 
@@ -2639,7 +2640,7 @@ CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusiv
 SpecialEventObjectiveInfoList[0]=(TitleString="Tumulto de Chefes",DescriptionString="Mate 15 chefes em qualquer mapa")
 SpecialEventObjectiveInfoList[1]=(TitleString="Vertedouro Semanal",DescriptionString="Conclua o Vertedouro Semanal")
 SpecialEventObjectiveInfoList[2]=(TitleString="Exterminador",DescriptionString="Mate 1.500 Zeds em qualquer mapa")
-SpecialEventObjectiveInfoList[3]=(TitleString="Vertedouro Infinito",DescriptionString="Conclua a 15ª leva no Vertedouro em Infinito na dificuldade Difícil ou maior")
+SpecialEventObjectiveInfoList[3]=(TitleString="Vertedouro Infinito",DescriptionString="Conclua a 15ª leva no Vertedouro no modo Difícil Infinito ou maior.")
 SpecialEventObjectiveInfoList[4]=(TitleString="Derramando Sangue",DescriptionString="Derrote qualquer chefe no Vertedouro no modo Sobrevivência Difícil ou maior.")
 
 AllCompleteRewardDescriptionString="Trajes Ciberpunk masculinos e femininos"
@@ -2656,10 +2657,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Vapor eterno",DescriptionString="
 SpecialEventObjectiveInfoList[3]=(TitleString="Ida e volta mortal",DescriptionString="Conclua o Pouso Forçado do Zed em Objetivo na dificuldade Difícil ou maior")
 SpecialEventObjectiveInfoList[4]=(TitleString="Retorno frio",DescriptionString="Conclua o Posto Avançado em Objetivo na dificuldade Difícil ou maior")
 
-AllCompleteRewardDescriptionString="Trajes Masculinos e Femininos Steampunk"
+AllCompleteRewardDescriptionString="Trajes Steampunk + Aparência da M99 AMR"
 
-ChanceDropDescriptionStrings[0]="Bil. Prêmio"
-ChanceDropDescriptionStrings[1]="Bil. Ouro"
+ChanceDropDescriptionStrings[0]="Bilh. Prêmio"
+ChanceDropDescriptionStrings[1]="Bilh. Ouro"
+
+[KFGFxFall2019ObjectivesContainer]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Ataque ao Hospício",DescriptionString="Derrote um chefe no Hospício Ashwood em Sobrevivência na dificuldade Difícil ou maior.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Tratamento de longo prazo",DescriptionString="Conclua a 15ª leva no Hospício Ashwood em Infinito na dificuldade Difícil ou maior.")
+SpecialEventObjectiveInfoList[2]=(TitleString="Checkup semanal",DescriptionString="Conclua o Hospício Ashwood Semanal.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Limpando as alas",DescriptionString="Mate 1.500 Zeds no Hospício Ashwood.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Olha a bomba!",DescriptionString="Conclua o Bombardeio em Objetivo na dificuldade Difícil ou maior.")
+
+AllCompleteRewardDescriptionString="Kriss | Além do Horizonte | Elite Espacial"
+
+ChanceDropDescriptionStrings[0]="Bilhete de Gostosura"
+ChanceDropDescriptionStrings[1]="Bilhete de Gostosura Dourado"
 
 ;============================================
 ; Daily Localization
@@ -3246,6 +3261,9 @@ DisplayName="Vertedouro"
 
 [KF-SteamFortress KFMapSummary]
 DisplayName="Fortaleza do Vapor"
+
+[KF-AshwoodAsylum KFMapSummary]
+DisplayName="Hospício Ashwood"
 
 [KFMapInfo]
 ; defaults

@@ -193,7 +193,7 @@ static function PlayBossEntranceTheatrics(KFInterface_MonsterBoss BossRef)
     BossMonster = KFPawn_Monster(bool(BossRef));
     if((BossMonster != none) && KFGameReplicationInfo(BossMonster.WorldInfo.GRI).ShouldSetBossCamOnBossSpawn())
     {
-        BossMonster.ServerDoSpecialMove(37);
+        BossMonster.ServerDoSpecialMove(38);
     }
 }
 

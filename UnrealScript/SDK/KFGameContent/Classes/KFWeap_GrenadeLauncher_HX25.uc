@@ -10,7 +10,6 @@
 
 class KFWeap_GrenadeLauncher_HX25 extends KFWeap_GrenadeLauncher_Base;
 
-var(Weapon) protected array<byte> NumPellets;
 var protected const array<vector2D> PelletSpread;
 
 /** Last time a submunition projectile was fired from this weapon */
@@ -20,41 +19,6 @@ var float LastSubmunitionFireTime;
  Firing / Projectile
 ********************************************************************************************* */
 
-/** Spawn projectile is called once for each shot pellet fired */
-simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir )
-{
-	local int i;
-	local rotator AimRot;
-
-    if( CurrentFireMode == GRENADE_FIREMODE )
-    {
-        return Super.SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
-    }
-
-	AimRot = rotator(AimDir);
-	for (i = 0; i < GetNumProjectilesToFire(CurrentFireMode); i++)
-	{
-		Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, i)));
-	}
-
-	return None;
-}
-
-/** Notification that a weapon attack has has happened */
-function HandleWeaponShotTaken( byte FireMode )
-{
-    if( KFPlayer != None )
-	{
-        KFPlayer.AddShotsFired(GetNumProjectilesToFire( FireMode ));
-	}
-}
-
-/** Returns number of projectiles to fire from SpawnProjectile */
-simulated function byte GetNumProjectilesToFire(byte FireModeNum)
-{
-	return NumPellets[CurrentFireMode];
-}
-
 /** Disable normal bullet spread */
 simulated function rotator AddSpread(rotator BaseAim)
 {
@@ -62,12 +26,11 @@ simulated function rotator AddSpread(rotator BaseAim)
 }
 
  /** Same as AddSpread(), but used with MultiShotSpread */
-simulated function rotator AddMultiShotSpread( rotator BaseAim, byte PelletNum )
+static function rotator AddMultiShotSpread( rotator BaseAim, float CurrentSpread, byte PelletNum )
 {
 	local vector X, Y, Z;
-	local float CurrentSpread, RandY, RandZ;
+	local float RandY, RandZ;
 
-	CurrentSpread = Spread[CurrentFireMode];
 	if (CurrentSpread == 0)
 	{
 		return BaseAim;
@@ -76,8 +39,8 @@ simulated function rotator AddMultiShotSpread( rotator BaseAim, byte PelletNum )
 	{
 		// Add in any spread.
 		GetAxes(BaseAim, X, Y, Z);
-		RandY = PelletSpread[PelletNum].Y * RandRange( 0.5f, 1.5f );
-		RandZ = PelletSpread[PelletNum].X * RandRange( 0.5f, 1.5f );
+		RandY = default.PelletSpread[PelletNum].Y * RandRange( 0.5f, 1.5f );
+		RandZ = default.PelletSpread[PelletNum].X * RandRange( 0.5f, 1.5f );
 		return rotator(X + RandY * CurrentSpread * Y + RandZ * CurrentSpread * Z);
 	}
 }

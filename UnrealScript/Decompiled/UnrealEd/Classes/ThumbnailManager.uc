@@ -62,6 +62,7 @@ public:
 		}
 		// Reset the static-mesh's CastShadow flag to its default value.
 		SMPreviewComponent->CastShadow = TRUE;
+		SMPreviewComponent->DepthPriorityGroup = SDPG_UnrealEdBackground;
 		return SMPreviewComponent;
 	}
 

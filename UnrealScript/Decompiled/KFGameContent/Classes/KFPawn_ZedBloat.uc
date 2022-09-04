@@ -192,7 +192,7 @@ function SpawnPukeMine(Vector SpawnLocation, Rotator SpawnRotation)
 {
     local KFProjectile PukeMine;
 
-    PukeMine = Spawn(PukeMineProjectileClass, self,, SpawnLocation, SpawnRotation,, true);
+    PukeMine = Spawn(PukeMineProjectileClass,,, SpawnLocation, SpawnRotation,, true);
     if(PukeMine != none)
     {
         PukeMine.Init(vector(SpawnRotation));
@@ -227,7 +227,7 @@ defaultproperties
     PukeMineProjectileClass=Class'KFProj_BloatPukeMine'
     DeathPukeMineRotations(0)=
 /* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentException: Requested value '3P_Sawblade_Animtree_6999' was not found.
+System.ArgumentException: Requested value '0_6999' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -243,7 +243,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     DeathPukeMineRotations(2)=
 /* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentException: Requested value '3P_Sawblade_Animtree_997' was not found.
+System.ArgumentException: Requested value '0_1014' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

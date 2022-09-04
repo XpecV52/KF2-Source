@@ -1884,5 +1884,6 @@ defaultproperties
 		SpecialMoveClasses(SM_HansGrappleVictim)=class'KFGame.KFSM_HansGrappleVictim'
 		SpecialMoveClasses(SM_Emote)=class'KFGame.KFSM_Player_Emote'
 		SpecialMoveClasses(SM_DARGrappleVictim)=class'KFGame.KFSM_EvilDAR_EMPGrapple'
+		SpecialMoveClasses(SM_BloatKingGorgeVictim)=class'KFGame.KFSM_BloatKingGorgeVictim'
 	End Object
 }

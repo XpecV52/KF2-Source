@@ -193,7 +193,8 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
  */
 simulated function ModifyRateOfFire( out float InRate, KFWeapon KFW )
 {
-	if( IsTriggerActive() && IsWeaponOnPerk( KFW,, self.class ) )
+	// don't modify the fire rate for grenades
+	if( IsTriggerActive() && IsWeaponOnPerk( KFW,, self.class ) && KFW.CurrentFireMode != class'KFWeapon'.const.GRENADE_FIREMODE)
 	{
 		`QALog( "(Trigger)" @ KFW @ GetPercentage( InRate, ( InRate - InRate * GetSkillValue( PerkSkills[ESharpshooterTrigger] ) ) ), bLogPerk );
 		InRate -= InRate * GetSkillValue( PerkSkills[ESharpshooterTrigger] );

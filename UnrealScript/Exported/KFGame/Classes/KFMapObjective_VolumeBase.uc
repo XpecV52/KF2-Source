@@ -163,22 +163,9 @@ simulated function PlayActivationSoundEvent()
 	}
 }
 
-// Status
-simulated function ActivateObjective()
+simulated function ActivateBoundarySplines()
 {
 	local int i, j;
-	local KFSeqEvent_MapObjectiveActivated ActivationEvent;
-
-	bActive = true;
-
-	for (i = 0; i < GeneratedEvents.Length; i++)
-	{
-		ActivationEvent = KFSeqEvent_MapObjectiveActivated(GeneratedEvents[i]);
-		if (ActivationEvent != none)
-		{
-			ActivationEvent.NotifyActivation(self, self);
-		}
-	}
 
 	if (WorldInfo.NetMode != NM_DedicatedServer)
 	{
@@ -213,6 +200,26 @@ simulated function ActivateObjective()
 			}
 		}
 	}
+}
+
+// Status
+simulated function ActivateObjective()
+{
+	local int i;
+	local KFSeqEvent_MapObjectiveActivated ActivationEvent;
+
+	bActive = true;
+
+	for (i = 0; i < GeneratedEvents.Length; i++)
+	{
+		ActivationEvent = KFSeqEvent_MapObjectiveActivated(GeneratedEvents[i]);
+		if (ActivationEvent != none)
+		{
+			ActivationEvent.NotifyActivation(self, self);
+		}
+	}
+
+	ActivateBoundarySplines();
 
 	// delay this sound event by a little bit so that the unreliable RPC doesn't get lost
 	SetTimer(1.0f, false, nameof(PlayActivationSoundEvent));
@@ -269,24 +276,24 @@ simulated function DeactivateObjective()
 	}
 }
 
-simulated function GrantReward(KFPawn_Human PlayerToReward)
+simulated function GrantReward(KFPlayerReplicationInfo KFPRI, KFPlayerController KFPC)
 {
-	if (KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo) == none)
+	if (KFPRI == none)
 	{
 		return;
 	}
 
-	if (KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).bOnlySpectator)
+	if (KFPRI.bOnlySpectator)
 	{
 		return;
 	}
 
-	KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).AddDosh(GetDoshReward());
+	KFPRI.AddDosh(GetDoshReward());
 
-	if (KFPlayerController(PlayerToReward.Controller) != none)
+	if (KFPC != none)
 	{
 		// @todo: hook up seasonal event here if/when desired
-		KFPlayerController(PlayerToReward.Controller).ClientMapObjectiveCompleted(GetXPReward());
+		KFPC.ClientMapObjectiveCompleted(GetXPReward());
 	}
 }
 
@@ -473,9 +480,12 @@ simulated function float GetProgress();
 simulated function bool IsComplete();
 simulated function float GetActivationPctChance();
 simulated function string GetProgressText();
+simulated function bool GetProgressTextIsDosh() { return false; }
 simulated function string GetLocalizedRequirements();
 simulated function bool GetIsMissionCritical();
 simulated function float GetDoshValueModifier() { return DoshValueModifier; }
+function NotifyZedKilled(Controller Killer, Pawn KilledPawn, bool bIsBoss);
+simulated function NotifyObjectiveSelected();
 
 // HUD
 simulated function bool ShouldDrawIcon();

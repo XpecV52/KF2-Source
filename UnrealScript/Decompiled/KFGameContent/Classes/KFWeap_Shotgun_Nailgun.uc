@@ -76,7 +76,6 @@ defaultproperties
     AltFireSightedAnims(0)=Shoot_Iron_Single
     AltFireAnim=Shoot_Single
     AltFireRecoilModifier=0.5
-    NumPellets=/* Array type was not detected. */
     PackageKey="Nail_Shotgun"
     FirstPersonMeshName="WEP_1P_Nail_Shotgun_MESH.Wep_1stP_Nail_ShotGun_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -97,13 +96,14 @@ defaultproperties
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
     SpareAmmoCapacity=336
-    InitialSpareMags=4
+    InitialSpareMags=3
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=10,Y=8,Z=-4)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_Nailgun.MeleeHelper'
+    NumPellets=/* Array type was not detected. */
     maxRecoilPitch=550
     minRecoilPitch=450
     maxRecoilYaw=250

@@ -62,8 +62,8 @@ function LocalizeText()
 	local GFxObject LocalizedObject;
 
 	LocalizedObject = CreateObject( "Object" );
-
-	LocalizedObject.SetString("back", 				Class'KFCommon_LocalizedStrings'.default.BackString);
+	
+	LocalizedObject.SetString("back", 				Class'KFCommon_LocalizedStrings'.default.BackString); 
 	LocalizedObject.SetString("featured",			FeaturedString);
 	LocalizedObject.SetString("all",				class'KFGFxMenu_Inventory'.default.AllString);
 	LocalizedObject.SetString("weaponSkin",			WeaponSkinsRotationString);
@@ -76,9 +76,9 @@ function LocalizeText()
 	LocalizedObject.SetString("marketConsumables",	MarketConsumablesString);
 	LocalizedObject.SetString("sfx",				Class'KFCommon_LocalizedStrings'.default.SpecialEffectsString);
 	LocalizedObject.SetString("marketSFX",			MarketSFXString);
-
+	
 	LocalizedObject.SetString("thankYouString",		ThankYouString);
-
+	
 	SetObject("localizedText", LocalizedObject);
 }
 
@@ -111,7 +111,7 @@ function UpdateFilter(int NewFilterIndex)
 			break;
 		case 7:
 			NewFilter = EStore_Market_WeaponSkins;
-			break;
+			break;	
 		case 8:
 			NewFilter = EStore_Market_Cosmetics;
 			break;
@@ -142,7 +142,7 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 
 	ItemCount = 0;
 	DataProvider = CreateArray();
-
+	
 	for (i = 0; i < StoreItemArray.Length; i++)
 	{
 		// Hide console items
@@ -196,7 +196,7 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 				FilteredItemsArray[ItemCount] = TempItemProps;
 				ItemCount++;
 			}
-		}
+		}		
 	}
 
 	ItemCount = 0;
@@ -232,7 +232,7 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 				ItemCount++;
 			}
 		}
-
+		
 	}
 
 	if (CurrentStoreFilter == EStore_Featured)
@@ -271,9 +271,9 @@ delegate int SortItemsByType(ItemProperties A, ItemProperties B)
 delegate int SortItemsByPrice(ItemProperties A, ItemProperties B)
 {
 	local string AString, BString;
-
+	
 	AString = Mid(A.Price, 1);
-	BString = Mid(B.Price, 1);
+	BString = Mid(B.Price, 1);	
 	return Int(AString) < Int(BString) ? -1 : 0;
 }
 
@@ -283,7 +283,7 @@ function GFxObject CreateStoreItem(ItemProperties StoreItem)
 	local GFxObject DataObject;
 
 	DataObject = CreateObject( "Object" );
-
+				
 	DataObject.SetString("label", StoreItem.Name);
 	DataObject.SetString("description", StoreItem.Description);
 	DataObject.SetString("price", class'WorldInfo'.static.IsConsoleBuild() ? "" : StoreItem.Price);
@@ -295,7 +295,7 @@ function GFxObject CreateStoreItem(ItemProperties StoreItem)
 }
 
 function bool IsFilterSame(ItemType FirstType, EStore_Filter SecondType)
-{
+{	
 	if (SecondType == EStore_All)
 	{
 		return true;
@@ -307,7 +307,7 @@ function bool IsFilterSame(ItemType FirstType, EStore_Filter SecondType)
 	}
 	else
 	{
-		return int(FirstType) == ( SecondType - EStore_Market_WeaponSkins );
+		return int(FirstType) == ( SecondType - EStore_Market_WeaponSkins );	
 	}
 	return false;
 }
@@ -317,21 +317,29 @@ DefaultProperties
 	//defaults
 	CurrentStoreFilter=EStore_Featured
 
-	FeaturedItemIDs[0]=7438
-	FeaturedItemIDs[1]=7417
-	FeaturedItemIDs[2]=7420
-	FeaturedItemIDs[3]=7423
-	FeaturedItemIDs[4]=7421
-	FeaturedItemIDs[5]=7422
-
-	ConsoleFeaturedItemIDs[0]=7390
-	ConsoleFeaturedItemIDs[1]=7405
-	ConsoleFeaturedItemIDs[2]=7402
-	ConsoleFeaturedItemIDs[3]=7423
-	ConsoleFeaturedItemIDs[4]=7421
-	ConsoleFeaturedItemIDs[5]=7422
-
-	// While the arrays above can have more than 5 elements,
-	// MaxFeaturedItems must be 5 or less, because there are only five "featured" slots
+	FeaturedItemIDs[0]=7608
+	FeaturedItemIDs[1]=7609
+	FeaturedItemIDs[2]=7610
+	FeaturedItemIDs[3]=7780
+	FeaturedItemIDs[4]=7631
+	FeaturedItemIDs[5]=7635
+	FeaturedItemIDs[6]=7619
+	FeaturedItemIDs[7]=7562
+	FeaturedItemIDs[8]=7726
+	FeaturedItemIDs[9]=7727
+	FeaturedItemIDs[10]=5246
+	FeaturedItemIDs[11]=7617
+	FeaturedItemIDs[12]=7618
+	
+	ConsoleFeaturedItemIDs[0]=7608
+	ConsoleFeaturedItemIDs[1]=7609
+	ConsoleFeaturedItemIDs[2]=7610
+	ConsoleFeaturedItemIDs[3]=7562
+	ConsoleFeaturedItemIDs[4]=7626
+	ConsoleFeaturedItemIDs[5]=7613
+	ConsoleFeaturedItemIDs[6]=7616
+	ConsoleFeaturedItemIDs[7]=7726
+	ConsoleFeaturedItemIDs[8]=7727
+	ConsoleFeaturedItemIDs[9]=7619
 	MaxFeaturedItems=5
 }

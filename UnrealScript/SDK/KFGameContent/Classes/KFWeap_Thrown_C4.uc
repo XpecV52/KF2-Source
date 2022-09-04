@@ -466,8 +466,8 @@ defaultproperties
 	InstantHitDamage(BASH_FIREMODE)=23
 
 	// Inventory / Grouping
-	InventoryGroup=IG_Secondary
-	GroupPriority=0
+	InventoryGroup=IG_Equipment
+	GroupPriority=25
 	WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
 	InventorySize=3
 

@@ -268,8 +268,17 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
     local array<SequenceObject> AllWaveProgressEvents;
     local KFSeqEvent_WaveProgress WaveProgressEvt;
     local int I;
+    local KFInterface_MapObjective MapObj;
 
     super.Killed(Killer, KilledPlayer, KilledPawn, DamageType);
+    if(KilledPawn.IsA('KFPawn_Monster'))
+    {
+        MapObj = KFInterface_MapObjective(MyKFGRI.CurrentObjective);
+        if(NotEqual_InterfaceInterface(MapObj, (none)))
+        {
+            MapObj.NotifyZedKilled(Killer, KilledPawn, NotEqual_InterfaceInterface(KFInterface_MonsterBoss(KilledPawn), (none)));
+        }
+    }
     if((!MyKFGRI.IsBossWave() && !MyKFGRI.IsEndlessWave()) && KilledPawn.IsA('KFPawn_Monster'))
     {
         Class'KFTraderDialogManager'.static.PlayGlobalWaveProgressDialog(MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, WorldInfo);
@@ -278,7 +287,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         {
             GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveProgress', true, AllWaveProgressEvents);
             I = 0;
-            J0x176:
+            J0x242:
 
             if(I < AllWaveProgressEvents.Length)
             {
@@ -288,7 +297,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
                     WaveProgressEvt.SetWaveProgress(MyKFGRI.AIRemaining, MyKFGRI.WaveTotalAICount, self);
                 }
                 ++ I;
-                goto J0x176;
+                goto J0x242;
             }
         }
     }

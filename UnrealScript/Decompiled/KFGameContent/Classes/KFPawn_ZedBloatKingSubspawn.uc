@@ -15,9 +15,9 @@ var bool bDelayedExplosion;
 
 simulated event bool CanDoSpecialMove(KFGame.KFPawn.ESpecialMove AMove, optional bool bForceCheck)
 {
-    if(AMove == 43)
+    if(AMove == 44)
     {
-        return !IsDoingSpecialMove(43);
+        return !IsDoingSpecialMove(44);
     }
     return super(KFPawn).CanDoSpecialMove(AMove, bForceCheck);
 }
@@ -104,10 +104,10 @@ defaultproperties
 {
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'CHR_Bile_ARCH.FX_Bile_Explosion_01'
-        Damage=15
-        DamageRadius=300
+        Damage=20
+        DamageRadius=350
         DamageFalloffExponent=0
-        MyDamageType=Class'KFDT_Toxic_BloatKingFart'
+        MyDamageType=Class'KFDT_Toxic_BloatKingSubspawnExplosion'
         KnockDownStrength=0
         MomentumTransferScale=100
         ExplosionSound=AkEvent'WW_ZED_Abomination.Play_Bile_Explode'
@@ -169,9 +169,9 @@ defaultproperties
     DialogAkComponent=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.DialogAkSoundComponent'
     DamageRecoveryTimeHeavy=0.75
     Mass=50
-    GroundSpeed=400
+    GroundSpeed=450
     MaxFallSpeed=6000
-    Health=450
+    Health=250
     ControllerClass=Class'KFAIController_ZedBloatKingSubspawn'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         bPerBoneMotionBlur=false

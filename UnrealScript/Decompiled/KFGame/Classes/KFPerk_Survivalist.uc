@@ -479,7 +479,7 @@ defaultproperties
         DamageRadius=250
         MyDamageType=Class'KFDT_Explosive_Shrapnel'
         ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
-        CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Perk_ShrapnelCombustion'
+        CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
     object end
     // Reference: KFGameExplosion'Default__KFPerk_Survivalist.ExploTemplate0'
     ShrapnelExplosionTemplate=ExploTemplate0

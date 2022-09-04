@@ -61,6 +61,8 @@ var() SkeletalMeshActor DeliveryMeshActor;
 var() name DeliveryOpenAnimName;
 /** An animation to play on the DeliveryMeshActor when this objective deactivates */
 var() name DeliveryCloseAnimName;
+/** How long to delay the playing of the close anim after the objective is complete (to give Kismet time to finish things) */
+var() float DeliveryCloseAnimDelay;
 var float CollectibleResetTimerLength;
 var repnotify bool bCollectibleReset;
 /** Whether the sequence of collectibles should be randomized */
@@ -149,6 +151,14 @@ simulated function ActivateObjective()
     }
 }
 
+simulated function PlayDeliveryMeshCloseAnim()
+{
+    if(DeliveryMeshActor != none)
+    {
+        DeliveryMeshActor.SkeletalMeshComponent.PlayAnim(DeliveryCloseAnimName);
+    }
+}
+
 simulated function DeactivateObjective()
 {
     local CollectibleActorInfo Info;
@@ -158,9 +168,13 @@ simulated function DeactivateObjective()
     local Inventory InventoryItem;
 
     super.DeactivateObjective();
-    if(DeliveryMeshActor != none)
+    if(DeliveryCloseAnimDelay > 0)
     {
-        DeliveryMeshActor.SkeletalMeshComponent.PlayAnim(DeliveryCloseAnimName);
+        SetTimer(DeliveryCloseAnimDelay, false, 'PlayDeliveryMeshCloseAnim');        
+    }
+    else
+    {
+        PlayDeliveryMeshCloseAnim();
     }
     if(Role == ROLE_Authority)
     {
@@ -184,7 +198,7 @@ simulated function DeactivateObjective()
         }        
         foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
         {
-            GrantReward(KFPH);
+            GrantReward(KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo), KFPlayerController(KFPH.Controller));
             if((KFPH != none) && KFPH.InvManager != none)
             {
                 InventoryItem = KFPH.InvManager.FindInventoryType(class<Inventory>(DeliveryClass), true);
@@ -1009,6 +1023,7 @@ function Timer_CollectibleDroppedCooldown();
 defaultproperties
 {
     NumRequired(0)=1
+    DeliveryCloseAnimDelay=7
     CollectibleResetTimerLength=60
     bRandomSequence=true
     NumDesiredActiveCollectibles(0)=1

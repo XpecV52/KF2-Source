@@ -1808,6 +1808,27 @@ function currentFocus()
     ManagerObject.ActionScriptVoid("currentFocus");
 }
 
+function int GetModeIndex(optional bool bAdjustedIndex)
+{
+    local int SavedModeIndex;
+
+    bAdjustedIndex = true;
+    SavedModeIndex = CachedProfile.GetProfileInt(148);
+    if(!Class'GameEngine'.static.IsGameFullyInstalled() && SavedModeIndex == 4)
+    {
+        CachedProfile.SetProfileSettingValueInt(148, 0);
+        return 0;
+    }
+    if(((StartMenu.OptionsComponent != none) && StartMenu.OptionsComponent.bIsSoloGame) && bAdjustedIndex)
+    {
+        if(SavedModeIndex >= 2)
+        {
+            return SavedModeIndex - 1;
+        }
+    }
+    return SavedModeIndex;
+}
+
 defaultproperties
 {
     MenuSWFPaths(0)=(BaseSWFPath="../UI_Menus/StartMenu_SWF.swf",ConsoleSWFPath="")

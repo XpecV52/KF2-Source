@@ -18,6 +18,11 @@ enum EAssociationIdentifier
 };
 
 var	config EAssociationIdentifier MapAssociation;
+var config bool bPlayableInSurvival;
+var config bool bPlayableInWeekly;
+var config bool bPlayableInVsSurvival;
+var config bool bPlayableInEndless;
+var config bool bPlayableInObjective;
 
 defaultproperties
 {

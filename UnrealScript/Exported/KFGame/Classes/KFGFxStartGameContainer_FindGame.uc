@@ -166,17 +166,22 @@ function LocalizeMenu()
 
 defaultproperties
 {
-   WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_KickinBrass_Event",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")
-   WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/5030")
-   WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_Clotbackpacks",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7423")
-   WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_USBKey_Steampunk_25",TextField="FeaturedUsbKey",RedirectURL="https://store.steampowered.com/buyitem/232090/7408")
-   WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_Crate_ProjectH_21",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/7398")
-   WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
-   WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")
-   WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/")
-   WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap")
-   WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="https://tripwire.manheadmerch.com/")
-   WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/")
+   WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_GrimTreatments",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")
+   WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/5246")
+   WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_WitchHunter_Bundle",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7562")
+   WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_Crate_BeyondHorizon_26",TextField="FeaturedUsbKey",RedirectURL="https://store.steampowered.com/buyitem/232090/7623")
+   WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_Crate_Boneyard_22",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/7620")
+   WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_DragonKoi_T3",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7608")
+   WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_DragonKoi_T4",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7609")
+   WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_DragonKoi_Complete",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7187")
+   WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_IonThruster",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7726")
+   WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_ChiappaRhino",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7727")
+   WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
+   WhatsNewItems(11)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")
+   WhatsNewItems(12)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/")
+   WhatsNewItems(13)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap")
+   WhatsNewItems(14)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="http://www.tripwireinteractive.com/redirect/shop/")
+   WhatsNewItems(15)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/")
    MultiplayerString="Find A Match"
    CreateGameString="Create A Match"
    SoloString="Play Solo Offline"

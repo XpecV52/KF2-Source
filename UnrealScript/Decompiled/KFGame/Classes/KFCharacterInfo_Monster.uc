@@ -26,12 +26,14 @@ struct native ZedColorMod
 struct native StaticAttachments
 {
     var() StaticMesh StaticAttachment;
+    var() name AttachSocketName;
     var() name AttachBoneName;
     var() Rotator RelativeRotation;
 
     structdefaultproperties
     {
         StaticAttachment=none
+        AttachSocketName=None
         AttachBoneName=None
         RelativeRotation=(Pitch=0,Yaw=0,Roll=0)
     }
@@ -230,7 +232,14 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 StaticAttachment.SetLightingChannels(KFP.PawnLightingChannel);
                 ExtraMICs.AddItem(StaticAttachment.CreateAndSetMaterialInstanceConstant(0);
                 KFP.AttachComponent(StaticAttachment);
-                KFP.Mesh.AttachComponent(StaticAttachment, StaticAttachList[I].AttachBoneName,, StaticAttachList[I].RelativeRotation);
+                if(StaticAttachList[I].AttachSocketName != 'None')
+                {
+                    KFP.Mesh.AttachComponentToSocket(StaticAttachment, StaticAttachList[I].AttachSocketName);                    
+                }
+                else
+                {
+                    KFP.Mesh.AttachComponent(StaticAttachment, StaticAttachList[I].AttachBoneName,, StaticAttachList[I].RelativeRotation);
+                }
             }
             ++ I;
             goto J0x663;
@@ -252,7 +261,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
     if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFPawn_Monster(KFP) != none)
     {
         I = 0;
-        J0xAA8:
+        J0xB42:
 
         if(I < KFP.CharacterMICs.Length)
         {
@@ -266,7 +275,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 KFP.CharacterMICs[I].SetVectorParameterValue('vector_TrimColor', AppliedColor);
             }
             ++ I;
-            goto J0xAA8;
+            goto J0xB42;
         }
     }
 }

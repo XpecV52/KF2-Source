@@ -12,7 +12,7 @@ class KFExplosion_BloatKingFart extends KFExplosionActorLingering
 defaultproperties
 {
     interval=1
-    maxTime=10
+    maxTime=5
     bDoFullDamage=true
     LoopStartEvent=AkEvent'WW_WEP_EXP_Grenade_Medic.Play_WEP_EXP_Grenade_Medic_Smoke_Loop'
     LoopStopEvent=AkEvent'WW_WEP_EXP_Grenade_Medic.Stop_WEP_EXP_Grenade_Medic_Smoke_Loop'

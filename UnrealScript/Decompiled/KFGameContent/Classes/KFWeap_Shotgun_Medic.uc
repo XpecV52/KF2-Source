@@ -9,61 +9,25 @@ class KFWeap_Shotgun_Medic extends KFWeap_MedicBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
-var(Weapon) array<byte> NumPellets;
-
-simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
+simulated function KFProjectile SpawnAllProjectiles(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
 {
-    local int I;
-    local Rotator AimRot;
     local KFPerk InstigatorPerk;
 
     if(CurrentFireMode == 4)
     {
-        return super.SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
+        return SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
     }
     InstigatorPerk = GetPerk();
     if(InstigatorPerk != none)
     {
         Spread[CurrentFireMode] = default.Spread[CurrentFireMode] * InstigatorPerk.GetTightChokeModifier();
     }
-    AimRot = rotator(AimDir);
-    I = 0;
-    J0xC7:
-
-    if(I < NumPellets[CurrentFireMode])
-    {
-        super.SpawnProjectile(KFProjClass, RealStartLoc, vector(Class'KFWeap_ShotgunBase'.static.AddMultiShotSpread(AimRot, Spread[CurrentFireMode])));
-        ++ I;
-        goto J0xC7;
-    }
-    return none;
+    return super(KFWeapon).SpawnAllProjectiles(KFProjClass, RealStartLoc, AimDir);
 }
 
 simulated function Rotator AddSpread(Rotator BaseAim)
 {
     return BaseAim;
-}
-
-function HandleWeaponShotTaken(byte FireMode)
-{
-    if(KFPlayer != none)
-    {
-        KFPlayer.AddShotsFired(NumPellets[FireMode]);
-    }
-}
-
-static simulated function float CalculateTraderWeaponStatDamage()
-{
-    local float BaseDamage, DoTDamage;
-    local class<KFDamageType> DamageType;
-
-    BaseDamage = default.InstantHitDamage[0];
-    DamageType = class<KFDamageType>(default.InstantHitDamageTypes[0]);
-    if((DamageType != none) && DamageType.default.DoT_Type != 0)
-    {
-        DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
-    }
-    return (BaseDamage * float(default.NumPellets[0])) + DoTDamage;
 }
 
 static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
@@ -73,9 +37,16 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFil
 
 defaultproperties
 {
-    NumPellets(0)=6
-    NumPellets(1)=1
+    HealingDartDamageType=Class'KFDT_Dart_Healing'
     HealFullRechargeSeconds=12
+    HealImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Heal'
+    HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
+    DartFireSnd=(DefaultCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_1P')
+    HealingDartWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
+    LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locked_1P'
+    LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
+    LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
+    OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
     PackageKey="Medic_Shotgun"
     FirstPersonMeshName="WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -105,6 +76,7 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=14,Y=6.5,Z=-3.5)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_Medic.MeleeHelper'
+    NumPellets=/* Array type was not detected. */
     maxRecoilPitch=400
     minRecoilPitch=375
     maxRecoilYaw=250

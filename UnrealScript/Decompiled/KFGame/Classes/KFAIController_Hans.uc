@@ -787,7 +787,7 @@ function TickGunSystem()
             }
             return;
         }
-        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(38) && !MyKFPawn.IsDoingSpecialMove(37))
+        if((HansPawn != none) && (curMove == none) || !MyKFPawn.IsDoingSpecialMove(39) && !MyKFPawn.IsDoingSpecialMove(38))
         {
             if((Pawn.IsFiring() || IsTimerActive('FireTimer', self)) || IsTimerActive('StartFireTiming', self))
             {
@@ -889,7 +889,7 @@ function DrawRangedAttackInfo(HUD HUD)
     DrawDebugText(HUD, "Battle Phase: " $ string(MyHansPawn.CurrentBattlePhase));
     DrawDebugText(HUD, "--Guns--");
     DrawDebugText(HUD, (("Guns Equipped: " $ string(MyHansPawn.bGunsEquipped)) $ " Can Use Guns In This Phase: ") $ string(MyHansPawn.CanUseGunsInThisPhase()));
-    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(38))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
+    DrawDebugText(HUD, (((("Stance Changing: " $ string(MyKFPawn.IsDoingSpecialMove(39))) $ " CurrentMove: ") $ string(curMove)) $ " bDisablesWeaponFiring: ") $ string(bMoveDisablesFiring));
     if((WorldInfo.TimeSeconds - StartDrawGunsTime) > DrawGunFireDelay)
     {
         UsedDrawGunsCooldown = 0;        
@@ -1049,7 +1049,7 @@ function bool GrenadeAttackInterruptGuns()
 
 function bool SetupGrenadeAttack()
 {
-    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(38)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
+    if(((((((MyHansPawn != none) && Enemy != none) && !MyHansPawn.IsDoingSpecialMove(39)) && !MyHansPawn.IsThrowingGrenade()) && !MyHansPawn.bGunsEquipped) && CanSeeByPoints(Pawn.GetPawnViewLocation(), Enemy.Location, rotator(Enemy.Location - Pawn.GetPawnViewLocation()))) && MyHansPawn.CacheGrenadeThrowLocation())
     {
         CurrentNadeAttackType = 0;
         if(!IsWithinAttackRange())

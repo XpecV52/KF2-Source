@@ -527,7 +527,6 @@ class KFTraderVoiceGroup_Lockheart extends KFTraderVoiceGroupBase;
 
 
 
-										  
 
 
 
@@ -543,7 +542,8 @@ class KFTraderVoiceGroup_Lockheart extends KFTraderVoiceGroupBase;
 
 
 
-										  
+
+
 
 
 

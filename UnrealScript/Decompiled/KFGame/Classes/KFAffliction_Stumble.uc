@@ -12,7 +12,7 @@ function byte GetSpecialMoveFlags()
     local byte HitZoneIdx;
 
     HitZoneIdx = PawnOwner.HitFxInfo.HitBoneIndex;
-    if(HitZoneIdx != 255)
+    if(HitZoneIdx < PawnOwner.HitZones.Length)
     {
         switch(PawnOwner.HitZones[HitZoneIdx].Limb)
         {

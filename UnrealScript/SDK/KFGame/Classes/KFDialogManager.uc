@@ -1079,7 +1079,7 @@ function PlaySprintPantingDialog( KFPawn_Human Speaker, bool bNewSprintStatus )
     }
 }
 
-/** 
+/**
  * A stop event for sprinting and ironsight breathing.  The breathing sounds also have a max duration,
  * so even though this event is not perfect (changing controllers, etc...) it won't break anything.
  */
@@ -1359,7 +1359,7 @@ function PlayDamagedZedDialog( KFPawn_Human Damager, KFPawn_Monster Zed, class<D
     PlayDialogEvent( Damager, BestOptionID );
 }
 
-/** Play "over and over" random dialog if player deals enough consecutive damage to a given zed 
+/** Play "over and over" random dialog if player deals enough consecutive damage to a given zed
   * NOTE: this needs to be called before zed's LastHitBy and LastPainTime are set for current hit */
 function PlayDamageZedContinuousDialog( KFPawn_Human Damager, KFPawn_Monster Zed )
 {

@@ -339,7 +339,7 @@ simulated function FadeOut()
     }
     else
     {
-        SetTimer(0.2, false, 'Destroy');
+        SetTimer(0.2, false, 'Timer_Destroy');
     }
     if(WorldInfo.NetMode != NM_Client)
     {
@@ -347,6 +347,11 @@ simulated function FadeOut()
         bNetDirty = true;
         bForceNetUpdate = true;
     }
+}
+
+simulated function Timer_Destroy()
+{
+    Destroy();
 }
 
 simulated function SpawnBurstEffect()
@@ -401,7 +406,7 @@ defaultproperties
 {
     GroundFXTemplate=ParticleSystem'ZED_Bloat_EMIT.FX_Bloat_Mine_01'
     BurstFXTemplate=ParticleSystem'ZED_Bloat_EMIT.FX_Bloat_Mine_Hit_01'
-    Health=100
+    Health=50
     DampenFactor=0.125
     DampenFactorParallel=0.175
     SpawnCollisionOffsetAmt=28
@@ -423,7 +428,7 @@ defaultproperties
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_Bloat_ARCH.Bloat_Mine_Explosion'
         Damage=15
-        DamageRadius=450
+        DamageRadius=200
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_BloatPukeMine'
         KnockDownStrength=0

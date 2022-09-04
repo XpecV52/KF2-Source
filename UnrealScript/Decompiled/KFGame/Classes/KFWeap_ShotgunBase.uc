@@ -10,84 +10,20 @@ class KFWeap_ShotgunBase extends KFWeapon
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
-var(Weapon) array<byte> NumPellets;
-
-simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
+simulated function KFProjectile SpawnAllProjectiles(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
 {
-    local int I;
-    local Rotator AimRot;
     local KFPerk InstigatorPerk;
 
     if(CurrentFireMode == 4)
     {
-        return super.SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
+        return SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
     }
     InstigatorPerk = GetPerk();
     if(InstigatorPerk != none)
     {
         Spread[CurrentFireMode] = default.Spread[CurrentFireMode] * InstigatorPerk.GetTightChokeModifier();
     }
-    AimRot = rotator(AimDir);
-    I = 0;
-    J0xC7:
-
-    if(I < GetNumProjectilesToFire(CurrentFireMode))
-    {
-        super.SpawnProjectile(KFProjClass, RealStartLoc, vector(Class'KFWeap_ShotgunBase'.static.AddMultiShotSpread(AimRot, Spread[CurrentFireMode])));
-        ++ I;
-        goto J0xC7;
-    }
-    return none;
-}
-
-simulated function byte GetNumProjectilesToFire(byte FireModeNum)
-{
-    return NumPellets[CurrentFireMode];
-}
-
-function HandleWeaponShotTaken(byte FireMode)
-{
-    if(KFPlayer != none)
-    {
-        KFPlayer.AddShotsFired(GetNumProjectilesToFire(FireMode));
-    }
-}
-
-simulated function Rotator AddSpread(Rotator BaseAim)
-{
-    return BaseAim;
-}
-
-static function Rotator AddMultiShotSpread(Rotator BaseAim, float CurrentSpread)
-{
-    local Vector X, Y, Z;
-    local float RandY, RandZ;
-
-    if(CurrentSpread == float(0))
-    {
-        return BaseAim;        
-    }
-    else
-    {
-        GetAxes(BaseAim, X, Y, Z);
-        RandY = FRand() - 0.5;
-        RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
-        return rotator((X + ((RandY * CurrentSpread) * Y)) + ((RandZ * CurrentSpread) * Z));
-    }
-}
-
-static simulated function float CalculateTraderWeaponStatDamage()
-{
-    local float BaseDamage, DoTDamage;
-    local class<KFDamageType> DamageType;
-
-    BaseDamage = default.InstantHitDamage[0];
-    DamageType = class<KFDamageType>(default.InstantHitDamageTypes[0]);
-    if((DamageType != none) && DamageType.default.DoT_Type != 0)
-    {
-        DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
-    }
-    return (BaseDamage * float(default.NumPellets[0])) + DoTDamage;
+    return super.SpawnAllProjectiles(KFProjClass, RealStartLoc, AimDir);
 }
 
 static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
@@ -97,10 +33,15 @@ static simulated event KFGFxObject_TraderItems.EFilterTypeUI GetTraderFilter()
 
 defaultproperties
 {
-    NumPellets(0)=7
-    NumPellets(1)=7
     bHasFireLastAnims=true
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_ShotgunBase.MeleeHelper'
+    NumPellets(0)=7
+    NumPellets(1)=7
+    NumPellets(2)=0
+    NumPellets(3)=1
+    NumPellets(4)=1
+    NumPellets(5)=0
+    NumPellets(6)=1
     Spread=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

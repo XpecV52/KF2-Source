@@ -53,22 +53,15 @@ function OnStackingAfflictionChanged(byte Id)
     }
 }
 
-function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
+function AdjustPlayHitForArmor(out float InDamage, out TraceHitInfo InHitInfo)
 {
     local int HitZoneIdx;
 
-    if(Damage == float(0))
+    HitZoneIdx = GetHitZoneIndex(InHitInfo.BoneName);
+    if((HitZoneIdx == -1) || HitZones[HitZoneIdx].GoreHealth > 0)
     {
-        HitZoneIdx = GetHitZoneIndex(HitInfo.BoneName);
-        if((HitZoneIdx == -1) || HitZones[HitZoneIdx].GoreHealth > 0)
-        {
-            HitInfo.BoneName = 'KBArmor';
-        }
-        super.PlayHit(1, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);        
-    }
-    else
-    {
-        super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
+        InDamage = 1;
+        InHitInfo.BoneName = 'KFArmor';
     }
 }
 

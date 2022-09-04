@@ -530,7 +530,7 @@ struct native sDangerEvadeInfo
 
 	/** Cooldown period, per-difficulty. Difficulty ranges are 0 to 3, Normal-Hard-Suicidal-HoE */
 	var array<float> Cooldowns;
-	
+
 	/** Maximum evade chance, per-difficulty */
 	var array<float> EvadeChances;
 
@@ -1610,7 +1610,7 @@ function KFPawn CheckForEnemiesInFOV( float MaxRange,
 			continue;
 		}
 
-		if( !KFP.IsAliveAndWell() || KFP.GetTeamNum() == GetTeamNum() )
+		if( !KFP.IsAliveAndWell() || KFP.GetTeamNum() == GetTeamNum() || !KFP.CanAITargetThisPawn(Pawn.Controller))
 		{
 			continue;
 		}
@@ -6217,7 +6217,7 @@ function ReceiveMeleeWarning( EPawnOctant MeleeDir, vector ProjectionToAttacker,
 
 	NormalDir = Normal( ProjectionToAttacker );
 
-	// No blocking attacks from behind 
+	// No blocking attacks from behind
 	if( vector(MyKFPawn.Rotation) dot NormalDir < MyKFPawn.GetMinBlockFOV() )
 	{
 		return;
@@ -6392,8 +6392,8 @@ function NotifyFriendlyAIDamageTaken( Controller DamagerController, int Damage, 
 {
 	local int Idx;
 	local Pawn BlockerPawn;
-		
-	if (DamageType.default.bIgnoreAggroOnDamage)
+
+	if (DamageType == none || DamageType.default.bIgnoreAggroOnDamage)
 	{
 		return;
 	}

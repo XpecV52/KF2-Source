@@ -237,7 +237,7 @@ function SpawnPukeMine( vector SpawnLocation, rotator SpawnRotation )
 {
 	local KFProjectile PukeMine;
 
-	PukeMine = Spawn( PukeMineProjectileClass, self,, SpawnLocation, SpawnRotation,, true );
+	PukeMine = Spawn( PukeMineProjectileClass, ,, SpawnLocation, SpawnRotation,, true );
 	if( PukeMine != none )
 	{
 		PukeMine.Init( vector(SpawnRotation) );

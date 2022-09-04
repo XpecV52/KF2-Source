@@ -35,7 +35,16 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 
 defaultproperties
 {
-    HealFullRechargeSeconds=12
+    HealingDartDamageType=Class'KFDT_Dart_Healing'
+    HealFullRechargeSeconds=10
+    HealImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Heal'
+    HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
+    DartFireSnd=(DefaultCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_1P')
+    HealingDartWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
+    LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locked_1P'
+    LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
+    LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
+    OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
     PackageKey="Bleeder"
     FirstPersonMeshName="WEP_1P_Bleeder_MESH.WEP_1stP_Bleeder_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -46,7 +55,7 @@ defaultproperties
     bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
-    InventorySize=8
+    InventorySize=7
     MagazineCapacity=7
     MeshFOV=70
     MeshIronSightFOV=27
@@ -60,8 +69,8 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Bleeder_TEX.UI_WeaponSelect_Bleeder'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=91
-    InitialSpareMags=3
+    SpareAmmoCapacity=98
+    InitialSpareMags=4
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

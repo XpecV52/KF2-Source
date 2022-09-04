@@ -41,7 +41,16 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 
 defaultproperties
 {
-   HealFullRechargeSeconds=12.000000
+   HealingDartDamageType=Class'kfgamecontent.KFDT_Dart_Healing'
+   HealFullRechargeSeconds=10.000000
+   HealImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Heal'
+   HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
+   DartFireSnd=(DefaultCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_1P')
+   HealingDartWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
+   LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locked_1P'
+   LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
+   LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
+   OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
    PackageKey="Bleeder"
    FirstPersonMeshName="WEP_1P_Bleeder_MESH.WEP_1stP_Bleeder_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_Bleeder_ANIM.Wep_1stP_Bleeder_Anim"
@@ -52,7 +61,7 @@ defaultproperties
    bWarnAIWhenAiming=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
-   InventorySize=8
+   InventorySize=7
    MagazineCapacity(0)=7
    MeshFOV=70.000000
    MeshIronSightFOV=27.000000
@@ -65,19 +74,19 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Bleeder_TEX.UI_WeaponSelect_Bleeder'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-   AmmoCost(1)=40
-   SpareAmmoCapacity(0)=91
-   InitialSpareMags(0)=3
+   AmmoCost(1)=30
+   SpareAmmoCapacity(0)=98
+   InitialSpareMags(0)=4
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_Bleeder.Play_WEP_Bleeder_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_Bleeder.Play_WEP_Bleeder_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_EBR.Play_WEP_SA_EBR_Handling_DryFire'
    PlayerViewOffset=(X=20.000000,Y=11.000000,Z=-2.000000)
-   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
+   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MedicBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
-      ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
+      ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MedicBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Rifle_Hemogoblin:MeleeHelper_0'
    LaserSightTemplate=KFLaserSightAttachment'FX_LaserSight_ARCH.LaserSight_WithAttachment_1P'
@@ -96,15 +105,15 @@ defaultproperties
    RecoilISMaxPitchLimit=375
    RecoilISMinPitchLimit=65460
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Add=1),(Stat=EWUS_HealFullRecharge,Scale=0.800000)))
-   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.800000),(Add=2),(Stat=EWUS_HealFullRecharge,Scale=0.600000)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Add=1),(Stat=EWUS_HealFullRecharge,Scale=0.900000)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Add=2),(Stat=EWUS_HealFullRecharge,Scale=0.800000)))
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)=()
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
    FiringStatesArray(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Hemogoblin'
-   WeaponProjectiles(1)=()
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_HealingDart_MedicBase'
    FireInterval(0)=0.250000
    FireInterval(1)=()
    FireInterval(2)=()
@@ -112,16 +121,16 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.006000
    Spread(1)=()
-   InstantHitDamage(0)=50.000000
+   InstantHitDamage(0)=100.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=27.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Hemogoblin'
-   InstantHitDamageTypes(1)=()
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Dart_Toxic'
    InstantHitDamageTypes(2)=None
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Hemogoblin'
    FireOffset=(X=30.000000,Y=3.000000,Z=-2.500000)
-   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:FirstPersonMesh'
+   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MedicBase:FirstPersonMesh'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
@@ -131,19 +140,19 @@ defaultproperties
       LightingChannels=(bInitialized=True,Outdoor=True)
       bAllowPerObjectShadows=True
       Name="FirstPersonMesh"
-      ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:FirstPersonMesh'
+      ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MedicBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
    ItemName="Hemogoblin"
-   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:StaticPickupComponent'
+   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_MedicBase:StaticPickupComponent'
       StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"
-      ObjectArchetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:StaticPickupComponent'
+      ObjectArchetype=StaticMeshComponent'KFGame.Default__KFWeap_MedicBase:StaticPickupComponent'
    End Object
    DroppedPickupMesh=StaticPickupComponent
    PickupFactoryMesh=StaticPickupComponent
    Name="Default__KFWeap_Rifle_Hemogoblin"
-   ObjectArchetype=KFWeap_MedicBase'kfgamecontent.Default__KFWeap_MedicBase'
+   ObjectArchetype=KFWeap_MedicBase'KFGame.Default__KFWeap_MedicBase'
 }

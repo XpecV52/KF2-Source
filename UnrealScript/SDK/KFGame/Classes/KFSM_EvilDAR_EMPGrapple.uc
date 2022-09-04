@@ -6,6 +6,12 @@
 //=============================================================================
 class KFSM_EvilDAR_EMPGrapple extends KFSM_GrappleVictim;
 
+function SpecialMoveStarted(bool bForced, Name PrevMove )
+{
+	super.SpecialMoveStarted(bForced, PrevMove);
+	PawnOwner.Velocity = vect(0,0,0);
+}
+
 function SetGrabEffect(KFPlayerController KFPC, bool bValue)
 {
 	KFPC.SetGrabEffectEMP(bValue, (Leader != none && Leader.IsHumanControlled()));

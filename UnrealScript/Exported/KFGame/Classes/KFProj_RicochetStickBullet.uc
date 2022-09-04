@@ -492,8 +492,8 @@ simulated function bool ShouldProcessBulletTouch()
 
 defaultproperties
 {
-   PickupRadius=200.000000
-   PickupHeight=100.000000
+   PickupRadius=250.000000
+   PickupHeight=250.000000
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'KFGame.Default__KFProj_RicochetBullet:AmbientAkSoundComponent'
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True

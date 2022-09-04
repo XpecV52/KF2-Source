@@ -628,6 +628,8 @@ native function SetNeedsReload();
 
 native static function StaticSetNeedsRestart();
 
+static native final function bool GameModeSupportsMap(int GameMode, string MapName);
+
 /************************************************************************************
  * @name		InitGame
  ***********************************************************************************/
@@ -1071,11 +1073,10 @@ function InitGameConductor()
 function InitGRIVariables()
 {
 	MyKFGRI.GameDifficulty = GameDifficulty;
-	MyKFGRI.GameLength 		= GameLength;
+	MyKFGRI.GameLength = GameLength;
+	MyKFGRI.ReceivedGameLength();
 	MyKFGRI.bVersusGame = bIsVersusGame;
-
 	MyKFGRI.MaxHumanCount = MaxPlayers;
-
 	SetBossIndex();
 }
 
@@ -2480,12 +2481,12 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
 						KFTeamInfo_Human(DamagerKFPRI.Team).AddScore(EarnedDosh);
 					}
 
-					if (!ValidateMonsterClassForXP(MonsterClass))
+					if( DamageHistory[i].DamagePerks.Length <= 0 )
 					{
 						continue;
 					}
 
-					if( DamageHistory[i].DamagePerks.Length <= 0 )
+					if (!ValidateForXP(MonsterClass, DamageHistory[i].DamageCausers, DamageHistory[i].DamageTypes))
 					{
 						continue;
 					}
@@ -2514,8 +2515,9 @@ protected function DistributeMoneyAndXP(class<KFPawn_Monster> MonsterClass, cons
 	}
 }
 
-/** Gives us a chance to validate monster class before calling AddPlayerXP */
-native private final function bool ValidateMonsterClassForXP(class<KFPawn_Monster> MonsterClass);
+/** Gives us a chance to validate things before calling AddPlayerXP */
+native private final function bool ValidateForXP(class<KFPawn_Monster> MonsterClass,
+	const out array<class<Actor> > DamageCausers, const out array<class<KFDamageType> > DamageTypes);
 
 /** Grant xp rewards */
 native private function AddPlayerXP(KFPlayerController PC, INT XP, class<KFPerk> PerkClass, bool bApplyPrestigeBonus = false);
@@ -3366,50 +3368,78 @@ auto State PendingMatch
 	event Timer()
 	{
 		global.Timer();
- 		if( bDelayedStart )
+ 		if (bDelayedStart)
 		{
-		 	if( ShouldStartMatch() )
+		 	if (ShouldStartMatch())
 			{
-				// start our default lobby countdown
-				if( !IsTimerActive( nameof(LobbyCountdownComplete) ) && MajorityPlayersReady() )
+				if (!IsTimerActive(nameof(LobbyCountdownComplete)))
 				{
-					MyKFGRI.RemainingTime = ReadyUpDelay;
-					MyKFGRI.bStopCountDown = false;
-
-					SetCountdown(false, ReadyUpDelay);
-				}
-				else if( IsTimerActive( nameof(LobbyCountdownComplete) ) && !MajorityPlayersReady() )
-				{
-					ClearTimer( nameof(LobbyCountdownComplete) );
-					MyKFGRI.bStopCountDown = true;
-					ResetCountDown();
-				}
-
-				// Everyone is ready, start the final countdwon
-				if( CheckAllPlayersReady() )
-				{
-					if( !bStartFinalCount )
+					if (MajorityPlayersReady())
 					{
-						SetCountdown( true, GameStartDelay );
+						// Majority of players are ready, start the lobby countdown
+						MyKFGRI.RemainingTime = ReadyUpDelay;
+						MyKFGRI.bStopCountDown = false;
+						SetCountdown(false, MyKFGRI.RemainingTime);
 					}
 				}
-				// somebody canceled the final countdown
-				else if( bStartFinalCount )
+				else
 				{
-					SetCountdown( false, MyKFGRI.RemainingTime );
+					if (!MajorityPlayersReady())
+					{
+						// No more majority, stop the lobby countdown
+						ClearTimer(nameof(LobbyCountdownComplete));
+						MyKFGRI.bStopCountDown = true;
+						ResetCountDown();
+					}
+					else
+					{
+						if (MyKFGRI.RemainingTime <= GameStartDelay)
+						{
+							if (!bStartFinalCount)
+							{
+								// Lobby countdown is almost up, start the final countdown.
+								// Nothing can stop us now.
+								SetCountdown(true, GameStartDelay);
+							}
+						}
+						else
+						{
+							if (CheckAllPlayersReady())
+							{
+								if (!bStartFinalCount)
+								{
+									// Everyone is ready, start the final countdown
+									SetCountdown(true, GameStartDelay);
+								}
+							}
+							else
+							{
+								if (bStartFinalCount)
+								{
+									// Not everyone is ready, resume lobby countdown
+									// (unless the lobby countdown is almost up)
+									SetCountdown(false, MyKFGRI.RemainingTime);
+								}
+							}
+						}
+					}
 				}
 			}
-			else if( IsTimerActive( nameof(LobbyCountdownComplete) ) )
+			else
 			{
-				ClearTimer( nameof(LobbyCountdownComplete) );
-				MyKFGRI.bStopCountDown = true;
+				if (IsTimerActive(nameof(LobbyCountdownComplete)))
+				{
+					ClearTimer(nameof(LobbyCountdownComplete));
+					MyKFGRI.bStopCountDown = true;
+				}
 			}
+
             // If this is a dedicated server locked for use by players,
 			// check if anyone is connected after ready-up time expires,
 			// and unlock the server if no one is has connected
-			if( !IsTimerActive( nameof(CheckServerUnlock) ) )
+			if (!IsTimerActive(nameof(CheckServerUnlock)))
 			{
-				SetTimer( ReadyUpDelay, false, nameof(CheckServerUnlock) );
+				SetTimer(ReadyUpDelay, false, nameof(CheckServerUnlock));
 			}
 		}
 	}

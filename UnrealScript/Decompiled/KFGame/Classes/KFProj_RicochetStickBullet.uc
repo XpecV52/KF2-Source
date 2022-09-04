@@ -381,8 +381,8 @@ Begin:
 
 defaultproperties
 {
-    PickupRadius=200
-    PickupHeight=100
+    PickupRadius=250
+    PickupHeight=250
     AmbientComponent=AkComponent'Default__KFProj_RicochetStickBullet.AmbientAkSoundComponent'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

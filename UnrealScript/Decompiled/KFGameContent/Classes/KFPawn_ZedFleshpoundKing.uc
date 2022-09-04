@@ -585,6 +585,7 @@ defaultproperties
         ImpactFXArray[16]=(Type=EEffectDamageGroup.FXG_Bludgeon_Chains)
         ImpactFXArray[17]=(Type=EEffectDamageGroup.FXG_MicrowaveProj)
         ImpactFXArray[18]=(Type=EEffectDamageGroup.FXG_Electricity)
+        ImpactFXArray[19]=(Type=EEffectDamageGroup.FXG_Slashing_Ion)
     object end
     // Reference: KFSkinTypeEffects_HansShield'Default__KFPawn_ZedFleshpoundKing.ShieldEffects'
     ShieldImpactEffects=ShieldEffects

@@ -393,6 +393,13 @@ const KFACHID_OutpostObjectiveHard				=	254;
 const KFACHID_OutpostObjectiveSuicidal			=	255;
 const KFACHID_OutpostObjectiveHellOnEarth		=	256;
 
+const KFACHID_AsylumHard						=	257;
+const KFACHID_AsylumHellOnEarth					=	258;
+const KFACHID_AsylumCollectibles				=	259;
+
+const KFACHID_NukedObjectiveHard				=	260;
+const KFACHID_NukedObjectiveHellOnEarth			=	261;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -901,7 +908,7 @@ private event AddXP( class<KFPerk> PerkClass, int dXP, bool bApplyPrestigeBonus 
 			dXP += BonusXPTruncated;
 		}
 	}
-
+	
 	IncrementXPStat( PerkClass, dXP );
 
 	if( MyKFPC != none )
@@ -1055,7 +1062,7 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
 
 	// seasonal event hook
 	SeasonalEventStats_OnZedKilled(MonsterClass, Difficulty, DT);
-
+	
 	if(!MonsterClass.default.bVersusZed)
 	{
 		MyKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_PlayerKills', KMT_PLayerKillZed, MyKFPC.PlayerReplicationInfo, none, MonsterClass);
@@ -1872,7 +1879,8 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_MP7, KFDT_Ballistic_MP7,KFDT_Bludgeon_MP7),CompletionAmount=5000)) //3000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_MP5RAS, KFDT_Ballistic_MP5RAS,KFDT_Bludgeon_MP5RAS),CompletionAmount=7000)) //5000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Thompson, KFDT_Ballistic_Thompson,KFDT_Bludgeon_Thompson),CompletionAmount=7000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_P90, KFDT_Ballistic_P90,KFDT_Bludgeon_P90),CompletionAmount=10000)) //7000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_HRG_Nailgun, KFDT_Ballistic_HRGNailgun, KFDT_Bludgeon_HRGNailgun),CompletionAmount=10000)) //7000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_P90, KFDT_Ballistic_P90,KFDT_Bludgeon_P90),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Kriss, KFDT_Ballistic_Kriss,KFDT_Bludgeon_Kriss),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_HK_UMP, KFDT_Ballistic_HK_UMP,KFDT_Bludgeon_HK_UMP),CompletionAmount=10000))
 
@@ -1887,6 +1895,7 @@ defaultproperties
     //Support Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_MB500, KFDT_Ballistic_MB500,KFDT_Bludgeon_MB500),CompletionAmount=5000)) //3000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_DoubleBarrel, KFDT_Ballistic_DBShotgun,KFDT_Bludgeon_DBShotgun),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_HRG_Revolver_Buckshot, KFDT_Ballistic_HRGBuckshot, KFDT_Bludgeon_HRGBuckshot),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_HZ12, KFDT_Ballistic_HZ12,KFDT_Bludgeon_HZ12),CompletionAmount=10000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_M4, KFDT_Ballistic_M4Shotgun,KFDT_Bludgeon_M4Shotgun),CompletionAmount=10000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_AA12, KFDT_Ballistic_AA12Shotgun,KFDT_Bludgeon_AA12Shotgun),CompletionAmount=10000))
@@ -1896,6 +1905,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Medic, KFDT_Ballistic_Pistol_Medic,KFDT_Bludgeon_Pistol_Medic),CompletionAmount=5000)) //3000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Medic, KFDT_Ballistic_SMG_Medic,KFDT_Bludgeon_SMG_Medic),CompletionAmount=7000)) //5000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_Medic, KFDT_Ballistic_Shotgun_Medic,KFDT_Bludgeon_Shotgun_Medic),CompletionAmount=9000)) //7000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_HRG_Healthrower, KFDT_Toxic_HRGHealthrower, KFDT_Bludgeon_HRGHealthrower),CompletionAmount=9000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_Hemogoblin, KFDT_Ballistic_Hemogoblin, KFDT_Bludgeon_Hemogoblin),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Medic, KFDT_Ballistic_Assault_Medic,KFDT_Bludgeon_Assault_Medic),CompletionAmount=9000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_MedicRifleGrenadeLauncher, KFDT_Ballistic_MedicRifleGrenadeLauncher, KFDT_Bludgeon_MedicRifleGrenadeLauncher, KFDT_Toxic_MedicGrenadeLauncher, KFDT_Ballistic_MedicRifleGrenadeLauncherImpact),CompletionAmount=10000))
@@ -2065,6 +2075,9 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-STEAMFORTRESS),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-STEAMFORTRESS),CompletionAmount=2))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-STEAMFORTRESS),CompletionAmount=3))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-ASHWOODASYLUM),CompletionAmount=1))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-ASHWOODASYLUM),CompletionAmount=2))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-ASHWOODASYLUM),CompletionAmount=3))
 
     //Versus Damage
     //    Per design doc that I have right now, these are x class damage y players, not damage y amount
@@ -2092,6 +2105,6 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(CHR_Ana_Archetype),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(chr_rockabilly_archetype),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(CHR_DAR_archetype),CompletionAmount=1))
-
+		
 	SeasonalKillsObjectiveThreshold=2500
 }

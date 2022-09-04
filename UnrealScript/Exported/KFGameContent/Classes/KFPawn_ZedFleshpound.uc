@@ -531,7 +531,7 @@ defaultproperties
       ObjectArchetype=KFAfflictionManager'KFGame.Default__KFPawn_Monster:Afflictions_0'
    End Object
    AfflictionHandler=KFAfflictionManager'kfgamecontent.Default__KFPawn_ZedFleshpound:Afflictions_0'
-   IncapSettings(0)=(Duration=2.200000,Cooldown=10.000000,Vulnerability=(0.950000))
+   IncapSettings(0)=(Duration=2.200000,Cooldown=10.000000,ChildAfflictionCooldown=10.000000,Vulnerability=(0.950000))
    IncapSettings(1)=(Duration=3.500000,Cooldown=10.000000,Vulnerability=(0.400000))
    IncapSettings(2)=(Cooldown=1.200000,Vulnerability=(1.000000))
    IncapSettings(3)=(Cooldown=1.700000,Vulnerability=(0.000000,0.000000,0.000000,0.000000,0.500000))
@@ -596,7 +596,8 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

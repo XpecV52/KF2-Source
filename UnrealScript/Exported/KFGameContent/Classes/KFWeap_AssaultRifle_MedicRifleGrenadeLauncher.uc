@@ -467,7 +467,16 @@ simulated function UpdateOpticsUI(optional bool bForceUpdate)
 defaultproperties
 {
    SecondaryFireOffset=(X=20.000000,Y=4.500000,Z=-7.000000)
+   HealingDartDamageType=Class'kfgamecontent.KFDT_Dart_Healing'
+   HealImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Heal'
+   HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
+   DartFireSnd=(DefaultCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_1P')
+   HealingDartWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
    bRechargeHealAmmo=False
+   LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locked_1P'
+   LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
+   LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
+   OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
    PackageKey="Medic_GrenadeLauncher"
    FirstPersonMeshName="wep_1p_medic_grenadelauncher_mesh.Wep_1stP_Medic_GrenadeLauncher_Rig"
    FirstPersonAnimSetNames(0)="wep_1p_medic_grenadelauncher_anim.Wep_1stP_Medic_GrenadeLauncher_Anim"
@@ -508,10 +517,10 @@ defaultproperties
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_L85A2.Play_WEP_SA_L85A2_Handling_DryFire'
    PlayerViewOffset=(X=22.000000,Y=9.000000,Z=-2.000000)
-   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
+   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MedicBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
-      ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
+      ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MedicBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_MedicRifleGrenadeLauncher:MeleeHelper_0'
    maxRecoilPitch=150
@@ -553,7 +562,7 @@ defaultproperties
    InstantHitDamageTypes(2)=None
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_MedicRifleGrenadeLauncher'
    FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
-   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:FirstPersonMesh'
+   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MedicBase:FirstPersonMesh'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
@@ -563,19 +572,19 @@ defaultproperties
       LightingChannels=(bInitialized=True,Outdoor=True)
       bAllowPerObjectShadows=True
       Name="FirstPersonMesh"
-      ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:FirstPersonMesh'
+      ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MedicBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
    ItemName="HMTech-501 Grenade Rifle"
-   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:StaticPickupComponent'
+   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_MedicBase:StaticPickupComponent'
       StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"
-      ObjectArchetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:StaticPickupComponent'
+      ObjectArchetype=StaticMeshComponent'KFGame.Default__KFWeap_MedicBase:StaticPickupComponent'
    End Object
    DroppedPickupMesh=StaticPickupComponent
    PickupFactoryMesh=StaticPickupComponent
    Name="Default__KFWeap_AssaultRifle_MedicRifleGrenadeLauncher"
-   ObjectArchetype=KFWeap_MedicBase'kfgamecontent.Default__KFWeap_MedicBase'
+   ObjectArchetype=KFWeap_MedicBase'KFGame.Default__KFWeap_MedicBase'
 }

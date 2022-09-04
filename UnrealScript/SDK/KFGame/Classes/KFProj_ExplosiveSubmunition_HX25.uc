@@ -150,10 +150,10 @@ defaultproperties
         ExploLightFadeOutTime=0.3
 
 		// Camera Shake
-		CamShake=KFCameraShake'FX_CameraShake_Arch.Guns.HX25_Submunition_CameraShake'
-		CamShakeInnerRadius=150
+		CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
+		CamShakeInnerRadius=0
 		CamShakeOuterRadius=300
-		CamShakeFalloff=1.f
+		CamShakeFalloff=1.5f
 		bOrientCameraShakeTowardsEpicenter=true
 	End Object
 	ExplosionTemplate=ExploTemplate0

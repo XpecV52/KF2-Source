@@ -69,6 +69,8 @@ replication
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
 
 simulated event ReplicatedEvent(name VarName)
 {
@@ -1178,7 +1180,8 @@ defaultproperties
       SpecialMoveClasses(39)=None
       SpecialMoveClasses(40)=None
       SpecialMoveClasses(41)=None
-      SpecialMoveClasses(42)=Class'KFGame.KFSM_PlaySingleAnim_ScriptedPawn'
+      SpecialMoveClasses(42)=None
+      SpecialMoveClasses(43)=Class'KFGame.KFSM_PlaySingleAnim_ScriptedPawn'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object

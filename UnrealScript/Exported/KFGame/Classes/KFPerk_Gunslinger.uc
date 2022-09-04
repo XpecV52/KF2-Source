@@ -830,7 +830,7 @@ defaultproperties
    Passives(0)=(Title="Perk Weapon Damage",Description="Increase perk weapon damage %x% per level")
    Passives(1)=(Title="Bullet Resistance",Description="Increase resistance to projectile damage 5% plus %x% per level")
    Passives(2)=(Title="Movement Speed",Description="Increase movement speed %x% every five levels")
-   Passives(3)=(Title="Recoil",Description="Reduce perk weapon recoil %x% per level")
+   Passives(3)=(Title="Recoil Reduction",Description="Reduce perk weapon recoil %x% per level")
    Passives(4)=(Title="Zedtime Reload",Description="Increase reload speed in Zed time %x% per level")
    SkillCatagories(0)="Techniques"
    SkillCatagories(1)="Skill"

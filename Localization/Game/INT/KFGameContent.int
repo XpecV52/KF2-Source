@@ -312,6 +312,11 @@ ItemName="VLAD-1000 Nailgun"
 ItemCategory="Shotgun"
 ItemDescription="•Choice of single or multiple nail fire modes.\n•Alt-fire to toggle between fire modes.\n•We understand that one of the Horzine scientists borrowed the original nailgun from a (dead) maintenance man."
 
+[KFWeap_HRG_Nailgun]
+ItemName="HRG Nailgun"
+ItemCategory="Sub Machine Gun"
+ItemDescription="•Choice of single fire 857 rpm full-auto and 3-round-burst 500 rpm full-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Innovation that nails it!"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Road Redeemer"
 ItemCategory="Melee"
@@ -370,6 +375,11 @@ ItemName="Flamethrower"
 ItemCategory="Flames"
 ItemDescription="•Fire mode shoots flame. That's it.\n•A classic in any generation. If in doubt, simply burn everything down."
 
+[KFWeap_HRG_Healthrower]
+ItemName="HRG Healthrower"
+ItemCategory="Flames"
+ItemDescription="•Fire mode shoots gas that heals players and poisons Zeds.\n•Alt-fire shoots healing darts to heal team members.\n•The gas has a hint of lemon and mint. Zeds don't like lemons and mints."
+
 [KFWeap_Beam_Microwave]
 ItemName="Microwave Gun"
 ItemCategory="Flames"
@@ -425,6 +435,18 @@ ItemName="Dual .50 Desert Eagles"
 ItemCategory="Hand Gun"
 ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•A pair of Desert Eagle hand cannons."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Rhino"
+ItemCategory="Hand Gun"
+ItemDescription="•Fire mode shoots fragmentation rounds.\n•Fragmentation rounds explode on impact and fire 3 shrapnel pieces.\n•Shreds through Zeds like butter!"
+SharedUnlockSource="Rhino"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Dual Rhinos"
+ItemCategory="Hand Gun"
+ItemDescription="•Fire mode shoots fragmentation rounds.\n•Fragmentation rounds explode on impact and fire 3 shrapnel pieces.\n•Alt-fire switches aiming styles when using iron sights.\n•Shreds through Zeds like butter twice as much!"
+SharedUnlockSource="Dual Rhinos"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 Revolver"
 ItemCategory="Hand Gun"
@@ -444,6 +466,16 @@ ItemDescription="•Fire mode is single shot only.\n•True hand artillery in th
 ItemName="Dual .500 Magnums"
 ItemCategory="Hand Gun"
 ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•A pair of .500 Magnum 'Bone Collector' revolvers."
+
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="HRG Buckshot"
+ItemCategory="Hand Gun"
+ItemDescription="•Fire mode is single shot only.\n•Taking spray and pray to a whole new level."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="Dual HRG Buckshots"
+ItemCategory="Hand Gun"
+ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•Taking spray and pray to a whole new level and then some."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -516,6 +548,18 @@ ItemName="Husk Cannon"
 ItemCategory="Flames"
 ItemDescription="•Charges up while the fire button is pressed and discharges when the fire button is released. \n•The official Horzine version of the husk cannon. This model is 95% guaranteed not to explode."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Rhino"
+ItemCategory="Hand Gun"
+ItemDescription="•Fire mode shoots fragmentation rounds.\n•Fragmentation rounds explode on impact and fire 3 shrapnel pieces.\n•Shreds through Zeds like butter!"
+SharedUnlockSource="Rhino"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Dual Rhinos"
+ItemCategory="Hand Gun"
+ItemDescription="•Fire mode shoots fragmentation rounds.\n•Fragmentation rounds explode on impact and fire 3 shrapnel pieces.\n•Alt-fire switches aiming styles when using iron sights.\n•Shreds through Zeds like butter twice as much!"
+SharedUnlockSource="Dual Rhinos"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H) Carbine Rifle"
 ItemCategory="Assault Rifle"
@@ -531,6 +575,12 @@ ItemDescription="•Fire mode is semi-auto only.\n•Everything is better when y
 ItemName="Dual AF2011-A1"
 ItemCategory="Hand Gun"
 ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•Two guns with two barrels each. Four times the firepower. That's math. You can't argue with math."
+
+[KFWeap_Edged_IonThruster]
+ItemName="Ion Thruster"
+ItemCategory="Melee"
+ItemDescription="•Primary - fast slash attack that burns; hold Primary for combo attack.\n•Secondary - heavy slash attack that burns.\n•Reload - Perform a special attack when at 100% charge.\n•Alt - block/parry.\n•Great for barbecues."
+SharedUnlockSource="Ion Thruster"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Doomstick"

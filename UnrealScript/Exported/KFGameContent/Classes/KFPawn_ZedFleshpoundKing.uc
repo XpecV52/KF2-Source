@@ -682,6 +682,7 @@ defaultproperties
    DamageTypeModifiers(22)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.800000))
    DamageTypeModifiers(23)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.750000))
    DamageTypeModifiers(24)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.250000))
+   DamageTypeModifiers(25)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(0.600000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_FleshpoundKing'
    MinBlockFOV=0.200000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:FootstepCameraShake0'
@@ -809,7 +810,8 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedFleshpound:SpecialMoveHandler_0'
    End Object

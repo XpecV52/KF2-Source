@@ -433,9 +433,10 @@ defaultproperties
    AttachmentArchetypeName="WEP_C4_ARCH.Wep_C4_3P"
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
-   InventoryGroup=IG_Secondary
+   InventoryGroup=IG_Equipment
    InventorySize=3
    MagazineCapacity(0)=1
+   GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
    AmmoCost(2)=0
    AmmoCost(3)=0

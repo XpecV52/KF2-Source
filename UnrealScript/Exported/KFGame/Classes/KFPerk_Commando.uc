@@ -14,20 +14,20 @@ class KFPerk_Commando extends KFPerk
 //`include(KFOnlineStats.uci)
 
 //Passives
-var private const	PerkSkill 		WeaponDamage;						// weapon dmg modifier
-var private const	PerkSkill		CloakedEnemyDetection;              // Can see cloaked zeds x UUs far (100UUs = 100cm = 1m)
-var private const	PerkSkill		ZedTimeExtension;                   // How many times a zed time ext can happen
-var private const	PerkSkill		ReloadSpeed;		                // 2% increase every 5 levels (max 10% increase)
-var private const	PerkSkill		CallOut;		                    // allow teammates to see cloaked units
-var private const	PerkSkill		NightVision;                        // Night vision
+var private const PerkSkill WeaponDamage;			// weapon dmg modifier
+var private const PerkSkill	CloakedEnemyDetection;  // Can see cloaked zeds x UUs far (100UUs = 100cm = 1m)
+var private const PerkSkill	ZedTimeExtension;       // How many times a zed time ext can happen
+var private const PerkSkill	ReloadSpeed;		    // 2% increase every 5 levels (max 10% increase)
+var private const PerkSkill	CallOut;		        // allow teammates to see cloaked units
+var private const PerkSkill	NightVision;            // Night vision
+var private	const PerkSkill	Recoil;					// Recoil reduction
 
-var private const	float			RapidFireFiringRate;    			// Faster firing rate in %  NOTE:This is needed for combinations with the Skill: RapidFire (Damage and Rate)
-var private const 	float 			BackupWeaponSwitchModifier;
-var private const 	float			HollowPointRecoilModifier;
-var private const 	float			HealthArmorModifier;
+var private const float	RapidFireFiringRate;    	// Faster firing rate in %  NOTE:This is needed for combinations with the Skill: RapidFire (Damage and Rate)
+var private const float BackupWeaponSwitchModifier;
+var private const float	HealthArmorModifier;
 
 /** Temp HUD */
-var 			Texture2d		WhiteMaterial;
+var Texture2d WhiteMaterial;
 
 enum ECommandoSkills
 {
@@ -366,15 +366,10 @@ simulated final static function float GetBackupWeaponSwitchModifier()
  */
 simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 {
-	if( IsWeaponOnPerk( KFW,, self.class ) && IsHollowPointsActive() )
-	{
-		CurrentRecoilModifier -= CurrentRecoilModifier * GetHollowPointRecoilModifier();
-	}
-}
-
-simulated static final function float GetHollowPointRecoilModifier()
-{
-	return default.HollowPointRecoilModifier;
+	if (IsWeaponOnPerk(KFW, , self.class))
+    {
+        CurrentRecoilModifier *= (1.f - GetPassiveValue(Recoil, CurrentLevel));
+    }
 }
 
 private static function float GetHealthArmorModifier()
@@ -521,14 +516,14 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	PassiveValues[1] = Round( GetPassiveValue( default.CloakedEnemyDetection, Level ) / 100 ) $ "m";		// Divide by 100 to convert unreal units to meters
 	PassiveValues[2] = string(Round( GetZedTimeExtension( Level )));
 	PassiveValues[3] = Round( GetExtraReloadSpeed( Level ) * 100 ) $ "%";
-	PassiveValues[4] = "";
+	PassiveValues[4] = Round(GetPassiveValue( default.Recoil, Level ) * 100) $ "%";
 	PassiveValues[5] = "";
 
 	Increments[0] = "["@Left( string( default.WeaponDamage.Increment * 100 ), InStr(string(default.WeaponDamage.Increment * 100), ".") + 2 ) 	$"% /" @default.LevelString @"]";
 	Increments[1] = "["@ Int(default.CloakedEnemyDetection.StartingValue / 100 ) @"+" @Int(default.CloakedEnemyDetection.Increment / 100 ) 		$"m /" @default.LevelString @"]";
 	Increments[2] = "["@Round(default.ZedTimeExtension.StartingValue) @"+" @Round(default.ZedTimeExtension.Increment)	    						@" / 5" @default.LevelString @"]";
 	Increments[3] = "["@Left( string( default.ReloadSpeed.Increment * 100 ), InStr(string(default.ReloadSpeed.Increment * 100), ".") + 2 ) 		$ "% / 5" @ default.LevelString @ "]";
-	Increments[4] = "";
+	Increments[4] = "[" @ Left( string( default.Recoil.Increment * 100 ), InStr(string(default.Recoil.Increment * 100), ".") + 2 )$ "% /" @ default.LevelString @ "]";
 	Increments[5] = "";
 }
 
@@ -672,9 +667,9 @@ defaultproperties
    ReloadSpeed=(Name="Reload Speed",Increment=0.020000,MaxValue=0.100000)
    CallOut=(Name="Call Out",Increment=2.000000,MaxValue=50.000000)
    NightVision=(Name="Night Vision")
+   Recoil=(Name="Recoil",Increment=0.020000,MaxValue=0.500000)
    RapidFireFiringRate=0.500000
    BackupWeaponSwitchModifier=0.500000
-   HollowPointRecoilModifier=0.500000
    HealthArmorModifier=0.250000
    WhiteMaterial=Texture2D'EngineResources.WhiteSquareTexture'
    ProgressStatID=1
@@ -688,7 +683,7 @@ defaultproperties
    Passives(1)=(Title="Cloaked Enemy & Health Bar Detection",Description="Range of 5m plus %x%m per level")
    Passives(2)=(Title="Zed Time Refreshes",Description="Zed time increases %x% every 5 levels")
    Passives(3)=(Title="Reload Speed",Description="Perk weapon reload speed increases %x%% every 5 levels")
-   Passives(4)=(Title="Night Vision Capability",Description="Flashlights - AND Night Vision Goggles")
+   Passives(4)=(Title="Recoil Reduction",Description="Decrease recoil %x% per level")
    Passives(5)=(Title="Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units")
    SkillCatagories(0)="Ammo Management"
    SkillCatagories(1)="Tactics"

@@ -26,7 +26,6 @@ simulated function bool ShouldProcessBulletTouch()
 
 defaultproperties
 {
-   PickupRadius=250.000000
    WeaponClassName="KFWeap_Eviscerator"
    AmmoPickupSound=AkEvent'WW_WEP_SA_SawBlade.Play_WEP_SA_Sawblade_Projectile_Pickup'
    ProjPickupTemplate=ParticleSystem'WEP_SawBlade_EMIT.FX_Sawblade_pickup_01'

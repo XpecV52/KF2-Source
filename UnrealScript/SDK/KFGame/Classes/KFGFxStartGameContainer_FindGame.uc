@@ -167,22 +167,31 @@ function LocalizeMenu()
 DefaultProperties
 {
 // Latest Update
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_KickinBrass_Event", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_GrimTreatments", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
 // Featured Time Limited Item
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/5030"))
-// Featured Cosmetic Bundle
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_Clotbackpacks", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/7423"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/5246"))
+// Featured Outfit Bundle
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_WitchHunter_Bundle", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/7562"))
 // Featured Weapon Skin USB
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_USBKey_Steampunk_25", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/7408"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_Crate_BeyondHorizon_26", Textfield="FeaturedUsbKey", RedirectURL="https://store.steampowered.com/buyitem/232090/7623"))
 // Featured Crate Key
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_Crate_ProjectH_21", Textfield="FeaturedCrateKey", RedirectURL="https://store.steampowered.com/buyitem/232090/7398"))
-// Featured Crossover
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_Crate_Boneyard_22", Textfield="FeaturedCrateKey", RedirectURL="https://store.steampowered.com/buyitem/232090/7620"))
+// Featured Weapon Skin Bundle
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_DragonKoi_T3", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/7608"))
+// Featured Weapon Skin Bundle
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_DragonKoi_T4", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/7609"))
+// Featured Weapon Skin Bundle
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_DragonKoi_Complete", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/7187"))
+// Featured Weapon Bundle
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_IonThruster", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/7726"))
+// Featured Weapon Bundle
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_ChiappaRhino", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/7727"))
 
 // Misc Community Links
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub", Textfield="Jaegorhorn", RedirectURL="https://steamcommunity.com/app/232090"))    
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums", Textfield="Forums", RedirectURL="http://forums.tripwireinteractive.com/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey", Textfield="Survey", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue", Textfield="CommunityTracker", RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap"))
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch", Textfield="Merch", RedirectURL="https://tripwire.manheadmerch.com/"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch", Textfield="Merch", RedirectURL="http://www.tripwireinteractive.com/redirect/shop/"))
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered", Textfield="Uncovered", RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/"))
 }

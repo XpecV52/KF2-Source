@@ -363,6 +363,16 @@ function StopPullingPawn(KFPawn OldVictim, bool bReachedEnd = true)
     }
 }
 
+function bool CanOverrideMoveWith(Name NewMove)
+{
+	if (NewMove == 'KFSM_Knockdown')
+	{
+		return TRUE;
+	}
+
+	return FALSE;
+}
+
 defaultproperties
 {
     //Special Move
@@ -383,19 +393,19 @@ defaultproperties
     GorgeAttackCooldown[2]=(X=5.0,Y=8.0)   //Suicidal //x15 y25
     GorgeAttackCooldown[3]=(X=4.0,Y=7.0)    //HOE   //x10 y15
     GorgeAttackCheckDelay=5.0
-    GorgePullDelay=0.91
-    FollowerSpecialMove=SM_HansGrappleVictim
+    GorgePullDelay=0.01 //0.91 0.61
+    FollowerSpecialMove=SM_BloatKingGorgeVictim
 	ZedFollowerSpecialMove=SM_GorgeZedVictim,
     GorgePullRate=300.0 //UU pur sec //1000  //375
     GorgeReleaseOffset=135 //300
-    GorgeBaseDamage[0]=30        //normal
-    GorgeBaseDamage[1]=30        //hard
-    GorgeBaseDamage[2]=40       //Suicidal
-    GorgeBaseDamage[3]=40       //HOE
+    GorgeBaseDamage[0]=30      //normal
+    GorgeBaseDamage[1]=40        //hard
+    GorgeBaseDamage[2]=50       //Suicidal
+    GorgeBaseDamage[3]=50       //HOE
 
     //1000 * 1000 - Squaring distance for performance
     //Also update the value in KFTrigger_BloatKingGorge or there may be some issues with first-frame spawn collision
     GorgeAttackRangeSq=490000		//490k = 700UU
-	GorgeHumanAttackRangeSq=350000	//250k = 500UU 250000
+	GorgeHumanAttackRangeSq=450000	//250k = 500UU 250000
     GorgeMinAttackAngle=0.77f
 }

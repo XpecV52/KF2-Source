@@ -40,6 +40,7 @@ BodyMesh6="코만도 치킨"
 BodyMesh7="홀리데이 파자마 복장"
 BodyMesh8="볼트 파자마 복장"
 BodyMesh9="사이버펑크"
+BodyMesh10="위치 헌터"
 HeadMesh0="가스 마스크"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -121,6 +122,13 @@ BodySkin3="라임"
 BodySkin4="레드"
 BodySkin5="화이트"
 
+[CHR_MrsFoster_archetype.BodyMesh10]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
+BodySkin4="레드"
+BodySkin5="화이트"
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="화이트"
@@ -203,6 +211,7 @@ BodyMesh6="홀리데이 파자마 복장"
 BodyMesh7="볼트 파자마 복장"
 BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
+BodyMesh10="위치 헌터"
 HeadMesh0="수염의 힘!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -287,6 +296,14 @@ BodySkin0="틸"
 BodySkin1="블랙"
 BodySkin2="그린"
 BodySkin3="라임"
+BodySkin4="레드"
+BodySkin5="화이트"
+
+[CHR_Jagerhorn_archetype.BodyMesh10]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
 BodySkin4="레드"
 BodySkin5="화이트"
 
@@ -386,6 +403,7 @@ BodyMesh6="홀리데이 파자마 복장"
 BodyMesh7="볼트 파자마 복장"
 BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
+BodyMesh10="위치 헌터"
 HeadMesh0="스컬리 마스크"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -472,6 +490,14 @@ BodySkin3="라임"
 BodySkin4="레드"
 BodySkin5="화이트"
 
+[CHR_DJSkully_archetype.BodyMesh10]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
+BodySkin4="레드"
+BodySkin5="화이트"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="가장 어두운 블랙"
 HeadSkin1="엑스트라 레드"
@@ -515,6 +541,7 @@ BodyMesh7="홀리데이 파자마 복장"
 BodyMesh8="볼트 파자마 복장"
 BodyMesh9="스팀펑크"
 BodyMesh10="사이버펑크"
+BodyMesh11="위치 헌터"
 HeadMesh0="헤어"
 
 [chr_briar_archetype.BodyMesh0]
@@ -607,6 +634,14 @@ BodySkin3="라임"
 BodySkin4="레드"
 BodySkin5="화이트"
 
+[CHR_briar_archetype.BodyMesh11]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
+BodySkin4="레드"
+BodySkin5="화이트"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="오리지널"
 HeadSkin1="하이라이트"
@@ -644,6 +679,7 @@ BodyMesh7="홀리데이 파자마 복장"
 BodyMesh8="볼트 파자마 복장"
 BodyMesh9="스팀펑크"
 BodyMesh10="사이버펑크"
+BodyMesh11="위치 헌터"
 HeadMesh0="가스 마스크"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -738,6 +774,14 @@ BodySkin0="틸"
 BodySkin1="블랙"
 BodySkin2="그린"
 BodySkin3="라임"
+BodySkin4="레드"
+BodySkin5="화이트"
+
+[CHR_MrFoster_archetype.BodyMesh11]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
 BodySkin4="레드"
 BodySkin5="화이트"
 
@@ -898,6 +942,7 @@ BodyMesh6="홀리데이 파자마 복장"
 BodyMesh7="볼트 파자마 복장"
 BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
+BodyMesh10="위치 헌터"
 HeadMesh0="페이스"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -982,6 +1027,14 @@ BodySkin3="라임"
 BodySkin4="레드"
 BodySkin5="화이트"
 
+[CHR_Coleman_archetype.BodyMesh10]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
+BodySkin4="레드"
+BodySkin5="화이트"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="도노반"
 HeadSkin1="탯"
@@ -1018,6 +1071,7 @@ BodyMesh6="홀리데이 파자마 복장"
 BodyMesh7="볼트 파자마 복장"
 BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
+BodyMesh10="위치 헌터"
 HeadMesh0="헤어"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1101,6 +1155,14 @@ BodySkin0="틸"
 BodySkin1="블랙"
 BodySkin2="그린"
 BodySkin3="라임"
+BodySkin4="레드"
+BodySkin5="화이트"
+
+[CHR_Alberts_archetype.BodyMesh10]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
 BodySkin4="레드"
 BodySkin5="화이트"
 
@@ -2000,6 +2062,7 @@ BodyMesh6="홀리데이 파자마 복장"
 BodyMesh7="볼트 파자마 복장"
 BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
+BodyMesh10="위치 헌터"
 HeadMesh0="페이스"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2095,6 +2158,14 @@ BodySkin3="라임"
 BodySkin4="레드"
 BodySkin5="화이트"
 
+[CHR_Masterson_archetype.BodyMesh10]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
+BodySkin4="레드"
+BodySkin5="화이트"
+
 [CHR_Tanaka_Archetype]
 CharacterName="하야토 타나카"
 Description="타나카는 죽음에 대한 동경으로 어려움을 겪고 있습니다. 오키나와에서 태어난 그는 미군 가정에서 자랍니다. 가족과 함께 일본으로 이주한 타나카는 미국 문화에 젖어 연기 수업을 받지 못합니다. 대학을 졸업한 후 LA로 이주하여 형편없는 영화에 단역으로 출연하던 그는 보다 ‘진지한’ 작업을 위해 유럽으로 옮깁니다. 그가 맡게 된 역할은 고작 프랑스 갱스터 영화의 악역이었습니다. 이제 세계가 멸망하자 그는 현실과 영화 속에서 자신이 맡았던 역할을 혼동하게 되었습니다. 여기에는 야쿠자와 악마, 할리우드판 무사도의 환상이 섞여 있는 것처럼 보입니다."
@@ -2109,6 +2180,7 @@ BodyMesh7="홀리데이 파자마 복장"
 BodyMesh8="볼트 파자마 복장"
 BodyMesh9="스팀펑크"
 BodyMesh10="사이버펑크"
+BodyMesh11="위치 헌터"
 HeadMesh0="헤어"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2211,6 +2283,14 @@ BodySkin3="라임"
 BodySkin4="레드"
 BodySkin5="화이트"
 
+[CHR_Tanaka_archetype.BodyMesh11]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
+BodySkin4="레드"
+BodySkin5="화이트"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="헬멧"
 AttachmentSkin0="라이징 선"
@@ -2251,6 +2331,7 @@ BodyMesh6="홀리데이 파자마 복장"
 BodyMesh7="볼트 파자마 복장"
 BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
+BodyMesh10="위치 헌터"
 HeadMesh0="모호크"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2346,6 +2427,14 @@ BodySkin3="라임"
 BodySkin4="레드"
 BodySkin5="화이트"
 
+[CHR_Ana_archetype.BodyMesh10]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
+BodySkin4="레드"
+BodySkin5="화이트"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 안경"
 AttachmentSkin0="애너그리프 3D"
@@ -2372,6 +2461,7 @@ BodyMesh7="홀리데이 파자마 복장"
 BodyMesh8="볼트 파자마 복장"
 BodyMesh9="스팀펑크"
 BodyMesh10="사이버펑크"
+BodyMesh11="위치 헌터"
 HeadMesh0="헤어"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2464,6 +2554,14 @@ BodySkin3="라임"
 BodySkin4="레드"
 BodySkin5="화이트"
 
+[CHR_mark_archetype.BodyMesh11]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
+BodySkin4="레드"
+BodySkin5="화이트"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
 HeadSkin1="피바다 5시"
@@ -2487,6 +2585,7 @@ BodyMesh6="홀리데이 파자마 복장"
 BodyMesh7="볼트 파자마 복장"
 BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
+BodyMesh10="위치 헌터"
 HeadMesh0="페이스"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2574,6 +2673,14 @@ BodySkin3="라임"
 BodySkin4="레드"
 BodySkin5="화이트"
 
+[CHR_alan_archetype.BodyMesh10]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
+BodySkin4="레드"
+BodySkin5="화이트"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
 HeadSkin1="진저! 정말?"
@@ -2604,6 +2711,7 @@ BodyMesh6="홀리데이 파자마 복장"
 BodyMesh7="볼트 파자마 복장"
 BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
+BodyMesh10="위치 헌터"
 HeadMesh0="헤어"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2688,6 +2796,14 @@ BodySkin3="라임"
 BodySkin4="레드"
 BodySkin5="화이트"
 
+[CHR_strasser_archetype.BodyMesh10]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
+BodySkin4="레드"
+BodySkin5="화이트"
+
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="다크 스틸"
 HeadSkin1="블론드 스틸"
@@ -2736,6 +2852,9 @@ BodySkin2="바이오 콜라"
 BodySkin3="Horzine 창고"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
+
+[CHR_Knight_archetype.BodyMesh2]
+BodySkin0="Placeholder Name"
 
 [chr_knight_archetype.HeadMesh0]
 HeadSkin0="전투다!"
@@ -2857,6 +2976,7 @@ BodyMesh6="홀리데이 파자마 복장"
 BodyMesh7="볼트 파자마 복장"
 BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
+BodyMesh10="위치 헌터"
 HeadMesh0="기본 머리"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2942,6 +3062,14 @@ BodySkin0="틸"
 BodySkin1="블랙"
 BodySkin2="그린"
 BodySkin3="라임"
+BodySkin4="레드"
+BodySkin5="화이트"
+
+[CHR_rockabilly_archetype.BodyMesh10]
+BodySkin0="브라운"
+BodySkin1="블랙"
+BodySkin2="블루"
+BodySkin3="퍼플"
 BodySkin4="레드"
 BodySkin5="화이트"
 
@@ -4871,14 +4999,14 @@ AttachmentSkin2="레드"
 AttachmentSkin3="프레셔스"
 
 [Cosmetic_Project_H_01_Neutral_ARCH]
-Attachment="프로젝트 H 01 뉴트럴"
+Attachment="프로젝트 H 01 포커페이스"
 AttachmentSkin0="블루"
 AttachmentSkin1="그린"
 AttachmentSkin2="레드"
 AttachmentSkin3="프레셔스"
 
 [Cosmetic_Project_H_01_Neutral_Off_ARCH]
-Attachment="프로젝트 H 01 뉴트럴 닫힘"
+Attachment="프로젝트 H 01 포커페이스 닫힘"
 AttachmentSkin0="블루"
 AttachmentSkin1="그린"
 AttachmentSkin2="레드"
@@ -4918,14 +5046,14 @@ AttachmentSkin2="레드"
 AttachmentSkin3="프레셔스"
 
 [Cosmetic_Project_H_02_Neutral_ARCH]
-Attachment="프로젝트 H 02 뉴트럴"
+Attachment="프로젝트 H 02 포커페이스"
 AttachmentSkin0="블루"
 AttachmentSkin1="그린"
 AttachmentSkin2="레드"
 AttachmentSkin3="프레셔스"
 
 [Cosmetic_Project_H_02_Neutral_Off_ARCH]
-Attachment="프로젝트 H 02 뉴트럴 닫힘"
+Attachment="프로젝트 H 02 포커페이스 닫힘"
 AttachmentSkin0="블루"
 AttachmentSkin1="그린"
 AttachmentSkin2="레드"
@@ -5033,4 +5161,173 @@ AttachmentSkin2="프레셔스"
 Attachment="스팀펑크 보일러 모자"
 AttachmentSkin0="표준"
 AttachmentSkin1="크롬"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Boneyard_AfflictionMask_ARCH]
+Attachment="감염"
+AttachmentSkin0="본"
+AttachmentSkin1="블러디"
+AttachmentSkin2="표백"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Boneyard_AgonyMask_ARCH]
+Attachment="빈사"
+AttachmentSkin0="본"
+AttachmentSkin1="블러디"
+AttachmentSkin2="표백"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Boneyard_AnguishMask_ARCH]
+Attachment="비통"
+AttachmentSkin0="본"
+AttachmentSkin1="블러디"
+AttachmentSkin2="표백"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Boneyard_DespairMask_ARCH]
+Attachment="좌절"
+AttachmentSkin0="본"
+AttachmentSkin1="블러디"
+AttachmentSkin2="표백"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Boneyard_DistressMask_ARCH]
+Attachment="비탄"
+AttachmentSkin0="본"
+AttachmentSkin1="블러디"
+AttachmentSkin2="표백"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Boneyard_MiseryMask_ARCH]
+Attachment="고통"
+AttachmentSkin0="본"
+AttachmentSkin1="블러디"
+AttachmentSkin2="표백"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Boneyard_PassionMask_ARCH]
+Attachment="열정"
+AttachmentSkin0="본"
+AttachmentSkin1="블러디"
+AttachmentSkin2="표백"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Boneyard_SorrowMask_ARCH]
+Attachment="슬픔"
+AttachmentSkin0="본"
+AttachmentSkin1="블러디"
+AttachmentSkin2="표백"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Boneyard_TormentMask_ARCH]
+Attachment="고난"
+AttachmentSkin0="본"
+AttachmentSkin1="블러디"
+AttachmentSkin2="표백"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_Boneyard_TortureMask_ARCH]
+Attachment="고문"
+AttachmentSkin0="본"
+AttachmentSkin1="블러디"
+AttachmentSkin2="표백"
+AttachmentSkin3="프레셔스"
+
+[Cosmetic_WitchHunter_Hat_ARCH]
+Attachment="위치 헌터 모자"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+AttachmentSkin2="블루"
+AttachmentSkin3="퍼플"
+AttachmentSkin4="레드"
+AttachmentSkin5="화이트"
+
+[Cosmetic_Halloween_BatCatHat_ARCH]
+Attachment="할로윈 박쥐 모자"
+AttachmentSkin0="퍼플"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_PrivatePauldron_ARCH]
+Attachment="할로윈 일병 견갑"
+AttachmentSkin0="아이언"
+AttachmentSkin1="실버"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_OfficerPauldron_ARCH]
+Attachment="할로윈 장교 견갑"
+AttachmentSkin0="아이언"
+AttachmentSkin1="실버"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_PilgrimHat_ARCH]
+Attachment="할로윈 순례자 모자"
+AttachmentSkin0="블랙"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_BiohazardHat_ARCH]
+Attachment="할로윈 바이오하자드 모자"
+AttachmentSkin0="블랙"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_MonsterWitchHat_ARCH]
+Attachment="할로윈 몬스터 마녀 모자"
+AttachmentSkin0="브라운"
+AttachmentSkin1="레드"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_PumpkinClawJaw_ARCH]
+Attachment="할로윈 호박 손톱 턱"
+AttachmentSkin0="오렌지"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_BatCatBackpack_ARCH]
+Attachment="할로윈 박쥐 백팩"
+AttachmentSkin0="퍼플"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_PumpkinHat_ARCH]
+Attachment="할로윈 호박 모자"
+AttachmentSkin0="오렌지"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_WebShoulderPad_ARCH]
+Attachment="할로윈 거미줄 어깨 패드"
+AttachmentSkin0="화이트"
+AttachmentSkin1="그린"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_InfinityScarf_ARCH]
+Attachment="할로윈 인피니티 스카프"
+AttachmentSkin0="블랙"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_PlagueMask_ARCH]
+Attachment="할로윈 질병 가면"
+AttachmentSkin0="브라운"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_ScarecrowMask_ARCH]
+Attachment="할로윈 허수아비 가면"
+AttachmentSkin0="브라운"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_StitchedMouthMask_ARCH]
+Attachment="할로윈 꿰맨 입 가면"
+AttachmentSkin0="브라운"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="프레셔스"
+
+[Cosmetic_Halloween_GarlicClotBackpack_ARCH]
+Attachment="할로윈 마늘 덩어리 백팩"
+AttachmentSkin0="블랙"
+AttachmentSkin1="퍼플"
 AttachmentSkin2="프레셔스"

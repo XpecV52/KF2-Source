@@ -54,7 +54,6 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
         	}
 
             SetPhysics(PHYS_None);
-            LifeSpan = 5.0;
 
         	// Stop ambient sounds when this projectile ShutsDown
         	if( bStopAmbientSoundOnExplode )
@@ -113,7 +112,6 @@ simulated function Landed( Vector HitNormal, actor FloorActor )
     }
 
     SetPhysics(PHYS_None);
-    LifeSpan = 5.0;
 
 	// Stop ambient sounds when this projectile ShutsDown
 	if( bStopAmbientSoundOnExplode )
@@ -124,12 +122,14 @@ simulated function Landed( Vector HitNormal, actor FloorActor )
 
 defaultproperties
 {
-	MaxSpeed=7000.0
-	Speed=7000.0
+	MaxSpeed=14000.0
+	Speed=14000.0
 
     bWarnAIWhenFired=true
 
 	DamageRadius=0
+
+    LifeSpan = 5.0f
 
     BouncesLeft=2
     DampingFactor=0.65

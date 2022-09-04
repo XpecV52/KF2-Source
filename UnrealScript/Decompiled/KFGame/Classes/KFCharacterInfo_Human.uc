@@ -96,7 +96,6 @@ struct native AttachmentVariants
     var() KFCharacterAttachment AttachmentItem;
     var() const int UnlockAssetID;
     var Texture UITexture;
-    var bool bIsSkeletalAttachment;
     /** If set enables the material mask parameter on the assigned head variant */
     var() bool bMaskHeadMesh;
     var edithide transient StaticMesh MeshStatic;
@@ -132,7 +131,6 @@ struct native AttachmentVariants
         AttachmentItem=none
         UnlockAssetID=0
         UITexture=none
-        bIsSkeletalAttachment=false
         bMaskHeadMesh=false
         MeshStatic=none
         MeshSkeletal=none

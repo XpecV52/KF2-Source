@@ -1,7 +1,7 @@
 //=============================================================================
 // KFGameReplicationInfoVersus
 //=============================================================================
-// 
+//
 //=============================================================================
 // Killing Floor 2
 // Copyright (C) 2016 Tripwire Interactive LLC
@@ -73,7 +73,7 @@ simulated event ReplicatedEvent( name VarName )
     }
     else
     {
-    	super.ReplicatedEvent( VarName );   	
+    	super.ReplicatedEvent( VarName );
     }
 }
 
@@ -205,25 +205,38 @@ simulated event bool CanChangePerks()
 	return super.CanChangePerks() || bRoundIsOver;
 }
 
-function ServerStartVoteKick( PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker )
+function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
 {
 	local KFPawn_Monster KFPM;
-	local PLayerController C;
+	local PlayerController C;
 
-	C = PLayerController(PRI_Kickee.Owner);
-	if( C != none )
+	if (PRI_Kickee.GetTeamNum() != PRI_Kicker.GetTeamNum())
+	{
+		return;
+	}
+
+	C = PlayerController(PRI_Kickee.Owner);
+	if (C != none)
 	{
 		KFPM = KFPawn_Monster(C.Pawn);
-		if( KFPM != none && KFPM.IsABoss() )
+		if (KFPM != none && KFPM.IsABoss())
 		{
 			return;
 		}
 	}
 
-	if( VoteCollector != none )
+	super.ServerStartVoteKick(PRI_Kickee, PRI_Kicker);
+}
+
+reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)
+{
+	if (VoteCollector != none && VoteCollector.bIsVoteInProgress &&
+		VoteCollector.CurrentVote.PlayerPRI.GetTeamNum() != PRI.GetTeamNum())
 	{
-		VoteCollector.ServerStartVoteKick( PRI_Kickee, PRI_Kicker );
+		return;
 	}
+
+	super.RecieveVoteKick(PRI, bKick);
 }
 
 /** Performs client-specific resets */

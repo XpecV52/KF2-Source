@@ -52,11 +52,17 @@ private native final simulated function SetupComponents();
 
 simulated function PostBeginPlay()
 {
+    local StaticMesh DefaultMesh;
+
     super.PostBeginPlay();
+    DefaultMesh = RepairableActorMesh.StaticMesh;
     SetupComponents();
-    InitializeRepairableActorMIC();
     InitializeIntegrityMIC();
     Reset();
+    if(DefaultMesh != none)
+    {
+        SetStaticMesh(DefaultMesh);
+    }
 }
 
 simulated function InitializeIntegrityMIC()
@@ -104,6 +110,7 @@ simulated function InitializeWeldableComponent()
     WeldableComponent.MaxWeldIntegrity = MaxWeldIntegrity;
     WeldableComponent.bWeldable = true;
     WeldableComponent.__Delegate_OnWeldIntegrityChanged__Delegate = OnWeldCompWeldIntegrityChanged;
+    WeldIntegrity = WeldableComponent.WeldIntegrity;
     WeldableComponent.SetCollisionCylinderSize(200, 200);
 }
 
@@ -148,6 +155,27 @@ function FastenWeld(int Amount, optional KFPawn Welder)
     }
 }
 
+simulated function SetStaticMesh(StaticMesh NewMesh)
+{
+    local int I;
+
+    if(RepairableActorMesh != none)
+    {
+        RepairableActorMesh.SetStaticMesh(NewMesh);
+        I = 0;
+        J0x43:
+
+        if(I < RepairableActorMesh.Materials.Length)
+        {
+            RepairableActorMesh.SetMaterial(I, none);
+            ++ I;
+            goto J0x43;
+        }
+        InitializeRepairableActorMIC();
+        bForceNetUpdate = true;
+    }
+}
+
 simulated function PlayDestroyed()
 {
     local AkEvent ActivationSound;
@@ -165,11 +193,7 @@ simulated function PlayDestroyed()
             PlaySoundBase(ActivationSound,, WorldInfo.NetMode == NM_DedicatedServer);            
         }        
     }
-    if(RepairableActorMesh != none)
-    {
-        RepairableActorMesh.SetStaticMesh(BrokenMesh);
-        bForceNetUpdate = true;
-    }
+    SetStaticMesh(BrokenMesh);
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         if(BreakingEmitterTemplate.ParticleTemplate != none)
@@ -233,10 +257,7 @@ simulated function Reset()
     }
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
-        if(RepairableActorMesh != none)
-        {
-            RepairableActorMesh.SetStaticMesh(RepairedMesh);
-        }
+        SetStaticMesh(RepairedMesh);
     }
 }
 

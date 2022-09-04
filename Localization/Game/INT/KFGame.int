@@ -11,7 +11,7 @@ DifficultyStrings[0]="Normal"
 DifficultyStrings[1]="Hard"
 DifficultyStrings[2]="Suicidal"
 DifficultyStrings[3]="Hell on Earth"
-BonusDoshString="BONUS DOSH"
+BonusDoshString="REWARDS"
 LengthStrings[0]="Short (4 Waves)"
 LengthStrings[1]="Medium (7 Waves)"
 LengthStrings[2]="Long (10 Waves)"
@@ -1321,6 +1321,7 @@ GBA_SwitchWeapon3="Melee Weapon"
 GBA_SwitchWeapon4="Equipment"
 GBA_VoteYes="Vote Yes (Hold)"
 GBA_VoteNo="Vote No (Hold)"
+GBA_RequestSkipTrader="Request Skip Trader"
 
 GBA_VoiceCommReqHealing="REQUEST HEALING"
 GBA_VoiceCommReqDosh="REQUEST DOSH"
@@ -1734,13 +1735,13 @@ Fortitude="Dreadnaught"
 FortitudeDescription="Increase total Health 75%."
 
 Ninja="Skirmisher"
-NinjaDescription="Move 20% faster and sprint 25% faster when using a perk melee weapon. You also regenerate 2 points of Health every second."
+NinjaDescription="Move 20% faster and sprint 25% faster when using a perk weapon. You also regenerate 2 points of Health every second."
 
 Vampire="Vampire"
 VampireDescription="Heal 4 points of Health for every Zed you kill with perk weapons. Attack 20% faster with perk melee weapons."
 
 Speed="Butcher"
-SpeedDescription="Attack 20% faster and do 20% more damage with perk melee weapons."
+SpeedDescription="Attack 20% faster and do 20% more damage with perk weapons."
 
 Resistance="Resistance"
 ResistanceDescription="Gain 20% resistance to all damage. Gain additional 20% resistance to Poison and Sonic Damage."
@@ -1773,7 +1774,7 @@ Passives[0]=(Title="Perk Weapon Damage",Description="Perk weapon damage increase
 Passives[1]=(Title="Cloaked Enemy & Health Bar Detection",Description="Range of 5m plus %x%m per level");
 Passives[2]=(Title="Zed Time Refreshes",Description="Zed time increases %x% every 5 levels");
 Passives[3]=(Title="Reload Speed",Description="Perk weapon reload speed increases %x%% every 5 levels");
-Passives[4]=(Title="Night Vision Capability",Description="Flashlights - AND Night Vision Goggles");
+Passives[4]=(Title="Recoil Reduction",Description="Decrease recoil %x% per level");
 Passives[5]=(Title="Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units");
 
 EXPAction1="Dealing Commando weapon damage"
@@ -1798,7 +1799,7 @@ AmmoVest="Prepared"
 AmmoVestDescription="Carry up to 20% more ammo for each perk weapon."
 
 HollowPoints="Hollow Point Rounds"
-HollowPointsDescription="Increase damage of perk weapons 30% and reduce their recoil 50%."
+HollowPointsDescription="Increase damage of perk weapons 30%."
 
 EatLead="Eat Lead"
 EatLeadDescription="Increase magazine capacity of perk weapons 100%."
@@ -1969,7 +1970,7 @@ SkillCatagories[4]="Master Techniques"
 Passives[0]=(Title="Perk Weapon Damage",Description="Increase perk weapon damage %x% per level");
 Passives[1]=(Title="Bullet Resistance",Description="Increase resistance to projectile damage 5% plus %x% per level");
 Passives[2]=(Title="Movement Speed",Description="Increase movement speed %x% every five levels");
-Passives[3]=(Title="Recoil",Description="Reduce perk weapon recoil %x% per level");
+Passives[3]=(Title="Recoil Reduction",Description="Reduce perk weapon recoil %x% per level");
 Passives[4]=(Title="Zedtime Reload",Description="Increase reload speed in Zed time %x% per level");
 
 ShootnMove="Steady"
@@ -2015,7 +2016,7 @@ SkillCatagories[3]="Equipment"
 SkillCatagories[4]="Master Techniques"
 
 Passives[0]=(Title="Headshot Damage",Description="Increase headshot damage %x% per level");
-Passives[1]=(Title="Recoil",Description="Decrease recoil %x% per level");
+Passives[1]=(Title="Recoil Reduction",Description="Decrease recoil %x% per level");
 Passives[2]=(Title="Weapon Switch",Description="Increase weapon switch speed %x% per level");
 
 StationaryAim="Sniper"
@@ -2351,7 +2352,7 @@ DescriptionDoshHold="Keep Zeds out of the marked area"
 DescriptionDoshHoldShort="Defend the Zone (Optional)"
 RepairObjective="WELD AND REPAIR"
 UseWelderToRepair="Use Welder to repair broken machines"
-UseWelderToRepairShort="Weld Broken Machine"
+UseWelderToRepairShort="Weld Broken Machines"
 UseWelderToRepairTraderPod="Use Welder to repair broken Trader Pods"
 UseWelderToRepairTraderPodShort="Weld Trader Pods"
 RepairObjectiveRequired="Broken machines to repair:"
@@ -2381,10 +2382,10 @@ HoldZoneDescription="Defend the highlighted area from Zeds"
 HoldZoneDescriptionShort="Defend highlighted area"
 HoldZoneRequired="Time to defend:"
 TransportWaveObjective="TRANSPORT"
-TransportWaveDescription="Transport the Data Pad to the delivery location"
-TransportWaveDescriptionShort="Transport the Data Pad"
-TransportWaveDescriptionGear="Transport the Gear to the delivery location"
-TransportWaveDescriptionGearShort="Transport the Gear"
+TransportWaveDescription="Transport the Data Pads to the delivery location"
+TransportWaveDescriptionShort="Transport the Data Pads"
+TransportWaveDescriptionGear="Transport the Gears to the delivery location"
+TransportWaveDescriptionGearShort="Transport the Gears"
 RequiredCollectActor="Deliveries required:"
 FailedString="FAILED"
 SuccessString="DONE"
@@ -2660,6 +2661,20 @@ AllCompleteRewardDescriptionString="Steampunk Outfits + M99 AMR skin"
 
 ChanceDropDescriptionStrings[0]="Prize Ticket"
 ChanceDropDescriptionStrings[1]="Gold Ticket"
+
+[KFGFxFall2019ObjectivesContainer]
+CurrentSpecialEventString="A time limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Asylum Assault",DescriptionString="Defeat any boss on Survival Hard or higher difficulty on Ashwood Asylum")
+SpecialEventObjectiveInfoList[1]=(TitleString="Long-term Treatment",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Ashwood Asylum")
+SpecialEventObjectiveInfoList[2]=(TitleString="Weekly Checkup",DescriptionString="Complete the Weekly on Ashwood Asylum")
+SpecialEventObjectiveInfoList[3]=(TitleString="Cleaning the Wards",DescriptionString="Kill 1500 Zeds on Ashwood Asylum")
+SpecialEventObjectiveInfoList[4]=(TitleString="Bombs Away!",DescriptionString="Complete Nuked on Objective Hard or higher difficulty")
+
+AllCompleteRewardDescriptionString="Kriss | Beyond Horizon | Space Elite"
+
+ChanceDropDescriptionStrings[0]="Treat Ticket"
+ChanceDropDescriptionStrings[1]="Golden Treat Ticket"
 
 ;============================================
 ; Daily Localization
@@ -3246,6 +3261,9 @@ DisplayName="Spillway"
 
 [KF-SteamFortress KFMapSummary]
 DisplayName="Steam Fortress"
+
+[KF-AshwoodAsylum KFMapSummary]
+DisplayName="Ashwood Asylum"
 
 [KFMapInfo]
 ; defaults

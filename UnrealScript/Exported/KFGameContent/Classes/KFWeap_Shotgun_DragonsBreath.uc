@@ -16,8 +16,6 @@ static simulated event EFilterTypeUI GetAltTraderFilter()
 
 defaultproperties
 {
-   NumPellets(0)=8
-   NumPellets(1)=()
    PackageKey="DragonsBreath"
    FirstPersonMeshName="WEP_1P_DragonsBreath_MESH.Wep_1stP_DragonsBreath_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_DragonsBreath_ANIM.WEP_1P_DragonsBreath_ANIM"
@@ -55,6 +53,13 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_DragonsBreath:MeleeHelper_0'
+   NumPellets(0)=8
+   NumPellets(1)=()
+   NumPellets(2)=()
+   NumPellets(3)=()
+   NumPellets(4)=()
+   NumPellets(5)=()
+   NumPellets(6)=()
    maxRecoilPitch=900
    minRecoilPitch=775
    maxRecoilYaw=500

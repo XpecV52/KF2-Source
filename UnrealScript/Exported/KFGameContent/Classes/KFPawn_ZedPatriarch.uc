@@ -2089,6 +2089,7 @@ defaultproperties
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.500000))
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MicrowaveRifle',DamageScale=(0.700000))
+   DamageTypeModifiers(13)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(0.500000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Patriarch'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    FootstepCameraShakeInnerRadius=200.000000
@@ -2229,7 +2230,8 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_MonsterBoss:SpecialMoveHandler_0'
    End Object

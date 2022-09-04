@@ -188,8 +188,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     super(KFPawn_Monster).TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
     if((EnrageHealthThresholds.Length > 0) && (float(Health) / float(HealthMax)) < EnrageHealthThresholds[0])
     {
-        EnrageHealthThresholds.Remove(0, 1;
-        KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
+        if(IsCombatCapable())
+        {
+            EnrageHealthThresholds.Remove(0, 1;
+            KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
+        }
     }
 }
 
@@ -200,19 +203,6 @@ function int GetHitZoneIndex(name BoneName)
         return OverrideArmorFXIndex;
     }
     return super(KFPawn).GetHitZoneIndex(BoneName);
-}
-
-function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
-{
-    if(Damage == float(0))
-    {
-        HitInfo.BoneName = 'KBArmor';
-        super(KFPawn_Monster).PlayHit(1, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);        
-    }
-    else
-    {
-        super(KFPawn_Monster).PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
-    }
 }
 
 simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
@@ -227,7 +217,7 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 {
     super(KFPawn_Monster).ZedExplodeArmor(ArmorZoneIdx, ArmorZoneName);
-    KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
+    Knockdown(((Velocity != vect(0, 0, 0)) ? -Velocity * float(2) : float(3) * (-vector(Rotation) * GroundSpeed)), vect(1, 1, 1),,,,, Location);
 }
 
 simulated event bool CanDoSpecialMove(KFGame.KFPawn.ESpecialMove AMove, optional bool bForceCheck)
@@ -258,7 +248,7 @@ simulated function bool SetEnraged(bool bNewEnraged)
     {
         if(bIsEnraged)
         {
-            DoSpecialMove(43, true,, SpecialMoveHandler.SpecialMoveClasses[43].static.PackFlagsBase(self));
+            DoSpecialMove(44, true,, SpecialMoveHandler.SpecialMoveClasses[44].static.PackFlagsBase(self));
             if(GetTimerCount('TimerFartAttack') > Lerp(RageFartAttackTimer.X, RageFartAttackTimer.Y, GetHealthPercentage()))
             {
                 ClearFartTimer();
@@ -456,7 +446,7 @@ function SpawnPoopMonster()
     local KFPawn_Monster NewZed;
     local Vector X, Y, Z;
 
-    if(IsDoingSpecialMove(37))
+    if(IsDoingSpecialMove(38))
     {
         return;
     }
@@ -533,7 +523,7 @@ defaultproperties
     BossCaptionStrings(5)="Destroying the Abomination's armor will send him into a rage, which is his most deadly state."
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'ZED_BloatKing_ARCH.FX_GasAoE_Explosion_01'
-        Damage=14
+        Damage=15
         DamageRadius=450
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_BloatKingFart'
@@ -683,12 +673,15 @@ Parameter name: index
     PoopMonsterSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Bile_Spawn'
     PoopMonsterFXSocket=Poop_Attach
     PoopMonsterSpawnDelay=2
-    RageSprintSpeedMultiplier=1.62
-    EnrageHealthThresholds(0)=0.75
-    EnrageHealthThresholds(1)=0.5
-    EnrageHealthThresholds(2)=0.2
+    RageSprintSpeedMultiplier=1.3
+    EnrageHealthThresholds(0)=0.8
+    EnrageHealthThresholds(1)=0.6
+    EnrageHealthThresholds(2)=0.4
+    EnrageHealthThresholds(3)=0.2
     FootstepCameraShakePitchAmplitude=120
     FootstepCameraShakeRollAmplitude=60
+    VomitRange=400
+    VomitDamage=20
     PukeMineProjectileClass=Class'KFProj_BloatKingPukeMine'
     bCanRage=true
     MonsterArchPath="ZED_ARCH.ZED_BloatKing_Archetype"
@@ -738,7 +731,7 @@ Parameter name: index
     PenetrationResistance=10
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedBloatKing.Afflictions'
     IncapSettings=/* Array type was not detected. */
-    SprintSpeed=380
+    SprintSpeed=450
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -755,7 +748,7 @@ Parameter name: index
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedBloatKing.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedBloatKing.DialogAkSoundComponent'
     Mass=400
-    GroundSpeed=345
+    GroundSpeed=450
     Health=9000
     ControllerClass=Class'KFAIController_ZedBloatKing'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent

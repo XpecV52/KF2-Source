@@ -42,6 +42,7 @@ final protected simulated function FinishedObjective(int EventIndex, int Objecti
 
 	KFPC = Outer.MyKFPC;
 	if (KFPC.WorldInfo.NetMode != NM_DedicatedServer && KFPC.IsLocalPlayerController() &&
+		!KFPC.PlayerReplicationInfo.bOnlySpectator && !Outer.HasCheated() &&
 		!Outer.IsEventObjectiveComplete(ObjectiveIndex))
 	{
 		Outer.UpdateSpecialEvent(EventIndex, ObjectiveIndex);

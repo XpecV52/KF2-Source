@@ -68,6 +68,8 @@ cpptext
 {
 	virtual UBOOL ShouldTrace(UPrimitiveComponent* Primitive,AActor *SourceActor, DWORD TraceFlags);
 	virtual UBOOL IgnoreBlockingBy(const AActor* Other) const;
+	// also checks whether the pawn is active
+	virtual UBOOL IsAliveAndWell() const;
 }
 
 simulated event ReplicatedEvent(name VarName)

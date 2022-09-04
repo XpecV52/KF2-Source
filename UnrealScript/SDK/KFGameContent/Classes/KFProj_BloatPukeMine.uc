@@ -95,7 +95,7 @@ simulated event PostBeginPlay()
 	super.PostBeginPlay();
 
 	if( WorldInfo.NetMode != NM_Client )
-	{		
+	{
 		if( InstigatorController != none || IsAIProjectile() )
 		{
 			class'KFGameplayPoolManager'.static.GetPoolManager().AddProjectileToPool( self, PPT_PukeMine );
@@ -214,7 +214,7 @@ simulated function Stick( vector StuckLocation, vector StuckNormal )
 	bCollideComplex = false;
 	bBounce = false;
 
-	// Optimize for network 
+	// Optimize for network
 	NetUpdateFrequency = 0.25f;
 	bOnlyDirtyReplication = true;
 	bForceNetUpdate = true;
@@ -287,7 +287,7 @@ simulated function PlayImpactSound( optional bool bIsAtRest )
 		{
 			PostAkEvent( BounceAkEvent, true, true, false );
 		}
-	}	
+	}
 }
 
 /** Spawns a decal at the impact location */
@@ -446,12 +446,12 @@ simulated function FadeOut()
 	{
 		// Set initial fade values
 		bFadingOut = true;
-		FadeOutTime = WorldInfo.TimeSeconds + default.FadeOutTime;		
+		FadeOutTime = WorldInfo.TimeSeconds + default.FadeOutTime;
 	}
 	else
 	{
 		// Delay destruction slightly
-		SetTimer( 0.2f, false, nameOf(Destroy) );
+		SetTimer( 0.2f, false, nameOf(Timer_Destroy) );
 	}
 
 	// Tell clients to tear off and fade out on their own
@@ -461,6 +461,11 @@ simulated function FadeOut()
 		bNetDirty = true;
 		bForceNetUpdate = true;
 	}
+}
+
+simulated function Timer_Destroy()
+{
+	Destroy();
 }
 
 /** Spawns a small burst effect when the mine has finished shrinking */
@@ -522,7 +527,7 @@ simulated function OnInstigatorControllerLeft()
 
 defaultproperties
 {
-	Health=100  //150
+	Health=50	//100  //150
 
 	LifeSpan=0
 	FuseDuration=300
@@ -599,7 +604,7 @@ defaultproperties
 	// Explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		Damage=15 //45 //30
-		DamageRadius=450
+		DamageRadius=200	//450
 		DamageFalloffExponent=0.f
 		DamageDelay=0.f
 		MyDamageType=class'KFDT_Toxic_BloatPukeMine'

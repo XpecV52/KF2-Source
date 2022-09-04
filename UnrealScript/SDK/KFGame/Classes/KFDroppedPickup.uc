@@ -173,15 +173,6 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
 		}
 
 		SetPickupSkin(SkinItemId);
-
-		if (bUpgradedPickup)
-		{
-			SetUpgradedMaterial();
-		}
-		if (bEmptyPickup)
-        {
-            SetEmptyMaterial();
-        }
 	}
 }
 
@@ -191,19 +182,26 @@ simulated event SetPickupSkin(int ItemId, bool bFinishedLoading = false)
 {
 	local array<MaterialInterface> SkinMICs;
 
-	if ( ItemId > 0 && WorldInfo.NetMode != NM_DedicatedServer && !bWaitingForWeaponSkinLoad)
+	if (ItemId > 0 && WorldInfo.NetMode != NM_DedicatedServer && !bWaitingForWeaponSkinLoad)
 	{
-		if (!bFinishedLoading && StartLoadPickupSkin(ItemId))
+		if (bFinishedLoading || !StartLoadPickupSkin(ItemId))
 		{
-			return;
-		}
-
-		SkinMICs = class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, WST_Pickup);
-		if ( SkinMICs.Length > 0 )
-		{
-			MyMeshComp.SetMaterial(0, SkinMICs[0]);
+			SkinMICs = class'KFWeaponSkinList'.static.GetWeaponSkin(ItemId, WST_Pickup);
+			if ( SkinMICs.Length > 0 )
+			{
+				MyMeshComp.SetMaterial(0, SkinMICs[0]);
+			}
 		}
 	}
+
+	if (bUpgradedPickup)
+	{
+		SetUpgradedMaterial();
+	}
+	if (bEmptyPickup)
+    {
+        SetEmptyMaterial();
+    }
 }
 
 simulated function SetUpgradedMaterial()

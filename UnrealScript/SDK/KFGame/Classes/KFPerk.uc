@@ -336,6 +336,10 @@ static function class<KFPerk> GetPerkFromDamageCauser( Actor WeaponActor, class<
 			{
 				return class'KFPerk_Survivalist';
 			}
+			else if (ClassIsChildOf(KFSpray.MyDamageType, class'KFDT_Toxic'))
+			{
+				return class'KFPerk_FieldMedic';
+			}
 		}
 		else if( WeaponActor.IsA( 'KFDoorActor' ) )
 		{
@@ -854,7 +858,7 @@ reliable client function ClientClearPerkEffects();
 
 /**
  * We need to separate this from ApplySkillsToPawn() to avoid resetting weight limits (and losing weapons)
- * every time a skill or level is changed 
+ * every time a skill or level is changed
  */
 function ApplyWeightLimits()
 {
@@ -917,7 +921,7 @@ function AddDefaultInventory( KFPawn P )
         else
         {
             P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
-        }		
+        }
 		// Secondary weapon is spawned through the pawn unless we want an additional one  not anymore
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), class'Class')));
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetKnifeWeaponClassPath(), class'Class')));
@@ -1245,12 +1249,12 @@ simulated event KFPawn_Human GetOwnerPawn()
 	return none;
 }
 
-protected function bool HitShouldStumble( byte BodyPart ) 
+protected function bool HitShouldStumble( byte BodyPart )
 {
 	return BodyPartsCanStumble.Find( BodyPart ) != INDEX_NONE;
 }
 
-protected function bool HitShouldKnockdown( byte BodyPart ) 
+protected function bool HitShouldKnockdown( byte BodyPart )
 {
 	return BodyPartsCanKnockDown.Find( BodyPart ) != INDEX_NONE;
 }

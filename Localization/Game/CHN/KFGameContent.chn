@@ -37,7 +37,7 @@ AlternateFireDescription="大部分主武器都有备用射击模式。按 <font
 FlashLightBatteryTitleKey="使用手电筒"
 FlashLightBatteryDescriptionKey="外面的环境可能较暗。按 <font color="#caab05">%x%</font> 可以开关<font color="#caab05">手电筒</font>。手电筒将缓慢没电。当完全没电时，它将关闭并且自动开始充电。"
 GrenadeTitleKey="使用手榴弹"
-GrenadeDescriptionKey="手榴弹可以有效对付聚集在一起的丧尸。神射在<font color="#caab05">武器加载</font>中有不同的手榴弹，每一种都可以伤害丧尸，而且可能有额外的效果。按 <font color="#caab05">%x%</font> 投掷一枚手榴弹。 " "
+GrenadeDescriptionKey="手榴弹可以有效对付聚集在一起的丧尸。神射在<font color="#caab05">武器加载</font>中有不同的手榴弹，每一种都可以伤害丧尸，而且可能有额外的效果。按 <font color="#caab05">%x%</font> 投掷一枚手榴弹。 "
 
 ;Wave 1 end
 TraderTimeTitleKey="商人时间"
@@ -116,48 +116,48 @@ ItemDescription="•战斗护甲可以保护你不受各种伤害，但是会在
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 炸药包"
-ItemCategory =" "爆炸物"
-ItemDescription="•连着导火线的一小包炸弹。\n•爆炸的时候连你也会伤到，别靠太近" "
+ItemCategory ="爆炸物"
+ItemDescription="•连着导火线的一小包炸弹。\n•爆炸的时候连你也会伤到，别靠太近 "
 
 [KFProj_MedicGrenade]
 ItemName="医疗兵手榴弹"
-ItemCategory =" "爆炸物"
-ItemDescription="•释放出的气体会使丧尸中毒，但是会帮助人类疗伤。\n\n•站在蓝色的气体云中可以获得治疗。\n其中一名科学家是这样说的：‘这些手榴弹放出的物质将会使人类复活，但是会使尸类死亡。’我们希望这会有所帮助。" "
+ItemCategory ="爆炸物"
+ItemDescription="•释放出的气体会使丧尸中毒，但是会帮助人类疗伤。\n\n•站在蓝色的气体云中可以获得治疗。\n其中一名科学家是这样说的：‘这些手榴弹放出的物质将会使人类复活，但是会使尸类死亡。’我们希望这会有所帮助。 "
 
 [KFProj_MolotovGrenade]
 ItemName="燃烧弹"
 ItemCategory="爆炸物"
-ItemDescription="•简而言之，就是可以烧死丧尸的火焰手榴弹。\n\n这个名字是由芬兰人在 1939-40 冬季战斗中以斯大林的苏联外交部长 Vyacheslav Mikhailovich Molotov 而命名的…抱歉，你想要上一堂历史课吗？" "
+ItemDescription="•简而言之，就是可以烧死丧尸的火焰手榴弹。\n\n这个名字是由芬兰人在 1939-40 冬季战斗中以斯大林的苏联外交部长 Vyacheslav Mikhailovich Molotov 而命名的…抱歉，你想要上一堂历史课吗？ "
 
 [KFProj_EMPGrenade]
 ItemName="EMP 手榴弹"
 ItemCategory="爆炸物"
-ItemDescription="•释放的电脉冲可以伤害丧尸以及使它们暂时眩晕。\n\n如果你想要知道更多细节 - 在爆炸时，它会释放纳秒电磁脉冲，破坏短距离内的电子系统。尤其是丧尸内的电子系统。非常好用。" "
+ItemDescription="•释放的电脉冲可以伤害丧尸以及使它们暂时眩晕。\n\n如果你想要知道更多细节 - 在爆炸时，它会释放纳秒电磁脉冲，破坏短距离内的电子系统。尤其是丧尸内的电子系统。非常好用。 "
 
 [KFProj_HEGrenade]
 ItemName="HE 手榴弹"
 ItemCategory="爆炸物"
-ItemDescription="•非常简单但威力惊人的手榴弹。伤害丧尸也伤害人类。\n\n再也简单不过了。HE - 高爆炸力 - 可以将一切东西炸飞。这还要解释吗？" "
+ItemDescription="•非常简单但威力惊人的手榴弹。伤害丧尸也伤害人类。\n\n再也简单不过了。HE - 高爆炸力 - 可以将一切东西炸飞。这还要解释吗？ "
 
 [KFProj_FragGrenade]
 ItemName="破片手榴弹"
 ItemCategory="爆炸物"
-ItemDescription="•经典的破片手榴弹：在周围扔一些金属，没有东西可以抵挡得住。\n\n我非常肯定，你们在疫情爆发前玩过很多电视游戏，所以你们肯定知道破片手榴弹是什么东东。别装不知道。这里没人会信你的。" "
+ItemDescription="•经典的破片手榴弹：在周围扔一些金属，没有东西可以抵挡得住。\n\n我非常肯定，你们在疫情爆发前玩过很多电视游戏，所以你们肯定知道破片手榴弹是什么东东。别装不知道。这里没人会信你的。 "
 
 [KFProj_NailBombGrenade]
 ItemName="长钉炸弹"
-ItemCategory =" "爆炸物"
+ItemCategory ="爆炸物"
 ItemDescription="•一个普通的小罐装满了旧长钉，中间塞了一个小炸药包。\n\n这样对付丧尸似乎不够光明正大，但是对丧尸根本不用谈光明，不是吗？"
 
 [KFProj_FreezeGrenade]
 ItemName="冷冻手榴弹"
-ItemCategory =" "爆炸物"
+ItemCategory ="爆炸物"
 ItemDescription="•一个装有高压液氮的高科技小罐。\n\n一小罐就足以冻住丧尸一会儿。威力非常令人震惊。"
 
 [KFProj_FlashBangGrenade]
 ItemName="闪光弹"
-ItemCategory =" "爆炸物"
-ItemDescription="•又亮又大声，千万不要直视它。最好也不要听。\n•虽然威力不足以致死，但是闪光弹也会伤害你，所以要小心咯！" "
+ItemCategory ="爆炸物"
+ItemDescription="•又亮又大声，千万不要直视它。最好也不要听。\n•虽然威力不足以致死，但是闪光弹也会伤害你，所以要小心咯！ "
 
 [KFWeap_Healer_Syringe]
 ItemName="医用注射器"
@@ -235,7 +235,7 @@ ItemDescription="•主要攻击 - 用于快速砍杀；按住可以进行连击
 [KFWeap_Knife_SWAT]
 ItemName="策略匕首"
 ItemCategory="近战"
-ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n次要 - 猛砍。\n•Alt - 阻挡/闪避。\n•就是一把匕首。削铁如泥。用心使用。"
+ItemDescription="•主要 - 用于快速砍杀，按住可以进行连击。\n•辅助 - 猛砍。\n•Alt - 阻挡/闪避。\n•就是一把匕首。削铁如泥。用心使用。"
 
 [KFWeap_Pistol_Medic]
 ItemName="HMTech-101 手枪"
@@ -260,7 +260,7 @@ ItemDescription="•射击模式只有全自动。\n•备用射击可以射出�
 [KFWeap_Shotgun_DoubleBarrel]
 ItemName="双发霰弹枪"
 ItemCategory="霰弹枪"
-ItemDescription="•主要攻击只射击一发。\n•次要攻击可以一次射两发。\n•双发 12 子弹霰弹枪。非常适合近战。即使是最大的丧尸也会被吓到脚软！"
+ItemDescription="•主要攻击只射击一发。\n•辅助攻击可以一次射两发。\n•双发 12 子弹霰弹枪。非常适合近战。即使是最大的丧尸也会被吓到脚软！"
 
 [KFWeap_Shotgun_AA12]
 ItemName="AA-12 自动霰弹枪"
@@ -312,6 +312,11 @@ ItemName="VLAD-1000 钉枪"
 ItemCategory="霰弹枪"
 ItemDescription="•可以选择单发或多发钉枪射击模式。\n•备用射击可以切换射击模式。\n•我们知道一名霍因科学家从一个（死了的）维修工那里借了这把原始钉枪。"
 
+[KFWeap_HRG_Nailgun]
+ItemName="HRG 钉枪"
+ItemCategory="冲锋枪"
+ItemDescription="•拥有单发 500 rpm 的全自动模式与 3 发 857 rpm 的全自动火力模式可供选择。\n•按备用射击切换开火模式。\n•超强力创新品！"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="马路救世主"
 ItemCategory="近战"
@@ -337,7 +342,7 @@ SecondaryAmmo="汽油"
 [KFWeap_Edged_Zweihander]
 ItemName="双手剑"
 ItemCategory="近战"
-ItemDescription="•主要 - 中/重伤害，可以对付一群怪物。\n•次要 - 较慢，但是伤害力更高。\n•Alt - 阻挡/闪避\n•快速向前移动时伤害力甚至更大。"
+ItemDescription="•主要 - 中/重伤害，可以对付一群怪物。\n•辅助 - 较慢，但是伤害力更高。\n•Alt - 阻挡/闪避\n•快速向前移动时伤害力甚至更大。"
 SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
@@ -369,6 +374,11 @@ ItemDescription="•射击模式只有压动式。\n•一把采用龙息燃烧�
 ItemName="火焰喷射器"
 ItemCategory="火焰"
 ItemDescription="•射击模式喷出火焰。就是这样。\n•古今中外的经典武器。迟疑时，烧个精光就好。"
+
+[KFWeap_HRG_Healthrower]
+ItemName="HRG 治疗喷射器"
+ItemCategory="火焰"
+ItemDescription="•射击模式喷出可治疗玩家的气体，同时使丧尸中毒.\n•备用射击模式发射出治疗飞镖，可治疗队友。\n•其喷射出的气体带有柠檬和薄荷的气味，丧尸可不喜欢柠檬和薄荷。"
 
 [KFWeap_Beam_Microwave]
 ItemName="微波枪"
@@ -425,6 +435,18 @@ ItemName="双.50 沙漠之鹰"
 ItemCategory="手枪"
 ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•一对沙漠之鹰手炮。"
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="犀牛"
+ItemCategory="手枪"
+ItemDescription="•射击模式射出分裂弹。\n•分裂弹受到撞击后爆炸，发射出 3 片弹片。\n•穿透丧尸如切瓜砍菜。"
+SharedUnlockSource="犀牛"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="双持犀牛"
+ItemCategory="手枪"
+ItemDescription="•射击模式射出分裂弹。\n•分裂弹受到撞击后爆炸，发射出 3 片弹片。\n•使用机械瞄准具时，备用射击会切换瞄准方式。\n•穿透丧尸如切瓜砍菜。"
+SharedUnlockSource="双持犀牛"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 左轮手枪"
 ItemCategory="手枪"
@@ -444,6 +466,16 @@ ItemDescription="•射击模式只有单发射击。\n•长管 .50-口径‘�
 ItemName="两把 .500 马格南"
 ItemCategory="手枪"
 ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•一对.500 马格南“人骨拼图”左轮手枪。"
+
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="HRG 大号铅弹"
+ItemCategory="手枪"
+ItemDescription="•只有单发射击模式。\n•让扫射效果达到全新境界。"
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="双持 HRG 大号铅弹"
+ItemCategory="手枪"
+ItemDescription="•只有半自动射击模式。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•让扫射效果达到全新境界。"
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="温彻斯特 1894"
@@ -516,6 +548,18 @@ ItemName="火球炮"
 ItemCategory="火焰"
 ItemDescription="•按下开火按钮后开始充能，松开按钮后释放能量。\n•霍因官方版本的果壳大炮。此型号经过保证在95%的情况下不会爆炸。"
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="犀牛"
+ItemCategory="手枪"
+ItemDescription="•射击模式射出分裂弹。\n•分裂弹受到撞击后爆炸，发射出 3 片弹片。\n•穿透丧尸如切瓜砍菜。"
+SharedUnlockSource="犀牛"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="双持犀牛"
+ItemCategory="手枪"
+ItemDescription="•射击模式射出分裂弹。\n•分裂弹受到撞击后爆炸，发射出 3 片弹片。\n•使用机械瞄准具时，备用射击会切换瞄准方式。\n•穿透丧尸如切瓜砍菜。"
+SharedUnlockSource="双持犀牛"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H) 卡宾步枪"
 ItemCategory="突击步枪"
@@ -532,10 +576,16 @@ ItemName="双持 AF2011-A2"
 ItemCategory="手枪"
 ItemDescription="•射击模式只有半自动。\n•备用射击在使用机械瞄准具时切换瞄准方式。\n•两支枪各配有两个弹筒。四倍火力。这就是数学。你不能不信数学。"
 
+[KFWeap_Edged_IonThruster]
+ItemName="离子推进器"
+ItemCategory="近战"
+ItemDescription="•主要攻击 - 快速砍杀攻击，附加灼烧效果；按住可以进行连击。\n•次要攻击 - 附加灼烧效果的重型砍杀攻击。\n•填弹 - 100% 充能时进行一次特殊攻击。\n•辅助攻击 - 格挡/闪避。\n•适合烧烤使用。"
+SharedUnlockSource="离子推进器"
+
 [KFWeap_Shotgun_ElephantGun]
 ItemName="毁灭射手"
 ItemCategory="霰弹枪"
-ItemDescription="•主要攻击只射击一发。\n•次要攻击可以一次射四发。\n•双发不够爽？咱们上四发！"
+ItemDescription="•主要攻击只射击一发。\n•辅助攻击可以一次射四发。\n•双发不够爽？咱们上四发！"
 
 [KFWeap_Blunt_PowerGloves]
 ItemName="静电打击者"
@@ -544,7 +594,7 @@ ItemDescription="•主要 - 快速钝击；长按进行连击。\n•次要攻�
 
 [KFWeap_RocketLauncher_SealSqueal]
 ItemName="封印尖叫"
-ItemCategory="炸弹"
+ItemCategory="爆炸物"
 ItemDescription="•主要攻击发射 4 秒后会爆炸的鱼叉\n•备用射击可手动引爆所有鱼叉。\n•霍因可就此盖上其批准印章！"
 
 [KFWeap_AssaultRifle_LazerCutter]

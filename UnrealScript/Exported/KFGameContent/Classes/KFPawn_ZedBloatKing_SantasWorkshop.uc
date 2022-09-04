@@ -103,13 +103,14 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
-      SpecialMoveClasses(38)=None
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       SpecialMoveClasses(39)=None
       SpecialMoveClasses(40)=None
       SpecialMoveClasses(41)=None
       SpecialMoveClasses(42)=None
-      SpecialMoveClasses(43)=Class'kfgamecontent.KFSM_BloatKing_Enrage'
+      SpecialMoveClasses(43)=None
+      SpecialMoveClasses(44)=Class'kfgamecontent.KFSM_BloatKing_Enrage'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedBloatKing:SpecialMoveHandler_0'
    End Object

@@ -91,9 +91,10 @@ defaultproperties
         ExplosionSound=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Mini_Explosion'
         ExploLight=PointLightComponent'Default__KFProj_ExplosiveSubmunition_HX25.ExplosionPointLight'
         ExploLightFadeOutTime=0.3
-        CamShake=KFCameraShake'FX_CameraShake_Arch.Guns.HX25_Submunition_CameraShake'
-        CamShakeInnerRadius=150
+        CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
+        CamShakeInnerRadius=0
         CamShakeOuterRadius=300
+        CamShakeFalloff=1.5
     object end
     // Reference: KFGameExplosion'Default__KFProj_ExplosiveSubmunition_HX25.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

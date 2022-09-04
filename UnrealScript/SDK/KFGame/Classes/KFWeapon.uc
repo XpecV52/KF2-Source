@@ -681,6 +681,9 @@ const MaxAimAdjust_Cos = 0.995f;	// Cos(MaxAimAdjust)
 /** Used only by shotgun classes. Needed here to function with both the Medic shotgun and regular shotguns, since they extend different base classes */
 var float LastPelletFireTime;
 
+/** Number of pellets to fire, if greater than 1 then it uses shotgun-like functionality */
+var(Weapon) array<byte>	NumPellets;
+
 /*********************************************************************************************
  * @name	Firing
 ********************************************************************************************* */
@@ -955,6 +958,18 @@ var int UpgradeFireModes[7];
 
 var bool bStorePreviouslyEquipped;
 
+/*********************************************************************************************
+ * @name	Components
+********************************************************************************************* */
+
+var class<KFMedicWeaponComponent> MedicCompClass;
+var KFMedicWeaponComponent MedicComp;
+var repnotify Actor MedicCompRepActor;
+
+var class<KFTargetingWeaponComponent> TargetingCompClass;
+var KFTargetingWeaponComponent TargetingComp;
+var repnotify Actor TargetingCompRepActor;
+
 cpptext
 {
 	// Actor
@@ -984,6 +999,9 @@ replication
 		AmmoCount;
 	if (bNetDirty)
 		SpareAmmoCount, MagazineCapacity, SpareAmmoCapacity, bGivenAtStart,CurrentWeaponUpgradeIndex;
+
+	if (bNetDirty)
+		MedicCompRepActor, TargetingCompRepActor;
 }
 
 /*********************************************************************************************
@@ -1019,6 +1037,23 @@ native function array<Actor> BeamLineCheck(vector BeamEnd, vector BeamStart, vec
  * @name	Constructors, Destructors, and Loading
 ********************************************************************************************* */
 
+simulated event ReplicatedEvent(name VarName)
+{
+	switch (VarName)
+	{
+	case nameof(MedicCompRepActor):
+		MedicComp = KFMedicWeaponComponent(MedicCompRepActor);
+		break;
+
+	case nameof(TargetingCompRepActor):
+		TargetingComp = KFTargetingWeaponComponent(TargetingCompRepActor);
+		break;
+
+	default:
+		super.ReplicatedEvent(VarName);
+	};
+}
+
 /**
  * Called immediately before gameplay begins.
  */
@@ -1043,6 +1078,23 @@ simulated event PreBeginPlay()
 	{
 		RecoilYawBlendOutRate = maxRecoilYaw/RecoilRate * RecoilBlendOutRatio;
 		RecoilPitchBlendOutRate = maxRecoilPitch/RecoilRate * RecoilBlendOutRatio;
+	}
+
+	if (Role == ROLE_Authority)
+	{
+		if (MedicCompClass != none)
+		{
+			MedicComp = Spawn(MedicCompClass, self);
+			MedicComp.Init(AmmoCost[ALTFIRE_FIREMODE]);
+			MedicCompRepActor = MedicComp;
+		}
+
+		if (TargetingCompClass != none)
+		{
+			TargetingComp = Spawn(TargetingCompClass, self);
+			TargetingComp.Init();
+			TargetingCompRepActor = TargetingComp;
+		}
 	}
 }
 
@@ -1168,6 +1220,11 @@ function GivenTo( Pawn thisPawn, optional bool bDoNotActivate )
 
 	KFInventoryManager(InvManager).AddCurrentCarryBlocks( GetModifiedWeightValue() );
 	KFPawn(Instigator).NotifyInventoryWeightChanged();
+
+	if (MedicComp != none)
+	{
+		MedicComp.OnWeaponGivenTo(thisPawn);
+	}
 }
 
 reliable client function ClientGivenTo(Pawn NewOwner, bool bDoNotActivate)
@@ -1198,6 +1255,11 @@ function ItemRemovedFromInvManager()
 	`log(self @ "-" @ GetFuncName() @ "- CurrentCarryBlocks:" @ KFIM.CurrentCarryBlocks @ "ModifiedWeightValue:" @ GetModifiedWeightValue(), KFIM.bLogInventory);
 	KFIM.AddCurrentCarryBlocks( -GetModifiedWeightValue());
 	KFPawn(Instigator).NotifyInventoryWeightChanged();
+
+	if (MedicComp != none)
+	{
+		MedicComp.OnWeaponRemovedFromInvManager();
+	}
 }
 
 reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNotActivate)
@@ -1209,6 +1271,11 @@ reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNot
 	SetOnContentLoad = true;
 
 	Super.ClientWeaponSet(bOptionalSet, bDoNotActivate);
+
+	if (MedicComp != none)
+	{
+		MedicComp.OnClientWeaponSet();
+	}
 }
 
 simulated event SetWeapon()
@@ -1352,6 +1419,16 @@ simulated function AttachWeaponTo( SkeletalMeshComponent MeshCpnt, optional Name
 	{
 		AttachThirdPersonWeapon(KFP);
 	}
+
+	if (MedicComp != none)
+	{
+		MedicComp.OnWeaponAttachedTo();
+	}
+
+	if (TargetingComp != none)
+	{
+		TargetingComp.OnWeaponAttachedTo();
+	}
 }
 
 /** Assign a new 3rd person weapon attachment  */
@@ -1432,6 +1509,16 @@ simulated function DetachWeapon()
 	SetBase(None);
 	SetHidden(True);
 	DetachMuzzleFlash();
+
+	if (MedicComp != none)
+	{
+		MedicComp.OnWeaponDetached();
+	}
+
+	if (TargetingComp != none)
+	{
+		TargetingComp.OnWeaponDetached();
+	}
 }
 
 /**
@@ -2351,6 +2438,11 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
 
     bPlayFireLast = ShouldPlayFireLast(FireModeNum);
 
+	if (MedicComp != none && FireModeNum == ALTFIRE_FIREMODE)
+	{
+		return MedicComp.GetWeaponFireAnim();
+	}
+
 	// scoped-sight anims
 	if( bUsingScopePosition )
 	{
@@ -2923,6 +3015,11 @@ simulated function PlayFiringSound( byte FireModeNum )
 
 	MakeNoise(1.0,'PlayerFiring'); // AI
 
+	if (MedicComp != none && FireModeNum == ALTFIRE_FIREMODE)
+	{
+		MedicComp.PlayFiringSound();
+	}
+	else
 	if ( !bPlayingLoopingFireSnd )
 	{
 		UsedFireModeNum = FireModeNum;
@@ -3081,6 +3178,11 @@ simulated function ShakeView()
 		return;
 	}
 
+	if (MedicComp != none)
+	{
+		MedicComp.AdjustShakeView(CurrentFireMode);
+	}
+
 	// Play camera shake/anim
 	if (CurrentFireMode < FireCameraAnim.length && FireCameraAnim[CurrentFireMode] != None)
 	{
@@ -3128,6 +3230,14 @@ simulated function AddBlood(float MinAmount, float MaxAmount)
  */
 simulated function StartFire(byte FireModeNum)
 {
+	if (MedicComp != none)
+	{
+		if (!MedicComp.ShouldStartFire(FireModeNum))
+		{
+			return;
+		}
+	}
+
 	// Attempt auto-reload
 	if( FireModeNum == DEFAULT_FIREMODE || FireModeNum == ALTFIRE_FIREMODE )
 	{
@@ -3389,7 +3499,7 @@ function HandleWeaponShotTaken( byte FireMode )
 {
     if( KFPlayer != None )
 	{
-        KFPlayer.AddShotsFired(1);
+        KFPlayer.AddShotsFired(GetNumProjectilesToFire(FireMode));
 	}
 }
 
@@ -3486,7 +3596,8 @@ simulated function rotator AddSpread(rotator BaseAim)
 	local vector X, Y, Z;
 	local float CurrentSpread, RandY, RandZ;
 
-	if ( CurrentFireMode >= Spread.Length )
+	// when there are multiple pellets, will use AddMultiShotSpread when spawning the projectiles
+	if ( CurrentFireMode >= Spread.Length || NumPellets[CurrentFireMode] > 1)
 	{
 		return BaseAim;
 	}
@@ -3527,6 +3638,32 @@ simulated function rotator AddSpread(rotator BaseAim)
 	}
 }
 
+/** Same as AddSpread(), but used with MultiShotSpread */
+static function rotator AddMultiShotSpread(rotator BaseAim, float CurrentSpread, byte PelletNum)
+{
+	local vector X, Y, Z;
+	local float RandY, RandZ;
+
+	if (CurrentSpread == 0)
+	{
+		return BaseAim;
+	}
+	else
+	{
+		// Add in any spread.
+		GetAxes(BaseAim, X, Y, Z);
+		RandY = FRand() - 0.5;
+		RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
+		return rotator(X + RandY * CurrentSpread * Y + RandZ * CurrentSpread * Z);
+	}
+}
+
+/** Returns number of projectiles to fire from SpawnProjectile */
+simulated function byte GetNumProjectilesToFire(byte FireModeNum)
+{
+	return NumPellets[CurrentFireMode];
+}
+
 // Overridden if we want to add recoil modifiers
 simulated function ModifyRecoil( out float CurrentRecoilModifier )
 {
@@ -3547,6 +3684,11 @@ simulated event HandleRecoil()
 	if ( Instigator == none  || !Instigator.IsFirstPerson() )
 	{
 		return;
+	}
+
+	if (MedicComp != none)
+	{
+		MedicComp.AdjustRecoil(CurrentFireMode);
 	}
 
 	CurrentRecoilModifier = GetUpgradedRecoilModifier(CurrentFireMode);
@@ -3712,7 +3854,7 @@ static simulated function class<KFProjectile> GetKFProjectileClassByFiringMode(i
     		}
 		}
 
-		return SpawnProjectile(MyProjectileClass, RealStartLoc, AimDir);
+		return SpawnAllProjectiles(MyProjectileClass, RealStartLoc, AimDir);
 	}
 
 	return None;
@@ -3722,6 +3864,27 @@ static simulated function class<KFProjectile> GetKFProjectileClassByFiringMode(i
 simulated function bool ShouldIncrementFlashCountOnFire()
 {
 	return CurrentFireMode != GRENADE_FIREMODE;
+}
+
+simulated function KFProjectile SpawnAllProjectiles(class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir)
+{
+	local int ProjectilesToFire, i;
+	local rotator AimRot;
+
+	ProjectilesToFire = GetNumProjectilesToFire(CurrentFireMode);
+	if (CurrentFireMode == GRENADE_FIREMODE || ProjectilesToFire <= 1)
+	{
+		return SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
+	}
+
+	// Spawn projectile(s)
+	AimRot = rotator(AimDir);
+	for (i = 0; i < ProjectilesToFire; i++)
+	{
+		SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, Spread[CurrentFireMode], i)));
+	}
+
+	return None;
 }
 
 simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir )
@@ -3750,6 +3913,14 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 
 		SpawnedProjectile.UpgradeDamageMod = GetUpgradeDamageMod();
 		SpawnedProjectile.Init( AimDir );
+	}
+
+	if (MedicComp != none && KFProj_HealingDart(SpawnedProjectile) != None)
+	{
+		if (TargetingComp != none && TargetingComp.LockedTarget != none)
+		{
+			KFProj_HealingDart(SpawnedProjectile).SeekTarget = TargetingComp.LockedTarget;
+		}
 	}
 
 	// return it up the line
@@ -3801,6 +3972,14 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
     local float InitialPenetrationPower, OriginalPenetrationVal;
     local KFPerk CurrentPerk;
     local bool bNoPenetrationDmgReduction;
+
+	if (MedicComp != none && FiringMode == ALTFIRE_FIREMODE)
+	{
+		if (MedicComp.ProcessInstantHitEx(Impact))
+		{
+			return;
+		}
+	}
 
 	if (Impact.HitActor != None)
 	{
@@ -3926,8 +4105,8 @@ simulated function ProcessGrenadeProjectileImpact(ImpactInfo Impact, class<KFPro
 
 	if (Impact.HitActor != None)
 	{
-		TotalDamage = Fragment.default.Damage;
-
+		// apply weapon upgrades to the fragment damage
+		TotalDamage = GetUpgradedStatValue(Fragment.default.Damage, CurrentFireMode == 0 ? EWUS_Damage0 : EWUS_Damage1, CurrentWeaponUpgradeIndex);
 		if ( Impact.HitActor.bWorldGeometry )
 		{
 			HitStaticMesh = StaticMeshComponent(Impact.HitInfo.HitComponent);
@@ -4096,7 +4275,7 @@ event RecieveClientImpactList(byte FiringMode, array<ImpactInfo> ImpactList)
  */
 simulated function int GetAmmoType(byte FiringMode)
 {
-    if( FiringMode == ALTFIRE_FIREMODE && UsesSecondaryAmmo() )
+    if( FiringMode == ALTFIRE_FIREMODE && (UsesSecondaryAmmo() || MedicComp != none) )
     {
         return 1;
     }
@@ -4413,6 +4592,11 @@ simulated function bool HasAnyAmmo()
 		return true;
 	}
 
+	if (MedicComp != none)
+	{
+		return false;
+	}
+
     if( UsesSecondaryAmmo() && (HasSpareAmmo(ALTFIRE_FIREMODE) || HasAmmo(ALTFIRE_FIREMODE) ))
     {
 		return true;
@@ -4457,6 +4641,9 @@ simulated function int GetSpareAmmoForHUD()
 {
     return SpareAmmoCount[0];
 }
+
+/** Determines string used to display non-standard ammo for HUD display */
+simulated function string GetSpecialAmmoForHUD();
 
 /** Determines the secondary ammo left for HUD display */
 simulated function int GetSecondaryAmmoForHUD()
@@ -6254,6 +6441,11 @@ simulated state WeaponSingleFiring extends WeaponFiring
 	/** Handle ClearPendingFire */
 	simulated function FireAmmunition()
     {
+		if (MedicComp != none)
+		{
+			MedicComp.OnWeaponFireAmmunition(CurrentFireMode);
+		}
+
         Super.FireAmmunition();
 
 		// ClearPendingFire flag each time so that player has to press fire button
@@ -7357,18 +7549,18 @@ static simulated event SetTraderWeaponStats( out array<STraderItemWeaponStats> W
 /** Allows weapon to calculate its own damage for display in trader */
 static simulated function float CalculateTraderWeaponStatDamage()
 {
-	local float CalculatedDamage;
+	local float BaseDamage, DoTDamage;
 	local class<KFDamageType> DamageType;
 
-	CalculatedDamage = default.InstantHitDamage[DEFAULT_FIREMODE];
+	BaseDamage = default.InstantHitDamage[DEFAULT_FIREMODE];
 
 	DamageType = class<KFDamageType>(default.InstantHitDamageTypes[DEFAULT_FIREMODE]);
-	if( DamageType != none && DamageType.default.DoT_Type != DOT_None )
+	if (DamageType != none && DamageType.default.DoT_Type != DOT_None)
 	{
-		CalculatedDamage += (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (CalculatedDamage * DamageType.default.DoT_DamageScale);
+		DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
 	}
 
-	return CalculatedDamage;
+	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
 }
 
 /** Allows weapon to calculate its own fire rate for display in trader */
@@ -7673,5 +7865,11 @@ defaultproperties
 	OverrideSprintSpeed=-1.f; // defaults to -1 (disabled)
 
 	bStorePreviouslyEquipped=true
+
+	NumPellets(DEFAULT_FIREMODE)=1
+	NumPellets(ALTFIRE_FIREMODE)=1
+	NumPellets(BASH_FIREMODE)=1
+	NumPellets(GRENADE_FIREMODE)=1
+	NumPellets(CUSTOM_FIREMODE)=1
 }
 

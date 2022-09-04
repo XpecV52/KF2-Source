@@ -252,7 +252,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 		case SEI_Summer:
 			return class'KFGFxSummer2019ObjectivesContainer';
 		case SEI_Fall:
-			return class'KFGFxFallObjectivesContainer';
+			return class'KFGFxFall2019ObjectivesContainer';
 		case SEI_Winter:
 			return class'KFGFxChristmasObjectivesContainer';
 	}
@@ -648,7 +648,7 @@ function SendLeaderOptions()
 		SetLobbyData(GameLengthKey, String(OptionsComponent.GetLengthIndex()));
 		SetLobbyData(DifficultyKey, String(OptionsComponent.GetDifficultyIndex()));
 		SetLobbyData(MapKey, OptionsComponent.GetMapName());
-		SetLobbyData(ModeKey, String(OptionsComponent.GetModeIndex()));
+		SetLobbyData(ModeKey, String(Manager.GetModeIndex()));
 		SetLobbyData(PermissionsKey, String(OptionsComponent.GetPrivacyIndex()));
 	}
 }
@@ -725,14 +725,17 @@ function UpdateStartMenuState()
 		{
 			case ECreateGame:
 				OptionsComponent.bShowLengthNoPref = false;
+				OptionsComponent.InitializeGameOptions();
 				break;
 			case EMatchmaking:
 				OptionsComponent.bShowLengthNoPref = true;
+				OptionsComponent.InitializeGameOptions();
 				//set match privacy to public for find match
 				OptionsComponent.PrivacyChanged(0);
 				break;
 			case ESoloGame:
 				OptionsComponent.bShowLengthNoPref = false;
+				OptionsComponent.InitializeGameOptions();
 				break;
 		}
 	}
@@ -1118,9 +1121,13 @@ function SetLobbyData( string KeyName, string ValueData )
 function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 {
 	local string MapName;
-	local int LengthIndex, OBJECTIVE_MODE_INDEX;
+	local int LengthIndex, ModeIndex;
 
-	OBJECTIVE_MODE_INDEX = 4;
+	// this is ugly, but effectively makes sure that the player isn't solo with versus selected
+	// or other error cases such as when the game isn't fully installed
+	ModeIndex = InOptionsComponent.GetNormalizedGameModeIndex(Manager.GetModeIndex(true));
+	LengthIndex = InOptionsComponent.GetLengthIndex();
+
 	MapName = InOptionsComponent.GetMapName();
 	if (MapName == "" || MapStringList.Find(MapName) == INDEX_NONE)
 	{
@@ -1144,7 +1151,7 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 		else
 		{
 			// Biotics Lab doesn't support objective mode yet, so that needs a different default
-			if (Manager.CachedProfile.GetProfileInt(KFID_SavedModeIndex) == OBJECTIVE_MODE_INDEX)
+			if (ModeIndex == EGameMode_Objective)
 			{
 				MapName = "KF-SteamFortress";
 			}
@@ -1154,9 +1161,8 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 			}
 		}
 	}
-	LengthIndex = InOptionsComponent.GetLengthIndex();
 
-	return MapName$"?Game="$class'KFGameInfo'.static.GetGameModeClassFromNum(Manager.CachedProfile.GetProfileInt(KFID_SavedModeIndex))
+	return MapName$"?Game="$class'KFGameInfo'.static.GetGameModeClassFromNum( ModeIndex )
 	       $"?Difficulty="$class'KFGameDifficultyInfo'.static.GetDifficultyValue( InOptionsComponent.GetDifficultyIndex() )
 		   $"?GameLength="$LengthIndex;
 }
@@ -1224,7 +1230,7 @@ function string BuildJoinFiltersRequestURL()
 	local string FiltersURL;
 	local int GameMode, GameDifficulty;
 
-	GameMode = OptionsComponent.GetModeIndex();
+	GameMode = Manager.GetModeIndex();
 	GameDifficulty = OptionsComponent.GetDifficulty();
 
 	if( GameMode >= 0 )
@@ -1513,7 +1519,7 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
 			Search.AddServerFilter("notfull", "");
 		}
 
-		GameMode = OptionsComponent.GetModeIndex();
+		GameMode = Manager.GetModeIndex();
 		if( GameMode >= 0 )
 		{
 			Search.AddGametagFilter( GameTagFilters, 'Mode', string(GameMode) );
@@ -1851,20 +1857,9 @@ event int GetGameModeIndex()
 	local KFGameReplicationInfo KFGRI;
 	KFGRI = KFGameReplicationInfo(class'WorldInfo'.static.GetWorldInfo().GRI);
 
-	if (OptionsComponent != none)
+	if(Manager != none)
 	{
-		if (OptionsComponent.bIsSoloGame)
-		{
-			return OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex);
-		}
-		else
-		{
-			return OptionsComponent.SavedModeIndex;
-		}
-	}
-	else if(Manager != none)
-	{
-		return Manager.CachedProfile.GetProfileInt(KFID_SavedModeIndex);
+		return Manager.GetModeIndex();
 	}
 	else if (KFGRI != none)
 	{
@@ -1973,6 +1968,7 @@ defaultproperties
    StockMaps(24)="kf-santasworkshop"
    StockMaps(25)="kf-spillway"
    StockMaps(26)="kf-steamfortress"
+   StockMaps(27)="kf-ashwoodasylum"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
    SubWidgetBindings(1)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
    SubWidgetBindings(2)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')

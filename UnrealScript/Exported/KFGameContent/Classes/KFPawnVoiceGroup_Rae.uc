@@ -527,7 +527,6 @@ class KFPawnVoiceGroup_Rae extends KFPawnVoiceGroup;
 
 
 
-										  
 
 
 
@@ -543,7 +542,8 @@ class KFPawnVoiceGroup_Rae extends KFPawnVoiceGroup;
 
 
 
-										  
+
+
 
 
 

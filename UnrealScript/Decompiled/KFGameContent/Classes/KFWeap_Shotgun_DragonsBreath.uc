@@ -16,7 +16,6 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTrader
 
 defaultproperties
 {
-    NumPellets=/* Array type was not detected. */
     PackageKey="DragonsBreath"
     FirstPersonMeshName="WEP_1P_DragonsBreath_MESH.Wep_1stP_DragonsBreath_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -45,6 +44,7 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=10,Y=7.5,Z=-4.5)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_DragonsBreath.MeleeHelper'
+    NumPellets=/* Array type was not detected. */
     maxRecoilPitch=900
     minRecoilPitch=775
     maxRecoilYaw=500

@@ -7682,17 +7682,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_251
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_70
-   InputLinks(0)=(DrawY=-3835,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-3814,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-3793,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_76')),ActivateDelay=1.000000,DrawY=-3814,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43'),DrawX=6430,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=6481,OverrideDelta=76)
-   EventLinks(0)=(DrawX=6530,OverrideDelta=119)
+   InputLinks(0)=(DrawY=-3859,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-3838,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-3817,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_76')),ActivateDelay=1.000000,DrawY=-3838,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_43'),DrawX=6334,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=6385,OverrideDelta=76)
+   EventLinks(0)=(DrawX=6434,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6392
-   ObjPosY=-3872
+   ObjPosX=6296
+   ObjPosY=-3896
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_70"
@@ -7703,8 +7703,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
    ObjValue=Emitter'KF-ZEDLANDING.TheWorld:PersistentLevel.Emitter_42'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6392
-   ObjPosY=-3704
+   ObjPosX=6296
+   ObjPosY=-3728
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_43"
@@ -7714,7 +7714,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_23
    EventName="ObjectDelivered"
    MaxWidth=221
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Switch'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Switch_2')),DrawY=-3838,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_70')),DrawY=-3838,OverrideDelta=11)
    VariableLinks(0)=(DrawX=5934,OverrideDelta=78)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence'
@@ -11222,8 +11222,8 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_11
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_40
-   InputLinks(0)=(DrawY=-5955,ActivateDelay=2.000000,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-5934,OverrideDelta=35)
+   InputLinks(0)=(DrawY=-5955,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5934,ActivateDelay=12.000000,OverrideDelta=35)
    InputLinks(2)=(DrawY=-5913,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-5934,OverrideDelta=35)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_151'),DrawX=6470,OverrideDelta=16)
@@ -11584,8 +11584,8 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_10
 End Object
 
 Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_11
-   NewMaterial=MaterialInstanceConstant'ENV_OBJ_MAT.dataterminal.ENV_DateTerminal_01_MIC'
-   InputLinks(0)=(DrawY=-5854,OverrideDelta=11)
+   NewMaterial=MaterialInstanceConstant'ENV_OBJ_MAT.dataterminal.ENV_DataTerminal_01_MIC'
+   InputLinks(0)=(DrawY=-5854,ActivateDelay=12.000000,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5854,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_205'),DrawX=6109,OverrideDelta=23)
    ObjInstanceVersion=1
@@ -12667,23 +12667,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_57
    DrawHeight=109
    Name="SeqAct_Toggle_57"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SeqAct_Switch Name=SeqAct_Switch_2
-   LinkCount=2
-   bAutoDisableLinks=True
-   InputLinks(0)=(DrawY=-3834,OverrideDelta=23)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_70')),DrawY=-3844,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_70')),LinkDesc="Link 2",DrawY=-3824,OverrideDelta=33)
-   VariableLinks(0)=(DrawX=6194,OverrideDelta=16)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=6160
-   ObjPosY=-3880
-   DrawWidth=68
-   DrawHeight=85
-   Name="SeqAct_Switch_2"
-   ObjectArchetype=SeqAct_Switch'Engine.Default__SeqAct_Switch'
 End Object
 
 Begin Object Class=KFSeqAct_SetMonsterProperties Name=KFSeqAct_SetMonsterProperties_0

@@ -8,6 +8,36 @@
 //=============================================================================
 class KFSM_Husk_FireBallAttack extends KFSM_RangedAttack;
 
+/** Seasonal overrides for offsets for firing fireballs */
+var array<vector> SpringFireOffsets;
+var array<vector> SummerFireOffsets;
+var array<vector> FallFireOffsets;
+var array<vector> WinterFireOffsets;
+
+function InitSpecialMove( Pawn InPawn, Name InHandle )
+{
+	super.InitSpecialMove(InPawn, InHandle);
+
+	switch (class'KFGameEngine'.static.GetSeasonalEventID())
+	{
+	case SEI_Spring:
+		FireOffsets = SpringFireOffsets;
+		break;
+	case SEI_Summer:
+		FireOffsets = SummerFireOffsets;
+		break;
+	case SEI_Fall:
+		FireOffsets = FallFireOffsets;
+		break;
+	case SEI_Winter:
+		FireOffsets = WinterFireOffsets;
+		break;
+	default:
+		FireOffsets = default.FireOffsets;
+		break;
+	}
+}
+
 /** Notification from KFPawn_ZedHusk that the animnotify to fire a shot has been triggered */
 function NotifyFireballFired()
 {
@@ -39,6 +69,14 @@ function bool CanOverrideMoveWith( Name NewMove )
 
 defaultproperties
 {
+   SpringFireOffsets(0)=(X=15.000000,Y=32.000000,Z=-22.000000)
+   SpringFireOffsets(1)=(X=15.000000,Y=32.000000,Z=-62.000000)
+   SummerFireOffsets(0)=(X=15.000000,Y=32.000000,Z=-22.000000)
+   SummerFireOffsets(1)=(X=15.000000,Y=32.000000,Z=-62.000000)
+   FallFireOffsets(0)=(X=0.000000,Y=0.000000,Z=-30.000000)
+   FallFireOffsets(1)=(X=0.000000,Y=0.000000,Z=-30.000000)
+   WinterFireOffsets(0)=(X=15.000000,Y=32.000000,Z=-22.000000)
+   WinterFireOffsets(1)=(X=15.000000,Y=32.000000,Z=-62.000000)
    AnimNames(0)="Atk_Shoot_V1"
    AnimNames(1)="Atk_Shoot_V2"
    FireOffsets(0)=(X=15.000000,Y=32.000000,Z=-22.000000)

@@ -114,6 +114,7 @@ const STATID_ACHIEVE_SantasWorkshopCollectibles = 4047;
 const STATID_ACHIEVE_ShoppingSpreeCollectibles = 4048;
 const STATID_ACHIEVE_SpillwayCollectibles = 4049;
 const STATID_ACHIEVE_SteamFortressCollectibles = 4050;
+const STATID_ACHIEVE_AsylumCollectibles = 4051;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -2886,6 +2887,10 @@ unreliable client simulated function ClientPlayCameraShake(CameraShake Shake, op
 {
     Scale = 1;    
     PlaySpace = 0;    
+    if((Pawn == none) || !Pawn.IsAliveAndWell())
+    {
+        return;
+    }
     if(bTryForceFeedback)
     {
         DoForceFeedbackForScreenShake(Shake, Scale);
@@ -4186,7 +4191,14 @@ function UpdateLowHealthEffect(float DeltaTime)
         bLowHealth = (Pawn.Health > 0) && Pawn.Health <= default.LowHealthThreshold;
         if(GameplayPostProcessEffectMIC != none)
         {
-            GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectLowHealthParamName, ((bLowHealth) ? 1 : 0));
+            if(PlayerCamera.CameraStyle == 'Boss')
+            {
+                GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectLowHealthParamName, 0);                
+            }
+            else
+            {
+                GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectLowHealthParamName, ((bLowHealth) ? 1 : 0));
+            }
         }
         if(bLowHealth)
         {
@@ -6731,6 +6743,33 @@ exec function DoEmote()
     if((IsLocalController()) && LEDEffectsManager != none)
     {
         LEDEffectsManager.PlayEmoteEffect();
+    }
+}
+
+exec function RequestSkipTrader()
+{
+    local KFGameReplicationInfo KFGRI;
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+    KFGRI = KFGameReplicationInfo(KFPRI.WorldInfo.GRI);
+    if(KFPRI != none)
+    {
+        if(KFGRI.bMatchHasBegun)
+        {
+            if(KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
+            {
+                KFPRI.RequestSkiptTrader(KFPRI);
+                if(MyGFxManager != none)
+                {
+                    MyGFxManager.CloseMenus();
+                    if(MyGFxManager.PartyWidget != none)
+                    {
+                        MyGFxManager.PartyWidget.SetReadyButtonVisibility(false);
+                    }
+                }
+            }
+        }
     }
 }
 

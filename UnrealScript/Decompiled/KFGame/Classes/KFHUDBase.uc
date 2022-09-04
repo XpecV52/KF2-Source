@@ -102,6 +102,7 @@ var const Color ArmorColor;
 var const Color HealthColor;
 var const Color ClassicArmorColor;
 var const Color ClassicHealthColor;
+var const Color NonPlayerHealth;
 var const Color PlayerBarBGColor;
 var const Color PlayerBarTextColor;
 var const Color PlayerBarIconColor;
@@ -200,6 +201,10 @@ function DrawCrosshair()
     CrosshairSize = 6;
     if((PlayerOwner.Pawn != none) && PlayerOwner.Pawn.Health > 0)
     {
+        if(PlayerOwner.ViewTarget != PlayerOwner.Pawn)
+        {
+            return;
+        }
         KFWP = KFWeapon(PlayerOwner.Pawn.Weapon);
         MyKFPerk = KFPlayerController(PlayerOwner).GetPerk();
         bMonsterPawn = PlayerOwner.GetTeamNum() == 255;
@@ -758,7 +763,7 @@ simulated function bool DrawObjectiveHUD()
         BarLength = FMin(PlayerStatusBarLengthMax * (Canvas.ClipX / 1024), PlayerStatusBarLengthMax) * ResModifier;
         BarHeight = FMin(8 * (Canvas.ClipX / 1024), 8) * ResModifier;
         Percentage = FMin(KFGRI.ObjectiveInterface.GetProgress(), 1);
-        DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, HealthColor);        
+        DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, NonPlayerHealth);        
     }
     else
     {
@@ -1042,6 +1047,7 @@ defaultproperties
     HealthColor=(B=0,G=192,R=0,A=192)
     ClassicArmorColor=(B=255,G=0,R=0,A=192)
     ClassicHealthColor=(B=255,G=210,R=95,A=192)
+    NonPlayerHealth=(B=97,G=184,R=0,A=192)
     PlayerBarBGColor=(B=16,G=16,R=16,A=192)
     PlayerBarTextColor=(B=255,G=255,R=255,A=192)
     PlayerBarIconColor=(B=255,G=255,R=255,A=192)

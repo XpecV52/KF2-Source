@@ -43,6 +43,7 @@ var(ThirdPerson) array<ZedColorMod> RandomizedColors;
 struct native StaticAttachments
 {
     var() StaticMesh StaticAttachment;
+	var() name AttachSocketName;
     var() name AttachBoneName;
     var() Rotator RelativeRotation;
 };
@@ -225,7 +226,16 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
                 StaticAttachment.SetLightingChannels(KFP.PawnLightingChannel);
 				ExtraMICs.AddItem(StaticAttachment.CreateAndSetMaterialInstanceConstant(0));
                 KFP.AttachComponent(StaticAttachment);
-                KFP.Mesh.AttachComponent(StaticAttachment, StaticAttachList[i].AttachBoneName,, StaticAttachList[i].RelativeRotation);
+				if (StaticAttachList[i].AttachSocketName != '')
+				{
+					KFP.Mesh.AttachComponentToSocket(
+						StaticAttachment, StaticAttachList[i].AttachSocketName);
+				}
+				else
+				{
+					KFP.Mesh.AttachComponent(StaticAttachment, StaticAttachList[i].AttachBoneName,,
+						StaticAttachList[i].RelativeRotation);
+				}
             }
         }
 	}

@@ -11,7 +11,7 @@ DifficultyStrings[0]="Normal"
 DifficultyStrings[1]="Difficile"
 DifficultyStrings[2]="Suicidaire"
 DifficultyStrings[3]="Enfer sur Terre"
-BonusDoshString="FRIC BONUS"
+BonusDoshString="RÉCOMPENSES"
 LengthStrings[0]="Court (4 vagues)"
 LengthStrings[1]="Moyen (7 vagues)"
 LengthStrings[2]="Long (10 vagues)"
@@ -142,9 +142,9 @@ CompleteMapString="Gagner le match sur la carte :"
 KillZedsString="Tuer des Zeds :"
 KillBossString="Tuer le boss :"
 KillBossDescriptionString="En survie ou hebdomadaire"
-VersusKillsString="Tuer un joueur versus en tant que :
-DealVersusDamageString="Blesser un joueur versus en tant que :
-VersusCompletionString="Finir le match en tant que :
+VersusKillsString="Tuer un joueur versus en tant que :"
+DealVersusDamageString="Blesser un joueur versus en tant que :"
+VersusCompletionString="Finir le match en tant que :"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="AUCUN MATCH TROUVÉ"
@@ -1321,6 +1321,7 @@ GBA_SwitchWeapon3="Arme de mêlée"
 GBA_SwitchWeapon4="Équipement"
 GBA_VoteYes="Voter Oui (Tenir)"
 GBA_VoteNo="Voter Non (Tenir)"
+GBA_RequestSkipTrader="Demander à passer la marchande"
 
 GBA_VoiceCommReqHealing="DEMANDER UN SOIN"
 GBA_VoiceCommReqDosh="DEMANDER DU FRIC"
@@ -1773,7 +1774,7 @@ Passives[0]=(Title="Dégâts d'arme de classe",Description="Dégâts de l'arme d
 Passives[1]=(Title="Détection des ennemis & barres de santé",Description="Portée de 5 m -%x% m par niveau");
 Passives[2]=(Title="Rechargement du temps Zed",Description="Le Zed time augmente de %x% tous les 5 niveaux");
 Passives[3]=(Title="Vitesse rechargement",Description="Rechargement arme de classe +%x%% tous les 5 niveaux");
-Passives[4]=(Title="Vision nocturne",Description="Lampes torches - Lunettes vision nocturne");
+Passives[4]=(Title="Réduction du recul",Description="Réduit le recul de %x% par niveau");
 Passives[5]=(Title="Révéler les Zeds",Description="Les équipiers voient les unités camouflées");
 
 EXPAction1="Infliger des dégâts d'arme de Commando"
@@ -1798,7 +1799,7 @@ AmmoVest="Prêt"
 AmmoVestDescription="Emportez jusqu'à 20 % de munitions en plus pour chaque arme de classe."
 
 HollowPoints="Projectiles à tête creuse"
-HollowPointsDescription="Augmente les dégâts des armes de classe de 30 % et réduit leur recul de 50 %."
+HollowPointsDescription="Augmente les dégâts des armes de classe de 30 %."
 
 EatLead="Mange du plomb"
 EatLeadDescription="Augmente la capacité des armes de classe de 100 %."
@@ -1969,7 +1970,7 @@ SkillCatagories[4]="Techniques de maître"
 Passives[0]=(Title="Dégâts d'arme de classe",Description="Dégâts de l'arme de classe + %x% par niveau");
 Passives[1]=(Title="Résistance aux balles",Description="Résistance aux projectiles +5 %, +%x% par niveau");
 Passives[2]=(Title="Vitesse de mouvement",Description="Vitesse de mouvement +%x% tous les 5 niveaux");
-Passives[3]=(Title="Recul",Description="Réduit le recul des armes de classe de %x% par niveau");
+Passives[3]=(Title="Réduction du recul",Description="Réduit le recul des armes de classe de %x% par niveau");
 Passives[4]=(Title="Rechargement Zed time",Description="Vitesse de rechargement Zed time +%x% par niveau");
 
 ShootnMove="Paré"
@@ -2015,7 +2016,7 @@ SkillCatagories[3]="Équipement"
 SkillCatagories[4]="Techniques de maître"
 
 Passives[0]=(Title="Dégâts à la tête",Description="Dégâts des tirs à la tête + %x% par niveau");
-Passives[1]=(Title="Recul",Description="Réduit le recul de %x% par niveau");
+Passives[1]=(Title="Réduction du recul",Description="Réduit le recul de %x% par niveau");
 Passives[2]=(Title="Changement arme",Description="Vitesse de changement d'arme +%x% par niveau");
 
 StationaryAim="Sniper"
@@ -2351,7 +2352,7 @@ DescriptionDoshHold="Empêchez les Zeds d'entrer dans la zone indiquée"
 DescriptionDoshHoldShort="Défendre la zone (Optionnel)"
 RepairObjective="SOUDER ET RÉPARER"
 UseWelderToRepair="Utiliser le soudeur pour réparer les machines cassées"
-UseWelderToRepairShort="Souder la machine cassée"
+UseWelderToRepairShort="Souder les machines cassées"
 UseWelderToRepairTraderPod="Utiliser le soudeur pour réparer les modules de la marchande"
 UseWelderToRepairTraderPodShort="Souder les modules de la marchande"
 RepairObjectiveRequired="Machines cassées à réparer :"
@@ -2381,10 +2382,10 @@ HoldZoneDescription="Protéger la zone en surbrillance contre les Zeds"
 HoldZoneDescriptionShort="Protéger la zone en surbrillance"
 HoldZoneRequired="Temps à défendre :"
 TransportWaveObjective="TRANSPORT"
-TransportWaveDescription="Transporter la tablette de données jusqu'au point de livraison"
-TransportWaveDescriptionShort="Transporter la tablette de données"
-TransportWaveDescriptionGear="Transporter l'équipement jusqu'au point de livraison"
-TransportWaveDescriptionGearShort="Transporter l'équipement"
+TransportWaveDescription="Transporter les tablettes de données jusqu'au point de livraison"
+TransportWaveDescriptionShort="Transporter les tablettes de données"
+TransportWaveDescriptionGear="Transporter les engrenages jusqu'au point de livraison"
+TransportWaveDescriptionGearShort="Transporter les engrenages"
 RequiredCollectActor="Livraisons requises :"
 FailedString="ÉCHEC"
 SuccessString="TERMINÉ"
@@ -2656,10 +2657,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Machine de guerre à vapeur",Desc
 SpecialEventObjectiveInfoList[3]=(TitleString="Aller-retour mortel",DescriptionString="Terminer l'île des Zeds en mode difficile ou supérieur")
 SpecialEventObjectiveInfoList[4]=(TitleString="Retour glacial",DescriptionString="Terminer l'Avant-poste en mode difficile ou supérieur")
 
-AllCompleteRewardDescriptionString="Tenues punk pour homme et femme"
+AllCompleteRewardDescriptionString="Tenues punk + modèle de M99 AMR"
 
-ChanceDropDescriptionStrings[0]="Ticket de récompense"
+ChanceDropDescriptionStrings[0]="Ticket récomp."
 ChanceDropDescriptionStrings[1]="Ticket Or"
+
+[KFGFxFall2019ObjectivesContainer]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Assaut d'asile",DescriptionString="Vaincre n'importe quel boss en Survie en mode difficile ou supérieur dans l'Asile d'Ashwood")
+SpecialEventObjectiveInfoList[1]=(TitleString="Traitement à long terme",DescriptionString="Terminer 15 vagues en Infini en mode difficile ou supérieur dans l'Asile d'Ashwood")
+SpecialEventObjectiveInfoList[2]=(TitleString="Visite hebdomadaire",DescriptionString="Terminer l'hebdomadaire de l'Asile d'Ashwood")
+SpecialEventObjectiveInfoList[3]=(TitleString="Nettoyer les salles",DescriptionString="Tuer 1 500 Zeds dans l'Asile d'Ashwood")
+SpecialEventObjectiveInfoList[4]=(TitleString="Larguez les bombes!",DescriptionString="Terminer Atomisé en mode Objectif difficile ou supérieur")
+
+AllCompleteRewardDescriptionString="Kriss | Plus loin que l'horizon | Élite spatiale"
+
+ChanceDropDescriptionStrings[0]="Ticket cadeau"
+ChanceDropDescriptionStrings[1]="Ticket cadeau doré"
 
 ;============================================
 ; Daily Localization
@@ -3246,6 +3261,9 @@ DisplayName="Exutoire"
 
 [KF-SteamFortress KFMapSummary]
 DisplayName="Forteresse à vapeur"
+
+[KF-AshwoodAsylum KFMapSummary]
+DisplayName="Asile d'Ashwood"
 
 [KFMapInfo]
 ; defaults

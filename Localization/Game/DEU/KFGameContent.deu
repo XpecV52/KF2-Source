@@ -37,7 +37,7 @@ AlternateFireDescription="Die meisten Primärwaffen haben einen alternativen Feu
 FlashLightBatteryTitleKey="Benutzen einer Taschenlampe"
 FlashLightBatteryDescriptionKey="Dort draußen kann es ziemlich düster werden. Drücke <font color="#caab05">%x%</font> um deine <font color="#caab05">TASCHENLAMPE</font> ein- und auszuschalten Die Batterie deiner Taschenlampe wird sich langsam leeren. Wenn sie leer ist, schaltet sie sich aus und beginnt automatisch sich wieder aufzuladen."
 GrenadeTitleKey="Benutzen von Granaten"
-GrenadeDescriptionKey="Granaten erlauben dir, mit dicht gepackten Gruppen von Zeds fertigzuwerden. Vorteile haben verschiedene Typen von Granaten in ihren <font color="#caab05">WAFFEN-LADUNGEN</font>, die alle Zeds Schaden zufügen, aber zusätzliche Effekte besitzen können. Drücke <font color="#caab05">%x%</font> um eine Granate zu werfen." "
+GrenadeDescriptionKey="Granaten erlauben dir, mit dicht gepackten Gruppen von Zeds fertigzuwerden. Vorteile haben verschiedene Typen von Granaten in ihren <font color="#caab05">WAFFEN-LADUNGEN</font>, die alle Zeds Schaden zufügen, aber zusätzliche Effekte besitzen können. Drücke <font color="#caab05">%x%</font> um eine Granate zu werfen."
 
 ;Wave 1 end
 TraderTimeTitleKey="Zeit für die Händlerin"
@@ -116,48 +116,48 @@ ItemDescription="•Kampfrüstung beschützt dich vor diversen Arten von Schaden
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 Stange Dynamit"
-ItemCategory =" "Sprengstoffe"
-ItemDescription="•Einfach ein kleines Stück Dynamit mit Lunte.\n•Es kann auch dich verletzen, also sei vorsichtig damit!" "
+ItemCategory ="Sprengstoffe"
+ItemDescription="•Einfach ein kleines Stück Dynamit mit Lunte.\n•Es kann auch dich verletzen, also sei vorsichtig damit!"
 
 [KFProj_MedicGrenade]
 ItemName="Sanitäter-Granate"
-ItemCategory =" "Sprengstoffe"
-ItemDescription="•Setzt ein Gas frei, das Zeds vergiftet und Menschen heilt.\n\n•Stell dich in die blaue Gaswolke um geheilt zu werden.\nWir zitieren unsere Wissenschaftler: „Der von diesen Granaten freigesetzte Wirkstoff belebt den Homo Sapiens wieder und schläfert den Homo Zedicus ein.“ Alles klar?" "
+ItemCategory ="Sprengstoffe"
+ItemDescription="•Setzt ein Gas frei, das Zeds vergiftet und Menschen heilt.\n\n•Stell dich in die blaue Gaswolke um geheilt zu werden.\nWir zitieren unsere Wissenschaftler: „Der von diesen Granaten freigesetzte Wirkstoff belebt den Homo Sapiens wieder und schläfert den Homo Zedicus ein.“ Alles klar?"
 
 [KFProj_MolotovGrenade]
 ItemName="Molotowcocktail"
 ItemCategory="Sprengstoffe"
-ItemDescription="•Ganz einfach, eine Flammengranate, die Zeds verbrennt.\n\nVon den Finnen abwertend während des Winterkrieges von 1939-40 nach W. M. Molotow, dem sowjetischen Außenminister unter Stalin, benannt … Oh, du wolltest keine Geschichtslektion?" "
+ItemDescription="•Ganz einfach, eine Flammengranate, die Zeds verbrennt.\n\nVon den Finnen abwertend während des Winterkrieges von 1939-40 nach W. M. Molotow, dem sowjetischen Außenminister unter Stalin, benannt … Oh, du wolltest keine Geschichtslektion?"
 
 [KFProj_EMPGrenade]
 ItemName="EMP-Granate"
 ItemCategory="Sprengstoffe"
-ItemDescription="•Erzeugt einen elektrischen Impuls, der Zeds Schaden zufügt und eventuell kurz betäubt.\n\nWenn du es genauer magst – bei der Explosion wird für Nanosekunden ein elektromagnetischer Impuls erzeugt, der elektrische Systeme in naher Umgebung stört. Insbesondere die in den Zeds. Wie praktisch." "
+ItemDescription="•Erzeugt einen elektrischen Impuls, der Zeds Schaden zufügt und eventuell kurz betäubt.\n\nWenn du es genauer magst – bei der Explosion wird für Nanosekunden ein elektromagnetischer Impuls erzeugt, der elektrische Systeme in naher Umgebung stört. Insbesondere die in den Zeds. Wie praktisch."
 
 [KFProj_HEGrenade]
 ItemName="HE-Granate"
 ItemCategory="Sprengstoffe"
-ItemDescription="•Eine sehr einfache, hochexplosive Granate. Verletzt Zeds und Menschen gleichermaßen.\n\nEinfacher geht es wirklich nicht. HE – hochexplosiv – macht BOOM und sprengt Sachen in die Luft. Müssen wir dir das wirklich erklären?" "
+ItemDescription="•Eine sehr einfache, hochexplosive Granate. Verletzt Zeds und Menschen gleichermaßen.\n\nEinfacher geht es wirklich nicht. HE – hochexplosiv – macht BOOM und sprengt Sachen in die Luft. Müssen wir dir das wirklich erklären?"
 
 [KFProj_FragGrenade]
 ItemName="Splittergranate"
 ItemCategory="Sprengstoffe"
-ItemDescription="•Die klassische Splittergranate: schleudert fiese kleine Metallteile herum und tut allen weh.\n\nIch bin mir sicher, ihr habt alle vor dem Ausbruch genug Videospiele gespielt, also wisst ihr, was eine Splittergranate ist. Was, dem ist nicht so? Wer genau soll euch das denn glauben?" "
+ItemDescription="•Die klassische Splittergranate: schleudert fiese kleine Metallteile herum und tut allen weh.\n\nIch bin mir sicher, ihr habt alle vor dem Ausbruch genug Videospiele gespielt, also wisst ihr, was eine Splittergranate ist. Was, dem ist nicht so? Wer genau soll euch das denn glauben?"
 
 [KFProj_NailBombGrenade]
 ItemName="Nagelbombe"
-ItemCategory =" "Sprengstoffe"
+ItemCategory ="Sprengstoffe"
 ItemDescription="•Ein einfacher Kanister voll mit alten Nägeln und einer kleinen Sprengladung in der Mitte.\n\nNicht die angenehmste oder subtilste Art und Weise mit Zeds fertig zu werden, aber es gibt nichts an Zeds, das angenehm oder subtil wäre, nicht wahr?"
 
 [KFProj_FreezeGrenade]
 ItemName="Gefriergranate"
-ItemCategory =" "Sprengstoffe"
+ItemCategory ="Sprengstoffe"
 ItemDescription="•Ein technologisch fortgeschrittener Kanister mit unter Druck stehendem flüssigem Stickstoff.\n\nAusreichender Kontakt mit seinem Inhalt friert Zeds eine Weile an Ort und Stelle eine. Das Resultat kann ziemlich zerschmetternd sein."
 
 [KFProj_FlashBangGrenade]
 ItemName="Blendgranate"
-ItemCategory =" "Sprengstoffe"
-ItemDescription="•Grell und laut zugleich – du solltest nicht direkt hinschauen. Hinhören solltest du auch nicht.\n•Obwohl sie technisch gesehen nicht direkt tödlich sind, können dich Blendgranaten trotzdem verletzen, also sei vorsichtig!" "
+ItemCategory ="Sprengstoffe"
+ItemDescription="•Grell und laut zugleich – du solltest nicht direkt hinschauen. Hinhören solltest du auch nicht.\n•Obwohl sie technisch gesehen nicht direkt tödlich sind, können dich Blendgranaten trotzdem verletzen, also sei vorsichtig!"
 
 [KFWeap_Healer_Syringe]
 ItemName="Medizinische Spritze"
@@ -312,6 +312,11 @@ ItemName="VLAD-1000 Nagelpistole"
 ItemCategory="Schrotflinte"
 ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi für das Abschießen von einzelnen oder mehreren Nägeln.\n•Alt-Feuer um zwischen den Feuer-Modi zu wechseln.\n•Wir haben gehört, dass einer der Horzine-Wissenschaftler sich die ursprüngliche Nagelpistole von einem (toten) Hausmeister geliehen hat."
 
+[KFWeap_HRG_Nailgun]
+ItemName="HRG-Nagelpistole"
+ItemCategory="Maschinenpistole"
+ItemDescription="•Es besteht die Wahl zwischen den Feuer-Modi „vollautomatisch 500-rpm“ und „vollautomatische 857-rpm-3-Schuss-Salve“.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\n•Innovation, die den Nagel auf den Kopf trifft."
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Road Redeemer"
 ItemCategory="Nahkampf"
@@ -370,6 +375,11 @@ ItemName="Flammenwerfer"
 ItemCategory="Flammen"
 ItemDescription="•Der Feuer-Modus schießt Flammen. Und nichts anderes.\n•Ein Klassiker, egal, wie alt man ist. Im Zweifelsfall einfach alles niederbrennen."
 
+[KFWeap_HRG_Healthrower]
+ItemName="HRG-Heilwerfer"
+ItemCategory="Flammen"
+ItemDescription="•Feuermodus schießt Gas, das Spieler heilt und Zeds vergiftet.\n•Alt-Feuer, um Pfeile zu schießen, die Teammitglieder heilen.\n•Das Gas hat einen Hauch von Zitrone und Minze. Zeds mögen keine Zitrone und Minze."
+
 [KFWeap_Beam_Microwave]
 ItemName="Mikrowellenwaffe"
 ItemCategory="Flammen"
@@ -425,6 +435,18 @@ ItemName="Zwei .50 Eagles"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Desert Eagle Handkanonen im Doppelpack."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Rhino"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Feuermodus schießt Splittergeschosse.\n•Splittergeschosse explodieren bei Aufprall und feuern 3 Schrapnellstücke.\n•Geht durch Zeds durch wie Butter!"
+SharedUnlockSource="Rhino"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Zwei Rhinos"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Feuermodus schießt Splittergeschosse.\n•Splittergeschosse explodieren bei Aufprall und feuern 3 Schrapnelstücke.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Geht doppelt so sehr durch Zeds durch wie Butter!"
+SharedUnlockSource="Zwei Rhinos"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="1858-Revolver"
 ItemCategory="Handfeuerwaffe"
@@ -444,6 +466,16 @@ ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Dieser �
 ItemName="Zwei .500 Magnums"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•.500 Magnum „Knochensammler“ im Doppelpack."
+
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="HRG-Schrotrevolver"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Verschrote ein paar Zeds für uns."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="Zwei HRG-Schrotrevolver"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Verschrote ein paar Zeds für uns."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -516,6 +548,18 @@ ItemName="Husk-Kanone"
 ItemCategory="Flammen"
 ItemDescription="•Lädt bei gedrücktem Feuerknopf auf und feuert, wenn losgelassen wird. \n•Die offizielle Horzine-Version der Husk-Kanone. Dieses Modell ist zu 95% explosionssicher."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Rhino"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Feuermodus schießt Splittergeschosse.\n•Splittergeschosse explodieren bei Aufprall und feuern 3 Schrapnellstücke.\n•Geht durch Zeds durch wie Butter!"
+SharedUnlockSource="Rhino"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Zwei Rhinos"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Feuermodus schießt Splittergeschosse.\n•Splittergeschosse explodieren bei Aufprall und feuern 3 Schrapnelstücke.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Geht doppelt so sehr durch Zeds durch wie Butter!"
+SharedUnlockSource="Zwei Rhinos"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H)-Karab.-Gewehr"
 ItemCategory="Sturmgewehr"
@@ -531,6 +575,12 @@ ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Mehr 
 ItemName="Dual-AF2011-A2"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Zwei Waffen mit jeweils zwei Läufen. Vierfache Feuerkraft. Das ist Mathematik. Gegen Mathematik lässt sich nichts sagen."
+
+[KFWeap_Edged_IonThruster]
+ItemName="Ionenschwert"
+ItemCategory="Nahkampf"
+ItemDescription="•Primär – schneller Schlitzangriff, der brennt; Primär halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff, der brennt.\n•Nachladen – Führe bei 100% Aufladung eine Spezialattacke aus.\n•Alt – blocken/parieren.\n•Bestens für Barbecues geeignet."
+SharedUnlockSource="Ionenschwert"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Doomstick"

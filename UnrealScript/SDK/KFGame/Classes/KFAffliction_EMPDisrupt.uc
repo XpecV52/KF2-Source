@@ -10,21 +10,42 @@ class KFAffliction_EMPDisrupt extends KFAffliction_EMP;
 
 const DISRUPT_THRESHOLD = 25.f;
 
+var protected float DisruptCooldown;
+var protected float LastDisruptActivationTime;
+
+/** */
+function Init(KFPawn P, EAfflictionType Type, KFPerk InstigatorPerk)
+{
+	super.Init(P, Type, InstigatorPerk);
+	DisruptCooldown = P.IncapSettings[Type].ChildAfflictionCooldown;
+}
+
 function Accrue(float InPower)
 {
 	Super.Accrue(InPower);
 
-	if ( CurrentStrength > DISRUPT_THRESHOLD )
+	if (!PawnOwner.IsTimerActive(nameof(Timer_DisruptCooldown), self))
 	{
-		SetEMPDisrupted(true);
-		PawnOwner.SetTimer(Duration, false, nameof(EMPDisruptTimer), self);
+		if (CurrentStrength > DISRUPT_THRESHOLD)
+		{
+			ActivateDisrupt();
+		}
 	}
 }
 
-function EMPDisruptTimer()
+function ActivateDisrupt()
+{
+	SetEMPDisrupted(true);
+	PawnOwner.SetTimer(Duration, false, nameof(DeactivateDisrupt), self);
+	PawnOwner.SetTimer(Duration + DisruptCooldown, false, nameof(Timer_DisruptCooldown), self);
+}
+
+function DeactivateDisrupt()
 {
 	SetEMPDisrupted(false);
 }
+
+function Timer_DisruptCooldown();
 
 /** Set the EMP disrupt functionality */
 function SetEMPDisrupted(bool bEnabled)

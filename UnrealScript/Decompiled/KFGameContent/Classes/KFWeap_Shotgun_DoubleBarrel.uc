@@ -123,7 +123,6 @@ defaultproperties
     FireDoubleAnim=Shoot_Double
     DoubleBarrelKickMomentum=1000
     FallingMomentumReduction=0.5
-    NumPellets=/* Array type was not detected. */
     PackageKey="Shotgun_DoubleBarrel"
     FirstPersonMeshName="wep_1p_double_barrel_mesh.Wep_1stP_Double_Barrel"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -158,6 +157,7 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=4,Y=7,Z=-5)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_DoubleBarrel.MeleeHelper'
+    NumPellets=/* Array type was not detected. */
     maxRecoilPitch=900
     minRecoilPitch=775
     maxRecoilYaw=500

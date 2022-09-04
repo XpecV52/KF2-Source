@@ -539,7 +539,6 @@ class KFDamageType extends DamageType
 
 
 
-										  
 
 
 
@@ -555,7 +554,8 @@ class KFDamageType extends DamageType
 
 
 
-										  
+
+
 
 
 

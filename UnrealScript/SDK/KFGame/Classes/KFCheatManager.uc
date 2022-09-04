@@ -656,29 +656,6 @@ exec function HideMenus()
     }
 }
 
-exec function RequestSkipTraderTimer()
-{
-	local KFGameReplicationInfo KFGRI;
-	local KFPlayerReplicationInfo KFPRI;
-
-	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
-	KFGRI = KFGameReplicationInfo(KFPRI.WorldInfo.GRI);
-
-	if (KFPRI != none)
-	{
-		// For game in progress, close menus on ready
-		if (KFGRI.bMatchHasBegun)
-		{
-			//player has spawned, skip trader time
-			if (KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
-			{
-				//skip trader request
-				KFPRI.RequestSkiptTrader(KFPRI);
-			}
-		}
-	}
-}
-
 exec function DebugShowVoteKick()
 {
 	local KFPlayerReplicationInfo KFPRI;
@@ -858,6 +835,7 @@ simulated exec function Pistols()
 {
     GiveWeapon( "KFGameContent.KFWeap_Pistol_9mm" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_Deagle" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
 }
 
 /**
@@ -870,6 +848,7 @@ simulated exec function Dualies()
     GiveWeapon( "KFGameContent.KFWeap_Pistol_DualColt1911" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_DualRem1858" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_DualSW500" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhinoDual" );
 }
 
 simulated exec function Singles()
@@ -879,6 +858,7 @@ simulated exec function Singles()
     GiveWeapon( "KFGameContent.KFWeap_Pistol_Colt1911" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_Rem1858" );
     GiveWeapon( "KFGameContent.KFWeap_Revolver_SW500" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
 }
 
 /**
@@ -974,6 +954,7 @@ simulated exec function Summer() //give the player the weapons for the summer up
     GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_M32" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Thompson" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MKB42" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhinoDual" );
 }
 /**
  * Give the player all Demolition weapons
@@ -1040,6 +1021,7 @@ simulated exec function Sharpshooter()
     GiveWeapon( "KFGameContent.KFWeap_Rifle_M14EBR" );
     GiveWeapon( "KFGameContent.KFWeap_Rifle_RailGun" );
     GiveWeapon( "KFGameContent.KFWeap_Rifle_CenterfireMB464" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
 }
 
 /**

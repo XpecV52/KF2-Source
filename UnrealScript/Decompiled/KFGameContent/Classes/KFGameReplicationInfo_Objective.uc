@@ -46,6 +46,8 @@ simulated function bool IsObjectiveMode()
     return true;
 }
 
+function ChooseNextObjective(int NextWaveNum);
+
 function bool StartNextObjective()
 {
     return StartNextPresetObjective(MyKFMI);
@@ -58,7 +60,7 @@ function bool StartNextPresetObjective(KFMapInfo KFMI)
 
     PossibleObjectives = KFMI.ObjectiveModeObjectives[WaveNum - 1].PossibleObjectives;
     bUseEndlessSpawning = KFMI.ObjectiveModeObjectives[WaveNum - 1].bUseEndlessSpawning;
-    return (AttemptObjectiveActivation(PossibleObjectives, bUseEndlessSpawning)) != -1;
+    return (SetNextObjective(PossibleObjectives, bUseEndlessSpawning, true)) != -1;
 }
 
 function ActivateObjective(KFInterface_MapObjective NewObjective, optional bool bUseEndlessSpawning)
@@ -111,4 +113,17 @@ simulated function bool IsBossWaveNext()
 simulated function int GetFinalWaveNum()
 {
     return WaveMax;
+}
+
+simulated function array<int> GetKFSeqEventLevelLoadedIndices()
+{
+    local array<int> ActivateIndices;
+
+    ActivateIndices[0] = 8;
+    return ActivateIndices;
+}
+
+defaultproperties
+{
+    bObjectiveMode=true
 }

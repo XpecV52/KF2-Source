@@ -11,7 +11,6 @@ class KFWeap_Shotgun_M4 extends KFWeap_ShotgunBase
 
 defaultproperties
 {
-    NumPellets=/* Array type was not detected. */
     PackageKey="M4Shotgun"
     FirstPersonMeshName="WEP_1P_M4Shotgun_MESH.Wep_1stP_M4Shotgun_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -38,6 +37,7 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=15,Y=8.5,Z=-3.5)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_M4.MeleeHelper'
+    NumPellets=/* Array type was not detected. */
     maxRecoilPitch=675
     minRecoilPitch=600
     maxRecoilYaw=375

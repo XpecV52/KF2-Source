@@ -94,20 +94,27 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
 function ToggleEMP(bool bEnabled)
 {
 	local ParticleSysParam SourceParam;
+	local vector EMPEnd;
+	local int bHitTarget;
 
 	if (bEnabled)
 	{
-		if (EMPPSCTemplate != none)
+		DoEMPHit(EMPEnd, bHitTarget);
+		if (KFPOwner.WorldInfo.NetMode != NM_DedicatedServer)
 		{
-			EMPPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(EMPPSCTemplate, KFPOwner.Mesh, EMPSocketName, true);
-			if (EMPPSC != none)
+			if (EMPPSCTemplate != none)
 			{
-				SourceParam.Name = 'SourceActor';
-				SourceParam.ParamType = PSPT_Actor;
-				SourceParam.Actor = KFPOwner;
-				EMPPSC.InstanceParameters.AddItem(SourceParam);
+				EMPPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitterMeshAttachment(EMPPSCTemplate, KFPOwner.Mesh, EMPSocketName, true);
+				if (EMPPSC != none)
+				{
+					SourceParam.Name = 'SourceActor';
+					SourceParam.ParamType = PSPT_Actor;
+					SourceParam.Actor = KFPOwner;
+					EMPPSC.InstanceParameters.Length = 0;
+					EMPPSC.InstanceParameters.AddItem(SourceParam);
 
-				SetEMPEndPoint();
+					DoEMPEffects(EMPEnd, bool(bHitTarget));
+				}
 			}
 		}
 	}
@@ -137,10 +144,9 @@ function bool WithinRange(Actor HitActor)
 	return VSizeSq(HitActor.Location - KFPOwner.Location) <= Square(MaxEMPLength);
 }
 
-function SetEMPEndPoint()
+function DoEMPHit(out vector out_EMPEnd, out int out_bHitTarget)
 {
-	local vector SocketLocation, EMPEnd;
-	local bool bHitTarget;
+	local vector SocketLocation;
 	local EMPBlastHitInfo BlastHitInfo;
 	local rotator SocketRot;
 	local array<EMPBlastHitInfo> HitList;
@@ -149,8 +155,8 @@ function SetEMPEndPoint()
 	local Actor HitActor;
 
 	KFPOwner.Mesh.GetSocketWorldLocationAndRotation(EMPSocketName, SocketLocation, SocketRot);
-	bHitTarget = false;
-	EMPEnd = SocketLocation + vector(SocketRot) * MaxEMPLength;
+	out_bHitTarget = int(false);
+	out_EMPEnd = SocketLocation + vector(SocketRot) * MaxEMPLength;
 
 	// We set the InteractionPawn for this move specifically, by implementing GetInteractionPawn() in
 	// AICommand_DAR_EMPAttack:Command_SpecialMove
@@ -166,7 +172,7 @@ function SetEMPEndPoint()
 	}
 	else
 	{
-		GetEnemyByTrace(HitList, SocketLocation, EMPEnd);
+		GetEnemyByTrace(HitList, SocketLocation, out_EMPEnd);
 	}
 
 	foreach HitList(BlastHitInfo)
@@ -180,54 +186,30 @@ function SetEMPEndPoint()
 			}
 			else
 			{
-				bHitTarget = true;
+				out_bHitTarget = int(true);
 				Victims.AddItem(BlastHitInfo);
 			}
 		}
-
-		if(HitList.length == 1)
-		{
-			EMPEnd = BlastHitInfo.HitLocation - vect(0, 0, 64);
-		}
 	}
 
-	if (Victims.length > 0)
+	if (HitList.length == 1)
 	{
-		if (ApplyDamageDelay > 0)
-		{
-			KFPOwner.SetTimer(ApplyDamageDelay, false, 'ApplyDamage', self);
-		}
-		else
-		{
-			ApplyDamage();
-		}
+		out_EMPEnd = HitList[0].HitLocation - vect(0, 0, 64);
 	}
 
-	EMPPSC.SetBeamTargetPoint(0, EMPEnd, 0);
-
-	if (bHitTarget)
+	if (KFPOwner.Role == ROLE_Authority)
 	{
-		if (EMPHitPSC == none && EMPHitPSCTemplate != none)
+		if (Victims.length > 0)
 		{
-			EMPHitPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitter(EMPHitPSCTemplate, EMPEnd);
+			if (ApplyDamageDelay > 0)
+			{
+				KFPOwner.SetTimer(ApplyDamageDelay, false, 'ApplyDamage', self);
+			}
+			else
+			{
+				ApplyDamage();
+			}
 		}
-
-		if (EMPHitPSC != none)
-		{
-			EMPHitPSC.SetAbsolute(true, true, false);
-			EMPHitPSC.SetTranslation(EMPEnd);
-			EMPHitPSC.SetRotation(Rotator(EMPEnd - SocketLocation));
-		}
-	}
-	else
-	{
-		DeactivateHitPSC();
-	}
-
-	if (bDrawDebugEMP)
-	{
-		KFPOwner.FlushPersistentDebugLines();
-		KFPOwner.DrawDebugLine(SocketLocation, EMPEnd, 100, 128, 255, true);
 	}
 }
 
@@ -288,6 +270,40 @@ function ReleaseVictims()
 	}
 
 	Victims.length = 0;
+}
+
+function DoEMPEffects(vector EMPEnd, bool bHitTarget)
+{
+	local vector SocketLoc;
+	local rotator SocketRot;
+
+	EMPPSC.SetBeamTargetPoint(0, EMPEnd, 0);
+	KFPOwner.Mesh.GetSocketWorldLocationAndRotation(EMPSocketName, SocketLoc, SocketRot);
+
+	if (bHitTarget)
+	{
+		if (EMPHitPSC == none && EMPHitPSCTemplate != none)
+		{
+			EMPHitPSC = KFPOwner.WorldInfo.MyEmitterPool.SpawnEmitter(EMPHitPSCTemplate, EMPEnd);
+		}
+
+		if (EMPHitPSC != none)
+		{
+			EMPHitPSC.SetAbsolute(true, true, false);
+			EMPHitPSC.SetTranslation(EMPEnd);
+			EMPHitPSC.SetRotation(Rotator(EMPEnd - SocketLoc));
+		}
+	}
+	else
+	{
+		DeactivateHitPSC();
+	}
+
+	if (bDrawDebugEMP)
+	{
+		KFPOwner.FlushPersistentDebugLines();
+		KFPOwner.DrawDebugLine(SocketLoc, EMPEnd, 100, 128, 255, true);
+	}
 }
 
 function bool DeactivatePSC()

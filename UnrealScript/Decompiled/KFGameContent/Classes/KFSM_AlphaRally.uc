@@ -62,11 +62,11 @@ function RallyZeds()
 
 defaultproperties
 {
-    RallyAnims=Anims=/* Array type was not detected. */,Player_Taunt_V1=/* Unknown default property type! */,
+    RallyAnims=Anims=/* Array type was not detected. */,Player_Taunt_V1=/* Unknown default property type! */,BoolProperty=/* Unknown default property type! */,
 /* Exception thrown while deserializing RallyAnims
-System.ArgumentException: Requested value '3P_Sawblade_Animtree' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */

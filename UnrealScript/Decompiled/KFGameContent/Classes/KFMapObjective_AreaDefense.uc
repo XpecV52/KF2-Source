@@ -161,7 +161,10 @@ simulated function ActivateObjective()
         UpdateMeshArrayState();
         if(bUseTrailToVolume)
         {
-            TrailActor = Class'WorldInfo'.static.GetWorldInfo().Spawn(Class'KFReplicatedShowPathActor', none);
+            if(TrailActor == none)
+            {
+                TrailActor = Class'WorldInfo'.static.GetWorldInfo().Spawn(Class'KFReplicatedShowPathActor', none);
+            }
             if(TrailActor != none)
             {
                 TrailActor.SetEmitterTemplate(ParticleSystem'FX_Objective_White_Trail');

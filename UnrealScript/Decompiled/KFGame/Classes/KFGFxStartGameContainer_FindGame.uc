@@ -169,17 +169,22 @@ function LocalizeMenu()
 
 defaultproperties
 {
-    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_KickinBrass_Event",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/",PSNProductId="")
-    WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/5030",PSNProductId="")
-    WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_Clotbackpacks",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7423",PSNProductId="")
-    WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_USBKey_Steampunk_25",TextField="FeaturedUsbKey",RedirectURL="https://store.steampowered.com/buyitem/232090/7408",PSNProductId="")
-    WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_Crate_ProjectH_21",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/7398",PSNProductId="")
-    WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
-    WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/",PSNProductId="")
-    WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/",PSNProductId="")
-    WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap",PSNProductId="")
-    WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="https://tripwire.manheadmerch.com/",PSNProductId="")
-    WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/",PSNProductId="")
+    WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_GrimTreatments",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/",PSNProductId="")
+    WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/5246",PSNProductId="")
+    WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_WitchHunter_Bundle",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7562",PSNProductId="")
+    WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_Crate_BeyondHorizon_26",TextField="FeaturedUsbKey",RedirectURL="https://store.steampowered.com/buyitem/232090/7623",PSNProductId="")
+    WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_Crate_Boneyard_22",TextField="FeaturedCrateKey",RedirectURL="https://store.steampowered.com/buyitem/232090/7620",PSNProductId="")
+    WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_DragonKoi_T3",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7608",PSNProductId="")
+    WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_DragonKoi_T4",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7609",PSNProductId="")
+    WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_DragonKoi_Complete",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7187",PSNProductId="")
+    WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_IonThruster",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7726",PSNProductId="")
+    WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_ChiappaRhino",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/7727",PSNProductId="")
+    WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
+    WhatsNewItems(11)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/",PSNProductId="")
+    WhatsNewItems(12)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/",PSNProductId="")
+    WhatsNewItems(13)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap",PSNProductId="")
+    WhatsNewItems(14)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="http://www.tripwireinteractive.com/redirect/shop/",PSNProductId="")
+    WhatsNewItems(15)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/",PSNProductId="")
     MultiplayerString="Find A Match"
     CreateGameString="Create A Match"
     SoloString="Play Solo Offline"

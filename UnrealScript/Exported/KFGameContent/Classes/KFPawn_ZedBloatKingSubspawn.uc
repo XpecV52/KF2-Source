@@ -143,6 +143,7 @@ defaultproperties
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.000000))
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingFart',DamageScale=(0.000000))
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatPukeMine',DamageScale=(0.000000))
+   DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingPukeMine',DamageScale=(0.000000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_BloatKingSubspawn'
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
       BoneName="Dummy"
@@ -182,9 +183,9 @@ defaultproperties
    IncapSettings(2)=(Vulnerability=(2.000000))
    IncapSettings(3)=(Cooldown=0.200000,Vulnerability=(2.500000))
    IncapSettings(4)=(Cooldown=0.200000,Vulnerability=(2.000000))
-   IncapSettings(5)=(Duration=2.500000,Cooldown=5.000000,Vulnerability=(2.000000,2.000000,1.000000,1.000000,1.000000))
+   IncapSettings(5)=(Duration=2.500000,Cooldown=5.000000,Vulnerability=(2.000000))
    IncapSettings(6)=(Duration=5.500000,Cooldown=7.500000,Vulnerability=(0.000000))
-   IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000,10.000000,10.000000,10.000000))
+   IncapSettings(7)=(Duration=4.000000,Cooldown=5.500000,Vulnerability=(10.000000))
    IncapSettings(8)=(Vulnerability=(3.000000))
    IncapSettings(9)=(Duration=4.500000,Cooldown=1.500000,Vulnerability=(2.500000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=7.500000,Vulnerability=(0.500000))
@@ -241,13 +242,14 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
-      SpecialMoveClasses(38)=None
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       SpecialMoveClasses(39)=None
       SpecialMoveClasses(40)=None
       SpecialMoveClasses(41)=None
       SpecialMoveClasses(42)=None
-      SpecialMoveClasses(43)=Class'kfgamecontent.KFSM_BloatKingSubspawn_Explode'
+      SpecialMoveClasses(43)=None
+      SpecialMoveClasses(44)=Class'kfgamecontent.KFSM_BloatKingSubspawn_Explode'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object
@@ -289,9 +291,9 @@ defaultproperties
    DialogAkComponent=DialogAkSoundComponent
    DamageRecoveryTimeHeavy=0.750000
    Mass=50.000000
-   GroundSpeed=400.000000
+   GroundSpeed=450.000000
    MaxFallSpeed=6000.000000
-   Health=450
+   Health=250
    ControllerClass=Class'kfgamecontent.KFAIController_ZedBloatKingSubspawn'
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)

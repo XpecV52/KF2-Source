@@ -143,7 +143,7 @@ simulated function DeactivateObjective()
 		{
 			foreach WorldInfo.AllPawns(class'KFPawn_Human', KFPH)
 			{
-				GrantReward(KFPH);
+				GrantReward(KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo), KFPlayerController(KFPH.Controller));
 
 				if (KFPlayerController(KFPH.Controller) != none)
 				{
@@ -483,37 +483,38 @@ simulated function DrawHUD(KFHUDBase hud, Canvas drawCanvas)
 	{
 		KFPC.GetPlayerViewPoint(ViewLocation, ViewRotation);
 	}
+
 	ViewVector = vector(ViewRotation);
+	ThisDot = Normal(GetIconLocation()  - ViewLocation) dot ViewVector;
 
-	ThisDot = Normal((GetIconLocation() + (class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) dot ViewVector;
-
-	if (ThisDot > 0)
+	if (ThisDot <= 0)
 	{
-		BarLength = FMin(hud.PlayerStatusBarLengthMax * (drawCanvas.ClipX / 1024.f), hud.PlayerStatusBarLengthMax) * ResModifier;
-		BarHeight = FMin(8.f * (drawCanvas.ClipX / 1024.f), 8.f) * ResModifier;
-		TargetLocation = GetIconLocation();
-		ScreenPos = drawCanvas.Project(TargetLocation);
-		if (ScreenPos.X < 0 || ScreenPos.X > drawCanvas.ClipX || ScreenPos.Y < 0 || ScreenPos.Y > drawCanvas.ClipY)
-		{
-			//if it is off screen, do not render
-			return;
-		}
+		return;
+	}
 
-		//Draw progress bar
-		Percentage = FMin(FClamp(float(CurrentActorToRepair.WeldIntegrity) / float(CurrentActorToRepair.MaxWeldIntegrity), 0.f, 1.f), 1);
-		hud.DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y, hud.HealthColor);
+	BarLength = FMin(hud.PlayerStatusBarLengthMax * (drawCanvas.ClipX / 1024.f), hud.PlayerStatusBarLengthMax) * ResModifier;
+	BarHeight = FMin(8.f * (drawCanvas.ClipX / 1024.f), 8.f) * ResModifier;
+	TargetLocation = GetIconLocation();
+	ScreenPos = drawCanvas.Project(TargetLocation);
 
-		//draw objective icon
-		if (GetIcon() != none)
-		{
-			drawCanvas.SetDrawColorStruct(hud.PlayerBarShadowColor);
-			drawCanvas.SetPos((ScreenPos.X - (BarLength * 0.75)) + 1, (ScreenPos.Y - BarHeight * 2.0) + 1);
-			drawCanvas.DrawTile(GetIcon(), hud.PlayerStatusIconSize * ResModifier, hud.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
+	// Make sure that the entire health bar is on screen
+	ScreenPos.X = FClamp(ScreenPos.X, BarLength * 0.5f + hud.PlayerStatusIconSize, drawCanvas.ClipX - BarLength * 0.5f);
+	ScreenPos.Y = FClamp(ScreenPos.Y, hud.PlayerStatusIconSize * 0.5f, drawCanvas.ClipY - hud.PlayerStatusIconSize * 0.5f);
 
-			drawCanvas.SetDrawColorStruct(GetIconColor());
-			drawCanvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2.0);
-			drawCanvas.DrawTile(GetIcon(), hud.PlayerStatusIconSize * ResModifier, hud.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
-		}
+	//Draw progress bar
+	Percentage = FMin(FClamp(float(CurrentActorToRepair.WeldIntegrity) / float(CurrentActorToRepair.MaxWeldIntegrity), 0.f, 1.f), 1);
+	hud.DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y, hud.NonPlayerHealth);
+
+	//draw objective icon
+	if (GetIcon() != none)
+	{
+		drawCanvas.SetDrawColorStruct(hud.PlayerBarShadowColor);
+		drawCanvas.SetPos((ScreenPos.X - (BarLength * 0.75)) + 1, (ScreenPos.Y - BarHeight * 2.0) + 1);
+		drawCanvas.DrawTile(GetIcon(), hud.PlayerStatusIconSize * ResModifier, hud.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
+
+		drawCanvas.SetDrawColorStruct(GetIconColor());
+		drawCanvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - BarHeight * 2.0);
+		drawCanvas.DrawTile(GetIcon(), hud.PlayerStatusIconSize * ResModifier, hud.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
 	}
 }
 

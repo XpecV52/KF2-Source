@@ -227,8 +227,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
 	if (EnrageHealthThresholds.Length > 0 && (float(Health) / float(HealthMax)) < EnrageHealthThresholds[0])
 	{
-		EnrageHealthThresholds.Remove(0, 1);
-		KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
+		if (IsCombatCapable())
+		{
+			EnrageHealthThresholds.Remove(0, 1);
+			KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
+		}
 	}
 }
 
@@ -243,22 +246,6 @@ function int GetHitZoneIndex(name BoneName)
 	return super.GetHitZoneIndex(BoneName);
 }
 
-function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, class<DamageType> damageType, vector Momentum, TraceHitInfo HitInfo)
-{
-	//TODO: Figure out how to separate 0 damage armor hits from valid 0 damage hits if needed
-	if (Damage == 0)
-	{
-		HitInfo.BoneName = 'KBArmor';
-
-		//Passing 1 damage to minimize need to rewrite for a single pawn
-		super.PlayHit(1, InstigatedBy, HitLocation, damageType, Momentum, HitInfo);
-	}
-	else
-	{
-		super.PlayHit(Damage, InstigatedBy, HitLocation, damageType, Momentum, HitInfo);
-	}
-}
-
 simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 {
 	if (HitZoneIdx == OverrideArmorFXIndex)
@@ -271,7 +258,8 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 {
 	super.ZedExplodeArmor(ArmorZoneIdx, ArmorZoneName);
-	KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
+	Knockdown( Velocity != vect(0,0,0) ? -Velocity*2 : 3*(-vector(Rotation) * GroundSpeed), vect(1,1,1),,,,, Location );
+	//KFAIController_ZedBloatKing(Controller).StartArmorEnrage();
 }
 
 simulated event bool CanDoSpecialMove(ESpecialMove AMove, optional bool bForceCheck)
@@ -603,7 +591,7 @@ defaultproperties
     bCanRage=true
 
 	//There can be as many thresholds here as you want.  Just do them in order from highest -> lowest
-	EnrageHealthThresholds=(0.75,0.50,0.20)
+	EnrageHealthThresholds=(0.8,0.6,0.4,0.2)
 
     //Fart is base timer +/- some random amount of the variance, giving you a range of say 25-35 seconds with a base of 30 and variance of 5
 	//		These values are X = 0 health, Y = 100% health
@@ -638,7 +626,7 @@ defaultproperties
 
     // Used for special crawler gas AOE attack "explosion" template  FART ATTACK
     Begin Object Class=KFGameExplosion Name=ExploTemplate0
-        Damage=14 //4 //9
+        Damage=15
         DamageRadius=450 //600
         DamageFalloffExponent=0.f
         DamageDelay=0.f
@@ -718,29 +706,35 @@ defaultproperties
     Mass=400.f
 
     RotationRate=(Pitch=50000,Yaw=20000,Roll=50000)
-    GroundSpeed=345.0f  //160 //210 //231 //255
-    SprintSpeed=380.0f   //260 //210  410 //315 //330 //345
-	RageSprintSpeedMultiplier=1.62f //1.25 1.45 //1.55
+    GroundSpeed=450.0f  //160 //210 //231 //255
+    SprintSpeed=450.0f   //260 //210  410 //315 //330 //345 //380
+	RageSprintSpeedMultiplier=1.3f //1.25 1.45 //1.55
+
+	VomitRange=400.f
+	VomitDamage=20
 
 	ArmorInfoClass=class'KFZedArmorInfo_BloatKing'
 	RepArmorPct[0]=255
 	RepArmorPct[1]=255
 	RepArmorPct[2]=255
 
-	HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=MaxInt, DmgScale=1.1, SkinID=1)
+	HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=MaxInt, DmgScale=1.2, SkinID=1)
+	HitZones[2]=(ZoneName=chest, BoneName=Spine2, Limb=BP_Torso, GoreHealth=150, DmgScale=1.2)
+	HitZones[10]=(ZoneName=stomach,	  BoneName=Spine1,		 Limb=BP_Torso, GoreHealth=150, DmgScale=1.2)
+	HitZones[11]=(ZoneName=abdomen,	  BoneName=Hips,		 Limb=BP_Torso, GoreHealth=150, DmgScale=1.2)
 
     // for reference: Vulnerability=(default, head, legs, arms, special)
     // cutting everything in half to make it harder to stumble except the head.
-    IncapSettings(AF_Stun)=     (Vulnerability=(0.05, 0.55, 0.05, 0.05, 0.55), Cooldown=17.0, Duration=1.25)
-    IncapSettings(AF_Knockdown)=(Vulnerability=(0.05, 0.4, 0.05, 0.05, 0.25),  Cooldown=20.0)
-    IncapSettings(AF_Stumble)=  (Vulnerability=(0.05, 0.3, 0.05, 0.05, 0.4),   Cooldown=10.0)
-    IncapSettings(AF_GunHit)=   (Vulnerability=(0.05, 0.1, 0.05, 0.05, 0.5),   Cooldown=1.7)
-    IncapSettings(AF_MeleeHit)= (Vulnerability=(0.05, 0.95, 0.05, 0.05, 0.75), Cooldown=2.0)
+    IncapSettings(AF_Stun)=     (Vulnerability=(0.1, 0.55, 0.1, 0.1, 0.55), Cooldown=17.0, Duration=1.25)
+    IncapSettings(AF_Knockdown)=(Vulnerability=(0.1, 0.4, 0.1, 0.1, 0.25),  Cooldown=20.0)
+    IncapSettings(AF_Stumble)=  (Vulnerability=(0.1, 0.3, 0.1, 0.1, 0.4),   Cooldown=10.0)
+    IncapSettings(AF_GunHit)=   (Vulnerability=(0.1, 0.1, 0.1, 0.1, 0.5),   Cooldown=1.7)
+    IncapSettings(AF_MeleeHit)= (Vulnerability=(0.1, 0.95, 0.1, 0.1, 0.75), Cooldown=2.0)
     IncapSettings(AF_Poison)=   (Vulnerability=(0))
     IncapSettings(AF_Microwave)=(Vulnerability=(0.08),                      Cooldown=10.0, Duration=3.0)
-    IncapSettings(AF_FirePanic)=(Vulnerability=(0.32),                      Cooldown=15.0, Duration=1.2)
-    IncapSettings(AF_EMP)=      (Vulnerability=(0.5),                      Cooldown=10.0, Duration=2.2)
-    IncapSettings(AF_Freeze)=   (Vulnerability=(0.25),                       Cooldown=10.0, Duration=1.0)
+    IncapSettings(AF_FirePanic)=(Vulnerability=(0.65),                      Cooldown=15.0, Duration=1.2)
+    IncapSettings(AF_EMP)=      (Vulnerability=(0.5),                       Cooldown=10.0, Duration=2.2)
+    IncapSettings(AF_Freeze)=   (Vulnerability=(0.5),                       Cooldown=10.0, Duration=1.0)
     IncapSettings(AF_Snare)=    (Vulnerability=(1.0, 2.0, 1.0, 1.0, 2.0),   Cooldown=10.5, Duration=3.0)
     IncapSettings(AF_Bleed)=    (Vulnerability=(0.15),                      Cooldown=10.0)
 
@@ -758,6 +752,12 @@ defaultproperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Piercing',                   DamageScale=(0.5)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic',                      DamageScale=(0.05))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingFart',        DamageScale=(0.00)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingPukeMine',    DamageScale=(0.0)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingSubspawnExplosion',    DamageScale=(0.75)))
+
+    //Special cases
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_HRGHealthrower',       DamageScale=(1.0)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MicrowaveRifle',   DamageScale=(0.7)))
 
     ParryResistance=4
 

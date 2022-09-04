@@ -32,6 +32,9 @@ var() float MeleeSustainedWarmupTime;
 /** Amount of time required between cancelling attacks with reload*/
 var private const float ReloadCancelTimeLimit;
 
+/** Whether this can be interrupted by another attack/reload/etc. */
+var bool StartFireDisabled;
+
 /*********************************************************************************************
  * @name Defensive Abilities
  *********************************************************************************************/
@@ -186,6 +189,12 @@ reliable server function ServerSetSlowMovement(bool bEnabled)
  */
 simulated function StartFire(byte FireModeNum)
 {
+	// can't start fire because it's in an uninterruptible state
+	if (StartFireDisabled)
+	{
+		return;
+	}
+
 	// if the weapon is currently attacking
 	if (CurrentFireMode == DEFAULT_FIREMODE || CurrentFireMode == ALTFIRE_FIREMODE || CurrentFireMode == BASH_FIREMODE)
 	{
@@ -844,6 +853,9 @@ reliable client function ClientPlayParryEffects(optional byte BlockTypeIndex=255
 	PlayLocalBlockEffects(Sound, PSTemplate);
 }
 
+simulated function NotifyAttackParried();
+simulated function NotifyAttackBlocked();
+
 simulated state MeleeBlocking
 {
 	ignores ForceReload, ShouldAutoReload;
@@ -918,10 +930,12 @@ simulated state MeleeBlocking
 			{
 				KFPawn(InstigatedBy).NotifyAttackParried(Instigator, 255);
 				ClientPlayParryEffects();
+				NotifyAttackParried();
 			}
 			else
 			{
 				ClientPlayBlockEffects();
+				NotifyAttackBlocked();
 			}
 
 			return TRUE;
@@ -966,6 +980,8 @@ simulated state MeleeBlocking
 				// zed was stumbled or knocked down. -MattF
 				ClientPlayParryEffects(BlockTypeIndex);
 
+				NotifyAttackParried();
+
 				if( InstigatorPerk != none )
 				{
 					InstigatorPerk.SetSuccessfullParry();
@@ -975,6 +991,8 @@ simulated state MeleeBlocking
 			{
 				InDamage *= GetUpgradedBlockDamageMitigation(CurrentWeaponUpgradeIndex);
 				ClientPlayBlockEffects(BlockTypeIndex);
+
+				NotifyAttackBlocked();
 
 				if( InstigatorPerk != none )
 				{

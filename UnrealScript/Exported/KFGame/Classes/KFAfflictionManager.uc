@@ -45,6 +45,8 @@ struct native IncapSettingsInfo
 	var() float Duration;
 	/** How long this pawn is immune to additional incap of this type.  If > 0, resets strength to zero on activation */
 	var() float Cooldown;
+	/** How long this pawn is immune to additional incap of children of this type */
+	var() float ChildAfflictionCooldown;
 
 	/** Array mapped to EHitZoneBodyPart.  If out of bounds default to body (index 0) */
 	var() array<float> Vulnerability;

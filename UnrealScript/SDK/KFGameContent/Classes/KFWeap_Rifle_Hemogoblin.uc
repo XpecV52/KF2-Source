@@ -43,10 +43,10 @@ defaultproperties
 {
     //Healing
     HealAmount=20
-    HealFullRechargeSeconds=12 //15
+    HealFullRechargeSeconds=10
 
     // Inventory / Grouping
-    InventorySize=8
+    InventorySize=7
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_Bleeder_TEX.UI_WeaponSelect_Bleeder'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
@@ -58,7 +58,7 @@ defaultproperties
     PlayerIronSightFOV=70
 
     // Depth of field
-    DOF_BlendInSpeed=3.0	
+    DOF_BlendInSpeed=3.0
     DOF_FG_FocalRadius=0//70
     DOF_FG_MaxNearBlurSize=3.5
 
@@ -69,13 +69,23 @@ defaultproperties
 	PickupMeshName="wep_3p_bleeder_mesh.Wep_3rdP_Bleeder_Pickup"
     AttachmentArchetypeName="WEP_Bleeder_ARCH.Wep_Bleeder_3P"
 	MuzzleFlashTemplateName="WEP_Bleeder_ARCH.Wep_Bleeder_MuzzleFlash"
-    
+
     LaserSightTemplate=KFLaserSightAttachment'FX_LaserSight_ARCH.LaserSight_WithAttachment_1P'
+
+	HealingDartDamageType=class'KFDT_Dart_Healing'
+	DartFireSnd=(DefaultCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_3P', FirstPersonCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_1P')
+	LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locked_1P'
+	LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
+	LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
+    HealImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Heal'
+    HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
+	OpticsUIClass=class'KFGFxWorld_MedicOptics'
+	HealingDartWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
 
     // Ammo
     MagazineCapacity[0]=7
-    SpareAmmoCapacity[0]=91 //77
-    InitialSpareMags[0]=3
+    SpareAmmoCapacity[0]=98
+    InitialSpareMags[0]=4
     bCanBeReloaded=true
     bReloadFromMagazine=true
 
@@ -109,7 +119,7 @@ defaultproperties
     FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
     WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
     WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Hemogoblin'
-    InstantHitDamage(DEFAULT_FIREMODE)=50.0
+    InstantHitDamage(DEFAULT_FIREMODE)=100.0
     InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Hemogoblin'
     FireInterval(DEFAULT_FIREMODE)=0.25
     PenetrationPower(DEFAULT_FIREMODE)=0.0 //2.0
@@ -117,7 +127,9 @@ defaultproperties
     FireOffset=(X=30,Y=3.0,Z=-2.5)
 
     // ALT_FIREMODE
-    AmmoCost(ALTFIRE_FIREMODE)=40
+    AmmoCost(ALTFIRE_FIREMODE)=30
+	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_HealingDart_MedicBase'
+	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Dart_Toxic'
 
     // BASH_FIREMODE
     InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_Hemogoblin'
@@ -140,6 +152,6 @@ defaultproperties
     //WeaponUpgrades[1]=(IncrementDamage=1.4f,IncrementWeight=1, IncrementHealFullRecharge=.8)
     //WeaponUpgrades[2]=(IncrementDamage=1.8f,IncrementWeight=2, IncrementHealFullRecharge=.6)
 
-	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Weight, Add=1), (Stat=EWUS_HealFullRecharge, Scale=0.8f)))
-	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.8f), (Stat=EWUS_Weight, Add=2), (Stat=EWUS_HealFullRecharge, Scale=0.6f)))
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.2f), (Stat=EWUS_Weight, Add=1), (Stat=EWUS_HealFullRecharge, Scale=0.9f)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Weight, Add=2), (Stat=EWUS_HealFullRecharge, Scale=0.8f)))
 }

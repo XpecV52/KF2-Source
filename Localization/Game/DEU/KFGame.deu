@@ -11,7 +11,7 @@ DifficultyStrings[0]="Normal"
 DifficultyStrings[1]="Schwer"
 DifficultyStrings[2]="Lebensmüde"
 DifficultyStrings[3]="Hölle auf Erden"
-BonusDoshString="BONUSKOHLE"
+BonusDoshString="BELOHNUNGEN"
 LengthStrings[0]="Kurz (4 Wellen)"
 LengthStrings[1]="Mittel (7 Wellen)"
 LengthStrings[2]="Lang (10 Wellen)"
@@ -142,9 +142,9 @@ CompleteMapString="Schließe ein Spiel ab in Karte:"
 KillZedsString="Töte Zeds:"
 KillBossString="Boss töten:"
 KillBossDescriptionString="In Überleben oder Wöchentlich"
-VersusKillsString=Töte Versus-Spieler als:
-DealVersusDamageString=Füge Versus-Spielern Schaden zu als:
-VersusCompletionString=Schließe ein Spiel ab als:
+VersusKillsString="Töte Versus-Spieler als:"
+DealVersusDamageString="Füge Versus-Spielern Schaden zu als:"
+VersusCompletionString="Schließe ein Spiel ab als:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="SPIELSUCHE GESCHEITERT"
@@ -1321,6 +1321,7 @@ GBA_SwitchWeapon3="Nahkampfwaffe"
 GBA_SwitchWeapon4="Ausrüstung"
 GBA_VoteYes="„Ja“ stimmen (Halten)"
 GBA_VoteNo="„Nein“ stimmen (Halten)"
+GBA_RequestSkipTrader="Händlerin überspringen anfordern"
 
 GBA_VoiceCommReqHealing="HEILUNG ANFORDERN"
 GBA_VoiceCommReqDosh="KOHLE ANFORDERN"
@@ -1773,7 +1774,7 @@ Passives[0]=(Title="Vorteils-Waffen-Schaden",Description="Vorteils-Waffen-Schade
 Passives[1]=(Title="Sieht getarnte Gegner & LP-Balken",Description="Reichweite 5m plus %x%m pro Level");
 Passives[2]=(Title="Zed-Zeit wird aktualisiert",Description="Zed-Zeit erhöht sich um %x% alle 5 Level");
 Passives[3]=(Title="Nachladegeschwindigkeit",Description="Vort.-Waffen-NL-Geschw. + %x%% alle 5 Lvl");
-Passives[4]=(Title="Nachtsichtfähigkeit",Description="Lampen- UND Nachtsicht-Brille");
+Passives[4]=(Title="Rückstoßdämpfung",Description="Verringere Rückstoß um %x% pro Level");
 Passives[5]=(Title="Aufzeigen getarnter Zeds",Description="Teamkollegen sehen getarnte Einheiten");
 
 EXPAction1="Kommando-Waffenschaden verursachen"
@@ -1798,7 +1799,7 @@ AmmoVest="Vorbereitet"
 AmmoVestDescription="Trage bis zu 20% mehr Munition pro Vorteils-Waffe."
 
 HollowPoints="Hohlspitzgeschosse"
-HollowPointsDescription="Erhöhe den Schaden von Vorteils-Waffen um 30% und verringere ihren Rückstoß um 50%."
+HollowPointsDescription="Erhöhe den Schaden von Vorteils-Waffen um 30%."
 
 EatLead="Friss Blei"
 EatLeadDescription="Erhöhe die Magazinkapazität von Vorteils-Waffen um 100%."
@@ -1969,7 +1970,7 @@ SkillCatagories[4]="Meister-Techniken"
 Passives[0]=(Title="Vorteils-Waffen-Schaden",Description="Vorteils-Waffen-Schaden erhöht um x%x/Lvl");
 Passives[1]=(Title="Kugel-Resistenz",Description="Erhöhe Resistenz gegen Projektilschaden um 5% plus %x% pro Level");
 Passives[2]=(Title="Bewegungsgeschwindigkeit",Description="Erhöhe Bewegungsgeschw. um %x% alle 5 Lvl");
-Passives[3]=(Title="Rückstoß",Description="Verringere Vort.-Waf.-Rückstoß um %x%/Lvl");
+Passives[3]=(Title="Rückstoßdämpfung",Description="Verringere Vort.-Waf.-Rückstoß um %x%/Lvl");
 Passives[4]=(Title="Zed-Zeit-Nachladen",Description="Erhöhe Nachladegeschw. in Zed-Zeit %x%/lvl");
 
 ShootnMove="Beständig"
@@ -2015,7 +2016,7 @@ SkillCatagories[3]="Ausrüstung"
 SkillCatagories[4]="Meister-Techniken"
 
 Passives[0]=(Title="Kopfschuss-Schaden",Description="Erhöhe Kopfschuss-Schaden um %x% pro Level");
-Passives[1]=(Title="Rückstoß",Description="Verringere Rückstoß um %x% pro Level");
+Passives[1]=(Title="Rückstoßdämpfung",Description="Verringere Rückstoß um %x% pro Level");
 Passives[2]=(Title="Waffen-Wechsel",Description="Erhöhe Waffen-Wechselgeschwindigkeit um %x%/Lvl");
 
 StationaryAim="Heckenschütze"
@@ -2351,7 +2352,7 @@ DescriptionDoshHold="Halte die Zeds aus dem markierten Gebiet fern"
 DescriptionDoshHoldShort="Verteidige die Zone (Optional)"
 RepairObjective="SCHWEIẞEN UND REPARIEREN"
 UseWelderToRepair="Schweißer benutzen, um kaputte Maschinen zu reparieren"
-UseWelderToRepairShort="Kaputte Maschine schweißen"
+UseWelderToRepairShort="Kaputte Maschinen schweißen"
 UseWelderToRepairTraderPod="Schweißer benutzen, um kaputte Händlerkapseln zu reparieren"
 UseWelderToRepairTraderPodShort="Händlerkapsel schweißen"
 RepairObjectiveRequired="Zu reparierende Maschinen:"
@@ -2381,10 +2382,10 @@ HoldZoneDescription="Verteidige das hervorgehobene Gebiet vor Zeds"
 HoldZoneDescriptionShort="Hervorgehobene Gebiet verteidigen"
 HoldZoneRequired="Zu verteidigende Zeit:"
 TransportWaveObjective="TRANSPORT"
-TransportWaveDescription="Transportiere das Daten-Pad zur Lieferstelle"
-TransportWaveDescriptionShort="Daten-Pad transportieren"
-TransportWaveDescriptionGear="Transportiere die Ausrüstung zur Lieferstelle"
-TransportWaveDescriptionGearShort="Ausrüstung transportieren"
+TransportWaveDescription="Transportiere die Daten-Pads zur Lieferstelle"
+TransportWaveDescriptionShort="Daten-Pads transportieren"
+TransportWaveDescriptionGear="Transportiere die Zahnräder zur Lieferstelle"
+TransportWaveDescriptionGearShort="Zahnräder transportieren"
 RequiredCollectActor="Benötigte Lieferungen:"
 FailedString="GESCHEITERT"
 SuccessString="FERTIG"
@@ -2656,10 +2657,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Ewiger Dampf",DescriptionString="
 SpecialEventObjectiveInfoList[3]=(TitleString="Tödliche Rundreise",DescriptionString="Schließe ZED-Landung bei Aufgabe auf mindestens Schwer ab")
 SpecialEventObjectiveInfoList[4]=(TitleString="Kalte Rückkehr",DescriptionString="Schließe Außenposten bei Aufgabe auf mindestens Schwer ab")
 
-AllCompleteRewardDescriptionString="Steampunk-Outfits für Männer und Frauen"
+AllCompleteRewardDescriptionString="Steampunk-Outfits + M99-AMR-Skin"
 
 ChanceDropDescriptionStrings[0]="Gewinnschein"
 ChanceDropDescriptionStrings[1]="Goldschein"
+
+[KFGFxFall2019ObjectivesContainer]
+CurrentSpecialEventString="Ein zeitbegrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Ansturm auf die Anstalt",DescriptionString="Besiege einen Boss von Ashwood-Anstalt bei Überleben auf mindestens Schwer")
+SpecialEventObjectiveInfoList[1]=(TitleString="Langfristige Behandlung",DescriptionString="Schließe Welle 15 von Ashwood-Anstalt bei Endlos auf mindestens Schwer ab")
+SpecialEventObjectiveInfoList[2]=(TitleString="Wöchentliche Untersuchung",DescriptionString="Schaffe die wöchentliche Ashwood-Anstalt")
+SpecialEventObjectiveInfoList[3]=(TitleString="Zellenreinigung",DescriptionString="Töte 1.500 Zeds auf Ashwood-Anstalt")
+SpecialEventObjectiveInfoList[4]=(TitleString="Bombenhagel",DescriptionString="Schließe Atomisiert bei Aufgabe auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="Kriss-MP | Beyond Horizon | Weltraum-Elite"
+
+ChanceDropDescriptionStrings[0]="Geschenkschein"
+ChanceDropDescriptionStrings[1]="Goldener Geschenkschein"
 
 ;============================================
 ; Daily Localization
@@ -3246,6 +3261,9 @@ DisplayName="Überlauf"
 
 [KF-SteamFortress KFMapSummary]
 DisplayName="Steam Fortress"
+
+[KF-AshwoodAsylum KFMapSummary]
+DisplayName="Ashwood-Anstalt"
 
 [KFMapInfo]
 ; defaults

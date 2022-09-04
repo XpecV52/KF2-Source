@@ -74,6 +74,25 @@ simulated function bool ShouldSetBossCamOnBossDeath()
     return false;
 }
 
+simulated function array<int> GetKFSeqEventLevelLoadedIndices()
+{
+    local array<int> ActivateIndices;
+
+    ActivateIndices[0] = 6;
+    return ActivateIndices;
+}
+
+function ChooseNextObjective(int NextWaveNum)
+{
+    if((NextWaveNum > 0) && (NextWaveNum % 5) == 0)
+    {
+        NextObjective = none;
+        NextObjectiveIsEndless = false;
+        return;
+    }
+    super.ChooseNextObjective(NextWaveNum);
+}
+
 defaultproperties
 {
     CurrentWeeklyMode=-1

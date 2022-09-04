@@ -394,9 +394,6 @@ struct native AttachmentVariants
 	var() const int UnlockAssetID;
 	/** The path to this skins package and texture */
 	var Texture UITexture;
-	/** Whether the attachment is a skeletal mesh. Otherwise, it is treated as a static mesh attachment.
-		Skeletal meshe animations are parented with the body mesh and must share the same skeletaon. */
-	var bool bIsSkeletalAttachment;
 	/** If set enables the material mask parameter on the assigned head variant */
 	var() bool bMaskHeadMesh;
 	/** Hard reference to the mesh, async load. */

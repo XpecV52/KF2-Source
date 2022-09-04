@@ -15,8 +15,8 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_Shotgun_Nailgun"
 	AttachmentArchtypePath="WEP_Nail_Shotgun_ARCH.Wep_Nail_Shotgun_3P"
 	
-	BuyPrice=750  //600
-	AmmoPricePerMag=26  //20
+	BuyPrice=750
+	AmmoPricePerMag=39
 	ImagePath="ui_weaponselect_tex.UI_WeaponSelect_NailShotgun"
 
 	EffectiveRange=20

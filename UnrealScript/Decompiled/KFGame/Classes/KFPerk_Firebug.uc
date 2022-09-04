@@ -378,7 +378,7 @@ defaultproperties
         DamageRadius=250
         MyDamageType=Class'KFDT_Explosive_Shrapnel'
         ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
-        CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Perk_ShrapnelCombustion'
+        CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
     object end
     // Reference: KFGameExplosion'Default__KFPerk_Firebug.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
@@ -422,6 +422,10 @@ defaultproperties
     ZedTimeModifyingStates(2)=WeaponSingleFiring
     ZedTimeModifyingStates(3)=SprayingFire
     ZedTimeModifyingStates(4)=HuskCannonCharge
+    ZedTimeModifyingStates(5)=MeleeChainAttacking
+    ZedTimeModifyingStates(6)=MeleeAttackBasic
+    ZedTimeModifyingStates(7)=MeleeHeavyAttacking
+    ZedTimeModifyingStates(8)=MeleeSustained
     PrimaryWeaponDef=Class'KFWeapDef_CaulkBurn'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Firebug'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Firebug'

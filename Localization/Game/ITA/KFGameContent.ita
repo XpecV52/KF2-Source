@@ -37,7 +37,7 @@ AlternateFireDescription="La maggior parte delle armi primarie possiedono una mo
 FlashLightBatteryTitleKey="Utilizzare la torcia"
 FlashLightBatteryDescriptionKey="Può essere molto buio là fuori. Premi <font color="#caab05">%x%</font> per accendere o spegnere la <font color="#caab05">TORCIA</font>. La batteria della torcia si consumerà lentamente. Quando sarà esaurita, si spegnerà e si ricaricherà automaticamente."
 GrenadeTitleKey="Utilizzare le granate"
-GrenadeDescriptionKey="Le granate ti consentono di affrontare un gruppo di Zed vicini tra loro. Le classi hanno diverse granate negli <font color="#caab05">EQUIPAGGIAMENTI ARMI</font>. Tutte danneggiano gli Zed, ma possono avere effetti aggiuntivi. Premi <font color="#caab05">%x%</font> per lanciare una granata." "
+GrenadeDescriptionKey="Le granate ti consentono di affrontare un gruppo di Zed vicini tra loro. Le classi hanno diverse granate negli <font color="#caab05">EQUIPAGGIAMENTI ARMI</font>. Tutte danneggiano gli Zed, ma possono avere effetti aggiuntivi. Premi <font color="#caab05">%x%</font> per lanciare una granata."
 
 ;Wave 1 end
 TraderTimeTitleKey="Commerciante"
@@ -116,48 +116,48 @@ ItemDescription="•L'armatura da combattimento ti protegge da diverse forme di 
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 candelotto dinamite"
-ItemCategory =" "Esplosivi"
-ItemDescription="•Un piccolo pezzo di dinamite con miccia.\n•Potrebbe ferire anche te, perciò fai attenzione!" "
+ItemCategory ="Esplosivi"
+ItemDescription="•Un piccolo pezzo di dinamite con miccia.\n•Potrebbe ferire anche te, perciò fai attenzione!"
 
 [KFProj_MedicGrenade]
 ItemName="Granata medica"
-ItemCategory =" "Esplosivi"
-ItemDescription="•Rilascia un gas che avvelena gli Zed ma cura gli umani.\n\n•Posizionati nella nube di gas blu per essere curato.\nCitando uno dei nostri scienziati: 'L'agente rilasciato da queste granate rinvigorisce l'Homo Sapiens, mentre sopprime l'Homo Zedicus.' Speriamo possa essere d'aiuto." "
+ItemCategory ="Esplosivi"
+ItemDescription="•Rilascia un gas che avvelena gli Zed ma cura gli umani.\n\n•Posizionati nella nube di gas blu per essere curato.\nCitando uno dei nostri scienziati: 'L'agente rilasciato da queste granate rinvigorisce l'Homo Sapiens, mentre sopprime l'Homo Zedicus.' Speriamo possa essere d'aiuto."
 
 [KFProj_MolotovGrenade]
 ItemName="Bomba molotov"
 ItemCategory="Esplosivi"
-ItemDescription="•È una granata esplosiva che brucia gli Zed.\n\nIl nome è stato dato dai Finlandesi durante la Guerra d'Inverno del 1939-40, dopo che Vyacheslav Mikhailovich Molotov, Ministro di Stalin... Scusa, non avevi chiesto una lezione di storia?" "
+ItemDescription="•È una granata esplosiva che brucia gli Zed.\n\nIl nome è stato dato dai Finlandesi durante la Guerra d'Inverno del 1939-40, dopo che Vyacheslav Mikhailovich Molotov, Ministro di Stalin... Scusa, non avevi chiesto una lezione di storia?"
 
 [KFProj_EMPGrenade]
 ItemName="Granata EMP"
 ItemCategory="Esplosivi"
-ItemDescription="•Genera un impulso elettrico che danneggia gli Zed e potrebbe anche stordirli per un po’.\n\nNello specifico, la detonazione genera un impulso elettromagnetico di un nanosecondo che interrompe i sistemi elettrici lì vicino. In particolare, quelli tra gli Zed. Comodo, no?" "
+ItemDescription="•Genera un impulso elettrico che danneggia gli Zed e potrebbe anche stordirli per un po’.\n\nNello specifico, la detonazione genera un impulso elettromagnetico di un nanosecondo che interrompe i sistemi elettrici lì vicino. In particolare, quelli tra gli Zed. Comodo, no?"
 
 [KFProj_HEGrenade]
 ItemName="Granata HE"
 ItemCategory="Esplosivi"
-ItemDescription="•Una semplicissima granata dall'alto potenziale esplosivo. Ferisce Zed e umani allo stesso modo.\n\nPiù semplice di così. HE: High Explosive. Un BOOM e tutto salta in aria. C'è davvero bisogno di spiegartelo?" "
+ItemDescription="•Una semplicissima granata dall'alto potenziale esplosivo. Ferisce Zed e umani allo stesso modo.\n\nPiù semplice di così. HE: High Explosive. Un BOOM e tutto salta in aria. C'è davvero bisogno di spiegartelo?"
 
 [KFProj_FragGrenade]
 ItemName="Granata frammentazione"
 ItemCategory="Esplosivi"
-ItemDescription="•Classica bomba a mano: si frammenta in piccoli pezzi di metallo che colpiscono in giro.\n\nSono sicuro che hai giocato a un po' di videogiochi prima dell'epidemia, quindi dovresti sapere di cosa si tratta. E smetti di fingere che non lo sai. Nessuno ti crederà." "
+ItemDescription="•Classica bomba a mano: si frammenta in piccoli pezzi di metallo che colpiscono in giro.\n\nSono sicuro che hai giocato a un po' di videogiochi prima dell'epidemia, quindi dovresti sapere di cosa si tratta. E smetti di fingere che non lo sai. Nessuno ti crederà."
 
 [KFProj_NailBombGrenade]
 ItemName="Bomba di chiodi"
-ItemCategory =" "Esplosivi"
+ItemCategory ="Esplosivi"
 ItemDescription="•Un semplice barattolo pieno di vecchi chiodi con una piccola carica esplosiva al suo interno.\n\nNon certo il metodo più bello o raffinato di affrontare gli Zed, ma dopotutto non c'è nulla di bello o raffinato riguardo agli Zed, no?"
 
 [KFProj_FreezeGrenade]
 ItemName="Granata congelante"
-ItemCategory =" "Esplosivi"
+ItemCategory ="Esplosivi"
 ItemDescription="•Un barattolo ad alta tecnologia di azoto liquido sotto pressione.\n\nEntrando in contatto con il contenuto, gli Zed saranno congelati per un po'. I risultati possono essere devastanti."
 
 [KFProj_FlashBangGrenade]
 ItemName="FlashBang"
-ItemCategory =" "Esplosivi"
-ItemDescription="•Accecante e rumoroso, meglio non guardarlo direttamente. Sarebbe bene non sentirlo nemmeno.\n•Sebbene tecnicamente non letale, i flashbang possono ferirti, dunque fai attenzione!" " 
+ItemCategory ="Esplosivi"
+ItemDescription="•Accecante e rumoroso, meglio non guardarlo direttamente. Sarebbe bene non sentirlo nemmeno.\n•Sebbene tecnicamente non letale, i flashbang possono ferirti, dunque fai attenzione!"
 
 [KFWeap_Healer_Syringe]
 ItemName="Siringa medica"
@@ -312,6 +312,11 @@ ItemName="Sparachiodi VLAD-1000"
 ItemCategory="Fucile"
 ItemDescription="•Scelta tra modalità di fuoco singola o multipla.\n•Usa il fuoco alternativo per cambiare modalità.\n•Da quello che sappiamo, uno degli scienziati Horzine ha preso in prestito lo sparachiodi originale da un addetto alla manutenzione (morto)."
 
+[KFWeap_HRG_Nailgun]
+ItemName="Sparachiodi HRG"
+ItemCategory="Mitra"
+ItemDescription="•Scelta fra modalità di un singolo fuoco automatico a 500 rpm o raffiche di 3 colpi a 857rpm automatiche\n•Usa il fuoco alternativo per cambiare modalità.\n• Una novità azzeccata!"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Redentore di strada"
 ItemCategory="Mischia"
@@ -370,6 +375,11 @@ ItemName="Lanciafiamme"
 ItemCategory="Fiamme"
 ItemDescription="•Lancia fiamme. Tutto qui.\n•Un classico di tutte le generazioni. Nel dubbio, brucia tutto."
 
+[KFWeap_HRG_Healthrower]
+ItemName="LanciaCura HRG"
+ItemCategory="Fiamme"
+ItemDescription="•Spara gas che cura i giocatori e avvelena gli Zed.\n•Il Fuoco alternativo spara dardi curativi per curare i membri della squadra.\n•Il gas ha un sentore di limone e menta. Agli Zed non piacciono limone e menta."
+
 [KFWeap_Beam_Microwave]
 ItemName="Fucile a microonde"
 ItemCategory="Fiamme"
@@ -425,6 +435,18 @@ ItemName="Doppia .50 Desert Eagle"
 ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di cannoni Desert Eagle."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Rhino"
+ItemCategory="Pistola"
+ItemDescription="•Spara Colpi frangibili.\n•I Colpi frangibili esplodono all'impatto e sparano 3 schegge.\n•Sciogli gli Zed come burro!"
+SharedUnlockSource="Rhino"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Rhino doppio"
+ItemCategory="Pistola"
+ItemDescription="•Spara Colpi frangibili.\n•I Colpi frangibili esplodono all'impatto e sparano 3 schegge.\n•Il fuoco alternativo cambia lo stile di mira quando usi il mirino di precisione.\nSciogli gli Zed come burro due volte più velocemente!"
+SharedUnlockSource="Rhino doppio"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="Revolver 1858"
 ItemCategory="Pistola"
@@ -444,6 +466,16 @@ ItemDescription="•Spara un colpo alla volta.\n•Vera artiglieria a mano sotto
 ItemName="Doppia Magnum .500"
 ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Una coppia di .500 Magnum 'Collezionista di ossa'."
+
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="HRG a pallettoni"
+ItemCategory="Pistola"
+ItemDescription="•Spara un colpo alla volta.\n•Porta lo scaricare il caricatore ad un altro livello."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="HRG Doppi a pallettoni"
+ItemCategory="Pistola"
+ItemDescription="•Solo semiautomatica.\n•Fuoco alternativo cambia lo stile di mira quando usi il mirino di precisione.\n•Porta lo scaricare caricatori a un nuovo livello e anche di più."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -516,6 +548,18 @@ ItemName="Cannone Husk"
 ItemCategory="Fiamme"
 ItemDescription="•Si ricarica premendo il tasto fuoco e si scarica rilasciando il tasto fuoco. \n•La versione Horzine ufficiale del cannone Husk. La non esplosione di questo modello è garantita al 95%."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Rhino"
+ItemCategory="Pistola"
+ItemDescription="•Spara Colpi frangibili.\n•I Colpi frangibili esplodono all'impatto e sparano 3 schegge.\n•Sciogli gli Zed come burro!"
+SharedUnlockSource="Rhino"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Rhino doppio"
+ItemCategory="Pistola"
+ItemDescription="•Spara Colpi frangibili.\n•I Colpi frangibili esplodono all'impatto e sparano 3 schegge.\n•Il fuoco alternativo cambia lo stile di mira quando usi il mirino di precisione.\nSciogli gli Zed come burro due volte più velocemente!"
+SharedUnlockSource="Rhino doppio"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Carabina MKb.42(H)"
 ItemCategory="Fucile d'assalto"
@@ -531,6 +575,12 @@ ItemDescription="•Solo semiautomatica.\n•Aggiungendo altre canne diventa tut
 ItemName="Doppia AF2011-A2"
 ItemCategory="Pistola"
 ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Due mitra a due canne ciascuna. Potenza di fuoco quadruplicata. È matematica. Con la matematica non si discute."
+
+[KFWeap_Edged_IonThruster]
+ItemName="Propulsore ionico"
+ItemCategory="Mischia"
+ItemDescription="•Primario - attacco veloce di fendente che brucia; tieni premuto Primario per le combo.\n•Secondario - attacco pesante di fendente che brucia.\n•Ricarica - Effettua un attacco speciale quando è carico al 100%.\n•Alt - blocca/para.\n•Ottimo per barbecue."
+SharedUnlockSource="Propulsore ionico"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Bastone del destino"

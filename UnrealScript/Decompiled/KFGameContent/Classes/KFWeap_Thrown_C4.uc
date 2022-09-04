@@ -354,9 +354,10 @@ defaultproperties
     PickupMeshName="WEP_3P_C4_MESH.Wep_C4_Pickup"
     AttachmentArchetypeName="WEP_C4_ARCH.Wep_C4_3P"
     FireModeIconPaths=/* Array type was not detected. */
-    InventoryGroup=EInventoryGroup.IG_Secondary
+    InventoryGroup=EInventoryGroup.IG_Equipment
     InventorySize=3
     MagazineCapacity=1
+    GroupPriority=25
     WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=2

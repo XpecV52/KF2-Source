@@ -17,13 +17,6 @@ var bool bIsFullyCharged;
 /** Whether the beam is currently charging*/
 var bool bIsCharging;
 
-/** Looping sound event for when the beam is firing */
-var array<AkEvent>	FireLoopSounds;
-/** Sound event to kill the looping firing beam when it ends*/
-var AkEvent	FireLoopStop;
-/** Looping sound event for when the beam is charing */
-var array<AkEvent>	ChargeSounds;
-
 var transient ParticleSystemComponent ChargingPSC;
 var ParticleSystem ChargingEffect;
 
@@ -118,24 +111,12 @@ simulated function PlayPawnFireAnim(KFPawn P, EAnimSlotStance AnimType)
 
 simulated function StartFire()
 {
-	local int ChargeLevel;
-
 	StartFireTime = WorldInfo.TimeSeconds;
 	ChargeTime = 0.0f;
 
 	// start the beam charging
 	bIsFullyCharged = false;
 	bIsCharging = true;
-
-	// play the beam charge sound event
-	if (!Instigator.IsFirstPerson())
-	{
-		ChargeLevel = GetChargeFXLevel();
-		if (ChargeLevel >= 0 && ChargeLevel < ChargeSounds.Length)
-		{
-			KFPawn(Instigator).PlayWeaponSoundEvent(ChargeSounds[ChargeLevel]);
-		}
-	}
 
 	// setup and play the beam charge particle system
 	if (ChargingPSC == none)
@@ -181,7 +162,7 @@ simulated function SpawnTracer(vector EffectLocation, vector HitLocation)
 	{
 		return;
 	}
-	
+
 	// since the tracers only happen in full-auto mode, make sure this isn't set to charging
 	bIsCharging = false;
 	ChargeTime = 0.0f;
@@ -254,22 +235,10 @@ simulated function SetBeamColor(int ChargeLevel)
 
 simulated event Tick(float DeltaTime)
 {
-	local int StartChargeLevel, EndChargeLevel;
-
 	// if the beam is charging, reset the charge time
 	if (bIsCharging && !bIsFullyCharged)
 	{
-		StartChargeLevel = GetChargeFXLevel();
 		ChargeTime = WorldInfo.TimeSeconds - StartFireTime;
-		EndChargeLevel = GetChargeFXLevel();
-
-		if (!Instigator.IsFirstPerson() && StartChargeLevel != EndChargeLevel)
-		{
-			if (EndChargeLevel >= 0 && EndChargeLevel < ChargeSounds.Length)
-			{
-				KFPawn(Instigator).PlayWeaponSoundEvent(ChargeSounds[EndChargeLevel]);
-			}
-		}
 	}
 
 	// if the beam has just reached max charge level
@@ -294,7 +263,6 @@ simulated event Tick(float DeltaTime)
 simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
 {
 	local bool bResult;
-	local int ChargeLevel;
 
 	// Overriding the KFWeapAttach_SprayBase portion of this function, so call the base Super directly
 	bResult = Super(KFWeaponAttachment).ThirdPersonFireEffects(HitLocation, P, ThirdPersonAnimRateByte);
@@ -303,15 +271,8 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byt
 	// CUSTOM_FIREMODE == 6
 	if (P.FiringMode == 6 && P.ActorEffectIsRelevant(P, false, 15000, 2000))
 	{
-		// start the firing sound loop
 		if (!bFireSpraying)
 		{
-			ChargeLevel = GetChargeFXLevel();
-			if (ChargeLevel >= 0 && ChargeLevel < FireLoopSounds.Length)
-			{
-				KFPawn(Instigator).PlayWeaponSoundEvent(FireLoopSounds[ChargeLevel]);
-			}
-
 			// play the muzzle flash on the first flash
 			bPlayMuzzleFlash = true;
 		}
@@ -351,7 +312,6 @@ simulated function StopThirdPersonFireEffects()
 	if (bFireSpraying)
 	{
 		ResetAnimationState();
-		KFPawn(Instigator).PlayWeaponSoundEvent(FireLoopStop);
 	}
 
 	// beam is over, return to default color
@@ -431,15 +391,6 @@ function int GetChargeFXLevel()
 
 defaultproperties
 {
-	FireLoopSounds(0)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_0_3P'
-	FireLoopSounds(1)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_1_3P'
-	FireLoopSounds(2)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_2_3P'
-	FireLoopSounds(3)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_3_3P'
-	FireLoopStop=AkEvent'WW_WEP_Lazer_Cutter.Stop_WEP_LazerCutter_Beam_Shoot_Loop_3P'
-	ChargeSounds(0)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_0_3P'
-	ChargeSounds(1)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_1_3P'
-	ChargeSounds(2)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_2_3P'
-	ChargeSounds(3)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_3_3P'
 	PilotLightPlayEvent=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Idle_LP'
 	PilotLightStopEvent=AkEvent'WW_WEP_Lazer_Cutter.Stop_WEP_LazerCutter_Idle_LP'
 

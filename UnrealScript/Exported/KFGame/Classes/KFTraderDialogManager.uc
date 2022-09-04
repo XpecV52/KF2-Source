@@ -538,7 +538,6 @@ class KFTraderDialogManager extends Actor
 
 
 
-										  
 
 
 
@@ -554,7 +553,8 @@ class KFTraderDialogManager extends Actor
 
 
 
-										  
+
+
 
 
 

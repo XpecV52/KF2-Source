@@ -254,6 +254,33 @@ var transient int PinBoneIdx;
 var instanced KFProjectileStickHelper StickHelper;
 
 /*********************************************************************************************
+* @name Shrapnel
+********************************************************************************************* */
+
+/** Don't process touch events when hitting this actor, used by shrapnel to avoid hitting the actor that caused the sharpnel to spawn */
+var repnotify Actor IgnoreTouchActor;
+/** Whether this projectile spawns sharpnel when it hits a zed or environment object*/
+var bool bSpawnShrapnel;
+/** Show lines where the shrapnel will travel*/
+var bool bDebugShrapnel;
+/** Number of shrapnel to spawn */
+var int NumSpawnedShrapnel;
+/** The projectile type of the shrapnel */
+var class<KFProjectile> ShrapnelClass;
+/** The spread width when sharpnel is spawned due to colliding with the environment */
+var float ShrapnelSpreadWidthEnvironment;
+/** The spread height when shrapnel is spawned due to colliding with the environment */
+var float ShrapnelSpreadHeightEnvironment;
+/** The spread width when shrapnel is spawned due to colliding with a zed*/
+var float ShrapnelSpreadWidthZed;
+/** The spread height when shrapnel is spawned due to colliding with a zed*/
+var float ShrapnelSpreadHeightZed;
+/** Sound that plays once when shrapnel are created */
+var AkEvent	ShrapnelSpawnSoundEvent;
+/** VFX that plays once when shrapnel are created */
+var ParticleSystem ShrapnelSpawnVFX;
+
+/*********************************************************************************************
 * End Vars
 ********************************************************************************************* */
 
@@ -294,6 +321,9 @@ replication
 		StuckToActor, StuckToBoneIdx, StuckToLocation, StuckToRotation;
 	if (bCanPin && bNetDirty)
 		PinActor, PinBoneIdx;
+
+	if (bNetInitial || bNetDirty)
+		IgnoreTouchActor;
 }
 
 /** returns terminal velocity (max speed while falling) for this actor.  Unless overridden, it returns the TerminalVelocity of the PhysicsVolume in which this actor is located.
@@ -657,6 +687,12 @@ simulated singular event HitWall( vector HitNormal, actor Wall, PrimitiveCompone
 		return;
 	}
 
+	if (bSpawnShrapnel)
+	{
+		//spawn reflecting off the environment object
+		SpawnShrapnel(Wall, Location, HitNormal, rotator(Velocity - 2.0*HitNormal*(Velocity dot HitNormal)), ShrapnelSpreadWidthEnvironment, ShrapnelSpreadHeightEnvironment);
+	}
+
     if ( Wall.bWorldGeometry )
     {
         HitStaticMesh = StaticMeshComponent(WallComp);
@@ -818,6 +854,12 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
 	}
     else
     {
+		if (bSpawnShrapnel)
+		{
+			//spawn straight forward through the zed
+			SpawnShrapnel(Other, HitLocation, HitNormal, rotator(Velocity), ShrapnelSpreadWidthZed, ShrapnelSpreadHeightZed);
+		}
+
 		StartTrace = HitLocation;
 		Direction = Normal(Velocity);
 		EndTrace = StartTrace + Direction * (Victim.CylinderComponent.CollisionRadius * 6.0);
@@ -1350,6 +1392,62 @@ simulated function SetStickOrientation(vector HitNormal);
 reliable server function ServerStick(Actor StickTo, int BoneIdx, vector StickLoc, rotator StickRot)
 {
 	StickHelper.ServerStick(StickTo, BoneIdx, StickLoc, StickRot);
+}
+
+/*********************************************************************************************
+* @name Shrapnel
+********************************************************************************************* */
+
+simulated function SpawnShrapnel(Actor InitialHitActor, vector HitLocation, vector HitNormal, rotator BaseAim, float SpreadWidth, float SpreadHeight)
+{
+	local vector SpawnPos;
+	local rotator SpawnRot;
+	local int i;
+	local KFProjectile SpawnedShrapnel;
+	local vector X, Y, Z;
+	local float RandY, RandZ;
+
+	SpawnPos = HitLocation + 10.f * HitNormal;
+
+	if (Instigator != none && Instigator.Role == ROLE_Authority)
+	{
+		// Play one sound when spawning the shrapnel at the explosion location instead of one sound for each piece of shrapnel
+		if(ShrapnelSpawnSoundEvent != none)
+		{
+			Instigator.PlaySoundBase(ShrapnelSpawnSoundEvent, , , , Location);
+		}
+
+		for (i = 0; i < NumSpawnedShrapnel; i++)
+		{
+			GetAxes(BaseAim, X, Y, Z);
+			RandY = FRand() - 0.5;
+			RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
+			SpawnRot = rotator(X + RandY * SpreadWidth * Y + RandZ * SpreadHeight * Z);
+
+			SpawnedShrapnel = Spawn(ShrapnelClass, Instigator != none ? Instigator.Weapon : self, , SpawnPos, SpawnRot);
+			if (SpawnedShrapnel != None)
+			{
+				SpawnedShrapnel.IgnoreTouchActor = InitialHitActor;
+				SpawnedShrapnel.InitialPenetrationPower = KFWeapon(Instigator.Weapon).GetInitialPenetrationPower(Instigator.Weapon.CurrentFireMode);
+				SpawnedShrapnel.PenetrationPower = SpawnedShrapnel.InitialPenetrationPower;
+				SpawnedShrapnel.Init(vector(SpawnRot));
+				SpawnedShrapnel.bForceNetUpdate = true;
+
+				if (bDebugShrapnel)
+				{
+					DrawDebugLine(SpawnPos, SpawnPos + normal(vector(SpawnRot)) * 500.0, 255, 0, 0, TRUE);
+				}
+			}
+		}
+	}
+
+	if (WorldInfo.NetMode != NM_DedicatedServer)
+	{
+		if (ShrapnelSpawnVFX != none)
+		{
+			WorldInfo.MyEmitterPool.SpawnEmitter(ShrapnelSpawnVFX, Location, Rotation, None);
+		}
+	}
 }
 
 defaultproperties

@@ -527,7 +527,6 @@ class KFTraderVoiceGroup_Santa extends KFTraderVoiceGroupBase;
 
 
 
-										  
 
 
 
@@ -543,7 +542,8 @@ class KFTraderVoiceGroup_Santa extends KFTraderVoiceGroupBase;
 
 
 
-										  
+
+
 
 
 

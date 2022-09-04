@@ -520,7 +520,7 @@ function handleCurrent(WebAdminQuery q)
 
 	q.response.subst("server.name", class'WebAdminUtils'.static.HTMLEscape(webadmin.WorldInfo.Game.GameReplicationInfo.ServerName));
 
-	buildSortedPRI(q.request.getVariable("sortby", "score"), q.request.getVariable("reverse", "true") ~= "true");
+	buildSortedPRI(q.request.getVariable("sortby", "score"), q.request.getVariable("reverse", "true") ~= "true", false);
 	cnt = 0;
 	foreach sortedPRI(pri, idx)
 	{

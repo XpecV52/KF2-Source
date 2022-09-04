@@ -544,6 +544,8 @@ var transient KFLaserSightAttachment LaserSight;
 /** A reference to the laser sight template */
 var(Attachments) const KFLaserSightAttachment LaserSightTemplate;
 var float LastPelletFireTime;
+/** Number of pellets to fire, if greater than 1 then it uses shotgun-like functionality */
+var(Weapon) array<byte> NumPellets;
 /** Amount to scale spread when moving and shooting. Set this to something greater than 1.0 if you want to have added spread while moving. KF1 did not have this */
 var(Weapon) float MovingSpreadMod;
 /** Amount to scale spread when using ironsights */
@@ -621,6 +623,12 @@ var(Weapon) protected array< class<KFPerk> > AssociatedPerkClasses;
 var array<WeaponUpgradeInfo> WeaponUpgrades;
 var int CurrentWeaponUpgradeIndex;
 var int UpgradeFireModes[7];
+var class<KFMedicWeaponComponent> MedicCompClass;
+var KFMedicWeaponComponent MedicComp;
+var repnotify Actor MedicCompRepActor;
+var class<KFTargetingWeaponComponent> TargetingCompClass;
+var KFTargetingWeaponComponent TargetingComp;
+var repnotify Actor TargetingCompRepActor;
 
 replication
 {
@@ -631,6 +639,9 @@ replication
         CurrentWeaponUpgradeIndex, MagazineCapacity, 
         SpareAmmoCapacity, SpareAmmoCount, 
         bGivenAtStart;
+
+     if(bNetDirty)
+        MedicCompRepActor, TargetingCompRepActor;
 }
 
 // Export UKFWeapon::execEnsureWeaponOverlayComponentLast(FFrame&, void* const)
@@ -656,6 +667,22 @@ simulated function bool HasAlwaysOnZedTimeResist()
 // Export UKFWeapon::execBeamLineCheck(FFrame&, void* const)
 native function array<Actor> BeamLineCheck(Vector BeamEnd, Vector BeamStart, Vector BeamExtent, out array<Vector> OutHitLocations);
 
+simulated event ReplicatedEvent(name VarName)
+{
+    switch(VarName)
+    {
+        case 'MedicCompRepActor':
+            MedicComp = KFMedicWeaponComponent(MedicCompRepActor);
+            break;
+        case 'TargetingCompRepActor':
+            TargetingComp = KFTargetingWeaponComponent(TargetingCompRepActor);
+            break;
+        default:
+            super(Actor).ReplicatedEvent(VarName);
+            break;
+    }
+}
+
 simulated event PreBeginPlay()
 {
     super(Actor).PreBeginPlay();
@@ -671,6 +698,21 @@ simulated event PreBeginPlay()
     {
         RecoilYawBlendOutRate = int((float(maxRecoilYaw) / RecoilRate) * RecoilBlendOutRatio);
         RecoilPitchBlendOutRate = int((float(maxRecoilPitch) / RecoilRate) * RecoilBlendOutRatio);
+    }
+    if(Role == ROLE_Authority)
+    {
+        if(MedicCompClass != none)
+        {
+            MedicComp = Spawn(MedicCompClass, self);
+            MedicComp.Init(AmmoCost[1]);
+            MedicCompRepActor = MedicComp;
+        }
+        if(TargetingCompClass != none)
+        {
+            TargetingComp = Spawn(TargetingCompClass, self);
+            TargetingComp.Init();
+            TargetingCompRepActor = TargetingComp;
+        }
     }
 }
 
@@ -780,6 +822,10 @@ function GivenTo(Pawn thisPawn, optional bool bDoNotActivate)
     }
     KFInventoryManager(InvManager).AddCurrentCarryBlocks(GetModifiedWeightValue());
     KFPawn(Instigator).NotifyInventoryWeightChanged();
+    if(MedicComp != none)
+    {
+        MedicComp.OnWeaponGivenTo(thisPawn);
+    }
 }
 
 reliable client simulated function ClientGivenTo(Pawn NewOwner, bool bDoNotActivate)
@@ -807,6 +853,10 @@ function ItemRemovedFromInvManager()
     }
     KFIM.AddCurrentCarryBlocks(-GetModifiedWeightValue());
     KFPawn(Instigator).NotifyInventoryWeightChanged();
+    if(MedicComp != none)
+    {
+        MedicComp.OnWeaponRemovedFromInvManager();
+    }
 }
 
 reliable client simulated function ClientWeaponSet(bool bOptionalSet, optional bool bDoNotActivate)
@@ -817,6 +867,10 @@ reliable client simulated function ClientWeaponSet(bool bOptionalSet, optional b
     }
     SetOnContentLoad = true;
     super.ClientWeaponSet(bOptionalSet, bDoNotActivate);
+    if(MedicComp != none)
+    {
+        MedicComp.OnClientWeaponSet();
+    }
 }
 
 simulated event SetWeapon()
@@ -957,6 +1011,14 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
     {
         AttachThirdPersonWeapon(KFP);
     }
+    if(MedicComp != none)
+    {
+        MedicComp.OnWeaponAttachedTo();
+    }
+    if(TargetingComp != none)
+    {
+        TargetingComp.OnWeaponAttachedTo();
+    }
 }
 
 function AttachThirdPersonWeapon(KFPawn P)
@@ -1027,6 +1089,14 @@ simulated function DetachWeapon()
     SetBase(none);
     SetHidden(true);
     DetachMuzzleFlash();
+    if(MedicComp != none)
+    {
+        MedicComp.OnWeaponDetached();
+    }
+    if(TargetingComp != none)
+    {
+        TargetingComp.OnWeaponDetached();
+    }
 }
 
 simulated function DetachMuzzleFlash()
@@ -1740,6 +1810,10 @@ simulated function name GetWeaponFireAnim(byte FireModeNum)
     local bool bPlayFireLast;
 
     bPlayFireLast = ShouldPlayFireLast(FireModeNum);
+    if((MedicComp != none) && FireModeNum == 1)
+    {
+        return MedicComp.GetWeaponFireAnim();
+    }
     if(bUsingScopePosition)
     {
         if(bPlayFireLast && FireLastScopedAnim != 'None')
@@ -2211,16 +2285,23 @@ simulated function PlayFiringSound(byte FireModeNum)
     local byte UsedFireModeNum;
 
     MakeNoise(1, 'PlayerFiring');
-    if(!bPlayingLoopingFireSnd)
+    if((MedicComp != none) && FireModeNum == 1)
     {
-        UsedFireModeNum = FireModeNum;
-        if(((FireModeNum < bLoopingFireSnd.Length) && bLoopingFireSnd[FireModeNum]) && ShouldForceSingleFireSound())
+        MedicComp.PlayFiringSound();        
+    }
+    else
+    {
+        if(!bPlayingLoopingFireSnd)
         {
-            UsedFireModeNum = SingleFireSoundIndex;
-        }
-        if(UsedFireModeNum < WeaponFireSnd.Length)
-        {
-            WeaponPlayFireSound(WeaponFireSnd[UsedFireModeNum].DefaultCue, WeaponFireSnd[UsedFireModeNum].FirstPersonCue);
+            UsedFireModeNum = FireModeNum;
+            if(((FireModeNum < bLoopingFireSnd.Length) && bLoopingFireSnd[FireModeNum]) && ShouldForceSingleFireSound())
+            {
+                UsedFireModeNum = SingleFireSoundIndex;
+            }
+            if(UsedFireModeNum < WeaponFireSnd.Length)
+            {
+                WeaponPlayFireSound(WeaponFireSnd[UsedFireModeNum].DefaultCue, WeaponFireSnd[UsedFireModeNum].FirstPersonCue);
+            }
         }
     }
 }
@@ -2329,6 +2410,10 @@ simulated function ShakeView()
     {
         return;
     }
+    if(MedicComp != none)
+    {
+        MedicComp.AdjustShakeView(CurrentFireMode);
+    }
     if((CurrentFireMode < FireCameraAnim.Length) && FireCameraAnim[CurrentFireMode] != none)
     {
         ShakeViewScale = ShakeScaleStandard;
@@ -2367,6 +2452,13 @@ simulated function AddBlood(float MinAmount, float MaxAmount)
 
 simulated function StartFire(byte FireModeNum)
 {
+    if(MedicComp != none)
+    {
+        if(!MedicComp.ShouldStartFire(FireModeNum))
+        {
+            return;
+        }
+    }
     if((FireModeNum == 0) || FireModeNum == 1)
     {
         if(ShouldAutoReload(FireModeNum))
@@ -2550,7 +2642,7 @@ function HandleWeaponShotTaken(byte FireMode)
 {
     if(KFPlayer != none)
     {
-        KFPlayer.AddShotsFired(1);
+        KFPlayer.AddShotsFired(GetNumProjectilesToFire(FireMode));
     }
 }
 
@@ -2628,7 +2720,7 @@ simulated function Rotator AddSpread(Rotator BaseAim)
     local Vector X, Y, Z;
     local float CurrentSpread, RandY, RandZ;
 
-    if(CurrentFireMode >= Spread.Length)
+    if((CurrentFireMode >= Spread.Length) || NumPellets[CurrentFireMode] > 1)
     {
         return BaseAim;
     }
@@ -2665,6 +2757,29 @@ simulated function Rotator AddSpread(Rotator BaseAim)
     }
 }
 
+static function Rotator AddMultiShotSpread(Rotator BaseAim, float CurrentSpread, byte PelletNum)
+{
+    local Vector X, Y, Z;
+    local float RandY, RandZ;
+
+    if(CurrentSpread == float(0))
+    {
+        return BaseAim;        
+    }
+    else
+    {
+        GetAxes(BaseAim, X, Y, Z);
+        RandY = FRand() - 0.5;
+        RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
+        return rotator((X + ((RandY * CurrentSpread) * Y)) + ((RandZ * CurrentSpread) * Z));
+    }
+}
+
+simulated function byte GetNumProjectilesToFire(byte FireModeNum)
+{
+    return NumPellets[CurrentFireMode];
+}
+
 simulated function ModifyRecoil(out float CurrentRecoilModifier)
 {
     GetPerk().ModifyRecoil(CurrentRecoilModifier, self);
@@ -2679,6 +2794,10 @@ simulated event HandleRecoil()
     if((Instigator == none) || !Instigator.IsFirstPerson())
     {
         return;
+    }
+    if(MedicComp != none)
+    {
+        MedicComp.AdjustRecoil(CurrentFireMode);
     }
     CurrentRecoilModifier = GetUpgradedRecoilModifier(CurrentFireMode);
     NewRecoilRotation.Pitch = int(RandRange(float(minRecoilPitch), float(maxRecoilPitch)));
@@ -2789,7 +2908,7 @@ simulated function Projectile ProjectileFire()
                 AimDir = QuatRotateVector(Q, DirB);
             }
         }
-        return SpawnProjectile(MyProjectileClass, RealStartLoc, AimDir);
+        return SpawnAllProjectiles(MyProjectileClass, RealStartLoc, AimDir);
     }
     return none;
 }
@@ -2797,6 +2916,29 @@ simulated function Projectile ProjectileFire()
 simulated function bool ShouldIncrementFlashCountOnFire()
 {
     return CurrentFireMode != 4;
+}
+
+simulated function KFProjectile SpawnAllProjectiles(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
+{
+    local int ProjectilesToFire, I;
+    local Rotator AimRot;
+
+    ProjectilesToFire = GetNumProjectilesToFire(CurrentFireMode);
+    if((CurrentFireMode == 4) || ProjectilesToFire <= 1)
+    {
+        return SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
+    }
+    AimRot = rotator(AimDir);
+    I = 0;
+    J0x88:
+
+    if(I < ProjectilesToFire)
+    {
+        SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, Spread[CurrentFireMode], byte(I))));
+        ++ I;
+        goto J0x88;
+    }
+    return none;
 }
 
 simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
@@ -2817,6 +2959,13 @@ simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass,
         SpawnedProjectile.PenetrationPower = SpawnedProjectile.InitialPenetrationPower;
         SpawnedProjectile.UpgradeDamageMod = GetUpgradeDamageMod();
         SpawnedProjectile.Init(AimDir);
+    }
+    if((MedicComp != none) && KFProj_HealingDart(SpawnedProjectile) != none)
+    {
+        if((TargetingComp != none) && TargetingComp.LockedTarget != none)
+        {
+            KFProj_HealingDart(SpawnedProjectile).SeekTarget = TargetingComp.LockedTarget;
+        }
     }
     return SpawnedProjectile;
 }
@@ -2854,6 +3003,13 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
     local KFPerk CurrentPerk;
     local bool bNoPenetrationDmgReduction;
 
+    if((MedicComp != none) && FiringMode == 1)
+    {
+        if(MedicComp.ProcessInstantHitEx(Impact))
+        {
+            return;
+        }
+    }
     if(Impact.HitActor != none)
     {
         OriginalPenetrationVal = out_PenetrationVal;
@@ -2948,7 +3104,7 @@ simulated function ProcessGrenadeProjectileImpact(ImpactInfo Impact, class<KFPro
 
     if(Impact.HitActor != none)
     {
-        TotalDamage = int(Fragment.default.Damage);
+        TotalDamage = int(GetUpgradedStatValue(Fragment.default.Damage, ((CurrentFireMode == 0) ? 5 : 6), CurrentWeaponUpgradeIndex));
         if(Impact.HitActor.bWorldGeometry)
         {
             HitStaticMesh = StaticMeshComponent(Impact.HitInfo.HitComponent);
@@ -3087,7 +3243,7 @@ event RecieveClientImpactList(byte FiringMode, array<ImpactInfo> ImpactList);
 
 simulated function int GetAmmoType(byte FiringMode)
 {
-    if((FiringMode == 1) && UsesSecondaryAmmo())
+    if((FiringMode == 1) && (UsesSecondaryAmmo()) || MedicComp != none)
     {
         return 1;        
     }
@@ -3342,6 +3498,10 @@ simulated function bool HasAnyAmmo()
     {
         return true;
     }
+    if(MedicComp != none)
+    {
+        return false;
+    }
     if((UsesSecondaryAmmo()) && (HasSpareAmmo(1)) || HasAmmo(1))
     {
         return true;
@@ -3382,6 +3542,8 @@ simulated function int GetSpareAmmoForHUD()
 {
     return SpareAmmoCount[0];
 }
+
+simulated function string GetSpecialAmmoForHUD();
 
 simulated function int GetSecondaryAmmoForHUD()
 {
@@ -4683,16 +4845,16 @@ static simulated event SetTraderWeaponStats(out array<STraderItemWeaponStats> We
 
 static simulated function float CalculateTraderWeaponStatDamage()
 {
-    local float CalculatedDamage;
+    local float BaseDamage, DoTDamage;
     local class<KFDamageType> DamageType;
 
-    CalculatedDamage = default.InstantHitDamage[0];
+    BaseDamage = default.InstantHitDamage[0];
     DamageType = class<KFDamageType>(default.InstantHitDamageTypes[0]);
     if((DamageType != none) && DamageType.default.DoT_Type != 0)
     {
-        CalculatedDamage += ((DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (CalculatedDamage * DamageType.default.DoT_DamageScale));
+        DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
     }
-    return CalculatedDamage;
+    return (BaseDamage * float(default.NumPellets[0])) + DoTDamage;
 }
 
 static simulated function float CalculateTraderWeaponStatFireRate()
@@ -5317,6 +5479,10 @@ simulated state WeaponSingleFiring extends WeaponFiring
 {
     simulated function FireAmmunition()
     {
+        if(MedicComp != none)
+        {
+            MedicComp.OnWeaponFireAmmunition(CurrentFireMode);
+        }
         super(KFWeapon).FireAmmunition();
         ClearPendingFire(CurrentFireMode);
     }
@@ -5868,6 +6034,13 @@ defaultproperties
     // Reference: KFMeleeHelperWeapon'Default__KFWeapon.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     LaserSightTemplate=KFLaserSightAttachment'FX_LaserSight_ARCH.Default_LaserSight_1P'
+    NumPellets(0)=1
+    NumPellets(1)=1
+    NumPellets(2)=0
+    NumPellets(3)=1
+    NumPellets(4)=1
+    NumPellets(5)=0
+    NumPellets(6)=1
     MovingSpreadMod=1
     IronSightsSpreadMod=0.5
     CrouchSpreadMod=0.75

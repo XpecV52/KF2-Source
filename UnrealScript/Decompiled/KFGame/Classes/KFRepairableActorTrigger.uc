@@ -45,12 +45,7 @@ function OnDestroyOrReset()
 
     foreach TouchingActors(Class'KFPawn_Human', P)
     {
-        !;
-        @NULL
-        @NULL                
-        @NULL
-        default.@NULL
-        @NULL
+        UnresolvedNativeFunction_96(@NULL, P) == ;
     }
 }
 

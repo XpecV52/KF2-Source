@@ -31,6 +31,10 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
     if(Other != Instigator)
     {
+        if(IgnoreTouchActor == Other)
+        {
+            return;
+        }
         if(!Other.bStatic && DamageRadius == 0)
         {
             if(CheckRepeatingTouch(Other))
@@ -38,19 +42,22 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
                 return;
             }
             KFW = KFWeapon(Instigator.Weapon);
-            if(KFW.GetInitialPenetrationPower(Instigator.FiringMode) > 0)
+            if((KFW == none) || KFW.GetInitialPenetrationPower(Instigator.FiringMode) > 0)
             {
                 if((PenetrationPower > float(0)) || PassThroughDamage(Other))
                 {
-                    CurrentPerk = KFW.GetPerk();
-                    if(CurrentPerk != none)
+                    if(KFW != none)
                     {
-                        bNoPenetrationDmgReduction = CurrentPerk.IgnoresPenetrationDmgReduction();
-                    }
-                    PenetrationCurve = KFW.PenetrationDamageReductionCurve[Instigator.FiringMode];
-                    if(!bNoPenetrationDmgReduction)
-                    {
-                        Damage *= EvalInterpCurveFloat(PenetrationCurve, PenetrationPower / KFW.GetInitialPenetrationPower(Instigator.FiringMode));
+                        CurrentPerk = KFW.GetPerk();
+                        if(CurrentPerk != none)
+                        {
+                            bNoPenetrationDmgReduction = CurrentPerk.IgnoresPenetrationDmgReduction();
+                        }
+                        PenetrationCurve = KFW.PenetrationDamageReductionCurve[Instigator.FiringMode];
+                        if(!bNoPenetrationDmgReduction)
+                        {
+                            Damage *= EvalInterpCurveFloat(PenetrationCurve, PenetrationPower / KFW.GetInitialPenetrationPower(Instigator.FiringMode));
+                        }
                     }
                     ProcessBulletTouch(Other, HitLocation, HitNormal);
                     KFP = KFPawn(Other);

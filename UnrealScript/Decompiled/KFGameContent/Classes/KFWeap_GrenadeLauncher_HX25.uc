@@ -9,56 +9,19 @@ class KFWeap_GrenadeLauncher_HX25 extends KFWeap_GrenadeLauncher_Base
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
-var(Weapon) protected array<byte> NumPellets;
 var protected const array<Vector2D> PelletSpread;
 var float LastSubmunitionFireTime;
-
-simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
-{
-    local int I;
-    local Rotator AimRot;
-
-    if(CurrentFireMode == 4)
-    {
-        return super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
-    }
-    AimRot = rotator(AimDir);
-    I = 0;
-    J0x58:
-
-    if(I < GetNumProjectilesToFire(CurrentFireMode))
-    {
-        super(KFWeapon).SpawnProjectile(KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, byte(I))));
-        ++ I;
-        goto J0x58;
-    }
-    return none;
-}
-
-function HandleWeaponShotTaken(byte FireMode)
-{
-    if(KFPlayer != none)
-    {
-        KFPlayer.AddShotsFired(GetNumProjectilesToFire(FireMode));
-    }
-}
-
-simulated function byte GetNumProjectilesToFire(byte FireModeNum)
-{
-    return NumPellets[CurrentFireMode];
-}
 
 simulated function Rotator AddSpread(Rotator BaseAim)
 {
     return BaseAim;
 }
 
-simulated function Rotator AddMultiShotSpread(Rotator BaseAim, byte PelletNum)
+static function Rotator AddMultiShotSpread(Rotator BaseAim, float CurrentSpread, byte PelletNum)
 {
     local Vector X, Y, Z;
-    local float CurrentSpread, RandY, RandZ;
+    local float RandY, RandZ;
 
-    CurrentSpread = Spread[CurrentFireMode];
     if(CurrentSpread == float(0))
     {
         return BaseAim;        
@@ -66,8 +29,8 @@ simulated function Rotator AddMultiShotSpread(Rotator BaseAim, byte PelletNum)
     else
     {
         GetAxes(BaseAim, X, Y, Z);
-        RandY = PelletSpread[PelletNum].Y * RandRange(0.5, 1.5);
-        RandZ = PelletSpread[PelletNum].X * RandRange(0.5, 1.5);
+        RandY = default.PelletSpread[PelletNum].Y * RandRange(0.5, 1.5);
+        RandZ = default.PelletSpread[PelletNum].X * RandRange(0.5, 1.5);
         return rotator((X + ((RandY * CurrentSpread) * Y)) + ((RandZ * CurrentSpread) * Z));
     }
 }
@@ -95,7 +58,6 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTrader
 
 defaultproperties
 {
-    NumPellets(0)=7
     PelletSpread(0)=
 /* Exception thrown while deserializing PelletSpread
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
@@ -182,6 +144,7 @@ Parameter name: index
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=13,Y=13,Z=-4)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_GrenadeLauncher_HX25.MeleeHelper'
+    NumPellets=/* Array type was not detected. */
     maxRecoilPitch=900
     minRecoilPitch=775
     maxRecoilYaw=500

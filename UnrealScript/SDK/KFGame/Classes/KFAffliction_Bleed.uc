@@ -234,7 +234,7 @@ defaultproperties
 {
     bNeedsTick=true
     DissipationRate=20.0 //5.0 25
-    DeflateThreshold=65.0  //need to test when I get back upstairs
+    DeflateThreshold=65.0
     IncapModifier=0.5 //0.3
     DamageModifier=-0.3
     SpeedModifier=0.7f

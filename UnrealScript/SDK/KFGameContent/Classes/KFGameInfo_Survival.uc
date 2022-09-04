@@ -255,8 +255,19 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 	local array<SequenceObject> AllWaveProgressEvents;
 	local KFSeqEvent_WaveProgress WaveProgressEvt;
 	local int i;
+	local KFInterface_MapObjective MapObj;
 
 	super.Killed(Killer, KilledPlayer, KilledPawn, damageType);
+
+	// tell objectives (ie dosh hold and exterminate) when something dies
+	if (KilledPawn.IsA('KFPawn_Monster'))
+	{
+		MapObj = KFInterface_MapObjective(MyKFGRI.CurrentObjective);
+		if (MapObj != none)
+		{
+			MapObj.NotifyZedKilled(Killer, KilledPawn, KFInterface_MonsterBoss(KilledPawn) != none);
+		}
+	}
 
 	// if not boss wave or endless wave, play progress update trader dialog
 	if( !MyKFGRI.IsBossWave() && !MyKFGRI.IsEndlessWave() && KilledPawn.IsA('KFPawn_Monster') )

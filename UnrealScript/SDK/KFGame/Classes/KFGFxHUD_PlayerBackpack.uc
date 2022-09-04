@@ -18,6 +18,8 @@ var int								LastDosh;
 var int 							LastSpareAmmo;
 var byte                            LastMagazineAmmo;
 var bool                            bUsesAmmo;
+// string used for alternate display in ammo section
+var string							LastSpecialAmmo;
 //
 var int                             LastFlashlightBattery;
 //
@@ -51,7 +53,7 @@ function TickHud(float DeltaTime)
     UpdateDosh();
     UpdateGrenades();
     UpdateWeapon();
-    UpdateFlashlight();
+    UpdateFlashlight();   
     UpdateWeight();
 }
 
@@ -59,7 +61,7 @@ function UpdateWeight()
 {
     if( MyKFPC.Pawn != none && MyKFPC.Pawn.InvManager != none )
     {
-        MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);
+        MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);    
 
         if(MyKFInvManager != none && (LastMaxWeight != MyKFInvManager.MaxCarryBlocks || LastWeight != MyKFInvManager.CurrentCarryBlocks))
         {
@@ -98,22 +100,22 @@ function UpdateGrenades()
 	{
 		return;
 	}
-
+    
     if(MyKFInvManager != none)
     {
         CurrentGrenades = MyKFInvManager.GrenadeCount;
     }
-
+    
     //Update the icon the for grenade type.
     if(MyKFPC.CurrentPerk != none)
     {
-        if( LastPerkClass != MyKFPC.CurrentPerk.Class ||
+        if( LastPerkClass != MyKFPC.CurrentPerk.Class || 
             LastSavedBuild != MyKFPC.CurrentPerk.GetSavedBuild() )
         {
             SetString("backpackGrenadeType", "img://" $ MyKFPC.CurrentPerk.GetGrenadeImagePath());
             LastPerkClass = MyKFPC.CurrentPerk.Class;
             LastSavedBuild = MyKFPC.CurrentPerk.GetSavedBuild();
-        }
+        }  
     }
     // Update the grenades count value
     if(CurrentGrenades != LastGrenades)
@@ -128,6 +130,7 @@ function UpdateWeapon()
 	local int CurrentSpareAmmo;
 	local byte CurrentMagazineAmmo;
     local byte CurrentSecondaryAmmo;
+	local string CurrentSpecialAmmo;
     local KFWeapon CurrentWeapon;
 
     if(MyKFPC != none && MyKFPC.Pawn != none && MyKFPC.Pawn.Weapon != none )
@@ -165,6 +168,18 @@ function UpdateWeapon()
                     LastSpareAmmo  = CurrentSpareAmmo;
             	}
             }
+			else
+			{
+				// if the weapon doesn't use ammo, let them display a special string in that section
+				CurrentSpecialAmmo = CurrentWeapon.GetSpecialAmmoForHUD();
+				if (CurrentSpecialAmmo != LastSpecialAmmo)
+				{
+					SetString("specialAmmoString", CurrentSpecialAmmo);
+				}
+			}
+
+			// always reset the last special ammo since setting a new string turns the default "---" off
+			LastSpecialAmmo = CurrentSpecialAmmo;
 
             if (bUsesSecondaryAmmo)
             {
@@ -232,6 +247,6 @@ function SetFlashlightBattery( int BatteryCharge, bool bIsOn )
 
 DefaultProperties
 {
-    LastMaxWeight=-1
+    LastMaxWeight=-1   
     LastWeight=-1
 }

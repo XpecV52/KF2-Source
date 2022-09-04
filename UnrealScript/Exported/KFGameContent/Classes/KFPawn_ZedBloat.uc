@@ -237,7 +237,7 @@ function SpawnPukeMine( vector SpawnLocation, rotator SpawnRotation )
 {
 	local KFProjectile PukeMine;
 
-	PukeMine = Spawn( PukeMineProjectileClass, self,, SpawnLocation, SpawnRotation,, true );
+	PukeMine = Spawn( PukeMineProjectileClass, ,, SpawnLocation, SpawnRotation,, true );
 	if( PukeMine != none )
 	{
 		PukeMine.Init( vector(SpawnRotation) );
@@ -430,7 +430,8 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

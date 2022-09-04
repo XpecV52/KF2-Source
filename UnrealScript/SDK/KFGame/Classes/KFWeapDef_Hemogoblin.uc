@@ -14,8 +14,8 @@ DefaultProperties
 {
     WeaponClassPath="KFGameContent.KFWeap_Rifle_Hemogoblin"
 
-    BuyPrice=1100 //1100
-    AmmoPricePerMag=35 //40
+    BuyPrice=1100
+    AmmoPricePerMag=30
     ImagePath="WEP_UI_Bleeder_TEX.UI_WeaponSelect_Bleeder"
 
     EffectiveRange=90

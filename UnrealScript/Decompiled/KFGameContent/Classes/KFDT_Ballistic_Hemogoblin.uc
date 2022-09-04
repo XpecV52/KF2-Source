@@ -9,6 +9,7 @@ class KFDT_Ballistic_Hemogoblin extends KFDT_Ballistic_Rifle
     abstract;
 
 var class<Actor> TubeAttachClass;
+var class<KFDamageType> BleedDamageType;
 
 static simulated function bool CanDismemberHitZone(name InHitZoneName)
 {
@@ -80,21 +81,21 @@ static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Co
     {
         Victim.ApplyDamageOverTime(ToxicDamageTaken, InstigatedBy, ToxicDT);
     }
-    super(KFDamageType).ApplySecondaryDamage(Victim, DamageTaken, InstigatedBy);
+    if(default.BleedDamageType.default.DoT_Type != 0)
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, default.BleedDamageType);
+    }
 }
 
 defaultproperties
 {
     TubeAttachClass=Class'KFWeapActor_Hemogoblin_Tube'
+    BleedDamageType=Class'KFDT_Bleeding_Hemogoblin'
     WeaponDef=Class'KFGame.KFWeapDef_Hemogoblin'
-    bStackDoT=true
-    DoT_Type=EDamageOverTimeGroup.DOT_Bleeding
-    DoT_Duration=5
-    DoT_Interval=1
-    DoT_DamageScale=0.3
     StumblePower=200
     GunHitPower=0
-    BleedPower=50
     ModifierPerkList=/* Array type was not detected. */
-    KDamageImpulse=0
+    KDamageImpulse=3000
+    KDeathVel=500
+    KDeathUpKick=800
 }

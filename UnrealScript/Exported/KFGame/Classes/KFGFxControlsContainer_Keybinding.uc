@@ -337,6 +337,7 @@ defaultproperties
    InteractionBindList(7)="GBA_DropWeapon"
    InteractionBindList(8)="GBA_VoteYes"
    InteractionBindList(9)="GBA_VoteNo"
+   InteractionBindList(10)="GBA_RequestSkipTrader"
    VoiceCommBindList(0)="GBA_VoiceCommReqHealing"
    VoiceCommBindList(1)="GBA_VoiceCommReqDosh"
    VoiceCommBindList(2)="GBA_VoiceCommReqHelp"

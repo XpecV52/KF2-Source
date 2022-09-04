@@ -202,13 +202,16 @@ function UpdateArmorUI(const out SCompressedArmorInfo ArmorValues[3])
 
     if(I < 3)
     {
-        DataObject = Outer.CreateObject("Object");
-        DataObject.SetFloat("armorPercent", ArmorValues[I].Percentage);
         if(ArmorValues[I].IconTexture != none)
         {
-            DataObject.SetString("iconSource", "img://" $ PathName(ArmorValues[I].IconTexture));
+            DataObject = Outer.CreateObject("Object");
+            DataObject.SetFloat("armorPercent", ArmorValues[I].Percentage);
+            if(ArmorValues[I].IconTexture != none)
+            {
+                DataObject.SetString("iconSource", "img://" $ PathName(ArmorValues[I].IconTexture));
+            }
+            DataProvider.SetElementObject(I, DataObject);
         }
-        DataProvider.SetElementObject(I, DataObject);
         ++ I;
         goto J0x34;
     }

@@ -1475,8 +1475,8 @@ defaultproperties
     MinBattleBloodValue=0.2
     BattleBloodRangeSq=40000
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_Human.Afflictions'
-    IncapSettings(0)=(Duration=5,Cooldown=5,Vulnerability=none)
-    IncapSettings(1)=(Duration=1,Cooldown=0,Vulnerability=(50))
+    IncapSettings(0)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(1)=(Duration=1,Cooldown=0,ChildAfflictionCooldown=0,Vulnerability=(50))
     TeammateCollisionRadiusPercent=0.5
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
@@ -1521,6 +1521,7 @@ defaultproperties
         SpecialMoveClasses(34)=none
         SpecialMoveClasses(35)=class'KFSM_Player_Emote'
         SpecialMoveClasses(36)=class'KFSM_EvilDAR_EMPGrapple'
+        SpecialMoveClasses(37)=class'KFSM_BloatKingGorgeVictim'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_Human.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

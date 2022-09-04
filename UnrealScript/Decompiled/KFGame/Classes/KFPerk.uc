@@ -114,6 +114,7 @@ const STATID_ACHIEVE_SantasWorkshopCollectibles = 4047;
 const STATID_ACHIEVE_ShoppingSpreeCollectibles = 4048;
 const STATID_ACHIEVE_SpillwayCollectibles = 4049;
 const STATID_ACHIEVE_SteamFortressCollectibles = 4050;
+const STATID_ACHIEVE_AsylumCollectibles = 4051;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -378,7 +379,14 @@ static function class<KFPerk> GetPerkFromDamageCauser(Actor WeaponActor, class<K
                     {
                         if(ClassIsChildOf(KFSpray.MyDamageType, Class'KFDT_Freeze'))
                         {
-                            return Class'KFPerk_Survivalist';
+                            return Class'KFPerk_Survivalist';                            
+                        }
+                        else
+                        {
+                            if(ClassIsChildOf(KFSpray.MyDamageType, Class'KFDT_Toxic'))
+                            {
+                                return Class'KFPerk_FieldMedic';
+                            }
                         }
                     }                    
                 }

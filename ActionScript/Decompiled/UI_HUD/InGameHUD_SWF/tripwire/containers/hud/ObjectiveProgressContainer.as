@@ -31,7 +31,7 @@ package tripwire.containers.hud
         
         public var warningRequirementColor:uint = 16737097;
         
-        public var failedColor:uint = 16737097;
+        public var failedColor:uint = 15541248;
         
         public var normalColor:uint = 4836490;
         
@@ -52,6 +52,8 @@ package tripwire.containers.hud
         public var currentDescColor:Color;
         
         public var doshIconMC:MovieClip;
+        
+        public var progressDoshIconMC:MovieClip;
         
         private var _currentProgress:Number;
         
@@ -150,6 +152,15 @@ package tripwire.containers.hud
             this.objectiveProgressTextfield.transform.colorTransform = this.currentProgressColor;
         }
         
+        public function set currentProgressIsDosh(param1:Boolean) : void
+        {
+            this.progressDoshIconMC.visible = param1;
+            if(param1)
+            {
+                this.progressDoshIconMC.gotoAndStop(3);
+            }
+        }
+        
         public function set isActive(param1:Boolean) : void
         {
         }
@@ -171,6 +182,7 @@ package tripwire.containers.hud
                 {
                     this.currentProgressColor.setTint(this.normalColor,1);
                     this.currentProgressText = param1.completeString;
+                    this.currentProgressIsDosh = false;
                 }
             }
         }
@@ -202,6 +214,7 @@ package tripwire.containers.hud
                 this.doshIconMC.gotoAndStop(2);
                 this.currentProgressColor.setTint(this.failedColor,1);
                 this.currentProgressText = param1.failedString;
+                this.currentProgressIsDosh = false;
                 this.currentBonus = "0";
             }
         }

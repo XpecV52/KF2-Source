@@ -286,7 +286,8 @@ simulated function ModifySprintSpeed( out float Speed )
 		}
 	}
 
-	if( MyKFWeapon != none && MyKFWeapon.IsMeleeWeapon() )
+	if (MyKFWeapon != none &&
+		(MyKFWeapon.IsMeleeWeapon() || IsWeaponOnPerk(MyKFWeapon,, self.class)))
 	{
 		Speed += Speed * static.GetNinjaSprintModifier();
 	}

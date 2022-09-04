@@ -176,7 +176,7 @@ defaultproperties
       ExplosionSound=AkEvent'WW_WEP_SealSqueal.Play_WEP_SealSqueal_Shoot_Explode'
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_Rocket_SealSqueal:ExplosionPointLight'
       ExploLightFadeOutTime=0.200000
-      CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+      CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
       CamShakeInnerRadius=200.000000
       CamShakeFalloff=1.500000
       Name="ExploTemplate0"

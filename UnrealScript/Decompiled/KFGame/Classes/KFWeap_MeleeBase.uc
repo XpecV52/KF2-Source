@@ -58,6 +58,7 @@ struct native BlockEffectInfo
 };
 
 var bool bIsBloody;
+var bool StartFireDisabled;
 var bool bMoveAtWalkingSpeed;
 var byte MaxChainAtkCount;
 /** Hit reaction strength to bypass pawn's ParryStumbleResist */
@@ -115,6 +116,10 @@ reliable server function ServerSetSlowMovement(bool bEnabled)
 
 simulated function StartFire(byte FireModeNum)
 {
+    if(StartFireDisabled)
+    {
+        return;
+    }
     if(((CurrentFireMode == 0) || CurrentFireMode == 1) || CurrentFireMode == 3)
     {
         if(FireModeNum == 2)
@@ -349,6 +354,10 @@ reliable client simulated function ClientPlayParryEffects(optional byte BlockTyp
     GetParryEffects(BlockTypeIndex, Sound, PSTemplate);
     PlayLocalBlockEffects(Sound, PSTemplate);
 }
+
+simulated function NotifyAttackParried();
+
+simulated function NotifyAttackBlocked();
 
 simulated function float PlayBlockStart()
 {
@@ -908,11 +917,13 @@ simulated state MeleeBlocking
             if(IsTimerActive('ParryCheckTimer'))
             {
                 KFPawn(InstigatedBy).NotifyAttackParried(Instigator, 255);
-                ClientPlayParryEffects();                
+                ClientPlayParryEffects();
+                NotifyAttackParried();                
             }
             else
             {
                 ClientPlayBlockEffects();
+                NotifyAttackBlocked();
             }
             return true;
         }
@@ -943,6 +954,7 @@ simulated state MeleeBlocking
                     KFPawn(DamageCauser).NotifyAttackParried(Instigator, ParryStrength);
                 }
                 ClientPlayParryEffects(BlockTypeIndex);
+                NotifyAttackParried();
                 if(InstigatorPerk != none)
                 {
                     InstigatorPerk.SetSuccessfullParry();
@@ -952,6 +964,7 @@ simulated state MeleeBlocking
             {
                 InDamage *= (GetUpgradedBlockDamageMitigation(CurrentWeaponUpgradeIndex));
                 ClientPlayBlockEffects(BlockTypeIndex);
+                NotifyAttackBlocked();
                 if(InstigatorPerk != none)
                 {
                     InstigatorPerk.SetSuccessfullBlock();

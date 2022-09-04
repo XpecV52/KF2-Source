@@ -60,25 +60,17 @@ function OnStackingAfflictionChanged(byte Id)
 	}
 }
 
-function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, class<DamageType> damageType, vector Momentum, TraceHitInfo HitInfo)
+function AdjustPlayHitForArmor(out float InDamage, out TraceHitInfo InHitInfo)
 {
 	local int HitZoneIdx;
-	if (Damage == 0)
-	{
-		// If the gore health is empty, then the armor has been completely reduced (and fallen off) so play the normal hit
-		// otherwise mark it as taken by the armor
-		HitZoneIdx = GetHitZoneIndex(HitInfo.BoneName);
-		if (HitZoneIdx == INDEX_NONE || HitZones[HitZoneIdx].GoreHealth > 0)
-		{
-			HitInfo.BoneName = 'KBArmor';
-		}
 
-		//Passing 1 damage to minimize need to rewrite for a single pawn
-		super.PlayHit(1, InstigatedBy, HitLocation, damageType, Momentum, HitInfo);
-	}
-	else
+	// If the gore health is empty, then the armor has been completely reduced (and fallen off)
+	// so play the normal hit otherwise mark it as taken by the armor
+	HitZoneIdx = GetHitZoneIndex(InHitInfo.BoneName);
+	if (HitZoneIdx == INDEX_NONE || HitZones[HitZoneIdx].GoreHealth > 0)
 	{
-		super.PlayHit(Damage, InstigatedBy, HitLocation, damageType, Momentum, HitInfo);
+		InDamage = 1;
+		InHitInfo.BoneName = 'KFArmor';
 	}
 }
 
@@ -443,7 +435,8 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_Monster:SpecialMoveHandler_0'
    End Object

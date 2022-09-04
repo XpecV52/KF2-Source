@@ -173,6 +173,9 @@ struct native DamageInfo
 	var	float							LastTimeDamaged;
 	/** List of each perk that should get xp for this damage */
 	var array<class<KFPerk> > 			DamagePerks;
+
+	var array<class<Actor> >			DamageCausers;
+	var array<class<KFDamageType> >		DamageTypes;
 };
 
 /** List of PRIs who damaged the specimen */
@@ -639,6 +642,7 @@ enum ESpecialMove
 	SM_SirenVortexVictim,
 	SM_Emote,
 	SM_DARGrappleVictim,
+	SM_BloatKingGorgeVictim,
 
 	/** Boss special attacks */
 	SM_BossTheatrics,
@@ -2825,11 +2829,6 @@ function UpdateDamageHistory( Controller DamagerController, int Damage, Actor Da
 	local float DamageThreshold;
 	local KFAIController KFAIC;
 
-	if (!ValidateDamageForDamageHistory(DamageCauser, DamageType))
-	{
-		return;
-	}
-
 	if( !GetDamageHistory( DamagerController, Info, HistoryIndex ) )
 	{
 		DamageHistory.Insert(0, 1);
@@ -2879,10 +2878,6 @@ function UpdateDamageHistory( Controller DamagerController, int Damage, Actor Da
 	}
 }
 
-/** Gives us a change to validate damage causer before adding damage to damage history */
-native private final function bool ValidateDamageForDamageHistory(
-	Actor DamageCauser, class<KFDamageType> DamageType);
-
 function bool GetDamageHistory( Controller DamagerController, out DamageInfo InInfo, out int InHistoryIndex )
 {
 	// Check if this controller is already in our Damage History
@@ -2924,6 +2919,16 @@ function UpdateDamageHistoryValues( Controller DamagerController, int Damage, Ac
 	if( WeaponPerk != none && InInfo.DamagePerks.Find( WeaponPerk ) == INDEX_NONE )
 	{
 		InInfo.DamagePerks.AddItem( WeaponPerk );
+	}
+
+	if (DamageCauser != none && InInfo.DamageCausers.Find(DamageCauser.Class) == INDEX_NONE)
+	{
+		InInfo.DamageCausers.AddItem(DamageCauser.Class);
+	}
+
+	if (DamageType != none && InInfo.DamageTypes.Find(DamageType) == INDEX_NONE)
+	{
+		InInfo.DamageTypes.AddItem(DamageType);
 	}
 }
 

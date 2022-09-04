@@ -7,87 +7,42 @@
  *******************************************************************************/
 class KFZedArmorInfo_EvilDAR extends KFZedArmorInfo within KFPawn_Monster;
 
-function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource)
+function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource, class<DamageType> DamageType)
 {
-    local byte PrevArmorZoneStatus, HeadByte;
+    local byte PrevArmorZoneStatus;
+    local int UpdatedZones;
 
     PrevArmorZoneStatus = Outer.PreviousArmorZoneStatus;
-    super.AdjustBoneDamage(InDamage, BoneName, DamagerSource);
-    HeadByte = 1;
-    if(((Outer.ArmorZoneStatus ^ PrevArmorZoneStatus) & HeadByte) != 0)
+    super.AdjustBoneDamage(InDamage, BoneName, DamagerSource, DamageType);
+    UpdatedZones = Outer.ArmorZoneStatus ^ PrevArmorZoneStatus;
+    if(bool(UpdatedZones & (1 << 0)))
     {
         Outer.HitZones[0].GoreHealth = 0;
     }
 }
 
-function ExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
+simulated function UpdateArmorPiece(int PieceIdx)
 {
-    local name AdjustedZoneName;
-    local byte StatusField;
-
-    AdjustedZoneName = ArmorZoneName;
-    if(AdjustedZoneName == 'back')
-    {
-        AdjustedZoneName = 'None';
-    }
-    switch(AdjustedZoneName)
+    super.UpdateArmorPiece(PieceIdx);
+    switch(ArmorZones[PieceIdx].ArmorZoneName)
     {
         case 'head':
-            StatusField = 2;
+            Outer.Mesh.DetachComponent(Outer.StaticAttachList[0]);
+            Outer.DetachComponent(Outer.StaticAttachList[0]);
+            Outer.StaticAttachList.Remove(0, 1;
             break;
         case 'Front':
-            StatusField = 1;
+            Outer.DetachComponent(Outer.ThirdPersonAttachments[0]);
+            Outer.ThirdPersonAttachments[0] = none;
             break;
         default:
             break;
     }
-    Outer.ArmorZoneStatus = byte(Outer.ArmorZoneStatus & StatusField);
-    UpdateArmorPieces();
-}
-
-simulated function UpdateArmorPieces()
-{
-    local Vector SocketLocation;
-    local Rotator SocketRotation;
-    local KFCharacterInfo_Monster MonsterArch;
-
-    if(Outer.WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        MonsterArch = Outer.GetCharacterMonsterInfo();
-        switch(Outer.ArmorZoneStatus ^ Outer.PreviousArmorZoneStatus)
-        {
-            case 1:
-                Outer.Mesh.DetachComponent(Outer.StaticAttachList[0]);
-                Outer.DetachComponent(Outer.StaticAttachList[0]);
-                Outer.StaticAttachList.Remove(0, 1;
-                Outer.Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[0].SocketName, SocketLocation, SocketRotation);
-                if(MonsterArch.ExtraVFX.Length > 0)
-                {
-                    Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0].VFX, SocketLocation, SocketRotation);
-                }
-                Outer.PlaySoundBase(default.ArmorZones[0].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-                break;
-            case 2:
-                Outer.DetachComponent(Outer.ThirdPersonAttachments[0]);
-                Outer.Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[1].SocketName, SocketLocation, SocketRotation);
-                if(MonsterArch.ExtraVFX.Length > 1)
-                {
-                    Outer.WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1].VFX, SocketLocation, SocketRotation);
-                }
-                Outer.PlaySoundBase(default.ArmorZones[1].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-                Outer.ThirdPersonAttachments[0] = none;
-                break;
-            default:
-                break;
-                break;
-        }
-    }
-    Outer.PreviousArmorZoneStatus = Outer.ArmorZoneStatus;
 }
 
 defaultproperties
 {
-    ArmorHitzoneNames=/* Array type was not detected. */
     ArmorZones=/* Array type was not detected. */
     ArmorScale=1
+    ArmorDamageTypeModifiers=/* Array type was not detected. */
 }

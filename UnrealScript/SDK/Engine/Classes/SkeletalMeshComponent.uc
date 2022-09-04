@@ -1491,6 +1491,7 @@ event bool PlayParticleEffect( const AnimNotify_PlayParticleEffect AnimNotifyDat
 	local rotator Rot;
 	local WorldInfo WI;
 	local ParticleSystemComponent PSC;
+	local ParticleSystemComponent EmitterPSC;
 	local bool bPlayNonExtreme;
 
 	WI = class'WorldInfo'.static.GetWorldInfo();
@@ -1565,11 +1566,11 @@ event bool PlayParticleEffect( const AnimNotify_PlayParticleEffect AnimNotifyDat
 
 			if ( bPlayNonExtreme )
 			{
-				Owner.WorldInfo.MyEmitterPool.SpawnEmitter( AnimNotifyData.PSNonExtremeContentTemplate, Loc, Rot );
+				EmitterPSC = Owner.WorldInfo.MyEmitterPool.SpawnEmitter( AnimNotifyData.PSNonExtremeContentTemplate, Loc, Rot );
 			}
 			else
 			{
-				Owner.WorldInfo.MyEmitterPool.SpawnEmitter( AnimNotifyData.PSTemplate, Loc, Rot );
+				EmitterPSC = Owner.WorldInfo.MyEmitterPool.SpawnEmitter( AnimNotifyData.PSTemplate, Loc, Rot );
 			}
 		}
 		else
@@ -1626,6 +1627,10 @@ event bool PlayParticleEffect( const AnimNotify_PlayParticleEffect AnimNotifyDat
 	if( PSC != none && Owner != none )
 	{
 		Owner.OnAnimNotifyParticleSystemSpawned( AnimNotifyData, PSC );
+	}
+	if (EmitterPSC != none && Owner != none)
+	{
+		Owner.OnAnimNotifyParticleSystemSpawned(AnimNotifyData, EmitterPSC);
 	}
 `endif
 

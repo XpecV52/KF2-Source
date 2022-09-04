@@ -7,6 +7,35 @@
  *******************************************************************************/
 class KFSM_Husk_FireBallAttack extends KFSM_RangedAttack;
 
+var array<Vector> SpringFireOffsets;
+var array<Vector> SummerFireOffsets;
+var array<Vector> FallFireOffsets;
+var array<Vector> WinterFireOffsets;
+
+function InitSpecialMove(Pawn inPawn, name InHandle)
+{
+    super(KFSpecialMove).InitSpecialMove(inPawn, InHandle);
+    switch(Class'KFGameEngine'.static.GetSeasonalEventID())
+    {
+        case 1:
+            FireOffsets = SpringFireOffsets;
+            break;
+        case 2:
+            FireOffsets = SummerFireOffsets;
+            break;
+        case 3:
+            FireOffsets = FallFireOffsets;
+            break;
+        case 4:
+            FireOffsets = WinterFireOffsets;
+            break;
+        default:
+            FireOffsets = default.FireOffsets;
+            break;
+            break;
+    }
+}
+
 function NotifyFireballFired()
 {
     SetLockPawnRotation(true);
@@ -35,6 +64,71 @@ function bool CanOverrideMoveWith(name NewMove)
 
 defaultproperties
 {
+    SpringFireOffsets(0)=
+/* Exception thrown while deserializing SpringFireOffsets
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    SpringFireOffsets(1)=
+/* Exception thrown while deserializing SpringFireOffsets
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    SummerFireOffsets(0)=
+/* Exception thrown while deserializing SummerFireOffsets
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    SummerFireOffsets(1)=
+/* Exception thrown while deserializing SummerFireOffsets
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    FallFireOffsets(0)=
+/* Exception thrown while deserializing FallFireOffsets
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    FallFireOffsets(1)=
+/* Exception thrown while deserializing FallFireOffsets
+System.ArgumentException: Requested value 'WinterFireOffsets' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    WinterFireOffsets(0)=
+/* Exception thrown while deserializing WinterFireOffsets
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    WinterFireOffsets(1)=
+/* Exception thrown while deserializing WinterFireOffsets
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     AnimNames=/* Array type was not detected. */
     FireOffsets=/* Array type was not detected. */
     bUseCustomRotationRate=true

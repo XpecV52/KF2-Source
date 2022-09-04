@@ -117,7 +117,7 @@ simulated function DeactivateObjective()
         {
             foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
             {
-                GrantReward(KFPH);
+                GrantReward(KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo), KFPlayerController(KFPH.Controller));
                 if(KFPlayerController(KFPH.Controller) != none)
                 {
                     if((GetTotalProgress()) >= 1)
@@ -433,28 +433,27 @@ simulated function DrawHUD(KFHUDBase HUD, Canvas DrawCanvas)
         KFPC.GetPlayerViewPoint(ViewLocation, ViewRotation);
     }
     ViewVector = vector(ViewRotation);
-    ThisDot = Normal(((GetIconLocation()) + (Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) Dot ViewVector;
-    if(ThisDot > float(0))
+    ThisDot = Normal((GetIconLocation()) - ViewLocation) Dot ViewVector;
+    if(ThisDot <= float(0))
     {
-        BarLength = FMin(HUD.PlayerStatusBarLengthMax * (DrawCanvas.ClipX / 1024), HUD.PlayerStatusBarLengthMax) * ResModifier;
-        BarHeight = FMin(8 * (DrawCanvas.ClipX / 1024), 8) * ResModifier;
-        TargetLocation = GetIconLocation();
-        ScreenPos = DrawCanvas.Project(TargetLocation);
-        if((((ScreenPos.X < float(0)) || ScreenPos.X > DrawCanvas.ClipX) || ScreenPos.Y < float(0)) || ScreenPos.Y > DrawCanvas.ClipY)
-        {
-            return;
-        }
-        Percentage = FMin(FClamp(float(CurrentActorToRepair.WeldIntegrity) / float(CurrentActorToRepair.MaxWeldIntegrity), 0, 1), 1);
-        HUD.DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, HUD.HealthColor);
-        if((GetIcon()) != none)
-        {
-            DrawCanvas.SetDrawColorStruct(HUD.PlayerBarShadowColor);
-            DrawCanvas.SetPos((ScreenPos.X - (BarLength * 0.75)) + float(1), (ScreenPos.Y - (BarHeight * 2)) + float(1));
-            DrawCanvas.DrawTile(GetIcon(), HUD.PlayerStatusIconSize * ResModifier, HUD.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
-            DrawCanvas.SetDrawColorStruct(GetIconColor());
-            DrawCanvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - (BarHeight * 2));
-            DrawCanvas.DrawTile(GetIcon(), HUD.PlayerStatusIconSize * ResModifier, HUD.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
-        }
+        return;
+    }
+    BarLength = FMin(HUD.PlayerStatusBarLengthMax * (DrawCanvas.ClipX / 1024), HUD.PlayerStatusBarLengthMax) * ResModifier;
+    BarHeight = FMin(8 * (DrawCanvas.ClipX / 1024), 8) * ResModifier;
+    TargetLocation = GetIconLocation();
+    ScreenPos = DrawCanvas.Project(TargetLocation);
+    ScreenPos.X = FClamp(ScreenPos.X, (BarLength * 0.5) + HUD.PlayerStatusIconSize, DrawCanvas.ClipX - (BarLength * 0.5));
+    ScreenPos.Y = FClamp(ScreenPos.Y, HUD.PlayerStatusIconSize * 0.5, DrawCanvas.ClipY - (HUD.PlayerStatusIconSize * 0.5));
+    Percentage = FMin(FClamp(float(CurrentActorToRepair.WeldIntegrity) / float(CurrentActorToRepair.MaxWeldIntegrity), 0, 1), 1);
+    HUD.DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), ScreenPos.Y, HUD.NonPlayerHealth);
+    if((GetIcon()) != none)
+    {
+        DrawCanvas.SetDrawColorStruct(HUD.PlayerBarShadowColor);
+        DrawCanvas.SetPos((ScreenPos.X - (BarLength * 0.75)) + float(1), (ScreenPos.Y - (BarHeight * 2)) + float(1));
+        DrawCanvas.DrawTile(GetIcon(), HUD.PlayerStatusIconSize * ResModifier, HUD.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
+        DrawCanvas.SetDrawColorStruct(GetIconColor());
+        DrawCanvas.SetPos(ScreenPos.X - (BarLength * 0.75), ScreenPos.Y - (BarHeight * 2));
+        DrawCanvas.DrawTile(GetIcon(), HUD.PlayerStatusIconSize * ResModifier, HUD.PlayerStatusIconSize * ResModifier, 0, 0, 256, 256);
     }
 }
 

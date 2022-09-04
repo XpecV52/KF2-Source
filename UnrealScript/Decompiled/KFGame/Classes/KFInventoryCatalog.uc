@@ -42,12 +42,14 @@ enum ECrateSeries
     Ecrate_NeonMKIV,
     Ecrate_NeonMKV,
     Ecrate_Dragonwave,
+    Ecrate_BeyondHorizon,
     ECrate_HorzineSupply_SDAR,
     ECrate_HorzineSupply_SLOCO,
     ECrate_HorzineSupply_SCyberSamurai,
     ECrate_HorzineSupply_SDeity,
     ECrate_Steampunk,
     ECrate_HorzineSupply_SProjectH,
+    Ecrate_HorzineSupply_SBoneyard,
     ECrate_PSNHorzineSupply_CS1,
     ECrate_PSNHorzineSupply_CS2,
     ECrate_PSNHorzineSupply_CS3,
@@ -56,6 +58,8 @@ enum ECrateSeries
     ECrate_PSNHorzineSupply_CS7,
     ECrate_PSNHorzineSupply_CS8,
     ECrate_PSNHorzineSupply_CS9,
+    ECrate_PSNHorzineSupply_CS10,
+    ECrate_PSNHorzineSupply_CS11,
     ECrate_PSNHorzineSupply_CS15,
     ECrate_PSNHorzineSupply_WS1,
     ECrate_PSNHorzineSupply_WS2,
@@ -193,53 +197,57 @@ defaultproperties
     ItemKeyArray(30)=(ContainerId=6665,KeyId=6666,ItemSeriesName=NeonMKIV,ContainerType=EItemDisplayContainerType.IDT_USB)
     ItemKeyArray(31)=(ContainerId=7107,KeyId=7108,ItemSeriesName=NeonMKV,ContainerType=EItemDisplayContainerType.IDT_USB)
     ItemKeyArray(32)=(ContainerId=7114,KeyId=7115,ItemSeriesName=Dragonwave,ContainerType=EItemDisplayContainerType.IDT_USB)
-    ItemKeyArray(33)=(ContainerId=5873,KeyId=5874,ItemSeriesName=horzineDAR,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(34)=(ContainerId=6445,KeyId=6446,ItemSeriesName=horzineLOCO,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(35)=(ContainerId=6616,KeyId=6617,ItemSeriesName=horzineCyberSamurai,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(36)=(ContainerId=7120,KeyId=7126,ItemSeriesName=horzineDeity,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(37)=(ContainerId=7407,KeyId=7408,ItemSeriesName=Steampunk,ContainerType=EItemDisplayContainerType.IDT_USB)
-    ItemKeyArray(38)=(ContainerId=7391,KeyId=7398,ItemSeriesName=horzineProjectH,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(39)=(ContainerId=4304,KeyId=4303,ItemSeriesName=psncrate_cs1,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(40)=(ContainerId=4305,KeyId=4303,ItemSeriesName=psncrate_cs2,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(41)=(ContainerId=5371,KeyId=4303,ItemSeriesName=psncrate_cs3,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(42)=(ContainerId=5900,KeyId=4303,ItemSeriesName=psncrate_cs5,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(43)=(ContainerId=5989,KeyId=4303,ItemSeriesName=psncrate_cs6,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(44)=(ContainerId=6457,KeyId=4303,ItemSeriesName=psncrate_cs7,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(45)=(ContainerId=6658,KeyId=4303,ItemSeriesName=psncrate_cs8,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(46)=(ContainerId=7127,KeyId=4303,ItemSeriesName=psncrate_cs9,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(47)=(ContainerId=5642,KeyId=4303,ItemSeriesName=horzine15,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(48)=(ContainerId=4307,KeyId=4303,ItemSeriesName=psncrate_ws1,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(49)=(ContainerId=4306,KeyId=4303,ItemSeriesName=psncrate_ws2,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(50)=(ContainerId=4569,KeyId=4303,ItemSeriesName=psncrate_ws3,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(51)=(ContainerId=4790,KeyId=4303,ItemSeriesName=psncrate_ws4,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(52)=(ContainerId=5369,KeyId=4303,ItemSeriesName=psncrate_ws5,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(53)=(ContainerId=5901,KeyId=4303,ItemSeriesName=psncrate_ws6,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(54)=(ContainerId=5991,KeyId=4303,ItemSeriesName=psncrate_ws7,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(55)=(ContainerId=6201,KeyId=4303,ItemSeriesName=psncrate_ws8,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(56)=(ContainerId=6202,KeyId=4303,ItemSeriesName=psncrate_ws9,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(57)=(ContainerId=6218,KeyId=4303,ItemSeriesName=psncrate_ws10,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(58)=(ContainerId=6433,KeyId=4303,ItemSeriesName=psncrate_ws11,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(59)=(ContainerId=6667,KeyId=4303,ItemSeriesName=psncrate_ws12,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(60)=(ContainerId=7117,KeyId=4303,ItemSeriesName=psncrate_ws13,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(61)=(ContainerId=7119,KeyId=4303,ItemSeriesName=psncrate_ws14,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(62)=(ContainerId=7424,KeyId=4303,ItemSeriesName=psncrate_ws15,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(63)=(ContainerId=7400,KeyId=4303,ItemSeriesName=psncrate_ws16,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(64)=(ContainerId=5646,KeyId=4303,ItemSeriesName=emote1,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(65)=(ContainerId=5647,KeyId=4303,ItemSeriesName=emote2,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(66)=(ContainerId=3284,KeyId=3282,ItemSeriesName=horzine1,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(67)=(ContainerId=3285,KeyId=3283,ItemSeriesName=horzine2,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(68)=(ContainerId=3598,KeyId=3599,ItemSeriesName=horzine3,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(69)=(ContainerId=3600,KeyId=3601,ItemSeriesName=horzine4,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(70)=(ContainerId=3882,KeyId=3880,ItemSeriesName=horzine5,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(71)=(ContainerId=3883,KeyId=3881,ItemSeriesName=horzine6,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(72)=(ContainerId=4107,KeyId=4105,ItemSeriesName=horzine7,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(73)=(ContainerId=4108,KeyId=4106,ItemSeriesName=horzine8,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(74)=(ContainerId=4207,KeyId=4208,ItemSeriesName=horzine9,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(75)=(ContainerId=4499,KeyId=4501,ItemSeriesName=horzine10,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(76)=(ContainerId=4500,KeyId=4502,ItemSeriesName=horzine11,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(77)=(ContainerId=4604,KeyId=4603,ItemSeriesName=horzine12,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(78)=(ContainerId=4776,KeyId=4775,ItemSeriesName=horzine13,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(79)=(ContainerId=5010,KeyId=5011,ItemSeriesName=horzine14,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(80)=(ContainerId=5233,KeyId=5234,ItemSeriesName=horzine15,ContainerType=EItemDisplayContainerType.IDT_Crate)
-    ItemKeyArray(81)=(ContainerId=5240,KeyId=5241,ItemSeriesName=horzine16,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(33)=(ContainerId=7622,KeyId=7623,ItemSeriesName=BeyondHorizon,ContainerType=EItemDisplayContainerType.IDT_USB)
+    ItemKeyArray(34)=(ContainerId=5873,KeyId=5874,ItemSeriesName=horzineDAR,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(35)=(ContainerId=6445,KeyId=6446,ItemSeriesName=horzineLOCO,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(36)=(ContainerId=6616,KeyId=6617,ItemSeriesName=horzineCyberSamurai,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(37)=(ContainerId=7120,KeyId=7126,ItemSeriesName=horzineDeity,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(38)=(ContainerId=7407,KeyId=7408,ItemSeriesName=Steampunk,ContainerType=EItemDisplayContainerType.IDT_USB)
+    ItemKeyArray(39)=(ContainerId=7391,KeyId=7398,ItemSeriesName=horzineProjectH,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(40)=(ContainerId=7621,KeyId=7620,ItemSeriesName=horzineBoneyard,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(41)=(ContainerId=4304,KeyId=4303,ItemSeriesName=psncrate_cs1,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(42)=(ContainerId=4305,KeyId=4303,ItemSeriesName=psncrate_cs2,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(43)=(ContainerId=5371,KeyId=4303,ItemSeriesName=psncrate_cs3,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(44)=(ContainerId=5900,KeyId=4303,ItemSeriesName=psncrate_cs5,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(45)=(ContainerId=5989,KeyId=4303,ItemSeriesName=psncrate_cs6,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(46)=(ContainerId=6457,KeyId=4303,ItemSeriesName=psncrate_cs7,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(47)=(ContainerId=6658,KeyId=4303,ItemSeriesName=psncrate_cs8,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(48)=(ContainerId=7127,KeyId=4303,ItemSeriesName=psncrate_cs9,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(49)=(ContainerId=7400,KeyId=4303,ItemSeriesName=psncrate_cs10,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(50)=(ContainerId=7627,KeyId=4303,ItemSeriesName=psncrate_cs11,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(51)=(ContainerId=5642,KeyId=4303,ItemSeriesName=horzine15,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(52)=(ContainerId=4307,KeyId=4303,ItemSeriesName=psncrate_ws1,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(53)=(ContainerId=4306,KeyId=4303,ItemSeriesName=psncrate_ws2,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(54)=(ContainerId=4569,KeyId=4303,ItemSeriesName=psncrate_ws3,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(55)=(ContainerId=4790,KeyId=4303,ItemSeriesName=psncrate_ws4,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(56)=(ContainerId=5369,KeyId=4303,ItemSeriesName=psncrate_ws5,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(57)=(ContainerId=5901,KeyId=4303,ItemSeriesName=psncrate_ws6,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(58)=(ContainerId=5991,KeyId=4303,ItemSeriesName=psncrate_ws7,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(59)=(ContainerId=6201,KeyId=4303,ItemSeriesName=psncrate_ws8,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(60)=(ContainerId=6202,KeyId=4303,ItemSeriesName=psncrate_ws9,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(61)=(ContainerId=6218,KeyId=4303,ItemSeriesName=psncrate_ws10,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(62)=(ContainerId=6433,KeyId=4303,ItemSeriesName=psncrate_ws11,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(63)=(ContainerId=6667,KeyId=4303,ItemSeriesName=psncrate_ws12,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(64)=(ContainerId=7117,KeyId=4303,ItemSeriesName=psncrate_ws13,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(65)=(ContainerId=7119,KeyId=4303,ItemSeriesName=psncrate_ws14,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(66)=(ContainerId=7424,KeyId=4303,ItemSeriesName=psncrate_ws15,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(67)=(ContainerId=7628,KeyId=4303,ItemSeriesName=psncrate_ws16,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(68)=(ContainerId=5646,KeyId=4303,ItemSeriesName=emote1,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(69)=(ContainerId=5647,KeyId=4303,ItemSeriesName=emote2,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(70)=(ContainerId=3284,KeyId=3282,ItemSeriesName=horzine1,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(71)=(ContainerId=3285,KeyId=3283,ItemSeriesName=horzine2,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(72)=(ContainerId=3598,KeyId=3599,ItemSeriesName=horzine3,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(73)=(ContainerId=3600,KeyId=3601,ItemSeriesName=horzine4,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(74)=(ContainerId=3882,KeyId=3880,ItemSeriesName=horzine5,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(75)=(ContainerId=3883,KeyId=3881,ItemSeriesName=horzine6,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(76)=(ContainerId=4107,KeyId=4105,ItemSeriesName=horzine7,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(77)=(ContainerId=4108,KeyId=4106,ItemSeriesName=horzine8,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(78)=(ContainerId=4207,KeyId=4208,ItemSeriesName=horzine9,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(79)=(ContainerId=4499,KeyId=4501,ItemSeriesName=horzine10,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(80)=(ContainerId=4500,KeyId=4502,ItemSeriesName=horzine11,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(81)=(ContainerId=4604,KeyId=4603,ItemSeriesName=horzine12,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(82)=(ContainerId=4776,KeyId=4775,ItemSeriesName=horzine13,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(83)=(ContainerId=5010,KeyId=5011,ItemSeriesName=horzine14,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(84)=(ContainerId=5233,KeyId=5234,ItemSeriesName=horzine15,ContainerType=EItemDisplayContainerType.IDT_Crate)
+    ItemKeyArray(85)=(ContainerId=5240,KeyId=5241,ItemSeriesName=horzine16,ContainerType=EItemDisplayContainerType.IDT_Crate)
 }

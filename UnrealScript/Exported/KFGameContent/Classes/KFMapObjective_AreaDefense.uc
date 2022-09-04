@@ -155,7 +155,10 @@ simulated function ActivateObjective()
 
 		if (bUseTrailToVolume)
 		{
-			TrailActor = class'WorldInfo'.static.GetWorldInfo().Spawn(class'KFReplicatedShowPathActor', none);
+			if (TrailActor == none)
+			{
+				TrailActor = class'WorldInfo'.static.GetWorldInfo().Spawn(class'KFReplicatedShowPathActor', none);
+			}
 			if (TrailActor != none)
 			{
 				TrailActor.SetEmitterTemplate(ParticleSystem'FX_Gameplay_EMIT.FX_Objective_White_Trail');

@@ -310,25 +310,34 @@ function StopPullingPawn(KFPawn OldVictim, optional bool bReachedEnd)
     }
 }
 
+function bool CanOverrideMoveWith(name NewMove)
+{
+    if(NewMove == 'KFSM_Knockdown')
+    {
+        return true;
+    }
+    return false;
+}
+
 defaultproperties
 {
     GorgeAttackRangeSq=490000
-    GorgeHumanAttackRangeSq=350000
+    GorgeHumanAttackRangeSq=450000
     GorgeMinAttackAngle=0.77
     GorgeAttackCooldown[0]=(X=8,Y=11)
     GorgeAttackCooldown[1]=(X=6,Y=9)
     GorgeAttackCooldown[2]=(X=5,Y=8)
     GorgeAttackCooldown[3]=(X=4,Y=7)
     GorgeAttackCheckDelay=5
-    GorgePullDelay=0.91
-    FollowerSpecialMove=ESpecialMove.SM_HansGrappleVictim
+    GorgePullDelay=0.01
+    FollowerSpecialMove=ESpecialMove.SM_BloatKingGorgeVictim
     ZedFollowerSpecialMove=ESpecialMove.SM_GorgeZedVictim
     GorgePullRate=300
     GorgeReleaseOffset=135
     GorgeBaseDamage[0]=30
-    GorgeBaseDamage[1]=30
-    GorgeBaseDamage[2]=40
-    GorgeBaseDamage[3]=40
+    GorgeBaseDamage[1]=40
+    GorgeBaseDamage[2]=50
+    GorgeBaseDamage[3]=50
     AnimName=Atk_Gorge
     bCanBeInterrupted=true
     bDisableMovement=true

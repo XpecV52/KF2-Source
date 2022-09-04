@@ -102,7 +102,7 @@ var repnotify byte MusicTrackRepCount;
 var repnotify byte RepKickVotes;
 var byte WaveMax;
 var repnotify byte WaveNum;
-var byte GameLength;
+var repnotify byte GameLength;
 var byte GameDifficulty;
 var byte GameDifficultyModifier;
 var byte MaxPerkLevel;
@@ -121,6 +121,7 @@ var bool bMatchVictory;
 var bool bTradersEnabled;
 var bool bWaveIsEndless;
 var bool bEndlessMode;
+var bool bObjectiveMode;
 var bool bCustom;
 var bool bCurrentSMFinishedSpawning;
 var bool bDebugSpawnManager;
@@ -129,6 +130,7 @@ var bool bHidePawnIcons;
 var bool bGameConductorGraphingEnabled;
 var bool bVersusGame;
 var bool bAllowSwitchTeam;
+var bool NextObjectiveIsEndless;
 var bool bForceNextObjective;
 var KFTraderDialogManager TraderDialogManager;
 var class<KFTraderDialogManager> TraderDialogManagerClass;
@@ -181,6 +183,7 @@ var array<KFDoorActor> DoorList;
 var repnotify Actor CurrentObjective;
 var KFInterface_MapObjective ObjectiveInterface;
 var repnotify Actor PreviousObjective;
+var repnotify Actor NextObjective;
 var repnotify int PreviousObjectiveResult;
 var repnotify int PreviousObjectiveXPResult;
 var repnotify int PreviousObjectiveVoshResult;
@@ -198,14 +201,15 @@ replication
         GameDifficulty, GameDifficultyModifier, 
         GameSharedUnlocks, MaxHumanCount, 
         MusicIntensity, MusicTrackRepCount, 
-        NextTrader, PreviousObjective, 
-        PreviousObjectiveResult, PreviousObjectiveVoshResult, 
-        PreviousObjectiveXPResult, ReplicatedMusicTrackInfo, 
-        TraderVolume, TraderVolumeCheckType, 
-        WaveNum, WaveTotalAICount, 
-        bHidePawnIcons, bIsUnrankedGame, 
-        bTraderIsOpen, bWaveIsActive, 
-        bWaveIsEndless, bWaveStarted;
+        NextObjective, NextTrader, 
+        PreviousObjective, PreviousObjectiveResult, 
+        PreviousObjectiveVoshResult, PreviousObjectiveXPResult, 
+        ReplicatedMusicTrackInfo, TraderVolume, 
+        TraderVolumeCheckType, WaveNum, 
+        WaveTotalAICount, bHidePawnIcons, 
+        bIsUnrankedGame, bTraderIsOpen, 
+        bWaveIsActive, bWaveIsEndless, 
+        bWaveStarted;
 
      if(bNetInitial)
         GameAmmoCostScale, GameLength, 
@@ -373,7 +377,24 @@ simulated event ReplicatedEvent(name VarName)
                                                 }
                                                 else
                                                 {
-                                                    super.ReplicatedEvent(VarName);
+                                                    if(VarName == 'NextObjective')
+                                                    {
+                                                        if(NextObjective != none)
+                                                        {
+                                                            KFInterface_MapObjective(NextObjective).NotifyObjectiveSelected();
+                                                        }                                                        
+                                                    }
+                                                    else
+                                                    {
+                                                        if(VarName == 'GameLength')
+                                                        {
+                                                            ReceivedGameLength();                                                            
+                                                        }
+                                                        else
+                                                        {
+                                                            super.ReplicatedEvent(VarName);
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
@@ -404,6 +425,11 @@ simulated event PostBeginPlay()
         TraderDialogManager = Spawn(TraderDialogManagerClass);
     }
     SetTimer(1, true);
+}
+
+simulated function ReceivedGameLength()
+{
+    ActivateLevelLoadedEvents();
 }
 
 simulated function ActivateLevelLoadedEvents()
@@ -442,46 +468,19 @@ simulated function array<int> GetKFSeqEventLevelLoadedIndices()
 {
     local array<int> ActivateIndices;
 
-    if(GameClass != none)
+    switch(GameLength)
     {
-        if(GameClass.Name == 'KFGameInfo_Survival')
-        {
-            switch(GameLength)
-            {
-                case 0:
-                    ActivateIndices[0] = 3;
-                    break;
-                case 1:
-                    ActivateIndices[0] = 4;
-                    break;
-                case 2:
-                    ActivateIndices[0] = 5;
-                    break;
-                default:
-                    break;
-            }            
-        }
-        else
-        {
-            if(GameClass.Name == 'KFGameInfo_Endless')
-            {
-                ActivateIndices[0] = 6;                
-            }
-            else
-            {
-                if(GameClass.Name == 'KFGameInfo_WeeklySurvival')
-                {
-                    ActivateIndices[0] = 7;                    
-                }
-                else
-                {
-                    if(GameClass.Name == 'KFGameInfo_Objective')
-                    {
-                        ActivateIndices[0] = 8;
-                    }
-                }
-            }
-        }
+        case 0:
+            ActivateIndices[0] = 3;
+            break;
+        case 1:
+            ActivateIndices[0] = 4;
+            break;
+        case 2:
+            ActivateIndices[0] = 5;
+            break;
+        default:
+            break;
     }
     return ActivateIndices;
 }
@@ -511,9 +510,19 @@ simulated function ReceivedGameClass()
                 }
                 else
                 {
-                    if(KFMI.TraderVoiceGroupClassPath != "")
+                    if(bObjectiveMode)
                     {
-                        MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath, Class'Class'));
+                        if(KFMI.TraderVoiceGroupClassPath_Objective != "")
+                        {
+                            MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath_Objective, Class'Class'));
+                        }                        
+                    }
+                    else
+                    {
+                        if(KFMI.TraderVoiceGroupClassPath != "")
+                        {
+                            MapVoiceGroupClass = class<KFTraderVoiceGroupBase>(DynamicLoadObject(KFMI.TraderVoiceGroupClassPath, Class'Class'));
+                        }
                     }
                 }
             }
@@ -528,7 +537,6 @@ simulated function ReceivedGameClass()
         }
     }
     DebugingNextTraderIndex = -1;
-    ActivateLevelLoadedEvents();
     super.ReceivedGameClass();
 }
 
@@ -1583,26 +1591,29 @@ simulated event bool IsStatsSessionValid()
     return true;
 }
 
-function bool StartNextObjective()
+function ChooseNextObjective(int NextWaveNum)
 {
     local KFMapInfo KFMI;
 
+    NextObjective = none;
+    NextObjectiveIsEndless = false;
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
-    if((KFMI != none) && !IsBossWave())
+    if((KFMI != none) && NextWaveNum != WaveMax)
     {
-        if(KFMI.bUsePresetObjectives && WaveNum <= (GetPresetObjectiveLength(KFMI)))
+        if(KFMI.bUsePresetObjectives && NextWaveNum <= (GetPresetObjectiveLength(KFMI)))
         {
-            return StartNextPresetObjective(KFMI);
+            ChooseNextPresetObjective(KFMI, NextWaveNum);
+            return;
         }
         if(KFMI.bUseRandomObjectives)
         {
-            return StartNextRandomObjective(KFMI);
+            ChooseNextRandomObjective(KFMI, NextWaveNum);
+            return;
         }
     }
-    return false;
 }
 
-function bool StartNextPresetObjective(KFMapInfo KFMI)
+function bool ChooseNextPresetObjective(KFMapInfo KFMI, int NextWaveNum)
 {
     local array<KFInterface_MapObjective> PossibleObjectives;
     local bool bUseEndlessSpawning;
@@ -1614,31 +1625,31 @@ function bool StartNextPresetObjective(KFMapInfo KFMI)
     switch(GameLength)
     {
         case 0:
-            if(KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
+            if(KFMI.PresetWaveObjectives.ShortObjectives[NextWaveNum - 1].PossibleObjectives.Length > 0)
             {
-                PossibleObjectives = KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].PossibleObjectives;
-                bUseEndlessSpawning = KFMI.PresetWaveObjectives.ShortObjectives[WaveNum - 1].bUseEndlessSpawning;
+                PossibleObjectives = KFMI.PresetWaveObjectives.ShortObjectives[NextWaveNum - 1].PossibleObjectives;
+                bUseEndlessSpawning = KFMI.PresetWaveObjectives.ShortObjectives[NextWaveNum - 1].bUseEndlessSpawning;
             }
             break;
         case 1:
-            if(KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
+            if(KFMI.PresetWaveObjectives.MediumObjectives[NextWaveNum - 1].PossibleObjectives.Length > 0)
             {
-                PossibleObjectives = KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].PossibleObjectives;
-                bUseEndlessSpawning = KFMI.PresetWaveObjectives.MediumObjectives[WaveNum - 1].bUseEndlessSpawning;
+                PossibleObjectives = KFMI.PresetWaveObjectives.MediumObjectives[NextWaveNum - 1].PossibleObjectives;
+                bUseEndlessSpawning = KFMI.PresetWaveObjectives.MediumObjectives[NextWaveNum - 1].bUseEndlessSpawning;
             }
             break;
         case 2:
-            if(KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives.Length > 0)
+            if(KFMI.PresetWaveObjectives.LongObjectives[NextWaveNum - 1].PossibleObjectives.Length > 0)
             {
-                PossibleObjectives = KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].PossibleObjectives;
-                bUseEndlessSpawning = KFMI.PresetWaveObjectives.LongObjectives[WaveNum - 1].bUseEndlessSpawning;
+                PossibleObjectives = KFMI.PresetWaveObjectives.LongObjectives[NextWaveNum - 1].PossibleObjectives;
+                bUseEndlessSpawning = KFMI.PresetWaveObjectives.LongObjectives[NextWaveNum - 1].bUseEndlessSpawning;
             }
             break;
         default:
             break;
             break;
     }
-    return (AttemptObjectiveActivation(PossibleObjectives, bUseEndlessSpawning)) != -1;
+    return (SetNextObjective(PossibleObjectives, bUseEndlessSpawning)) != -1;
 }
 
 function int GetPresetObjectiveLength(KFMapInfo KFMI)
@@ -1661,18 +1672,18 @@ function int GetPresetObjectiveLength(KFMapInfo KFMI)
     }
 }
 
-function bool StartNextRandomObjective(KFMapInfo KFMI)
+function bool ChooseNextRandomObjective(KFMapInfo KFMI, int NextWaveNum)
 {
     local int Idx;
 
     Idx = -1;
-    if((KFMI.RandomWaveObjectives.Length > 0) && KFMI.RandomObjectiveWavesToDisable.Find(WaveNum == -1)
+    if((KFMI.RandomWaveObjectives.Length > 0) && KFMI.RandomObjectiveWavesToDisable.Find(NextWaveNum == -1)
     {
         if(KFMI.CurrentAvailableRandomWaveObjectives.Length == 0)
         {
             KFMI.CurrentAvailableRandomWaveObjectives = KFMI.RandomWaveObjectives;
         }
-        Idx = AttemptObjectiveActivation(KFMI.CurrentAvailableRandomWaveObjectives);
+        Idx = SetNextObjective(KFMI.CurrentAvailableRandomWaveObjectives);
         if(Idx >= 0)
         {
             KFMI.CurrentAvailableRandomWaveObjectives.Remove(Idx, 1;
@@ -1681,14 +1692,15 @@ function bool StartNextRandomObjective(KFMapInfo KFMI)
     return Idx != -1;
 }
 
-function int AttemptObjectiveActivation(array<KFInterface_MapObjective> PossibleObjectives, optional bool bUseEndlessSpawning)
+function int SetNextObjective(array<KFInterface_MapObjective> PossibleObjectives, optional bool bUseEndlessSpawning, optional bool bActivateImmediately)
 {
     local int RandID;
     local float DieRoll, PctChanceToActivate;
 
     bUseEndlessSpawning = false;
+    bActivateImmediately = false;
     DieRoll = FRand();
-    J0x11:
+    J0x16:
 
     if(PossibleObjectives.Length > 0)
     {
@@ -1696,13 +1708,32 @@ function int AttemptObjectiveActivation(array<KFInterface_MapObjective> Possible
         PctChanceToActivate = PossibleObjectives[RandID].GetActivationPctChance();
         if(bForceNextObjective || (PossibleObjectives[RandID].CanActivateObjective() && PreviousObjective != bool(PossibleObjectives[RandID])) && (PctChanceToActivate >= 1) || DieRoll <= PctChanceToActivate)
         {
-            ActivateObjective(PossibleObjectives[RandID], bUseEndlessSpawning);
+            if(bActivateImmediately)
+            {
+                ActivateObjective(PossibleObjectives[RandID], bUseEndlessSpawning);                
+            }
+            else
+            {
+                NextObjective = Actor(bool(PossibleObjectives[RandID]));
+                NextObjectiveIsEndless = bUseEndlessSpawning;
+                KFInterface_MapObjective(NextObjective).NotifyObjectiveSelected();
+            }
             return RandID;
         }
         PossibleObjectives.Remove(RandID, 1;
-        goto J0x11;
+        goto J0x16;
     }
     return -1;
+}
+
+function bool StartNextObjective()
+{
+    if(NextObjective != none)
+    {
+        ActivateObjective((NextObjective), NextObjectiveIsEndless);
+        return true;
+    }
+    return false;
 }
 
 function ActivateObjective(KFInterface_MapObjective NewObjective, optional bool bUseEndlessSpawning)
@@ -1773,6 +1804,7 @@ function DeactivateObjective()
             }
         }
     }
+    ChooseNextObjective(WaveNum + 1);
 }
 
 function ClearPreviousObjective()

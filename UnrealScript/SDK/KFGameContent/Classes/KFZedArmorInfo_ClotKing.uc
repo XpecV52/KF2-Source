@@ -8,87 +8,62 @@
 //=============================================================================
 class KFZedArmorInfo_ClotKing extends KFZedArmorInfo;
 
-function ExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
+simulated function UpdateArmorPiece(int PieceIdx)
 {
-	local name AdjustedZoneName;
-	local byte StatusField;
+	super.UpdateArmorPiece(PieceIdx);
 
-	AdjustedZoneName = ArmorZoneName;
-	if (AdjustedZoneName == 'back')
-	{
-		AdjustedZoneName = '';
-	}
-
-	switch (ArmorZoneName)
+	switch (ArmorZones[PieceIdx].ArmorZoneName)
 	{
 	case 'head':
-		StatusField = FrontBit;
+		Mesh.DetachComponent(StaticAttachList[0]);
+		DetachComponent(StaticAttachList[0]);
 		break;
+
 	case 'front':
-		StatusField = HeadBit;
+		DetachComponent(ThirdPersonAttachments[0]);
+		ThirdPersonAttachments[0] = none;
 		break;
 	}
-
-	ArmorZoneStatus = ArmorZoneStatus & StatusField;
-	UpdateArmorPieces();
-}
-
-simulated function UpdateArmorPieces()
-{
-	local Vector SocketLocation;
-	local Rotator SocketRotation;
-	local KFCharacterInfo_Monster MonsterArch;
-
-	if (WorldInfo.NetMode != NM_DedicatedServer)
-	{
-		MonsterArch = GetCharacterMonsterInfo();
-		switch (ArmorZoneStatus ^ PreviousArmorZoneStatus)
-		{
-		case HeadBit:
-			Mesh.DetachComponent(StaticAttachList[0]);
-			DetachComponent(StaticAttachList[0]);
-			StaticAttachList.Remove(0, 1);
-			Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[0].SocketName, SocketLocation, SocketRotation);
-
-			if (MonsterArch.ExtraVFX.length > 0)
-			{
-				WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0].VFX, SocketLocation, SocketRotation);
-			}
-
-			PlaySoundBase(default.ArmorZones[0].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-			break;
-		case FrontBit:
-			DetachComponent(ThirdPersonAttachments[0]);
-			Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[1].SocketName, SocketLocation, SocketRotation);
-
-			if (MonsterArch.ExtraVFX.length > 1)
-			{
-				WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1].VFX, SocketLocation, SocketRotation);
-			}
-
-			PlaySoundBase(default.ArmorZones[1].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-			ThirdPersonAttachments[0] = none;
-			break;
-		default:
-			//Nothing changed
-			break;
-		}
-	}
-
-	PreviousArmorZoneStatus = ArmorZoneStatus;
 }
 
 defaultproperties
 {
-	// Mapping between armor piece and hit zones to block pawn damage hitting active armor and apply that damage to the armor
-    ArmorHitzoneNames.Add(head)
-    ArmorHitzoneNames.Add(chest)
-    ArmorHitzoneNames.Add(heart)
-    ArmorHitzoneNames.Add(stomach)
-    ArmorHitzoneNames.Add(abdomen)
-
-    //Armor info
-    ArmorZones.Add((ArmorZoneName=head,SocketName=FX_Armor_Head,ArmorHealth=450,ArmorHealthMax=450,ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Small_Armor_Explo')) //ArmorHealth=20, ArmorHealthMax=20
-    ArmorZones.Add((ArmorZoneName=front,SocketName=FX_Armor_Chest,ArmorHealth=500,ArmorHealthMax=500,ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Large_Armor_Explo')) //ArmorHealth=40, ArmorHealthMax=40
 	ArmorScale=1.f
+
+	ArmorZones.Add({(
+		ArmorZoneName=head,
+		AffectedHitZones=(head),
+		bAffectedByFrontDamage=true,
+		bAffectedByBackDamage=true,
+		SocketName=FX_Armor_Head,
+		ArmorHealth=450,
+		ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Small_Armor_Explo',
+		ZoneIcon=None)})
+	ArmorZones.Add({(
+		ArmorZoneName=front,
+		AffectedHitZones=(chest,heart,stomach,abdomen),
+		bAffectedByFrontDamage=true,
+		bAffectedByBackDamage=false,
+		SocketName=FX_Armor_Chest,
+		ArmorHealth=500,
+		ExplosionSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Large_Armor_Explo',
+		ZoneIcon=None)})
+
+	// ---------------------------------------------
+	// Resistance & Vulnerability
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Submachinegun', 	DamageScale=(1.5)))  //3.0
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AssaultRifle', 	DamageScale=(1.0)))
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Shotgun', 	    DamageScale=(1.0)))
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Handgun', 	    DamageScale=(1.01)))
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Rifle', 	        DamageScale=(1.0)))  //0.76
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Slashing', 	                DamageScale=(0.85))) //0.75
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Bludgeon', 	                DamageScale=(0.9))) //0.75
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(3.0)))
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Microwave', 	            DamageScale=(0.25)))
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Explosive', 	            DamageScale=(1.0)))
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Piercing', 	                DamageScale=(1.0)))
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                DamageScale=(1.0))) //0.88
+	
+	//special case
+	ArmorDamageTypeModifiers.Add((DamageType=class'KFDT_Bleeding_Hemogoblin', 	    DamageScale=(5.0)))
 }

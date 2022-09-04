@@ -147,8 +147,6 @@ defaultproperties
    FireQuadAnim="Shoot_Double"
    DoubleBarrelKickMomentum=1000.000000
    FallingMomentumReduction=0.500000
-   NumPellets(0)=6
-   NumPellets(1)=24
    PackageKey="Quad_Barrel"
    FirstPersonMeshName="wep_1p_quad_barrel_mesh.Wep_1stP_Quad_Barrel"
    FirstPersonAnimSetNames(0)="wep_1p_quad_barrel_anim.Wep_1stP_Quad_Barrel_Anim"
@@ -193,6 +191,13 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_ElephantGun:MeleeHelper_0'
+   NumPellets(0)=6
+   NumPellets(1)=24
+   NumPellets(2)=()
+   NumPellets(3)=()
+   NumPellets(4)=()
+   NumPellets(5)=()
+   NumPellets(6)=()
    maxRecoilPitch=1200
    minRecoilPitch=775
    maxRecoilYaw=800

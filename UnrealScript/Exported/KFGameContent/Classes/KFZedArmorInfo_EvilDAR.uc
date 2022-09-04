@@ -8,101 +8,59 @@
 //=============================================================================
 class KFZedArmorInfo_EvilDAR extends KFZedArmorInfo;
 
-function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource)
+function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource, class<DamageType> DamageType)
 {
-	local byte PrevArmorZoneStatus, HeadByte;
+	local byte PrevArmorZoneStatus;
+	local int UpdatedZones;
 
 	PrevArmorZoneStatus = PreviousArmorZoneStatus;
-	super.AdjustBoneDamage(InDamage, BoneName, DamagerSource);
+	super.AdjustBoneDamage(InDamage, BoneName, DamagerSource, DamageType);
 
 	// EDAR has no head, only head armor, so blow off his "head" when his head armor is blown off
-	HeadByte = HeadBit;
-	if (((ArmorZoneStatus ^ PrevArmorZoneStatus) & HeadByte) != 0)
+	UpdatedZones = ArmorZoneStatus ^ PrevArmorZoneStatus;
+	if (bool(UpdatedZones & (1 << 0)))
 	{
 		HitZones[HZI_Head].GoreHealth = 0;
 	}
 }
 
-function ExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
+simulated function UpdateArmorPiece(int PieceIdx)
 {
-	local name AdjustedZoneName;
-	local byte StatusField;
+	super.UpdateArmorPiece(PieceIdx);
 
-	AdjustedZoneName = ArmorZoneName;
-	if (AdjustedZoneName == 'back')
-	{
-		AdjustedZoneName = '';
-	}
-
-	switch (AdjustedZoneName)
+	switch (ArmorZones[PieceIdx].ArmorZoneName)
 	{
 	case 'head':
-		StatusField = FrontBit;
+		Mesh.DetachComponent(StaticAttachList[0]);
+		DetachComponent(StaticAttachList[0]);
+		StaticAttachList.Remove(0, 1);
 		break;
+
 	case 'front':
-		StatusField = HeadBit;
+		DetachComponent(ThirdPersonAttachments[0]);
+		ThirdPersonAttachments[0] = none;
 		break;
 	}
-
-	ArmorZoneStatus = ArmorZoneStatus & StatusField;
-	UpdateArmorPieces();
-}
-
-simulated function UpdateArmorPieces()
-{
-	local Vector SocketLocation;
-	local Rotator SocketRotation;
-	local KFCharacterInfo_Monster MonsterArch;
-
-	if (WorldInfo.NetMode != NM_DedicatedServer)
-	{
-		MonsterArch = GetCharacterMonsterInfo();
-		switch (ArmorZoneStatus ^ PreviousArmorZoneStatus)
-		{
-		case HeadBit:
-			Mesh.DetachComponent(StaticAttachList[0]);
-			DetachComponent(StaticAttachList[0]);
-			StaticAttachList.Remove(0, 1);
-			Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[0].SocketName, SocketLocation, SocketRotation);
-
-			if (MonsterArch.ExtraVFX.length > 0)
-			{
-				WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[0].VFX, SocketLocation, SocketRotation);
-			}
-
-			PlaySoundBase(default.ArmorZones[0].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-			break;
-		case FrontBit:
-			DetachComponent(ThirdPersonAttachments[0]);
-			Mesh.GetSocketWorldLocationAndRotation(default.ArmorZones[1].SocketName, SocketLocation, SocketRotation);
-
-			if (MonsterArch.ExtraVFX.length > 1)
-			{
-				WorldInfo.MyEmitterPool.SpawnEmitter(MonsterArch.ExtraVFX[1].VFX, SocketLocation, SocketRotation);
-			}
-
-			PlaySoundBase(default.ArmorZones[1].ExplosionSFXTemplate, true, true, true, SocketLocation, true, SocketRotation);
-			ThirdPersonAttachments[0] = none;
-			break;
-		default:
-			//Nothing changed
-			break;
-		}
-	}
-
-	PreviousArmorZoneStatus = ArmorZoneStatus;
 }
 
 defaultproperties
 {
-   ArmorHitzoneNames(0)="head"
-   ArmorHitzoneNames(1)="chest"
-   ArmorHitzoneNames(2)="heart"
-   ArmorHitzoneNames(3)="stomach"
-   ArmorHitzoneNames(4)="abdomen"
-   ArmorZones(0)=(ArmorZoneName="head",SocketName="FX_Armor_Head",ArmorHealth=600,ArmorHealthMax=600,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Headshot')
-   ArmorZones(1)=(ArmorZoneName="Front",SocketName="FX_Armor_Chest",ArmorHealth=225,ArmorHealthMax=225,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Jetpack_Damaged')
+   ArmorZones(0)=(ArmorZoneName="head",AffectedHitZones=("head"),SocketName="FX_Armor_Head",ArmorHealth=600,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Headshot')
+   ArmorZones(1)=(ArmorZoneName="Front",AffectedHitZones=("chest","heart","stomach","abdomen"),bAffectedByBackDamage=False,SocketName="FX_Armor_Chest",ArmorHealth=225,ExplosionSFXTemplate=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Jetpack_Damaged')
    ArmorScale=1.000000
+   ArmorDamageTypeModifiers(0)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(1.050000))
+   ArmorDamageTypeModifiers(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(1.050000))
+   ArmorDamageTypeModifiers(2)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(1.200000))
+   ArmorDamageTypeModifiers(3)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun')
+   ArmorDamageTypeModifiers(4)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle')
+   ArmorDamageTypeModifiers(5)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(1.250000))
+   ArmorDamageTypeModifiers(6)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(1.250000))
+   ArmorDamageTypeModifiers(7)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(1.500000))
+   ArmorDamageTypeModifiers(8)=(DamageType=Class'KFGame.KFDT_Microwave',DamageScale=(3.250000))
+   ArmorDamageTypeModifiers(9)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(2.500000))
+   ArmorDamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.850000))
+   ArmorDamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
+   ArmorDamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_Hemogoblin',DamageScale=(5.000000))
    Name="Default__KFZedArmorInfo_EvilDAR"
    ObjectArchetype=KFZedArmorInfo'KFGame.Default__KFZedArmorInfo'
 }

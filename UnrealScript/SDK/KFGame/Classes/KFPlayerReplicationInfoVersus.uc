@@ -68,7 +68,7 @@ reliable server function ServerSwitchTeam()
 {
 	local KFGameInfo MyGameInfo;
 	local KFGameReplicationInfo KFGRI;
-	
+
 	MyGameInfo = KFGameInfo(WorldInfo.Game);
 	if( MyGameInfo == none )
 	{
@@ -84,7 +84,7 @@ reliable server function ServerSwitchTeam()
 	if( KFGRI.bMatchHasBegun )
 	{
 		//will this switch upset current game balance?
-		if(!WillMaintainTeamBalance()) 
+		if(!WillMaintainTeamBalance())
 		{
 			ClientRefusedTeamSwitch();
 			return;
@@ -97,11 +97,11 @@ reliable server function ServerSwitchTeam()
 		case MyGameInfo.Teams[0].TeamIndex:
 			MyGameInfo.SetTeam( PlayerController(Owner), MyGameInfo.Teams[1] );
 			break;
-	
+
 		case MyGameInfo.Teams[1].TeamIndex:
 				MyGameInfo.SetTeam( PlayerController(Owner), MyGameInfo.Teams[0] );
 			break;
-	
+
 		default:
 			`log("Function: KFPlayerReplicationInfo::ServerSwitchTeam Team index not accounted for - " @GetTeamNum());
 	}
@@ -118,9 +118,9 @@ function bool WillMaintainTeamBalance()
 	local KFGameInfo MyGameInfo;
 	local KFGameReplicationInfo KFGRI;
 	local KFPlayerController KFPC;
-	
+
 	KFPC = KFPlayerController(Owner);
-	
+
 	MyGameInfo = KFGameInfo(WorldInfo.Game);
 	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
 
@@ -136,10 +136,10 @@ function bool WillMaintainTeamBalance()
 		{
 			case MyGameInfo.Teams[0].TeamIndex:
 				//the team i want to go to is smaller than my current team  AND the desired team is also smaller than half the allowed max players
-				return MyGameInfo.Teams[1].Size < MyGameInfo.Teams[0].Size  && MyGameInfo.Teams[1].Size < (MyGameInfo.MaxPlayersAllowed / 2);	
+				return MyGameInfo.Teams[1].Size < MyGameInfo.Teams[0].Size  && MyGameInfo.Teams[1].Size < (MyGameInfo.MaxPlayersAllowed / 2);
 
 			case MyGameInfo.Teams[1].TeamIndex:
-				return MyGameInfo.Teams[0].Size < MyGameInfo.Teams[1].Size  && MyGameInfo.Teams[0].Size < (MyGameInfo.MaxPlayersAllowed / 2);	
+				return MyGameInfo.Teams[0].Size < MyGameInfo.Teams[1].Size  && MyGameInfo.Teams[0].Size < (MyGameInfo.MaxPlayersAllowed / 2);
 			default:
 				`log("Function: KFPlayerReplicationInfo::WillUpsetTeamBalance Team index not accounted for - " @GetTeamNum());
 		}
@@ -151,7 +151,7 @@ function bool WillMaintainTeamBalance()
 reliable client function ClientRefusedTeamSwitch()
 {
 	local KFPlayerController KFPC;
-	
+
 	KFPC = KFPlayerController(Owner);
 	if(KFPC != none && KFPC.IsLocalController())
 	{
@@ -250,6 +250,11 @@ function Reset()
 
 	bWaitingPlayer = bPrevWaitingPlayer;
 	bReadyToPlay = bPrevReadyToPlay;
+}
+
+reliable client function ShowKickVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices)
+{
+	super.ShowKickVote(PRI, VoteDuration, bShowChoices && (PRI.GetTeamNum() == GetTeamNum()));
 }
 
 defaultproperties

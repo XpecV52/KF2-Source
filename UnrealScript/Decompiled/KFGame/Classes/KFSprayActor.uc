@@ -783,6 +783,116 @@ event float GetModifiedDamage()
     return SplashDamage * DamageModifier;
 }
 
+event SprayMeshHit(Actor TouchActor)
+{
+    local float Dmg, DistToHitActor;
+    local Vector Momentum;
+    local int TruncDamage;
+    local TraceHitInfo HitInfo;
+    local Pawn TouchPawn;
+
+    if(OwningKFPawn != none)
+    {
+        Momentum = TouchActor.Location - OwningKFPawn.Location;        
+    }
+    else
+    {
+        if(DummyFireParent != none)
+        {
+            Momentum = TouchActor.Location - DummyFireParent.Location;
+        }
+    }
+    DistToHitActor = VSize(Momentum);
+    Momentum *= (MomentumScale / DistToHitActor);
+    Dmg = GetDamage(DistToHitActor, TouchActor);
+    TruncDamage = int(Dmg);
+    if(TruncDamage > 0)
+    {
+        HitInfo.PhysMaterial = HighestSprayMeshContactThisTick.PhysicalMaterial;
+        HitInfo.BoneName = HighestSprayMeshContactThisTick.BoneName;
+        TouchPawn = Pawn(TouchActor);
+        if(bDebugDirectDamage && TouchPawn != none)
+        {
+            LogInternal((((((("[" $ string(WorldInfo.TimeSeconds)) $ "] Damaging ") $ string(TouchActor.Name)) $ " for ") $ string(TruncDamage)) $ ", Dist: ") $ string(VSize(TouchActor.Location - OwningKFPawn.Location)));
+        }
+        if(TouchPawn != none)
+        {
+            ProcessDirectImpact();
+        }
+        TouchActor.TakeDamage(TruncDamage, InstigatorController, TouchActor.Location, Momentum, MyDamageType, HitInfo, self);
+    }
+}
+
+event SplashHit(Actor SplashTouchActor)
+{
+    local Vector Momentum;
+    local float Dmg;
+    local bool bFoundHitActor, bDamagedRecently;
+    local int I, RoundedDamage;
+    local DamagedActorInfo NewDamage;
+    local Pawn SplashTouchPawn;
+    local TraceHitInfo TraceInfo;
+
+    Dmg = GetModifiedDamage();
+    Dmg *= (float(Clamp(int(float(1) - (VSize(SplashTouchActor.Location - LastSplashLoc) / SplashDamageRadius)), 0, 1)) ** SplashDamageFalloffExponent);
+    if((OwningKFPawn != none) && SplashTouchActor == OwningKFPawn)
+    {
+        Dmg *= SplashDamageInstigatorDamageScale;
+    }
+    I = RecentlyDamagedActors.Length - 1;
+    J0xC0:
+
+    if(I >= 0)
+    {
+        if((WorldInfo.TimeSeconds - RecentlyDamagedActors[I].HitTime) > 1)
+        {
+            RecentlyDamagedActors.Remove(I, 1;            
+        }
+        else
+        {
+            if(!bFoundHitActor && RecentlyDamagedActors[I].HitActor == SplashTouchActor)
+            {
+                bFoundHitActor = true;
+                if((WorldInfo.TimeSeconds - RecentlyDamagedActors[I].HitTime) < DamageInterval)
+                {
+                    bDamagedRecently = true;
+                    if(bDebugSplashDamage)
+                    {
+                        LogInternal((((("UpdateSplashes() for " $ string(SplashTouchActor.Name)) $ ", damaged too recently DamageInterval: ") $ string(DamageInterval)) $ ", Time Since Last Damage: ") $ string(WorldInfo.TimeSeconds - RecentlyDamagedActors[I].HitTime));
+                    }
+                }
+            }
+        }
+        -- I;
+        goto J0xC0;
+    }
+    if(!bDamagedRecently)
+    {
+        RoundedDamage = Round(Dmg);
+        if(RoundedDamage > 0)
+        {
+            NewDamage.HitActor = SplashTouchActor;
+            NewDamage.HitTime = WorldInfo.TimeSeconds;
+            RecentlyDamagedActors.AddItem(NewDamage;
+            if(OwningKFPawn != none)
+            {
+                Momentum = ((SplashTouchActor == OwningKFPawn) ? vector(OwningKFPawn.Rotation) : Normal(SplashTouchActor.Location - OwningKFPawn.Location));                
+            }
+            else
+            {
+                Momentum = Normal(SplashTouchActor.Location - Location);
+            }
+            Momentum *= MomentumScale;
+            SplashTouchPawn = Pawn(SplashTouchActor);
+            if(bDebugSplashDamage && SplashTouchPawn != none)
+            {
+                LogInternal((((((("[" $ string(WorldInfo.TimeSeconds)) $ "] Splash Damaging ") $ string(SplashTouchActor.Name)) $ " for ") $ string(RoundedDamage)) $ ", Dist: ") $ string(VSize(SplashTouchActor.Location - OwningKFPawn.Location)));
+            }
+            SplashTouchActor.TakeDamage(RoundedDamage, InstigatorController, SplashTouchActor.Location, Momentum, MyDamageType, TraceInfo, self);
+        }
+    }
+}
+
 defaultproperties
 {
     MaxDecalEffectDistance=5000

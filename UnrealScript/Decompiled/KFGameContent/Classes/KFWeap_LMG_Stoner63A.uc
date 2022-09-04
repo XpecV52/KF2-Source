@@ -19,7 +19,7 @@ var protected transient bool bAmmoBeltInitialized;
 
 simulated event ReplicatedEvent(name VarName)
 {
-    super(Actor).ReplicatedEvent(VarName);
+    super(KFWeapon).ReplicatedEvent(VarName);
     if(!bAmmoBeltInitialized)
     {
         UpdateAmmoBeltBullets();

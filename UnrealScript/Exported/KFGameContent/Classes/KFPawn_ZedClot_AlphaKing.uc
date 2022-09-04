@@ -23,6 +23,7 @@ simulated event PostBeginPlay()
 {
 	local class<KFDifficulty_ClotAlphaKing> MyDifficultySettings;
 	local KFGameReplicationInfo KFGRI;
+	local byte GameDifficulty;
 
 	super.PostBeginPlay();
 
@@ -33,8 +34,9 @@ simulated event PostBeginPlay()
 		KFGRI = KFGameReplicationInfo( WorldInfo.GRI );
 		if( KFGRI != none )
 		{
-			SelfRallyDealtDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GetModifiedGameDifficulty()].SelfDealtDamageModifier;
-			SelfRallyTakenDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GetModifiedGameDifficulty()].SelfTakenDamageModifier;
+			GameDifficulty = Clamp(KFGRI.GetModifiedGameDifficulty(), 0, MyDifficultySettings.default.RallyTriggerSettings.Length - 1);
+			SelfRallyDealtDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[GameDifficulty].SelfDealtDamageModifier;
+			SelfRallyTakenDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[GameDifficulty].SelfTakenDamageModifier;
 		}
 	}
 }
@@ -100,21 +102,6 @@ simulated function int GetRallyBoostResistance( int NewDamage )
 	else
 	{
 		return super.GetRallyBoostDamage( NewDamage );
-	}
-}
-
-function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, class<DamageType> damageType, vector Momentum, TraceHitInfo HitInfo)
-{
-	if (Damage == 0)
-	{
-		HitInfo.BoneName = 'KBArmor';
-
-		//Passing 1 damage to minimize need to rewrite for a single pawn
-		super.PlayHit(1, InstigatedBy, HitLocation, damageType, Momentum, HitInfo);
-	}
-	else
-	{
-		super.PlayHit(Damage, InstigatedBy, HitLocation, damageType, Momentum, HitInfo);
 	}
 }
 
@@ -298,7 +285,8 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'kfgamecontent.Default__KFPawn_ZedClot_Alpha:SpecialMoveHandler_0'
    End Object

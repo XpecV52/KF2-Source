@@ -257,7 +257,8 @@ function Timer_CheckIfFireAllowed()
 			&& KFP.GetTeamNum() != MyPatPawn.GetTeamNum()
 			&& VSizeSQ(OtherProjection) < DistSQ
 			&& PawnDir dot Normal(OtherProjection) >= 0.8f
-			&& MyPatPawn.FastTrace(KFP.Location, MyPatPawn.Location,, true) )
+			&& MyPatPawn.FastTrace(KFP.Location, MyPatPawn.Location,, true) 
+			&& KFP.CanAITargetThisPawn(MyPatController))
 		{
 			MyPatController.ChangeEnemy( KFP, false );
 			MyPatPawn.SetTimer( 2.0f, true, nameOf(Timer_SearchForMinigunTargets), self );

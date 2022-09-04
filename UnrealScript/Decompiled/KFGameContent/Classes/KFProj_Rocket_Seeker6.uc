@@ -54,10 +54,10 @@ defaultproperties
         ExplosionSound=AkEvent'WW_WEP_Seeker_6.Play_WEP_Seeker_6_Explosion'
         ExploLight=PointLightComponent'Default__KFProj_Rocket_Seeker6.ExplosionPointLight'
         ExploLightFadeOutTime=0.2
-        CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Seeker6'
-        CamShakeInnerRadius=180
+        CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
+        CamShakeInnerRadius=0
         CamShakeOuterRadius=500
-        CamShakeFalloff=1.5
+        CamShakeFalloff=3
     object end
     // Reference: KFGameExplosion'Default__KFProj_Rocket_Seeker6.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

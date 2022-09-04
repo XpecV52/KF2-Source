@@ -325,6 +325,9 @@ defaultproperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_RPG7Impact', 	    DamageScale=(4.f)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.25)))
 
+    //special cases
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Hemogoblin',       DamageScale=(0.75)))
+
 	// ---------------------------------------------
 	// Block Settings
 	MinBlockFOV=0.1f

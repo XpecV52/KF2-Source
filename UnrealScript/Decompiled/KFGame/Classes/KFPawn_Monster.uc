@@ -258,6 +258,8 @@ var transient array<AttachedGoreChunkInfo> AttachedGoreChunks;
 var transient int NumHeadChunksRemoved;
 var transient array<name> BrokenHeadBones;
 var protected transient float LastNapalmInfectCheckTime;
+var array<name> BonesToHidePostAsyncWork;
+var array<name> BonesToShowPostAsyncWork;
 var transient int DeadHorseHitStreakAmt;
 var transient float LastDeadHorseHitTime;
 var float DefaultCollisionRadius;
@@ -446,6 +448,10 @@ simulated event PostBeginPlay()
     {
         Class'KFPawn_MonsterBoss'.static.SetupHealthBar((self));
     }
+    if(ArmorInfo != none)
+    {
+        ArmorInfo.InitArmor();
+    }
 }
 
 simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
@@ -526,10 +532,6 @@ function PossessedBy(Controller C, bool bVehicleTransition)
         {
             MyKFAIC.EvadeOnDamageSettings = DifficultySettings.static.GetEvadeOnDamageSettings(self, KFGRI);
         }
-    }
-    if(ArmorInfo != none)
-    {
-        ArmorInfo.InitArmor();
     }
     SetSwitch('Player_Zed', ((IsHumanControlled()) ? 'Player' : 'NotPlayer'));
 }
@@ -1429,6 +1431,42 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     }
 }
 
+function AdjustDamageForArmor(out int InDamage, Controller InstigatedBy, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
+{
+    local Vector DamageSource;
+
+    if(ArmorInfo != none)
+    {
+        if(HitInfo.BoneName != 'None')
+        {
+            if((InstigatedBy != none) && InstigatedBy.Pawn != none)
+            {
+                DamageSource = InstigatedBy.Pawn.Location;                
+            }
+            else
+            {
+                if(KFWeapon(DamageCauser) != none)
+                {
+                    DamageSource = KFWeapon(DamageCauser).GetMuzzleLoc();                    
+                }
+                else
+                {
+                    DamageSource = DamageCauser.Location;
+                }
+            }
+            ArmorInfo.AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageSource, DamageType);            
+        }
+        else
+        {
+            ArmorInfo.AdjustNonBoneDamage(InDamage, DamageType);
+        }
+        if(bLogTakeDamage)
+        {
+            LogInternal(((((((string(self) @ string(GetFuncName())) @ " After armor adjustment Damage=") $ string(InDamage)) @ "Zone=") $ string(HitInfo.BoneName)) @ "DamageType=") $ string(DamageType));
+        }
+    }
+}
+
 function AdjustDamage(out int InDamage, out Vector Momentum, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
     local KFPlayerController KFPC;
@@ -1437,8 +1475,8 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     local int HitZoneIdx, ExtraHeadDamage;
     local KFPerk InstigatorPerk;
     local class<KFDamageType> KFDT;
-    local Vector DamageSource;
 
+    AdjustDamageForArmor(InDamage, InstigatedBy, DamageType, HitInfo, DamageCauser);
     super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
     if(DamageType.default.bCausedByWorld && ClassIsChildOf(DamageType, Class'KFDT_Falling'))
     {
@@ -1496,36 +1534,6 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     if((InstigatedBy == none) || InstigatedBy.GetTeamNum() != GetTeamNum())
     {
         InDamage = Max(InDamage, 1);
-    }
-    if(ArmorInfo != none)
-    {
-        if(HitInfo.BoneName != 'None')
-        {
-            if((InstigatedBy != none) && InstigatedBy.Pawn != none)
-            {
-                DamageSource = InstigatedBy.Pawn.Location;                
-            }
-            else
-            {
-                if(KFWeapon(DamageCauser) != none)
-                {
-                    DamageSource = KFWeapon(DamageCauser).GetMuzzleLoc();                    
-                }
-                else
-                {
-                    DamageSource = DamageCauser.Location;
-                }
-            }
-            ArmorInfo.AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageSource);            
-        }
-        else
-        {
-            ArmorInfo.AdjustNonBoneDamage(InDamage);
-        }
-        if(bLogTakeDamage)
-        {
-            LogInternal(((((((((string(self) @ string(GetFuncName())) @ " After armor adjustment Damage=") $ string(InDamage)) @ "Momentum=") $ string(Momentum)) @ "Zone=") $ string(HitInfo.BoneName)) @ "DamageType=") $ string(DamageType));
-        }
     }
     if(bLogTakeDamage)
     {
@@ -1674,6 +1682,10 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
 {
     local KFPawn_Human KFPH_Instigator;
 
+    if((ArmorInfo != none) && Damage == float(0))
+    {
+        AdjustPlayHitForArmor(Damage, HitInfo);
+    }
     super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
     if((InstigatedBy != none) && InstigatedBy.Pawn != none)
     {
@@ -1686,6 +1698,12 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
             }
         }
     }
+}
+
+function AdjustPlayHitForArmor(out float InDamage, out TraceHitInfo InHitInfo)
+{
+    InDamage = 1;
+    InHitInfo.BoneName = 'KFArmor';
 }
 
 function NotifyMeleeTakeHit(Controller InstigatedBy, Vector HitLocation);
@@ -3602,7 +3620,7 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 {
     if(ArmorInfo != none)
     {
-        ArmorInfo.ExplodeArmor(ArmorZoneIdx, ArmorZoneName);
+        ArmorInfo.ExplodeArmor(ArmorZoneIdx);
     }
 }
 
@@ -3765,17 +3783,17 @@ defaultproperties
     HitZones(16)=(ZoneName=rcalf,BoneName=RightLeg,GoreHealth=25,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightLeg,SkinID=0,bPlayedInjury=false)
     HitZones(17)=(ZoneName=rfoot,BoneName=RightLeg,GoreHealth=15,MaxGoreHealth=-1,DmgScale=1,Limb=EHitZoneBodyPart.BP_RightLeg,SkinID=0,bPlayedInjury=false)
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_Monster.Afflictions'
-    IncapSettings(0)=(Duration=5,Cooldown=5,Vulnerability=none)
-    IncapSettings(1)=(Duration=5,Cooldown=5,Vulnerability=none)
-    IncapSettings(2)=(Duration=5,Cooldown=0,Vulnerability=none)
-    IncapSettings(3)=(Duration=5,Cooldown=0,Vulnerability=none)
-    IncapSettings(4)=(Duration=5,Cooldown=0,Vulnerability=none)
-    IncapSettings(5)=(Duration=5,Cooldown=0,Vulnerability=none)
-    IncapSettings(6)=(Duration=5,Cooldown=5,Vulnerability=none)
-    IncapSettings(7)=(Duration=5,Cooldown=5,Vulnerability=none)
-    IncapSettings(8)=(Duration=5,Cooldown=0,Vulnerability=none)
-    IncapSettings(9)=(Duration=5,Cooldown=5,Vulnerability=none)
-    IncapSettings(10)=(Duration=5,Cooldown=5,Vulnerability=none)
+    IncapSettings(0)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(1)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(2)=(Duration=5,Cooldown=0,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(3)=(Duration=5,Cooldown=0,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(4)=(Duration=5,Cooldown=0,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(5)=(Duration=5,Cooldown=0,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(6)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(7)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(8)=(Duration=5,Cooldown=0,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(9)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(10)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -3823,7 +3841,8 @@ defaultproperties
         SpecialMoveClasses(34)=none
         SpecialMoveClasses(35)=none
         SpecialMoveClasses(36)=none
-        SpecialMoveClasses(37)=class'KFSM_Zed_Boss_Theatrics'
+        SpecialMoveClasses(37)=none
+        SpecialMoveClasses(38)=class'KFSM_Zed_Boss_Theatrics'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_Monster.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

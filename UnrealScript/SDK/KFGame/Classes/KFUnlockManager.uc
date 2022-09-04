@@ -16,7 +16,9 @@ enum ESharedContentUnlock
 {
 	SCU_None,
 	SCU_Zweihander,
-	SCU_ChainBat
+	SCU_ChainBat,
+	SCU_ChiappaRhino,
+	SCU_IonThruster
 };
 
 
@@ -267,6 +269,20 @@ static native function TestSteamAPI(PlayerReplicationInfo PRI, byte CallFlags);
 
 defaultproperties
 {
-	SharedContentList(SCU_Zweihander)=(Name=KFWeap_Edged_Zweihander,IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",ID=219640)
-	SharedContentList(SCU_ChainBat)=(Name=KFWeap_Blunt_ChainBat,IconPath="Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat",ID=300380)
+	SharedContentList(SCU_Zweihander)={(
+		Name=KFWeap_Edged_Zweihander,
+		IconPath="WEP_UI_Zweihander_TEX.UI_WeaponSelect_Zweihander",
+		ID=219640)}
+	SharedContentList(SCU_ChainBat)={(
+		Name=KFWeap_Blunt_ChainBat,
+		IconPath="Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat",
+		ID=300380)}
+	SharedContentList(SCU_ChiappaRhino)={(
+		Name=KFWeap_Pistol_ChiappaRhino,
+		IconPath="Wep_UI_ChiappaRhino_TEX.UI_WeaponSelect_ChiappaRhinos",
+		ID=7704)}
+	SharedContentList(SCU_IonThruster)={(
+		Name=KFWeap_Edged_IonThruster,
+		IconPath="WEP_UI_Ion_Sword_TEX.UI_WeaponSelect_IonSword",
+		ID=7715)}
 }

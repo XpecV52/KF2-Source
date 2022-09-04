@@ -745,7 +745,7 @@ DefaultProperties
 		ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Frag.Play_WEP_EXP_Grenade_Frag_Explosion'
 
 		// Camera Shake
-		CamShake=CameraShake'FX_CameraShake_Arch.Misc_Explosions.Perk_ShrapnelCombustion'
+		CamShake=CameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
 		CamShakeInnerRadius=450
 		CamShakeOuterRadius=900
 		CamShakeFalloff=1.f

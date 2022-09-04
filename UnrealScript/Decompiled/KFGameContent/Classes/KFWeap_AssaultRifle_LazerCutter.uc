@@ -48,10 +48,10 @@ var(Animations) const editconst name CustomFireLoopEndAnim;
 var const ParticleSystem MuzzleFlashEffectL1;
 var const ParticleSystem MuzzleFlashEffectL2;
 var const ParticleSystem MuzzleFlashEffectL3;
-var array<AkEvent> FireLoopSounds;
-var AkEvent FireLoopStop;
-var array<AkEvent> ChargeSounds;
-var AkEvent InterruptSoundEvent;
+var array<WeaponFireSndInfo> FireLoopSounds;
+var WeaponFireSndInfo FireLoopStop;
+var array<WeaponFireSndInfo> ChargeSounds;
+var WeaponFireSndInfo InterruptSoundEvent;
 var WeaponFireSndInfo SingleShotFireSnd;
 var LinearColor DefaultFireModeColor;
 var LinearColor EnergyColorL0;
@@ -64,9 +64,9 @@ var float MaxRotationAdjustmentTime;
 var InterpCurveFloat RotationAdjustmentCurve;
 var bool bPlayMuzzleFlash;
 
-simulated function SetWeapon()
+simulated function Activate()
 {
-    super(KFWeapon).SetWeapon();
+    super(KFWeapon).Activate();
     SetBeamColor(0);
 }
 
@@ -112,11 +112,6 @@ simulated function int GetChargeLevel()
 
 simulated function FireAmmunition()
 {
-    if(CurrentFireMode == 1)
-    {
-        SendToFiringState(6);
-        return;
-    }
     HandleWeaponShotTaken(CurrentFireMode);
     switch(WeaponFireTypes[CurrentFireMode])
     {
@@ -357,6 +352,26 @@ static simulated function float CalculateTraderWeaponStatDamage()
     return CalculatedDamage;
 }
 
+simulated function StartLoopingFireSound(byte FireModeNum)
+{
+    local float ChargeLevel;
+
+    switch(FireModeNum)
+    {
+        case 1:
+            ChargeLevel = float(GetChargeLevel());
+            WeaponFireSnd[FireModeNum] = FireLoopSounds[int(ChargeLevel)];
+            break;
+        case 6:
+            ChargeLevel = float(GetChargeLevel());
+            WeaponFireSnd[FireModeNum] = ChargeSounds[int(ChargeLevel)];
+            break;
+        default:
+            break;
+    }
+    super(KFWeapon).StartLoopingFireSound(FireModeNum);
+}
+
 simulated state LazerCharge extends WeaponFiring
 {
     ignores FireAmmunition, AltFireMode, AltFireModeRelease;
@@ -416,7 +431,6 @@ simulated state LazerCharge extends WeaponFiring
 
     simulated event BeginState(name PreviousStateName)
     {
-        local int ChargeLevel;
         local KFPawn_Human OwnerHuman;
         local KFPlayerController OwnerController;
 
@@ -440,11 +454,6 @@ simulated state LazerCharge extends WeaponFiring
         if(bUsingSights)
         {
             SetIronSights(false);
-        }
-        ChargeLevel = GetChargeLevel();
-        if((ChargeLevel >= 0) && ChargeLevel < ChargeSounds.Length)
-        {
-            KFPawn(Instigator).PlayWeaponSoundEvent(ChargeSounds[ChargeLevel]);
         }
         if(ChargingPSC == none)
         {
@@ -513,7 +522,7 @@ simulated state LazerCharge extends WeaponFiring
         {
             if((EndChargeLevel >= 0) && EndChargeLevel < ChargeSounds.Length)
             {
-                KFPawn(Instigator).PlayWeaponSoundEvent(ChargeSounds[EndChargeLevel]);
+                StartLoopingFireSound(CurrentFireMode);
             }
             if(bPlayingLoopingFireAnim)
             {
@@ -543,7 +552,7 @@ simulated state LazerCharge extends WeaponFiring
         Instigator.SetRTPCValue('Weapon_Charge', ChargeRTPC);
     }
 
-    simulated event EndState(name NextStateName)
+    simulated function EndState(name NextStateName)
     {
         local KFPawn_Human OwnerHuman;
         local KFPlayerController OwnerController;
@@ -565,15 +574,28 @@ simulated state LazerCharge extends WeaponFiring
         NotifyWeaponFinishedFiring(CurrentFireMode);
         KFPawn(Instigator).bHasStartedFire = false;
         KFPawn(Instigator).bNetDirty = true;
-        if(NextStateName == 'Inactive')
+        super.EndState(NextStateName);
+    }
+
+    function DropFrom(Vector StartLocation, Vector StartVelocity)
+    {
+        global.DropFrom(StartLocation, StartVelocity);
+        if(Instigator == none)
         {
-            KFPawn(Instigator).PlayWeaponSoundEvent(InterruptSoundEvent);
-            WeaponAnimSeqNode.StopAnim();            
+            WeaponAnimSeqNode.StopAnim();
         }
-        else
-        {
-            global.FireAmmunition();
-        }
+    }
+
+    simulated function PutDownWeapon()
+    {
+        TotalChargeTime = 0;
+        CurrentChargeTime = 0;
+        global.PutDownWeapon();
+    }
+
+    simulated function HandleFinishedFiring()
+    {
+        SendToFiringState(6);
     }
     stop;    
 }
@@ -600,10 +622,6 @@ simulated state SprayingFireLazer extends SprayingFire
         if(TotalChargeTime < ChargeConsumeTime)
         {
             ConsumeAmmo(CurrentFireMode);
-        }
-        if((ChargeLevel >= float(0)) && ChargeLevel < float(FireLoopSounds.Length))
-        {
-            KFPawn(Instigator).PlayWeaponSoundEvent(FireLoopSounds[int(ChargeLevel)]);
         }
         MovementSpeedMod = FiringMovementSpeedModifier;
         if(OwnerHuman != none)
@@ -828,7 +846,6 @@ simulated state SprayingFireLazer extends SprayingFire
         ClearTimer('RefireCheckTimer');
         ClearPendingFire(0);
         super.EndState(NextStateName);
-        KFPawn(Instigator).PlayWeaponSoundEvent(FireLoopStop);
     }
 
     simulated function bool ShouldRefire()
@@ -879,16 +896,16 @@ defaultproperties
     MuzzleFlashEffectL1=ParticleSystem'WEP_Laser_Cutter_EMIT.FX_Laser_Cutter_Beam_Muzzleflash_01'
     MuzzleFlashEffectL2=ParticleSystem'WEP_Laser_Cutter_EMIT.FX_Laser_Cutter_Beam_Muzzleflash_02'
     MuzzleFlashEffectL3=ParticleSystem'WEP_Laser_Cutter_EMIT.FX_Laser_Cutter_Beam_Muzzleflash_03'
-    FireLoopSounds(0)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_0_1P'
-    FireLoopSounds(1)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_1_1P'
-    FireLoopSounds(2)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_2_1P'
-    FireLoopSounds(3)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_3_1P'
-    FireLoopStop=AkEvent'WW_WEP_Lazer_Cutter.Stop_WEP_LazerCutter_Beam_Shoot_LP_1P'
-    ChargeSounds(0)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_0_1P'
-    ChargeSounds(1)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_1_1P'
-    ChargeSounds(2)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_2_1P'
-    ChargeSounds(3)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_3_1P'
-    InterruptSoundEvent=AkEvent'WW_WEP_Lazer_Cutter.Stop_WEP_LazerCutter_Interrupt_1P'
+    FireLoopSounds(0)=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_0_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_0_1P')
+    FireLoopSounds(1)=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_1_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_1_1P')
+    FireLoopSounds(2)=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_2_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_2_1P')
+    FireLoopSounds(3)=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_3_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_3_1P')
+    FireLoopStop=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Stop_WEP_LazerCutter_Beam_Shoot_Loop_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Stop_WEP_LazerCutter_Beam_Shoot_LP_1P')
+    ChargeSounds(0)=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_0_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_0_1P')
+    ChargeSounds(1)=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_1_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_1_1P')
+    ChargeSounds(2)=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_2_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_2_1P')
+    ChargeSounds(3)=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_3_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_3_1P')
+    InterruptSoundEvent=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Stop_WEP_LazerCutter_Interrupt_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Stop_WEP_LazerCutter_Interrupt_1P')
     SingleShotFireSnd=(DefaultCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Single_3P',FirstPersonCue=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Single_1P')
     DefaultFireModeColor=(R=5,G=1,B=20,A=1)
     EnergyColorL0=(R=5,G=1,B=20,A=1)

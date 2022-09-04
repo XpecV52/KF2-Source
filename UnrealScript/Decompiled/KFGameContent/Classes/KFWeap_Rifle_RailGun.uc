@@ -16,38 +16,7 @@ var Texture2D DefaultHitZoneIcon;
 var LinearColor RedIconColor;
 var LinearColor YellowIconColor;
 var LinearColor BlueIconColor;
-/** How far out should we be considering actors for a lock */
-var(Locking) float LockRange;
-/** How long does the player need to target an actor to lock on to it */
-var(Locking) float LockAcquireTime;
-/** How long does the player need to target a large zed to lock on to it */
-var(Locking) float LockAcquireTime_Large;
-/** How long does the player need to target a boss to lock on to it */
-var(Locking) float LockAcquireTime_Boss;
-/** How long does the player need to target a versus zed to lock on to it */
-var(Locking) float LockAcquireTime_Versus;
-/** Once locked, how long can the player go without painting the object before they lose the lock */
-var(Locking) float LockTolerance;
-var bool bLockedOnTarget;
-var KFPawn_Monster LockedTarget;
-var int LockedHitZone;
-var KFPawn_Monster PendingLockedTarget;
-var int PendingHitZone;
-/** angle for locking for lock targets */
-var(Locking) float LockAim;
-/** angle of the maximum FOV extents of the scope for rending things onto the scope canvas */
-var(Locking) float MaxScopeScreenDot;
-/** The frequency with which we play the Lock Targeting sound */
-var(Locking) float LockTargetingSoundInterval;
-var AkBaseSoundObject LockAcquiredSoundFirstPerson;
-var AkBaseSoundObject LockLostSoundFirstPerson;
-var AkBaseSoundObject LockTargetingSoundFirstPerson;
-var float PendingLockAcquireTimeLeft;
-var float PendingLockTimeout;
-var float LockedOnTimeout;
-var Vector LockedAimLocation;
-var array<Vector> TargetVulnerableLocations;
-var float TargetLocationReplicationInterval;
+var float MaxScopeScreenDot;
 var AkEvent AmbientSoundPlayEvent;
 var AkEvent AmbientSoundStopEvent;
 /** Socket to attach the ambient sound to. */
@@ -136,282 +105,7 @@ simulated event Tick(float DeltaTime)
     super.Tick(DeltaTime);
     if(((Instigator != none) && Instigator.Controller != none) && Instigator.IsLocallyControlled())
     {
-        CheckTargetLock(DeltaTime);
-    }
-}
-
-simulated function bool CanLockOnTo(Actor TA)
-{
-    local KFPawn PawnTarget;
-
-    PawnTarget = KFPawn(TA);
-    if(((((((TA == none) || !TA.bProjTarget) || TA.bDeleteMe) || PawnTarget == none) || TA == Instigator) || PawnTarget.Health <= 0) || !HasAmmo(0))
-    {
-        return false;
-    }
-    return !WorldInfo.GRI.OnSameTeam(Instigator, TA);
-}
-
-simulated function AdjustLockTarget(KFPawn_Monster NewLockTarget)
-{
-    if(LockedTarget == NewLockTarget)
-    {
-        return;
-    }
-    if(NewLockTarget == none)
-    {
-        if(bLockedOnTarget)
-        {
-            bLockedOnTarget = false;
-            LockedTarget = none;
-            TargetVulnerableLocations.Length = 0;
-            LockedAimLocation = vect(0, 0, 0);
-            ServerSetTargetingLocation(LockedAimLocation);
-            if((Instigator != none) && Instigator.IsHumanControlled())
-            {
-                PlaySoundBase(LockLostSoundFirstPerson, true);
-            }
-        }        
-    }
-    else
-    {
-        bLockedOnTarget = true;
-        LockedTarget = NewLockTarget;
-        if((Instigator != none) && Instigator.IsHumanControlled())
-        {
-            PlaySoundBase(LockAcquiredSoundFirstPerson, true);
-        }
-    }
-}
-
-simulated function bool AllowTargetLockOn()
-{
-    return (!Instigator.bNoWeaponFiring && bUsingSights) && !bUseAltFireMode;
-}
-
-simulated function CheckTargetLock(float DeltaTime)
-{
-    local KFPawn_Monster KFP;
-    local Vector StartTrace;
-    local Rotator ViewRotation;
-    local Vector X, Y, Z;
-    local Actor BestTarget, HitActor, TA;
-    local Vector EndTrace, Aim, HitLocation, HitNormal;
-    local float bestAim, bestDist;
-    local Vector BestZoneLocation;
-    local KFPlayerController KFPC;
-    local int OldHitZone;
-
-    KFPC = KFPlayerController(Instigator.Controller);
-    if((((Instigator == none) || Instigator.Controller == none) || self != Instigator.Weapon) || KFPC == none)
-    {
-        return;
-    }
-    TargetVulnerableLocations.Length = 0;
-    if(!AllowTargetLockOn())
-    {
-        AdjustLockTarget(none);
-        PendingLockedTarget = none;
-        LockedAimLocation = vect(0, 0, 0);
-        ClearTimer('PlayTargetingBeepTimer');
-        return;
-    }
-    if(bUsingSights)
-    {
-        CanvasTexture.bNeedsUpdate = true;
-    }
-    if(LockedTarget != none)
-    {
-        if(LockedTarget.bDeleteMe)
-        {
-            AdjustLockTarget(none);
-        }
-    }
-    StartTrace = GetSafeStartTraceLocation();
-    ViewRotation = Instigator.GetViewRotation();
-    ViewRotation += KFPC.WeaponBufferRotation;
-    GetAxes(ViewRotation, X, Y, Z);
-    BestTarget = none;
-    Aim = vector(ViewRotation);
-    EndTrace = StartTrace + (Aim * LockRange);
-    HitActor = Trace(HitLocation, HitNormal, EndTrace, StartTrace, true,,, 1);
-    if((HitActor == none) || !CanLockOnTo(HitActor))
-    {
-        bestAim = LockAim;
-        bestDist = 0;
-        TA = KFPC.GetPickedAimAtTarget(bestAim, bestDist, Aim, StartTrace, LockRange, false);
-        if((TA != none) && CanLockOnTo(TA))
-        {
-            HitActor = Trace(HitLocation, HitNormal, TA.Location, StartTrace, true,,, 1);
-            if((KFFracturedMeshActor(HitActor) != none) || KFDestructibleActor(HitActor) != none)
-            {
-                BestTarget = none;                
-            }
-            else
-            {
-                BestTarget = TA;
-            }
-        }        
-    }
-    else
-    {
-        BestTarget = HitActor;
-    }
-    KFP = KFPawn_Monster(BestTarget);
-    if((BestTarget != none) && KFP != none)
-    {
-        if(BestTarget == LockedTarget)
-        {
-            LockedOnTimeout = LockTolerance;
-            if(PendingLockedTarget != none)
-            {
-                ClearTimer('PlayTargetingBeepTimer');
-                PendingLockedTarget = none;
-            }            
-        }
-        else
-        {
-            if(PendingLockedTarget != BestTarget)
-            {
-                PendingLockedTarget = KFP;
-                PendingLockTimeout = LockTolerance;
-                if(KFP.IsABoss())
-                {
-                    PendingLockAcquireTimeLeft = LockAcquireTime_Boss;                    
-                }
-                else
-                {
-                    if(KFP.bVersusZed)
-                    {
-                        PendingLockAcquireTimeLeft = LockAcquireTime_Versus;                        
-                    }
-                    else
-                    {
-                        if(KFP.IsLargeZed())
-                        {
-                            PendingLockAcquireTimeLeft = LockAcquireTime_Large;                            
-                        }
-                        else
-                        {
-                            PendingLockAcquireTimeLeft = LockAcquireTime;
-                        }
-                    }
-                }
-                SetTimer(LockTargetingSoundInterval, true, 'PlayTargetingBeepTimer');
-                if((Instigator != none) && Instigator.IsHumanControlled())
-                {
-                    PlaySoundBase(LockTargetingSoundFirstPerson, true);
-                }
-            }
-        }
-        if(PendingLockedTarget != none)
-        {
-            PendingLockAcquireTimeLeft -= DeltaTime;
-            if((PendingLockedTarget == BestTarget) && PendingLockAcquireTimeLeft <= float(0))
-            {
-                AdjustLockTarget(PendingLockedTarget);
-                PendingLockedTarget = none;
-                ClearTimer('PlayTargetingBeepTimer');
-            }
-        }        
-    }
-    else
-    {
-        if(PendingLockedTarget != none)
-        {
-            PendingLockTimeout -= DeltaTime;
-            if((PendingLockTimeout <= float(0)) || !CanLockOnTo(PendingLockedTarget))
-            {
-                PendingLockedTarget = none;
-                ClearTimer('PlayTargetingBeepTimer');
-            }
-        }
-    }
-    if((LockedTarget != none) && BestTarget != LockedTarget)
-    {
-        LockedOnTimeout -= DeltaTime;
-        if((LockedOnTimeout <= 0) || !CanLockOnTo(LockedTarget))
-        {
-            AdjustLockTarget(none);
-        }
-    }
-    if(LockedTarget != none)
-    {
-        OldHitZone = LockedHitZone;
-        LockedHitZone = AddTargetingZones(LockedTarget, StartTrace, Aim, BestZoneLocation);
-        if(OldHitZone != LockedHitZone)
-        {
-            if((Instigator != none) && Instigator.IsHumanControlled())
-            {
-                PlaySoundBase(LockTargetingSoundFirstPerson, true);
-            }
-        }
-        TargetLocationReplicationInterval -= DeltaTime;
-        if((TargetLocationReplicationInterval <= float(0)) || IsZero(LockedAimLocation))
-        {
-            TargetLocationReplicationInterval = default.TargetLocationReplicationInterval;
-            ServerSetTargetingLocation(LockedAimLocation);
-        }
-        LockedAimLocation = BestZoneLocation;        
-    }
-    else
-    {
-        LockedHitZone = -1;
-    }
-    if(PendingLockedTarget != none)
-    {
-        PendingHitZone = AddTargetingZones(PendingLockedTarget, StartTrace, Aim, BestZoneLocation);        
-    }
-    else
-    {
-        PendingHitZone = -1;
-    }
-}
-
-private reliable server final function ServerSetTargetingLocation(Vector NewTargetingLocation)
-{
-    LockedAimLocation = NewTargetingLocation;
-}
-
-simulated function int AddTargetingZones(KFPawn_Monster KFPTarget, Vector StartTrace, Vector Aim, out Vector BestZoneLocation)
-{
-    local Vector ZoneLocation;
-    local int BestZoneIndex;
-    local float BestZoneDot;
-    local Vector DirToZone;
-    local float DotToZone;
-    local int I;
-
-    BestZoneIndex = -1;
-    I = 0;
-    J0x1A:
-
-    if(I < KFPTarget.WeakSpotSocketNames.Length)
-    {
-        KFPTarget.Mesh.GetSocketWorldLocationAndRotation(KFPTarget.WeakSpotSocketNames[I], ZoneLocation);
-        if(!IsZero(ZoneLocation))
-        {
-            TargetVulnerableLocations.AddItem(ZoneLocation;
-            DirToZone = ZoneLocation - StartTrace;
-            DotToZone = Normal(Aim) Dot Normal(DirToZone);
-            if(DotToZone > BestZoneDot)
-            {
-                BestZoneIndex = TargetVulnerableLocations.Length - 1;
-                BestZoneDot = DotToZone;
-                BestZoneLocation = ZoneLocation;
-            }
-        }
-        ++ I;
-        goto J0x1A;
-    }
-    return BestZoneIndex;
-}
-
-simulated function PlayTargetingBeepTimer()
-{
-    if((Instigator != none) && Instigator.IsHumanControlled())
-    {
-        PlaySoundBase(LockTargetingSoundFirstPerson, true);
+        CanvasTexture.bNeedsUpdate = bUsingSights && TargetingComp.bTargetingUpdated;
     }
 }
 
@@ -436,9 +130,9 @@ simulated function InstantFireClient()
 
     bInstantHit = true;
     StartTrace = GetSafeStartTraceLocation();
-    if(!IsZero(LockedAimLocation))
+    if(!IsZero(TargetingComp.LockedAimLocation))
     {
-        AimRot = rotator(Normal(LockedAimLocation - StartTrace));
+        AimRot = rotator(Normal(TargetingComp.LockedAimLocation - StartTrace));
         EndTrace = StartTrace + (vector(AimRot) * (GetTraceRange()));        
     }
     else
@@ -465,13 +159,13 @@ simulated function InstantFireClient()
     {
         InstantFireClient_AddImpacts(StartTrace, AimRot, ImpactList);
         Idx = 0;
-        J0x254:
+        J0x27E:
 
         if(Idx < ImpactList.Length)
         {
             ProcessInstantHitEx(CurrentFireMode, ImpactList[Idx],, CurPenetrationValue, Idx);
             ++ Idx;
-            goto J0x254;
+            goto J0x27E;
         }
         if(Instigator.Role < ROLE_Authority)
         {
@@ -491,9 +185,9 @@ simulated function OnRender(Canvas C)
     I = 0;
     J0x1C:
 
-    if(I < TargetVulnerableLocations.Length)
+    if(I < TargetingComp.TargetVulnerableLocations.Length)
     {
-        if(!IsZero(TargetVulnerableLocations[I]))
+        if(!IsZero(TargetingComp.TargetVulnerableLocations[I]))
         {
             DrawTargetingIcon(C, I);
         }
@@ -509,7 +203,7 @@ simulated function DrawTargetingIcon(Canvas Canvas, int Index)
     local float IconSize, IconScale;
     local Vector2D ScreenPos;
 
-    WorldPos = TargetVulnerableLocations[Index];
+    WorldPos = TargetingComp.TargetVulnerableLocations[Index];
     ScreenPos = WorldToCanvas(Canvas, WorldPos);
     IconScale = FMin(float(Canvas.SizeX) / 1024, 1);
     IconScale *= FClamp(1 - (VSize(WorldPos - Instigator.Location) / 4000), 0.2, 1);
@@ -521,13 +215,13 @@ simulated function DrawTargetingIcon(Canvas Canvas, int Index)
         return;
     }
     Canvas.SetPos(ScreenPos.X, ScreenPos.Y);
-    if((LockedHitZone >= 0) && Index == LockedHitZone)
+    if((TargetingComp.LockedHitZone >= 0) && Index == TargetingComp.LockedHitZone)
     {
         Canvas.DrawTile(LockedHitZoneIcon, IconSize, IconSize, 0, 0, float(LockedHitZoneIcon.SizeX), float(LockedHitZoneIcon.SizeY), RedIconColor);        
     }
     else
     {
-        if((PendingHitZone >= 0) && Index == PendingHitZone)
+        if((TargetingComp.PendingHitZone >= 0) && Index == TargetingComp.PendingHitZone)
         {
             Canvas.DrawTile(LockedHitZoneIcon, IconSize, IconSize, 0, 0, float(LockedHitZoneIcon.SizeX), float(LockedHitZoneIcon.SizeY), YellowIconColor);            
         }
@@ -564,8 +258,6 @@ auto simulated state Inactive
     {
         super.BeginState(PreviousStateName);
         StopAmbientSound();
-        AdjustLockTarget(none);
-        ClearTimer('PlayTargetingBeepTimer');
     }
     stop;    
 }
@@ -607,19 +299,7 @@ defaultproperties
     RedIconColor=(R=1,G=0,B=0,A=1)
     YellowIconColor=(R=1,G=1,B=0,A=1)
     BlueIconColor=(R=0.25,G=0.6,B=1,A=1)
-    LockRange=200000
-    LockAcquireTime=0.35
-    LockAcquireTime_Large=0.6
-    LockAcquireTime_Boss=1.1
-    LockAcquireTime_Versus=1.1
-    LockTolerance=0.2
-    LockAim=0.995
     MaxScopeScreenDot=0.2
-    LockTargetingSoundInterval=0.09
-    LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locked'
-    LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Lost'
-    LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locking'
-    TargetLocationReplicationInterval=0.016
     AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Loop'
     AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Railgun.Stop_Railgun_Loop'
     AmbientSoundSocketName=AmbientSound
@@ -682,6 +362,7 @@ defaultproperties
     FallingRecoilModifier=1.5
     AssociatedPerkClasses=/* Array type was not detected. */
     WeaponUpgrades=/* Array type was not detected. */
+    TargetingCompClass=Class'KFTargetingWeaponComponent_RailGun'
     FiringStatesArray=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     FireInterval=/* Array type was not detected. */

@@ -192,7 +192,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 2:
             return Class'KFGFxSummer2019ObjectivesContainer';
         case 3:
-            return Class'KFGFxFallObjectivesContainer';
+            return Class'KFGFxFall2019ObjectivesContainer';
         case 4:
             return Class'KFGFxChristmasObjectivesContainer';
         default:
@@ -545,7 +545,7 @@ function SendLeaderOptions()
         SetLobbyData(GameLengthKey, string(OptionsComponent.GetLengthIndex()));
         SetLobbyData(DifficultyKey, string(OptionsComponent.GetDifficultyIndex()));
         SetLobbyData(MapKey, OptionsComponent.GetMapName());
-        SetLobbyData(ModeKey, string(OptionsComponent.GetModeIndex()));
+        SetLobbyData(ModeKey, string(Manager.GetModeIndex()));
         SetLobbyData(PermissionsKey, string(OptionsComponent.GetPrivacyIndex()));
     }
 }
@@ -613,13 +613,16 @@ function UpdateStartMenuState()
         {
             case 2:
                 OptionsComponent.bShowLengthNoPref = false;
+                OptionsComponent.InitializeGameOptions();
                 break;
             case 1:
                 OptionsComponent.bShowLengthNoPref = true;
+                OptionsComponent.InitializeGameOptions();
                 OptionsComponent.PrivacyChanged(0);
                 break;
             case 4:
                 OptionsComponent.bShowLengthNoPref = false;
+                OptionsComponent.InitializeGameOptions();
                 break;
             default:
                 break;
@@ -981,9 +984,10 @@ function SetLobbyData(string KeyName, string ValueData)
 function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
 {
     local string MapName;
-    local int LengthIndex, OBJECTIVE_MODE_INDEX;
+    local int LengthIndex, ModeIndex;
 
-    OBJECTIVE_MODE_INDEX = 4;
+    ModeIndex = InOptionsComponent.GetNormalizedGameModeIndex(Manager.GetModeIndex(true));
+    LengthIndex = InOptionsComponent.GetLengthIndex();
     MapName = InOptionsComponent.GetMapName();
     if((MapName == "") || MapStringList.Find(MapName == -1)
     {
@@ -1006,7 +1010,7 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
             }
             else
             {
-                if(Manager.CachedProfile.GetProfileInt(148) == OBJECTIVE_MODE_INDEX)
+                if(ModeIndex == 4)
                 {
                     MapName = "KF-SteamFortress";                    
                 }
@@ -1017,8 +1021,7 @@ function string MakeMapURL(KFGFxStartGameContainer_Options InOptionsComponent)
             }
         }
     }
-    LengthIndex = InOptionsComponent.GetLengthIndex();
-    return (((((MapName $ "?Game=") $ Class'KFGameInfo'.static.GetGameModeClassFromNum(Manager.CachedProfile.GetProfileInt(148))) $ "?Difficulty=") $ string(Class'KFGameDifficultyInfo'.static.GetDifficultyValue(byte(InOptionsComponent.GetDifficultyIndex())))) $ "?GameLength=") $ string(LengthIndex);
+    return (((((MapName $ "?Game=") $ Class'KFGameInfo'.static.GetGameModeClassFromNum(ModeIndex)) $ "?Difficulty=") $ string(Class'KFGameDifficultyInfo'.static.GetDifficultyValue(byte(InOptionsComponent.GetDifficultyIndex())))) $ "?GameLength=") $ string(LengthIndex);
 }
 
 // Export UKFGFxMenu_StartGame::execGetSearchComplete(FFrame&, void* const)
@@ -1096,7 +1099,7 @@ function string BuildJoinFiltersRequestURL()
     local string FiltersURL;
     local int GameMode, GameDifficulty;
 
-    GameMode = OptionsComponent.GetModeIndex();
+    GameMode = Manager.GetModeIndex();
     GameDifficulty = OptionsComponent.GetDifficulty();
     if(GameMode >= 0)
     {        
@@ -1370,7 +1373,7 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
         {
             Search.AddServerFilter("notfull", "");
         }
-        GameMode = OptionsComponent.GetModeIndex();
+        GameMode = Manager.GetModeIndex();
         if(GameMode >= 0)
         {
             Search.AddGametagFilter(GameTagFilters, 'Mode', string(GameMode));
@@ -1651,29 +1654,15 @@ event int GetGameModeIndex()
     local KFGameReplicationInfo KFGRI;
 
     KFGRI = KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI);
-    if(OptionsComponent != none)
+    if(Manager != none)
     {
-        if(OptionsComponent.bIsSoloGame)
-        {
-            return OptionsComponent.GetAdjustedGameModeIndex(OptionsComponent.SavedModeIndex);            
-        }
-        else
-        {
-            return OptionsComponent.SavedModeIndex;
-        }        
+        return Manager.GetModeIndex();        
     }
     else
     {
-        if(Manager != none)
+        if(KFGRI != none)
         {
-            return Manager.CachedProfile.GetProfileInt(148);            
-        }
-        else
-        {
-            if(KFGRI != none)
-            {
-                return Class'KFGameInfo'.static.GetGameModeIndexFromName(string(KFGRI.GameClass.Name));
-            }
+            return Class'KFGameInfo'.static.GetGameModeIndexFromName(string(KFGRI.GameClass.Name));
         }
     }
     return 0;
@@ -1775,5 +1764,6 @@ defaultproperties
     StockMaps(24)="kf-santasworkshop"
     StockMaps(25)="kf-spillway"
     StockMaps(26)="kf-steamfortress"
+    StockMaps(27)="kf-ashwoodasylum"
     SubWidgetBindings=/* Array type was not detected. */
 }

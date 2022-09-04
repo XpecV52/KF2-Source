@@ -241,6 +241,7 @@ static function string GetKilledByZedMessage(Object KillerObject)
                 return default.KillzedBy_ZedCrawlerString;
             case 'KFDT_BloatPuke':
             case 'KFDT_Toxic_BloatPukeMine':
+            case 'KFDT_Toxic_BloatKingPukeMine':
                 return default.KillzedBy_ZedBloatString;
             case 'KFDT_Fire_HuskFireball':
             case 'KFDT_Fire_HuskFlamethrower':

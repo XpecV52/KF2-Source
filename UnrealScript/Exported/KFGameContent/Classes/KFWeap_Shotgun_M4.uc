@@ -12,8 +12,6 @@ class KFWeap_Shotgun_M4 extends KFWeap_ShotgunBase;
 
 defaultproperties
 {
-   NumPellets(0)=8
-   NumPellets(1)=()
    PackageKey="M4Shotgun"
    FirstPersonMeshName="WEP_1P_M4Shotgun_MESH.Wep_1stP_M4Shotgun_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_M4Shotgun_ANIM.Wep_1st_M4Shotgun_ANIM"
@@ -49,6 +47,13 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_M4:MeleeHelper_0'
+   NumPellets(0)=8
+   NumPellets(1)=()
+   NumPellets(2)=()
+   NumPellets(3)=()
+   NumPellets(4)=()
+   NumPellets(5)=()
+   NumPellets(6)=()
    maxRecoilPitch=675
    minRecoilPitch=600
    maxRecoilYaw=375

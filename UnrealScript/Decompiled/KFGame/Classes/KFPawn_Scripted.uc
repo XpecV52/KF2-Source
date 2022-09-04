@@ -494,7 +494,7 @@ simulated function SetPawnState(int InState)
             PlayExtraVFX(name("ExitState" $ string(PreviousState)));
             PlayExtraVFX(name("EnterState" $ string(CurrentState)));
             CheckScriptedPawnMaterial();
-            DoSpecialMove(42, true);
+            DoSpecialMove(43, true);
         }
         if(__Delegate_OnChangeState__Delegate != none)
         {
@@ -1095,7 +1095,8 @@ defaultproperties
         SpecialMoveClasses(39)=none
         SpecialMoveClasses(40)=none
         SpecialMoveClasses(41)=none
-        SpecialMoveClasses(42)=class'KFSM_PlaySingleAnim_ScriptedPawn'
+        SpecialMoveClasses(42)=none
+        SpecialMoveClasses(43)=class'KFSM_PlaySingleAnim_ScriptedPawn'
     object end
     // Reference: KFSpecialMoveHandler'Default__KFPawn_Scripted.SpecialMoveHandler'
     SpecialMoveHandler=SpecialMoveHandler

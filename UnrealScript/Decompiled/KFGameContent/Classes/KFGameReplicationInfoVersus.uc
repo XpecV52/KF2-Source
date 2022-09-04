@@ -210,6 +210,10 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
     local KFPawn_Monster KFPM;
     local PlayerController C;
 
+    if(PRI_Kickee.GetTeamNum() != PRI_Kicker.GetTeamNum())
+    {
+        return;
+    }
     C = PlayerController(PRI_Kickee.Owner);
     if(C != none)
     {
@@ -219,10 +223,16 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
             return;
         }
     }
-    if(VoteCollector != none)
+    super.ServerStartVoteKick(PRI_Kickee, PRI_Kicker);
+}
+
+reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)
+{
+    if(((VoteCollector != none) && VoteCollector.bIsVoteInProgress) && VoteCollector.CurrentVote.PlayerPRI.GetTeamNum() != PRI.GetTeamNum())
     {
-        VoteCollector.ServerStartVoteKick(PRI_Kickee, PRI_Kicker);
+        return;
     }
+    super.RecieveVoteKick(PRI, bKick);
 }
 
 simulated function OnRoundIncremented();

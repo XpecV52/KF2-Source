@@ -67,12 +67,21 @@ simulated private native function SetupComponents();
 
 simulated function PostBeginPlay()
 {
+	local StaticMesh DefaultMesh;
+
 	super.PostBeginPlay();
 
+	DefaultMesh = RepairableActorMesh.StaticMesh;
+
 	SetupComponents();
-	InitializeRepairableActorMIC();
 	InitializeIntegrityMIC();
 	Reset();
+
+	if (DefaultMesh != none)
+	{
+		// Reset() sets static mesh to RepairedMesh, but we don't want that initially
+		SetStaticMesh(DefaultMesh);
+	}
 }
 
 simulated function InitializeIntegrityMIC()
@@ -117,6 +126,10 @@ simulated function InitializeWeldableComponent()
 	WeldableComponent.MaxWeldIntegrity = MaxWeldIntegrity;
 	WeldableComponent.bWeldable = true;
 	WeldableComponent.Delegate_OnWeldIntegrityChanged = OnWeldCompWeldIntegrityChanged;
+
+	// grab the weldintegrity from the weldable component in case it changed
+	// before we were able to set the delegate above
+	WeldIntegrity = WeldableComponent.WeldIntegrity;
 
 	WeldableComponent.SetCollisionCylinderSize(200, 200);
 }
@@ -166,6 +179,27 @@ function FastenWeld(int Amount, optional KFPawn Welder)
 	}
 }
 
+simulated function SetStaticMesh(StaticMesh NewMesh)
+{
+	local int i;
+
+	// Change the mesh on client and server so that collision is synced up for welding
+	if(RepairableActorMesh != none)
+	{
+		RepairableActorMesh.SetStaticMesh(NewMesh);
+		// Need to set materials to none so GetMaterial (called by InitializeRepairableActorMIC)
+		// actually gets materials from static mesh instead of from materials array. Can't just empty
+		// array because it's const.
+		for (i = 0; i < RepairableActorMesh.Materials.Length; ++i)
+		{
+			RepairableActorMesh.SetMaterial(i, None);
+		}
+		// Re-initialize materials array
+		InitializeRepairableActorMIC();
+		bForceNetUpdate = true;
+	}
+}
+
 simulated function PlayDestroyed()
 {
 	local AkEvent ActivationSound;
@@ -186,12 +220,7 @@ simulated function PlayDestroyed()
 		}
 	}
 
-	// Change the mesh on client and server so that collision is synced up for welding
-	if(RepairableActorMesh != none)
-	{
-		RepairableActorMesh.SetStaticMesh(BrokenMesh);
-		bForceNetUpdate = true;
-	}
+	SetStaticMesh(BrokenMesh);
 
 	if(WorldInfo.NetMode != NM_DedicatedServer)
 	{
@@ -268,10 +297,7 @@ simulated function Reset()
 
 	if (WorldInfo.NetMode != NM_DedicatedServer)
 	{
-		if (RepairableActorMesh != none)
-		{
-			RepairableActorMesh.SetStaticMesh(RepairedMesh);
-		}
+		SetStaticMesh(RepairedMesh);
 	}
 }
 

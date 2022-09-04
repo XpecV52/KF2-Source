@@ -22,9 +22,6 @@ var float ChargeTime;
 var bool bIsFullyCharged;
 var bool bIsCharging;
 var bool bPlayMuzzleFlash;
-var array<AkEvent> FireLoopSounds;
-var AkEvent FireLoopStop;
-var array<AkEvent> ChargeSounds;
 var export editinline transient ParticleSystemComponent ChargingPSC;
 var ParticleSystem ChargingEffect;
 var const ParticleSystem MuzzleFlashEffectL1;
@@ -110,20 +107,10 @@ simulated function PlayPawnFireAnim(KFPawn P, KFGame.KFPawn.EAnimSlotStance Anim
 
 simulated function StartFire()
 {
-    local int ChargeLevel;
-
     StartFireTime = WorldInfo.TimeSeconds;
     ChargeTime = 0;
     bIsFullyCharged = false;
     bIsCharging = true;
-    if(!Instigator.IsFirstPerson())
-    {
-        ChargeLevel = GetChargeFXLevel();
-        if((ChargeLevel >= 0) && ChargeLevel < ChargeSounds.Length)
-        {
-            KFPawn(Instigator).PlayWeaponSoundEvent(ChargeSounds[ChargeLevel]);
-        }
-    }
     if(ChargingPSC == none)
     {
         ChargingPSC = new (self) Class'ParticleSystemComponent';
@@ -235,20 +222,9 @@ simulated function SetBeamColor(int ChargeLevel)
 
 simulated event Tick(float DeltaTime)
 {
-    local int StartChargeLevel, EndChargeLevel;
-
     if(bIsCharging && !bIsFullyCharged)
     {
-        StartChargeLevel = GetChargeFXLevel();
         ChargeTime = WorldInfo.TimeSeconds - StartFireTime;
-        EndChargeLevel = GetChargeFXLevel();
-        if(!Instigator.IsFirstPerson() && StartChargeLevel != EndChargeLevel)
-        {
-            if((EndChargeLevel >= 0) && EndChargeLevel < ChargeSounds.Length)
-            {
-                KFPawn(Instigator).PlayWeaponSoundEvent(ChargeSounds[EndChargeLevel]);
-            }
-        }
     }
     if((bIsCharging && !bIsFullyCharged) && (GetChargeFXLevel()) == Class'KFWeap_AssaultRifle_LazerCutter'.default.MaxChargeLevel)
     {
@@ -271,18 +247,12 @@ simulated event Tick(float DeltaTime)
 simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
 {
     local bool bResult;
-    local int ChargeLevel;
 
     bResult = super(KFWeaponAttachment).ThirdPersonFireEffects(HitLocation, P, ThirdPersonAnimRateByte);
     if((P.FiringMode == 6) && P.ActorEffectIsRelevant(P, false, 15000, 2000))
     {
         if(!bFireSpraying)
         {
-            ChargeLevel = GetChargeFXLevel();
-            if((ChargeLevel >= 0) && ChargeLevel < FireLoopSounds.Length)
-            {
-                KFPawn(Instigator).PlayWeaponSoundEvent(FireLoopSounds[ChargeLevel]);
-            }
             bPlayMuzzleFlash = true;
         }
         if(ChargingPSC != none)
@@ -313,7 +283,6 @@ simulated function StopThirdPersonFireEffects()
     if(bFireSpraying)
     {
         ResetAnimationState();
-        KFPawn(Instigator).PlayWeaponSoundEvent(FireLoopStop);
     }
     SetBeamColor(0);
     super.StopThirdPersonFireEffects();
@@ -384,15 +353,6 @@ function int GetChargeFXLevel()
 
 defaultproperties
 {
-    FireLoopSounds(0)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_0_3P'
-    FireLoopSounds(1)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_1_3P'
-    FireLoopSounds(2)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_2_3P'
-    FireLoopSounds(3)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LazerCutter_Beam_Shoot_LP_Level_3_3P'
-    FireLoopStop=AkEvent'WW_WEP_Lazer_Cutter.Stop_WEP_LazerCutter_Beam_Shoot_Loop_3P'
-    ChargeSounds(0)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_0_3P'
-    ChargeSounds(1)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_1_3P'
-    ChargeSounds(2)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_2_3P'
-    ChargeSounds(3)=AkEvent'WW_WEP_Lazer_Cutter.Play_WEP_LaserCutter_Beam_Charged_LP_Level_3_3P'
     ChargingEffect=ParticleSystem'WEP_Laser_Cutter_EMIT.FX_Laser_Cutter_Beam_Charge_00'
     MuzzleFlashEffectL1=ParticleSystem'WEP_Laser_Cutter_EMIT.FX_Laser_Cutter_Beam_Muzzleflash_01'
     MuzzleFlashEffectL2=ParticleSystem'WEP_Laser_Cutter_EMIT.FX_Laser_Cutter_Beam_Muzzleflash_02'

@@ -207,3 +207,8 @@ function Reset()
     bWaitingPlayer = bPrevWaitingPlayer;
     bReadyToPlay = bPrevReadyToPlay;
 }
+
+reliable client simulated function ShowKickVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices)
+{
+    super.ShowKickVote(PRI, VoteDuration, bShowChoices && PRI.GetTeamNum() == GetTeamNum());
+}

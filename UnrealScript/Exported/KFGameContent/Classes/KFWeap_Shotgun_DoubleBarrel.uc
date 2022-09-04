@@ -150,8 +150,6 @@ defaultproperties
    FireDoubleAnim="Shoot_Double"
    DoubleBarrelKickMomentum=1000.000000
    FallingMomentumReduction=0.500000
-   NumPellets(0)=10
-   NumPellets(1)=20
    PackageKey="Shotgun_DoubleBarrel"
    FirstPersonMeshName="wep_1p_double_barrel_mesh.Wep_1stP_Double_Barrel"
    FirstPersonAnimSetNames(0)="WEP_1P_Double_Barrel_ANIM.Wep_1stP_Double_Barrel_Anim"
@@ -196,6 +194,13 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_DoubleBarrel:MeleeHelper_0'
+   NumPellets(0)=10
+   NumPellets(1)=20
+   NumPellets(2)=()
+   NumPellets(3)=()
+   NumPellets(4)=()
+   NumPellets(5)=()
+   NumPellets(6)=()
    maxRecoilPitch=900
    minRecoilPitch=775
    maxRecoilYaw=500

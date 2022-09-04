@@ -18,6 +18,7 @@ simulated event PostBeginPlay()
 {
     local class<KFDifficulty_ClotAlphaKing> MyDifficultySettings;
     local KFGameReplicationInfo KFGRI;
+    local byte GameDifficulty;
 
     super(KFPawn_Monster).PostBeginPlay();
     MyDifficultySettings = class<KFDifficulty_ClotAlphaKing>(DifficultySettings);
@@ -26,8 +27,9 @@ simulated event PostBeginPlay()
         KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
         if(KFGRI != none)
         {
-            SelfRallyDealtDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GetModifiedGameDifficulty()].SelfDealtDamageModifier;
-            SelfRallyTakenDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[KFGRI.GetModifiedGameDifficulty()].SelfTakenDamageModifier;
+            GameDifficulty = byte(Clamp(KFGRI.GetModifiedGameDifficulty(), 0, MyDifficultySettings.default.RallyTriggerSettings.Length - 1));
+            SelfRallyDealtDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[GameDifficulty].SelfDealtDamageModifier;
+            SelfRallyTakenDamageModifier = MyDifficultySettings.default.RallyTriggerSettings[GameDifficulty].SelfTakenDamageModifier;
         }
     }
 }
@@ -79,19 +81,6 @@ simulated function int GetRallyBoostResistance(int NewDamage)
     else
     {
         return GetRallyBoostDamage(NewDamage);
-    }
-}
-
-function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
-{
-    if(Damage == float(0))
-    {
-        HitInfo.BoneName = 'KBArmor';
-        super(KFPawn_Monster).PlayHit(1, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);        
-    }
-    else
-    {
-        super(KFPawn_Monster).PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
     }
 }
 

@@ -50,7 +50,7 @@ var private const float ResupplyMaxSpareAmmoModifier;
 var private const AkEvent ReceivedAmmoSound;
 var private const AkEvent ReceivedArmorSound;
 var private const AkEvent ReceivedAmmoAndArmorSound;
-var private const name BoomstickClassName;
+var private const array<name> HighCapMagExemptList;
 var private const array<name> AdditionalOnPerkDTNames;
 var private const int DoorRepairXP[4];
 
@@ -169,7 +169,7 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacit
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if(((!bSecondary && IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine) && WeaponClassName != BoomstickClassName)
+    if(((!bSecondary && IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine) && HighCapMagExemptList.Find(WeaponClassName == -1)
     {
         if(IsHighCapMagsMagActive())
         {
@@ -554,7 +554,9 @@ defaultproperties
     ReceivedAmmoSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Ammo'
     ReceivedArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
     ReceivedAmmoAndArmorSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Armor'
-    BoomstickClassName=KFWeap_Shotgun_DoubleBarrel
+    HighCapMagExemptList(0)=KFWeap_Shotgun_DoubleBarrel
+    HighCapMagExemptList(1)=KFWeap_HRG_Revolver_Buckshot
+    HighCapMagExemptList(2)=KFWeap_HRG_Revolver_DualBuckshot
     AdditionalOnPerkDTNames(0)=KFDT_Ballistic_Shotgun_Medic
     AdditionalOnPerkDTNames(1)=KFDT_Ballistic_DragonsBreath
     AdditionalOnPerkDTNames(2)=KFDT_Ballistic_NailShotgun

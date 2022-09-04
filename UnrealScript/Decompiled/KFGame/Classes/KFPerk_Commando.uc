@@ -31,9 +31,9 @@ var private const PerkSkill ZedTimeExtension;
 var private const PerkSkill ReloadSpeed;
 var private const PerkSkill CallOut;
 var private const PerkSkill NightVision;
+var private const PerkSkill Recoil;
 var private const float RapidFireFiringRate;
 var private const float BackupWeaponSwitchModifier;
-var private const float HollowPointRecoilModifier;
 var private const float HealthArmorModifier;
 var Texture2D WhiteMaterial;
 
@@ -260,15 +260,10 @@ static final simulated function float GetBackupWeaponSwitchModifier()
 
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW)
 {
-    if((IsWeaponOnPerk(KFW,, self.Class)) && IsHollowPointsActive())
+    if(IsWeaponOnPerk(KFW,, self.Class))
     {
-        CurrentRecoilModifier -= (CurrentRecoilModifier * GetHollowPointRecoilModifier());
+        CurrentRecoilModifier *= (1 - (GetPassiveValue(Recoil, CurrentLevel)));
     }
-}
-
-static final simulated function float GetHollowPointRecoilModifier()
-{
-    return default.HollowPointRecoilModifier;
 }
 
 private static final function float GetHealthArmorModifier()
@@ -347,13 +342,13 @@ static simulated function GetPassiveStrings(out array<string> PassiveValues, out
     PassiveValues[1] = string(Round((GetPassiveValue(default.CloakedEnemyDetection, Level)) / float(100))) $ "m";
     PassiveValues[2] = string(Round(GetZedTimeExtension(Level)));
     PassiveValues[3] = string(Round(GetExtraReloadSpeed(Level) * float(100))) $ "%";
-    PassiveValues[4] = "";
+    PassiveValues[4] = string(Round((GetPassiveValue(default.Recoil, Level)) * float(100))) $ "%";
     PassiveValues[5] = "";
     Increments[0] = ((("[" @ Left(string(default.WeaponDamage.Increment * float(100)), InStr(string(default.WeaponDamage.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
     Increments[1] = ((((("[" @ string(int(default.CloakedEnemyDetection.StartingValue / float(100)))) @ "+") @ string(int(default.CloakedEnemyDetection.Increment / float(100)))) $ "m /") @ default.LevelString) @ "]";
     Increments[2] = ((((("[" @ string(Round(default.ZedTimeExtension.StartingValue))) @ "+") @ string(Round(default.ZedTimeExtension.Increment))) @ " / 5") @ default.LevelString) @ "]";
     Increments[3] = ((("[" @ Left(string(default.ReloadSpeed.Increment * float(100)), InStr(string(default.ReloadSpeed.Increment * float(100)), ".") + 2)) $ "% / 5") @ default.LevelString) @ "]";
-    Increments[4] = "";
+    Increments[4] = ((("[" @ Left(string(default.Recoil.Increment * float(100)), InStr(string(default.Recoil.Increment * float(100)), ".") + 2)) $ "% /") @ default.LevelString) @ "]";
     Increments[5] = "";
 }
 
@@ -446,9 +441,9 @@ defaultproperties
     ReloadSpeed=(Name="Reload Speed",Increment=0.02,Rank=0,StartingValue=0,MaxValue=0.1,ModifierValue=0,IconPath="",bActive=false)
     CallOut=(Name="Call Out",Increment=2,Rank=0,StartingValue=0,MaxValue=50,ModifierValue=0,IconPath="",bActive=false)
     NightVision=(Name="Night Vision",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="",bActive=false)
+    Recoil=(Name="Recoil",Increment=0.02,Rank=0,StartingValue=0,MaxValue=0.5,ModifierValue=0,IconPath="",bActive=false)
     RapidFireFiringRate=0.5
     BackupWeaponSwitchModifier=0.5
-    HollowPointRecoilModifier=0.5
     HealthArmorModifier=0.25
     WhiteMaterial=Texture2D'EngineResources.WhiteSquareTexture'
     ProgressStatID=1
@@ -462,7 +457,7 @@ defaultproperties
     Passives(1)=(Title="Cloaked Enemy & Health Bar Detection",Description="Range of 5m plus %x%m per level",IconPath="")
     Passives(2)=(Title="Zed Time Refreshes",Description="Zed time increases %x% every 5 levels",IconPath="")
     Passives(3)=(Title="Reload Speed",Description="Perk weapon reload speed increases %x%% every 5 levels",IconPath="")
-    Passives(4)=(Title="Night Vision Capability",Description="Flashlights - AND Night Vision Goggles",IconPath="")
+    Passives(4)=(Title="Recoil Reduction",Description="Decrease recoil %x% per level",IconPath="")
     Passives(5)=(Title="Call Out Cloaked Zeds",Description="Allow teammates to see cloaked units",IconPath="")
     SkillCatagories[0]="Ammo Management"
     SkillCatagories[1]="Tactics"

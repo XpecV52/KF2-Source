@@ -37,7 +37,7 @@ AlternateFireDescription="Większość broni głównych ma alternatywny tryb ogn
 FlashLightBatteryTitleKey="Używanie latarki"
 FlashLightBatteryDescriptionKey="Czasami bywa bardzo ciemno. Wciśnij <font color="#caab05">%x%</font>, aby włączyć lub wyłączyć <font color="#caab05">LATARKĘ</font>. Bateria latarki z czasem będzie się rozładowywać. Gdy się rozładuje, wyłączy się automatycznie i rozpocznie ładowanie."
 GrenadeTitleKey="Używanie granatów"
-GrenadeDescriptionKey="Granaty umożliwiają łatwe pozbycie się zwartych grup zetów. <font color="#caab05">ZESTAWY BRONI</font> dla specjalizacji zawierają różne rodzaje granatów, z których wszystkie zadają obrażenia zetom, lecz mogą też mieć dodatkowe efekty. Wciśnij <font color="#caab05">%x%</font>, aby rzucić granatem." "
+GrenadeDescriptionKey="Granaty umożliwiają łatwe pozbycie się zwartych grup zetów. <font color="#caab05">ZESTAWY BRONI</font> dla specjalizacji zawierają różne rodzaje granatów, z których wszystkie zadają obrażenia zetom, lecz mogą też mieć dodatkowe efekty. Wciśnij <font color="#caab05">%x%</font>, aby rzucić granatem."
 
 ;Wave 1 end
 TraderTimeTitleKey="Czas handlu"
@@ -116,48 +116,48 @@ ItemDescription="•Pancerz bojowy chroni cię przed różnymi rodzajami obraże
 
 [KFProj_DynamiteGrenade]
 ItemName="Pół laski dynamitu"
-ItemCategory =" "Materiały wybuchowe"
-ItemDescription="•Kawałek dynamitu z dołączonym zapalnikiem.\n•Możesz zrobić nim krzywdę także sobie, więc uważaj!" "
+ItemCategory ="Materiały wybuchowe"
+ItemDescription="•Kawałek dynamitu z dołączonym zapalnikiem.\n•Możesz zrobić nim krzywdę także sobie, więc uważaj!"
 
 [KFProj_MedicGrenade]
 ItemName="Granat medyczny"
-ItemCategory =" "Materiały wybuchowe"
-ItemDescription="•Rozpyla gaz, który zatruwa zetów i leczy ludzi.\n\n•Aby otrzymać leczenie, stań w chmurze niebieskiego gazu.\nCytując naszego naukowca: „Substancja czynna uwalniana przez granat wpływa ożywczo na Homo Sapiens, powodując eutanazję Homo Zeticus”. Mamy nadzieję, że okaże się przydatna." "
+ItemCategory ="Materiały wybuchowe"
+ItemDescription="•Rozpyla gaz, który zatruwa zetów i leczy ludzi.\n\n•Aby otrzymać leczenie, stań w chmurze niebieskiego gazu.\nCytując naszego naukowca: „Substancja czynna uwalniana przez granat wpływa ożywczo na Homo Sapiens, powodując eutanazję Homo Zeticus”. Mamy nadzieję, że okaże się przydatna."
 
 [KFProj_MolotovGrenade]
 ItemName="Koktajl Mołotowa"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•To po prostu granat ogniowy, który podpala zetów.\n\nTę obraźliwą nazwę nadali mu Finowie podczas wojny zimowej 1939-1940, na cześć Wiaczesława Michajłowicza Mołotowa, radzieckiego ministra spraw zagranicznych… Nudzą cię lekcje historii?" "
+ItemDescription="•To po prostu granat ogniowy, który podpala zetów.\n\nTę obraźliwą nazwę nadali mu Finowie podczas wojny zimowej 1939-1940, na cześć Wiaczesława Michajłowicza Mołotowa, radzieckiego ministra spraw zagranicznych… Nudzą cię lekcje historii?"
 
 [KFProj_EMPGrenade]
 ItemName="Granat EMP"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Uwalnia impuls elektryczny, który zadaje obrażenia zetom i chwilowo ich ogłusza.\n\nDla głodnych dalszych informacji: podczas detonacji w ciągu nanosekundy generuje impuls elektromagnetyczny zakłócający systemy elektryczne na małym obszarze. Zwłaszcza systemy zetów. Przydatna rzecz." "
+ItemDescription="•Uwalnia impuls elektryczny, który zadaje obrażenia zetom i chwilowo ich ogłusza.\n\nDla głodnych dalszych informacji: podczas detonacji w ciągu nanosekundy generuje impuls elektromagnetyczny zakłócający systemy elektryczne na małym obszarze. Zwłaszcza systemy zetów. Przydatna rzecz."
 
 [KFProj_HEGrenade]
 ItemName="Granat HE"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Bardzo prosty granat z materiałem wybuchowym. Zadaje obrażenia zetom i ludziom.\n\nProściej być nie może. HE oznacza materiał wybuchowy, robi BUM i wszystko wysadza. Czy naprawdę musimy to wyjaśniać?" "
+ItemDescription="•Bardzo prosty granat z materiałem wybuchowym. Zadaje obrażenia zetom i ludziom.\n\nProściej być nie może. HE oznacza materiał wybuchowy, robi BUM i wszystko wysadza. Czy naprawdę musimy to wyjaśniać?"
 
 [KFProj_FragGrenade]
 ItemName="Granat odłamkowy"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Klasyczny granat odłamkowy: wyrzuca małe odłamki metalu, które uszkadzają wszystko.\n\nNa pewno wystarczająco przed Incydentem graliście na tyle dużo, żeby wiedzieć, co to jest granat odłamkowy. I nie udawajcie, że tak nie było. I tak nikt wam nie uwierzy." "
+ItemDescription="•Klasyczny granat odłamkowy: wyrzuca małe odłamki metalu, które uszkadzają wszystko.\n\nNa pewno wystarczająco przed Incydentem graliście na tyle dużo, żeby wiedzieć, co to jest granat odłamkowy. I nie udawajcie, że tak nie było. I tak nikt wam nie uwierzy."
 
 [KFProj_NailBombGrenade]
 ItemName="Bomba z gwoździami"
-ItemCategory =" "Materiały wybuchowe"
+ItemCategory ="Materiały wybuchowe"
 ItemDescription="•Prosty pojemnik pełen starych gwoździ z niewielkim ładunkiem wybuchowym pośrodku.\n\nNie jest to najbardziej przyjemny i subtelny sposób zabijania zetów, ale czy w nich jest cokolwiek przyjemnego lub subtelnego?"
 
 [KFProj_FreezeGrenade]
 ItemName="Granat zamrażający"
-ItemCategory =" "Materiały wybuchowe"
+ItemCategory ="Materiały wybuchowe"
 ItemDescription="•Zaawansowany technicznie pojemnik z płynnym azotem pod ciśnieniem.\n\nKontakt z jego zawartością zamraża zetów na chwilę. Efekt może być druzgocący."
 
 [KFProj_FlashBangGrenade]
 ItemName="Granat ogłuszający"
-ItemCategory =" "Materiały wybuchowe"
-ItemDescription="•Jasny i głośny – lepiej nie patrzeć na niego bezpośrednio. Lepiej też go nie słuchać.\n•Chociaż granat ogłuszający technicznie nie jest zabójczy i tak może ci zaszkodzić, więc uważaj!" "
+ItemCategory ="Materiały wybuchowe"
+ItemDescription="•Jasny i głośny – lepiej nie patrzeć na niego bezpośrednio. Lepiej też go nie słuchać.\n•Chociaż granat ogłuszający technicznie nie jest zabójczy i tak może ci zaszkodzić, więc uważaj!"
 
 [KFWeap_Healer_Syringe]
 ItemName="Strzykawka medyczna"
@@ -235,7 +235,7 @@ ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać 
 [KFWeap_Knife_SWAT]
 ItemName="Nóż taktyczny"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Dodatkowy atak – silne cięcie.\n•Alt. – blok/parowanie.\n•To nóż. Kroi. Taktycznie."
+ItemDescription="•Główny atak – szybkie cięcie. Przytrzymaj, by wykonać combo.\n•Drugi atak – silne cięcie.\n•Alt. – blok/parowanie.\n•To nóż. Kroi. Taktycznie."
 
 [KFWeap_Pistol_Medic]
 ItemName="Pistolet HMTech-101"
@@ -312,6 +312,11 @@ ItemName="Gwoździarka VLAD-1000"
 ItemCategory="Strzelba"
 ItemDescription="•Tryb ataku: strzał pojedynczym gwoździem lub wieloma.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Z tego, co nam wiadomo, jeden z naukowców Horzine pożyczył oryginalną gwoździarkę od (martwego) serwisanta."
 
+[KFWeap_HRG_Nailgun]
+ItemName="Gwoździarka HRG"
+ItemCategory="Pistolet maszynowy"
+ItemDescription="• Tryb strzelania: półautomatyczny (500 pocisków na minutę) i seria 3 pocisków (857 pocisków na minutę).\n• Tryb alternatywny umożliwia przełączanie trybów ognia.\n• Gwóźdź do trumny wroga!"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Podróżny odkupiciel"
 ItemCategory="Broń biała"
@@ -337,7 +342,7 @@ SecondaryAmmo="Benzyna"
 [KFWeap_Edged_Zweihander]
 ItemName="Miecz dwuręczny"
 ItemCategory="Broń biała"
-ItemDescription="•Główny atak – średnie/silne obrażenia oraz nieco kontroli tłumu.\n•Dodatkowy atak– wolniejszy, ale jeszcze więcej obrażeń.\n•Alt. – blokowanie/parowanie\n•Poruszając się do przodu, zadajesz jeszcze więcej obrażeń."
+ItemDescription="•Główny atak – średnie/silne obrażenia oraz nieco kontroli tłumu.\n•Drugi atak– wolniejszy, ale jeszcze więcej obrażeń.\n•Alt. – blokowanie/parowanie\n•Poruszając się do przodu, zadajesz jeszcze więcej obrażeń."
 SharedUnlockSource="Chivalry Medieval Warfare"
 
 [KFWeap_Blunt_MaceAndShield]
@@ -369,6 +374,11 @@ ItemDescription="•Tryb ataku: tylko pump action.\n•Strzelba na naboje zapala
 ItemName="Miotacz ognia"
 ItemCategory="Ogień"
 ItemDescription="•Tryb ataku: miotanie płomieni. Po prostu.\n•Klasyk niezależnie od czasów. W razie wątpliwości palić wszystko, co podejdzie."
+
+[KFWeap_HRG_Healthrower]
+ItemName="Miotacz uzdrawiania HRG"
+ItemCategory="Ogień"
+ItemDescription="• Tryb ataku wystrzeliwuje gaz, który leczy graczy i zatruwa zety.\n• Tryb alternatywny wystrzeliwuje strzałki lecznicze, które leczą członków drużyny.\n• Gaz zalatuje miętą i cytryną. Zety nie cierpią tego zapachu."
 
 [KFWeap_Beam_Microwave]
 ItemName="Działo mikrofalowe"
@@ -425,6 +435,18 @@ ItemName="Dwa Desert Eagle .50"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para ręcznych działek Desert Eagle."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Rhino"
+ItemCategory="Broń krótka"
+ItemDescription="• Tryb ataku wystrzeliwuje pociski fragmentujące.\n• Pociski fragmentujące wybuchają po uderzeniu i wystrzeliwują 3 odłamki.\n• Sieka zety jak kapustę!"
+SharedUnlockSource="Rhino"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Dwa Rhino"
+ItemCategory="Broń krótka"
+ItemDescription="• Tryb ataku wystrzeliwuje pociski fragmentujące.\n• Pociski fragmentujące wybuchają po uderzeniu i wystrzeliwują 3 odłamki.\n• Tryb alternatywny zmienia styl celowania z celownika mechanicznego.\n• Sieka zety jak kapustę!"
+SharedUnlockSource="Dwa Rhino"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="Rewolwer 1858"
 ItemCategory="Broń krótka"
@@ -444,6 +466,16 @@ ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•„Kolekcjoner kości
 ItemName="Dwa Magnum .500"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para rewolwerów Magnum .500 – „Kolekcjoner kości”."
+
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="Rewolwer śrutowy HRG"
+ItemCategory="Broń krótka"
+ItemDescription="• Wyłącznie tryb pojedynczego strzału.\n• Broń, która wymaga sporo szczęścia."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="Dwa rewolwery śrutowe HRG"
+ItemCategory="Broń krótka"
+ItemDescription="• Tryb strzelania: tylko ogień pojedynczy.\n• Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n• Broń, która wymaga sporo szczęścia."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -516,6 +548,18 @@ ItemName="Truchla armata"
 ItemCategory="Ogień"
 ItemDescription="•Ładowanie odbywa się po naciśnięciu spustu, a rozładowanie po jego puszczeniu. \n•Oficjalna wersja truchlej armaty Horzine. 95% gwarancji niewybuchu."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Rhino"
+ItemCategory="Broń krótka"
+ItemDescription="• Tryb ataku wystrzeliwuje pociski fragmentujące.\n• Pociski fragmentujące wybuchają po uderzeniu i wystrzeliwują 3 odłamki.\n• Sieka zety jak kapustę!"
+SharedUnlockSource="Rhino"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Dwa Rhino"
+ItemCategory="Broń krótka"
+ItemDescription="• Tryb ataku wystrzeliwuje pociski fragmentujące.\n• Pociski fragmentujące wybuchają po uderzeniu i wystrzeliwują 3 odłamki.\n• Tryb alternatywny zmienia styl celowania z celownika mechanicznego.\n• Sieka zety jak kapustę!"
+SharedUnlockSource="Dwa Rhino"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Karabinek MKb.42(H)"
 ItemCategory="Karabin szturmowy"
@@ -531,6 +575,12 @@ ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Więcej niż j
 ItemName="Podwójny AF2011-A2"
 ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Dwie bronie, każda z dwoma lufami. Czterokrotność siły ognia. Czysta matematyka. Z nią nie ma co dyskutować."
+
+[KFWeap_Edged_IonThruster]
+ItemName="Miotacz jonów"
+ItemCategory="Walka wręcz"
+ItemDescription="• Atak główny – szybkie cięcie, które pali. Przytrzymaj przycisk ataku, aby wykonać combo.\n• Dodatkowy atak – mocne cięcie, które pali.\n• Przeładowanie – atak specjalny przy ładunku 100%.\n• Tryb alternatywny – blok/parowanie.\n• Przydaje się w czasie grillowania."
+SharedUnlockSource="Miotacz jonów"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Giwera"

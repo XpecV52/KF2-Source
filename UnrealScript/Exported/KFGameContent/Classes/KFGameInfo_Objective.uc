@@ -184,22 +184,6 @@ function float GetGameInfoSpawnRateMod()
 	return SpawnRateMod;
 }
 
-function Killed(Controller Killer,Controller KilledPlayer,Pawn KilledPawn,class<DamageType> damageType)
-{
-	local KFMapObjective_ExterminateWave ExterminateObj;
-
-	super.Killed(Killer,KilledPlayer,KilledPawn,damageType);
-
-	if(KilledPawn.IsA('KFPawn_Monster'))
-	{
-		ExterminateObj = KFMapObjective_ExterminateWave(MyKFGRI.CurrentObjective);
-		if(ExterminateObj != none)
-		{
-			ExterminateObj.NotifyZedKilled(KFInterface_MonsterBoss(KilledPawn) != none);
-		}
-	}
-}
-
 function NotifyTakeHit(KFPawn Pawn, Controller InstigatedBy, vector HitLocation, int Damage,
 	class<DamageType> DamageType, vector Momentum, Actor DamageCauser)
 {
@@ -316,6 +300,7 @@ defaultproperties
 {
    DifficultyInfoClass=Class'kfgamecontent.KFGameDifficulty_Objective'
    DifficultyInfoConsoleClass=Class'kfgamecontent.KFGameDifficulty_Objective_Console'
+   TraderVoiceGroupClass=Class'kfgamecontent.KFTraderVoiceGroup_Objective'
    GameName="Objective"
    GameReplicationInfoClass=Class'kfgamecontent.KFGameReplicationInfo_Objective'
    Name="Default__KFGameInfo_Objective"

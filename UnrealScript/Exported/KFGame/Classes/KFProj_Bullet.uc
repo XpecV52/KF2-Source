@@ -44,6 +44,11 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
 	if (Other != Instigator)
 	{
+		if(IgnoreTouchActor == Other)
+		{
+			return;
+		}
+
 		if (!Other.bStatic && DamageRadius == 0.0)
 		{
 			// check/ignore repeat touch events
@@ -54,20 +59,23 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
 			KFW = KFWeapon(Instigator.Weapon);
 			// Keep going if we need to keep penetrating
-			if (KFW.GetInitialPenetrationPower(Instigator.FiringMode) > 0.0f)
+			if (KFW == none || KFW.GetInitialPenetrationPower(Instigator.FiringMode) > 0.0f)
 			{
 				if (PenetrationPower > 0 || PassThroughDamage(Other))
 				{
-					CurrentPerk = KFW.GetPerk();
-					if (CurrentPerk != none)
+					if (KFW != none)
 					{
-						bNoPenetrationDmgReduction = CurrentPerk.IgnoresPenetrationDmgReduction();
-					}
+						CurrentPerk = KFW.GetPerk();
+						if (CurrentPerk != none)
+						{
+							bNoPenetrationDmgReduction = CurrentPerk.IgnoresPenetrationDmgReduction();
+						}
 
-					PenetrationCurve = KFW.PenetrationDamageReductionCurve[Instigator.FiringMode];
-					if (!bNoPenetrationDmgReduction)
-					{
-						Damage *= EvalInterpCurveFloat(PenetrationCurve, PenetrationPower / KFW.GetInitialPenetrationPower(Instigator.FiringMode));
+						PenetrationCurve = KFW.PenetrationDamageReductionCurve[Instigator.FiringMode];
+						if (!bNoPenetrationDmgReduction)
+						{
+							Damage *= EvalInterpCurveFloat(PenetrationCurve, PenetrationPower / KFW.GetInitialPenetrationPower(Instigator.FiringMode));
+						}
 					}
 
 					ProcessBulletTouch(Other, HitLocation, HitNormal);

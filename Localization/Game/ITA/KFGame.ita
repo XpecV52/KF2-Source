@@ -11,7 +11,7 @@ DifficultyStrings[0]="Normale"
 DifficultyStrings[1]="Difficile"
 DifficultyStrings[2]="Suicidio"
 DifficultyStrings[3]="Inferno in Terra"
-BonusDoshString="DENARO BONUS"
+BonusDoshString="RICOMPENSE"
 LengthStrings[0]="Corto (4 ondate)"
 LengthStrings[1]="Medio (7 ondate)"
 LengthStrings[2]="Lungo (10 ondate)"
@@ -142,9 +142,9 @@ CompleteMapString="Completa Incontro nella Mappa:"
 KillZedsString="Uccidi gli Zed:"
 KillBossString="Uccidi Boss:"
 KillBossDescriptionString="In Survival o Settimanale"
-VersusKillsString=Uccidi Giocatori Avversari come:
-DealVersusDamageString=Arreca Danno ai Giocatori Avversari come:
-VersusCompletionString=Completa Incontro come:
+VersusKillsString="Uccidi Giocatori Avversari come:"
+DealVersusDamageString="Arreca Danno ai Giocatori Avversari come:"
+VersusCompletionString="Completa Incontro come:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="INCONTRO NON TROVATO"
@@ -204,8 +204,8 @@ SoloString="Giocatore singolo offline"
 TutorialString="Addestramento di base"
 
 [StartMenuHelperText]
-modeList0="Affronta ondate predefinite di Zed controllate dalla IA"
-modeList1="Affronta ondate predefinite di Zed controllate dalla IA in una modalità di gioco esclusiva della settimana"
+modeList0="Affronta ondate di Zed controllati dalla IA"
+modeList1="Affronta ondate di Zed controllati dalla IA in una modalità di gioco esclusiva della settimana"
 modeList2="Mercenari Horzine contro ondate di Zed controllate da giocatore e IA"
 modeList3="Affronta ondate illimitate di Zed controllati dalla IA"
 modeList4="Affronta ondate predefinite di Zed controllate dalla IA mentre completi gli obiettivi"
@@ -1321,6 +1321,7 @@ GBA_SwitchWeapon3="Arma da mischia"
 GBA_SwitchWeapon4="Equipaggiamento"
 GBA_VoteYes="Vota sì (hold)"
 GBA_VoteNo="Vota no (hold)"
+GBA_RequestSkipTrader="Richiedi Salta Commerciante"
 
 GBA_VoiceCommReqHealing="RICHIESTA CURA"
 GBA_VoiceCommReqDosh="RICHIESTA DENARO"
@@ -1773,7 +1774,7 @@ Passives[0]=(Title="Danni arma classe",Description="Aumento danni arma classe di
 Passives[1]=(Title="Rilevamento nemici nascosti & barra salute",Description="Raggio di 5m più %x%m per livello");
 Passives[2]=(Title="Zed time si aggiorna",Description="%x% aumento Zed time ogni 5 livelli");
 Passives[3]=(Title="Velocità ricarica",Description="Ricarica armi classe %x% più veloce ogni 5 livelli");
-Passives[4]=(Title="Visione notturna",Description="Torce - E occhiali con visione notturna");
+Passives[4]=(Title="Riduzione Rinculo",Description="Riduzione %x% rinculo per livello");
 Passives[5]=(Title="Allarma Zed nascosti",Description="Mostra ai compagni le unità nascoste");
 
 EXPAction1="Arrecare danni con arma Commando"
@@ -1798,7 +1799,7 @@ AmmoVest="Premunito"
 AmmoVestDescription="Trasporta fino al 20% di munizioni in più per ogni arma di classe."
 
 HollowPoints="Colpi a punta cava"
-HollowPointsDescription="Aumenta i danni delle armi di classe del 30% e riduce il rinculo del 50%."
+HollowPointsDescription="Aumenta il danno delle armi di classe del 30%."
 
 EatLead="Mangiapiombo"
 EatLeadDescription="Aumenta la capacità dei caricatori delle armi di classe del 100%."
@@ -1969,7 +1970,7 @@ SkillCatagories[4]="Tecniche master"
 Passives[0]=(Title="Danni arma classe",Description="Aumento x%x danni arma classe per livello");
 Passives[1]=(Title="Resistenza proiettili",Description="Resistenza ai proiettili sale del 5% più %x% per livello");
 Passives[2]=(Title="Velocità movimento",Description="Aumento %x% velocità di movimento ogni 5 livelli");
-Passives[3]=(Title="Rinculo",Description="Riduzione %x% rinculo arma classe per livello");
+Passives[3]=(Title="Riduzione Rinculo",Description="Riduzione %x% rinculo arma classe per livello");
 Passives[4]=(Title="Ricarica Zedtime",Description="Aumento %x% velocità ricarica negli Zed time per livello");
 
 ShootnMove="Stabilizza"
@@ -2015,7 +2016,7 @@ SkillCatagories[3]="Equipaggiamento"
 SkillCatagories[4]="Tecniche master"
 
 Passives[0]=(Title="Danno colpo alla testa",Description="Aumento %x% danni dei colpi alla testa per livello");
-Passives[1]=(Title="Rinculo",Description="Riduzione %x% rinculo per livello");
+Passives[1]=(Title="Riduzione Rinculo",Description="Riduzione %x% rinculo per livello");
 Passives[2]=(Title="Cambio arma",Description="Aumento x%x velocità cambio arma per livello");
 
 StationaryAim="Tiratore scelto"
@@ -2351,7 +2352,7 @@ DescriptionDoshHold="Tieni gli Zed lontani dall'area evidenziata"
 DescriptionDoshHoldShort="Difendi la zona (Facoltativo)"
 RepairObjective="SALDA E RIPARA"
 UseWelderToRepair="Usa il Saldatore per riparare le macchine rotte"
-UseWelderToRepairShort="Salda la macchina rotta"
+UseWelderToRepairShort="Salda le macchine rotte"
 UseWelderToRepairTraderPod="Usa il Saldatore per riparare i commercianti rotti"
 UseWelderToRepairTraderPodShort="Salda i commercianti"
 RepairObjectiveRequired="Macchine rotte da riparare:"
@@ -2381,10 +2382,10 @@ HoldZoneDescription="Difendi l’area evidenziata dagli Zed"
 HoldZoneDescriptionShort="Difendi l’area evidenziata"
 HoldZoneRequired="Momento di difendere:"
 TransportWaveObjective="TRASPORTO"
-TransportWaveDescription="Trasporta il Pad di dati fino al luogo di consegna"
-TransportWaveDescriptionShort="Trasporta il Pad di dati"
-TransportWaveDescriptionGear="Trasporta l’equipaggiamento fino al luogo di consegna"
-TransportWaveDescriptionGearShort="Trasporta l’equipaggiamento"
+TransportWaveDescription="Trasporta i Pad di dati fino al luogo di consegna"
+TransportWaveDescriptionShort="Trasporta i Pad di dati"
+TransportWaveDescriptionGear="Trasporta gli equipaggiamenti fino al luogo di consegna"
+TransportWaveDescriptionGearShort="Trasporta gli equipaggiamenti"
 RequiredCollectActor="Consegne richieste:"
 FailedString="FALLITO"
 SuccessString="FATTO"
@@ -2656,10 +2657,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Vapore eterno",DescriptionString=
 SpecialEventObjectiveInfoList[3]=(TitleString="Viaggio del round mortale",DescriptionString="Completa Atterraggio Zed in Obiettivo Difficile o superiore")
 SpecialEventObjectiveInfoList[4]=(TitleString="Ritorno nel freddo",DescriptionString="Completa Avamposto in Obiettivo Difficile o superiore")
 
-AllCompleteRewardDescriptionString="Vestiti Steampunk maschili e femminili"
+AllCompleteRewardDescriptionString="Vestiti Steampunk + skin M99 AMR"
 
-ChanceDropDescriptionStrings[0]="Biglietto premio"
+ChanceDropDescriptionStrings[0]="Bigl. premio"
 ChanceDropDescriptionStrings[1]="Biglietto Oro"
+
+[KFGFxFall2019ObjectivesContainer]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Assalto al Manicomio",DescriptionString="Sconfiggi qualsiasi boss in modalità difficile Survival o superiore in Manicomio di Frassino")
+SpecialEventObjectiveInfoList[1]=(TitleString="Trattamento a lunga durata",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Manicomio di Frassino")
+SpecialEventObjectiveInfoList[2]=(TitleString="Controllo settimanale",DescriptionString="Completa il Settimanale in Manicomio di Frassino")
+SpecialEventObjectiveInfoList[3]=(TitleString="Pulendo i Reparti",DescriptionString="Uccidi 1.500 Zed in Manicomio di Frassino")
+SpecialEventObjectiveInfoList[4]=(TitleString="Sganciate le Bombe!",DescriptionString="Completa Nuclearizzato in difficoltà Obiettivo Difficile o superiore")
+
+AllCompleteRewardDescriptionString="Kriss | Oltre l'Orizzonte | Elite Spaziale"
+
+ChanceDropDescriptionStrings[0]="Biglietto Delizia"
+ChanceDropDescriptionStrings[1]="Biglietto Delizia Oro"
 
 ;============================================
 ; Daily Localization
@@ -3246,6 +3261,9 @@ DisplayName="Sfioratore"
 
 [KF-SteamFortress KFMapSummary]
 DisplayName="Fortezza di Vapore"
+
+[KF-AshwoodAsylum KFMapSummary]
+DisplayName="Manicomio di Frassino"
 
 [KFMapInfo]
 ; defaults

@@ -69,12 +69,12 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
         TentacleDamage = MyPatPawn.TentacleDamage;
         TentacleDmgType = MyPatPawn.TentacleDamageType;
     }
-    super.SpecialMoveStarted(bForced, PrevMove);
+    super(KFSM_TentacleGrappleBase).SpecialMoveStarted(bForced, PrevMove);
 }
 
 function StartInteraction()
 {
-    super.StartInteraction();
+    super(KFSM_TentacleGrappleBase).StartInteraction();
     if(Follower != none)
     {
         ++ KFPlayerReplicationInfoVersus(KFPOwner.PlayerReplicationInfo).ZedGrabs;

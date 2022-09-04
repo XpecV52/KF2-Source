@@ -537,7 +537,6 @@ class KFPawnVoiceGroupEventData_Hans extends KFPawnVoiceGroupEventData;
 
 
 
-										  
 
 
 
@@ -553,7 +552,8 @@ class KFPawnVoiceGroupEventData_Hans extends KFPawnVoiceGroupEventData;
 
 
 
-										  
+
+
 
 
 

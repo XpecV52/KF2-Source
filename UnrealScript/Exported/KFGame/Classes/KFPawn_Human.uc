@@ -2196,6 +2196,7 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=Class'KFGame.KFSM_Player_Emote'
       SpecialMoveClasses(36)=Class'KFGame.KFSM_EvilDAR_EMPGrapple'
+      SpecialMoveClasses(37)=Class'KFGame.KFSM_BloatKingGorgeVictim'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object

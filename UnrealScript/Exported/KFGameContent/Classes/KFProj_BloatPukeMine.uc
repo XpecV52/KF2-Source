@@ -95,7 +95,7 @@ simulated event PostBeginPlay()
 	super.PostBeginPlay();
 
 	if( WorldInfo.NetMode != NM_Client )
-	{		
+	{
 		if( InstigatorController != none || IsAIProjectile() )
 		{
 			class'KFGameplayPoolManager'.static.GetPoolManager().AddProjectileToPool( self, PPT_PukeMine );
@@ -214,7 +214,7 @@ simulated function Stick( vector StuckLocation, vector StuckNormal )
 	bCollideComplex = false;
 	bBounce = false;
 
-	// Optimize for network 
+	// Optimize for network
 	NetUpdateFrequency = 0.25f;
 	bOnlyDirtyReplication = true;
 	bForceNetUpdate = true;
@@ -287,7 +287,7 @@ simulated function PlayImpactSound( optional bool bIsAtRest )
 		{
 			PostAkEvent( BounceAkEvent, true, true, false );
 		}
-	}	
+	}
 }
 
 /** Spawns a decal at the impact location */
@@ -446,12 +446,12 @@ simulated function FadeOut()
 	{
 		// Set initial fade values
 		bFadingOut = true;
-		FadeOutTime = WorldInfo.TimeSeconds + default.FadeOutTime;		
+		FadeOutTime = WorldInfo.TimeSeconds + default.FadeOutTime;
 	}
 	else
 	{
 		// Delay destruction slightly
-		SetTimer( 0.2f, false, nameOf(Destroy) );
+		SetTimer( 0.2f, false, nameOf(Timer_Destroy) );
 	}
 
 	// Tell clients to tear off and fade out on their own
@@ -461,6 +461,11 @@ simulated function FadeOut()
 		bNetDirty = true;
 		bForceNetUpdate = true;
 	}
+}
+
+simulated function Timer_Destroy()
+{
+	Destroy();
 }
 
 /** Spawns a small burst effect when the mine has finished shrinking */
@@ -524,7 +529,7 @@ defaultproperties
 {
    GroundFXTemplate=ParticleSystem'ZED_Bloat_EMIT.FX_Bloat_Mine_01'
    BurstFXTemplate=ParticleSystem'ZED_Bloat_EMIT.FX_Bloat_Mine_Hit_01'
-   Health=100
+   Health=50
    DampenFactor=0.125000
    DampenFactorParallel=0.175000
    SpawnCollisionOffsetAmt=28.000000
@@ -545,7 +550,7 @@ defaultproperties
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'ZED_Bloat_ARCH.Bloat_Mine_Explosion'
       Damage=15.000000
-      DamageRadius=450.000000
+      DamageRadius=200.000000
       DamageFalloffExponent=0.000000
       MyDamageType=Class'kfgamecontent.KFDT_Toxic_BloatPukeMine'
       KnockDownStrength=0.000000

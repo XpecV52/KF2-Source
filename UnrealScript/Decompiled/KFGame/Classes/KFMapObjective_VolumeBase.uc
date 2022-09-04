@@ -129,9 +129,66 @@ simulated function PlayActivationSoundEvent()
     }
 }
 
-simulated function ActivateObjective()
+simulated function ActivateBoundarySplines()
 {
     local int I, J;
+
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        I = 0;
+        J0x34:
+
+        if(I < ZoneBoundariesEmitter.Length)
+        {
+            if(ZoneBoundariesEmitter[I] != none)
+            {
+                ZoneBoundariesEmitter[I].ParticleSystemComponent.ActivateSystem();
+                ZoneBoundariesEmitter[I].bCurrentlyActive = true;
+            }
+            ++ I;
+            goto J0x34;
+        }
+        I = 0;
+        J0xE8:
+
+        if(I < ZoneBoundaryMeshes.Length)
+        {
+            if(ZoneBoundaryMeshes[I] != none)
+            {
+                ZoneBoundaryMeshes[I].StaticMeshComponent.SetHidden(false);
+            }
+            ++ I;
+            goto J0xE8;
+        }
+        I = 0;
+        J0x171:
+
+        if(I < ZoneBoundarySplines.Length)
+        {
+            if(ZoneBoundarySplines[I] != none)
+            {
+                J = 0;
+                J0x1AD:
+
+                if(J < ZoneBoundarySplines[I].SplineMeshComps.Length)
+                {
+                    if(ZoneBoundarySplines[I].SplineMeshComps[J] != none)
+                    {
+                        ZoneBoundarySplines[I].SplineMeshComps[J].SetHidden(false);
+                    }
+                    ++ J;
+                    goto J0x1AD;
+                }
+            }
+            ++ I;
+            goto J0x171;
+        }
+    }
+}
+
+simulated function ActivateObjective()
+{
+    local int I;
     local KFSeqEvent_MapObjectiveActivated ActivationEvent;
 
     bActive = true;
@@ -148,57 +205,7 @@ simulated function ActivateObjective()
         ++ I;
         goto J0x17;
     }
-    if(WorldInfo.NetMode != NM_DedicatedServer)
-    {
-        I = 0;
-        J0xC7:
-
-        if(I < ZoneBoundariesEmitter.Length)
-        {
-            if(ZoneBoundariesEmitter[I] != none)
-            {
-                ZoneBoundariesEmitter[I].ParticleSystemComponent.ActivateSystem();
-                ZoneBoundariesEmitter[I].bCurrentlyActive = true;
-            }
-            ++ I;
-            goto J0xC7;
-        }
-        I = 0;
-        J0x17B:
-
-        if(I < ZoneBoundaryMeshes.Length)
-        {
-            if(ZoneBoundaryMeshes[I] != none)
-            {
-                ZoneBoundaryMeshes[I].StaticMeshComponent.SetHidden(false);
-            }
-            ++ I;
-            goto J0x17B;
-        }
-        I = 0;
-        J0x204:
-
-        if(I < ZoneBoundarySplines.Length)
-        {
-            if(ZoneBoundarySplines[I] != none)
-            {
-                J = 0;
-                J0x240:
-
-                if(J < ZoneBoundarySplines[I].SplineMeshComps.Length)
-                {
-                    if(ZoneBoundarySplines[I].SplineMeshComps[J] != none)
-                    {
-                        ZoneBoundarySplines[I].SplineMeshComps[J].SetHidden(false);
-                    }
-                    ++ J;
-                    goto J0x240;
-                }
-            }
-            ++ I;
-            goto J0x204;
-        }
-    }
+    ActivateBoundarySplines();
     SetTimer(1, false, 'PlayActivationSoundEvent');
 }
 
@@ -274,20 +281,20 @@ simulated function DeactivateObjective()
     }
 }
 
-simulated function GrantReward(KFPawn_Human PlayerToReward)
+simulated function GrantReward(KFPlayerReplicationInfo KFPRI, KFPlayerController KFPC)
 {
-    if(KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo) == none)
+    if(KFPRI == none)
     {
         return;
     }
-    if(KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).bOnlySpectator)
+    if(KFPRI.bOnlySpectator)
     {
         return;
     }
-    KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).AddDosh(GetDoshReward());
-    if(KFPlayerController(PlayerToReward.Controller) != none)
+    KFPRI.AddDosh(GetDoshReward());
+    if(KFPC != none)
     {
-        KFPlayerController(PlayerToReward.Controller).ClientMapObjectiveCompleted(float(GetXPReward()));
+        KFPC.ClientMapObjectiveCompleted(float(GetXPReward()));
     }
 }
 
@@ -468,6 +475,11 @@ simulated function float GetActivationPctChance();
 
 simulated function string GetProgressText();
 
+simulated function bool GetProgressTextIsDosh()
+{
+    return false;
+}
+
 simulated function string GetLocalizedRequirements();
 
 simulated function bool GetIsMissionCritical();
@@ -476,6 +488,10 @@ simulated function float GetDoshValueModifier()
 {
     return DoshValueModifier;
 }
+
+function NotifyZedKilled(Controller Killer, Pawn KilledPawn, bool bIsBoss);
+
+simulated function NotifyObjectiveSelected();
 
 simulated function bool ShouldDrawIcon();
 

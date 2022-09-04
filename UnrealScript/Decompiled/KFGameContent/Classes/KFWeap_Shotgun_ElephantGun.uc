@@ -130,7 +130,6 @@ defaultproperties
     FireQuadAnim=Shoot_Double
     DoubleBarrelKickMomentum=1000
     FallingMomentumReduction=0.5
-    NumPellets=/* Array type was not detected. */
     PackageKey="Quad_Barrel"
     FirstPersonMeshName="wep_1p_quad_barrel_mesh.Wep_1stP_Quad_Barrel"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -165,6 +164,7 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=15,Y=8,Z=-4.5)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Shotgun_ElephantGun.MeleeHelper'
+    NumPellets=/* Array type was not detected. */
     maxRecoilPitch=1200
     minRecoilPitch=775
     maxRecoilYaw=800

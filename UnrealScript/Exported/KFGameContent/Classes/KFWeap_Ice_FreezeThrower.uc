@@ -21,9 +21,6 @@ var(Animations) const editconst	name	FireLastHeavySightedAnim;
 /** Alt-fire explosion template */
 var() GameExplosion 		ExplosionTemplate;
 
-/** For Ice Blast */
-var(Weapon) protected array<byte> NumPellets;
-
 /** How much recoil the altfire should do */
 var protected const float AltFireRecoilScale;
 
@@ -94,56 +91,10 @@ simulated function AltFireMode()
 	StartFire( ALTFIRE_FIREMODE );
 }
 
-/** Spawn projectile is called once for each shot pellet fired */
-simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir )
-{
-	local int i;
-	local rotator AimRot;
-
-    if( CurrentFireMode == GRENADE_FIREMODE )
-    {
-        return Super.SpawnProjectile(KFProjClass, RealStartLoc, AimDir);
-    }
-
-	AimRot = rotator(AimDir);
-	for (i = 0; i < GetNumProjectilesToFire(CurrentFireMode); i++)
-	{
-		Super.SpawnProjectile( KFProjClass, RealStartLoc, vector(AddMultiShotSpread(AimRot, Spread[CurrentFireMode], i)) );
-	}
-
-	return None;
-}
-
-/** Returns number of projectiles to fire from SpawnProjectile */
-simulated function byte GetNumProjectilesToFire(byte FireModeNum)
-{
-	return NumPellets[CurrentFireMode];
-}
-
 /** Disable normal bullet spread */
 simulated function rotator AddSpread( rotator BaseAim )
 {
 	return BaseAim; // do nothing
-}
-
-/** Same as AddSpread(), but used with MultiShotSpread */
-static function rotator AddMultiShotSpread(rotator BaseAim, float CurrentSpread, byte PelletNum)
-{
-	local vector X, Y, Z;
-	local float RandY, RandZ;
-
-	if (CurrentSpread == 0)
-	{
-		return BaseAim;
-	}
-	else
-	{
-		// Add in any spread.
-		GetAxes(BaseAim, X, Y, Z);
-		RandY = FRand() - 0.5;
-		RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
-		return rotator(X + RandY * CurrentSpread * Y + RandZ * CurrentSpread * Z);
-	}
 }
 
 /** Disable auto-reload for alt-fire */
@@ -205,8 +156,6 @@ defaultproperties
    FireHeavyAnim="Shoot_Heavy"
    FireLastHeavyAnim="Shoot_Heavy_Last"
    FireLastHeavySightedAnim="Shoot_Heavy_Iron_Last"
-   NumPellets(0)=0
-   NumPellets(1)=12
    AltFireRecoilScale=4.000000
    bWarnAIWhenFiring=True
    FlameSprayArchetype=SprayActor_Flame'WEP_CryoGun_ARCH.Wep_CryoGun_IceSpray'
@@ -269,6 +218,12 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Ice_FreezeThrower:MeleeHelper_0'
+   NumPellets(1)=12
+   NumPellets(2)=()
+   NumPellets(3)=()
+   NumPellets(4)=()
+   NumPellets(5)=()
+   NumPellets(6)=()
    maxRecoilPitch=150
    minRecoilPitch=115
    maxRecoilYaw=115

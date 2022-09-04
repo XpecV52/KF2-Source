@@ -37,7 +37,7 @@ AlternateFireDescription="A maioria das armas principais têm um modo de tiro al
 FlashLightBatteryTitleKey="Uso da lanterna"
 FlashLightBatteryDescriptionKey="Pode ficar muito escuro por aí. Aperte <font color="#caab05">%x%</font> para ligar ou desligar a <font color="#caab05">LANTERNA</font>. A bateria da lanterna vai sendo consumida. Quando ela acabar, a lanterna se desligará e automaticamente começará a recarregar."
 GrenadeTitleKey="Uso das granadas"
-GrenadeDescriptionKey="As granadas são ótimas para grupos maciços de Zeds. As classes têm vários tipos de granadas na <font color="#caab05">MUNIÇÃO</font>. Todas elas afetam os Zeds, mas algumas têm efeitos adicionais. Aperte <font color="#caab05">%x%</font> para lançar uma granada." "
+GrenadeDescriptionKey="As granadas são ótimas para grupos maciços de Zeds. As classes têm vários tipos de granadas na <font color="#caab05">MUNIÇÃO</font>. Todas elas afetam os Zeds, mas algumas têm efeitos adicionais. Aperte <font color="#caab05">%x%</font> para lançar uma granada."
 
 ;Wave 1 end
 TraderTimeTitleKey="Hora do comerciante"
@@ -111,61 +111,61 @@ SkipString="PULAR"
 
 [Armor]
 ItemName="Armadura de combate"
-ItemCategory="Apetrechos"
+ItemCategory="Equipamento"
 ItemDescription="•A armadura de combate protege de vários tipos de danos, mas ela se desgasta no processo.\n•Compre uma armadura nova ou conserte as danificadas no comerciante.\n\nÉ um casaco equipado com placas de fibra de alta tecnologia e tungstênio."
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 banana de dinamite"
-ItemCategory =" "Explosivos"
-ItemDescription="•Uma dinamite com um pavio afixado.\n•Eles podem machucar também, tenha cuidado!" "
+ItemCategory ="Explosivos"
+ItemDescription="•Uma dinamite com um pavio afixado.\n•Eles podem machucar também, tenha cuidado!"
 
 [KFProj_MedicGrenade]
 ItemName="Granada médica"
-ItemCategory =" "Explosivos"
-ItemDescription="•Libera um gás que envenena os Zeds, mas cura pessoas.\n\n•Fique na nuvem azul de gás para se curar.\nCitando um de nossos cientistas: ‘O agente liberado das granadas revive os Homo sapiens, mas mata os Homo zedicus’. Esperamos que ajude." "
+ItemCategory ="Explosivos"
+ItemDescription="•Libera um gás que envenena os Zeds, mas cura pessoas.\n\n•Fique na nuvem azul de gás para se curar.\nCitando um de nossos cientistas: ‘O agente liberado das granadas revive os Homo sapiens, mas mata os Homo zedicus’. Esperamos que ajude."
 
 [KFProj_MolotovGrenade]
 ItemName="Coquetel molotov"
 ItemCategory="Explosivos"
-ItemDescription="•Muito simples: uma granada de fogo que queima os Zeds.\n\nBatizado pelos finlandeses na Segunda Guerra com o nome de Vyacheslav Mikhailovich Molotov, o Ministro do Exterior Soviético de Stalin… Perdão, você não queria uma aula de história?"  Perdão, você não queria uma aula de história?" "
+ItemDescription="•Muito simples: uma granada de fogo que queima os Zeds.\n\nBatizado pelos finlandeses na Segunda Guerra com o nome de Vyacheslav Mikhailovich Molotov, o Ministro do Exterior Soviético de Stalin… Perdão, você não queria uma aula de história?"  Perdão, você não queria uma aula de história?"
 
 [KFProj_EMPGrenade]
 ItemName="Granada de IEM"
 ItemCategory="Explosivos"
-ItemDescription="•Gera um pulso elétrico que danifica Zeds e pode atordoá-los por um tempo.\n\nSe quiser mais detalhes sobre a detonação, ela gera um pulso eletromagnético, por um nanossegundo, que destrói os sistemas elétricos à curta distância. Principalmente os dos Zeds. Bem conveniente." "
+ItemDescription="•Gera um pulso elétrico que danifica Zeds e pode atordoá-los por um tempo.\n\nSe quiser mais detalhes sobre a detonação, ela gera um pulso eletromagnético, por um nanossegundo, que destrói os sistemas elétricos à curta distância. Principalmente os dos Zeds. Bem conveniente."
 
 [KFProj_HEGrenade]
 ItemName="Granada de AE"
 ItemCategory="Explosivos"
-ItemDescription="•Uma granada de alta explosividade simples. Danifica Zeds e humanos.\n\nNão dá para ser mais simples que isso. AE - alta explosividade, faz BUM e explode as coisas. Essa explicação era necessária?" "
+ItemDescription="•Uma granada de alta explosividade simples. Danifica Zeds e humanos.\n\nNão dá para ser mais simples que isso. AE - alta explosividade, faz BUM e explode as coisas. Essa explicação era necessária?"
 
 [KFProj_FragGrenade]
 ItemName="Granada de fragmentos"
 ItemCategory="Explosivos"
-ItemDescription="•A granada clássica: atira pequenos pedaços de metal, danificando tudo e todos em volta.\n\nTenho certeza de que você conhece o suficiente de jogos antes do Surto e sabe muito bem o que é uma granada de fragmentos. Pare de fingir que não sabe. Ninguém aqui vai acreditar." "
+ItemDescription="•A granada clássica: atira pequenos pedaços de metal, danificando tudo e todos em volta.\n\nTenho certeza de que você conhece o suficiente de jogos antes do Surto e sabe muito bem o que é uma granada de fragmentos. Pare de fingir que não sabe. Ninguém aqui vai acreditar."
 
 [KFProj_NailBombGrenade]
 ItemName="Bomba de pregos"
-ItemCategory =" "Explosivos"
+ItemCategory ="Explosivos"
 ItemDescription="•Um recipiente cheio de pregos velhos e uma pequena carga de explosivos no meio.\n\nNão é o jeito mais agradável nem sutil de lidar com os Zeds, mas os Zeds não são agradáveis nem sutis, não é mesmo?"
 
 [KFProj_FreezeGrenade]
 ItemName="Granada congelante"
-ItemCategory =" "Explosivos"
+ItemCategory ="Explosivos"
 ItemDescription="•Um recipiente avançado tecnologicamente com nitrogênio líquido pressurizado.\n\nO contato com ele congelará os Zeds por um tempo. O resultado pode ser bem destruidor."
 
 [KFProj_FlashBangGrenade]
 ItemName="Golpe de luz"
-ItemCategory =" "Explosivos"
-ItemDescription="•Brilhante e barulhenta; não olhe diretamente para ela. Tente tapar os ouvidos também.\nTecnicamente não é letal, mas granadas de luz podem machucar, cuidado!" "
+ItemCategory ="Explosivos"
+ItemDescription="•Brilhante e espalhafatoso; não olhe diretamente para ele. Tente tapar os ouvidos também.\nTecnicamente não é letal, mas os golpes de luz podem causar dano — tenha cuidado!"
 
 [KFWeap_Healer_Syringe]
 ItemName="Seringa médica"
-ItemCategory="Apetrechos"
+ItemCategory="Equipamento"
 
 [KFWeap_Welder]
 ItemName="Soldador"
-ItemCategory="Apetrechos"
+ItemCategory="Equipamento"
 
 [KFWeap_Pistol_9mm]
 ItemName="Pistola 9 mm"
@@ -312,6 +312,11 @@ ItemName="Pregadeira VLAD-1000"
 ItemCategory="Espingarda"
 ItemDescription="•Escolha entre modo de tiro único ou múltiplo.\n•Tiro alt. para alternar entre modos de tiro.\n•Soubemos que um dos cientistas Horzine pegou a pistola de pregos original de um zelador (morto)."
 
+[KFWeap_HRG_Nailgun]
+ItemName="Pregadeira HRG"
+ItemCategory="Submetralhadora"
+ItemDescription="•Escolha entre tiro único de 500 rpm automático ou 3 tiros seguidos de 857 rpm automático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Para quem prega a inovação!"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="Redentor da Via"
 ItemCategory="Corpo a corpo"
@@ -370,6 +375,11 @@ ItemName="Lança-chamas"
 ItemCategory="Chamas"
 ItemDescription="•O modo de tiro atira fogo. É isso aí.\n•Um clássico para todas as idades. Na dúvida, queime tudo."
 
+[KFWeap_HRG_Healthrower]
+ItemName="Lança-cura HRG"
+ItemCategory="Chamas"
+ItemDescription="•O modo de tiro dispara um gás que cura jogadores e envenena Zeds.\n•Tiro alt. dispara dardos curativos que curam os companheiros.\n•O gás tem notas de limão e menta. Zeds não gostam de limão nem de menta."
+
 [KFWeap_Beam_Microwave]
 ItemName="Arma de Micro-ondas"
 ItemCategory="Chamas"
@@ -425,6 +435,18 @@ ItemName="Duas Desert Eagle .50"
 ItemCategory="Pistola de mão"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de canhões de mão Desert Eagle."
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="Rino"
+ItemCategory="Pistola de mão"
+ItemDescription="•O modo de tiro dispara projéteis de fragmentação.\n•Os projéteis de fragmentação explodem no impacto e disparam 3 pedaços de estilhaço.\n•Atravessa os Zeds que nem manteiga!"
+SharedUnlockSource="Rino"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="Dois Rinos"
+ItemCategory="Pistola de mão"
+ItemDescription="•O modo de tiro dispara projéteis de fragmentação.\n•Os projéteis de fragmentação explodem no impacto e disparam 3 pedaços de estilhaço.\n•Tiro alt. alterna estilos de mira ao usar a mira metálica.\n•Atravessa os Zeds que nem manteiga, só que dobrado!"
+SharedUnlockSource="Dois Rinos"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="Revólver 1858"
 ItemCategory="Pistola de mão"
@@ -444,6 +466,16 @@ ItemDescription="•Modo de tiro único, somente.\n•Verdadeira artilharia de m
 ItemName="Duas Magnums .500"
 ItemCategory="Pistola de mão"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Um par de revólveres Magnum .500 ‘Bone Collector’."
+
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="Chumbo Grosso HRG"
+ItemCategory="Pistola de mão"
+ItemDescription="•Apenas disparo único.\n•Atirar a esmo nunca foi tão divertido."
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="Chumbo Grosso HRG Duplo"
+ItemCategory="Pistola de mão"
+ItemDescription="•Apenas disparo semiautomático.\n•Tiro alt. alterna estilos de mira ao usar a mira metálica.\n•Atirar a esmo nunca foi tão divertido, de verdade."
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="Winchester 1894"
@@ -516,6 +548,18 @@ ItemName="Canhão Esfolador"
 ItemCategory="Chamas"
 ItemDescription="•Carrega com o botão de disparo apertado e descarrega ao soltar o botão. \n•Versão oficial Horzine do canhão esfolador. Este modelo tem 95% de garantia de não explodir."
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="Rino"
+ItemCategory="Pistola"
+ItemDescription="•O modo de tiro dispara projéteis de fragmentação.\n•Os projéteis de fragmentação explodem no impacto e disparam 3 pedaços de estilhaço.\n•Atravessa os Zeds que nem manteiga!"
+SharedUnlockSource="Rino"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="Dois Rinos"
+ItemCategory="Pistola"
+ItemDescription="•O modo de tiro dispara projéteis de fragmentação.\n•Os projéteis de fragmentação explodem no impacto e disparam 3 pedaços de estilhaço.\n•Tiro alt. alterna estilos de mira ao usar a mira metálica.\n•Atravessa os Zeds que nem manteiga, só que dobrado!"
+SharedUnlockSource="Dois Rinos"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="Carabina MKb.42(H)"
 ItemCategory="Fuzil de assalto"
@@ -531,6 +575,12 @@ ItemDescription="•O modo de disparo é somente semiautomático.\n•Tudo é me
 ItemName="AF2011-A2 Dupla"
 ItemCategory="Pistola"
 ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna estilos de mira, quando usando uma mira metálica.\n•Duas armas com dois canos cada. Quatro vezes mais poder de fogo. É matemática. Não tem como discutir."
+
+[KFWeap_Edged_IonThruster]
+ItemName="Propulsor de Íons"
+ItemCategory="Corpo a Corpo"
+ItemDescription="•Principal - ataque de corte rápido que queima; segure o Principal para combinação.\n•Secundário - corte pesado que queima.\n•Recarregar - realiza um ataque especial quando estiver com 100% de carga.\n•Alt - bloquear/aparar.\n•Ótimo para fazer churrasco."
+SharedUnlockSource="Propulsor de Íons"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Bastão da Perdição"
@@ -601,12 +651,12 @@ ItemDescription="•Apenas tem modo de tiro único.\n•Cada tiro tem um belo co
 
 [KFCarryable_Gear]
 ItemName="Equipamento"
-ItemCategory="Apetrechos"
+ItemCategory="Equipamento"
 ItemDescription="You're not supposed to be seeing this in the trader!"
 
 [KFCarryable_Datapad]
 ItemName="Tablet de Dados"
-ItemCategory="Apetrechos"
+ItemCategory="Equipamento"
 ItemDescription="You're not supposed to be seeing this in the trader!"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max

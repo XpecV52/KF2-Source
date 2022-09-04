@@ -27,7 +27,7 @@ defaultproperties
         ExplosionSound=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Explosion'
         ExploLight=PointLightComponent'Default__KFProj_HighExplosive_M79.ExplosionPointLight'
         ExploLightFadeOutTime=0.2
-        CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
+        CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
         CamShakeInnerRadius=200
         CamShakeFalloff=1.5
     object end

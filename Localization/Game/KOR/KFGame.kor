@@ -11,7 +11,7 @@ DifficultyStrings[0]="보통"
 DifficultyStrings[1]="어려움"
 DifficultyStrings[2]="자살행위"
 DifficultyStrings[3]="생지옥"
-BonusDoshString="보너스 도쉬"
+BonusDoshString="보상"
 LengthStrings[0]="짧음 (4 웨이브)"
 LengthStrings[1]="중간 (7 웨이브)"
 LengthStrings[2]="김 (10 웨이브)"
@@ -142,9 +142,9 @@ CompleteMapString="대전 완료 맵:"
 KillZedsString="제드 처치:"
 KillBossString="보스 처치:"
 KillBossDescriptionString="서바이벌 또는 주간"
-VersusKillsString=킬 VS 플레이어:
-DealVersusDamageString=데미지 VS 플레이어:
-VersusCompletionString=대전 완료:
+VersusKillsString="킬 VS 플레이어:"
+DealVersusDamageString="데미지 VS 플레이어:"
+VersusCompletionString="대전 완료:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="대전상대를 찾지 못했습니다."
@@ -1321,6 +1321,7 @@ GBA_SwitchWeapon3="백병전 무기"
 GBA_SwitchWeapon4="장비"
 GBA_VoteYes="찬성 투표 (오래 누르기)"
 GBA_VoteNo="반대 투표 (오래 누르기)"
+GBA_RequestSkipTrader="상인 건너뛰기 요청"
 
 GBA_VoiceCommReqHealing="치료 요청"
 GBA_VoiceCommReqDosh="Dosh 요청"
@@ -1773,7 +1774,7 @@ Passives[0]=(Title="병과 무기 데미지",Description="병과 무기 데미�
 Passives[1]=(Title="은폐한 적 및 체력 감지",Description="5m 범위에 레벨 당 %x%m 추가");
 Passives[2]=(Title="제드 타임 갱신",Description="제드 타임이 5 레벨 마다 %x% 증가");
 Passives[3]=(Title="재장전 속도",Description="병과 무기 재장전 속도가 5 레벨 마다 %x% 증가");
-Passives[4]=(Title="야간투시경 기능",Description="플래시라이트 - 및 야간투시경 고글");
+Passives[4]=(Title="반동 감소",Description="반동이 레벨 당 %x% 감소");
 Passives[5]=(Title="은폐한 제드 부르기",Description="팀원들이 은폐한 유닛을 볼 수 있도록 함");
 
 EXPAction1="코만도 무기 데미지"
@@ -1798,7 +1799,7 @@ AmmoVest="준비"
 AmmoVestDescription="각 병과 무기 당 최고 20% 탄약 추가 운반"
 
 HollowPoints="할로우 포인트 탄환"
-HollowPointsDescription="병과 무기 데미지 30% 증가 및 반동 50% 감소"
+HollowPointsDescription="병과 무기의 데미지 30% 증가"
 
 EatLead="총알이나 먹어라"
 EatLeadDescription="병과 무기 탄창 용량 100% 증가"
@@ -1969,7 +1970,7 @@ SkillCatagories[4]="마스터 기술"
 Passives[0]=(Title="병과 무기 데미지",Description="병과 무기 데미지가 레벨 당 %x% 증가");
 Passives[1]=(Title="탄환 저항",Description="탄환에 대한 저항력이 5%에 더하여 레벨 당 %x%씩 높아짐");
 Passives[2]=(Title="이동 속도",Description="5 레벨 당 이동 속도 %x% 향상");
-Passives[3]=(Title="반동",Description="병과 무기 반동이 레벨 당 %x%씩 감소");
+Passives[3]=(Title="반동 감소",Description="병과 무기 반동이 레벨 당 %x%씩 감소");
 Passives[4]=(Title="제드 타임 재장전",Description="제드 타임 동안 레벨 당 재장전 속도가 %x%씩 향상");
 
 ShootnMove="고정"
@@ -2015,7 +2016,7 @@ SkillCatagories[3]="장비"
 SkillCatagories[4]="마스터 기술"
 
 Passives[0]=(Title="헤드샷 데미지",Description="헤드샷 데미지가 레벨 당 %x% 증가");
-Passives[1]=(Title="반동",Description="반동이 레벨 당 %x% 감소");
+Passives[1]=(Title="반동 감소",Description="반동이 레벨 당 %x% 감소");
 Passives[2]=(Title="무기 전환",Description="무기 전환 속도가 레벨 당 %x% 향상");
 
 StationaryAim="스나이퍼"
@@ -2656,10 +2657,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="영원한 스팀",DescriptionStri
 SpecialEventObjectiveInfoList[3]=(TitleString="치명적인 왕복 여행",DescriptionString="목표 어려움 이상 난이도로 Zed 상륙 완료하기")
 SpecialEventObjectiveInfoList[4]=(TitleString="차가운 귀환",DescriptionString="목표 어려움 이상 난이도로 전초기지 완료하기")
 
-AllCompleteRewardDescriptionString="남성 및 여성 스팀펑크 의상"
+AllCompleteRewardDescriptionString="스팀펑크 복장 + M99 AMR 스킨"
 
 ChanceDropDescriptionStrings[0]="상품권"
 ChanceDropDescriptionStrings[1]="골드 티켓"
+
+[KFGFxFall2019ObjectivesContainer]
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특수 이벤트입니다"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="정신병원 습격",DescriptionString="애쉬우드 정신병원에서 서바이벌 어려움 또는 그 이상 난이도에서 아무 보스 해치우기")
+SpecialEventObjectiveInfoList[1]=(TitleString="장기 치료",DescriptionString="애쉬우드 정신병원에서 끝없는 도전 어려움 또는 그 이상 난이도에서 15 웨이브를 완료하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="주간 진단",DescriptionString="배수로에서 주간 게임 모드를 완료하기")
+SpecialEventObjectiveInfoList[3]=(TitleString="병원 청소",DescriptionString="애쉬우드 정신병원에서 Zed 1500마리 죽이기")
+SpecialEventObjectiveInfoList[4]=(TitleString="폭발!",DescriptionString="목표 어려움 이상 난이도로 방사능 누출지 완료하기")
+
+AllCompleteRewardDescriptionString="크리스 | 비욘드 호라이즌 | 스페이스 엘리트"
+
+ChanceDropDescriptionStrings[0]="트릿 티켓"
+ChanceDropDescriptionStrings[1]="골든 트릿 티켓"
 
 ;============================================
 ; Daily Localization
@@ -3246,6 +3261,9 @@ DisplayName="배수로"
 
 [KF-SteamFortress KFMapSummary]
 DisplayName="스팀 포트리스"
+
+[KF-AshwoodAsylum KFMapSummary]
+DisplayName="애쉬우드 정신병원"
 
 [KFMapInfo]
 ; defaults

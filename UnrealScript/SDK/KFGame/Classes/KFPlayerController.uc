@@ -3513,6 +3513,11 @@ exec function  ResetCustomizationCamera ()
 /** Play Camera Shake */
 unreliable client function ClientPlayCameraShake( CameraShake Shake, optional float Scale=1.f, optional bool bTryForceFeedback, optional ECameraAnimPlaySpace PlaySpace=CAPS_CameraLocal, optional rotator UserPlaySpaceRot )
 {
+	if (Pawn == none || !Pawn.IsAliveAndWell())
+	{
+		return;
+	}
+
 	if (bTryForceFeedback)
 	{
 		DoForceFeedbackForScreenShake(Shake, Scale);
@@ -4021,7 +4026,7 @@ function HandleWalking()
 		{
 			bDuck = 0; // sprint cancels crouch
 		}
-		
+
 		if(bRun != 0 && IsZero(Pawn.Velocity))
 		{
 			// when a player stops moving with toggle to sprint on
@@ -5130,9 +5135,16 @@ function UpdateLowHealthEffect(float DeltaTime)
 		bLowHealth = Pawn.Health > 0 && Pawn.Health <= default.LowHealthThreshold;
 
 		// Play low health post process effect (flashing red)
-		if( GameplayPostProcessEffectMIC != none )
+		if (GameplayPostProcessEffectMIC != none)
 		{
-			GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectLowHealthParamName, bLowHealth ? 1.f : 0.f);
+			if (PlayerCamera.CameraStyle == 'Boss')
+			{
+				GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectLowHealthParamName, 0.f);
+			}
+			else
+			{
+				GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectLowHealthParamName, bLowHealth ? 1.f : 0.f);
+			}
 		}
 
 		if( bLowHealth )
@@ -9623,6 +9635,34 @@ exec function DoEmote()
 	if (IsLocalController() && LEDEffectsManager != none)
 	{
 		LEDEffectsManager.PlayEmoteEffect();
+	}
+}
+
+exec function RequestSkipTrader()
+{
+	local KFGameReplicationInfo KFGRI;
+	local KFPlayerReplicationInfo KFPRI;
+
+	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+	KFGRI = KFGameReplicationInfo(KFPRI.WorldInfo.GRI);
+
+	if (KFPRI != none)
+	{
+		if (KFGRI.bMatchHasBegun)
+		{
+			if (KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
+			{
+				KFPRI.RequestSkiptTrader(KFPRI);
+				if (MyGFxManager != none)
+				{
+					MyGFxManager.CloseMenus();
+					if (MyGFxManager.PartyWidget != none)
+					{
+						MyGFxManager.PartyWidget.SetReadyButtonVisibility(false);
+					}
+				}
+			}
+		}
 	}
 }
 

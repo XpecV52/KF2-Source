@@ -762,6 +762,9 @@ var bool bCouldTurnIntoShrapnel;
 /** Gameplay-facing disable of head destruction */
 var bool bDisableHeadless;
 
+var array<name> BonesToHidePostAsyncWork;
+var array<name> BonesToShowPostAsyncWork;
+
 /*********************************************************************************************
  * @name	Dialog
 ********************************************************************************************* */
@@ -1050,6 +1053,11 @@ simulated event PostBeginPlay()
 	{
 		class'KFPawn_MonsterBoss'.static.SetupHealthBar(self);
 	}
+
+	if (ArmorInfo != none)
+	{
+		ArmorInfo.InitArmor();
+	}
 }
 
 simulated function SetMeshLightingChannels(LightingChannelContainer NewLightingChannels)
@@ -1148,11 +1156,6 @@ function PossessedBy( Controller C, bool bVehicleTransition )
 		{
 			MyKFAIC.EvadeOnDamageSettings = DifficultySettings.static.GetEvadeOnDamageSettings( self, KFGRI );
 		}
-	}
-
-	if (ArmorInfo != none)
-	{
-		ArmorInfo.InitArmor();
 	}
 
 	// Set audio switch based on AI or player-controlled
@@ -2298,6 +2301,41 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
     }
 }
 
+function AdjustDamageForArmor(out int InDamage, Controller InstigatedBy, class<DamageType> DamageType,
+	TraceHitInfo HitInfo, Actor DamageCauser)
+{
+	local vector DamageSource;
+
+	// Let armor handle the full, unadjusted damage first
+	if (ArmorInfo != none)
+	{
+		//If the damage doesn't have a bone hit source, it's likely AoE.  Split over all remaining armor evenly.
+		if (HitInfo.BoneName != '')
+		{
+			if (InstigatedBy != none && InstigatedBy.Pawn != none)
+			{
+				DamageSource = InstigatedBy.Pawn.Location;
+			}
+			else if (KFWeapon(DamageCauser) != none)
+			{
+				DamageSource = KFWeapon(DamageCauser).GetMuzzleLoc();
+			}
+			else
+			{
+				DamageSource = DamageCauser.Location;
+			}
+
+			ArmorInfo.AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageSource, DamageType);
+		}
+		else
+		{
+			ArmorInfo.AdjustNonBoneDamage(InDamage, DamageType);
+		}
+
+		if (bLogTakeDamage) LogInternal(self @ GetFuncName() @ " After armor adjustment Damage=" $ InDamage @ "Zone=" $ HitInfo.BoneName @ "DamageType=" $ DamageType);
+	}
+}
+
 /** Disable falling damage, apply blocking modifier */
 function AdjustDamage(out int InDamage, out vector Momentum, Controller InstigatedBy, vector HitLocation, class<DamageType> DamageType, TraceHitInfo HitInfo, Actor DamageCauser)
 {
@@ -2308,7 +2346,8 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	local int ExtraHeadDamage;
 	local KFPerk InstigatorPerk;
 	local class<KFDamageType> KFDT;
-	local vector DamageSource;
+
+	AdjustDamageForArmor(InDamage, InstigatedBy, DamageType, HitInfo, DamageCauser);
 
 	Super.AdjustDamage(InDamage, Momentum, InstigatedBy, HitLocation, DamageType, HitInfo, DamageCauser);
 
@@ -2398,34 +2437,6 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	if( InstigatedBy == none || InstigatedBy.GetTeamNum() != GetTeamNum() )
 	{
 		InDamage = Max( InDamage, 1 );
-	}
-
-	if (ArmorInfo != none)
-	{
-		//If the damage doesn't have a bone hit source, it's likely AoE.  Split over all remaining armor evenly.
-		if (HitInfo.BoneName != '')
-		{
-			if (InstigatedBy != none && InstigatedBy.Pawn != none)
-			{
-				DamageSource = InstigatedBy.Pawn.Location;
-			}
-			else if (KFWeapon(DamageCauser) != none)
-			{
-				DamageSource = KFWeapon(DamageCauser).GetMuzzleLoc();
-			}
-			else
-			{
-				DamageSource = DamageCauser.Location;
-			}
-
-			ArmorInfo.AdjustBoneDamage(InDamage, HitInfo.BoneName, DamageSource);
-		}
-		else
-		{
-			ArmorInfo.AdjustNonBoneDamage(InDamage);
-		}
-
-		if (bLogTakeDamage) LogInternal(self @ GetFuncName() @ " After armor adjustment Damage=" $ InDamage @ "Momentum=" $ Momentum @ "Zone=" $ HitInfo.BoneName @ "DamageType=" $ DamageType);
 	}
 
 	if (bLogTakeDamage) LogInternal(self @ "Adjusted Monster Damage=" $ InDamage);
@@ -2569,6 +2580,11 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 {
 	local KFPawn_Human KFPH_Instigator;
 
+	if (ArmorInfo != none && Damage == 0)
+	{
+		AdjustPlayHitForArmor(Damage, HitInfo);
+	}
+
 	super.PlayHit( Damage, InstigatedBy, HitLocation, damageType, Momentum, HitInfo );
 
 	// play damage zed dialog after Afflictions happen in super
@@ -2580,6 +2596,12 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 			if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayDamagedZedDialog( KFPH_Instigator, self, DamageType );
 		}
 	}
+}
+
+function AdjustPlayHitForArmor(out float InDamage, out TraceHitInfo InHitInfo)
+{
+	InDamage = 1;
+	InHitInfo.BoneName = 'KFArmor';
 }
 
 /** Called before, and in addition to, NotifyTakeHit(), but processes melee specifically (Server only) */
@@ -4866,7 +4888,7 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 {
 	if (ArmorInfo != none)
 	{
-		ArmorInfo.ExplodeArmor(ArmorZoneIdx, ArmorZoneName);
+		ArmorInfo.ExplodeArmor(ArmorZoneIdx);
 	}
 }
 
@@ -5021,7 +5043,8 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn:SpecialMoveHandler_0'
    End Object

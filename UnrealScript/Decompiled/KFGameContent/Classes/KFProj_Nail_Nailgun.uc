@@ -43,7 +43,6 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
                     KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(Location, Instigator, HitNormal);
                 }
                 SetPhysics(0);
-                LifeSpan = 5;
                 if(bStopAmbientSoundOnExplode)
                 {
                     StopAmbientSound();
@@ -89,7 +88,6 @@ simulated function Landed(Vector HitNormal, Actor FloorActor)
         ProjEffects.DeactivateSystem();
     }
     SetPhysics(0);
-    LifeSpan = 5;
     if(bStopAmbientSoundOnExplode)
     {
         StopAmbientSound();
@@ -103,8 +101,8 @@ defaultproperties
     ProjFlightTemplate=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer'
     ProjFlightTemplateZedTime=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer_ZEDTime'
     AmbientComponent=AkComponent'Default__KFProj_Nail_Nailgun.AmbientAkSoundComponent'
-    Speed=7000
-    MaxSpeed=7000
+    Speed=14000
+    MaxSpeed=14000
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end
@@ -116,6 +114,7 @@ defaultproperties
     // Reference: CylinderComponent'Default__KFProj_Nail_Nailgun.CollisionCylinder'
     Components(0)=CollisionCylinder
     Components(1)=AkComponent'Default__KFProj_Nail_Nailgun.AmbientAkSoundComponent'
+    LifeSpan=5
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

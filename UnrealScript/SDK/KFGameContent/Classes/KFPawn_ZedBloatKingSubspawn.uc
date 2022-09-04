@@ -116,11 +116,11 @@ defaultproperties
 
 	// Used for special crawler gas AOE attack "explosion" template
     Begin Object Class=KFGameExplosion Name=ExploTemplate0
-        Damage=15//50  //12 //16
-        DamageRadius=300 //600 //450 //400 //425
+        Damage=20 //50  //12 //16
+        DamageRadius=350 //600 //450 //400 //425
         DamageFalloffExponent=0.f
         DamageDelay=0.f
-        MyDamageType=class'KFDT_Toxic_BloatKingFart'
+        MyDamageType=class'KFDT_Toxic_BloatKingSubspawnExplosion'
 
         // Damage Effects
         KnockDownStrength=0
@@ -179,7 +179,7 @@ defaultproperties
 		MyDamageType=class'KFDT_Slashing_ZedWeak'
 	End Object
 
-	Health=450 //55 //450 //700 //900 //810
+	Health=250 //55 //450 //700 //900 //810
 	DoshValue=10
 	Mass=50.f
 	bKnockdownWhenJumpedOn=true
@@ -201,6 +201,7 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 		                DamageScale=(0.0))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingFart',        DamageScale=(0.00))
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatPukeMine',        DamageScale=(0.00)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_BloatKingPukeMine',    DamageScale=(0.00)))
 
 
 
@@ -209,7 +210,7 @@ defaultproperties
 	// Movement / Physics
 	ReachedGoalThresh_Walking=0.f
 	RotationRate=(Pitch=90000,Yaw=45000,Roll=90000)
-	GroundSpeed=400.f
+	GroundSpeed=450.f
 	SprintSpeed=550.f //500
 	MaxFallSpeed=6000
 	JumpZ=750
@@ -234,17 +235,17 @@ defaultproperties
 	End Object
 
 	// for reference: Vulnerability=(default, head, legs, arms, special)
-	IncapSettings(AF_Stun)=		(Vulnerability=(2.0, 2.0, 1.0, 1.0, 1.0), Cooldown=5.0,  Duration=2.5)
+	IncapSettings(AF_Stun)=		(Vulnerability=(2.0),                     Cooldown=5.0,  Duration=2.5)
 	IncapSettings(AF_Knockdown)=(Vulnerability=(3.f),                     Cooldown=0.0)   // 2 cool1
 	IncapSettings(AF_Stumble)=	(Vulnerability=(2.f),                     Cooldown=0.2)
 	IncapSettings(AF_GunHit)=	(Vulnerability=(2.5),                     Cooldown=0.2)
 	IncapSettings(AF_MeleeHit)=	(Vulnerability=(2.0),                     Cooldown=0.0)
-	IncapSettings(AF_Poison)=	(Vulnerability=(0.0),                     Cooldown=7.5, Duration=5.5)
+	IncapSettings(AF_Poison)=	(Vulnerability=(0.0),                     Cooldown=7.5,  Duration=5.5)
 	IncapSettings(AF_Microwave)=(Vulnerability=(0.5),                     Cooldown=7.5,  Duration=3.0)
 	IncapSettings(AF_FirePanic)=(Vulnerability=(3),                       Cooldown=7.0,  Duration=5)
 	IncapSettings(AF_EMP)=		(Vulnerability=(2.5),                     Cooldown=5.0,  Duration=5.0)
 	IncapSettings(AF_Freeze)=	(Vulnerability=(2.5),                     Cooldown=1.5,  Duration=4.5)
-	IncapSettings(AF_Snare)=	(Vulnerability=(10.0, 10.0, 10.0, 10.0),  Cooldown=5.5,  Duration=4.0)
+	IncapSettings(AF_Snare)=	(Vulnerability=(10.0),  Cooldown=5.5,  Duration=4.0)
     IncapSettings(AF_Bleed)=    (Vulnerability=(2.0))
 
 	ParryResistance=1

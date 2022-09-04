@@ -37,7 +37,7 @@ AlternateFireDescription="大部分的主要武器都具有輔助功能模式。
 FlashLightBatteryTitleKey="使用手電筒"
 FlashLightBatteryDescriptionKey="有的地方相當黑暗。按下 <font color="#caab05">%x%</font> 開啟或關閉你的<font color="#caab05">手電筒</font>。你的手電筒電池電力會逐漸消耗。電源用盡時手電筒會自動熄滅，並直接開始充電。"
 GrenadeTitleKey="使用手榴彈"
-GrenadeDescriptionKey="手榴彈讓你方便處理一群你附近成群的 Zed。各職業在其<font color="#caab05">武器庫</font>裡有不同的手榴彈，都會對 Zed 造成傷害，但可能分別有其他效果。按下 <font color="#caab05">%x%</font> 來投擲手榴彈。" "
+GrenadeDescriptionKey="手榴彈讓你方便處理一群你附近成群的 Zed。各職業在其<font color="#caab05">武器庫</font>裡有不同的手榴彈，都會對 Zed 造成傷害，但可能分別有其他效果。按下 <font color="#caab05">%x%</font> 來投擲手榴彈。 "
 
 ;Wave 1 end
 TraderTimeTitleKey="商人時間"
@@ -116,48 +116,48 @@ ItemDescription="•戰鬥護甲能為你抵擋幾種攻擊，但會受損。\n�
 
 [KFProj_DynamiteGrenade]
 ItemName="半條炸藥"
-ItemCategory =" "炸藥"
-ItemDescription="•一個附有引信的小炸藥。\n•它也可能傷到你，所以請小心使用！" "
+ItemCategory =" 炸藥"
+ItemDescription="•一個附有引信的小炸藥。\n•它也可能傷到你，所以請小心使用！ "
 
 [KFProj_MedicGrenade]
 ItemName="治療手榴彈"
-ItemCategory =" "炸藥"
-ItemDescription="•會放出對 Zed 有毒但對人類有治療效果的氣體。\n\n•站在藍色氣體中便可受到治療。\n我們的科學家這麼說：「這些手榴彈施放的物質會對人類有療效，而對 Zed 有毒。希望這樣能有幫助。」" "
+ItemCategory =" 炸藥"
+ItemDescription="•會放出對 Zed 有毒但對人類有治療效果的氣體。\n\n•站在藍色氣體中便可受到治療。\n我們的科學家這麼說：「這些手榴彈施放的物質會對人類有療效，而對 Zed 有毒。希望這樣能有幫助。」 "
 
 [KFProj_MolotovGrenade]
 ItemName="莫洛托夫雞尾酒"
 ItemCategory="炸藥"
-ItemDescription="•簡單來說，這是會使 Zed 起火燃燒的火焰手榴彈。\n•小心，可能會傷到自己！\n\n這東西名稱的由來是當初在 1939-40 年進行的冬季遊擊戰期間由芬蘭士兵們以當時的蘇聯外交部長「維亞切斯拉夫·米哈伊洛維奇·莫洛托夫」所取的無禮名稱…嗯？你不是想來一堂速成歷史課嗎？" "
+ItemDescription="•簡單來說，這是會使 Zed 起火燃燒的火焰手榴彈。\n•小心，可能會傷到自己！\n\n這東西名稱的由來是當初在 1939-40 年進行的冬季遊擊戰期間由芬蘭士兵們以當時的蘇聯外交部長「維亞切斯拉夫·米哈伊洛維奇·莫洛托夫」所取的無禮名稱…嗯？你不是想來一堂速成歷史課嗎？ "
 
 [KFProj_EMPGrenade]
 ItemName="電磁脈衝手榴彈"
 ItemCategory="炸藥"
-ItemDescription="•產生一股傷害 Zed 的電流，也可能讓它們暈眩一下子。\n\n•如果你想了解得更詳細的話，它會發出一個很短暫的電波，干擾四周的電子系統。尤其是 Zed 身上的。還滿好用的。" "
+ItemDescription="•產生一股傷害 Zed 的電流，也可能讓它們暈眩一下子。\n\n•如果你想了解得更詳細的話，它會發出一個很短暫的電波，干擾四周的電子系統。尤其是 Zed 身上的。還滿好用的。 "
 
 [KFProj_HEGrenade]
 ItemName="高爆手榴彈"
 ItemCategory="炸藥"
-ItemDescription="•一種爆炸力很強的手榴彈。傷害 Zed，也會傷害人。\n\n就這麼簡單。高爆是高爆炸力的縮寫，它會發出轟的一聲把東西炸爛。我們非得說明不可嗎？" "
+ItemDescription="•一種爆炸力很強的手榴彈。傷害 Zed，也會傷害人。\n\n就這麼簡單。高爆是高爆炸力的縮寫，它會發出轟的一聲把東西炸爛。我們非得說明不可嗎？ "
 
 [KFProj_FragGrenade]
 ItemName="破片手榴彈"
 ItemCategory="炸藥"
-ItemDescription="•經典的破片手榴彈：爆炸時會散發出小小的金屬碎片，殺傷周圍的所有東西。\n\n•我很確定所有人在感染事件爆發前都玩過電動遊戲，所以都知道破片手榴彈是什麼。別假裝不懂了，誰會信啊。" "
+ItemDescription="•經典的破片手榴彈：爆炸時會散發出小小的金屬碎片，殺傷周圍的所有東西。\n\n•我很確定所有人在感染事件爆發前都玩過電動遊戲，所以都知道破片手榴彈是什麼。別假裝不懂了，誰會信啊。 "
 
 [KFProj_NailBombGrenade]
 ItemName="鐵釘炸藥"
-ItemCategory =" "炸藥"
+ItemCategory =" 炸藥"
 ItemDescription="•一整箱的舊鐵釘，中間有個爆炸裝置。\n\n不是什麼討人喜歡或精巧的 Zed 處理方式，但 Zed 本身就不討人喜歡也不精巧了，不是嗎？"
 
 [KFProj_FreezeGrenade]
 ItemName="冷凍手榴彈"
-ItemCategory =" "炸藥"
+ItemCategory =" 炸藥"
 ItemDescription="•高科技武器，內含壓縮液態氮。\n\n接觸到裡面的物質會讓 Zed 暫時無法行動。成效可能會非常不錯。"
 
 [KFProj_FlashBangGrenade]
 ItemName="閃光彈"
-ItemCategory =" "炸藥"
-ItemDescription="•很亮很大聲，請不要直視。最好也不要聽。\n•雖然不會致命，但閃光彈還是可能傷害你，請小心！" "
+ItemCategory =" 炸藥"
+ItemDescription="•很亮很大聲，請不要直視。最好也不要聽。\n•雖然不會致命，但閃光彈還是可能傷害你，請小心！ "
 
 [KFWeap_Healer_Syringe]
 ItemName="醫療注射器"
@@ -312,6 +312,11 @@ ItemName="VLAD-1000 釘槍"
 ItemCategory="霰彈槍"
 ItemDescription="•可選擇射擊一根或多根鐵釘。\n•按下輔助功能鍵變更主要攻擊模式。\n•我們得知這把釘槍是 Horzine 科學家是從一個（死去的）維修人員那裡拿來改造過的。"
 
+[KFWeap_HRG_Nailgun]
+ItemName="HRG 釘槍"
+ItemCategory="衝鋒槍"
+ItemDescription="•可選擇射速 500 rpm 單發全自動射擊或 857 rpm 三連射全自動射擊模式。\n•按下輔助功能鍵變更攻擊模式。\n•創新板上釘釘！"
+
 [KFWeap_Blunt_ChainBat]
 ItemName="道路救贖者"
 ItemCategory="近身"
@@ -370,6 +375,11 @@ ItemName="火焰噴射器"
 ItemCategory="火焰"
 ItemDescription="•主要攻擊模式會射出火焰。就這樣。\n•在任何世代都是經典。如果有懷疑，把所有東西都燒掉就對了。"
 
+[KFWeap_HRG_Healthrower]
+ItemName="HRG 治療噴射器"
+ItemCategory="火焰"
+ItemDescription="•主要攻擊模式發射瓦斯，可治療玩家並毒害 Zed。\n•次要攻擊可發射射擊式治療鏢，用來治療隊友。\n•瓦斯有種檸檬與薄荷混合的香味。Zed 不喜歡檸檬和薄荷。"
+
 [KFWeap_Beam_Microwave]
 ItemName="微波槍"
 ItemCategory="火焰"
@@ -425,6 +435,18 @@ ItemName="點 50 沙漠之鷹雙槍"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對沙漠之鷹手砲。"
 
+[KFWeap_Pistol_ChiappaRhino]
+ItemName="犀牛"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式可發射分裂子彈。\n•分裂子彈在擊中時爆炸，隨後射出 3 枚霰彈。\n•削 Zed 如泥！"
+SharedUnlockSource="犀牛"
+
+[KFWeap_Pistol_ChiappaRhinoDual]
+ItemName="雙持犀牛"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式可發射分裂子彈。\n•分裂子彈在擊中時爆炸，隨後射出 3 枚霰彈。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•削 Zed 如泥，雙倍高效！"
+SharedUnlockSource="雙持犀牛"
+
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 左輪"
 ItemCategory="手槍"
@@ -444,6 +466,16 @@ ItemDescription="•主要攻擊模式只有單發。\n•一把手裡的大砲�
 ItemName="點 500 馬格南左輪雙槍"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 .500 馬格南左輪手槍。"
+
+[KFWeap_HRG_Revolver_Buckshot]
+ItemName="HRG 鹿彈"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有單發。\n•將開火並期待命中帶往全新層面。"
+
+[KFWeap_HRG_Revolver_DualBuckshot]
+ItemName="雙持 HRG 鹿彈"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•將開火並期待命中帶往全新層面。"
 
 [KFWeap_Rifle_Winchester1894]
 ItemName="溫徹斯特 1894"
@@ -516,6 +548,18 @@ ItemName="焦驅砲"
 ItemCategory="火焰"
 ItemDescription="•按下開火按鈕後開始充能，鬆開按鈕後釋放能量。\nHorzine官方版本的焦驅砲。該型號保證95%不會爆炸。"
 
+[KFWeap_Pistol_ChippaRhino]
+ItemName="犀牛"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式可發射分裂子彈。\n•分裂子彈在擊中時爆炸，隨後射出 3 枚霰彈。\n•削 Zed 如泥！"
+SharedUnlockSource="犀牛"
+
+[KFWeap_Revolver_DualChippaRhino]
+ItemName="雙持犀牛"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊模式可發射分裂子彈。\n•分裂子彈在擊中時爆炸，隨後射出 3 枚霰彈。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•削 Zed 如泥，雙倍高效！"
+SharedUnlockSource="雙持犀牛"
+
 [KFWeap_AssaultRifle_MKB42]
 ItemName="MKb.42(H) 卡賓步槍"
 ItemCategory="突擊步槍"
@@ -531,6 +575,12 @@ ItemDescription="•主要攻擊模式只有半自動。\n•你在上面放更�
 ItemName="雙管 AF2011-A2"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•兩隻槍各有兩個槍管。四倍火力。這就是數學。你不能反駁數學。"
+
+[KFWeap_Edged_IonThruster]
+ItemName="離子推進器"
+ItemCategory="近戰"
+ItemDescription="•主要功能鍵 - 帶有燃燒的快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 帶有燃燒的重砍。\n裝填 - 100% 充能後執行特殊攻擊。\n•輔助功能鍵 - 格擋/迴避。\n•拿來烤肉的好工具。"
+SharedUnlockSource="離子推進器"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="毀滅射手"

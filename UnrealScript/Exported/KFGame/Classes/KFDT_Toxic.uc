@@ -537,7 +537,6 @@ class KFDT_Toxic extends KFDamageType
 
 
 
-										  
 
 
 
@@ -553,7 +552,8 @@ class KFDT_Toxic extends KFDamageType
 
 
 
-										  
+
+
 
 
 

@@ -40,6 +40,7 @@ BodyMesh6="Курица-коммандос"
 BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
 BodyMesh9="Киберпанк"
+BodyMesh10="Охотник на ведьм"
 HeadMesh0="Противогаз"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -121,6 +122,13 @@ BodySkin3="Лаймовый цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
+[CHR_MrsFoster_archetype.BodyMesh10]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Белый цвет"
@@ -203,6 +211,7 @@ BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
 BodyMesh9="Киберпанк"
+BodyMesh10="Охотник на ведьм"
 HeadMesh0="Сила бороды!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -287,6 +296,14 @@ BodySkin0="Зеленовато-голубой цвет"
 BodySkin1="Черный цвет"
 BodySkin2="Зеленый цвет"
 BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
+[CHR_Jagerhorn_archetype.BodyMesh10]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
@@ -386,6 +403,7 @@ BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
 BodyMesh9="Киберпанк"
+BodyMesh10="Охотник на ведьм"
 HeadMesh0="Маска Скалли"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -472,6 +490,14 @@ BodySkin3="Лаймовый цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
+[CHR_DJSkully_archetype.BodyMesh10]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Черный-черный"
 HeadSkin1="Экстра-красный"
@@ -515,6 +541,7 @@ BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
 BodyMesh9="Стимпанк"
 BodyMesh10="Киберпанк"
+BodyMesh11="Охотник на ведьм"
 HeadMesh0="Волосы"
 
 [chr_briar_archetype.BodyMesh0]
@@ -607,6 +634,14 @@ BodySkin3="Лаймовый цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
+[CHR_briar_archetype.BodyMesh11]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Оригинальный"
 HeadSkin1="Подсветка"
@@ -644,6 +679,7 @@ BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
 BodyMesh9="Стимпанк"
 BodyMesh10="Киберпанк"
+BodyMesh11="Охотник на ведьм"
 HeadMesh0="Противогаз"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -738,6 +774,14 @@ BodySkin0="Зеленовато-голубой цвет"
 BodySkin1="Черный цвет"
 BodySkin2="Зеленый цвет"
 BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
+[CHR_MrFoster_archetype.BodyMesh11]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
@@ -898,6 +942,7 @@ BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
 BodyMesh9="Киберпанк"
+BodyMesh10="Охотник на ведьм"
 HeadMesh0="Лицо"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -982,6 +1027,14 @@ BodySkin3="Лаймовый цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
+[CHR_Coleman_archetype.BodyMesh10]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Донован"
 HeadSkin1="Невзрачный"
@@ -1018,6 +1071,7 @@ BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
 BodyMesh9="Киберпанк"
+BodyMesh10="Охотник на ведьм"
 HeadMesh0="Волосы"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1101,6 +1155,14 @@ BodySkin0="Зеленовато-голубой цвет"
 BodySkin1="Черный цвет"
 BodySkin2="Зеленый цвет"
 BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
+[CHR_Alberts_archetype.BodyMesh10]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
@@ -2000,6 +2062,7 @@ BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
 BodyMesh9="Киберпанк"
+BodyMesh10="Охотник на ведьм"
 HeadMesh0="Лицо"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2095,6 +2158,14 @@ BodySkin3="Лаймовый цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
+[CHR_Masterson_archetype.BodyMesh10]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Хаято Танака"
 Description="Танака — сложная личность, отягощенная комплексом стремления к смерти. Он родился на Окинаве и вырос на американской военной базе. Вернувшись с семьей на основной остров Японии, «американец» Танака не вписался в общество. Он стал брать уроки сценического искусства. После колледжа он перебрался в Лос-Анжелес, где сыграл несколько «типовых» ролей в плохих фильмах, после чего переехал в Европу в поисках «настоящей» работы. Но его ждали лишь образы «плохих парней» во французских гангстерских лентах. Теперь же, когда наступил апокалипсис, он, кажется, путает реальность с сыгранными ролями. Среди его персонажей — мафиози-якудза, демоны и что-то из голливудского представления о самураях."
@@ -2109,6 +2180,7 @@ BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
 BodyMesh9="Стимпанк"
 BodyMesh10="Киберпанк"
+BodyMesh11="Охотник на ведьм"
 HeadMesh0="Волосы"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2211,6 +2283,14 @@ BodySkin3="Лаймовый цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
+[CHR_Tanaka_archetype.BodyMesh11]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Шлем"
 AttachmentSkin0="Восходящее солнце"
@@ -2251,6 +2331,7 @@ BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
 BodyMesh9="Киберпанк"
+BodyMesh10="Охотник на ведьм"
 HeadMesh0="Ирокез"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2346,6 +2427,14 @@ BodySkin3="Лаймовый цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
+[CHR_Ana_archetype.BodyMesh10]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D-очки"
 AttachmentSkin0="Анаглиф 3D"
@@ -2372,6 +2461,7 @@ BodyMesh7="Праздничная пижама"
 BodyMesh8="Пижама для хранилища"
 BodyMesh9="Стимпанк"
 BodyMesh10="Киберпанк"
+BodyMesh11="Охотник на ведьм"
 HeadMesh0="Волосы"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2464,6 +2554,14 @@ BodySkin3="Лаймовый цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
+[CHR_mark_archetype.BodyMesh11]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
 HeadSkin1="Кровавый полдник"
@@ -2487,6 +2585,7 @@ BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
 BodyMesh9="Киберпанк"
+BodyMesh10="Охотник на ведьм"
 HeadMesh0="Лицо"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2574,6 +2673,14 @@ BodySkin3="Лаймовый цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
+[CHR_alan_archetype.BodyMesh10]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
 HeadSkin1="Рыжий! В самом деле?"
@@ -2604,6 +2711,7 @@ BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
 BodyMesh9="Киберпанк"
+BodyMesh10="Охотник на ведьм"
 HeadMesh0="Волосы"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2688,6 +2796,14 @@ BodySkin3="Лаймовый цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
+[CHR_strasser_archetype.BodyMesh10]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Темная сталь"
 HeadSkin1="Светлая сталь"
@@ -2736,6 +2852,9 @@ BodySkin2="Биокола"
 BodySkin3="Склад Horzine"
 BodySkin4="Колючая проволока"
 BodySkin5="ZedEx"
+
+[CHR_Knight_archetype.BodyMesh2]
+BodySkin0="Вставить название"
 
 [chr_knight_archetype.HeadMesh0]
 HeadSkin0="К бою!"
@@ -2857,6 +2976,7 @@ BodyMesh6="Праздничная пижама"
 BodyMesh7="Пижама для хранилища"
 BodyMesh8="Стимпанк"
 BodyMesh9="Киберпанк"
+BodyMesh10="Охотник на ведьм"
 HeadMesh0="Обычная голова"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2942,6 +3062,14 @@ BodySkin0="Зеленовато-голубой цвет"
 BodySkin1="Черный цвет"
 BodySkin2="Зеленый цвет"
 BodySkin3="Лаймовый цвет"
+BodySkin4="Красный цвет"
+BodySkin5="Белый цвет"
+
+[CHR_rockabilly_archetype.BodyMesh10]
+BodySkin0="Коричневый цвет"
+BodySkin1="Черный"
+BodySkin2="Синий цвет"
+BodySkin3="Пурпурный цвет"
 BodySkin4="Красный цвет"
 BodySkin5="Белый цвет"
 
@@ -4854,183 +4982,352 @@ AttachmentSkin5="Белый цвет"
 [Cosmetic_Project_H_01_Base_ARCH]
 Attachment="Проект H 01: обычный"
 AttachmentSkin0="Стандартный"
-AttachmentSkin1="Дорогая вещь"
+AttachmentSkin1="Дор. вещь"
 
 [Cosmetic_Project_H_01_Happy_ARCH]
 Attachment="Проект H 01: улыбка"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_01_Happy_Off_ARCH]
 Attachment="Проект H 01: улыбка (выкл.)"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_01_Neutral_ARCH]
-Attachment="Проект H 01: нейтральный"
+Attachment="Проект H 01: покерфейс"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_01_Neutral_Off_ARCH]
-Attachment="Проект H 01: нейтральный (выкл.)"
+Attachment="Проект H 01: покерфейс (выкл.)"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_01_Unhappy_ARCH]
 Attachment="Проект H 01: печальное лицо"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_01_Unhappy_Off_ARCH]
 Attachment="Проект H 01: печальное лицо (выкл.)"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_02_Base_ARCH]
 Attachment="Проект H 02: обычный"
 AttachmentSkin0="Стандартный"
-AttachmentSkin1="Дорогая вещь"
+AttachmentSkin1="Дор. вещь"
 
 [Cosmetic_Project_H_02_Happy_ARCH]
 Attachment="Проект H 02: улыбка"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_02_Happy_Off_ARCH]
 Attachment="Проект H 02: улыбка (выкл.)"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_02_Neutral_ARCH]
-Attachment="Проект H 02: нейтральный"
+Attachment="Проект H 02: покерфейс"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_02_Neutral_Off_ARCH]
-Attachment="Проект H 02: нейтральный (выкл.)"
+Attachment="Проект H 02: покерфейс (выкл.)"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_02_Unhappy_ARCH]
 Attachment="Проект H 02: печальное лицо"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Project_H_02_Unhappy_Off_ARCH]
 Attachment="Проект H 02: печальное лицо (выкл.)"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Зеленый цвет"
 AttachmentSkin2="Красный цвет"
-AttachmentSkin3="Дорогая вещь"
+AttachmentSkin3="Дор. вещь"
 
 [Cosmetic_Steampunk_Crystal_Monocle_ARCH]
 Attachment="Стимпанковый хрустальный монокль"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Skull_Beret_ARCH]
 Attachment="Стимпанковый берет с черепом"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Mandible_Mask_ARCH]
 Attachment="Стимпанковая маска-челюсть"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_CrowHawk_ARCH]
 Attachment="Стимпанковый ворон"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Leather_Goggles_ARCH]
 Attachment="Стимпанковые кожаные гогглы"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Leather_Gasmask_ARCH]
 Attachment="Стимпанковый кожаный противогаз"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Key_Backpack_ARCH]
 Attachment="Стимпанковый рюкзак-ключ"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Time_Armband_ARCH]
 Attachment="Стимпанковая повязка на руку с таймером"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Courier_Backpack_ARCH]
 Attachment="Стимпанковый рюкзак курьера"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Tesla_Backpack_ARCH]
 Attachment="Стимпанковый тесла-рюкзак"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Zed_Backpack_ARCH]
 Attachment="Стимпанковый рюкзак «Мутант»"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Timer_Backpack_ARCH]
 Attachment="Стимпанковый рюкзак-часы"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_OctoBand_ARCH]
 Attachment="Стимпанковая осьми-повязка"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Captains_Hat_ARCH]
 Attachment="Стимпанковая шляпа капитана"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
 
 [Cosmetic_Steampunk_Boiler_HAt_ARCH]
 Attachment="Стимпанковый котелок"
 AttachmentSkin0="Стандартный"
 AttachmentSkin1="Хром"
-AttachmentSkin2="Дорогая вещь"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Boneyard_AfflictionMask_ARCH]
+Attachment="Огорчение"
+AttachmentSkin0="Кость"
+AttachmentSkin1="Кровавый"
+AttachmentSkin2="Бледный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_Boneyard_AgonyMask_ARCH]
+Attachment="Агония"
+AttachmentSkin0="Кость"
+AttachmentSkin1="Кровавый"
+AttachmentSkin2="Бледный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_Boneyard_AnguishMask_ARCH]
+Attachment="Томление"
+AttachmentSkin0="Кость"
+AttachmentSkin1="Кровавый"
+AttachmentSkin2="Бледный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_Boneyard_DespairMask_ARCH]
+Attachment="Отчаянье"
+AttachmentSkin0="Кость"
+AttachmentSkin1="Кровавый"
+AttachmentSkin2="Бледный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_Boneyard_DistressMask_ARCH]
+Attachment="Горе"
+AttachmentSkin0="Кость"
+AttachmentSkin1="Кровавый"
+AttachmentSkin2="Бледный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_Boneyard_MiseryMask_ARCH]
+Attachment="Несчастье"
+AttachmentSkin0="Кость"
+AttachmentSkin1="Кровавый"
+AttachmentSkin2="Бледный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_Boneyard_PassionMask_ARCH]
+Attachment="Страсть"
+AttachmentSkin0="Кость"
+AttachmentSkin1="Кровавый"
+AttachmentSkin2="Бледный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_Boneyard_SorrowMask_ARCH]
+Attachment="Скорбь"
+AttachmentSkin0="Кость"
+AttachmentSkin1="Кровавый"
+AttachmentSkin2="Бледный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_Boneyard_TormentMask_ARCH]
+Attachment="Мучение"
+AttachmentSkin0="Кость"
+AttachmentSkin1="Кровавый"
+AttachmentSkin2="Бледный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_Boneyard_TortureMask_ARCH]
+Attachment="Пытка"
+AttachmentSkin0="Кость"
+AttachmentSkin1="Кровавый"
+AttachmentSkin2="Бледный"
+AttachmentSkin3="Дор. вещь"
+
+[Cosmetic_WitchHunter_Hat_ARCH]
+Attachment="Шляпа охотника на ведьм"
+AttachmentSkin0="Коричневый цвет"
+AttachmentSkin1="Черный"
+AttachmentSkin2="Синий цвет"
+AttachmentSkin3="Пурпурный цвет"
+AttachmentSkin4="Красный цвет"
+AttachmentSkin5="Белый цвет"
+
+[Cosmetic_Halloween_BatCatHat_ARCH]
+Attachment="Шляпа хелл. «Бэткэт»"
+AttachmentSkin0="Пурпурный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_PrivatePauldron_ARCH]
+Attachment="Хеллоуинский наплечник рядового"
+AttachmentSkin0="Железо"
+AttachmentSkin1="Серебристый цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_OfficerPauldron_ARCH]
+Attachment="Хеллоуинский наплечник офицера"
+AttachmentSkin0="Железо"
+AttachmentSkin1="Серебристый цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_PilgrimHat_ARCH]
+Attachment="Хеллоуинская шляпа пилигрима"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пурпурный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_BiohazardHat_ARCH]
+Attachment="Хеллоуинская шляпа «Биоугроза»"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пурпурный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_MonsterWitchHat_ARCH]
+Attachment="Хеллоуинская шляпа ведьмы-монстра"
+AttachmentSkin0="Коричневый цвет"
+AttachmentSkin1="Красный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_PumpkinClawJaw_ARCH]
+Attachment="Хеллоуинская челюсть тыквы"
+AttachmentSkin0="Оранжевый цвет"
+AttachmentSkin1="Пурпурный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_BatCatBackpack_ARCH]
+Attachment="Рюкзак хелл. «Бэткэт»"
+AttachmentSkin0="Пурпурный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_PumpkinHat_ARCH]
+Attachment="Хеллоуинская шляпа тыквы"
+AttachmentSkin0="Оранжевый цвет"
+AttachmentSkin1="Пурпурный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_WebShoulderPad_ARCH]
+Attachment="Хеллоуинский наплечник из паутины"
+AttachmentSkin0="Белый цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_InfinityScarf_ARCH]
+Attachment="Хеллоуинский платок «Бесконечность»"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пурпурный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_PlagueMask_ARCH]
+Attachment="Хеллоуинская маска чумы"
+AttachmentSkin0="Коричневый цвет"
+AttachmentSkin1="Пурпурный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_ScarecrowMask_ARCH]
+Attachment="Хеллоуинская маска пугала"
+AttachmentSkin0="Коричневый цвет"
+AttachmentSkin1="Пурпурный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_StitchedMouthMask_ARCH]
+Attachment="Хеллоуинская маска с зашитым ртом"
+AttachmentSkin0="Коричневый цвет"
+AttachmentSkin1="Пурпурный цвет"
+AttachmentSkin2="Дор. вещь"
+
+[Cosmetic_Halloween_GarlicClotBackpack_ARCH]
+Attachment="Хеллоуинский рюкзак «Чеснок»"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пурпурный цвет"
+AttachmentSkin2="Дор. вещь"

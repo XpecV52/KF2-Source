@@ -25,7 +25,7 @@ event PostBeginPlay()
 {
     super.PostBeginPlay();
     BleederSFXComponent.PlayEvent(BleederSFX, true);
-    Lifetime = Class'KFDT_Ballistic_Hemogoblin'.default.DoT_Duration;
+    Lifetime = Class'KFDT_Bleeding_Hemogoblin'.default.DoT_Duration;
     SetTimer(Lifetime, false, 'TearDown');
 }
 

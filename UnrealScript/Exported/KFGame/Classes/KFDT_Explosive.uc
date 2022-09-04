@@ -537,7 +537,6 @@ class KFDT_Explosive extends KFDamageType
 
 
 
-										  
 
 
 
@@ -553,7 +552,8 @@ class KFDT_Explosive extends KFDamageType
 
 
 
-										  
+
+
 
 
 

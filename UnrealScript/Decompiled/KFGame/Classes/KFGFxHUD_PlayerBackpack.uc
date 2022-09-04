@@ -15,6 +15,7 @@ var byte LastSecondaryAmmo;
 var bool bUsesAmmo;
 var bool bWasUsingAltFireMode;
 var bool bUsesSecondaryAmmo;
+var string LastSpecialAmmo;
 var int LastFlashlightBattery;
 var int LastGrenades;
 var int LastSavedBuild;
@@ -104,6 +105,7 @@ function UpdateWeapon()
 {
     local int CurrentSpareAmmo;
     local byte CurrentMagazineAmmo, CurrentSecondaryAmmo;
+    local string CurrentSpecialAmmo;
     local KFWeapon CurrentWeapon;
 
     if(((MyKFPC != none) && MyKFPC.Pawn != none) && MyKFPC.Pawn.Weapon != none)
@@ -136,8 +138,17 @@ function UpdateWeapon()
                 {
                     SetInt("backpackStoredAmmo", CurrentSpareAmmo);
                     LastSpareAmmo = CurrentSpareAmmo;
+                }                
+            }
+            else
+            {
+                CurrentSpecialAmmo = CurrentWeapon.GetSpecialAmmoForHUD();
+                if(CurrentSpecialAmmo != LastSpecialAmmo)
+                {
+                    SetString("specialAmmoString", CurrentSpecialAmmo);
                 }
             }
+            LastSpecialAmmo = CurrentSpecialAmmo;
             if(bUsesSecondaryAmmo)
             {
                 CurrentSecondaryAmmo = byte(CurrentWeapon.GetSecondaryAmmoForHUD());

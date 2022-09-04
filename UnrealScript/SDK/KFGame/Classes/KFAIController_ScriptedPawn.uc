@@ -14,4 +14,5 @@ function InitPlayerReplicationInfo()
 	// Do we even need this?
 	PlayerReplicationInfo = Spawn(class'KFDummyReplicationInfo', self,, vect(0,0,0),rot(0,0,0));
 	PlayerReplicationInfo.PlayerName = string(self.name);
+	PlayerReplicationInfo.bBot = true;
 }

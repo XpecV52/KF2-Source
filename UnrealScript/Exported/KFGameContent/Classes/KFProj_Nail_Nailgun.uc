@@ -54,7 +54,6 @@ simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallCom
         	}
 
             SetPhysics(PHYS_None);
-            LifeSpan = 5.0;
 
         	// Stop ambient sounds when this projectile ShutsDown
         	if( bStopAmbientSoundOnExplode )
@@ -113,7 +112,6 @@ simulated function Landed( Vector HitNormal, actor FloorActor )
     }
 
     SetPhysics(PHYS_None);
-    LifeSpan = 5.0;
 
 	// Stop ambient sounds when this projectile ShutsDown
 	if( bStopAmbientSoundOnExplode )
@@ -136,8 +134,8 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFProj_PinningBullet:AmbientAkSoundComponent'
    End Object
    AmbientComponent=AmbientAkSoundComponent
-   Speed=7000.000000
-   MaxSpeed=7000.000000
+   Speed=14000.000000
+   MaxSpeed=14000.000000
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_PinningBullet:CollisionCylinder'
       CollisionHeight=0.000000
       CollisionRadius=0.000000
@@ -148,6 +146,7 @@ defaultproperties
    CylinderComponent=CollisionCylinder
    Components(0)=CollisionCylinder
    Components(1)=AmbientAkSoundComponent
+   LifeSpan=5.000000
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_Nail_Nailgun"
    ObjectArchetype=KFProj_PinningBullet'KFGame.Default__KFProj_PinningBullet'

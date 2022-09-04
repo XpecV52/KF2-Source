@@ -2111,11 +2111,33 @@ function UpdateViewportSize( int x, int y, int width, int height )
 	}
 }
 
-
-
 function currentFocus()
 {
 	ManagerObject.ActionScriptVoid("currentFocus");
+}
+
+function int GetModeIndex(optional bool bAdjustedIndex = true)
+{
+	local int SavedModeIndex;
+
+	SavedModeIndex = CachedProfile.GetProfileInt(KFID_SavedModeIndex);
+
+	if (!class'GameEngine'.Static.IsGameFullyInstalled() && SavedModeIndex == EGameMode_Objective)
+	{
+		CachedProfile.SetProfileSettingValueInt(KFID_SavedModeIndex, EGameMode_Survival);
+		return EGameMode_Survival;
+	}
+
+	if(StartMenu.OptionsComponent != none && StartMenu.OptionsComponent.bIsSoloGame && bAdjustedIndex)
+	{
+		// if going multiplayer -> solo, need to subtract to account for the removal of the Vs mode
+		if (SavedModeIndex >= EGameMode_VsSurvival)
+		{
+			return SavedModeIndex - 1;
+		}
+	}
+
+	return SavedModeIndex;
 }
 
 defaultproperties

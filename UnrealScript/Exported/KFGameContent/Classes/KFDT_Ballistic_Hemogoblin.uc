@@ -16,6 +16,8 @@ class KFDT_Ballistic_Hemogoblin extends KFDT_Ballistic_Rifle
 //Visual class to attach to the victim when impact occurs
 var class<Actor> TubeAttachClass;
 
+var class<KFDamageType> BleedDamageType;
+
 static simulated function bool CanDismemberHitZone( name InHitZoneName )
 {
     if( super.CanDismemberHitZone( InHitZoneName ) )
@@ -98,23 +100,23 @@ static function ApplySecondaryDamage( KFPawn Victim, int DamageTaken, optional C
     }
 
     // potential for two DoTs if DoT_Type is set
-    Super(KFDamageType).ApplySecondaryDamage(Victim, DamageTaken, InstigatedBy);
+    if (default.BleedDamageType.default.DoT_Type != DOT_None)
+    {
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, default.BleedDamageType);
+    }
 }
 
 defaultproperties
 {
    TubeAttachClass=Class'kfgamecontent.KFWeapActor_Hemogoblin_Tube'
+   BleedDamageType=Class'kfgamecontent.KFDT_Bleeding_Hemogoblin'
    WeaponDef=Class'KFGame.KFWeapDef_Hemogoblin'
-   bStackDoT=True
-   DoT_Type=DOT_Bleeding
-   DoT_Duration=5.000000
-   DoT_Interval=1.000000
-   DoT_DamageScale=0.300000
    StumblePower=200.000000
    GunHitPower=0.000000
-   BleedPower=50.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_FieldMedic'
-   KDamageImpulse=0.000000
+   KDamageImpulse=3000.000000
+   KDeathVel=500.000000
+   KDeathUpKick=800.000000
    Name="Default__KFDT_Ballistic_Hemogoblin"
    ObjectArchetype=KFDT_Ballistic_Rifle'kfgamecontent.Default__KFDT_Ballistic_Rifle'
 }

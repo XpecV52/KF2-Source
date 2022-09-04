@@ -538,7 +538,6 @@ class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense;
 
 
 
-										  
 
 
 
@@ -554,7 +553,8 @@ class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense;
 
 
 
-										  
+
+
 
 
 
@@ -639,6 +639,14 @@ var() const float DoshPenaltyCheckTimer;
 var() const int NoHumansPenalty;
 var() const int ZedsPenalty;
 
+/** Whether the trail shows up during the previous trader time */
+var() bool bUseEarlyTrail;
+
+/* Percentage of the wave's zeds that needs to be killed to obtain the max reward */
+var() const float PctOfWaveZedsKilledForMaxReward;
+
+var transient float RewardPerZed;
+
 struct WaveLengthPctChances
 {
 	var() float PctChances[11];
@@ -702,6 +710,18 @@ var() float RemindPlayersTime;
 var transient float PrevWaveProgress;
 var transient bool bRemindPlayers;
 
+
+simulated event ReplicatedEvent(name VarName)
+{
+	if (VarName == nameof(bActive))
+	{
+		if (!bActive)
+		{
+			DeactivateObjective();
+		}
+	}
+}
+
 //-----------------------------------------------------------------------------
 // Volume
 //-----------------------------------------------------------------------------
@@ -721,6 +741,66 @@ event Touch(Actor Other, PrimitiveComponent OtherComp, vector HitLocation, vecto
     }
 }
 
+function NotifyZedKilled(Controller Killer, Pawn KilledPawn, bool bIsBoss)
+{
+	local int i;
+	local KFGameInfo KFGI;
+	local KFGameReplicationInfo KFGRI;
+
+	if (ROLE == Role_Authority)
+	{
+		if (bActive)
+		{
+			KFGI = KFGameInfo(WorldInfo.Game);
+			if (KFGI != none)
+			{
+				for (i = 0; i < TouchingHumans.Length; i++)
+				{
+					if (Killer == TouchingHumans[i].Controller)
+					{
+						if (RewardPerZed == 0)
+						{
+							KFGRI = KFGameReplicationInfo(WorldInfo.Game.GameReplicationInfo);
+							RewardPerZed = GetMaxDoshReward() / (PctOfWaveZedsKilledForMaxReward * KFGRI.WaveTotalAICount);
+						}
+						CurrentRewardAmount = FMin(CurrentRewardAmount + RewardPerZed, float(GetMaxDoshReward()));
+						break;
+					}
+				}
+			}
+
+			if (GetProgress() >= 1.0f)
+			{
+				DeactivateObjective();
+			}
+		}
+	}
+}
+
+//// Designers wanted this, but now they don't want it, but they might want it again,
+//// so the code is staying here.
+//simulated function NotifyObjectiveSelected()
+//{
+//	if (WorldInfo.NetMode != NM_DedicatedServer)
+//	{
+//		ActivateBoundarySplines();
+//		UpdateMeshArrayState();
+//
+//		if (bUseTrailToVolume && bUseEarlyTrail)
+//		{
+//			if (TrailActor == none)
+//			{
+//				TrailActor = class'WorldInfo'.static.GetWorldInfo().Spawn(class'KFReplicatedShowPathActor', none);
+//			}
+//			if (TrailActor != none)
+//			{
+//				TrailActor.SetEmitterTemplate(ParticleSystem'FX_Gameplay_EMIT.FX_Objective_White_Trail');
+//				TrailActor.SetPathTarget(self, self, VCT_NotInVolume);
+//			}
+//		}
+//	}
+//}
+
 function CheckBonusState()
 {
     local int i;
@@ -731,7 +811,6 @@ function CheckBonusState()
     if (TouchingHumans.Length < PlayerThresholds[PlayerCount])
     {
         bDangerState = true;
-        CurrentRewardAmount -= NoHumansPenalty;
 
 		if(bRemindPlayers)
 		{
@@ -753,24 +832,7 @@ function CheckBonusState()
                 TouchingZeds.Remove(i, 1);
             }
         }
-
-        //Recheck
-        if (TouchingZeds.Length > ZedThresholds[PlayerCount])
-        {
-            bDangerState = true;
-            CurrentRewardAmount -= ZedsPenalty;
-        }
     }
-
-	if (CurrentRewardAmount <= 0)
-	{
-		if (KFGameInfo_Survival(WorldInfo.Game) != none)
-		{
-			KFGameInfo_Survival(WorldInfo.Game).ObjectiveFailed();
-		}
-	}
-
-	CurrentRewardAmount = FMax(CurrentRewardAmount, 0);
 
     UpdateMeshArrayState();
 }
@@ -809,6 +871,13 @@ simulated function ActivateObjective()
 
     if (Role == ROLE_Authority)
     {
+		// dosh hold reward starts at zero and counts up when a zed is killed
+		CurrentRewardAmount = 0;
+
+		// RewardPerZed will be set upon killing the first zed because this function (ActivateObjective)
+		// is called before KFGRI.WaveTotalAICount is set for the current wave
+		RewardPerZed = 0;
+
 		PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
         if (TouchingHumans.Length >= PlayerThresholds[PlayerCount])
         {
@@ -874,7 +943,6 @@ simulated function DeactivateObjective()
 {
     local KFPawn_Human KFPH;
 	local KFPlayerController KFPC;
-	local array<KFPawn_Human> CachedHumans;
 	local bool bOneHumanAlive;
 
 	super.DeactivateObjective();
@@ -895,22 +963,17 @@ simulated function DeactivateObjective()
 			{
 				bOneHumanAlive = true;
 			}
-
-			CachedHumans.AddItem(KFPH);
 		}
 
-        //Reward players if any dosh still remains
-        if (CurrentRewardAmount > 0)
-        {
-			// Only reward players if they survived the round.
-			if(bOneHumanAlive)
+		// give the dosh hold reward to a player even if they died
+		if (CurrentRewardAmount > 0 && bOneHumanAlive)
+		{
+			foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
 			{
-				foreach CachedHumans(KFPH)
-				{
-					GrantReward(KFPH);
-				}
+				GrantReward(KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo), KFPC);
 			}
-        }
+		}
+
 		if (bOneHumanAlive)
 		{
 			PlayDeactivationDialog();
@@ -1035,55 +1098,74 @@ simulated function string GetLocalizedRequirements()
 	return Localize("Objectives", default.RequirementsLocKey, "KFGame") @ PlayerThresholds[PlayerCount];
 }
 
-simulated function GetLocalizedStatus(out string statusMessage, out int bWarning, out int bNotification)
+simulated function GetLocalizedStatus(out string statusMessage, out int bWarning, out int bNotification);
+
+simulated function string GetProgressText()
 {
-	statusMessage = "";
-	if (bTooFewPlayers)
-	{
-		statusMessage = Localize("Objectives", "TooFewPlayers", LocalizationPackageName);
-		bWarning = 1;
-		return;
-	}
-	else if (bTooManyZeds)
-	{
-		statusMessage = Localize("Objectives", "TooManyZeds", LocalizationPackageName);
-		bWarning = 1;
-		return;
-	}
+	return string(GetMaxDoshReward());
 }
 
-simulated function bool HasFailedObjective()
+simulated function bool GetProgressTextIsDosh()
 {
-	return GetProgress() <= 0.f;
+	return true;
+}
+
+simulated function bool ShouldShowObjectiveHUD()
+{
+	return !IsComplete();
 }
 
 defaultproperties
 {
    PenaltyStartupTimer=20.000000
-   DoshPenaltyCheckTimer=1.000000
+   DoshPenaltyCheckTimer=0.250000
    NoHumansPenalty=5
    ZedsPenalty=1
+   PctOfWaveZedsKilledForMaxReward=0.750000
    ActivatePctChances(0)=(PctChances[1]=0.350000,PctChances[2]=0.350000,PctChances[3]=0.350000,PctChances[4]=1.000000,PctChances[5]=1.000000,PctChances[6]=1.000000,PctChances[7]=1.000000,PctChances[8]=1.000000,PctChances[9]=1.000000,PctChances[10]=1.000000)
    ActivatePctChances(1)=(PctChances[1]=0.350000,PctChances[2]=0.350000,PctChances[3]=0.350000,PctChances[4]=0.350000,PctChances[5]=0.350000,PctChances[6]=0.350000,PctChances[7]=1.000000,PctChances[8]=1.000000,PctChances[9]=1.000000,PctChances[10]=1.000000)
    ActivatePctChances(2)=(PctChances[1]=0.350000,PctChances[2]=0.350000,PctChances[3]=0.350000,PctChances[4]=0.350000,PctChances[5]=0.350000,PctChances[6]=0.350000,PctChances[7]=0.350000,PctChances[8]=0.350000,PctChances[9]=0.350000,PctChances[10]=0.350000)
    RemindPlayersTime=30.000000
    PlayerThresholds(0)=1
    PlayerThresholds(1)=1
-   PlayerThresholds(2)=2
-   PlayerThresholds(3)=2
-   PlayerThresholds(4)=3
-   PlayerThresholds(5)=3
-   ZedThresholds(0)=6
-   ZedThresholds(1)=5
-   ZedThresholds(2)=4
-   ZedThresholds(3)=3
-   ZedThresholds(4)=2
-   ZedThresholds(5)=1
+   PlayerThresholds(2)=1
+   PlayerThresholds(3)=1
+   PlayerThresholds(4)=1
+   PlayerThresholds(5)=1
    LocalizationKey="DoshHold"
    NameShortLocKey="DoshHold"
    DescriptionLocKey="DescriptionDoshHold"
    DescriptionShortLocKey="DescriptionDoshHoldShort"
    RequirementsLocKey="RequiredDoshHold"
+   DoshRewards(0)=150
+   DoshRewards(1)=150
+   DoshRewards(2)=200
+   DoshRewards(3)=250
+   DoshRewards(4)=300
+   DoshRewards(5)=350
+   DoshRewards(6)=400
+   DoshRewards(7)=400
+   DoshRewards(8)=400
+   DoshRewards(9)=400
+   DoshRewards(10)=400
+   XPRewards(0)=50
+   XPRewards(1)=50
+   XPRewards(2)=100
+   XPRewards(3)=()
+   XPRewards(4)=()
+   XPRewards(5)=250
+   XPRewards(6)=300
+   XPRewards(7)=350
+   XPRewards(8)=350
+   XPRewards(9)=350
+   XPRewards(10)=350
+   DoshDifficultyScalars(0)=1.000000
+   DoshDifficultyScalars(1)=1.100000
+   DoshDifficultyScalars(2)=1.200000
+   DoshDifficultyScalars(3)=1.300000
+   XPDifficultyScalars(1)=1.100000
+   XPDifficultyScalars(2)=1.200000
+   XPDifficultyScalars(3)=1.300000
    Begin Object Class=BrushComponent Name=BrushComponent0 Archetype=BrushComponent'kfgamecontent.Default__KFMapObjective_AreaDefense:BrushComponent0'
       ReplacementPrimitive=None
       bAcceptsLights=True

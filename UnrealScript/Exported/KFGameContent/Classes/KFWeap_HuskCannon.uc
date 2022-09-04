@@ -250,9 +250,26 @@ simulated state HuskCannonCharge extends WeaponFiring
     //Now that we're done charging, directly call FireAmmunition. This will handle the actual projectile fire and scaling.
     simulated event EndState(Name NextStateName)
     {
-        global.FireAmmunition();
+		ClearZedTimeResist();
+        ClearPendingFire(CurrentFireMode);
+		ClearTimer(nameof(RefireCheckTimer));
 
-		if (bPlayingLoopingFireAnim || bPlayingLoopingFireAnim)
+		KFPawn(Instigator).bHasStartedFire = false;
+		KFPawn(Instigator).bNetDirty = true;
+
+		if (ChargingPSC != none)
+		{
+			ChargingPSC.DeactivateSystem();
+		}
+
+		KFPawn(Instigator).SetWeaponAmbientSound(none);
+    }
+
+	simulated function HandleFinishedFiring()
+	{
+		global.FireAmmunition();
+
+		if (bPlayingLoopingFireAnim)
 		{
 			StopLoopingFireEffects(CurrentFireMode);
 		}
@@ -266,20 +283,10 @@ simulated state HuskCannonCharge extends WeaponFiring
 			SetTimer(0.3f, false, 'Timer_StopFireEffects');
 		}
 
-		ClearZedTimeResist();
-        ClearPendingFire(CurrentFireMode);
-		ClearTimer(nameof(RefireCheckTimer));
-
 		NotifyWeaponFinishedFiring(CurrentFireMode);
 
-		KFPawn(Instigator).bHasStartedFire = false;
-		KFPawn(Instigator).bNetDirty = true;
-
-		if (ChargingPSC != none)
-		{
-			ChargingPSC.DeactivateSystem();
-		}
-    }
+		super.HandleFinishedFiring();
+	}
 }
 
 // Placing the actual Weapon Firing end state here since we need it to happen at the end of the actual firing loop.

@@ -101,8 +101,6 @@ defaultproperties
    AltFireSightedAnims(0)="Shoot_Iron_Single"
    AltFireAnim="Shoot_Single"
    AltFireRecoilModifier=0.500000
-   NumPellets(0)=8
-   NumPellets(1)=1
    PackageKey="Nail_Shotgun"
    FirstPersonMeshName="WEP_1P_Nail_Shotgun_MESH.Wep_1stP_Nail_ShotGun_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_Nail_Shotgun_ANIM.Wep_1stP_Nail_Shotgun_Anim"
@@ -117,15 +115,15 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Nail'
    InventorySize=5
    MagazineCapacity(0)=42
-   PenetrationPower(0)=2.000000
-   PenetrationPower(1)=2.000000
+   PenetrationPower(0)=3.000000
+   PenetrationPower(1)=3.000000
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=70.000000
    IronSightPosition=(X=12.000000,Y=0.000000,Z=0.000000)
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
    SpareAmmoCapacity(0)=336
-   InitialSpareMags(0)=4
+   InitialSpareMags(0)=3
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
@@ -140,6 +138,12 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_Nailgun:MeleeHelper_0'
+   NumPellets(1)=1
+   NumPellets(2)=()
+   NumPellets(3)=()
+   NumPellets(4)=()
+   NumPellets(5)=()
+   NumPellets(6)=()
    maxRecoilPitch=550
    minRecoilPitch=450
    maxRecoilYaw=250
@@ -158,7 +162,7 @@ defaultproperties
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
    AssociatedPerkClasses(1)=Class'KFGame.KFPerk_Support'
    WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Stat=EWUS_Damage1,Scale=1.200000),(Add=1)))
-   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.250000),(Stat=EWUS_Damage1,Scale=1.250000),(Add=2)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.300000),(Stat=EWUS_Damage1,Scale=1.300000),(Add=2)))
    WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Stat=EWUS_Damage1,Scale=1.400000),(Add=3)))
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)="WeaponAltFiring"
@@ -173,14 +177,14 @@ defaultproperties
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Nail_Nailgun'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Nail_Nailgun'
    FireInterval(0)=0.300000
-   FireInterval(1)=0.300000
+   FireInterval(1)=0.200000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   Spread(0)=0.185000
+   Spread(0)=0.160000
    Spread(1)=0.020000
-   InstantHitDamage(0)=25.000000
-   InstantHitDamage(1)=25.000000
+   InstantHitDamage(0)=35.000000
+   InstantHitDamage(1)=35.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_NailShotgun'

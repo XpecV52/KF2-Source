@@ -34,7 +34,7 @@ var private const AkEvent						ReceivedAmmoSound;
 var private const AkEvent 						ReceivedArmorSound;
 var private const AkEvent						ReceivedAmmoAndArmorSound;
 
-var private const name 							BoomstickClassName;
+var private const array<name> 					HighCapMagExemptList;
 
 var	private	const array<Name>					AdditionalOnPerkDTNames;
 
@@ -247,7 +247,7 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
 	TempCapacity = MagazineCapacity;
 
 	if( !bSecondary && IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && (KFW == none || !KFW.bNoMagazine) &&
-		WeaponClassName != BoomstickClassName )
+		HighCapMagExemptList.Find(WeaponClassName) == INDEX_NONE )
 	{
 		if( IsHighCapMagsMagActive() )
 		{
@@ -856,7 +856,9 @@ DefaultProperties
    	ZedTimeModifyingStates(2)="WeaponSingleFiring"
    	ZedTimeModifyingStates(3)="WeaponAltFiring"
 
-   	BoomstickClassName="KFWeap_Shotgun_DoubleBarrel"
+	HighCapMagExemptList(0)="KFWeap_Shotgun_DoubleBarrel"
+	HighCapMagExemptList(1)="KFWeap_HRG_Revolver_Buckshot"
+	HighCapMagExemptList(2)="KFWeap_HRG_Revolver_DualBuckshot"
 
    	AdditionalOnPerkDTNames(0)="KFDT_Ballistic_Shotgun_Medic"
    	AdditionalOnPerkDTNames(1)="KFDT_Ballistic_DragonsBreath"

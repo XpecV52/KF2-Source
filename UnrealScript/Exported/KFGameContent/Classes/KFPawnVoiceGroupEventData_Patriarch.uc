@@ -536,7 +536,6 @@ class KFPawnVoiceGroupEventData_Patriarch extends KFPawnVoiceGroupEventData;
 
 
 
-										  
 
 
 
@@ -552,7 +551,8 @@ class KFPawnVoiceGroupEventData_Patriarch extends KFPawnVoiceGroupEventData;
 
 
 
-										  
+
+
 
 
 

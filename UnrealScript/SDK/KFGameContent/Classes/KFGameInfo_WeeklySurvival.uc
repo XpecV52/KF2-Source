@@ -612,6 +612,7 @@ function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, clas
 defaultproperties
 {
     //Overrides
+	GameReplicationInfoClass=class'KFGameContent.KFGameReplicationInfo_WeeklySurvival'
     PlayerControllerClass=class'KFGame.KFPlayerController_WeeklySurvival'
 	OutbreakEventClass=class'KFOutbreakEvent_Weekly'
 }

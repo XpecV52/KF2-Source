@@ -9,17 +9,13 @@
 //=============================================================================
 class KFWeap_Shotgun_Medic extends KFWeap_MedicBase;
 
-var(Weapon) array<byte>	NumPellets;
-
 /*********************************************************************************************
  Firing / Projectile - Below projectile spawning code copied from KFWeap_ShotgunBase
 ********************************************************************************************* */
 
 /** Spawn projectile is called once for each shot pellet fired */
-simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir )
+simulated function KFProjectile SpawnAllProjectiles( class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir )
 {
-	local int i;
-	local rotator AimRot;
 	local KFPerk InstigatorPerk;
 
     if( CurrentFireMode == GRENADE_FIREMODE )
@@ -33,14 +29,7 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
     	Spread[CurrentFireMode] = default.Spread[CurrentFireMode] * InstigatorPerk.GetTightChokeModifier();
     }
 
-	AimRot = rotator(AimDir);
-
-	for (i = 0; i < NumPellets[CurrentFireMode]; i++)
-	{
-		Super.SpawnProjectile(KFProjClass, RealStartLoc, vector(class'KFWeap_ShotgunBase'.static.AddMultiShotSpread(AimRot, Spread[CurrentFireMode])));
-	}
-
-	return None;
+	return super.SpawnAllProjectiles(KFProjClass, RealStartLoc, AimDir);
 }
 
 /** Disable normal bullet spread */
@@ -49,40 +38,11 @@ simulated function rotator AddSpread(rotator BaseAim)
 	return BaseAim; // do nothing
 }
 
-/** Notification that a weapon attack has has happened */
-function HandleWeaponShotTaken( byte FireMode )
-{
-    if( KFPlayer != None )
-	{
-        KFPlayer.AddShotsFired(NumPellets[FireMode]);
-	}
-}
-
 ///////////////////////////////////////////////////////////////////////////////////////////
 //
 // Trader
 //
 ///////////////////////////////////////////////////////////////////////////////////////////
-
-/** Allows weapon to calculate its own damage for display in trader.
-  * Overridden to multiply damage by number of pellets.
-  * Exact copy of KFWeap_ShotgunBase.CalculateTraderWeaponStatDamage
-  */
-static simulated function float CalculateTraderWeaponStatDamage()
-{
-	local float BaseDamage, DoTDamage;
-	local class<KFDamageType> DamageType;
-
-	BaseDamage = default.InstantHitDamage[DEFAULT_FIREMODE];
-
-	DamageType = class<KFDamageType>(default.InstantHitDamageTypes[DEFAULT_FIREMODE]);
-	if( DamageType != none && DamageType.default.DoT_Type != DOT_None )
-	{
-		DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
-	}
-
-	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
-}
 
 /** Returns trader filter index based on weapon type */
 static simulated event EFilterTypeUI GetTraderFilter()
@@ -92,9 +52,16 @@ static simulated event EFilterTypeUI GetTraderFilter()
 
 defaultproperties
 {
-   NumPellets(0)=6
-   NumPellets(1)=1
+   HealingDartDamageType=Class'kfgamecontent.KFDT_Dart_Healing'
    HealFullRechargeSeconds=12.000000
+   HealImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Heal'
+   HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
+   DartFireSnd=(DefaultCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Fire_1P')
+   HealingDartWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Default_Recoil'
+   LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locked_1P'
+   LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Lost_1P'
+   LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Alert_Locking_1P'
+   OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
    PackageKey="Medic_Shotgun"
    FirstPersonMeshName="WEP_1P_Medic_Shotgun_MESH.Wep_1stP_Medic_Shotgun_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_Medic_Shotgun_ANIM.WEP_1P_Medic_Shotgun_ANIM"
@@ -127,12 +94,19 @@ defaultproperties
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_SA_MedicShotgun.Play_SA_MedicShotgun_Handling_DryFire'
    WeaponDryFireSnd(1)=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_DryFire'
    PlayerViewOffset=(X=14.000000,Y=6.500000,Z=-3.500000)
-   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
+   Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MedicBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
-      ObjectArchetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_MedicBase:MeleeHelper_0'
+      ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MedicBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_Medic:MeleeHelper_0'
+   NumPellets(0)=6
+   NumPellets(1)=()
+   NumPellets(2)=()
+   NumPellets(3)=()
+   NumPellets(4)=()
+   NumPellets(5)=()
+   NumPellets(6)=()
    maxRecoilPitch=400
    minRecoilPitch=375
    maxRecoilYaw=250
@@ -165,7 +139,7 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Pellet'
-   WeaponProjectiles(1)=()
+   WeaponProjectiles(1)=Class'kfgamecontent.KFProj_HealingDart_MedicBase'
    FireInterval(0)=0.200000
    FireInterval(1)=()
    FireInterval(2)=()
@@ -178,11 +152,11 @@ defaultproperties
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_Shotgun_Medic'
-   InstantHitDamageTypes(1)=()
+   InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Dart_Toxic'
    InstantHitDamageTypes(2)=None
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_Shotgun_Medic'
    FireOffset=(X=30.000000,Y=3.000000,Z=-3.000000)
-   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:FirstPersonMesh'
+   Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MedicBase:FirstPersonMesh'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       bOverrideAttachmentOwnerVisibility=True
       bAllowBooleanPreshadows=False
@@ -192,19 +166,19 @@ defaultproperties
       LightingChannels=(bInitialized=True,Outdoor=True)
       bAllowPerObjectShadows=True
       Name="FirstPersonMesh"
-      ObjectArchetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:FirstPersonMesh'
+      ObjectArchetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MedicBase:FirstPersonMesh'
    End Object
    Mesh=FirstPersonMesh
    ItemName="HMTech-301 Shotgun"
-   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:StaticPickupComponent'
+   Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_MedicBase:StaticPickupComponent'
       StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None
       CastShadow=False
       Name="StaticPickupComponent"
-      ObjectArchetype=StaticMeshComponent'kfgamecontent.Default__KFWeap_MedicBase:StaticPickupComponent'
+      ObjectArchetype=StaticMeshComponent'KFGame.Default__KFWeap_MedicBase:StaticPickupComponent'
    End Object
    DroppedPickupMesh=StaticPickupComponent
    PickupFactoryMesh=StaticPickupComponent
    Name="Default__KFWeap_Shotgun_Medic"
-   ObjectArchetype=KFWeap_MedicBase'kfgamecontent.Default__KFWeap_MedicBase'
+   ObjectArchetype=KFWeap_MedicBase'KFGame.Default__KFWeap_MedicBase'
 }

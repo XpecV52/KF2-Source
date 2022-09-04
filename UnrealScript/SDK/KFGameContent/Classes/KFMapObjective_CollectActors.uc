@@ -24,6 +24,8 @@ var() SkeletalMeshActor DeliveryMeshActor;
 var() name DeliveryOpenAnimName;
 /** An animation to play on the DeliveryMeshActor when this objective deactivates*/
 var() name DeliveryCloseAnimName;
+/** How long to delay the playing of the close anim after the objective is complete (to give Kismet time to finish things) */
+var() float DeliveryCloseAnimDelay;
 /** Amount of timer since last collectible was reset to consider "recent" in terms of UI messaging to the player*/
 var float CollectibleResetTimerLength;
 /** Whether a collectible has been reset recently*/
@@ -149,6 +151,14 @@ simulated function ActivateObjective()
 	}
 }
 
+simulated function PlayDeliveryMeshCloseAnim()
+{
+	if (DeliveryMeshActor != none)
+	{
+		DeliveryMeshActor.SkeletalMeshComponent.PlayAnim(DeliveryCloseAnimName);
+	}
+}
+
 simulated function DeactivateObjective()
 {
 	local CollectibleActorInfo Info;
@@ -159,9 +169,13 @@ simulated function DeactivateObjective()
 
 	super.DeactivateObjective();
 
-	if (DeliveryMeshActor != none)
+	if (DeliveryCloseAnimDelay > 0.f)
 	{
-		DeliveryMeshActor.SkeletalMeshComponent.PlayAnim(DeliveryCloseAnimName);
+		SetTimer(DeliveryCloseAnimDelay, false, nameof(PlayDeliveryMeshCloseAnim));
+	}
+	else
+	{
+		PlayDeliveryMeshCloseAnim();
 	}
 
 	if (Role == ROLE_Authority)
@@ -193,7 +207,7 @@ simulated function DeactivateObjective()
 		// remove the remaining carryables in the world from players' hands
 		foreach WorldInfo.AllPawns(class'KFPawn_Human', KFPH)
 		{
-			GrantReward(KFPH);
+			GrantReward(KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo), KFPlayerController(KFPH.Controller));
 
 			if (KFPH != none && KFPH.InvManager != none)
 			{
@@ -788,7 +802,7 @@ simulated function UpdateTrailActor()
 		{
 			pathTarget = self;
 		}
-		else 
+		else
 		{
 			if (GetClosestPlayerCarryingACollectible(CarrierLocation)) // any player carrying an object
 			{
@@ -983,7 +997,7 @@ simulated function DrawIconAtLocation(KFHUDBase hud, Canvas drawCanvas, Texture2
 			return;
 		}
 
-		
+
 		//draw icon
 		drawCanvas.SetPos(ScreenPos.X, ScreenPos.Y + 12); //offset to better align with the other icons in the player's name tag
 		drawCanvas.DrawTile(icon, CollectActorIconSize * ResModifier, CollectActorIconSize * ResModifier, 0, 0, 256, 256);
@@ -1086,7 +1100,7 @@ defaultproperties
 
 	bRandomSequence=true
 	NumDesiredActiveCollectibles=(1)
-	
+
 	CollectActorIconSize=32.f;
 	CollectibleIconAvailableColor=(R=0, G=255, B=0, A=255);
 	CollectibleIconCarriedColor=(R=185, G=70, B=255, A=255);
@@ -1107,4 +1121,6 @@ defaultproperties
 	ObjectiveIcon=Texture2D'Objectives_UI.UI_Objectives_ObjectiveMode'
 
 	CollectibleResetTimerLength=60.0f;
+
+	DeliveryCloseAnimDelay=7.f
 }

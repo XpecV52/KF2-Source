@@ -207,7 +207,7 @@ defaultproperties
     NoticeString="NOTICE!"
     AcceptString="Accept"
     DeclineString="Decline"
-    BonusDoshString="BONUS DOSH"
+    BonusDoshString="REWARDS"
     YesString="YES"
     NoString="NO"
     DisbandPartyString="DISBAND PARTY"

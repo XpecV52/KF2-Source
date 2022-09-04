@@ -552,7 +552,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_9590
+    BoneBreakerBodyParts(1)=.!=_9676
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -569,7 +569,7 @@ Parameter name: index
     Passives(0)=(Title="Perk Weapon Damage",Description="Increase perk weapon damage %x% per level",IconPath="")
     Passives(1)=(Title="Bullet Resistance",Description="Increase resistance to projectile damage 5% plus %x% per level",IconPath="")
     Passives(2)=(Title="Movement Speed",Description="Increase movement speed %x% every five levels",IconPath="")
-    Passives(3)=(Title="Recoil",Description="Reduce perk weapon recoil %x% per level",IconPath="")
+    Passives(3)=(Title="Recoil Reduction",Description="Reduce perk weapon recoil %x% per level",IconPath="")
     Passives(4)=(Title="Zedtime Reload",Description="Increase reload speed in Zed time %x% per level",IconPath="")
     SkillCatagories[0]="Techniques"
     SkillCatagories[1]="Skill"
@@ -602,7 +602,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_1182
+    BodyPartsCanStumble(1)=.!=_1193
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4

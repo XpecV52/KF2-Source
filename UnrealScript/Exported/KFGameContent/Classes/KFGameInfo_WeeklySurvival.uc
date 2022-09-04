@@ -614,6 +614,7 @@ defaultproperties
    OutbreakEventClass=Class'kfgamecontent.KFOutbreakEvent_Weekly'
    GameName="Weekly Outbreak"
    PlayerControllerClass=Class'KFGame.KFPlayerController_WeeklySurvival'
+   GameReplicationInfoClass=Class'kfgamecontent.KFGameReplicationInfo_WeeklySurvival'
    Name="Default__KFGameInfo_WeeklySurvival"
    ObjectArchetype=KFGameInfo_Survival'kfgamecontent.Default__KFGameInfo_Survival'
 }

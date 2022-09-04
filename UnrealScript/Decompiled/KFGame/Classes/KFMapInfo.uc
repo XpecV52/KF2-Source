@@ -185,6 +185,7 @@ var(SurvivalObjectives) array<int> RandomObjectiveWavesToDisable;
 var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 var() string TraderVoiceGroupClassPath;
 var() string TraderVoiceGroupClassPath_Endless;
+var() string TraderVoiceGroupClassPath_Objective;
 /** Mutator code class that can override various map settings */
 var() class<KFMapMutator> MapMutatorClass;
 /** Objectives to use in Objective Mode */

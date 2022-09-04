@@ -52,7 +52,7 @@ simulated event ReplicatedEvent(name VarName)
     }
     else
     {
-        super(Actor).ReplicatedEvent(VarName);
+        super(KFWeapon).ReplicatedEvent(VarName);
     }
 }
 

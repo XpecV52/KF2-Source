@@ -930,6 +930,126 @@ event float GetModifiedDamage()
 	return SplashDamage * DamageModifier;
 }
 
+event SprayMeshHit(Actor TouchActor)
+{
+	local float Dmg, DistToHitActor;
+	local vector Momentum;
+	local int TruncDamage;
+	local TraceHitInfo HitInfo;
+	local Pawn TouchPawn;
+
+	if (OwningKFPawn != none)
+	{
+		Momentum = TouchActor.Location - OwningKFPawn.Location;
+	}
+	else if (DummyFireParent != none)
+	{
+		Momentum = TouchActor.Location - DummyFireParent.Location;
+	}
+	DistToHitActor = VSize(Momentum);
+	Momentum *= (MomentumScale / DistToHitActor);
+
+	Dmg = GetDamage(DistToHitActor, TouchActor);
+	TruncDamage = int(Dmg);
+	if (TruncDamage > 0)
+	{
+		HitInfo.PhysMaterial = HighestSprayMeshContactThisTick.PhysicalMaterial;
+		HitInfo.BoneName = HighestSprayMeshContactThisTick.BoneName;
+
+		TouchPawn = Pawn(TouchActor);
+		if (bDebugDirectDamage && TouchPawn != none)
+		{
+			LogInternal("["$WorldInfo.TimeSeconds$"] Damaging "$TouchActor.Name$" for "$TruncDamage$", Dist: "$VSize(TouchActor.Location - OwningKFPawn.Location));
+		}
+
+		// Let script know that we hit something
+		if (TouchPawn != none)
+		{
+			ProcessDirectImpact();
+		}
+
+		TouchActor.TakeDamage(TruncDamage, InstigatorController, TouchActor.Location, Momentum, MyDamageType, HitInfo, self);
+	}
+}
+
+event SplashHit(Actor SplashTouchActor)
+{
+	local vector Momentum;
+	local float Dmg;
+	local bool bFoundHitActor, bDamagedRecently;
+	local int i, RoundedDamage;
+	local DamagedActorInfo NewDamage;
+	local Pawn SplashTouchPawn;
+	local TraceHitInfo TraceInfo;
+
+	Dmg = GetModifiedDamage();  // base damage
+	Dmg *= Clamp(1.f - VSize(SplashTouchActor.Location - LastSplashLoc) / SplashDamageRadius, 0.f, 1.f) ** SplashDamageFalloffExponent;   // scaled by dist
+
+	// Scale the damage to the instigator by the SplashDamageInstigatorDamageScale
+	if (OwningKFPawn != none && SplashTouchActor == OwningKFPawn)
+	{
+		Dmg *= SplashDamageInstigatorDamageScale;
+	}
+
+	// Find any actors that we've damaged recently so we can do their damage at the specified rate
+	// Also clear out any actors from the array that have been around too long
+	for (i = RecentlyDamagedActors.Length - 1; i >= 0; i--)
+	{
+		if ((WorldInfo.TimeSeconds - RecentlyDamagedActors[i].HitTime) > 1.f)
+		{
+			RecentlyDamagedActors.Remove(i, 1);
+			continue;
+		}
+
+		if (!bFoundHitActor && RecentlyDamagedActors[i].HitActor == SplashTouchActor)
+		{
+			bFoundHitActor = TRUE;
+
+			// Only damage at a specified rate, so return if it's too soon
+			if ((WorldInfo.TimeSeconds - RecentlyDamagedActors[i].HitTime) < DamageInterval)
+			{
+				bDamagedRecently = TRUE;
+
+				if (bDebugSplashDamage)
+				{
+					LogInternal("UpdateSplashes() for "$SplashTouchActor.Name$", damaged too recently DamageInterval: "$DamageInterval$", Time Since Last Damage: "$(WorldInfo.TimeSeconds - RecentlyDamagedActors[i].HitTime));
+				}
+			}
+		}
+	}
+
+	// Don't damage this actor again if it was damaged too recently
+	if (!bDamagedRecently)
+	{
+		RoundedDamage = Round(Dmg);
+		if (RoundedDamage > 0)
+		{
+			NewDamage.HitActor = SplashTouchActor;
+			NewDamage.HitTime = WorldInfo.TimeSeconds;
+
+			// Store any actors that get damage
+			RecentlyDamagedActors.AddItem(NewDamage);
+
+			if (OwningKFPawn != none)
+			{
+				Momentum = (SplashTouchActor == OwningKFPawn) ? vector(OwningKFPawn.Rotation) : Normal(SplashTouchActor.Location - OwningKFPawn.Location);
+			}
+			else
+			{
+				Momentum = Normal(SplashTouchActor.Location - Location);
+			}
+			Momentum *= MomentumScale;
+
+			SplashTouchPawn = Pawn(SplashTouchActor);
+			if (bDebugSplashDamage && SplashTouchPawn != none)
+			{
+				LogInternal("["$WorldInfo.TimeSeconds$"] Splash Damaging "$SplashTouchActor.Name$" for "$RoundedDamage$", Dist: "$VSize(SplashTouchActor.Location - OwningKFPawn.Location));
+			}
+			SplashTouchActor.TakeDamage(RoundedDamage, InstigatorController, SplashTouchActor.Location, Momentum, MyDamageType, TraceInfo, self);
+		}
+	}
+}
+
 defaultproperties
 {
    bAllowSprayLights=True

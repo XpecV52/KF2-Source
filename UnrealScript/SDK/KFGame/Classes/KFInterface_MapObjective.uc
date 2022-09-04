@@ -13,7 +13,7 @@ interface KFInterface_MapObjective;
 // Status
 simulated function ActivateObjective();
 simulated function DeactivateObjective();
-simulated function GrantReward(KFPawn_Human PlayerToReward);
+simulated function GrantReward(KFPlayerReplicationInfo KFPRI, KFPlayerController KFPC);
 simulated function bool IsActive();
 simulated function bool UsesProgress();
 simulated function int GetDoshReward();
@@ -33,6 +33,7 @@ simulated function float GetActivationPctChance();
 simulated function float GetSpawnRateMod();
 
 simulated function string GetProgressText();
+simulated function bool GetProgressTextIsDosh();
 
 simulated function string GetLocalizedDescription();
 simulated function string GetLocalizedShortDescription();
@@ -41,6 +42,8 @@ simulated function GetLocalizedStatus(out string statusMessage, out int bWarning
 
 simulated function bool GetIsMissionCritical();
 simulated function float GetDoshValueModifier();
+function NotifyZedKilled(Controller Killer, Pawn KilledPawn, bool bIsBoss);
+simulated function NotifyObjectiveSelected();
 
 // HUD
 simulated function bool ShouldDrawIcon();

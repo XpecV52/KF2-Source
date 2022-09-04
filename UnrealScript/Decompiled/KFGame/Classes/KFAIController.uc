@@ -1248,7 +1248,7 @@ function KFPawn CheckForEnemiesInFOV(float MaxRange, float MinFOV, float MaxFOV,
         {
             continue;            
         }
-        if(!KFP.IsAliveAndWell() || KFP.GetTeamNum() == GetTeamNum())
+        if((!KFP.IsAliveAndWell() || KFP.GetTeamNum() == GetTeamNum()) || !KFP.CanAITargetThisPawn(Pawn.Controller))
         {
             continue;            
         }
@@ -5227,7 +5227,7 @@ function NotifyFriendlyAIDamageTaken(Controller DamagerController, int Damage, A
     local int Idx;
     local Pawn BlockerPawn;
 
-    if(DamageType.default.bIgnoreAggroOnDamage)
+    if((DamageType == none) || DamageType.default.bIgnoreAggroOnDamage)
     {
         return;
     }

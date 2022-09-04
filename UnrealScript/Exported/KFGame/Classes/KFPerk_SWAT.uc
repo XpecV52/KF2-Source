@@ -104,7 +104,7 @@ function ApplySkillsToPawn()
 }
 
 simulated event float GetZedTimeSpeedScale()
-{ 
+{
 	return IsSWATEnforcerActive() ? SWATEnforcerZedTimeSpeedScale : 1.f;
 }
 
@@ -441,27 +441,16 @@ simulated function OnBump(Actor BumpedActor, KFPawn_Human BumpInstigator, vector
 
 			if (CanBump)
 			{
-				//First priority is a knockdown if it is allowed
-				if (KFPM.CanDoSpecialMove(SM_Knockdown))
+				if (KFPM.IsHeadless())
 				{
-					KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
-					KFPM.Knockdown(BumpedVelocity * 3, vect(1, 1, 1), KFPM.Location, 1000, 100);
+					KFPM.TakeDamage(KFPM.HealthMax, BumpInstigator.Controller, BumpInstigator.Location,
+						Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
 				}
-				//If they can't be knocked down, but are headless, kill them outright
-				else if (KFPM.IsHeadless())
-				{
-					KFPM.TakeDamage(KFPM.HealthMax, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
-				}
-				//Last priority is a stumble as a backup
-				else if (KFPM.CanDoSpecialMove(SM_Stumble))
-				{
-					KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
-					KFPM.DoSpecialMove(SM_Stumble, , , class'KFSM_Stumble'.static.PackRandomSMFlags(KFPM));
-				}
-				// can't move them, but at least damage them
 				else
 				{
-					KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
+					KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location,
+						Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
+					KFPM.Knockdown(BumpedVelocity * 3, vect(1, 1, 1), KFPM.Location, 1000, 100);
 				}
 			}
 		}
@@ -673,6 +662,7 @@ defaultproperties
    ZedTimeModifyingStates(0)="WeaponFiring"
    ZedTimeModifyingStates(1)="WeaponBurstFiring"
    ZedTimeModifyingStates(2)="WeaponSingleFiring"
+   ZedTimeModifyingStates(3)="WeaponAltFiringAuto"
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_MP7'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_SWAT'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_SWAT'

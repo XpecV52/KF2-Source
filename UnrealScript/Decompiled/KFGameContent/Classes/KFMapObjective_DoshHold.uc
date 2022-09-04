@@ -35,6 +35,12 @@ var() const float DoshPenaltyCheckTimer;
 /** Penalties for various states of the volume */
 var() const int NoHumansPenalty;
 var() const int ZedsPenalty;
+/** Whether the trail shows up during the previous trader time */
+var() bool bUseEarlyTrail;
+var transient bool bRemindPlayers;
+/** Percentage of the wave's zeds that needs to be killed to obtain the max reward */
+var() const float PctOfWaveZedsKilledForMaxReward;
+var transient float RewardPerZed;
 var() WaveLengthPctChances ActivatePctChances[3];
 /** Sound event to play when objective is activated (overrides default trader dialog for this event) */
 var() AkEvent ActivationSoundEventOverride;
@@ -61,7 +67,17 @@ var() AkEvent RemindPlayersSoundEvent;
 /** How often to remind players about the objective if they aren't engaged in completing it */
 var() float RemindPlayersTime;
 var transient float PrevWaveProgress;
-var transient bool bRemindPlayers;
+
+simulated event ReplicatedEvent(name VarName)
+{
+    if(VarName == 'bActive')
+    {
+        if(!bActive)
+        {
+            DeactivateObjective();
+        }
+    }
+}
 
 event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vector HitNormal)
 {
@@ -78,6 +94,48 @@ event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocation, Vecto
     }
 }
 
+function NotifyZedKilled(Controller Killer, Pawn KilledPawn, bool bIsBoss)
+{
+    local int I;
+    local KFGameInfo KFGI;
+    local KFGameReplicationInfo KFGRI;
+
+    if(Role == ROLE_Authority)
+    {
+        if(bActive)
+        {
+            KFGI = KFGameInfo(WorldInfo.Game);
+            if(KFGI != none)
+            {
+                I = 0;
+                J0x6C:
+
+                if(I < TouchingHumans.Length)
+                {
+                    if(Killer == TouchingHumans[I].Controller)
+                    {
+                        if(RewardPerZed == float(0))
+                        {
+                            KFGRI = KFGameReplicationInfo(WorldInfo.Game.GameReplicationInfo);
+                            RewardPerZed = float(GetMaxDoshReward()) / (PctOfWaveZedsKilledForMaxReward * float(KFGRI.WaveTotalAICount));
+                        }
+                        CurrentRewardAmount = FMin(CurrentRewardAmount + RewardPerZed, float(GetMaxDoshReward()));
+                        goto J0x191;
+                    }
+                    ++ I;
+                    goto J0x6C;
+                }
+            }
+            J0x191:
+
+            if((GetProgress()) >= 1)
+            {
+                DeactivateObjective();
+            }
+        }
+    }
+}
+
 function CheckBonusState()
 {
     local int I, PlayerCount;
@@ -87,7 +145,6 @@ function CheckBonusState()
     if(TouchingHumans.Length < PlayerThresholds[PlayerCount])
     {
         bDangerState = true;
-        CurrentRewardAmount -= float(NoHumansPenalty);
         if(bRemindPlayers)
         {
             if(RemindPlayersSoundEvent != none)
@@ -103,7 +160,7 @@ function CheckBonusState()
         if(TouchingZeds.Length > 0)
         {
             I = TouchingZeds.Length - 1;
-            J0x146:
+            J0x130:
 
             if(I >= 0)
             {
@@ -112,23 +169,10 @@ function CheckBonusState()
                     TouchingZeds.Remove(I, 1;
                 }
                 -- I;
-                goto J0x146;
-            }
-            if(TouchingZeds.Length > ZedThresholds[PlayerCount])
-            {
-                bDangerState = true;
-                CurrentRewardAmount -= float(ZedsPenalty);
+                goto J0x130;
             }
         }
     }
-    if(CurrentRewardAmount <= float(0))
-    {
-        if(KFGameInfo_Survival(WorldInfo.Game) != none)
-        {
-            KFGameInfo_Survival(WorldInfo.Game).ObjectiveFailed();
-        }
-    }
-    CurrentRewardAmount = FMax(CurrentRewardAmount, 0);
     UpdateMeshArrayState();
 }
 
@@ -165,6 +209,8 @@ simulated function ActivateObjective()
     super.ActivateObjective();
     if(Role == ROLE_Authority)
     {
+        CurrentRewardAmount = 0;
+        RewardPerZed = 0;
         PlayerCount = Clamp(KFGameInfo(WorldInfo.Game).GetLivingPlayerCount(), 1, 6) - 1;
         if(TouchingHumans.Length >= PlayerThresholds[PlayerCount])
         {
@@ -233,7 +279,6 @@ simulated function DeactivateObjective()
 {
     local KFPawn_Human KFPH;
     local KFPlayerController KFPC;
-    local array<KFPawn_Human> CachedHumans;
     local bool bOneHumanAlive;
 
     super.DeactivateObjective();
@@ -250,18 +295,14 @@ simulated function DeactivateObjective()
             if(KFPH.IsAliveAndWell())
             {
                 bOneHumanAlive = true;
-            }
-            CachedHumans.AddItem(KFPH;            
+            }            
         }        
-        if(CurrentRewardAmount > float(0))
+        if((CurrentRewardAmount > float(0)) && bOneHumanAlive)
         {
-            if(bOneHumanAlive)
+            foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
             {
-                foreach CachedHumans(KFPH,)
-                {
-                    GrantReward(KFPH);                    
-                }                
-            }
+                GrantReward(KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo), KFPC);                
+            }            
         }
         if(bOneHumanAlive)
         {
@@ -388,58 +429,49 @@ simulated function string GetLocalizedRequirements()
     return (Localize("Objectives", default.RequirementsLocKey, "KFGame")) @ string(PlayerThresholds[PlayerCount]);
 }
 
-simulated function GetLocalizedStatus(out string StatusMessage, out int bWarning, out int bNotification)
+simulated function GetLocalizedStatus(out string StatusMessage, out int bWarning, out int bNotification);
+
+simulated function string GetProgressText()
 {
-    StatusMessage = "";
-    if(bTooFewPlayers)
-    {
-        StatusMessage = Localize("Objectives", "TooFewPlayers", LocalizationPackageName);
-        bWarning = 1;
-        return;        
-    }
-    else
-    {
-        if(bTooManyZeds)
-        {
-            StatusMessage = Localize("Objectives", "TooManyZeds", LocalizationPackageName);
-            bWarning = 1;
-            return;
-        }
-    }
+    return string(GetMaxDoshReward());
 }
 
-simulated function bool HasFailedObjective()
+simulated function bool GetProgressTextIsDosh()
 {
-    return (GetProgress()) <= 0;
+    return true;
+}
+
+simulated function bool ShouldShowObjectiveHUD()
+{
+    return !IsComplete();
 }
 
 defaultproperties
 {
     PenaltyStartupTimer=20
-    DoshPenaltyCheckTimer=1
+    DoshPenaltyCheckTimer=0.25
     NoHumansPenalty=5
     ZedsPenalty=1
+    PctOfWaveZedsKilledForMaxReward=0.75
     ActivatePctChances[0]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=1,PctChances[5]=1,PctChances[6]=1,PctChances[7]=1,PctChances[8]=1,PctChances[9]=1,PctChances[10]=1)
     ActivatePctChances[1]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=0.35,PctChances[5]=0.35,PctChances[6]=0.35,PctChances[7]=1,PctChances[8]=1,PctChances[9]=1,PctChances[10]=1)
     ActivatePctChances[2]=(PctChances=0,PctChances[1]=0.35,PctChances[2]=0.35,PctChances[3]=0.35,PctChances[4]=0.35,PctChances[5]=0.35,PctChances[6]=0.35,PctChances[7]=0.35,PctChances[8]=0.35,PctChances[9]=0.35,PctChances[10]=0.35)
     RemindPlayersTime=30
     PlayerThresholds[0]=1
     PlayerThresholds[1]=1
-    PlayerThresholds[2]=2
-    PlayerThresholds[3]=2
-    PlayerThresholds[4]=3
-    PlayerThresholds[5]=3
-    ZedThresholds[0]=6
-    ZedThresholds[1]=5
-    ZedThresholds[2]=4
-    ZedThresholds[3]=3
-    ZedThresholds[4]=2
-    ZedThresholds[5]=1
+    PlayerThresholds[2]=1
+    PlayerThresholds[3]=1
+    PlayerThresholds[4]=1
+    PlayerThresholds[5]=1
     LocalizationKey="DoshHold"
     NameShortLocKey="DoshHold"
     DescriptionLocKey="DescriptionDoshHold"
     DescriptionShortLocKey="DescriptionDoshHoldShort"
     RequirementsLocKey="RequiredDoshHold"
+    DoshRewards=/* Array type was not detected. */
+    XPRewards=/* Array type was not detected. */
+    DoshDifficultyScalars=/* Array type was not detected. */
+    XPDifficultyScalars=/* Array type was not detected. */
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end

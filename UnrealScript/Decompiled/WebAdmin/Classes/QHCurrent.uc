@@ -331,7 +331,7 @@ function handleCurrent(WebAdminQuery Q)
     }
     Q.Response.Subst("teams", getCurrentTeamInfo(Q));
     Q.Response.Subst("server.name", Class'WebAdminUtils'.static.HTMLEscape(webadmin.WorldInfo.Game.GameReplicationInfo.ServerName));
-    buildSortedPRI(Q.Request.GetVariable("sortby", "score"), Q.Request.GetVariable("reverse", "true") ~= "true");
+    buildSortedPRI(Q.Request.GetVariable("sortby", "score"), Q.Request.GetVariable("reverse", "true") ~= "true", false);
     Cnt = 0;
     foreach sortedPRI(PRI, Idx)
     {

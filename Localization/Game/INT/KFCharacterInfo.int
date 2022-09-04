@@ -40,6 +40,7 @@ BodyMesh6="Commando Chicken"
 BodyMesh7="Holiday Pajama Outfit"
 BodyMesh8="Vault Pajama Outfit"
 BodyMesh9="Cyberpunk"
+BodyMesh10="Witch Hunter"
 HeadMesh0="Gas Mask"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -121,6 +122,13 @@ BodySkin3="Lime"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_MrsFoster_archetype.BodyMesh10]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="White"
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="White"
@@ -203,6 +211,7 @@ BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
+BodyMesh10="Witch Hunter"
 HeadMesh0="Beard Power!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -287,6 +296,14 @@ BodySkin0="Teal"
 BodySkin1="Black"
 BodySkin2="Green"
 BodySkin3="Lime"
+BodySkin4="Red"
+BodySkin5="White"
+
+[CHR_Jagerhorn_archetype.BodyMesh10]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
@@ -386,6 +403,7 @@ BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
+BodyMesh10="Witch Hunter"
 HeadMesh0="Scully Mask"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -472,6 +490,14 @@ BodySkin3="Lime"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_DJSkully_archetype.BodyMesh10]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="White"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Blackest Black"
 HeadSkin1="Xtra Red"
@@ -515,6 +541,7 @@ BodyMesh7="Holiday Pajama Outfit"
 BodyMesh8="Vault Pajama Outfit"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
+BodyMesh11="Witch Hunter"
 HeadMesh0="Hair"
 
 [chr_briar_archetype.BodyMesh0]
@@ -607,6 +634,14 @@ BodySkin3="Lime"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_briar_archetype.BodyMesh11]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="White"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Highlights"
@@ -644,6 +679,7 @@ BodyMesh7="Holiday Pajama Outfit"
 BodyMesh8="Vault Pajama Outfit"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
+BodyMesh11="Witch Hunter"
 HeadMesh0="Gas Mask"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -738,6 +774,14 @@ BodySkin0="Teal"
 BodySkin1="Black"
 BodySkin2="Green"
 BodySkin3="Lime"
+BodySkin4="Red"
+BodySkin5="White"
+
+[CHR_MrFoster_archetype.BodyMesh11]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
@@ -898,6 +942,7 @@ BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
+BodyMesh10="Witch Hunter"
 HeadMesh0="Face"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -982,6 +1027,14 @@ BodySkin3="Lime"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_Coleman_archetype.BodyMesh10]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="White"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
@@ -1018,6 +1071,7 @@ BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
+BodyMesh10="Witch Hunter"
 HeadMesh0="Hair"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1101,6 +1155,14 @@ BodySkin0="Teal"
 BodySkin1="Black"
 BodySkin2="Green"
 BodySkin3="Lime"
+BodySkin4="Red"
+BodySkin5="White"
+
+[CHR_Alberts_archetype.BodyMesh10]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
@@ -2000,6 +2062,7 @@ BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
+BodyMesh10="Witch Hunter"
 HeadMesh0="Face"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2095,6 +2158,14 @@ BodySkin3="Lime"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_Masterson_archetype.BodyMesh10]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="White"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka is a conflicted individual with a serious death-wish problem. Born in Okinawa, he was brought up around Americans in the military. Moving to mainland Japan with his family, the Americanized Tanaka failed to fit in and took up drama classes. After college he moved to LA, playing cliched bit-parts in bad movies, before moving on to Europe trying to find more 'serious' work. All he got there were bad-guy roles in French gangster films and some tats. Now, in the apocalypse, he seems to be confusing his own reality with some of the movie parts he has played. This seems to involve visions of the Yakuza, demon, and a Hollywood take on bushido."
@@ -2109,6 +2180,7 @@ BodyMesh7="Holiday Pajama Outfit"
 BodyMesh8="Vault Pajama Outfit"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
+BodyMesh11="Witch Hunter"
 HeadMesh0="Hair"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2211,6 +2283,14 @@ BodySkin3="Lime"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_Tanaka_archetype.BodyMesh11]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="White"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Helmet"
 AttachmentSkin0="Rising Sun"
@@ -2251,6 +2331,7 @@ BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
+BodyMesh10="Witch Hunter"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2346,6 +2427,14 @@ BodySkin3="Lime"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_Ana_archetype.BodyMesh10]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="White"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D Glasses"
 AttachmentSkin0="Anaglyph 3D"
@@ -2372,6 +2461,7 @@ BodyMesh7="Holiday Pajama Outfit"
 BodyMesh8="Vault Pajama Outfit"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
+BodyMesh11="Witch Hunter"
 HeadMesh0="Hair"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2464,6 +2554,14 @@ BodySkin3="Lime"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_mark_archetype.BodyMesh11]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="White"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
 HeadSkin1="Bloody 5 O'Clock"
@@ -2487,6 +2585,7 @@ BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
+BodyMesh10="Witch Hunter"
 HeadMesh0="Face"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2574,6 +2673,14 @@ BodySkin3="Lime"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_alan_archetype.BodyMesh10]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="White"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
 HeadSkin1="Ginger! Really?"
@@ -2604,6 +2711,7 @@ BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
+BodyMesh10="Witch Hunter"
 HeadMesh0="Hair"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2688,6 +2796,14 @@ BodySkin3="Lime"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_strasser_archetype.BodyMesh10]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
+BodySkin4="Red"
+BodySkin5="White"
+
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Dark Steel"
 HeadSkin1="Blond Steel"
@@ -2736,6 +2852,9 @@ BodySkin2="Bio Cola"
 BodySkin3="Horzine Depot"
 BodySkin4="Tripwire"
 BodySkin5="ZedEx"
+
+[CHR_Knight_archetype.BodyMesh2]
+BodySkin0="Placeholder Name"
 
 [chr_knight_archetype.HeadMesh0]
 HeadSkin0="To Battle!"
@@ -2857,6 +2976,7 @@ BodyMesh6="Holiday Pajama Outfit"
 BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
+BodyMesh10="Witch Hunter"
 HeadMesh0="Default Head"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -2942,6 +3062,14 @@ BodySkin0="Teal"
 BodySkin1="Black"
 BodySkin2="Green"
 BodySkin3="Lime"
+BodySkin4="Red"
+BodySkin5="White"
+
+[CHR_rockabilly_archetype.BodyMesh10]
+BodySkin0="Brown"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
@@ -5033,4 +5161,173 @@ AttachmentSkin2="Precious"
 Attachment="Steampunk Boiler Hat"
 AttachmentSkin0="Standard"
 AttachmentSkin1="Chrome"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Boneyard_AfflictionMask_ARCH]
+Attachment="Affliction"
+AttachmentSkin0="Bone"
+AttachmentSkin1="Bloody"
+AttachmentSkin2="Bleached"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Boneyard_AgonyMask_ARCH]
+Attachment="Agony"
+AttachmentSkin0="Bone"
+AttachmentSkin1="Bloody"
+AttachmentSkin2="Bleached"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Boneyard_AnguishMask_ARCH]
+Attachment="Anguish"
+AttachmentSkin0="Bone"
+AttachmentSkin1="Bloody"
+AttachmentSkin2="Bleached"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Boneyard_DespairMask_ARCH]
+Attachment="Despair"
+AttachmentSkin0="Bone"
+AttachmentSkin1="Bloody"
+AttachmentSkin2="Bleached"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Boneyard_DistressMask_ARCH]
+Attachment="Distress"
+AttachmentSkin0="Bone"
+AttachmentSkin1="Bloody"
+AttachmentSkin2="Bleached"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Boneyard_MiseryMask_ARCH]
+Attachment="Misery"
+AttachmentSkin0="Bone"
+AttachmentSkin1="Bloody"
+AttachmentSkin2="Bleached"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Boneyard_PassionMask_ARCH]
+Attachment="Passion"
+AttachmentSkin0="Bone"
+AttachmentSkin1="Bloody"
+AttachmentSkin2="Bleached"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Boneyard_SorrowMask_ARCH]
+Attachment="Sorrow"
+AttachmentSkin0="Bone"
+AttachmentSkin1="Bloody"
+AttachmentSkin2="Bleached"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Boneyard_TormentMask_ARCH]
+Attachment="Torment"
+AttachmentSkin0="Bone"
+AttachmentSkin1="Bloody"
+AttachmentSkin2="Bleached"
+AttachmentSkin3="Precious"
+
+[Cosmetic_Boneyard_TortureMask_ARCH]
+Attachment="Torture"
+AttachmentSkin0="Bone"
+AttachmentSkin1="Bloody"
+AttachmentSkin2="Bleached"
+AttachmentSkin3="Precious"
+
+[Cosmetic_WitchHunter_Hat_ARCH]
+Attachment="Witch Hunter Hat"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Purple"
+AttachmentSkin4="Red"
+AttachmentSkin5="White"
+
+[Cosmetic_Halloween_BatCatHat_ARCH]
+Attachment="Halloween Bat Cat Hat"
+AttachmentSkin0="Purple"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_PrivatePauldron_ARCH]
+Attachment="Halloween Private Pauldron"
+AttachmentSkin0="Iron"
+AttachmentSkin1="Silver"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_OfficerPauldron_ARCH]
+Attachment="Halloween Officer Pauldron"
+AttachmentSkin0="Iron"
+AttachmentSkin1="Silver"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_PilgrimHat_ARCH]
+Attachment="Halloween Pilgrim Hat"
+AttachmentSkin0="Black"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_BiohazardHat_ARCH]
+Attachment="Halloween Biohazard Hat"
+AttachmentSkin0="Black"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_MonsterWitchHat_ARCH]
+Attachment="Halloween Monster Witch Hat"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Red"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_PumpkinClawJaw_ARCH]
+Attachment="Halloween Pumpkin Claw Jaw"
+AttachmentSkin0="Orange"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_BatCatBackpack_ARCH]
+Attachment="Halloween Bat Cat Backpack"
+AttachmentSkin0="Purple"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_PumpkinHat_ARCH]
+Attachment="Halloween Pumpkin Hat"
+AttachmentSkin0="Orange"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_WebShoulderPad_ARCH]
+Attachment="Halloween Web Shoulderpad"
+AttachmentSkin0="White"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_InfinityScarf_ARCH]
+Attachment="Halloween Infinity Scarf"
+AttachmentSkin0="Black"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_PlagueMask_ARCH]
+Attachment="Halloween Plague Mask"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_ScarecrowMask_ARCH]
+Attachment="Halloween Scarecrow Mask"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_StitchedMouthMask_ARCH]
+Attachment="Stitched Mouth Mask"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Purple"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Halloween_GarlicClotBackpack_ARCH]
+Attachment="Garlic Clot Backpack"
+AttachmentSkin0="Black"
+AttachmentSkin1="Purple"
 AttachmentSkin2="Precious"

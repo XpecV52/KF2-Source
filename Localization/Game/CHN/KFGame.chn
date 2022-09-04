@@ -11,7 +11,7 @@ DifficultyStrings[0]="普通"
 DifficultyStrings[1]="困难"
 DifficultyStrings[2]="自杀"
 DifficultyStrings[3]="人间炼狱"
-BonusDoshString="奖励钱币"
+BonusDoshString="奖励"
 LengthStrings[0]="短（4 波）"
 LengthStrings[1]="中（7 波）"
 LengthStrings[2]="长（10 波）"
@@ -142,9 +142,9 @@ CompleteMapString="在地图中完成比赛："
 KillZedsString="杀死丧尸："
 KillBossString="Boss击杀数："
 KillBossDescriptionString="在生存或每周中"
-VersusKillsString=杀死对手玩家：
-DealVersusDamageString=伤害对手玩家：
-VersusCompletionString=完成比赛：
+VersusKillsString="杀死对手玩家："
+DealVersusDamageString="伤害对手玩家："
+VersusCompletionString="完成比赛："
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="无法找到比赛"
@@ -204,8 +204,8 @@ SoloString="玩离线单人模式"
 TutorialString="基准训练"
 
 [StartMenuHelperText]
-modeList0="与设定波数、由电脑控制的丧尸战斗"
-modeList1="在本周特殊的游戏模式中与设定波数、由电脑控制的丧尸战斗"
+modeList0="与设定好的人工智能控制的丧尸波次战斗"
+modeList1="在本周特殊的游戏模式中与设定好的人工智能控制的丧尸波次战斗"
 modeList2="霍因佣兵 vs 玩家和人工智能控制的丧尸波"
 modeList3="与无尽的人工智能控制的丧尸波次战斗"
 modeList4="与设定波数、由电脑控制的丧尸战斗，同时完成任务目标"
@@ -1321,6 +1321,7 @@ GBA_SwitchWeapon3="近战武器"
 GBA_SwitchWeapon4="装备"
 GBA_VoteYes="投票赞成（保留）"
 GBA_VoteNo="投票反对（保留）"
+GBA_RequestSkipTrader="请求跳过商人"
 
 GBA_VoiceCommReqHealing="请求治疗"
 GBA_VoiceCommReqDosh="请求资金"
@@ -1740,7 +1741,7 @@ Vampire="吸血鬼"
 VampireDescription="使用神射武器每杀死一个丧尸可以治愈 4 点生命。使用神射近战武器时攻击速度提升 20%。"
 
 Speed="屠夫"
-SpeedDescription="使用神射近战武器时攻击速度提升 20%，伤害增加 20%。"
+SpeedDescription="使用天赋近战武器时攻击速度提升 20%，伤害增加 20%。"
 
 Resistance="抗性"
 ResistanceDescription="对所有伤害获得 20% 抗性。对毒药和声波伤害获得额外 20% 抗性。"
@@ -1773,7 +1774,7 @@ Passives[0]=(Title="神射武器伤害",Description="神射武器伤害每级增
 Passives[1]=(Title="敌人隐形和血条检测",Description="以 5 米为基础，每级加 %x% 米");
 Passives[2]=(Title="丧尸时间刷新",Description="丧尸时间每 5 级增加 %x%");
 Passives[3]=(Title="填弹速度",Description="神射武器填弹速度每 5 级增加 %x%%");
-Passives[4]=(Title="夜视能力",Description="手电筒 - 和夜视镜");
+Passives[4]=(Title="后坐力降低",Description="每级减少后座力 %x%");
 Passives[5]=(Title="隐藏丧尸现形",Description="使队员能够看见隐形敌人");
 
 EXPAction1="造成突击兵武器伤害"
@@ -1798,7 +1799,7 @@ AmmoVest="有备无患"
 AmmoVestDescription="每个神射武器可以多携带 20% 弹药。"
 
 HollowPoints="空尖弹"
-HollowPointsDescription="提升神射武器伤害 30%，降低后座力 50%。"
+HollowPointsDescription="提升神射武器的伤害 30%。"
 
 EatLead="吃我的子弹"
 EatLeadDescription="提升神射武器的容量弹匣 100%。"
@@ -1835,7 +1836,7 @@ Speed="震波部队"
 SpeedDescription="提升神射武器填弹速度并提高击倒力 10%。"
 
 DirectHit="高冲击弹"
-DirectHitDescription="提升爆炸武器的直接攻击伤害 25%。"
+DirectHitDescription="爆炸武器的直接攻击伤害提升 25%。"
 
 Ammo="额外弹"
 AmmoDescription="提升爆炸神射武器的最大弹药容量 5。这不适用于 C4。"
@@ -1969,7 +1970,7 @@ SkillCatagories[4]="大师技术"
 Passives[0]=(Title="神射武器伤害",Description="神射武器伤害每级增加 %x%");
 Passives[1]=(Title="子弹抗性",Description="对投射物伤害的抗性提高 5%，每级增加 %x%");
 Passives[2]=(Title="移动速度",Description="每 5 级提升移动速度 %x%");
-Passives[3]=(Title="后座力",Description="每级减少神射武器的后座力 %x%");
+Passives[3]=(Title="后坐力降低",Description="每级减少神射武器的后座力 %x%");
 Passives[4]=(Title="丧尸时间重新加载",Description="每级提高丧尸时间的重新加载速度 %x%");
 
 ShootnMove="稳定"
@@ -2015,7 +2016,7 @@ SkillCatagories[3]="装备"
 SkillCatagories[4]="大师技术"
 
 Passives[0]=(Title="爆头伤害",Description="每级提升爆头伤害 %x%");
-Passives[1]=(Title="后座力",Description="每级减少后座力 %x%");
+Passives[1]=(Title="后坐力降低",Description="每级减少后座力 %x%");
 Passives[2]=(Title="武器切换",Description="武器切换速度每级增加 %x%");
 
 StationaryAim="狙击手"
@@ -2656,10 +2657,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="永恒的蒸汽",DescriptionStrin
 SpecialEventObjectiveInfoList[3]=(TitleString="致命往返之旅",DescriptionString="在目标模式的困难或更高难度下通关丧尸登陆")
 SpecialEventObjectiveInfoList[4]=(TitleString="寒冷归来",DescriptionString="在目标模式的困难或更高难度下通关前哨")
 
-AllCompleteRewardDescriptionString="男女蒸汽朋克服装"
+AllCompleteRewardDescriptionString="蒸汽朋克服装 + M99 AMR 皮肤"
 
-ChanceDropDescriptionStrings[0]="奖品券"
+ChanceDropDescriptionStrings[0]="奖励劵"
 ChanceDropDescriptionStrings[1]="黄金券"
+
+[KFGFxFall2019ObjectivesContainer]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="疯人院突击",DescriptionString="在生存困难或以上难度的阿什伍德疯人院中成功击败任意首领")
+SpecialEventObjectiveInfoList[1]=(TitleString="长期治疗",DescriptionString="在无尽困难或以上难度的阿什伍德疯人院中成功抵御 15 波丧尸")
+SpecialEventObjectiveInfoList[2]=(TitleString="每周检查",DescriptionString="完成每周阿什伍德疯人院")
+SpecialEventObjectiveInfoList[3]=(TitleString="清理病房",DescriptionString="在阿什伍德疯人院击杀 1500 个丧尸")
+SpecialEventObjectiveInfoList[4]=(TitleString="投弹！",DescriptionString="在目标模式的困难或更高难度下通关核武器")
+
+AllCompleteRewardDescriptionString="Kriss | 超越地平线 | 太空精英"
+
+ChanceDropDescriptionStrings[0]="招待券"
+ChanceDropDescriptionStrings[1]="黄金招待券"
 
 ;============================================
 ; Daily Localization
@@ -3246,6 +3261,9 @@ DisplayName="泄洪口"
 
 [KF-SteamFortress KFMapSummary]
 DisplayName="蒸汽堡垒"
+
+[KF-AshwoodAsylum KFMapSummary]
+DisplayName="阿什伍德疯人院"
 
 [KFMapInfo]
 ; defaults

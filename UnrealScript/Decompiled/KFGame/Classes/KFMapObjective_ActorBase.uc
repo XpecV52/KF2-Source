@@ -101,20 +101,20 @@ simulated function DeactivateObjective()
     }
 }
 
-simulated function GrantReward(KFPawn_Human PlayerToReward)
+simulated function GrantReward(KFPlayerReplicationInfo KFPRI, KFPlayerController KFPC)
 {
-    if(KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo) == none)
+    if(KFPRI == none)
     {
         return;
     }
-    if(KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).bOnlySpectator)
+    if(KFPRI.bOnlySpectator)
     {
         return;
     }
-    KFPlayerReplicationInfo(PlayerToReward.PlayerReplicationInfo).AddDosh(GetDoshReward());
-    if(KFPlayerController(PlayerToReward.Controller) != none)
+    KFPRI.AddDosh(GetDoshReward());
+    if(KFPC != none)
     {
-        KFPlayerController(PlayerToReward.Controller).ClientMapObjectiveCompleted(float(GetXPReward()));
+        KFPC.ClientMapObjectiveCompleted(float(GetXPReward()));
     }
 }
 
@@ -295,6 +295,11 @@ simulated function float GetActivationPctChance();
 
 simulated function string GetProgressText();
 
+simulated function bool GetProgressTextIsDosh()
+{
+    return false;
+}
+
 simulated function string GetLocalizedRequirements();
 
 simulated function bool GetIsMissionCritical();
@@ -303,6 +308,10 @@ simulated function float GetDoshValueModifier()
 {
     return DoshValueModifier;
 }
+
+function NotifyZedKilled(Controller Killer, Pawn KilledPawn, bool bIsBoss);
+
+simulated function NotifyObjectiveSelected();
 
 simulated function bool ShouldDrawIcon();
 

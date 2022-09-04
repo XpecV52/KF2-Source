@@ -59,6 +59,7 @@ defaultproperties
 	ColumnIds.Add(STATID_ACHIEVE_ShoppingSpreeCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_SpillwayCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_SteamFortressCollectibles)
+	ColumnIds.Add(STATID_ACHIEVE_AsylumCollectibles)
 
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky5, Name="AchievementMrPerky5"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky10, Name = "AchievementMrPerky10"))
@@ -106,4 +107,5 @@ defaultproperties
 	ColumnMappings.Add((Id=STATID_ACHIEVE_ShoppingSpreeCollectibles,Name="AchievementCollectShoppingSpree"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_SpillwayCollectibles,Name="AchievementCollectSpillway"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_SteamFortressCollectibles,Name="AchievementCollectSteamFortress"))
+	ColumnMappings.Add((Id=STATID_ACHIEVE_AsylumCollectibles,Name="AchievementCollectAsylum"))
 }

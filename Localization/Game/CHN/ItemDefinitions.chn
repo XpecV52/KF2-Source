@@ -25,8 +25,11 @@ MrsFosterBundleName="福斯特夫人"
 SteampunkOutfitBundleName="蒸汽朋克装备包"
 CyberpunkOutfitBundleName="赛博朋克服装包"
 CyberpunkOutfitObjectiveBundleName="赛博朋克服装目标物品包"
+HalloweenOutfitBundleName="巫师猎人服装包"
 HeadshotFXBundle1Name="1 号爆头特效同捆"
 HeadshotFXBundle2Name="爆头特效包 2"
+RhinoRevolverBundleName="犀牛式左轮手枪包"
+IonThrusterBundleName="离子推进器包"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="霍因装饰品供应箱 | 系列 #4 青铜物品包"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="霍因装饰品供应箱 | 系列 #4 白银物品包"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="霍因装饰品供应箱 | 系列 #4 黄金物品包"
@@ -97,25 +100,48 @@ DragonwaveEncryptedUSBGoldBundlePackName="巨龙波动加密USB黄金包"
 SteampunkEncryptedUSBBronzeBundlePackName="蒸汽朋克加密 USB 青铜包"
 SteampunkEncryptedUSBSilverBundlePackName="蒸汽朋克加密 USB 白银包"
 SteampunkEncryptedUSBGoldBundlePackName="蒸汽朋克加密 USB 黄金包"
-HorzineSupplyWeaponCrateSeries15BronzeBundlePackName="霍因武器供应箱 | 系列 #15 青铜包"
-HorzineSupplyWeaponCrateSeries15SilverBundlePackName="霍因武器供应箱 | 系列 #15 白银包"
-HorzineSupplyWeaponCrateSeries15GoldBundlePackName="霍因武器供应箱 | 系列 #15 黄金包"
-HorzineSupplyCosmeticCrateSeries6BronzeBundlePackName="霍因装饰品供应箱 | 系列 #6 青铜包"
-HorzineSupplyCosmeticCrateSeries6SilverBundlePackName="霍因装饰品供应箱 | 系列 #6 白银包"
-HorzineSupplyCosmeticCrateSeries6GoldBundlePackName="霍因装饰品供应箱 | 系列 #6 黄金包"
-HorzineSupplyCosmeticCrateSeries10BronzeBundlePackName="霍因装饰品供应箱 | 系列 #10 青铜包"
-HorzineSupplyCosmeticnCrateSeries10SilverBundlePackName="霍因装饰品供应箱 | 系列 #10 白银包"
-HorzineSupplyCosmeticCrateSeries10GoldBundlePackName="霍因装饰品供应箱 | 系列 #10 黄金包"
+HorzineSupplyWeaponCrateSeries15BronzeBundlePackName="霍因武器供应箱 | 系列 #15 青铜物品包"
+HorzineSupplyWeaponCrateSeries15SilverBundlePackName="霍因武器供应箱 | 系列 #15 白银物品包"
+HorzineSupplyWeaponCrateSeries15GoldBundlePackName="霍因武器供应箱 | 系列 #15 黄金物品包"
+HorzineSupplyCosmeticCrateSeries6BronzeBundlePackName="霍因装饰品供应箱 | 系列 #6 青铜物品包"
+HorzineSupplyCosmeticCrateSeries6SilverBundlePackName="霍因装饰品供应箱 | 系列 #6 白银物品包"
+HorzineSupplyCosmeticCrateSeries6GoldBundlePackName="霍因装饰品供应箱 | 系列 #6 黄金物品包"
+HorzineSupplyCosmeticCrateSeries10BronzeBundlePackName="霍因装饰品供应箱 | 系列 #10 青铜物品包"
+HorzineSupplyCosmeticCrateSeries10SilverBundlePackName="霍因装饰品供应箱 | 系列 #10 白银物品包"
+HorzineSupplyCosmeticCrateSeries10GoldBundlePackName="霍因装饰品供应箱 | 系列 #10 黄金物品包"
 HorzineSupplyCrateSeriesDARBronzeBundlePackName="霍因供应箱 | DAR 系列青铜包"
 HorzineSupplyCrateSeriesDARSilverBundlePackName="霍因供应箱 | DAR 系列白银包"
 HorzineSupplyCrateSeriesDARGoldBundlePackName="霍因供应箱 | DAR 系列黄金包"
 HorzineSupplyCrateSeriesProjectHBronzeBundlePackName="霍因供应箱 | H 计划系列青铜包"
 HorzineSupplyCrateSeriesProjectHSilverBundlePackName="霍因供应箱 | H 计划系列白银包"
 HorzineSupplyCrateSeriesProjectHGoldBundlePackName="霍因供应箱 | H 计划系列黄金包"
-DragonKoiTier1BundlePackName="霍因供应箱 | H 计划系列黄金包"
-DragonKoiTier2BundlePackName="霍因供应箱 | H 计划系列黄金包"
+DragonKoiTier1BundlePackName="龙锦鲤 1 级物品包"
+DragonKoiTier2BundlePackName="龙锦鲤 2 级物品包"
 ClotBackpackBundleName="血凝丧尸背包物品包"
-
+DragonKoiTier3BundlePackName="龙锦鲤 3 级物品包"
+DragonKoiTier4BundlePackName="龙锦鲤 4 级物品包"
+DragonKoiCompleteBundlePackName="龙锦鲤完整武器皮肤套装"
+HorzineSupplyCosmeticCrateSeries11BronzeBundlePackName="霍因装饰品供应箱 | 系列 #11 青铜物品包"
+HorzineSupplyCosmeticCrateSeries11SilverBundlePackName="霍因装饰品供应箱 | 系列 #11 白银物品包"
+HorzineSupplyCosmeticCrateSeries11GoldBundlePackName="霍因装饰品供应箱 | 系列 #11 黄金物品包"
+HorzineSupplyWeaponCrateSeries16BronzeBundlePackName="霍因武器供应箱 | 系列 #16 青铜物品包"
+HorzineSupplyWeaponCrateSeries16SilverBundlePackName="霍因武器供应箱 | 系列 #16 白银物品包"
+HorzineSupplyWeaponCrateSeries16GoldBundlePackName="霍因武器供应箱 | 系列 #16 黄金物品包"
+HorzineSupplyWeaponCrateSeries11BronzeBundlePackName="霍因武器供应箱 | 系列 #11 青铜物品包"
+HorzineSupplyWeaponCrateSeries11SilverBundlePackName="霍因武器供应箱 | 系列 #11 白银物品包"
+HorzineSupplyWeaponCrateSeries11GoldBundlePackName="霍因武器供应箱 | 系列 #11 黄金物品包"
+HorzineSupplyCrateSeriesBoneyardBronzeBundlePackName="霍因供应箱 | 墓地系列青铜物品包"
+HorzineSupplyCrateSeriesBoneyardSilverBundlePackName="霍因供应箱 | 墓地系列白银物品包"
+HorzineSupplyCrateSeriesBoneyardGoldBundlePackName="霍因供应箱 | 墓地系列黄金物品包"
+BeyondHorizonEncryptedUSBBronzeBundlePackName="超越地平线加密 USB 青铜物品包"
+BeyondHorizonEncryptedUSBSilverBundlePackName="超越地平线加密 USB 白银物品包"
+BeyondHorizonEncryptedUSBGoldBundlePackName="超越地平线加密 USB 黄金物品包"
+PremiumHalloweenBronzeBundlePackName="高级万圣节青铜券物品包"
+PremiumHalloweenSilverBundlePackName="高级万圣节白银券物品包"
+PremiumHalloweenGoldBundlePackName="高级万圣节黄金券物品包"
+NeonMKIIIEncryptedUSBBronzeBundlePackName="霓虹灯 MKIII 加密 USB 青铜物品包"
+NeonMKIIIEncryptedUSBSilverBundlePackName="霓虹灯 MKIII 加密 USB 白银物品包"
+NeonMKIIIEncryptedUSBGoldBundlePackName="霓虹灯 MKIII 加密 USB 黄金物品包"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="包括布莱尔的伦敦警服（含 5 种皮肤风格）和监护人头盔装饰配件（含 3 种皮肤风格）。"
@@ -137,8 +163,11 @@ MrsFosterBundleDescription="扮演福斯特夫人，伦敦最成功的商人之�
 SteampunkOutfitBundleDescription="包括女性和男性蒸汽朋克装备（每种均含 6 种皮肤风格）。与大多数角色兼容。"
 CyberpunkOutfitBundleDescription="内含男性赛博朋克服装（每种均含6种皮肤风格）。大部分角色均可兼容使用。"
 CyberpunkOutfitObjectiveBundleDescription="内含男性赛博朋克服装（每种均含1种皮肤风格）。大部分角色均可兼容使用。"
+HalloweenOutfitBundleDescription="内含巫师猎人服装（包含 6 款皮肤风格）。大部分角色均可兼容使用。"
 HeadshotFXBundle1Description="内含五种种爆头特效。奢侈财富，滑稽举动，派对时刻，一枪钟情及悚然幽灵。"
 HeadshotFXBundle2Description="内含5款爆头特效。卡通爆炸、烟花、花瓣、程序错误和霍因电路。"
+RhinoRevolverBundleDescription="穿透丧尸如切瓜砍菜。犀牛左轮手枪专为枪手和神射手的天赋所设计。拥有 5 款独特的皮肤种类。"
+IonThrusterBundleDescription="烧烤的绝佳装备。离子推进器专为狂战士天赋设计，拥有 5 款独特的皮肤种类。"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="包含5个霍因装饰品供应箱 | 系列 #4以及相应的5把钥匙。 "
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="包含10个霍因装饰品供应箱 | 系列 #4以及相应的10把钥匙。"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="包含20个霍因装饰品供应箱 | 系列 #4以及相应的20把钥匙。"
@@ -159,7 +188,7 @@ HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="包含10个霍因武
 HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="包含20个霍因武器供应箱 | 系列 #4以及相应的20把钥匙。"
 HorzineSupplyWeaponCrateSeries7BronzeBundlePackDescription="包含5个霍因武器供应箱 | 系列 #7以及相应的5把钥匙。"
 HorzineSupplyWeaponCrateSeries7SilverBundlePackDescription="包含10个霍因武器供应箱 | 系列 #7以及相应的10把钥匙。"
-HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription=包含20个霍因武器供应箱 | 系列 #7以及相应的20把钥匙。"
+HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription="包含20个霍因武器供应箱 | 系列 #7以及相应的20把钥匙。"
 HorzineSupplyWeaponCrateSeries8BronzeBundlePackDescription="包含5个霍因武器供应箱 | 系列 #8以及相应的5把钥匙。"
 HorzineSupplyWeaponCrateSeries8SilverBundlePackDescription="包含10个霍因武器供应箱 | 系列 #8以及相应的10把钥匙。"
 HorzineSupplyWeaponCrateSeries8GoldBundlePackDescription="包含20个霍因武器供应箱 | 系列 #8以及相应的20把钥匙。"
@@ -175,7 +204,7 @@ HorzineSupplyWeaponCrateSeries14GoldBundlePackDescription="包含20个霍因武�
 HorzineSupplyCrateSeries15BronzeBundlePackDescription="包含5个霍因供应箱 | 系列 #15以及相应的5把钥匙。"
 HorzineSupplyCrateSeries15SilverBundlePackDescription="包含10个霍因供应箱 | 系列 #15以及相应的10把钥匙。"
 HorzineSupplyCrateSeries15GoldBundlePackDescription="包含20个霍因供应箱 | 系列 #15以及相应的20把钥匙。"
-HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription=包含5个霍因供应箱 | 系列 赛博武士以及相应的5把钥匙。"
+HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription="包含5个霍因供应箱 | 系列 赛博武士以及相应的5把钥匙。"
 HorzineSupplyCrateSeriesCyberSamuraiSilverBundlePackDescription="包含10个霍因供应箱 | 系列 赛博武士以及相应的10把钥匙。"
 HorzineSupplyCrateSeriesCyberSamuraiGoldBundlePackDescription="包含20个霍因供应箱 | 系列 赛博武士以及相应的20把钥匙。"
 EmoteCrateSeries1BronzeBundlePackDescription="包含5个表情供应箱 | 系列 #1以及相应的5把钥匙。"
@@ -189,7 +218,7 @@ NeonEncryptedUSBSilverBundlePackDescription="包含10个霓虹灯加密 USB以�
 NeonEncryptedUSBGoldBundlePackDescription="包含20个霓虹灯加密 USB以及相应的20把钥匙。"
 WeaponCollectorsUSBBronzeBundlePackDescription="包含5个武器收集者包1USB以及相应的5把钥匙。"
 WeaponCollectorsUSBSilverBundlePackDescription="包含10个武器收集者包1USB以及相应的10把钥匙。"
-WeaponCollectorsUSBGoldBundlePackDescription=包含20个武器收集者包1USB以及相应的20把钥匙。"
+WeaponCollectorsUSBGoldBundlePackDescription="包含20个武器收集者包1USB以及相应的20把钥匙。"
 NeonMKIIEncryptedUSBBronzeBundlePackDescription="包含5个霓虹灯 MKII 加密 USB以及相应的5把钥匙。"
 NeonMKIIEncryptedUSBSilverBundlePackDescription="包含10个霓虹灯 MKII 加密 USB以及相应的10把钥匙。"
 NeonMKIIEncryptedUSBGoldBundlePackDescription="包含20个霓虹灯 MKII 加密 USB以及相应的20把钥匙。"
@@ -206,12 +235,12 @@ DragonwaveEncryptedUSBGoldBundlePackDescription="包含20个霓虹巨龙波动�
 HorzineSupplyCrateSeriesDeityBronzeBundlePackDescription="包含5个霍因供应箱 | 神明系列箱以及5把相应的钥匙。"
 HorzineSupplyCrateSeriesDeitySilverBundlePackDescription="包含10个霍因供应箱 | 神明系列箱以及5把相应的钥匙。"
 HorzineSupplyCrateSeriesDeityGoldBundlePackDescription="包含20个霍因供应箱 | 神明系列箱以及5把相应的钥匙。"
-HorzineSupplyCosmeticCrateSeries6BronzeBundlePackDescription="包含 5 个霍因装饰品供应箱 | 系列 #6 供应箱，以及 5 把相应的钥匙。"
-HorzineSupplyCosmeticCrateSeries6SilverBundlePackDescription="包含 10 个霍因装饰品供应箱 | 系列 #6 供应箱，以及 10 把相应的钥匙。"
-HorzineSupplyCosmeticCrateSeries6GoldBundlePackDescription="包含 20 个霍因装饰品供应箱 | 系列 #6 供应箱，以及 20 把相应的钥匙。"
-HorzineSupplyCosmeticCrateSeries10BronzeBundlePackDescription="包含 5 个霍因装饰品供应箱 | 系列 #10 供应箱，以及 5 把相应的钥匙。"
+HorzineSupplyCosmeticCrateSeries6BronzeBundlePackDescription="包含5个霍因装饰品供应箱 | 系列 #6以及相应的5把钥匙。 "
+HorzineSupplyCosmeticCrateSeries6SilverBundlePackDescription="包含10个霍因装饰品供应箱 | 系列 #6以及相应的10把钥匙。"
+HorzineSupplyCosmeticCrateSeries6GoldBundlePackDescription="包含20个霍因装饰品供应箱 | 系列 #6以及相应的20把钥匙。"
+HorzineSupplyCosmeticCrateSeries10BronzeBundlePackDescription="包含5个霍因装饰品供应箱 | 系列 #6以及相应的5把钥匙。 "
 HorzineSupplyCosmeticCrateSeries10SilverBundlePackDescription="包含 10 个霍因装饰品供应箱 | 系列 #10 供应箱，以及 10 把相应的钥匙。"
-HorzineSupplyCosmeticCrateSeries10GoldBundlePackDescription="包含 20 个霍因装饰品供应箱 | 系列 #10 供应箱，以及 20 把相应的钥匙。"
+HorzineSupplyCosmeticCrateSeries10GoldBundlePackDescription="包含20个霍因装饰品供应箱 | 系列 #10以及相应的20把钥匙。"
 HorzineSupplyWeaponCrateSeries15BronzeBundlePackDescription="包含 5 个霍因武器供应箱 | 系列 #15 供应箱，以及 5 把相应的钥匙。"
 HorzineSupplyWeaponCrateSeries15SilverBundlePackDescription="包含 10 个霍因武器供应箱 | 系列 #15 供应箱，以及 10 把相应的钥匙。"
 HorzineSupplyWeaponCrateSeries15GoldBundlePackDescription="包含 20 个霍因武器供应箱 | 系列 #15 供应箱，以及 20 把相应的钥匙。"
@@ -227,6 +256,30 @@ SteampunkEncryptedUSBGoldBundlePackDescription="包含 20 个蒸汽朋克加密 
 DragonKoiTier1BundlePackDescription="包括 10 套针对所有神射的 1 级珍贵稀有龙锦鲤皮肤。这包括：Crovel、AR15、HX25、喷火枪、1858 左轮手枪、HMTech-101 手枪、温彻斯特 1894、SG500、MP7 和 9MM。"
 DragonKoiTier2BundlePackDescription="包括 10 套针对所有神射的 2 级珍贵稀有龙锦鲤皮肤。这包括：武士刀、L85A2、M79、喷火式战斗机、M1911、HMTech-201 SMG、十字弓、霰弹枪、汤姆逊冲锋枪、MP5RAS。"
 ClotBackpackBundleDescription="包含所有之前发行的季度血凝丧尸背包配件，包括其彩色款式。"
+DragonKoiTier3BundlePackDescription="包括 10 套针对所有 3 级天赋的珍贵稀有龙锦鲤皮肤。其中包括：M4、P90、冻结喷射器、M14EBR、HMTech-301 霰弹枪、沙漠之鹰、火焰喷射器、M16 M203、AK12 和粉碎机。"
+DragonKoiTier4BundlePackDescription="包括 10 套针对所有 4 级天赋的珍贵稀有龙锦鲤皮肤。其中包括：Scar、RPG-7、微波枪、.500 马格南左轮手枪、轨道炮、HMTech-01 突击步枪、AA-12、千瓦杀手、Kriss 和开膛锯。"
+DragonKoiCompleteBundlePackDescription="包括 40 套针对所有 1 至 4 级天赋的珍贵稀有龙锦鲤皮肤。这包括：Crovel、AR15、HX25、喷火枪、1858 左轮手枪、HMTech-101 手枪、温彻斯特 1894、SG500、MP7 和 9MM、武士刀、L85A2、M79、喷火、M1911、HMTech-201 冲锋枪、十字弓、霰弹枪、汤姆逊冲锋枪、MP5RAS、M4、P90、冻结喷射器、M14EBR、HMTech-301 霰弹枪、沙漠之鹰、火焰喷射器、M16、M203、AK12、粉碎机、Scar、RPG-7、微波枪、.500 马格南左轮手枪、轨道炮、HMTech-01 突击步枪、AA-12、千瓦杀手、Kriss 和开膛锯。"
+HorzineSupplyCosmeticCrateSeries11BronzeBundlePackDescription="包含5个霍因装饰品供应箱 | 系列 #11以及相应的5把钥匙。 "
+HorzineSupplyCosmeticCrateSeries11SilverBundlePackDescription="包含10个霍因装饰品供应箱 | 系列 #11以及相应的10把钥匙。"
+HorzineSupplyCosmeticCrateSeries11GoldBundlePackDescription="包含20个霍因装饰品供应箱 | 系列 #11以及相应的20把钥匙。"
+HorzineSupplyWeaponCrateSeries16BronzeBundlePackDescription="包含5个霍因武器供应箱 | 系列 #16以及相应的5把钥匙。"
+HorzineSupplyWeaponCrateSeries16SilverBundlePackDescription="包含10个霍因武器供应箱 | 系列 #16以及相应的10把钥匙。"
+HorzineSupplyWeaponCrateSeries16GoldBundlePackDescription="包含20个霍因武器供应箱 | 系列 #16以及相应的20把钥匙。"
+HorzineSupplyWeaponCrateSeries11BronzeBundlePackDescription="包含5个霍因武器供应箱 | 系列 #11以及相应的5把钥匙。"
+HorzineSupplyWeaponCrateSeries11SilverBundlePackDescription="包含10个霍因武器供应箱 | 系列 #11以及相应的10把钥匙。"
+HorzineSupplyWeaponCrateSeries11GoldBundlePackDescription="包含20个霍因武器供应箱 | 系列 #11以及相应的20把钥匙。"
+BeyondHorizonEncryptedUSBBronzeBundlePackDescription="包含5个超越地平线加密USB以及相应的5把钥匙。"
+BeyondHorizonEncryptedUSBSilverBundlePackDescription="包含10个超越地平线加密USB以及相应的10把钥匙。"
+BeyondHorizonEncryptedUSBGoldBundlePackDescription="包含20个超越地平线加密USB以及相应的20把钥匙。"
+HorzineSupplyCrateSeriesBoneyardBronzeBundlePackDescription="包含5个霍因供应箱 | 墓地系列箱以及5把相应的钥匙。"
+HorzineSupplyCrateSeriesBoneyardSilverBundlePackDescription="包含10个霍因供应箱 | 墓地系列箱以及10把相应的钥匙。"
+HorzineSupplyCrateSeriesBoneyardGoldBundlePackDescription="包含20个霍因供应箱 | 墓地系列箱以及20把相应的钥匙。"
+PremiumHalloweenTicketBronzeBundlePackDescription="包含5张高级万圣节招待券。低价限时供应！"
+PremiumHalloweenTicketSilverBundlePackDescription="包含10张高级万圣节招待券和1张额外的万圣节黄金券。低价限时供应！"
+PremiumHalloweenTicketGoldBundlePackDescription="包含20张高级万圣节招待券和3张额外的万圣节黄金券。低价限时供应！"
+NeonMKIIIEncryptedUSBBronzeBundlePackDescription="包含5个霓虹灯 MKIII 加密 USB以及相应的5把钥匙。"
+NeonMKIIIEncryptedUSBSilverBundlePackDescription="包含10个霓虹灯 MKIII 加密 USB以及相应的10把钥匙。"
+NeonMKIIIEncryptedUSBGoldBundlePackDescription="包含20个霓虹灯 MKIII 加密 USB以及相应的20把钥匙。"
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="为可参加游戏的人物 PC 罗伯-布莱尔获得一套新的经典伦敦警服。包括布莱尔的伦敦警服（含 5 种皮肤风格）和监护人头盔装饰配件（含 3 种皮肤风格）。"
@@ -325,6 +378,8 @@ CyberpunkHelmetName="赛博朋克头盔"
 CyberpunkOutfitName="赛博朋克服装"
 CyberpunkHelmetEventName="赛博朋克活动头盔"
 CyberpunkOutfitEventName="赛博朋克活动服装"
+HalloweenHatName="巫师猎人帽"
+HalloweenOutfitName="巫师猎人服装"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="中将比尔·马斯特森 | 赛博朋克 | 绿色"
@@ -491,7 +546,8 @@ HorzineSupplyCrateSeriesDARName="霍因供应箱 | D.A.R.系列。"
 HorzineSupplyCrateSeriesLocoName="霍因供应箱 | 疯狂系列"
 HorzineSupplyCrateSeriesCyberSamuraiName="霍因供应箱 | 系列 赛博武士"
 HorzineSupplyCrateSeriesDiety="霍因供应箱 | 神明系列"
-HorzineSupplyCrateSeriesProjectH="霍因供应箱 | H 计划系列 #1 系列"
+HorzineSupplyCrateSeriesProjectHName="霍因供应箱 | H 计划系列 #1 系列"
+HorzineSupplyCrateSeriesBoneyardName="霍因供应箱 | 墓地系列"
 
 
 ;Crate Descriptions
@@ -542,7 +598,9 @@ HorzineSupplyCrateSeriesCyberSamuraiDescription="需要赛博武士霍因供应�
 
 HorzineSupplyCrateSeriesDeityDescription="需要霍因供应箱钥匙才能打开。包含一件稀有或品质更佳的如下物品<br><font color="#4b69cd">装甲兜帽 | 蓝色</font><br><font color="#4b69cd">装甲兜帽 | 绿色</font><br><font color="#4b69cd">无面面具 | 蓝色</font><br><font color="#4b69cd">无面面具 | 绿色</font><br><font color="#4b69cd">科幻兜帽 | 蓝色</font><br><font color="#4b69cd">科幻兜帽 | 绿色</font><br><font color="#4b69cd">无表情面具 | 蓝色</font><br><font color="#4b69cd">无表情面具 | 绿色</font><br><font color="#6600a1">装甲兜帽 | 红色</font><br><font color="#6600a1">无面面具 | 红色</font><br><font color="#6600a1">科幻兜帽 | 红色</font><br><font color="#6600a1">无表情面具 | 红色</font><br><font color="#6600a1">芭斯特 | 红色</font><br><font color="#6600a1">芭斯特 | 黄色</font><br><font color="#6600a1">芭斯特 | 绿色</font><br><font color="#6600a1">芭斯特 | 蓝色</font><br><font color="#6600a1">索贝克 | 红色</font><br><font color="#6600a1">索贝克 | 黄色</font><br><font color="#6600a1">索贝克 | 绿色</font><br><font color="#6600a1">索贝克 | 蓝色</font><br><font color="#8847ff">装甲兜帽 | 黑色</font><br><font color="#8847ff">无面面具 | 黑色</font><br><font color="#8847ff">无面面具 | 白色</font><br><font color="#8847ff">科幻兜帽 | 黑色</font><br><font color="#8847ff">无表情面具 | 黑色</font><br><font color="#8847ff">无表情面具 | 白色</font><br><font color="#8847ff">阿努比斯 | 红色</font><br><font color="#8847ff">阿努比斯 | 蓝色</font><br><font color="#8847ff">阿努比斯 | 绿色</font><br><font color="#8847ff">阿努比斯 | 黄色</font><br><font color="#8847ff">拉 | 红色</font><br><font color="#8847ff">拉 | 蓝色</font><br><font color="#8847ff">拉 | 绿色</font><br><font color="#8847ff">拉 | 黄色</font><br><font color="#caab05">或一件超级稀有的宝物饰品！</font>"
 
-HorzineSupplyCrateSeriesProjectHDescription="需要 H 计划系列 #1 霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">H-01 计划 | 基础</font><br><font color="#4b69cd">H-01 计划 | 开心 | 绿色 </font><br><font color="#4b69cd">H-01 计划 | 开心 打开 | 绿色 </font><br><font color="#4b69cd">H-01 计划 | 扑克脸 | 蓝色</font><br><font color="#4b69cd">H-01 计划 | 扑克脸 打开 | 蓝色</font><br><font color="#4b69cd">H-01 计划 | 不开心 | 红色</font><br><font color="#4b69cd">H-01 计划 | 不开心 打开 | 红色</font><br><font color="#4b69cd">H-02 计划 | 基础</font><br><font color="#4b69cd">H-02 计划 | 开心 | 绿色 </font><br><font color="#4b69cd">H-02 计划 | 开心 打开 | 绿色 </font><br><font color="#4b69cd">H-02 计划 | 扑克脸 | 蓝色</font><br><font color="#4b69cd">H-02 计划 | 扑克脸 打开 | 蓝色</font><br><font color="#4b69cd">H-02 计划 | 不开心 | 红色</font><br><font color="#4b69cd">H-02 计划 | 不开心 打开 | 红色</font><br><font color="#6600a1">H-01 计划 | 开心 | 红色</font><br><font color="#6600a1">H-01 计划 | 开心 打开 | 红色</font><br><font color="#6600a1">H-01 计划 | 扑克脸 | 绿色 </font><br><font color="#6600a1">H-01 计划 | 扑克脸 打开 | 绿色 </font><br><font color="#6600a1">H-01 计划 | 不开心 | 蓝色</font><br><font color="#6600a1">H-01 计划 | 不开心 打开 | 蓝色</font><br>.<font color="#6600a1">H-02 计划 | 开心 | 红色</font><br><font color="#6600a1">H-02 计划 | 开心 打开 | 红色</font><br><font color="#6600a1">H-02 计划 | 扑克脸 | 绿色 </font><br><font color="#6600a1">H-02 计划 | 扑克脸 打开 | 绿色 </font><br><font color="#6600a1">H-02 计划 | 不开心 | 蓝色</font><br><font color="#6600a1">H-02 计划 | 不开心 打开 | 蓝色</font><br><font color="#8847ff">H-01 计划 | 开心 | 蓝色</font><br><font color="#8847ff">H-01 计划 | 开心 打开 | 蓝色</font><br><font color="#8847ff">H-01 计划 | 扑克脸 | 红色</font><br><font color="#8847ff">H-01 计划 | 扑克脸 打开 | 红色</font><br><font color="#8847ff">H-01 计划 | 不开心 | 绿色 </font><br><font color="#8847ff">H-01 计划 | 不开心 打开 | 绿色 </font><br><font color="#8847ff">H-02 计划 | 开心 | 蓝色</font><br><font color="#8847ff">H-02 计划 | 开心 打开 | 蓝色</font><br><font color="#8847ff">H-02 计划 | 扑克脸 | 红色</font><br><font color="#8847ff">H-02 计划 | 扑克脸 打开 | 红色</font><br><font color="#8847ff">H-02 计划 | 不开心 | 绿色 </font><br><font color="#8847ff">H-02 计划 | 不开心 打开 | 绿色 </font><br><font color="#caab05">或一种极其稀有宝贵的配件！</font>"
+HorzineSupplyCrateSeriesProjectHDescription="需要 H 计划系列 #1 霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">H-01 计划 | 基础</font><br><font color="#4b69cd">H-01 计划 | 开心 </font><br><font color="#4b69cd">H-01 计划 | 开心 打开 </font><br><font color="#4b69cd">H-01 计划 | 扑克脸</font><br><font color="#4b69cd">H-01 计划 | 扑克脸 打开</font><br><font color="#4b69cd">H-01 计划 | 不开心</font><br><font color="#4b69cd">H-01 计划 | 不开心 打开</font><br><font color="#4b69cd">H-02 计划 | 基础</font><br><font color="#4b69cd">H-02 计划 | 开心</font><br><font color="#4b69cd">H-02 计划 | 开心 打开 </font><br><font color="#4b69cd">H-02 计划 | 扑克脸 </font><br><font color="#4b69cd">H-02 计划 | 扑克脸 打开 </font><br><font color="#4b69cd">H-02 计划 | 不开心 </font><br><font color="#4b69cd">H-02 计划 | 不开心 打开 </font><br><font color="#caab05">或一件超级稀有的宝物饰品！</font>"
+
+HorzineSupplyCrateSeriesBoneyardDescription="需要墓地系列霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">苦恼</font><br><font color="#4b69cd">痛苦</font><br><font color="#4b69cd">绝望</font><br><font color="#4b69cd">悲痛</font><br><font color="#4b69cd">悲惨</font><br><font color="#4b69cd">受难</font><br><font color="#4b69cd">磨难</font><br><font color="#4b69cd">折磨</font><br><font color="#caab05">或者一种极其稀有宝物的配件！</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="霍因供应箱钥匙 | 系列 #1"
@@ -568,6 +626,7 @@ HorzineSupplyCrateKeySeriesLocoName="霍因供应箱钥匙 | 疯狂系列"
 HorzineSupplyCrateKeySeriesCyberSamuraiName="霍因供应箱钥匙 | 系列 赛博武士"
 HorzineSupplyCrateKeySeriesDeityName="霍因供应箱钥匙 | 神明系列"
 HorzineSupplyCrateKeySeriesProjectHName="霍因供应箱钥匙 | H 计划系列 #1 系列"
+HorzineSupplyCrateKeySeriesBoneyardName="霍因供应箱钥匙 | 墓地系列"
 
 ;Key Descriptions
 HorzineSupplyCrateKeySeries1Description="该钥匙只打开霍因系列 #1 供应箱。"
@@ -593,6 +652,7 @@ HorzineSupplyCrateKeySeriesLocoDescription="该钥匙只打开霍因疯狂系列
 HorzineSupplyCrateKeySeriesCyberSamuraiDescription="该钥匙仅可打开霍因系列赛博武士供应箱。"
 HorzineSupplyCrateKeySeriesDeityDescription="该钥匙只能打开霍因神明系列供应箱。"
 HorzineSupplyCrateKeySeriesProjectHDescription="该钥匙智能打开霍因 H 计划系列 #1 供应箱。"
+HorzineSupplyCrateKeySeriesBoneyardDescription="该钥匙只打开霍因系列墓地供应箱。"
 
 ;UsbNames
 CyberboneEncryptedUSBName="网骨加密 USB"
@@ -625,6 +685,7 @@ NeonMKIVEncryptedUSBName="霓虹灯 MKIV 加密 USB"
 DragonwaveEncryptedUSBName="巨龙波动加密USB"
 NeonMKVEncryptedUSBName="霓虹MKV加密USB"
 SteampunkEncryptedUSBName="蒸汽朋克加密 USB"
+BeyondHorizonEncryptedUSBName="超越地平线加密 USB"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="需要网骨蓝图钥匙才能打开。包含以下一种稀有或更好的武器皮肤：<br><font color="#4b69cd">AR15 | 网骨</font><br><font color="#4b69cd">AK-12 | 网骨</font><br><font color="#4b69cd">AA-12 | 网骨</font><br><font color="#4b69cd">武士刀 | 网骨</font><br><font color="#8847ff">M79 | 腐败胆汁</font><br><font color="#8847ff">AR15 | 隔离</font><br><font color="#caab05">或一种极其稀有宝贵的皮肤！</font>"
@@ -687,6 +748,8 @@ NeonMKVEncryptedUSBDescription="需要霓虹 MKV蓝图钥匙才能打开。包�
 
 SteampunkEncryptedUSBDescription="需要蒸汽朋克蓝图钥匙才能打开。包含以下一种稀有或更好的武器皮肤：<br><font color="#4b69cd">汤姆逊冲锋枪 | 蒸汽朋克</font><br><font color="#4b69cd">温彻斯特 1894 | 蒸汽朋克</font><br><font color="#4b69cd">MP5RAS | 蒸汽朋克</font><br><font color="#6600a1">龙息 | 蒸汽朋克</font><br><font color="#6600a1">M79 | 蒸汽朋克</font><br><font color="#6600a1">双手剑 | 蒸汽朋克</font><br><font color="#6600A1">MAC 10 | 蒸汽朋克</font><br><font color="#8847ff">500 马格南左轮手枪 | 蒸汽朋克</font><br><font color="#8847ff">AA12 | 蒸汽朋克</font><br><font color="#8847ff">M99 | 蒸汽朋克</font><br><font color="#8847ff">沙漠之鹰 | 蒸汽朋克</font><br><font color="#caab05">或者一款极其罕见的珍贵皮肤！</font>"
 
+BeyondHorizonEncryptedUSBDescription="需要超越地平线蓝图钥匙才能打开。包含以下一种珍贵或更好的武器皮肤：<br><font color="#4b69cd">静电打击者 | 超越地平线</font><br><font color="#4b69cd">HMTech-401 突击步枪 | 超越地平线 </font><br><font color="#4b69cd">HMTech-301 霰弹枪 | 超越地平线 </font><br><font color="#6600a1">RPG-7 | 超越地平线 </font><br><font color="#6600a1">火焰喷射器 | 超越地平线 </font><br><font color="#6600a1">Scar | 超越地平线</font><br><font color="#6600A1">HMTech-201 冲锋枪</font><br><font color="#8847ff">Kriss | 超越地平线</font><br><font color="#8847ff">M99 | 超越地平线</font><br><font color="#8847ff">赫利俄斯步枪 | 超越地平线</font><br><font color="#8847ff">沙漠之鹰 | 蒸汽朋克</font><br><font color="#caab05">或者一款极其罕见的珍贵皮肤！</font>"
+
 
 ;usb key names
 CyberboneUSBKeyName="网骨 USB 钥匙"
@@ -719,6 +782,7 @@ NeonMKIVUSBKeyName="霓虹灯 MKIV USB 密钥"
 DragonwaveUSBKeyName="巨龙波动USB钥匙"
 NeonMKVUSBKeyName="霓虹MKV USB钥匙"
 SteampunkUSBKeyName="蒸汽朋克 USB 钥匙"
+BeyondHorizonUSBKeyName="超越地平线 USB 钥匙"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="该钥匙只解密网骨加密蓝图"
@@ -751,6 +815,7 @@ NeonMKIVUSBKeyDescription="该钥匙只解密霓虹灯 MKIV加密蓝图"
 DragonwaveUSBKeyDescription="该钥匙只解密霓虹MKIV加密蓝图"
 NeonMKVUSBKeyDescription="该钥匙只解密霓虹MKIV加密蓝图"
 SteampunkUSBKeyDescription="该钥匙只解密蒸汽朋克加密蓝图"
+BeyondHorizonUSBKeyDescription="该钥匙只解密超越地平线加密蓝图"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="霍因装饰品供应箱 | 系列 #1"
@@ -763,6 +828,7 @@ HorzineSupplyCosmeticCrateSeries7Name="霍因装饰品供应箱 | 系列 #7"
 HorzineSupplyCosmeticCrateSeries8Name="霍因装饰品供应箱 | 系列 #8"
 HorzineSupplyCosmeticCrateSeries9Name="霍因装饰品供应箱 | 系列 #9"
 HorzineSupplyCosmeticCrateSeries10Name="霍因装饰品供应箱 | 系列 #10"
+HorzineSupplyCosmeticCrateSeries11Name="霍因装饰品供应箱 | 系列 #11"
 HorzineSupplyWeaponSkinCrateSeries1Name="霍因武器皮肤供应箱 | 系列 #1"
 HorzineSupplyWeaponSkinCrateSeries2Name="霍因武器皮肤供应箱 | 系列 #2"
 HorzineSupplyWeaponSkinCrateSeries3Name="霍因武器皮肤供应箱 | 系列 #3"
@@ -778,7 +844,7 @@ HorzineSupplyWeaponSkinCrateSeries12Name="霍因武器皮肤供应箱 | 系列 #
 HorzineSupplyWeaponSkinCrateSeries13Name="霍因武器皮肤供应箱 | 系列 #13"
 HorzineSupplyWeaponSkinCrateSeries14Name="霍因武器皮肤供应箱 | 系列 #14"
 HorzineSupplyWeaponSkinCrateSeries15Name="霍因武器皮肤供应箱 | 系列 #15"
-
+HorzineSupplyWeaponSkinCrateSeries16Name="霍因武器皮肤供应箱 | 系列 #16"
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description="需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">Devtac 弹道面具</font><br><font color="#4b69cd">美国防毒面具</font><br><font color="#4b69cd">滑雪面具</font><br><font color="#4b69cd">棒球帽</font><br><font color="#6600a1">策略背包</font><br><font color="#6600a1">德国防毒面具</font><br><font color="#6600a1">滑雪防毒面具</font><br><font color="#6600a1">RPG7 背包</font><br><font color="#8847ff">M2 喷火器坦克</font><br><font color="#caab05">或一种极其稀有宝贵的配件！</font>"
@@ -831,9 +897,13 @@ HorzineSupplyWeaponSkinCrateSeries14Description="需要霍因供应箱钥匙才�
 
 HorzineSupplyCosmeticCrateSeries9Description="需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">装甲兜帽 | 蓝色</font><br><font color="#4b69cd">装甲兜帽 | 绿色</font><br><font color="#4b69cd">无面面具 | 蓝色</font><br><font color="#4b69cd">无面面具 | 绿色</font><br><font color="#4b69cd">科幻兜帽 | 蓝色</font><br><font color="#4b69cd">科幻兜帽 | 绿色</font><br><font color="#4b69cd">无表情面具 | 蓝色</font><br><font color="#4b69cd">无表情面具 | 绿色</font><br><font color="#6600a1">装甲兜帽 | 红色</font><br><font color="#6600a1">无面面具 | 红色</font><br><font color="#6600a1">科幻兜帽 | 红色</font><br><font color="#6600a1">无表情面具 | 红色</font><br><font color="#6600a1">芭斯特 | 红色</font><br><font color="#6600a1">芭斯特 | 黄色</font><br><font color="#6600a1">芭斯特 | 绿色</font><br><font color="#6600a1">芭斯特 | 蓝色</font><br><font color="#6600a1">索贝克 | 红色</font><br><font color="#6600a1">索贝克 | 黄色</font><br><font color="#6600a1">索贝克 | 绿色</font><br><font color="#6600a1">索贝克 | 蓝色</font><br><font color="#8847ff">装甲兜帽 | 黑色</font><br><font color="#8847ff">无面面具 | 黑色</font><br><font color="#8847ff">无面面具 | 白色</font><br><font color="#8847ff">科幻兜帽 | 黑色</font><br><font color="#8847ff">无表情面具 | 黑色</font><br><font color="#8847ff">无表情面具 | 白色</font><br><font color="#8847ff">阿努比斯 | 红色</font><br><font color="#8847ff">阿努比斯 | 蓝色</font><br><font color="#8847ff">阿努比斯 | 绿色</font><br><font color="#8847ff">阿努比斯 | 黄色</font><br><font color="#8847ff">拉 | 红色</font><br><font color="#8847ff">拉 | 蓝色</font><br><font color="#8847ff">拉 | 绿色</font><br><font color="#8847ff">拉 | 黄色</font><br><font color="#caab05">或一种极其稀有宝贵的配件！</font>"
 
-HorzineSupplyCosmeticCrateSeries10Description="需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">H-01 计划 | 基础</font><br><font color="#4b69cd">H-01 计划 | 开心 | 绿色 </font><br><font color="#4b69cd">H-01 计划 | 开心 打开 | 绿色 </font><br><font color="#4b69cd">H-01 计划 | 扑克脸 | 蓝色</font><br><font color="#4b69cd">H-01 计划 | 扑克脸 打开 | 蓝色</font><br><font color="#4b69cd">H-01 计划 | 不开心 | 红色</font><br><font color="#4b69cd">H-01 计划 | 不开心 打开 | 红色</font><br><font color="#4b69cd">H-02 计划 | 基础</font><br><font color="#4b69cd">H-02 计划 | 开心 | 绿色 </font><br><font color="#4b69cd">H-02 计划 | 开心 打开 | 绿色 </font><br><font color="#4b69cd">H-02 计划 | 扑克脸 | 蓝色</font><br><font color="#4b69cd">H-02 计划 | 扑克脸 打开 | 蓝色</font><br><font color="#4b69cd">H-02 计划 | 不开心 | 红色</font><br><font color="#4b69cd">H-02 计划 | 不开心 打开 | 红色</font><br><font color="#6600a1">H-01 计划 | 开心 | 红色</font><br><font color="#6600a1">H-01 计划 | 开心 打开 | 红色</font><br><font color="#6600a1">H-01 计划 | 扑克脸 | 绿色 </font><br><font color="#6600a1">H-01 计划 | 扑克脸 打开 | 绿色 </font><br><font color="#6600a1">H-01 计划 | 不开心 | 蓝色</font><br><font color="#6600a1">H-01 计划 | 不开心 打开 | 蓝色</font><br>.<font color="#6600a1">H-02 计划 | 开心 | 红色</font><br><font color="#6600a1">H-02 计划 | 开心 打开 | 红色</font><br><font color="#6600a1">H-02 计划 | 扑克脸 | 绿色 </font><br><font color="#6600a1">H-02 计划 | 扑克脸 打开 | 绿色 </font><br><font color="#6600a1">H-02 计划 | 不开心 | 蓝色</font><br><font color="#6600a1">H-02 计划 | 不开心 打开 | 蓝色</font><br><font color="#8847ff">H-01 计划 | 开心 | 蓝色</font><br><font color="#8847ff">H-01 计划 | 开心 打开 | 蓝色</font><br><font color="#8847ff">H-01 计划 | 扑克脸 | 红色</font><br><font color="#8847ff">H-01 计划 | 扑克脸 打开 | 红色</font><br><font color="#8847ff">H-01 计划 | 不开心 | 绿色 </font><br><font color="#8847ff">H-01 计划 | 不开心 打开 | 绿色 </font><br><font color="#8847ff">H-02 计划 | 开心 | 蓝色</font><br><font color="#8847ff">H-02 计划 | 开心 打开 | 蓝色</font><br><font color="#8847ff">H-02 计划 | 扑克脸 | 红色</font><br><font color="#8847ff">H-02 计划 | 扑克脸 打开 | 红色</font><br><font color="#8847ff">H-02 计划 | 不开心 | 绿色 </font><br><font color="#8847ff">H-02 计划 | 不开心 打开 | 绿色 </font><br><font color="#caab05">或一种极其稀有宝贵的配件！</font>"
+HorzineSupplyCosmeticCrateSeries10Description="需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">H-01 计划 | 基础</font><br><font color="#4b69cd">H-01 计划 | 开心 </font><br><font color="#4b69cd">H-01 计划 | 开心 打开 </font><br><font color="#4b69cd">H-01 计划 | 扑克脸</font><br><font color="#4b69cd">H-01 计划 | 扑克脸 打开</font><br><font color="#4b69cd">H-01 计划 | 不开心</font><br><font color="#4b69cd">H-01 计划 | 不开心 打开</font><br><font color="#4b69cd">H-02 计划 | 基础</font><br><font color="#4b69cd">H-02 计划 | 开心</font><br><font color="#4b69cd">H-02 计划 | 开心 打开 </font><br><font color="#4b69cd">H-02 计划 | 扑克脸 </font><br><font color="#4b69cd">H-02 计划 | 扑克脸 打开 </font><br><font color="#4b69cd">H-02 计划 | 不开心 </font><br><font color="#4b69cd">H-02 计划 | 不开心 打开 </font><br><font color="#caab05">或一件超级稀有的宝物饰品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries15Description="需要蒸汽朋克蓝图钥匙才能打开。包含以下一种稀有或更好的武器皮肤：<br><font color="#4b69cd">汤姆逊冲锋枪 | 蒸汽朋克</font><br><font color="#4b69cd">温彻斯特 1894 | 蒸汽朋克</font><br><font color="#4b69cd">MP5RAS | 蒸汽朋克</font><br><font color="#6600a1">龙息 | 蒸汽朋克</font><br><font color="#6600a1">M79 | 蒸汽朋克</font><br><font color="#6600a1">双手剑 | 蒸汽朋克</font><br><font color="#6600A1">MAC 10 | 蒸汽朋克</font><br><font color="#8847ff">500 马格南左轮手枪 | 蒸汽朋克</font><br><font color="#8847ff">AA12 | 蒸汽朋克</font><br><font color="#8847ff">M99 | 蒸汽朋克</font><br><font color="#8847ff">沙漠之鹰 | 蒸汽朋克</font><br><font color="#caab05">或者一款极其罕见的珍贵皮肤！</font>"
+HorzineSupplyWeaponSkinCrateSeries15Description="需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的武器皮肤：<br><font color="#4b69cd">汤姆逊冲锋枪 | 蒸汽朋克</font><br><font color="#4b69cd">温彻斯特 1894 | 蒸汽朋克</font><br><font color="#4b69cd">MP5RAS | 蒸汽朋克</font><br><font color="#6600a1">龙息 | 蒸汽朋克</font><br><font color="#6600a1">M79 | 蒸汽朋克</font><br><font color="#6600a1">双手剑 | 蒸汽朋克</font><br><font color="#6600A1">MAC 10 | 蒸汽朋克</font><br><font color="#8847ff">500 马格南左轮手枪 | 蒸汽朋克</font><br><font color="#8847ff">AA12 | 蒸汽朋克</font><br><font color="#8847ff">M99 | 蒸汽朋克</font><br><font color="#8847ff">沙漠之鹰 | 蒸汽朋克</font><br><font color="#caab05">或者一款极其罕见的珍贵皮肤！</font>"
+
+HorzineSupplyWeaponSkinCrateSeries16Description="需要霍因供应箱钥匙才能打开。包含以下一种珍贵或更好的武器皮肤：<br><font color="#4b69cd">静电打击者 | 超越地平线</font><br><font color="#4b69cd">HMTech-401 突击步枪 | 超越地平线 </font><br><font color="#4b69cd">HMTech-301 霰弹枪 | 超越地平线 </font><br><font color="#6600a1">RPG-7 | 超越地平线 </font><br><font color="#6600a1">火焰喷射器 | 超越地平线 </font><br><font color="#6600a1">Scar | 超越地平线</font><br><font color="#6600A1">HMTech-201 冲锋枪</font><br><font color="#8847ff">Kriss | 超越地平线</font><br><font color="#8847ff">M99 | 超越地平线</font><br><font color="#8847ff">赫利俄斯步枪 | 超越地平线</font><br><font color="#8847ff">沙漠之鹰 | 蒸汽朋克</font><br><font color="#caab05">或者一款极其罕见的珍贵皮肤！</font>"
+
+HorzineSupplyCosmeticCrateSeries11Description="需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的配件：<br><font color="#4b69cd">苦恼</font><br><font color="#4b69cd">痛苦</font><br><font color="#4b69cd">绝望</font><br><font color="#4b69cd">悲痛</font><br><font color="#4b69cd">悲惨</font><br><font color="#4b69cd">受难</font><br><font color="#4b69cd">磨难</font><br><font color="#4b69cd">折磨</font><br><font color="#caab05">或者一种极其稀有宝物的配件！</font>"
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="霍因供应箱钥匙"
@@ -950,7 +1020,7 @@ CraftingGoldenCyberPunkDescription="你有一张金奖劵！<font color="#4b69cd
 HMTechHealerMintDescription="外部：硬币 | HMTech 治愈师"
 HMTechHealerFieldTestedDescription="外部：久经沙场 | HMTech 治愈师"
 HMTechHealerBattleScarredDescription="外部：身经百战 | HMTech 治愈师"
-HMTechHealerPreciousDescription="外部：宝贵 | 治愈师"
+HMTechHealerPreciousDescription="外部：宝贵 | HMTech 治愈师"
 
 ;HMTech Healer Names
 HMTechHealerPrecious="外部：宝贵 | HMTech 治愈师"
@@ -1029,10 +1099,11 @@ HMTechHealerSynthwaveBattleScarredName="HMTech 治疗器 | 合成声波 | 身经
 500MagnumRevolverYinYangFieldTestedName="500马格南左轮手枪 | 阴阳 | 久经沙场"
 500MagnumRevolverYinYangMintName="500马格南左轮手枪 | 阴阳 | 崭新"
 500MagnumRevolverPrestigePreciousName="500 马格南左轮手枪 | 威望 | 宝物"
-500MagnumRevolverSteampunkBattleScarredName="500 马格南左轮手枪 | 蒸汽朋克 | 崭新 | 身经百战"
-500MagnumRevolverSteampunkFieldTestedName="500 马格南左轮手枪 | 蒸汽朋克 | 崭新 | 久经沙场"
-500MagnumRevolverSteampunkMintName="500 马格南左轮手枪 | 蒸汽朋克 | 崭新"
+500MagnumRevolverSteampunkBattleScarredName="0.500 马格南左轮手枪 | 蒸汽朋克 | 身经百战"
+500MagnumRevolverSteampunkFieldTestedName="0.500 马格南左轮手枪 | 蒸汽朋克 | 久经沙场"
+500MagnumRevolverSteampunkMintName="0.500 马格南左轮手枪 | 蒸汽朋克 | 崭新"
 500MagnumRevolverSteampunkPreciousName="500 马格南左轮手枪 | 蒸汽朋克 | 宝物"
+500MagnumRevolverDragonKoiPreciousName=".500 左轮手枪 | 龙锦鲤 | 宝物"
 
 ;9mm Descriptions
 9MMMintDescription="外部：硬币 | 简单又便宜（老实说，非常便宜），这是所有霍因行动的基本装备。"
@@ -1163,6 +1234,7 @@ AA12SteampunkBattleScarredName="AA12 | 蒸汽朋克 | 身经百战"
 AA12SteampunkFieldTestedName="AA12 | 蒸汽朋克 | 久经沙场"
 AA12SteampunkMintName="AA12 | 蒸汽朋克 | 崭新"
 AA12SteampunkPreciousName="AA12 | 蒸汽朋克 | 宝物"
+AA12DragonKoiPreciousName="AA12 | 龙锦鲤 | 宝物"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="外部：硬币 | 你往上面放越多火药桶，世界就会越美好。就像加了更多的培根。"
@@ -1251,6 +1323,7 @@ AK12SynthwaveMintName="AK-12 | 合成声波 | 崭新"
 AK12SynthwaveFieldTestedName="AK-12 | 合成声波 | 久经沙场"
 AK12SynthwaveBattleScarredName="AK-12 | 合成声波 | 身经百战"
 AK12PrestigePreciousName="AK-12 | 威望 | 宝物"
+AK12DragonKoiPreciousName="AK-12 | 龙锦鲤 | 宝物"
 
 ;AR15 Descriptions
 AR15MintDescription="外部：硬币 | 这是用来对付丧尸，而不是‘流氓’。"
@@ -1498,10 +1571,11 @@ DesertEagleNeonRGBPreciousName="沙漠之鹰 | 霓虹RGB | 宝物"
 DesertEagleSynthwaveMintName="沙漠之鹰 | 合成声波 | 崭新"
 DesertEagleSynthwaveFieldTestedName="沙漠之鹰 | 合成声波 | 久经沙场"
 DesertEagleSynthwaveBattleScarredName="沙漠之鹰 | 合成声波 | 身经百战"
-DesertEagleSteampunkBattleScarredName="沙漠之鹰 | 蒸汽朋克 | 崭新 | 身经百战"
-DesertEagleSteampunkFieldTestedName="沙漠之鹰 | 蒸汽朋克 | 崭新 | 久经沙场"
+DesertEagleSteampunkBattleScarredName="沙漠之鹰 | 蒸汽朋克 | 身经百战"
+DesertEagleSteampunkFieldTestedName="沙漠之鹰 | 蒸汽朋克 | 久经沙场"
 DesertEagleSteampunkMintName="沙漠之鹰 | 蒸汽朋克 | 崭新"
 DesertEagleSteampunkPreciousName="沙漠之鹰 | 蒸汽朋克 | 宝物"
+DesertEagleDragonKoiPreciousName="沙漠之鹰 | 龙锦鲤 | 宝物"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="外部：硬币 | 双倍的快乐还不够……那就来四倍吧！"
@@ -1543,8 +1617,8 @@ DragonsbreathHeirloomFieldTestedName="龙息 | 传世 | 久经沙场"
 DragonsbreathHeirloomBattleScarredName="龙息 | 传世 | 身经百战"
 DragonsbreathVaultVoshPreciousName="龙息 | 金库 | V 字 | 宝物"
 DragonsbreathPrestigePreciousName="龙息 | 威望 | 宝物"
-DragonsbreathSteampunkBattleScarredName="龙息 | 蒸汽朋克 | 崭新 | 身经百战"
-DragonsbreathSteampunkFieldTestedName="龙息 | 蒸汽朋克 | 崭新 | 久经沙场"
+DragonsbreathSteampunkBattleScarredName="龙息 | 蒸汽朋克 | 身经百战"
+DragonsbreathSteampunkFieldTestedName="龙息 | 蒸汽朋克 | 久经沙场"
 DragonsbreathSteampunkMintName="龙息 | 蒸汽朋克 | 崭新"
 DragonsbreathSteampunkPreciousName="龙息 | 蒸汽朋克 | 宝物"
 DragonsbreathDragonKoiPreciousName="龙息 | 龙锦鲤 | 宝物"
@@ -1565,6 +1639,7 @@ EvisceratorBlackGoldenFieldTestedName="开膛锯 | 黑金 | 久经沙场"
 EvisceratorBlackGoldenBattleScarredName="开膛锯 | 黑金 | 身经百战"
 EvisceratorVaultVoshPreciousName="开膛锯 | 金库 | V 字 | 宝物"
 EvisceratorPrestigePreciousName="开膛锯 | 威望 | 宝物"
+EvisceratorDragonKoiPreciousName="开膛锯 | 龙锦鲤 | 宝物"
 
 ;Firemans Knife Descriptions
 FiremansKnifeMintDescription="外部：硬币 | 就是一把消防员的匕首。你是一名消防员，无需我们废话你也知道怎么用它。"
@@ -1604,6 +1679,11 @@ FlamethrowerNeonBattleScarredName="火焰喷射器 | 霓虹灯 | 身经百战"
 FlamethrowerNeonRGBPreciousName="火焰喷射器 | 霓虹灯RGB | 宝物" 
 FlamethrowerVaultVoshPreciousName="喷火器| 金库 | V 字 | 宝物"
 FlamethrowerPrestigePreciousName="火焰喷射器 | 威望 | 宝物"
+FlamethrowerBeyondHorizonMintName="喷火器 | 超越地平线 | 崭新"
+FlamethrowerBeyondHorizonFieldTestedName="火焰喷射器 | 超越地平线 | 久经沙场"
+FlamethrowerBeyondHorizonBattleScarredName="火焰喷射器 | 超越地平线 | 身经百战"
+FlamethrowerBeyondHorizonSpaceEliteName="火焰喷射器 | 超越地平线 | 太空精英"
+FlamethrowerDragonKoiPreciousName="火焰喷射器 | 龙锦鲤 | 宝物"
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="外部：硬币 | 射击传递系统在更便捷的小型包装内。"
@@ -1675,6 +1755,7 @@ FreezeThrowerNeonMintName="冻结发射器 | 霓虹灯 | 硬币"
 FreezeThrowerNeonFieldTestedName="冻结发射器 | 霓虹灯 | 久经沙场"
 FreezeThrowerNeonBattleScarredName="冻结发射器 | 霓虹灯 | 身经百战"
 FreezeThrowerNeonRGBPreciousName="冻结发射器 | 霓虹灯RGB | 宝物"
+FreezeThrowerDragonKoiPreciousName="冻结发射器 | 龙锦鲤 | 宝物"
 
 ;Freeze Thrower Descriptions
 FreezeThrowerMintDescription="外部：硬币 | 生物物质只能承受温度这么低的寒冷。"
@@ -1780,6 +1861,10 @@ HMTech101PistolNeonFieldTestedName="HMTech-101 手枪 | 霓虹灯 | 久经沙场
 HMTech101PistolNeonBattleScarredName="HMTech-101 手枪 | 霓虹灯 | 身经百战"
 HMTech101PistolNeonRGBPreciousName="HMTech-101 手枪 | 霓虹灯RGB | 宝物"
 HMTech101PistolDragonKoiPreciousName="HMTech-101 手枪 | 龙锦鲤 | 宝物"
+HMTech101PistolBeyondHorizonMintName="HMTech-101 手枪 | 超越地平线 | 崭新"
+HMTech101PistolBeyondHorizonFieldTestedName="HMTech-101 手枪 | 超越地平线 | 久经沙场"
+HMTech101PistolBeyondHorizonBattleScarredName="HMTech-101 手枪 | 超越地平线 | 身经百战"
+HMTech101PistolBeyondHorizonSpaceEliteName="HMTech-101 手枪 | 超越地平线 | 太空精英"
 
 ;HMTech-201 SMG Descriptions
 HMTech201SMGMintDescription="外部：硬币 | 可以射出治愈飞镖治疗队友。手枪让你如虎添翼！"
@@ -1805,6 +1890,10 @@ HMTech201SMGNeonBattleScarredName="HMTech-201 冲锋枪 | 霓虹灯 | 身经百�
 HMTech201SMGPrestigePreciousName="HMTech-201 冲锋枪 | 威望 | 宝物"
 HMTech201SMGNeonRGBPreciousName="HMTech-201 冲锋枪 | 霓虹灯RGB | 宝物"
 HMTech201SMGDragonKoiPreciousName="HMTech-201 冲锋枪 | 龙锦鲤 | 宝物"
+HMTech201SMGBeyondHorizonMintName="HMTech-201 冲锋枪 | 超越地平线 | 崭新"
+HMTech201SMGBeyondHorizonFieldTestedName="HMTech-201 冲锋枪 | 超越地平线 | 久经沙场"
+HMTech201SMGBeyondHorizonBattleScarredName="HMTech-201 冲锋枪 | 超越地平线 | 身经百战"
+HMTech201SMGBeyondHorizonSpaceEliteName="HMTech-201 冲锋枪 | 超越地平线 | 太空精英"
 
 ;HMTech-301 Shotgun Descriptions
 HMTech301ShotgunMintDescription="外部：硬币 | HMTech 手枪的战斗版霰弹枪。"
@@ -1827,11 +1916,17 @@ HMTech301ShotgunNeonFieldTestedName="HMTech-301 霰弹枪 | 霓虹灯 | 久经�
 HMTech301ShotgunNeonBattleScarredName="HMTech-301 霰弹枪 | 霓虹灯 | 身经百战"
 HMTech301ShotgunNeonRGBPreciousName="HMTech-301 霰弹枪 | 霓虹灯RGB | 宝物"
 HMTech301ShotgunPrestigePreciousName="HMTech-301 霰弹枪 | 威望 | 宝物"
+HMTech301ShotgunBeyondHorizonMintName="HMTech-301 霰弹枪 | 超越地平线 | 崭新"
+HMTech301ShotgunBeyondHorizonFieldTestedName="HMTech-301 霰弹枪| 超越地平线 | 久经沙场"
+HMTech301ShotgunBeyondHorizonBattleScarredName="HMTech-301 霰弹枪| 超越地平线 | 身经百战"
+HMTech301ShotgunBeyondHorizonSpaceEliteName="HMTech-301 霰弹枪| 超越地平线 | 太空精英"
+HMTech301ShotgunDragonKoiPreciousName="HMTech-301 霰弹枪| 龙锦鲤 | 宝物"
 
 ;HMTech-401 Assault Rifle Descriptions
 HMTech401AssaultRifleMintDescription="外部：硬币 | HMTech 手枪的完全版突击步枪。"
 HMTech401AssaultRifleFieldTestedDescription="外部：久经沙场 | HMTech 手枪的完全版突击步枪。"
 HMTech401AssaultRifleBattleScarredDescription="外部：身经百战 | HMTech 手枪的完全版突击步枪。"
+HMTech401AssaultRiflePreciousDescription="外部：宝贵 | HMTech 手枪的完全版突击步枪。"
 HMTech401AssaultPreciousDescription="外部：宝贵 | HMTech 手枪的完全版突击步枪。"
 
 ;HMTech-401 Assault Rifle Names
@@ -1866,6 +1961,11 @@ HMTech401AssaultRifleNeonBattleScarredName="HMTech-401 突击步枪 | 霓虹灯 
 HMTech401AssaultRifleNeonRGBPreciousName="HMTech-401 突击步枪 | 霓虹灯RGB | 硬币"
 HMTech401VaultVoshPreciousName="HMTech-401 突击步枪 | 金库 | V 字 | 宝物"
 HMTech401AssaultRiflePrestigePreciousName="HMTech-401 突击步枪 | 威望 | 宝物"
+HMTech401AssaultRifleBeyondHorizonMintName="HMTech-401 突击步枪 | 超越地平线 | 崭新"
+HMTech401AssaultRifleBeyondHorizonFieldTestedName="HMTech-401 突击步枪 | 超越地平线 | 久经沙场"
+HMTech401AssaultRifleBeyondHorizonBattleScarredName="HMTech-401 突击步枪 | 超越地平线 | 身经百战"
+HMTech401AssaultRifleBeyondHorizonSpaceEliteName="HMTech-401 突击步枪 | 超越地平线 | 太空精英"
+HMTech401AssaultRifleDragonKoiPreciousName="HMTech-401 突击步枪 | 龙锦鲤 | 宝物"
 
 ;HMTech-501 Grenade Launcher Descriptions
 HMTech501GrenadeLauncherMintDescription="外部：硬币 | 这是唯一一个能堂而皇之向你队友投掷榴弹的武器了！"
@@ -1987,10 +2087,10 @@ KFBARPrestigePreciousName="KF-BAR | 威望 | 宝物"
 KFBARVaultVoshPreciousName="KF-BAR | 金库 | V 字 | 宝物"
 
 ;Kriss Descriptions
-KrissMintDescription="外部：硬币 | 新密实子弹再分布，是破坏消防带。"
-KrissFieldTestedDescription="外部：久经沙场 | 新密实子弹再分布，是破坏消防带。"
-KrissBattleScarredDescription="外部：身经百战 | 新密实子弹再分布，是破坏消防带。"
-KrissPreciousDescription="外部：宝贵 | 新密实子弹再分布，是破坏消防带。"
+KrissMintDescription="外部：崭新 | 密实子弹再分布技术的最新作品，堪称喷射毁灭与破坏的水龙。"
+KrissFieldTestedDescription="外部：久经沙场 | 密实子弹再分布技术的最新作品，堪称喷射毁灭与破坏的水龙。"
+KrissBattleScarredDescription="外部：身经百战 | 密实子弹再分布技术的最新作品，堪称喷射毁灭与破坏的水龙。"
+KrissPreciousDescription="外部：宝贵 | 密实子弹再分布技术的最新作品，堪称喷射毁灭与破坏的水龙。"
 
 ;Kriss Names
 KrissHorzineEliteBlueMintName="Kriss 冲锋枪 | 蓝色霍因精英 | 硬币"
@@ -2026,6 +2126,11 @@ KrissSynthwaveMintName="Kriss 冲锋枪 | 合成声波 | 崭新"
 KrissSynthwaveFieldTestedName="Kriss 冲锋枪 | 合成声波 | 久经沙场"
 KrissSynthwaveBattleScarredName="Kriss 冲锋枪 | 合成声波 | 身经百战"
 KrissPrestigePreciousName="Kriss 冲锋枪 | 威望 | 宝物"
+KrissBeyondHorizonMintName="Kriss | 超越地平线 | 崭新"
+KrissBeyondHorizonFieldTestedName="Kriss | 超越地平线 | 久经沙场"
+KrissBeyondHorizonBattleScarredName="Kriss | 超越地平线 | 身经百战"
+KrissBeyondHorizonSpaceEliteName="Kriss | 超越地平线 | 太空精英"
+KrissDragonKoiPreciousName="Kriss | 龙锦鲤 | 宝物"
 
 ;L85A2 Descriptions
 L85A2MintDescription="外部：硬币 | SA80 是英队的标准武器，呃，是在军队被吃掉之前。"
@@ -2102,6 +2207,7 @@ M14EBRNeonBattleScarredName="M14EBR | 霓虹灯 | 身经百战"
 M14EBRNeonRGBPreciousName="M14EBR | 霓虹灯RGB | 宝物" 
 M14EBRVaultVoshPreciousName="M14EBR | 金库 | V 字 | 宝物"
 M14EBRPrestigePreciousName="M14EBR | 威望 | 宝物"
+M14EBRDragonKoiPreciousName="M14EBR | 龙锦鲤 | 宝物"
 
 ;M16M203 Descriptions
 M16M203MintDescription="外部：硬币 | 适合在子弹和爆炸物之间犹豫不决的人士。"
@@ -2125,6 +2231,7 @@ M16M2036NeonMintName="M16 M203 | 霓虹 | 崭新"
 M16M2036NeonRGBPreciousName="M16 M203 | 霓虹RGB | 宝物"
 M16M203PrestigePreciousName="M16 M203 | 威望 | 宝物"
 M16M203VaultVoshPreciousName="M16 M203 | 金库 | V 字 | 宝物"
+M16M203DragonKoiPreciousName="M16 M203 | 龙锦鲤 | 宝物"
 
 
 ;M1911 Descriptions
@@ -2190,6 +2297,7 @@ M4NeonFieldTestedName="M4 | 霓虹灯 | 久经沙场"
 M4NeonBattleScarredName="M4 | 霓虹灯 | 身经百战"
 M4NeonRGBPreciousName="M4 | 霓虹灯RGB | 宝物"
 M4PrestigePreciousName="M4 | 威望 | 宝物"
+M4DragonKoiPreciousName="M4 | 龙锦鲤 | 宝物"
 
 ;M79 Descriptions
 M79MintDescription="外部：硬币 | 射出的榴弹在经过几米的保险距离后装备完成，避免炸到自己的脸部。"
@@ -2229,8 +2337,8 @@ M79HorzineFirstEncounterBattleScarredName="M79 | 霍因初次相遇 | 身经百�
 M79VaultVoshPreciousName="M79 | 金库 | V 字 | 宝物"
 M79PrestigePreciousName="M79 | 威望 | 宝物"
 M79DragonKoiPreciousName="M79 | 龙锦鲤 | 宝物"
-M79SteampunkBattleScarredName="M79 | 蒸汽朋克 | 崭新 | 身经百战"
-M79SteampunkFieldTestedName="M79 | 蒸汽朋克 | 崭新 | 久经沙场"
+M79SteampunkBattleScarredName="M79 | 蒸汽朋克 | 身经百战"
+M79SteampunkFieldTestedName="M79 | 蒸汽朋克 | 久经沙场"
 M79SteampunkMintName="M79 | 蒸汽朋克 | 崭新"
 M79SteampunkPreciousName="M79 | 蒸汽朋克 | 宝物"
 
@@ -2251,10 +2359,14 @@ M99NeonMintName="M99 | 霓虹灯 | 硬币"
 M99NeonFieldTestedName="M99 | 霓虹灯 | 久经沙场" 
 M99NeonBattleScarredName="M99 | 霓虹灯 | 身经百战" 
 M99NeonRGBPreciousName="M99 | 霓虹灯RGB | 宝物" 
-M99SteampunkBattleScarredName="M99 | 蒸汽朋克 | 崭新 | 身经百战"
-M99SteampunkFieldTestedName="M99 | 蒸汽朋克 | 崭新 | 久经沙场"
+M99SteampunkBattleScarredName="M99 | 蒸汽朋克 | 身经百战"
+M99SteampunkFieldTestedName="M99 | 蒸汽朋克 | 久经沙场"
 M99SteampunkMintName="M99 | 蒸汽朋克 | 崭新"
 M99SteampunkPreciousName="M99 | 蒸汽朋克 | 宝物"
+M99BeyondHorizonMintName="M99 | 超越地平线 | 崭新"
+M99BeyondHorizonFieldTestedName="M99 | 超越地平线 | 久经沙场"
+M99BeyondHorizonBattleScarredName="M99 | 超越地平线 | 身经百战"
+M99BeyondHorizonSpaceEliteName="M99 | 超越地平线 | 太空精英"
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="碎骨者 | 电路 | 硬币"
@@ -2297,17 +2409,21 @@ Mac10NeonMintName="MAC 10 | 霓虹灯 | 硬币"
 Mac10NeonFieldTestedName="MAC 10 | 霓虹灯 | 久经沙场" 
 Mac10NeonBattleScarredName="MAC 10 | 霓虹灯 | 身经百战" 
 Mac10NeonRGBPreciousName="MAC 10 | 霓虹灯RGB | 宝物" 
-Mac10SteampunkBattleScarredName="MAC 10 | 蒸汽朋克 | 崭新 | 身经百战"
-Mac10SteampunkFieldTestedName="MAC 10 | 蒸汽朋克 | 崭新 | 久经沙场"
+Mac10SteampunkBattleScarredName="MAC 10 | 蒸汽朋克 | 身经百战"
+Mac10SteampunkFieldTestedName="MAC 10 | 蒸汽朋克 | 久经沙场"
 Mac10SteampunkMintName="MAC 10 | 蒸汽朋克 | 崭新"
 Mac10SteampunkPreciousName="MAC 10 | 蒸汽朋克 | 宝物"
 Mac10VaultVoshPreciousName="MAC 10 | 金库 | V 字 | 宝物"
 
 ;Medic Bat Descriptions
-MedicBatPreciousDescription="外部：宝物 | 医疗兵球棒"
+MedicBatMintDescription="外部：崭新 | 专为那些就算被优质治疗糊到脸上上也搞不清状况的人量身定做"
+MedicBatFieldTestedDescription="外部：久经沙场 | 专为那些就算被优质治疗糊到脸上上也搞不清状况的人量身定做"
+MedicBatBattleScarredDescription="外部：身经百战 | 专为那些就算被优质治疗糊到脸上上也搞不清状况的人量身定做"
+MedicBatPreciousDescription="外部：宝物 | 专为那些就算被优质治疗糊到脸上上也搞不清状况的人量身定做"
 
 ;Medic Bat Names
-MedicBatPreciousName="医疗兵球棒 | 宝物"
+MedicBatPreciousName="鲜血大棒 | 宝物"
+MedicBatVaultVoshPreciousName="鲜血大棒 | 金库 | V 字 | 宝物"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="外部：硬币 | 现代工艺奇迹：一款手持式丧尸烹煮工具。"
@@ -2329,6 +2445,7 @@ MicrowaveGunNeonBattleScarredName="微波枪 | 霓虹灯 | 身经百战"
 MicrowaveGunNeonRGBPreciousName="微波枪 | 霓虹灯RGB | 宝物"
 MicrowaveGunVaultVoshPreciousName="微波枪 | 金库 | V 字 | 宝物"
 MicrowaveGunPrestigePreciousName="微波枪 | 威望 | 宝物"
+MicrowaveGunDragonKoiPreciousName="微波枪 | 龙锦鲤 | 宝物"
 
 ;MP5RAS Descriptions
 MP5RASMintDescription="外部：硬币 | 全球使用最广的一种冲锋枪的最新版本。"
@@ -2365,8 +2482,8 @@ MP5RASHorzineFirstEncounterFieldTestedName="MP5RAS | 霍因初次相遇 | 久经
 MP5RASHorzineFirstEncounterBattleScarredName="MP5RAS | 霍因初次相遇 | 身经百战" 
 MP5RASPrestigePreciousName="MP5RAS | 威望 | 宝物"
 MP5RASDragonKoiPreciousName="MP5RAS | 龙锦鲤 | 宝物"
-MP5RASSteampunkBattleScarredName="MP5RAS | 蒸汽朋克 | 崭新 | 身经百战"
-MP5RASSteampunkFieldTestedName="MP5RAS | 蒸汽朋克 | 崭新 | 久经沙场"
+MP5RASSteampunkBattleScarredName="MP5RAS | 蒸汽朋克 | 身经百战"
+MP5RASSteampunkFieldTestedName="MP5RAS | 蒸汽朋克 | 久经沙场"
 MP5RASSteampunkMintName="MP5RAS | 蒸汽朋克 | 崭新"
 MP5RASSteampunkPreciousName="MP5RAS | 蒸汽朋克 | 宝物"
 
@@ -2414,6 +2531,7 @@ P90NeonFieldTestedName="P90 | 霓虹灯 | 久经沙场"
 P90NeonMintName="P90 | 霓虹灯 | 硬币"
 P90NeonRGBPreciousName="P90 | 霓虹灯RGB | 宝物"
 P90VaultVoshPreciousName="P90 | 金库 | V 字 | 宝物"
+P90DragonKoiPreciousName="P90 | 龙锦鲤 | 宝物"
 
 ;Pulverizer Descriptions
 PulverizerMintDescription="外部：硬币 | 你为什么不想来把组合霰弹枪大锤子呢？"
@@ -2444,6 +2562,11 @@ PulverizerPrestigePreciousName="粉碎机 | 威望 | 宝物"
 PulverizerSynthwaveMintName="粉碎者 | 合成声波 | 崭新"
 PulverizerSynthwaveFieldTestedName="粉碎者 | 合成声波 | 久经沙场"
 PulverizerSynthwaveBattleScarredName="粉碎者 | 合成声波 | 身经百战"
+PulverizerBeyondHorizonMintName="粉碎机 | 超越地平线 | 崭新"
+PulverizerBeyondHorizonFieldTestedName="粉碎机 | 超越地平线 | 久经沙场"
+PulverizerBeyondHorizonBattleScarredName="粉碎机 | 超越地平线 | 身经百战"
+PulverizerBeyondHorizonSpaceEliteName="粉碎机 | 超越地平线 | 太空精英"
+PulverizerDragonKoiPreciousName="粉碎机 | 龙锦鲤 | 宝物"
 
 ;Railgun Descriptions
 RailgunMintDescription="外部：硬币 | 这个武器使用磁铁快速射出实心钢炮弹，像穿透薄纸一样穿透丧尸。"
@@ -2464,6 +2587,7 @@ RailgunBluefireFieldTestedName="轨道炮 | 蓝焰 | 久经沙场"
 RailgunBluefireBattleScarredName="轨道炮 | 蓝焰 | 身经百战" 
 RailgunVaultVoshPreciousName="轨道炮 | 金库 | V 字 | 宝物"
 RailgunPrestigePreciousName="轨道炮 | 威望 | 宝物"
+RailgunDragonKoiPreciousName="轨道炮 | 龙锦鲤 | 宝物"
 
 ;RPG-7 Descriptions
 RPG7MintDescription="外部：硬币 | 射出的榴弹在经过几米的保险距离后装备完成，避免炸到自己的脸部。小心向后爆破！"
@@ -2502,6 +2626,11 @@ RPG7HorzineFirstEncounterFieldTestedName="RPG-7 | 霍因初次相遇 | 久经沙
 RPG7HorzineFirstEncounterBattleScarredName="RPG-7 | 霍因初次相遇 | 身经百战" 
 RPG7VaultVoshPreciousName="RPG-7 | 金库 | V 字 | 宝物"
 RPG7PrestigePreciousName="RPG-7 | 威望 | 宝物"
+RPG7BeyondHorizonMintName="RPG-7 | 超越地平线 | 崭新"
+RPG7BeyondHorizonFieldTestedName="RPG-7 | 超越地平线 | 久经沙场"
+RPG7BeyondHorizonBattleScarredName="RPG-7 | 超越地平线 | 身经百战"
+RPG7BeyondHorizonSpaceEliteName="RPG-7 | 超越地平线 | 太空精英"
+RPG7DragonKoiPreciousName="RPG-7 | 龙锦鲤 | 宝物"
 
 ;Scar Descriptions
 ScarMintDescription="外部：硬币 | 最初是为美国特种作战司令部设计，所以，真的，很特别！"
@@ -2564,6 +2693,11 @@ ScarSynthwaveMintName="Scar | 合成声波 | 崭新"
 ScarSynthwaveFieldTestedName="Scar | 合成声波 | 久经沙场"
 ScarSynthwaveBattleScarredName="Scar | 合成声波 | 身经百战"
 ScarPrestigePreciousName="Scar | 威望 | 宝物"
+ScarBeyondHorizonMintName="Scar | 超越地平线 | 崭新"
+ScarBeyondHorizonFieldTestedName="Scar | 超越地平线 | 久经沙场"
+ScarBeyondHorizonBattleScarredName="Scar | 超越地平线 | 身经百战"
+ScarBeyondHorizonSpaceEliteName="Scar | 超越地平线 | 太空精英"
+ScarDragonKoiPreciousName="Scar | 龙锦鲤 | 宝物"
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="外部：硬币 | 一种多功能，高爆炸性的武器，单次发射可以追踪并打击多个目标。"
@@ -2640,6 +2774,10 @@ StaticStrikersNeonMintName="静态打击者 | 霓虹灯 | 硬币"
 StaticStrikersNeonFieldTestedName="静态打击者 | 霓虹灯 | 久经沙场" 
 StaticStrikersNeonBattleScarredName="静态打击者 | 霓虹灯 | 身经百战" 
 StaticStrikersNeonRGBPreciousName="静态打击者 | 霓虹灯RGB | 宝物" 
+StaticStrikersBeyondHorizonMintName="静电打击者 | 超越地平线 | 崭新"
+StaticStrikersBeyondHorizonFieldTestedName="静电打击者 | 超越地平线 | 久经沙场"
+StaticStrikersBeyondHorizonBattleScarredName="静电打击者 | 超越地平线 | 身经百战"
+StaticStrikersBeyondHorizonSpaceEliteName="静电打击者 | 超越地平线 | 太空精英"
 
 ;Stoner 63A Descriptions
 Stoner63AMintDescription="外部：硬币 | 斯坦纳 63A 是美国海军海豹突击队在越南战争中使用的主要武器，其弹药容量高，阻止本领极高。"
@@ -2753,8 +2891,8 @@ Winchester1894HeirloomFieldTestedName="温彻斯特 1894 | 传世 | 久经沙场
 Winchester1894HeirloomBattleScarredName="温彻斯特 1894 | 传世 | 身经百战"
 Winchester1894PrestigePreciousName="温彻斯特 1894 | 威望 | 宝物"
 Winchester1894DragonKoiPreciousName="温彻斯特 1894 | 龙锦鲤 | 宝物"
-Winchester1894SteampunkBattleScarredName="温彻斯特 1894 | 蒸汽朋克 | 崭新 | 身经百战"
-Winchester1894SteampunkFieldTestedName="温彻斯特 1894 | 蒸汽朋克 | 崭新 | 久经沙场"
+Winchester1894SteampunkBattleScarredName="温彻斯特 1894 | 蒸汽朋克 | 身经百战"
+Winchester1894SteampunkFieldTestedName="温彻斯特 1894 | 蒸汽朋克 | 久经沙场"
 Winchester1894SteampunkMintName="温彻斯特 1894 | 蒸汽朋克 | 崭新"
 Winchester1894SteampunkPreciousName="温彻斯特 1894 | 蒸汽朋克 | 宝物"
 
@@ -2769,8 +2907,8 @@ ZweihanderBlackGoldenMintName="双手剑 | 黑金 | 硬币"
 ZweihanderBlackGoldenFieldTestedName="双手剑 | 黑金 | 久经沙场"
 ZweihanderBlackGoldenBattleScarredName="双手剑 | 黑金 | 身经百战"
 ZweihanderPreciousName="双手剑 | 宝物"
-ZweihanderSteampunkBattleScarredName="双手剑 | 蒸汽朋克 | 崭新 | 身经百战"
-ZweihanderSteampunkFieldTestedName="双手剑 | 蒸汽朋克 | 崭新 | 久经沙场"
+ZweihanderSteampunkBattleScarredName="双手剑 | 蒸汽朋克 | 身经百战"
+ZweihanderSteampunkFieldTestedName="双手剑 | 蒸汽朋克 | 久经沙场"
 ZweihanderSteampunkMintName="双手剑 | 蒸汽朋克 | 崭新"
 ZweihanderSteampunkPreciousName="双手剑 | 蒸汽朋克 | 宝物"
 
@@ -2869,8 +3007,8 @@ TommyGunNeonFieldTestedName="汤姆逊冲锋枪 | 霓虹 | 久经沙场"
 TommyGunNeonBattleScarredName="汤姆逊冲锋枪 | 霓虹 | 身经百战"
 TommyGunNeonRGBPreciousName="汤姆逊冲锋枪 | 霓虹RGB | 宝物"
 TommyGunDragonKoiPreciousName="汤姆逊冲锋枪 | 龙锦鲤 | 宝物"
-TommyGunSteampunkBattleScarredName="汤姆逊冲锋枪 | 蒸汽朋克 | 崭新 | 身经百战"
-TommyGunSteampunkFieldTestedName="汤姆逊冲锋枪 | 蒸汽朋克 | 崭新 | 久经沙场"
+TommyGunSteampunkBattleScarredName="汤姆逊冲锋枪 | 蒸汽朋克 | 身经百战"
+TommyGunSteampunkFieldTestedName="汤姆逊冲锋枪 | 蒸汽朋克 | 久经沙场"
 TommyGunSteampunkMintName="汤姆逊冲锋枪 | 蒸汽朋克 | 崭新"
 TommyGunSteampunkPreciousName="汤姆逊冲锋枪 | 蒸汽朋克 | 宝物"
 
@@ -2882,6 +3020,12 @@ LaserCutterPreciousDescription="外部：宝物 | 过充能模式 - 按下开火
 
 ;Laser Cutter Names
 LaserCutterPrestigePreciousName="千瓦杀手 | 威望 | 宝物"
+LaserCutterBeyondHorizonMintName="千瓦杀手 | 超越地平线 | 崭新"
+LaserCutterBeyondHorizonFieldTestedName="千瓦杀手 | 超越地平线 | 久经沙场"
+LaserCutterBeyondHorizonBattleScarredName="千瓦杀手 | 超越地平线 | 身经百战"
+LaserCutterBeyondHorizonSpaceEliteName="千瓦杀手 | 超越地平线 | 太空精英"
+LaserCutterVaultVoshPreciousName="千瓦杀手 | 金库 | V 字 | 宝物"
+LaserCutterDragonKoiPreciousName="千瓦杀手 | 龙锦鲤 | 宝物"
 
 ;FNFAL Descriptions
 FNFALMintDescription="外部：崭新 | 可以说，这把枪算是 FN FAL 的成功之作……"
@@ -2921,6 +3065,58 @@ M32NeonFieldTestedName="M32 | 霓虹 | 久经沙场"
 M32NeonBattleScarredName="M32 | 霓虹 | 身经百战"
 M32NeonRGBPreciousName="M32 | 霓虹RGB | 宝物"
 M32VaultVoshPreciousName="M32 | 金库 | V 字 | 宝物"
+
+;IonSword Descriptions
+IonSwordMintDescription="外部：崭新 | 适合烧烤使用。"
+IonSwordFieldTestedDescription="外部：久经沙场 | 适合烧烤使用。"
+IonSwordBattleScarredDescription="外部：身经百战 | 适合烧烤使用。"
+IonSwordPreciousDescription="外部：宝物 | 适合烧烤使用。"
+
+;IonSword Names
+IonSwordVaultVoshPreciousName="等离子推进器 | 金库 | V 字 | 宝物"
+IonSwordStandardName="等离子推进器 | 标准 | 宝物"
+IonSwordDoshRoyaleName="等离子推进器 | 金钱战争 | 宝物"
+IonSwordLightningName="等离子推进器 | 闪电 | 宝物"
+IonSwordLuciferName="等离子推进器 | 路西法 | 宝物"
+IonSwordRoyalShockName="等离子推进器 | 王室冲击 | 宝物"
+IonSwordShatterName="等离子推进器 | 粉碎 | 宝物"
+
+;Seal Squeal Descriptions
+SealSquealMintDescription="外部：崭新 | 霍因给予官方认证！"
+SealSquealFieldTestedDescription="外部：久经沙场 | 霍因给予官方认证！"
+SealSquealBattleScarredDescription="外部：身经百战 | 霍因给予官方认证！"
+SealSquealPreciousDescription="外部：宝物 | 霍因给予官方认证！"
+
+;SealSqueal Names
+SealSquealVaultVoshPreciousName="封印尖叫 | 金库 | V 字 | 宝物"
+
+;MIcrowaveAssault Descriptions
+MIcrowaveAssaultMintDescription="外部：崭新 | 愿火焰之力与你同在。"
+MIcrowaveAssaultFieldTestedDescription="外部：久经沙场 | 愿火焰之力与你同在。"
+MIcrowaveAssaultBattleScarredDescription="外部：身经百战 | 愿火焰之力与你同在。"
+MIcrowaveAssaultPreciousDescription="外部：宝物 | 愿火焰之力与你同在。"
+
+;MIcrowaveAssault Names
+MIcrowaveAssaultBeyondHorizonMintName="赫利俄斯步枪 | 超越地平线 | 崭新"
+MIcrowaveAssaultBeyondHorizonFieldTestedName="赫利俄斯步枪 | 超越地平线 | 久经沙场"
+MIcrowaveAssaultBeyondHorizonBattleScarredName="赫利俄斯步枪 | 超越地平线 | 身经百战"
+MIcrowaveAssaultBeyondHorizonSpaceEliteName="赫利俄斯步枪 | 超越地平线 | 太空精英"
+MIcrowaveAssaultVaultVoshPreciousName="赫利俄斯步枪 | 金库 | V 字 | 宝物"
+
+;Rhino Descriptions
+RhinoMintDescription="外部：崭新 | 穿透丧尸如切瓜砍菜"
+RhinoFieldTestedDescription="外部：久经沙场 | 穿透丧尸如切瓜砍菜"
+RhinoBattleScarredDescription="外部：身经百战 | 穿透丧尸如切瓜砍菜"
+RhinoPreciousDescription="外部：宝物 | 穿透丧尸如切瓜砍菜"
+
+;Rhino Names
+RhinoVaultVoshPreciousName="犀牛 | 金库 | V 字 | 宝物"
+RhinoStandardName="犀牛 | 标准 | 宝物"
+RhinoDoshRoyaleName="犀牛 | 金钱战争 | 宝物"
+RhinoLightningName="犀牛 | 闪电 | 宝物"
+RhinoLuciferName="犀牛 | 路西法 | 宝物"
+RhinoRoyalShockName="犀牛 | 王室冲击 | 宝物"
+RhinoShatterName="犀牛 | 粉碎 | 宝物"
 
 [CosmeticSection]
 
@@ -4081,16 +4277,16 @@ DARC3HZHelmetMarbleName="D.A.R.| C3HZ 头盔 | 大理石"
 DARC3HZHelmetObsidianName="D.A.R.| C3HZ 头盔 | 黑曜石"
 DARC3HZHelmetPreciousName="D.A.R.| C3HZ 头盔 | 宝物"
 DARC3HZHelmetSpaceName="D.A.R.| C3HZ 头盔 | 空格键"
-DARClassicArmorBloodyName="D.A.R.| 经典护甲 | 血腥
-DARClassicArmorLoaderName="D.A.R.| 经典护甲 | 装填手
-DARClassicArmorPreciousName="D.A.R.| 经典护甲 | 宝物
-DARClassicArmorScullyName="D.A.R.| 经典护甲 | 骷髅头
-DARClassicArmorStandardName="D.A.R.| 经典护甲 | 标准
-DARClassicHelmetBloodyName="D.A.R.| 经典头盔 | 血腥
-DARClassicHelmetLoaderName="D.A.R.| 经典头盔 | 装填手
-DARClassicHelmetPreciousName="D.A.R.| 经典头盔 | 宝物
-DARClassicHelmetScullyName="D.A.R.| 经典头盔 | 骷髅头
-DARClassicHelmetStandardName="D.A.R.| 经典头盔 | 标准
+DARClassicArmorBloodyName="D.A.R.| 经典护甲 | 血腥"
+DARClassicArmorLoaderName="D.A.R.| 经典护甲 | 装填手"
+DARClassicArmorPreciousName="D.A.R.| 经典护甲 | 宝物"
+DARClassicArmorScullyName="D.A.R.| 经典护甲 | 骷髅头"
+DARClassicArmorStandardName="D.A.R.| 经典护甲 | 标准"
+DARClassicHelmetBloodyName="D.A.R.| 经典头盔 | 血腥"
+DARClassicHelmetLoaderName="D.A.R.| 经典头盔 | 装填手"
+DARClassicHelmetPreciousName="D.A.R.| 经典头盔 | 宝物"
+DARClassicHelmetScullyName="D.A.R.| 经典头盔 | 骷髅头"
+DARClassicHelmetStandardName="D.A.R.| 经典头盔 | 标准"
 
 ;Steampunk Cosmetic Names
 SteampunkTopHatBlueName="蒸汽朋克 | 大礼帽 | 蓝色"
@@ -4450,7 +4646,7 @@ ProjectH01HappyPreciousName="H-01 计划 | 开心 | 宝物"
 ProjectH01HappyRedName="H-01 计划 | 开心 | 红色"
 ProjectH01HappyOpenBlueName="H-01 计划 | 开心 打开 | 蓝色"
 ProjectH01HappyOpenGreenName="H-01 计划 | 开心 打开 | 绿色"
-ProjectH01HappyOpenPreciousName"H-01 计划 | 开心 打开 | 宝物
+ProjectH01HappyOpenPreciousName="H-01 计划 | 开心 打开 | 宝物"
 ProjectH01HappyOpenRedName="H-01 计划 | 开心 打开 | 红色"
 ProjectH01PokerfaceBlueName="H-01 计划 | 扑克脸 | 蓝色"
 ProjectH01PokerfaceGreenName="H-01 计划 | 扑克脸 | 绿色"
@@ -4495,6 +4691,94 @@ ProjectH02UnhappyOpenGreenName="H-02 计划 | 不开心 打开 | 绿色"
 ProjectH02UnhappyOpenPreciousName="H-02 计划 | 不开心 打开 | 宝物"
 ProjectH02UnhappyOpenRedName="H-02 计划 | 不开心 打开 | 红色"
 
+;Cosmetic Item Set 21
+BoneyardAfflictionBoneName="墓地 | 不幸 | 骨头"
+BoneyardAfflictionBloodyName="墓地 | 不幸 | 血腥"
+BoneyardAfflictionBleachedName="墓地 | 不幸 | 褪色"
+BoneyardAfflictionPreciousName="墓地 | 不幸 | 宝物"
+BoneyardAgonyBoneName="墓地 | 苦恼 | 骨头"
+BoneyardAgonyBloodyName="墓地 | 苦恼 | 血腥"
+BoneyardAgonyBleachedName="墓地 | 苦恼 | 褪色"
+BoneyardAgonyPreciousName="墓地 | 苦恼 | 宝物"
+BoneyardAnguishBoneName="墓地 | 痛苦 | 骨头"
+BoneyardAnguishBloodyName="墓地 | 痛苦 | 血腥"
+BoneyardAnguishBleachedName="墓地 | 痛苦 | 褪色"
+BoneyardAnguishPreciousName="墓地 | 痛苦 | 宝物"
+BoneyardDespairBoneName="墓地 | 绝望 | 骨头"
+BoneyardDespairBloodyName="墓地 | 绝望 | 血腥"
+BoneyardDespairBleachedName="墓地 | 绝望 | 褪色"
+BoneyardDespairPreciousName="墓地 | 绝望 | 宝物"
+BoneyardDistressBoneName="墓地 | 悲痛 | 骨头"
+BoneyardDistressBloodyName="墓地 | 悲痛 | 血腥"
+BoneyardDistressBleachedName="墓地 | 悲痛 | 褪色"
+BoneyardDistressPreciousName="墓地 | 悲痛 | 宝物"
+BoneyardMiseryBoneName="墓地 | 悲惨 | 骨头"
+BoneyardMiseryBloodyName="墓地 | 悲惨 | 血腥"
+BoneyardMiseryBleachedName="墓地 | 悲惨 | 褪色"
+BoneyardMiseryPreciousName="墓地 | 悲惨 | 宝物"
+BoneyardPassionBoneName="墓地 | 受难 | 骨头"
+BoneyardPassionBloodyName="墓地 | 受难 | 血腥"
+BoneyardPassionBleachedName="墓地 | 受难 | 褪色"
+BoneyardPassionPreciousName="墓地 | 受难 | 宝物"
+BoneyardSorrowBoneName="墓地 | 悲伤 | 骨头"
+BoneyardSorrowBloodyName="墓地 | 悲伤 | 血腥"
+BoneyardSorrowBleachedName="墓地 | 悲伤 | 褪色"
+BoneyardSorrowPreciousName="墓地 | 悲伤 | 宝物"
+BoneyardTormentBoneName="墓地 | 磨难 | 骨头"
+BoneyardTormentBloodyName="墓地 | 磨难 | 血腥"
+BoneyardTormentBleachedName="墓地 | 磨难 | 褪色"
+BoneyardTormentPreciousName="墓地 | 磨难 | 宝物"
+BoneyardTortureBoneName="墓地 | 折磨 | 骨头"
+BoneyardTortureBloodyName="墓地 | 折磨 | 血腥"
+BoneyardTortureBleachedName="墓地 | 折磨 | 褪色"
+BoneyardTorturePreciousName="墓地 | 折磨 | 宝物"
+
+;Halloween 2019 Cosmetic Names
+HalloweenBatCatHatPurpleName="万圣节 | 蝙蝠猫帽 | 紫色"
+HalloweenBatCatHatGreenName="万圣节 | 蝙蝠猫帽 | 绿色"
+HalloweenBatCatHatSkinPreciousName="万圣节 | 蝙蝠猫帽 | 宝物"
+HalloweenPrivatePauldronIronName="万圣节 | 大兵护肩 | 铁色"
+HalloweenPrivatePauldronSilverName="万圣节 | 大兵护肩 | 白银"
+HalloweenPrivatePauldronPreciousName="万圣节 | 大兵护肩 | 宝物"
+HalloweenOfficerPauldronIronName="万圣节 | 军官护肩 | 铁色"
+HalloweenOfficerPauldronSilverName="万圣节 | 军官护肩 | 白银"
+HalloweenOfficerPauldronPreciousName="万圣节 | 军官护肩 | 宝物"
+HalloweenPilgrimHatBlackName="万圣节 | 朝圣者帽 | 黑色"
+HalloweenPilgrimHatPurpleName="万圣节 | 朝圣者帽 | 紫色"
+HalloweenPilgrimHatPreciousName="万圣节 | 朝圣者帽 | 宝物"
+HalloweenBiohazardHatBlackName="万圣节 | 生物危害帽 | 黑色"
+HalloweenBiohazardHatPurpleName="万圣节 | 生物危害帽 | 紫色"
+HalloweenBiohazardHatPreciousName="万圣节 | 生物危害帽 | 宝物"
+HalloweenMonsterWitchHatBrownName="万圣节 | 怪物女巫帽 | 棕色"
+HalloweenMonsterWitchHatRedName="万圣节 | 怪物女巫帽 | 红色"
+HalloweenMonsterWitchHatPreciousName="万圣节 | 怪物女巫帽 | 宝物"
+HalloweenPumpkinClawJawOrangeName="万圣节 | 南瓜爪 | 橙色"
+HalloweenPumpkinClawJawPurpleName="万圣节 | 南瓜爪 | 紫色"
+HalloweenPumpkinClawJawPreciousName="万圣节 | 南瓜爪 | 宝物"
+HalloweenBatCatBackpackPurpleName="万圣节 | 蝙蝠猫背包 | 紫色"
+HalloweenBatCatBackpackGreenName="万圣节 | 蝙蝠猫背包 | 绿色"
+HalloweenBatCatBackpackPreciousName="万圣节 | 蝙蝠猫背包 | 宝物"
+HalloweenPumpkinHatOrangeName="万圣节 | 南瓜帽 | 橙色"
+HalloweenPumpkinHatPurpleName="万圣节 | 南瓜帽 | 紫色"
+HalloweenPumpkinHatPreciousName="万圣节 | 南瓜帽 | 宝物"
+HalloweenWebShoulderpadWhiteName="万圣节 | 蛛网肩甲 | 白色"
+HalloweenWebShoulderpadGreenName="万圣节 | 蛛网肩甲 | 绿色"
+HalloweenWebShoulderpadPreciousName="万圣节 | 蛛网肩甲 | 宝物"
+HalloweenInfinityScarfBlackName="万圣节 | 无尽围巾 | 黑色"
+HalloweenInfinityScarfPurpleName="万圣节 | 无尽围巾 | 紫色"
+HalloweenInfinityScarfPreciousName="万圣节 | 无尽围巾 | 宝物"
+HalloweenPlagueMaskBrownName="万圣节 | 瘟疫面具 | 棕色"
+HalloweenPlagueMaskPurpleName="万圣节 | 瘟疫面具 | 紫色"
+HalloweenPlagueMaskPreciousName="万圣节 | 瘟疫面具 | 宝物"
+HalloweenScarecrowMaskBrownName="万圣节 | 稻草人面具 | 棕色"
+HalloweenScarecrowMaskPurpleName="万圣节 | 稻草人面具 | 紫色"
+HalloweenScarecrowMaskPreciousName="万圣节 | 稻草人面具 | 宝物"
+HalloweenStitchedMouthMaskBrownName="万圣节 | 缝嘴面具 | 棕色"
+HalloweenStitchedMouthMaskPurpleName="万圣节 | 缝嘴面具 | 紫色"
+HalloweenStitchedMouthMaskPreciousName="万圣节 | 缝嘴面具 | 宝物"
+HalloweenGarlicClotBackpackBlackName="万圣节 | 大蒜血块背包 | 黑色"
+HalloweenGarlicClotBackpackPurpleName="万圣节 | 大蒜血块背包 | 紫色"
+HalloweenGarlicClotBackpackPreciousName="万圣节 | 大蒜血块背包 | 宝物"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="可在装备菜单进行装备；与大部分角色兼容。这是“夏日余兴节目”季节活动专属的一个物品。回收换为 1 张余兴节目奖券"

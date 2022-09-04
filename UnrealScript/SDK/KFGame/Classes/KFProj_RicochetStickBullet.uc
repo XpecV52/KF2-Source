@@ -492,6 +492,6 @@ simulated function bool ShouldProcessBulletTouch()
 
 defaultproperties
 {
-	PickupRadius=200
-	PickupHeight=100
+	PickupRadius=250
+	PickupHeight=250
 }

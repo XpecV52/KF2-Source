@@ -87,7 +87,7 @@ function SetEscortPawn(KFPawn_Scripted NewPawn)
 	}
 	EscortPawn = NewPawn;
 	BossNameText = EscortPawn.GetLocalizedName();
-	
+
 	SetBossName(BossNameText);
 	UpdateEscortPawnHealth();
 	SetVisible(true);
@@ -207,13 +207,16 @@ function UpdateArmorUI(const out SCompressedArmorInfo ArmorValues[3])
 
 	for (i = 0; i < 3; i++)
 	{
-		DataObject = CreateObject("Object");
-		DataObject.SetFloat("armorPercent", ArmorValues[i].Percentage);
 		if (ArmorValues[i].IconTexture != none)
 		{
-			DataObject.SetString("iconSource", "img://"$PathName(ArmorValues[i].IconTexture));
+			DataObject = CreateObject("Object");
+			DataObject.SetFloat("armorPercent", ArmorValues[i].Percentage);
+			if (ArmorValues[i].IconTexture != none)
+			{
+				DataObject.SetString("iconSource", "img://"$PathName(ArmorValues[i].IconTexture));
+			}
+			DataProvider.SetElementObject(i, DataObject);
 		}
-		DataProvider.SetElementObject(i, DataObject);
 	}
 
 	SetObject("armorData", DataProvider);

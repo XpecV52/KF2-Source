@@ -106,6 +106,7 @@ var array<KFInterface_MapObjective> CurrentAvailableRandomWaveObjectives;
 
 var() string TraderVoiceGroupClassPath;
 var() string TraderVoiceGroupClassPath_Endless;
+var() string TraderVoiceGroupClassPath_Objective;
 
 // Whether to override the boss of a Survival match
 var() bool bOverrideSurvivalBoss;

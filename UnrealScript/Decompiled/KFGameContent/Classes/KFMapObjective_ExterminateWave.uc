@@ -45,7 +45,7 @@ simulated event ReplicatedEvent(name VarName)
     }
 }
 
-function NotifyZedKilled(bool bIsBoss)
+function NotifyZedKilled(Controller Killer, Pawn KilledPawn, bool bIsBoss)
 {
     local float OldWavePct, NewWavePct;
     local KFGameReplicationInfo KFGRI;
@@ -223,7 +223,7 @@ simulated function DeactivateObjective()
         {
             foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
             {
-                GrantReward(KFPH);                
+                GrantReward(KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo), KFPlayerController(KFPH.Controller));                
             }            
         }
         bIsActive = false;

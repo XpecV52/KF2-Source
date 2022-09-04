@@ -30,9 +30,9 @@ simulated function StartFire(byte FireModeNum)
             }
             break;
         case 1:
-            if(!IsDoingSpecialMove(39))
+            if(!IsDoingSpecialMove(40))
             {
-                ServerDoSpecialMove(39);
+                ServerDoSpecialMove(40);
             }
             break;
         case 3:

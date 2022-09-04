@@ -27,8 +27,9 @@ defaultproperties
       ExplosionSound=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Explosion'
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_Explosive_HX25:ExplosionPointLight'
       ExploLightFadeOutTime=0.300000
-      CamShake=KFCameraShake'FX_CameraShake_Arch.Grenades.Default_Grenade'
-      CamShakeInnerRadius=200.000000
+      CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
+      CamShakeInnerRadius=0.000000
+      CamShakeOuterRadius=300.000000
       CamShakeFalloff=1.500000
       Name="ExploTemplate0"
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'

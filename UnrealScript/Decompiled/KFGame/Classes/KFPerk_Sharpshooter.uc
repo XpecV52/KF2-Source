@@ -129,7 +129,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
 
 simulated function ModifyRateOfFire(out float InRate, KFWeapon KFW)
 {
-    if((IsTriggerActive()) && IsWeaponOnPerk(KFW,, self.Class))
+    if(((IsTriggerActive()) && IsWeaponOnPerk(KFW,, self.Class)) && KFW.CurrentFireMode != 4)
     {
         InRate -= (InRate * (GetSkillValue(PerkSkills[1])));
     }
@@ -480,7 +480,7 @@ defaultproperties
     SecondaryXPModifier[3]=1
     PerkName="Sharpshooter"
     Passives(0)=(Title="Headshot Damage",Description="Increase headshot damage %x% per level",IconPath="")
-    Passives(1)=(Title="Recoil",Description="Decrease recoil %x% per level",IconPath="")
+    Passives(1)=(Title="Recoil Reduction",Description="Decrease recoil %x% per level",IconPath="")
     Passives(2)=(Title="Weapon Switch",Description="Increase weapon switch speed %x% per level",IconPath="")
     Passives(3)=(Title="",Description="",IconPath="")
     Passives(4)=(Title="",Description="",IconPath="")

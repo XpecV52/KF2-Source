@@ -117,6 +117,7 @@ function TickHud(float DeltaTime)
 		if (!CurrentObjectiveInterface.HasFailedObjective() && !CurrentObjectiveInterface.IsComplete())
 		{
 			SetString("currentProgressText", CurrentObjectiveInterface.GetProgressText());
+			SetBool("currentProgressIsDosh", CurrentObjectiveInterface.GetProgressTextIsDosh());
 		}
 
 		CurrentObjectiveInterface.GetLocalizedStatus(StatusMessage, bStatusWarning, bStatusNotification);

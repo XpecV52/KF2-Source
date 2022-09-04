@@ -11,7 +11,7 @@ DifficultyStrings[0]="普通"
 DifficultyStrings[1]="困難"
 DifficultyStrings[2]="自殺"
 DifficultyStrings[3]="地獄"
-BonusDoshString="獎勵金錢"
+BonusDoshString="獎勵"
 LengthStrings[0]="短（4 波攻擊）"
 LengthStrings[1]="中（7 波攻擊）"
 LengthStrings[2]="長（10 波攻擊）"
@@ -142,9 +142,9 @@ CompleteMapString="在地圖中的遊戲："
 KillZedsString="殺死 ZED："
 KillBossString="Boss 擊殺數："
 KillBossDescriptionString="生存模式或每週模式"
-VersusKillsString=殺死對抗玩家的身分：
-DealVersusDamageString=傷害對抗玩家的身分：
-VersusCompletionString=完成遊戲的身分：
+VersusKillsString="殺死對抗玩家的身分："
+DealVersusDamageString="傷害對抗玩家的身分："
+VersusCompletionString="完成遊戲的身分："
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="無法找到遊戲"
@@ -1321,6 +1321,7 @@ GBA_SwitchWeapon3="近身武器"
 GBA_SwitchWeapon4="裝備"
 GBA_VoteYes="投票同意（長按）"
 GBA_VoteNo="投票不同意（長按）"
+GBA_RequestSkipTrader="請求跳過商人"
 
 GBA_VoiceCommReqHealing="請求治療"
 GBA_VoiceCommReqDosh="請求金錢"
@@ -1773,7 +1774,7 @@ Passives[0]=(Title="職業武器傷害",Description="每級增加職業武器傷
 Passives[1]=(Title="偵測躲藏敵人與血量",Description="初始範圍為 5 公尺，每次升級再加 x%x");
 Passives[2]=(Title="Zed 時間更新",Description="每 5 級增加 Zed 時間 x%x");
 Passives[3]=(Title="裝填速度",Description="每 5 級增加職業武器裝填速度 x%x");
-Passives[4]=(Title="夜視能力",Description="手電筒-與夜視鏡");
+Passives[4]=(Title="後座力降低",Description="每級減少後座力 %x%");
 Passives[5]=(Title="點出掩蓋的Zed",Description="讓隊友可以看見躲藏的敵人");
 
 EXPAction1="造成突擊武器傷害"
@@ -1798,7 +1799,7 @@ AmmoVest="準備就緒"
 AmmoVestDescription="為每樣職業武器多帶最多 20% 的彈藥"
 
 HollowPoints="中空彈回合"
-HollowPointsDescription="職業武器傷害增加 30% 且後座力減少 50%。"
+HollowPointsDescription="職業武器傷害增加 30%"
 
 EatLead="吃鉛"
 EatLeadDescription="職業武器彈匣容量增加 100%"
@@ -1969,7 +1970,7 @@ SkillCatagories[4]="大師技術"
 Passives[0]=(Title="職業武器傷害",Description="每級增加職業武器傷害 x%x");
 Passives[1]=(Title="防彈",Description="對拋物線攻擊的抗性增加 5%，每次升級再加 x%x");
 Passives[2]=(Title="移動速度",Description="每 5 級增加移動速度 %x%");
-Passives[3]=(Title="後座力",Description="每級減少職業武器的後座力 %x%");
+Passives[3]=(Title="後座力降低",Description="每級減少職業武器的後座力 %x%");
 Passives[4]=(Title="Zed 時間裝填",Description="每級增加 Zed 時間發動時提升的裝填速度 %x%");
 
 ShootnMove="穩健"
@@ -2015,7 +2016,7 @@ SkillCatagories[3]="裝備"
 SkillCatagories[4]="大師技術"
 
 Passives[0]=(Title="爆頭傷害",Description="每級增加爆頭傷害 %x%");
-Passives[1]=(Title="後座力",Description="每級減少後座力 %x%");
+Passives[1]=(Title="後座力降低",Description="每級減少後座力 %x%");
 Passives[2]=(Title="武器變更",Description="每級增加武器切換速度 %x%");
 
 StationaryAim="狙擊者"
@@ -2415,7 +2416,7 @@ NeedsRepair="需要維修"
 Dropped="已丟棄"
 PickedUp="已撿起"
 PickupTransportItem="撿起運送物品"
-Reset="重置"
+Reset="重設"
 Ready="準備就緒"
 NotReady="尚未準備就緒"
 
@@ -2656,10 +2657,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="無盡蒸汽",DescriptionString="
 SpecialEventObjectiveInfoList[3]=(TitleString="致命旅程",DescriptionString="在目標困難或更高難度下完成僵屍群登陸")
 SpecialEventObjectiveInfoList[4]=(TitleString="寒潮來臨",DescriptionString="在目標困難或更高難度下完成前哨")
 
-AllCompleteRewardDescriptionString="男性和女性蒸汽龐克服飾"
+AllCompleteRewardDescriptionString="蒸汽龐克服飾 + M99 AMR 飾品"
 
-ChanceDropDescriptionStrings[0]="獎品票券"
-ChanceDropDescriptionStrings[1]="黃金票券"
+ChanceDropDescriptionStrings[0]="獎勵券"
+ChanceDropDescriptionStrings[1]="黃金券"
+
+[KFGFxFall2019ObjectivesContainer]
+CurrentSpecialEventString="在限時活動中可獲得，內含特有道具"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="瘋人院突擊",DescriptionString="在灰木瘋人院以生存模式困難或更高難度擊敗任意頭目")
+SpecialEventObjectiveInfoList[1]=(TitleString="長期治療",DescriptionString="在灰木瘋人院以無盡模式困難或更高難度完成第 15 波")
+SpecialEventObjectiveInfoList[2]=(TitleString="每週檢查",DescriptionString="在灰木瘋人院完成每週任務")
+SpecialEventObjectiveInfoList[3]=(TitleString="清理房間",DescriptionString="在灰木瘋人院擊殺 1500 個 Zed")
+SpecialEventObjectiveInfoList[4]=(TitleString="炸彈已投放！",DescriptionString="在目標困難或更高難度下完成核電廠")
+
+AllCompleteRewardDescriptionString="Kriss | 超越地平線 | 太空菁英"
+
+ChanceDropDescriptionStrings[0]="優待票券"
+ChanceDropDescriptionStrings[1]="金色優待票券"
 
 ;============================================
 ; Daily Localization
@@ -3246,6 +3261,9 @@ DisplayName="洩洪道"
 
 [KF-SteamFortress KFMapSummary]
 DisplayName="蒸汽要塞"
+
+[KF-AshwoodAsylum KFMapSummary]
+DisplayName="灰木瘋人院"
 
 [KFMapInfo]
 ; defaults

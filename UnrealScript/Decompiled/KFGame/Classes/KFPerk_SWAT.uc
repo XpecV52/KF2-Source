@@ -307,29 +307,14 @@ simulated function OnBump(Actor BumpedActor, KFPawn_Human BumpInstigator, Vector
             LastBumpTime = WorldInfo.TimeSeconds;
             if(CanBump)
             {
-                if(KFPM.CanDoSpecialMove(6))
+                if(KFPM.IsHeadless())
                 {
-                    KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
-                    KFPM.Knockdown(BumpedVelocity * float(3), vect(1, 1, 1), KFPM.Location, 1000, 100);                    
+                    KFPM.TakeDamage(KFPM.HealthMax, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);                    
                 }
                 else
                 {
-                    if(KFPM.IsHeadless())
-                    {
-                        KFPM.TakeDamage(KFPM.HealthMax, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);                        
-                    }
-                    else
-                    {
-                        if(KFPM.CanDoSpecialMove(4))
-                        {
-                            KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
-                            KFPM.DoSpecialMove(4,,, Class'KFSM_Stumble'.static.PackRandomSMFlags(KFPM));                            
-                        }
-                        else
-                        {
-                            KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
-                        }
-                    }
+                    KFPM.TakeDamage(BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * BumpMomentum, BumpDamageType);
+                    KFPM.Knockdown(BumpedVelocity * float(3), vect(1, 1, 1), KFPM.Location, 1000, 100);
                 }
             }
         }
@@ -468,6 +453,7 @@ defaultproperties
     ZedTimeModifyingStates(0)=WeaponFiring
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
+    ZedTimeModifyingStates(3)=WeaponAltFiringAuto
     PrimaryWeaponDef=Class'KFWeapDef_MP7'
     KnifeWeaponDef=Class'KFWeapDef_Knife_SWAT'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_SWAT'

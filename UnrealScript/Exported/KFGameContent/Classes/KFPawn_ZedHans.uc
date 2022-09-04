@@ -1235,6 +1235,7 @@ defaultproperties
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.100000))
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Explosive_RPG7',DamageScale=(1.200000))
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_RailGun',DamageScale=(0.900000))
+   DamageTypeModifiers(14)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(0.900000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Hans'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:SprintAkComponent0'
@@ -1354,11 +1355,12 @@ defaultproperties
       SpecialMoveClasses(34)=None
       SpecialMoveClasses(35)=None
       SpecialMoveClasses(36)=None
-      SpecialMoveClasses(37)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
-      SpecialMoveClasses(38)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
-      SpecialMoveClasses(39)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
-      SpecialMoveClasses(40)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
-      SpecialMoveClasses(41)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
+      SpecialMoveClasses(37)=None
+      SpecialMoveClasses(38)=Class'KFGame.KFSM_Zed_Boss_Theatrics'
+      SpecialMoveClasses(39)=Class'kfgamecontent.KFSM_Hans_WeaponSwitch'
+      SpecialMoveClasses(40)=Class'kfgamecontent.KFSM_Hans_ThrowGrenade'
+      SpecialMoveClasses(41)=Class'kfgamecontent.KFSM_Hans_GrenadeHalfBarrage'
+      SpecialMoveClasses(42)=Class'kfgamecontent.KFSM_Hans_GrenadeBarrage'
       Name="SpecialMoveHandler_0"
       ObjectArchetype=KFSpecialMoveHandler'KFGame.Default__KFPawn_ZedHansBase:SpecialMoveHandler_0'
    End Object

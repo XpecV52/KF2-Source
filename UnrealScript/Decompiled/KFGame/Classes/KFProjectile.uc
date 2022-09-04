@@ -63,6 +63,8 @@ var protected bool bIsAIProjectile;
 var protected const bool bWarnAIWhenFired;
 var const bool bCanStick;
 var const bool bCanPin;
+var bool bSpawnShrapnel;
+var bool bDebugShrapnel;
 var float AlwaysRelevantDistanceSquared;
 var byte WeaponFireMode;
 var KFProjectile.FracturedMeshGlassShatterType GlassShatterType;
@@ -113,6 +115,15 @@ var transient Rotator StuckToRotation;
 var repnotify transient Actor PinActor;
 var transient int PinBoneIdx;
 var export editinline KFProjectileStickHelper StickHelper;
+var repnotify Actor IgnoreTouchActor;
+var int NumSpawnedShrapnel;
+var class<KFProjectile> ShrapnelClass;
+var float ShrapnelSpreadWidthEnvironment;
+var float ShrapnelSpreadHeightEnvironment;
+var float ShrapnelSpreadWidthZed;
+var float ShrapnelSpreadHeightZed;
+var AkEvent ShrapnelSpawnSoundEvent;
+var ParticleSystem ShrapnelSpawnVFX;
 
 replication
 {
@@ -140,6 +151,9 @@ replication
 
      if(bCanPin && bNetDirty)
         PinActor, PinBoneIdx;
+
+     if(bNetInitial || bNetDirty)
+        IgnoreTouchActor;
 }
 
 // Export UKFProjectile::execGetTerminalVelocity(FFrame&, void* const)
@@ -409,6 +423,10 @@ singular simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponen
         StickHelper.TryStick(HitNormal, Location, Wall);
         return;
     }
+    if(bSpawnShrapnel)
+    {
+        SpawnShrapnel(Wall, Location, HitNormal, rotator(Velocity - ((2 * HitNormal) * (Velocity Dot HitNormal))), ShrapnelSpreadWidthEnvironment, ShrapnelSpreadHeightEnvironment);
+    }
     if(Wall.bWorldGeometry)
     {
         HitStaticMesh = StaticMeshComponent(WallComp);
@@ -544,6 +562,10 @@ simulated function ProcessBulletTouch(Actor Other, Vector HitLocation, Vector Hi
     }
     else
     {
+        if(bSpawnShrapnel)
+        {
+            SpawnShrapnel(Other, HitLocation, HitNormal, rotator(Velocity), ShrapnelSpreadWidthZed, ShrapnelSpreadHeightZed);
+        }
         StartTrace = HitLocation;
         Direction = Normal(Velocity);
         EndTrace = StartTrace + (Direction * (Victim.CylinderComponent.CollisionRadius * 6));
@@ -937,6 +959,57 @@ simulated function SetStickOrientation(Vector HitNormal);
 reliable server function ServerStick(Actor StickTo, int BoneIdx, Vector StickLoc, Rotator StickRot)
 {
     StickHelper.ServerStick(StickTo, BoneIdx, StickLoc, StickRot);
+}
+
+simulated function SpawnShrapnel(Actor InitialHitActor, Vector HitLocation, Vector HitNormal, Rotator BaseAim, float SpreadWidth, float SpreadHeight)
+{
+    local Vector SpawnPos;
+    local Rotator SpawnRot;
+    local int I;
+    local KFProjectile SpawnedShrapnel;
+    local Vector X, Y, Z;
+    local float RandY, RandZ;
+
+    SpawnPos = HitLocation + (10 * HitNormal);
+    if((Instigator != none) && Instigator.Role == ROLE_Authority)
+    {
+        if(ShrapnelSpawnSoundEvent != none)
+        {
+            Instigator.PlaySoundBase(ShrapnelSpawnSoundEvent,,,, Location);
+        }
+        I = 0;
+        J0xAF:
+
+        if(I < NumSpawnedShrapnel)
+        {
+            GetAxes(BaseAim, X, Y, Z);
+            RandY = FRand() - 0.5;
+            RandZ = Sqrt(0.5 - Square(RandY)) * (FRand() - 0.5);
+            SpawnRot = rotator((X + ((RandY * SpreadWidth) * Y)) + ((RandZ * SpreadHeight) * Z));
+            SpawnedShrapnel = Spawn(ShrapnelClass, ((Instigator != none) ? Instigator.Weapon : self),, SpawnPos, SpawnRot);
+            if(SpawnedShrapnel != none)
+            {
+                SpawnedShrapnel.IgnoreTouchActor = InitialHitActor;
+                SpawnedShrapnel.InitialPenetrationPower = KFWeapon(Instigator.Weapon).GetInitialPenetrationPower(Instigator.Weapon.CurrentFireMode);
+                SpawnedShrapnel.PenetrationPower = SpawnedShrapnel.InitialPenetrationPower;
+                SpawnedShrapnel.Init(vector(SpawnRot));
+                SpawnedShrapnel.bForceNetUpdate = true;
+                if(bDebugShrapnel)
+                {
+                    DrawDebugLine(SpawnPos, SpawnPos + (Normal(vector(SpawnRot)) * 500), 255, 0, 0, true);
+                }
+            }
+            ++ I;
+            goto J0xAF;
+        }
+    }
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        if(ShrapnelSpawnVFX != none)
+        {
+            WorldInfo.MyEmitterPool.SpawnEmitter(ShrapnelSpawnVFX, Location, Rotation, none);
+        }
+    }
 }
 
 defaultproperties

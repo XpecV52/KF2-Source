@@ -136,7 +136,7 @@ simulated function DeactivateObjective()
         {
             foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
             {
-                GrantReward(KFPH);                
+                GrantReward(KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo), KFPlayerController(KFPH.Controller));                
             }            
         }
         PlayDeactivationDialog();

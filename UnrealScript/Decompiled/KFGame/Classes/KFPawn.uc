@@ -87,6 +87,7 @@ enum ESpecialMove
     SM_SirenVortexVictim,
     SM_Emote,
     SM_DARGrappleVictim,
+    SM_BloatKingGorgeVictim,
     SM_BossTheatrics,
     SM_ChangeStance,
     SM_Hans_ThrowGrenade,
@@ -175,6 +176,8 @@ struct native DamageInfo
     var float TotalDamage;
     var float LastTimeDamaged;
     var array< class<KFPerk> > DamagePerks;
+    var array< class<Actor> > DamageCausers;
+    var array< class<KFDamageType> > DamageTypes;
 
     structdefaultproperties
     {
@@ -184,6 +187,8 @@ struct native DamageInfo
         TotalDamage=0
         LastTimeDamaged=0
         DamagePerks=none
+        DamageCausers=none
+        DamageTypes=none
     }
 };
 
@@ -2121,10 +2126,6 @@ function UpdateDamageHistory(Controller DamagerController, int Damage, Actor Dam
     local float DamageThreshold;
     local KFAIController KFAIC;
 
-    if(!ValidateDamageForDamageHistory(DamageCauser, DamageType))
-    {
-        return;
-    }
     if(!GetDamageHistory(DamagerController, Info, HistoryIndex))
     {
         DamageHistory.Insert(0, 1;
@@ -2165,9 +2166,6 @@ function UpdateDamageHistory(Controller DamagerController, int Damage, Actor Dam
     }
 }
 
-// Export UKFPawn::execValidateDamageForDamageHistory(FFrame&, void* const)
-private native final function bool ValidateDamageForDamageHistory(Actor DamageCauser, class<KFDamageType> DamageType);
-
 function bool GetDamageHistory(Controller DamagerController, out DamageInfo InInfo, out int InHistoryIndex)
 {
     InHistoryIndex = DamageHistory.Find('DamagerController', DamagerController;
@@ -2199,6 +2197,14 @@ function UpdateDamageHistoryValues(Controller DamagerController, int Damage, Act
     if((WeaponPerk != none) && InInfo.DamagePerks.Find(WeaponPerk == -1)
     {
         InInfo.DamagePerks.AddItem(WeaponPerk;
+    }
+    if((DamageCauser != none) && InInfo.DamageCausers.Find(DamageCauser.Class == -1)
+    {
+        InInfo.DamageCausers.AddItem(DamageCauser.Class;
+    }
+    if((DamageType != none) && InInfo.DamageTypes.Find(DamageType == -1)
+    {
+        InInfo.DamageTypes.AddItem(DamageType;
     }
 }
 
@@ -3936,8 +3942,8 @@ defaultproperties
     object end
     // Reference: KFAfflictionManager'Default__KFPawn.Afflictions'
     AfflictionHandler=Afflictions
-    IncapSettings(0)=(Duration=5,Cooldown=5,Vulnerability=none)
-    IncapSettings(1)=(Duration=5,Cooldown=5,Vulnerability=none)
+    IncapSettings(0)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(1)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
     PhysicsHitReactionImpulseScale=1
     PhysicsImpactBlendOutTime=0.45
     PhysRagdollImpulseScale=1

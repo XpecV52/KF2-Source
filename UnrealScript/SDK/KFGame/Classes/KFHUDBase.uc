@@ -31,7 +31,7 @@ var const color LightGoldColor;
 
 var const color LightGreenColor, YellowColor, OrangeColor, RedHealthColor;
 
-var const color ArmorColor, HealthColor, ClassicArmorColor, ClassicHealthColor;
+var const color ArmorColor, HealthColor, ClassicArmorColor, ClassicHealthColor, NonPlayerHealth;
 var const color PlayerBarBGColor, PlayerBarTextColor, PlayerBarIconColor, PlayerBarShadowColor;
 var const color SupplierActiveColor, SupplierUsableColor, SupplierHalfUsableColor;
 
@@ -204,6 +204,11 @@ function DrawCrosshair()
 	// Only draw the crosshair if we're not in a vehicle and we have a living pawn
     if ( PlayerOwner.Pawn != none && PlayerOwner.Pawn.Health > 0  )
 	{
+		if (PlayerOwner.ViewTarget != PlayerOwner.Pawn)
+		{
+			return;
+		}
+
 		KFWP = KFWeapon(PlayerOwner.Pawn.Weapon);
 		MyKFPerk = KFPlayerController(PlayerOwner).GetPerk();
 
@@ -670,8 +675,8 @@ function DrawHUD()
 
 				TargetLocation = KFGRI.ObjectiveInterface.GetIconLocation();
 				ThisDot = Normal((TargetLocation + (class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 1))) - ViewLocation) dot ViewVector;
-			
-				if (ThisDot > 0 &&  
+
+				if (ThisDot > 0 &&
 					KFGRI.ObjectiveInterface.ShouldShowObjectiveHUD() &&
 					(!KFGRI.ObjectiveInterFace.HasObjectiveDrawDistance() || VSizeSq(TargetLocation - LocActor.Location) < MaxDrawDistanceObjective))
 				{
@@ -868,7 +873,7 @@ simulated function bool DrawScriptedPawnInfo(KFPawn_Scripted KFPS, float Normali
 
 	TargetLocation = KFPS.Mesh.GetPosition() + (KFPS.CylinderComponent.CollisionHeight * vect(0,0,2.5f));
 	ScreenPos = Canvas.Project(TargetLocation);
-	
+
 	if (NormalizedAngle > 0)
 	{
 		if (ScreenPos.X < 0 || ScreenPos.X > Canvas.ClipX || ScreenPos.Y < 0 || ScreenPos.Y > Canvas.ClipY)
@@ -885,12 +890,12 @@ simulated function bool DrawScriptedPawnInfo(KFPawn_Scripted KFPS, float Normali
 	else
 	{
 		ScreenPos = GetClampedScreenPosition(ScreenPos);
-	}	
+	}
 
 	//Draw health bar
 	FontScale = class'KFGameEngine'.Static.GetKFFontScale() * FriendlyHudScale;
 	Percentage = FMin(float(KFPS.Health) / float(KFPS.HealthMax), 1);
-	
+
 	// Make sure that the entire health bar is on screen
 	ScreenPos.X = FClamp(ScreenPos.X, BarLength * 0.5f, Canvas.ClipX - BarLength * 0.5f);
 
@@ -954,7 +959,7 @@ simulated function bool DrawObjectiveHUD()
 		BarLength = FMin(PlayerStatusBarLengthMax * (Canvas.ClipX / 1024.f), PlayerStatusBarLengthMax) * ResModifier;
 		BarHeight = FMin(8.f * (Canvas.ClipX / 1024.f), 8.f) * ResModifier;
 		Percentage = FMin(KFGRI.ObjectiveInterface.GetProgress(), 1);
-		DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y, HealthColor);
+		DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y, NonPlayerHealth);
 	}
 	else
 	{
@@ -1012,7 +1017,7 @@ simulated function CheckAndDrawHiddenPlayerIcons( array<PlayerReplicationInfo> V
     local vector ViewLocation, ViewVector, PawnLocation;
     local rotator ViewRotation;
  	local KFPlayerReplicationInfo KFPRI;
-	
+
  	// GRI hasn't replicated yet
  	if( WorldInfo.GRI == none )
  	{
@@ -1133,8 +1138,8 @@ function DrawHiddenHumanPlayerIcon( PlayerReplicationInfo PRI, vector IconWorldL
 			{
 				return;
 			}
-		}	
-		
+		}
+
 	}
 	else if (KFPRI.CurrentVoiceCommsRequest != VCT_NONE)
 	{
@@ -1224,7 +1229,7 @@ function DrawZedIcon( Pawn ZedPawn, vector PawnLocation, float NormalizedAngle )
     ScreenPos.X -= IconSizeMult;
     ScreenPos.Y -= IconSizeMult;
 
-	
+
 
 	if (NormalizedAngle > 0)
 	{
@@ -1330,6 +1335,7 @@ defaultproperties
 	ClassicHealthColor=(R=95, G=210, B=255, A=192)
 	ArmorColor=(R=0, G=100, B=210, A=192)		// slightly less saturated
 	HealthColor=(R=0, G=192, B=0, A=192)		// changed to match 'LightGreenColor'
+	NonPlayerHealth=(R=0, G=184, B=97, A=192)
 	PlayerBarBGColor=(R=16, G=16, B=16, A=192) 	// changed to grey so that depleted health is more obvious. More transparent.
 	PlayerBarTextColor=(R=255, G=255, B=255, A=192)
 	PlayerBarIconColor=(R=255, G=255, B=255, A=192)
