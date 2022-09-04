@@ -50,7 +50,6 @@ defaultproperties
    Components(1)=DrawSoundRadius0
    Components(2)=AudioComponent0
    DrawScale=2.000000
-   CollisionType=COLLIDE_CustomDefault
    Name="Default__AmbientSoundNonLoop"
    ObjectArchetype=AmbientSoundSimple'Engine.Default__AmbientSoundSimple'
 }

@@ -260,6 +260,6 @@ function ClearMarketplaceItemPurchasedDelegate(delegate<OnMarketplaceItemPurchas
 
 defaultproperties
 {
-    ConsumablesCount=47
-    DurablesCount=17
+    ConsumablesCount=59
+    DurablesCount=23
 }

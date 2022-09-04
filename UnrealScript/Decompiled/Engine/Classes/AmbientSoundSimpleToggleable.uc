@@ -154,7 +154,6 @@ defaultproperties
     object end
     // Reference: AudioComponent'Default__AmbientSoundSimpleToggleable.AudioComponent0'
     Components(2)=AudioComponent0
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bStatic=false
     bNoDelete=true
 }

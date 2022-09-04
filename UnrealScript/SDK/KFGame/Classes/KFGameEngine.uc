@@ -569,6 +569,11 @@ function UnlockServer()
 {
 	local UniqueNetId NullId;
 
+	if (class'WorldInfo'.static.GetWorldInfo().NetMode == NM_DedicatedServer)
+	{
+		`REMOVEMESOON_ServerTakeoverLog("KFGameEngine.UnlockServer - bUsedForTakeover: "$bUsedForTakeover);
+	}
+
 	if (bUsedForTakeover)
 	{
 		`log("***The server is now unlocked and available for takeover!");

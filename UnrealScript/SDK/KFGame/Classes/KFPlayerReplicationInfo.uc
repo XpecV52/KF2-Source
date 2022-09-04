@@ -862,7 +862,7 @@ simulated function SharedContentInitChain_InventoryRead_Playfab(bool bWasSuccess
 	local array<OnlineCrossTitleContent> CrossTitleContent;
 
 	class'GameEngine'.static.GetPlayfabInterface().
-		ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+		ClearInventoryReadCompleteDelegate(SharedContentInitChain_InventoryRead_Playfab);
 
 	// At this point, cross title content and inventory should both be available
 	class'GameEngine'.static.GetOnlineSubsystem().

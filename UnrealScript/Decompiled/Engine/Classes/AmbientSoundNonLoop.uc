@@ -44,5 +44,4 @@ defaultproperties
     // Reference: AudioComponent'Default__AmbientSoundNonLoop.AudioComponent0'
     Components(2)=AudioComponent0
     DrawScale=2
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }

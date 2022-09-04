@@ -1,3 +1,7 @@
+
+
+
+
 [TestItems]
 LocTestName="Loc Test Name"
 LocTestType="Loc Test Type"
@@ -166,7 +170,7 @@ CyberpunkOutfitObjectiveBundleDescription="Contient des tenues Cyberpunk pour ho
 HalloweenOutfitBundleDescription="Contient une tenue chasseur de sorcières (6 modèles différents). Compatible avec la plupart des personnages."
 HeadshotFXBundle1Description="Contient cinq effets tir en pleine tête. Le fric, c'est chic, Action comique, C'est la fête, Coup de foudre balistique et Fantômes flippants."
 HeadshotFXBundle2Description="Contient cinq effets de tir à la tête. Tache d'encre, Feux d’artifice, Pétale, Chatoiement, Circuit Horzine."
-RhinoRevolverBundleDescription="Change les Zeds en gruyère. Des Revolvers Rhino pensés pour les classes Flingueur et Tireur d'élite. Livré avec 5 modèles d'arme uniques."
+RhinoRevolverBundleDescription="Change les Zeds en gruyère. Des Revolvers Rhino pensés pour la classe Flingueur. Livré avec 5 modèles d'arme uniques."
 IonThrusterBundleDescription="Pratique pour les barbecues, le Trancheur ionique pensé pour la classer Fou furieux est livré avec 5 modèles uniques."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Contient cinq caisses cosmétiques Horzine | Série 4 et leurs cinq clés assorties."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Contient dix caisses cosmétiques Horzine | Série 4 et leurs dix clés assorties."

@@ -362,6 +362,7 @@ function UpdateGameSettings()
 
     if((WorldInfo.NetMode == NM_DedicatedServer) || WorldInfo.NetMode == NM_ListenServer)
     {
+        LogInternal(("(TW TAKEOVER LOG)" @ "KFGameInfo_Survival.UpdateGameSettings 1 - GameInterface: ") $ string(GameInterface));
         if(NotEqual_InterfaceInterface(GameInterface, (none)))
         {
             KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
@@ -375,8 +376,10 @@ function UpdateGameSettings()
             {
                 KFGameSettings = KFOnlineGameSettings(GameInterface.GetGameSettings(SessionName));
             }
+            LogInternal(("(TW TAKEOVER LOG)" @ "KFGameInfo_Survival.UpdateGameSettings 2 - KFGameSettings: ") $ string(KFGameSettings));
             if(KFGameSettings != none)
             {
+                LogInternal(("(TW TAKEOVER LOG)" @ "KFGameInfo_Survival.UpdateGameSettings 3 - KFGameSettings.bAvailableForTakeover: ") $ string(KFGameSettings.bAvailableForTakeover));
                 KFGameSettings.Mode = GetGameModeNum();
                 KFGameSettings.Difficulty = int(GameDifficulty);
                 if(WaveNum == 0)
@@ -413,7 +416,7 @@ function UpdateGameSettings()
                     if(GameReplicationInfo != none)
                     {
                         I = 0;
-                        J0x4F3:
+                        J0x644:
 
                         if(I < GameReplicationInfo.PRIArray.Length)
                         {
@@ -422,10 +425,15 @@ function UpdateGameSettings()
                                 ++ NumHumanPlayers;
                             }
                             ++ I;
-                            goto J0x4F3;
+                            goto J0x644;
                         }
                     }
                     KFGameSettings.NumOpenPublicConnections = KFGameSettings.NumPublicConnections - NumHumanPlayers;
+                }
+                LogInternal(("(TW TAKEOVER LOG)" @ "KFGameInfo_Survival.UpdateGameSettings 4 - PlayfabInter: ") $ string(PlayfabInter));
+                if(PlayfabInter != none)
+                {
+                    LogInternal(("(TW TAKEOVER LOG)" @ "KFGameInfo_Survival.UpdateGameSettings 4.1 - IsRegisteredWithPlayfab: ") $ string(PlayfabInter.IsRegisteredWithPlayfab()));
                 }
                 if((PlayfabInter != none) && PlayfabInter.IsRegisteredWithPlayfab())
                 {
@@ -911,6 +919,10 @@ function WaveStarted()
 function CheckWaveEnd(optional bool bForceWaveEnd)
 {
     bForceWaveEnd = false;
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        LogInternal(((((((((((("(TW ZOMBIE SERVER LOG)" @ "KFGameInfo_Survival.CheckWaveEnd - bForceWaveEnd: ") $ string(bForceWaveEnd)) $ "; bMatchHasBegun: ") $ string(MyKFGRI.bMatchHasBegun)) $ "; GetLivingPlayerCount(): ") $ string(GetLivingPlayerCount())) $ "; AIAliveCount: ") $ string(AIAliveCount)) $ "; IsWaveActive(): ") $ string(IsWaveActive())) $ "; IsFinishedSpawning(): ") $ string(SpawnManager.IsFinishedSpawning()));
+    }
     if(!MyKFGRI.bMatchHasBegun)
     {
         LogInternal("KFGameInfo - CheckWaveEnd - Cannot check if wave has ended since match has not begun. ");
@@ -942,12 +954,17 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     local int I;
     local KFPlayerController KFPC;
 
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        ScriptTrace();
+        LogInternal(((((("(TW ZOMBIE SERVER LOG)" @ "KFGameInfo_Survival.WaveEnded - WinCondition: ") $ string(WinCondition)) $ "; WaveNum: ") $ string(WaveNum)) $ "; WaveMax: ") $ string(WaveMax));
+    }
     GameSeq = WorldInfo.GetGameSequence();
     if(GameSeq != none)
     {
         GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveEnd', true, AllWaveEndEvents);
         I = 0;
-        J0x75:
+        J0x13A:
 
         if(I < AllWaveEndEvents.Length)
         {
@@ -967,7 +984,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
                 WaveEndEvt.CheckActivate(self, self,, OutputLinksToActivate);
             }
             ++ I;
-            goto J0x75;
+            goto J0x13A;
         }
     }
     BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 1);
@@ -1271,6 +1288,10 @@ function EndOfMatch(bool bVictory)
 {
     local KFPlayerController KFPC;
 
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        LogInternal(("(TW ZOMBIE SERVER LOG)" @ "KFGameInfo_Survival.EndOfMatch - bVictory: ") $ string(bVictory));
+    }
     if((WorldInfo.GRI != none) && WorldInfo.GRI.GameClass.static.AllowAnalyticsLogging())
     {
         WorldInfo.TWLogEvent("match_end", none, "#" $ string(WaveNum), "#" $ ((bVictory) ? "1" : "0"), "#" $ string(GameConductor.ZedVisibleAverageLifespan));
@@ -1509,6 +1530,10 @@ state MatchEnded
 {
     function BeginState(name PreviousStateName)
     {
+        if(WorldInfo.NetMode == NM_DedicatedServer)
+        {
+            LogInternal(("(TW ZOMBIE SERVER LOG)" @ "KFGameInfo_Survival:MatchEnded.BeginState - PreviousStateName: ") $ string(PreviousStateName));
+        }
         LogInternal("KFGameInfo_Survival - MatchEnded.BeginState - AARDisplayDelay:" @ string(AARDisplayDelay));
         MyKFGRI.EndGame();
         MyKFGRI.bWaitingForAAR = true;
@@ -1522,6 +1547,10 @@ state MatchEnded
 
     event Timer()
     {
+        if(WorldInfo.NetMode == NM_DedicatedServer)
+        {
+            LogInternal(("(TW ZOMBIE SERVER LOG)" @ "KFGameInfo_Survival:MatchEnded.Timer - NumPlayers: ") $ string(NumPlayers));
+        }
         global.Timer();
         if(NumPlayers == 0)
         {

@@ -778,7 +778,7 @@ simulated function SharedContentInitChain_InventoryRead_Playfab(bool bWasSuccess
 {
     local array<OnlineCrossTitleContent> CrossTitleContent;
 
-    Class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(OnInventoryReadComplete_Playfab);
+    Class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(SharedContentInitChain_InventoryRead_Playfab);
     Class'GameEngine'.static.GetOnlineSubsystem().ContentInterface.GetCrossTitleContentList(0, 2, CrossTitleContent);
     Class'KFUnlockManager'.static.InitSharedUnlocksFor(self, CrossTitleContent);
 }

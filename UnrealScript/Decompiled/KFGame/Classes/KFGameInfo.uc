@@ -2931,18 +2931,34 @@ private final function CheckServerUnlock()
     local KFGameEngine KFEngine;
     local PlayfabInterface Playfab;
 
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        LogInternal(("(TW TAKEOVER LOG)" @ "KFGameInfo.CheckServerUnlock 1 - GetNumPlayers(): ") $ string(GetNumPlayers()));
+    }
     if((GetNumPlayers()) == 0)
     {
         KFEngine = KFGameEngine(Class'Engine'.static.GetEngine());
         Playfab = KFEngine.GetPlayfabInterface();
+        if(WorldInfo.NetMode == NM_DedicatedServer)
+        {
+            LogInternal(("(TW TAKEOVER LOG)" @ "KFGameInfo.CheckServerUnlock 2 - Playfab: ") $ string(Playfab));
+        }
         if(Playfab != none)
         {
             Playfab.ServerDeallocate();
+        }
+        if(WorldInfo.NetMode == NM_DedicatedServer)
+        {
+            LogInternal((((((("(TW TAKEOVER LOG)" @ "KFGameInfo.CheckServerUnlock 3 - IsLockedServer(): ") $ string(KFEngine.IsLockedServer())) $ " (bUsedForTakeover: ") $ string(KFEngine.bUsedForTakeover)) $ ", bAvailableForTakeover: ") $ string(KFEngine.bAvailableForTakeover)) $ ")");
         }
         if(KFEngine.IsLockedServer())
         {
             bWasAvailableForTakeover = KFEngine.bAvailableForTakeover;
             KFEngine.UnlockServer();
+            if(WorldInfo.NetMode == NM_DedicatedServer)
+            {
+                LogInternal(((("(TW TAKEOVER LOG)" @ "KFGameInfo.CheckServerUnlock 4 - bWasAvailableForTakeover: ") $ string(bWasAvailableForTakeover)) $ "; bAvailableForTakeover: ") $ string(KFEngine.bAvailableForTakeover));
+            }
             if(!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
             {
                 AccessControl.SetGamePassword("");
@@ -3102,8 +3118,20 @@ static function bool HasCustomTraderVoiceGroup()
 
 auto state PendingMatch
 {
+    function BeginState(name PreviousStateName)
+    {
+        if(WorldInfo.NetMode == NM_DedicatedServer)
+        {
+            LogInternal(("(TW ZOMBIE SERVER LOG)" @ "KFGameInfo:PendingMatch.BeginState - PreviousStateName: ") $ string(PreviousStateName));
+        }
+    }
+
     event Timer()
     {
+        if(WorldInfo.NetMode == NM_DedicatedServer)
+        {
+            LogInternal(("(TW ZOMBIE SERVER LOG)" @ "KFGameInfo:PendingMatch.Timer - bDelayedStart: ") $ string(bDelayedStart));
+        }
         global.Timer();
         if(bDelayedStart)
         {

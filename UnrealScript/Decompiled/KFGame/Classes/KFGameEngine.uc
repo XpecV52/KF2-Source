@@ -461,6 +461,10 @@ function UnlockServer()
 {
     local UniqueNetId NullId;
 
+    if(Class'WorldInfo'.static.GetWorldInfo().NetMode == NM_DedicatedServer)
+    {
+        LogInternal(("(TW TAKEOVER LOG)" @ "KFGameEngine.UnlockServer - bUsedForTakeover: ") $ string(bUsedForTakeover));
+    }
     if(bUsedForTakeover)
     {
         LogInternal("***The server is now unlocked and available for takeover!");

@@ -76,3 +76,6 @@
 `else
 `define QALog(text,cond) if(`cond) `log(GetFuncName()@`text,, 'QALog')
 `endif
+
+`define REMOVEMESOON_ServerTakeoverLog(text) `log("(TW TAKEOVER LOG)"@`text)
+`define REMOVEMESOON_ZombieServerLog(text) `log("(TW ZOMBIE SERVER LOG)"@`text)

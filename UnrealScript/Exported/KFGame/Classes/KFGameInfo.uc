@@ -3671,8 +3671,23 @@ function LogPlayersKillCount()
 
 auto State PendingMatch
 {
+	// REMOVEMESOON
+	function BeginState(Name PreviousStateName)
+	{
+		if (WorldInfo.NetMode == NM_DedicatedServer)
+		{
+			LogInternal("(TW ZOMBIE SERVER LOG)"@"KFGameInfo:PendingMatch.BeginState - PreviousStateName: "$PreviousStateName);
+		}
+	}
+	// END REMOVEMESOON
+
 	event Timer()
 	{
+		if (WorldInfo.NetMode == NM_DedicatedServer)
+		{
+			LogInternal("(TW ZOMBIE SERVER LOG)"@"KFGameInfo:PendingMatch.Timer - bDelayedStart: "$bDelayedStart);
+		}
+
 		global.Timer();
  		if (bDelayedStart)
 		{
@@ -3818,21 +3833,41 @@ private function CheckServerUnlock()
 	local KFGameEngine KFEngine;
     local PlayfabInterface Playfab;
 
+	if (WorldInfo.NetMode == NM_DedicatedServer)
+	{
+		LogInternal("(TW TAKEOVER LOG)"@"KFGameInfo.CheckServerUnlock 1 - GetNumPlayers(): "$GetNumPlayers());
+	}
+
 	if ( GetNumPlayers() == 0 )
 	{
         KFEngine = KFGameEngine(class'Engine'.static.GetEngine());
         Playfab = KFEngine.GetPlayfabInterface();
+
+		if (WorldInfo.NetMode == NM_DedicatedServer)
+		{
+			LogInternal("(TW TAKEOVER LOG)"@"KFGameInfo.CheckServerUnlock 2 - Playfab: "$Playfab);
+		}
 
         if( Playfab != none )
 	    {
 		    Playfab.ServerDeallocate();
 	    }
 
+		if (WorldInfo.NetMode == NM_DedicatedServer)
+		{
+			LogInternal("(TW TAKEOVER LOG)"@"KFGameInfo.CheckServerUnlock 3 - IsLockedServer(): "$KFEngine.IsLockedServer()$" (bUsedForTakeover: "$KFEngine.bUsedForTakeover$", bAvailableForTakeover: "$KFEngine.bAvailableForTakeover$")");
+		}
+
 		// Won't unlock a server that's not lockable
         if( KFEngine.IsLockedServer() )
         {
             bWasAvailableForTakeover = KFEngine.bAvailableForTakeover;
             KFEngine.UnlockServer();
+
+			if (WorldInfo.NetMode == NM_DedicatedServer)
+			{
+				LogInternal("(TW TAKEOVER LOG)"@"KFGameInfo.CheckServerUnlock 4 - bWasAvailableForTakeover: "$bWasAvailableForTakeover$"; bAvailableForTakeover: "$KFEngine.bAvailableForTakeover);
+			}
 
             if (!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
             {
