@@ -13,7 +13,7 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_Rifle_HRGIncision"
     ImagePath="WEP_UI_HRG_Incision_Item_TEX.UI_WeaponSelect_HRG_Incision"
     BuyPrice=1500
-    AmmoPricePerMag=11
+    AmmoPricePerMag=14
     UpgradePrice(0)=1500
     UpgradeSellPrice(0)=1125
     EffectiveRange=100

@@ -103,6 +103,15 @@ simulated function DrawTargetingTeammateIcon(Canvas Canvas, int Index)
     }
 }
 
+simulated function bool HasAnyAmmo()
+{
+    if((HasSpareAmmo()) || HasAmmo(0))
+    {
+        return true;
+    }
+    return false;
+}
+
 defaultproperties
 {
     LockedTeammateHitZoneIcon=Texture2D'Wep_Scope_TEX.Wep_1stP_Yellow_Red_Target'
@@ -124,7 +133,7 @@ defaultproperties
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=39
-    InitialSpareMags=14
+    InitialSpareMags=12
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Rifle_HRGIncision.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
     WeaponUpgrades=/* Array type was not detected. */

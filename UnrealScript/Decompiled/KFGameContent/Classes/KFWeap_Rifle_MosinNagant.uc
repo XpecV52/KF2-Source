@@ -104,6 +104,25 @@ simulated function bool CanOverrideMagReload(byte FireModeNum)
     return super.CanOverrideMagReload(FireModeNum);
 }
 
+static simulated function float CalculateTraderWeaponStatDamage()
+{
+    local float BaseDamage, DoTDamage;
+    local class<KFDamageType> DamageType;
+
+    BaseDamage = default.InstantHitDamage[0];
+    DamageType = class<KFDamageType>(default.InstantHitDamageTypes[0]);
+    if((DamageType != none) && DamageType.default.DoT_Type != 0)
+    {
+        DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
+    }
+    return (BaseDamage * float(default.NumPellets[0])) + DoTDamage;
+}
+
+static simulated function float CalculateTraderWeaponStatFireRate()
+{
+    return 60 / default.FireInterval[0];
+}
+
 simulated state MeleeBlocking
 {
     simulated function bool AllowIronSights()
@@ -116,8 +135,8 @@ simulated state MeleeBlocking
 defaultproperties
 {
     LastFireInterval=0.5
-    ParryStrength=5
-    ParryDamageMitigationPercent=0.4
+    BlockDamageMitigation=0.6
+    ParryDamageMitigationPercent=0.5
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
     PackageKey="Mosin"
@@ -183,6 +202,7 @@ defaultproperties
     FiringStatesArray=/* Array type was not detected. */
     WeaponFireTypes=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
+    FireInterval=/* Array type was not detected. */
     Spread=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitMomentum=/* Array type was not detected. */

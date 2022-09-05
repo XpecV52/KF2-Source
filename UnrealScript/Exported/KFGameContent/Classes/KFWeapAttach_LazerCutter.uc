@@ -307,7 +307,7 @@ simulated function ResetAnimationState()
 	InterruptWeaponAnim();
 }
 
-simulated function StopThirdPersonFireEffects()
+simulated function StopThirdPersonFireEffects(optional bool bForce)
 {
 	if (bFireSpraying)
 	{
@@ -317,7 +317,7 @@ simulated function StopThirdPersonFireEffects()
 	// beam is over, return to default color
 	SetBeamColor(0);
 
-	Super.StopThirdPersonFireEffects();
+	Super.StopThirdPersonFireEffects(bForce);
 }
 
 simulated function FirstPersonFireEffects(Weapon W, vector HitLocation)

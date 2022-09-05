@@ -42,6 +42,10 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     ClearSMParticles();
     super.SpecialMoveStarted(bForced, PrevMove);
     InitialRotation = KFPOwner.Rotation;
+    if(KFPOwner.WeaponAttachment != none)
+    {
+        KFPOwner.WeaponAttachment.StopThirdPersonFireEffects(true);
+    }
 }
 
 function PlayAnimation()

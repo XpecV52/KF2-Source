@@ -5546,13 +5546,13 @@ AttachmentSkin1="Rossi"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_TopHat_ARCH]
-Attachment="Cappello a cilindro natalizio Clot"
+Attachment="Cappello a cilindro Clot"
 AttachmentSkin0="Rossi"
 AttachmentSkin1="Verdi"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_SnowmanCap_ARCH]
-Attachment="Cappello natalizio Pupazzo di neve"
+Attachment="Cappello Pupazzo di neve"
 AttachmentSkin0="Ghiaccio"
 AttachmentSkin1="Magma"
 AttachmentSkin2="Preziosa"
@@ -5582,19 +5582,19 @@ AttachmentSkin1="Verdi"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_GingerbreadHat_ARCH]
-Attachment="Cappello natalizio Pan di zenzero"
+Attachment="Cappello Pan di zenzero"
 AttachmentSkin0="Originale"
 AttachmentSkin1="Glassa alla fragola"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_NiceSantaMask_ARCH]
-Attachment="Maschera natalizia Babbo Natale buono"
+Attachment="Maschera Babbo Natale buono"
 AttachmentSkin0="Rossi"
 AttachmentSkin1="Verdi"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_NaughtySantaMask_ARCH]
-Attachment="Maschera natalizia Babbo Natale cattivo"
+Attachment="Maschera Babbo Natale cattivo"
 AttachmentSkin0="Grigio scuro"
 AttachmentSkin1="Afflusso di sangue"
 AttachmentSkin2="Preziosa"

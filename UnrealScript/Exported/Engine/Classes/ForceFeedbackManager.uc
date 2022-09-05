@@ -51,6 +51,13 @@ var Actor WaveformInstigator;
  */
 simulated function PlayForceFeedbackWaveform(ForceFeedbackWaveform Waveform,Actor WaveInstigator)
 {
+
+	if (Waveform == None || Waveform.Samples.Length == 0 || !bAllowsForceFeedback)
+	{
+		return;
+	}
+// __TW_
+
 	// Zero out the current sample and duration and unpause if paused
 	CurrentSample = 0;
 	ElapsedTime = 0.0;

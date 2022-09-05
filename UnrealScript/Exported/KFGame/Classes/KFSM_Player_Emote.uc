@@ -655,6 +655,7 @@ class KFSM_Player_Emote extends KFSM_PlaySingleAnim;
 
 
 
+
 #linenumber 13
 
 /** Camera animation */
@@ -716,6 +717,12 @@ function SpecialMoveStarted( bool bForced, Name PrevMove )
 	// Cache off starting rotation. Instead of snapping the pawn to the new camera direction, we'll set the camera back
 	// to this so that it smoothly blends out of the move.
 	InitialRotation = KFPOwner.Rotation;
+
+	// Force weapon to stop playing FX
+	if (KFPOwner.WeaponAttachment != none)
+	{
+		KFPOwner.WeaponAttachment.StopThirdPersonFireEffects(true);
+	}
 }
 
 function PlayAnimation()

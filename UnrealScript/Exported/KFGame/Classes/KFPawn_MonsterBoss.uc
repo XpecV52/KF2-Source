@@ -658,6 +658,7 @@ class KFPawn_MonsterBoss extends KFPawn_Monster
 
 
 
+
 #linenumber 16
 
 var KFPlayerController KFPC; //used to notify UI

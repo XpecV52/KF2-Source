@@ -22,6 +22,10 @@ var Actor WaveformInstigator;
 
 simulated function PlayForceFeedbackWaveform(ForceFeedbackWaveform WaveForm, Actor WaveInstigator)
 {
+    if(((WaveForm == none) || WaveForm.Samples.Length == 0) || !bAllowsForceFeedback)
+    {
+        return;
+    }
     CurrentSample = 0;
     ElapsedTime = 0;
     NextSample = 0;

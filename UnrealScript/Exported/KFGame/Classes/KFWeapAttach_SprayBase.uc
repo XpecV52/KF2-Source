@@ -324,7 +324,7 @@ simulated protected function TurnOffFireSpray()
 		StartPilotSound();
 		SetPilotDynamicLightEnabled(true);
 	}
-	
+
 //
 //	if( PSC_UnignitedFuel != None )
 //	{
@@ -355,11 +355,11 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byt
     return bResult;
 }
 
-simulated function StopThirdPersonFireEffects()
+simulated function StopThirdPersonFireEffects(optional bool bForce)
 {
     TurnOffFireSpray();
 
-    Super.StopThirdPersonFireEffects();
+    Super.StopThirdPersonFireEffects(bForce);
 }
 
 /** Attach weapon to owner's skeletal mesh */
@@ -374,10 +374,10 @@ simulated function AttachTo(KFPawn P)
 simulated function DetachFrom(KFPawn P)
 {
 	if( bFireSpraying )
-	{ 
+	{
 	    TurnOffFireSpray();
 	}
-	
+
     TurnOffPilot();
 
     Super.DetachFrom(P);
@@ -479,7 +479,7 @@ simulated event Tick(float DeltaTime)
 simulated event ChangeVisibility(bool bIsVisible)
 {
 	super.ChangeVisibility(bIsVisible);
-	
+
 	if (bIsVisible)
 	{
 		TurnOnPilot();

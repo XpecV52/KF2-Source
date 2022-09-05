@@ -216,7 +216,7 @@ simulated function int GetMeleeDamage(byte FireModeNum, optional Vector RayDir)
     Damage = GetModifiedDamage(FireModeNum, RayDir);
     if(!IsZero(RayDir))
     {
-        Damage *= FMin(VSize(RayDir), 1);
+        Damage = Round(float(Damage) * FMin(VSize(RayDir), 1));
     }
     InstigatorPerk = GetPerk();
     if(InstigatorPerk != none)

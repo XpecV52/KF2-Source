@@ -246,7 +246,7 @@ defaultproperties
     BlockTypes(11)=(dmgType=Class'KFDT_EMP_MatriarchTeslaBlast',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal',ParrySound=none,BlockParticleSys=none,ParryParticleSys=none)
     BlockTypes(12)=(dmgType=Class'KFDT_EMP_MatriarchPlasmaCannon',BlockSound=none,ParrySound=none,BlockParticleSys=none,ParryParticleSys=none)
     BlockTypes(13)=(dmgType=Class'KFDT_FleshpoundKing_ChestBeam',BlockSound=none,ParrySound=none,BlockParticleSys=none,ParryParticleSys=none)
-    BlockDamageMitigation=0.5
+    BlockDamageMitigation=0.4
     IdleToIronSightAnim=Iron_Shield_Up
     IronSightToIdleAnim=Iron_Shield_Down
     BlockAngle=170
@@ -307,7 +307,7 @@ defaultproperties
     InstantHitDamage=/* Array type was not detected. */
     InstantHitMomentum=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
-    FireOffset=(X=30,Y=4.5,Z=-5)
+    FireOffset=(X=30,Y=6.5,Z=-4)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

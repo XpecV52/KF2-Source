@@ -527,6 +527,22 @@ simulated function PlaySoundEvent(out KFSoundEventGroup SoundGroup, int nSpecifi
     }
 }
 
+simulated function ResetOrderedSoundEventsForRespawn()
+{
+    if(CollectibleActivateSoundEvents.SoundType == 2)
+    {
+        -- CollectibleActivateSoundEvents.CurrentEvent;
+    }
+    if(CollectibleCollectSoundEvents.SoundType == 2)
+    {
+        -- CollectibleCollectSoundEvents.CurrentEvent;
+    }
+    if(CollectibleDroppedSoundEvents.SoundType == 2)
+    {
+        -- CollectibleDroppedSoundEvents.CurrentEvent;
+    }
+}
+
 simulated function OnCollectActor(KFObjectiveCollectActor Collectible)
 {
     if(!bActive)
@@ -898,8 +914,9 @@ simulated function RespawnCollectible(KFObjectiveCollectActor collectActor)
 
     bCollectibleReset = true;
     SetTimer(CollectibleResetTimerLength, false, 'Timer_CollectibleReset');
+    ResetOrderedSoundEventsForRespawn();
     I = 0;
-    J0x2E:
+    J0x38:
 
     if(I < CollectibleInfo.Length)
     {
@@ -910,12 +927,12 @@ simulated function RespawnCollectible(KFObjectiveCollectActor collectActor)
             CollectibleInfo[I].Collectible.SetActive(false);
             CollectibleInfo[I].CollectibleTrigger.bActive = false;
             ChooseNextCollectible();
-            goto J0x164;
+            goto J0x16E;
         }
         ++ I;
-        goto J0x2E;
+        goto J0x38;
     }
-    J0x164:
+    J0x16E:
 
 }
 

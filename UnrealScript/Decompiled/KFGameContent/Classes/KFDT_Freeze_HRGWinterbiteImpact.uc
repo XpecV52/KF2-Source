@@ -13,7 +13,7 @@ defaultproperties
     WeaponDef=Class'KFGame.KFWeapDef_HRGWinterbite'
     StumblePower=50
     GunHitPower=100
-    FreezePower=10
+    FreezePower=0
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=1000
     KDeathVel=350

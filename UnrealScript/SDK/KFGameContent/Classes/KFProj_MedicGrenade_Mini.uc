@@ -58,6 +58,12 @@ defaultproperties
     GravityScale=0.5
     TossZ=150
 
+	// set collision size to 0 so it doesn't cause non-zero extent checks against zeds
+	Begin Object Name=CollisionCylinder
+		CollisionRadius=0.f
+		CollisionHeight=0.f
+	End Object
+
 	FuseTime=0.01
 	PostExplosionLifetime=15
 
@@ -66,11 +72,11 @@ defaultproperties
 	bDamageDestructiblesOnTouch=true
 	Damage=50
 	MyDamageType=class'KFDT_Ballistic_MedicRifleGrenadeLauncherImpact'
-	
+
     ProjFlightTemplate=ParticleSystem'WEP_Medic_GrenadeLauncher_EMIT.FX_Medic_GrenadeLauncher_Projectile'
     ProjFlightTemplateZedTime=ParticleSystem'WEP_Medic_GrenadeLauncher_EMIT.FX_Medic_GrenadeLauncher_Projectile_ZEDTIME'
 	ExplosionActorClass=class'KFExplosion_MedicGrenadeMini'
-	
+
 	// explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		Damage=60  //50  //150

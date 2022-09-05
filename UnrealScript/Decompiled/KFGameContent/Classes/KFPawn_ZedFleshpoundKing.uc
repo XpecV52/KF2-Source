@@ -642,7 +642,6 @@ defaultproperties
     XPValues[1]=1694
     XPValues[2]=1790
     XPValues[3]=1843
-    WeakSpotSocketNames=/* Array type was not detected. */
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_FleshpoundKing'
     MinBlockFOV=0.2

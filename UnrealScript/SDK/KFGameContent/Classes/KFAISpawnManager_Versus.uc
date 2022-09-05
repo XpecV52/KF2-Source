@@ -825,6 +825,8 @@ protected function RespawnZedHumanPlayers( KFSpawnVolume SpawnVolume, optional b
 
     // Add spawned to monster alive count
     AIAliveCount += NumSpawned;
+	NumAIFinishedSpawning += NumSpawned;
+	UpdateAIRemaining();
 
     // If we need to stop spawning, clear all pending zed spawns
     if( bStopSpawning )
@@ -1171,6 +1173,7 @@ function FindTakeoverZed( KFPlayerControllerVersus KFPCV )
 
                     // Need to increment AI remaining, because killing the AI subtracted a zed
                     MyKFGRI.AIRemaining += 1;
+					NumAIFinishedSpawning -= 1;
                 }
                 return;
             }

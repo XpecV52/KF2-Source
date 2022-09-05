@@ -560,11 +560,11 @@ simulated function PlayPawnFireAnim( KFPawn P, EAnimSlotStance AnimType )
 	}
 }
 
-simulated function StopThirdPersonFireEffects()
+simulated function StopThirdPersonFireEffects(optional bool bForce)
 {
 	if (MuzzleFlash != None)
 	{
-        MuzzleFlash.StopMuzzleFlash();
+        MuzzleFlash.StopMuzzleFlash(bForce);
 	}
 }
 

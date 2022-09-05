@@ -116,48 +116,48 @@ ItemDescription="•Combat armor protects you from various forms of damage, but 
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 Stick of Dynamite"
-ItemCategory =" "Explosives"
-ItemDescription="•Just a small piece of dynamite with a fuse attached.\n•It can also hurt you, so be careful with it!" "
+ItemCategory ="Explosives"
+ItemDescription="•Just a small piece of dynamite with a fuse attached.\n•It can also hurt you, so be careful with it!"
 
 [KFProj_MedicGrenade]
 ItemName="Medic Grenade"
-ItemCategory =" "Explosives"
-ItemDescription="•Releases a gas that will poison Zeds, but will also heal people.\n\n•Stand in the blue gas cloud to be healed.\nTo quote one of our scientists: 'The agent released from these grenades will revivify Homo Sapiens, while euthanizing Homo Zedicus.' We hope that helps." "
+ItemCategory ="Explosives"
+ItemDescription="•Releases a gas that will poison Zeds, but will also heal people.\n\n•Stand in the blue gas cloud to be healed.\nTo quote one of our scientists: 'The agent released from these grenades will revivify Homo Sapiens, while euthanizing Homo Zedicus.' We hope that helps."
 
 [KFProj_MolotovGrenade]
 ItemName="Molotov Cocktail"
 ItemCategory="Explosives"
-ItemDescription="•Very simply, a flame grenade that will burn Zeds.\n\nNamed, insultingly, by the Finns during the 1939-40 Winter War, after Vyacheslav Mikhailovich Molotov, the Soviet Foreign Minister under Stalin... Sorry, did you not want a history lesson?" "
+ItemDescription="•Very simply, a flame grenade that will burn Zeds.\n\nNamed, insultingly, by the Finns during the 1939-40 Winter War, after Vyacheslav Mikhailovich Molotov, the Soviet Foreign Minister under Stalin... Sorry, did you not want a history lesson?"
 
 [KFProj_EMPGrenade]
 ItemName="EMP Grenade"
 ItemCategory="Explosives"
-ItemDescription="•Generates an electric pulse that will both damage Zeds and may also stun them for a brief time.\n\nIf you want more detail - on detonation, it generates a nanosecond electro-magnetic pulse that will disrupt electrical systems within a short range. Particularly those within the Zeds. Handy, that." "
+ItemDescription="•Generates an electric pulse that will both damage Zeds and may also stun them for a brief time.\n\nIf you want more detail - on detonation, it generates a nanosecond electro-magnetic pulse that will disrupt electrical systems within a short range. Particularly those within the Zeds. Handy, that."
 
 [KFProj_HEGrenade]
 ItemName="HE Grenade"
 ItemCategory="Explosives"
-ItemDescription="•A very simple high-explosive grenade. Hurts Zeds and humans alike.\n\nIt really doesn't get any simpler. HE - High Explosive - it goes BOOM and blows things up. Do we really have to explain it to you?" "
+ItemDescription="•A very simple high-explosive grenade. Hurts Zeds and humans alike.\n\nIt really doesn't get any simpler. HE - High Explosive - it goes BOOM and blows things up. Do we really have to explain it to you?"
 
 [KFProj_FragGrenade]
 ItemName="Frag Grenade"
 ItemCategory="Explosives"
-ItemDescription="•The classic frag grenade: throws nasty little bits of metal around, hurting everything.\n\nI am quite sure you all played enough video games before the Outbreak, so you know perfectly well what a frag grenade is. And stop pretending that you didn't. No one in here is going to believe you." "
+ItemDescription="•The classic frag grenade: throws nasty little bits of metal around, hurting everything.\n\nI am quite sure you all played enough video games before the Outbreak, so you know perfectly well what a frag grenade is. And stop pretending that you didn't. No one in here is going to believe you."
 
 [KFProj_NailBombGrenade]
 ItemName="Nail Bomb"
-ItemCategory =" "Explosives"
+ItemCategory ="Explosives"
 ItemDescription="•A simple canister full of old nails with a small explosive charge in the middle.\n\nNot the most pleasant or subtle way of dealing with Zeds, but there is nothing pleasant or subtle about Zeds, is there?"
 
 [KFProj_FreezeGrenade]
 ItemName="Freeze Grenade"
-ItemCategory =" "Explosives"
+ItemCategory ="Explosives"
 ItemDescription="•A technologically advanced canister of pressurized liquid nitrogen.\n\nEnough contact with the contents of this will freeze Zeds in place for a time. The results can be very shattering."
 
 [KFProj_FlashBangGrenade]
 ItemName="Flashbang"
-ItemCategory =" "Explosives"
-ItemDescription="•Both bright and loud, do not look directly at it. Try not to hear it either.\n•While technically less than lethal, flash bangs can still hurt you, so be careful!" "
+ItemCategory ="Explosives"
+ItemDescription="•Both bright and loud, do not look directly at it. Try not to hear it either.\n•While technically less than lethal, flash bangs can still hurt you, so be careful!"
 
 [KFWeap_Healer_Syringe]
 ItemName="Medical Syringe"
@@ -532,7 +532,7 @@ ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire t
 [KFWeap_SMG_Kriss]
 ItemName="Kriss SMG"
 ItemCategory="Sub Machine Gun"
-ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest in compact bullet redistrbution, it is a firehose of destruction."
+ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•The latest in compact bullet redistribution, it is a firehose of destruction."
 
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"

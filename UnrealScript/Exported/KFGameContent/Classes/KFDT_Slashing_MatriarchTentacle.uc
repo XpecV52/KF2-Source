@@ -656,6 +656,7 @@ class KFDT_Slashing_MatriarchTentacle extends KFDT_Slashing
 
 
 
+
 #linenumber 14
 
 static function int GetKillerDialogID()

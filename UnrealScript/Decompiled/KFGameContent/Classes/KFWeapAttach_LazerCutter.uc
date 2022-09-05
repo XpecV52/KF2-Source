@@ -278,14 +278,14 @@ simulated function ResetAnimationState()
     InterruptWeaponAnim();
 }
 
-simulated function StopThirdPersonFireEffects()
+simulated function StopThirdPersonFireEffects(optional bool bForce)
 {
     if(bFireSpraying)
     {
         ResetAnimationState();
     }
     SetBeamColor(0);
-    super.StopThirdPersonFireEffects();
+    super.StopThirdPersonFireEffects(bForce);
 }
 
 simulated function FirstPersonFireEffects(Weapon W, Vector HitLocation)

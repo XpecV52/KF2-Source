@@ -25,7 +25,7 @@ defaultproperties
     PackageKey="dual_Winterbite"
     FirstPersonMeshName="wep_1p_dual_winterbite_mesh.Wep_1stP_Dual_Winterbite_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
-    PickupMeshName="wep_3p_dual_winterbite_mesh.Wep_Dual_Winterbite_Pickup"
+    PickupMeshName="WEP_3P_HRG_Winterbite_MESH.Wep_HRG_Winterbite_Pickup"
     AttachmentArchetypeName="wep_dual_winterbite_arch.Wep_Dual_Winterbite_3P"
     MuzzleFlashTemplateName="wep_dual_winterbite_arch.Wep_Winterbite_MuzzleFlash"
     bHasIronSights=true

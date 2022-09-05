@@ -34,6 +34,47 @@ simulated function name GetReloadAnimName(bool bTacticalReload)
     }
 }
 
+simulated function bool ShouldPlayFireLast(byte FireModeNum)
+{
+    if(bHasFireLastAnims)
+    {
+        if(bFireFromRightWeapon)
+        {
+            if(((!bAllowClientAmmoTracking && Role < ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] <= 4) || (bAllowClientAmmoTracking || Role == ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] <= 2)
+            {
+                return true;
+            }            
+        }
+        else
+        {
+            if(((!bAllowClientAmmoTracking && Role < ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] <= 2) || (bAllowClientAmmoTracking || Role == ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] == 0)
+            {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+simulated function UpdateOutOfAmmoEffects(float BlendTime)
+{
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
+    if(EmptyMagBlendNode != none)
+    {
+        if(bAllowClientAmmoTracking && AmmoCount[0] <= 2)
+        {
+            EmptyMagBlendNode.SetBlendTarget(1, 0);
+            if(AmmoCount[0] == 0)
+            {
+                EmptyMagBlendNode_L.SetBlendTarget(1, 0);
+            }
+        }
+    }
+}
+
 defaultproperties
 {
     BarrelOffset=(X=10,Y=0,Z=0)

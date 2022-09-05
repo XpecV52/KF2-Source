@@ -655,6 +655,7 @@ class KFDT_Explosive extends KFDamageType
 
 
 
+
 #linenumber 13
 
 /**

@@ -654,6 +654,7 @@ class KFDT_Bludgeon_PatriarchKick extends KFDT_Bludgeon_Patriarch
 
 
 
+
 #linenumber 12
 
 static function int GetKillerDialogID()

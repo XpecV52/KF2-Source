@@ -2798,20 +2798,28 @@ defaultproperties
     Skins.Add((Id=7796, Weapondef=class'KFWeapDef_MicrowaveRifle', MIC_1P=("WEP_SkinSet27_MAT.jaeger_microwaveassault.Jaeger_MicrowaveAssault_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_microwaveassault.Jaeger_MicrowaveAssault_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_microwaveassault.Jaeger_MicrowaveAssault_3P_Pickup_MIC"))
     Skins.Add((Id=7797, Weapondef=class'KFWeapDef_MicrowaveRifle', MIC_1P=("WEP_SkinSet27_MAT.jaeger_microwaveassault.Jaeger_MicrowaveAssault_1P_Mint_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_microwaveassault.Jaeger_MicrowaveAssault_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_microwaveassault.Jaeger_MicrowaveAssault_3P_Pickup_MIC"))
 
-//Jaeger Desert Eagle
-    Skins.Add((Id=7798, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_Pickup_MIC"))
-    Skins.Add((Id=7799, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_Pickup_MIC"))
-    Skins.Add((Id=7800, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_1P_Mint_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_Pickup_MIC"))
+//Jaeger Desert Eagle BattleScarred
+    Skins.Add((Id=8031, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_Pickup_MIC"))
+    
+//Jaeger Desert Eagle Field Tested    
+    Skins.Add((Id=8032, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_Pickup_MIC"))
+    
+//Jaeger Desert Eagle Mint
+    Skins.Add((Id=8033, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_1P_Mint_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_deagle.Jaeger_Deagle_3P_Pickup_MIC"))
 
 //Jaeger FN FAL
     Skins.Add((Id=7801, Weapondef=class'KFWeapDef_FNFAL', MIC_1P=("WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_1P_BattleScarred_MIC", "WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_Scope_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_3P_Pickup_MIC"))
     Skins.Add((Id=7802, Weapondef=class'KFWeapDef_FNFAL', MIC_1P=("WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_1P_FieldTested_MIC", "WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_Scope_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_3P_Pickup_MIC"))
     Skins.Add((Id=7803, Weapondef=class'KFWeapDef_FNFAL', MIC_1P=("WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_1P_Mint_MIC", "WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_fnfal.Jaeger_FNFAL_3P_Pickup_MIC"))
 
-//Jaeger P90
-    Skins.Add((Id=7804, Weapondef=class'KFWeapDef_P90', MIC_1P=("WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_1P_BattleScarred_MIC", "WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_Sight_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_Pickup_MIC"))
-    Skins.Add((Id=7805, Weapondef=class'KFWeapDef_P90', MIC_1P=("WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_1P_FieldTested_MIC", "WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_Sight_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_Pickup_MIC"))
-    Skins.Add((Id=7806, Weapondef=class'KFWeapDef_P90', MIC_1P=("WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_1P_Mint_MIC", "WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_Sight_1P_Mint_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_Pickup_MIC"))
+//Jaeger P90 BattleScarred
+    Skins.Add((Id=8034, Weapondef=class'KFWeapDef_P90', MIC_1P=("WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_1P_BattleScarred_MIC", "WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_Sight_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_Pickup_MIC"))
+    
+//Jaeger P90 Field Tested
+    Skins.Add((Id=8035, Weapondef=class'KFWeapDef_P90', MIC_1P=("WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_1P_FieldTested_MIC", "WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_Sight_1P_FieldTested_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_FieldTested_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_Pickup_MIC"))
+    
+//Jaeger P90 Mint
+    Skins.Add((Id=8036, Weapondef=class'KFWeapDef_P90', MIC_1P=("WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_1P_Mint_MIC", "WEP_SkinSet27_MAT.jaeger_p90.jaeger_P90_Sight_1P_Mint_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_p90.Jaeger_P90_3P_Pickup_MIC"))
 
 //Jaeger Pulverizer
     Skins.Add((Id=7807, Weapondef=class'KFWeapDef_Pulverizer', MIC_1P=("WEP_SkinSet27_MAT.jaeger_pulverizer.Jaeger_Pulverizer_1P_BattleScarred_MIC"), MIC_3P="WEP_SkinSet27_MAT.jaeger_pulverizer.Jaeger_Pulverizer_3P_BattleScarred_MIC", MIC_Pickup="WEP_SkinSet27_MAT.jaeger_pulverizer.Jaeger_Pulverizer_3P_Pickup_MIC"))

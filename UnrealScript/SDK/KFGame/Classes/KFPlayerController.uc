@@ -9555,6 +9555,10 @@ function NotifyKilled( Controller Killer, Controller Killed, pawn KilledPawn, cl
 		// NOTE: Prevents camera from snapping back to lobby for a brief duration
 		SetLocation( KilledPawn.Location + vect(0,0,1)*(KilledPawn.GetCollisionRadius()*2.f) );
 	}
+	else if (MonsterPawn.IsABoss())
+	{
+		CheckForZedOnDeathAchievements(MonsterPawn);
+	}
 }
 
 native protected function CheckForZedOnDeathAchievements( KFPawn_Monster MonsterPawn );

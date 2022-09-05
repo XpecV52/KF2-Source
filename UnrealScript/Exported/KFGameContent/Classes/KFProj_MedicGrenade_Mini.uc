@@ -84,8 +84,8 @@ defaultproperties
    Damage=50.000000
    MyDamageType=Class'kfgamecontent.KFDT_Ballistic_MedicRifleGrenadeLauncherImpact'
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'kfgamecontent.Default__KFProj_MedicGrenade:CollisionCylinder'
-      CollisionHeight=10.000000
-      CollisionRadius=10.000000
+      CollisionHeight=0.000000
+      CollisionRadius=0.000000
       ReplacementPrimitive=None
       CollideActors=True
       BlockNonZeroExtent=False

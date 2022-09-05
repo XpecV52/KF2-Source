@@ -222,23 +222,26 @@ simulated function ResetCylinder()
 		return;
 	}
 
-	// after cylinder reset, top-most bullet will be unused
-	BulletMeshComponents[0].SetSkeletalMesh( UnusedBulletMeshTemplate );
-
-	// find the range of bullets that have been used
-	UsedStartIdx = BulletMeshComponents.Length - 1;
-	UsedEndIdx = UsedStartIdx - (MagazineCapacity[DEFAULT_FIREMODE] - AmmoCount[DEFAULT_FIREMODE]);
-
-	// set used bullets to used mesh
-	for( i = UsedStartIdx; i > UsedEndIdx; --i )
+	if (BulletMeshComponents.Length > 0)
 	{
-		BulletMeshComponents[i].SetSkeletalMesh( UsedBulletMeshTemplate );
-	}
+		// after cylinder reset, top-most bullet will be unused
+		BulletMeshComponents[0].SetSkeletalMesh( UnusedBulletMeshTemplate );
 
-	// set the rest of the bullets to unused
-	for( i = UsedEndIdx; i > 0; --i )
-	{
-		BulletMeshComponents[i].SetSkeletalMesh( UnusedBulletMeshTemplate );
+		// find the range of bullets that have been used
+		UsedStartIdx = BulletMeshComponents.Length - 1;
+		UsedEndIdx = UsedStartIdx - (MagazineCapacity[DEFAULT_FIREMODE] - AmmoCount[DEFAULT_FIREMODE]);
+
+		// set used bullets to used mesh
+		for( i = UsedStartIdx; i > UsedEndIdx; --i )
+		{
+			BulletMeshComponents[i].SetSkeletalMesh( UsedBulletMeshTemplate );
+		}
+
+		// set the rest of the bullets to unused
+		for( i = UsedEndIdx; i > 0; --i )
+		{
+			BulletMeshComponents[i].SetSkeletalMesh( UnusedBulletMeshTemplate );
+		}
 	}
 }
 
@@ -284,13 +287,13 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 	{
 		InstigatorPerk.UpdatePerkHeadShots( Impact, InstantHitDamageTypes[FiringMode], ImpactNum );
 	}
-	
+
 	super.ProcessInstantHitEx( FiringMode, Impact, NumHits, out_PenetrationVal, ImpactNum );
 }
 
 /**
  * @brief Checks if weapon should be auto-reloaded - overwritten to allow gunslinger insta switch
- * 
+ *
  * @param FireModeNum Current fire mode
  * @return auto reload or not
  */
@@ -331,12 +334,12 @@ static simulated event EFilterTypeUI GetTraderFilter()
 DefaultProperties
 {
 	InventoryGroup=IG_Secondary
-	
+
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
 
 	// BASH_FIREMODE
 	InstantHitDamage(BASH_FIREMODE)=20.0 //10
-	
+
 	// Aim Assist
 	AimCorrectionSize=40.f
 }

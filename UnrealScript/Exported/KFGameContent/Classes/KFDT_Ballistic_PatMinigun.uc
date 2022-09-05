@@ -656,6 +656,7 @@ class KFDT_Ballistic_PatMinigun extends KFDT_Ballistic_AssaultRifle
 
 
 
+
 #linenumber 14
 
 static function int GetKillerDialogID()

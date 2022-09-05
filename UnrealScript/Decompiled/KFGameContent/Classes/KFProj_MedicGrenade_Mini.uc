@@ -75,16 +75,22 @@ defaultproperties
     Damage=50
     MyDamageType=Class'KFDT_Ballistic_MedicRifleGrenadeLauncherImpact'
     begin object name=CollisionCylinder class=CylinderComponent
+        CollisionHeight=0
+        CollisionRadius=0
         ReplacementPrimitive=none
     object end
     // Reference: CylinderComponent'Default__KFProj_MedicGrenade_Mini.CollisionCylinder'
     CylinderComponent=CollisionCylinder
     begin object name=CollisionCylinder class=CylinderComponent
+        CollisionHeight=0
+        CollisionRadius=0
         ReplacementPrimitive=none
     object end
     // Reference: CylinderComponent'Default__KFProj_MedicGrenade_Mini.CollisionCylinder'
     Components(0)=CollisionCylinder
     begin object name=CollisionCylinder class=CylinderComponent
+        CollisionHeight=0
+        CollisionRadius=0
         ReplacementPrimitive=none
     object end
     // Reference: CylinderComponent'Default__KFProj_MedicGrenade_Mini.CollisionCylinder'

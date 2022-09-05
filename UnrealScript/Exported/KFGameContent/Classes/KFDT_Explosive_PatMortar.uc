@@ -657,6 +657,7 @@ class KFDT_Explosive_PatMortar extends KFDT_Explosive
 
 
 
+
 #linenumber 15
 
 static function int GetKillerDialogID()

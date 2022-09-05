@@ -8,6 +8,18 @@
 class KFProj_Explosive_HRGWinterbite extends KFProj_BallisticExplosive
     hidecategories(Navigation);
 
+simulated function AdjustCanDisintigrate();
+
+protected simulated function PrepareExplosionTemplate()
+{
+    super(KFProjectile).PrepareExplosionTemplate();
+}
+
+protected simulated function SetExplosionActorClass()
+{
+    super(KFProjectile).SetExplosionActorClass();
+}
+
 defaultproperties
 {
     ProjDudTemplate=ParticleSystem'WEP_HRG_Winterbite_EMIT.FX_WinterBite_Projectile_Dud'

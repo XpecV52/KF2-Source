@@ -358,7 +358,7 @@ defaultproperties
 	BlockTypes.Add((DmgType=class'KFDT_EMP_MatriarchTeslaBlast', BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal'))
 	BlockTypes.Add((DmgType=class'KFDT_EMP_MatriarchPlasmaCannon'))
 	BlockTypes.Add((DmgType=class'KFDT_FleshpoundKing_ChestBeam'))
-	BlockDamageMitigation=0.5
+	BlockDamageMitigation=0.4
 
 	// How many degrees in front of the player to block
 	// 0 = don't block anything
@@ -378,7 +378,7 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+.05455 // 1100 RPM
 	Spread(DEFAULT_FIREMODE)=0.06
 	InstantHitDamage(DEFAULT_FIREMODE)=28
-	FireOffset=(X=30,Y=4.5,Z=-5)
+	FireOffset=(X=30,Y=6.5,Z=-4)
 
 	// ALT_FIREMODE
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
@@ -386,14 +386,14 @@ defaultproperties
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_G18'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_G18'
-	FireInterval(ALTFIRE_FIREMODE)=+.05455 // 1100 RPM
+	FireInterval(ALTFIRE_FIREMODE)=+0.175 // 343 RPM
 	InstantHitDamage(ALTFIRE_FIREMODE)=28
 	Spread(ALTFIRE_FIREMODE)=0.015
 
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_G18Shield'
 	InstantHitMomentum(BASH_FIREMODE)=10000.f
-	InstantHitDamage(BASH_FIREMODE)=25
+	InstantHitDamage(BASH_FIREMODE)=35
 
 	// Explosion settings.  Using archetype so that clients can serialize the content
 	// without loading the 1st person weapon content (avoid 'Begin Object')!

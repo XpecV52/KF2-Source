@@ -466,6 +466,7 @@ function EnterZedVictoryState()
     super.EnterZedVictoryState();
     bCanEvaluateAttacks = false;
     KFWeapon(MyMatPawn.Weapon).GotoState('Inactive');
+    MyMatPawn.ClearTimer('Timer_TickDialog', MyMatPawn);
 }
 
 function bool AmIAllowedToSuicideWhenStuck()

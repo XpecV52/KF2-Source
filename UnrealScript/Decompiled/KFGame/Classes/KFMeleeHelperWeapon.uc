@@ -343,7 +343,7 @@ simulated function BeginMeleeAttack(optional bool bIsChainAttack)
         KFPlayerController(Outer.Instigator.Controller).AddShotsFired(1);
     }
     bResetChainSequence = false;
-    CurrentAttackDir = NextAttackDir;
+    CurrentAttackDir = ((Outer.CurrentFireMode == Outer.3) ? 8 : NextAttackDir);
     if(Outer.WorldInfo.NetMode != NM_Client)
     {
         foreach Outer.WorldInfo.AllPawns(Class'Pawn', P)

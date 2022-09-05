@@ -1,13 +1,13 @@
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    bClientSideOnly=True
    MaxWidth=207
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_0')),DrawY=-9771,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=-9750,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=-9729,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_0')),DrawY=-9787,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-9766,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-9745,OverrideDelta=56)
    ObjInstanceVersion=3
    ParentSequence=Sequence'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9712
-   ObjPosY=-9840
+   ObjPosX=-8568
+   ObjPosY=-9856
    DrawWidth=172
    Name="SeqEvent_LevelLoaded_0"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
@@ -15,13 +15,13 @@ End Object
 
 Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_0
    Bank=AkBank'WW_ENV_BioticsLab.WwiseDefaultBank_WW_ENV_BioticsLab'
-   InputLinks(0)=(DrawY=-9702,OverrideDelta=11)
+   InputLinks(0)=(DrawY=-9718,OverrideDelta=11)
    InputLinks(1)=(DrawY=272,bHidden=True,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),DrawY=-9702,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),DrawY=-9718,OverrideDelta=11)
    ObjInstanceVersion=1
    ParentSequence=Sequence'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9416
-   ObjPosY=-9736
+   ObjPosX=-8272
+   ObjPosY=-9752
    DrawWidth=98
    DrawHeight=45
    Name="SeqAct_AkLoadBank_0"
@@ -29,7 +29,7 @@ Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_0
 End Object
 
 Begin Object Class=SeqAct_AkStartAmbientSound Name=SeqAct_AkStartAmbientSound_0
-   InputLinks(0)=(DrawY=-9758,OverrideDelta=11)
+   InputLinks(0)=(DrawY=-9774,OverrideDelta=11)
    InputLinks(1)=(DrawY=211,bHidden=True,OverrideDelta=36)
    InputLinks(2)=(DrawY=233,bHidden=True,OverrideDelta=58)
    InputLinks(3)=(DrawY=255,bHidden=True,OverrideDelta=80)
@@ -37,8 +37,8 @@ Begin Object Class=SeqAct_AkStartAmbientSound Name=SeqAct_AkStartAmbientSound_0
    VariableLinks(0)=(bHidden=True,DrawX=789,OverrideDelta=55)
    ObjInstanceVersion=1
    ParentSequence=Sequence'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9208
-   ObjPosY=-9792
+   ObjPosX=-8064
+   ObjPosY=-9808
    DrawWidth=154
    DrawHeight=45
    Name="SeqAct_AkStartAmbientSound_0"
@@ -199,7 +199,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_20
    EventName="LeverPulled1"
    MaxWidth=199
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_5'),(LinkedOp=SeqAct_Delay'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_4')),DrawY=-8774,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_5'),(LinkedOp=SeqAct_Delay'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_0')),DrawY=-8774,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-6845,OverrideDelta=67)
    ObjInstanceVersion=2
    ParentSequence=Sequence'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
@@ -256,7 +256,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_742
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_4
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_0
    Duration=0.500000
    InputLinks(0)=(DrawY=-8771,OverrideDelta=14)
    InputLinks(1)=(DrawY=-8750,OverrideDelta=35)
@@ -270,7 +270,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_4
    ObjPosY=-8808
    DrawWidth=106
    DrawHeight=109
-   Name="SeqAct_Delay_4"
+   Name="SeqAct_Delay_0"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
@@ -1099,44 +1099,29 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_4
 End Object
 
 Begin Object Class=SequenceFrame Name=SequenceFrame_0
-   SizeX=824
-   SizeY=616
+   SizeX=764
+   SizeY=230
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9736
-   ObjPosY=-9864
+   ObjPosX=-8592
+   ObjPosY=-9880
    ObjComment="Inital Audio Setup"
-   DrawWidth=824
-   DrawHeight=616
+   DrawWidth=764
+   DrawHeight=230
    Name="SequenceFrame_0"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
-Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_7
-   EventName="PlayIntroVO"
-   MaxWidth=195
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_8')),DrawY=-9430,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-9495,OverrideDelta=65)
-   ObjInstanceVersion=2
-   ParentSequence=Sequence'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9592
-   ObjPosY=-9496
-   DrawWidth=117
-   DrawHeight=128
-   Name="SeqEvent_RemoteEvent_7"
-   ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-End Object
-
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_8
    Event=AkEvent'WW_VOX_OBJ_Biotics.Play_VOX_OBJ_Biotics_Opening_Intro'
-   InputLinks(0)=(DrawY=-9430,ActivateDelay=2.000000,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-9430,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-9264,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-9574,ActivateDelay=4.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-9574,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-9000,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9312
-   ObjPosY=-9464
+   ObjPosX=-9048
+   ObjPosY=-9608
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_8"
@@ -1278,4 +1263,58 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_23
    DrawHeight=128
    Name="SeqEvent_RemoteEvent_23"
    ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
+End Object
+
+Begin Object Class=SeqAct_Gate Name=SeqAct_Gate_0
+   InputLinks(0)=(DrawY=-9587,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-9565,OverrideDelta=36)
+   InputLinks(2)=(DrawY=-9543,OverrideDelta=58)
+   InputLinks(3)=(DrawY=-9521,OverrideDelta=80)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Gate'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0',InputLinkIdx=2),(LinkedOp=SeqAct_AkPostEvent'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_8')),DrawY=-9554,OverrideDelta=47)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9336
+   ObjPosY=-9624
+   DrawWidth=82
+   DrawHeight=117
+   Name="SeqAct_Gate_0"
+   ObjectArchetype=SeqAct_Gate'Engine.Default__SeqAct_Gate'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_46
+   SizeX=1274
+   SizeY=619
+   bDrawBox=True
+   FillColor=(B=226,G=0,R=255,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9920
+   ObjPosY=-9912
+   ObjComment="Intro VO"
+   DrawWidth=1274
+   DrawHeight=619
+   Name="SequenceFrame_46"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_1
+   MaxTriggerCount=0
+   bClientSideOnly=True
+   MaxWidth=216
+   OutputLinks(0)=(DrawY=-9674,OverrideDelta=15)
+   OutputLinks(1)=(DrawY=-9651,OverrideDelta=38)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Gate'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0',InputLinkIdx=1)),DrawY=-9628,OverrideDelta=61)
+   OutputLinks(3)=(DrawY=-9605,OverrideDelta=84)
+   OutputLinks(4)=(DrawY=-9582,OverrideDelta=107)
+   OutputLinks(5)=(DrawY=-9559,OverrideDelta=130)
+   OutputLinks(6)=(DrawY=-9536,OverrideDelta=153)
+   OutputLinks(7)=(DrawY=-9513,OverrideDelta=176)
+   OutputLinks(8)=(Links=((LinkedOp=SeqAct_Gate'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Gate_0')),DrawY=-9490,OverrideDelta=199)
+   ObjInstanceVersion=5
+   ParentSequence=Sequence'SND_BioticsLab.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9784
+   ObjPosY=-9744
+   DrawWidth=217
+   Name="KFSeqEvent_LevelLoaded_1"
+   ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
 End Object

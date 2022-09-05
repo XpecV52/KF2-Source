@@ -645,6 +645,7 @@ class KFPawnVoiceGroup_Strasser extends KFPawnVoiceGroup;
 
 
 
+
 #linenumber 3
 
 defaultproperties

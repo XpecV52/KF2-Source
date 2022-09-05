@@ -657,6 +657,7 @@ class KFDialogManager extends Actor
 
 
 
+
 #linenumber 15
 
 var bool bEnabled;
@@ -3480,21 +3481,24 @@ function PlayMatriarchBattlePhaseDialog(KFPawn Matriarch, int CurrentBattlePhase
 
 function PlayMatriarchTickDialog(KFPawn Matriarch, int ArmorZoneStatus, int CurrentBattlePhase)
 {
-	if ((ArmorZoneStatus & 2) != 0)
+	switch (CurrentBattlePhase)
 	{
-		// pilot compartment intact
+	case 0:
 		PlayDialogEvent(Matriarch, 1);
-	}
-	else if (CurrentBattlePhase < 3)
-	{
-		// pilot compartment destroyed, phase 1 or 2
+		break;
+
+	case 1:
 		PlayDialogEvent(Matriarch, 2);
-	}
-	else
-	{
-		// pilot compartment destroyed, phase 3 or 4
+		break;
+
+	case 2:
 		PlayDialogEvent(Matriarch, 3);
-	}
+		break;
+
+	case 3:
+		PlayDialogEvent(Matriarch, 40);
+		break;
+	};
 }
 
 function PlayMatriarchExplodeArmorDialog(KFPawn Matriarch, name ArmorZoneName)

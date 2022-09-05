@@ -69,7 +69,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Explosive_HRGWinterbite'
 	FireInterval(DEFAULT_FIREMODE)=+0.2
-	InstantHitDamage(DEFAULT_FIREMODE)=30.0
+	InstantHitDamage(DEFAULT_FIREMODE)=40.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Freeze_HRGWinterbiteImpact'
 	Spread(DEFAULT_FIREMODE)=0.015
 	FireOffset=(X=20,Y=4.0,Z=-3)

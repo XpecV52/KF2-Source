@@ -79,7 +79,7 @@ simulated function Actor DetermineBestTarget(byte TargetingMode)
 
 defaultproperties
 {
-   TargetingModeFlags(0)=3
+   TargetingModeFlags(0)=2
    LockRange(0)=200000.000000
    LockAcquireTime(0)=0.010000
    LockAcquireTime_Large(0)=0.010000

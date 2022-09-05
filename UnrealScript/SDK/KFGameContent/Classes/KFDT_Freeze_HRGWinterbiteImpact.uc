@@ -15,7 +15,7 @@ defaultproperties
 	KDeathUpKick=700
 	KDeathVel=350
 
-	FreezePower=10
+	FreezePower=0
 	StumblePower=50
 	GunHitPower=100
 

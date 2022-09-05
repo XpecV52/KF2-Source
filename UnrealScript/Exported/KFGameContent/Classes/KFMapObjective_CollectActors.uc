@@ -551,6 +551,24 @@ simulated function PlaySoundEvent(out KFSoundEventGroup SoundGroup, int nSpecifi
 	}
 }
 
+simulated function ResetOrderedSoundEventsForRespawn()
+{
+	if (CollectibleActivateSoundEvents.SoundType == ESoundSelectionType_Ordered)
+	{
+		CollectibleActivateSoundEvents.CurrentEvent--;
+	}
+
+	if (CollectibleCollectSoundEvents.SoundType == ESoundSelectionType_Ordered)
+	{
+		CollectibleCollectSoundEvents.CurrentEvent--;
+	}
+
+	if (CollectibleDroppedSoundEvents.SoundType == ESoundSelectionType_Ordered)
+	{
+		CollectibleDroppedSoundEvents.CurrentEvent--;
+	}
+}
+
 simulated function OnCollectActor(KFObjectiveCollectActor Collectible)
 {
 	if (!bActive)
@@ -942,6 +960,9 @@ simulated function RespawnCollectible(KFObjectiveCollectActor collectActor)
 
 	bCollectibleReset = true;
 	SetTimer(CollectibleResetTimerLength, false, nameof(Timer_CollectibleReset));
+
+	ResetOrderedSoundEventsForRespawn();
+
 	for (i = 0; i < CollectibleInfo.Length; i++)
 	{
 		if (CollectibleInfo[i].Collectible == collectActor)

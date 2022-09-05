@@ -669,7 +669,6 @@ defaultproperties
    XPValues(1)=1694.000000
    XPValues(2)=1790.000000
    XPValues(3)=1843.000000
-   WeakSpotSocketNames(2)="WeakPointSocket1"
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.500000))
    DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.500000))
    DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.750000))

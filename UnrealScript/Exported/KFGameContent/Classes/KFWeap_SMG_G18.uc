@@ -298,7 +298,7 @@ defaultproperties
    BlockTypes(11)=(dmgType=Class'kfgamecontent.KFDT_EMP_MatriarchTeslaBlast',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal')
    BlockTypes(12)=(dmgType=Class'kfgamecontent.KFDT_EMP_MatriarchPlasmaCannon')
    BlockTypes(13)=(dmgType=Class'kfgamecontent.KFDT_FleshpoundKing_ChestBeam')
-   BlockDamageMitigation=0.500000
+   BlockDamageMitigation=0.400000
    IdleToIronSightAnim="Iron_Shield_Up"
    IronSightToIdleAnim="Iron_Shield_Down"
    BlockAngle=170.000000
@@ -370,7 +370,7 @@ defaultproperties
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_G18'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_G18'
    FireInterval(0)=0.054550
-   FireInterval(1)=0.054550
+   FireInterval(1)=0.175000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
@@ -379,13 +379,13 @@ defaultproperties
    InstantHitDamage(0)=28.000000
    InstantHitDamage(1)=28.000000
    InstantHitDamage(2)=()
-   InstantHitDamage(3)=25.000000
+   InstantHitDamage(3)=35.000000
    InstantHitMomentum(3)=10000.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_G18'
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_G18'
    InstantHitDamageTypes(2)=None
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_G18Shield'
-   FireOffset=(X=30.000000,Y=4.500000,Z=-5.000000)
+   FireOffset=(X=30.000000,Y=6.500000,Z=-4.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_SMGBase:FirstPersonMesh'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Animtree_Master'
       bOverrideAttachmentOwnerVisibility=True

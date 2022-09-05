@@ -18,6 +18,7 @@ var const name FiringSocketLName;
 var const name FiringSocketRName;
 var name FiringSocketName;
 var protected transient bool bHasExploded;
+var transient bool bChestArmorDestroyedThisFrame;
 var protected KFGameExplosion ExplosionTemplate;
 
 function PossessedBy(Controller C, bool bVehicleTransition)
@@ -94,6 +95,10 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
     {
         MyDARController.OnArmorLoss(ArmorZoneName);
     }
+    if(ArmorZoneName == 'Front')
+    {
+        bChestArmorDestroyedThisFrame = true;
+    }
 }
 
 function SetSprinting(bool bNewSprintStatus)
@@ -117,6 +122,16 @@ simulated function NotifySpecialMoveEnded(KFSpecialMove FinishedMove, KFGame.KFP
     if(SMHandle == 20)
     {
         SetSprinting(true);
+    }
+}
+
+function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, class<DamageType> DamageType, Vector Momentum, TraceHitInfo HitInfo)
+{
+    super.PlayHit(Damage, InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
+    if(((Role == ROLE_Authority) && TimeOfDeath == WorldInfo.TimeSeconds) && bChestArmorDestroyedThisFrame)
+    {
+        bChestArmorDestroyedThisFrame = false;
+        TriggerExplosion(true);
     }
 }
 

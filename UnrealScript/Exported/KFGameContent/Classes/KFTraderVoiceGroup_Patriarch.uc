@@ -645,6 +645,7 @@ class KFTraderVoiceGroup_Patriarch extends KFTraderVoiceGroupBase;
 
 
 
+
 #linenumber 3
 
 defaultproperties

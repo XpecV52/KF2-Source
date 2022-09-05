@@ -460,6 +460,31 @@ simulated state MeleeHeavyAttacking
     stop;    
 }
 
+simulated state Active
+{
+    simulated function WeaponEmpty()
+    {
+        local int I;
+
+        I = 0;
+        J0x0B:
+
+        if(I < GetPendingFireLength())
+        {
+            if(PendingFire(I))
+            {
+                BeginFire(byte(I));
+                goto J0x5F;
+            }
+            ++ I;
+            goto J0x0B;
+        }
+        J0x5F:
+
+    }
+    stop;    
+}
+
 defaultproperties
 {
     ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'

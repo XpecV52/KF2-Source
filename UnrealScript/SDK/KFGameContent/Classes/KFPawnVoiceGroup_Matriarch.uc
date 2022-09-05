@@ -22,9 +22,9 @@ defaultproperties
 	DialogEvents[`BOSS_Jump]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_Jump_Base')
 	DialogEvents[`BOSS_Land]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_Landing_Base')
 
-	DialogEvents[`MATTY_TauntBase]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_Taunt_Base')
-	DialogEvents[`MATTY_Taunt_Exposed_P12]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_Taunt_NoPilotCompartment_Base')
-	DialogEvents[`MATTY_Taunt_Exposed_P34]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntPhase3_4_NoPilotCompartment_Base')
+	DialogEvents[`MATTY_Taunt_Phase1]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_Taunt_Base')
+	DialogEvents[`MATTY_Taunt_Phase2]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntP2_Base')
+	DialogEvents[`MATTY_Taunt_Phase3]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntP3_Base')
 	DialogEvents[`MATTY_TauntPilotCompartDestroyed]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntPilotCompartDestroyed_Base')
 	DialogEvents[`MATTY_TauntPowerClawDestroyed]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntPowerClawDestroyed_Base')
 	DialogEvents[`MATTY_NextBattlePhase1]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntP2Start_Base')
@@ -49,6 +49,7 @@ defaultproperties
 	DialogEvents[`MATTY_Cloak]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_Cloak_Base')
 	DialogEvents[`MATTY_ChargeAttack]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_ChargeAttack_Base')
 	DialogEvents[`MATTY_OnFire]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_OnFire_Base')
+	DialogEvents[`MATTY_Taunt_Phase4]=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntP4_Base')
 
 `if(`notdefined(ShippingPC))
 	//DialogEventNames[`BOSS_TauntBase]					=BOSS_TauntBase
@@ -65,9 +66,9 @@ defaultproperties
 	DialogEventNames[`BOSS_Jump]						=BOSS_Jump
 	DialogEventNames[`BOSS_Land]						=BOSS_Land
 
-	DialogEventNames[`MATTY_TauntBase]					=MATTY_TauntBase
-	DialogEventNames[`MATTY_Taunt_Exposed_P12]			=MATTY_Taunt_Exposed_P12
-	DialogEventNames[`MATTY_Taunt_Exposed_P34]			=MATTY_Taunt_Exposed_P34
+	DialogEventNames[`MATTY_Taunt_Phase1]				=MATTY_Taunt_Phase1
+	DialogEventNames[`MATTY_Taunt_Phase2]				=MATTY_Taunt_Phase2
+	DialogEventNames[`MATTY_Taunt_Phase3]				=MATTY_Taunt_Phase3
 	DialogEventNames[`MATTY_TauntPilotCompartDestroyed]	=MATTY_TauntPilotCompartDestroyed
 	DialogEventNames[`MATTY_TauntPowerClawDestroyed]	=MATTY_TauntPowerClawDestroyed
 	DialogEventNames[`MATTY_NextBattlePhase1]			=MATTY_NextBattlePhase1
@@ -92,5 +93,6 @@ defaultproperties
 	DialogEventNames[`MATTY_Cloak]						=MATTY_Cloak
 	DialogEventNames[`MATTY_ChargeAttack]				=MATTY_ChargeAttack
 	DialogEventNames[`MATTY_OnFire]						=MATTY_OnFire
+	DialogEventNames[`MATTY_Taunt_Phase4]				=MATTY_Taunt_Phase4
 `endif
 }

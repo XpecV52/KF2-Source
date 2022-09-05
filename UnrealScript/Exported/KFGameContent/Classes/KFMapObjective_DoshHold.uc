@@ -656,6 +656,7 @@ class KFMapObjective_DoshHold extends KFMapObjective_AreaDefense;
 
 
 
+
 #linenumber 14
 
 /** Timer before penalty check starts */

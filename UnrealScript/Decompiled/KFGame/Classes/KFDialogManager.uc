@@ -2519,20 +2519,22 @@ function PlayMatriarchBattlePhaseDialog(KFPawn Matriarch, int CurrentBattlePhase
 
 function PlayMatriarchTickDialog(KFPawn Matriarch, int ArmorZoneStatus, int CurrentBattlePhase)
 {
-    if((ArmorZoneStatus & 2) != 0)
+    switch(CurrentBattlePhase)
     {
-        PlayDialogEvent(Matriarch, 1);        
-    }
-    else
-    {
-        if(CurrentBattlePhase < 3)
-        {
-            PlayDialogEvent(Matriarch, 2);            
-        }
-        else
-        {
+        case 0:
+            PlayDialogEvent(Matriarch, 1);
+            break;
+        case 1:
+            PlayDialogEvent(Matriarch, 2);
+            break;
+        case 2:
             PlayDialogEvent(Matriarch, 3);
-        }
+            break;
+        case 3:
+            PlayDialogEvent(Matriarch, 40);
+            break;
+        default:
+            break;
     }
 }
 

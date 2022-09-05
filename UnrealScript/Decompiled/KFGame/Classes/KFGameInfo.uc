@@ -3276,7 +3276,7 @@ defaultproperties
     ForcedMusicTracks(1)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'
     ForcedMusicTracks(2)=KFMusicTrackInfo'WW_MACT_Default.TI_SH_Boss_DieVolter'
     ForcedMusicTracks(3)=KFMusicTrackInfo'WW_MACT_Default.TI_Boss_Patriarch'
-    ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_ID_Murderer'
+    ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_Boss_Matriarch'
     ForcedMusicTracks(5)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_KingFP'
     ForcedMusicTracks(6)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_Abomination'
     DebugForcedOutbreakIdx=-1

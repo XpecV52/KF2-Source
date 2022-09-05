@@ -785,10 +785,25 @@ function ApplySkillsToPawn()
 
 function ClearPerkEffects()
 {
+    if(InteractionTrigger != none)
+    {
+        InteractionTrigger.DestroyTrigger();
+        InteractionTrigger = none;
+    }
     ClientClearPerkEffects();
 }
 
-reliable client simulated function ClientClearPerkEffects();
+reliable client simulated function ClientClearPerkEffects()
+{
+    if(Role != ROLE_Authority)
+    {
+        if(InteractionTrigger != none)
+        {
+            InteractionTrigger.DestroyTrigger();
+            InteractionTrigger = none;
+        }
+    }
+}
 
 function ApplyWeightLimits()
 {

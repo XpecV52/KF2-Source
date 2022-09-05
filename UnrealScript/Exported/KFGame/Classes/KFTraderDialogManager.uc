@@ -656,6 +656,7 @@ class KFTraderDialogManager extends Actor
 
 
 
+
 #linenumber 14
 
 var bool	bEnabled;

@@ -457,7 +457,6 @@ simulated function BreakShield()
     if(Role == ROLE_Authority)
     {
         SetBattlePhase(1);
-        DoStumble();
     }
 }
 
@@ -562,6 +561,7 @@ function SetBattlePhase(int Phase)
             ArmorInfo.ExplodeArmor(1);
             ArmorInfo.UpdateArmorUI();
         }
+        DoStumble();
         SummonMinions();
         InitializeCurrentBattlePhase();
         OnBattlePhaseChanged();
@@ -1135,9 +1135,12 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
     {
         if(ArmorZoneStatus == 0)
         {
-            SetBattlePhase(2);
+            SetBattlePhase(2);            
         }
-        DoStumble();
+        else
+        {
+            DoStumble();
+        }
     }
 }
 
@@ -1148,13 +1151,23 @@ function bool PowerClawIsFunctional()
 
 simulated function OnArmorZoneStatusUpdated()
 {
+    local int Idx;
+
     if((ArmorZoneStatus & (1 << 0)) == 0)
     {
-        HitZones.Remove(HitZones.Find('BoneName', 'dome', 1;
+        Idx = HitZones.Find('BoneName', 'dome';
+        if(Idx != -1)
+        {
+            HitZones.Remove(Idx, 1;
+        }
     }
     if((ArmorZoneStatus & (1 << 1)) == 0)
     {
-        HitZones.Remove(HitZones.Find('BoneName', 'LeftHandCap', 1;
+        Idx = HitZones.Find('BoneName', 'LeftHandCap';
+        if(Idx != -1)
+        {
+            HitZones.Remove(Idx, 1;
+        }
     }
     DialogAkComponent.SetRTPCValue("Matriarch_Helmet", float(int(bool(ArmorZoneStatus & (1 << 0)))));
 }
@@ -1218,6 +1231,14 @@ function class<KFDamageType> GetBumpAttackDamageType()
     return HeavyBumpDamageType;
 }
 
+function PlayBossMusic()
+{
+    if(KFGameInfo(WorldInfo.Game) != none)
+    {
+        KFGameInfo(WorldInfo.Game).ForceMatriarchMusicTrack();
+    }
+}
+
 defaultproperties
 {
     BattlePhases(0)=NextPhaseHealthPctThreshold=0.75,bCanUseSweepingClaw=true,bCanUseTeslaBlast=true,bCanUsePlasmaCannon=true,bCanUseLightningStorm=true,bCanUseWarningSiren=false,bCanUseScorpionWhip=false,TentacleDamage=0,MeleeBaseDamage=0,MeleeDamageScale=1,GroundSpeedScale=1,SprintSpeedScale=1,bCanCloak=false,bUseAltSprintAnim=false,bShouldTaunt=false,IncapSettings=(Duration=2.5,Cooldown=10,ChildAfflictionCooldown=0,Vulnerability=/* Array type was not detected. */,
@@ -1229,7 +1250,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '0_4124' was not found.
+System.ArgumentException: Requested value '0_4127' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1243,7 +1264,7 @@ System.ArgumentException: Requested value '0_1067030937' was not found.
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,Cooldown=15,ChildAfflictionCooldown=0,Vulnerability=/* Array type was not detected. */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '0_3646' was not found.
+System.ArgumentException: Requested value '0_3648' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

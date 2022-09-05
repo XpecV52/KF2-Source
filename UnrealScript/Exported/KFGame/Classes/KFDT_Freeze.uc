@@ -655,6 +655,7 @@ class KFDT_Freeze extends KFDamageType
 
 
 
+
 #linenumber 13
 
 var protected ParticleSystem FrozenShatterTemplate;

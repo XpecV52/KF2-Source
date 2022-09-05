@@ -645,6 +645,7 @@ class KFTraderVoiceGroup_Default extends KFTraderVoiceGroupBase;
 
 
 
+
 #linenumber 3
 
 defaultproperties

@@ -40,6 +40,52 @@ simulated function name GetReloadAnimName(bool bTacticalReload)
 	}
 }
 
+/** Return true if this weapon should play the fire last animation for this shoot animation */
+simulated function bool ShouldPlayFireLast(byte FireModeNum)
+{
+	if (bHasFireLastAnims)
+	{
+		if (bFireFromRightWeapon)
+		{
+			if ((!bAllowClientAmmoTracking && Role < ROLE_Authority && AmmoCount[GetAmmoType(FireModeNum)] <= 4) ||
+				((bAllowClientAmmoTracking || Role == ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] <= 2))
+			{
+				return true;
+			}
+		}
+		else
+		{
+			if ((!bAllowClientAmmoTracking && Role < ROLE_Authority && AmmoCount[GetAmmoType(FireModeNum)] <= 2) ||
+				((bAllowClientAmmoTracking || Role == ROLE_Authority) && AmmoCount[GetAmmoType(FireModeNum)] == 0))
+			{
+				return true;
+			}
+		}
+	}
+
+    return false;
+}
+
+/** Check AmmoCount and update anim tree nodes if needed */
+simulated function UpdateOutOfAmmoEffects(float BlendTime)
+{
+	if (WorldInfo.NetMode == NM_DedicatedServer)
+		return;
+
+	if (EmptyMagBlendNode != None)
+	{
+		// Differentiate Left/Right
+		if (bAllowClientAmmoTracking && AmmoCount[0] <= 2)
+		{
+			EmptyMagBlendNode.SetBlendTarget(1, 0);
+			if (AmmoCount[0] == 0)
+			{
+				EmptyMagBlendNode_L.SetBlendTarget(1,0);
+			}
+		}
+	}
+}
+
 defaultproperties
 {
    BarrelOffset=(X=10.000000,Y=0.000000,Z=0.000000)

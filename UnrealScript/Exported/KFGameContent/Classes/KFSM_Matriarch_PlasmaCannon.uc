@@ -495,7 +495,7 @@ defaultproperties
    ShootingSocketName="Hand_FX_End_L"
    BeamSize=(X=15.000000,Y=15.000000,Z=15.000000)
    DamageTickRate=0.100000
-   DamagePerTick=10.000000
+   DamagePerTick=7.000000
    CannonDamageType=Class'kfgamecontent.KFDT_EMP_MatriarchPlasmaCannon'
    BeamPSCTemplate=ParticleSystem'ZED_Matriarch_EMIT.FX_Plasma_Cannon_Beam_01'
    BeamHitPSCTemplate=ParticleSystem'ZED_Matriarch_EMIT.FX_Plasma_Cannon_Impact_01'

@@ -645,14 +645,15 @@ class KFPawnVoiceGroup_Matriarch extends KFPawnVoiceGroup;
 
 
 
+
 #linenumber 3
 
 defaultproperties
 {
    EventDataClass=Class'kfgamecontent.KFPawnVoiceGroupEventData_Matriarch'
    DialogEvents(1)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_Taunt_Base')
-   DialogEvents(2)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_Taunt_NoPilotCompartment_Base')
-   DialogEvents(3)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntPhase3_4_NoPilotCompartment_Base')
+   DialogEvents(2)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntP2_Base')
+   DialogEvents(3)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntP3_Base')
    DialogEvents(4)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_Challenge_Base')
    DialogEvents(5)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_LostSight_Base')
    DialogEvents(6)=()
@@ -689,6 +690,7 @@ defaultproperties
    DialogEvents(37)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_Cloak_Base')
    DialogEvents(38)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_ChargeAttack_Base')
    DialogEvents(39)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_OnFire_Base')
+   DialogEvents(40)=(DefaultAudioCue=AkEvent'WW_VOX_Matriarch.Play_VOX_MAT_TauntP4_Base')
    Name="Default__KFPawnVoiceGroup_Matriarch"
    ObjectArchetype=KFPawnVoiceGroup'KFGame.Default__KFPawnVoiceGroup'
 }

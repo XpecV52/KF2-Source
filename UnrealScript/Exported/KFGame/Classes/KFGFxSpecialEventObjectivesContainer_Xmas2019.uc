@@ -9,7 +9,7 @@ defaultproperties
 {
    CurrentSpecialEventString="A time-limited special event with exclusive items"
    SpecialEventObjectiveInfoList(0)=(TitleString="Black Seas of Infinity",DescriptionString="Defeat any boss on Survival Hard or Higher difficulty on Sanitarium")
-   SpecialEventObjectiveInfoList(1)=(TitleString="Somewhat Extravagant Imagination",DescriptionString="Use the Tentacle Whip trap to kill 20 Zeds on Sanitarium")
+   SpecialEventObjectiveInfoList(1)=(TitleString="Extravagant Imagination",DescriptionString="Use the Tentacle Whip trap to kill 20 Zeds on Sanitarium")
    SpecialEventObjectiveInfoList(2)=(TitleString="Eldritch Contradictions",DescriptionString="Use the Suction Trap to kill 20 Zeds on Sanitarium")
    SpecialEventObjectiveInfoList(3)=(TitleString="Maternal Instincts",DescriptionString="Kill the Matriarch 10 times on any map or game mode")
    SpecialEventObjectiveInfoList(4)=(TitleString="Settling a Family Affair",DescriptionString="Complete Biotics Lab on Objective Hard or higher difficulty")

@@ -133,11 +133,34 @@ simulated function bool CanOverrideMagReload(byte FireModeNum)
 	return super.CanOverrideMagReload(FireModeNum);
 }
 
+/** Allows weapon to calculate its own damage for display in trader */
+static simulated function float CalculateTraderWeaponStatDamage()
+{
+	local float BaseDamage, DoTDamage;
+	local class<KFDamageType> DamageType;
+
+	BaseDamage = default.InstantHitDamage[DEFAULT_FIREMODE];
+
+	DamageType = class<KFDamageType>(default.InstantHitDamageTypes[DEFAULT_FIREMODE]);
+	if (DamageType != none && DamageType.default.DoT_Type != DOT_None)
+	{
+		DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
+	}
+
+	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
+}
+
+/** Allows weapon to calculate its own fire rate for display in trader */
+static simulated function float CalculateTraderWeaponStatFireRate()
+{
+	return 60.f / default.FireInterval[DEFAULT_FIREMODE]; // attacks per minute
+}
+
 defaultproperties
 {
    LastFireInterval=0.500000
-   ParryStrength=5
-   ParryDamageMitigationPercent=0.400000
+   BlockDamageMitigation=0.600000
+   ParryDamageMitigationPercent=0.500000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Wood'
    PackageKey="Mosin"
@@ -226,8 +249,8 @@ defaultproperties
    RecoilISMinPitchLimit=65485
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Sharpshooter'
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Stat=EWUS_Damage1,Scale=1.150000),(Stat=EWUS_Damage2,Scale=1.150000),(Add=1)))
-   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.300000),(Stat=EWUS_Damage1,Scale=1.300000),(Stat=EWUS_Damage2,Scale=1.300000),(Add=2)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Stat=EWUS_Damage1,Scale=1.150000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.300000),(Stat=EWUS_Damage1,Scale=1.300000),(Add=2)))
    FiringStatesArray(0)="WeaponSingleFiring"
    FiringStatesArray(1)=()
    FiringStatesArray(2)="Reloading"
@@ -241,6 +264,11 @@ defaultproperties
    WeaponFireTypes(4)=()
    WeaponFireTypes(5)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_MosinNagant'
+   FireInterval(0)=0.850000
+   FireInterval(1)=()
+   FireInterval(2)=()
+   FireInterval(3)=()
+   FireInterval(4)=()
    Spread(0)=0.007000
    InstantHitDamage(0)=250.000000
    InstantHitDamage(1)=()

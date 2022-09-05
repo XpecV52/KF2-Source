@@ -574,6 +574,8 @@ function EnterZedVictoryState()
 
 	bCanEvaluateAttacks = false;
 	KFWeapon(MyMatPawn.Weapon).GotoState( 'Inactive' );
+
+	MyMatPawn.ClearTimer(nameof(MyMatPawn.Timer_TickDialog), MyMatPawn);
 }
 
 /*********************************************************************************************

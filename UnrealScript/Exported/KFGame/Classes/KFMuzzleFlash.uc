@@ -102,7 +102,7 @@ var globalconfig float 				ShellEjectLifetime;
 
 /** Activate the muzzle flash effects from the owning actor */
 native function CauseMuzzleFlash(optional byte FiringMode);
-native function StopMuzzleFlash();
+native function StopMuzzleFlash(optional bool bForce);
 native function MuzzleFlashTimer();
 native function MuzzleFlashAltTimer();
 
@@ -155,7 +155,7 @@ function AttachMuzzleFlash(SkeletalMeshComponent OwnerMesh, optional name Socket
 
 	// Initialize and attach the shell eject psc
 	if ( ShellEjectPSCTemplate != None )
-	{	
+	{
 		if ( ShellEjectSocketOverride != 'None' )
 		{
 			ShellEjectSocketName = ShellEjectSocketOverride;

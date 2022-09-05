@@ -16,13 +16,13 @@ cpptext
 {
 	/** Creates a FKFSkeletalMeshSceneProxy (defined in UTWeapon.cpp) */
 	virtual FPrimitiveSceneProxy* CreateSceneProxy() override;
-	
+
 	/** Default tick. */
 	virtual void Tick(FLOAT DeltaTime) override;
-	
+
 	/** The KFSkeletalMesh ticks during async as well as post async, performing different work. */
 	void TickPostAsync(FLOAT DeltaTime);
-	
+
 	/** Overridden ProcessRootMotion so that we can defer root motion until post asycn work. */
 	virtual void ProcessRootMotion( FLOAT DeltaTime, FBoneAtom& ExtractedRootMotionDelta, INT& bHasRootMotion ) override;
 
@@ -55,7 +55,7 @@ var 	bool		bPendingDeferredWork;
 /** when to clear forced streaming */
 var		float		ClearStreamingTime;
 
-/** 
+/**
  * If > 0, ensure the DeltaTime does not go above this value.
  * Useful when issuing tick notifies (e.g. Hitbox collision) is critical
  */
@@ -97,16 +97,17 @@ event bool PlayParticleEffect( const AnimNotify_PlayParticleEffect AnimNotifyDat
 {
 	local KFParticleSystemComponent PSC;
 
-	// Assign 1st person particles to match depth and FOV 
+	// Assign 1st person particles to match depth and FOV
 	// abridged version (only attached, non-extreme content) from Super()
-	if ( DepthPriorityGroup == SDPG_Foreground 
-		&& AnimNotifyData.bAttach 
+	if ( DepthPriorityGroup == SDPG_Foreground
+		&& AnimNotifyData.bAttach
 		&& !AnimNotifyData.bIsExtremeContent )
-	{		
+	{
 		PSC = new(self) class'KFParticleSystemComponent';  // move this to the object pool once it can support attached to bone/socket and relative translation/rotation
 		PSC.SetTemplate( AnimNotifyData.PSTemplate );
 		PSC.SetDepthPriorityGroup(SDPG_Foreground);
 		PSC.SetFOV(FOV);
+		PSC.SetTickGroup(TG_PostUpdateWork);
 
 		if( AnimNotifyData.SocketName != '' )
 		{
@@ -164,7 +165,7 @@ final function float GetAnimNotifyTime(Name AnimSeqName, class<AnimNotify> Notif
 		{
 			continue;
 		}
-		
+
 		if(ClassIsChildOf(AnimSeq.Notifies[i].Notify.Class, NotifyClass))
 		{
 			return (AnimSeq.Notifies[i].Time / AnimSeq.RateScale);

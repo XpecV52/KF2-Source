@@ -1003,9 +1003,26 @@ function ApplySkillsToPawn()
 
 function ClearPerkEffects()
 {
+	if (InteractionTrigger != none)
+	{
+		InteractionTrigger.DestroyTrigger();
+		InteractionTrigger = none;
+	}
+
 	ClientClearPerkEffects();
 }
-reliable client function ClientClearPerkEffects();
+
+reliable client function ClientClearPerkEffects()
+{
+	if (Role != ROLE_Authority)
+	{
+		if (InteractionTrigger != none)
+		{
+			InteractionTrigger.DestroyTrigger();
+			InteractionTrigger = none;
+		}
+	}
+}
 
 /**
  * We need to separate this from ApplySkillsToPawn() to avoid resetting weight limits (and losing weapons)

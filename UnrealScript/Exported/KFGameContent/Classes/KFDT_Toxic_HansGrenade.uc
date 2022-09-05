@@ -657,6 +657,7 @@ class KFDT_Toxic_HansGrenade extends KFDT_Toxic
 
 
 
+
 #linenumber 15
 
 static function int GetKillerDialogID()

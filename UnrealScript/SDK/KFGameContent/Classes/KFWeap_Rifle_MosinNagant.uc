@@ -133,6 +133,29 @@ simulated function bool CanOverrideMagReload(byte FireModeNum)
 	return super.CanOverrideMagReload(FireModeNum);
 }
 
+/** Allows weapon to calculate its own damage for display in trader */
+static simulated function float CalculateTraderWeaponStatDamage()
+{
+	local float BaseDamage, DoTDamage;
+	local class<KFDamageType> DamageType;
+
+	BaseDamage = default.InstantHitDamage[DEFAULT_FIREMODE];
+
+	DamageType = class<KFDamageType>(default.InstantHitDamageTypes[DEFAULT_FIREMODE]);
+	if (DamageType != none && DamageType.default.DoT_Type != DOT_None)
+	{
+		DoTDamage = (DamageType.default.DoT_Duration / DamageType.default.DoT_Interval) * (BaseDamage * DamageType.default.DoT_DamageScale);
+	}
+
+	return BaseDamage * default.NumPellets[DEFAULT_FIREMODE] + DoTDamage;
+}
+
+/** Allows weapon to calculate its own fire rate for display in trader */
+static simulated function float CalculateTraderWeaponStatFireRate()
+{
+	return 60.f / default.FireInterval[DEFAULT_FIREMODE]; // attacks per minute
+}
+
 defaultproperties
 {
 	// MeleeBase
@@ -204,7 +227,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_MosinNagant'
 	InstantHitDamage(DEFAULT_FIREMODE)=250
 	InstantHitDamageTypes(DEFAULT_FIREMODE) = class'KFDT_Ballistic_MosinNagant'
-	FireInterval(DEFAULT_FIREMODE)=1.0 // 60 RPM
+	FireInterval(DEFAULT_FIREMODE)=0.85 // 60 RPM
 	Spread(DEFAULT_FIREMODE)=0.007
 	PenetrationPower(DEFAULT_FIREMODE)=3
 	FireOffset = (X = 25,Y = 3.0,Z = -2.5)
@@ -229,9 +252,9 @@ defaultproperties
 	bUseAdditiveMoveAnim = false // @TODO: Remove
 
 	// Defensive
-	BlockDamageMitigation=0.5f
-	ParryDamageMitigationPercent=0.4
-	ParryStrength=5
+	BlockDamageMitigation=0.6f
+	ParryDamageMitigationPercent=0.5
+	ParryStrength=4
 
 	// Block Effects
 	BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
@@ -272,6 +295,6 @@ defaultproperties
 	End Object
 
 	// Weapon Upgrades
-	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Damage1, Scale=1.15f), (Stat=EWUS_Damage2, Scale=1.15f), (Stat=EWUS_Weight, Add=1)))
-	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.3f), (Stat=EWUS_Damage1, Scale=1.3f), (Stat=EWUS_Damage2, Scale=1.3f), (Stat=EWUS_Weight, Add=2)))
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Damage1, Scale=1.15f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.3f), (Stat=EWUS_Damage1, Scale=1.3f), (Stat=EWUS_Weight, Add=2)))
 }

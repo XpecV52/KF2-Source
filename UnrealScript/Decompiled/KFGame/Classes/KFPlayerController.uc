@@ -6653,7 +6653,14 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
                 PWRI.ClassKilledByLastWave = class<KFPawn_Monster>(Killer.Pawn.Class);
             }
             ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);
-            SetLocation(KilledPawn.Location + (vect(0, 0, 1) * (KilledPawn.GetCollisionRadius() * 2)));
+            SetLocation(KilledPawn.Location + (vect(0, 0, 1) * (KilledPawn.GetCollisionRadius() * 2)));            
+        }
+        else
+        {
+            if(MonsterPawn.IsABoss())
+            {
+                CheckForZedOnDeathAchievements(MonsterPawn);
+            }
         }
     }
 }

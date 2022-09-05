@@ -8,6 +8,20 @@
 
 class KFProj_Explosive_HRGWinterbite extends KFProj_BallisticExplosive;
 
+simulated function AdjustCanDisintigrate() {}
+
+simulated protected function PrepareExplosionTemplate()
+{
+	// skip KFProj_BallisticExplosive because it applies Demo skills
+    super(KFProjectile).PrepareExplosionTemplate();
+}
+
+simulated protected function SetExplosionActorClass()
+{
+	// skip KFProj_BallisticExplosive because it applies Demo skills
+    super(KFProjectile).SetExplosionActorClass();
+}
+
 defaultproperties
 {
 	Physics=PHYS_Falling

@@ -59,6 +59,7 @@ event bool PlayParticleEffect(const AnimNotify_PlayParticleEffect AnimNotifyData
         PSC.SetTemplate(AnimNotifyData.PSTemplate);
         PSC.SetDepthPriorityGroup(2);
         PSC.SetFOV(FOV);
+        PSC.SetTickGroup(4);
         if(AnimNotifyData.SocketName != 'None')
         {
             AttachComponentToSocket(PSC, AnimNotifyData.SocketName);            

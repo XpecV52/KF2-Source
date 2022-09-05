@@ -645,6 +645,7 @@ class KFTraderVoiceGroupBase extends Object;
 
 
 
+
 #linenumber 3
 
 struct TraderDialogEventInfo

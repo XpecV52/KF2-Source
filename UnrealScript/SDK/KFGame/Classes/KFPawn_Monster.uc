@@ -2234,12 +2234,6 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 {
 	`DialogManager.PlaySpotZedHealingDialog( self );
 	Super.HealDamage(Amount, Healer, DamageType);
-
-	if (bUseDamageInflation)
-    {
-        IntendedDamageInflationPercent = float(Health) / float(HealthMax);
-    }
-
 	return true;
 }
 

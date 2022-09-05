@@ -617,9 +617,9 @@
 `define PATTY_OnFire					37
 
 // extended Matriarch Boss dialog IDs
-`define MATTY_TauntBase						1
-`define MATTY_Taunt_Exposed_P12    			2
-`define MATTY_Taunt_Exposed_P34    			3
+`define MATTY_Taunt_Phase1					1
+`define MATTY_Taunt_Phase2	    			2
+`define MATTY_Taunt_Phase3	    			3
 `define MATTY_TauntPilotCompartDestroyed 	16
 `define MATTY_TauntPowerClawDestroyed 		17
 `define MATTY_NextBattlePhase1				18
@@ -644,3 +644,4 @@
 `define MATTY_Cloak							37
 `define MATTY_ChargeAttack					38
 `define MATTY_OnFire						39
+`define MATTY_Taunt_Phase4	    			40

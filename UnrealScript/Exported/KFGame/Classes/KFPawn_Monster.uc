@@ -2540,12 +2540,6 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 {
 	if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlaySpotZedHealingDialog( self );
 	Super.HealDamage(Amount, Healer, DamageType);
-
-	if (bUseDamageInflation)
-    {
-        IntendedDamageInflationPercent = float(Health) / float(HealthMax);
-    }
-
 	return true;
 }
 

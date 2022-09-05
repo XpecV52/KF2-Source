@@ -645,6 +645,7 @@ class KFTraderVoiceGroup_Lockheart extends KFTraderVoiceGroupBase;
 
 
 
+
 #linenumber 3
 
 defaultproperties

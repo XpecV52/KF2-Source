@@ -225,7 +225,7 @@ HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="Horzine 무기 보�
 HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #4 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries7BronzeBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #7 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries7SilverBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #7 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
-HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #7 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription=Horzine 무기 보급상자 | 시리즈 #7 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries8BronzeBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #8 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries8SilverBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #8 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries8GoldBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #8 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
@@ -241,7 +241,7 @@ HorzineSupplyWeaponCrateSeries14GoldBundlePackDescription="Horzine 무기 보급
 HorzineSupplyCrateSeries15BronzeBundlePackDescription="Horzine 보급상자 | 시리즈 #15 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyCrateSeries15SilverBundlePackDescription="Horzine 보급상자 | 시리즈 #15 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 HorzineSupplyCrateSeries15GoldBundlePackDescription="Horzine 보급상자 | 시리즈 #15 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
-HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription=Contains five of the Horzine Supply Crate | Series Cyber Samurai crate along with five of its associated keys."
+HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription="Horzine 보급상자 | 시리즈 사이버 사무라이 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyCrateSeriesCyberSamuraiSilverBundlePackDescription="Horzine 보급상자 | 시리즈 사이버 사무라이 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 HorzineSupplyCrateSeriesCyberSamuraiGoldBundlePackDescription="Horzine 보급상자 | 시리즈 사이버 사무라이 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 EmoteCrateSeries1BronzeBundlePackDescription="Emote 보급상자 | 시리즈 #1 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
@@ -255,7 +255,7 @@ NeonEncryptedUSBSilverBundlePackDescription="네온 암호화 USB 상자 10개�
 NeonEncryptedUSBGoldBundlePackDescription="네온 암호화 USB 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 WeaponCollectorsUSBBronzeBundlePackDescription="무기 수집가 팩 1 USB 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 WeaponCollectorsUSBSilverBundlePackDescription="무기 수집가 팩 1 USB 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
-WeaponCollectorsUSBGoldBundlePackDescription=Contains twenty of the Weapons Collectors Pack 1 USB crate along with twenty of its associated keys."
+WeaponCollectorsUSBGoldBundlePackDescription="무기 수집가 팩 1 USB 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 NeonMKIIEncryptedUSBBronzeBundlePackDescription="네온 MKII 암호화 USB 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 NeonMKIIEncryptedUSBSilverBundlePackDescription="네온 MKII 암호화 USB 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 NeonMKIIEncryptedUSBGoldBundlePackDescription="네온 MKII 암호화 USB 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
@@ -320,13 +320,13 @@ NeonMKIIIEncryptedUSBGoldBundlePackDescription="네온 MKIII 암호화 USB 상�
 SantasHelperOutfitBundleDescription="남성 및 여성용 산타의 도우미 의상(스킨 6종 포함)이 지급됩니다. 대부분의 캐릭터가 착용할 수 있습니다."
 HorzineSupplyWeaponCrateSeries17BronzeBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #17 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries17SilverBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #17 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
-HorzineSupplyWeaponCrateSeries17GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #17 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries17GoldBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #17 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries3BronzeBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #3 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries3SilverBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #3 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
-HorzineSupplyWeaponCrateSeries3GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #3 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries3GoldBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #3 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries5BronzeBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #5 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #5 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
-HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #5 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="Horzine 무기 보급상자 | 시리즈 #5 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
 JaegerEncryptedUSBBronzeBundlePackDescription="예거 암호화 USB 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 JaegerEncryptedUSBSilverBundlePackDescription="예거 암호화 USB 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 JaegerEncryptedUSBGoldBundlePackDescription="예거 암호화 USB 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
@@ -661,7 +661,7 @@ EmoteCrateSeries1Description="시리즈 1 Emote 보급상자 열쇠가 있어야
 
 EmoteCrateSeries2Description="시리즈 2 Emote 보급상자 열쇠가 있어야 열 수 있습니다. 다음 중 하나가 들어 있습니다.<br><font color="#4b69cd">코사크</font><br><font color="#4b69cd">웨이브</font><br><font color="#4b69cd">브레이킹</font><br><font color="#4b69cd">노 핸즈</font><br><font color="#6600a1">힐 클릭</font><br><font color="#6600a1">스프링클러</font><br><font color="#6600a1">매니악</font><br><font color="#8847ff">런닝 맨</font><br><font color="#8847ff">로봇</font><br><font color="#8847ff">에어 메탈</font><br><font color="#caab05">또는 대단히 희귀한 디럭스 Emote!</font>"
 
-EmoteCrateSeries2Description="이 상자를 열려면 시리즈 #3 Emote 상자 키가 필요합니다. 다음 희귀 이상의 아이템 하나가 포함되어 있습니다.<br><font color="#4b69cd">학 주먹</font><br><font color="#4b69cd">우주 마스터리</font><br><font color="#4b69cd">Zed 타임</font><br><font color="#4b69cd">에너지가 필요해</font><br><font color="#4b69cd">최종 형태</font><br><font color="#4b69cd">서부에서 가장 빠른 총</font><br><font color="#4b69cd">영혼 손가락</font><br><font color="#4b69cd">홈런</font><br><font color="#4b69cd">코인 트릭</font><br><font color="#4b69cd">매직 포스터</font><br><font color="#caab05">또는 대단히 희귀한 디럭스 Emote!</font>"
+EmoteCrateSeries3Description="이 상자를 열려면 시리즈 #3 Emote 상자 키가 필요합니다. 다음 희귀 이상의 아이템 하나가 포함되어 있습니다.<br><font color="#4b69cd">학 주먹</font><br><font color="#4b69cd">우주 마스터리</font><br><font color="#4b69cd">Zed 타임</font><br><font color="#4b69cd">에너지가 필요해</font><br><font color="#4b69cd">최종 형태</font><br><font color="#4b69cd">서부에서 가장 빠른 총</font><br><font color="#4b69cd">영혼 손가락</font><br><font color="#4b69cd">홈런</font><br><font color="#4b69cd">코인 트릭</font><br><font color="#4b69cd">매직 포스터</font><br><font color="#caab05">또는 대단히 희귀한 디럭스 Emote!</font>"
 
 DoshVaultUnlockedCrate1Description="다음 중 하나를 포함합니다.<br>플레이어 액세서리<br>페이스 페인트<br>유니폼 종료<br>무기 스킨<br><font color="#caab05">또는 대단히 희귀한 프레셔스 액세서리!</font>"
 
@@ -673,11 +673,9 @@ HorzineSupplyCrateSeriesCyberSamuraiDescription="사이버 사무라이 Horzine 
 
 HorzineSupplyCrateSeriesDeityDescription="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상의 아이템을 포함합니다.<br><font color="#4b69cd">아머 후드 | 블루</font><br><font color="#4b69cd">아머 후드 | 그린</font><br><font color="#4b69cd">얼굴 없는 마스크 | 블루</font><br><font color="#4b69cd">얼굴 없는 마스크 | 그린</font><br><font color="#4b69cd">사이파이 후드 | 블루</font><br><font color="#4b69cd">사이파이 후드 | 그린</font><br><font color="#4b69cd">무표정 마스크 | 블루</font><br><font color="#4b69cd">무표정 마스크 | 그린</font><br><font color="#4b69cd">아머 후드 | 레드</font><br><font color="#4b69cd">얼굴 없는 마스크 | 레드</font><br><font color="#4b69cd">사이파이 후드 | 레드</font><br><font color="#4b69cd">무표정 마스크 | 레드</font><br><font color="#4b69cd">바스트 | 레드</font><br><font color="#4b69cd">바스트 | 옐로우</font><br><font color="#4b69cd">바스트 | 그린</font><br><font color="#4b69cd">바스트 | 블루</font><br><font color="#4b69cd">소벡 | 레드</font><br><font color="#4b69cd">소벡 | 옐로우</font><br><font color="#4b69cd">소벡 | 그린</font><br><font color="#4b69cd">소벡 | 블루</font><br><font color="#4b69cd">아머 후드 | 블랙</font><br><font color="#4b69cd">얼굴 없는 마스크 | 블랙</font><br><font color="#4b69cd">얼굴 없는 마스크 | 화이트</font><br><font color="#4b69cd">사이파이 후드 | 블랙</font><br><font color="#4b69cd">무표정 마스크 | 블랙</font><br><font color="#4b69cd">무표정 마스크 | 화이트</font><br><font color="#4b69cd">아누비스 | 레드</font><br><font color="#4b69cd">아누비스 | 블루</font><br><font color="#4b69cd">아누비스 | 그린</font><br><font color="#4b69cd">아누비스 | 옐로우</font><br><font color="#4b69cd">라 | 레드</font><br><font color="#4b69cd">라 | 블루</font><br><font color="#4b69cd">라 | 그린</font><br><font color="#4b69cd">라 | 옐로우</font><br><font color="#4b69cd">또는 매우 희귀한 프레셔스 스킨!</font>"
 
-HorzineSupplyCrateSeriesProjectHDescription="Requires a Project H Series #1 Horzine Supply Crate Key to open.
-Contains one rare or better of the following:<br><font color="#4b69cd">프로젝트 H-01 | 기본 </font><br><font color="#4b69cd">프로젝트 H-01 | 행복</font><br><font color="#4b69cd">프로젝트 H-01 | 행복 열림</font><br><font color="#4b69cd">프로젝트 H-01 | 포커페이스 </font><br><font color="#4b69cd">프로젝트 H-01 | 포커페이스 열림 </font><br><font color="#4b69cd">프로젝트 H-01 | 불행 </font><br><font color="#4b69cd">프로젝트 H-01 | 불행 열림 </font><br><font color="#4b69cd">프로젝트 H-02 | 기본 </font><br><font color="#4b69cd">프로젝트 H-02 | 행복 </font><br><font color="#4b69cd">프로젝트 H-02 | 행복 열림 </font><br><font color="#4b69cd">프로젝트 H-02 | 포커페이스 </font><br><font color="#4b69cd">프로젝트 H-02 | 포커페이스 열림 </font><br><font color="#4b69cd">프로젝트 H-02 | 불행 </font><br><font color="#4b69cd">프로젝트 H-02 | 불행 열림 </font><br><font color="#caab05">또는 매우 희귀한 프레셔스 액세서리!</font>"
+HorzineSupplyCrateSeriesProjectHDescription="Horzine 보급상자 키 시리즈 프로젝트 H 시리즈 #1가 필요합니다. 다음 중 하나 이상을 포함합니다.<br><font color="#4b69cd">프로젝트 H-01 | 기본 </font><br><font color="#4b69cd">프로젝트 H-01 | 행복</font><br><font color="#4b69cd">프로젝트 H-01 | 행복 열림</font><br><font color="#4b69cd">프로젝트 H-01 | 포커페이스 </font><br><font color="#4b69cd">프로젝트 H-01 | 포커페이스 열림 </font><br><font color="#4b69cd">프로젝트 H-01 | 불행 </font><br><font color="#4b69cd">프로젝트 H-01 | 불행 열림 </font><br><font color="#4b69cd">프로젝트 H-02 | 기본 </font><br><font color="#4b69cd">프로젝트 H-02 | 행복 </font><br><font color="#4b69cd">프로젝트 H-02 | 행복 열림 </font><br><font color="#4b69cd">프로젝트 H-02 | 포커페이스 </font><br><font color="#4b69cd">프로젝트 H-02 | 포커페이스 열림 </font><br><font color="#4b69cd">프로젝트 H-02 | 불행 </font><br><font color="#4b69cd">프로젝트 H-02 | 불행 열림 </font><br><font color="#caab05">또는 매우 희귀한 프레셔스 액세서리!</font>"
 
-HorzineSupplyCrateSeriesBoneyardDescription="Requires a Series Boneyard Horzine Supply Crate Key to open.
-Contains one rare or better of the following:<br><font color="#4b69cd">빈사</font><br><font color="#4b69cd">비통</font><br><font color="#4b69cd">좌절</font><br><font color="#4b69cd">비탄</font><br><font color="#4b69cd">고통</font><br><font color="#4b69cd">열정</font><br><font color="#4b69cd">고난</font><br><font color="#4b69cd">고문</font><br><font color="#caab05">또는 대단히 희귀한 프레셔스 액세서리!</font>"
+HorzineSupplyCrateSeriesBoneyardDescription="시리즈 본 야드 Horzine 보급 상자 열쇠가 필요합니다. 다음 중 하나 이상을 포함합니다.<br><font color="#4b69cd">빈사</font><br><font color="#4b69cd">비통</font><br><font color="#4b69cd">좌절</font><br><font color="#4b69cd">비탄</font><br><font color="#4b69cd">고통</font><br><font color="#4b69cd">열정</font><br><font color="#4b69cd">고난</font><br><font color="#4b69cd">고문</font><br><font color="#caab05">또는 대단히 희귀한 프레셔스 액세서리!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Horzine 보급상자 열쇠 | 시리즈 1"
@@ -765,6 +763,7 @@ DragonwaveEncryptedUSBName="드래곤웨이브 암호화 USB"
 NeonMKVEncryptedUSBName="네온 MKV 암호화 USB"
 SteampunkEncryptedUSBName="스팀펑크 암호화 USB"
 BeyondHorizonEncryptedUSBName="비욘드 호라이즌 암호화 USB"
+JaegerEncryptedUSBName="재거 암호화 USB"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="상자를 여시려면 사이버본 블루프린트 열쇠가 필요합니다. 다음 중 한 가지 희귀 이상의 무기 스킨을 포함하고 있음:<br><font color="#4b69cd">AR15 | 사이버본</font><br><font color="#4b69cd">AA-12 | 사이버본</font><br><font color="#4b69cd">AA-12 | 사이버본</font><br><font color="#4b69cd">카타나 | 사이버본</font><br><font color="#8847ff">M79 | 푸트리드 바일</font><br><font color="#8847ff">AR15 | 폐쇄</font><br><font color="#caab05">또는 매우 희귀한 스킨!</font>"
@@ -827,7 +826,7 @@ NeonMKVEncryptedUSBDescription="이 상자를 열려면 네온 MKV 블루프린�
 
 SteampunkEncryptedUSBDescription="이 상자를 열려면 스팀펑크 블루프린트 키가 필요합니다. 다음 희귀 이상의 무기 스킨을 포함합니다:<br><font color="#4b69cd">토미건 | 스팀펑크</font><br><font color="#4b69cd">윈체스터 1894 | 스팀펑크</font><br><font color="#4b69cd">MP5RAS | 스팀펑크</font><br><font color="#6600a1">드래곤 브레스 | 스팀펑크</font><br><font color="#6600a1">M79 | 스팀펑크</font><br><font color="#6600a1">츠바이한더 | 스팀펑크</font><br><font color="#6600A1">MAC 10 | 스팀펑크</font><br><font color="#8847ff">500 매그넘 리볼버 | 스팀펑크</font><br><font color="#8847ff">AA12 | 스팀펑크</font><br><font color="#8847ff">M99 | 스팀펑크</font><br><font color="#8847ff">데저트 이글 | 스팀펑크</font><br><font color="#caab05">또는 매우 희귀한 스킨!</font>"
 
-BeyondHorizonEncryptedUSBDescription="열려면 비욘드 호라이즌 블루프린트 키가 필요합니다. 다음 희귀 이상의 무기 스킨이 포함됩니다. <br><font color="#4b69cd">스태틱 스트라이커 | 비욘드 호라이즌</font><br><font color="#4b69cd">HMTech-401 돌격소총 | 비욘드 호라이즌 </font><br><font color="#4b69cd">HMTech-301 산탄총 | 비욘드 호라이즌 </font><br><font color="#6600a1">RPG-7 | 비욘드 호라이즌 </font><br><font color="#6600a1">화염방사기 | 비욘드 호라이즌 </font><br><font color="#6600a1">스카 | 비욘드 호라이즌</font><br><font color="#6600A1">HMTech-201 SMG | 비욘드 호라이즌 </font><br><font color="#8847ff">크리스 | 비욘드 호라이즌</font><br><font color="#8847ff">M99 | 비욘드 호라이즌</font><br><font color="#8847ff">헬리오스 소총 | 비욘드 호라이즌</font><br><font color="#8847ff">데저트 이글 | 비욘드 호라이즌</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
+BeyondHorizonEncryptedUSBDescription="열려면 비욘드 호라이즌 블루프린트 키가 필요합니다. 다음 희귀 이상의 무기 스킨이 포함됩니다. <br><font color="#4b69cd">스태틱 스트라이커 | 비욘드 호라이즌</font><br><font color="#4b69cd">HMTech-101 피스톨 | 비욘드 호라이즌 </font><br><font color="#4b69cd">HMTech-201 SMG | 비욘드 호라이즌 </font><br><font color="#4b69cd">HMTech-301 산탄총 | 비욘드 호라이즌 </font><br><font color="#4b69cd">HMTech-401 돌격소총 | 비욘드 호라이즌 </font><br><font color="#6600a1">RPG-7 | 비욘드 호라이즌 </font><br><font color="#6600a1">화염방사기 | 비욘드 호라이즌 </font><br><font color="#6600a1">스카 | 비욘드 호라이즌</font><br><font color="#8847ff">크리스 | 비욘드 호라이즌</font><br><font color="#8847ff">M99 | 비욘드 호라이즌</font><br><font color="#8847ff">헬리오스 소총 | 비욘드 호라이즌</font><br><font color="#8847ff">킬러와트 | 비욘드 호라이즌</font><br><font color="#8847ff">분쇄기 | 비욘드 호라이즌</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
 
 JaegerEncryptedUSBDescription="이 상자를 열려면 예거 블루프린트 열쇠가 필요합니다. 다음 희귀 이상의 무기 스킨을 포함합니다.<br><font color="#4b69cd">크리스 | 예거</font><br><font color="#4b69cd">P90 | 예거</font><br><font color="#4b69cd">분쇄기 | 예거</font><br><font color="#4b69cd">헤모글로빈 | 예거</font><br><font color="#6600a1">스카 | 예거</font><br><font color="#6600a1">데저트 이글 | 예거</font><br><font color="#6600A1">FN FAL | 예거</font><br><font color="#6600A1">마이크로웨이브 건 | 예거</font><br><font color="#8847ff">둠스틱 | 예거</font><br><font color="#8847ff">헬리오스 소총 | 예거</font><br><font color="#8847ff">킬러와트 | 예거</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
 
@@ -985,10 +984,9 @@ HorzineSupplyCosmeticCrateSeries10Description="Horzine 보급상자 열쇠가 �
 
 HorzineSupplyWeaponSkinCrateSeries15Description="이 상자를 열려면 Horzine 보급상자 열쇠가 필요합니다. 다음 희귀 이상의 무기 스킨을 포함합니다:<br><font color="#4b69cd">토미건 | 스팀펑크</font><br><font color="#4b69cd">윈체스터 1894 | 스팀펑크</font><br><font color="#4b69cd">MP5RAS | 스팀펑크</font><br><font color="#6600a1">드래곤 브레스 | 스팀펑크</font><br><font color="#6600a1">M79 | 스팀펑크</font><br><font color="#6600a1">츠바이한더 | 스팀펑크</font><br><font color="#6600A1">MAC 10 | 스팀펑크</font><br><font color="#8847ff">500 매그넘 리볼버 | 스팀펑크</font><br><font color="#8847ff">AA12 | 스팀펑크</font><br><font color="#8847ff">M99 | 스팀펑크</font><br><font color="#8847ff">데저트 이글 | 스팀펑크</font><br><font color="#caab05">또는 매우 희귀한 스킨!</font>"
 
-HorzineSupplyWeaponSkinCrateSeries16Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상의 무기 스킨이 포함됩니다.<br><font color="#4b69cd">스태틱 스트라이커 | 비욘드 호라이즌</font><br><font color="#4b69cd">HMTech-401 돌격소총 | 비욘드 호라이즌</font><br><font color="#4b69cd">HMTech-301 산탄총 | 비욘드 호라이즌</font><br><font color="#6600a1">RPG-7 | 비욘드 호라이즌</font><br><font color="#6600a1">화염방사기 | 비욘드 호라이즌</font><br><font color="#6600a1">스카 | 비욘드 호라이즌</font><br><font color="#6600A1">HMTech-201 SMG | 비욘드 호라이즌</font><br><font color="#8847ff">크리스 | 비욘드 호라이즌</font><br><font color="#8847ff">M99 | 비욘드 호라이즌</font><br><font color="#8847ff">헬리오스 소총 | 비욘드 호라이즌</font><br><font color="#8847ff">데저트 이글 | 비욘드 호라이즌</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
+HorzineSupplyWeaponSkinCrateSeries16Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상의 무기 스킨이 포함됩니다. <br><font color="#4b69cd">스태틱 스트라이커 | 비욘드 호라이즌</font><br><font color="#4b69cd">HMTech-101 피스톨 | 비욘드 호라이즌 </font><br><font color="#4b69cd">HMTech-201 SMG | 비욘드 호라이즌 </font><br><font color="#4b69cd">HMTech-301 산탄총 | 비욘드 호라이즌 </font><br><font color="#4b69cd">HMTech-401 돌격소총 | 비욘드 호라이즌 </font><br><font color="#6600a1">RPG-7 | 비욘드 호라이즌 </font><br><font color="#6600a1">화염방사기 | 비욘드 호라이즌 </font><br><font color="#6600a1">스카 | 비욘드 호라이즌</font><br><font color="#8847ff">크리스 | 비욘드 호라이즌</font><br><font color="#8847ff">M99 | 비욘드 호라이즌</font><br><font color="#8847ff">헬리오스 소총 | 비욘드 호라이즌</font><br><font color="#8847ff">킬러와트 | 비욘드 호라이즌</font><br><font color="#8847ff">분쇄기 | 비욘드 호라이즌</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
 
-HorzineSupplyCosmeticCrateSeries11Description="Requires a  Horzine Supply Crate Key to open.
-Contains one rare or better of the following:<br><font color="#4b69cd">빈사</font><br><font color="#4b69cd">비통</font><br><font color="#4b69cd">좌절</font><br><font color="#4b69cd">비탄</font><br><font color="#4b69cd">고통</font><br><font color="#4b69cd">열정</font><br><font color="#4b69cd">고난</font><br><font color="#4b69cd">고문</font><br><font color="#caab05">또는 대단히 희귀한 프레셔스 액세서리!</font>"
+HorzineSupplyCosmeticCrateSeries11Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상의 무기 스킨을 포함합니다.<br><font color="#4b69cd">빈사</font><br><font color="#4b69cd">비통</font><br><font color="#4b69cd">좌절</font><br><font color="#4b69cd">비탄</font><br><font color="#4b69cd">고통</font><br><font color="#4b69cd">열정</font><br><font color="#4b69cd">고난</font><br><font color="#4b69cd">고문</font><br><font color="#caab05">또는 대단히 희귀한 프레셔스 액세서리!</font>"
 
 HorzineSupplyWeaponSkinCrateSeries17Description="Horzine 보급상자 열쇠가 있어야 열 수 있습니다. 다음 희귀 이상의 무기 스킨을 포함합니다.<br><font color="#4b69cd">크리스 | 예거</font><br><font color="#4b69cd">P90 | 예거</font><br><font color="#4b69cd">분쇄기 | 예거</font><br><font color="#4b69cd">헤모글로빈 | 예거</font><br><font color="#6600a1">스카 | 예거</font><br><font color="#6600a1">데저트 이글 | 예거</font><br><font color="#6600A1">FN FAL | 예거</font><br><font color="#6600A1">마이크로웨이브 건 | 예거</font><br><font color="#8847ff">둠스틱 | 예거</font><br><font color="#8847ff">헬리오스 소총 | 예거</font><br><font color="#8847ff">킬러와트 | 예거</font><br><font color="#caab05">또는 매우 희귀한 프레셔스 스킨!</font>"
 
@@ -5191,7 +5189,7 @@ CraneFistEmoteName="학 주먹 | Emote"
 UniversalMasteryEmoteName="우주 마스터리 | Emote"
 ZedTimeEmoteName="Zed 타임 | Emote"
 NeedYourEnergyEmoteName="에너지가 필요해 | Emote"
-FinalFormEmoteName=Final Form | Emote"
+FinalFormEmoteName="최종 형태 | Emote"
 FastestGunInTheWestEmoteName="서부에서 가장 빠른 총 | Emote"
 SpiritFingersEmoteName="영혼 손가락 | Emote"
 HomerunEmoteName="홈런 | Emote"

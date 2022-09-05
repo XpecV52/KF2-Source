@@ -25,7 +25,7 @@ defaultproperties
    PackageKey="dual_Winterbite"
    FirstPersonMeshName="wep_1p_dual_winterbite_mesh.Wep_1stP_Dual_Winterbite_Rig"
    FirstPersonAnimSetNames(0)="wep_1p_dual_Winterbite_anim.Wep_1stP_Dual_Winterbite_Anim"
-   PickupMeshName="wep_3p_dual_winterbite_mesh.Wep_Dual_Winterbite_Pickup"
+   PickupMeshName="WEP_3P_HRG_Winterbite_MESH.Wep_HRG_Winterbite_Pickup"
    AttachmentArchetypeName="wep_dual_winterbite_arch.Wep_Dual_Winterbite_3P"
    MuzzleFlashTemplateName="wep_dual_winterbite_arch.Wep_Winterbite_MuzzleFlash"
    bHasIronSights=True
@@ -95,8 +95,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.015000
    Spread(1)=0.015000
-   InstantHitDamage(0)=30.000000
-   InstantHitDamage(1)=30.000000
+   InstantHitDamage(0)=40.000000
+   InstantHitDamage(1)=40.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Freeze_HRGWinterbiteImpact'

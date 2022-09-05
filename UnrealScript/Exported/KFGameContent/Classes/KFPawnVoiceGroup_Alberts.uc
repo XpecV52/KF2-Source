@@ -645,6 +645,7 @@ class KFPawnVoiceGroup_Alberts extends KFPawnVoiceGroup;
 
 
 
+
 #linenumber 3
 
 defaultproperties

@@ -70,7 +70,7 @@ var globalconfig float ShellEjectLifetime;
 native function CauseMuzzleFlash(optional byte FiringMode);
 
 // Export UKFMuzzleFlash::execStopMuzzleFlash(FFrame&, void* const)
-native function StopMuzzleFlash();
+native function StopMuzzleFlash(optional bool bForce);
 
 // Export UKFMuzzleFlash::execMuzzleFlashTimer(FFrame&, void* const)
 native function MuzzleFlashTimer();

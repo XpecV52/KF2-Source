@@ -562,7 +562,6 @@ simulated function BreakShield()
 	if (Role == ROLE_Authority)
 	{
 		SetBattlePhase(BATTLE_PHASE_ARMOR);
-		DoStumble();
 	}
 }
 
@@ -691,6 +690,7 @@ function SetBattlePhase(int Phase)
 			ArmorInfo.UpdateArmorUI();
 		}
 
+		DoStumble();
 		SummonMinions();
 		InitializeCurrentBattlePhase();
 		OnBattlePhaseChanged();
@@ -1273,8 +1273,10 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 		{
 			SetBattlePhase(BATTLE_PHASE_FLESH);
 		}
-
-		DoStumble();
+		else
+		{
+			DoStumble();
+		}
 	}
 }
 
@@ -1285,14 +1287,24 @@ function bool PowerClawIsFunctional()
 
 simulated function OnArmorZoneStatusUpdated()
 {
+	local int Idx;
+
 	if ((ArmorZoneStatus & (1 << HEAD_ARMOR_IDX)) == 0)
 	{
-		HitZones.Remove(HitZones.Find('BoneName', 'dome'), 1);
+		Idx = HitZones.Find('BoneName', 'dome');
+		if (Idx != INDEX_NONE)
+		{
+			HitZones.Remove(Idx, 1);
+		}
 	}
 
 	if ((ArmorZoneStatus & (1 << CLAW_ARMOR_IDX)) == 0)
 	{
-		HitZones.Remove(HitZones.Find('BoneName', 'LeftHandCap'), 1);
+		Idx = HitZones.Find('BoneName', 'LeftHandCap');
+		if (Idx != INDEX_NONE)
+		{
+			HitZones.Remove(Idx, 1);
+		}
 	}
 
 	DialogAkComponent.SetRTPCValue("Matriarch_Helmet", int(bool(ArmorZoneStatus & (1 << HEAD_ARMOR_IDX))));
@@ -1372,6 +1384,15 @@ function AdjustMovementSpeed( float SpeedAdjust )
 function class<KFDamageType> GetBumpAttackDamageType()
 {
 	return HeavyBumpDamageType;
+}
+
+/** Play music for this boss (overridden for each boss) */
+function PlayBossMusic()
+{
+	if( KFGameInfo(WorldInfo.Game) != none )
+	{
+		KFGameInfo(WorldInfo.Game).ForceMatriarchMusicTrack();
+	}
 }
 
 defaultproperties

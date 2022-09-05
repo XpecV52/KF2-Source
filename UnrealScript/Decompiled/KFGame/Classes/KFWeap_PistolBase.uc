@@ -155,26 +155,29 @@ simulated function ResetCylinder()
     {
         return;
     }
-    BulletMeshComponents[0].SetSkeletalMesh(UnusedBulletMeshTemplate);
-    UsedStartIdx = BulletMeshComponents.Length - 1;
-    UsedEndIdx = UsedStartIdx - (MagazineCapacity[0] - AmmoCount[0]);
-    I = UsedStartIdx;
-    J0xC9:
-
-    if(I > UsedEndIdx)
+    if(BulletMeshComponents.Length > 0)
     {
-        BulletMeshComponents[I].SetSkeletalMesh(UsedBulletMeshTemplate);
-        -- I;
-        goto J0xC9;
-    }
-    I = UsedEndIdx;
-    J0x134:
+        BulletMeshComponents[0].SetSkeletalMesh(UnusedBulletMeshTemplate);
+        UsedStartIdx = BulletMeshComponents.Length - 1;
+        UsedEndIdx = UsedStartIdx - (MagazineCapacity[0] - AmmoCount[0]);
+        I = UsedStartIdx;
+        J0xD9:
 
-    if(I > 0)
-    {
-        BulletMeshComponents[I].SetSkeletalMesh(UnusedBulletMeshTemplate);
-        -- I;
-        goto J0x134;
+        if(I > UsedEndIdx)
+        {
+            BulletMeshComponents[I].SetSkeletalMesh(UsedBulletMeshTemplate);
+            -- I;
+            goto J0xD9;
+        }
+        I = UsedEndIdx;
+        J0x144:
+
+        if(I > 0)
+        {
+            BulletMeshComponents[I].SetSkeletalMesh(UnusedBulletMeshTemplate);
+            -- I;
+            goto J0x144;
+        }
     }
 }
 

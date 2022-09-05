@@ -655,6 +655,7 @@ class KFDT_Toxic extends KFDamageType
 
 
 
+
 #linenumber 13
 
 /** Returns ID of dialog event for killer to speak after killing a zed using this damage type */

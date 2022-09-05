@@ -26,24 +26,24 @@ defaultproperties
 	Events[`BOSS_Jump]=             (EventID=`BOSS_Jump,	        Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,							bCanBeMinimized=0)
 	Events[`BOSS_Land]=             (EventID=`BOSS_Land,	        Priority=2, Weight=1, 	Chance=1.00,	CoolDownTime=3.00,							bCanBeMinimized=0)
 
-	Events[`MATTY_TauntBase]={(
-		EventID=`MATTY_TauntBase,
+	Events[`MATTY_Taunt_Phase1]={(
+		EventID=`MATTY_Taunt_Phase1,
 		Priority=3,
 		Weight=1,
 		Chance=1,
 		CooldownTime=20,
 		bCanBeMinimized=0
 	)}
-	Events[`MATTY_Taunt_Exposed_P12]={(
-		EventID=`MATTY_Taunt_Exposed_P12,
+	Events[`MATTY_Taunt_Phase2]={(
+		EventID=`MATTY_Taunt_Phase2,
 		Priority=3,
 		Weight=1,
 		Chance=1,
 		CooldownTime=20,
 		bCanBeMinimized=0
 	)}
-	Events[`MATTY_Taunt_Exposed_P34]={(
-		EventID=`MATTY_Taunt_Exposed_P34,
+	Events[`MATTY_Taunt_Phase3]={(
+		EventID=`MATTY_Taunt_Phase3,
 		Priority=3,
 		Weight=1,
 		Chance=1,
@@ -99,8 +99,7 @@ defaultproperties
 		Weight=1,
 		Chance=1,
 		CooldownTime=10,
-		bCanBeMinimized=0,
-		bCanInterruptEqualPriority=true
+		bCanBeMinimized=0
 	)}
 	Events[`MATTY_ScorpionWhipWarning]={(
 		EventID=`MATTY_ScorpionWhipWarning,
@@ -118,7 +117,7 @@ defaultproperties
 		CooldownTime=0,
 		bCanBeMinimized=0,
 		bCanInterruptEqualPriority=true
-	)} 
+	)}
 	//This is not used
 	Events[`MATTY_ScorpionWhipKill]={(
 		EventID=`MATTY_ScorpionWhipKill,
@@ -231,7 +230,7 @@ defaultproperties
 		Chance=1,
 		CooldownTime=3,
 		bCanBeMinimized=0
-	)} 
+	)}
 	// This is not used
 	Events[`MATTY_Cloak]={(
 		EventID=`MATTY_Cloak,
@@ -258,5 +257,13 @@ defaultproperties
 		CooldownTime=5,
 		bCanBeMinimized=0,
 		bCanInterruptEqualPriority=true
+	)}
+	Events[`MATTY_Taunt_Phase4]={(
+		EventID=`MATTY_Taunt_Phase4,
+		Priority=3,
+		Weight=1,
+		Chance=1,
+		CooldownTime=20,
+		bCanBeMinimized=0
 	)}
 }

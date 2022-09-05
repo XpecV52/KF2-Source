@@ -2016,7 +2016,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_78
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_187
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_337
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
@@ -2024,15 +2024,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_187
    ObjPosY=-2744
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_187"
+   Name="SeqVar_Object_337"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_3
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_52
    bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
    InputLinks(0)=(DrawY=-2798,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-2798,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_187'),DrawX=-3912,OverrideDelta=26)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_3')),DrawY=-2798,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_337'),DrawX=-3912,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3960
@@ -2040,14 +2041,14 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_3
    ObjComment="Button Press Sound"
    DrawWidth=96
    DrawHeight=61
-   Name="SeqAct_AkPostEvent_3"
+   Name="SeqAct_AkPostEvent_52"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_0
    Originator=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_10'
    MaxWidth=345
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_3'),(LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_16'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_20')),DrawY=-2899,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_52'),(LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_16'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_20')),DrawY=-2899,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-2877,OverrideDelta=36)
    OutputLinks(2)=(DrawY=-2855,OverrideDelta=58)
    OutputLinks(3)=(DrawY=-2833,OverrideDelta=80)
@@ -2063,11 +2064,12 @@ Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivate
    ObjectArchetype=KFSeqEvent_MinigameActivated'KFGame.Default__KFSeqEvent_MinigameActivated'
 End Object
 
-Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_7
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_54
    bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
    InputLinks(0)=(DrawY=-3238,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-3238,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_56'),DrawX=-3896,OverrideDelta=26)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_7')),DrawY=-3238,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_338'),DrawX=-3896,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3944
@@ -2075,11 +2077,11 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_7
    ObjComment="Button Press Sound"
    DrawWidth=96
    DrawHeight=61
-   Name="SeqAct_AkPostEvent_7"
+   Name="SeqAct_AkPostEvent_54"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_338
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_9'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
@@ -2087,14 +2089,14 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
    ObjPosY=-3192
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_56"
+   Name="SeqVar_Object_338"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_8
    Originator=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_7'
    MaxWidth=337
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_7'),(LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_7'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_20')),DrawY=-3339,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_54'),(LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_7'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_20')),DrawY=-3339,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-3317,OverrideDelta=36)
    OutputLinks(2)=(DrawY=-3295,OverrideDelta=58)
    OutputLinks(3)=(DrawY=-3273,OverrideDelta=80)
@@ -2564,7 +2566,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_12
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_186
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_335
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_8'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
@@ -2572,11 +2574,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_186
    ObjPosY=-1440
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_186"
+   Name="SeqVar_Object_335"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_185
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_336
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_15'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
@@ -2584,7 +2586,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_185
    ObjPosY=-840
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_185"
+   Name="SeqVar_Object_336"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -2615,7 +2617,7 @@ End Object
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_18
    Originator=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_13'
    MaxWidth=345
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_15'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_6'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_19')),DrawY=-1043,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_15'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_50'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_19')),DrawY=-1043,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-1021,OverrideDelta=36)
    OutputLinks(2)=(DrawY=-999,OverrideDelta=58)
    OutputLinks(3)=(DrawY=-977,OverrideDelta=80)
@@ -2634,7 +2636,7 @@ End Object
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_17
    Originator=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_6'
    MaxWidth=337
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_2'),(LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_20'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_19')),DrawY=-1451,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_48'),(LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_20'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_19')),DrawY=-1451,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-1429,OverrideDelta=36)
    OutputLinks(2)=(DrawY=-1407,OverrideDelta=58)
    OutputLinks(3)=(DrawY=-1385,OverrideDelta=80)
@@ -2650,11 +2652,12 @@ Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivate
    ObjectArchetype=KFSeqEvent_MinigameActivated'KFGame.Default__KFSeqEvent_MinigameActivated'
 End Object
 
-Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_2
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_48
    bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
    InputLinks(0)=(DrawY=-1486,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-1486,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_186'),DrawX=-3704,OverrideDelta=26)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_2')),DrawY=-1486,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_335'),DrawX=-3704,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3752
@@ -2662,19 +2665,19 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_2
    ObjComment="Lever Sound"
    DrawWidth=96
    DrawHeight=61
-   Name="SeqAct_AkPostEvent_2"
+   Name="SeqAct_AkPostEvent_48"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_13
    EventName="On_Bridge_Fire"
-   InputLinks(0)=(DrawY=-534,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-534,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-3270,OverrideDelta=106)
+   InputLinks(0)=(DrawY=-230,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-230,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-3014,OverrideDelta=106)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3408
-   ObjPosY=-568
+   ObjPosX=-3152
+   ObjPosY=-264
    ObjComment="On_Bridge_Fire"
    DrawWidth=276
    DrawHeight=61
@@ -2682,11 +2685,12 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_13
    ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object
 
-Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_6
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_50
    bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
    InputLinks(0)=(DrawY=-886,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-886,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_185'),DrawX=-3728,OverrideDelta=26)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_6')),DrawY=-886,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_336'),DrawX=-3728,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3776
@@ -2694,7 +2698,7 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_6
    ObjComment="Lever Sound"
    DrawWidth=96
    DrawHeight=61
-   Name="SeqAct_AkPostEvent_6"
+   Name="SeqAct_AkPostEvent_50"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
@@ -2828,42 +2832,12 @@ Begin Object Class=InterpData Name=InterpData_15
    ObjectArchetype=InterpData'Engine.Default__InterpData'
 End Object
 
-Begin Object Class=SeqAct_ModifyProperty Name=SeqAct_ModifyProperty_2
-   Properties(0)=(PropertyName="bBlocked",bModifyProperty=True,PropertyValue="True")
-   InputLinks(0)=(DrawY=-462,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-462,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_139',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_208'),DrawX=-2983,OverrideDelta=35)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3040
-   ObjPosY=-496
-   DrawWidth=114
-   DrawHeight=61
-   Name="SeqAct_ModifyProperty_2"
-   ObjectArchetype=SeqAct_ModifyProperty'GameFramework.Default__SeqAct_ModifyProperty'
-End Object
-
-Begin Object Class=SeqAct_ModifyProperty Name=SeqAct_ModifyProperty_3
-   Properties(0)=(PropertyName="bBlocked",bModifyProperty=True,PropertyValue="False")
-   InputLinks(0)=(DrawY=-246,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-246,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_139',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_208'),DrawX=-2983,OverrideDelta=35)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3040
-   ObjPosY=-280
-   DrawWidth=114
-   DrawHeight=61
-   Name="SeqAct_ModifyProperty_3"
-   ObjectArchetype=SeqAct_ModifyProperty'GameFramework.Default__SeqAct_ModifyProperty'
-End Object
-
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_139
    ObjValue=KFPathnode'KF-SANITARIUM.TheWorld:PersistentLevel.KFPathnode_194'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3056
-   ObjPosY=-392
+   ObjPosX=-3344
+   ObjPosY=-600
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_139"
@@ -2874,8 +2848,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_208
    ObjValue=KFPathnode'KF-SANITARIUM.TheWorld:PersistentLevel.KFPathnode_25'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2960
-   ObjPosY=-392
+   ObjPosX=-3248
+   ObjPosY=-600
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_208"
@@ -2934,8 +2908,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_319
    ObjValue=PointLightToggleable'KF-SANITARIUM.TheWorld:PersistentLevel.PointLightToggleable_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2664
-   ObjPosY=-368
+   ObjPosX=-2616
+   ObjPosY=-496
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_319"
@@ -2946,8 +2920,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_318
    ObjValue=PointLightToggleable'KF-SANITARIUM.TheWorld:PersistentLevel.PointLightToggleable_38'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2744
-   ObjPosY=-376
+   ObjPosX=-2696
+   ObjPosY=-504
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_318"
@@ -2958,8 +2932,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_317
    ObjValue=PointLightToggleable'KF-SANITARIUM.TheWorld:PersistentLevel.PointLightToggleable_16'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2592
-   ObjPosY=-368
+   ObjPosX=-2544
+   ObjPosY=-496
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_317"
@@ -2970,8 +2944,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_242
    ObjValue=PointLightToggleable'KF-SANITARIUM.TheWorld:PersistentLevel.PointLightToggleable_15'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2824
-   ObjPosY=-376
+   ObjPosX=-2776
+   ObjPosY=-504
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_242"
@@ -2979,17 +2953,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_242
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_68
-   InputLinks(0)=(DrawY=-115,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-94,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-73,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-94,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_83',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_85'),DrawX=-3098,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-3047,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-2998,OverrideDelta=119)
+   InputLinks(0)=(DrawY=-3,OverrideDelta=14)
+   InputLinks(1)=(DrawY=18,OverrideDelta=35)
+   InputLinks(2)=(DrawY=39,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=18,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_83',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_85'),DrawX=-3138,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3087,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3038,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3136
-   ObjPosY=-152
+   ObjPosX=-3176
+   ObjPosY=-40
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_68"
@@ -2997,17 +2971,17 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_68
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_36
-   InputLinks(0)=(DrawY=-483,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-462,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-441,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-462,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_242',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_317',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_318',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_319'),DrawX=-2762,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-2711,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-2662,OverrideDelta=119)
+   InputLinks(0)=(DrawY=-611,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-590,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-569,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-590,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_242',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_317',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_318',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_319'),DrawX=-2714,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2663,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2614,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-2800
-   ObjPosY=-520
+   ObjPosX=-2752
+   ObjPosY=-648
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_36"
@@ -3018,8 +2992,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_85
    ObjValue=KFMGVolume_SwingHit'KF-SANITARIUM.TheWorld:PersistentLevel.KFMGVolume_SwingHit_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3256
-   ObjPosY=48
+   ObjPosX=-3320
+   ObjPosY=104
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_85"
@@ -3030,8 +3004,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_83
    ObjValue=KFMGVolume_SwingHit'KF-SANITARIUM.TheWorld:PersistentLevel.KFMGVolume_SwingHit_5'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3360
-   ObjPosY=48
+   ObjPosX=-3424
+   ObjPosY=104
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_83"
@@ -3039,17 +3013,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_83
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_67
-   InputLinks(0)=(DrawY=-99,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-78,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-57,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_16')),DrawY=-78,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_83',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_85'),DrawX=-3586,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-3535,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-3486,OverrideDelta=119)
+   InputLinks(0)=(DrawY=13,OverrideDelta=14)
+   InputLinks(1)=(DrawY=34,OverrideDelta=35)
+   InputLinks(2)=(DrawY=55,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_16')),DrawY=34,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_83',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_85'),DrawX=-3626,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3575,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3526,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3624
-   ObjPosY=-136
+   ObjPosX=-3664
+   ObjPosY=-24
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_67"
@@ -3057,16 +3031,16 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_67
 End Object
 
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_16
-   InputLinks(0)=(DrawY=-99,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-78,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-57,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_68',InputLinkIdx=1)),DrawY=-94,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-62,OverrideDelta=51)
-   VariableLinks(0)=(DrawX=-3292,OverrideDelta=25)
+   InputLinks(0)=(DrawY=13,OverrideDelta=14)
+   InputLinks(1)=(DrawY=34,OverrideDelta=35)
+   InputLinks(2)=(DrawY=55,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_68',InputLinkIdx=1)),DrawY=18,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=50,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-3332,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3344
-   ObjPosY=-136
+   ObjPosX=-3384
+   ObjPosY=-24
    DrawWidth=106
    DrawHeight=109
    Name="SeqAct_Delay_16"
@@ -3077,8 +3051,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_99
    ObjValue=InterpActor'KF-SANITARIUM.TheWorld:PersistentLevel.InterpActor_238'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3464
-   ObjPosY=-272
+   ObjPosX=-3472
+   ObjPosY=-152
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_99"
@@ -3089,8 +3063,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_97
    ObjValue=InterpActor'KF-SANITARIUM.TheWorld:PersistentLevel.InterpActor_267'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3576
-   ObjPosY=-272
+   ObjPosX=-3584
+   ObjPosY=-152
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_97"
@@ -3101,7 +3075,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_53
    InputLinks(0)=(DrawY=-483,OverrideDelta=14)
    InputLinks(1)=(DrawY=-462,OverrideDelta=35)
    InputLinks(2)=(DrawY=-441,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_17'),(LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_67'),(LinkedOp=SeqAct_ModifyProperty'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ModifyProperty_2')),DrawY=-462,OverrideDelta=35)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_17'),(LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_67'),(LinkedOp=KFSeqAct_SetPathnodeExtraCost'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetPathnodeExtraCost_3')),DrawY=-462,OverrideDelta=35)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_343',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_344',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_345',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_346'),DrawX=-4098,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-4047,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3998,OverrideDelta=119)
@@ -3117,13 +3091,13 @@ End Object
 
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_11
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_36',InputLinkIdx=1)),DrawY=-603,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=-582,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=-561,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_36',InputLinkIdx=1)),DrawY=-683,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-662,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-641,OverrideDelta=56)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3064
-   ObjPosY=-672
+   ObjPosX=-2976
+   ObjPosY=-752
    DrawWidth=137
    Name="SeqEvent_LevelLoaded_11"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
@@ -3133,22 +3107,22 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_17
    ForceStartPosition=8.000000
    bRewindOnPlay=True
    bForceStartPos=True
-   InputLinks(0)=(DrawY=-458,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-436,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-414,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-392,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-370,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ModifyProperty'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ModifyProperty_3'),(LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_36',InputLinkIdx=1)),DrawY=-456,OverrideDelta=17)
-   OutputLinks(1)=(DrawY=-372,OverrideDelta=101)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_13')),LinkDesc="Boiler1Sealed",DrawY=-428,OverrideDelta=45)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_40')),LinkDesc="Boiler1Unsealed",DrawY=-400,OverrideDelta=73)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_17'),DrawX=-3606,OverrideDelta=19)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_97'),LinkDesc="Boiler1Door1",MinVars=0,DrawX=-3553,OverrideDelta=66)
-   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_99'),LinkDesc="Boiler1Door2",MinVars=0,DrawX=-3494,OverrideDelta=125)
+   InputLinks(0)=(DrawY=-338,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-316,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-294,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-272,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-250,OverrideDelta=103)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_36',InputLinkIdx=1),(LinkedOp=KFSeqAct_SetPathnodeExtraCost'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.KFSeqAct_SetPathnodeExtraCost_2')),DrawY=-336,OverrideDelta=17)
+   OutputLinks(1)=(DrawY=-252,OverrideDelta=101)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_13')),LinkDesc="Boiler1Sealed",DrawY=-308,OverrideDelta=45)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_40')),LinkDesc="Boiler1Unsealed",DrawY=-280,OverrideDelta=73)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_17'),DrawX=-3614,OverrideDelta=19)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_97'),LinkDesc="Boiler1Door1",MinVars=0,DrawX=-3561,OverrideDelta=66)
+   VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_99'),LinkDesc="Boiler1Door2",MinVars=0,DrawX=-3502,OverrideDelta=125)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3640
-   ObjPosY=-496
+   ObjPosX=-3648
+   ObjPosY=-376
    DrawWidth=187
    DrawHeight=173
    Name="SeqAct_Interp_17"
@@ -3205,8 +3179,8 @@ Begin Object Class=InterpData Name=InterpData_17
    EdSectionEnd=25.000000
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3672
-   ObjPosY=-288
+   ObjPosX=-3680
+   ObjPosY=-168
    DrawWidth=32
    DrawHeight=32
    Name="InterpData_17"
@@ -3230,13 +3204,13 @@ End Object
 
 Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_19
    EventName="CloseDoors"
-   InputLinks(0)=(DrawY=-1318,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-1318,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-3691,OverrideDelta=93)
+   InputLinks(0)=(DrawY=-1278,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-1278,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-3699,OverrideDelta=93)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3816
-   ObjPosY=-1352
+   ObjPosX=-3824
+   ObjPosY=-1312
    DrawWidth=250
    DrawHeight=61
    Name="SeqAct_ActivateRemoteEvent_19"
@@ -4394,7 +4368,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_467
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_468
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_250
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
@@ -4402,7 +4376,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_468
    ObjPosY=1520
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_468"
+   Name="SeqVar_Object_250"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -4595,8 +4569,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_476
    ObjValue=InterpActor'KF-SANITARIUM.TheWorld:PersistentLevel.InterpActor_23'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3672
-   ObjPosY=1328
+   ObjPosX=-3680
+   ObjPosY=1240
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_476"
@@ -4605,19 +4579,19 @@ End Object
 
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_21
    bRewindOnPlay=True
-   InputLinks(0)=(DrawY=1190,OverrideDelta=15)
-   InputLinks(1)=(DrawY=1212,OverrideDelta=37)
-   InputLinks(2)=(DrawY=1234,OverrideDelta=59)
-   InputLinks(3)=(DrawY=1256,OverrideDelta=81)
-   InputLinks(4)=(DrawY=1278,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=1206,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=1262,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_21'),DrawX=-3694,OverrideDelta=35)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_476'),LinkDesc="Lever",MinVars=0,DrawX=-3644,OverrideDelta=82)
+   InputLinks(0)=(DrawY=1102,OverrideDelta=15)
+   InputLinks(1)=(DrawY=1124,OverrideDelta=37)
+   InputLinks(2)=(DrawY=1146,OverrideDelta=59)
+   InputLinks(3)=(DrawY=1168,OverrideDelta=81)
+   InputLinks(4)=(DrawY=1190,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=1118,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=1174,OverrideDelta=87)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_21'),DrawX=-3702,OverrideDelta=35)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_476'),LinkDesc="Lever",MinVars=0,DrawX=-3652,OverrideDelta=82)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3744
-   ObjPosY=1152
+   ObjPosX=-3752
+   ObjPosY=1064
    ObjComment="Lever"
    DrawWidth=154
    DrawHeight=157
@@ -4652,8 +4626,8 @@ Begin Object Class=InterpData Name=InterpData_21
    EdSectionEnd=15.000000
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3744
-   ObjPosY=1352
+   ObjPosX=-3752
+   ObjPosY=1264
    DrawWidth=32
    DrawHeight=32
    Name="InterpData_21"
@@ -4719,9 +4693,10 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_12
    bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
    InputLinks(0)=(DrawY=1474,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=1474,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_468'),DrawX=-3744,OverrideDelta=26)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_19')),DrawY=1474,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_250'),DrawX=-3744,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3792
@@ -4752,31 +4727,32 @@ Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivate
    ObjectArchetype=KFSeqEvent_MinigameActivated'KFGame.Default__KFSeqEvent_MinigameActivated'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_477
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_69
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_3'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3712
-   ObjPosY=800
+   ObjPosX=-3728
+   ObjPosY=816
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_477"
+   Name="SeqVar_Object_69"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_19
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_41
    bReplicateToClients=True
-   InputLinks(0)=(DrawY=754,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=754,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_477'),DrawX=-3680,OverrideDelta=26)
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
+   InputLinks(0)=(DrawY=770,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_45')),DrawY=770,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_69'),DrawX=-3696,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3728
-   ObjPosY=720
+   ObjPosX=-3744
+   ObjPosY=736
    ObjComment="Lever Used"
    DrawWidth=96
    DrawHeight=61
-   Name="SeqAct_AkPostEvent_19"
+   Name="SeqAct_AkPostEvent_41"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
@@ -4935,7 +4911,7 @@ End Object
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_2
    Originator=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_2'
    MaxWidth=337
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_22'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_19'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_61')),DrawY=717,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_22'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_41'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_61')),DrawY=717,OverrideDelta=14)
    OutputLinks(1)=(DrawY=739,OverrideDelta=36)
    OutputLinks(2)=(DrawY=761,OverrideDelta=58)
    OutputLinks(3)=(DrawY=783,OverrideDelta=80)
@@ -6792,17 +6768,6 @@ Begin Object Class=SeqAct_ToggleHidden Name=SeqAct_ToggleHidden_10
 End Object
 
 Begin Object Class=Sequence Name=SND_Asylum
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
-      ObjValue=TargetPoint'KF-SANITARIUM.TheWorld:PersistentLevel.TargetPoint_5'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9066
-      ObjPosY=-9182
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_55"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
    Begin Object Class=SeqVar_Object Name=SeqVar_Object_453
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
@@ -6833,17 +6798,6 @@ Begin Object Class=Sequence Name=SND_Asylum
       Name="SeqVar_Object_20"
       ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
-      ObjValue=TargetPoint'KF-SANITARIUM.TheWorld:PersistentLevel.TargetPoint_3'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9071
-      ObjPosY=-9431
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_2"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
    Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
@@ -6872,17 +6826,6 @@ Begin Object Class=Sequence Name=SND_Asylum
       DrawWidth=32
       DrawHeight=32
       Name="SeqVar_Object_17"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_151
-      ObjValue=TargetPoint'KF-SANITARIUM.TheWorld:PersistentLevel.TargetPoint_0'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9061
-      ObjPosY=-9739
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_151"
       ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
    Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
@@ -6959,74 +6902,6 @@ Begin Object Class=Sequence Name=SND_Asylum
       Name="SequenceFrame_15"
       ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_1
-      SizeX=462
-      SizeY=916
-      bDrawBox=True
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9386
-      ObjPosY=-9937
-      ObjComment="Portal Sounds"
-      DrawWidth=462
-      DrawHeight=916
-      Name="SequenceFrame_1"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_26'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_6')),DrawY=-9530,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-9509,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-9488,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=-9277,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9363
-      ObjPosY=-9599
-      ObjName="TriggerVolume_26 Touch"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_2"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_1
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_24'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_37')),DrawY=-9281,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-9260,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-9239,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=-9272,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9358
-      ObjPosY=-9350
-      ObjName="TriggerVolume_24 Touch"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_1"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_0
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_25'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_12')),DrawY=-9838,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-9817,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-9796,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=-9272,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9358
-      ObjPosY=-9907
-      ObjName="TriggerVolume_25 Touch"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_0"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
    Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_52
       EventName="Lightning_7"
       bClientSideOnly=True
@@ -7079,7 +6954,7 @@ Begin Object Class=Sequence Name=SND_Asylum
       EventName="Lightning_5"
       bClientSideOnly=True
       MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_2')),DrawY=-8930,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_49')),DrawY=-8930,OverrideDelta=11)
       VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_14'),DrawX=-9762,OverrideDelta=119)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
@@ -7111,7 +6986,7 @@ Begin Object Class=Sequence Name=SND_Asylum
       EventName="Lightning_9"
       bClientSideOnly=True
       MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_24')),ActivateDelay=1.000000,DrawY=-7922,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_58')),ActivateDelay=1.000000,DrawY=-7922,OverrideDelta=11)
       VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_252'),DrawX=-9762,OverrideDelta=119)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
@@ -7159,7 +7034,7 @@ Begin Object Class=Sequence Name=SND_Asylum
       EventName="Lightning_4"
       bClientSideOnly=True
       MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_3')),DrawY=-9170,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_53')),DrawY=-9170,OverrideDelta=11)
       VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_13'),DrawX=-9754,OverrideDelta=119)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
@@ -7175,7 +7050,7 @@ Begin Object Class=Sequence Name=SND_Asylum
       EventName="Lightning_6"
       bClientSideOnly=True
       MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_21')),ActivateDelay=1.000000,DrawY=-8714,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_56')),ActivateDelay=1.000000,DrawY=-8714,OverrideDelta=11)
       VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_15'),DrawX=-9770,OverrideDelta=119)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
@@ -7191,7 +7066,7 @@ Begin Object Class=Sequence Name=SND_Asylum
       EventName="Lightning_12"
       bClientSideOnly=True
       MaxWidth=311
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_19')),ActivateDelay=1.000000,DrawY=-7010,OverrideDelta=11)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_42')),ActivateDelay=1.000000,DrawY=-7010,OverrideDelta=11)
       VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_19'),DrawX=-9758,OverrideDelta=123)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
@@ -7219,19 +7094,74 @@ Begin Object Class=Sequence Name=SND_Asylum
       Name="SeqEvent_RemoteEvent_1"
       ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_6
-      bReplicateToClients=True
-      InputLinks(0)=(DrawY=-9530,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-9530,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_2'),DrawX=-9039,OverrideDelta=26)
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_58
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-7922,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-7922,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9562,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9087
-      ObjPosY=-9564
-      ObjComment="EnterPortal"
+      ObjPosX=-9610
+      ObjPosY=-7956
       DrawWidth=96
       DrawHeight=61
-      Name="SeqAct_AkPostEvent_6"
+      Name="SeqAct_AkPostEvent_58"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+   End Object
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_56
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-8694,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-8694,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9570,OverrideDelta=26)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9618
+      ObjPosY=-8728
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_56"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+   End Object
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_53
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-9145,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-9145,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9553,OverrideDelta=26)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9601
+      ObjPosY=-9179
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_53"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+   End Object
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_49
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-8905,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-8905,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9560,OverrideDelta=26)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9608
+      ObjPosY=-8939
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_49"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+   End Object
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_42
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-7010,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-7010,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9552,OverrideDelta=26)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9600
+      ObjPosY=-7044
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_42"
       ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
    Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_41
@@ -7262,21 +7192,6 @@ Begin Object Class=Sequence Name=SND_Asylum
       Name="SeqAct_AkPostEvent_4"
       ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_37
-      bReplicateToClients=True
-      InputLinks(0)=(DrawY=-9281,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-9281,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_55'),DrawX=-9034,OverrideDelta=26)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9082
-      ObjPosY=-9315
-      ObjComment="EnterPortal"
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_37"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
-   End Object
    Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_34
       Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
       InputLinks(0)=(DrawY=-8455,OverrideDelta=11)
@@ -7289,34 +7204,6 @@ Begin Object Class=Sequence Name=SND_Asylum
       DrawWidth=96
       DrawHeight=61
       Name="SeqAct_AkPostEvent_34"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
-   End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_3
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-9145,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-9145,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9553,OverrideDelta=26)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9601
-      ObjPosY=-9179
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_3"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
-   End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_24
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-7922,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-7922,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9562,OverrideDelta=26)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9610
-      ObjPosY=-7956
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_24"
       ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
    Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_22
@@ -7333,48 +7220,6 @@ Begin Object Class=Sequence Name=SND_Asylum
       Name="SeqAct_AkPostEvent_22"
       ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_21
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-8694,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-8694,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9570,OverrideDelta=26)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9618
-      ObjPosY=-8728
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_21"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
-   End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_2
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-8905,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-8905,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9560,OverrideDelta=26)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9608
-      ObjPosY=-8939
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_2"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
-   End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_19
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-7010,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-7010,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9552,OverrideDelta=26)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9600
-      ObjPosY=-7044
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_19"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
-   End Object
    Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_18
       Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
       InputLinks(0)=(DrawY=-7306,OverrideDelta=11)
@@ -7387,21 +7232,6 @@ Begin Object Class=Sequence Name=SND_Asylum
       DrawWidth=96
       DrawHeight=61
       Name="SeqAct_AkPostEvent_18"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
-   End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_12
-      bReplicateToClients=True
-      InputLinks(0)=(DrawY=-9838,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-9838,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_151'),DrawX=-9029,OverrideDelta=26)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9077
-      ObjPosY=-9872
-      ObjComment="EnterPortal"
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_12"
       ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
    Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_11
@@ -7444,12 +7274,12 @@ Begin Object Class=Sequence Name=SND_Asylum
    SequenceObjects(9)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_11'
    SequenceObjects(10)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_453'
    SequenceObjects(11)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_41'
-   SequenceObjects(12)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_24'
+   SequenceObjects(12)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_58'
    SequenceObjects(13)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_22'
    SequenceObjects(14)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_34'
-   SequenceObjects(15)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_21'
-   SequenceObjects(16)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_2'
-   SequenceObjects(17)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_3'
+   SequenceObjects(15)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_56'
+   SequenceObjects(16)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_49'
+   SequenceObjects(17)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_53'
    SequenceObjects(18)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_4'
    SequenceObjects(19)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_11'
    SequenceObjects(20)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_10'
@@ -7466,22 +7296,12 @@ Begin Object Class=Sequence Name=SND_Asylum
    SequenceObjects(31)=SeqEvent_RemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqEvent_RemoteEvent_10'
    SequenceObjects(32)=SeqEvent_RemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqEvent_RemoteEvent_17'
    SequenceObjects(33)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_18'
-   SequenceObjects(34)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_19'
+   SequenceObjects(34)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_42'
    SequenceObjects(35)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_18'
    SequenceObjects(36)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_19'
-   SequenceObjects(37)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_12'
-   SequenceObjects(38)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_151'
-   SequenceObjects(39)=SeqEvent_Touch'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqEvent_Touch_0'
-   SequenceObjects(40)=SeqEvent_Touch'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqEvent_Touch_2'
-   SequenceObjects(41)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_2'
-   SequenceObjects(42)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_6'
-   SequenceObjects(43)=SequenceFrame'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SequenceFrame_1'
-   SequenceObjects(44)=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_37'
-   SequenceObjects(45)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_55'
-   SequenceObjects(46)=SeqEvent_Touch'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqEvent_Touch_1'
-   DefaultViewX=4789
-   DefaultViewY=3927
-   DefaultViewZoom=0.400000
+   DefaultViewX=5562
+   DefaultViewY=5014
+   DefaultViewZoom=0.500000
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9728
@@ -7945,23 +7765,23 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_110
    ObjValue=InterpActor'KF-SANITARIUM.TheWorld:PersistentLevel.InterpActor_4'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-64
-   ObjPosY=-2472
+   ObjPosX=-16
+   ObjPosY=-2536
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_110"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_306
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_339
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_20'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-328
-   ObjPosY=-2384
+   ObjPosX=-344
+   ObjPosY=-2344
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_306"
+   Name="SeqVar_Object_339"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -8055,31 +7875,32 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_0
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_308
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_341
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_4'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-288
-   ObjPosY=-3296
+   ObjPosX=-296
+   ObjPosY=-3320
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_308"
+   Name="SeqVar_Object_341"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_21
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_55
    bReplicateToClients=True
-   InputLinks(0)=(DrawY=-2430,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-2430,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_306'),DrawX=-296,OverrideDelta=26)
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
+   InputLinks(0)=(DrawY=-2398,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_21')),DrawY=-2398,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_339'),DrawX=-296,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-344
-   ObjPosY=-2464
+   ObjPosY=-2432
    ObjComment="Lever Used"
    DrawWidth=96
    DrawHeight=61
-   Name="SeqAct_AkPostEvent_21"
+   Name="SeqAct_AkPostEvent_55"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
@@ -8105,8 +7926,8 @@ Begin Object Class=InterpData Name=InterpData_48
    EdSectionEnd=15.000000
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-168
-   ObjPosY=-2464
+   ObjPosX=-120
+   ObjPosY=-2528
    DrawWidth=32
    DrawHeight=32
    Name="InterpData_48"
@@ -8115,19 +7936,19 @@ End Object
 
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_54
    bRewindOnPlay=True
-   InputLinks(0)=(DrawY=-2626,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2604,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2582,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2560,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2538,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2610,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2554,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_48'),DrawX=-118,OverrideDelta=35)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_110'),LinkDesc="Lever",MinVars=0,DrawX=-68,OverrideDelta=82)
+   InputLinks(0)=(DrawY=-2690,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2668,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2646,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2624,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2602,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2674,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2618,OverrideDelta=87)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_48'),DrawX=-70,OverrideDelta=35)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_110'),LinkDesc="Lever",MinVars=0,DrawX=-20,OverrideDelta=82)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-168
-   ObjPosY=-2664
+   ObjPosX=-120
+   ObjPosY=-2728
    ObjComment="Lever"
    DrawWidth=154
    DrawHeight=157
@@ -8216,7 +8037,7 @@ End Object
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_5
    Originator=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_8'
    MaxWidth=337
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_54'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_21'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_40')),DrawY=-2627,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_54'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_55'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_40')),DrawY=-2627,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-2605,OverrideDelta=36)
    OutputLinks(2)=(DrawY=-2583,OverrideDelta=58)
    OutputLinks(3)=(DrawY=-2561,OverrideDelta=80)
@@ -8320,7 +8141,7 @@ End Object
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_6
    Originator=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_17'
    MaxWidth=345
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_55'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_24'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_40')),DrawY=-3051,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_55'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_57'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_40')),DrawY=-3051,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-3029,OverrideDelta=36)
    OutputLinks(2)=(DrawY=-3007,OverrideDelta=58)
    OutputLinks(3)=(DrawY=-2985,OverrideDelta=80)
@@ -8336,19 +8157,20 @@ Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivate
    ObjectArchetype=KFSeqEvent_MinigameActivated'KFGame.Default__KFSeqEvent_MinigameActivated'
 End Object
 
-Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_24
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_57
    bReplicateToClients=True
-   InputLinks(0)=(DrawY=-3342,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-3342,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_308'),DrawX=-256,OverrideDelta=26)
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
+   InputLinks(0)=(DrawY=-3366,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_24')),DrawY=-3366,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_341'),DrawX=-264,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-304
-   ObjPosY=-3376
+   ObjPosX=-312
+   ObjPosY=-3400
    ObjComment="Lever Used"
    DrawWidth=96
    DrawHeight=61
-   Name="SeqAct_AkPostEvent_24"
+   Name="SeqAct_AkPostEvent_57"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
@@ -10616,7 +10438,7 @@ Begin Object Class=Sequence Name=Portal_Spawners
       Name="SeqVar_Object_447"
       ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_306
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_340
       ObjValue=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_4'
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
@@ -10624,7 +10446,7 @@ Begin Object Class=Sequence Name=Portal_Spawners
       ObjPosY=-4366
       DrawWidth=32
       DrawHeight=32
-      Name="SeqVar_Object_306"
+      Name="SeqVar_Object_340"
       ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
    Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
@@ -11781,7 +11603,7 @@ Begin Object Class=Sequence Name=Portal_Spawners
       CollisionType=COLLIDE_NoCollision
       InputLinks(0)=(DrawY=-4440,OverrideDelta=11)
       OutputLinks(0)=(DrawY=-4440,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_306'),DrawX=4278,OverrideDelta=36)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_340'),DrawX=4278,OverrideDelta=36)
       ObjInstanceVersion=5
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
       ObjPosX=4220
@@ -11875,7 +11697,7 @@ Begin Object Class=Sequence Name=Portal_Spawners
    SequenceObjects(81)=SequenceFrame'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SequenceFrame_62'
    SequenceObjects(82)=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_69'
    SequenceObjects(83)=SeqAct_ChangeCollision'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_ChangeCollision_0'
-   SequenceObjects(84)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_306'
+   SequenceObjects(84)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_340'
    SequenceObjects(85)=SeqEvent_Touch'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqEvent_Touch_17'
    SequenceObjects(86)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_30'
    SequenceObjects(87)=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_44'
@@ -12525,7 +12347,7 @@ End Object
 
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_0
    InputLinks(0)=(DrawY=2422,OverrideDelta=23)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_61'),(LinkedOp=SeqAct_Delay'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_36'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_1'),(LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_24')),DrawY=2412,OverrideDelta=13)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_61'),(LinkedOp=SeqAct_Delay'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_36'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_1'),(LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_24'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_49')),DrawY=2412,OverrideDelta=13)
    OutputLinks(1)=(Links=((LinkedOp=SeqAct_ToggleHidden'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_33',InputLinkIdx=1)),DrawY=2432,OverrideDelta=33)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Bool'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Bool_0'),DrawX=-2979,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-2929,OverrideDelta=59)
@@ -12561,7 +12383,7 @@ End Object
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_10
    Originator=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_1'
    MaxWidth=337
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_11'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_9'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_17')),DrawY=2253,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_11'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_46'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_17')),DrawY=2253,OverrideDelta=14)
    OutputLinks(1)=(DrawY=2275,OverrideDelta=36)
    OutputLinks(2)=(DrawY=2297,OverrideDelta=58)
    OutputLinks(3)=(DrawY=2319,OverrideDelta=80)
@@ -12687,31 +12509,32 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_2
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
-Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_9
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_46
    bReplicateToClients=True
-   InputLinks(0)=(DrawY=2290,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=2290,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_102'),DrawX=-3680,OverrideDelta=26)
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
+   InputLinks(0)=(DrawY=2298,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_47')),DrawY=2298,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_269'),DrawX=-3808,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3728
-   ObjPosY=2256
+   ObjPosX=-3856
+   ObjPosY=2264
    ObjComment="Lever Used"
    DrawWidth=96
    DrawHeight=61
-   Name="SeqAct_AkPostEvent_9"
+   Name="SeqAct_AkPostEvent_46"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_102
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_269
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3712
-   ObjPosY=2336
+   ObjPosX=-3840
+   ObjPosY=2344
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_102"
+   Name="SeqVar_Object_269"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -12736,12 +12559,13 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_5
    bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
    InputLinks(0)=(DrawY=3018,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=3018,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34'),DrawX=-3664,OverrideDelta=26)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_9')),DrawY=3018,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_312'),DrawX=-3840,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3712
+   ObjPosX=-3888
    ObjPosY=2984
    ObjComment="Lever Used"
    DrawWidth=96
@@ -12753,9 +12577,9 @@ End Object
 Begin Object Class=InterpData Name=InterpData_11
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000002),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000002),InterpMode=CIM_CurveAutoClamped),(InVal=23.115402,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000002),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000002),InterpMode=CIM_CurveAutoClamped),(InVal=23.315403,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=23.615402,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=23.815403,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=24.115402,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=24.315403,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=-33.750000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=23.115402,OutVal=(X=-33.750000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=23.315403,OutVal=(X=-22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=23.615402,OutVal=(X=-22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=23.815403,OutVal=(X=-11.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=24.115402,OutVal=(X=-11.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=24.315403,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=0.500000),(Time=23.115402),(Time=23.315403),(Time=23.615402),(Time=23.815403),(Time=24.115402),(Time=24.315403)))
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=43.790001,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=43.989998,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.290001,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.489998,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.789997,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=44.989998,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=-33.750000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=43.790001,OutVal=(X=-33.750000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=43.989998,OutVal=(X=-22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.290001,OutVal=(X=-22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.489998,OutVal=(X=-11.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.789997,OutVal=(X=-11.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.989998,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=0.500000),(Time=43.790001),(Time=43.989998),(Time=44.290001),(Time=44.489998),(Time=44.789997),(Time=44.989998)))
          MoveFrame=IMF_RelativeToInitial
          Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
@@ -12770,11 +12594,11 @@ Begin Object Class=InterpData Name=InterpData_11
       Name="InterpCurveEdSetup_5"
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
-   InterpLength=24.333750
+   InterpLength=45.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_1'
    CurveEdSetup=InterpCurveEdSetup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpCurveEdSetup_5'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
-   EdSectionEnd=24.333750
+   EdSectionEnd=45.000000
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3768
@@ -12810,9 +12634,9 @@ End Object
 Begin Object Class=InterpData Name=InterpData_13
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000002),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000002),InterpMode=CIM_CurveAutoClamped),(InVal=22.894178,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000002),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000002),InterpMode=CIM_CurveAutoClamped),(InVal=23.094177,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=23.394178,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=23.594177,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=23.894178,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=24.094179,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=-33.750000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=22.894178,OutVal=(X=-33.750000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=23.094177,OutVal=(X=-22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=23.394178,OutVal=(X=-22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=23.594177,OutVal=(X=-11.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=23.894178,OutVal=(X=-11.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=24.094179,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=0.500000),(Time=22.894178),(Time=23.094177),(Time=23.394178),(Time=23.594177),(Time=23.894178),(Time=24.094179)))
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=43.709999,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=43.910000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.209999,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.410000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.709999,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=44.910000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=-33.750000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=43.709999,OutVal=(X=-33.750000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=43.910000,OutVal=(X=-22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.209999,OutVal=(X=-22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.410000,OutVal=(X=-11.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.709999,OutVal=(X=-11.250000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=44.910000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=0.500000),(Time=43.709999),(Time=43.910000),(Time=44.209999),(Time=44.410000),(Time=44.709999),(Time=44.910000)))
          MoveFrame=IMF_RelativeToInitial
          Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
@@ -12827,11 +12651,11 @@ Begin Object Class=InterpData Name=InterpData_13
       Name="InterpCurveEdSetup_4"
       ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
-   InterpLength=24.125874
+   InterpLength=45.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_13.InterpGroup_1'
    CurveEdSetup=InterpCurveEdSetup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_13.InterpCurveEdSetup_4'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
-   EdSectionEnd=24.125874
+   EdSectionEnd=45.000000
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3744
@@ -12936,15 +12760,15 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_41
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_312
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_5'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3696
+   ObjPosX=-3872
    ObjPosY=3064
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_34"
+   Name="SeqVar_Object_312"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -16178,8 +16002,7 @@ Begin Object Class=InterpData Name=InterpData_18
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Time=0.033087,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Tentacle_Rise')
-         AkEvents(1)=(Time=3.642073,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Tentacle_Lower')
+         AkEvents(0)=(Time=3.642073,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Tentacle_Lower')
          Name="InterpTrackAkEvent_0"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
@@ -16474,7 +16297,7 @@ End Object
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_1
    bReplicateToClients=True
    Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Tentacle_Suck'
-   InputLinks(0)=(DrawY=2970,ActivateDelay=5.000000,OverrideDelta=11)
+   InputLinks(0)=(DrawY=2970,ActivateDelay=2.000000,OverrideDelta=11)
    OutputLinks(0)=(DrawY=2970,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_305'),DrawX=-2592,OverrideDelta=26)
    ObjInstanceVersion=1
@@ -17457,7 +17280,7 @@ Begin Object Class=InterpData Name=InterpData_46
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_248
-   ObjValue=InterpActor'KF-SANITARIUM.TheWorld:PersistentLevel.InterpActor_288'
+   ObjValue=InterpActor'KF-SANITARIUM.TheWorld:PersistentLevel.InterpActor_31'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=5104
@@ -18066,26 +17889,27 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_9
    ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object
 
-Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_16
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_60
    bReplicateToClients=True
-   InputLinks(0)=(DrawY=-1574,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-1574,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_496'),DrawX=-304,OverrideDelta=26)
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
+   InputLinks(0)=(DrawY=-1846,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_16')),DrawY=-1846,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_347'),DrawX=-408,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-352
-   ObjPosY=-1608
+   ObjPosX=-456
+   ObjPosY=-1880
    ObjComment="Lever Used"
    DrawWidth=96
    DrawHeight=61
-   Name="SeqAct_AkPostEvent_16"
+   Name="SeqAct_AkPostEvent_60"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_4
    Originator=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_5'
    MaxWidth=337
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_23'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_16'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_9')),DrawY=-1547,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_23'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_60'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_9')),DrawY=-1547,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-1525,OverrideDelta=36)
    OutputLinks(2)=(DrawY=-1503,OverrideDelta=58)
    OutputLinks(3)=(DrawY=-1481,OverrideDelta=80)
@@ -18173,7 +17997,7 @@ End Object
 Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivated_7
    Originator=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_4'
    MaxWidth=337
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_25'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_9')),DrawY=-1123,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0'),(LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_59'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_9')),DrawY=-1123,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-1101,OverrideDelta=36)
    OutputLinks(2)=(DrawY=-1079,OverrideDelta=58)
    OutputLinks(3)=(DrawY=-1057,OverrideDelta=80)
@@ -18246,43 +18070,44 @@ Begin Object Class=InterpData Name=InterpData_0
    ObjectArchetype=InterpData'Engine.Default__InterpData'
 End Object
 
-Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_25
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_59
    bReplicateToClients=True
-   InputLinks(0)=(DrawY=-1062,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-1062,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),DrawX=-336,OverrideDelta=26)
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
+   InputLinks(0)=(DrawY=-894,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_25')),DrawY=-894,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_342'),DrawX=-416,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-384
-   ObjPosY=-1096
+   ObjPosX=-464
+   ObjPosY=-928
    ObjComment="Lever Used"
    DrawWidth=96
    DrawHeight=61
-   Name="SeqAct_AkPostEvent_25"
+   Name="SeqAct_AkPostEvent_59"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_496
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_347
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_7'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-336
-   ObjPosY=-1528
+   ObjPosX=-440
+   ObjPosY=-1800
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_496"
+   Name="SeqVar_Object_347"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_342
    ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-368
-   ObjPosY=-1016
+   ObjPosX=-448
+   ObjPosY=-848
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_5"
+   Name="SeqVar_Object_342"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -18381,7 +18206,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_58
    EventName="TentacleTrap_ON"
    MaxWidth=232
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_4'),(LinkedOp=SeqAct_ChangeCollision'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_26')),DrawY=-1630,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_4'),(LinkedOp=SeqAct_ChangeCollision'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_34')),DrawY=-1630,OverrideDelta=11)
    VariableLinks(0)=(DrawX=228,OverrideDelta=84)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
@@ -18779,7 +18604,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_221
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_223
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_340
    ObjValue=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_4'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
@@ -18787,11 +18612,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_223
    ObjPosY=-1792
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_223"
+   Name="SeqVar_Object_340"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_222
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_348
    ObjValue=KFTrigger_MinigameButton'KF-SANITARIUM.TheWorld:PersistentLevel.KFTrigger_MinigameButton_5'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
@@ -18799,7 +18624,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_222
    ObjPosY=-1792
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_222"
+   Name="SeqVar_Object_348"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -18836,22 +18661,22 @@ Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_28
    ObjectArchetype=SeqAct_ChangeCollision'Engine.Default__SeqAct_ChangeCollision'
 End Object
 
-Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_26
+Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_34
    CollisionType=COLLIDE_NoCollision
    InputLinks(0)=(DrawY=-1846,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_14')),DrawY=-1846,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_223',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_222'),DrawX=554,OverrideDelta=36)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_340',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_348'),DrawX=554,OverrideDelta=36)
    ObjInstanceVersion=5
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=496
    ObjPosY=-1880
    DrawWidth=116
    DrawHeight=61
-   Name="SeqAct_ChangeCollision_26"
+   Name="SeqAct_ChangeCollision_34"
    ObjectArchetype=SeqAct_ChangeCollision'Engine.Default__SeqAct_ChangeCollision'
 End Object
 
-Begin Object Class=SequenceFrame Name=SequenceFrame_78
+Begin Object Class=SequenceFrame Name=SequenceFrame_56
    SizeX=695
    SizeY=436
    bDrawBox=True
@@ -18864,7 +18689,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_78
    ObjComment="."
    DrawWidth=695
    DrawHeight=436
-   Name="SequenceFrame_78"
+   Name="SequenceFrame_56"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
@@ -19939,6 +19764,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_13
    bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Pull'
    InputLinks(0)=(DrawY=-214,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-214,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_264'),DrawX=584,OverrideDelta=26)
@@ -21246,7 +21072,7 @@ Begin Object Class=SeqCond_CompareInt Name=SeqCond_CompareInt_0
    ObjectArchetype=SeqCond_CompareInt'Engine.Default__SeqCond_CompareInt'
 End Object
 
-Begin Object Class=SequenceFrame Name=SequenceFrame_64
+Begin Object Class=SequenceFrame Name=SequenceFrame_103
    SizeX=723
    SizeY=190
    bDrawBox=True
@@ -21259,7 +21085,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_64
    ObjComment="Delete"
    DrawWidth=723
    DrawHeight=190
-   Name="SequenceFrame_64"
+   Name="SequenceFrame_103"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
@@ -22148,8 +21974,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
    ObjValue=StaticMeshActor'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1432'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3360
-   ObjPosY=-296
+   ObjPosX=-3296
+   ObjPosY=-104
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_18"
@@ -22161,7 +21987,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_95
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-3368
-   ObjPosY=-360
+   ObjPosY=-168
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_95"
@@ -22170,16 +21996,629 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_40
    Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Boiler_Open'
-   InputLinks(0)=(DrawY=-406,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-406,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_95'),DrawX=-3256,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-206,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-206,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_95'),DrawX=-3336,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-3304
-   ObjPosY=-440
+   ObjPosX=-3384
+   ObjPosY=-240
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_40"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_45
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=770,ActivateDelay=17.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=770,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_181'),DrawX=-3520,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3568
+   ObjPosY=736
+   ObjComment="Lever Used"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_45"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_181
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3552
+   ObjPosY=816
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_181"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_19
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=1466,ActivateDelay=17.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=1466,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_468'),DrawX=-3608,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3656
+   ObjPosY=1432
+   ObjComment="Lever Used"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_19"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_468
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3648
+   ObjPosY=1520
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_468"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_274
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3680
+   ObjPosY=2344
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_274"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_47
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=2298,ActivateDelay=45.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=2298,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_274'),DrawX=-3648,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3696
+   ObjPosY=2264
+   ObjComment="Lever Used"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_47"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_9
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=3010,ActivateDelay=45.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=3010,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_34'),DrawX=-3688,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3736
+   ObjPosY=2976
+   ObjComment="Lever Used"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_9"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3720
+   ObjPosY=3072
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_34"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_6
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=-878,ActivateDelay=15.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-878,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_185'),DrawX=-3584,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3632
+   ObjPosY=-912
+   ObjComment="Lever Sound"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_6"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_2
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=-1478,ActivateDelay=15.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-1478,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_186'),DrawX=-3496,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3544
+   ObjPosY=-1512
+   ObjComment="Lever Sound"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_2"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_185
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_15'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3616
+   ObjPosY=-832
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_185"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_186
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_8'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3528
+   ObjPosY=-1432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_186"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3760
+   ObjPosY=-3176
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_56"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_7
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=-3222,ActivateDelay=15.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-3222,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_56'),DrawX=-3728,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3776
+   ObjPosY=-3256
+   ObjComment="Button Press Sound"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_7"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_3
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=-2806,ActivateDelay=15.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-2806,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_187'),DrawX=-3752,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3800
+   ObjPosY=-2840
+   ObjComment="Button Press Sound"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_3"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_187
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3784
+   ObjPosY=-2752
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_187"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_24
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=-3382,ActivateDelay=20.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-3382,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_308'),DrawX=-96,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-144
+   ObjPosY=-3416
+   ObjComment="Lever Used"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_24"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_21
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=-2390,ActivateDelay=20.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-2390,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_306'),DrawX=-136,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-184
+   ObjPosY=-2424
+   ObjComment="Lever Used"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_21"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_308
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_4'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-128
+   ObjPosY=-3336
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_308"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_306
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-208
+   ObjPosY=-2336
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_306"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_6'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-312
+   ObjPosY=-848
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_5"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_25
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=-894,ActivateDelay=10.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-894,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),DrawX=-280,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-328
+   ObjPosY=-928
+   ObjComment="Lever Used"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_25"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_496
+   ObjValue=Note'KF-SANITARIUM.TheWorld:PersistentLevel.Note_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-256
+   ObjPosY=-1816
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_496"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_16
+   bReplicateToClients=True
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Lever_Reset'
+   InputLinks(0)=(DrawY=-1862,ActivateDelay=10.000000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-1862,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_496'),DrawX=-224,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-272
+   ObjPosY=-1896
+   ObjComment="Lever Used"
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_16"
+   ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_59
+   SizeX=152
+   SizeY=198
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=512
+   ObjPosY=-272
+   ObjComment="."
+   DrawWidth=152
+   DrawHeight=198
+   Name="SequenceFrame_59"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_79
+   SizeX=278
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-488
+   ObjPosY=-960
+   ObjComment="."
+   DrawWidth=278
+   DrawHeight=202
+   Name="SequenceFrame_79"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_94
+   SizeX=340
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-488
+   ObjPosY=-1920
+   ObjComment="."
+   DrawWidth=340
+   DrawHeight=202
+   Name="SequenceFrame_94"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_96
+   SizeX=340
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-368
+   ObjPosY=-3456
+   ObjComment="."
+   DrawWidth=340
+   DrawHeight=202
+   Name="SequenceFrame_96"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_95
+   SizeX=278
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-336
+   ObjPosY=-2448
+   ObjComment="."
+   DrawWidth=278
+   DrawHeight=202
+   Name="SequenceFrame_95"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_98
+   SizeX=340
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3952
+   ObjPosY=-3304
+   ObjComment="."
+   DrawWidth=340
+   DrawHeight=202
+   Name="SequenceFrame_98"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_97
+   SizeX=278
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3960
+   ObjPosY=-2880
+   ObjComment="."
+   DrawWidth=278
+   DrawHeight=202
+   Name="SequenceFrame_97"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_100
+   SizeX=340
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3776
+   ObjPosY=-1544
+   ObjComment="."
+   DrawWidth=340
+   DrawHeight=202
+   Name="SequenceFrame_100"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_99
+   SizeX=278
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3800
+   ObjPosY=-952
+   ObjComment="."
+   DrawWidth=278
+   DrawHeight=202
+   Name="SequenceFrame_99"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_102
+   SizeX=340
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3768
+   ObjPosY=712
+   ObjComment="."
+   DrawWidth=340
+   DrawHeight=202
+   Name="SequenceFrame_102"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_101
+   SizeX=278
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3816
+   ObjPosY=1392
+   ObjComment="."
+   DrawWidth=278
+   DrawHeight=202
+   Name="SequenceFrame_101"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_78
+   SizeX=340
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3888
+   ObjPosY=2240
+   ObjComment="."
+   DrawWidth=340
+   DrawHeight=202
+   Name="SequenceFrame_78"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_77
+   SizeX=278
+   SizeY=202
+   bDrawBox=True
+   BorderColor=(B=255,G=52,R=0,A=255)
+   FillColor=(B=255,G=160,R=0,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3912
+   ObjPosY=2952
+   ObjComment="."
+   DrawWidth=278
+   DrawHeight=202
+   Name="SequenceFrame_77"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=KFSeqAct_SetPathnodeExtraCost Name=KFSeqAct_SetPathnodeExtraCost_3
+   ExtraCost=10000
+   InputLinks(0)=(DrawY=-638,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-638,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_139',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_208'),DrawX=-3258,OverrideDelta=96)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3376
+   ObjPosY=-672
+   DrawWidth=236
+   DrawHeight=61
+   Name="KFSeqAct_SetPathnodeExtraCost_3"
+   ObjectArchetype=KFSeqAct_SetPathnodeExtraCost'KFGame.Default__KFSeqAct_SetPathnodeExtraCost'
+End Object
+
+Begin Object Class=KFSeqAct_SetPathnodeExtraCost Name=KFSeqAct_SetPathnodeExtraCost_2
+   InputLinks(0)=(DrawY=-478,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-478,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_139',SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_208'),DrawX=-3322,OverrideDelta=96)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-3440
+   ObjPosY=-512
+   DrawWidth=236
+   DrawHeight=61
+   Name="KFSeqAct_SetPathnodeExtraCost_2"
+   ObjectArchetype=KFSeqAct_SetPathnodeExtraCost'KFGame.Default__KFSeqAct_SetPathnodeExtraCost'
+End Object
+
+Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_49
+   Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Tentacle_Rise'
+   InputLinks(0)=(DrawY=2722,ActivateDelay=1.500000,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=2722,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_153'),DrawX=-2240,OverrideDelta=26)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-2288
+   ObjPosY=2688
+   DrawWidth=96
+   DrawHeight=61
+   Name="SeqAct_AkPostEvent_49"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 

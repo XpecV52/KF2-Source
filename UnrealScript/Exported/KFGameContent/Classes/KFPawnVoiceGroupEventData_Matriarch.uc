@@ -654,6 +654,7 @@ class KFPawnVoiceGroupEventData_Matriarch extends KFPawnVoiceGroupEventData;
 
 
 
+
 #linenumber 12
 
 defaultproperties
@@ -678,7 +679,7 @@ defaultproperties
    Events(18)=(EventID=18,Chance=1.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
    Events(19)=(EventID=19,Chance=1.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
    Events(20)=(EventID=20,Chance=1.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
-   Events(21)=(EventID=21,Priority=1,Chance=1.000000,CoolDownTime=10.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
+   Events(21)=(EventID=21,Priority=1,Chance=1.000000,CoolDownTime=10.000000,bCanBeMinimized=0)
    Events(22)=(EventID=22,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(23)=(EventID=23,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
    Events(24)=(EventID=24,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
@@ -697,6 +698,7 @@ defaultproperties
    Events(37)=(EventID=37,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(38)=(EventID=38,Priority=1,Chance=1.000000,CoolDownTime=0.000000,bCanBeMinimized=0)
    Events(39)=(EventID=39,Priority=1,Chance=1.000000,CoolDownTime=5.000000,bCanBeMinimized=0,bCanInterruptEqualPriority=True)
+   Events(40)=(EventID=40,Priority=3,Chance=1.000000,CoolDownTime=20.000000,bCanBeMinimized=0)
    Name="Default__KFPawnVoiceGroupEventData_Matriarch"
    ObjectArchetype=KFPawnVoiceGroupEventData'KFGame.Default__KFPawnVoiceGroupEventData'
 }

@@ -250,10 +250,10 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byt
     return bResult;
 }
 
-simulated function StopThirdPersonFireEffects()
+simulated function StopThirdPersonFireEffects(optional bool bForce)
 {
     TurnOffFireSpray();
-    super.StopThirdPersonFireEffects();
+    super.StopThirdPersonFireEffects(bForce);
 }
 
 simulated function AttachTo(KFPawn P)

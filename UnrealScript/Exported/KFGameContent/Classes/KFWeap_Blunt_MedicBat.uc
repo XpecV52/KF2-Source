@@ -587,6 +587,35 @@ simulated function BeginMedicBatExplosion()
 	SendToFiringState(CUSTOM_FIREMODE);
 }
 
+/*********************************************************************************************
+ * State Active
+ * A Weapon this is being held by a pawn should be in the active state.  In this state,
+ * a weapon should loop any number of idle animations, as well as check the PendingFire flags
+ * to see if a shot has been fired.
+ *********************************************************************************************/
+
+simulated state Active
+{
+	/**
+	 * Called from Weapon:Active.BeginState when HasAnyAmmo (which is overridden above) returns false.
+	 */
+	simulated function WeaponEmpty()
+	{
+		local int i;
+
+		// Copied from Weapon:Active.BeginState where HasAnyAmmo returns true.
+		// Basically, pretend the weapon isn't empty in this case.
+		for (i=0; i<GetPendingFireLength(); i++)
+		{
+			if (PendingFire(i))
+			{
+				BeginFire(i);
+				break;
+			}
+		}
+	}
+}
+
 defaultproperties
 {
    ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'

@@ -2835,21 +2835,24 @@ function PlayMatriarchBattlePhaseDialog(KFPawn Matriarch, int CurrentBattlePhase
 
 function PlayMatriarchTickDialog(KFPawn Matriarch, int ArmorZoneStatus, int CurrentBattlePhase)
 {
-	if ((ArmorZoneStatus & 2) != 0)
+	switch (CurrentBattlePhase)
 	{
-		// pilot compartment intact
-		PlayDialogEvent(Matriarch, `MATTY_TauntBase);
-	}
-	else if (CurrentBattlePhase < 3)
-	{
-		// pilot compartment destroyed, phase 1 or 2
-		PlayDialogEvent(Matriarch, `MATTY_Taunt_Exposed_P12);
-	}
-	else
-	{
-		// pilot compartment destroyed, phase 3 or 4
-		PlayDialogEvent(Matriarch, `MATTY_Taunt_Exposed_P34);
-	}
+	case 0:
+		PlayDialogEvent(Matriarch, `MATTY_Taunt_Phase1);
+		break;
+
+	case 1:
+		PlayDialogEvent(Matriarch, `MATTY_Taunt_Phase2);
+		break;
+
+	case 2:
+		PlayDialogEvent(Matriarch, `MATTY_Taunt_Phase3);
+		break;
+
+	case 3:
+		PlayDialogEvent(Matriarch, `MATTY_Taunt_Phase4);
+		break;
+	};
 }
 
 function PlayMatriarchExplodeArmorDialog(KFPawn Matriarch, name ArmorZoneName)

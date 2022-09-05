@@ -86,7 +86,7 @@ defaultproperties
 	LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locking'
 
 	// Lock On Functionality
-	TargetingModeFlags[DEFAULT_FIREMODE]=TARGETINGMODE_FLAGS_ALL
+	TargetingModeFlags[DEFAULT_FIREMODE]=TARGETINGMODE_FLAGS_PLAYER //Target only players. set to TARGETINGMODE_FLAGS_ZED if you only want to target Zeds or TARGETINGMODE_FLAGS_ALL to target both Zeds and Players.
 	LockRange[DEFAULT_FIREMODE]=200000
 	LockAim[DEFAULT_FIREMODE]=0.987
 	LockAcquireTime[DEFAULT_FIREMODE]=0.01

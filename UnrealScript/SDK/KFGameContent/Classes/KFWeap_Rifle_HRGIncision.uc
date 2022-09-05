@@ -130,6 +130,21 @@ simulated function DrawTargetingTeammateIcon( Canvas Canvas, int index )
     }
 }
 
+/*********************************************************************************************
+ @name Reload / recharge
+********************************************************************************************* */
+
+/** Healing charge doesn't count as ammo for purposes of inventory management (e.g. switching) */
+simulated function bool HasAnyAmmo()
+{
+	if (HasSpareAmmo() || HasAmmo(DEFAULT_FIREMODE))
+	{
+		return true;
+	}
+
+	return false;
+}
+
 defaultproperties
 {
 	// Content
@@ -152,7 +167,7 @@ defaultproperties
 	// Ammo
 	MagazineCapacity[0]=1
 	SpareAmmoCapacity[0]=39
-	InitialSpareMags[0]=14
+	InitialSpareMags[0]=12
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 	AmmoPickupScale[0]=3.0
@@ -165,7 +180,7 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_InstantHit
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_HRGIncisionHurt'
-	InstantHitDamage(DEFAULT_FIREMODE)=350
+	InstantHitDamage(DEFAULT_FIREMODE)=400
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_HRGIncisionHurt'
 	FireInterval(DEFAULT_FIREMODE)=0.1 //0.4
 	PenetrationPower(DEFAULT_FIREMODE)=10.0

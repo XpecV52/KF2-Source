@@ -391,7 +391,7 @@ function TickHud(float DeltaTime)
         TraderCompassWidget.TickHUD( DeltaTime);
     }
 
-  
+
 
     if(GfxScoreBoardPlayer != none)
     {
@@ -699,7 +699,7 @@ function DisplayExpandedWaveInfo()
 		case GMT_WaveSBoss:
 
 			break;
-		default: 
+		default:
 			return;
 	}
 
@@ -973,7 +973,6 @@ function SendInteractionMessageToGFX(string MessageString, string ButtonName)
     TextObject.SetString("tapString", class'KFGFxControlsContainer_ControllerPresets'.default.TapString);
 
     InteractionMessageContainer.SetObject("interactionMessageData", TextObject);
-    InteractionMessageContainer.ActionScriptVoid("showInteractionMessage"); //@TODO:Remove this once the new interaction message is implemented
 }
 
 /**

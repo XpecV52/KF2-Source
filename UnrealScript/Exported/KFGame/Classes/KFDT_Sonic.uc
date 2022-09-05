@@ -654,6 +654,7 @@ class KFDT_Sonic extends KFDamageType
 
 
 
+
 #linenumber 12
 
 /** Returns ID of dialog event for damagee to speak after getting damaged by a zed using this damage type */

@@ -328,7 +328,7 @@ simulated function int GetMeleeDamage(byte FireModeNum, optional vector RayDir)
 	// decode damage scale (see GetDamageScaleByAngle) from the RayDir
 	if ( !IsZero(RayDir) )
 	{
-		Damage *= FMin(VSize(RayDir), 1.f);
+		Damage = Round(float(Damage) * FMin(VSize(RayDir), 1.f));
 	}
 
 	InstigatorPerk = GetPerk();

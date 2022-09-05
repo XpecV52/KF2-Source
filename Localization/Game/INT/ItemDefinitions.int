@@ -225,7 +225,7 @@ HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="Contains ten of the 
 HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="Contains twenty of the Horzine Supply Weapon Crate | Series #4 crate along with twenty of its associated keys."
 HorzineSupplyWeaponCrateSeries7BronzeBundlePackDescription="Contains five of the Horzine Supply Weapon Crate | Series #7 crate along with five of its associated keys."
 HorzineSupplyWeaponCrateSeries7SilverBundlePackDescription="Contains ten of the Horzine Supply Weapon Crate | Series #7 crate along with ten of its associated keys."
-HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #7 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription="Contains twenty of the Horzine Supply Weapon Crate | Series #7 crate along with twenty of its associated keys."
 HorzineSupplyWeaponCrateSeries8BronzeBundlePackDescription="Contains five of the Horzine Supply Weapon Crate | Series #8 crate along with five of its associated keys."
 HorzineSupplyWeaponCrateSeries8SilverBundlePackDescription="Contains ten of the Horzine Supply Weapon Crate | Series #8 crate along with ten of its associated keys."
 HorzineSupplyWeaponCrateSeries8GoldBundlePackDescription="Contains twenty of the Horzine Supply Weapon Crate | Series #8 crate along with twenty of its associated keys."
@@ -241,7 +241,7 @@ HorzineSupplyWeaponCrateSeries14GoldBundlePackDescription="Contains twenty of th
 HorzineSupplyCrateSeries15BronzeBundlePackDescription="Contains five of the Horzine Supply Crate | Series #15 crate along with five of its associated keys."
 HorzineSupplyCrateSeries15SilverBundlePackDescription="Contains ten of the Horzine Supply Crate | Series #15 crate along with ten of its associated keys."
 HorzineSupplyCrateSeries15GoldBundlePackDescription="Contains twenty of the Horzine Supply Crate | Series #15 crate along with twenty of its associated keys."
-HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription=Contains five of the Horzine Supply Crate | Series Cyber Samurai crate along with five of its associated keys."
+HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription="Contains five of the Horzine Supply Crate | Series Cyber Samurai crate along with five of its associated keys."
 HorzineSupplyCrateSeriesCyberSamuraiSilverBundlePackDescription="Contains ten of the Horzine Supply Crate | Series Cyber Samurai crate along with ten of its associated keys."
 HorzineSupplyCrateSeriesCyberSamuraiGoldBundlePackDescription="Contains twenty of the Horzine Supply Crate | Series Cyber Samurai crate along with twenty of its associated keys."
 EmoteCrateSeries1BronzeBundlePackDescription="Contains five of the Emote Crate | Series #1 crate along with five of its associated keys."
@@ -255,7 +255,7 @@ NeonEncryptedUSBSilverBundlePackDescription="Contains ten of the Neon Encrypted 
 NeonEncryptedUSBGoldBundlePackDescription="Contains twenty of the Neon Encrypted USB crate along with twenty of its associated keys."
 WeaponCollectorsUSBBronzeBundlePackDescription="Contains five of the Weapons Collectors Pack 1 USB crate along with five of its associated keys."
 WeaponCollectorsUSBSilverBundlePackDescription="Contains ten of the Weapons Collectors Pack 1 USB crate along with ten of its associated keys."
-WeaponCollectorsUSBGoldBundlePackDescription=Contains twenty of the Weapons Collectors Pack 1 USB crate along with twenty of its associated keys."
+WeaponCollectorsUSBGoldBundlePackDescription="Contains twenty of the Weapons Collectors Pack 1 USB crate along with twenty of its associated keys."
 NeonMKIIEncryptedUSBBronzeBundlePackDescription="Contains five of the Neon MKII Encrypted USB crate along with five of its associated keys."
 NeonMKIIEncryptedUSBSilverBundlePackDescription="Contains ten of the Neon MKII Encrypted USB crate along with ten of its associated keys."
 NeonMKIIEncryptedUSBGoldBundlePackDescription="Contains twenty of the Neon MKII Encrypted USB crate along with twenty of its associated keys."
@@ -320,13 +320,13 @@ NeonMKIIIEncryptedUSBGoldBundlePackDescription="Contains twenty of the Neon MKII
 SantasHelperOutfitBundleDescription="Comes with Santa's Helper Outfit for male and female characters (includes 6 skin styles). Compatible with most characters."
 HorzineSupplyWeaponCrateSeries17BronzeBundlePackDescription="Contains five of the Horzine Supply Weapon Crate | Series #17 crate along with five of its associated keys."
 HorzineSupplyWeaponCrateSeries17SilverBundlePackDescription="Contains ten of the Horzine Supply Weapon Crate | Series #17 crate along with ten of its associated keys."
-HorzineSupplyWeaponCrateSeries17GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #17 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries17GoldBundlePackDescription="Contains twenty of the Horzine Supply Weapon Crate | Series #17 crate along with twenty of its associated keys."
 HorzineSupplyWeaponCrateSeries3BronzeBundlePackDescription="Contains five of the Horzine Supply Weapon Crate | Series #3 crate along with five of its associated keys."
 HorzineSupplyWeaponCrateSeries3SilverBundlePackDescription="Contains ten of the Horzine Supply Weapon Crate | Series #3 crate along with ten of its associated keys."
-HorzineSupplyWeaponCrateSeries3GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #3 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries3GoldBundlePackDescription="Contains twenty of the Horzine Supply Weapon Crate | Series #3 crate along with twenty of its associated keys."
 HorzineSupplyWeaponCrateSeries5BronzeBundlePackDescription="Contains five of the Horzine Supply Weapon Crate | Series #5 crate along with five of its associated keys."
 HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="Contains ten of the Horzine Supply Weapon Crate | Series #5 crate along with ten of its associated keys."
-HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #5 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="Contains twenty of the Horzine Supply Weapon Crate | Series #5 crate along with twenty of its associated keys."
 JaegerEncryptedUSBBronzeBundlePackDescription="Contains five of the Jaeger Encrypted USB crate along with five of its associated keys."
 JaegerEncryptedUSBSilverBundlePackDescription="Contains ten of the Jaeger Encrypted USB crate along with ten of its associated keys."
 JaegerEncryptedUSBGoldBundlePackDescription="Contains twenty of the Jaeger Encrypted USB crate along with twenty of its associated keys."
@@ -661,7 +661,7 @@ EmoteCrateSeries1Description="Requires a Series #1 Emote Crate Key to open. Cont
 
 EmoteCrateSeries2Description="Requires a Series #2 Emote Crate Key to open. Contains one of the following:<br><font color="#4b69cd">The Cossack</font><br><font color="#4b69cd">The Wave</font><br><font color="#4b69cd">Breakin</font><br><font color="#4b69cd">No Hands</font><br><font color="#6600a1">Heel Click</font><br><font color="#6600a1">The Sprinkler</font><br><font color="#6600a1">Maniac</font><br><font color="#8847ff">The Running Man</font><br><font color="#8847ff">The Robot</font><br><font color="#8847ff">Air Metal</font><br><font color="#caab05">or an Exceedingly Rare Deluxe Emote!</font>"
 
-EmoteCrateSeries2Description="Requires a Series #3 Emote Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Crane Fist</font><br><font color="#4b69cd">Universal Mastery</font><br><font color="#4b69cd">Zed Time</font><br><font color="#4b69cd">Need Your Energy</font><br><font color="#4b69cd">Final Form</font><br><font color="#4b69cd">Fastest Gun in the West</font><br><font color="#4b69cd">Spirit Fingers</font><br><font color="#4b69cd">Home Run</font><br><font color="#4b69cd">Coin Trick</font><br><font color="#4b69cd">Magic Foster</font><br><font color="#caab05">or an Exceedingly Rare Deluxe Emote!</font>"
+EmoteCrateSeries3Description="Requires a Series #3 Emote Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Crane Fist</font><br><font color="#4b69cd">Universal Mastery</font><br><font color="#4b69cd">Zed Time</font><br><font color="#4b69cd">Need Your Energy</font><br><font color="#4b69cd">Final Form</font><br><font color="#4b69cd">Fastest Gun in the West</font><br><font color="#4b69cd">Spirit Fingers</font><br><font color="#4b69cd">Home Run</font><br><font color="#4b69cd">Coin Trick</font><br><font color="#4b69cd">Magic Foster</font><br><font color="#caab05">or an Exceedingly Rare Deluxe Emote!</font>"
 
 DoshVaultUnlockedCrate1Description="Contains one of the following:<br>Player Accessory<br>Face Paint<br>Uniform Variant<br>Weapon Skin<br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
 
@@ -673,11 +673,9 @@ HorzineSupplyCrateSeriesCyberSamuraiDescription="Requires a Cyber Samurai Horzin
 
 HorzineSupplyCrateSeriesDeityDescription="Requires a Horzine Supply Crate Key to open. Contains one rare or better of the following<br><font color="#4b69cd">Armor Hood | Blue</font><br><font color="#4b69cd">Armor Hood | Green</font><br><font color="#4b69cd">Faceless Mask | Blue</font><br><font color="#4b69cd">Faceless Mask | Green</font><br><font color="#4b69cd">Scy-Fy Hood | Blue</font><br><font color="#4b69cd">Scy-Fy Hood | Green</font><br><font color="#4b69cd">No Expression Mask | Blue</font><br><font color="#4b69cd">No Expression Mask | Green</font><br><font color="#6600a1">Armor Hood | Red</font><br><font color="#6600a1">Faceless Mask | Red</font><br><font color="#6600a1">Scy-Fy Hood | Red</font><br><font color="#6600a1">No Expression Mask | Red</font><br><font color="#6600a1">Bast | Red</font><br><font color="#6600a1">Bast | Yellow</font><br><font color="#6600a1">Bast | Green</font><br><font color="#6600a1">Bast | Blue</font><br><font color="#6600a1">Sobek | Red</font><br><font color="#6600a1">Sobek | Yellow</font><br><font color="#6600a1">Sobek | Green</font><br><font color="#6600a1">Sobek | Blue</font><br><font color="#8847ff">Armor Hood | Black</font><br><font color="#8847ff">Faceless Mask | Black</font><br><font color="#8847ff">Faceless Mask | White</font><br><font color="#8847ff">Scy-Fy Hood | Black</font><br><font color="#8847ff">No Expression Mask | Black</font><br><font color="#8847ff">No Expression Mask | White</font><br><font color="#8847ff">Anubis | Red</font><br><font color="#8847ff">Anubis | Blue</font><br><font color="#8847ff">Anubis | Green</font><br><font color="#8847ff">Anubis | Yellow</font><br><font color="#8847ff">Ra | Red</font><br><font color="#8847ff">Ra | Blue</font><br><font color="#8847ff">Ra | Green</font><br><font color="#8847ff">Ra | Yellow</font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
 
-HorzineSupplyCrateSeriesProjectHDescription="Requires a Project H Series #1 Horzine Supply Crate Key to open.
-Contains one rare or better of the following:<br><font color="#4b69cd">Project H-01 | Base </font><br><font color="#4b69cd">Project H-01 | Happy </font><br><font color="#4b69cd">Project H-01 | Happy Open </font><br><font color="#4b69cd">Project H-01 | Pokerface </font><br><font color="#4b69cd">Project H-01 | Pokerface Open </font><br><font color="#4b69cd">Project H-01 | Unhappy </font><br><font color="#4b69cd">Project H-01 | Unhappy Open </font><br><font color="#4b69cd">Project H-02 | Base </font><br><font color="#4b69cd">Project H-02 | Happy </font><br><font color="#4b69cd">Project H-02 | Happy Open </font><br><font color="#4b69cd">Project H-02 | Pokerface </font><br><font color="#4b69cd">Project H-02 | Pokerface Open </font><br><font color="#4b69cd">Project H-02 | Unhappy </font><br><font color="#4b69cd">Project H-02 | Unhappy Open </font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
+HorzineSupplyCrateSeriesProjectHDescription="Requires a Project H Series #1 Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Project H-01 | Base </font><br><font color="#4b69cd">Project H-01 | Happy </font><br><font color="#4b69cd">Project H-01 | Happy Open </font><br><font color="#4b69cd">Project H-01 | Pokerface </font><br><font color="#4b69cd">Project H-01 | Pokerface Open </font><br><font color="#4b69cd">Project H-01 | Unhappy </font><br><font color="#4b69cd">Project H-01 | Unhappy Open </font><br><font color="#4b69cd">Project H-02 | Base </font><br><font color="#4b69cd">Project H-02 | Happy </font><br><font color="#4b69cd">Project H-02 | Happy Open </font><br><font color="#4b69cd">Project H-02 | Pokerface </font><br><font color="#4b69cd">Project H-02 | Pokerface Open </font><br><font color="#4b69cd">Project H-02 | Unhappy </font><br><font color="#4b69cd">Project H-02 | Unhappy Open </font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
 
-HorzineSupplyCrateSeriesBoneyardDescription="Requires a Series Boneyard Horzine Supply Crate Key to open.
-Contains one rare or better of the following:<br><font color="#4b69cd">Agony </font><br><font color="#4b69cd">Anguish </font><br><font color="#4b69cd">Despair  </font><br><font color="#4b69cd">Distress </font><br><font color="#4b69cd">Misery </font><br><font color="#4b69cd">Passion </font><br><font color="#4b69cd">Torment </font><br><font color="#4b69cd">Torture </font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
+HorzineSupplyCrateSeriesBoneyardDescription="Requires a Series Boneyard Horzine Supply Crate Key to open. Contains one rare or better of the following:<br><font color="#4b69cd">Agony </font><br><font color="#4b69cd">Anguish </font><br><font color="#4b69cd">Despair  </font><br><font color="#4b69cd">Distress </font><br><font color="#4b69cd">Misery </font><br><font color="#4b69cd">Passion </font><br><font color="#4b69cd">Torment </font><br><font color="#4b69cd">Torture </font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Horzine Supply Crate Key | Series #1"
@@ -765,6 +763,7 @@ DragonwaveEncryptedUSBName="Dragonwave Encrypted USB"
 NeonMKVEncryptedUSBName="Neon MKV Encrypted USB"
 SteampunkEncryptedUSBName="SteampunkEncrypted USB"
 BeyondHorizonEncryptedUSBName="Beyond Horizon Encrypted USB"
+JaegerEncryptedUSBName="Jaeger Encrypted USB"
 
 ;Usb descriptions
 CyberboneEncryptedUSBDescription="Requires a Cyberbone Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">AR15 | Cyberbone</font><br><font color="#4b69cd">AA-12 | Cyberbone</font><br><font color="#4b69cd">AA-12 | Cyberbone</font><br><font color="#4b69cd">Katana | Cyberbone</font><br><font color="#8847ff">M79 | Putrid Bile</font><br><font color="#8847ff">AR15 | Containment</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
@@ -827,7 +826,7 @@ NeonMKVEncryptedUSBDescription="Requires a Neon MKV Blueprint Key to open. Conta
 
 SteampunkEncryptedUSBDescription="Requires a Steampunk Blueprint Key to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Tommy Gun | Steampunk</font><br><font color="#4b69cd">Winchester 1894 | Steampunk</font><br><font color="#4b69cd">MP5RAS | Steampunk</font><br><font color="#6600a1">Dragonsbreath | Steampunk</font><br><font color="#6600a1">M79 | Steampunk</font><br><font color="#6600a1">Zweihander | Steampunk</font><br><font color="#6600A1">MAC 10 | Steampunk</font><br><font color="#8847ff">500 Magnum Revolver | Steampunk</font><br><font color="#8847ff">AA12 | Steampunk</font><br><font color="#8847ff">M99 | Steampunk</font><br><font color="#8847ff">Desert Eagle | Steampunk</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-BeyondHorizonEncryptedUSBDescription="Requires a Beyond Horizon Blueprint Key to open. Contains one of the following rare or better weapon skins: <br><font color="#4b69cd">Static Strikers | Beyond Horizon</font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Beyond Horizon </font><br><font color="#4b69cd">HMTech-301 Shotgun | Beyond Horizon </font><br><font color="#6600a1">RPG-7 | Beyond Horizon </font><br><font color="#6600a1">Flamethrower | Beyond Horizon </font><br><font color="#6600a1">Scar | Beyond Horizonk</font><br><font color="#6600A1">HMTech-201 SMG </font><br><font color="#8847ff">Kriss | Beyond Horizon</font><br><font color="#8847ff">M99 | Beyond Horizon</font><br><font color="#8847ff">Helios Rifle | Beyond Horizon</font><br><font color="#8847ff">Desert Eagle | Steampunk</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+BeyondHorizonEncryptedUSBDescription="Requires a Beyond Horizon Blueprint Key to open. Contains one of the following rare or better weapon skins: <br><font color="#4b69cd">Static Strikers | Beyond Horizon</font><br><font color="#4b69cd">HMTech-101 Pistol| Beyond Horizon </font><br><font color="#4b69cd">HMTech-201 SMG | Beyond Horizon  </font><br><font color="#4b69cd">HMTech-301 Shotgun | Beyond Horizon </font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Beyond Horizon </font><br><font color="#6600a1">RPG-7 | Beyond Horizon </font><br><font color="#6600a1">Flamethrower | Beyond Horizon </font><br><font color="#6600a1">Scar | Beyond Horizon</font><br><font color="#8847ff">Kriss | Beyond Horizon</font><br><font color="#8847ff">M99 | Beyond Horizon</font><br><font color="#8847ff">Helios Rifle | Beyond Horizon </font><br><font color="#8847ff">Killerwatt | Beyond Horizon </font><br><font color="#8847ff">Pulverizer | Beyond Horizon </font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
 JaegerEncryptedUSBDescription="Requires a Jaeger Blueprint Key to open. Contains one of the following rare or better weapon skins: <br><font color="#4b69cd">Kriss | Jaeger</font><br><font color="#4b69cd">P90 | Jaeger</font><br><font color="#4b69cd">Pulverizer | Jaeger</font><br><font color="#4b69cd">Hemogoblin | Jaeger</font><br><font color="#6600a1">Scar | Jaeger</font><br><font color="#6600a1">Desert Eagle | Jaeger</font><br><font color="#6600A1">FN FAL | Jaeger</font><br><font color="#6600A1">Microwave Gun | Jaeger</font><br><font color="#8847ff">Doomstick | Jaeger</font><br><font color="#8847ff">Helios Rifle | Jaeger</font><br><font color="#8847ff">Killerwatt | Jaeger</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
@@ -864,6 +863,7 @@ DragonwaveUSBKeyName="Dragonwave USB Key"
 NeonMKVUSBKeyName="Neon MKV USB Key"
 SteampunkUSBKeyName="Steampunk USB Key"
 BeyondHorizonUSBKeyName="Beyond Horizon USB Key"
+JaegerUSBKeyName="Jaeger USB Key"
 
 ;usb key descriptions
 CyberboneUSBKeyDescription="This key only decrypts the Cyberbone Encrypted Blueprint"
@@ -897,6 +897,7 @@ DragonwaveUSBKeyDescription="This key only decrypts the Neon MKIV Encrypted Blue
 NeonMKVUSBKeyDescription="This key only decrypts the Neon MKIV Encrypted Blueprint"
 SteampunkUSBKeyDescription="This key only decrypts the Steampunk Encrypted Blueprint"
 BeyondHorizonUSBKeyDescription="This key only decrypts the Beyond Horizon Encrypted Blueprint"
+JaegerUSBKeyDescription="This key only decrypts the Jaeger Encrypted Blueprint"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Horzine Supply Cosmetic Crate | Series #1"
@@ -985,7 +986,7 @@ HorzineSupplyCosmeticCrateSeries10Description="Requires a Horzine Supply Crate K
 
 HorzineSupplyWeaponSkinCrateSeries15Description="Requires a Horzine Supply Crate Key  to open. Contains one of the following rare or better weapon skins:<br><font color="#4b69cd">Tommy Gun | Steampunk</font><br><font color="#4b69cd">Winchester 1894 | Steampunk</font><br><font color="#4b69cd">MP5RAS | Steampunk</font><br><font color="#6600a1">Dragonsbreath | Steampunk</font><br><font color="#6600a1">M79 | Steampunk</font><br><font color="#6600a1">Zweihander | Steampunk</font><br><font color="#6600A1">MAC 10 | Steampunk</font><br><font color="#8847ff">500 Magnum Revolver | Steampunk</font><br><font color="#8847ff">AA12 | Steampunk</font><br><font color="#8847ff">M99 | Steampunk</font><br><font color="#8847ff">Desert Eagle | Steampunk</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-HorzineSupplyWeaponSkinCrateSeries16Description="Requires a Horzine Supply Crate Key  to open. Contains one of the following rare or better weapon skins: <br><font color="#4b69cd">Static Strikers | Beyond Horizon</font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Beyond Horizon </font><br><font color="#4b69cd">HMTech-301 Shotgun | Beyond Horizon </font><br><font color="#6600a1">RPG-7 | Beyond Horizon </font><br><font color="#6600a1">Flamethrower | Beyond Horizon </font><br><font color="#6600a1">Scar | Beyond Horizonk</font><br><font color="#6600A1">HMTech-201 SMG </font><br><font color="#8847ff">Kriss | Beyond Horizon</font><br><font color="#8847ff">M99 | Beyond Horizon</font><br><font color="#8847ff">Helios Rifle | Beyond Horizon</font><br><font color="#8847ff">Desert Eagle | Steampunk</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+HorzineSupplyWeaponSkinCrateSeries16Description="Requires a Horzine Supply Crate Key  to open. Contains one of the following rare or better weapon skins: <br><font color="#4b69cd">Static Strikers | Beyond Horizon</font><br><font color="#4b69cd">HMTech-101 Pistol| Beyond Horizon </font><br><font color="#4b69cd">HMTech-201 SMG | Beyond Horizon  </font><br><font color="#4b69cd">HMTech-301 Shotgun | Beyond Horizon </font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Beyond Horizon </font><br><font color="#6600a1">RPG-7 | Beyond Horizon </font><br><font color="#6600a1">Flamethrower | Beyond Horizon </font><br><font color="#6600a1">Scar | Beyond Horizon</font><br><font color="#8847ff">Kriss | Beyond Horizon</font><br><font color="#8847ff">M99 | Beyond Horizon</font><br><font color="#8847ff">Helios Rifle | Beyond Horizon </font><br><font color="#8847ff">Killerwatt | Beyond Horizon </font><br><font color="#8847ff">Pulverizer | Beyond Horizon </font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
 HorzineSupplyCosmeticCrateSeries11Description="Requires a  Horzine Supply Crate Key to open.
 Contains one rare or better of the following:<br><font color="#4b69cd">Agony </font><br><font color="#4b69cd">Anguish </font><br><font color="#4b69cd">Despair  </font><br><font color="#4b69cd">Distress </font><br><font color="#4b69cd">Misery </font><br><font color="#4b69cd">Passion </font><br><font color="#4b69cd">Torment </font><br><font color="#4b69cd">Torture </font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
@@ -5194,7 +5195,7 @@ NeedYourEnergyEmoteName="Need Your Energy | Emote"
 FinalFormEmoteName="Final Form | Emote"
 FastestGunInTheWestEmoteName="Fastest Gun in the West | Emote"
 SpiritFingersEmoteName="Spirit Fingers | Emote"
-HomerunEmoteName="Home run | Emote"
+HomerunEmoteName="Home Run | Emote"
 CointTrickEmoteName="Coin Trick | Emote"
 MagicFosterEmoteName="Magic Foster | Emote"
 CraneFistDeluxeEmoteName="Crane Fist Deluxe | Emote"
@@ -5204,7 +5205,7 @@ NeedYourEnergyDeluxeEmoteName="Need Your Energy Deluxe | Emote"
 FinalFormDeluxeEmoteName="Final Form Deluxe | Emote"
 FastestGunInTheWestDeluxeEmoteName="Fastest Gun in the West Deluxe | Emote"
 SpiritFingersDeluxeEmoteName="Spriit Fingers Deluxe | Emote"
-HomerunDeluxeEmoteName="Home run  Deluxe | Emote"
+HomerunDeluxeEmoteName="Home Run Deluxe | Emote"
 CointTrickDeluxeEmoteName="Coin Trick Deluxe | Emote"
 MagicFosterDeluxeEmoteName="Magic Foster Deluxe | Emote"
 

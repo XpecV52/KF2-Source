@@ -434,7 +434,7 @@ simulated function BeginMeleeAttack(optional bool bIsChainAttack)
 	bResetChainSequence = false;
 
 	// save the direction of this attack
-	CurrentAttackDir = NextAttackDir;
+	CurrentAttackDir = (CurrentFireMode == BASH_FIREMODE) ? DIR_None : NextAttackDir;
 
 	// Notify enemy pawns of melee strike
 	if( WorldInfo.NetMode != NM_Client )

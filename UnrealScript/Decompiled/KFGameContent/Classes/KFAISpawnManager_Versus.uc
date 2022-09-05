@@ -568,6 +568,8 @@ protected function RespawnZedHumanPlayers(KFSpawnVolume SpawnVolume, optional bo
     J0x1044:
 
     Outer.AIAliveCount += NumSpawned;
+    Outer.NumAIFinishedSpawning += NumSpawned;
+    Outer.UpdateAIRemaining();
     if(bStopSpawning)
     {
         foreach Outer.WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
@@ -851,6 +853,7 @@ function FindTakeoverZed(KFPlayerControllerVersus KFPCV)
                     KFPCV.PlayerZedSpawnInfo.PendingZedSpawnLocation = KFPM.Location;
                     KFPCV.HasSpawnedZeds[I] = true;
                     Outer.MyKFGRI.AIRemaining += 1;
+                    Outer.NumAIFinishedSpawning -= 1;
                 }                
                 return;
             }

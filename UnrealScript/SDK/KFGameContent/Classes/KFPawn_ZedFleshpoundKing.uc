@@ -734,8 +734,6 @@ DefaultProperties
 	HitZones[5]		  =(ZoneName=lforearm, BoneName=LeftForearm,  Limb=BP_LeftArm,  GoreHealth=20,  DmgScale=0.2, SkinID=3)
 	HitZones[8]		  =(ZoneName=rforearm, BoneName=RightForearm, Limb=BP_RightArm, GoreHealth=20,  DmgScale=0.2, SkinID=3)
 
-	WeakSpotSocketNames.Add(WeakPointSocket1) // Chest
-
 	DoshValue=500
 
 	// ---------------------------------------------

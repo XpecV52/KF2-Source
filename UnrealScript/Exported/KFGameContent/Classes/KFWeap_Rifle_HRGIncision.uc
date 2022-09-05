@@ -130,6 +130,21 @@ simulated function DrawTargetingTeammateIcon( Canvas Canvas, int index )
     }
 }
 
+/*********************************************************************************************
+ @name Reload / recharge
+********************************************************************************************* */
+
+/** Healing charge doesn't count as ammo for purposes of inventory management (e.g. switching) */
+simulated function bool HasAnyAmmo()
+{
+	if (HasSpareAmmo() || HasAmmo(DEFAULT_FIREMODE))
+	{
+		return true;
+	}
+
+	return false;
+}
+
 defaultproperties
 {
    LockedTeammateHitZoneIcon=Texture2D'Wep_Scope_TEX.Wep_1stP_Yellow_Red_Target'
@@ -164,7 +179,7 @@ defaultproperties
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
    AmmoCost(1)=50
    SpareAmmoCapacity(0)=39
-   InitialSpareMags(0)=14
+   InitialSpareMags(0)=12
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Rifle_RailGun:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"
@@ -182,7 +197,7 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   InstantHitDamage(0)=350.000000
+   InstantHitDamage(0)=400.000000
    InstantHitDamage(1)=75.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()

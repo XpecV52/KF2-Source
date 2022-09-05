@@ -121,10 +121,6 @@ package tripwire.widgets
             }
         }
         
-        public function showInteractionMessage(param1:String = "", param2:String = "") : void
-        {
-        }
-        
         public function displayInteractionMessage() : void
         {
             if(this.textField.alpha > 0 && this.mainInteractionString == this.currentMainString && this.subInteractionString == this.currentSubString)
@@ -235,10 +231,7 @@ package tripwire.widgets
         
         public function outInteractionMessage() : void
         {
-            if(visible)
-            {
-                this.makeOutroTimeline();
-            }
+            this.makeOutroTimeline();
         }
     }
 }

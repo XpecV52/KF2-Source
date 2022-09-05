@@ -24,6 +24,8 @@ var protected KFGameExplosion ExplosionTemplate;
 /** HitZoneIndex of backpack zone */
 const ChestBombZoneIndex = 3;
 
+var transient bool bChestArmorDestroyedThisFrame;
+
 function PossessedBy(Controller C, bool bVehicleTransition)
 {
 	Super.PossessedBy(C, bVehicleTransition);
@@ -105,6 +107,11 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 	{
 		MyDARController.OnArmorLoss(ArmorZoneName);
 	}
+
+	if (ArmorZoneName == 'front')
+	{
+		bChestArmorDestroyedThisFrame = true;
+	}
 }
 
 function SetSprinting(bool bNewSprintStatus)
@@ -130,6 +137,17 @@ simulated function NotifySpecialMoveEnded(KFSpecialMove FinishedMove, ESpecialMo
 	{
 		// Finish sprinting setup
 		super.SetSprinting(true);
+	}
+}
+
+function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, class<DamageType> damageType, vector Momentum, TraceHitInfo HitInfo)
+{
+	super.PlayHit(Damage, InstigatedBy, HitLocation, damageType, Momentum, HitInfo);
+
+	if (Role == ROLE_Authority && TimeOfDeath == WorldInfo.TimeSeconds && bChestArmorDestroyedThisFrame)
+	{
+		bChestArmorDestroyedThisFrame = false;
+		TriggerExplosion(true);
 	}
 }
 

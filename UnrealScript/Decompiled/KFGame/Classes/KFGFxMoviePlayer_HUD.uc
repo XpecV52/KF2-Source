@@ -853,7 +853,6 @@ function SendInteractionMessageToGFX(string MessageString, string ButtonName)
     TextObject.SetString("holdString", Class'KFGFxControlsContainer_ControllerPresets'.default.HoldString);
     TextObject.SetString("tapString", Class'KFGFxControlsContainer_ControllerPresets'.default.TapString);
     InteractionMessageContainer.SetObject("interactionMessageData", TextObject);
-    InteractionMessageContainer.ActionScriptVoid("showInteractionMessage");
 }
 
 function HideInteractionMessage()
