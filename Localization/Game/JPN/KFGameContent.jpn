@@ -37,7 +37,7 @@ AlternateFireDescription="多くのプライマリ武器は、オルトファイ
 FlashLightBatteryTitleKey="懐中電灯を使用する"
 FlashLightBatteryDescriptionKey="暗くなることもあります。<font color="#caab05">%x%</font>を押して、<font color="#caab05">懐中電灯</font>のオン/オフを切り替えます。懐中電灯の電池は、少しずつ減っていきます。電池が切れるとオフになり、自動的に充電が開始します。"
 GrenadeTitleKey="手榴弾を使う"
-GrenadeDescriptionKey="手榴弾によって、密集したzedの集団に対処することができます。Perkはそれぞれの<font color="#caab05">武器ロードアウト</font>に異なる手榴弾を持ちます。いずれもzedにダメージを与えますが、追加効果がある場合があります。<font color="#caab05">%x%</font>を押して手榴弾を投げます。"
+GrenadeDescriptionKey="手榴弾によって、密集したzedの集団に対処することができます。Perkはそれぞれの<font color="#caab05">武器ロードアウト</font>に異なる手榴弾を持ちます。いずれもzedにダメージを与えますが、追加効果がある場合があります。<font color="#caab05">%x%</font>を押して手榴弾を投げます。」 "
 
 ;Wave 1 end
 TraderTimeTitleKey="トレーダータイム"
@@ -116,48 +116,48 @@ ItemDescription="•コンバットアーマーは様々な形態のダメージ
 
 [KFProj_DynamiteGrenade]
 ItemName="ダイナマイト1/2本"
-ItemCategory ="爆発物"
-ItemDescription="•信管が取り付けられた、ただの小さなダイナマイト。\n•あなたに危害を与えることもあるので、注意しましょう！"
+ItemCategory =" 「爆発物"
+ItemDescription="•信管が取り付けられた、ただの小さなダイナマイト。\n•あなたに危害を与えることもあるので、注意しましょう！」 "
 
 [KFProj_MedicGrenade]
 ItemName="メディック手榴弾"
-ItemCategory ="爆発物"
-ItemDescription="•zedには毒を与えるが、人間は回復するガスを放出します。\n\n•回復するには青いガス雲の中に立ちましょう。\n我々の科学者の言葉を引用するなら：『これらの手榴弾から放出される化学物質はホモサピエンスを生き返らせるが、ホモゼディカスを安楽死させる。』お役に立てれば幸いです。"
+ItemCategory =" 「爆発物"
+ItemDescription="•zedには毒を与えるが、人間は回復するガスを放出します。\n\n•回復するには青いガス雲の中に立ちましょう。\n我々の科学者の言葉を引用するなら：『これらの手榴弾から放出される化学物質はホモサピエンスを生き返らせるが、ホモゼディカスを安楽死させる。』お役に立てれば幸いです。」 "
 
 [KFProj_MolotovGrenade]
 ItemName="モロトフ火炎手榴弾"
 ItemCategory="爆発物"
-ItemDescription="•ごく単純に、zedを燃やす炎の手榴弾です。\n\n1939-1940年の冬戦争中に、スターリンの下のソビエト外務大臣、ヴャチェスラフ・ミハイロヴィチ・モロトフから、侮辱的に名付けられ...すいません、歴史の授業は不要でしたか？"
+ItemDescription="•ごく単純に、zedを燃やす炎の手榴弾です。\n\n1939-1940年の冬戦争中に、スターリンの下のソビエト外務大臣、ヴャチェスラフ・ミハイロヴィチ・モロトフから、侮辱的に名付けられ...すいません、歴史の授業は不要でしたか？」 "
 
 [KFProj_EMPGrenade]
 ItemName="EMP手榴弾"
 ItemCategory="爆発物"
-ItemDescription="•zedにダメージを与え、さらに短時間スタンさせることもある、電気パルスを発生させます。\n\n詳細を加えるなら―爆発の際、ナノ秒電磁気パルスが発生し、短距離内の電気系統を妨害します。特にzed内にあるものを。便利ですね。"
+ItemDescription="•zedにダメージを与え、さらに短時間スタンさせることもある、電気パルスを発生させます。\n\n詳細を加えるなら―爆発の際、ナノ秒電磁気パルスが発生し、短距離内の電気系統を妨害します。特にzed内にあるものを。便利ですね。」 "
 
 [KFProj_HEGrenade]
 ItemName="HE手榴弾"
 ItemCategory="爆発物"
-ItemDescription="•とてもシンプルな高性能手榴弾です。zedにも人間にも同様にダメージを与えます。\n\nこの上なくシンプルです。HE―高性能―これはドカン！といろいろなものを爆破します。こんなこと説明する必要ありますか？"
+ItemDescription="•とてもシンプルな高性能手榴弾です。zedにも人間にも同様にダメージを与えます。\n\nこの上なくシンプルです。HE―高性能―これはドカン！といろいろなものを爆破します。こんなこと説明する必要ありますか？」 "
 
 [KFProj_FragGrenade]
 ItemName="フラググレネード"
 ItemCategory="爆発物"
-ItemDescription="•かの有名なフラググレネード：小さな鉄片を周りに飛ばし、何もかも傷つける。\n\n君たちはアウトブレイク前に十分ビデオゲームで遊んだはずなので、フラググレネードが何であるかは知ってるでしょう。知らないフリはやめなさい。誰も君のことを信じませんよ。"
+ItemDescription="•かの有名なフラググレネード：小さな鉄片を周りに飛ばし、何もかも傷つける。\n\n君たちはアウトブレイク前に十分ビデオゲームで遊んだはずなので、フラググレネードが何であるかは知ってるでしょう。知らないフリはやめなさい。誰も君のことを信じませんよ。」 "
 
 [KFProj_NailBombGrenade]
 ItemName="釘爆弾"
-ItemCategory ="爆発物"
+ItemCategory =" 「爆発物"
 ItemDescription="•古い釘と、小さな爆薬を中央にセットした、シンプルな筒。\n\nzedに対処するにはあまり愉快でも繊細でもない方法でもありませんが、zedに関して愉快なことも繊細なこともありませんよね？"
 
 [KFProj_FreezeGrenade]
 ItemName="凍結手榴弾"
-ItemCategory ="爆発物"
+ItemCategory =" 「爆発物"
 ItemDescription="•技術的に高度な、加圧液体窒素の缶。\n\nこの中身と十分に触れさせると、zedを一定時間その場に凍らせます。打ち砕かれるような結果になります。"
 
 [KFProj_FlashBangGrenade]
 ItemName="フラッシュバン"
-ItemCategory ="爆発物"
-ItemDescription="眩しく、音が大きいため、直視しないこと。できたら聞かないように。\n•厳密には致命的ではありませんが、フラッシュバンで怪我をすることもありますので、ご注意ください！"
+ItemCategory =" 「爆発物"
+ItemDescription="•眩しく、音が大きいため、直視しないこと。できたら聞かないように。\n•厳密には致命的ではありませんが、フラッシュバンで危害が加わることもありますので、ご注意ください！ "
 
 [KFWeap_Healer_Syringe]
 ItemName="医療注射器"
@@ -315,7 +315,7 @@ ItemDescription="•単発または複数発のネイルファイアモードを
 [KFWeap_HRG_Nailgun]
 ItemName="HRG ネイルガン"
 ItemCategory="サブマシンガン"
-ItemDescription="•単発式の 500 rpm フルオートおよび3点バースト 857 rpm フルオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•革新の勝利！"
+ItemDescription="•単発式の 857 rpm フルオートおよび3点バースト 500 rpm フルオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•革新の勝利！"
 
 [KFWeap_Blunt_ChainBat]
 ItemName="ロードレディーマー"
@@ -439,13 +439,13 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•オル�
 ItemName="ライノ"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードでは破砕弾を発射します。\n•破砕弾は着弾時に爆発して、3 つの榴散弾を発射します。\n•Zed をバターのように切り裂く！"
-SharedUnlockSource="ライノ"
+SharedUnlockSource="ライノリボルバーバンドル"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="デュアルライノ"
 ItemCategory="ハンドガン"
 ItemDescription="•ファイアモードでは破砕弾を発射します。\n•破砕弾は着弾時に爆発して、3 つの榴散弾を発射します。\n•オルトファイアはアイアンサイト使用時、エイムスタイルを切り替えます。\n•Zed をバターのように切り裂く！"
-SharedUnlockSource="デュアルライノ"
+SharedUnlockSource="ライノリボルバーバンドル"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858リボルバー"
@@ -481,6 +481,12 @@ ItemDescription="•ファイアモードはセミオートのみ。\n•オル�
 ItemName="ウィンチェスター1894"
 ItemCategory="ライフル"
 ItemDescription="•ファイアモードは単発のみ。\n•定番のモデル1894ウィンチェスター・レバーアクションライフルです。"
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="モシン・ナガン"
+ItemCategory="ライフル"
+ItemDescription="•ファイアモードは単発のみ。\n•オルト ― ブロック/受け流し。\n•M91/30は突き刺し、射撃と貫通射撃に特化。"
+SharedUnlockSource="モシン・ナガンバンドル"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464センターファイア"
@@ -659,6 +665,27 @@ ItemName="データパッド"
 ItemCategory="装備"
 ItemDescription="トレーダーでこれを見ることなどないはずだ！"
 
+[KFWeap_Pistol_HRGWinterbite]
+ItemName="HRGウィンターバイト"
+ItemCategory="極低温武器"
+ItemDescription="•ファイアモードは爆発する氷柱の発射武器を発射します。\n•アイスな一日を過ごすには最適です。"
+
+[KFWeap_Pistol_DualHRGWinterbite]
+ItemName="デュアルHRGウィンターバイト"
+ItemCategory="極低温武器"
+ItemDescription="•ファイアモードは爆発する氷柱の発射武器を発射します。\n•オルトファイアは、アイアンサイト使用時の照準スタイルを切り替えます。\n•氷が2回分です。"
+
+[KFWeap_Rifle_HRGIncision]
+ItemName="HRG インシジョン"
+ItemCategory="スナイパーライフル"
+ItemDescription="•ファイアモードは高速電流弾を発射します。\n•オルトファイアでチームメンバーを回復させる回復ダーツを発射します。\n•照準器を使うと、プレイヤーとZedの弱点にロックオンできます。"
+
+[KFWeap_SMG_G18]
+ItemName="ライオットシールド&グロック18"
+ItemCategory="サブマシンガン"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•アイアンサイトでほとんどの攻撃による前部のダメージを減らすシールドを構えることができます。"
+SharedUnlockSource="ライオットシールド& G18バンドル"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="ドクター ハンス・ヴォルター"
@@ -775,6 +802,29 @@ BossCaptionStrings[2]="クランプスの大きさに騙されてはいけませ
 BossCaptionStrings[3]="クランプスを他のZedに近づけないで下さい。Zedを平らげ…後は知りたくないでしょう。"
 BossCaptionStrings[4]="クランプスが近づきすぎると、嘔吐してくるよりもヒドいことが起こります。オノは飾りではありません。"
 BossCaptionStrings[5]="クランプスのアーマーを破壊すると、猛烈に激怒します。この状態に入ると一番危険です。"
+
+[KFPawn_ZedMatriarch]
+BossName="マトリアーク"
+BossName_CHN="フィルミー"
+BossName_CHT="フィルミー"
+BossName_DEU="フィルミー"
+BossName_ESL="フィルミー"
+BossName_ESN="フィルミー"
+BossName_FRA="フィルミー"
+BossName_FRC="フィルミー"
+BossName_INT="マトリアーク"
+BossName_ITA="フィルミー"
+BossName_JPN="フィルミー"
+Bossname_KOR="フィルミー"
+BossName_POL="フィルミー"
+BossName_PTB="フィルミー"
+BossName_RUS="フィルミー"
+BossCaptionStrings[0]="マトリアークの防御パワーフィールドは、彼女が攻撃する際に途切れます。これを利用しましょう。"
+BossCaptionStrings[1]="マトリアークのキャノンとヘルメットを破壊して、彼女の頭部と敏感な爪を露出することができます。そこを攻撃した後、彼女はかなり激怒します。"
+BossCaptionStrings[2]="彼女がテスラブラストを放出する時は、仲間と固まらないようにしましょう。あなた以外にもショックを受ける人が出てきます。"
+BossCaptionStrings[3]="彼女のキャノンが破壊されても、バトルが終わったと思わないようにしましょう。彼女はパンチもできます！"
+BossCaptionStrings[4]="脅威レベルが高過ぎると感知されると、E.D.A.Rが彼女の支援にやって来ます。"
+BossCaptionStrings[5]="マトリアークは死が近付くと遮蔽フィールドを作動させます。彼女は父とは違い、逃げ出したりはしないのです。"
 
 [KFGameInfo_Tutorial]
 GameName="基本トレーニング"

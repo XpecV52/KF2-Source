@@ -526,6 +526,16 @@ simulated function class< KFProj_Grenade > GetGrenadeClass()
     return GrenadeClass;
 }
 
+/**
+ * @brief can the perk earn small radius kill xp
+ * @return DT is on berserker perk
+ */
+function bool CanEarnSmallRadiusKillXP(class<DamageType> DT)
+{
+	return class'KFPerk_Berserker'.static.IsDamageTypeOnPerk(class<KFDamageType>(DT)) ||
+		   class'KFPerk_Berserker'.static.IsBackupDamageTypeOnPerk(DT);
+}
+
 /*********************************************************************************************
 * @name	 Getters etc
 ********************************************************************************************* */

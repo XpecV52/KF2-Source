@@ -2495,6 +2495,150 @@ function PlayPattyWhirlwindDialog(KFPawn Patty)
     PlayDialogEvent(Patty, 36);
 }
 
+function PlayMatriarchBattlePhaseDialog(KFPawn Matriarch, int CurrentBattlePhase)
+{
+    if(!Matriarch.IsAliveAndWell())
+    {
+        return;
+    }
+    switch(CurrentBattlePhase)
+    {
+        case 1:
+            PlayDialogEvent(Matriarch, 18);
+            break;
+        case 2:
+            PlayDialogEvent(Matriarch, 19);
+            break;
+        case 3:
+            PlayDialogEvent(Matriarch, 20);
+            break;
+        default:
+            break;
+    }
+}
+
+function PlayMatriarchTickDialog(KFPawn Matriarch, int ArmorZoneStatus, int CurrentBattlePhase)
+{
+    if((ArmorZoneStatus & 2) != 0)
+    {
+        PlayDialogEvent(Matriarch, 1);        
+    }
+    else
+    {
+        if(CurrentBattlePhase < 3)
+        {
+            PlayDialogEvent(Matriarch, 2);            
+        }
+        else
+        {
+            PlayDialogEvent(Matriarch, 3);
+        }
+    }
+}
+
+function PlayMatriarchExplodeArmorDialog(KFPawn Matriarch, name ArmorZoneName)
+{
+    switch(ArmorZoneName)
+    {
+        case 'head':
+            PlayDialogEvent(Matriarch, 16);
+            break;
+        case 'claw':
+            PlayDialogEvent(Matriarch, 17);
+            break;
+        default:
+            break;
+    }
+}
+
+function PlayMattyKilledDialog(KFPawn Matriarch)
+{
+    if(Matriarch.IsDoingSpecialMove(44))
+    {
+        PlayDialogEvent(Matriarch, 28);        
+    }
+    else
+    {
+        if(Matriarch.IsDoingSpecialMove(22))
+        {
+            PlayDialogEvent(Matriarch, 26);            
+        }
+        else
+        {
+            if(Matriarch.IsDoingSpecialMove(23))
+            {
+                PlayDialogEvent(Matriarch, 31);                
+            }
+            else
+            {
+                if(Matriarch.IsDoingSpecialMove(45))
+                {
+                    PlayDialogEvent(Matriarch, 33);                    
+                }
+                else
+                {
+                    if(Matriarch.IsDoingSpecialMove(3))
+                    {
+                        PlayDialogEvent(Matriarch, 24);                        
+                    }
+                    else
+                    {
+                        if(Matriarch.IsDoingSpecialMove(21))
+                        {
+                            PlayDialogEvent(Matriarch, 35);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function PlayMattyMinionKilledDialog(KFPawn Matriarch)
+{
+    PlayDialogEvent(Matriarch, 21);
+}
+
+function PlayMatriarchSweepingClawEvent(KFPawn Matriarch)
+{
+    PlayDialogEvent(Matriarch, 27);
+}
+
+function PlayMatriarchTeslaBlastEvent(KFPawn Matriarch)
+{
+    PlayDialogEvent(Matriarch, 25);
+}
+
+function PlayMatriarchPlasmaCannonEvent(KFPawn Matriarch)
+{
+    PlayDialogEvent(Matriarch, 29);
+}
+
+function PlayMatriarchLightningStormEvent(KFPawn Matriarch)
+{
+    PlayDialogEvent(Matriarch, 32);
+}
+
+function PlayMatriarchScorpionWhipEvent(KFPawn Matriarch)
+{
+    PlayDialogEvent(Matriarch, 22);
+}
+
+function PlayMatriarchWarningSirenEvent(KFPawn Matriarch)
+{
+    PlayDialogEvent(Matriarch, 34);
+}
+
+function PlayMatriarchShieldUpEvent(KFPawn Matriarch)
+{
+    PlayDialogEvent(Matriarch, 36);
+}
+
+function PlayMatriarchCloakedEvent(KFPawn Matriarch)
+{
+    PlayDialogEvent(Matriarch, 37);
+}
+
 defaultproperties
 {
     bEnabled=true

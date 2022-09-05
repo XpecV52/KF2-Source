@@ -45,6 +45,7 @@ struct ArmorZoneInfo
 var array<ArmorZoneInfo> ArmorZones;
 var float ArmorScale;
 var array<DamageModifierInfo> ArmorDamageTypeModifiers;
+var transient float LastTakeDamageTime;
 
 function byte GetArmorZonePctByte(int ZoneIdx)
 {
@@ -260,6 +261,7 @@ function TakeArmorZoneDamage(int ZoneIdx, int InDamage, out int outDamage)
         Outer.ZedExplodeArmor(ZoneIdx, ArmorZones[ZoneIdx].ArmorZoneName);
     }
     UpdateArmorUI();
+    LastTakeDamageTime = Outer.WorldInfo.TimeSeconds;
 }
 
 function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource, class<DamageType> DamageType)

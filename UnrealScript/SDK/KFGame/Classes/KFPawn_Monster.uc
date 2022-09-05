@@ -2234,6 +2234,12 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 {
 	`DialogManager.PlaySpotZedHealingDialog( self );
 	Super.HealDamage(Amount, Healer, DamageType);
+
+	if (bUseDamageInflation)
+    {
+        IntendedDamageInflationPercent = float(Health) / float(HealthMax);
+    }
+
 	return true;
 }
 
@@ -2280,7 +2286,7 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 {
 	local KFPawn_Human KFPH_Instigator;
 
-	if (ArmorInfo != none && Damage == 0)
+	if (ArmorInfo != none && ArmorInfo.LastTakeDamageTime == WorldInfo.TimeSeconds)
 	{
 		AdjustPlayHitForArmor(Damage, HitInfo);
 	}
@@ -2301,7 +2307,7 @@ function PlayHit(float Damage, Controller InstigatedBy, vector HitLocation, clas
 function AdjustPlayHitForArmor(out float InDamage, out TraceHitInfo InHitInfo)
 {
 	InDamage = 1;
-	InHitInfo.BoneName = 'KFArmor';
+	InHitInfo.BoneName = 'KBArmor';
 }
 
 /** Called before, and in addition to, NotifyTakeHit(), but processes melee specifically (Server only) */

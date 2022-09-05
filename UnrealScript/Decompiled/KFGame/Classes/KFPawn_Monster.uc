@@ -1644,6 +1644,10 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
         KFGameInfo(WorldInfo.Game).DialogManager.PlaySpotZedHealingDialog(self);
     }
     super.HealDamage(Amount, Healer, DamageType);
+    if(bUseDamageInflation)
+    {
+        IntendedDamageInflationPercent = float(Health) / float(HealthMax);
+    }
     return true;
 }
 
@@ -1688,7 +1692,7 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
 {
     local KFPawn_Human KFPH_Instigator;
 
-    if((ArmorInfo != none) && Damage == float(0))
+    if((ArmorInfo != none) && ArmorInfo.LastTakeDamageTime == WorldInfo.TimeSeconds)
     {
         AdjustPlayHitForArmor(Damage, HitInfo);
     }
@@ -1709,7 +1713,7 @@ function PlayHit(float Damage, Controller InstigatedBy, Vector HitLocation, clas
 function AdjustPlayHitForArmor(out float InDamage, out TraceHitInfo InHitInfo)
 {
     InDamage = 1;
-    InHitInfo.BoneName = 'KFArmor';
+    InHitInfo.BoneName = 'KBArmor';
 }
 
 function NotifyMeleeTakeHit(Controller InstigatedBy, Vector HitLocation);

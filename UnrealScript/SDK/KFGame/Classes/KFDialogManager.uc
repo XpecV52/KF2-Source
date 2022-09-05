@@ -2806,6 +2806,139 @@ function PlayPattyWhirlwindDialog( KFPawn Patty )
     PlayDialogEvent( Patty, `PATTY_WhirlwindAttack );
 }
 
+/************************************************
+ * Matriarch Dialog
+ ************************************************/
+
+function PlayMatriarchBattlePhaseDialog(KFPawn Matriarch, int CurrentBattlePhase)
+{
+    if (!Matriarch.IsAliveAndWell())
+    {
+        return;
+    }
+
+    switch (CurrentBattlePhase)
+    {
+    case 1:
+        PlayDialogEvent(Matriarch, `MATTY_NextBattlePhase1);
+        break;
+
+    case 2:
+        PlayDialogEvent(Matriarch, `MATTY_NextBattlePhase2);
+        break;
+
+    case 3:
+        PlayDialogEvent(Matriarch, `MATTY_NextBattlePhase3);
+        break;
+    };
+}
+
+function PlayMatriarchTickDialog(KFPawn Matriarch, int ArmorZoneStatus, int CurrentBattlePhase)
+{
+	if ((ArmorZoneStatus & 2) != 0)
+	{
+		// pilot compartment intact
+		PlayDialogEvent(Matriarch, `MATTY_TauntBase);
+	}
+	else if (CurrentBattlePhase < 3)
+	{
+		// pilot compartment destroyed, phase 1 or 2
+		PlayDialogEvent(Matriarch, `MATTY_Taunt_Exposed_P12);
+	}
+	else
+	{
+		// pilot compartment destroyed, phase 3 or 4
+		PlayDialogEvent(Matriarch, `MATTY_Taunt_Exposed_P34);
+	}
+}
+
+function PlayMatriarchExplodeArmorDialog(KFPawn Matriarch, name ArmorZoneName)
+{
+	switch (ArmorZoneName)
+	{
+	case 'head':
+		PlayDialogEvent(Matriarch, `MATTY_TauntPilotCompartDestroyed);
+		break;
+
+	case 'claw':
+		PlayDialogEvent(Matriarch, `MATTY_TauntPowerClawDestroyed);
+		break;
+	};
+}
+
+function PlayMattyKilledDialog(KFPawn Matriarch)
+{
+	if (Matriarch.IsDoingSpecialMove(SM_Custom1))
+	{
+		PlayDialogEvent(Matriarch, `MATTY_SweepingClawKill);
+	}
+	else if (Matriarch.IsDoingSpecialMove(SM_StandAndShootAttack))
+	{
+		PlayDialogEvent(Matriarch, `MATTY_TeslaBlastKill);
+	}
+	else if (Matriarch.IsDoingSpecialMove(SM_HoseWeaponAttack))
+	{
+		PlayDialogEvent(Matriarch, `MATTY_PlasmaCannonKill);
+	}
+	else if (Matriarch.IsDoingSpecialMove(SM_Custom2))
+	{
+		PlayDialogEvent(Matriarch, `MATTY_LightningStormKill);
+	}
+	else if (Matriarch.IsDoingSpecialMove(SM_GrappleAttack))
+	{
+		PlayDialogEvent(Matriarch, `MATTY_ScorpionWhipKill);
+	}
+	else if (Matriarch.IsDoingSpecialMove(SM_SonicAttack))
+	{
+		PlayDialogEvent(Matriarch, `MATTY_WarningSirenKill);
+	}
+}
+
+function PlayMattyMinionKilledDialog(KFPawn Matriarch)
+{
+	PlayDialogEvent(Matriarch, `MATTY_DeadEDAR);
+}
+
+function PlayMatriarchSweepingClawEvent(KFPawn Matriarch)
+{
+	PlayDialogEvent(Matriarch, `MATTY_SweepingClawAttack);
+}
+
+function PlayMatriarchTeslaBlastEvent(KFPawn Matriarch)
+{
+	PlayDialogEvent(Matriarch, `MATTY_TeslaBlastWarning);
+}
+
+function PlayMatriarchPlasmaCannonEvent(KFPawn Matriarch)
+{
+	PlayDialogEvent(Matriarch, `MATTY_PlasmaCannonWarning);
+}
+
+function PlayMatriarchLightningStormEvent(KFPawn Matriarch)
+{
+	PlayDialogEvent(Matriarch, `MATTY_LightningStormWarning);
+}
+
+function PlayMatriarchScorpionWhipEvent(KFPawn Matriarch)
+{
+	PlayDialogEvent(Matriarch, `MATTY_ScorpionWhipWarning);
+}
+
+function PlayMatriarchWarningSirenEvent(KFPawn Matriarch)
+{
+	PlayDialogEvent(Matriarch, `MATTY_WarningSirenWarning);
+}
+
+function PlayMatriarchShieldUpEvent(KFPawn Matriarch)
+{
+	PlayDialogEvent(Matriarch, `MATTY_ShieldActivate);
+}
+
+function PlayMatriarchCloakedEvent(KFPawn Matriarch)
+{
+	PlayDialogEvent(Matriarch, `MATTY_Cloak);
+}
+
 DefaultProperties
 {
     bEnabled=true

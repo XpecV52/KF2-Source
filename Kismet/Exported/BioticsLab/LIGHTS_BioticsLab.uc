@@ -129,7 +129,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_0
    InputLinks(0)=(DrawY=445,OverrideDelta=14)
    InputLinks(1)=(DrawY=466,OverrideDelta=35)
    InputLinks(2)=(DrawY=487,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'LIGHTS_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1',InputLinkIdx=1)),DrawY=450,OverrideDelta=19)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'LIGHTS_BioticsLab.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5',InputLinkIdx=1)),DrawY=450,OverrideDelta=19)
    OutputLinks(1)=(DrawY=482,OverrideDelta=51)
    VariableLinks(0)=(DrawX=1716,OverrideDelta=25)
    ObjInstanceVersion=1
@@ -142,7 +142,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_0
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
    InputLinks(0)=(DrawY=421,OverrideDelta=14)
    InputLinks(1)=(DrawY=442,OverrideDelta=35)
    InputLinks(2)=(DrawY=463,OverrideDelta=56)
@@ -156,7 +156,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    ObjPosY=384
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_1"
+   Name="SeqAct_Toggle_5"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 

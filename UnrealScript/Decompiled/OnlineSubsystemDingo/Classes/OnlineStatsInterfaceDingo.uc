@@ -114,6 +114,8 @@ const STATID_ACHIEVE_ShoppingSpreeCollectibles = 4048;
 const STATID_ACHIEVE_SpillwayCollectibles = 4049;
 const STATID_ACHIEVE_SteamFortressCollectibles = 4050;
 const STATID_ACHIEVE_AsylumCollectibles = 4051;
+const STATID_ACHIEVE_SanitariumCollectibles = 4052;
+const STATID_ACHIEVE_DefeatMatriarch = 4053;
 
 enum RealTimeActivityConnectionStatus
 {

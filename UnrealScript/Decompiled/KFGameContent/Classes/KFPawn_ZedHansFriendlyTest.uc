@@ -22,7 +22,7 @@ defaultproperties
     BattlePhaseLightTemplateYellow=PointLightComponent'Default__KFPawn_ZedHansFriendlyTest.PointLightComponent1'
     BattlePhaseLightTemplateRed=PointLightComponent'Default__KFPawn_ZedHansFriendlyTest.PointLightComponent2'
     BattlePhaseLightTemplateBlinking=PointLightComponent'Default__KFPawn_ZedHansFriendlyTest.PointLightComponent3'
-    ShieldImpactEffects=KFSkinTypeEffects_HansShield'Default__KFPawn_ZedHansFriendlyTest.ShieldEffects'
+    ShieldImpactEffects=KFSkinTypeEffects_InvulnerabilityShield'Default__KFPawn_ZedHansFriendlyTest.ShieldEffects'
     ShieldShatterExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedHansFriendlyTest.ShatterExploTemplate0'
     BattlePhases=/* Array type was not detected. */
     CharacterMonsterArch=KFCharacterInfo_Monster'ZED_Hans_ARCH.ZED_Hans_Benchmark_Archetype'

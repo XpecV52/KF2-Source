@@ -30,6 +30,8 @@ HeadshotFXBundle1Name="Набор эффектов «Выстрел в голо�
 HeadshotFXBundle2Name="Набор эффектов «Выстрел в голову» 2"
 RhinoRevolverBundleName="Набор с револьвером «Носорог»"
 IonThrusterBundleName="Набор с ионником"
+RiotShieldG18BundleName="Набор с полицейским щитом и G18"
+MosinNagantBundleName="Набор с винтовкой Мосина"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Ящик с аксессуарами Horzine | тип 4: бронз. наб."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Ящик с аксессуарами Horzine | тип 4: сереб. наб."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Ящик с аксессуарами Horzine | тип 4: золот. наб."
@@ -45,6 +47,9 @@ HorzineSupplyEmoteCrateSeries1GoldBundlePackName="Ящик с эмодзи Horzi
 HorzineSupplyEmoteCrateSeries2BronzeBundlePackName="Ящик с эмодзи Horzine | тип 2: бронзовый набор"
 HorzineSupplyEmoteCrateSeries2SilverBundlePackName="Ящик с эмодзи Horzine | тип 2: серебряный набор"
 HorzineSupplyEmoteCrateSeries2GoldBundlePackName="Ящик с эмодзи Horzine | тип 2: золотой набор"
+HorzineSupplyEmoteCrateSeries3BronzeBundlePackName="Ящик с эмодзи Horzine | тип 3: бронзовый набор"
+HorzineSupplyEmoteCrateSeries3SilverBundlePackName="Ящик с эмодзи Horzine | тип 3: серебряный набор"
+HorzineSupplyEmoteCrateSeries3GoldBundlePackName="Ящик с эмодзи Horzine | тип 3: золотой набор"
 HorzineSupplyWeaponCrateSeries5BronzeBundlePackName="Ящик с оружием Horzine | тип 5: бронзовый набор"
 HorzineSupplyWeaponCrateSeries5SilverBundlePackName="Ящик с оружием Horzine | тип 5: серебряный набор"
 HorzineSupplyWeaponCrateSeries5GoldBundlePackName="Ящик с оружием Horzine | тип 5: золотой набор"
@@ -139,9 +144,36 @@ BeyondHorizonEncryptedUSBGoldBundlePackName="Зашифрованная флеш
 PremiumHalloweenBronzeBundlePackName="Бронзовый набор премиум-билетов на Хеллоуин"
 PremiumHalloweenSilverBundlePackName="Серебряный набор премиум-билетов на Хеллоуин"
 PremiumHalloweenGoldBundlePackName="Золотой набор премиум-билетов на Хеллоуин"
-NeonMKIIIEncryptedUSBBronzeBundlePackName="Зашифр. флешка «Неон MKIII»: пакет бронз. набора"
-NeonMKIIIEncryptedUSBSilverBundlePackName="Зашифр. флешка «Неон MKIII»: пакет сереб. набора"
-NeonMKIIIEncryptedUSBGoldBundlePackName="Зашифр. флешка «Неон MKIII»: пакет золот. набора"
+NeonMKIIIEncryptedUSBBronzeBundlePackName="Зашифрованная флешка «Неон MKIII»: бронзовый набор"
+NeonMKIIIEncryptedUSBSilverBundlePackName="Зашифрованная флешка «Неон MKIII»: серебряный набор"
+NeonMKIIIEncryptedUSBGoldBundlePackName="Зашифрованная флешка «Неон MKIII»: золотой набор"
+SantasHelperOutfitBundleName="Набор «Костюм помощника Санты»"
+JaegerEncryptedUSBBronzeBundlePackName="Зашифрованная флешка «Ягер»: пакет бронз. набора"
+JaegerEncryptedUSBSilverBundlePackName="Зашифрованная флешка «Ягер»: пакет сереб. набора"
+JaegerEncryptedUSBGoldBundlePackName="Зашифрованная флешка «Ягер»: пакет золот. набора"
+PremiumChristmasBronzeBundlePackName="Бронзовый набор премиум-билетов на Рождество"
+PremiumChristmasSilverBundlePackName="Серебряный набор премиум-билетов на Рождество"
+PremiumChristmasGoldBundlePackName="Золотой набор премиум-билетов на Рождество"
+FostersFavoritesWeaponSkinPackName="Набор внешнего вида оружия «Любимцы Фостера»"
+HorzineSupplyCosmeticCrateSeries5BronzeBundlePackName="Ящик с аксессуарами Horzine | тип 5: бронзовый набор"
+HorzineSupplyCosmeticCrateSeries5SilverBundlePackName="Ящик с аксессуарами Horzine | тип 5: серебряный набор"
+HorzineSupplyCosmeticCrateSeries5GoldBundlePackName="Ящик с аксессуарами Horzine | тип 5: золотой набор"
+HorzineSupplyCosmeticCrateSeries3BronzeBundlePackName="Ящик с аксессуарами Horzine | тип 3: бронзовый набор"
+HorzineSupplyCosmeticCrateSeries3SilverBundlePackName="Ящик с аксессуарами Horzine | тип 3: серебряный набор"
+HorzineSupplyCosmeticCrateSeries3GoldBundlePackName="Ящик с аксессуарами Horzine | тип 3: золотой набор"
+HorzineSupplyWeaponCrateSeries17BronzeBundlePackName="Ящик с оружием Horzine | тип 17: бронзовый набор"
+HorzineSupplyWeaponCrateSeries17SilverBundlePackName="Ящик с оружием Horzine | тип 17: серебряный набор"
+HorzineSupplyWeaponCrateSeries17GoldBundlePackName="Ящик с оружием Horzine | тип 17: золотой набор"
+GrimTreatmentsWeaponBundleName="Набор оружия «Зловещие процедуры»"
+YuletideHorrorWeaponBundleName="Набор оружия «Рождественский ужас»"
+JaegerWeaponSkinDoublePackBundleName="Двойной набор внешнего вида оружия «Ягер»"
+HorzineSupplyCrateSeries12BronzeBundlePackName="Ящик Horzine | тип 12: бронзовый набор"
+HorzineSupplyCrateSeries12SilverBundlePackName="Ящик Horzine | тип 12: серебряный набор"
+HorzineSupplyCrateSeries12GoldBundlePackName="Ящик Horzine | тип 12: золотой набор"
+EmoteCrateSeries3BronzeBundlePackName="Ящик с эмодзи | тип 3: пакет бронзового набора"
+EmoteCrateSeries3SilverBundlePackName="Ящик с эмодзи | тип 3: пакет серебряного набора"
+EmoteCrateSeries3GoldBundlePackName="Ящик с эмодзи | тип 3: пакет золотого набора"
+
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="В наборе: лондонская форма Бриара (5 скинов) и аксессуар — шлем констебля (3 скина)."
@@ -168,6 +200,8 @@ HeadshotFXBundle1Description="В него входят пять эффектов
 HeadshotFXBundle2Description="В набор входят пять эффектов выстрела в голову. Клякса, фейерверк, лепестки, глюк и петля Horzine."
 RhinoRevolverBundleDescription="Дырявит мутантов, как сыр. Револьверы «Носорог» предназначены для профессии «Опытный стрелок». Поставляются с 5 вариантами внешнего вида."
 IonThrusterBundleDescription="Лучший способ жарить шашлыки. Ионник предназначен для профессии «Берсеркер» и поставляется с 5 уникальными внешними видами."
+RiotShieldG18BundleDescription="Отличный выбор для сдерживания толпы. Полицейский щит и G18 предназначены для профессии «SWAT» и поставляются с 5 вариантами внешнего вида."
+MosinNagantBundleDescription="Классическая винтовка, которая позволяет отстреливать мутантов на расстоянии, блокировать и протыкать их. Винтовка Мосина предназначена для профессии «Снайпер» и поставляется с 5 вариантами внешнего вида."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Содержит пять ящиков (ящик с аксессуарами Horzine | тип 4) и пять соответствующих ключей."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Содержит десять ящиков (ящик с аксессуарами Horzine | тип 4) и десять соответствующих ключей."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Содержит двадцать ящиков (ящик с аксессуарами Horzine | тип 4) и двадцать соответствующих ключей."
@@ -183,12 +217,15 @@ HorzineSupplyEmoteCrateSeries1GoldBundlePackDescription="Содержит два
 HorzineSupplyEmoteCrateSeries2BronzeBundlePackDescription="Содержит пять ящиков (ящик с эмодзи Horzine | тип 2) и пять соответствующих ключей."
 HorzineSupplyEmoteCrateSeries2SilverBundlePackDescription="Содержит десять ящиков (ящик с эмодзи Horzine | тип 2) и десять соответствующих ключей."
 HorzineSupplyEmoteCrateSeries2GoldBundlePackDescription="Содержит двадцать ящиков (ящик с эмодзи Horzine | тип 2) и двадцать соответствующих ключей."
+HorzineSupplyEmoteCrateSeries3BronzeBundlePackDescription="Содержит пять ящиков с эмодзи Horzine | тип 3 и пять соответствующих ключей."
+HorzineSupplyEmoteCrateSeries3SilverBundlePackDescription="Содержит десять ящиков с эмодзи Horzine | тип 3 и десять соответствующих ключей."
+HorzineSupplyEmoteCrateSeries3GoldBundlePackDescription="Содержит двадцать ящиков с эмодзи Horzine | тип 3 и двадцать соответствующих ключей."
 HorzineSupplyWeaponCrateSeries5BronzeBundlePackDescription="Содержит пять ящиков (ящик с оружием Horzine | тип 5) и пять соответствующих ключей."
 HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="Содержит десять ящиков (ящик с оружием Horzine | тип 5) и десять соответствующих ключей."
 HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="Содержит двадцать ящиков (ящик с оружием Horzine | тип 4) и двадцать соответствующих ключей."
 HorzineSupplyWeaponCrateSeries7BronzeBundlePackDescription="Содержит пять ящиков (ящик с оружием Horzine | тип 7) и пять соответствующих ключей."
 HorzineSupplyWeaponCrateSeries7SilverBundlePackDescription="Содержит десять ящиков (ящик с оружием Horzine | тип 7) и десять соответствующих ключей."
-HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription="Содержит двадцать ящиков (ящик с оружием Horzine | тип 7) и двадцать соответствующих ключей."
+HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #7 crate along with twenty of its associated keys."
 HorzineSupplyWeaponCrateSeries8BronzeBundlePackDescription="Содержит пять ящиков (ящик с оружием Horzine | тип 8) и пять соответствующих ключей."
 HorzineSupplyWeaponCrateSeries8SilverBundlePackDescription="Содержит десять ящиков (ящик с оружием Horzine | тип 8) и десять соответствующих ключей."
 HorzineSupplyWeaponCrateSeries8GoldBundlePackDescription="Содержит двадцать ящиков (ящик с оружием Horzine | тип 8) и двадцать соответствующих ключей."
@@ -204,7 +241,7 @@ HorzineSupplyWeaponCrateSeries14GoldBundlePackDescription="Содержит дв
 HorzineSupplyCrateSeries15BronzeBundlePackDescription="Содержит пять ящиков (ящик Horzine | тип 15) и пять соответствующих ключей."
 HorzineSupplyCrateSeries15SilverBundlePackDescription="Содержит десять ящиков (ящик Horzine | тип 15) и десять соответствующих ключей."
 HorzineSupplyCrateSeries15GoldBundlePackDescription="Содержит двадцать ящиков (ящик Horzine | тип 15) и двадцать соответствующих ключей."
-HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription="Содержит пять ящиков (ящик Horzine | тип «Киберсамурай») и пять соответствующих ключей."
+HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription=Contains five of the Horzine Supply Crate | Series Cyber Samurai crate along with five of its associated keys."
 HorzineSupplyCrateSeriesCyberSamuraiSilverBundlePackDescription="Содержит десять ящиков (ящик Horzine | тип «Киберсамурай») и десять соответствующих ключей."
 HorzineSupplyCrateSeriesCyberSamuraiGoldBundlePackDescription="Содержит двадцать ящиков (ящик Horzine | тип «Киберсамурай») и двадцать соответствующих ключей."
 EmoteCrateSeries1BronzeBundlePackDescription="Содержит пять ящиков (ящик с эмодзи | тип 1) и пять соответствующих ключей."
@@ -218,7 +255,7 @@ NeonEncryptedUSBSilverBundlePackDescription="Содержит десять ящ�
 NeonEncryptedUSBGoldBundlePackDescription="Содержит двадцать ящиков (ящик с зашифрованной флешкой «Неон») и двадцать соответствующих ключей."
 WeaponCollectorsUSBBronzeBundlePackDescription="Содержит пять ящиков (ящик с USB-набором сборщика оружия 1) и пять соответствующих ключей."
 WeaponCollectorsUSBSilverBundlePackDescription="Содержит десять ящиков (ящик с USB-набором сборщика оружия 1) и десять соответствующих ключей."
-WeaponCollectorsUSBGoldBundlePackDescription="Содержит двадцать ящиков (ящик с USB-набором сборщика оружия 1) и двадцать соответствующих ключей."
+WeaponCollectorsUSBGoldBundlePackDescription=Contains twenty of the Weapons Collectors Pack 1 USB crate along with twenty of its associated keys."
 NeonMKIIEncryptedUSBBronzeBundlePackDescription="Содержит пять ящиков (ящик с зашифрованной флешкой «Неон MKII») и пять соответствующих ключей."
 NeonMKIIEncryptedUSBSilverBundlePackDescription="Содержит десять ящиков (ящик с зашифрованной флешкой «Неон MKII») и десять соответствующих ключей."
 NeonMKIIEncryptedUSBGoldBundlePackDescription="Содержит двадцать ящиков (ящик с зашифрованной флешкой «Неон MKII») и двадцать соответствующих ключей."
@@ -277,9 +314,40 @@ HorzineSupplyCrateSeriesBoneyardGoldBundlePackDescription="Содержит дв
 PremiumHalloweenTicketBronzeBundlePackDescription="Содержит пять пригласительных премиум-билетов на Хеллоуин по общей низкой цене. Доступен в течение ограниченного времени!"
 PremiumHalloweenTicketSilverBundlePackDescription="Содержит десять пригласительных премиум-билетов на Хеллоуин плюс один золотой билет на Хеллоуин по общей низкой цене. Доступен в течение ограниченного времени!"
 PremiumHalloweenTicketGoldBundlePackDescription="Содержит двадцать пригласительных премиум-билетов на Хеллоуин плюс три золотых билета на Хеллоуин по общей низкой цене. Доступен в течение ограниченного времени!"
-NeonMKIIIEncryptedUSBBronzeBundlePackDescription="Содержит пять ящиков (ящик с зашифрованной флешкой «Неон MKIII») и пять соответствующих ключей."
-NeonMKIIIEncryptedUSBSilverBundlePackDescription="Содержит десять ящиков (ящик с зашифрованной флешкой «Неон MKIII») и десять соответствующих ключей."
-NeonMKIIIEncryptedUSBGoldBundlePackDescription="Содержит двадцать ящиков (ящик с зашифрованной флешкой «Неон MKIII») и двадцать соответствующих ключей."
+NeonMKIIIEncryptedUSBBronzeBundlePackDescription="Содержит пять ящиков с зашифрованной флешкой «Неон MKIII» и пять соответствующих ключей."
+NeonMKIIIEncryptedUSBSilverBundlePackDescription="Содержит десять ящиков с зашифрованной флешкой «Неон MKIII» и десять соответствующих ключей."
+NeonMKIIIEncryptedUSBGoldBundlePackDescription="Содержит двадцать ящиков с зашифрованной флешкой «Неон MKIII» и двадцать соответствующих ключей."
+SantasHelperOutfitBundleDescription="В наборе: костюм помощника Санты для мужского и женского персонажей (6 вариантов внешнего вида). Совместим с большинством персонажей."
+HorzineSupplyWeaponCrateSeries17BronzeBundlePackDescription="Содержит пять ящиков с оружием Horzine | тип 17 и пять соответствующих ключей."
+HorzineSupplyWeaponCrateSeries17SilverBundlePackDescription="Содержит десять ящиков с оружием Horzine | тип 17 и десять соответствующих ключей."
+HorzineSupplyWeaponCrateSeries17GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #17 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries3BronzeBundlePackDescription="Содержит пять ящиков с оружием Horzine | тип 3 и пять соответствующих ключей."
+HorzineSupplyWeaponCrateSeries3SilverBundlePackDescription="Содержит десять ящиков с оружием Horzine | тип 3 и десять соответствующих ключей."
+HorzineSupplyWeaponCrateSeries3GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #3 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries5BronzeBundlePackDescription="Содержит пять ящиков (ящик с оружием Horzine | тип 5) и пять соответствующих ключей."
+HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="Содержит десять ящиков (ящик с оружием Horzine | тип 5) и десять соответствующих ключей."
+HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #5 crate along with twenty of its associated keys."
+JaegerEncryptedUSBBronzeBundlePackDescription="Содержит пять ящиков с зашифрованной флешкой «Ягер» и пять соответствующих ключей."
+JaegerEncryptedUSBSilverBundlePackDescription="Содержит десять ящиков с зашифрованной флешкой «Ягер» и десять соответствующих ключей."
+JaegerEncryptedUSBGoldBundlePackDescription="Содержит двадцать ящиков с зашифрованной флешкой «Ягер» и двадцать соответствующих ключей."
+PremiumChristmasTicketBronzeBundlePackDescription="Содержит пять пригласительных премиум-билетов на Рождество по общей низкой цене. Доступен в течение ограниченного времени!"
+PremiumChristmasTicketSilverBundlePackDescription="Содержит десять пригласительных премиум-билетов на Рождество плюс один золотой билет на Рождество по общей низкой цене. Доступен в течение ограниченного времени!"
+PremiumChristmasTicketGoldBundlePackDescription="Содержит двадцать пригласительных премиум-билетов на Рождество плюс три золотых билета на Рождество по общей низкой цене. Доступен в течение ограниченного времени!"
+GrimTreatmentsWeaponBundleDescription="Включает в себя револьвер «Носорог» и ионник из обновления «Зловещие процедуры». У каждого оружия по 5 вариантов внешнего вида."
+YuletideHorrorWeaponBundleDescription="Включает в себя полицейский щит, G18 и винтовку Мосина из обновления «Рождественский ужас». У каждого оружия по 5 вариантов внешнего вида."
+JaegerWeaponSkinDoublePackBundleDescription="Включает в себя тематические динамические и стандартные варианты внешнего вида оружия «Ягер» для «Пустынного орла» и P90."
+FostersFavoritesWeaponSkinBundleDescription="Включает в себя 8 тематических вариантов внешнего вида оружия «Фостер», в том числе для AK12, AA12, M14EBR, M4, «Пустынного орла», «Бумстика», P90 и ПП Kriss."
+EmoteCrateSeries3BronzeBundlePackDescription="Содержит пять ящиков с эмодзи | тип 3 и пять соответствующих ключей."
+EmoteCrateSeries3SilverBundlePackDescription="Содержит десять ящиков с эмодзи | тип 3 и десять соответствующих ключей."
+EmoteCrateSeries3GoldBundlePackDescription="Содержит двадцать ящиков с эмодзи | тип 3 и двадцать соответствующих ключей."
+HorzineSupplyCrateSeries12BronzeBundlePackDescription="Содержит пять ящиков Horzine | тип 12 и пять соответствующих ключей."
+HorzineSupplyCrateSeries12SilverBundlePackDescription="Содержит десять ящиков Horzine | тип 12 и десять соответствующих ключей."
+HorzineSupplyCrateSeries12GoldBundlePackDescription="Содержит двадцать ящиков Horzine | тип 12 и двадцать соответствующих ключей."
+HorzineSupplyCrateCosmeticCrateSeries5BronzeBundlePackDescription="Содержит пять ящиков Horzine | тип 5 и пять соответствующих ключей."
+HorzineSupplyCrateCosmeticCrateSeries5SilverBundlePackDescription="Содержит десять ящиков Horzine | тип 5 и десять соответствующих ключей."
+HorzineSupplyCrateCosmeticCrateSeries5GoldBundlePackDescription="Содержит двадцать ящиков Horzine | тип 5 и двадцать соответствующих ключей."
+
+
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Получите новую классическую форму лондонского бобби для констебля Роба Бриара. В наборе: лондонская форма Бриара (5 скинов) и аксессуар — шлем констебля (3 скина)."
@@ -380,6 +448,8 @@ CyberpunkHelmetEventName="Шлем события «Киберпанк»"
 CyberpunkOutfitEventName="Костюм события «Киберпанк»"
 HalloweenHatName="Шляпа охотника на ведьм"
 HalloweenOutfitName="Костюм охотника на ведьм"
+SantasHelperHatName="Шапка помощника Санты"
+SantasHelperOutfitName="Наряд помощника Санты"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="Лт. Мастерсон | Киберпанк | Зеленый"
@@ -504,6 +574,8 @@ JagerhornVaultPreciousSuitDescription="С золотой отделкой всё
 MastersonVaultPreciousSuitDescription="С золотой отделкой всё выглядит лучше. Подходит Мастерсону."
 RaeVaultPreciousSuitDescription="С золотой отделкой всё выглядит лучше. Подходит Рэй."
 StrasserVaultPreciousSuitDescription="С золотой отделкой всё выглядит лучше. Подходит Штрассеру."
+SantaHatDescription="Держите котелок в тепле, пока крошите и нарезаете."
+SantaSuitDescription="Встречайте новый год… мясным фаршем из мутантов!"
 
 ;cyberpunk paint over description
 CyberPunkPaintoverDescription="Наденьте эту потрясающую униформу в стиле киберпанк, и ваш персонаж из будущего не сможет тягаться в великолепии с персонажем из настоящего."
@@ -540,7 +612,8 @@ HorzineSupplyCrateSeries14Name="Ящик Horzine | тип 14"
 HorzineSupplyCrateSeries15Name="Ящик Horzine | тип 15"
 HorzineSupplyCrateSeries16Name="Ящик Horzine | тип «Бойня»"
 EmoteCrateSeries1Name="Ящик с эмоцией | тип 1"
-EmoteCrateSeries2Name="Ящик с эмоцией | тип 3"
+EmoteCrateSeries2Name="Ящик с эмоцией | тип 2"
+EmoteCrateSeries3Name="Ящик с эмоцией | тип 3"
 DoshVaultUnlockedCrate1Name="Ящик для хранения ящиков №1"
 HorzineSupplyCrateSeriesDARName="Ящик Horzine | тип D.A.R."
 HorzineSupplyCrateSeriesLocoName="Ящик Horzine | тип «Псих»"
@@ -588,6 +661,8 @@ EmoteCrateSeries1Description="Чтобы открыть, необходим кл
 
 EmoteCrateSeries2Description="Чтобы открыть, необходим ключ от ящика с эмоцией типа 2. Содержит что-либо из следующего:<br><font color="#4b69cd">Казак</font><br><font color="#4b69cd">Волна</font><br><font color="#4b69cd">Прорыв</font><br><font color="#4b69cd">Без рук</font><br><font color="#6600a1">Прыжок вверх</font><br><font color="#6600a1">Ороситель</font><br><font color="#6600a1">Маньяк</font><br><font color="#8847ff">Бегущий человек</font><br><font color="#8847ff">Робот</font><br><font color="#8847ff">Воображаемый металл</font><br><font color="#caab05">или крайне редкую особую эмоцию.</font>"
 
+EmoteCrateSeries2Description="Открывается ключом от ящика с эмоцией типа 3. Содержит одну из следующих эмоций (редкую или лучше):<br><font color="#4b69cd">Журавлиный кулак</font><br><font color="#4b69cd">Мастер на все руки</font><br><font color="#4b69cd">Время мутантов</font><br><font color="#4b69cd">Нужна твоя энергия</font><br><font color="#4b69cd">Конечная форма</font><br><font color="#4b69cd">Самый быстрый стрелок на Западе</font><br><font color="#4b69cd">Призрачные пальцы</font><br><font color="#4b69cd">Полный успех</font><br><font color="#4b69cd">Фокус с монетой</font><br><font color="#4b69cd">Супер Фостер</font><br><font color="#caab05">или крайне редкую особую эмоцию!</font>"
+
 DoshVaultUnlockedCrate1Description="Содержит что-либо из следующего:<br>Аксессуар игрока<br>Грим<br>Вариант одежды<br>Скин оружия<br><font color="#caab05">или крайне редкий дорогой аксессуар!</font>"
 
 HorzineSupplyCrateSeriesDARDescription="Открывается ключом от ящика Horzine D.A.R. Содержит один аксессуар (редк. или лучше) для D.A.R. из след. списка:<br><font color="#4b69cd">Броня или шлем для полета P51</font><br><font color="#4b69cd">CHONNE-E 5 Броня CHONNE-E 5 (спортз./куб вр.)</font><br><font color="#4b69cd">Шлем CHONNE-E 5 (разлом/сталь)</font><br><font color="#4b69cd">Броня/шлем C3HZ (разлом)</font><br><font color="#4b69cd">Кобальтовые синие броня/ шлем C3HZ</font><br><font color="#6600a1">Броня/шлем для полета (галакт.)</font><br><font color="#6600a1">Броня/шлем для полета (крик)</font><br><font color="#6600a1">Броня CHONNE-E 5 BatCat</font><br><font color="#6600a1">Шлем CHONNE-E 5 (пар)</font><br><font color="#6600a1">Броня/шлем C3HZ (обсид.)</font><br><font color="#6600a1">Броня/шлем C3HZ (космос)</font><br><font color="#8847ff">Броня/шлем для полета (синий ангел)</font><br><font color="#8847ff">Броня/шлем для полета (Спитфайр)</font><br><font color="#8847ff">Броня/шлем CHONNE-E 5 Horzine</font><br><font color="#8847ff">Рад. броня CHONNE-E 5</font><br><font color="#8847ff">Шлем CHONNE-E 5 (закат)</font><br><font color="#8847ff">Шлем/броня C3HZ (мрам.)</font><br><font color="#caab05">или крайне редк. дор. аксессуар!</font>"
@@ -598,9 +673,11 @@ HorzineSupplyCrateSeriesCyberSamuraiDescription="Открывается ключ
 
 HorzineSupplyCrateSeriesDeityDescription="Открывается ключом от ящиков Horzine. <font color="#4b69cd">Содержит один предмет (редкий или лучше) из приведенного ниже списка.<br><font color="#4b69cd">Бронированный капюшон | Синий цвет</font><br><font color="#4b69cd">Бронированный капюшон | Зеленый цвет</font><br><font color="#4b69cd">Маска безликого | Синий цвет</font><br><font color="#4b69cd">Маска безликого | Зеленый цвет</font><br><font color="#4b69cd">Технологичный капюшон | Синий цвет</font><br>Технологичный капюшон | Зеленый цвет</font><br><font color="#4b69cd">Маска без выражения | Синий цвет</font><br><font color="#4b69cd">Маска без выражения | Зеленый цвет</font><br><font color="#6600a1">Бронированный капюшон | Красный цвет</font><br><font color="#6600a1">Маска безликого | Красный цвет</font><br><font color="#6600a1">Технологичный капюшон | Красный цвет</font><br><font color="#6600a1">Маска без выражения | Красный цвет</font><br><font color="#6600a1">Баст | Красный цвет</font><br><font color="#6600a1">Баст | Желтый цвет</font><br><font color="#6600a1">Баст | Зеленый цвет</font><br><font color="#6600a1">Баст | Синий цвет</font><br><font color="#6600a1">Собек | Красный цвет</font><br><font color="#6600a1">Собек | Желтый цвет</font><br><font color="#6600a1">Собек | Зеленый цвет</font><br><font color="#6600a1">Собек | Синий цвет</font><br><font color="#8847ff">Бронированный капюшон | Черный цвет</font><br><font color="#8847ff">Маска безликого | Черный цвет</font><br><font color="#8847ff">Маска безликого | Белый цвет</font><br><font color="#8847ff">Технологичный капюшон | Черный цвет</font><br><font color="#8847ff">Маска без выражения | Черный цвет</font><br><font color="#8847ff">Маска без выражения | Белый цвет</font><br><font color="#8847ff">Анубис | Красный цвет</font><br><font color="#8847ff">Анубис | Синий цвет</font><br><font color="#8847ff">Анубис | Зеленый цвет</font><br><font color="#8847ff">Анубис | Желтый цвет</font><br><font color="#8847ff">Ра | Красный цвет</font><br><font color="#8847ff">Ра | Синий цвет</font><br><font color="#8847ff">Ра | Зеленый цвет</font><br><font color="#8847ff">Ра | Желтый цвет</font><br><font color="#caab05">или крайне редкий дорогой аксессуар!</font>"
 
-HorzineSupplyCrateSeriesProjectHDescription="Открывается ключом от ящиков Horzine типа 1 «Проект H». Содержит один предмет (редкий или лучше) из приведенного ниже списка.<br><font color="#4b69cd">Проект H-01 | Обычный</font><br><font color="#4b69cd">Проект H-01 | Улыбка</font><br><font color="#4b69cd">Проект H-01 | Улыбка с подн. визором</font><br><font color="#4b69cd">Проект H-01 | Покерфейс</font><br><font color="#4b69cd">Проект H-01 | Покерфейс с подн. визором</font><br><font color="#4b69cd">Проект H-01 | Печальное лицо</font><br><font color="#4b69cd">Проект H-01 | Печал. лицо с подн. визором</font><br><font color="#4b69cd">Проект H-02 | Обычный</font><br><font color="#4b69cd">Проект H-02 | Улыбка</font><br><font color="#4b69cd">Проект H-02 | Улыбка с подн. визором</font><br><font color="#4b69cd">Проект H-02 | Покерфейс</font><br><font color="#4b69cd">Проект H-02 | Покерсейс с подн. визором</font><br><font color="#4b69cd">Проект H-02 | Печальное лицо</font><br><font color="#4b69cd">Проект H-02 | Печальное лицо с подн. визором</font><br><font color="#caab05">или крайне редкий дорогой аксессуар!</font>"
+HorzineSupplyCrateSeriesProjectHDescription="Requires a Project H Series #1 Horzine Supply Crate Key to open.
+Contains one rare or better of the following:<br><font color="#4b69cd">Проект H-01 | Обычный </font><br><font color="#4b69cd">Проект H-01 | Улыбка </font><br><font color="#4b69cd">Проект H-01 | Улыбка с подн. визором </font><br><font color="#4b69cd">Проект H-01 | Покерфейс </font><br><font color="#4b69cd">Проект H-01 | Покерфейс с подн. визором </font><br><font color="#4b69cd">Проект H-01 | Печальное лицо </font><br><font color="#4b69cd">Проект H-01 | Печальное лицо с подн. визором </font><br><font color="#4b69cd">Проект H-02 | Обычный </font><br><font color="#4b69cd">Проект H-02 | Улыбка </font><br><font color="#4b69cd">Проект H-02 | Улыбка с подн. визором </font><br><font color="#4b69cd">Проект H-02 | Покерфейс </font><br><font color="#4b69cd">Проект H-02 | Покерфейс с подн. визором </font><br><font color="#4b69cd">Проект H-02 | Печальное лицо </font><br><font color="#4b69cd">Проект H-02 | Печальное лицо с подн. визором </font><br><font color="#caab05">или крайне редкий дорогой аксессуар!</font>"
 
-HorzineSupplyCrateSeriesBoneyardDescription="Открывается ключом от ящика Horzine типа «Погост». Содержит что-либо из следующего (редкое или лучше):<br><font color="#4b69cd">Агония</font><br><font color="#4b69cd">Томление</font><br><font color="#4b69cd">Отчаянье </font><br><font color="#4b69cd">Горе</font><br><font color="#4b69cd">Несчастье</font><br><font color="#4b69cd">Страсть</font><br><font color="#4b69cd">Мучение</font><br><font color="#4b69cd">Пытка</font><br><font color="#caab05">или крайне редкий дорогой аксессуар!</font>"
+HorzineSupplyCrateSeriesBoneyardDescription="Requires a Series Boneyard Horzine Supply Crate Key to open.
+Contains one rare or better of the following:<br><font color="#4b69cd">Агония </font><br><font color="#4b69cd">Томление </font><br><font color="#4b69cd">Отчаянье </font><br><font color="#4b69cd">Горе </font><br><font color="#4b69cd">Несчастье </font><br><font color="#4b69cd">Страсть </font><br><font color="#4b69cd">Мучение </font><br><font color="#4b69cd">Пытка </font><br><font color="#caab05">или крайне редкий дорогой аксессуар!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Ключ от ящика Horzine | Тип 1"
@@ -621,6 +698,7 @@ HorzineSupplyCrateKeySeries15Name="Ключ от ящика Horzine | тип 15
 HorzineSupplyCrateKeySeries16Name="Ключ от ящика Horzine | тип 16"
 EmoteCrateKeySeries1Name="Ключ от ящика с эмоцией | Тип 1"
 EmoteCrateKeySeries2Name="Ключ к ящику с эмоцией | тип 2"
+EmoteCrateKeySeries3Name="Ключ к ящику с эмоцией | тип 3"
 HorzineSupplyCrateKeySeriesDARName="Ключ от ящика Horzine | тип D.A.R."
 HorzineSupplyCrateKeySeriesLocoName="Ключ от ящика Horzine | тип «Псих»"
 HorzineSupplyCrateKeySeriesCyberSamuraiName="Ключ от ящика Horzine | тип «Киберсамурай»"
@@ -647,6 +725,7 @@ HorzineSupplyCrateKeySeries15Description="Данный ключ открывае
 HorzineSupplyCrateKeySeries16Description="Данный ключ открывает только ящики Horzine типа «Бойня»."
 EmoteCrateKeySeries1Description="Данный ключ открывает только ящики с эмоцией типа 1."
 EmoteCrateKeySeries2Description="Данный ключ открывает только ящики с эмоцией т. 2."
+EmoteCrateKeySeries3Description="Данный ключ открывает только ящики с эмоцией типа 3."
 HorzineSupplyCrateKeySeriesDARDescription="Данный ключ открывает только ящики Horzine типа D.A.R."
 HorzineSupplyCrateKeySeriesLocoDescription="Данный ключ открывает только ящики Horzine типа «Псих»."
 HorzineSupplyCrateKeySeriesCyberSamuraiDescription="Данный ключ открывает только ящики Horzine типа «Киберсамурай»."
@@ -750,6 +829,8 @@ SteampunkEncryptedUSBDescription="Для расшифровки необходи
 
 BeyondHorizonEncryptedUSBDescription="Для расшифровки необходим электронный ключ «За горизонтом». Содержит один из следующих внешних видов оружия (редкий или лучше):<br><font color="#4b69cd">Статические перчатки | За горизонтом</font><br><font color="#4b69cd">Автомат HMTech-401 | За горизонтом </font><br><font color="#4b69cd">Дробовик HMTech-301 | За горизонтом </font><br><font color="#6600a1">RPG-7 | За горизонтом </font><br><font color="#6600a1">Огнемет | За горизонтом </font><br><font color="#6600a1">SCAR | За горизонтом</font><br><font color="#6600A1">ПП HMTech-201 | За горизонтом</font><br><font color="#8847ff">Kriss | За горизонтом</font><br><font color="#8847ff">M99 | За горизонтом</font><br><font color="#8847ff">Винтовка «Гелиос» | За горизонтом</font><br><font color="#8847ff">Пустынный орел | За горизонтом</font><br><font color="#caab05">или крайне редкий дорогой внешний вид!</font>"
 
+JaegerEncryptedUSBDescription="Для расшифровки необходим электронный ключ «Ягер». Содержит один из следующих вариантов внешнего вида оружия (редкий или лучше): <br><font color="#4b69cd">Kriss | Ягер</font><br><font color="#4b69cd">P90 | Ягер</font><br><font color="#4b69cd">Распылитель | Ягер</font><br><font color="#4b69cd">Гемогоблин | Ягер</font><br><font color="#6600a1">SCAR | Ягер</font><br><font color="#6600a1">Пустынный орел | Ягер</font><br><font color="#6600A1">FN FAL | Ягер</font><br><font color="#6600A1">Энергопушка | Ягер</font><br><font color="#8847ff">Четырехстволка | Ягер</font><br><font color="#8847ff">Винтовка «Гелиос» | Ягер</font><br><font color="#8847ff">Киллерватт | Ягер</font><br><font color="#caab05">или крайне редкий дорогой внешний вид!</font>"
+
 
 ;usb key names
 CyberboneUSBKeyName="Электронный ключ «Сайбербоун»"
@@ -845,6 +926,7 @@ HorzineSupplyWeaponSkinCrateSeries13Name="Ящик Horzine со скином о�
 HorzineSupplyWeaponSkinCrateSeries14Name="Ящик Horzine со скином оружия | Тип 14"
 HorzineSupplyWeaponSkinCrateSeries15Name="Ящик Horzine с внешним видом оружия | тип 15"
 HorzineSupplyWeaponSkinCrateSeries16Name="Ящик Horzine с вн. видом оружия | Тип 16"
+HorzineSupplyWeaponSkinCrateSeries17Name="Ящик Horzine с внешним видом оружия | тип 17"
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description="Чтобы открыть его, необходим ключ от ящика Horzine. Содержит один аксессуар (редкий или лучше) из следующего списка:<br><font color="#4b69cd">Баллистическая маска</font><br><font color="#4b69cd">Американский противогаз</font><br><font color="#4b69cd">Лыжная маска</font><br><font color="#4b69cd">Бейсболка</font><br><font color="#6600a1">Тактический рюкзак</font><br><font color="#6600a1">Немецкий противогаз</font><br><font color="#6600a1">Химическая маска</font><br><font color="#6600a1">Рюкзак RPG7</font><br><font color="#8847ff">Огнеметный бак M2</font><br><font color="#caab05">или крайне редкий дорогой аксессуар.</font>"
@@ -866,6 +948,8 @@ HorzineSupplyCosmeticCrateSeries3Description="Чтобы открыть его, 
 HorzineSupplyEmoteCrateSeries1Description="Открывается ключом от ящиков Horzine. Содержит что-либо из следующего (редкое или лучше):<br><font color="#4b69cd">Давай сойдем с ума</font><br><font color="#4b69cd">Тверкинг</font><br><font color="#4b69cd">Дядя Чарли</font><br><font color="#4b69cd">Причудливая волна</font><br><font color="#6600a1">Дождь из денег</font><br><font color="#6600a1">Апперкот льва</font><br><font color="#6600a1">Ритуал братания</font><br><font color="#8847ff">Пинай</font><br><font color="#8847ff">Огненный шар</font><br><font color="#8847ff">Да будет дождь</font><br><font color="#caab05">или крайне редкую особую эмоцию.</font>"
 
 HorzineSupplyEmoteCrateSeries2Description="Открывается ключом от ящиков Horzine. Содержит что-либо из следующего (редкое или лучше):<br><font color="#4b69cd">Казак</font><br><font color="#4b69cd">Волна</font><br><font color="#4b69cd">Прорыв</font><br><font color="#4b69cd">Без рук</font><br><font color="#6600a1">Прыжок вверх</font><br><font color="#6600a1">Ороситель</font><br><font color="#6600a1">Маньяк</font><br><font color="#8847ff">Бегущий человек</font><br><font color="#8847ff">Робот</font><br><font color="#8847ff">Воображаемый металл</font><br><font color="#caab05">или крайне редкую особую эмоцию.</font>"
+
+HorzineSupplyEmoteCrateSeries3Description="Открывается ключом от ящиков Horzine. Содержит одну из следующих эмоций (редкую или лучше):<br><font color="#4b69cd">Журавлиный кулак</font><br><font color="#4b69cd">Мастер на все руки</font><br><font color="#4b69cd">Время мутантов</font><br><font color="#4b69cd">Нужна твоя энергия</font><br><font color="#4b69cd">Конечная форма</font><br><font color="#4b69cd">Самый быстрый стрелок на Западе</font><br><font color="#4b69cd">Призрачные пальцы</font><br><font color="#4b69cd">Полный успех</font><br><font color="#4b69cd">Фокус с монетой</font><br><font color="#4b69cd">Супер Фостер</font><br><font color="#caab05">или крайне редкую особую эмоцию!</font>"
 
 HorzineSupplyCosmeticCrateSeries4Description="Открывается ключом от ящиков Horzine. Содержит что-либо из следующего (редкое или лучше):<br><font color="#4b69cd">Маска Кобуто</font><br><font color="#4b69cd">Маска Хання</font><br><font color="#4b69cd">Драконий противогаз</font><br><font color="#4b69cd">Императорский шлем</font><br><font color="#4b69cd">Панама</font><br><font color="#4b69cd">Сережки</font><br><font color="#4b69cd">Викторианский секрет</font><br><font color="#6600a1">Противочумная маска врача</font><br><font color="#8847ff">Самурайский респиратор</font><br><font color="#8847ff">Самурайский противогазный шлем</font><br><font color="#8847ff">Самурайская противогазная маска</font><br>"
 
@@ -903,7 +987,10 @@ HorzineSupplyWeaponSkinCrateSeries15Description="Открывается ключ
 
 HorzineSupplyWeaponSkinCrateSeries16Description="Открывается ключом от ящиков Horzine. Содержит один из следующих внешних видов оружия (редкий или лучше):<br><font color="#4b69cd">Статические перчатки | За горизонтом</font><br><font color="#4b69cd">Автомат HMTech-401 | За горизонтом </font><br><font color="#4b69cd">Дробовик HMTech-301 | За горизонтом </font><br><font color="#6600a1">RPG-7 | За горизонтом </font><br><font color="#6600a1">Огнемет | За горизонтом </font><br><font color="#6600a1">SCAR | За горизонтом</font><br><font color="#6600A1">ПП HMTech-201 | За горизонтом</font><br><font color="#8847ff">Kriss | За горизонтом</font><br><font color="#8847ff">M99 | За горизонтом</font><br><font color="#8847ff">Винтовка «Гелиос» | За горизонтом</font><br><font color="#8847ff">Пустынный орел | За горизонтом</font><br><font color="#caab05">или крайне редкий дорогой внешний вид!</font>"
 
-HorzineSupplyCosmeticCrateSeries11Description="Открывается ключом от ящиков Horzine. Содержит что-либо из следующего (редкое или лучше):<br><font color="#4b69cd">Агония</font><br><font color="#4b69cd">Томление</font><br><font color="#4b69cd">Отчаянье </font><br><font color="#4b69cd">Горе</font><br><font color="#4b69cd">Несчастье</font><br><font color="#4b69cd">Страсть</font><br><font color="#4b69cd">Мучение</font><br><font color="#4b69cd">Пытка</font><br><font color="#caab05">или крайне редкий дорогой аксессуар!</font>"
+HorzineSupplyCosmeticCrateSeries11Description="Requires a  Horzine Supply Crate Key to open.
+Contains one rare or better of the following:<br><font color="#4b69cd">Агония </font><br><font color="#4b69cd">Томление </font><br><font color="#4b69cd">Отчаянье </font><br><font color="#4b69cd">Горе </font><br><font color="#4b69cd">Несчастье </font><br><font color="#4b69cd">Страсть </font><br><font color="#4b69cd">Мучение </font><br><font color="#4b69cd">Пытка </font><br><font color="#caab05">или крайне редкий дорогой аксессуар!</font>"
+
+HorzineSupplyWeaponSkinCrateSeries17Description="Открывается ключом от ящиков Horzine. Содержит один из следующих вариантов внешнего вида оружия (редкий или лучше): <br><font color="#4b69cd">Kriss | Ягер</font><br><font color="#4b69cd">P90 | Ягер</font><br><font color="#4b69cd">Распылитель | Ягер</font><br><font color="#4b69cd">Гемогоблин | Ягер</font><br><font color="#6600a1">SCAR | Ягер</font><br><font color="#6600a1">Пустынный орел | Ягер</font><br><font color="#6600A1">FN FAL | Ягер</font><br><font color="#6600A1">Энергопушка | Ягер</font><br><font color="#8847ff">Четырехстволка | Ягер</font><br><font color="#8847ff">Винтовка «Гелиос» | Ягер</font><br><font color="#8847ff">Киллерватт | Ягер</font><br><font color="#caab05">или крайне редкий дорогой внешний вид!</font>"
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="Ключ от ящика Horzine"
@@ -1235,6 +1322,7 @@ AA12SteampunkFieldTestedName="AA12 | Стимпанк | Испытанный"
 AA12SteampunkMintName="AA12 | Стимпанк | Новый"
 AA12SteampunkPreciousName="AA12 | Стимпанк | Дорогая вещь"
 AA12DragonKoiPreciousName="AA12 | Дракон и карп | Дорогая вещь"
+AA12FostersFavoritesPreciousName="AA12 | Любимцы Фостера | Дорогая вещь"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Внешний вид: Новый | Нет вещи, которую нельзя украсить парочкой новых стволов. Это как розы из бекона."
@@ -1324,6 +1412,7 @@ AK12SynthwaveFieldTestedName="AK-12 | Синтвейв | Испытанный"
 AK12SynthwaveBattleScarredName="AK-12 | Синтвейв | Потертый"
 AK12PrestigePreciousName="AK-12 | Престиж | Дорогая вещь"
 AK12DragonKoiPreciousName="AK-12 | Дракон и карп | Дорогая вещь"
+AK12FostersFavoritesPreciousName="AK-12 | Любимцы Фостера | Дорогая вещь"
 
 ;AR15 Descriptions
 AR15MintDescription="Внешний вид: Новый | Не будь шалопаем, стреляй по врагам!"
@@ -1430,6 +1519,7 @@ BoomstickHorzineFirstEncounterFieldTestedName="Бумстик | Horzine: пер�
 BoomstickHorzineFirstEncounterBattleScarredName="Бумстик | Horzine: первый контакт | Потертый" 
 BoomstickPrestigePreciousName="Бумстик | Престиж | Дорогая вещь"
 BoomstickDragonKoiPreciousName="Бумстик | Дракон и карп | Дорогая вещь"
+BoomstickFostersFavoritesPreciousName="Бумстик | Любимцы Фостера | Дорогая вещь"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="Внешний вид: Новый | Ручной огнемет кустарного производства. Не рекомендуется использовать в домашних условиях."
@@ -1576,6 +1666,11 @@ DesertEagleSteampunkFieldTestedName="Пустынный орел | Стимпа�
 DesertEagleSteampunkMintName="Пустынный орел | Стимпанк | Новый | Новый"
 DesertEagleSteampunkPreciousName="Пустынный орел | Стимпанк | Дорогой"
 DesertEagleDragonKoiPreciousName="Пустынный орел | Дракон и карп | Дорогая вещь"
+DesertEagleJaegerMintName="Пустынный орел | Ягер | Новый"
+DesertEagleJaegerFieldTestedName="Пустынный орел | Ягер | Испытанный"
+DesertEagleJaegerBattleScarredName="Пустынный орел | Ягер | Потертый"
+DesertEagleJaegerDynamicName="Пустынный орел | Ягер | Динамический"
+DesertEagleFostersFavoritesPreciousName="Пустынный орел | Любимцы Фостера | Дорогая вещь"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Внешний вид: Новый | Когда двойного веселья недостаточно, давайте устроим вчетверо больше веселья!"
@@ -1588,6 +1683,11 @@ DoomstickNeonMintName="Динамитная шашка | Неон | Новый"
 DoomstickNeonFieldTestedName="Динамитная шашка | Неон | Испытанный" 
 DoomstickNeonBattleScarredName="Динамитная шашка | Неон | Потертый" 
 DoomstickNeonRGBPreciousName="Динам. шашка | Кр.-сине-зел. неон | Дор. вещь" 
+DoomstickJaegerMintName="Четырехстволка | Ягер | Новая"
+DoomstickJaegerFieldTestedName="Четырехстволка | Ягер | Испытанная"
+DoomstickJaegerBattleScarredName="Четырехстволка | Ягер | Потертая"
+DoomstickJaegerDynamicName="Четырехстволка | Ягер | Динамическая"
+DoomstickVaultVoshPreciousName="Четырехстволка | Хранилище | Тугрики | Дорогая вещь"
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="Внешний вид: Новый | Дробовик, стреляющий зажигательными патронами «Дыхание дракона». Смертоносный и жутко красивый."
@@ -1779,6 +1879,10 @@ HemogoblinNeonFieldTestedName="Гемогоблин | Неон | Испытан�
 HemogoblinNeonBattleScarredName="Гемогоблин | Неон | Потертый"
 HemogoblinNeonRGBPreciousName="Гемогоблин | Красно-зелено-синий неон | Дорогая вещь"
 HemogoblinVaultVoshPreciousName="Гемогоблин | Хр. | Тугрики | Дор. вещь"
+HemogoblinJaegerMintName="Гемогоблин | Ягер | Новый"
+HemogoblinJaegerFieldTestedName="Гемогоблин | Ягер | Испытанный"
+HemogoblinJaegerBattleScarredName="Гемогоблин | Ягер | Потертый"
+HemogoblinJaegerDynamicName="Гемогоблин | Ягер | Динамический"
 
 ;HK UMP Descriptions
 HKUMPMintDescription="Внешний вид: Новый | Новое приобретение семьи пистолетов-пулеметов. Возможно, это их дядя? Есть ли вообще семьи у пистолетов-пулеметов?"
@@ -1978,6 +2082,7 @@ HMTech501GrenadeRifleNeonMintName="Винтовка-гранатомет HMTech-
 HMTech501GrenadeRifleNeonFieldTestedName="Винтовка-гранатомет HMTech-501 | Неон | Испыт."
 HMTech501GrenadeRifleNeonBattleScarredName="Винтовка-гранатомет HMTech-501 | Неон | Потертая"
 HMTech501GrenadeRifleNeonRGBPreciousName="Винт.-гранат. HMTech-501 | К.-с.-з. неон | Д. в."
+HMTech501GrenadeLauncherVaultVoshPreciousName="Винтовка-гранатомет HMTech-501 | Хранилище | Тугрики | Дорогая вещь"
 
 ;Husk Cannon Descriptions
 HuskCannonMintDescription="Внешний вид: Новый | Официальная версия осколочной пушки от Horzine. Теперь 95% гарантии, что пушка не взорвется!"
@@ -2131,6 +2236,11 @@ KrissBeyondHorizonFieldTestedName="Kriss | За горизонтом | Испы�
 KrissBeyondHorizonBattleScarredName="Kriss | За горизонтом | Потертый"
 KrissBeyondHorizonSpaceEliteName="Kriss | За горизонтом | Космическая элита"
 KrissDragonKoiPreciousName="Kriss | Дракон и карп | Дорогая вещь"
+KrissJaegerMintName="Kriss | Ягер | Новый"
+KrissJaegerFieldTestedName="Kriss | Ягер | Испытанный"
+KrissJaegerBattleScarredName="Kriss | Ягер | Потертый"
+KrissJaegerDynamicName="Kriss | Ягер | Динамический"
+KrissFostersFavoritesPreciousName="Kriss | Любимцы Фостера | Дорогая вещь"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Внешний вид: Новый | SA80 был стандартным оружием британской армии, пока ее... не съели."
@@ -2208,6 +2318,7 @@ M14EBRNeonRGBPreciousName="M14EBR | Красно-зелено-синий нео�
 M14EBRVaultVoshPreciousName="M14EBR | Хранилище | Тугрики | Дорогая вещь"
 M14EBRPrestigePreciousName="M14EBR | Престиж | Дорогая вещь"
 M14EBRDragonKoiPreciousName="M14EBR | Дракон и карп | Дорогая вещь"
+M14EBRFostersFavoritesPreciousName="M14EBR | Любимцы Фостера | Дорогая вещь"
 
 ;M16M203 Descriptions
 M16M203MintDescription="Внешний вид: Новый | Для тех, кому трудно сделать выбор между пулями и взрывчаткой."
@@ -2298,6 +2409,7 @@ M4NeonBattleScarredName="M4 | Неон | Потертый"
 M4NeonRGBPreciousName="M4 | Красно-сине-зеленый неон | Дорогая вещь"
 M4PrestigePreciousName="M4 | Престиж | Дорогая вещь"
 M4DragonKoiPreciousName="M4 | Дракон и карп | Дорогая вещь"
+M4FostersFavoritesPreciousName="M4 | Любимцы Фостера | Дорогая вещь"
 
 ;M79 Descriptions
 M79MintDescription="Внешний вид: Новый | Взрыватель активируется спустя некоторое время, чтобы избежать поражения стрелка."
@@ -2446,6 +2558,10 @@ MicrowaveGunNeonRGBPreciousName="Микроволновая пушка | Кра�
 MicrowaveGunVaultVoshPreciousName="Энергопушка | Хран. | Тугр. | Дор. вещь"
 MicrowaveGunPrestigePreciousName="Микроволновая пушка | Престиж | Дорогая вещь"
 MicrowaveGunDragonKoiPreciousName="Микроволновая пушка | Дракон и карп | Дорогая вещь"
+MicrowaveGunJaegerMintName="Энергопушка | Ягер | Новая"
+MicrowaveGunJaegerFieldTestedName="Энергопушка | Ягер | Испытанная"
+MicrowaveGunJaegerBattleScarredName="Энергопушка | Ягер | Потертая"
+MicrowaveGunJaegerDynamicName="Энергопушка | Ягер | Динамическая"
 
 ;MP5RAS Descriptions
 MP5RASMintDescription="Внешний вид: Новый | Новейшая версия одного из самых распространенных в мире пистолетов-пулеметов."
@@ -2532,6 +2648,11 @@ P90NeonMintName="P90 | Неон | Новый"
 P90NeonRGBPreciousName="P90 | Красно-сине-зел. неон | Дор. вещь"
 P90VaultVoshPreciousName="P90 | Хранилище | Тугрики | Дорогая вещь"
 P90DragonKoiPreciousName="P90 | Дракон и карп | Дорогая вещь"
+P90JaegerMintName="P90 | Ягер | Новый"
+P90JaegerFieldTestedName="P90 | Ягер | Испытанный"
+P90JaegerBattleScarredName="P90 | Ягер | Потертый"
+P90JaegerDynamicName="P90 | Ягер | Динамический"
+P90FostersFavoritesPreciousName="P90 | Любимцы Фостера | Дорогая вещь"
 
 ;Pulverizer Descriptions
 PulverizerMintDescription="Внешний вид: Новый | Отличная идея: скрестить дробовик с кувалдой."
@@ -2567,6 +2688,10 @@ PulverizerBeyondHorizonFieldTestedName="Распылитель | За гориз
 PulverizerBeyondHorizonBattleScarredName="Распылитель | За горизонтом | Потертый"
 PulverizerBeyondHorizonSpaceEliteName="Распылитель | За горизонтом | Космическая элита"
 PulverizerDragonKoiPreciousName="Распылитель | Дракон и карп | Дорогая вещь"
+PulverizerJaegerMintName="Распылитель | Ягер | Новый"
+PulverizerJaegerFieldTestedName="Распылитель | Ягер | Испытанный"
+PulverizerJaegerBattleScarredName="Распылитель | Ягер | Потертый"
+PulverizerJaegerDynamicName="Распылитель | Ягер | Динамический"
 
 ;Railgun Descriptions
 RailgunMintDescription="Внешний вид: Новый | Разгоняемая с помощью магнитов до огромной скорости цельностальная болванка прошивает мутантов, как бумагу."
@@ -2698,6 +2823,10 @@ ScarBeyondHorizonFieldTestedName="SCAR | За горизонтом | Испыт�
 ScarBeyondHorizonBattleScarredName="SCAR | За горизонтом | Потертый"
 ScarBeyondHorizonSpaceEliteName="SCAR | За горизонтом | Космическая элита"
 ScarDragonKoiPreciousName="SCAR | Дракон и карп | Дорогая вещь"
+ScarJaegerMintName="SCAR | Ягер | Новый"
+ScarJaegerFieldTestedName="SCAR | Ягер | Испытанный"
+ScarJaegerBattleScarredName="SCAR | Ягер | Потертый"
+ScarJaegerDynamicName="SCAR | Ягер | Динамический"
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="Внешний вид: Новый | Универсальное оружие с боеприпасами бризантного действия, способными наводиться на несколько целей сразу."
@@ -2714,6 +2843,7 @@ SeekerSixBluefireMintName="Seeker Six | Синий огонь | Новый"
 SeekerSixBluefireFieldTestedName="Seeker Six | Синий огонь | Испытанный" 
 SeekerSixBluefireBattleScarredName="Seeker Six | Синий огонь | Потертый" 
 SeekerSixNeonRGBPreciousName="Seeker Six | Красно-зелено-синий неон | Дорогая вещь" 
+SeekerSixVaultVoshPreciousName="Seeker Six | Хранилище | Тугрики | Дорогая вещь"
 
 ;SG500 Descriptions
 SG500MintDescription="Внешний вид: Новый | Помповик Mossberg SG 500 с пистолетной рукояткой отлично подходит, чтобы косить мутантов в тесном помещении. Просто и эффективно."
@@ -2993,6 +3123,7 @@ MKB42NeonMintName="MKB42H | Неон | Новый"
 MKB42NeonFieldTestedName="MKB42H | Неон | Испытанный"
 MKB42NeonBattleScarredName="MKB42H | Неон | Потертый"
 MKB42NeonRGBPreciousName="MKB42H | Красно-сине-зеленый неон | Дорогая вещь"
+MKB42VaultVoshPreciousName="MKB42H | Хранилище | Тугрики | Дорогая вещь"
 
 ;TommyGun Descriptions
 TommyGunMintDescription="Внешний вид: Новый | Кое-кто называл его Чикагской печатной машинкой, потому что с его помощью можно расписаться на телах врагов."
@@ -3026,6 +3157,10 @@ LaserCutterBeyondHorizonBattleScarredName="Киллерватт | За гори�
 LaserCutterBeyondHorizonSpaceEliteName="Киллерватт | За горизонтом | Космическая элита"
 LaserCutterVaultVoshPreciousName="Киллерватт | Хранилище | Тугрики | Дорогая вещь"
 LaserCutterDragonKoiPreciousName="Киллерватт | Дракон и карп | Дорогая вещь"
+LaserCutterJaegerMintName="Киллерватт | Ягер | Новый"
+LaserCutterJaegerFieldTestedName="Киллерватт | Ягер | Испытанный"
+LaserCutterJaegerBattleScarredName="Киллерватт | Ягер | Потертый"
+LaserCutterJaegerDynamicName="Киллерватт | Ягер | Динамический"
 
 ;FNFAL Descriptions
 FNFALMintDescription="Внешний вид: Новый | Можно сказать, что это оружие — не полный ФЭЙЛ... да, плохой каламбур вышел."
@@ -3039,6 +3174,10 @@ FNFALNeonFieldTestedName="FN FAL | Неон | Испытанный"
 FNFALNeonBattleScarredName="FN FAL | Неон | Потертый"
 FNFALNeonRGBPreciousName="FN FAL | Красно-сине-зеленый неон | Дор. вещь"
 FNFALVaultVoshPreciousName="FN FAL | Хранилище | Тугрики | Дорогая вещь"
+FNFALJaegerMintName="FN FAL | Ягер | Новый"
+FNFALJaegerFieldTestedName="FN FAL | Ягер | Испытанный"
+FNFALJaegerBattleScarredName="FN FAL | Ягер | Потертый"
+FNFALJaegerDynamicName="FN FAL | Ягер | Динамический"
 
 ;FireAxe Descriptions
 FireAxeMintDescription="Внешний вид: Новый | Неужели вы и правда будете тушить пожары этим топором?"
@@ -3102,6 +3241,10 @@ MIcrowaveAssaultBeyondHorizonFieldTestedName="Винтовка «Гелиос» 
 MIcrowaveAssaultBeyondHorizonBattleScarredName="Винтовка «Гелиос» | За горизонтом | Потертый"
 MIcrowaveAssaultBeyondHorizonSpaceEliteName="Винтовка «Гелиос» | За горизонтом | Космическая элита"
 MIcrowaveAssaultVaultVoshPreciousName="Винтовка «Гелиос» | Хранилище | Тугрики | Дорогая вещь"
+MIcrowaveAssaultJaegerMintName="Винтовка «Гелиос» | Ягер | Новая"
+MIcrowaveAssaultJaegerFieldTestedName="Винтовка «Гелиос» | Ягер | Испытанная"
+MIcrowaveAssaultJaegerBattleScarredName="Винтовка «Гелиос» | Ягер | Потертая"
+MIcrowaveAssaultJaegerDynamicName="Винтовка «Гелиос» | Ягер | Динамическая"
 
 ;Rhino Descriptions
 RhinoMintDescription="Внешний вид: Новый | Дырявит мутантов, как сыр."
@@ -3117,6 +3260,31 @@ RhinoLightningName="Носорог | Молния | Дорогая вещь"
 RhinoLuciferName="Носорог | Люцифер | Дорогая вещь"
 RhinoRoyalShockName="Носорог | Шок-Роял | Дорогая вещь"
 RhinoShatterName="Носорог | Дрожь | Дорогая вещь"
+
+;Mosin Descriptions
+MosinNagantPreciousDescription="Внешний вид: дорогой | Близко ли, далеко ли враг — вы его гарантированно продырявите."
+
+;Mosin Names
+MosinNagantStandardPreciousName="Винтовка Мосина | Стандартная | Дорогая вещь"
+MosinNagantCamouflagePreciousName="Винтовка Мосина | Камуфляж | Дорогая вещь"
+MosinNagantFiligreePreciousName="Винтовка Мосина | Филигрань | Дорогая вещь"
+MosinNagantFiligreeSilverPreciousName="Винтовка Мосина | Серебряная филигрань | Дорогая вещь"
+MosinNagantGreenPreciousName="Винтовка Мосина | Зеленая | Дорогая вещь"
+MosinNagantWinterPreciousName="Винтовка Мосина | Зимняя | Дорогая вещь"
+
+;RiotShield Descriptions
+RiotShieldandG18PreciousDescription="Внешний вид: дорогой | Пригодится вашим друзьям не меньше, чем вам, — если только они все не умрут за вами."
+
+;RiotShield Names
+RiotShieldandG18StandardPreciousName="Полицейский щит и G18 | Стандартные | Дорогая вещь"
+RiotShieldandG18DesertPreciousName="Полицейский щит и G18 | Пустынные | Дорогая вещь"
+RiotShieldandG18ForestPreciousName="Полицейский щит и G18 | Лесные | Дорогая вещь"
+RiotShieldandG18VIGILPreciousName="Полицейский щит и G18 | VIGIL | Дорогая вещь"
+RiotShieldandG18WinterPreciousName="Полицейский щит и G18 | Зимние | Дорогая вещь"
+RiotShieldandG18SWATPreciousName="Полицейский щит и G18 | SWAT | Дорогая вещь"
+
+;Dynamic Descriptions
+DynamicPreciousDescription="Внешний вид: дорогой динамический | Динамический внешний вид показывает следующие параметры на самом оружии: остаток патронов и точность на каждый магазин"
 
 [CosmeticSection]
 
@@ -4277,16 +4445,16 @@ DARC3HZHelmetMarbleName="D.A.R. | Шлем C3HZ | Мрамор"
 DARC3HZHelmetObsidianName="D.A.R. | Шлем C3HZ | Обсидиан"
 DARC3HZHelmetPreciousName="D.A.R. | Шлем C3HZ | Дор. вещь"
 DARC3HZHelmetSpaceName="D.A.R. | Шлем C3HZ | Космос"
-DARClassicArmorBloodyName="D.A.R. | Классическая броня | Кровавая"
-DARClassicArmorLoaderName="D.A.R. | Классическая броня | Погрузчик"
-DARClassicArmorPreciousName="D.A.R. | Классическая броня | Дор. вещь"
-DARClassicArmorScullyName="D.A.R. | Классическая броня | Черепа"
-DARClassicArmorStandardName="D.A.R. | Классическая броня | Стандартная"
-DARClassicHelmetBloodyName="D.A.R. | Классический шлем | Кровавый"
-DARClassicHelmetLoaderName="D.A.R. | Классический шлем | Погрузчик"
-DARClassicHelmetPreciousName="D.A.R. | Классический шлем | Дор. вещь"
-DARClassicHelmetScullyName="D.A.R. | Классический шлем | Черепа"
-DARClassicHelmetStandardName="D.A.R. | Классический шлем | Стандартный"
+DARClassicArmorBloodyName="D.A.R. | Classic Armor | Bloody
+DARClassicArmorLoaderName="D.A.R. | Classic Armor | Loader
+DARClassicArmorPreciousName="D.A.R. | Classic Armor | Precious
+DARClassicArmorScullyName="D.A.R. | Classic Armor | Scully
+DARClassicArmorStandardName="D.A.R. | Classic Armor | Standard
+DARClassicHelmetBloodyName="D.A.R. | Classic Helmet | Bloody
+DARClassicHelmetLoaderName="D.A.R. | Classic Helmet | Loader
+DARClassicHelmetPreciousName="D.A.R. | Classic Helmet | Precious
+DARClassicHelmetScullyName="D.A.R. | Classic Helmet | Scully
+DARClassicHelmetStandardName="D.A.R. | Classic Helmet | Standard
 
 ;Steampunk Cosmetic Names
 SteampunkTopHatBlueName="Стимпанк | Цилиндр | Синий цвет"
@@ -4743,7 +4911,7 @@ HalloweenPrivatePauldronPreciousName="Хеллоуин | Наплечник ря
 HalloweenOfficerPauldronIronName="Хеллоуин | Наплечник офицера | Железо"
 HalloweenOfficerPauldronSilverName="Хеллоуин | Наплечник офицера | Серебристый цвет"
 HalloweenOfficerPauldronPreciousName="Хеллоуин | Наплечник офицера | Дорогая вещь"
-HalloweenPilgrimHatBlackName="Хеллоуин | Шляпа пилигрима | черный"
+HalloweenPilgrimHatBlackName="Хеллоуин | Шляпа пилигрима | Черный цвет"
 HalloweenPilgrimHatPurpleName="Хеллоуин | Шляпа пилигрима | Пурпурный цвет"
 HalloweenPilgrimHatPreciousName="Хеллоуин | Шляпа пилигрима | Дорогая вещь"
 HalloweenBiohazardHatBlackName="Хеллоуин | Шляпа «Биоугроза» | Черный цвет"
@@ -4752,13 +4920,13 @@ HalloweenBiohazardHatPreciousName="Хеллоуин | Шляпа «Биоугр�
 HalloweenMonsterWitchHatBrownName="Хеллоуин | Шляпа ведьмы-монстра | Коричневый цвет"
 HalloweenMonsterWitchHatRedName="Хеллоуин | Шляпа ведьмы-монстра | Красный цвет"
 HalloweenMonsterWitchHatPreciousName="Хеллоуин | Шляпа ведьмы-монстра | Дорогая вещь"
-HalloweenPumpkinClawJawOrangeName="Хеллоуин | Челюсть тыквы | Оранжевый"
+HalloweenPumpkinClawJawOrangeName="Хеллоуин | Челюсть тыквы | Orange"
 HalloweenPumpkinClawJawPurpleName="Хеллоуин | Челюсть тыквы | Пурпурный цвет"
 HalloweenPumpkinClawJawPreciousName="Хеллоуин | Челюсть тыквы | Дорогая вещь"
 HalloweenBatCatBackpackPurpleName="Хеллоуин | Рюкзак «Бэткэт» | Пурпурный цвет"
 HalloweenBatCatBackpackGreenName="Хеллоуин | Рюкзак «Бэткэт» | Зеленый цвет"
 HalloweenBatCatBackpackPreciousName="Хеллоуин | Рюкзак «Бэткэт» | Дорогая вещь"
-HalloweenPumpkinHatOrangeName="Хеллоуин | Шляпа тыквы | Оранжевый"
+HalloweenPumpkinHatOrangeName="Хеллоуин | Шляпа тыквы | Orange"
 HalloweenPumpkinHatPurpleName="Хеллоуин | Шляпа тыквы | Пурпурный цвет"
 HalloweenPumpkinHatPreciousName="Хеллоуин | Шляпа тыквы | Дорогая вещь"
 HalloweenWebShoulderpadWhiteName="Хеллоуин | Наплечник из паутины | Белый цвет"
@@ -4779,6 +4947,50 @@ HalloweenStitchedMouthMaskPreciousName="Хеллоуин | Маска с заш�
 HalloweenGarlicClotBackpackBlackName="Хеллоуин | Рюкзак «Чеснок» | Черный цвет"
 HalloweenGarlicClotBackpackPurpleName="Хеллоуин | Рюкзак «Чеснок» | Пурпурный цвет"
 HalloweenGarlicClotBackpackPreciousName="Хеллоуин | Рюкзак «Чеснок» | Дорогая вещь"
+
+;Christmas 2019 Cosmetic Names
+ChristmasKrampusMaskRedName="Рождество | Маска Крампуса | Красный цвет"
+ChristmasKrampusMaskGreenName="Рождество | Маска Крампуса | Зеленый цвет"
+ChristmasKrampusMaskPreciousName="Рождество | Маска Крампуса | Дорогая вещь"
+ChristmasGorefastMaskGingerbreadName="Рождество | Маска Берсеркера | Пряник"
+ChristmasGorefastMaskStrawberryFrostedName="Рождество | Маска Берсеркера | Замороженная клубника"
+ChristmasGorefastMaskPreciousName="Рождество | Маска Берсеркера | Дорогая вещь"
+ChristmasClotHatGreenName="Рождество | Шапка эльфа | Зеленый цвет"
+ChristmasClotHatRedName="Рождество | Шапка эльфа | Красный цвет"
+ChristmasClotHatPreciousName="Рождество | Шапка эльфа | Дорогая вещь"
+ChristmasTopHatRedName="Рождество | Цилиндр | Красный цвет"
+ChristmasTopHatGreenName="Рождество | Цилиндр | Зеленый цвет"
+ChristmasTopHatPreciousName="Рождество | Цилиндр | Дорогая вещь"
+ChristmasSnowmanCapIceName="Рождество | Кепка снеговика | Лед"
+ChristmasSnowmanCapMagmaName="Рождество | Кепка снеговика | Магма"
+ChristmasSnowmanCapPreciousName="Рождество | Кепка снеговика | Дорогая вещь"
+ChristmasMonsterCapGreenName="Рождество | Шапка монстра | Зеленый цвет"
+ChristmasMonsterCapRedName="Рождество | Шапка монстра | Красный цвет"
+ChristmasMonsterCapPreciousName="Рождество | Шапка монстра | Дорогая вещь"
+ChristmasScrakeMaskBrownName="Рождество | Маска мясника | Коричневый цвет"
+ChristmasScrakeMaskBlackName="Рождество | Маска мясника | Черный цвет"
+ChristmasScrakeMaskPreciousName="Рождество | Маска мясника | Дорогая вещь"
+ChristmasReindeerBackpackBrownName="Рождество | Рюкзак «Олень» | Коричневый цвет"
+ChristmasReindeerBackpackDottedName="Рождество | Рюкзак «Олень» | В крапинку"
+ChristmasReindeerBackpackPreciousName="Рождество | Рюкзак «Олень» | Дорогая вещь"
+ChristmasTreeBackpackRedName="Рождество | Рюкзак «Дерево» | Красный цвет"
+ChristmasTreeBackpackGreenName="Рождество | Рюкзак «Дерево» | Зеленый цвет"
+ChristmasTreeBackpackPreciousName="Рождество | Рюкзак «Дерево» | Дорогая вещь"
+ChristmasGingerbreadHatOriginalName="Рождество | Пряничная шапка | Оригинальная"
+ChristmasGingerbreadHatStrawberryFrostedName="Рождество | Пряничная шапка | Замороженная клубника"
+ChristmasGingerbreadHatPreciousName="Рождество | Пряничная шапка | Дорогая вещь"
+ChristmasNiceSantaMaskRedName="Рождество | Маска доброго Санты | Красный цвет"
+ChristmasNiceSantaMaskGreenName="Рождество | Маска доброго Санты | Зеленый цвет"
+ChristmasNiceSantaMaskPreciousName="Рождество | Маска доброго Санты | Дорогая вещь"
+ChristmasNaughtySantaMaskDarkGreyName="Рождество | Маска злого Санты | Темно-серый цвет"
+ChristmasNaughtySantaMaskBloodrushName="Рождество | Маска злого Санты | Кровавая гонка"
+ChristmasNaughtySantaMaskPreciousName="Рождество | Маска злого Санты | Дорогая вещь"
+ChristmasSnowmanHelmetIceName="Рождество | Каска снеговика | Лед"
+ChristmasSnowmanHelmetMagmaName="Рождество | Каска снеговика | Магма"
+ChristmasSnowmanHelmetPreciousName="Рождество | Каска снеговика | Дорогая вещь"
+ChristmasMistletoeClotBackpackRedName="Рождество | Рюкзак «Омела» | Красный цвет"
+ChristmasMistletoeClotBackpackGreenName="Рождество | Рюкзак «Омела» | Зеленый цвет"
+ChristmasMistletoeClotBackpackPreciousName="Рождество | Рюкзак «Омела» | Дорогая вещь"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Устанавливается в меню снаряжения; подходит большинству персонажей. Это эксклюзивный предмет с мероприятия «Летний аттракцион». Можно переработать в 1 билет на аттракцион."
@@ -4975,6 +5187,26 @@ ManiacDeluxeEmoteName="Маньяк (особая) | Эмотикон"
 TheRunningManDeluxeEmoteName="Бегущий человек (особая) | Эмотикон"
 TheRobotDeluxeEmoteName="Робот (особая) | Эмотикон"
 AirMetalDeluxeEmoteName="Воображаемый металл (особая) | Эмотикон"
+CraneFistEmoteName="Журавлиный кулак | Эмодзи"
+UniversalMasteryEmoteName="Мастер на все руки | Эмодзи"
+ZedTimeEmoteName="Время мутантов | Эмодзи"
+NeedYourEnergyEmoteName="Нужна твоя энергия | Эмодзи"
+FinalFormEmoteName=Final Form | Emote"
+FastestGunInTheWestEmoteName="Самый быстрый стрелок на Западе | Эмодзи"
+SpiritFingersEmoteName="Призрачные пальцы | Эмодзи"
+HomerunEmoteName="Полный успех | Эмодзи"
+CointTrickEmoteName="Фокус с монетой | Эмодзи"
+MagicFosterEmoteName="Супер Фостер | Эмодзи"
+CraneFistDeluxeEmoteName="Журавлиный кулак (особая) | Эмодзи"
+UniversalMasteryDeluxeEmoteName="Мастер на все руки (особая) | Эмодзи"
+ZedTimeDeluxeEmoteName="Время мутантов (особая) | Эмодзи"
+NeedYourEnergyDeluxeEmoteName="Нужна твоя энергия (особая) | Эмодзи"
+FinalFormDeluxeEmoteName="Конечная форма (особая) | Эмодзи"
+FastestGunInTheWestDeluxeEmoteName="Самый быстрый стрелок на Западе (особая) | Эмодзи"
+SpiritFingersDeluxeEmoteName="Призрачные пальцы (особая) | Эмодзи"
+HomerunDeluxeEmoteName="Полный успех (особая) | Эмодзи"
+CointTrickDeluxeEmoteName="Фокус с монетой (особая) | Эмодзи"
+MagicFosterDeluxeEmoteName="Супер Фостер (особая) | Эмодзи"
 
 ;Emote Descriptions
 
@@ -5018,6 +5250,26 @@ ManiacDeluxeEmoteDescription="И вот бы деньжат, и еще бы де
 TheRunningManDeluxeEmoteDescription="Этот танец никогда не выйдет из моды! НИКОГДА! Можно переработать в исключительный косметический материал."
 TheRobotDeluxeEmoteDescription="Домо аригато, г-н Робото. Можно переработать в исключительный косметический материал."
 AirMetalDeluxeEmoteDescription="Смотри, как я умею! И-И-И-И-И-НЕ-НЕ-НЕТ! Можно переработать в исключительный косметический материал."
+CraneFistEmoteDescription="Боевой стиль, единственная слабость которого в том, что мы на Земле. Можно переработать в редкий косметический материал."
+UniversalMasteryEmoteDescription="Сила продается отдельно. Можно переработать в редкий косметический материал."
+ZedTimeEmoteDescription="Станьте мастером забвения, как будто сейчас 1999 год. Можно переработать в редкий косметический материал."
+NeedYourEnergyEmoteDescription="Дело не только в моей силе. Можно переработать в редкий косметический материал."
+FinalFormEmoteDescription="Вперед, дальше и дальше. Можно переработать в редкий косметический материал."
+FastestGunInTheWestEmoteDescription="Ковбой не должен стрелять первым. Можно переработать в редкий косметический материал."
+SpiritFingersEmoteDescription="Пиу, пиу, пиу… пиу-пиу. Можно переработать в редкий косметический материал."
+HomerunEmoteDescription="Неизменно полный успех… иногда. Можно переработать в редкий косметический материал."
+CointTrickEmoteDescription="Дешевый фокус, но эффективный. Можно переработать в редкий косметический материал."
+MagicFosterEmoteDescription="Для тех, кому наплевать на правила. Можно переработать в редкий косметический материал."
+CraneFistDeluxeEmoteDescription="Боевой стиль, единственная слабость которого в том, что мы на Земле. Можно переработать в исключительный косметический материал."
+UniversalMasteryDeluxeEmoteDescription="Сила продается отдельно. Можно переработать в исключительный косметический материал."
+ZedTimeDeluxeEmoteDescription="Станьте мастером забвения, как будто сейчас 1999 год. Можно переработать в исключительный косметический материал."
+NeedYourEnergyDeluxeEmoteDescription="Дело не только в моей силе. Можно переработать в исключительный косметический материал."
+FinalFormDeluxeEmoteDescription="Вперед, дальше и дальше. Можно переработать в исключительный косметический материал."
+FastestGunInTheWestDeluxeEmoteDescription="Ковбой не должен стрелять первым. Можно переработать в исключительный косметический материал."
+SpiritFingersDeluxeEmoteDescription="Пиу, пиу, пиу… пиу-пиу. Можно переработать в исключительный косметический материал."
+HomerunDeluxeEmoteDescription="Неизменно полный успех… иногда. Можно переработать в исключительный косметический материал."
+CointTrickDeluxeEmoteDescription="Дешевый фокус, но эффективный. Можно переработать в исключительный косметический материал."
+MagicFosterDeluxeEmoteDescription="Для тех, кому наплевать на правила. Можно переработать в исключительный косметический материал."
 
 [FXSection]
 

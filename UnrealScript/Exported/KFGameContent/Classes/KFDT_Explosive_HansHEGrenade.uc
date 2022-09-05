@@ -628,6 +628,35 @@ class KFDT_Explosive_HansHEGrenade extends KFDT_Explosive_HEGrenade
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 15
 
 static function int GetKillerDialogID()

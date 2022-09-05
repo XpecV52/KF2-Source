@@ -629,7 +629,7 @@ defaultproperties
    ShieldHealthScale=1.000000
    InvulnerableShieldFX=ParticleSystem'zed_fleshpound_king_emit.FX_King_Fleshpound_Shield'
    ShieldSocketName="hips"
-   ShieldImpactEffects=KFSkinTypeEffects_HansShield'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:ShieldEffects'
+   ShieldImpactEffects=KFSkinTypeEffects_InvulnerabilityShield'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:ShieldEffects'
    ShieldShatterExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:ShatterExploTemplate0'
    ShieldColorGreen=(B=50,G=255,R=50,A=0)
    ShieldCoreColorGreen=(B=0,G=255,R=0,A=0)
@@ -664,7 +664,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedFleshpound:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:MeleeHelper_0'
-   DoshValue=2500
+   DoshValue=500
    XPValues(0)=1291.000000
    XPValues(1)=1694.000000
    XPValues(2)=1790.000000

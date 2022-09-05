@@ -127,7 +127,7 @@ ItemDescription="•會放出對 Zed 有毒但對人類有治療效果的氣體�
 [KFProj_MolotovGrenade]
 ItemName="莫洛托夫雞尾酒"
 ItemCategory="炸藥"
-ItemDescription="•簡單來說，這是會使 Zed 起火燃燒的火焰手榴彈。\n•小心，可能會傷到自己！\n\n這東西名稱的由來是當初在 1939-40 年進行的冬季遊擊戰期間由芬蘭士兵們以當時的蘇聯外交部長「維亞切斯拉夫·米哈伊洛維奇·莫洛托夫」所取的無禮名稱…嗯？你不是想來一堂速成歷史課嗎？ "
+ItemDescription="•簡單來說，這是會使 Zed 起火燃燒的火焰手榴彈。\n\n這東西名稱的由來是當初在 1939-40 年進行的冬季遊擊戰期間由芬蘭士兵們以當時的蘇聯外交部長「維亞切斯拉夫·米哈伊洛維奇·莫洛托夫」所取的無禮名稱…嗯？你不是想來一堂速成歷史課嗎？ "
 
 [KFProj_EMPGrenade]
 ItemName="電磁脈衝手榴彈"
@@ -142,7 +142,7 @@ ItemDescription="•一種爆炸力很強的手榴彈。傷害 Zed，也會傷�
 [KFProj_FragGrenade]
 ItemName="破片手榴彈"
 ItemCategory="炸藥"
-ItemDescription="•經典的破片手榴彈：爆炸時會散發出小小的金屬碎片，殺傷周圍的所有東西。\n\n•我很確定所有人在感染事件爆發前都玩過電動遊戲，所以都知道破片手榴彈是什麼。別假裝不懂了，誰會信啊。 "
+ItemDescription="•經典的破片手榴彈：爆炸時會散發出小小的金屬碎片，殺傷周圍的所有東西。\n\n•我很確定所有人在感染事件爆發前都玩過電動遊戲，所以都知道破片手榴彈是什麼。別假裝不懂了，誰會信啊。" "
 
 [KFProj_NailBombGrenade]
 ItemName="鐵釘炸藥"
@@ -315,7 +315,7 @@ ItemDescription="•可選擇射擊一根或多根鐵釘。\n•按下輔助功�
 [KFWeap_HRG_Nailgun]
 ItemName="HRG 釘槍"
 ItemCategory="衝鋒槍"
-ItemDescription="•可選擇射速 500 rpm 單發全自動射擊或 857 rpm 三連射全自動射擊模式。\n•按下輔助功能鍵變更攻擊模式。\n•創新板上釘釘！"
+ItemDescription="•可選擇射速 857 rpm 單發全自動射擊或 500 rpm 三連射全自動射擊模式。\n•按下輔助功能鍵變更攻擊模式。\n•創新板上釘釘！"
 
 [KFWeap_Blunt_ChainBat]
 ItemName="道路救贖者"
@@ -439,13 +439,13 @@ ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，�
 ItemName="犀牛"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式可發射分裂子彈。\n•分裂子彈在擊中時爆炸，隨後射出 3 枚霰彈。\n•削 Zed 如泥！"
-SharedUnlockSource="犀牛"
+SharedUnlockSource="犀牛左輪同捆包"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="雙持犀牛"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊模式可發射分裂子彈。\n•分裂子彈在擊中時爆炸，隨後射出 3 枚霰彈。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•削 Zed 如泥，雙倍高效！"
-SharedUnlockSource="雙持犀牛"
+SharedUnlockSource="犀牛左輪同捆包"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 左輪"
@@ -481,6 +481,12 @@ ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，�
 ItemName="溫徹斯特 1894"
 ItemCategory="來福槍"
 ItemDescription="•主要攻擊模式只有單發。\n•經典的 1894 型溫徹斯特槓桿式步槍。"
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="莫辛納甘"
+ItemCategory="來福槍"
+ItemDescription="•主要攻擊模式只有單發。\n•Alt - 阻擋/迴避。\n•M91/30 專門擅長戳刺、射擊，以及戳刺加射擊。"
+SharedUnlockSource="莫辛納甘同捆包"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="中心底火SPX 464"
@@ -659,6 +665,27 @@ ItemName="資料平板"
 ItemCategory="裝備"
 ItemDescription="你不應該看到商人的這項物品。"
 
+[KFWeap_Pistol_HRGWinterbite]
+ItemName="HRG Winterbite"
+ItemCategory="冰凍"
+ItemDescription="•主要攻擊模式為發射爆炸性的冰柱投擲物體。\n•冰爽一天的最佳方式。"
+
+[KFWeap_Pistol_DualHRGWinterbite]
+ItemName="雙持 HRG Winterbite"
+ItemCategory="冰凍"
+ItemDescription="•主要攻擊模式為發射爆炸性的冰柱投擲物體。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•寒冰加倍。"
+
+[KFWeap_Rifle_HRGIncision]
+ItemName="HRG 切割"
+ItemCategory="狙擊步槍"
+ItemDescription="•主要攻擊模式為發射高速電氣子彈。\n•Alt - 發射療傷飛鏢，為隊友治療。\n•用瞄準器鎖定玩家和 Zed 的弱點。"
+
+[KFWeap_SMG_G18]
+ItemName="防護盾牌與格洛克 18"
+ItemCategory="衝鋒槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更攻擊模式。\n•機瞄時舉起盾牌，降低前方受到的大多數攻擊傷害。"
+SharedUnlockSource="防護盾牌與 G18 同捆包"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="漢斯華特博士"
@@ -775,6 +802,29 @@ BossCaptionStrings[2]="別被坎普斯的體型捉弄了；只要他想，就能
 BossCaptionStrings[3]="別讓坎普斯接近其他的喪屍，他可以把它們吞下去來……我又考慮了一下，你應該不會想知道的。"
 BossCaptionStrings[4]="如果你讓坎普斯靠太近，那麼他可就不止是吐在你身上了。那些斧子可不是擺在那用來看的。"
 BossCaptionStrings[5]="破壞掉坎普斯的護甲會讓他進入憤怒狀態，也就是他最致命的狀態。"
+
+[KFPawn_ZedMatriarch]
+BossName="Matriarch"
+BossName_CHN="女族长"
+BossName_CHT="女族长"
+BossName_DEU="Fill Me"
+BossName_ESL="Fill Me"
+BossName_ESN="Fill Me"
+BossName_FRA="Fill Me"
+BossName_FRC="Fill Me"
+BossName_INT="Matriarch"
+BossName_ITA="Fill Me"
+BossName_JPN="Fill Me"
+Bossname_KOR="Fill Me"
+BossName_POL="Fill Me"
+BossName_PTB="Fill Me"
+BossName_RUS="Fill Me"
+BossCaptionStrings[0]="「女族長」攻擊時，防護力場將會關閉。利用這一點取得優勢。"
+BossCaptionStrings[1]="「女族長」的火炮和頭盔可被破壞，暴露頭部和敏感的手爪。之後，她會非常地憤怒。"
+BossCaptionStrings[2]="在她發射特斯拉爆彈時，注意不要與他人聚在一起。震擊影響的範圍不止你一人而已。"
+BossCaptionStrings[3]="即使她的火炮被破壞，也不要認為戰鬥就此結束。她還留有一手呢！"
+BossCaptionStrings[4]="威脅等級提昇過高時，精銳攻防機器人會來幫助她。"
+BossCaptionStrings[5]="「女族長」瀕死時會佈下隱形力場。與她的父親不同，她不會就此脫逃。"
 
 [KFGameInfo_Tutorial]
 GameName="基本訓練"

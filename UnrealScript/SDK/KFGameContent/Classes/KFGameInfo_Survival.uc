@@ -818,7 +818,7 @@ State PlayingWave
 	{
 		MyKFGRI.SetWaveActive(TRUE, GetGameIntensityForMusic());
 		MyKFGRI.VoteCollector.ResetTraderVote();
-		
+
 		StartWave();
 		if ( AllowBalanceLogging() )
 		{
@@ -1839,11 +1839,21 @@ DefaultProperties
 	AIClassList(AT_Bloat)=class'KFGameContent.KFPawn_ZedBloat'
 	AIClassList(AT_Siren)=class'KFGameContent.KFPawn_ZedSiren'
 	AIClassList(AT_Husk)=class'KFGameContent.KFPawn_ZedHusk'
+
+	AIClassList(AT_EliteClot)=class'KFGameContent.KFPawn_ZedClot_AlphaKing'
+	AIClassList(AT_EliteCrawler)=class'KFGameContent.KFPawn_ZedCrawlerKing'
+	AIClassList(AT_EliteGoreFast)=class'KFGameContent.KFPawn_ZedGorefastDualBlade'
+	AIClassList(AT_EDAR_EMP)=class'KFGameContent.KFPawn_ZedDAR_Emp'
+	AIClassList(AT_EDAR_Laser)=class'KFGameContent.KFPawn_ZedDAR_Laser'
+	AIClassList(AT_EDAR_Rocket)=class'KFGameContent.KFPawn_ZedDAR_Rocket'
+
 	NonSpawnAIClassList(0)=class'KFGameContent.KFPawn_ZedBloatKingSubspawn'
+
 	AIBossClassList(BAT_Hans)=class'KFGameContent.KFPawn_ZedHans'
 	AIBossClassList(BAT_Patriarch)=class'KFGameContent.KFPawn_ZedPatriarch'
     AIBossClassList(BAT_KingFleshpound)=class'KFGameContent.KFPawn_ZedFleshpoundKing'
 	AIBossClassList(BAT_KingBloat)=class'KFGameContent.KFPawn_ZedBloatKing'
+	AIBossClassList(BAT_Matriarch)=class'KFGameContent.KFPawn_ZedMatriarch'
 
 	// Short Wave
 	LateArrivalStarts(0)={(

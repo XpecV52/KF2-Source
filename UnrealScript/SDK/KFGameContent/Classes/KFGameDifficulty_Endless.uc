@@ -535,7 +535,7 @@ function bool ShouldSpawnEnraged(EAIType AIType)
 
 defaultproperties
 {
-	// Normal Start
+	//NORMAL START----------------------------------------------------------------------------------------------------------------------------------------------------------------
 	DifficultyScalings(0)={(
 		// Normal
 		Difficulties[0]={(
@@ -626,11 +626,13 @@ defaultproperties
 			TraderTimerMapOverride[0]=(MapName="KF-DieSector",TraderTime=45)
 		)},
 
-				// Normal
+		// Normal
 		ZedAdjustmentsByDifficulty[0] = {(
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.65,DamageDealtScale = 0.75,DoshGiven = 250),  //750
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.45,DamageDealtScale = 0.75,DoshGiven = 250),  //750
+				
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.55,DamageDealtScale = 0.75,DoshGiven = 250),
 
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.62,DamageDealtScale = 0.75,DoshGiven = 250), //750
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 0.5,DamageDealtScale = 0.85,DoshGiven = 5),
@@ -644,6 +646,8 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.9,DamageDealtScale = 0.85,DoshGiven = 500),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 500),
+				
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.75,DamageDealtScale = 0.85,DoshGiven = 500),
 
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 500),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 5),
@@ -658,6 +662,8 @@ defaultproperties
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
 
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
+
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 1.0,DamageDealtScale = 0.85,DoshGiven = 5),
 
@@ -670,6 +676,7 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000)
 			)}
@@ -679,6 +686,7 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000)
 			)}
@@ -710,6 +718,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=0.5f,DamageMod=0.31f,SoloDamageMod=0.31),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.71f,DamageMod=0.54f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=0.75f,DamageMod=0.67f,SoloDamageMod=0.35),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=0.7f,DamageMod=0.6f,SoloDamageMod=0.37),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=0.63f,DamageMod=0.51f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.65f,DamageMod=0.7f,SoloDamageMod=0.35),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=0.35f,DamageMod=0.2f)
@@ -735,6 +744,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=0.5f,DamageMod=0.31f,SoloDamageMod=0.31),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.71f,DamageMod=0.54f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=0.75f,DamageMod=0.67f,SoloDamageMod=0.35),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=0.7f,DamageMod=0.6f,SoloDamageMod=0.37),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=0.63f,DamageMod=0.51f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.65f,DamageMod=0.7f,SoloDamageMod=0.35),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=0.35f,DamageMod=0.2f)
@@ -760,6 +770,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=0.5f,DamageMod=0.31f,SoloDamageMod=0.31),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.71f,DamageMod=0.54f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=0.75f,DamageMod=0.67f,SoloDamageMod=0.35),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=0.7f,DamageMod=0.6f,SoloDamageMod=0.37),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=0.63f,DamageMod=0.51f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.65f,DamageMod=0.7f,SoloDamageMod=0.35),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=0.35f,DamageMod=0.2f)
@@ -785,6 +796,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=0.5f,DamageMod=0.31f,SoloDamageMod=0.31),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.71f,DamageMod=0.54f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=0.75f,DamageMod=0.67f,SoloDamageMod=0.35),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=0.7f,DamageMod=0.6f,SoloDamageMod=0.37),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=0.63f,DamageMod=0.51f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.65f,DamageMod=0.7f,SoloDamageMod=0.35),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=0.35f,DamageMod=0.2f)
@@ -810,6 +822,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=0.5f,DamageMod=0.31f,SoloDamageMod=0.31),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.71f,DamageMod=0.54f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=0.75f,DamageMod=0.67f,SoloDamageMod=0.35),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=0.7f,DamageMod=0.6f,SoloDamageMod=0.37),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=0.63f,DamageMod=0.51f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.65f,DamageMod=0.7f,SoloDamageMod=0.35),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=0.35f,DamageMod=0.2f)
@@ -883,7 +896,7 @@ defaultproperties
 		)}
 	)}
 
-	// Hard Start
+	// HARD START ----------------------------------------------------------------------------------------------------------------------------------------------------------------
 	DifficultyScalings(1)={(
 		// Hard
 		Difficulties[0]={(
@@ -977,11 +990,13 @@ defaultproperties
 
 		)},
 
-				// Normal
+		// Normal
 		ZedAdjustmentsByDifficulty[0] = {(
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.65,DamageDealtScale = 0.75,DoshGiven = 250),  //750
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.45,DamageDealtScale = 0.75,DoshGiven = 250),  //750
+
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.55,DamageDealtScale = 0.75,DoshGiven = 250),
 
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.62,DamageDealtScale = 0.75,DoshGiven = 250), //750
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 0.5,DamageDealtScale = 0.85,DoshGiven = 5),
@@ -996,6 +1011,8 @@ defaultproperties
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.9,DamageDealtScale = 0.85,DoshGiven = 500),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 500),
 
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.75,DamageDealtScale = 0.85,DoshGiven = 500),
+
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 500),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 5),
 
@@ -1009,6 +1026,8 @@ defaultproperties
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
 
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
+
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 1.0,DamageDealtScale = 0.85,DoshGiven = 5),
 
@@ -1021,6 +1040,7 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000)
 			)}
@@ -1030,6 +1050,7 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000)
 			)}
@@ -1061,6 +1082,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=0.75f,DamageMod=0.65f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.82f,DamageMod=0.73f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.f,DamageMod=0.81f,SoloDamageMod=0.42),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=0.9f,DamageMod=0.75f,SoloDamageMod=0.45),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=0.83f,DamageMod=0.75f,SoloDamageMod=0.5,SoloDamageMod=0.42),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.8f,DamageMod=0.85f),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=0.95f,DamageMod=0.75f)
@@ -1086,6 +1108,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=0.75f,DamageMod=0.65f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.82f,DamageMod=0.73f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.f,DamageMod=0.81f,SoloDamageMod=0.42),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=0.9f,DamageMod=0.75f,SoloDamageMod=0.45),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=0.83f,DamageMod=0.75f,SoloDamageMod=0.5,SoloDamageMod=0.42),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.8f,DamageMod=0.85f),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=0.95f,DamageMod=0.75f)
@@ -1111,6 +1134,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=0.75f,DamageMod=0.65f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.82f,DamageMod=0.73f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.f,DamageMod=0.81f,SoloDamageMod=0.42),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=0.9f,DamageMod=0.75f,SoloDamageMod=0.45),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=0.83f,DamageMod=0.75f,SoloDamageMod=0.5,SoloDamageMod=0.42),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.8f,DamageMod=0.85f),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=0.95f,DamageMod=0.75f)
@@ -1136,6 +1160,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=0.75f,DamageMod=0.65f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.82f,DamageMod=0.73f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.f,DamageMod=0.81f,SoloDamageMod=0.42),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=0.9f,DamageMod=0.75f,SoloDamageMod=0.45),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=0.83f,DamageMod=0.75f,SoloDamageMod=0.5,SoloDamageMod=0.42),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.8f,DamageMod=0.85f),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=0.95f,DamageMod=0.75f)
@@ -1161,6 +1186,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=0.75f,DamageMod=0.65f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.82f,DamageMod=0.73f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.f,DamageMod=0.81f,SoloDamageMod=0.42),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=0.9f,DamageMod=0.75f,SoloDamageMod=0.45),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=0.83f,DamageMod=0.75f,SoloDamageMod=0.5,SoloDamageMod=0.42),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.8f,DamageMod=0.85f),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=0.95f,DamageMod=0.75f)
@@ -1234,7 +1260,7 @@ defaultproperties
 		)}
 	)}
 
-	// Suicidal Start
+	// SUICIDAL START ----------------------------------------------------------------------------------------------------------------------------------------------------------
 	DifficultyScalings(2)={(
 			// Sucidal
 		Difficulties[0]={(
@@ -1336,6 +1362,8 @@ defaultproperties
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.65,DamageDealtScale = 0.75,DoshGiven = 250),  //750
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.45,DamageDealtScale = 0.75,DoshGiven = 250),  //750
 
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.55,DamageDealtScale = 0.75,DoshGiven = 250),
+
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.62,DamageDealtScale = 0.75,DoshGiven = 250), //750
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 0.5,DamageDealtScale = 0.85,DoshGiven = 5),
 
@@ -1348,6 +1376,8 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.9,DamageDealtScale = 0.85,DoshGiven = 500),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 500),
+
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.75,DamageDealtScale = 0.85,DoshGiven = 500),
 
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 500),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 0.85,DamageDealtScale = 0.85,DoshGiven = 5),
@@ -1362,6 +1392,8 @@ defaultproperties
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
 
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
+
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.95,DamageDealtScale = 0.95,DoshGiven = 800),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 1.0,DamageDealtScale = 0.85,DoshGiven = 5),
 
@@ -1374,6 +1406,7 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000)
 			)}
@@ -1383,6 +1416,7 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000)
 			)}
@@ -1414,6 +1448,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=1.1f,DamageMod=1.f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.85f,DamageMod=1.15f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.13f,DamageMod=1.47f,SoloDamageMod=0.41),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=1.0f,DamageMod=1.15f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=1.f,DamageMod=1.f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.9f,DamageMod=1.15f,SoloDamageMod=0.41),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=1.f,DamageMod=1.f)
@@ -1439,6 +1474,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=1.1f,DamageMod=1.f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.85f,DamageMod=1.15f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.13f,DamageMod=1.47f,SoloDamageMod=0.41),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=1.0f,DamageMod=1.15f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=1.f,DamageMod=1.f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.9f,DamageMod=1.15f,SoloDamageMod=0.41),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=1.f,DamageMod=1.f)
@@ -1464,6 +1500,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=1.1f,DamageMod=1.f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.85f,DamageMod=1.15f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.13f,DamageMod=1.47f,SoloDamageMod=0.41),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=1.0f,DamageMod=1.15f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=1.f,DamageMod=1.f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.9f,DamageMod=1.15f,SoloDamageMod=0.41),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=1.f,DamageMod=1.f)
@@ -1489,6 +1526,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=1.1f,DamageMod=1.f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.85f,DamageMod=1.15f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.13f,DamageMod=1.47f,SoloDamageMod=0.41),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=1.0f,DamageMod=1.15f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=1.f,DamageMod=1.f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.9f,DamageMod=1.15f,SoloDamageMod=0.41),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=1.f,DamageMod=1.f)
@@ -1514,6 +1552,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=1.1f,DamageMod=1.f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.85f,DamageMod=1.15f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.13f,DamageMod=1.47f,SoloDamageMod=0.41),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=1.0f,DamageMod=1.15f,SoloDamageMod=0.4),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=1.f,DamageMod=1.f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=0.9f,DamageMod=1.15f,SoloDamageMod=0.41),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=1.f,DamageMod=1.f)
@@ -1587,7 +1626,7 @@ defaultproperties
 		)}
 	)}
 
-	// Hell on Earth Start
+	// HELL ON EARTH START -----------------------------------------------------------------------------------------------------------------------------------------------------
 	DifficultyScalings(3)={(
 		// Hell On Earth
 		Difficulties[0]={(
@@ -1691,6 +1730,8 @@ defaultproperties
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.65,DamageDealtScale = 1.0,DoshGiven = 250),  //750
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.45,DamageDealtScale = 1.0,DoshGiven = 250),  //750
 
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.55,DamageDealtScale = 1.0,DoshGiven = 250),
+
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.62,DamageDealtScale = 1.0,DoshGiven = 250), //750
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 5),
 
@@ -1703,6 +1744,8 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.9,DamageDealtScale = 1.0,DoshGiven = 500),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.85,DamageDealtScale = 1.0,DoshGiven = 500),
+
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.75,DamageDealtScale = 1.0,DoshGiven = 500),
 
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.85,DamageDealtScale = 1.0,DoshGiven = 500),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 5),
@@ -1717,6 +1760,8 @@ defaultproperties
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 0.95,DamageDealtScale = 1.0,DoshGiven = 800),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 0.95,DamageDealtScale = 1.0,DoshGiven = 800),
 
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 0.95,DamageDealtScale = 1.0,DoshGiven = 800),
+
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 0.95,DamageDealtScale = 1.0,DoshGiven = 800),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 5),
 
@@ -1729,6 +1774,7 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000)
 			)}
@@ -1738,6 +1784,7 @@ defaultproperties
 			ZedsToAdjust = {(
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedPatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedHans',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
+				(ClassToAdjust = class'KFGameContent.KFPawn_ZedMatriarch',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedBloatKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000),
 				(ClassToAdjust = class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthScale = 1.0,DamageDealtScale = 1.0,DoshGiven = 1000)
 			)}
@@ -1769,6 +1816,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=1.15f,DamageMod=1.05f, SoloDamageMod=0.65),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.91f,DamageMod=1.18f,SoloDamageMod=0.51),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.39f,DamageMod=1.45f,SoloDamageMod=0.52),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=1.2f,DamageMod=1.45f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=1.2f,DamageMod=1.2f,SoloDamageMod=0.65),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=1.05f,DamageMod=1.2f,SoloDamageMod=0.52),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=1.f,DamageMod=1.f)
@@ -1794,6 +1842,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=1.15f,DamageMod=1.05f, SoloDamageMod=0.65),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.91f,DamageMod=1.18f,SoloDamageMod=0.51),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.39f,DamageMod=1.45f,SoloDamageMod=0.52),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=1.2f,DamageMod=1.45f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=1.2f,DamageMod=1.2f,SoloDamageMod=0.65),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=1.05f,DamageMod=1.2f,SoloDamageMod=0.52),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=1.f,DamageMod=1.f)
@@ -1819,6 +1868,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=1.15f,DamageMod=1.05f, SoloDamageMod=0.65),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.91f,DamageMod=1.18f,SoloDamageMod=0.51),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.39f,DamageMod=1.45f,SoloDamageMod=0.52),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=1.2f,DamageMod=1.45f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=1.2f,DamageMod=1.2f,SoloDamageMod=0.65),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=1.05f,DamageMod=1.2f,SoloDamageMod=0.52),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=1.f,DamageMod=1.f)
@@ -1844,6 +1894,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=1.15f,DamageMod=1.05f, SoloDamageMod=0.65),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.91f,DamageMod=1.18f,SoloDamageMod=0.51),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.39f,DamageMod=1.45f,SoloDamageMod=0.52),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=1.2f,DamageMod=1.45f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=1.2f,DamageMod=1.2f,SoloDamageMod=0.65),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=1.05f,DamageMod=1.2f,SoloDamageMod=0.52),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=1.f,DamageMod=1.f)
@@ -1869,6 +1920,7 @@ defaultproperties
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundMini',HealthMod=1.15f,DamageMod=1.05f, SoloDamageMod=0.65),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedHans',HealthMod=0.91f,DamageMod=1.18f,SoloDamageMod=0.51),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedPatriarch',HealthMod=1.39f,DamageMod=1.45f,SoloDamageMod=0.52),
+				(ClassToAdjust=class'KFGameContent.KFPawn_ZedMatriarch',HealthMod=1.2f,DamageMod=1.45f,SoloDamageMod=0.5),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedFleshpoundKing',HealthMod=1.2f,DamageMod=1.2f,SoloDamageMod=0.65),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKing',HealthMod=1.05f,DamageMod=1.2f,SoloDamageMod=0.52),
 				(ClassToAdjust=class'KFGameContent.KFPawn_ZedBloatKingSubspawn',HealthMod=1.f,DamageMod=1.f)

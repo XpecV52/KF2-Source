@@ -2011,7 +2011,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 					LastHitByDamageType = GetLastHitByDamageType( DT, MonsterPawn, Killer );
 
 					//Chris: We have to do it earlier here because we need a damage type
-					KFPC.AddZedKill( MonsterPawn.class, GameDifficulty, LastHitByDamageType );
+					KFPC.AddZedKill( MonsterPawn.class, GameDifficulty, LastHitByDamageType, true );
 
 					KFPCP = KFPC.GetPerk();
 					if( KFPCP != none )
@@ -2024,6 +2024,13 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 						KFPCP.AddVampireHealth( KFPC, LastHitByDamageType );
 					}
 				}
+			}
+		}
+		else if (class<KFDamageType>(DT) != none && class<KFDamageType>(DT).default.bIsTrapDamage)
+		{
+			foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+			{
+				KFPC.AddZedKill(MonsterPawn.Class, GameDifficulty, DT, false);
 			}
 		}
 

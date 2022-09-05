@@ -78,6 +78,10 @@ struct native MeleeSpecialDismembermentInfo
 var(ThirdPerson) SkeletalMesh CharacterMesh<DisplayName=Body Mesh>;
 /** Material overrides to use */
 var(ThirdPerson) array<MaterialInterface> Skins;
+/** Material overrides to use for zeds that cloak */
+var(ThirdPerson) array<MaterialInterface> CloakedSkins;
+/** Material overrides to use for zeds that cloak */
+var(ThirdPerson) array<MaterialInterface> SpottedSkins;
 /** Player-controlled material overrides to use */
 var(ThirdPerson) array<MaterialInterface> PlayerControlledSkins;
 /** Aggressively optimized mesh for the server with minimal bones */

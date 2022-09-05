@@ -139,7 +139,7 @@ simulated function StartAmbientSound()
 {
 	if( Instigator != none && Instigator.IsLocallyControlled() && Instigator.IsFirstPerson() )
 	{
-        PostAkEventOnBone(AmbientSoundPlayEvent, AmbientSoundSocketName, false, true);
+        PostAkEventOnBone(AmbientSoundPlayEvent, AmbientSoundSocketName, false, false);
     }
 }
 
@@ -148,7 +148,7 @@ simulated function StartAmbientSound()
  */
 simulated function StopAmbientSound()
 {
-    PostAkEventOnBone(AmbientSoundStopEvent, AmbientSoundSocketName, false, true);
+    PostAkEventOnBone(AmbientSoundStopEvent, AmbientSoundSocketName, false, false);
 }
 
 /**
@@ -207,16 +207,17 @@ simulated function InstantFireClient()
 	local int				Idx;
 	local ImpactInfo		RealImpact;
 	local float				CurPenetrationValue;
+	local vector			AimLocation;
 
 	// see Controller AimHelpDot() / AimingHelp()
 	bInstantHit = true;
 
 	// define range to use for CalcWeaponFire()
+	AimLocation = GetInstantFireAimLocation();
 	StartTrace = GetSafeStartTraceLocation();
-
-	if (!IsZero(TargetingComp.LockedAimLocation))
+	if (!IsZero(AimLocation))
 	{
-		AimRot = rotator(Normal(TargetingComp.LockedAimLocation - StartTrace));
+		AimRot = rotator(Normal(AimLocation - StartTrace));
     	EndTrace = StartTrace + vector(AimRot) * GetTraceRange();
 	}
 	else
@@ -271,6 +272,11 @@ simulated function InstantFireClient()
 	}
 }
 
+simulated function vector GetInstantFireAimLocation()
+{
+	return TargetingComp.LockedAimLocation[0];
+}
+
 /*********************************************************************************************
  * @name Targeting HUD
  **********************************************************************************************/
@@ -286,9 +292,9 @@ simulated function OnRender(Canvas C)
     }
 
 	// Draw the targeting locations on the scope
-	for (i = 0; i < TargetingComp.TargetVulnerableLocations.Length; i++)
+	for (i = 0; i < TargetingComp.TargetVulnerableLocations_Zed.Length; i++)
     {
-        if( !IsZero(TargetingComp.TargetVulnerableLocations[i]) )
+        if( !IsZero(TargetingComp.TargetVulnerableLocations_Zed[i]) )
         {
             DrawTargetingIcon( C, i );
         }
@@ -310,7 +316,7 @@ simulated function DrawTargetingIcon( Canvas Canvas, int index )
     local vector2d ScreenPos;
 
     // Project world pos to canvas
-	WorldPos = TargetingComp.TargetVulnerableLocations[index];
+	WorldPos = TargetingComp.TargetVulnerableLocations_Zed[index];
     ScreenPos = WorldToCanvas(Canvas, WorldPos);
 
     // calculate scale based on resolution and distance
@@ -332,11 +338,11 @@ simulated function DrawTargetingIcon( Canvas Canvas, int index )
     Canvas.SetPos( ScreenPos.X, ScreenPos.Y );
 
 	// Pick the color of the targeting box to draw
-	if( TargetingComp.LockedHitZone >= 0 && index == TargetingComp.LockedHitZone )
+	if( TargetingComp.LockedHitZone[0] >= 0 && index == TargetingComp.LockedHitZone[0] )
     {
         Canvas.DrawTile( LockedHitZoneIcon, IconSize, IconSize, 0, 0, LockedHitZoneIcon.SizeX, LockedHitZoneIcon.SizeY, RedIconColor);
     }
-    else if( TargetingComp.PendingHitZone >= 0 && index == TargetingComp.PendingHitZone )
+    else if( TargetingComp.PendingHitZone[0] >= 0 && index == TargetingComp.PendingHitZone[0] )
     {
         Canvas.DrawTile( LockedHitZoneIcon, IconSize, IconSize, 0, 0, LockedHitZoneIcon.SizeX, LockedHitZoneIcon.SizeY, YellowIconColor);
     }

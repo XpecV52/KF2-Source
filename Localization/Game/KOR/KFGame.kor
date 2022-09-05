@@ -1446,6 +1446,7 @@ HeadShotResetString="헤드샷 빗나감. 보통 데미지!"
 SuicideMessage=" 그냥 삶을 포기했습니다..."
 KilledMessage=" 산채로 잡아 먹혔습니다"
 KillzedBy_PatriarchString=" 케빈의 아이들에게 더 이상 상처를 줄 수 없습니다"
+KillzedBy_MatriarchString=" 이(가) 대의를 위해 죽었습니다"
 KillzedBy_HansString="의 신체는 추가 실험을 위해 가져갔습니다"
 KillzedBy_ZedCrawlerString="의 발목이 뜯겨져 나갔습니다"
 KillzedBy_ZedBloatString=" 이(가) 체액에 빠졌습니다"
@@ -1735,13 +1736,13 @@ Fortitude="드레드노트"
 FortitudeDescription="총 체력 75% 증가"
 
 Ninja="척후병"
-NinjaDescription="20% 빠르게 이동, 스프린트 속도 25% 향상, 병과 백병전 무기 이용 시 매초 체력 1초 재생성"
+NinjaDescription="병과 무기 이용 시 이동 속도 20%, 스프린트 속도 25% 향상, 매 초마다 체력을 2포인트 회복"
 
 Vampire="뱀파이어"
 VampireDescription="병과 무기로 제드를 처치할 때마다 체력 4 포인트 치료 병과 백병전 무기를 이용할 때 공격속도 20% 향상"
 
 Speed="도살자"
-SpeedDescription="병과 백병전 무기 이용 시 공격 속도 20% 향상 및 20% 데미지 증가"
+SpeedDescription="병과 무기 이용 시 공격 속도 20%, 대미지 20% 증가"
 
 Resistance="저항력"
 ResistanceDescription="모든 데미지 저항력 20% 증가 독성 및 음파 데미지에 대한 저항력 20% 추가"
@@ -2351,11 +2352,11 @@ DoschHoldDesc="표시된 구역에 제드가 들어가지 못하게 하십시오
 DescriptionDoshHold="표시된 구역에 제드가 들어가지 못하게 하십시오"
 DescriptionDoshHoldShort="구역 방어 (선택 사항)"
 RepairObjective="용접과 수리"
-UseWelderToRepair="용접기를 사용하여 부서진 기계 수리"
-UseWelderToRepairShort="부서진 기계 용접"
+UseWelderToRepair="기계에 용접기 사용하기"
+UseWelderToRepairShort="기계 용접"
 UseWelderToRepairTraderPod="용접기를 사용하여 상점 수리"
 UseWelderToRepairTraderPodShort="상점 수리"
-RepairObjectiveRequired="부서진 기계 수리까지:"
+RepairObjectiveRequired="용접할 기계:"
 EscortPawnsObjective="에스코트"
 EscortPawnsDescription="Zed로부터 드론 에스코트 및 방어"
 EscortPawnsDescriptionShort="드론 에스코트"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="E.D.A.R 트래퍼"
 KFPawn_ZedDAR_Laser="E.D.A.R 블래스터"
 KFPawn_ZedDAR_Rocket="E.D.A.R 봄버"
 KFPawn_ZedPatriarch="Patriarch"
+KFPawn_ZedMatriarch="어미"
 KFPawn_ZedBloatKingSubspawn="새끼 괴물"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bloat - 플레이어"
@@ -2667,7 +2669,7 @@ CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특
 
 SpecialEventObjectiveInfoList[0]=(TitleString="정신병원 습격",DescriptionString="애쉬우드 정신병원에서 서바이벌 어려움 또는 그 이상 난이도에서 아무 보스 해치우기")
 SpecialEventObjectiveInfoList[1]=(TitleString="장기 치료",DescriptionString="애쉬우드 정신병원에서 끝없는 도전 어려움 또는 그 이상 난이도에서 15 웨이브를 완료하기")
-SpecialEventObjectiveInfoList[2]=(TitleString="주간 진단",DescriptionString="애쉬우드 정신병원 로에서 주간 게임 모드를 완료하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="주간 진단",DescriptionString="배수로에서 주간 게임 모드를 완료하기")
 SpecialEventObjectiveInfoList[3]=(TitleString="병원 청소",DescriptionString="애쉬우드 정신병원에서 Zed 1500마리 죽이기")
 SpecialEventObjectiveInfoList[4]=(TitleString="폭발!",DescriptionString="목표 어려움 이상 난이도로 방사능 누출지 완료하기")
 
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="크리스 | 비욘드 호라이즌 | 스페�
 
 ChanceDropDescriptionStrings[0]="트릿 티켓"
 ChanceDropDescriptionStrings[1]="골든 트릿 티켓"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특별 이벤트입니다"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="무한한 검은 바다",DescriptionString="요양원에서 서바이벌 어려움 또는 그 이상 난이도에서 아무 보스나 해치우기")
+SpecialEventObjectiveInfoList[1]=(TitleString="과도한 상상력",DescriptionString="요양원에서 촉수 채찍 트랩으로 제드 20마리 처치")
+SpecialEventObjectiveInfoList[2]=(TitleString="엘드리치 반박",DescriptionString="요양원에서 석션 트랩으로 제드 20마리 처치")
+SpecialEventObjectiveInfoList[3]=(TitleString="어미의 본능",DescriptionString="모든 지도 또는 게임 모드에서 어미 10회 처치")
+SpecialEventObjectiveInfoList[4]=(TitleString="가족 문제 매듭짓기",DescriptionString="목표 어려움 이상 난이도로 바이오틱스 연구소 완료하기")
+
+AllCompleteRewardDescriptionString="FN FAL | 재거 | 다이나믹"
+
+ChanceDropDescriptionStrings[0]="크램퍼스 티켓"
+ChanceDropDescriptionStrings[1]="크램퍼스 황금 티켓"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="스팀 포트리스"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="애쉬우드 정신병원"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="요양원"
 
 [KFMapInfo]
 ; defaults

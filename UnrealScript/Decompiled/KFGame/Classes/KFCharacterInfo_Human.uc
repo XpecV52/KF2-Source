@@ -661,12 +661,11 @@ protected simulated function SetAttachmentSkinMaterial(int PawnAttachmentIndex, 
     }
 }
 
-private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, int CurrentAttachmentSkinIndex, KFPawn KFP, KFPlayerReplicationInfo KFPRI, optional bool bIsFirstPerson)
+private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, int CurrentAttachmentSkinIndex, KFPawn KFP, KFPlayerReplicationInfo KFPRI)
 {
     local string CharAttachmentMeshName;
     local name CharAttachmentSocketName;
     local int AttachmentSlotIndex;
-    local editinline SkeletalMeshComponent AttachmentMesh;
 
     if(KFP.WorldInfo.NetMode == NM_DedicatedServer)
     {
@@ -683,30 +682,41 @@ private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, 
         {
             return;
         }
-        CharAttachmentMeshName = ((bIsFirstPerson) ? Get1pMeshByIndex(CurrentAttachmentMeshIndex) : GetMeshByIndex(CurrentAttachmentMeshIndex));
-        CharAttachmentSocketName = ((bIsFirstPerson) ? CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName1p : CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName);
-        AttachmentMesh = ((bIsFirstPerson) ? KFP.ArmsMesh : KFP.Mesh);
-        if(KFP.IsLocallyControlled())
-        {
-            if((CharAttachmentSocketName != 'None') && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == none)
-            {
-                RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
-                return;
-            }
-        }
+        CharAttachmentMeshName = Get1pMeshByIndex(CurrentAttachmentMeshIndex);
         if(CharAttachmentMeshName != "")
         {
-            SetAttachmentMesh(CurrentAttachmentMeshIndex, AttachmentSlotIndex, CharAttachmentMeshName, CharAttachmentSocketName, AttachmentMesh, KFP, bIsFirstPerson);            
+            CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName1p;
+            if(KFP.IsLocallyControlled())
+            {
+                if((CharAttachmentSocketName != 'None') && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == none)
+                {
+                    RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
+                    return;
+                }
+            }
+            SetAttachmentMesh(CurrentAttachmentMeshIndex, AttachmentSlotIndex, CharAttachmentMeshName, CharAttachmentSocketName, KFP.ArmsMesh, KFP, true);
+            SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], byte(CurrentAttachmentSkinIndex), KFP, true);            
         }
         else
         {
-            if(bIsFirstPerson)
-            {
-                KFP.FirstPersonAttachments[AttachmentSlotIndex] = none;
-                KFP.FirstPersonAttachmentSocketNames[AttachmentSlotIndex] = 'None';
-            }
+            KFP.FirstPersonAttachments[AttachmentSlotIndex] = none;
+            KFP.FirstPersonAttachmentSocketNames[AttachmentSlotIndex] = 'None';
         }
-        SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], byte(CurrentAttachmentSkinIndex), KFP, bIsFirstPerson);
+        CharAttachmentMeshName = GetMeshByIndex(CurrentAttachmentMeshIndex);
+        if(CharAttachmentMeshName != "")
+        {
+            CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName;
+            if(KFP.IsLocallyControlled())
+            {
+                if((CharAttachmentSocketName != 'None') && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == none)
+                {
+                    RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
+                    return;
+                }
+            }
+            SetAttachmentMesh(CurrentAttachmentMeshIndex, AttachmentSlotIndex, CharAttachmentMeshName, CharAttachmentSocketName, KFP.Mesh, KFP, false);
+            SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], byte(CurrentAttachmentSkinIndex), KFP, false);
+        }
     }
     if(CurrentAttachmentMeshIndex == -1)
     {
@@ -882,7 +892,7 @@ simulated function SetFirstPersonArmsFromArch(KFPawn KFP, optional KFPlayerRepli
         if((CosmeticMeshIdx != -1) && CosmeticMeshIdx != -1)
         {
             LogInternal("Attach 1p mesh" @ string(CosmeticMeshIdx));
-            SetAttachmentMeshAndSkin(CosmeticMeshIdx, KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx], KFP, KFPRI, true);
+            SetAttachmentMeshAndSkin(CosmeticMeshIdx, KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx], KFP, KFPRI);
         }
         ++ AttachmentIdx;
         goto J0xBD;

@@ -439,13 +439,13 @@ ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming st
 ItemName="Rhino"
 ItemCategory="Hand Gun"
 ItemDescription="•Fire mode shoots fragmentation rounds.\n•Fragmentation rounds explode on impact and fire 3 shrapnel pieces.\n•Shreds through Zeds like butter!"
-SharedUnlockSource="Rhino"
+SharedUnlockSource="Rhino Revolver Bundle"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="Dual Rhinos"
 ItemCategory="Hand Gun"
 ItemDescription="•Fire mode shoots fragmentation rounds.\n•Fragmentation rounds explode on impact and fire 3 shrapnel pieces.\n•Alt-fire switches aiming styles when using iron sights.\n•Shreds through Zeds like butter twice as much!"
-SharedUnlockSource="Dual Rhinos"
+SharedUnlockSource="Rhino Revolver Bundle"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 Revolver"
@@ -481,6 +481,12 @@ ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming st
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Fire mode is single shot only.\n•The classic Model 1894 Winchester lever-action rifle."
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="Mosin Nagant"
+ItemCategory="Rifle"
+ItemDescription="•Fire mode is single shot only.\n•Alt - block/parry.\n•The M91/30 specializes in stabbing, shooting, and stab shooting."
+SharedUnlockSource="Mosin Nagant Bundle"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Centerfire"
@@ -659,6 +665,27 @@ ItemName="Data Pad"
 ItemCategory="Equipment"
 ItemDescription="You're not supposed to be seeing this in the trader!"
 
+[KFWeap_Pistol_HRGWinterbite]
+ItemName="HRG Winterbite"
+ItemCategory="Cryogenic"
+ItemDescription="•Fire mode shoots exploding icicle projectiles.\n•The best way to have an ice day."
+
+[KFWeap_Pistol_DualHRGWinterbite]
+ItemName="Dual HRG Winterbite"
+ItemCategory="Cryogenic"
+ItemDescription="•Fire mode shoots exploding icicle projectiles.\n•Alt-fire switches aiming styles when using iron sights.\n•Twice the ice."
+
+[KFWeap_Rifle_HRGIncision]
+ItemName="HRG Incision"
+ItemCategory="Sniper Rifle"
+ItemDescription="•Fire mode shoots high velocity electrical rounds.\n•Alt-fire shoots healing darts to heal team members.\n•Using the sight lets you lock on to players and vulnerable spots on Zeds."
+
+[KFWeap_SMG_G18]
+ItemName="Riot Shield & Glock 18"
+ItemCategory="Sub Machine Gun"
+ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Iron sight brings up shield to reduce frontal damage from most attacks."
+SharedUnlockSource="Riot Shield & G18 Bundle"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
@@ -775,6 +802,29 @@ BossCaptionStrings[2]="Don't let the Krampus's size fool you; he can move fast w
 BossCaptionStrings[3]="Don't let the Krampus get near other Zeds; he can ingest them to... on second thought, you don't want to know."
 BossCaptionStrings[4]="If you let the Krampus get too close he will do far more than vomit on you. Those axes are not for show."
 BossCaptionStrings[5]="Destroying the Krampus's armor will send him into a rage, which is his most deadly state."
+
+[KFPawn_ZedMatriarch]
+BossName="Matriarch"
+BossName_CHN="Fill Me"
+BossName_CHT="Fill Me"
+BossName_DEU="Fill Me"
+BossName_ESL="Fill Me"
+BossName_ESN="Fill Me"
+BossName_FRA="Fill Me"
+BossName_FRC="Fill Me"
+BossName_INT="Matriarch"
+BossName_ITA="Fill Me"
+BossName_JPN="Fill Me"
+Bossname_KOR="Fill Me"
+BossName_POL="Fill Me"
+BossName_PTB="Fill Me"
+BossName_RUS="Fill Me"
+BossCaptionStrings[0]="The Matriarch's protective force field shuts off when she attacks. Use this to your advantage."
+BossCaptionStrings[1]="The Matriarch's cannon and helmet can be destroyed to expose her head and sensitive claw. She'll be quite angry afterwards."
+BossCaptionStrings[2]="Careful about bunching up with others when she fires her Tesla Blast. It'll shock more than just you."
+BossCaptionStrings[3]="Don't think that the battle is over once her cannon is destroyed. She packs a punch!"
+BossCaptionStrings[4]="E.D.A.Rs will come to her aid when they detect threat levels rising too high."
+BossCaptionStrings[5]="The Matriarch deploys a cloaking field when close to death. Unlike her father, she doesn't run away."
 
 [KFGameInfo_Tutorial]
 GameName="Basic Training"

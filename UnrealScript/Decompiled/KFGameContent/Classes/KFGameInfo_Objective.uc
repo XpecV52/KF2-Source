@@ -42,7 +42,7 @@ function SetBossIndex()
     {
         if(KFMapObjective_ExterminateWave(MyKFGRI.CurrentObjective).bRandomBoss)
         {
-            BossIndex = Rand(4);            
+            BossIndex = Rand(5);            
         }
         else
         {

@@ -41,6 +41,8 @@ var float ArmorScale;
 /** These damage types cause this zed to receive increased damage */
 var  array<DamageModifierInfo> ArmorDamageTypeModifiers;
 
+var transient float LastTakeDamageTime;
+
 function byte GetArmorZonePctByte(int ZoneIdx)
 {
 	return FloatToByte(float(ArmorZones[ZoneIdx].ArmorHealth) / float(ArmorZones[ZoneIdx].ArmorHealthMax));
@@ -232,6 +234,8 @@ function TakeArmorZoneDamage(int ZoneIdx, int InDamage, out int OutDamage)
 	}
 
 	UpdateArmorUI();
+
+	LastTakeDamageTime = WorldInfo.TimeSeconds;
 }
 
 function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource, class<DamageType> DamageType)

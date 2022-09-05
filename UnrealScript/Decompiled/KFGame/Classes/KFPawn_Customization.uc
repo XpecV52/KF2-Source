@@ -182,6 +182,14 @@ simulated function PlayEmoteAnimation(optional bool bNewCharacter)
     BodyStanceNodes[0].SetActorAnimEndNotification(true);
 }
 
+simulated function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC)
+{
+    if(bPlayingEmote)
+    {
+        PSC.bUseAsOccluder = true;
+    }
+}
+
 simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)
 {
     bPlayingEmote = false;

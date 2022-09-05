@@ -2317,7 +2317,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 					LastHitByDamageType = GetLastHitByDamageType( DT, MonsterPawn, Killer );
 
 					//Chris: We have to do it earlier here because we need a damage type
-					KFPC.AddZedKill( MonsterPawn.class, GameDifficulty, LastHitByDamageType );
+					KFPC.AddZedKill( MonsterPawn.class, GameDifficulty, LastHitByDamageType, true );
 
 					KFPCP = KFPC.GetPerk();
 					if( KFPCP != none )
@@ -2330,6 +2330,13 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 						KFPCP.AddVampireHealth( KFPC, LastHitByDamageType );
 					}
 				}
+			}
+		}
+		else if (class<KFDamageType>(DT) != none && class<KFDamageType>(DT).default.bIsTrapDamage)
+		{
+			foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
+			{
+				KFPC.AddZedKill(MonsterPawn.Class, GameDifficulty, DT, false);
 			}
 		}
 
@@ -4097,7 +4104,7 @@ defaultproperties
    BossIndex=-1
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway","KF-SteamFortress","KF-AshwoodAsylum"))
+   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway","KF-SteamFortress","KF-AshwoodAsylum","KF-Sanitarium"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

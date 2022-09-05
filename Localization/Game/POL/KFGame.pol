@@ -1446,6 +1446,7 @@ HeadShotResetString="Niecelny strzał w głowę. Zwykłe obrażenia!"
 SuicideMessage=" rezygnuje ze swojego życia…"
 KilledMessage=" doświadcza zjedzenia żywcem"
 KillzedBy_PatriarchString=" nie może już skrzywdzić dzieci Kevina"
+KillzedBy_MatriarchString=" ginie dla dobra reszty"
 KillzedBy_HansString="– ciało przekazane do dalszych eksperymentów"
 KillzedBy_ZedCrawlerString="ma obgryzione kostki"
 KillzedBy_ZedBloatString=" topi się w płynach ustrojowych"
@@ -1735,13 +1736,13 @@ Fortitude="Twardziel"
 FortitudeDescription="Całkowite zdrowie zwiększone o 75%."
 
 Ninja="Bojownik"
-NinjaDescription="Chodzenie szybsze o 20%, bieg szybszy o 25% oraz regeneracja 1 punktu zdrowia co sekundę podczas używania broni białej specjalizacji."
+NinjaDescription="Chodzenie szybsze o 20% i bieg szybszy o 25% podczas używania broni specjalizacji. Regenerujesz też 2 punkty zdrowia co sekundę."
 
 Vampire="Wampir"
 VampireDescription="Leczenie 4 punktów zdrowia za każdego zeta zabitego bronią specjalizacji. Atak szybszy o 20% podczas używania broni białej specjalizacji."
 
 Speed="Rzeźnik"
-SpeedDescription="Atak szybszy o 20% i 20% więcej obrażeń podczas używania broni białej ze specjalizacji."
+SpeedDescription="Atak szybszy o 20%, a także 20% więcej obrażeń podczas używania broni specjalizacji."
 
 Resistance="Odporność"
 ResistanceDescription="20% odporności na wszystkie rodzaje obrażeń. Dodatkowe 20% odporności na truciznę i obrażenia soniczne."
@@ -2351,11 +2352,11 @@ DoschHoldDesc="Trzymaj zety z dala od zaznaczonego obszaru"
 DescriptionDoshHold="Trzymaj zety z dala od zaznaczonego obszaru"
 DescriptionDoshHoldShort="Obroń strefę (opcjonalne)"
 RepairObjective="SPAWANIE I NAPRAWA"
-UseWelderToRepair="Użyj spawarki, aby naprawiać uszkodzone maszyny"
-UseWelderToRepairShort="Zespawaj uszkodzone maszyny"
+UseWelderToRepair="Użyj spawarki na maszynach"
+UseWelderToRepairShort="Zespawaj maszyny"
 UseWelderToRepairTraderPod="Użyj spawarki, aby naprawić kapsuły handlarki"
 UseWelderToRepairTraderPodShort="Zespawaj kapsuły handlarki"
-RepairObjectiveRequired="Uszkodzone maszyny do naprawienia:"
+RepairObjectiveRequired="maszyny do zespawania:"
 EscortPawnsObjective="ESKORTOWANIE"
 EscortPawnsDescription="Eskortuj dron i obroń go przed zetami"
 EscortPawnsDescriptionShort="Eskortuj dron"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="Robot-łowca E.D.A.R."
 KFPawn_ZedDAR_Laser="Robot-strzelec E.D.A.R."
 KFPawn_ZedDAR_Rocket="Robot wybuchowy E.D.A.R."
 KFPawn_ZedPatriarch="Patriarcha"
+KFPawn_ZedMatriarch="Matriarchini"
 KFPawn_ZedBloatKingSubspawn="Sługusy Abominacji"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Spaślak – gracz"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="Kriss | Za Horyzontem | Gwiezdna elita"
 
 ChanceDropDescriptionStrings[0]="Kupon na prezent"
 ChanceDropDescriptionStrings[1]="Złoty kupon na prezent"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Czarne morza nieskończoności",DescriptionString="Pokonaj dowolnego bossa w Przetrwaniu na wysokim lub wyższym poziomie trudności na mapie „Sanatorium”.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Dość bujna wyobraźnia",DescriptionString="Użyj w „Sanatorium” pułapki z biczem macki, aby zabić 20 zetów.")
+SpecialEventObjectiveInfoList[2]=(TitleString="Nadprzyrodzone sprzeczności",DescriptionString="Użyj w „Sanatorium” pułapki zasysania, aby zabić 20 zetów.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Instynkt macierzyński",DescriptionString="Zabij 10 razy Matriarchini na dowolnej mapie i w dowolnym trybie gry.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Rozwiązanie sprawy rodzinnej",DescriptionString="Ukończ „Laboratorium biotyczne” na wysokim lub wyższym poziomie trudności celu")
+
+AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dynamiczny"
+
+ChanceDropDescriptionStrings[0]="Kupon Krampusa"
+ChanceDropDescriptionStrings[1]="Złoty kupon Krampusa"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="Forteca Pary"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="Zakład Ashwood"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="Sanatorium"
 
 [KFMapInfo]
 ; defaults

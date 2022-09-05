@@ -30,6 +30,8 @@ HeadshotFXBundle1Name="ヘッドショットFXバンドル1"
 HeadshotFXBundle2Name="ヘッドショットFXバンドル2"
 RhinoRevolverBundleName="ライノリボルバーバンドル"
 IonThrusterBundleName="イオンスラスターバンドル"
+RiotShieldG18BundleName="ライオットシールドとG18バンドル"
+MosinNagantBundleName="モシン・ナガンバンドル"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="ホージン装飾物資箱 | シリーズ #4 ブロンズバンドルパック"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="ホージン装飾物資箱 | シリーズ #4 シルバーバンドルパック"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="ホージン装飾物資箱 | シリーズ #4 ゴールドバンドルパック"
@@ -45,6 +47,9 @@ HorzineSupplyEmoteCrateSeries1GoldBundlePackName="ホージン顔文字物資箱
 HorzineSupplyEmoteCrateSeries2BronzeBundlePackName="ホージン顔文字物資箱 | シリーズ #2 ブロンズバンドルパック"
 HorzineSupplyEmoteCrateSeries2SilverBundlePackName="ホージン顔文字物資箱 | シリーズ #2 シルバーバンドルパック"
 HorzineSupplyEmoteCrateSeries2GoldBundlePackName="ホージン顔文字物資箱 | シリーズ #2 ゴールドバンドルパック"
+HorzineSupplyEmoteCrateSeries3BronzeBundlePackName="ホージン顔文字物資箱 | シリーズ #3 ブロンズバンドルパック"
+HorzineSupplyEmoteCrateSeries3SilverBundlePackName="ホージン顔文字物資箱 | シリーズ #3 シルバーバンドルパック"
+HorzineSupplyEmoteCrateSeries3GoldBundlePackName="ホージン顔文字物資箱 | シリーズ #3 ゴールドバンドルパック"
 HorzineSupplyWeaponCrateSeries5BronzeBundlePackName="ホージン武器物資箱 | シリーズ #5 ブロンズバンドルパック"
 HorzineSupplyWeaponCrateSeries5SilverBundlePackName="ホージン武器物資箱 | シリーズ #5 シルバーバンドルパック"
 HorzineSupplyWeaponCrateSeries5GoldBundlePackName="ホージン武器物資箱 | シリーズ #5 ゴールドバンドルパック"
@@ -142,6 +147,33 @@ PremiumHalloweenGoldBundlePackName="プレミアムハロウィーンゴール�
 NeonMKIIIEncryptedUSBBronzeBundlePackName="ネオン MKIII 暗号化 USB ブロンズバンドルパック"
 NeonMKIIIEncryptedUSBSilverBundlePackName="ネオン MKIII 暗号化 USB シルバーバンドルパック"
 NeonMKIIIEncryptedUSBGoldBundlePackName="ネオン MKIII 暗号化 USB ゴールドバンドルパック"
+SantasHelperOutfitBundleName="サンタのお手伝いさん衣装バンドル"
+JaegerEncryptedUSBBronzeBundlePackName="イェーガー暗号化 USB ブロンズバンドルパック"
+JaegerEncryptedUSBSilverBundlePackName="イェーガー暗号化 USB シルバーバンドルパック"
+JaegerEncryptedUSBGoldBundlePackName="イェーガー暗号化 USB ゴールドバンドルパック"
+PremiumChristmasBronzeBundlePackName="プレミアムクリスマスブロンズチケットバンドルパック"
+PremiumChristmasSilverBundlePackName="プレミアムクリスマスシルバーチケットバンドルパック"
+PremiumChristmasGoldBundlePackName="プレミアムクリスマスゴールドチケットバンドルパック"
+FostersFavoritesWeaponSkinPackName="フォスターのお気に入り武器スキンパック"
+HorzineSupplyCosmeticCrateSeries5BronzeBundlePackName="ホージン装飾物資箱 | シリーズ#5 ブロンズバンドルパック"
+HorzineSupplyCosmeticCrateSeries5SilverBundlePackName="ホージン装飾物資箱 | シリーズ#5 シルバーバンドルパック"
+HorzineSupplyCosmeticCrateSeries5GoldBundlePackName="ホージン装飾物資箱 | シリーズ#5 ゴールドバンドルパック"
+HorzineSupplyCosmeticCrateSeries3BronzeBundlePackName="ホージン装飾物資箱 | シリーズ#3 ブロンズバンドルパック"
+HorzineSupplyCosmeticCrateSeries3SilverBundlePackName="ホージン装飾物資箱 | シリーズ#3 シルバーバンドルパック"
+HorzineSupplyCosmeticCrateSeries3GoldBundlePackName="ホージン装飾物資箱 | シリーズ#3 ゴールドバンドルパック"
+HorzineSupplyWeaponCrateSeries17BronzeBundlePackName="ホージン武器物資箱 | シリーズ#17 ブロンズバンドルパック"
+HorzineSupplyWeaponCrateSeries17SilverBundlePackName="ホージン武器物資箱 | シリーズ#17 シルバーバンドルパック"
+HorzineSupplyWeaponCrateSeries17GoldBundlePackName="ホージン武器物資箱 | シリーズ#17 ゴールドバンドルパック"
+GrimTreatmentsWeaponBundleName="グリムトリートメント武器バンドル"
+YuletideHorrorWeaponBundleName="クリスマスのホラー武器バンドル"
+JaegerWeaponSkinDoublePackBundleName="イェーガー武器スキンダブルパックバンドル"
+HorzineSupplyCrateSeries12BronzeBundlePackName="ホージン物資箱 | シリーズ #12 ブロンズバンドルパック"
+HorzineSupplyCrateSeries12SilverBundlePackName="ホージン物資箱 | シリーズ #12 シルバーバンドルパック"
+HorzineSupplyCrateSeries12GoldBundlePackName="ホージン物資箱 | シリーズ #12 ゴールドバンドルパック"
+EmoteCrateSeries3BronzeBundlePackName="顔文字箱 | シリーズ #3 ブロンズバンドルパック"
+EmoteCrateSeries3SilverBundlePackName="顔文字箱 | シリーズ #3 シルバーバンドルパック"
+EmoteCrateSeries3GoldBundlePackName="顔文字箱 | シリーズ #3 ゴールドバンドルパック"
+
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="ブライアーの「ロンドン」ユニフォーム（5種類のスキンを含む）と、「守衛ヘルメット」服飾アクセサリー（3種類のスキンを含む）が入っています。"
@@ -166,8 +198,10 @@ CyberpunkOutfitObjectiveBundleDescription="男性用サイバーパンク衣装�
 HalloweenOutfitBundleDescription="ウィッチハンター衣装が含まれています（6 種類のスキンスタイルを含む）。ほとんどのキャラクターに対応。"
 HeadshotFXBundle1Description="ヘッドショットFX5個入り。ポッシュDosh、コミカルアクション、パーティータイム、ラブアットファーストショット、スプーキースピリッツ。"
 HeadshotFXBundle2Description="ヘッドショットFX5個入り。カートゥーンスプラット、花火、花びら、グリッチそしてホージンサーキット。"
-RhinoRevolverBundleDescription="Zed をチーズのように切り刻む。ガンスリンガーperk 向けライノリボルバー。独自の武器スキン 5 種類付き。"
+RhinoRevolverBundleDescription="Zed をチーズのように切り刻む。ガンスリンガー perk 向けライノリボルバー。独自の武器スキン 5 種類が付いてきます。"
 IonThrusterBundleDescription="バーベキューに最適。バーサーカー perk 向けに設計されたイオンスラスターに 5 種類の独自スキンがついてきます。"
+RiotShieldG18BundleDescription="戦況コントロールに抜群。スワット perk 向けに設計されたライオットシールドとG18に 5 種類の独自スキンがついてきます。"
+MosinNagantBundleDescription="このクラシックなライフルでZedsをブロックし、刺して長距離から狙い撃ちしましょう。シャープシューター perk 向けに設計されたモシン・ナガンに 5 種類の独自スキンがついてきます。"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="ホージン装飾物資箱 | シリーズ #4 が 5 個と関連する鍵 5 本が含まれています。"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="ホージン装飾物資箱 | シリーズ #4 が 10 個と関連する鍵 10 本が含まれています。"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="ホージン装飾物資箱 | シリーズ #4 が 20 個と関連する鍵 20 本が含まれています。"
@@ -183,12 +217,15 @@ HorzineSupplyEmoteCrateSeries1GoldBundlePackDescription="ホージン顔文字�
 HorzineSupplyEmoteCrateSeries2BronzeBundlePackDescription="ホージン顔文字物資箱 | シリーズ #2 が 5 個と関連する鍵 5 本が含まれています。"
 HorzineSupplyEmoteCrateSeries2SilverBundlePackDescription="ホージン顔文字物資箱 | シリーズ #2 が 10 個と関連する鍵 10 本が含まれています。"
 HorzineSupplyEmoteCrateSeries2GoldBundlePackDescription="ホージン顔文字物資箱 | シリーズ #2 が 20 個と関連する鍵 20 本が含まれています。"
+HorzineSupplyEmoteCrateSeries3BronzeBundlePackDescription="ホージン顔文字物資箱 | シリーズ #3 が 5 個と関連する鍵 5 本が含まれています。"
+HorzineSupplyEmoteCrateSeries3SilverBundlePackDescription="ホージン顔文字物資箱 | シリーズ #3 が 10 個と関連する鍵 10 本が含まれています。"
+HorzineSupplyEmoteCrateSeries3GoldBundlePackDescription="ホージン顔文字物資箱 | シリーズ #3 が 20 個と関連する鍵 20 本が含まれています。"
 HorzineSupplyWeaponCrateSeries5BronzeBundlePackDescription="ホージン武器物資箱 | シリーズ #5 が 5 個と関連する鍵 5 本が含まれています。"
 HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="ホージン武器物資箱 | シリーズ #5 が 10 個と関連する鍵 10 本が含まれています。"
 HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="ホージン武器物資箱 | シリーズ #4 が 20 個と関連する鍵 20 本が含まれています。"
 HorzineSupplyWeaponCrateSeries7BronzeBundlePackDescription="ホージン武器物資箱 | シリーズ #7 が 5 個と関連する鍵 5 本が含まれています。"
 HorzineSupplyWeaponCrateSeries7SilverBundlePackDescription="ホージン武器物資箱 | シリーズ #7 が 10 個と関連する鍵 10 本が含まれています。"
-HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription="ホージン武器物資箱 | シリーズ #7 が 20 個と関連する鍵 20 本が含まれています。"
+HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #7 crate along with twenty of its associated keys."
 HorzineSupplyWeaponCrateSeries8BronzeBundlePackDescription="ホージン武器物資箱 | シリーズ #8 が 5 個と関連する鍵 5 本が含まれています。"
 HorzineSupplyWeaponCrateSeries8SilverBundlePackDescription="ホージン武器物資箱 | シリーズ #8 が 10 個と関連する鍵 10 本が含まれています。"
 HorzineSupplyWeaponCrateSeries8GoldBundlePackDescription="ホージン武器物資箱 | シリーズ #8 が 20 個と関連する鍵 20 本が含まれています。"
@@ -204,7 +241,7 @@ HorzineSupplyWeaponCrateSeries14GoldBundlePackDescription="ホージン武器物
 HorzineSupplyCrateSeries15BronzeBundlePackDescription="ホージン物資箱 | シリーズ #15 が 5 個と関連する鍵 5 本が含まれています。"
 HorzineSupplyCrateSeries15SilverBundlePackDescription="ホージン物資箱 | シリーズ #15 が 10 個と関連する鍵 10 本が含まれています。"
 HorzineSupplyCrateSeries15GoldBundlePackDescription="ホージン物資箱 | シリーズ #15 が 20 個と関連する鍵 20 本が含まれています。"
-HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription="ホージン物資箱 | シリーズ サイバーサムライが 5 個と関連する鍵 5 本が含まれています。"
+HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription=Contains five of the Horzine Supply Crate | Series Cyber Samurai crate along with five of its associated keys."
 HorzineSupplyCrateSeriesCyberSamuraiSilverBundlePackDescription="ホージン物資箱 | シリーズ サイバーサムライが 10 個と関連する鍵 10 本が含まれています。"
 HorzineSupplyCrateSeriesCyberSamuraiGoldBundlePackDescription="ホージン物資箱 | シリーズ サイバーサムライが 20 個と関連する鍵 20 本が含まれています。"
 EmoteCrateSeries1BronzeBundlePackDescription="顔文字箱 | シリーズ #1 が 5 個と関連する鍵 5 本が含まれています。"
@@ -218,7 +255,7 @@ NeonEncryptedUSBSilverBundlePackDescription="ネオン暗号化 USB 箱が 10 �
 NeonEncryptedUSBGoldBundlePackDescription="ネオン暗号化 USB 箱が 20 個と関連する鍵 20 本が含まれています。"
 WeaponCollectorsUSBBronzeBundlePackDescription="ウェポンコレクターパック 1 USB 箱が 5 個と関連する鍵 5 本が含まれています。"
 WeaponCollectorsUSBSilverBundlePackDescription="ウェポンコレクターパック 1 USB 箱が 10 個と関連する鍵 10 本が含まれています。"
-WeaponCollectorsUSBGoldBundlePackDescription="ウェポンコレクターパック 1 USB 箱が 20 個と関連する鍵 20 本が含まれています。"
+WeaponCollectorsUSBGoldBundlePackDescription=Contains twenty of the Weapons Collectors Pack 1 USB crate along with twenty of its associated keys."
 NeonMKIIEncryptedUSBBronzeBundlePackDescription="ネオン MKII 暗号化 USB 箱が 5 個と関連する鍵 5 本が含まれています。"
 NeonMKIIEncryptedUSBSilverBundlePackDescription="ネオン MKII 暗号化 USB 箱が 10 個と関連する鍵 10 本が含まれています。"
 NeonMKIIEncryptedUSBGoldBundlePackDescription="ネオン MKII 暗号化 USB 箱が 20 個と関連する鍵 20 本が含まれています。"
@@ -280,6 +317,37 @@ PremiumHalloweenTicketGoldBundlePackDescription="プレミアムハロウィー�
 NeonMKIIIEncryptedUSBBronzeBundlePackDescription="ネオン MKIII 暗号化 USB 箱が 5 個と関連する鍵 5 本が含まれています。"
 NeonMKIIIEncryptedUSBSilverBundlePackDescription="ネオン MKIII 暗号化 USB 箱が 10 個と関連する鍵 10 本が含まれています。"
 NeonMKIIIEncryptedUSBGoldBundlePackDescription="ネオン MKIII 暗号化 USB 箱が 20 個と関連する鍵 20 本が含まれています。"
+SantasHelperOutfitBundleDescription="男性と女性キャラクター用のサンタのお手伝いさん衣装（スキンスタイル 6種）が付いてきます。ほとんどのキャラクターが装備できます。"
+HorzineSupplyWeaponCrateSeries17BronzeBundlePackDescription="ホージン武器物資箱 | シリーズ #17 が 5 個と関連する鍵 5 本が含まれています。"
+HorzineSupplyWeaponCrateSeries17SilverBundlePackDescription="ホージン武器物資箱 | シリーズ #17 が 10 個と関連する鍵 10 本が含まれています。"
+HorzineSupplyWeaponCrateSeries17GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #17 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries3BronzeBundlePackDescription="ホージン武器物資箱 | シリーズ #3 が 5 個と関連する鍵 5 本が含まれています。"
+HorzineSupplyWeaponCrateSeries3SilverBundlePackDescription="ホージン武器物資箱 | シリーズ #3 が 10 個と関連する鍵 10 本が含まれています。"
+HorzineSupplyWeaponCrateSeries3GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #3 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries5BronzeBundlePackDescription="ホージン武器物資箱 | シリーズ #5 が 5 個と関連する鍵 5 本が含まれています。"
+HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="ホージン武器物資箱 | シリーズ #5 が 10 個と関連する鍵 10 本が含まれています。"
+HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #5 crate along with twenty of its associated keys."
+JaegerEncryptedUSBBronzeBundlePackDescription="イェーガー暗号化 USB 箱が 5 個と関連する鍵 5 本が含まれています。"
+JaegerEncryptedUSBSilverBundlePackDescription="イェーガー暗号化 USB 箱が 10 個と関連する鍵 10 本が含まれています。"
+JaegerEncryptedUSBGoldBundlePackDescription="イェーガー暗号化 USB 箱が 20 個と関連する鍵 20 本が含まれています。"
+PremiumChristmasTicketBronzeBundlePackDescription="プレミアムクリスマス景品チケット 5 枚をお得な一括価格で提供します。期間限定商品です！"
+PremiumChristmasTicketSilverBundlePackDescription="プレミアムクリスマス景品チケット 10 枚と追加ボーナスクリスマスゴールデンチケット 1 枚をお得な一括価格でご提供します。期間限定商品です！"
+PremiumChristmasTicketGoldBundlePackDescription="プレミアムクリスマス景品チケット 20 枚とボーナスクリスマスゴールデンチケット 3 枚をお得な一括価格でご提供します。期間限定商品です！"
+GrimTreatmentsWeaponBundleDescription="グリムトリートメントアップデートからのライノリボルバーとイオンスラスターを含む。それぞれの武器には5種類の独自スキンが付いてきます。"
+YuletideHorrorWeaponBundleDescription="グリムトリートメントアップデートからのライノリボルバー&G18、そしてクリスマスのホラーアップデートに含まれるモシン・ナガン武器を含む。それぞれの武器には5種類の独自スキンが付いてきます。"
+JaegerWeaponSkinDoublePackBundleDescription="デザートイーグルとP90用にイェーガーがテーマのダイナミックでスタンダードな武器スキンが付いてきます。"
+FostersFavoritesWeaponSkinBundleDescription="AK12、AA12、M14EBR、M4、デザートイーグル、ブームスティック、P90とクリスを含む、フォスターをテーマにした武器スキンが8種類含まれています。"
+EmoteCrateSeries3BronzeBundlePackDescription="顔文字箱 | シリーズ #3 が 5 個と関連する鍵 5 本が含まれています。"
+EmoteCrateSeries3SilverBundlePackDescription="顔文字箱 | シリーズ #3 が 10 個と関連する鍵 10 本が含まれています。"
+EmoteCrateSeries3GoldBundlePackDescription="顔文字箱 | シリーズ #3 が 20 個と関連する鍵 20 本が含まれています。"
+HorzineSupplyCrateSeries12BronzeBundlePackDescription="ホージン物資箱 | シリーズ #12が 5 個と関連する鍵 5 本が含まれています。"
+HorzineSupplyCrateSeries12SilverBundlePackDescription="ホージン物資箱 | シリーズ #12 が 10 個と関連する鍵 10 本が含まれています。"
+HorzineSupplyCrateSeries12GoldBundlePackDescription="ホージン物資箱 | シリーズ #12 が 20 個と関連する鍵 20 本が含まれています。"
+HorzineSupplyCrateCosmeticCrateSeries5BronzeBundlePackDescription="ホージン物資箱 | シリーズ #5 が 5 個と関連する鍵 5 本が含まれています。"
+HorzineSupplyCrateCosmeticCrateSeries5SilverBundlePackDescription="ホージン物資箱 | シリーズ #5 が 10 個と関連する鍵 10 本が含まれています。"
+HorzineSupplyCrateCosmeticCrateSeries5GoldBundlePackDescription="ホージン物資箱 | シリーズ #5 が 20 個と関連する鍵 20 本が含まれています。"
+
+
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="プレイ可能キャラクター、ロブ・ブライアー巡査の新たな定番の「ロンドンボビー」ユニフォームをゲットしよう。ブライアーの「ロンドン」ユニフォーム(5スキンスタイルを含む)と、「守衛ヘルメット」服飾アクセサリー(3スキンスタイルを含む)が入っています。"
@@ -380,6 +448,8 @@ CyberpunkHelmetEventName="サイバーパンク イベントヘルメット"
 CyberpunkOutfitEventName="サイバーパンク イベント服"
 HalloweenHatName="ウィッチハンターの帽子"
 HalloweenOutfitName="ウィッチハンターの衣装"
+SantasHelperHatName="サンタのお手伝いさんハット"
+SantasHelperOutfitName="サンタのお手伝いさん衣装"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="マスターソン中尉 | サイバーパンク | 緑"
@@ -504,6 +574,8 @@ JagerhornVaultPreciousSuitDescription="ゴールドトリムならひときわ�
 MastersonVaultPreciousSuitDescription="ゴールドトリムならひときわ映えます。マスターソンが装備できます。"
 RaeVaultPreciousSuitDescription="ゴールドトリムならひときわ映えます。レイが装備できます。"
 StrasserVaultPreciousSuitDescription="ゴールドトリムならひときわ映えます。シュトラッサーが装備できます。"
+SantaHatDescription="切り裂いている間は頭を暖かくしておきましょう。"
+SantaSuitDescription="Zedのミンスミートを作って…新年を迎えましょう！"
 
 ;cyberpunk paint over description
 CyberPunkPaintoverDescription="この驚くべきサイバーパンクユニフォームを着れば、未来のあなたは見違えるほど輝くでしょう。"
@@ -540,7 +612,8 @@ HorzineSupplyCrateSeries14Name="ホージン物資箱 | シリーズ#14"
 HorzineSupplyCrateSeries15Name="ホージン物資箱 | シリーズ#15"
 HorzineSupplyCrateSeries16Name="ホージン物資箱 | シリーズと畜場"
 EmoteCrateSeries1Name="顔文字箱 | シリーズ#1"
-EmoteCrateSeries2Name="顔文字箱 | シリーズ#3"
+EmoteCrateSeries2Name="顔文字箱 | シリーズ#2"
+EmoteCrateSeries3Name="顔文字箱 | シリーズ#3"
 DoshVaultUnlockedCrate1Name="doshヴォールトの解錠している木箱#1"
 HorzineSupplyCrateSeriesDARName="ホージン物資箱 | シリーズD.A.R."
 HorzineSupplyCrateSeriesLocoName="ホージン物資箱 | ロコシリーズ"
@@ -588,6 +661,8 @@ EmoteCrateSeries1Description="開けるには「シリーズ#1顔文字箱の鍵
 
 EmoteCrateSeries2Description="開けるには「シリーズ#2顔文字箱の鍵」が必要です。次のうち1つが含まれます：<br><font color="#4b69cd">コサック</font><br><font color="#4b69cd">ウェーブ</font><br><font color="#4b69cd">ブレーキング</font><br><font color="#4b69cd">ノーハンド</font><br><font color="#6600a1">ヒールクリック</font><br><font color="#6600a1">スプリンクラー</font><br><font color="#6600a1">狂人</font><br><font color="#8847ff">走る男</font><br><font color="#8847ff">ロボット</font><br><font color="#8847ff">エアメタル</font><br><font color="#caab05">または激レアなデラックス顔文字！</font>"
 
+EmoteCrateSeries2Description="開けるには「シリーズ#3顔文字箱の鍵」が必要です。次のレアまたはそれ以上のアイテムが1つ入っています：<br><font color="#4b69cd">ツルの拳</font><br><font color="#4b69cd">世界精通</font><br><font color="#4b69cd">Zed Time</font><br><font color="#4b69cd">エネルギー必須</font><br><font color="#4b69cd">最終形態</font><br><font color="#4b69cd">西部最速の銃</font><br><font color="#4b69cd">スピリットフィンガー</font><br><font color="#4b69cd">ホームライン</font><br><font color="#4b69cd">コイントリック</font><br><font color="#4b69cd">マジックフォスター</font><br><font color="#caab05">または激レアなデラックス顔文字！</font>"
+
 DoshVaultUnlockedCrate1Description="次の1つが入っています。<br>プレイヤーアクセサリー<br>フェイスペイント<br>ユニフォーム種類<br>武器スキン<br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
 
 HorzineSupplyCrateSeriesDARDescription="D.A.R.が必要ですホージン物資箱を開ける鍵。次の希少またはそれ以上のD.A.R.アクセサリーの1つが入っています：<br><font color="#4b69cd">飛行P51アーマーまたはヘルメット</font><br><font color="#4b69cd">CHONNE-E5ジムまたはタイムキューブアーマー</font><br><font color="#4b69cd">CHONNE-E5チャップまたはスチールヘルメット</font><br><font color="#4b69cd">C3HZクラッシュアーマーまたはヘルメット</font><br><font color="#4b69cd">C3HZフロウブルーアーマーまたはヘルメット</font><br><font color="#6600a1">飛行ギャラクティックアーマーまたはヘルメット</font><br><font color="#6600a1">飛行叫びアーマーまたはヘルメット</font><br><font color="#6600a1">CHONNE-E5バットキャットアーマー</font><br><font color="#6600a1">CHONNE-E5蒸気ヘルメット</font><br><font color="#6600a1">C3HZ黒曜石アーマーまたはヘルメット</font><br><font color="#6600a1">C3HZ Spaceアーマーまたはヘルメット</font><br><font color="#8847ff">飛行青い天使アーマーまたはヘルメット</font><br><font color="#8847ff">飛行スピットファイアアーマーまたはヘルメット</font><br><font color="#8847ff">CHONNE-E5ホージンアーマーまたはヘルメット</font><br><font color="#8847ff">CHONNE-E5ラディカルアーマー</font><br><font color="#8847ff">CHONNE-E5日没ヘルメット</font><br><font color="#8847ff">C3HZ大理石アーマーまたはヘルメット</font><br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
@@ -598,9 +673,11 @@ HorzineSupplyCrateSeriesCyberSamuraiDescription="開けるには「サイバー�
 
 HorzineSupplyCrateSeriesDeityDescription="開けるには「ホージン物資箱の鍵」が必要です。次の中から、レアまたはそれ以上が1つ入っています。<br><font color="#4b69cd">アーマーフード | ブルー</font><br><font color="#4b69cd">アーマーフード | グリーン</font><br><font color="#4b69cd">顔なしマスク | ブルー</font><br><font color="#4b69cd">顔なしマスク | グリーン</font><br><font color="#4b69cd">サイファイフード | ブルー</font><br><font color="#4b69cd">サイファイフード | グリーン</font><br><font color="#4b69cd">無表情マスク | ブルー</font><br><font color="#4b69cd">無表情マスク | グリーン</font><br><font color="#6600a1">アーマーフード | レッド</font><br><font color="#6600a1">顔なしマスク | レッド</font><br><font color="#6600a1">サイファイフード | レッド</font><br><font color="#6600a1">無表情マスク | レッド</font><br><font color="#6600a1">バスト | レッド</font><br><font color="#6600a1">バスト | イエロー</font><br><font color="#6600a1">バスト | グリーン</font><br><font color="#6600a1">バスト | ブルー</font><br><font color="#6600a1">ソベック | レッド</font><br><font color="#6600a1">ソベック | イエロー</font><br><font color="#6600a1">ソベック | グリーン</font><br><font color="#6600a1">ソベック | ブルー</font><br><font color="#8847ff">アーマーフード | ブラック</font><br><font color="#8847ff">顔なしマスク | ブラック</font><br><font color="#8847ff">顔なしマスク | ホワイト</font><br><font color="#8847ff">サイファイフード | ブラック</font><br><font color="#8847ff">無表情マスク | ブラック</font><br><font color="#8847ff">無表情マスク | ホワイト</font><br><font color="#8847ff">アヌビス | レッド</font><br><font color="#8847ff">アヌビス | ブルー</font><br><font color="#8847ff">アヌビス | グリーン</font><br><font color="#8847ff">アヌビス | イエロー</font><br><font color="#8847ff">ラー | レッド</font><br><font color="#8847ff">ラー | ブルー</font><br><font color="#8847ff">ラー | グリーン</font><br><font color="#8847ff">ラー | イエロー</font><br><font color="#caab05">または激レアな希少アクセサリー！</font>"
 
-HorzineSupplyCrateSeriesProjectHDescription="開けるには「プロジェクトHシリーズ#1ホージン物資箱の鍵」が必要です。次の中からレア以上のアイテムが1つ入っています:<br><font color="#4b69cd">プロジェクトH-01 | ベース</font><br><font color="#4b69cd">プロジェクトH-01 | 幸せ </font><br><font color="#4b69cd">プロジェクトH-01 | 幸せオープン </font><br><font color="#4b69cd">プロジェクトH-01 | ポーカーフェイス </font><br><font color="#4b69cd">プロジェクトH-01 | ポーカーフェイスオープン </font><br><font color="#4b69cd">プロジェクトH-01 | 不幸 </font><br><font color="#4b69cd">プロジェクトH-01 | 不幸オープン </font><br><font color="#4b69cd">プロジェクトH-02 | ベース</font><br><font color="#4b69cd">プロジェクトH-02 | 幸せ </font><br><font color="#4b69cd">プロジェクトH-02 | 幸せオープン </font><br><font color="#4b69cd">プロジェクトH-02 | ポーカーフェイス </font><br><font color="#4b69cd">プロジェクトH-02 | ポーカーフェイスオープン </font><br><font color="#4b69cd">プロジェクトH-02 | 不幸 </font><br><font color="#4b69cd">プロジェクトH-02 | 不幸オープン </font><br><font color="#caab05">または激レアな希少アクセサリー！</font>"
+HorzineSupplyCrateSeriesProjectHDescription="Requires a Project H Series #1 Horzine Supply Crate Key to open.
+Contains one rare or better of the following:<br><font color="#4b69cd">プロジェクトH-01 | ベース</font><br><font color="#4b69cd">プロジェクトH-01 | 幸せ </font><br><font color="#4b69cd">プロジェクトH-01 | 幸せオープン </font><br><font color="#4b69cd">プロジェクトH-01 | ポーカーフェイス </font><br><font color="#4b69cd">プロジェクトH-01 | ポーカーフェイスオープン </font><br><font color="#4b69cd">プロジェクトH-01 | 不幸 </font><br><font color="#4b69cd">プロジェクトH-01 | 不幸オープン </font><br><font color="#4b69cd">プロジェクトH-02 | ベース</font><br><font color="#4b69cd">プロジェクトH-02 | 幸せ </font><br><font color="#4b69cd">プロジェクトH-02 | 幸せオープン </font><br><font color="#4b69cd">プロジェクトH-02 | ポーカーフェイス </font><br><font color="#4b69cd">プロジェクトH-02 | ポーカーフェイスオープン </font><br><font color="#4b69cd">プロジェクトH-02 | 不幸 </font><br><font color="#4b69cd">プロジェクトH-02 | 不幸オープン </font><br><font color="#caab05">または激レアな希少アクセサリー！</font>"
 
-HorzineSupplyCrateSeriesBoneyardDescription="開けるには「墓場シリーズ ホージン物資箱の鍵」が必要です。次のレアまたはそれ以上のアイテムが1つ入っています。<br><font color="#4b69cd">苦痛 </font><br><font color="#4b69cd">苦悩 </font><br><font color="#4b69cd">絶望  </font><br><font color="#4b69cd">悲嘆 </font><br><font color="#4b69cd">惨め </font><br><font color="#4b69cd">情熱 </font><br><font color="#4b69cd">苦労の種 </font><br><font color="#4b69cd">拷問 </font><br><font color="#caab05">または激レアな希少アクセサリー！</font>"
+HorzineSupplyCrateSeriesBoneyardDescription="Requires a Series Boneyard Horzine Supply Crate Key to open.
+Contains one rare or better of the following:<br><font color="#4b69cd">苦痛 </font><br><font color="#4b69cd">苦悩 </font><br><font color="#4b69cd">絶望  </font><br><font color="#4b69cd">悲嘆 </font><br><font color="#4b69cd">惨め </font><br><font color="#4b69cd">情熱 </font><br><font color="#4b69cd">苦労の種 </font><br><font color="#4b69cd">拷問 </font><br><font color="#caab05">または激レアな希少アクセサリー！</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="ホージン物資箱の鍵 | シリーズ#1"
@@ -621,6 +698,7 @@ HorzineSupplyCrateKeySeries15Name="ホージン物資箱の鍵 | シリーズ#15
 HorzineSupplyCrateKeySeries16Name="ホージン物資箱の鍵 | シリーズ#16"
 EmoteCrateKeySeries1Name="顔文字箱の鍵 | シリーズ#1"
 EmoteCrateKeySeries2Name="顔文字箱の鍵 | シリーズ#2"
+EmoteCrateKeySeries3Name="顔文字箱の鍵 | シリーズ#3"
 HorzineSupplyCrateKeySeriesDARName="ホージン物資箱の鍵 | シリーズD.A.R."
 HorzineSupplyCrateKeySeriesLocoName="ホージン物資箱の鍵 | ロコシリーズ"
 HorzineSupplyCrateKeySeriesCyberSamuraiName="ホージン物資箱の鍵 | シリーズ サイバーサムライ"
@@ -647,6 +725,7 @@ HorzineSupplyCrateKeySeries15Description="ホージンシリーズ#15物資箱�
 HorzineSupplyCrateKeySeries16Description="ホージンシリーズと畜場物資箱の鍵物資箱のみを開ける鍵。"
 EmoteCrateKeySeries1Description="シリーズ#1顔文字箱のみを開ける鍵。"
 EmoteCrateKeySeries2Description="シリーズ#2顔文字箱のみを開ける鍵。"
+EmoteCrateKeySeries3Description="シリーズ#3顔文字箱のみを開ける鍵。"
 HorzineSupplyCrateKeySeriesDARDescription="ホージンシリーズD.A.R.物資箱を開けるための鍵物資箱"
 HorzineSupplyCrateKeySeriesLocoDescription="ホージンシリーズとロコ物資箱の鍵物資箱のみを開ける鍵。"
 HorzineSupplyCrateKeySeriesCyberSamuraiDescription="ホージンシリーズ サイバーサムライの物資箱を開ける鍵。"
@@ -750,6 +829,8 @@ SteampunkEncryptedUSBDescription="開けるにはスチームパンク設計図�
 
 BeyondHorizonEncryptedUSBDescription="開けるには「墓場ホージン設計図の鍵」が必要です。レアまたはそれ以上武器スキンが1つ入っています。 <br><font color="#4b69cd">スタティックストライカー | ビヨンドホライゾン</font><br><font color="#4b69cd">HMTech-401 アサルトライフル | ビヨンドホライゾン </font><br><font color="#4b69cd">HMTech-301 ショットガン | ビヨンドホライゾン </font><br><font color="#6600a1">RPG-7 | ビヨンドホライゾン </font><br><font color="#6600a1">火炎放射器 | ビヨンドホライゾン </font><br><font color="#6600a1">Scar | ビヨンドホライゾン</font><br><font color="#6600A1">HMTech-201 SMG </font><br><font color="#8847ff">クリス | ビヨンドホライゾン</font><br><font color="#8847ff">M99 | ビヨンドホライゾン</font><br><font color="#8847ff">ヘリオスライフル | ビヨンドホライゾン</font><br><font color="#8847ff">デザートイーグル | スチームパンク</font><br><font color="#caab05">または激レア希少スキン！</font>"
 
+JaegerEncryptedUSBDescription="開けるにはイェーガー設計図の鍵が必要です。次の中から、レアまたはそれ以上の武器スキンが1つ入っています。 <br><font color="#4b69cd">クリス | イェーガー</font><br><font color="#4b69cd">P90 | イェーガー</font><br><font color="#4b69cd">パルベライザー | イェーガー</font><br><font color="#4b69cd">ヘモゴブリン | イェーガー</font><br><font color="#6600a1">SCAR | イェーガー</font><br><font color="#6600a1">デザートイーグル | イェーガー</font><br><font color="#6600A1">FN FAL | イェーガー</font><br><font color="#6600A1">マイクロ波銃 | イェーガー</font><br><font color="#8847ff">ドゥームスティック | イェーガー</font><br><font color="#8847ff">Helios Rifle | イェーガー</font><br><font color="#8847ff">キラーワット | イェーガー</font><br><font color="#caab05">または極めてレアな希少なスキン！</font>"
+
 
 ;usb key names
 CyberboneUSBKeyName="サイバーボーンUSBの鍵"
@@ -845,6 +926,7 @@ HorzineSupplyWeaponSkinCrateSeries13Name="ホージン物資武器スキン箱 |
 HorzineSupplyWeaponSkinCrateSeries14Name="ホージン物資武器スキン箱 | シリーズ #14"
 HorzineSupplyWeaponSkinCrateSeries15Name="ホージン武器スキン物資箱 | シリーズ#15"
 HorzineSupplyWeaponSkinCrateSeries16Name="ホージン武器スキン物資箱 | シリーズ#16"
+HorzineSupplyWeaponSkinCrateSeries17Name="ホージン物資武器スキン箱 | シリーズ #17"
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description="開けるには「ホージン物資箱の鍵」が必要です。次の中から、レアまたはそれ以上が1つ入っています。<br><font color="#4b69cd">Devtacバリスティックマスク</font><br><font color="#4b69cd">USガスマスク</font><br><font color="#4b69cd">スキーマスク</font><br><font color="#4b69cd">野球帽</font><br><font color="#6600a1">タクティカルバックバッグ</font><br><font color="#6600a1">ドイツ軍ガスマスク</font><br><font color="#6600a1">化学ガスマスク</font><br><font color="#6600a1">RPG7バックバッグ</font><br><font color="#8847ff">M2火炎放射戦車</font><br><font color="#caab05">または激レアな貴重アクセサリー！</font>"
@@ -866,6 +948,8 @@ HorzineSupplyCosmeticCrateSeries3Description="開けるには「ホージン物�
 HorzineSupplyEmoteCrateSeries1Description="開けるには「ホージン物資箱の鍵」が必要です。次のレアまたはそれ以上のアイテムが1つ入っています。<br><font color="#4b69cd">ワイルドに行こう</font><br><font color="#4b69cd">ブーティダンス</font><br><font color="#4b69cd">チャーリーおじさん</font><br><font color="#4b69cd">いかれたウェーブ</font><br><font color="#6600a1">降り注ぐDosh</font><br><font color="#6600a1">ライオンアッパーカット</font><br><font color="#6600a1">交配の儀式</font><br><font color="#8847ff">シビれる</font><br><font color="#8847ff">火の玉</font><br><font color="#8847ff">まき散らせ</font><br><font color="#caab05">または激レアなデラックス顔文字！</font>"
 
 HorzineSupplyEmoteCrateSeries2Description="開けるには「ホージン物資箱の鍵」が必要です。次のレア以上のアイテム1つが含まれます：<br><font color="#4b69cd">コサック</font><br><font color="#4b69cd">ウェーブ</font><br><font color="#4b69cd">ブレーキング</font><br><font color="#4b69cd">ノーハンド</font><br><font color="#6600a1">ヒールクリック</font><br><font color="#6600a1">スプリンクラー</font><br><font color="#6600a1">狂人</font><br><font color="#8847ff">走る男</font><br><font color="#8847ff">ロボット</font><br><font color="#8847ff">エアメタル</font><br><font color="#caab05">または激レアなデラックス顔文字！</font>"
+
+HorzineSupplyEmoteCrateSeries3Description="開けるには「ホージン物資箱の鍵の鍵」が必要です。次のレアまたはそれ以上のアイテムが1つ入っています：<br><font color="#4b69cd">ツルの拳</font><br><font color="#4b69cd">世界精通</font><br><font color="#4b69cd">Zed Time</font><br><font color="#4b69cd">エネルギー必須</font><br><font color="#4b69cd">最終形態</font><br><font color="#4b69cd">西部最速の銃</font><br><font color="#4b69cd">スピリットフィンガー</font><br><font color="#4b69cd">ホームライン</font><br><font color="#4b69cd">コイントリック</font><br><font color="#4b69cd">マジックフォスター</font><br><font color="#caab05">または激レアなデラックス顔文字！</font>"
 
 HorzineSupplyCosmeticCrateSeries4Description="開けるには「ホージン物資箱の鍵」が必要です。次のレア以上のアイテム1つが含まれます：<br><font color="#4b69cd">コブトのマスク</font><br><font color="#4b69cd">般若の面</font><br><font color="#4b69cd">ドラゴンガスマスク</font><br><font color="#4b69cd">インペリアルガレア</font><br><font color="#4b69cd">ボニーハット</font><br><font color="#4b69cd">ホップ</font><br><font color="#4b69cd">ビクトリアンズシークレット</font><br><font color="#6600a1">伝染病の医者マスク</font><br><font color="#8847ff">サムライガスマウスピース</font><br><font color="#8847ff">サムライガスヘルメット</font><br><font color="#8847ff">サムライガスマスク</font><br>"
 
@@ -903,7 +987,10 @@ HorzineSupplyWeaponSkinCrateSeries15Description="開けるには「ホージン�
 
 HorzineSupplyWeaponSkinCrateSeries16Description="開けるには「ホージン設計図の鍵」が必要です。レアまたはそれ以上武器スキンが1つ入っています。 <br><font color="#4b69cd">スタティックストライカー | ビヨンドホライゾン</font><br><font color="#4b69cd">HMTech-401 アサルトライフル | ビヨンドホライゾン </font><br><font color="#4b69cd">HMTech-301 ショットガン | ビヨンドホライゾン </font><br><font color="#6600a1">RPG-7 | ビヨンドホライゾン </font><br><font color="#6600a1">火炎放射器 | ビヨンドホライゾン </font><br><font color="#6600a1">Scar | ビヨンドホライゾン</font><br><font color="#6600A1">HMTech-201 SMG </font><br><font color="#8847ff">クリス | ビヨンドホライゾン</font><br><font color="#8847ff">M99 | ビヨンドホライゾン</font><br><font color="#8847ff">ヘリオスライフル | ビヨンドホライゾン</font><br><font color="#8847ff">デザートイーグル | スチームパンク</font><br><font color="#caab05">または激レア希少スキン！</font>"
 
-HorzineSupplyCosmeticCrateSeries11Description="開けるには「ホージン物資箱の鍵」が必要です。次のレアまたはそれ以上のアイテムが1つ入っています。<br><font color="#4b69cd">苦痛 </font><br><font color="#4b69cd">苦悩 </font><br><font color="#4b69cd">絶望  </font><br><font color="#4b69cd">悲嘆 </font><br><font color="#4b69cd">惨め </font><br><font color="#4b69cd">情熱 </font><br><font color="#4b69cd">苦労の種 </font><br><font color="#4b69cd">拷問 </font><br><font color="#caab05">または激レアな希少アクセサリー！</font>"
+HorzineSupplyCosmeticCrateSeries11Description="Requires a  Horzine Supply Crate Key to open.
+Contains one rare or better of the following:<br><font color="#4b69cd">苦痛 </font><br><font color="#4b69cd">苦悩 </font><br><font color="#4b69cd">絶望  </font><br><font color="#4b69cd">悲嘆 </font><br><font color="#4b69cd">惨め </font><br><font color="#4b69cd">情熱 </font><br><font color="#4b69cd">苦労の種 </font><br><font color="#4b69cd">拷問 </font><br><font color="#caab05">または激レアな希少アクセサリー！</font>"
+
+HorzineSupplyWeaponSkinCrateSeries17Description="開けるにはホージン物資箱の鍵が必要です。次の中から、レアまたはそれ以上の武器スキンが1つ入っています。 <br><font color="#4b69cd">クリス | イェーガー</font><br><font color="#4b69cd">P90 | イェーガー</font><br><font color="#4b69cd">パルベライザー | イェーガー</font><br><font color="#4b69cd">ヘモゴブリン | イェーガー</font><br><font color="#6600a1">SCAR | イェーガー</font><br><font color="#6600a1">デザートイーグル | イェーガー</font><br><font color="#6600A1">FN FAL | イェーガー</font><br><font color="#6600A1">マイクロ波銃 | イェーガー</font><br><font color="#8847ff">ドゥームスティック | イェーガー</font><br><font color="#8847ff">Helios Rifle | イェーガー</font><br><font color="#8847ff">キラーワット | イェーガー</font><br><font color="#caab05">または極めてレアな希少なスキン！</font>"
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="ホージン物資箱の鍵"
@@ -1235,6 +1322,7 @@ AA12SteampunkFieldTestedName="AA12 | スチームパンク | 実地試験済み"
 AA12SteampunkMintName="AA12 | スチームパンク | 新品"
 AA12SteampunkPreciousName="AA12 | スチームパンク | 希少"
 AA12DragonKoiPreciousName="AA12 | ドラゴン&鯉 | 希少"
+AA12FostersFavoritesPreciousName="AA12 | フォスターのお気に入り | 希少"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="外観：新品 | より多くのバレルを取り付けることで全てが改善されます。たくさんのベーコンを付け足すようなものです。"
@@ -1324,6 +1412,7 @@ AK12SynthwaveFieldTestedName="AK-12 | シンセウェイブ | 実地試験済み
 AK12SynthwaveBattleScarredName="AK-12 | シンセウェイブ | 歴戦"
 AK12PrestigePreciousName="AK-12 | 名声 | 希少"
 AK12DragonKoiPreciousName="AK-12 | ドラゴン&鯉 | 希少"
+AK12FostersFavoritesPreciousName="AK-12 | フォスターのお気に入り | 希少"
 
 ;AR15 Descriptions
 AR15MintDescription="外観：新品 | これはzed用です、「バーミント」用ではありません。"
@@ -1430,6 +1519,7 @@ BoomstickHorzineFirstEncounterFieldTestedName="ブームスティック | ホー
 BoomstickHorzineFirstEncounterBattleScarredName="ブームスティック | ホージン初遭遇 | 歴戦" 
 BoomstickPrestigePreciousName="ブームスティック | 名声 | 希少"
 BoomstickDragonKoiPreciousName="ブームスティック | ドラゴン&鯉 | 希少"
+BoomstickFostersFavoritesPreciousName="ブームスティック | フォスターのお気に入り | 希少"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="外観：新品 | 手持ちの、ホームメイド火炎放射器です。良い子のみなさんは真似しないでください。"
@@ -1576,6 +1666,11 @@ DesertEagleSteampunkFieldTestedName="デザートイーグル | スチームパ�
 DesertEagleSteampunkMintName="デザートイーグル | スチームパンク | 新品 | 新品"
 DesertEagleSteampunkPreciousName="デザートイーグル | スチームパンク | 希少"
 DesertEagleDragonKoiPreciousName="デザートイーグル | ドラゴン&鯉 | 希少"
+DesertEagleJaegerMintName="デザートイーグル | イェーガー | 新品"
+DesertEagleJaegerFieldTestedName="デザートイーグル | イェーガー | 実地試験済み"
+DesertEagleJaegerBattleScarredName="デザートイーグル | イェーガー | 歴戦"
+DesertEagleJaegerDynamicName="デザートイーグル | イェーガー | ダイナミック"
+DesertEagleFostersFavoritesPreciousName="デザートイーグル | フォスターのお気に入り | 希少"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="外観：新品 | 楽しみが2倍でも物足りない時は...4倍にしよう！"
@@ -1588,6 +1683,11 @@ DoomstickNeonMintName="ドゥームスティック | ネオン | 新品"
 DoomstickNeonFieldTestedName="ドゥームスティック | ネオン | 実地試験済み" 
 DoomstickNeonBattleScarredName="ドゥームスティック | ネオン | 歴戦" 
 DoomstickNeonRGBPreciousName="ドゥームスティック | ネオンRGB | 希少" 
+DoomstickJaegerMintName="ドゥームスティック | イェーガー | 新品"
+DoomstickJaegerFieldTestedName="ドゥームスティック | イェーガー | 実地試験済み"
+DoomstickJaegerBattleScarredName="ドゥームスティック | イェーガー | 歴戦"
+DoomstickJaegerDynamicName="ドゥームスティック | イェーガー | ダイナミック"
+DoomstickVaultVoshPreciousName="ドゥームスティック | Vault | Vosh | 希少"
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="外観：新品 | ドラゴンブレス焼夷弾を使用したショットガンです。致命的なだけでなく、見た目も素敵です。"
@@ -1779,6 +1879,10 @@ HemogoblinNeonFieldTestedName="ヘモゴブリン | ネオン | 実地試験済�
 HemogoblinNeonBattleScarredName="ヘモゴブリン | ネオン | 歴戦"
 HemogoblinNeonRGBPreciousName="ヘモゴブリン | ネオンRGB | 希少"
 HemogoblinVaultVoshPreciousName="ヘモゴブリン | Vault | Vosh | 希少"
+HemogoblinJaegerMintName="ヘモゴブリン | イェーガー | 新品"
+HemogoblinJaegerFieldTestedName="ヘモゴブリン | イェーガー | 実地試験済み"
+HemogoblinJaegerBattleScarredName="ヘモゴブリン | イェーガー | 歴戦"
+HemogoblinJaegerDynamicName="ヘモゴブリン | イェーガー | ダイナミック"
 
 ;HK UMP Descriptions
 HKUMPMintDescription="外観：新品 | MPファミリーに新しく加わったものの一つ。ポジション的に叔父さんでしょうか？サブマシンガンにも家族はいるようです。"
@@ -1978,6 +2082,7 @@ HMTech501GrenadeRifleNeonMintName="HMTech-501 手榴弾ライフル | ネオン 
 HMTech501GrenadeRifleNeonFieldTestedName="HMTech-501 手榴弾ライフル | ネオン | 実地試験済み"
 HMTech501GrenadeRifleNeonBattleScarredName="HMTech-501 手榴弾ライフル | ネオン | 歴戦"
 HMTech501GrenadeRifleNeonRGBPreciousName="HMTech-501 手榴弾ライフル | ネオン RGB | 希少"
+HMTech501GrenadeLauncherVaultVoshPreciousName="HMTech-501手榴弾ライフル | Vault | Vosh | 希少"
 
 ;Husk Cannon Descriptions
 HuskCannonMintDescription="外観：新品 | ハスクキャノンのホージン社公式バージョン。このモデルは95%の保証付きで爆発しません。"
@@ -2131,6 +2236,11 @@ KrissBeyondHorizonFieldTestedName="クリス | ビヨンドホライゾン | 実
 KrissBeyondHorizonBattleScarredName="クリス | ビヨンドホライゾン | 歴戦"
 KrissBeyondHorizonSpaceEliteName="クリス | ビヨンドホライゾン | スペースエリート"
 KrissDragonKoiPreciousName="クリス | ドラゴン&鯉 | 希少"
+KrissJaegerMintName="クリス | イェーガー | 新品"
+KrissJaegerFieldTestedName="クリス | イェーガー | 実地試験済み"
+KrissJaegerBattleScarredName="クリス | イェーガー | 歴戦"
+KrissJaegerDynamicName="クリス | イェーガー | ダイナミック"
+KrissFostersFavoritesPreciousName="クリス | フォスターのお気に入り | 希少"
 
 ;L85A2 Descriptions
 L85A2MintDescription="外観：新品 | SA80は、軍隊が…食われるまでは、イギリス軍の標準武器でした。"
@@ -2208,6 +2318,7 @@ M14EBRNeonRGBPreciousName="M14EBR | ネオンRGB | 希少"
 M14EBRVaultVoshPreciousName="M14EBR | Vault | Vosh | 希少"
 M14EBRPrestigePreciousName="M14EBR | 名声 | 希少"
 M14EBRDragonKoiPreciousName="M14EBR | ドラゴン&鯉 | 希少"
+M14EBRFostersFavoritesPreciousName="M14EBR | フォスターのお気に入り | 希少"
 
 ;M16M203 Descriptions
 M16M203MintDescription="外観：新品 | 銃弾か手榴弾か決められない人向け。"
@@ -2298,6 +2409,7 @@ M4NeonBattleScarredName="M4 | ネオン | 歴戦"
 M4NeonRGBPreciousName="M4 | ネオン RGB | 希少"
 M4PrestigePreciousName="M4 | 名声 | 希少"
 M4DragonKoiPreciousName="M4 | ドラゴン&鯉 | 希少"
+M4FostersFavoritesPreciousName="M4 | フォスターのお気に入り | 希少"
 
 ;M79 Descriptions
 M79MintDescription="外観：新品 | 顔を吹き飛ばされないように、射程の数メートル先でのみ作動します。"
@@ -2446,6 +2558,10 @@ MicrowaveGunNeonRGBPreciousName="マイクロ波銃 | ネオンRGB | 希少"
 MicrowaveGunVaultVoshPreciousName="マイクロ波銃 | Vault | Vosh | 希少"
 MicrowaveGunPrestigePreciousName="マイクロ波銃 | 名声 | 希少"
 MicrowaveGunDragonKoiPreciousName="マイクロ波銃 | ドラゴン&鯉 | 希少"
+MicrowaveGunJaegerMintName="マイクロ波銃 | イェーガー | 新品"
+MicrowaveGunJaegerFieldTestedName="マイクロ波銃 | イェーガー | 実地試験済み"
+MicrowaveGunJaegerBattleScarredName="マイクロ波銃 | イェーガー | 歴戦"
+MicrowaveGunJaegerDynamicName="マイクロ波銃 | イェーガー | ダイナミック"
 
 ;MP5RAS Descriptions
 MP5RASMintDescription="外観：新品 | 世界で最も使用されているサブマシンガンの最新版です。"
@@ -2532,6 +2648,11 @@ P90NeonMintName="P90 | ネオン | 新品"
 P90NeonRGBPreciousName="P90 | ネオンRGB | 希少"
 P90VaultVoshPreciousName="P90 | Vault | Vosh | 希少"
 P90DragonKoiPreciousName="P90 | ドラゴン&鯉 | 希少"
+P90JaegerMintName="P90 | イェーガー | 新品"
+P90JaegerFieldTestedName="P90 | イェーガー | 実地試験済み"
+P90JaegerBattleScarredName="P90 | イェーガー | 歴戦"
+P90JaegerDynamicName="P90 | イェーガー | ダイナミック"
+P90FostersFavoritesPreciousName="P90 | フォスターのお気に入り | 希少"
 
 ;Pulverizer Descriptions
 PulverizerMintDescription="外観：新品 | ショットガンとスレッジハンマーの組み合わせが欲しくない理由なんてありますか？"
@@ -2567,6 +2688,10 @@ PulverizerBeyondHorizonFieldTestedName="パルべライザー | ビヨンドホ�
 PulverizerBeyondHorizonBattleScarredName="パルべライザー | ビヨンドホライゾン | 歴戦"
 PulverizerBeyondHorizonSpaceEliteName="パルべライザー | ビヨンドホライゾン | スペースエリート"
 PulverizerDragonKoiPreciousName="パルべライザー | ドラゴン&鯉 | 希少"
+PulverizerJaegerMintName="パルベライザー | イェーガー | 新品"
+PulverizerJaegerFieldTestedName="パルベライザー | イェーガー | 実地試験済み"
+PulverizerJaegerBattleScarredName="パルベライザー | イェーガー | 歴戦"
+PulverizerJaegerDynamicName="パルベライザー | イェーガー | ダイナミック"
 
 ;Railgun Descriptions
 RailgunMintDescription="外観：新品 | この武器は磁石を使ってスラッグ弾を高速で発射し、zedをティッシュのように貫通します。"
@@ -2698,6 +2823,10 @@ ScarBeyondHorizonFieldTestedName="Scar | ビヨンドホライゾン | 実地検
 ScarBeyondHorizonBattleScarredName="Scar | ビヨンドホライゾン | 歴戦"
 ScarBeyondHorizonSpaceEliteName="Scar | ビヨンドホライゾン | スペースエリート"
 ScarDragonKoiPreciousName="Scar | ドラゴン&鯉 | 希少"
+ScarJaegerMintName="SCAR | イェーガー | 新品"
+ScarJaegerFieldTestedName="SCAR | イェーガー | 実地試験済み"
+ScarJaegerBattleScarredName="SCAR | イェーガー | 歴戦"
+ScarJaegerDynamicName="SCAR | イェーガー | ダイナミック"
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="外観：新品 | 複数のターゲットを追跡して倒すことのできる万能榴弾です。"
@@ -2714,6 +2843,7 @@ SeekerSixBluefireMintName="シーカーシックス | ブルーファイア | �
 SeekerSixBluefireFieldTestedName="シーカーシックス | ブルーファイア | 実地試験済み" 
 SeekerSixBluefireBattleScarredName="シーカーシックス | ブルーファイア | 歴戦" 
 SeekerSixNeonRGBPreciousName="シーカーシックス | ネオン RGB | 希少" 
+SeekerSixVaultVoshPreciousName="シーカーシックス | Vault | Vosh | 希少"
 
 ;SG500 Descriptions
 SG500MintDescription="外観：新品 | ピストルグリップを持つポンプアクションモスバーグSG 500は、素晴らしい接近戦用zedキラーです。シンプルで効果的です。"
@@ -2993,6 +3123,7 @@ MKB42NeonMintName="MKB42H | ネオン | 新品"
 MKB42NeonFieldTestedName="MKB42H | ネオン | 実地試験済み"
 MKB42NeonBattleScarredName="MKB42H | ネオン | 歴戦"
 MKB42NeonRGBPreciousName="MKB42H | ネオン RGB | 希少"
+MKB42VaultVoshPreciousName="MKB42H | Vault | Vosh | 希少"
 
 ;TommyGun Descriptions
 TommyGunMintDescription="外観：新品 | シカゴ・タイプライターとも呼ばれるが、名前を刻むのにも適した銃。"
@@ -3026,6 +3157,10 @@ LaserCutterBeyondHorizonBattleScarredName="キラーワット | ビヨンドホ�
 LaserCutterBeyondHorizonSpaceEliteName="キラーワット | ビヨンドホライゾン | スペースエリート"
 LaserCutterVaultVoshPreciousName="キラーワット | Vault | Vosh | 希少"
 LaserCutterDragonKoiPreciousName="キラーワット | ドラゴン&鯉 | 希少"
+LaserCutterJaegerMintName="キラーワット | イェーガー | 新品"
+LaserCutterJaegerFieldTestedName="キラーワット | イェーガー | 実地試験済み"
+LaserCutterJaegerBattleScarredName="キラーワット | イェーガー | 歴戦"
+LaserCutterJaegerDynamicName="キラーワット | イェーガー | ダイナミック"
 
 ;FNFAL Descriptions
 FNFALMintDescription="外観：新品 | この銃はFN FAIL(失敗)でないのは確かです…あれはひどい銃だった。"
@@ -3039,6 +3174,10 @@ FNFALNeonFieldTestedName="FN FAL | ネオン | 実地試験済み"
 FNFALNeonBattleScarredName="FN FAL | ネオン | 歴戦"
 FNFALNeonRGBPreciousName="FN FAL | ネオン RGB | 希少"
 FNFALVaultVoshPreciousName="FN FAL | Vault | Vosh | 希少"
+FNFALJaegerMintName="FN FAL | イェーガー | 新品"
+FNFALJaegerFieldTestedName="FN FAL | イェーガー | 実地試験済み"
+FNFALJaegerBattleScarredName="FN FAL | イェーガー | 歴戦"
+FNFALJaegerDynamicName="FN FAL | イェーガー | ダイナミック"
 
 ;FireAxe Descriptions
 FireAxeMintDescription="外観：新品 | 燃えている訳でもないのに、なぜ「ファイア」アックスなのか？"
@@ -3075,7 +3214,7 @@ IonSwordPreciousDescription="外観: 希少 | バーベキューに最適。"
 ;IonSword Names
 IonSwordVaultVoshPreciousName="イオンスラスター | Vault | Vosh | 希少"
 IonSwordStandardName="イオンスラスター | スタンダード | 希少"
-IonSwordDoshRoyaleName="イオンスラスター | Doshロイヤル | 希少"
+IonSwordDoshRoyaleName="イオンスラスター | Dosh ロイヤル | 希少"
 IonSwordLightningName="イオンスラスター | ライトニング | 希少"
 IonSwordLuciferName="イオンスラスター | ルシファー | 希少"
 IonSwordRoyalShockName="イオンスラスター | ロイヤルショック | 希少"
@@ -3102,6 +3241,10 @@ MIcrowaveAssaultBeyondHorizonFieldTestedName="Helios Rifle | ビヨンドホラ�
 MIcrowaveAssaultBeyondHorizonBattleScarredName="Helios Rifle | ビヨンドホライゾン | 歴戦"
 MIcrowaveAssaultBeyondHorizonSpaceEliteName="Helios Rifle | ビヨンドホライゾン | スペースエリート"
 MIcrowaveAssaultVaultVoshPreciousName="Helios Rifle | Vault | Vosh | 希少"
+MIcrowaveAssaultJaegerMintName="ヘリオスライフル | イェーガー | 新品"
+MIcrowaveAssaultJaegerFieldTestedName="ヘリオスライフル | イェーガー | 実地試験済み"
+MIcrowaveAssaultJaegerBattleScarredName="ヘリオスライフル | イェーガー | 歴戦"
+MIcrowaveAssaultJaegerDynamicName="ヘリオスライフル | イェーガー | ダイナミック"
 
 ;Rhino Descriptions
 RhinoMintDescription="外観: 新品 | Zed をチーズのように切り刻む"
@@ -3117,6 +3260,31 @@ RhinoLightningName="ライノ | ライトニング | 希少"
 RhinoLuciferName="ライノ | ルシファー | 希少"
 RhinoRoyalShockName="ライノ | ロイヤルショック | 希少"
 RhinoShatterName="ライノ | シャッター | 希少"
+
+;Mosin Descriptions
+MosinNagantPreciousDescription="外観：希少 | 至近距離、あるいは遠距離でも、敵に穴を開けることが保証されています。"
+
+;Mosin Names
+MosinNagantStandardPreciousName="モシン・ナガン | スタンダード | 希少"
+MosinNagantCamouflagePreciousName="モシン・ナガン | 迷彩 | 希少"
+MosinNagantFiligreePreciousName="モシン・ナガン | フィリグリー | 希少"
+MosinNagantFiligreeSilverPreciousName="モシン・ナガン | フィリグリーシルバー | 希少"
+MosinNagantGreenPreciousName="モシン・ナガン | グリーン | 希少"
+MosinNagantWinterPreciousName="モシン・ナガン | ウィンター | 希少"
+
+;RiotShield Descriptions
+RiotShieldandG18PreciousDescription="外観：希少 | 仲間全員があなたの背後で死ぬのではないと考えれば、あなたにとっても仲間にとっても役立ちます。"
+
+;RiotShield Names
+RiotShieldandG18StandardPreciousName="ライオットシールドとG18 | スタンダード | 希少"
+RiotShieldandG18DesertPreciousName="ライオットシールドとG18 | 砂漠 | 希少"
+RiotShieldandG18ForestPreciousName="ライオットシールドとG18 | 森 | 希少"
+RiotShieldandG18VIGILPreciousName="ライオットシールドとG18 | VIGIL | 希少"
+RiotShieldandG18WinterPreciousName="ライオットシールドとG18 | ウィンター | 希少"
+RiotShieldandG18SWATPreciousName="ライオットシールドとG18 | SWAT | 希少"
+
+;Dynamic Descriptions
+DynamicPreciousDescription="外観：ダイナミック希少 | ダイナミックなスキンがあれば、以下の能力が武器スキンから来ることを証明できます：左マガジン容量&マガジン毎の精度"
 
 [CosmeticSection]
 
@@ -4277,16 +4445,16 @@ DARC3HZHelmetMarbleName="D.A.R.| C3HZヘルメット | 大理石"
 DARC3HZHelmetObsidianName="D.A.R.| C3HZヘルメット | 黒曜石"
 DARC3HZHelmetPreciousName="D.A.R.| C3HZヘルメット | 希少"
 DARC3HZHelmetSpaceName="D.A.R.| C3HZヘルメット | Space"
-DARClassicArmorBloodyName="D.A.R.| クラシックアーマー | ブラッディ"
-DARClassicArmorLoaderName="D.A.R.| クラシックアーマー | ローダー"
-DARClassicArmorPreciousName="D.A.R.| クラシックアーマー | 希少"
-DARClassicArmorScullyName="D.A.R.| クラシックアーマー | スカル"
-DARClassicArmorStandardName="D.A.R.| クラシックアーマー | スタンダード"
-DARClassicHelmetBloodyName="D.A.R.| クラシックヘルメット | ブラッディ"
-DARClassicHelmetLoaderName="D.A.R.| クラシックヘルメット | ローダー"
-DARClassicHelmetPreciousName="D.A.R.| クラシックヘルメット | 希少"
-DARClassicHelmetScullyName="D.A.R.| クラシックヘルメット | スカル"
-DARClassicHelmetStandardName="D.A.R.| クラシックヘルメット | スタンダード"
+DARClassicArmorBloodyName="D.A.R. | Classic Armor | Bloody
+DARClassicArmorLoaderName="D.A.R. | Classic Armor | Loader
+DARClassicArmorPreciousName="D.A.R. | Classic Armor | Precious
+DARClassicArmorScullyName="D.A.R. | Classic Armor | Scully
+DARClassicArmorStandardName="D.A.R. | Classic Armor | Standard
+DARClassicHelmetBloodyName="D.A.R. | Classic Helmet | Bloody
+DARClassicHelmetLoaderName="D.A.R. | Classic Helmet | Loader
+DARClassicHelmetPreciousName="D.A.R. | Classic Helmet | Precious
+DARClassicHelmetScullyName="D.A.R. | Classic Helmet | Scully
+DARClassicHelmetStandardName="D.A.R. | Classic Helmet | Standard
 
 ;Steampunk Cosmetic Names
 SteampunkTopHatBlueName="スチームパンク | シルクハット | ブルー"
@@ -4743,7 +4911,7 @@ HalloweenPrivatePauldronPreciousName="ハロウィーン | 兵士の肩甲 | 希
 HalloweenOfficerPauldronIronName="ハロウィーン | 将校の肩甲 | 鉄"
 HalloweenOfficerPauldronSilverName="ハロウィーン | 将校の肩甲 | 銀"
 HalloweenOfficerPauldronPreciousName="ハロウィーン | 将校の肩甲 | 希少"
-HalloweenPilgrimHatBlackName="ハロウィーン | ブラック"
+HalloweenPilgrimHatBlackName="ハロウィーン | 巡礼者の帽子 | ブラック"
 HalloweenPilgrimHatPurpleName="ハロウィーン | 巡礼者の帽子 | パープル"
 HalloweenPilgrimHatPreciousName="ハロウィーン | 巡礼者の帽子 | 希少"
 HalloweenBiohazardHatBlackName="ハロウィーン | バイオハザード帽子 | ブラック"
@@ -4779,6 +4947,50 @@ HalloweenStitchedMouthMaskPreciousName="ハロウィーン | 縫いつけられ�
 HalloweenGarlicClotBackpackBlackName="ハロウィーン | ニンニクのバックパック | ブラック"
 HalloweenGarlicClotBackpackPurpleName="ハロウィーン | ニンニクのバックパック | パープル"
 HalloweenGarlicClotBackpackPreciousName="ハロウィーン | ニンニクのバックパック | 希少"
+
+;Christmas 2019 Cosmetic Names
+ChristmasKrampusMaskRedName="クリスマス | クランプスマスク | レッド"
+ChristmasKrampusMaskGreenName="クリスマス | クランプスマスク | グリーン"
+ChristmasKrampusMaskPreciousName="クリスマス | クランプスマスク | 希少"
+ChristmasGorefastMaskGingerbreadName="クリスマス | ゴアファストマスク | ジンジャーブレッド"
+ChristmasGorefastMaskStrawberryFrostedName="クリスマス | ゴアファストマスク | イチゴ味"
+ChristmasGorefastMaskPreciousName="クリスマス | ゴアファストマスク | 希少"
+ChristmasClotHatGreenName="クリスマス | clotハット | グリーン"
+ChristmasClotHatRedName="クリスマス | clotハット | レッド"
+ChristmasClotHatPreciousName="クリスマス | clotハット | 希少"
+ChristmasTopHatRedName="クリスマス | シルクハット | レッド"
+ChristmasTopHatGreenName="クリスマス | シルクハット | グリーン"
+ChristmasTopHatPreciousName="クリスマス | シルクハット | 希少"
+ChristmasSnowmanCapIceName="クリスマス | 雪だるまキャップ | 氷"
+ChristmasSnowmanCapMagmaName="クリスマス | 雪だるまキャップ | マグマ"
+ChristmasSnowmanCapPreciousName="クリスマス | 雪だるまキャップ | 希少"
+ChristmasMonsterCapGreenName="クリスマス | モンスターキャップ | グリーン"
+ChristmasMonsterCapRedName="クリスマス | モンスターキャップ | レッド"
+ChristmasMonsterCapPreciousName="クリスマス | モンスターキャップ | 希少"
+ChristmasScrakeMaskBrownName="クリスマス | スクレイクマスク | ブラウン"
+ChristmasScrakeMaskBlackName="クリスマス | スクレイクマスク | ブラック"
+ChristmasScrakeMaskPreciousName="クリスマス | スクレイクマスク | 希少"
+ChristmasReindeerBackpackBrownName="クリスマス | トナカイのバックパック | ブラウン"
+ChristmasReindeerBackpackDottedName="クリスマス | トナカイのバックパック | ドット柄"
+ChristmasReindeerBackpackPreciousName="クリスマス | トナカイのバックパック | 希少"
+ChristmasTreeBackpackRedName="クリスマス | ツリーのバックパック | レッド"
+ChristmasTreeBackpackGreenName="クリスマス | ツリーのバックパック | グリーン"
+ChristmasTreeBackpackPreciousName="クリスマス | ツリーのバックパック | 希少"
+ChristmasGingerbreadHatOriginalName="クリスマス | ジンジャーブレッドハット | オリジナル"
+ChristmasGingerbreadHatStrawberryFrostedName="クリスマス | ジンジャーブレッドハット | イチゴ味"
+ChristmasGingerbreadHatPreciousName="クリスマス | ジンジャーブレッドハット | 希少"
+ChristmasNiceSantaMaskRedName="クリスマス | 気のいいサンタマスク | レッド"
+ChristmasNiceSantaMaskGreenName="クリスマス | 気のいいサンタマスク | グリーン"
+ChristmasNiceSantaMaskPreciousName="クリスマス | 気のいいサンタマスク | 希少"
+ChristmasNaughtySantaMaskDarkGreyName="クリスマス | 意地悪サンタマスク | ダークグレー"
+ChristmasNaughtySantaMaskBloodrushName="クリスマス | 意地悪サンタマスク | 蒼白"
+ChristmasNaughtySantaMaskPreciousName="クリスマス | 意地悪サンタマスク | 希少"
+ChristmasSnowmanHelmetIceName="クリスマス | 雪だるまヘルメット | 氷"
+ChristmasSnowmanHelmetMagmaName="クリスマス | 雪だるまヘルメット | マグマ"
+ChristmasSnowmanHelmetPreciousName="クリスマス | 雪だるまヘルメット | 希少"
+ChristmasMistletoeClotBackpackRedName="クリスマス | ヤドリギのclotバックパック | レッド"
+ChristmasMistletoeClotBackpackGreenName="クリスマス | ヤドリギのclotバックパック | グリーン"
+ChristmasMistletoeClotBackpackPreciousName="クリスマス | ヤドリギのclotバックパック | 希少"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="装備メニューから装備可能です。ほとんどのキャラクターが使用できます。シーズナルイベント「サマーサイドショウ」で手に入る限定アイテムです。サイドショウチケット1枚にリサイクルされます。"
@@ -4975,6 +5187,26 @@ ManiacDeluxeEmoteName="狂人デラックス | 顔文字"
 TheRunningManDeluxeEmoteName="走る男デラックス | 顔文字"
 TheRobotDeluxeEmoteName="ロボットデラックス | 顔文字"
 AirMetalDeluxeEmoteName="エアメタルデラックス | 顔文字"
+CraneFistEmoteName="ツルの拳 | 顔文字"
+UniversalMasteryEmoteName="世界精通 | 顔文字"
+ZedTimeEmoteName="Zed-Time | 顔文字"
+NeedYourEnergyEmoteName="エネルギー必須 | 顔文字"
+FinalFormEmoteName=Final Form | Emote"
+FastestGunInTheWestEmoteName="西部最速の銃 | 顔文字"
+SpiritFingersEmoteName="スピリットフィンガー | 顔文字"
+HomerunEmoteName="ホームラン | 顔文字"
+CointTrickEmoteName="コイントリック | 顔文字"
+MagicFosterEmoteName="マジックフォスター | 顔文字"
+CraneFistDeluxeEmoteName="ツルの拳デラックス | 顔文字"
+UniversalMasteryDeluxeEmoteName="世界精通デラックス | 顔文字"
+ZedTimeDeluxeEmoteName="Zed-Timeデラックス | 顔文字"
+NeedYourEnergyDeluxeEmoteName="エネルギー必須デラックス | 顔文字"
+FinalFormDeluxeEmoteName="最終形態デラックス | 顔文字"
+FastestGunInTheWestDeluxeEmoteName="西部最速の銃デラックス | 顔文字"
+SpiritFingersDeluxeEmoteName="スピリットフィンガーデラックス | 顔文字"
+HomerunDeluxeEmoteName="ホームランデラックス | 顔文字"
+CointTrickDeluxeEmoteName="コイントリックデラックス | 顔文字"
+MagicFosterDeluxeEmoteName="マジックフォスターデラックス | 顔文字"
 
 ;Emote Descriptions
 
@@ -5018,6 +5250,26 @@ ManiacDeluxeEmoteDescription="doshを得るんだ、doshを得るんだ...リサ
 TheRunningManDeluxeEmoteDescription="このダンスは永遠さ！絶対にできません！リサイクルすると、素晴らしい装飾素材を作ることができる。"
 TheRobotDeluxeEmoteDescription="どうもありがとう、ミスターロボット。リサイクルすると、素晴らしい装飾素材を作ることができる。"
 AirMetalDeluxeEmoteDescription="俺が砕け散るのを見ろ！ぐぉぉぉぉぉぉ！リサイクルすると、素晴らしい装飾素材を作ることができる。"
+CraneFistEmoteDescription="ここが地球であるということのみが弱点の者の戦闘スタイル。リサイクルすると、レアな装飾素材を作れます。"
+UniversalMasteryEmoteDescription="パワーは別売りです。リサイクルすると、レアな装飾素材を作れます。"
+ZedTimeEmoteDescription="1999年みたいにリンボーダンスのマスターになりましょう。リサイクルすると、レアな装飾素材を作れます。"
+NeedYourEnergyEmoteDescription="これは私だけのパワーではないのです。リサイクルすると、レアな装飾素材を作れます。"
+FinalFormEmoteDescription="更にその先へ行きましょう。リサイクルすると、レアな装飾素材を作れます。"
+FastestGunInTheWestEmoteDescription="カウボーイは先に撃ってはいけません。リサイクルすると、レアな装飾素材を作れます。"
+SpiritFingersEmoteDescription="バーン、バン、バン…バーン、バン。リサイクルすると、レアな装飾素材を作れます。"
+HomerunEmoteDescription="0を足せば、1000回打ったことになります。リサイクルすると、レアな装飾素材を作れます。"
+CointTrickEmoteDescription="安っぽいワザですが、いくらかは稼げます。リサイクルすると、レアな装飾素材を作れます。"
+MagicFosterEmoteDescription="ここにいる法律違反者のために。リサイクルすると、レアな装飾素材を作れます。"
+CraneFistDeluxeEmoteDescription="ここが地球であるということのみが弱点の者の戦闘スタイル。リサイクルすると、超レアな装飾素材を作ることができます。"
+UniversalMasteryDeluxeEmoteDescription="パワーは別売りです。リサイクルすると、超レアな装飾素材を作ることがでます。"
+ZedTimeDeluxeEmoteDescription="1999年みたいにリンボーダンスのマスターになりましょう。リサイクルすると、超レアな装飾素材を作ることがでます。"
+NeedYourEnergyDeluxeEmoteDescription="これは私だけのパワーではないのです。リサイクルすると、超レアな装飾素材を作ることがでます。"
+FinalFormDeluxeEmoteDescription="更にその先へ行きましょう。リサイクルすると、超レアな装飾素材を作ることがでます。"
+FastestGunInTheWestDeluxeEmoteDescription="カウボーイは先に撃ってはいけません。リサイクルすると、超レアな装飾素材を作ることがでます。"
+SpiritFingersDeluxeEmoteDescription="バーン、バン、バン…バーン、バン。リサイクルすると、超レアな装飾素材を作ることがでます。"
+HomerunDeluxeEmoteDescription="0を足せば、1000回打ったことになります。リサイクルすると、超レアな装飾素材を作ることがでます。"
+CointTrickDeluxeEmoteDescription="安っぽいワザですが、いくらかは稼げます。リサイクルすると、超レアな装飾素材を作ることがでます。"
+MagicFosterDeluxeEmoteDescription="ここにいる法律違反者のために。リサイクルすると、超レアな装飾素材を作ることがでます。"
 
 [FXSection]
 

@@ -1124,7 +1124,7 @@ State PlayingWave
 	{
 		MyKFGRI.SetWaveActive(TRUE, GetGameIntensityForMusic());
 		MyKFGRI.VoteCollector.ResetTraderVote();
-		
+
 		StartWave();
 		if ( AllowBalanceLogging() )
 		{
@@ -2140,11 +2140,19 @@ defaultproperties
    AIClassList(9)=Class'kfgamecontent.KFPawn_ZedBloat'
    AIClassList(10)=Class'kfgamecontent.KFPawn_ZedSiren'
    AIClassList(11)=Class'kfgamecontent.KFPawn_ZedHusk'
+   AIClassList(12)=None
+   AIClassList(13)=Class'kfgamecontent.KFPawn_ZedClot_AlphaKing'
+   AIClassList(14)=Class'kfgamecontent.KFPawn_ZedCrawlerKing'
+   AIClassList(15)=Class'kfgamecontent.KFPawn_ZedGorefastDualBlade'
+   AIClassList(16)=Class'kfgamecontent.KFPawn_ZedDAR_EMP'
+   AIClassList(17)=Class'kfgamecontent.KFPawn_ZedDAR_Laser'
+   AIClassList(18)=Class'kfgamecontent.KFPawn_ZedDAR_Rocket'
    NonSpawnAIClassList(0)=Class'kfgamecontent.KFPawn_ZedBloatKingSubspawn'
    AIBossClassList(0)=Class'kfgamecontent.KFPawn_ZedHans'
    AIBossClassList(1)=Class'kfgamecontent.KFPawn_ZedPatriarch'
    AIBossClassList(2)=Class'kfgamecontent.KFPawn_ZedFleshpoundKing'
    AIBossClassList(3)=Class'kfgamecontent.KFPawn_ZedBloatKing'
+   AIBossClassList(4)=Class'kfgamecontent.KFPawn_ZedMatriarch'
    GameplayEventsWriterClass=Class'KFGame.KFGameplayEventsWriter'
    TraderVoiceGroupClass=Class'kfgamecontent.KFTraderVoiceGroup_Default'
    MaxPlayers=6

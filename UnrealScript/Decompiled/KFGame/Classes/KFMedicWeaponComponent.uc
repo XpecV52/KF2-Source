@@ -41,9 +41,6 @@ var KFGFxWorld_MedicOptics OpticsUI;
 
 replication
 {
-     if(bNetDirty)
-        AmmoCost;
-
      if(bNetDirty && bRechargeHealAmmo)
         HealingDartAmmo;
 }
@@ -60,29 +57,16 @@ simulated event ReplicatedEvent(name VarName)
     }
 }
 
-simulated function Init(byte InAmmoCost)
+simulated function Init(KFWeapon InKFW, byte InAmmoCost)
 {
-    KFW = KFWeapon(Owner);
+    KFW = InKFW;
+    Instigator = InKFW.Instigator;
     AmmoCost = InAmmoCost;
 }
 
 simulated event Tick(float DeltaTime)
 {
     super.Tick(DeltaTime);
-    if(KFW == none)
-    {
-        KFW = KFWeapon(Owner);
-        if(KFW == none)
-        {
-            return;
-        }
-        Instigator = KFW.Instigator;
-    }
-    if(Owner.bPendingDelete && !bPendingDelete)
-    {
-        Destroy();
-        return;
-    }
     if(KFW.AmmoCount[1] < KFW.MagazineCapacity[1])
     {
         HealAmmoRegeneration(DeltaTime);
@@ -343,5 +327,5 @@ defaultproperties
     RemoteRole=ENetRole.ROLE_SimulatedProxy
     CollisionType=ECollisionType.COLLIDE_CustomDefault
     bHidden=true
-    bAlwaysRelevant=true
+    bOnlyRelevantToOwner=true
 }

@@ -840,15 +840,6 @@ exec function Weapon GiveWeapon(string WeaponClassStr)
     return NewWeap;
 }
 
-simulated exec function Shotty()
-{
-    GiveWeapon("KFGameContent.KFWeap_Shotgun_MB500");
-    GiveWeapon("KFGameContent.KFWeap_Shotgun_M4");
-    GiveWeapon("KFGameContent.KFWeap_Shotgun_DoubleBarrel");
-    GiveWeapon("KFGameContent.KFWeap_Shotgun_AA12");
-    GiveWeapon("KFGameContent.KFWeap_Shotgun_HZ12");
-}
-
 simulated exec function MKB()
 {
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_DualMKb42_Hans");
@@ -857,27 +848,12 @@ simulated exec function MKB()
 simulated exec function Pistols()
 {
     GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_Deagle");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
-}
-
-simulated exec function Dualies()
-{
-    GiveWeapon("KFGameContent.KFWeap_Pistol_Dual9mm");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_DualDeagle");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_DualColt1911");
-    GiveWeapon("KFGameContent.KFWeap_Revolver_DualRem1858");
-    GiveWeapon("KFGameContent.KFWeap_Revolver_DualSW500");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhinoDual");
-}
-
-simulated exec function Singles()
-{
-    GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_Deagle");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_Colt1911");
     GiveWeapon("KFGameContent.KFWeap_Revolver_Rem1858");
-    GiveWeapon("KFGameContent.KFWeap_Revolver_SW500");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Medic");
+    GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_HX25");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Colt1911");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Flare");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Deagle");
     GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
 }
 
@@ -887,15 +863,18 @@ simulated exec function DummyWeapon()
     GiveWeapon("KFGameContent.KFWeap_Pistol_Dummy");
 }
 
-simulated exec function Berserk()
+simulated exec function Melee()
 {
-    GiveWeapon("KFGameContent.KFWeap_Blunt_Crovel");
-    GiveWeapon("KFGameContent.KFWeap_Shotgun_Nailgun");
-    GiveWeapon("KFGameContent.KFWeap_Blunt_Pulverizer");
-    GiveWeapon("KFGameContent.KFWeap_Eviscerator");
-    GiveWeapon("KFGameContent.KFWeap_Edged_Zweihander");
-    GiveWeapon("KFGameContent.KFWeap_Blunt_MaceAndShield");
-    GiveWeapon(" KFGameContent.KFWeap_Blunt_PowerGloves ");
+    GiveWeapon("KFGameContent.KFWeap_Knife_Berserker");
+    GiveWeapon("KFGameContent.KFWeap_Knife_Commando");
+    GiveWeapon("KFGameContent.KFWeap_Knife_Support");
+    GiveWeapon("KFGameContent.KFWeap_Knife_Demolitionist");
+    GiveWeapon("KFGameContent.KFWeap_Knife_Firebug");
+    GiveWeapon("KFGameContent.KFWeap_Knife_FieldMedic");
+    GiveWeapon("KFGameContent.KFWeap_Knife_Gunslinger");
+    GiveWeapon("KFGameContent.KFWeap_Knife_Sharpshooter");
+    GiveWeapon("KFGameContent.KFWeap_Knife_SWAT");
+    GiveWeapon("KFGameContent.KFWeap_Knife_Survivalist");
 }
 
 simulated exec function Nails()
@@ -903,27 +882,155 @@ simulated exec function Nails()
     GiveWeapon("KFGameContent.KFWeap_Shotgun_Nailgun");
 }
 
-simulated exec function Melee()
+simulated exec function Berserk()
 {
+    GiveWeapon("KFGameContent.KFWeap_Blunt_Crovel");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_Nailgun");
     GiveWeapon("KFGameContent.KFWeap_Edged_Katana");
-    GiveWeapon("KFGameContent.KFWeap_Knife_Berserker");
-    GiveWeapon("KFGameContent.KFWeap_Knife_Commando");
-    GiveWeapon("KFGameContent.KFWeap_Knife_Demolitionist");
-    GiveWeapon("KFGameContent.KFWeap_Knife_Firebug");
-    GiveWeapon("KFGameContent.KFWeap_Knife_Medic");
-    GiveWeapon("KFGameContent.KFWeap_Knife_Support");
+    GiveWeapon("KFGameContent.KFWeap_Edged_FireAxe");
+    GiveWeapon("KFGameContent.KFWeap_Blunt_ChainBat");
+    GiveWeapon("KFGameContent.KFWeap_Blunt_MedicBat");
     GiveWeapon("KFGameContent.KFWeap_Edged_Zweihander");
+    GiveWeapon("KFGameContent.KFWeap_Blunt_Pulverizer");
+    GiveWeapon(" KFGameContent.KFWeap_Blunt_PowerGloves");
+    GiveWeapon("KFGameContent.KFWeap_Eviscerator");
+    GiveWeapon("KFGameContent.KFWeap_Blunt_MaceAndShield");
+    GiveWeapon("KFGameContent.KFWeap_Edged_IonThruster");
+    GiveWeapon("KFGameContent.KFWeap_Edged_AbominationAxe");
 }
 
 simulated exec function Assault()
 {
-    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Bullpup");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_AR15");
-    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_SCAR");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Bullpup");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_AK12");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_MKB42");
-    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_M16M203");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_SCAR");
     GiveWeapon("KFGameContent.KFWeap_LMG_Stoner63A");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Thompson");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_M16M203");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Medic");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_FNFal");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_MedicRifleGrenadeLauncher");
+}
+
+simulated exec function Shotty()
+{
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_MB500");
+    GiveWeapon("KFGameContent.KFWeap_HRG_Revolver_Buckshot");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_DoubleBarrel");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_HZ12");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_M4");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_AA12");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_ElephantGun");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_DragonsBreath");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_Nailgun");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_Medic");
+}
+
+simulated exec function Medic()
+{
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Medic");
+    GiveWeapon("KFGameContent.KFWeap_SMG_Medic");
+    GiveWeapon("KFGameContent.KFWeap_HRG_Healthrower");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_Medic");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_Hemogoblin");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Medic");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_HRGIncision");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_MedicRifleGrenadeLauncher");
+    GiveWeapon("KFGameContent.KFWeap_Blunt_MedicBat");
+}
+
+simulated exec function Demo()
+{
+    GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_HX25");
+    GiveWeapon("KFGameContent.KFWeap_Thrown_C4");
+    GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_M79");
+    GiveWeapon("KFGameContent.KFWeap_RocketLauncher_SealSqueal");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_M16M203");
+    GiveWeapon("KFGameContent.KFWeap_RocketLauncher_RPG7");
+    GiveWeapon("KFGameContent.KFWeap_RocketLauncher_Seeker6");
+    GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_M32");
+    GiveWeapon("KFGameContent.KFWeap_Blunt_Pulverizer");
+    GiveWeapon("KFGameContent.KFWeap_HuskCannon");
+}
+
+simulated exec function Firebug()
+{
+    GiveWeapon("KFGameContent.KFWeap_Flame_CaulkBurn");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Flare");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_DualFlare");
+    GiveWeapon("KFGameContent.KFWeap_Shotgun_DragonsBreath");
+    GiveWeapon("KFGameContent.KFWeap_SMG_Mac10");
+    GiveWeapon("KFGameContent.KFWeap_Flame_Flamethrower");
+    GiveWeapon("KFGameContent.KFWeap_Beam_Microwave");
+    GiveWeapon("KFGameContent.KFWeap_HuskCannon");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Microwave");
+}
+
+simulated exec function Dualies()
+{
+    GiveWeapon("KFGameContent.KFWeap_Revolver_DualRem1858");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_DualColt1911");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_DualHRGWinterbite");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_DualDeagle");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhinoDual");
+    GiveWeapon("KFGameContent.KFWeap_Revolver_DualSW500");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_DualAF2011");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_DualFlare");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Dual9mm");
+}
+
+simulated exec function Singles()
+{
+    GiveWeapon("KFGameContent.KFWeap_Revolver_Rem1858");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Colt1911");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_HRGWinterbite");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Deagle");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
+    GiveWeapon("KFGameContent.KFWeap_Revolver_SW500");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_AF2011");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Medic");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_Winchester1894");
+    GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_HX25");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Flare");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_CenterfireMB464");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
+}
+
+simulated exec function Sharpshooter()
+{
+    GiveWeapon("KFGameContent.KFWeap_Rifle_Winchester1894");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_CenterfireMB464");
+    GiveWeapon("KFGameContent.KFWeap_Bow_Crossbow");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_MosinNagant");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_M14EBR");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_RailGun");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_FNFal");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_M99");
+    GiveWeapon("KFGameContent.KFWeap_Revolver_Rem1858");
+    GiveWeapon("KFGameContent.KFWeap_Revolver_SW500");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_Flare");
+}
+
+simulated exec function SWAT()
+{
+    GiveWeapon("KFGameContent.KFWeap_SMG_MP7");
+    GiveWeapon("KFGameContent.KFWeap_SMG_MP5RAS");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Thompson");
+    GiveWeapon("KFGameContent.KFWeap_HRG_Nailgun");
+    GiveWeapon("KFGameContent.KFWeap_SMG_P90");
+    GiveWeapon("KFGameContent.KFWeap_SMG_HK_UMP");
+    GiveWeapon("KFGameContent.KFWeap_SMG_Kriss");
+    GiveWeapon("KFGameContent.KFWeap_SMG_G18");
+    GiveWeapon("KFGameContent.KFWeap_SMG_Medic");
+    GiveWeapon("KFGameContent.KFWeap_SMG_Mac10");
+}
+
+exec function Surv()
+{
+    GiveWeapon("KFGameContent.KFWeap_Ice_FreezeThrower");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_LazerCutter");
 }
 
 simulated exec function Scope()
@@ -939,11 +1046,13 @@ simulated exec function ScopeFOV(float NewFOV)
     }
 }
 
-simulated exec function March()
+simulated exec function Winter()
 {
-    GiveWeapon("KFGameContent.KFWeap_SMG_Mac10");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_AF2011");
-    GiveWeapon("KFGameContent.KFWeap_HuskCannon");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_DualHRGWinterbite");
+    GiveWeapon("KFGameContent.KFWeapDef_HRGWinterbite");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_HRGIncision");
+    GiveWeapon("KFGameContent.KFWeap_SMG_G18");
+    GiveWeapon("KFGameContent.KFWeap_Rifle_MosinNagant");
 }
 
 simulated exec function Summer()
@@ -956,39 +1065,9 @@ simulated exec function Summer()
     GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhinoDual");
 }
 
-simulated exec function Demo()
-{
-    GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_HX25");
-    GiveWeapon("KFGameContent.KFWeap_Thrown_C4");
-    GiveWeapon("KFGameContent.KFWeap_GrenadeLauncher_M79");
-    GiveWeapon("KFGameContent.KFWeap_RocketLauncher_RPG7");
-    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_M16M203");
-    GiveWeapon("KFGameContent.KFWeap_RocketLauncher_Seeker6");
-}
-
-simulated exec function Medic()
-{
-    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Medic");
-    GiveWeapon("KFGameContent.KFWeap_Shotgun_Medic");
-    GiveWeapon("KFGameContent.KFWeap_SMG_Medic");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_Medic");
-    GiveWeapon("KFGameContent.KFWeap_Rifle_Hemogoblin");
-}
-
 simulated exec function Flame()
 {
     Firebug();
-}
-
-simulated exec function Firebug()
-{
-    GiveWeapon("KFGameContent.KFWeap_Flame_CaulkBurn");
-    GiveWeapon("KFGameContent.KFWeap_Shotgun_DragonsBreath");
-    GiveWeapon("KFGameContent.KFWeap_Flame_Flamethrower");
-    GiveWeapon("KFGameContent.KFWeap_Beam_Microwave");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_Flare");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_DualFlare");
-    GiveWeapon("KFGameContent.KFWeap_HuskCannon");
 }
 
 simulated exec function Rifle()
@@ -996,35 +1075,10 @@ simulated exec function Rifle()
     GiveWeapon("KFGameContent.KFWeap_Rifle_Winchester1894");
 }
 
-simulated exec function Sharpshooter()
-{
-    GiveWeapon("KFGameContent.KFWeap_Rifle_Winchester1894");
-    GiveWeapon("KFGameContent.KFWeap_Bow_Crossbow");
-    GiveWeapon("KFGameContent.KFWeap_Rifle_M14EBR");
-    GiveWeapon("KFGameContent.KFWeap_Rifle_RailGun");
-    GiveWeapon("KFGameContent.KFWeap_Rifle_CenterfireMB464");
-    GiveWeapon("KFGameContent.KFWeap_Pistol_ChiappaRhino");
-}
-
-simulated exec function Swat()
-{
-    GiveWeapon("KFGameContent.KFWeap_SMG_P90");
-    GiveWeapon("KFGameContent.KFWeap_SMG_MP7");
-    GiveWeapon("KFGameContent.KFWeap_SMG_MP5RAS");
-    GiveWeapon("KFGameContent.KFWeap_SMG_Kriss");
-    GiveWeapon("KFGameContent.KFWeap_SMG_HK_UMP");
-}
-
 simulated exec function SMG()
 {
-    Swat();
+    SWAT();
     GiveWeapon("KFGameContent.KFWeap_SMG_Medic");
-}
-
-exec function Surv()
-{
-    GiveWeapon("KFGameContent.KFWeap_Ice_FreezeThrower");
-    GiveWeapon("KFGameContent.KFWeap_HuskCannon");
 }
 
 exec function AllWeapons()
@@ -1036,7 +1090,7 @@ exec function AllWeapons()
     Demo();
     Firebug();
     Medic();
-    Swat();
+    SWAT();
     Shotty();
     Surv();
 }
@@ -4719,7 +4773,14 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
                                                                                                             {
                                                                                                                 if(Left(ZedName, 4) ~= "Rock")
                                                                                                                 {
-                                                                                                                    SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedDAR_Rocket" $ VersusSuffix, Class'Class'));
+                                                                                                                    SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedDAR_Rocket" $ VersusSuffix, Class'Class'));                                                                                                                    
+                                                                                                                }
+                                                                                                                else
+                                                                                                                {
+                                                                                                                    if(Left(ZedName, 1) ~= "M")
+                                                                                                                    {
+                                                                                                                        SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedMatriarch" $ VersusSuffix, Class'Class'));
+                                                                                                                    }
                                                                                                                 }
                                                                                                             }
                                                                                                         }

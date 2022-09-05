@@ -63,7 +63,7 @@ defaultproperties
 	Emotes.Add((Id=4527, ItemName = "ThunderClap_Deluxe", 	AnimName="Emote_02_ThunderClap_Deluxe", IconPath="EMOTE_TEX.Emote_Thunderclap_DLX_512"))
 	Emotes.Add((Id=4528, ItemName = "UncleCharlie_Deluxe", 	AnimName="Emote_03_UncleCharlie_Deluxe",IconPath="EMOTE_TEX.Emote_UncleCharlie_DLX_512"))
 	Emotes.Add((Id=4529, ItemName = "LetsGetCrazy_Deluxe", 	AnimName="Emote_01_LetsGetCrazy_Deluxe",IconPath="EMOTE_TEX.Emote_LetsGoCrazy_DLX_512"))
-	Emotes.Add((Id=4530, ItemName = "WackyWave_Deluxe", 	AnimName="Emote_04_WackyWave_Deluxe", 	IconPath="EMOTE_TEX.Emote_WackyWave_DLX_512"))	
+	Emotes.Add((Id=4530, ItemName = "WackyWave_Deluxe", 	AnimName="Emote_04_WackyWave_Deluxe", 	IconPath="EMOTE_TEX.Emote_WackyWave_DLX_512"))
 	Emotes.Add((Id=4531, ItemName = "RainingDosh_Deluxe", 	AnimName="Emote_05_RainingDosh_Deluxe", IconPath="EMOTE_TEX.Emote_RainingDosh_DLX_512"))
 	Emotes.Add((Id=4532, ItemName = "LionUppercut_Deluxe", 	AnimName="Emote_06_LionUppercut_Deluxe",IconPath="EMOTE_TEX.Emote_Uppercut_DLX_512"))
 	Emotes.Add((Id=4533, ItemName = "MatingRitual_Deluxe", 	AnimName="Emote_07_MatingRitual_Deluxe",IconPath="EMOTE_TEX.Emote_MatingRitual_DLX_512"))
@@ -91,6 +91,29 @@ defaultproperties
 	Emotes.Add((Id=4762, ItemName = "TheRobot_Deluxe", 		AnimName="Emote_09_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_The_Robot_DLX_512"))
 	Emotes.Add((Id=4753, ItemName = "AirMetal", 			AnimName="Emote_10_Dance", 				IconPath="EMOTE_TEX_02.Emote_02_Guitar_Solo_512"))
 	Emotes.Add((Id=4763, ItemName = "AirMetal_Deluxe", 		AnimName="Emote_10_Dance_Deluxe", 		IconPath="EMOTE_TEX_02.Emote_02_Guitar_Solo_DLX_512"))
+
+	// Emote Crate 3
+
+	Emotes.Add((Id=7911, ItemName = "Homerun",	 				AnimName="Emote_11_Babe_Ruth", 						IconPath="EMOTE_TEX_03.Emote_03_BabeRuth_512"))
+	Emotes.Add((Id=7921, ItemName = "Homerun_Deluxe", 			AnimName="Emote_11_Babe_Ruth_Deluxe", 				IconPath="EMOTE_TEX_03.Emote_03_BabeRuth_DLX_512"))
+	Emotes.Add((Id=7907, ItemName = "NeedYourEnergy", 			AnimName="Emote_12_Spirit_Bomb", 					IconPath="EMOTE_TEX_03.Emote_03_SpiritBomb_512"))
+	Emotes.Add((Id=7917, ItemName = "NeedYourEnergy_Deluxe",	AnimName="Emote_12_Spirit_Bomb_Deluxe", 			IconPath="EMOTE_TEX_03.Emote_03_SpiritBomb_DLX_512"))
+	Emotes.Add((Id=7905, ItemName = "UniversalMastery", 		AnimName="Emote_13_Master_of_the_Universe", 		IconPath="EMOTE_TEX_03.Emote_03_MasteroftheUniverse_512"))
+	Emotes.Add((Id=7915, ItemName = "UniversalMastery_Deluxe", 	AnimName="Emote_13_Master_of_the_Universe_Deluxe", 	IconPath="EMOTE_TEX_03.Emote_03_MasteroftheUniverse_DLX_512"))
+	Emotes.Add((Id=7909, ItemName = "FastestGun", 				AnimName="Emote_14_Quick_Draw", 					IconPath="EMOTE_TEX_03.Emote_03_QuickDraw_512"))
+	Emotes.Add((Id=7919, ItemName = "FastestGun_Deluxe", 		AnimName="Emote_14_Quick_Draw_Deluxe", 				IconPath="EMOTE_TEX_03.Emote_03_QuickDraw_DLX_512"))
+	Emotes.Add((Id=7912, ItemName = "CoinTrick", 				AnimName="Emote_15_Coin_Trick", 					IconPath="EMOTE_TEX_03.Emote_03_CoinTrick_512"))
+	Emotes.Add((Id=7922, ItemName = "CoinTrick_Deluxe", 		AnimName="Emote_15_Coin_Trick_Deluxe", 				IconPath="EMOTE_TEX_03.Emote_03_CoinTrick_DLX_512"))
+	Emotes.Add((Id=7910, ItemName = "SpiritFingers", 			AnimName="Emote_16_Finger_Guns", 					IconPath="EMOTE_TEX_03.Emote_03_FingerGuns_512"))
+	Emotes.Add((Id=7920, ItemName = "SpiritFingers_Deluxe", 	AnimName="Emote_16_Finger_Guns_Deluxe", 			IconPath="EMOTE_TEX_03.Emote_03_FingerGuns_DLX_512"))
+	Emotes.Add((Id=7913, ItemName = "MagicFoster", 				AnimName="Emote_17_Magic_Mike", 					IconPath="EMOTE_TEX_03.Emote_03_HearMeRoar_512"))
+	Emotes.Add((Id=7923, ItemName = "MagicFoster_Deluxe", 		AnimName="Emote_17_Magic_Mike_Deluxe", 				IconPath="EMOTE_TEX_03.Emote_03_HearMeRoar_DLX_512"))
+	Emotes.Add((Id=7908, ItemName = "FinalForm", 				AnimName="Emote_18_Noooooooooooo", 					IconPath="EMOTE_TEX_03.Emote_03_Nooo_512"))
+	Emotes.Add((Id=7918, ItemName = "FinalForm_Deluxe", 		AnimName="Emote_18_Noooooooooooo_Deluxe", 			IconPath="EMOTE_TEX_03.Emote_03_Nooo_DLX_512"))
+	Emotes.Add((Id=7906, ItemName = "ZedTime", 					AnimName="Emote_19_Bullet_Time", 					IconPath="EMOTE_TEX_03.Emote_03_BulletTime_512"))
+	Emotes.Add((Id=7916, ItemName = "ZedTime_Deluxe",			AnimName="Emote_19_Bullet_Time_Deluxe", 			IconPath="EMOTE_TEX_03.Emote_03_BulletTime_DLX_512"))
+	Emotes.Add((Id=7904, ItemName = "CraneFist", 				AnimName="Emote_20_Kung_Fu", 						IconPath="EMOTE_TEX_03.Emote_03_KungFu_512"))
+	Emotes.Add((Id=7914, ItemName = "CraneFist_Deluxe", 		AnimName="Emote_20_Kung_Fu_Deluxe", 				IconPath="EMOTE_TEX_03.Emote_03_KungFu_DLX_512"))
 
 	EquippedEmoteId=-1
 }

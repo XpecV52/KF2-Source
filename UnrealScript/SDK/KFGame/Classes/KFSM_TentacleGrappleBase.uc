@@ -332,6 +332,11 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
     Super.SpecialMoveEnded(PrevMove, NextMove);
 }
 
+event vector GetSourceLocation()
+{
+	return PawnOwner.Location;
+}
+
 /** Ignore input */
 function SpecialMoveButtonRetriggered() {}
 function SpecialMoveButtonReleased() {}

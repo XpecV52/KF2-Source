@@ -628,6 +628,35 @@ class KFDamageType extends DamageType
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 15
 
 var class<KFWeaponDefinition> WeaponDef;

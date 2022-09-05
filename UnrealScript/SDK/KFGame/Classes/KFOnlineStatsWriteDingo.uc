@@ -62,4 +62,6 @@ defaultproperties
 	Properties.Add((PropertyId = STATID_ACHIEVE_SpillwayCollectibles,Data = (Type = SDT_Int32,Value1 = 0)))
 	Properties.Add((PropertyId = STATID_ACHIEVE_SteamFortressCollectibles,Data = (Type = SDT_Int32,Value1 = 0)))
 	Properties.Add((PropertyId = STATID_ACHIEVE_AsylumCollectibles,Data = (Type = SDT_Int32,Value1 = 0)))
+	Properties.Add((PropertyId = STATID_ACHIEVE_SanitariumCollectibles,Data = (Type = SDT_Int32,Value1 = 0)))
+	Properties.Add((PropertyId = STATID_ACHIEVE_DefeatMatriarch,Data = (Type = SDT_Int32,Value1 = 0)))
 }

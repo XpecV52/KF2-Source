@@ -102,7 +102,7 @@ function SetServerHidden( bool bNewHidden )
 	{
 		// Only hide if the server tells us to
 		SetHidden( bServerHidden || bLocalHidden );
-		UpdateCustomizationPawnVisibility();		
+		UpdateCustomizationPawnVisibility();
 	}
 
 	// Update on network immediately
@@ -180,17 +180,17 @@ function AttachWeaponByItemDefinition( int ItemDefinition )
 		return;
 	}
 
-	//load in and add object .  
+	//load in and add object .
 	WeaponPreview = KFWeaponAttachment ( DynamicLoadObject( WeaponDef.default.AttachmentArchtypePath, class'KFWeaponAttachment' ) );
 
 	//attatch it to player
 	WeaponAttachmentTemplate = WeaponPreview;
 
-	WeaponAttachmentChanged();		
+	WeaponAttachmentChanged();
 
 	//setweapon skin
 	WeaponAttachment.SetWeaponSkin(ItemDefinition);
-	
+
 }
 
 simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
@@ -203,7 +203,7 @@ simulated function PlayRandomIdleAnimation(optional bool bNewCharacter)
 	AnimSet =  Mesh.AnimSets[Mesh.AnimSets.Length - 1];
 	AnimIndex = Rand(AnimSet.Sequences.Length);
 	AnimName = AnimSet.Sequences[AnimIndex].SequenceName;
-	
+
 	BlendInTime = (bNewCharacter) ? 0.f : 0.4;
 
 	// Briefly turn off notify so that PlayCustomAnim won't call OnAnimEnd (e.g. character swap)
@@ -227,8 +227,8 @@ simulated function PlayEmoteAnimation(optional bool bNewCharacter)
 	}
 
 	bPlayingEmote = true;
-	
-	AnimName = class'KFEmoteList'.static.GetUnlockedEmote( class'KFEmoteList'.static.GetEquippedEmoteId() );	
+
+	AnimName = class'KFEmoteList'.static.GetUnlockedEmote( class'KFEmoteList'.static.GetEquippedEmoteId() );
 
 	BlendInTime = (bNewCharacter) ? 0.f : 0.4;
 
@@ -237,6 +237,15 @@ simulated function PlayEmoteAnimation(optional bool bNewCharacter)
 
 	BodyStanceNodes[EAS_FullBody].PlayCustomAnim(AnimName, 1.f, BlendInTime, 0.4, false, true);
 	BodyStanceNodes[EAS_FullBody].SetActorAnimEndNotification( TRUE );
+}
+
+/** Called from SkeletalMeshComponent::PlayParticleEffect() */
+simulated function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC )
+{
+	if (bPlayingEmote)
+	{
+		PSC.bUseAsOccluder = true;
+	}
 }
 
 simulated event OnAnimEnd(AnimNodeSequence SeqNode, float PlayedTime, float ExcessTime)

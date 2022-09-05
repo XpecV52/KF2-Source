@@ -19,7 +19,7 @@ defaultproperties
 {
    NerveGasExplosiveBlastTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHansFriendlyTest:ExploTemplate0'
    NerveGasAttackTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHansFriendlyTest:ExploTemplate1'
-   ShieldImpactEffects=KFSkinTypeEffects_HansShield'kfgamecontent.Default__KFPawn_ZedHansFriendlyTest:ShieldEffects'
+   ShieldImpactEffects=KFSkinTypeEffects_InvulnerabilityShield'kfgamecontent.Default__KFPawn_ZedHansFriendlyTest:ShieldEffects'
    ShieldShatterExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHansFriendlyTest:ShatterExploTemplate0'
    BattlePhases(0)=(bCanFrenzy=True,bCanTossNerveGas=False,bCanTossGrenade=True)
    BattlePhases(1)=(bCanFrenzy=True,bCanTossNerveGas=False,bCanTossGrenade=False)

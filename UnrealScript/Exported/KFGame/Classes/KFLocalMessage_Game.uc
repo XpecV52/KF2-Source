@@ -71,6 +71,7 @@ var localized string			SuicideMessage;
 
 var localized string 			KillzedBy_PatriarchString;
 var localized string 			KillzedBy_HansString;
+var localized string 			KillzedBy_MatriarchString;
 var localized string 			KillzedBy_ZedCrawlerString;
 var localized string 			KillzedBy_ZedBloatString;
 var localized string 			KillzedBy_ZedFleshpoundString;
@@ -211,6 +212,8 @@ static function string GetKilledByZedMessage( Object KillerObject )
 				return default.KillzedBy_PatriarchString;
 			case 'KFAIController_Hans':
 				return default.KillzedBy_HansString;
+			case 'KFAIController_ZedMatriarch':
+				return default.KillzedBy_MatriarchString;
 			case 'KFAIController_ZedCrawler':
 			case 'KFAIController_ZedCrawlerKing':
 				return default.KillzedBy_ZedCrawlerString;
@@ -311,6 +314,7 @@ defaultproperties
    SuicideMessage=" just gave up on life..."
    KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
    KillzedBy_HansString="s body has been removed for further experimentation"
+   KillzedBy_MatriarchString=" was killed for the greater good"
    KillzedBy_ZedCrawlerString="s ankles have been chewed off"
    KillzedBy_ZedBloatString=" has drowned in bodily fluids"
    KillzedBy_ZedFleshpoundString=" has been ground to a pulp"

@@ -37,7 +37,7 @@ AlternateFireDescription="A maioria das armas principais têm um modo de tiro al
 FlashLightBatteryTitleKey="Uso da lanterna"
 FlashLightBatteryDescriptionKey="Pode ficar muito escuro por aí. Aperte <font color="#caab05">%x%</font> para ligar ou desligar a <font color="#caab05">LANTERNA</font>. A bateria da lanterna vai sendo consumida. Quando ela acabar, a lanterna se desligará e automaticamente começará a recarregar."
 GrenadeTitleKey="Uso das granadas"
-GrenadeDescriptionKey="As granadas são ótimas para grupos maciços de Zeds. As classes têm vários tipos de granadas na <font color="#caab05">MUNIÇÃO</font>. Todas elas afetam os Zeds, mas algumas têm efeitos adicionais. Aperte <font color="#caab05">%x%</font> para lançar uma granada."
+GrenadeDescriptionKey="As granadas são ótimas para grupos maciços de Zeds. As classes têm vários tipos de granadas na <font color="#caab05">MUNIÇÃO</font>. Todas elas afetam os Zeds, mas algumas têm efeitos adicionais. Aperte <font color="#caab05">%x%</font> para lançar uma granada. "
 
 ;Wave 1 end
 TraderTimeTitleKey="Hora do comerciante"
@@ -116,48 +116,48 @@ ItemDescription="•A armadura de combate protege de vários tipos de danos, mas
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 banana de dinamite"
-ItemCategory ="Explosivos"
-ItemDescription="•Uma dinamite com um pavio afixado.\n•Eles podem machucar também, tenha cuidado!"
+ItemCategory =" "Explosivos"
+ItemDescription="•Uma dinamite com um pavio afixado.\n•Eles podem machucar também, tenha cuidado!" "
 
 [KFProj_MedicGrenade]
 ItemName="Granada médica"
-ItemCategory ="Explosivos"
-ItemDescription="•Libera um gás que envenena os Zeds, mas cura pessoas.\n\n•Fique na nuvem azul de gás para se curar.\nCitando um de nossos cientistas: ‘O agente liberado das granadas revive os Homo sapiens, mas mata os Homo zedicus’. Esperamos que ajude."
+ItemCategory =" "Explosivos"
+ItemDescription="•Libera um gás que envenena os Zeds, mas cura pessoas.\n\n•Fique na nuvem azul de gás para se curar.\nCitando um de nossos cientistas: “O agente liberado das granadas revive os Homo sapiens, mas mata os Homo zedicus”. Esperamos que ajude. "
 
 [KFProj_MolotovGrenade]
 ItemName="Coquetel molotov"
 ItemCategory="Explosivos"
-ItemDescription="•Muito simples: uma granada de fogo que queima os Zeds.\n\nBatizado pelos finlandeses na Segunda Guerra com o nome de Vyacheslav Mikhailovich Molotov, o Ministro do Exterior Soviético de Stalin… Perdão, você não queria uma aula de história?"  Perdão, você não queria uma aula de história?"
+ItemDescription="•Muito simples: uma granada de fogo que queima os Zeds.\n\nBatizado pelos finlandeses na Guerra de Inverno com o nome de Vyacheslav Mikhailovich Molotov, o Ministro do Exterior Soviético de Stalin… Perdão, você não queria uma aula de história? "
 
 [KFProj_EMPGrenade]
 ItemName="Granada de IEM"
 ItemCategory="Explosivos"
-ItemDescription="•Gera um pulso elétrico que danifica Zeds e pode atordoá-los por um tempo.\n\nSe quiser mais detalhes sobre a detonação, ela gera um pulso eletromagnético, por um nanossegundo, que destrói os sistemas elétricos à curta distância. Principalmente os dos Zeds. Bem conveniente."
+ItemDescription="•Gera um pulso elétrico que danifica Zeds e pode atordoá-los por um tempo.\n\nSe quiser mais detalhes sobre a detonação, ela gera um pulso eletromagnético, por um nanossegundo, que destrói os sistemas elétricos à curta distância. Principalmente os dos Zeds. Bem conveniente. "
 
 [KFProj_HEGrenade]
 ItemName="Granada de AE"
 ItemCategory="Explosivos"
-ItemDescription="•Uma granada de alta explosividade simples. Danifica Zeds e humanos.\n\nNão dá para ser mais simples que isso. AE - alta explosividade, faz BUM e explode as coisas. Essa explicação era necessária?"
+ItemDescription="•Uma granada de altamente explosiva simples. Danifica Zeds e humanos.\n\nNão dá para ser mais simples que isso. AE - alta explosividade, faz BUM e explode as coisas. A gente precisa mesmo explicar? "
 
 [KFProj_FragGrenade]
 ItemName="Granada de fragmentos"
 ItemCategory="Explosivos"
-ItemDescription="•A granada clássica: atira pequenos pedaços de metal, danificando tudo e todos em volta.\n\nTenho certeza de que você conhece o suficiente de jogos antes do Surto e sabe muito bem o que é uma granada de fragmentos. Pare de fingir que não sabe. Ninguém aqui vai acreditar."
+ItemDescription="•A granada clássica: atira pequenos pedaços de metal, danificando tudo e todos em volta.\n\nTenho certeza de que você conhece o suficiente de jogos antes do Surto e sabe muito bem o que é uma granada de fragmentos. Pare de fingir que não sabe. Ninguém aqui vai acreditar em você. "
 
 [KFProj_NailBombGrenade]
 ItemName="Bomba de pregos"
-ItemCategory ="Explosivos"
+ItemCategory =" "Explosivos"
 ItemDescription="•Um recipiente cheio de pregos velhos e uma pequena carga de explosivos no meio.\n\nNão é o jeito mais agradável nem sutil de lidar com os Zeds, mas os Zeds não são agradáveis nem sutis, não é mesmo?"
 
 [KFProj_FreezeGrenade]
 ItemName="Granada congelante"
-ItemCategory ="Explosivos"
+ItemCategory =" "Explosivos"
 ItemDescription="•Um recipiente avançado tecnologicamente com nitrogênio líquido pressurizado.\n\nO contato com ele congelará os Zeds por um tempo. O resultado pode ser bem destruidor."
 
 [KFProj_FlashBangGrenade]
 ItemName="Golpe de luz"
-ItemCategory ="Explosivos"
-ItemDescription="•Brilhante e espalhafatoso; não olhe diretamente para ele. Tente tapar os ouvidos também.\nTecnicamente não é letal, mas os golpes de luz podem causar dano — tenha cuidado!"
+ItemCategory =" "Explosivos"
+ItemDescription="•Brilhante e barulhenta; não olhe diretamente para ela. Tente tapar os ouvidos também.\nTecnicamente não é letal, mas granadas de luz podem machucar, cuidado!" "
 
 [KFWeap_Healer_Syringe]
 ItemName="Seringa médica"
@@ -315,7 +315,7 @@ ItemDescription="•Escolha entre modo de tiro único ou múltiplo.\n•Tiro alt
 [KFWeap_HRG_Nailgun]
 ItemName="Pregadeira HRG"
 ItemCategory="Submetralhadora"
-ItemDescription="•Escolha entre tiro único de 500 rpm automático ou 3 tiros seguidos de 857 rpm automático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Para quem prega a inovação!"
+ItemDescription="•Escolha entre tiro único de 857 rpm automático ou 3 tiros seguidos de 500 rpm automático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Para quem prega a inovação!"
 
 [KFWeap_Blunt_ChainBat]
 ItemName="Redentor da Via"
@@ -439,13 +439,13 @@ ItemDescription="•O modo de tiro é só semiautomático.\n•Tiro alt. alterna
 ItemName="Rino"
 ItemCategory="Pistola de mão"
 ItemDescription="•O modo de tiro dispara projéteis de fragmentação.\n•Os projéteis de fragmentação explodem no impacto e disparam 3 pedaços de estilhaço.\n•Atravessa os Zeds que nem manteiga!"
-SharedUnlockSource="Rino"
+SharedUnlockSource="Conjunto de Revólver Rino"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="Dois Rinos"
 ItemCategory="Pistola de mão"
 ItemDescription="•O modo de tiro dispara projéteis de fragmentação.\n•Os projéteis de fragmentação explodem no impacto e disparam 3 pedaços de estilhaço.\n•Tiro alt. alterna estilos de mira ao usar a mira metálica.\n•Atravessa os Zeds que nem manteiga, só que dobrado!"
-SharedUnlockSource="Dois Rinos"
+SharedUnlockSource="Conjunto de Revólver Rino"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="Revólver 1858"
@@ -481,6 +481,12 @@ ItemDescription="•Apenas disparo semiautomático.\n•Tiro alt. alterna estilo
 ItemName="Winchester 1894"
 ItemCategory="Rifle"
 ItemDescription="•Modo tiro único, somente.\n•O modelo clássico do rifle Winchester modelo 1894 com alavanca."
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="Mosin Nagant"
+ItemCategory="Rifle"
+ItemDescription="•Apenas tem modo de tiro único.\n•Alt - bloquear/aparar.\n•O M91/30 é especializado em apunhalada, atirar e tiro com apunhalada."
+SharedUnlockSource="Conjunto Mosin Nagant"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Centerfire"
@@ -659,6 +665,27 @@ ItemName="Tablet de Dados"
 ItemCategory="Equipamento"
 ItemDescription="You're not supposed to be seeing this in the trader!"
 
+[KFWeap_Pistol_HRGWinterbite]
+ItemName="HRG Winterbite"
+ItemCategory="Criogênico"
+ItemDescription="•Disparo de projéteis de sincelo explosivos.\n•A melhor forma de ter um dia frio."
+
+[KFWeap_Pistol_DualHRGWinterbite]
+ItemName="HRG Winterbite Dupla"
+ItemCategory="Criogênico"
+ItemDescription="•Disparo de projéteis de sincelo explosivos.\n•Tiro alt. para alternar estilos de mira ao usar uma mira metálica.\n•Gelo em dobro."
+
+[KFWeap_Rifle_HRGIncision]
+ItemName="HRG Incisão"
+ItemCategory="Rifle de elite"
+ItemDescription="•Disparo de balas elétricas de alta-velocidade.\n•Tiro alt. para lançar dardos curativos e ajudar membros da equipe.\n•Usar a mira permite que você a trave em jogadores e pontos vulneráveis em Zeds."
+
+[KFWeap_SMG_G18]
+ItemName="Escudo Antitumulto e Glock 18"
+ItemCategory="Submetralhadora"
+ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•A mira metálica ativa o escudo para reduzir o dano frontal da maioria dos ataques."
+SharedUnlockSource="Conjunto Escudo Antitumulto e G18"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
@@ -775,6 +802,29 @@ BossCaptionStrings[2]="Não se engane pelo tamanho do Krampus: ele é rápido qu
 BossCaptionStrings[3]="Não deixe o Krampus se aproximar de outros Zeds: ele pode ingeri-los para... pensando bem, melhor não saber."
 BossCaptionStrings[4]="O Krampus fará mais do que vomitar em você se ele aproximar-se demais. Esses machados não são de enfeite."
 BossCaptionStrings[5]="Quando alguém destrói a armadura do Krampus, ele se enfurece e entra em seu estado mais mortal."
+
+[KFPawn_ZedMatriarch]
+BossName="Matriarca"
+BossName_CHN="Fill Me"
+BossName_CHT="Fill Me"
+BossName_DEU="Fill Me"
+BossName_ESL="Fill Me"
+BossName_ESN="Fill Me"
+BossName_FRA="Fill Me"
+BossName_FRC="Fill Me"
+BossName_INT="Matriarca"
+BossName_ITA="Fill Me"
+BossName_JPN="Fill Me"
+Bossname_KOR="Fill Me"
+BossName_POL="Fill Me"
+BossName_PTB="Fill Me"
+BossName_RUS="Fill Me"
+BossCaptionStrings[0]="O campo de força protetor da Matriarca desativa quando ela ataca. Tire vantagem disso."
+BossCaptionStrings[1]="O canhão e capacete da Matriarca podem ser destruídos para expor a cabeça e a garra sensível dela. Ela ficará zangada depois disso."
+BossCaptionStrings[2]="Cuidado ao se reunir quando ela disparar a Rajada Tesla. Outros também levarão um choque."
+BossCaptionStrings[3]="Não pense que a batalha acabou quando o canhão dela for destruído. Ela parte pra briga!"
+BossCaptionStrings[4]="R.E.D.A.s virão ajudá-la quando notarem que os níveis de ameaça estão muito altos."
+BossCaptionStrings[5]="A Matriarca libera um campo de ocultação quando estiver perto da morte. Diferente do pai, ela não foge."
 
 [KFGameInfo_Tutorial]
 GameName="Treinamento básico"

@@ -626,6 +626,35 @@ class KFSM_Player_Emote extends KFSM_PlaySingleAnim;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 13
 
 /** Camera animation */
@@ -790,6 +819,7 @@ function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect 
 		AnimSeq = AnimSequence( AnimNotifyData.Outer );
 		if( AnimSeq != none && string(AnimSeq.SequenceName) ~= string(AnimName) ) // string conversion so we don't have case mismatches
 		{
+			PSC.bUseAsOccluder = true;
 			AnimParticles.AddItem( PSC );
 		}
 	}

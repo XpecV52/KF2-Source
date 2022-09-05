@@ -5,9 +5,11 @@ package tripwire.containers
     import flash.events.FocusEvent;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
+    import scaleform.clik.constants.InputValue;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
+    import scaleform.clik.events.InputEvent;
     import scaleform.clik.managers.FocusHandler;
     import scaleform.clik.ui.InputDetails;
     import tripwire.controls.OverviewButton;
@@ -18,6 +20,10 @@ package tripwire.containers
     
     public class StartOverviewContainer extends TripContainer
     {
+        
+        public static var GAMEPAD_RIGHT_STICK_UP:int = 112;
+        
+        public static var GAMEPAD_RIGHT_STICK_DOWN:int = 113;
          
         
         public var myStartMenu:StartMenu;
@@ -46,8 +52,11 @@ package tripwire.containers
         
         private const PERMISSIONS_NOSERVERTYPE_Y:int = 584;
         
+        public var lastScrollCode:int;
+        
         public function StartOverviewContainer()
         {
+            this.lastScrollCode = GAMEPAD_RIGHT_STICK_UP;
             super();
             this.sharedContentButton.tabIndex = 1;
             sectionHeader = this.overviewHeader;
@@ -169,6 +178,7 @@ package tripwire.containers
             {
                 FocusHandler.getInstance().setFocus(this.sharedContentListContainer.sharedContentConfirmButton);
             }
+            this.sharedContentListContainer.sharedContentList.selectedIndex = 0;
         }
         
         public function GetPopUpVisible() : Boolean
@@ -309,6 +319,56 @@ package tripwire.containers
         override protected function closeAnimation() : *
         {
             visible = false;
+        }
+        
+        override public function handleInput(param1:InputEvent) : void
+        {
+            var _loc2_:* = this.sharedContentListContainer.sharedContentList;
+            var _loc3_:InputDetails = param1.details;
+            if(_loc3_.value == InputValue.KEY_DOWN || _loc3_.value == InputValue.KEY_HOLD)
+            {
+                switch(_loc3_.code)
+                {
+                    case GAMEPAD_RIGHT_STICK_UP:
+                        if(this.lastScrollCode != GAMEPAD_RIGHT_STICK_UP)
+                        {
+                            if(_loc2_.selectedIndex - _loc2_.rowCount >= 0)
+                            {
+                                _loc2_.selectedIndex -= _loc2_.rowCount;
+                            }
+                            else if(_loc2_.selectedIndex - 1 >= 0)
+                            {
+                                --_loc2_.selectedIndex;
+                            }
+                        }
+                        else if(_loc2_.selectedIndex - 1 >= 0)
+                        {
+                            --_loc2_.selectedIndex;
+                        }
+                        this.lastScrollCode = GAMEPAD_RIGHT_STICK_UP;
+                        param1.handled = true;
+                        break;
+                    case GAMEPAD_RIGHT_STICK_DOWN:
+                        if(this.lastScrollCode != GAMEPAD_RIGHT_STICK_DOWN)
+                        {
+                            if(_loc2_.selectedIndex + _loc2_.rowCount < _loc2_.dataProvider.length)
+                            {
+                                _loc2_.selectedIndex += _loc2_.rowCount;
+                            }
+                            else if(_loc2_.selectedIndex + 1 < _loc2_.dataProvider.length)
+                            {
+                                _loc2_.selectedIndex += 1;
+                            }
+                        }
+                        else if(_loc2_.selectedIndex + 1 < _loc2_.dataProvider.length)
+                        {
+                            _loc2_.selectedIndex += 1;
+                        }
+                        this.lastScrollCode = GAMEPAD_RIGHT_STICK_DOWN;
+                        param1.handled = true;
+                }
+            }
+            super.handleInput(param1);
         }
     }
 }

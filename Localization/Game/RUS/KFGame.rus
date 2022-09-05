@@ -1446,6 +1446,7 @@ HeadShotResetString="В голову не попали. Урон обычный!
 SuicideMessage=" сводит счеты с жизнью..."
 KilledMessage=" поедается живьем"
 KillzedBy_PatriarchString=" больше не тронет детей Кевина"
+KillzedBy_MatriarchString=" умирает во имя добра"
 KillzedBy_HansString="в виде трупа направляется на дальнейшие эксперименты"
 KillzedBy_ZedCrawlerString="остается без ступней"
 KillzedBy_ZedBloatString=" тонет в физиологических жидкостях"
@@ -1735,13 +1736,13 @@ Fortitude="Дредноут"
 FortitudeDescription="Общее здоровье растет на 75%."
 
 Ninja="Рубака"
-NinjaDescription="Скор. движ. +20%, перебежки +25%. Каждую секунду восст. 1 очко здоровья при использовании профильного холодного оружия."
+NinjaDescription="Скорость движения +20%, перебежки +25% при использовании профильного оружия. Каждую секунду восстанавливает 2 очка здоровья."
 
 Vampire="Вампир"
 VampireDescription="Восстанавливает 4 очка здоровья за каждого мутанта, убитого профильным оружием. На 20% быстрее атака профильным холодным оружием."
 
 Speed="Мясник"
-SpeedDescription="Атака на 20% быстрее и урон на 20% больше при использовании профильного холодного оружия."
+SpeedDescription="Атака на 20% быстрее и урон на 20% больше при использовании профильного оружия."
 
 Resistance="Сопротивление"
 ResistanceDescription="Получает 20% сопротивления ко всему урону. На 20% растет сопротивление к яду и урону звуком."
@@ -2351,11 +2352,11 @@ DoschHoldDesc="Не пускать мутантов в отмеченную об
 DescriptionDoshHold="Не пускать мутантов в отмеченную область"
 DescriptionDoshHoldShort="Защитить зону (необязательно)"
 RepairObjective="СВАРКА И РЕМОНТ"
-UseWelderToRepair="Почините сломанные механизмы с помощью сварочного аппарата"
-UseWelderToRepairShort="Починить сломанные механизмы с помощью сварки"
+UseWelderToRepair="Используйте сварочный аппарат на механизмах"
+UseWelderToRepairShort="Починить механизмы с помощью сварки"
 UseWelderToRepairTraderPod="Почините кабины торговца с помощью сварочного аппарата"
 UseWelderToRepairTraderPodShort="Починить кабины торговца с помощью сварки"
-RepairObjectiveRequired="Сломанные механизмы, нуждающиеся в ремонте:"
+RepairObjectiveRequired="механизмы для сварки:"
 EscortPawnsObjective="СОПРОВОЖДЕНИЕ"
 EscortPawnsDescription="Сопроводить дрон и защитить его от мутантов"
 EscortPawnsDescriptionShort="Сопроводить дрон"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="ЭЗНР-охотник"
 KFPawn_ZedDAR_Laser="ЭЗНР-истребитель"
 KFPawn_ZedDAR_Rocket="ЭЗНР-бомбардир"
 KFPawn_ZedPatriarch="Патриарх"
+KFPawn_ZedMatriarch="Матриарх"
 KFPawn_ZedBloatKingSubspawn="Появление мерзости"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Толстяк — игрок"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="Kriss | За горизонтом | Косм
 
 ChanceDropDescriptionStrings[0]="Пригласительный билет"
 ChanceDropDescriptionStrings[1]="Золотой пригласительный билет"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="Ограниченное по времени особое событие, где можно получить эксклюзивные предметы"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Черные моря бесконечности",DescriptionString="Победить любого босса в режиме «Выживание» на уровне «Сложно» или выше в санатории")
+SpecialEventObjectiveInfoList[1]=(TitleString="Слегка разбушевавшееся воображение",DescriptionString="С помощью ловушки «Щупальцевый кнут» убить 20 мутантов в санатории")
+SpecialEventObjectiveInfoList[2]=(TitleString="Сверхъестественные противоречия",DescriptionString="С помощью всасывающей ловушки убить 20 мутантов в санатории")
+SpecialEventObjectiveInfoList[3]=(TitleString="Материнские инстинкты",DescriptionString="Убить Матриарха 10 раз на любой карте или в любом режиме игры")
+SpecialEventObjectiveInfoList[4]=(TitleString="Решение семейных дел",DescriptionString="Пройти «Биотическую лабораторию» в режиме достижения цели на уровне «Сложно» или выше")
+
+AllCompleteRewardDescriptionString="FN FAL | Ягер | Динамический"
+
+ChanceDropDescriptionStrings[0]="Билет Крампуса"
+ChanceDropDescriptionStrings[1]="Золотой билет Крампуса"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="Паровая крепость"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="Приют Эшвуд"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="Санаторий"
 
 [KFMapInfo]
 ; defaults

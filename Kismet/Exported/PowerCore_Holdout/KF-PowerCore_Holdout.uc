@@ -1308,7 +1308,7 @@ Begin Object Class=InterpData Name=InterpData_68
       End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_68.InterpGroup_3.InterpTrackMove_4'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_68.InterpGroup_3.InterpTrackAkEvent_0'
-      GroupName="piston"
+      GroupName="Piston"
       GroupColor=(B=103,G=0,R=214,A=255)
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'

@@ -125,6 +125,7 @@ function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect A
         AnimSeq = AnimSequence(AnimNotifyData.Outer);
         if((AnimSeq != none) && string(AnimSeq.SequenceName) ~= string(AnimName))
         {
+            PSC.bUseAsOccluder = true;
             AnimParticles.AddItem(PSC;
         }
     }

@@ -626,6 +626,35 @@ class KFDialogEnvironmentVolume extends Volume
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 13
 
 enum EDialogEnvironment

@@ -69,8 +69,7 @@ function AdjustPlayHitForArmor(out float InDamage, out TraceHitInfo InHitInfo)
 	HitZoneIdx = GetHitZoneIndex(InHitInfo.BoneName);
 	if (HitZoneIdx == INDEX_NONE || HitZones[HitZoneIdx].GoreHealth > 0)
 	{
-		InDamage = 1;
-		InHitInfo.BoneName = 'KFArmor';
+		super.AdjustPlayHitForArmor(InDamage, InHitInfo);
 	}
 }
 
@@ -309,6 +308,7 @@ defaultproperties
    XPValues(1)=20.000000
    XPValues(2)=27.000000
    XPValues(3)=31.000000
+   WeakSpotSocketNames(0)="FX_Armor_Chest"
    DamageTypeModifiers(0)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(1.050000))
    DamageTypeModifiers(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(1.050000))
    DamageTypeModifiers(2)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(1.200000))

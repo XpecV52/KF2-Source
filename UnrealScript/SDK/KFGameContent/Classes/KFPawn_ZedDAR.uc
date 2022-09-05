@@ -69,8 +69,7 @@ function AdjustPlayHitForArmor(out float InDamage, out TraceHitInfo InHitInfo)
 	HitZoneIdx = GetHitZoneIndex(InHitInfo.BoneName);
 	if (HitZoneIdx == INDEX_NONE || HitZones[HitZoneIdx].GoreHealth > 0)
 	{
-		InDamage = 1;
-		InHitInfo.BoneName = 'KFArmor';
+		super.AdjustPlayHitForArmor(InDamage, InHitInfo);
 	}
 }
 
@@ -401,6 +400,9 @@ defaultproperties
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=350, DmgScale=1.001, SkinID=1)  // KF1=200     //154
     HitZones[3]       =(ZoneName=heart,	   BoneName=Spine1,		  Limb=BP_Special,  GoreHealth=150, DmgScale=3.5, SkinID=2) //1.4
+
+	WeakSpotSocketNames.Empty()
+	WeakSpotSocketNames.Add(FX_Armor_Chest) // Chest
 
 	StartSprintingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_Start'
 	SprintLoopingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_LP'

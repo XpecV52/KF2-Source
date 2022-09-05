@@ -15,15 +15,23 @@ const DEFAULT_FIREMODE			= 0;
 /** Fire mode 1 is the alternate weapon firing. */
 const ALTFIRE_FIREMODE			= 1;
 
+enum ETargetingMode
+{
+	ETargetingMode_Zed,
+	ETargetingMode_Player,
+};
+
+const TARGETINGMODE_FLAGS_ZED = 1;
+const TARGETINGMODE_FLAGS_PLAYER = 2;
+const TARGETINGMODE_FLAGS_ALL = 3;
+
+var byte TargetingModeFlags[2];
+
 var KFWeapon KFW;
 
 /*********************************************************************************************
  * @name Weapon lock on support
  **********************************************************************************************/
-
-var byte TargetingEnabled[2];
-var byte TargetZeds[2];
-var byte TargetPlayers[2];
 
 /** How far out should we be considering actors for a lock */
 var float LockRange[2];
@@ -44,22 +52,22 @@ var float LockAcquireTime_Versus[2];
 var float LockTolerance[2];
 
 /** What "target" is this weapon locked on to */
-var KFPawn LockedTarget;
+var KFPawn LockedTarget[2];
 
 /** What hitzone is this weapon locked on to */
-var int LockedHitZone;
+var int LockedHitZone[2];
 
 /** What "target" is current pending to be locked on to */
-var KFPawn PendingLockedTarget;
+var KFPawn PendingLockedTarget[2];
 
 /** What hitzone is this weapon trying to lock on to */
-var int PendingHitZone;
+var int PendingHitZone[2];
 
 /** angle for locking for lock targets */
 var float LockAim[2];
 
 /** The frequency with which we play the Lock Targeting sound */
-var float LockTargetingSoundInterval;
+var float LockTargetingSoundInterval[2];
 
 /** Sound Effects to play when Locking */
 var AkBaseSoundObject LockAcquiredSoundFirstPerson;
@@ -67,22 +75,25 @@ var AkBaseSoundObject LockLostSoundFirstPerson;
 var AkBaseSoundObject LockTargetingSoundFirstPerson;
 
 /** How much time is left before pending lock-on can be acquired */
-var float PendingLockAcquireTimeLeft;
+var float PendingLockAcquireTimeLeft[2];
 /** How much time is left before pending lock-on is lost */
-var float PendingLockTimeout;
+var float PendingLockTimeout[2];
 /** How much time is left before lock-on is lost */
 var float LockedOnTimeout;
+var float LockedOnTimeoutTimer[2];
 
 /** Location on an enemy we're currently locked onto */
-var vector LockedAimLocation;
+var vector LockedAimLocation[2];
 
 var array<name> HumanTargetableBoneNames;
 
 /** Vulnerable zones on an enemy we're currently locked onto */
-var array<vector> TargetVulnerableLocations;
+var array<vector> TargetVulnerableLocations_Zed;
+var array<vector> TargetVulnerableLocations_Player;
 
 /** The frequency with which we replicate the targeting location to the server. Only matters for showing other players where we shot */
 var float TargetLocationReplicationInterval;
+var float TargetLocationReplicationTimer[2];
 
 var bool bTargetingUpdated;
 
@@ -92,33 +103,15 @@ simulated event PostBeginPlay()
 	SetTickIsDisabled(true);
 }
 
-simulated function Init()
+simulated function Init(KFWeapon InKFW)
 {
-	KFW = KFWeapon(Owner);
-	Instigator = KFW.Instigator;
+	KFW = InKFW;
+	Instigator = InKFW.Instigator;
 }
 
 simulated event Tick(float DeltaTime)
 {
 	super.Tick(DeltaTime);
-
-	if (KFW == none)
-	{
-		KFW = KFWeapon(Owner);
-		if (KFW == none)
-		{
-			return;
-		}
-
-		Instigator = KFW.Instigator;
-	}
-
-	if (Owner.bPendingDelete && !bPendingDelete)
-	{
-		// Owner has been destroyed
-		Destroy();
-		return;
-	}
 
 	if (Instigator != none && Instigator.Controller != none && Instigator.IsLocallyControlled())
     {
@@ -131,7 +124,8 @@ simulated event Tick(float DeltaTime)
 */
 simulated function CheckTargetLock(float DeltaTime)
 {
-	local Actor BestTarget;
+	local bool bAllowLockOn;
+	local byte Flags;
 
 	bTargetingUpdated = false;
 
@@ -143,35 +137,59 @@ simulated function CheckTargetLock(float DeltaTime)
 		return;
 	}
 
-    TargetVulnerableLocations.Length = 0;
+	TargetVulnerableLocations_Zed.Length = 0;
+	TargetVulnerableLocations_Player.Length = 0;
 
-	if (!AllowTargetLockOn())
+	Flags = TargetingModeFlags[KFW.bUseAltFireMode ? ALTFIRE_FIREMODE : DEFAULT_FIREMODE];
+
+	if (!AllowTargetLockOn(ETargetingMode_Zed))
 	{
-		AdjustLockTarget(None);
-		PendingLockedTarget = None;
-		LockedAimLocation=vect(0,0,0);
+		AdjustLockTarget(ETargetingMode_Zed, None);
+		PendingLockedTarget[ETargetingMode_Zed] = None;
+		LockedAimLocation[ETargetingMode_Zed]=vect(0,0,0);
+	}
+	else
+	{
+		bAllowLockOn = true;
+		if ((Flags & TARGETINGMODE_FLAGS_ZED) != 0)
+		{
+			UpdateTargetLock(ETargetingMode_Zed, DeltaTime);
+		}
+	}
+
+	if (!AllowTargetLockOn(ETargetingMode_Player))
+	{
+		AdjustLockTarget(ETargetingMode_Player, None);
+		PendingLockedTarget[ETargetingMode_Player] = None;
+		LockedAimLocation[ETargetingMode_Player]=vect(0,0,0);
+	}
+	else
+	{
+		bAllowLockOn = true;
+		if ((Flags & TARGETINGMODE_FLAGS_PLAYER) != 0)
+		{
+			UpdateTargetLock(ETargetingMode_Player, DeltaTime);
+		}
+	}
+
+	if (!bAllowLockOn)
+	{
 		ClearTimer(nameof(PlayTargetingBeepTimer));
 		return;
 	}
-
-	BestTarget = DetermineBestTarget();
-	UpdateLockTargets(DeltaTime, BestTarget);
-	SetupAimLock(DeltaTime);
 
 	bTargetingUpdated = true;
 }
 
 /** returns true if lock-on is possible */
-simulated function bool AllowTargetLockOn()
+simulated function bool AllowTargetLockOn(byte TargetingMode)
 {
-	return !Instigator.bNoWeaponFiring &&
-			KFW.bUsingSights &&
-			TargetingIsEnabled();
+	return !Instigator.bNoWeaponFiring;
 }
 
-simulated function AdjustLockTarget(KFPawn NewLockTarget)
+simulated function AdjustLockTarget(byte TargetingMode, KFPawn NewLockTarget)
 {
-	if (LockedTarget == NewLockTarget)
+	if (LockedTarget[TargetingMode] == NewLockTarget)
 	{
 		// no need to update
 		return;
@@ -180,12 +198,21 @@ simulated function AdjustLockTarget(KFPawn NewLockTarget)
 	if (NewLockTarget == None)
 	{
 		// Clear the lock
-		if (LockedTarget != none)
+		if (LockedTarget[TargetingMode] != none)
 		{
-			LockedTarget = None;
-			TargetVulnerableLocations.Length = 0;
-			LockedAimLocation=vect(0,0,0);
-			ServerSetTargetingLocation(LockedAimLocation);
+			LockedTarget[TargetingMode] = None;
+
+			if (TargetingMode == ETargetingMode_Zed)
+			{
+				TargetVulnerableLocations_Zed.Length = 0;
+			}
+			else
+			{
+				TargetVulnerableLocations_Player.Length = 0;
+			}
+
+			LockedAimLocation[TargetingMode]=vect(0,0,0);
+			ServerSetTargetingLocation(TargetingMode, LockedAimLocation[TargetingMode]);
 
 			if (Instigator != None && Instigator.IsHumanControlled())
     		{
@@ -196,13 +223,18 @@ simulated function AdjustLockTarget(KFPawn NewLockTarget)
 	else
 	{
 		// Set the lock
-		LockedTarget = NewLockTarget;
+		LockedTarget[TargetingMode] = NewLockTarget;
 
 		if (Instigator != None && Instigator.IsHumanControlled())
 		{
 			KFW.PlaySoundBase(LockAcquiredSoundFirstPerson, true);
 		}
 	}
+}
+
+reliable server private function ServerSetTargetingLocation(byte TargetingMode, vector NewTargetingLocation)
+{
+	LockedAimLocation[TargetingMode] = NewTargetingLocation;
 }
 
 simulated function PlayTargetingBeepTimer()
@@ -213,17 +245,16 @@ simulated function PlayTargetingBeepTimer()
 	}
 }
 
-simulated function Actor PickTarget(vector Aim, vector StartTrace)
+simulated function UpdateTargetLock(byte TargetingMode, float DeltaTime)
 {
-	local float BestAim, BestDist;
+	local Actor BestTarget;
 
-	BestAim = GetLockAim();
-	BestDist = 0.0;
-	return KFPlayerController(Instigator.Controller).GetPickedAimAtTarget(
-		BestAim, BestDist, Aim, StartTrace, GetLockRange(), False);
+	BestTarget = DetermineBestTarget(TargetingMode);
+	UpdateLockTargets(TargetingMode, DeltaTime, BestTarget);
+	SetupAimLock(TargetingMode, DeltaTime);
 }
 
-simulated function Actor DetermineBestTarget()
+simulated function Actor DetermineBestTarget(byte TargetingMode)
 {
     local vector StartTrace;
     local rotator ViewRotation;
@@ -235,7 +266,6 @@ simulated function Actor DetermineBestTarget()
     KFPC = KFPlayerController(Instigator.Controller);
 
 	// Get the location and rotation that a shot would take
-	//StartTrace = KFW.GetSafeStartTraceLocation();
 	StartTrace = Instigator.GetWeaponStartTraceLocation();
     ViewRotation = Instigator.GetViewRotation();
 
@@ -252,10 +282,10 @@ simulated function Actor DetermineBestTarget()
 	HitActor = KFW.Trace(HitLocation, HitNormal, EndTrace, StartTrace, true,,, TRACEFLAG_Bullet);
 
 	// Check for a hit
-	if ((HitActor == None) || !CanLockOnTo(HitActor))
+	if ((HitActor == None) || !CanLockOnTo(TargetingMode, HitActor))
 	{
-		TA = PickTarget(Aim, StartTrace);
-		if (TA != None && CanLockOnTo(TA))
+		TA = PickTarget(Aim, StartTrace, TargetingMode == ETargetingMode_Player);
+		if (TA != None && CanLockOnTo(TargetingMode, TA))
 		{
             // Trace to see if we hit a destructible, as the PickTarget code only traces against world geometry
             // @todo: Set up pick target to ignore pawns (as it should), but not trace through destructibles
@@ -280,7 +310,7 @@ simulated function Actor DetermineBestTarget()
 	return BestTarget;
 }
 
-simulated function bool CanLockOnTo(Actor TA)
+simulated function bool CanLockOnTo(byte TargetingMode, Actor TA)
 {
 	Local KFPawn PawnTarget;
 
@@ -299,46 +329,144 @@ simulated function bool CanLockOnTo(Actor TA)
 		return false;
 	}
 
-	return WorldInfo.GRI.OnSameTeam(Instigator,TA) == KFW.bUseAltFireMode;
+	return ((TargetingMode == ETargetingMode_Zed && !WorldInfo.GRI.OnSameTeam(Instigator,TA)) ||
+			(TargetingMode == ETargetingMode_Player && WorldInfo.GRI.OnSameTeam(Instigator,TA)));
 }
 
-simulated function UpdateLockTargets(float DeltaTime, Actor BestTarget)
+simulated function Actor PickTarget(vector Aim, vector StartTrace, optional bool bTargetTeammates=false)
+{
+	local float BestAim, BestDist;
+
+	BestAim = GetLockAim();
+	BestDist = 0.0;
+	return KFPlayerController(Instigator.Controller).GetPickedAimAtTarget(
+		BestAim, BestDist, Aim, StartTrace, GetLockRange(), bTargetTeammates);
+}
+
+simulated function UpdateLockTargets(byte TargetingMode, float DeltaTime, Actor BestTarget)
 {
 	// clear lock if target is destroyed
-	if (LockedTarget != None)
+	if (LockedTarget[TargetingMode] != None)
 	{
-		if (LockedTarget.bDeleteMe)
+		if (LockedTarget[TargetingMode].bDeleteMe)
 		{
-			AdjustLockTarget(None);
+			AdjustLockTarget(TargetingMode, None);
 		}
 	}
 
 	// If we have a "possible" target, note its time mark
 	if (BestTarget != None)
 	{
-		if (BestTarget == LockedTarget)
+		if (BestTarget == LockedTarget[TargetingMode])
 		{
-			UpdateTargetLocked();
+			UpdateTargetLocked(TargetingMode);
 		}
 		// We have our best target, see if they should become our current target.
 		// Check for a new Pending Lock
-		else if (PendingLockedTarget != BestTarget)
+		else if (PendingLockedTarget[TargetingMode] != BestTarget)
 		{
-			UpdatePendingLockTarget(BestTarget);
+			UpdatePendingLockTarget(TargetingMode, BestTarget);
 		}
 
-		AcquireLockTarget(DeltaTime, BestTarget);
+		AcquireLockTarget(TargetingMode, DeltaTime, BestTarget);
 	}
 	// If we lost a target, attempt to invalidate the pending target
 	else
 	{
-		TimeoutPendingLockTarget(DeltaTime);
+		TimeoutPendingLockTarget(TargetingMode, DeltaTime);
 	}
 
-	TimeoutLockTarget(DeltaTime, BestTarget);
+	TimeoutLockTarget(TargetingMode, DeltaTime, BestTarget);
 }
 
-simulated function SetupAimLock(float DeltaTime)
+simulated function UpdateTargetLocked(byte TargetingMode)
+{
+	LockedOnTimeoutTimer[TargetingMode] = GetLockTolerance();
+	if (PendingLockedTarget[TargetingMode] != none)
+	{
+    	ClearTimer(nameof(PlayTargetingBeepTimer));
+    	PendingLockedTarget[TargetingMode] = None;
+	}
+}
+
+simulated function UpdatePendingLockTarget(byte TargetingMode, Actor BestTarget)
+{
+	local KFPawn_Monster KFPM;
+
+	KFPM = KFPawn_Monster(BestTarget);
+
+	PendingLockedTarget[TargetingMode] = KFPawn(BestTarget);
+	PendingLockTimeout[TargetingMode] = GetLockTolerance();
+	PendingLockAcquireTimeLeft[TargetingMode] = GetLockAcquireTime();
+
+	if (KFPM != none)
+	{
+		if (KFPM.IsABoss())
+		{
+			PendingLockAcquireTimeLeft[TargetingMode] = GetLockAcquireTime_Boss();
+		}
+		else if (KFPM.bVersusZed)
+		{
+			PendingLockAcquireTimeLeft[TargetingMode] = GetLockAcquireTime_Versus();
+		}
+		else if (KFPM.IsLargeZed())
+		{
+			PendingLockAcquireTimeLeft[TargetingMode] = GetLockAcquireTime_Large();
+		}
+	}
+
+	SetTimer(LockTargetingSoundInterval[TargetingMode], true, nameof(PlayTargetingBeepTimer));
+
+	// Play the "targeting" beep when we begin attempting to lock onto a target
+	// that we haven't locked onto yet
+	if (Instigator != None && Instigator.IsHumanControlled())
+	{
+    	PlaySoundBase(LockTargetingSoundFirstPerson, true);
+	}
+}
+
+simulated function AcquireLockTarget(byte TargetingMode, float DeltaTime, Actor BestTarget)
+{
+	// Acquire new target if LockAcquireTime has passed
+	if (PendingLockedTarget[TargetingMode] != None)
+	{
+		PendingLockAcquireTimeLeft[TargetingMode] -= DeltaTime;
+		if (PendingLockedTarget[TargetingMode] == BestTarget && PendingLockAcquireTimeLeft[TargetingMode] <= 0)
+		{
+			AdjustLockTarget(TargetingMode, PendingLockedTarget[TargetingMode]);
+			PendingLockedTarget[TargetingMode] = None;
+			ClearTimer(nameof(PlayTargetingBeepTimer));
+		}
+	}
+}
+
+simulated function TimeoutPendingLockTarget(byte TargetingMode, float DeltaTime)
+{
+	if (PendingLockedTarget[TargetingMode] != None)
+	{
+		PendingLockTimeout[TargetingMode] -= DeltaTime;
+		if (PendingLockTimeout[TargetingMode] <= 0 || !CanLockOnTo(TargetingMode, PendingLockedTarget[TargetingMode]))
+		{
+			PendingLockedTarget[TargetingMode] = None;
+			ClearTimer(nameof(PlayTargetingBeepTimer));
+		}
+	}
+}
+
+simulated function TimeoutLockTarget(byte TargetingMode, float DeltaTime, Actor BestTarget)
+{
+	// If the new target is not the same, attempt to invalidate current locked on target
+	if (LockedTarget[TargetingMode] != None && BestTarget != LockedTarget[TargetingMode])
+	{
+		LockedOnTimeoutTimer[TargetingMode] -= DeltaTime;
+		if (LockedOnTimeoutTimer[TargetingMode] <= 0.f || !CanLockOnTo(TargetingMode, LockedTarget[TargetingMode]))
+		{
+			AdjustLockTarget(TargetingMode, None);
+		}
+	}
+}
+
+simulated function SetupAimLock(byte TargetingMode, float DeltaTime)
 {
 	local vector Aim, StartTrace, BestZoneLocation;
 	local int OldHitZone;
@@ -348,11 +476,12 @@ simulated function SetupAimLock(float DeltaTime)
 	StartTrace = Instigator.GetWeaponStartTraceLocation();
 
 	// Set the aiming location if we have a target lock
-    if (LockedTarget != none)
+    if (LockedTarget[TargetingMode] != none)
 	{
-        OldHitZone = LockedHitZone;
-        LockedHitZone = AddTargetingZones(LockedTarget, StartTrace, Aim, BestZoneLocation);
-        if (OldHitZone != LockedHitZone)
+        OldHitZone = LockedHitZone[TargetingMode];
+        LockedHitZone[TargetingMode] =
+			AddTargetingZones(TargetingMode, LockedTarget[TargetingMode], StartTrace, Aim, BestZoneLocation);
+        if (OldHitZone != LockedHitZone[TargetingMode])
         {
        		if (Instigator != None && Instigator.IsHumanControlled())
 			{
@@ -360,48 +489,55 @@ simulated function SetupAimLock(float DeltaTime)
 			}
         }
 
-        TargetLocationReplicationInterval -= DeltaTime;
+        TargetLocationReplicationTimer[TargetingMode] -= DeltaTime;
 
-        if (TargetLocationReplicationInterval <= 0 || IsZero(LockedAimLocation))
+        if (TargetLocationReplicationTimer[TargetingMode] <= 0 || IsZero(LockedAimLocation[TargetingMode]))
         {
-            TargetLocationReplicationInterval = default.TargetLocationReplicationInterval;
-            ServerSetTargetingLocation(LockedAimLocation);
+            TargetLocationReplicationTimer[TargetingMode] = TargetLocationReplicationInterval;
+            ServerSetTargetingLocation(TargetingMode, LockedAimLocation[TargetingMode]);
         }
 
         // Set the location where the shot will go
-        LockedAimLocation = BestZoneLocation;
+        LockedAimLocation[TargetingMode] = BestZoneLocation;
 	}
 	else
 	{
-        LockedHitZone = -1;
+        LockedHitZone[TargetingMode] = -1;
 	}
 
 	// Set the pending target location
-    if (PendingLockedTarget != none)
+    if (PendingLockedTarget[TargetingMode] != none)
 	{
-        PendingHitZone = AddTargetingZones(PendingLockedTarget, StartTrace, Aim, BestZoneLocation);
+        PendingHitZone[TargetingMode] =
+			AddTargetingZones(TargetingMode, PendingLockedTarget[TargetingMode], StartTrace, Aim, BestZoneLocation);
 	}
 	else
 	{
-	   PendingHitZone = -1;
+		PendingHitZone[TargetingMode] = -1;
 	}
 }
 
-simulated function int AddTargetingZones(KFPawn KFPTarget, vector StartTrace, vector Aim, out vector BestZoneLocation)
+simulated function int AddTargetingZones(
+	byte TargetingMode, KFPawn KFPTarget, vector StartTrace, vector Aim, out vector BestZoneLocation)
 {
 	local KFPawn_Monster KFPM;
 	local KFPawn_Human KFPH;
 
-	KFPM = KFPawn_Monster(KFPTarget);
-	if (CanTargetZeds() && KFPM != none)
+	if (TargetingMode == ETargetingMode_Zed)
 	{
-		return GetZedVulnerableLocations(KFPM, Aim, StartTrace, BestZoneLocation);
+		KFPM = KFPawn_Monster(KFPTarget);
+		if (KFPM != none)
+		{
+			return GetZedVulnerableLocations(KFPM, Aim, StartTrace, BestZoneLocation);
+		}
 	}
-
-	KFPH = KFPawn_Human(KFPTarget);
-	if (CanTargetPlayers() && KFPH != none)
+	else
 	{
-		return GetHumanVulnerableLocations(KFPH, Aim, StartTrace, BestZoneLocation);
+		KFPH = KFPawn_Human(KFPTarget);
+		if (KFPH != none)
+		{
+			return GetHumanVulnerableLocations(KFPH, Aim, StartTrace, BestZoneLocation);
+		}
 	}
 
 	return -1;
@@ -424,7 +560,7 @@ simulated function int GetZedVulnerableLocations(
 
 		if (!IsZero(ZoneLocation))
 		{
-			TargetVulnerableLocations.AddItem(ZoneLocation);
+			TargetVulnerableLocations_Zed.AddItem(ZoneLocation);
 
 			// Figure out which target zone we are closest to
 			DirToZone = ZoneLocation - StartTrace;
@@ -432,7 +568,7 @@ simulated function int GetZedVulnerableLocations(
 
 			if (DotToZone > BestZoneDot)
 			{
-				BestZoneIndex = TargetVulnerableLocations.Length - 1;
+				BestZoneIndex = TargetVulnerableLocations_Zed.Length - 1;
 				BestZoneDot = DotToZone;
 
 				// Set the location for the zone we are closest targeting
@@ -460,7 +596,7 @@ simulated function int GetHumanVulnerableLocations(
 		ZoneLocation = Human.Mesh.GetBoneLocation(HumanTargetableBoneNames[i]);
 		if(!IsZero(ZoneLocation))
 		{
-			TargetVulnerableLocations.AddItem(ZoneLocation);
+			TargetVulnerableLocations_Player.AddItem(ZoneLocation);
 
 			// Figure out which target zone we are closest to
 			DirToZone = ZoneLocation - StartTrace;
@@ -468,7 +604,7 @@ simulated function int GetHumanVulnerableLocations(
 
 			if( DotToZone > BestZoneDot )
 			{
-				BestZoneIndex = TargetVulnerableLocations.Length - 1;
+				BestZoneIndex = TargetVulnerableLocations_Player.Length - 1;
 				BestZoneDot = DotToZone;
 
 				// Set the location for the zone we are closest targeting
@@ -478,103 +614,6 @@ simulated function int GetHumanVulnerableLocations(
 	}
 
 	return BestZoneIndex;
-}
-
-reliable server private function ServerSetTargetingLocation(vector NewTargetingLocation)
-{
-	LockedAimLocation = NewTargetingLocation;
-}
-
-simulated function TimeoutLockTarget(float DeltaTime, Actor BestTarget)
-{
-	// If the new target is not the same, attempt to invalidate current locked on target
-	if (LockedTarget != None && BestTarget != LockedTarget)
-	{
-		LockedOnTimeout -= DeltaTime;
-		if (LockedOnTimeout <= 0.f || !CanLockOnTo(LockedTarget))
-		{
-			AdjustLockTarget(None);
-		}
-	}
-}
-
-simulated function TimeoutPendingLockTarget(float DeltaTime)
-{
-	if (PendingLockedTarget != None)
-	{
-		PendingLockTimeout -= DeltaTime;
-		if (PendingLockTimeout <= 0 || !CanLockOnTo(PendingLockedTarget))
-		{
-			PendingLockedTarget = None;
-			ClearTimer(nameof(PlayTargetingBeepTimer));
-		}
-	}
-}
-
-simulated function AcquireLockTarget(float DeltaTime, Actor BestTarget)
-{
-	// Acquire new target if LockAcquireTime has passed
-	if (PendingLockedTarget != None)
-	{
-		PendingLockAcquireTimeLeft -= DeltaTime;
-		if (PendingLockedTarget == BestTarget && PendingLockAcquireTimeLeft <= 0)
-		{
-			AdjustLockTarget(PendingLockedTarget);
-			PendingLockedTarget = None;
-			ClearTimer(nameof(PlayTargetingBeepTimer));
-		}
-	}
-}
-
-simulated function UpdatePendingLockTarget(Actor BestTarget)
-{
-	local KFPawn_Monster KFP;
-	local KFPawn_Human KFH;
-
-	KFP = KFPawn_Monster(BestTarget);
-	KFH = KFPawn_Human(BestTarget);
-	if ((KFP != None && CanTargetZeds()) ||
-		(KFH != None && CanTargetPlayers()))
-	{
-		PendingLockedTarget = KFPawn(BestTarget);
-		PendingLockTimeout = GetLockTolerance();
-		PendingLockAcquireTimeLeft = GetLockAcquireTime();
-
-		if (KFP != none)
-		{
-			if (KFP.IsABoss())
-			{
-				PendingLockAcquireTimeLeft = GetLockAcquireTime_Boss();
-			}
-			else if (KFP.bVersusZed)
-			{
-				PendingLockAcquireTimeLeft = GetLockAcquireTime_Versus();
-			}
-			else if (KFP.IsLargeZed())
-			{
-				PendingLockAcquireTimeLeft = GetLockAcquireTime_Large();
-			}
-		}
-
-		SetTimer(LockTargetingSoundInterval, true, nameof(PlayTargetingBeepTimer));
-
-		// Play the "targeting" beep when we begin attempting to lock onto a target
-		// that we haven't locked onto yet
-		if (Instigator != None && Instigator.IsHumanControlled())
-		{
-    		PlaySoundBase(LockTargetingSoundFirstPerson, true);
-		}
-	}
-}
-
-simulated function UpdateTargetLocked()
-{
-	LockedOnTimeout = GetLockTolerance();
-	if (PendingLockedTarget != none)
-	{
-    	ClearTimer(nameof(PlayTargetingBeepTimer));
-    	PendingLockedTarget = None;
-	}
 }
 
 /*********************************************************************************************
@@ -594,21 +633,6 @@ simulated function OnWeaponDetached()
 /*********************************************************************************************
  * @name Getters
  **********************************************************************************************/
-
-simulated function bool TargetingIsEnabled()
-{
-	return TargetingEnabled[KFW.bUseAltFireMode ? ALTFIRE_FIREMODE : DEFAULT_FIREMODE] == 1;
-}
-
-simulated function bool CanTargetZeds()
-{
-	return TargetZeds[KFW.bUseAltFireMode ? ALTFIRE_FIREMODE : DEFAULT_FIREMODE] == 1;
-}
-
-simulated function bool CanTargetPlayers()
-{
-	return TargetPlayers[KFW.bUseAltFireMode ? ALTFIRE_FIREMODE : DEFAULT_FIREMODE] == 1;
-}
 
 simulated function float GetLockRange()
 {
@@ -648,7 +672,7 @@ simulated function float GetLockTolerance()
 defaultproperties
 {
 	RemoteRole=ROLE_SimulatedProxy
-	bAlwaysRelevant=true
+	bOnlyRelevantToOwner=true
 	bHidden=true
 	bCollideActors=false
 	bProjTarget=false

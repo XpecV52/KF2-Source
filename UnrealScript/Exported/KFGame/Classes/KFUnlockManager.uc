@@ -18,7 +18,9 @@ enum ESharedContentUnlock
 	SCU_Zweihander,
 	SCU_ChainBat,
 	SCU_ChiappaRhino,
-	SCU_IonThruster
+	SCU_IonThruster,
+	SCU_MosinNagant,
+	SCU_G18RiotShield,
 };
 
 
@@ -273,6 +275,8 @@ defaultproperties
    SharedContentList(2)=(Name="KFWeap_Blunt_ChainBat",IconPath="Wep_UI_ChainBat_TEX.UI_WeaponSelect_RRChainbat",Id=300380)
    SharedContentList(3)=(Name="KFWeap_Pistol_ChiappaRhino",IconPath="Wep_UI_ChiappaRhino_TEX.UI_WeaponSelect_ChiappaRhinos",Id=7704)
    SharedContentList(4)=(Name="KFWeap_Edged_IonThruster",IconPath="WEP_UI_Ion_Sword_TEX.UI_WeaponSelect_IonSword",Id=7715)
+   SharedContentList(5)=(Name="KFWeap_Rifle_MosinNagant",IconPath="wep_ui_mosin_tex.UI_WeaponSelect_MosinNagant",Id=7856)
+   SharedContentList(6)=(Name="KFWeap_SMG_G18",IconPath="WEP_UI_RiotShield_TEX.UI_WeaponSelect_RiotShield",Id=7850)
    Name="Default__KFUnlockManager"
    ObjectArchetype=Object'Core.Default__Object'
 }

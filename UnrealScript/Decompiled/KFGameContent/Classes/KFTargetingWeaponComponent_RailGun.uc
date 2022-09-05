@@ -8,10 +8,14 @@
 class KFTargetingWeaponComponent_RailGun extends KFTargetingWeaponComponent
     hidecategories(Navigation);
 
+simulated function bool AllowTargetLockOn(byte TargetingMode)
+{
+    return super.AllowTargetLockOn(TargetingMode) && KFW.bUsingSights;
+}
+
 defaultproperties
 {
-    TargetingEnabled=1
-    TargetZeds=1
+    TargetingModeFlags=1
     LockRange=200000
     LockAcquireTime=0.35
     LockAcquireTime_Large=0.6

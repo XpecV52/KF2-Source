@@ -41,6 +41,7 @@ BodyMesh7="Pyjama-Outfit „Weihnachten“"
 BodyMesh8="Pyjama-Outfit „Kammer“"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
+BodyMesh11="Santa-Anzug"
 HeadMesh0="Gasmaske"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -130,6 +131,14 @@ BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
 
+[CHR_MrsFoster_archetype.BodyMesh11]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Weiß"
 HeadSkin1="Grün"
@@ -212,6 +221,7 @@ BodyMesh7="Pyjama-Outfit „Kammer“"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
+BodyMesh11="Santa-Anzug"
 HeadMesh0="Bart-Power!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -306,6 +316,14 @@ BodySkin2="Blau"
 BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
+
+[CHR_Jagerhorn_archetype.BodyMesh11]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Blonder Schwede"
@@ -404,6 +422,7 @@ BodyMesh7="Pyjama-Outfit „Kammer“"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
+BodyMesh11="Santa-Anzug"
 HeadMesh0="Schädel-Maske"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -498,6 +517,14 @@ BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
 
+[CHR_DJSkully_archetype.BodyMesh11]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Schwärzestes Schwarz"
 HeadSkin1="Xtra-Rot"
@@ -542,6 +569,7 @@ BodyMesh8="Pyjama-Outfit „Kammer“"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Hexenjäger"
+BodyMesh12="Santa-Anzug"
 HeadMesh0="Haar"
 
 [chr_briar_archetype.BodyMesh0]
@@ -642,6 +670,14 @@ BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
 
+[CHR_briar_archetype.BodyMesh12]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Strähnchen"
@@ -680,6 +716,7 @@ BodyMesh8="Pyjama-Outfit „Kammer“"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Hexenjäger"
+BodyMesh12="Santa-Anzug"
 HeadMesh0="Gasmaske"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -784,6 +821,14 @@ BodySkin2="Blau"
 BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
+
+[CHR_MrFoster_archetype.BodyMesh12]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Original-Weiß"
@@ -943,6 +988,7 @@ BodyMesh7="Pyjama-Outfit „Kammer“"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
+BodyMesh11="Santa-Anzug"
 HeadMesh0="Gesicht"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1035,6 +1081,14 @@ BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
 
+[CHR_Coleman_archetype.BodyMesh11]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tattoo"
@@ -1072,6 +1126,7 @@ BodyMesh7="Pyjama-Outfit „Kammer“"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
+BodyMesh11="Santa-Anzug"
 HeadMesh0="Haar"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1165,6 +1220,14 @@ BodySkin2="Blau"
 BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
+
+[CHR_Alberts_archetype.BodyMesh11]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grau"
@@ -2063,6 +2126,7 @@ BodyMesh7="Pyjama-Outfit „Kammer“"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
+BodyMesh11="Santa-Anzug"
 HeadMesh0="Gesicht"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2166,6 +2230,14 @@ BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
 
+[CHR_Masterson_archetype.BodyMesh11]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka ist ein zerrissenes Individuum mit einem ernsthaften Todeswunsch-Problem. Geboren in Okinawa, wuchs er zwischen amerikanischen Militärs auf. Als er mit seiner Familie aufs japanische Festland zog, konnte sich der amerikanisierte Tanaka nicht in die Gesellschaft einfügen und nahm Schauspielunterricht. Nach dem College zog er nach LA und spielte klischeehafte Kleinrollen in schlechten Filmen, bevor er nach Europa zog, in einem Versuch ‚ seriösere‘ Arbeit zu finden. Alles, war er dort bekam, waren Bösewicht-Rollen in französischen Gangsterfilmen und ein paar Tattoos. Jetzt, inmitten der Apokalypse, scheint er seine eigene Realität mit einigen der Filmrollen, die er gespielt hat, zu verwechseln. Dies scheint Vorstellungen von den Yakuza, Dämonen und eine Hollywood-Interpretation von Bushido zu beinhalten."
@@ -2181,6 +2253,7 @@ BodyMesh8="Pyjama-Outfit „Kammer“"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Hexenjäger"
+BodyMesh12="Santa-Anzug"
 HeadMesh0="Haar"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2291,6 +2364,14 @@ BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
 
+[CHR_Tanaka_archetype.BodyMesh12]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Helm"
 AttachmentSkin0="Aufgehende Sonne"
@@ -2332,6 +2413,7 @@ BodyMesh7="Pyjama-Outfit „Kammer“"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
+BodyMesh11="Santa-Anzug"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2435,6 +2517,14 @@ BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
 
+[CHR_Ana_archetype.BodyMesh11]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D-Brille"
 AttachmentSkin0="Anaglyph 3D"
@@ -2462,6 +2552,7 @@ BodyMesh8="Pyjama-Outfit „Kammer“"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Hexenjäger"
+BodyMesh12="Santa-Anzug"
 HeadMesh0="Haar"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2562,6 +2653,14 @@ BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
 
+[CHR_mark_archetype.BodyMesh12]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Das einzig Wahre"
 HeadSkin1="Blutige Teezeit"
@@ -2586,6 +2685,7 @@ BodyMesh7="Pyjama-Outfit „Kammer“"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
+BodyMesh11="Santa-Anzug"
 HeadMesh0="Gesicht"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2681,6 +2781,14 @@ BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
 
+[CHR_alan_archetype.BodyMesh11]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Das einzig Wahre"
 HeadSkin1="Fuchsrot? Wirklich?"
@@ -2712,6 +2820,7 @@ BodyMesh7="Pyjama-Outfit „Kammer“"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
+BodyMesh11="Santa-Anzug"
 HeadMesh0="Haar"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2803,6 +2912,14 @@ BodySkin2="Blau"
 BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
+
+[CHR_strasser_archetype.BodyMesh11]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Dunkler Stahl"
@@ -2977,6 +3094,7 @@ BodyMesh7="Pyjama-Outfit „Kammer“"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
+BodyMesh11="Santa-Anzug"
 HeadMesh0="Standard-Kopf"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3072,6 +3190,14 @@ BodySkin2="Blau"
 BodySkin3="Lila"
 BodySkin4="Rot"
 BodySkin5="Weiß"
+
+[CHR_rockabilly_archetype.BodyMesh11]
+BodySkin0="Rot"
+BodySkin1="Schwarz"
+BodySkin2="Blau"
+BodySkin3="Grün"
+BodySkin4="Weiß"
+BodySkin5="Gelb"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Schwarz"
@@ -3580,6 +3706,66 @@ EmoteName="Air Metal"
 
 [AirMetal_Deluxe]
 EmoteName="Air Metal+"
+
+[CraneFist]
+EmoteName="Kranich-Faust"
+
+[CraneFist_Deluxe]
+EmoteName="Kranich-Faust+"
+
+[UniversalMastery]
+EmoteName="Universelle Meisterschaft"
+
+[UniversalMastery_Deluxe]
+EmoteName="Universelle Meisterschaft+"
+
+[ZedTime]
+EmoteName="Zed-Zeit"
+
+[ZedTime_Deluxe]
+EmoteName="Zed-Zeit+"
+
+[NeedYourEnergy]
+EmoteName="Deine Energie benötigt"
+
+[NeedYourEnergy_Deluxe]
+EmoteName="Deine Energie benötigt+"
+
+[FinalForm]
+EmoteName="Finale Form"
+
+[FinalForm_Deluxe]
+EmoteName="Finale Form+"
+
+[FastestGun]
+EmoteName="Die schnellsten Pistolen im Westen"
+
+[FastestGun_Deluxe]
+EmoteName="Die schnellsten Pistolen im Westen+"
+
+[SpiritFingers]
+EmoteName="Geisterfinger"
+
+[SpiritFingers_Deluxe]
+EmoteName="Geisterfinger+"
+
+[HomeRun]
+EmoteName="Home-Run"
+
+[HomeRun_Deluxe]
+EmoteName="Home-Run+"
+
+[CoinTrick]
+EmoteName="Münztrick"
+
+[CoinTrick_Deluxe]
+EmoteName="Münztrick+"
+
+[MagicFoster]
+EmoteName="Magievorschub"
+
+[MagicFoster_Deluxe]
+EmoteName="Magievorschub+"
 
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="Feuerwehrhelm"
@@ -5321,13 +5507,106 @@ AttachmentSkin1="Lila"
 AttachmentSkin2="Edel"
 
 [Cosmetic_Halloween_StitchedMouthMask_ARCH]
-Attachment="Halloween-Zugenähter-Mund-Maske"
+Attachment="Zugenähter-Mund-Maske"
 AttachmentSkin0="Braun"
 AttachmentSkin1="Lila"
 AttachmentSkin2="Edel"
 
 [Cosmetic_Halloween_GarlicClotBackpack_ARCH]
-Attachment="Halloween-Knoblauch-Clot-Rucksack"
+Attachment="Knoblauch-Clot-Rucksack"
 AttachmentSkin0="Schwarz"
 AttachmentSkin1="Lila"
 AttachmentSkin2="Edel"
+
+[Cosmetic_SantaHat_ARCH]
+Attachment="Santa-Mütze"
+AttachmentSkin0="Rot"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Blau"
+AttachmentSkin3="Grün"
+AttachmentSkin4="Weiß"
+AttachmentSkin5="Gelb"
+
+[Cosmetic_Christmas19_KrampusMask_ARCH]
+Attachment="Krampusmaske „Weihnachten“"
+AttachmentSkin0="Rot"
+AttachmentSkin1="Grün"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_GorefastMask_ARCH]
+Attachment="Gorefastmaske „Weihnachten“"
+AttachmentSkin0="Lebkuchen"
+AttachmentSkin1="Gefrorene Erdbeere"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_ClotHat_ARCH]
+Attachment="Clot-Hut für Weihnachten"
+AttachmentSkin0="Grün"
+AttachmentSkin1="Rot"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_TopHat_ARCH]
+Attachment="Zylinder für Weihnachten"
+AttachmentSkin0="Rot"
+AttachmentSkin1="Grün"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_SnowmanCap_ARCH]
+Attachment="Schneemannkappe „Weihnachten“"
+AttachmentSkin0="Eis"
+AttachmentSkin1="Magma"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_MonsterCap_ARCH]
+Attachment="Monsterkappe „Weihnachten“"
+AttachmentSkin0="Grün"
+AttachmentSkin1="Rot"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_ScrakeMask_ARCH]
+Attachment="Scrake-Maske „Weihnachten“"
+AttachmentSkin0="Braun"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_ReindeerBackpack_ARCH]
+Attachment="Rentierrucksack für Weihnachten"
+AttachmentSkin0="Braun"
+AttachmentSkin1="Gepunktet"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_TreeBackpack_ARCH]
+Attachment="Tannenbaum-Rucksack für Weihnachten"
+AttachmentSkin0="Rot"
+AttachmentSkin1="Grün"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_GingerbreadHat_ARCH]
+Attachment="Lebkuchen-Hut für Weihnachten"
+AttachmentSkin0="Original"
+AttachmentSkin1="Gefrorene Erdbeere"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_NiceSantaMask_ARCH]
+Attachment="Guter-Santa-Maske „Weihnachten“"
+AttachmentSkin0="Rot"
+AttachmentSkin1="Grün"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_NaughtySantaMask_ARCH]
+Attachment="Böser-Santa-Maske „Weihnachten“"
+AttachmentSkin0="Dunkelgrau"
+AttachmentSkin1="Blutrausch"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_SnowmanMask_ARCH]
+Attachment="Schneemannmaske „Weihnachten“"
+AttachmentSkin0="Eis"
+AttachmentSkin1="Magma"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
+Attachment="Weihnachts-Mistelzweig-Clot-Rucksack"
+AttachmentSkin0="Rot"
+AttachmentSkin1="Grün"
+AttachmentSkin2="Precious"

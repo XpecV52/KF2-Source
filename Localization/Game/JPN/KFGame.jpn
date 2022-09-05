@@ -1446,6 +1446,7 @@ HeadShotResetString="ヘッドショット失敗。通常ダメージ！"
 SuicideMessage=" が命を諦めました..."
 KilledMessage=" は生きたまま食われました"
 KillzedBy_PatriarchString=" はもう、ケビンの子どもたちに危害を加えることができません"
+KillzedBy_MatriarchString=" は大義のためにキルされました"
 KillzedBy_HansString="の体は、さらなる実験のために移動されました"
 KillzedBy_ZedCrawlerString="の足首は噛みちぎられました"
 KillzedBy_ZedBloatString=" は体液で溺れました"
@@ -1735,13 +1736,13 @@ Fortitude="ドレッドノート"
 FortitudeDescription="合計ヘルスを75%増加する"
 
 Ninja="散兵"
-NinjaDescription="動きが20%速くなり、ダッシュが25%速くなり、Perk近接武器を使用中はヘルスが毎秒1ポイント回復する。"
+NinjaDescription="動きが20%速くなり、ダッシュが25%速くなり、Perk武器を使用中はヘルスが毎秒1ポイント回復する。"
 
 Vampire="吸血鬼"
 VampireDescription="Perk武器でzedをキルする毎に、ヘルスを4ポイント回復する。Perk近接武器での攻撃が20%速くなる。"
 
 Speed="肉屋"
-SpeedDescription="Perk近接武器により攻撃が 20% 速くなり、ダメージが 20% 増加する。"
+SpeedDescription="Perk武器により攻撃が 20% 速くなり、ダメージが 20% 増加する。"
 
 Resistance="耐性"
 ResistanceDescription="全ダメージに対して20%耐性を得る。毒および音波攻撃に対しては、さらに20%耐性を得る。"
@@ -2351,11 +2352,11 @@ DoschHoldDesc="マークされたエリアにZedを入れるな"
 DescriptionDoshHold="マークされたエリアにZedを入れるな"
 DescriptionDoshHoldShort="ゾーンを防衛(追加)"
 RepairObjective="溶接して修理しよう"
-UseWelderToRepair="溶接機を使って壊れた機械を修理する"
-UseWelderToRepairShort="壊れた機械を溶接する"
+UseWelderToRepair="機械に溶接機を使う"
+UseWelderToRepairShort="機械を溶接する"
 UseWelderToRepairTraderPod="溶接機を使って壊れたトレーダーポッドを修理する"
 UseWelderToRepairTraderPodShort="トレーダーポッドを溶接する"
-RepairObjectiveRequired="修理する壊れた機械："
+RepairObjectiveRequired="溶接する機械："
 EscortPawnsObjective="護衛"
 EscortPawnsDescription="Zedからドローンを護衛して防衛する"
 EscortPawnsDescriptionShort="ドローンを護衛する"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="E.D.A.Rトラッパー"
 KFPawn_ZedDAR_Laser="E.D.A.Rブラスター"
 KFPawn_ZedDAR_Rocket="E.D.A.Rボマー"
 KFPawn_ZedPatriarch="ペイトリアーク"
+KFPawn_ZedMatriarch="マトリアーク"
 KFPawn_ZedBloatKingSubspawn="アボミネーション・スポーン"
 ;Human zeds
 KFPawn_ZedBloat_Versus="ブロート―プレイヤー"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="クリス | ビヨンドホライゾン | �
 
 ChanceDropDescriptionStrings[0]="景品チケット"
 ChanceDropDescriptionStrings[1]="ゴールデン景品チケット"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="無限の黒海",DescriptionString="サバイバルHardかそれ以上の難易度で、Sanitariumにてボスを倒す")
+SpecialEventObjectiveInfoList[1]=(TitleString="何だか途方も無い想像力",DescriptionString="Sanitariumにて触手ムチの罠を使って20体のZedを殺す")
+SpecialEventObjectiveInfoList[2]=(TitleString="エルドリッチの矛盾",DescriptionString="Sanitariumにて吸引の罠を使って20体のZedを殺す")
+SpecialEventObjectiveInfoList[3]=(TitleString="母性本能",DescriptionString="いずれかのマップ、あるいはゲームモードでマトリアークを10回殺す")
+SpecialEventObjectiveInfoList[4]=(TitleString="家族関係の解決",DescriptionString="任務 Hard かそれ以上の難易度で Biotics Lab をクリアする")
+
+AllCompleteRewardDescriptionString="FN FAL | イェーガー | ダイナミック"
+
+ChanceDropDescriptionStrings[0]="クランプス・チケット"
+ChanceDropDescriptionStrings[1]="クランプス・ゴールデン・チケット"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="Steam Fortress"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="アッシュウッド精神科病院"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="Sanitarium"
 
 [KFMapInfo]
 ; defaults

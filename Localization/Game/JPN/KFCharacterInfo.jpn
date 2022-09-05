@@ -41,6 +41,7 @@ BodyMesh7="クリスマスパジャマファッション"
 BodyMesh8="Vaultパジャマファッション"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
+BodyMesh11="サンタスーツ"
 HeadMesh0="ガスマスク"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -130,6 +131,14 @@ BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
 
+[CHR_MrsFoster_archetype.BodyMesh11]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="ホワイト"
 HeadSkin1="グリーン"
@@ -212,6 +221,7 @@ BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
+BodyMesh11="サンタスーツ"
 HeadMesh0="髭パワー！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -306,6 +316,14 @@ BodySkin2="ブルー"
 BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
+
+[CHR_Jagerhorn_archetype.BodyMesh11]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="スウェーデンのブロンド"
@@ -404,6 +422,7 @@ BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
+BodyMesh11="サンタスーツ"
 HeadMesh0="スカリーマスク"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -498,6 +517,14 @@ BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
 
+[CHR_DJSkully_archetype.BodyMesh11]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="ブラッケストブラック"
 HeadSkin1="エクストラレッド"
@@ -542,6 +569,7 @@ BodyMesh8="Vaultパジャマファッション"
 BodyMesh9="スチームパンク"
 BodyMesh10="サイバーパンク"
 BodyMesh11="ウィッチハンター"
+BodyMesh12="サンタスーツ"
 HeadMesh0="髪"
 
 [chr_briar_archetype.BodyMesh0]
@@ -642,6 +670,14 @@ BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
 
+[CHR_briar_archetype.BodyMesh12]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="オリジナル"
 HeadSkin1="ハイライト"
@@ -680,6 +716,7 @@ BodyMesh8="Vaultパジャマファッション"
 BodyMesh9="スチームパンク"
 BodyMesh10="サイバーパンク"
 BodyMesh11="ウィッチハンター"
+BodyMesh12="サンタスーツ"
 HeadMesh0="ガスマスク"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -784,6 +821,14 @@ BodySkin2="ブルー"
 BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
+
+[CHR_MrFoster_archetype.BodyMesh12]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="オリジナルホワイト"
@@ -943,6 +988,7 @@ BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
+BodyMesh11="サンタスーツ"
 HeadMesh0="顔"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1035,6 +1081,14 @@ BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
 
+[CHR_Coleman_archetype.BodyMesh11]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="ドノヴァン"
 HeadSkin1="タトゥー"
@@ -1072,6 +1126,7 @@ BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
+BodyMesh11="サンタスーツ"
 HeadMesh0="髪"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1165,6 +1220,14 @@ BodySkin2="ブルー"
 BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
+
+[CHR_Alberts_archetype.BodyMesh11]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="グレー"
@@ -2063,6 +2126,7 @@ BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
+BodyMesh11="サンタスーツ"
 HeadMesh0="顔"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2166,6 +2230,14 @@ BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
 
+[CHR_Masterson_archetype.BodyMesh11]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
+
 [CHR_Tanaka_Archetype]
 CharacterName="ハヤト・タナカ"
 Description="タナカは、強い希死念慮を抱えた、葛藤する一人の人間だ。沖縄で生まれ、軍隊のアメリカ人が周りにいる中、育てられた。家族と共に本州に引っ越し、アメリカナイズされたタナカは周囲に馴染めず、演技のクラスに参加した。大学卒業後LAに引っ越し、いくつかの三流映画でありふれた端役をやり、その後ヨーロッパに渡ってもっと「本物の」仕事を探した。そこで得たものは、フランスのギャングスター映画での悪役と、いくつかの刺青だけだった。今、黙示録の最中において、自身の現実と、過去に演じた役とを混同しているようだ。これには、ヤクザに関する幻、悪魔、そしてハリウッドによる武士道についての見解が関わっているようだ。"
@@ -2181,6 +2253,7 @@ BodyMesh8="Vaultパジャマファッション"
 BodyMesh9="スチームパンク"
 BodyMesh10="サイバーパンク"
 BodyMesh11="ウィッチハンター"
+BodyMesh12="サンタスーツ"
 HeadMesh0="髪"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2291,6 +2364,14 @@ BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
 
+[CHR_Tanaka_archetype.BodyMesh12]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="ヘルメット"
 AttachmentSkin0="ライジングサン"
@@ -2332,6 +2413,7 @@ BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
+BodyMesh11="サンタスーツ"
 HeadMesh0="モヒカン"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2435,6 +2517,14 @@ BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
 
+[CHR_Ana_archetype.BodyMesh11]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3Dメガネ"
 AttachmentSkin0="アナグリフ3D"
@@ -2462,6 +2552,7 @@ BodyMesh8="Vaultパジャマファッション"
 BodyMesh9="スチームパンク"
 BodyMesh10="サイバーパンク"
 BodyMesh11="ウィッチハンター"
+BodyMesh12="サンタスーツ"
 HeadMesh0="髪"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2562,6 +2653,14 @@ BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
 
+[CHR_mark_archetype.BodyMesh12]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="ホンモノ"
 HeadSkin1="クソ5時"
@@ -2586,6 +2685,7 @@ BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
+BodyMesh11="サンタスーツ"
 HeadMesh0="顔"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2681,6 +2781,14 @@ BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
 
+[CHR_alan_archetype.BodyMesh11]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="ホンモノ"
 HeadSkin1="ジンジャー！本当に？"
@@ -2712,6 +2820,7 @@ BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
+BodyMesh11="サンタスーツ"
 HeadMesh0="髪"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2803,6 +2912,14 @@ BodySkin2="ブルー"
 BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
+
+[CHR_strasser_archetype.BodyMesh11]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="ダークスチール"
@@ -2977,6 +3094,7 @@ BodyMesh7="Vaultパジャマファッション"
 BodyMesh8="スチームパンク"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
+BodyMesh11="サンタスーツ"
 HeadMesh0="デフォルト頭部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3072,6 +3190,14 @@ BodySkin2="ブルー"
 BodySkin3="紫"
 BodySkin4="レッド"
 BodySkin5="ホワイト"
+
+[CHR_rockabilly_archetype.BodyMesh11]
+BodySkin0="レッド"
+BodySkin1="ブラック"
+BodySkin2="ブルー"
+BodySkin3="グリーン"
+BodySkin4="ホワイト"
+BodySkin5="イエロー"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="ブラック"
@@ -3580,6 +3706,66 @@ EmoteName="エアメタル"
 
 [AirMetal_Deluxe]
 EmoteName="エアメタル+"
+
+[CraneFist]
+EmoteName="ツルの拳"
+
+[CraneFist_Deluxe]
+EmoteName="ツルの拳+"
+
+[UniversalMastery]
+EmoteName="世界精通"
+
+[UniversalMastery_Deluxe]
+EmoteName="世界精通+"
+
+[ZedTime]
+EmoteName="Zed-Time"
+
+[ZedTime_Deluxe]
+EmoteName="Zed Time+"
+
+[NeedYourEnergy]
+EmoteName="エネルギー必須"
+
+[NeedYourEnergy_Deluxe]
+EmoteName="エネルギー必須+"
+
+[FinalForm]
+EmoteName="最終形態"
+
+[FinalForm_Deluxe]
+EmoteName="最終形態+"
+
+[FastestGun]
+EmoteName="西部最速の銃"
+
+[FastestGun_Deluxe]
+EmoteName="西部最速の銃+"
+
+[SpiritFingers]
+EmoteName="スピリットフィンガー"
+
+[SpiritFingers_Deluxe]
+EmoteName="スピリットフィンガー+"
+
+[HomeRun]
+EmoteName="ホームラン"
+
+[HomeRun_Deluxe]
+EmoteName="ホームラン+"
+
+[CoinTrick]
+EmoteName="コイントリック"
+
+[CoinTrick_Deluxe]
+EmoteName="コイントリック+"
+
+[MagicFoster]
+EmoteName="マジックフォスター"
+
+[MagicFoster_Deluxe]
+EmoteName="マジックフォスター+"
 
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="消防士ヘルメット"
@@ -5321,13 +5507,106 @@ AttachmentSkin1="紫"
 AttachmentSkin2="希少"
 
 [Cosmetic_Halloween_StitchedMouthMask_ARCH]
-Attachment="ハロウィーンの縫いつけられた口マスク"
+Attachment="縫いつけられた口マスク"
 AttachmentSkin0="ブラウン"
 AttachmentSkin1="紫"
 AttachmentSkin2="希少"
 
 [Cosmetic_Halloween_GarlicClotBackpack_ARCH]
-Attachment="ハロウィーンのニンニクのバックパック"
+Attachment="にんにくのclotバックパック"
 AttachmentSkin0="ブラック"
 AttachmentSkin1="紫"
 AttachmentSkin2="希少"
+
+[Cosmetic_SantaHat_ARCH]
+Attachment="サンタハット"
+AttachmentSkin0="レッド"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="ブルー"
+AttachmentSkin3="グリーン"
+AttachmentSkin4="ホワイト"
+AttachmentSkin5="イエロー"
+
+[Cosmetic_Christmas19_KrampusMask_ARCH]
+Attachment="クリスマスのクランプスマスク"
+AttachmentSkin0="レッド"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_GorefastMask_ARCH]
+Attachment="クリスマスのゴアファストマスク"
+AttachmentSkin0="ジンジャーブレッド"
+AttachmentSkin1="イチゴ味"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_ClotHat_ARCH]
+Attachment="クリスマスのclotハット"
+AttachmentSkin0="グリーン"
+AttachmentSkin1="レッド"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_TopHat_ARCH]
+Attachment="クリスマスのシルクハット"
+AttachmentSkin0="レッド"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_SnowmanCap_ARCH]
+Attachment="クリスマスの雪だるまキャップ"
+AttachmentSkin0="氷"
+AttachmentSkin1="マグマ"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_MonsterCap_ARCH]
+Attachment="クリスマスのモンスターキャップ"
+AttachmentSkin0="グリーン"
+AttachmentSkin1="レッド"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_ScrakeMask_ARCH]
+Attachment="クリスマスのスクレイクマスク"
+AttachmentSkin0="ブラウン"
+AttachmentSkin1="ブラック"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_ReindeerBackpack_ARCH]
+Attachment="クリスマスのトナカイバックパック"
+AttachmentSkin0="ブラウン"
+AttachmentSkin1="ドット柄"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_TreeBackpack_ARCH]
+Attachment="クリスマスのツリーバックパック"
+AttachmentSkin0="レッド"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_GingerbreadHat_ARCH]
+Attachment="クリスマスのジンジャーブレッドハット"
+AttachmentSkin0="オリジナル"
+AttachmentSkin1="イチゴ味"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_NiceSantaMask_ARCH]
+Attachment="クリスマスの気のいいサンタマスク"
+AttachmentSkin0="レッド"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_NaughtySantaMask_ARCH]
+Attachment="クリスマスの意地悪サンタマスク"
+AttachmentSkin0="ダークグレー"
+AttachmentSkin1="蒼白"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_SnowmanMask_ARCH]
+Attachment="Xmasスノーマン・マスク"
+AttachmentSkin0="氷"
+AttachmentSkin1="マグマ"
+AttachmentSkin2="プレシャス"
+
+[Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
+Attachment="クリスマスのヤドリギのclotバックパック"
+AttachmentSkin0="レッド"
+AttachmentSkin1="グリーン"
+AttachmentSkin2="プレシャス"

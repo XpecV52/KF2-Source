@@ -1446,6 +1446,7 @@ HeadShotResetString="Colpo alla testa mancato. Danno normale!"
 SuicideMessage=" l'ha appena fatta finita..."
 KilledMessage=" è stato mangiato vivo"
 KillzedBy_PatriarchString=" non può più fare del male ai figli di Kevin"
+KillzedBy_MatriarchString=" è stato ucciso per un bene superiore"
 KillzedBy_HansString="Il suo corpo è stato rimosso per ulteriori esperimenti"
 KillzedBy_ZedCrawlerString="Le sue caviglie sono state mangiate"
 KillzedBy_ZedBloatString=" è affogato in liquidi corporei"
@@ -1735,13 +1736,13 @@ Fortitude="Corazzato"
 FortitudeDescription="Aumento salute totale del 75%"
 
 Ninja="Soldato prima linea"
-NinjaDescription="Movimenti più veloci del 20%, sprint più veloce del 25%, 1 punto salute rigenerato ogni secondo che si utilizza un'arma classe da mischia."
+NinjaDescription="Movimenti più veloci del 20%, sprint più veloce del 25%, 2 punti salute rigenerati ogni secondo utilizzando un'arma classe."
 
 Vampire="Vampiro"
 VampireDescription="Recupera 4 punti salute per ogni Zed ucciso con armi di classe. Attacco più veloce del 20% con armi di classe da mischia."
 
 Speed="Macellaio"
-SpeedDescription="Attacco più veloce del 20% e danni maggiori del 20% con armi di classe da mischia."
+SpeedDescription="Attacco più veloce del 20% e danni maggiori del 20% con armi di classe."
 
 Resistance="Resistenza"
 ResistanceDescription="Resistenza a tutti i danni maggiore del 20%. Aumenta di un altro 20% la resistenza a danni Veleno e Sonoro."
@@ -2351,11 +2352,11 @@ DoschHoldDesc="Tieni gli Zed lontani dall'area evidenziata"
 DescriptionDoshHold="Tieni gli Zed lontani dall'area evidenziata"
 DescriptionDoshHoldShort="Difendi la zona (Facoltativo)"
 RepairObjective="SALDA E RIPARA"
-UseWelderToRepair="Usa il Saldatore per riparare le macchine rotte"
-UseWelderToRepairShort="Salda le macchine rotte"
+UseWelderToRepair="Usa il Saldatore sulle macchine"
+UseWelderToRepairShort="Salda le macchine"
 UseWelderToRepairTraderPod="Usa il Saldatore per riparare i commercianti rotti"
 UseWelderToRepairTraderPodShort="Salda i commercianti"
-RepairObjectiveRequired="Macchine rotte da riparare:"
+RepairObjectiveRequired="macchine da saldare:"
 EscortPawnsObjective="SCORTA"
 EscortPawnsDescription="Scorta e difendi il Drone dagli Zed"
 EscortPawnsDescriptionShort="Scorta il drone"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="Cacciatore di pelli E.D.A.R"
 KFPawn_ZedDAR_Laser="Annientatore E.D.A.R"
 KFPawn_ZedDAR_Rocket="Dinamitardo E.D.A.R"
 KFPawn_ZedPatriarch="Patriarca"
+KFPawn_ZedMatriarch="Matriarca"
 KFPawn_ZedBloatKingSubspawn="Generazione Abominio"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bloat - Giocatore"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="Kriss | Oltre l'Orizzonte | Elite Spaziale"
 
 ChanceDropDescriptionStrings[0]="Biglietto Delizia"
 ChanceDropDescriptionStrings[1]="Biglietto Delizia Oro"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Mari neri dell'Infinito",DescriptionString="Sconfiggi qualsiasi boss in modalità difficile Survival o superiore nel Manicomio")
+SpecialEventObjectiveInfoList[1]=(TitleString="Fantasia alquanto stravagante",DescriptionString="Usa la Trappola della Frusta tentacolare per uccidere 20 Zed nel Manicomio")
+SpecialEventObjectiveInfoList[2]=(TitleString="Contraddizioni sinistre",DescriptionString="Usa la Trappola della Suzione per uccidere 20 Zed nel Manicomio")
+SpecialEventObjectiveInfoList[3]=(TitleString="Istinti materni",DescriptionString="Uccidi 10 volte la Matriarca in qualsiasi mappa e modalità di gioco")
+SpecialEventObjectiveInfoList[4]=(TitleString="Una questione di famiglia",DescriptionString="Completa Laboratori biologici in difficoltà Obiettivo Difficile o superiore")
+
+AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dinamico"
+
+ChanceDropDescriptionStrings[0]="Biglietto Krampus"
+ChanceDropDescriptionStrings[1]="Biglietto Oro del Krampus"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="Fortezza di Vapore"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="Manicomio di Frassino"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="Manicomio"
 
 [KFMapInfo]
 ; defaults

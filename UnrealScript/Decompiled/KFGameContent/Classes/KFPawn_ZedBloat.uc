@@ -243,7 +243,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     DeathPukeMineRotations(2)=
 /* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentException: Requested value '0_1022' was not found.
+System.ArgumentException: Requested value '0_1059' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

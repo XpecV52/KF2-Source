@@ -12,39 +12,41 @@ enum ECrateSeries
 	ECrate_StreetPunks,
 	ECrate_FirstEncounter,
 	ECrate_Predator,
-	Ecrate_TacticalHorzine,
-	Ecrate_EmergencyIssue,
-	Ecrate_Swat,
-	Ecrate_Exhibit,
-	Ecrate_EliteMedic,
-	Ecrate_Victorian,
-    Ecrate_WeaponCollector_S1,
-	Ecrate_MaceShield,
-	ECrate_Emote_S1,
-	Ecrate_TacticalHorzineMKII,
+	ECrate_TacticalHorzine,
+	ECrate_EmergencyIssue,
+	ECrate_Swat,
+	ECrate_Exhibit,
+	ECrate_EliteMedic,
+	ECrate_Victorian,
+    ECrate_WeaponCollector_S1,
+	ECrate_MaceShield,
+	ECrate_TacticalHorzineMKII,
 	ECrate_Deepstrike,
 	ECrate_HighVoltage,
 	ECrate_Flare,
 	ECrate_Junkyard,
 	ECrate_Vietnam,
+	ECrate_Emote_S1,
 	ECrate_Emote_S2,
-	Ecrate_BlueFire,
+	ECrate_Emote_S3,
+	ECrate_BlueFire,
 	ECrate_Vault,
 	ECrate_Vault_Test,
 	ECrate_Neon,
-	Ecrate_NeonMKII,
-	Ecrate_NeonMKIII,
-	Ecrate_NeonMKIV,
-	Ecrate_NeonMKV,
-	Ecrate_Dragonwave,
-	Ecrate_BeyondHorizon,
+	ECrate_NeonMKII,
+	ECrate_NeonMKIII,
+	ECrate_NeonMKIV,
+	ECrate_NeonMKV,
+	ECrate_Dragonwave,
+	ECrate_BeyondHorizon,
+	ECrate_Jaeger,
 	ECrate_HorzineSupply_SDAR,
 	ECrate_HorzineSupply_SLOCO,
 	ECrate_HorzineSupply_SCyberSamurai,
 	ECrate_HorzineSupply_SDeity,
 	ECrate_Steampunk,
 	ECrate_HorzineSupply_SProjectH,
-	Ecrate_HorzineSupply_SBoneyard,
+	ECrate_HorzineSupply_SBoneyard,
 	ECrate_PSNHorzineSupply_CS1,
 	ECrate_PSNHorzineSupply_CS2,
 	ECrate_PSNHorzineSupply_CS3,
@@ -72,8 +74,10 @@ enum ECrateSeries
 	ECrate_PSNHorzineSupply_WS14,
 	ECrate_PSNHorzineSupply_WS15,
 	ECrate_PSNHorzineSupply_WS16,
+	ECrate_PSNHorzineSupply_WS17,
 	ECrate_PSNHorzineSupply_E1,
 	ECrate_PSNHorzineSupply_E2,
+	ECrate_PSNHorzineSupply_E3,
 	ECrate_HorzineSupply_S1,
 	ECrate_HorzineSupply_S2,
 	ECrate_HorzineSupply_S3,
@@ -199,13 +203,14 @@ DefaultProperties
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS14]=(ContainerID=7119, KeyID=4303, ItemSeriesName=psncrate_ws14, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS15]=(ContainerID=7424, KeyID=4303, ItemSeriesName=psncrate_ws15, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_WS16]=(ContainerID=7628, KeyID=4303, ItemSeriesName=psncrate_ws16, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_WS17]=(ContainerID=7953, KeyID=4303, ItemSeriesName=psncrate_ws17, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E1]=(ContainerID=5646, KeyID=4303, ItemSeriesName=emote1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_PSNHorzineSupply_E2]=(ContainerID=5647, KeyID=4303, ItemSeriesName=emote2, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_PSNHorzineSupply_E3]=(ContainerID=7929, KeyID=4303, ItemSeriesName=emote3, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S10]=(ContainerID=4499, KeyID=4501, ItemSeriesName=horzine10, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S11]=(ContainerID=4500, KeyID=4502, ItemSeriesName=horzine11, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_TacticalHorzineMKII]=(ContainerID=4514, KeyID=4513, ItemSeriesName=tacticalhorzineII, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_MaceShield]=(ContainerID=4561, KeyID=4562, ItemSeriesName=maceshield, ContainerType=IDT_USB)
-	ItemKeyArray[ECrate_Emote_S1]=(ContainerID=4541, KeyID=4540, ItemSeriesName=emote1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S12]=(ContainerID=4604, KeyID=4603, ItemSeriesName=horzine12, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_Deepstrike]=(ContainerID=4593, KeyID=4594, ItemSeriesName=deepstrike, ContainerType=IDT_USB)
 	ItemKeyArray[ECrate_HorzineSupply_S13]=(ContainerID=4776, KeyID=4775, ItemSeriesName=horzine13, ContainerType=IDT_Crate)
@@ -214,7 +219,9 @@ DefaultProperties
 	ItemKeyArray[ECrate_HorzineSupply_S14]=(ContainerID=5010, KeyID=5011, ItemSeriesName=horzine14, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_Vietnam]=(ContainerID=4979, KeyID=4980, ItemSeriesName=vietnam, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_Junkyard]=(ContainerID=4993, KeyID=4994, ItemSeriesName=junkyard, ContainerType=IDT_USB)
+	ItemKeyArray[ECrate_Emote_S1]=(ContainerID=4541, KeyID=4540, ItemSeriesName=emote1, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_Emote_S2]=(ContainerID=5143, KeyID=5142, ItemSeriesName=emote2, ContainerType=IDT_Crate)
+	ItemKeyArray[ECrate_Emote_S3]=(ContainerID=7927, KeyID=7928, ItemSeriesName=emote3, ContainerType=IDT_Crate)
 	ItemKeyArray[ECrate_HorzineSupply_S16]=(ContainerID=5240, KeyID=5241, ItemSeriesName=horzine16, ContainerType=IDT_Crate)
 	ItemKeyArray[Ecrate_Neon]=(ContainerID=5194, KeyID=5195, ItemSeriesName=neon, ContainerType=IDT_USB)
 	ItemKeyArray[ECrate_Vault]=(ContainerID=5313, KeyID=-1, ItemSeriesName=vaultcrate, ContainerType=IDT_Crate)
@@ -229,4 +236,5 @@ DefaultProperties
 	ItemKeyArray[Ecrate_Dragonwave]=(ContainerID=7114, KeyID=7115, ItemSeriesName=Dragonwave, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_Steampunk]=(ContainerID=7407, KeyID=7408, ItemSeriesName=Steampunk, ContainerType=IDT_USB)
 	ItemKeyArray[Ecrate_BeyondHorizon]=(ContainerID=7622, KeyID=7623, ItemSeriesName=BeyondHorizon, ContainerType=IDT_USB)
+	ItemKeyArray[Ecrate_Jaeger]=(ContainerID=7951, KeyID=7952, ItemSeriesName=Jaeger, ContainerType=IDT_USB)
 } 

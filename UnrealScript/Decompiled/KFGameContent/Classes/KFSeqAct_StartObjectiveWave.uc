@@ -22,6 +22,7 @@ event Activated()
 
 defaultproperties
 {
+    bCallHandler=false
     ObjName="Start Objective Wave"
     ObjCategory="Killing Floor"
 }

@@ -626,6 +626,35 @@ class KFPawnVoiceGroupEventData_Player extends KFPawnVoiceGroupEventData;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 13
 
 defaultproperties

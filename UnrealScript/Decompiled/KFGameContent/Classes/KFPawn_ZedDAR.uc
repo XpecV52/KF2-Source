@@ -60,8 +60,7 @@ function AdjustPlayHitForArmor(out float InDamage, out TraceHitInfo InHitInfo)
     HitZoneIdx = GetHitZoneIndex(InHitInfo.BoneName);
     if((HitZoneIdx == -1) || HitZones[HitZoneIdx].GoreHealth > 0)
     {
-        InDamage = 1;
-        InHitInfo.BoneName = 'KFArmor';
+        super.AdjustPlayHitForArmor(InDamage, InHitInfo);
     }
 }
 
@@ -265,6 +264,7 @@ defaultproperties
     XPValues[1]=20
     XPValues[2]=27
     XPValues[3]=31
+    WeakSpotSocketNames=/* Array type was not detected. */
     DamageTypeModifiers=/* Array type was not detected. */
     SprintAkComponent=AkComponent'Default__KFPawn_ZedDAR.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedDAR.HeadshotAkComponent0'

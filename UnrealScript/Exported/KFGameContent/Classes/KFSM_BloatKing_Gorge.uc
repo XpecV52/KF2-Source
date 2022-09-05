@@ -55,6 +55,9 @@ var array<KFPawn> GorgeHitList;
 //		SpecialMoveEnded happens in async tick work, so we can't change physics in that time
 var array<KFPawn> DeferredRemovalList;
 
+/** Contains a list of particle systems spawned during the move */
+var protected array<ParticleSystemComponent> AnimParticles;
+
 static function float GetGorgeCooldown(KFPawn InPawn, int Difficulty)
 {
     return Lerp(default.GorgeAttackCooldown[Difficulty].X, default.GorgeAttackCooldown[Difficulty].Y, InPawn.GetHealthPercentage());
@@ -69,6 +72,21 @@ function SpecialMoveStarted(bool bForced, Name PrevMove)
     KFPOwner.SetTimer(GorgePullDelay, false, 'StartGorgePull', self);
 }
 
+/** Called from KFPawn::OnAnimNotifyParticleSystemSpawned() */
+function OnAnimNotifyParticleSystemSpawned( const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC )
+{
+	local AnimSequence AnimSeq;
+
+	if (AnimNotifyData.Outer != none)
+	{
+		AnimSeq = AnimSequence(AnimNotifyData.Outer);
+		if (AnimSeq != none && string(AnimSeq.SequenceName) ~= string(AnimName)) // string conversion so we don't have case mismatches
+		{
+			AnimParticles.AddItem( PSC );
+		}
+	}
+}
+
 function StartGorgePull()
 {
     if (KFPOwner.Role == ROLE_Authority)
@@ -80,12 +98,13 @@ function StartGorgePull()
 function SpecialMoveEnded(Name PrevMove, Name NextMove)
 {
     local KFPawn PullPawn;
+	local int i;
 
 	bPullActive = false;
 
-	//Put removed pawns into a deferred list to grab on next tick
-    foreach PullList(PullPawn)
-    {
+	for (i = PullList.Length - 1; i >= 0; --i)
+	{
+		PullPawn = PullList[i];
 		if (KFPawn_Human(PullPawn) != none)
 		{
 			RemoveVictim(PullPawn, false);
@@ -94,8 +113,14 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 		{
 			DeferredRemovalList.AddItem(PullPawn);
 		}
-    }
-    PullList.Length = 0;
+	}
+	PullList.Length = 0;
+
+	for (i = 0; i < AnimParticles.Length; ++i)
+	{
+		AnimParticles[i].DeactivateSystem();
+	}
+	AnimParticles.Length = 0;
 
 	Super.SpecialMoveEnded(PrevMove, NextMove);
 }

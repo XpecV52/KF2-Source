@@ -17,6 +17,7 @@ var float FreezeMatParamValue;
 var protected ParticleSystem FrozenSteamTemplate;
 var protected export editinline ParticleSystemComponent FrozenSteamEffect;
 var protected bool bIsThawing;
+var bool bOwnerCouldCloak;
 
 function SpecialMoveStarted(bool bForced, name PrevMove)
 {
@@ -34,6 +35,7 @@ function DoFreeze()
         TimeUntilThaw = ((KFPOwner.IncapSettings[9].Duration > float(0)) ? KFPOwner.IncapSettings[9].Duration : RandRange(FreezeDuration.X, FreezeDuration.Y));
         KFPOwner.SetTimer(TimeUntilThaw, false, 'DoThaw', self);
         KFPOwner.SetCloaked(false);
+        bOwnerCouldCloak = KFPOwner.bCanCloak;
         KFPOwner.bCanCloak = false;
     }
     if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
@@ -132,7 +134,7 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     }
     if(KFPOwner.Role == ROLE_Authority)
     {
-        KFPOwner.bCanCloak = KFPOwner.default.bCanCloak;
+        KFPOwner.bCanCloak = bOwnerCouldCloak;
     }
     KFPOwner.ClearTimer('UpdateFreezeInParam', self);
     KFPOwner.ClearTimer('DoThaw', self);

@@ -183,7 +183,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 		case SEI_Fall:
 			return class'KFGFxFall2019ObjectivesContainer';
 		case SEI_Winter:
-			return class'KFGFxChristmasObjectivesContainer';
+			return class'KFGFxSpecialEventObjectivesContainer_Xmas2019';
 	}
 
 	return class'KFGFxSpecialEventObjectivesContainer';

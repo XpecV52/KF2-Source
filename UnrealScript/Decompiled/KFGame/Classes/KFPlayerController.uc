@@ -115,6 +115,8 @@ const STATID_ACHIEVE_ShoppingSpreeCollectibles = 4048;
 const STATID_ACHIEVE_SpillwayCollectibles = 4049;
 const STATID_ACHIEVE_SteamFortressCollectibles = 4050;
 const STATID_ACHIEVE_AsylumCollectibles = 4051;
+const STATID_ACHIEVE_SanitariumCollectibles = 4052;
+const STATID_ACHIEVE_DefeatMatriarch = 4053;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -3095,11 +3097,21 @@ exec function KickBan(string S)
 
 reliable server function ServerKickBan(string S)
 {
+    if(!PlayerReplicationInfo.bAdmin)
+    {
+        LogInternal(PlayerReplicationInfo.PlayerName $ " attempted to kick-ban without being admin (probably cheating)");
+        return;
+    }
     WorldInfo.Game.KickBan(S);
 }
 
 reliable server function ServerKick(string S)
 {
+    if(!PlayerReplicationInfo.bAdmin)
+    {
+        LogInternal(PlayerReplicationInfo.PlayerName $ " attempted to kick without being admin (probably cheating)");
+        return;
+    }
     WorldInfo.Game.Kick(S);
 }
 
@@ -5818,13 +5830,13 @@ event byte GetPerkLevelFromPerkList(class<KFPerk> PerkClass)
     return 0;
 }
 
-function AddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT)
+function AddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT, bool bKiller)
 {
-    ClientAddZedKill(MonsterClass, Difficulty, DT);
+    ClientAddZedKill(MonsterClass, Difficulty, DT, bKiller);
 }
 
 // Export UKFPlayerController::execClientAddZedKill(FFrame&, void* const)
-private reliable client native final simulated function ClientAddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT);
+private reliable client native final simulated function ClientAddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT, bool bKiller);
 
 function AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
 {

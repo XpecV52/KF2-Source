@@ -84,9 +84,6 @@ var byte StoredSecondaryAmmo;
 
 replication
 {
-	if (bNetDirty)
-		AmmoCost;
-
 	if (bNetDirty && bRechargeHealAmmo)
 		HealingDartAmmo;
 }
@@ -103,33 +100,16 @@ simulated event ReplicatedEvent(name VarName)
 	}
 }
 
-simulated function Init(byte InAmmoCost)
+simulated function Init(KFWeapon InKFW, byte InAmmoCost)
 {
-	KFW = KFWeapon(Owner);
+	KFW = InKFW;
+	Instigator = InKFW.Instigator;
 	AmmoCost = InAmmoCost;
 }
 
 simulated event Tick(float DeltaTime)
 {
 	super.Tick(DeltaTime);
-
-	if (KFW == none)
-	{
-		KFW = KFWeapon(Owner);
-		if (KFW == none)
-		{
-			return;
-		}
-
-		Instigator = KFW.Instigator;
-	}
-
-	if (Owner.bPendingDelete && !bPendingDelete)
-	{
-		// Owner has been destroyed
-		Destroy();
-		return;
-	}
 
 	if (KFW.AmmoCount[ALTFIRE_FIREMODE] < KFW.MagazineCapacity[ALTFIRE_FIREMODE])
 	{
@@ -430,7 +410,7 @@ defaultproperties
    RemoteRole=ROLE_SimulatedProxy
    CollisionType=COLLIDE_CustomDefault
    bHidden=True
-   bAlwaysRelevant=True
+   bOnlyRelevantToOwner=True
    Name="Default__KFMedicWeaponComponent"
    ObjectArchetype=Actor'Engine.Default__Actor'
 }

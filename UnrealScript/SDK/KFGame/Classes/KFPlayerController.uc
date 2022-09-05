@@ -3727,12 +3727,22 @@ exec function KickBan(string S)
 
 reliable server function ServerKickBan(string S)
 {
+	if (!PlayerReplicationInfo.bAdmin)
+	{
+		`log(PlayerReplicationInfo.PlayerName$" attempted to kick-ban without being admin (probably cheating)");
+		return;
+	}
 	WorldInfo.Game.KickBan(S);
 }
 
 
 reliable server function ServerKick(string S)
 {
+	if (!PlayerReplicationInfo.bAdmin)
+	{
+		`log(PlayerReplicationInfo.PlayerName$" attempted to kick without being admin (probably cheating)");
+		return;
+	}
 	WorldInfo.Game.Kick(S);
 }
 
@@ -7006,11 +7016,11 @@ event  byte GetPerkLevelFromPerkList(Class<KFPerk> PerkClass)
 }
 
 /** Kill stat */
-function AddZedKill( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT )
+function AddZedKill( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT, bool bKiller )
 {
-	ClientAddZedKill( MonsterClass, Difficulty, DT );
+	ClientAddZedKill( MonsterClass, Difficulty, DT, bKiller );
 }
-native reliable client private function ClientAddZedKill( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT );
+native reliable client private function ClientAddZedKill( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT, bool bKiller );
 
 function AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
 {

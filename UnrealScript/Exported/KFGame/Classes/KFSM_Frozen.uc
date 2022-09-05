@@ -25,6 +25,8 @@ var protected ParticleSystemComponent FrozenSteamEffect;
 
 var protected bool bIsThawing;
 
+var bool bOwnerCouldCloak;
+
 /** Notification called when Special Move starts */
 function SpecialMoveStarted(bool bForced, Name PrevMove )
 {
@@ -47,6 +49,7 @@ function DoFreeze()
 
 		// Disable cloaking
 		KFPOwner.SetCloaked( false );
+		bOwnerCouldCloak = KFPOwner.bCanCloak;
 		KFPOwner.bCanCloak = false;
 	}
 
@@ -160,7 +163,7 @@ function SpecialMoveEnded(Name PrevMove, Name NextMove)
 	// Restore cloaking flag
 	if( KFPOwner.Role == ROLE_Authority )
 	{
-		KFPOwner.bCanCloak = KFPOwner.default.bCanCloak;
+		KFPOwner.bCanCloak = bOwnerCouldCloak;
 	}
 
 	KFPOwner.ClearTimer( nameof(UpdateFreezeInParam), self );

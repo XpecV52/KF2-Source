@@ -1063,13 +1063,11 @@ private function SetAttachmentMeshAndSkin(
 	int CurrentAttachmentMeshIndex,
 	int CurrentAttachmentSkinIndex,
 	KFPawn KFP,
-	KFPlayerReplicationInfo KFPRI,
-	optional bool bIsFirstPerson )
+	KFPlayerReplicationInfo KFPRI)
 {
 	local string CharAttachmentMeshName;
 	local name CharAttachmentSocketName;
 	local int AttachmentSlotIndex;
-	local SkeletalMeshComponent AttachmentMesh;
 
 	if (KFP.WorldInfo.NetMode == NM_DedicatedServer)
 	{
@@ -1096,45 +1094,66 @@ private function SetAttachmentMeshAndSkin(
 			return;
 		}
 
-		// Cache values from character info
-		CharAttachmentMeshName = bIsFirstPerson ? Get1pMeshByIndex(CurrentAttachmentMeshIndex) : GetMeshByIndex(CurrentAttachmentMeshIndex);
-		CharAttachmentSocketName = bIsFirstPerson ? CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName1p : CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName;
-		AttachmentMesh = bIsFirstPerson ? KFP.ArmsMesh : KFP.Mesh;
-
-		// If previously attached and we could have changed outfits (e.g. local player UI) then re-validate
-		// required skeletal mesh socket.  Must be after body mesh DLO, but before AttachComponent.
-		if ( KFP.IsLocallyControlled() )
+		// Attach 1p attachment, if applicable
+		CharAttachmentMeshName = Get1pMeshByIndex(CurrentAttachmentMeshIndex);
+		if (CharAttachmentMeshName != "")
 		{
-			if ( CharAttachmentSocketName != '' && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == None )
+			CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName1p;
+
+			// If previously attached and we could have changed outfits (e.g. local player UI) then re-validate
+			// required skeletal mesh socket.  Must be after body mesh DLO, but before AttachComponent.
+			if ( KFP.IsLocallyControlled() )
 			{
-				RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
-				return;
+				if ( CharAttachmentSocketName != '' && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == None )
+				{
+					RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
+					return;
+				}
 			}
-		}
 
-		// Set First Person Cosmetic if mesh exists for it.
-		if(CharAttachmentMeshName != "")
-		{
-			// Set Cosmetic Mesh
-			SetAttachmentMesh(CurrentAttachmentMeshIndex, AttachmentSlotIndex, CharAttachmentMeshName, CharAttachmentSocketName, AttachmentMesh, KFP, bIsFirstPerson);
-		}
-		else
-		{
-			// Make sure to clear out attachment if we're replacing with nothing.
-			if(bIsFirstPerson)
-			{
-				KFP.FirstPersonAttachments[AttachmentSlotIndex] = none;
-				KFP.FirstPersonAttachmentSocketNames[AttachmentSlotIndex] = '';
-			}
-		}
+			SetAttachmentMesh(CurrentAttachmentMeshIndex, AttachmentSlotIndex, CharAttachmentMeshName,
+				CharAttachmentSocketName, KFP.ArmsMesh, KFP, true);
 
-		// Set Cosmetic Skin
-		SetAttachmentSkinMaterial(
+			SetAttachmentSkinMaterial(
 				AttachmentSlotIndex,
 				CosmeticVariants[CurrentAttachmentMeshIndex],
 				CurrentAttachmentSkinIndex,
 				KFP,
-				bIsFirstPerson);
+				true);
+		}
+		else
+		{
+			KFP.FirstPersonAttachments[AttachmentSlotIndex] = none;
+			KFP.FirstPersonAttachmentSocketNames[AttachmentSlotIndex] = '';
+		}
+
+		// Attach 3p attachment, if applicable
+		CharAttachmentMeshName = GetMeshByIndex(CurrentAttachmentMeshIndex);
+		if (CharAttachmentMeshName != "")
+		{
+			CharAttachmentSocketName = CosmeticVariants[CurrentAttachmentMeshIndex].AttachmentItem.SocketName;
+
+			// If previously attached and we could have changed outfits (e.g. local player UI) then re-validate
+			// required skeletal mesh socket.  Must be after body mesh DLO, but before AttachComponent.
+			if ( KFP.IsLocallyControlled() )
+			{
+				if ( CharAttachmentSocketName != '' && KFP.Mesh.GetSocketByName(CharAttachmentSocketName) == None )
+				{
+					RemoveAttachmentMeshAndSkin(AttachmentSlotIndex, KFP, KFPRI);
+					return;
+				}
+			}
+
+			SetAttachmentMesh(CurrentAttachmentMeshIndex, AttachmentSlotIndex, CharAttachmentMeshName,
+				CharAttachmentSocketName, KFP.Mesh, KFP, false);
+
+			SetAttachmentSkinMaterial(
+				AttachmentSlotIndex,
+				CosmeticVariants[CurrentAttachmentMeshIndex],
+				CurrentAttachmentSkinIndex,
+				KFP,
+				false);
+		}
 	}
 
 	// Treat `CLEARED_ATTACHMENT_INDEX as special value (for client detachment)
@@ -1352,7 +1371,7 @@ simulated function SetFirstPersonArmsFromArch( KFPawn KFP, optional KFPlayerRepl
 			SetAttachmentMeshAndSkin(
 				CosmeticMeshIdx,
 				KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx],
-				KFP, KFPRI, true);
+				KFP, KFPRI);
 		}
 	}
 }

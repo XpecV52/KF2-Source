@@ -869,14 +869,9 @@ Begin Object Class=InterpData Name=InterpData_0
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    InterpLength=170.483673
    InterpGroups(0)=InterpGroup'KF-HOSTILEGROUNDS.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
    InterpGroups(1)=InterpGroupDirector'KF-HOSTILEGROUNDS.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0'
-   CurveEdSetup=InterpCurveEdSetup'KF-HOSTILEGROUNDS.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_0'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-HOSTILEGROUNDS.TheWorld:PersistentLevel.Main_Sequence'
@@ -889,33 +884,6 @@ Begin Object Class=InterpData Name=InterpData_0
 End Object
 
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
-   Begin Object Class=InterpGroupInst Name=InterpGroupInst_0
-      Begin Object Class=InterpTrackInstMove Name=InterpTrackInstMove_0
-         InitialTM=(XPlane=(W=0.000000,X=1.000000,Y=0.000000,Z=0.000000),YPlane=(W=0.000000,X=0.000000,Y=1.000000,Z=0.000000),ZPlane=(W=0.000000,X=0.000000,Y=0.000000,Z=1.000000),WPlane=(W=1.000000,X=-6080.000000,Y=27680.000000,Z=176.000000))
-         InitialQuat=(X=0.000000,Y=0.000000,Z=0.000000,W=1.000000)
-         Name="InterpTrackInstMove_0"
-         ObjectArchetype=InterpTrackInstMove'Engine.Default__InterpTrackInstMove'
-      End Object
-      Begin Object Class=InterpTrackInstFloatProp Name=InterpTrackInstFloatProp_0
-         FloatProp=
-         ResetFloat=90.000000
-         Name="InterpTrackInstFloatProp_0"
-         ObjectArchetype=InterpTrackInstFloatProp'Engine.Default__InterpTrackInstFloatProp'
-      End Object
-      Group=InterpGroup'KF-HOSTILEGROUNDS.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
-      GroupActor=CameraActor'KF-HOSTILEGROUNDS.TheWorld:PersistentLevel.CameraActor_0'
-      Name="InterpGroupInst_0"
-      ObjectArchetype=InterpGroupInst'Engine.Default__InterpGroupInst'
-   End Object
-   Begin Object Class=InterpGroupInstDirector Name=InterpGroupInstDirector_0
-      Begin Object Class=InterpTrackInstDirector Name=InterpTrackInstDirector_0
-         Name="InterpTrackInstDirector_0"
-         ObjectArchetype=InterpTrackInstDirector'Engine.Default__InterpTrackInstDirector'
-      End Object
-      Group=InterpGroupDirector'KF-HOSTILEGROUNDS.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0'
-      Name="InterpGroupInstDirector_0"
-      ObjectArchetype=InterpGroupInstDirector'Engine.Default__InterpGroupInstDirector'
-   End Object
    PlayRate=0.800000
    InputLinks(0)=(DrawY=-818,OverrideDelta=15)
    InputLinks(1)=(DrawY=-796,OverrideDelta=37)

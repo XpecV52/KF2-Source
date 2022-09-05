@@ -1446,6 +1446,7 @@ HeadShotResetString="Verpasster Kopfschuss. Normaler Schaden!"
 SuicideMessage=" hat gerade das Zeitliche gesegnet …"
 KilledMessage=" wurde lebendig gefressen"
 KillzedBy_PatriarchString=" kann Kevins Kindern nichts mehr antun"
+KillzedBy_MatriarchString=" wurde für das größere Wohl getötet"
 KillzedBy_HansString="s Körper wurde für weitere Experimente aus dem Verkehr gezogen"
 KillzedBy_ZedCrawlerString="s Fußknöchel wurden abgekaut"
 KillzedBy_ZedBloatString=" ist in Körperflüssigkeiten ertrunken"
@@ -1735,13 +1736,13 @@ Fortitude="Dreadnaught"
 FortitudeDescription="Erhöhe Gesamt-LP um 75%."
 
 Ninja="Plänkler"
-NinjaDescription="20% schneller bewegen, 25% schneller sprinten und jede Sekunde 1 LP regenerieren, wenn eine Vorteils-Nahkampfwaffe benutzt wird."
+NinjaDescription="20% schneller bewegen, 25% schneller sprinten und jede Sekunde 2 LP regenerieren, wenn eine Vorteilswaffe benutzt wird."
 
 Vampire="Vampir"
 VampireDescription="Heile 4 Lebenspunkte für jeden Zed, den du mit Vorteils-Waffen tötest. Greife mit Vorteils-Nahkampfwaffen 20% schneller an."
 
 Speed="Schlachter"
-SpeedDescription="Greife mit Vorteils-Nahkampfwaffen 20% schneller an und verursache 20% mehr Schaden."
+SpeedDescription="Greife mit Vorteilswaffen 20% schneller an und verursache 20% mehr Schaden."
 
 Resistance="Resistenz"
 ResistanceDescription="Erhalte 20% Resistenz gegen jeglichen Schaden. Erhalte 20% zusätzliche Resistenz gegen Gift- und Schall-Schaden."
@@ -2351,11 +2352,11 @@ DoschHoldDesc="Halte die Zeds aus dem markierten Gebiet fern"
 DescriptionDoshHold="Halte die Zeds aus dem markierten Gebiet fern"
 DescriptionDoshHoldShort="Verteidige die Zone (Optional)"
 RepairObjective="SCHWEIẞEN UND REPARIEREN"
-UseWelderToRepair="Schweißer benutzen, um kaputte Maschinen zu reparieren"
-UseWelderToRepairShort="Kaputte Maschinen schweißen"
+UseWelderToRepair="Schweißer an den Maschinen verwenden"
+UseWelderToRepairShort="Die Maschinen schweißen"
 UseWelderToRepairTraderPod="Schweißer benutzen, um kaputte Händlerkapseln zu reparieren"
 UseWelderToRepairTraderPodShort="Händlerkapsel schweißen"
-RepairObjectiveRequired="Zu reparierende Maschinen:"
+RepairObjectiveRequired="zu schweißende Maschinen:"
 EscortPawnsObjective="ESKORTIEREN"
 EscortPawnsDescription="Drohne eskortieren und vor Zeds verteidigen"
 EscortPawnsDescriptionShort="Drohne eskortieren"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="E.D.A.R.-Jäger"
 KFPawn_ZedDAR_Laser="E.D.A.R.-Blaster"
 KFPawn_ZedDAR_Rocket="E.D.A.R.-Bomber"
 KFPawn_ZedPatriarch="Patriarch"
+KFPawn_ZedMatriarch="Matriarchin"
 KFPawn_ZedBloatKingSubspawn="Abscheulichkeit-Spawn"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bloat – Spieler"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="Kriss-MP | Beyond Horizon | Weltraum-Elite"
 
 ChanceDropDescriptionStrings[0]="Geschenkschein"
 ChanceDropDescriptionStrings[1]="Goldener Geschenkschein"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="Ein zeitbegrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Schwarze Meere der Unendlichkeit",DescriptionString="Besiege einen Boss von Sanatorium bei Überleben auf mindestens Schwer")
+SpecialEventObjectiveInfoList[1]=(TitleString="Überaus extravagante Einbildung",DescriptionString="Verwende die Tentakelpeitschen-Falle, um 20 Zeds in Sanatorium zu töten")
+SpecialEventObjectiveInfoList[2]=(TitleString="Unheimliche Ungereimtheiten",DescriptionString="Verwende die Ansaug-Falle, um 20 Zeds in Sanatorium zu töten")
+SpecialEventObjectiveInfoList[3]=(TitleString="Mütterliche Instinkte",DescriptionString="Töte die Matriarchin 10 auf irgendeiner Karte in irgendeinem Spielmodus")
+SpecialEventObjectiveInfoList[4]=(TitleString="Eine Familienangelegenheit klären",DescriptionString="Schließe Biotika-Labor bei Aufgabe auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="FN FAL | Jäger | Dynamisch"
+
+ChanceDropDescriptionStrings[0]="Schein „Krampus“"
+ChanceDropDescriptionStrings[1]="Goldener Schein „Krampus“"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="Steam Fortress"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="Ashwood-Anstalt"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="Sanatorium"
 
 [KFMapInfo]
 ; defaults

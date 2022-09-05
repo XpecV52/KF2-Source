@@ -1446,6 +1446,7 @@ HeadShotResetString="Tiro na cabeça perdido. Dano normal!"
 SuicideMessage=" desistiu da vida..."
 KilledMessage=" virou comida de monstro"
 KillzedBy_PatriarchString=" não pode mais machucar a criança de Kevin"
+KillzedBy_MatriarchString=" foi morto pelo bem maior"
 KillzedBy_HansString="perdeu o corpo para outras experiências"
 KillzedBy_ZedCrawlerString="perdeu os tornozelos"
 KillzedBy_ZedBloatString=" afogou-se em fluidos corporais"
@@ -1735,13 +1736,13 @@ Fortitude="Couraçado"
 FortitudeDescription="Aumenta em 75% o total de vida."
 
 Ninja="Guerrilheiro"
-NinjaDescription="Movimenta-se 20% mais rápido, corre 25% mais rápido e regenera 1 ponto de vida por segundo ao usar uma arma corpo a corpo da classe"
+NinjaDescription="Movimenta-se 20% mais rápido, corre 25% mais rápido ao usar uma arma de classe. Você também regenera 2 pontos de vida a cada segundo."
 
 Vampire="Vampiro"
 VampireDescription="Cura 4 pontos de vida para cada Zed que abater com arma da classe. Ataca 20% mais rápido com armas corpo a corpo da classe."
 
 Speed="Açougueiro"
-SpeedDescription="Ataca 20% mais rápido e causa 20% mais dano com armas corpo a corpo da classe."
+SpeedDescription="Ataca 20% mais rápido e causa 20% mais dano com armas de classe."
 
 Resistance="Resistência"
 ResistanceDescription="Ganha 20% de resistência a todo tipo de dano. Ganha 20% de resistência adicional a veneno e dano sônico."
@@ -2351,11 +2352,11 @@ DoschHoldDesc="Deixe os Zeds fora da área demarcada"
 DescriptionDoshHold="Deixe os Zeds fora da área demarcada"
 DescriptionDoshHoldShort="Proteja a Área (Opcional)"
 RepairObjective="SOLDAR E REPARAR"
-UseWelderToRepair="Use o Soldador para consertar as máquinas quebradas"
-UseWelderToRepairShort="Soldar máquinas quebradas"
+UseWelderToRepair="Use o Soldador nas máquinas"
+UseWelderToRepairShort="Solde as máquinas"
 UseWelderToRepairTraderPod="Use o Soldador para consertar os pontos de comércio quebrados"
 UseWelderToRepairTraderPodShort="Soldar pontos de comércio"
-RepairObjectiveRequired="Máquinas quebradas para consertar:"
+RepairObjectiveRequired="máquinas para soldar:"
 EscortPawnsObjective="ESCOLTA"
 EscortPawnsDescription="Escolte e proteja o Drone dos Zeds"
 EscortPawnsDescriptionShort="Escolte o Drone"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="R.E.D.A. Armador"
 KFPawn_ZedDAR_Laser="R.E.D.A. Dinamitador"
 KFPawn_ZedDAR_Rocket="R.E.D.A. Bombardeiro"
 KFPawn_ZedPatriarch="Patriarca"
+KFPawn_ZedMatriarch="Matriarca"
 KFPawn_ZedBloatKingSubspawn="Cria da Abominação"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Inchado - Jogador"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="Kriss | Além do Horizonte | Elite Espacial"
 
 ChanceDropDescriptionStrings[0]="Bilhete de Gostosura"
 ChanceDropDescriptionStrings[1]="Bilhete de Gostosura Dourado"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Mares Sombrios do Infinito",DescriptionString="Derrote qualquer chefe no Sanatório no modo Sobrevivência Difícil ou maior.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Imaginação de um tanto Extravagante",DescriptionString="Use a Armadilha Chicote de Tentáculo para matar 20 Zeds no Sanatório")
+SpecialEventObjectiveInfoList[2]=(TitleString="Contradições Sobrenaturais",DescriptionString="Use a Armadilha de Sucção para matar 20 Zeds no Sanatório")
+SpecialEventObjectiveInfoList[3]=(TitleString="Instintos Maternais",DescriptionString="Mate a Matriarca 10 vezes em qualquer mapa ou modo de jogo")
+SpecialEventObjectiveInfoList[4]=(TitleString="Apaziguando um Assunto Familiar",DescriptionString="Conclua o Laboratório de Biótica em Objetivo na dificuldade Difícil ou maior.")
+
+AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dinâmico"
+
+ChanceDropDescriptionStrings[0]="Bilhete do Krampus"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado do Krampus"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="Fortaleza do Vapor"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="Hospício Ashwood"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="Sanatório"
 
 [KFMapInfo]
 ; defaults

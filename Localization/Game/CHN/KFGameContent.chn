@@ -37,7 +37,7 @@ AlternateFireDescription="大部分主武器都有备用射击模式。按 <font
 FlashLightBatteryTitleKey="使用手电筒"
 FlashLightBatteryDescriptionKey="外面的环境可能较暗。按 <font color="#caab05">%x%</font> 可以开关<font color="#caab05">手电筒</font>。手电筒将缓慢没电。当完全没电时，它将关闭并且自动开始充电。"
 GrenadeTitleKey="使用手榴弹"
-GrenadeDescriptionKey="手榴弹可以有效对付聚集在一起的丧尸。神射在<font color="#caab05">武器加载</font>中有不同的手榴弹，每一种都可以伤害丧尸，而且可能有额外的效果。按 <font color="#caab05">%x%</font> 投掷一枚手榴弹。 "
+GrenadeDescriptionKey="手榴弹可以有效对付聚集在一起的丧尸。神射在<font color="#caab05">武器加载</font>中有不同的手榴弹，每一种都可以伤害丧尸，而且可能有额外的效果。按 <font color="#caab05">%x%</font> 投掷一枚手榴弹”。"
 
 ;Wave 1 end
 TraderTimeTitleKey="商人时间"
@@ -47,7 +47,7 @@ InventoryWeightDescriptionKey="你只能携带一定的重量。如果装不下�
 
 ;Trader Menu Open
 TraderRefillTitleKey="补充弹药和护甲"
-TraderRefillDescriptionKey="你可以补充<font color="#caab05">弹药</font>、<font color="#caab05">手榴弹</font>和<font color="#caab05">身体护甲</font>，方法是按下恰当物品左侧的<font color="#caab05">弹匣</font>、<font color="#caab05">1X</font>或<font color="#caab05">补充</font>按钮。如果你没有时间（或资金充足），按<font color="#caab05">自动补充</font>将为你自动付款，快速补充弹药、护甲和手榴弹。 "
+TraderRefillDescriptionKey="你可以补充<font color="#caab05">弹药</font>、<font color="#caab05">手榴弹</font>和<font color="#caab05">身体护甲</font>，方法是按下恰当物品左侧的<font color="#caab05">弹匣</font>、<font color="#caab05">1X</font>或<font color="#caab05">补充</font>按钮。如果你没有时间（或资金充足），按<font color="#caab05">自动补充</font>将为你自动付款，快速补充弹药、护甲和手榴弹。"
 TraderSellTitleKey="出售武器"
 TraderSellDescriptionKey="要<font color="#caab05">出售武器</font>，按想要出售的物品右侧的<font color="#caab05">出售按钮</font>。你可以在<font color="#caab05">出售按钮</font>上看见出售该物品你可以获得的金钱。你不能出售备用 9 毫升手枪、身体护甲或手榴弹。"
 TraderBuyTitleKey="购买武器"
@@ -90,7 +90,7 @@ HealOthersTitleKey="使用医疗兵武器治疗队友"
 HealOthersDescriptionKey="医疗兵神射武器的备用射击模式可以治愈远距离的队友。如果你正在使用医疗兵武器，按 <font color="#caab05">%x%</font> 射出治愈飞镖。或者，选择医疗兵神射，按 <font color="#caab05">%x%</font> 扔出治愈气体手榴弹。"
 
 ;Zed Time
-ZedTimeTitleKey="丧尸时间"
+ZedTimeTitleKey="当前爆发：丧尸时间"
 ZedTimeDescriptionKey="<font color="#caab05">丧尸时间慢动作</font>在爆头或在爆炸中杀死一群丧尸时触发，发生一些神奇的事情。你可以在这段时间稍作休息和进行连击。"
 
 ;Melee Section
@@ -116,47 +116,47 @@ ItemDescription="•战斗护甲可以保护你不受各种伤害，但是会在
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 炸药包"
-ItemCategory ="爆炸物"
+ItemCategory =" 爆炸物"
 ItemDescription="•连着导火线的一小包炸弹。\n•爆炸的时候连你也会伤到，别靠太近 "
 
 [KFProj_MedicGrenade]
 ItemName="医疗兵手榴弹"
-ItemCategory ="爆炸物"
+ItemCategory =" 爆炸物"
 ItemDescription="•释放出的气体会使丧尸中毒，但是会帮助人类疗伤。\n\n•站在蓝色的气体云中可以获得治疗。\n其中一名科学家是这样说的：‘这些手榴弹放出的物质将会使人类复活，但是会使尸类死亡。’我们希望这会有所帮助。 "
 
 [KFProj_MolotovGrenade]
 ItemName="燃烧弹"
-ItemCategory="爆炸物"
-ItemDescription="•简而言之，就是可以烧死丧尸的火焰手榴弹。\n\n这个名字是由芬兰人在 1939-40 冬季战斗中以斯大林的苏联外交部长 Vyacheslav Mikhailovich Molotov 而命名的…抱歉，你想要上一堂历史课吗？ "
+ItemCategory="炸弹"
+ItemDescription="•简而言之，就是可以烧死丧尸的火焰手榴弹。\n\n这个名字是由芬兰人在 1939-40 冬季战斗中以斯大林的苏联外交部长 Vyacheslav Mikhailovich Molotov 而命名的…抱歉，你想要上一堂历史课吗？"
 
 [KFProj_EMPGrenade]
 ItemName="EMP 手榴弹"
-ItemCategory="爆炸物"
+ItemCategory="炸弹"
 ItemDescription="•释放的电脉冲可以伤害丧尸以及使它们暂时眩晕。\n\n如果你想要知道更多细节 - 在爆炸时，它会释放纳秒电磁脉冲，破坏短距离内的电子系统。尤其是丧尸内的电子系统。非常好用。 "
 
 [KFProj_HEGrenade]
 ItemName="HE 手榴弹"
-ItemCategory="爆炸物"
+ItemCategory="炸弹"
 ItemDescription="•非常简单但威力惊人的手榴弹。伤害丧尸也伤害人类。\n\n再也简单不过了。HE - 高爆炸力 - 可以将一切东西炸飞。这还要解释吗？ "
 
 [KFProj_FragGrenade]
 ItemName="破片手榴弹"
-ItemCategory="爆炸物"
-ItemDescription="•经典的破片手榴弹：在周围扔一些金属，没有东西可以抵挡得住。\n\n我非常肯定，你们在疫情爆发前玩过很多电视游戏，所以你们肯定知道破片手榴弹是什么东东。别装不知道。这里没人会信你的。 "
+ItemCategory="炸弹"
+ItemDescription="•经典的破片手榴弹：在周围扔一些金属，没有东西可以抵挡得住。\n\n我非常肯定，你们在疫情爆发前玩过很多电视游戏，所以你们肯定知道破片手榴弹是什么东东。别装不知道。这里没人会信你的。“ "
 
 [KFProj_NailBombGrenade]
 ItemName="长钉炸弹"
-ItemCategory ="爆炸物"
+ItemCategory =" 爆炸物"
 ItemDescription="•一个普通的小罐装满了旧长钉，中间塞了一个小炸药包。\n\n这样对付丧尸似乎不够光明正大，但是对丧尸根本不用谈光明，不是吗？"
 
 [KFProj_FreezeGrenade]
 ItemName="冷冻手榴弹"
-ItemCategory ="爆炸物"
+ItemCategory =" 爆炸物"
 ItemDescription="•一个装有高压液氮的高科技小罐。\n\n一小罐就足以冻住丧尸一会儿。威力非常令人震惊。"
 
 [KFProj_FlashBangGrenade]
 ItemName="闪光弹"
-ItemCategory ="爆炸物"
+ItemCategory =" 爆炸物"
 ItemDescription="•又亮又大声，千万不要直视它。最好也不要听。\n•虽然威力不足以致死，但是闪光弹也会伤害你，所以要小心咯！ "
 
 [KFWeap_Healer_Syringe]
@@ -315,7 +315,7 @@ ItemDescription="•可以选择单发或多发钉枪射击模式。\n•备用�
 [KFWeap_HRG_Nailgun]
 ItemName="HRG 钉枪"
 ItemCategory="冲锋枪"
-ItemDescription="•拥有单发 500 rpm 的全自动模式与 3 发 857 rpm 的全自动火力模式可供选择。\n•按备用射击切换开火模式。\n•超强力创新品！"
+ItemDescription="•拥有单发 857 rpm 的全自动模式与 3 发 500 rpm 的全自动火力模式可供选择。\n•按备用射击切换开火模式。\n•超强力创新品！"
 
 [KFWeap_Blunt_ChainBat]
 ItemName="马路救世主"
@@ -356,7 +356,7 @@ ItemCategory="火焰"
 ItemDescription="•射击模式喷出火焰。\n•手持式自制喷火器。切勿在家自行尝试。"
 
 [KFWeap_Pistol_Flare]
-ItemName="喷火式战斗机"
+ItemName="喷火"
 ItemCategory="火焰"
 ItemDescription="•射击模式发射爆炸、易燃的炮弹。\n•射击传递系统在更便捷的小型包装内。"
 
@@ -387,22 +387,22 @@ ItemDescription="•射击模式投射一道能由里到外烹煮敌人的微波
 
 [KFWeap_Thrown_C4]
 ItemName="C4 爆炸物"
-ItemCategory="爆炸物"
+ItemCategory="炸弹"
 ItemDescription="•射击模式放置你的 C4 炸药。\n•备用射击以先前放置的顺序引爆你的 C4 炸药。\n•一块根据请求远程引爆的 C4 炸药。"
 
 [KFWeap_GrenadeLauncher_HX25]
 ItemName="HX25 手榴弹手枪"
-ItemCategory="爆炸物"
+ItemCategory="炸弹"
 ItemDescription="•射击模式喷射出多枚接触物体时引爆的小型炸弹。"
 
 [KFWeap_GrenadeLauncher_M79]
 ItemName="M79 榴弹发射器"
-ItemCategory="爆炸物"
+ItemCategory="炸弹"
 ItemDescription="•射击模式发射一枚榴弹。\n•射出的榴弹在冲击作用下爆炸。\n•射出的榴弹在经过几米的保险距离后装备完成，避免炸到自己的脸部。"
 
 [KFWeap_RocketLauncher_RPG7]
 ItemName="RPG-7"
-ItemCategory="爆炸物"
+ItemCategory="炸弹"
 ItemDescription="•射击模式发射一枚火箭。\n•射出的火箭在冲击作用下爆炸。\n•射出的榴弹在经过几米的保险距离后装备完成，避免炸到自己的脸部。\n•小心向后爆破！"
 
 [KFWeap_RocketLauncher_Seeker6]
@@ -439,13 +439,13 @@ ItemDescription="•射击模式只有半自动。\n•备用射击在使用机�
 ItemName="犀牛"
 ItemCategory="手枪"
 ItemDescription="•射击模式射出分裂弹。\n•分裂弹受到撞击后爆炸，发射出 3 片弹片。\n•穿透丧尸如切瓜砍菜。"
-SharedUnlockSource="犀牛"
+SharedUnlockSource="犀牛式左轮手枪包"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="双持犀牛"
 ItemCategory="手枪"
 ItemDescription="•射击模式射出分裂弹。\n•分裂弹受到撞击后爆炸，发射出 3 片弹片。\n•使用机械瞄准具时，备用射击会切换瞄准方式。\n•穿透丧尸如切瓜砍菜。"
-SharedUnlockSource="双持犀牛"
+SharedUnlockSource="犀牛式左轮手枪包"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 左轮手枪"
@@ -481,6 +481,12 @@ ItemDescription="•只有半自动射击模式。\n•备用射击在使用机�
 ItemName="温彻斯特 1894"
 ItemCategory="步枪"
 ItemDescription="•射击模式只有单发射击。\n•经典型号 1894 温彻斯特杠杆式步枪。"
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="莫辛纳甘狙击步枪"
+ItemCategory="步枪"
+ItemDescription="•射击模式只有单发。\n•Alt - 阻挡/闪避。\n• M91/30 擅长刺杀、射击和刺杀射击。"
+SharedUnlockSource="莫辛纳甘狙击步枪包"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 中发式"
@@ -594,7 +600,7 @@ ItemDescription="•主要 - 快速钝击；长按进行连击。\n•次要攻�
 
 [KFWeap_RocketLauncher_SealSqueal]
 ItemName="封印尖叫"
-ItemCategory="爆炸物"
+ItemCategory="炸弹"
 ItemDescription="•主要攻击发射 4 秒后会爆炸的鱼叉\n•备用射击可手动引爆所有鱼叉。\n•霍因可就此盖上其批准印章！"
 
 [KFWeap_AssaultRifle_LazerCutter]
@@ -659,9 +665,30 @@ ItemName="数据板"
 ItemCategory="装备"
 ItemDescription="You're not supposed to be seeing this in the trader!"
 
+[KFWeap_Pistol_HRGWinterbite]
+ItemName="HRG Winterbite"
+ItemCategory="低温式"
+ItemDescription="•射击模式发射爆炸、冰锥状的炮弹。\n•度过有冰的一天的最好方式。"
+
+[KFWeap_Pistol_DualHRGWinterbite]
+ItemName="双持 HRG Winterbite"
+ItemCategory="低温式"
+ItemDescription="•射击模式发射爆炸、冰锥状的炮弹。\n•使用机械瞄准具时，备用射击会切换瞄准方式。\n•两倍的冰。"
+
+[KFWeap_Rifle_HRGIncision]
+ItemName="HRG 切口"
+ItemCategory="狙击步枪"
+ItemDescription="•射击模式发射高速电弹\n•备用射击发射治疗飞镖以治疗队员\n•使用瞄准具可让你锁定玩家和丧尸的薄弱点。"
+
+[KFWeap_SMG_G18]
+ItemName="防爆盾牌和 格洛克 18 手枪"
+ItemCategory="冲锋枪"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•机械瞄准具造成屏蔽，减少大多数攻击造成的伤害。"
+SharedUnlockSource="防爆盾牌和 G18 手枪包"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
-BossName="汉斯-沃尔特博士"
+BossName="Dr. Hans Volter"
 BossName_CHN="汉斯-沃尔特博士"
 BossName_CHT="漢斯華特博士"
 BossName_DEU="Dr. Hans Volter"
@@ -685,7 +712,7 @@ BossCaptionStrings[5]="小心红色手榴弹警告指示器，可能会帮助你
 BossCaptionStrings[6]="当汉斯掏出他的手枪时，离开他的视线。很明显，但很重要！"
 
 [KFPawn_ZedPatriarch]
-BossName="长老丧尸"
+BossName="The Patriarch"
 BossName_CHN="长老丧尸"
 BossName_CHT="長老"
 BossName_DEU="Der Patriarch"
@@ -731,7 +758,7 @@ BossCaptionStrings[4]="闪击丧尸之王的缺点跟其他正常闪击丧尸一
 BossCaptionStrings[5]="闪击丧尸之王总是有更多的小丧尸。忽视他们你就有风险！"
 
 [KFPawn_ZedBloatKing]
-BossName="憎恶"
+BossName="Abomination"
 BossName_CHN="憎恶"
 BossName_CHT="憎惡"
 BossName_DEU="Abscheulichkeit"
@@ -754,7 +781,7 @@ BossCaptionStrings[4]="如果你让憎恶靠的太近，那么他会做出的事
 BossCaptionStrings[5]="破坏掉憎恶的装甲会让他进入愤怒状态，也就是他最致命的状态。"
 
 [KFPawn_ZedBloatKing_Winter]
-BossName="坎卜斯"
+BossName="Krampus"
 BossName_CHN="坎卜斯"
 BossName_CHT="坎普斯"
 BossName_DEU="Krampus"
@@ -775,6 +802,29 @@ BossCaptionStrings[2]="别被坎卜斯的体型捉弄了；只要他想，就能
 BossCaptionStrings[3]="别让坎卜斯接近其他的丧尸，他可以把它们吞下去来……我又考虑了一下，你应该不会想知道的。"
 BossCaptionStrings[4]="如果你让坎卜斯靠的太近，那么他会做出的事情可不止是吐在你身上。那些斧子可不是摆在那用来看的。"
 BossCaptionStrings[5]="破坏掉坎卜斯的装甲会让他进入愤怒状态，也就是他最致命的状态。"
+
+[KFPawn_ZedMatriarch]
+BossName="女族长"
+BossName_CHN="请填充"
+BossName_CHT="请填充"
+BossName_DEU="请填充"
+BossName_ESL="请填充"
+BossName_ESN="请填充"
+BossName_FRA="请填充"
+BossName_FRC="请填充"
+BossName_INT="女族长"
+BossName_ITA="请填充"
+BossName_JPN="请填充"
+Bossname_KOR="请填充"
+BossName_POL="请填充"
+BossName_PTB="请填充"
+BossName_RUS="请填充"
+BossCaptionStrings[0]="女族长在攻击时保护力场会关闭。利用这一点。"
+BossCaptionStrings[1]="女族长的大炮和头盔可以被摧毁，以暴露她的头和敏感的爪子。然后她会很生气的。"
+BossCaptionStrings[2]="当她发射特斯拉爆炸时，当心和别人挤在一起。它不仅只会冲击到你。"
+BossCaptionStrings[3]="不要以为一旦她的大炮被摧毁，战斗就结束了。她打了一拳！"
+BossCaptionStrings[4]="当 E.D.A.Rs 发现威胁水平过高时，就会来帮助她。"
+BossCaptionStrings[5]="女族长在将死之时部署了一个隐形场。与父亲不同，她不会逃跑。"
 
 [KFGameInfo_Tutorial]
 GameName="基准训练"

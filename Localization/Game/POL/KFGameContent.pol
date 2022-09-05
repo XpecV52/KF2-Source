@@ -37,7 +37,7 @@ AlternateFireDescription="Większość broni głównych ma alternatywny tryb ogn
 FlashLightBatteryTitleKey="Używanie latarki"
 FlashLightBatteryDescriptionKey="Czasami bywa bardzo ciemno. Wciśnij <font color="#caab05">%x%</font>, aby włączyć lub wyłączyć <font color="#caab05">LATARKĘ</font>. Bateria latarki z czasem będzie się rozładowywać. Gdy się rozładuje, wyłączy się automatycznie i rozpocznie ładowanie."
 GrenadeTitleKey="Używanie granatów"
-GrenadeDescriptionKey="Granaty umożliwiają łatwe pozbycie się zwartych grup zetów. <font color="#caab05">ZESTAWY BRONI</font> dla specjalizacji zawierają różne rodzaje granatów, z których wszystkie zadają obrażenia zetom, lecz mogą też mieć dodatkowe efekty. Wciśnij <font color="#caab05">%x%</font>, aby rzucić granatem."
+GrenadeDescriptionKey="Granaty umożliwiają łatwe pozbycie się zwartych grup zetów. <font color="#caab05">ZESTAWY BRONI</font> dla specjalizacji zawierają różne rodzaje granatów, z których wszystkie zadają obrażenia zetom, lecz mogą też mieć dodatkowe efekty. Wciśnij <font color="#caab05">%x%</font>, aby rzucić granatem." "
 
 ;Wave 1 end
 TraderTimeTitleKey="Czas handlu"
@@ -116,48 +116,48 @@ ItemDescription="•Pancerz bojowy chroni cię przed różnymi rodzajami obraże
 
 [KFProj_DynamiteGrenade]
 ItemName="Pół laski dynamitu"
-ItemCategory ="Materiały wybuchowe"
-ItemDescription="•Kawałek dynamitu z dołączonym zapalnikiem.\n•Możesz zrobić nim krzywdę także sobie, więc uważaj!"
+ItemCategory =" Materiały wybuchowe"
+ItemDescription="•Kawałek dynamitu z dołączonym zapalnikiem.\n•Możesz zrobić nim krzywdę także sobie, więc uważaj! "
 
 [KFProj_MedicGrenade]
 ItemName="Granat medyczny"
-ItemCategory ="Materiały wybuchowe"
-ItemDescription="•Rozpyla gaz, który zatruwa zetów i leczy ludzi.\n\n•Aby otrzymać leczenie, stań w chmurze niebieskiego gazu.\nCytując naszego naukowca: „Substancja czynna uwalniana przez granat wpływa ożywczo na Homo Sapiens, powodując eutanazję Homo Zeticus”. Mamy nadzieję, że okaże się przydatna."
+ItemCategory =" Materiały wybuchowe"
+ItemDescription="•Rozpyla gaz, który zatruwa zetów i leczy ludzi.\n\n•Aby otrzymać leczenie, stań w chmurze niebieskiego gazu.\nCytując naszego naukowca: „Substancja czynna uwalniana przez granat wpływa ożywczo na Homo Sapiens, a jednocześnie powoduje eutanazję Homo Zeticus”. To chyba wszystko wyjaśnia." "
 
 [KFProj_MolotovGrenade]
 ItemName="Koktajl Mołotowa"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•To po prostu granat ogniowy, który podpala zetów.\n\nTę obraźliwą nazwę nadali mu Finowie podczas wojny zimowej 1939-1940, na cześć Wiaczesława Michajłowicza Mołotowa, radzieckiego ministra spraw zagranicznych… Nudzą cię lekcje historii?"
+ItemDescription="•To po prostu granat ogniowy, który podpala zetów.\n\nTę obraźliwą nazwę nadali mu Finowie podczas wojny zimowej 1939–1940, na cześć Wiaczesława Michajłowicza Mołotowa, radzieckiego ministra spraw zagranicznych... Nudzą cię lekcje historii?" "
 
 [KFProj_EMPGrenade]
 ItemName="Granat EMP"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Uwalnia impuls elektryczny, który zadaje obrażenia zetom i chwilowo ich ogłusza.\n\nDla głodnych dalszych informacji: podczas detonacji w ciągu nanosekundy generuje impuls elektromagnetyczny zakłócający systemy elektryczne na małym obszarze. Zwłaszcza systemy zetów. Przydatna rzecz."
+ItemDescription="•Uwalnia impuls elektryczny, który zadaje obrażenia zetom i chwilowo je ogłusza.\n\nDla głodnych dalszych informacji: podczas detonacji w ciągu nanosekundy generuje impuls elektromagnetyczny, zakłócający systemy elektryczne na małym obszarze. Zwłaszcza systemy zetów. Przydatna rzecz." "
 
 [KFProj_HEGrenade]
 ItemName="Granat HE"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Bardzo prosty granat z materiałem wybuchowym. Zadaje obrażenia zetom i ludziom.\n\nProściej być nie może. HE oznacza materiał wybuchowy, robi BUM i wszystko wysadza. Czy naprawdę musimy to wyjaśniać?"
+ItemDescription="•Bardzo prosty granat z materiałem wybuchowym. Zadaje obrażenia zetom i ludziom.\n\nProściej być nie może. HE oznacza materiał wybuchowy, robi BUM i wszystko wysadza. Czy naprawdę musimy to wyjaśniać?" "
 
 [KFProj_FragGrenade]
 ItemName="Granat odłamkowy"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Klasyczny granat odłamkowy: wyrzuca małe odłamki metalu, które uszkadzają wszystko.\n\nNa pewno wystarczająco przed Incydentem graliście na tyle dużo, żeby wiedzieć, co to jest granat odłamkowy. I nie udawajcie, że tak nie było. I tak nikt wam nie uwierzy."
+ItemDescription="•Klasyczny granat odłamkowy: wyrzuca małe odłamki metalu, które uszkadzają wszystko.\n\nNa pewno przed Incydentem graliście w dość gier, żeby wiedzieć, co to jest granat odłamkowy. I nie udawajcie, że tak nie było. I tak nikt wam nie uwierzy." "
 
 [KFProj_NailBombGrenade]
 ItemName="Bomba z gwoździami"
-ItemCategory ="Materiały wybuchowe"
+ItemCategory =" Materiały wybuchowe"
 ItemDescription="•Prosty pojemnik pełen starych gwoździ z niewielkim ładunkiem wybuchowym pośrodku.\n\nNie jest to najbardziej przyjemny i subtelny sposób zabijania zetów, ale czy w nich jest cokolwiek przyjemnego lub subtelnego?"
 
 [KFProj_FreezeGrenade]
 ItemName="Granat zamrażający"
-ItemCategory ="Materiały wybuchowe"
+ItemCategory =" Materiały wybuchowe"
 ItemDescription="•Zaawansowany technicznie pojemnik z płynnym azotem pod ciśnieniem.\n\nKontakt z jego zawartością zamraża zetów na chwilę. Efekt może być druzgocący."
 
 [KFProj_FlashBangGrenade]
 ItemName="Granat ogłuszający"
-ItemCategory ="Materiały wybuchowe"
-ItemDescription="•Jasny i głośny – lepiej nie patrzeć na niego bezpośrednio. Lepiej też go nie słuchać.\n•Chociaż granat ogłuszający technicznie nie jest zabójczy i tak może ci zaszkodzić, więc uważaj!"
+ItemCategory =" Materiały wybuchowe"
+ItemDescription="•Jasny i głośny – lepiej nie patrzeć na niego bezpośrednio. Lepiej też go nie słuchać.\n•Chociaż granat ogłuszający technicznie nie jest zabójczy i tak może ci zaszkodzić, więc uważaj! "
 
 [KFWeap_Healer_Syringe]
 ItemName="Strzykawka medyczna"
@@ -315,7 +315,7 @@ ItemDescription="•Tryb ataku: strzał pojedynczym gwoździem lub wieloma.\n•
 [KFWeap_HRG_Nailgun]
 ItemName="Gwoździarka HRG"
 ItemCategory="Pistolet maszynowy"
-ItemDescription="• Tryb strzelania: półautomatyczny (500 pocisków na minutę) i seria 3 pocisków (857 pocisków na minutę).\n• Tryb alternatywny umożliwia przełączanie trybów ognia.\n• Gwóźdź do trumny wroga!"
+ItemDescription="•Tryb strzelania: automatyczny z pojedynczym strzałem (857 pocisków na minutę) i automatyczny z seriami 3 pocisków (500 pocisków na minutę).\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Gwóźdź do trumny wroga!"
 
 [KFWeap_Blunt_ChainBat]
 ItemName="Podróżny odkupiciel"
@@ -439,13 +439,13 @@ ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternaty
 ItemName="Rhino"
 ItemCategory="Broń krótka"
 ItemDescription="• Tryb ataku wystrzeliwuje pociski fragmentujące.\n• Pociski fragmentujące wybuchają po uderzeniu i wystrzeliwują 3 odłamki.\n• Sieka zety jak kapustę!"
-SharedUnlockSource="Rhino"
+SharedUnlockSource="Zestaw rewolweru Rhino"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="Dwa Rhino"
 ItemCategory="Broń krótka"
 ItemDescription="• Tryb ataku wystrzeliwuje pociski fragmentujące.\n• Pociski fragmentujące wybuchają po uderzeniu i wystrzeliwują 3 odłamki.\n• Tryb alternatywny zmienia styl celowania z celownika mechanicznego.\n• Sieka zety jak kapustę!"
-SharedUnlockSource="Dwa Rhino"
+SharedUnlockSource="Zestaw rewolweru Rhino"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="Rewolwer 1858"
@@ -481,6 +481,12 @@ ItemDescription="• Tryb strzelania: tylko ogień pojedynczy.\n• Tryb alterna
 ItemName="Winchester 1894"
 ItemCategory="Karabin"
 ItemDescription="•Tryb ataku: tylko jednostrzałowy.\n•Klasyczny karabin dźwigniowy Winchester model 1894."
+
+[KFWeap_Rifle_MosinNagant]
+ItemName="Mosin-Nagant"
+ItemCategory="Karabin"
+ItemDescription="•Wyłącznie tryb pojedynczego strzału.\n• Tryb alternatywny: blokowanie/parowanie.\n• M91/30 specjalizuje się w dźganiu, strzelaniu i dźganiu ze strzelaniem."
+SharedUnlockSource="Zestaw Mosin-Nagant"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Centerfire"
@@ -659,6 +665,27 @@ ItemName="Tablet"
 ItemCategory="Wyposażenie"
 ItemDescription="You're not supposed to be seeing this in the trader!"
 
+[KFWeap_Pistol_HRGWinterbite]
+ItemName="HRG Odmrożenie"
+ItemCategory="Kriogeniczne"
+ItemDescription="•Tryb ataku strzela wy wybuchowymi soplami.\n•Najlepszy sposób na orzeźwienie."
+
+[KFWeap_Pistol_DualHRGWinterbite]
+ItemName="Dwa HRG Odmrożenie"
+ItemCategory="Kriogeniczne"
+ItemDescription="•Tryb ataku strzela wy wybuchowymi soplami.\n•Tryb alternatywny przełącza style celowania przy użyciu celownika mechanicznego.\n•Dwa poniżej zera."
+
+[KFWeap_Rifle_HRGIncision]
+ItemName="HRG Nacięcie"
+ItemCategory="Karabin wyborowy"
+ItemDescription="•Tryb ataku strzela szybkimi pociskami elektrycznymi.\n•Tryb alternatywny strzela strzałkami leczniczymi, które leczą sojuszników.\n•Korzystanie z celownika umożliwia namierzenie graczy oraz czułych punktów zetów."
+
+[KFWeap_SMG_G18]
+ItemName="Tarcza policyjna z Glockiem 18"
+ItemCategory="Pistolet maszynowy"
+ItemDescription="•Wybór ostrzału automatycznego i półautomatycznego.\n•Tryb alternatywny przełącza tryby ostrzału.\n•Używanie celownika mechanicznego unosi tarczę redukującą większość ataków od przodu."
+SharedUnlockSource="Tarcza policyjna z G18"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr Hans Volter"
@@ -775,6 +802,29 @@ BossCaptionStrings[2]="Nie daj się zwieść wyglądem Krampusa. Potrafi szybko 
 BossCaptionStrings[3]="Nie pozwól Krampusowi zbliżać się do zetów; przetrawi je na… W zasadzie nie chcesz wiedzieć."
 BossCaptionStrings[4]="Jeśli Krampus zbyt się zbliży, czeka cię coś więcej niż jego wymioty. Te siekiery nie są na pokaz."
 BossCaptionStrings[5]="Zniszczenie pancerza Krampusa wprawi go we wściekłość, jego najbardziej śmiercionośny stan."
+
+[KFPawn_ZedMatriarch]
+BossName="Matriarchini"
+BossName_CHN="Do uzupełnienia"
+BossName_CHT="Do uzupełnienia"
+BossName_DEU="Do uzupełnienia"
+BossName_ESL="Do uzupełnienia"
+BossName_ESN="Do uzupełnienia"
+BossName_FRA="Do uzupełnienia"
+BossName_FRC="Do uzupełnienia"
+BossName_INT="Matriarchini"
+BossName_ITA="Do uzupełnienia"
+BossName_JPN="Do uzupełnienia"
+Bossname_KOR="Do uzupełnienia"
+BossName_POL="Do uzupełnienia"
+BossName_PTB="Do uzupełnienia"
+BossName_RUS="Do uzupełnienia"
+BossCaptionStrings[0]="Ochronne pole sił Matriarchini wyłącza się podczas jej ataku. Wykorzystaj to."
+BossCaptionStrings[1]="Działo i hełm Matriarchini można zniszczyć, aby odsłonić wrażliwe punkty na głowie i szponie. Niestety rozwścieczy ją to."
+BossCaptionStrings[2]="Uważaj, aby nie zwierać formacji z innymi, gdy Matriarchini używa Wybuchu Tesli. Atak porazi nie tylko ciebie."
+BossCaptionStrings[3]="Nie myśl, że to koniec bitwy, gdy już zniszczysz jej działo. Matriarchini potrafi porządnie przywalić!"
+BossCaptionStrings[4]="EDAR-y przybędą jej z pomocą, gdy wykryją, że poziom zagrożenia jest zbyt wysoki."
+BossCaptionStrings[5]="Matriarchini używa pola maskującego, gdy jest bliska śmierci. W przeciwieństwie do ojca nie ucieka."
 
 [KFGameInfo_Tutorial]
 GameName="Szkolenie podstawowe"

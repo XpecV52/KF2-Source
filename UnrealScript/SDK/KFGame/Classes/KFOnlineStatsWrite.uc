@@ -400,6 +400,15 @@ const KFACHID_AsylumCollectibles				=	259;
 const KFACHID_NukedObjectiveHard				=	260;
 const KFACHID_NukedObjectiveHellOnEarth			=	261;
 
+const KFACHID_BioticsLabObjectiveHard			=	262;
+const KFACHID_BioticsLabObjectiveHellOnEarth	=	263;
+
+const KFACHID_SanitariumHard					=	264;
+const KFACHID_SanitariumHellOnEarth				=	265;
+const KFACHID_SanitariumCollectibles			=	266;
+
+const KFACHID_DefeatMatriarch					=	267;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -908,7 +917,7 @@ private event AddXP( class<KFPerk> PerkClass, int dXP, bool bApplyPrestigeBonus 
 			dXP += BonusXPTruncated;
 		}
 	}
-	
+
 	IncrementXPStat( PerkClass, dXP );
 
 	if( MyKFPC != none )
@@ -1055,14 +1064,19 @@ function SavePersonalBest( EPersonalBests PersonalBestID, int Value )
  * @param DT The damagetype used to kill the zed
  * @return [description]
  */
-private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT )
+private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT, bool bKiller )
 {
+	// seasonal event hook
+	SeasonalEventStats_OnZedKilled(MonsterClass, Difficulty, DT);
+
+	if (!bKiller)
+	{
+		return;
+	}
+
 	IncrementIntStat( STATID_Kills, 1 );
 	Kills++;
 
-	// seasonal event hook
-	SeasonalEventStats_OnZedKilled(MonsterClass, Difficulty, DT);
-	
 	if(!MonsterClass.default.bVersusZed)
 	{
 		MyKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_PlayerKills', KMT_PLayerKillZed, MyKFPC.PlayerReplicationInfo, none, MonsterClass);
@@ -1183,13 +1197,10 @@ private function AddFleshpoundKill( byte Difficulty )
  */
 private function AddClotKill( byte Difficulty )
 {
-	local class<KFPerk> PerkXPClass;
-
-	PerkXPClass = (class'KFPerk_Survivalist'.static.GetPerkClass() == MyKFPC.GetPerk().static.GetPerkClass()) ? class'KFPerk_Survivalist'.static.GetPerkClass() : class'KFPerk_SWAT'.static.GetPerkClass();
-	AddXP( PerkXPClass, class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
+	AddXP( class'KFPerk_SWAT', class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
 
 	//AAR
-	`RecordSecondaryXPGain( MyKFPC, PerkXPClass, class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
+	`RecordSecondaryXPGain( MyKFPC, class'KFPerk_SWAT', class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
 	KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty );
 }
 
@@ -1257,8 +1268,7 @@ private final function bool IsFleshPoundKill( class<KFPawn_Monster> MonsterClass
 private final function bool IsClotKill( class<KFPawn_Monster> MonsterClass, class<DamageType> DT )
 {
 	return  MonsterClass.static.IsClotClass() &&
-			(class'KFPerk'.static.IsDamageTypeOnThisPerk( class<KFDamageType>(DT), class'KFPerk_SWAT'.static.GetPerkClass() ) ||
-			 class'KFPerk_Survivalist'.static.GetPerkClass() == MyKFPC.GetPerk().static.GetPerkClass());
+			class'KFPerk'.static.IsDamageTypeOnThisPerk(class<KFDamageType>(DT), class'KFPerk_SWAT'.static.GetPerkClass());
 }
 
 /**
@@ -1908,6 +1918,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_HRG_Healthrower, KFDT_Toxic_HRGHealthrower, KFDT_Bludgeon_HRGHealthrower),CompletionAmount=9000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_Hemogoblin, KFDT_Ballistic_Hemogoblin, KFDT_Bludgeon_Hemogoblin),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Medic, KFDT_Ballistic_Assault_Medic,KFDT_Bludgeon_Assault_Medic),CompletionAmount=9000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Rifle_HRGIncision, KFDT_Ballistic_HRGIncisionHurt, KFDT_Ballistic_HRGIncisionHeal,KFDT_Bludgeon_HRGIncision),CompletionAmount=5000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_MedicRifleGrenadeLauncher, KFDT_Ballistic_MedicRifleGrenadeLauncher, KFDT_Bludgeon_MedicRifleGrenadeLauncher, KFDT_Toxic_MedicGrenadeLauncher, KFDT_Ballistic_MedicRifleGrenadeLauncherImpact),CompletionAmount=10000))
 
     //Demo Weapons
@@ -1945,6 +1956,7 @@ defaultproperties
     //Gunslinger Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Revolver_Rem1858, KFDT_Bludgeon_Rem1858,KFDT_Ballistic_Rem1858,KFDT_Ballistic_Rem1858_Dual),CompletionAmount=5000)) //3000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Colt1911, KFDT_Bludgeon_Colt1911,KFDT_Ballistic_Colt1911),CompletionAmount=7000)) //5000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_HRGWinterbite, KFDT_Bludgeon_HRGWinterbite,KFDT_Freeze_HRGWinterbiteImpact,KFDT_Explosive_HRGWinterbite),CompletionAmount=7000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_Deagle, KFDT_Bludgeon_Deagle,KFDT_Ballistic_Deagle),CompletionAmount=10000)) // 7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Revolver_SW500, KFDT_Bludgeon_SW500,KFDT_Ballistic_SW500,KFDT_Ballistic_SW500_Dual),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_AF2011, KFDT_Bludgeon_AF2011,KFDT_Ballistic_AF2011),CompletionAmount=10000))
@@ -2078,6 +2090,9 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-ASHWOODASYLUM),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-ASHWOODASYLUM),CompletionAmount=2))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-ASHWOODASYLUM),CompletionAmount=3))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANITARIUM),CompletionAmount=1))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANITARIUM),CompletionAmount=2))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANITARIUM),CompletionAmount=3))
 
     //Versus Damage
     //    Per design doc that I have right now, these are x class damage y players, not damage y amount
@@ -2105,6 +2120,6 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(CHR_Ana_Archetype),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(chr_rockabilly_archetype),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_CharacterCompletion,ObjectiveClasses=(CHR_DAR_archetype),CompletionAmount=1))
-		
+
 	SeasonalKillsObjectiveThreshold=2500
 }

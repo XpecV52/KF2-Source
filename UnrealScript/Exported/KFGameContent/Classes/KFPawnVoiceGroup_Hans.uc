@@ -616,6 +616,35 @@ class KFPawnVoiceGroup_Hans extends KFPawnVoiceGroup;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 3
 
 defaultproperties

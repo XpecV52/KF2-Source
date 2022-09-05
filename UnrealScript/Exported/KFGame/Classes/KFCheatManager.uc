@@ -880,19 +880,7 @@ exec function Weapon GiveWeapon( String WeaponClassStr )
 }
 
 /**
- * Give the player all shotgun weapons
- */
-simulated exec function Shotty()
-{
-    GiveWeapon( "KFGameContent.KFWeap_Shotgun_MB500" );
-    GiveWeapon( "KFGameContent.KFWeap_Shotgun_M4" );
-    GiveWeapon( "KFGameContent.KFWeap_Shotgun_DoubleBarrel" );
-    GiveWeapon( "KFGameContent.KFWeap_Shotgun_AA12" );
-    GiveWeapon( "KFGameContent.KFWeap_Shotgun_HZ12" );
-}
-
-/**
- * Give the player all shotgun weapons
+ * Give the player han's dual mkbs
  */
 simulated exec function MKB()
 {
@@ -905,30 +893,12 @@ simulated exec function MKB()
 simulated exec function Pistols()
 {
     GiveWeapon( "KFGameContent.KFWeap_Pistol_9mm" );
+	GiveWeapon( "KFGameContent.KFWeap_Revolver_Rem1858" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_Medic" );
+	GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_HX25" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_Colt1911" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_Flare" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_Deagle" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
-}
-
-/**
- * Give the player all dual weapons
- */
-simulated exec function Dualies()
-{
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_Dual9mm" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_DualDeagle" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_DualColt1911" );
-    GiveWeapon( "KFGameContent.KFWeap_Revolver_DualRem1858" );
-    GiveWeapon( "KFGameContent.KFWeap_Revolver_DualSW500" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhinoDual" );
-}
-
-simulated exec function Singles()
-{
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_9mm" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_Deagle" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_Colt1911" );
-    GiveWeapon( "KFGameContent.KFWeap_Revolver_Rem1858" );
-    GiveWeapon( "KFGameContent.KFWeap_Revolver_SW500" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
 }
 
@@ -942,17 +912,20 @@ simulated exec function DummyWeapon()
 }
 
 /**
- * Give the player all Berserker weapons
+ * Give the player all perk knives
  */
-simulated exec function Berserk()
+simulated exec function Melee()
 {
-    GiveWeapon( "KFGameContent.KFWeap_Blunt_Crovel" );
-	GiveWeapon( "KFGameContent.KFWeap_Shotgun_Nailgun" );
-	GiveWeapon( "KFGameContent.KFWeap_Blunt_Pulverizer" );
-	GiveWeapon( "KFGameContent.KFWeap_Eviscerator" );
-    GiveWeapon( "KFGameContent.KFWeap_Edged_Zweihander");
-    GiveWeapon( "KFGameContent.KFWeap_Blunt_MaceAndShield");
-    GiveWeapon(" KFGameContent.KFWeap_Blunt_PowerGloves ");
+    GiveWeapon( "KFGameContent.KFWeap_Knife_Berserker" );
+    GiveWeapon( "KFGameContent.KFWeap_Knife_Commando" );
+    GiveWeapon( "KFGameContent.KFWeap_Knife_Support" );
+    GiveWeapon( "KFGameContent.KFWeap_Knife_Demolitionist" );
+    GiveWeapon( "KFGameContent.KFWeap_Knife_Firebug" );
+    GiveWeapon( "KFGameContent.KFWeap_Knife_FieldMedic" );
+	GiveWeapon( "KFGameContent.KFWeap_Knife_Gunslinger" );
+	GiveWeapon( "KFGameContent.KFWeap_Knife_Sharpshooter" );
+	GiveWeapon( "KFGameContent.KFWeap_Knife_SWAT" );
+	GiveWeapon( "KFGameContent.KFWeap_Knife_Survivalist" );
 }
 
 /**
@@ -964,32 +937,182 @@ simulated exec function Nails()
 }
 
 /**
- * Give the player all assault rifle weapons
+ * Give the player all Berserker weapons
  */
-simulated exec function Melee()
+simulated exec function Berserk()
 {
-    GiveWeapon( "KFGameContent.KFWeap_Edged_Katana" );
-    GiveWeapon( "KFGameContent.KFWeap_Knife_Berserker" );
-    GiveWeapon( "KFGameContent.KFWeap_Knife_Commando" );
-    GiveWeapon( "KFGameContent.KFWeap_Knife_Demolitionist" );
-    GiveWeapon( "KFGameContent.KFWeap_Knife_Firebug" );
-    GiveWeapon( "KFGameContent.KFWeap_Knife_Medic" );
-    GiveWeapon( "KFGameContent.KFWeap_Knife_Support" );
-    GiveWeapon( "KFGameContent.KFWeap_Edged_Zweihander");
+    GiveWeapon( "KFGameContent.KFWeap_Blunt_Crovel" );
+	GiveWeapon( "KFGameContent.KFWeap_Shotgun_Nailgun" );
+	GiveWeapon( "KFGameContent.KFWeap_Edged_Katana" );
+	GiveWeapon( "KFGameContent.KFWeap_Edged_FireAxe" );
+	GiveWeapon( "KFGameContent.KFWeap_Blunt_ChainBat" );
+	GiveWeapon( "KFGameContent.KFWeap_Blunt_MedicBat" );
+    GiveWeapon( "KFGameContent.KFWeap_Edged_Zweihander" );
+	GiveWeapon( "KFGameContent.KFWeap_Blunt_Pulverizer" );
+    GiveWeapon(" KFGameContent.KFWeap_Blunt_PowerGloves" );
+	GiveWeapon( "KFGameContent.KFWeap_Eviscerator" );
+    GiveWeapon( "KFGameContent.KFWeap_Blunt_MaceAndShield" );
+    GiveWeapon( "KFGameContent.KFWeap_Edged_IonThruster" );
+	GiveWeapon( "KFGameContent.KFWeap_Edged_AbominationAxe" );
 }
 
 /**
- * Give the player all assault rifle weapons
+ * Give the player all Commando weapons
  */
 simulated exec function Assault()
 {
-    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Bullpup" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_AR15" );
+    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Bullpup" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_AK12" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MKB42" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_SCAR" );
-    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_AK12" );
-    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MKB42" );
-    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_M16M203" );
     GiveWeapon( "KFGameContent.KFWeap_LMG_Stoner63A" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Thompson" );
+    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_M16M203" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Medic" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_FNFal" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MedicRifleGrenadeLauncher" );
+}
+
+/**
+ * Give the player all Support weapons
+ */
+simulated exec function Shotty()
+{
+	GiveWeapon( "KFGameContent.KFWeap_Shotgun_MB500" );
+	GiveWeapon( "KFGameContent.KFWeap_HRG_Revolver_Buckshot" );
+    GiveWeapon( "KFGameContent.KFWeap_Shotgun_DoubleBarrel" );
+    GiveWeapon( "KFGameContent.KFWeap_Shotgun_HZ12" );
+    GiveWeapon( "KFGameContent.KFWeap_Shotgun_M4" );
+    GiveWeapon( "KFGameContent.KFWeap_Shotgun_AA12" );
+	GiveWeapon( "KFGameContent.KFWeap_Shotgun_ElephantGun" );
+	GiveWeapon( "KFGameContent.KFWeap_Shotgun_DragonsBreath" );
+	GiveWeapon( "KFGameContent.KFWeap_Shotgun_Nailgun" );
+	GiveWeapon( "KFGameContent.KFWeap_Shotgun_Medic" );
+}
+
+/**
+ * Give the player all Medic weapons
+ */
+simulated exec function Medic()
+{
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_Medic" );
+    GiveWeapon( "KFGameContent.KFWeap_SMG_Medic" );
+	GiveWeapon( "KFGameContent.KFWeap_HRG_Healthrower" );
+    GiveWeapon( "KFGameContent.KFWeap_Shotgun_Medic" );
+    GiveWeapon( "KFGameContent.KFWeap_Rifle_Hemogoblin" );
+    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Medic" );
+	GiveWeapon( "KFGameContent.KFWeap_Rifle_HRGIncision" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MedicRifleGrenadeLauncher" );
+	GiveWeapon( "KFGameContent.KFWeap_Blunt_MedicBat" );
+}
+
+/**
+ * Give the player all Demolitionist weapons
+ */
+simulated exec function Demo()
+{
+    GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_HX25" );
+    GiveWeapon( "KFGameContent.KFWeap_Thrown_C4" );
+    GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_M79" );
+	GiveWeapon( "KFGameContent.KFWeap_RocketLauncher_SealSqueal");
+    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_M16M203" );
+    GiveWeapon( "KFGameContent.KFWeap_RocketLauncher_RPG7" );
+    GiveWeapon( "KFGameContent.KFWeap_RocketLauncher_Seeker6" );
+	GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_M32" );
+	GiveWeapon( "KFGameContent.KFWeap_Blunt_Pulverizer" );
+	GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
+}
+
+/**
+ * Give the player all Firebug weapons
+ */
+simulated exec function Firebug()
+{
+    GiveWeapon( "KFGameContent.KFWeap_Flame_CaulkBurn" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_Flare" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_DualFlare" );
+    GiveWeapon( "KFGameContent.KFWeap_Shotgun_DragonsBreath" );
+	GiveWeapon( "KFGameContent.KFWeap_SMG_Mac10" );
+    GiveWeapon( "KFGameContent.KFWeap_Flame_Flamethrower" );
+    GiveWeapon( "KFGameContent.KFWeap_Beam_Microwave" );
+    GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Microwave" );
+}
+
+/**
+ * Give the player all dual weapons
+ */
+simulated exec function Dualies()
+{
+    GiveWeapon( "KFGameContent.KFWeap_Revolver_DualRem1858" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_DualColt1911" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_DualHRGWinterbite" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_DualDeagle" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhinoDual" );
+    GiveWeapon( "KFGameContent.KFWeap_Revolver_DualSW500" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_DualAF2011" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_DualFlare" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_Dual9mm" );
+}
+
+simulated exec function Singles()
+{
+	GiveWeapon( "KFGameContent.KFWeap_Revolver_Rem1858" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_Colt1911" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_HRGWinterbite" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_Deagle" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
+    GiveWeapon( "KFGameContent.KFWeap_Revolver_SW500" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_AF2011" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_Medic" );
+	GiveWeapon( "KFGameContent.KFWeap_Rifle_Winchester1894" );
+	GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_HX25" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_Flare" );
+	GiveWeapon( "KFGameContent.KFWeap_Rifle_CenterfireMB464" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_9mm" );
+}
+
+/**
+ * Give the player all Sharpshooter weapons
+ */
+simulated exec function Sharpshooter()
+{
+    GiveWeapon( "KFGameContent.KFWeap_Rifle_Winchester1894" );
+    GiveWeapon( "KFGameContent.KFWeap_Rifle_CenterfireMB464" );
+    GiveWeapon( "KFGameContent.KFWeap_Bow_Crossbow" );
+	GiveWeapon( "KFGameContent.KFWeap_Rifle_MosinNagant" );
+    GiveWeapon( "KFGameContent.KFWeap_Rifle_M14EBR" );
+    GiveWeapon( "KFGameContent.KFWeap_Rifle_RailGun" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_FNFal" );
+	GiveWeapon( "KFGameContent.KFWeap_Rifle_M99" );
+	GiveWeapon( "KFGameContent.KFWeap_Revolver_Rem1858" );
+	GiveWeapon( "KFGameContent.KFWeap_Revolver_SW500" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_Flare" );
+}
+
+/**
+ * Give the player all Swat weapons
+ */
+simulated exec function SWAT()
+{
+    GiveWeapon( "KFGameContent.KFWeap_SMG_MP7" );
+    GiveWeapon( "KFGameContent.KFWeap_SMG_MP5RAS" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Thompson" );
+	GiveWeapon( "KFGameContent.KFWeap_HRG_Nailgun" );
+    GiveWeapon( "KFGameContent.KFWeap_SMG_P90" );
+    GiveWeapon( "KFGameContent.KFWeap_SMG_HK_UMP");
+    GiveWeapon( "KFGameContent.KFWeap_SMG_Kriss" );
+	GiveWeapon( "KFGameContent.KFWeap_SMG_G18" );
+	GiveWeapon( "KFGameContent.KFWeap_SMG_Medic" );
+	GiveWeapon( "KFGameContent.KFWeap_SMG_Mac10" );
+}
+
+/** Give the player all survivalist weapons */
+exec function Surv()
+{
+    GiveWeapon( "KFGameContent.KFWeap_Ice_FreezeThrower" );
+    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_LazerCutter" );
 }
 
 /**
@@ -1011,11 +1134,13 @@ simulated exec function ScopeFOV(float NewFOV)
     }
 }
 
-simulated exec function March()
+simulated exec function Winter()
 {
-    GiveWeapon( "KFGameContent.KFWeap_SMG_Mac10" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_AF2011" );
-    GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_DualHRGWinterbite" );
+    GiveWeapon( "KFGameContent.KFWeapDef_HRGWinterbite" );
+    GiveWeapon( "KFGameContent.KFWeap_Rifle_HRGIncision" );
+    GiveWeapon( "KFGameContent.KFWeap_SMG_G18" );
+	GiveWeapon( "KFGameContent.KFWeap_Rifle_MosinNagant" );
 }
 
 simulated exec function Summer() //give the player the weapons for the summer update
@@ -1027,30 +1152,6 @@ simulated exec function Summer() //give the player the weapons for the summer up
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MKB42" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhinoDual" );
 }
-/**
- * Give the player all Demolition weapons
- */
-simulated exec function Demo()
-{
-    GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_HX25" );
-    GiveWeapon( "KFGameContent.KFWeap_Thrown_C4" );
-    GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_M79" );
-    GiveWeapon( "KFGameContent.KFWeap_RocketLauncher_RPG7" );
-    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_M16M203" );
-    GiveWeapon( "KFGameContent.KFWeap_RocketLauncher_Seeker6" );
-}
-
-/**
- * Give the player all medic weapons
- */
-simulated exec function Medic()
-{
-    GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Medic" );
-    GiveWeapon( "KFGameContent.KFWeap_Shotgun_Medic" );
-    GiveWeapon( "KFGameContent.KFWeap_SMG_Medic" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_Medic" );
-    GiveWeapon( "KFGameContent.KFWeap_Rifle_Hemogoblin" );
-}
 
 /**
  * Give the player all flame weapons
@@ -1058,20 +1159,6 @@ simulated exec function Medic()
 simulated exec function Flame()
 {
     Firebug();
-}
-
-/**
- * Give the player all Firebug weapons
- */
-simulated exec function Firebug()
-{
-    GiveWeapon( "KFGameContent.KFWeap_Flame_CaulkBurn" );
-    GiveWeapon( "KFGameContent.KFWeap_Shotgun_DragonsBreath" );
-    GiveWeapon( "KFGameContent.KFWeap_Flame_Flamethrower" );
-    GiveWeapon( "KFGameContent.KFWeap_Beam_Microwave" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_Flare" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_DualFlare" );
-    GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
 }
 
 /**
@@ -1083,44 +1170,12 @@ simulated exec function Rifle()
 }
 
 /**
- * Give the player all sharpshooter weapons
- */
-simulated exec function Sharpshooter()
-{
-    GiveWeapon( "KFGameContent.KFWeap_Rifle_Winchester1894" );
-    GiveWeapon( "KFGameContent.KFWeap_Bow_Crossbow" );
-    GiveWeapon( "KFGameContent.KFWeap_Rifle_M14EBR" );
-    GiveWeapon( "KFGameContent.KFWeap_Rifle_RailGun" );
-    GiveWeapon( "KFGameContent.KFWeap_Rifle_CenterfireMB464" );
-    GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhino" );
-}
-
-/**
- * Give the player all Swat weapons
- */
-simulated exec function Swat()
-{
-    GiveWeapon( "KFGameContent.KFWeap_SMG_P90" );
-    GiveWeapon( "KFGameContent.KFWeap_SMG_MP7" );
-    GiveWeapon( "KFGameContent.KFWeap_SMG_MP5RAS" );
-    GiveWeapon( "KFGameContent.KFWeap_SMG_Kriss" );
-    GiveWeapon("KFGameContent.KFWeap_SMG_HK_UMP");
-}
-
-/**
  * Give the player all SMG weapons
  */
 simulated exec function SMG()
 {
     Swat();
     GiveWeapon( "KFGameContent.KFWeap_SMG_Medic" );
-}
-
-/** Give the player all survivalist weapons */
-exec function Surv()
-{
-    GiveWeapon( "KFGameContent.KFWeap_Ice_FreezeThrower" );
-    GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
 }
 
 /* AllWeapons
@@ -4945,6 +5000,10 @@ function class<KFPawn_Monster> LoadMonsterByName(string ZedName, optional bool b
 	else if (Left(ZedName, 4) ~= "Rock")
 	{
 		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedDAR_Rocket" $ VersusSuffix, class'Class'));
+	}
+	else if (Left(ZedName, 1) ~= "M")
+	{
+		SpawnClass = class<KFPawn_Monster>(DynamicLoadObject("KFGameContent.KFPawn_ZedMatriarch" $ VersusSuffix, class'Class'));
 	}
 
     if( SpawnClass != none )

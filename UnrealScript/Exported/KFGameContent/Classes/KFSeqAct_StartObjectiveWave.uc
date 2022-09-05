@@ -11,7 +11,7 @@ class KFSeqAct_StartObjectiveWave extends SequenceAction;
 event Activated()
 {
 	local KFGameInfo_Objective KFGI;
-	
+
 	KFGI = KFGameInfo_Objective(class'WorldInfo'.static.GetWorldInfo().Game);
 	if (KFGI != none)
 	{
@@ -21,6 +21,7 @@ event Activated()
 
 defaultproperties
 {
+   bCallHandler=False
    ObjName="Start Objective Wave"
    ObjCategory="Killing Floor"
    Name="Default__KFSeqAct_StartObjectiveWave"

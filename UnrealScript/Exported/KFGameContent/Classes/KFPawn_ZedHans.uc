@@ -829,7 +829,7 @@ simulated function UpdateShieldColor()
         else if( LastShieldHealthPct >= 0.25f ) // Red
         {
             InvulnerableShieldPSC.SetVectorParameter( 'Shield_Color', MakeVectorFromColor(ShieldColorRed) );
-            InvulnerableShieldPSC.SetVectorParameter( 'Shield_CoreColor', MakeVectorFromColor(ShieldCoreColorRed) );                
+            InvulnerableShieldPSC.SetVectorParameter( 'Shield_CoreColor', MakeVectorFromColor(ShieldCoreColorRed) );
         }
 
         // Scale the invulnerable material param
@@ -851,7 +851,7 @@ simulated function UpdateShieldUIOnLocalController(float ShieldPercent)
 
     if(KFPC != none && KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.bossHealthBar != none)
     {
-        KFPC.MyGFxHUD.bossHealthBar.UpdateBossShield(ShieldPercent);   
+        KFPC.MyGFxHUD.bossHealthBar.UpdateBossShield(ShieldPercent);
     }
 }
 
@@ -903,7 +903,7 @@ simulated function StopHuntAndHealModeFX()
 
 simulated function DetachShieldFX()
 {
-    LastShieldHealthPct = 0.f;    
+    LastShieldHealthPct = 0.f;
     DetachEmitter( InvulnerableShieldPSC );
     UpdateShieldUIOnLocalController(LastShieldHealthPct);
 }
@@ -1151,7 +1151,7 @@ defaultproperties
    BattleDamageFX_Blood_High=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Blood_Spray_01'
    InvulnerableShieldFX=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Hunt_Shield'
    ShieldSocketName="hips"
-   ShieldImpactEffects=KFSkinTypeEffects_HansShield'kfgamecontent.Default__KFPawn_ZedHans:ShieldEffects'
+   ShieldImpactEffects=KFSkinTypeEffects_InvulnerabilityShield'kfgamecontent.Default__KFPawn_ZedHans:ShieldEffects'
    ShieldShatterExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHans:ShatterExploTemplate0'
    ShieldColorGreen=(B=50,G=255,R=50,A=0)
    ShieldCoreColorGreen=(B=0,G=255,R=0,A=0)

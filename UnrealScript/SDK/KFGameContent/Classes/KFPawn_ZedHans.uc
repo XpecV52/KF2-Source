@@ -829,7 +829,7 @@ simulated function UpdateShieldColor()
         else if( LastShieldHealthPct >= 0.25f ) // Red
         {
             InvulnerableShieldPSC.SetVectorParameter( 'Shield_Color', MakeVectorFromColor(ShieldColorRed) );
-            InvulnerableShieldPSC.SetVectorParameter( 'Shield_CoreColor', MakeVectorFromColor(ShieldCoreColorRed) );                
+            InvulnerableShieldPSC.SetVectorParameter( 'Shield_CoreColor', MakeVectorFromColor(ShieldCoreColorRed) );
         }
 
         // Scale the invulnerable material param
@@ -851,7 +851,7 @@ simulated function UpdateShieldUIOnLocalController(float ShieldPercent)
 
     if(KFPC != none && KFPC.MyGFxHUD != none && KFPC.MyGFxHUD.bossHealthBar != none)
     {
-        KFPC.MyGFxHUD.bossHealthBar.UpdateBossShield(ShieldPercent);   
+        KFPC.MyGFxHUD.bossHealthBar.UpdateBossShield(ShieldPercent);
     }
 }
 
@@ -903,7 +903,7 @@ simulated function StopHuntAndHealModeFX()
 
 simulated function DetachShieldFX()
 {
-    LastShieldHealthPct = 0.f;    
+    LastShieldHealthPct = 0.f;
     DetachEmitter( InvulnerableShieldPSC );
     UpdateShieldUIOnLocalController(LastShieldHealthPct);
 }
@@ -1297,7 +1297,7 @@ DefaultProperties
                     HealAmounts={(0.325f, 0.325f, 0.325f, 0.325f)}, // Normal,Hard,Suicidal,HoE
                     MaxShieldHealth={(686, 980, 1400, 1820)}, // Normal,Hard,Suicidal,HoE  //1500  1400, 1500, 1500, 1500  //400, 900, 2000, 1100
                     )}
-                    
+
     BattlePhases(1)={(bCanFrenzy=false, //true
                     //grenades
                     GlobalOffensiveNadePhaseCooldown=25, //15 //35
@@ -1515,7 +1515,87 @@ DefaultProperties
     BattleDamageFX_Blood_High=ParticleSystem'ZED_Hans_EMIT.FX_Hans_Blood_Spray_01'
 
     // invulnerable effects
-    Begin Object Class=KFSkinTypeEffects_HansShield Name=ShieldEffects
+    Begin Object Class=KFSkinTypeEffects_InvulnerabilityShield Name=ShieldEffects
+		ImpactFXArray[0]={(
+			Type=FXG_Ballistic,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[1]={(
+			Type=FXG_Bludgeon,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[2]={(
+			Type=FXG_Piercing,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[3]={(
+			Type=FXG_Slashing,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[4]={(
+			Type=FXG_Fire,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[5]={(
+			Type=FXG_Toxic,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[6]={(
+			Type=FXG_Healing,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[7]={(
+			Type=FXG_Sawblade,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[8]={(
+			Type=FXG_DrainLife,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[9]={(
+			Type=FXG_IncendiaryRound,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[10]={(
+			Type=FXG_UnexplodedGrenade,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[11]={(
+			Type=FXG_MicrowaveBlast,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[12]={(
+			Type=FXG_ShieldBash,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[13]={(
+			Type=FXG_MetalMace,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[14]={(
+			Type=FXG_Flare,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[15]={(
+			Type=FXG_Freeze,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[16]={(
+			Type=FXG_Bludgeon_Chains,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[17]={(
+			Type=FXG_MicrowaveProj,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[18]={(
+			Type=FXG_Electricity,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
+		ImpactFXArray[19]={(
+			Type=FXG_Slashing_Ion,
+			DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',
+			DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')}
     End Object
 
     // Damage/incap scalars

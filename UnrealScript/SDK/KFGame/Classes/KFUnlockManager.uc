@@ -18,7 +18,9 @@ enum ESharedContentUnlock
 	SCU_Zweihander,
 	SCU_ChainBat,
 	SCU_ChiappaRhino,
-	SCU_IonThruster
+	SCU_IonThruster,
+	SCU_MosinNagant,
+	SCU_G18RiotShield,
 };
 
 
@@ -285,4 +287,12 @@ defaultproperties
 		Name=KFWeap_Edged_IonThruster,
 		IconPath="WEP_UI_Ion_Sword_TEX.UI_WeaponSelect_IonSword",
 		ID=7715)}
+	SharedContentList(SCU_MosinNagant)={(
+		Name=KFWeap_Rifle_MosinNagant,
+		IconPath="wep_ui_mosin_tex.UI_WeaponSelect_MosinNagant",
+		ID=7856)}
+	SharedContentList(SCU_G18RiotShield)={(
+		Name=KFWeap_SMG_G18,
+		IconPath="WEP_UI_RiotShield_TEX.UI_WeaponSelect_RiotShield",
+		ID=7850)}
 }

@@ -361,6 +361,11 @@ simulated function class<KFProj_Grenade> GetGrenadeClass()
     return GrenadeClass;
 }
 
+function bool CanEarnSmallRadiusKillXP(class<DamageType> DT)
+{
+    return Class'KFPerk_Berserker'.static.IsDamageTypeOnPerk(class<KFDamageType>(DT)) || Class'KFPerk_Berserker'.static.IsBackupDamageTypeOnPerk(DT);
+}
+
 private final simulated function bool IsTacticalReloadActive()
 {
     return PerkSkills[0].bActive && IsPerkLevelAllowed(0);

@@ -3243,6 +3243,10 @@ simulated event Touch(Actor Other, PrimitiveComponent OtherComp, Vector HitLocat
 simulated function Tick(float DeltaTime)
 {
     super(Actor).Tick(DeltaTime);
+    if(GetIsInZedVictoryState())
+    {
+        return;
+    }
     if((((bSpecialBumpHandling && Role == ROLE_Authority) && MyKFPawn != none) && MyKFPawn.Health >= 0) && !MyKFPawn.IsDoingSpecialMove())
     {
         SpecialBumpHandling(DeltaTime);

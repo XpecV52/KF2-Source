@@ -358,6 +358,12 @@ enum EAIType
 	AT_Siren,
 	AT_Husk,
 	AT_BossRandom,
+	AT_EliteClot,
+	AT_EliteCrawler,
+	AT_EliteGoreFast,
+	AT_EDAR_EMP,
+	AT_EDAR_Laser,
+	AT_EDAR_Rocket,
 };
 
 /** IDs into the BossAIClassList array */
@@ -367,6 +373,7 @@ enum EBossAIType
     BAT_Patriarch,
     BAT_KingFleshpound,
     BAT_KingBloat,
+	BAT_Matriarch,
 };
 
 /** The list of zeds the spawn manager currently has queued up to spawn*/

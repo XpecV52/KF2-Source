@@ -1446,6 +1446,7 @@ HeadShotResetString="打偏的爆头。普通伤害！"
 SuicideMessage=" 刚刚放弃了求生…"
 KilledMessage=" 被活生生吃掉了"
 KillzedBy_PatriarchString=" 再也不能伤害凯文的孩子们"
+KillzedBy_MatriarchString=" 为了更大利益而被杀"
 KillzedBy_HansString="的身体被切下来做进一步的实验"
 KillzedBy_ZedCrawlerString="的脚踝被咬掉了"
 KillzedBy_ZedBloatString=" 被淹死在尸水里"
@@ -1735,13 +1736,13 @@ Fortitude="无所畏惧"
 FortitudeDescription="增加生命总值 75%。"
 
 Ninja="游兵散勇"
-NinjaDescription="使用神射近战武器时，移动速度提升 20%，冲刺速度提升 25%，每秒生成 1 点生命。"
+NinjaDescription="使用神射近战武器时，移动速度提升 20%，冲刺速度提升 25%，每秒生成 2 点生命。"
 
 Vampire="吸血鬼"
 VampireDescription="使用神射武器每杀死一个丧尸可以治愈 4 点生命。使用神射近战武器时攻击速度提升 20%。"
 
 Speed="屠夫"
-SpeedDescription="使用天赋近战武器时攻击速度提升 20%，伤害增加 20%。"
+SpeedDescription="使用神射武器时攻击速度提升 20%，伤害增加 20%。"
 
 Resistance="抗性"
 ResistanceDescription="对所有伤害获得 20% 抗性。对毒药和声波伤害获得额外 20% 抗性。"
@@ -2351,11 +2352,11 @@ DoschHoldDesc="别让丧尸进入标记的区域中"
 DescriptionDoshHold="别让丧尸进入标记的区域中"
 DescriptionDoshHoldShort="保卫区域（可选）"
 RepairObjective="焊接和修理"
-UseWelderToRepair="使用焊机修理损坏的机器"
-UseWelderToRepairShort="焊接损坏的机器"
+UseWelderToRepair="在机器上使用焊机"
+UseWelderToRepairShort="焊接机器"
 UseWelderToRepairTraderPod="使用焊机修理损坏的 Trader Pods"
 UseWelderToRepairTraderPodShort="焊接 Trader Pods"
-RepairObjectiveRequired="待修理的损坏机器："
+RepairObjectiveRequired="袋焊接的机器："
 EscortPawnsObjective="护送"
 EscortPawnsDescription="护送无人机并防止其遭遇丧尸的侵袭"
 EscortPawnsDescriptionShort="护送无人机"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="精锐攻防机器人猎手"
 KFPawn_ZedDAR_Laser="精锐攻防机器人爆破手"
 KFPawn_ZedDAR_Rocket="精锐攻防机器人投弹手"
 KFPawn_ZedPatriarch="长老丧尸"
+KFPawn_ZedMatriarch="女族长"
 KFPawn_ZedBloatKingSubspawn="生成憎恶"
 ;Human zeds
 KFPawn_ZedBloat_Versus="胆汁怪 - 玩家"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="Kriss | 超越地平线 | 太空精英"
 
 ChanceDropDescriptionStrings[0]="招待券"
 ChanceDropDescriptionStrings[1]="黄金招待券"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="无尽黑暗之海",DescriptionString="在困难生存或以上难度的疗养院中成功击败任意首领")
+SpecialEventObjectiveInfoList[1]=(TitleString="某种奢侈的想象",DescriptionString="使用触手鞭击陷阱在疗养院杀死 20 具丧尸")
+SpecialEventObjectiveInfoList[2]=(TitleString="可怕的矛盾",DescriptionString="使用吸捕器在疗养院杀死 20 具丧尸")
+SpecialEventObjectiveInfoList[3]=(TitleString="母性本能",DescriptionString="在任意地图或游戏模式下杀死女族长 10 次")
+SpecialEventObjectiveInfoList[4]=(TitleString="处理家庭事务",DescriptionString="以目标模式困难或更高难度通关生命学实验室")
+
+AllCompleteRewardDescriptionString="FN FAL | 贼鸥 | 动态"
+
+ChanceDropDescriptionStrings[0]="坎卜斯券"
+ChanceDropDescriptionStrings[1]="坎卜斯金奖券"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="蒸汽堡垒"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="阿什伍德疯人院"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="疗养院"
 
 [KFMapInfo]
 ; defaults

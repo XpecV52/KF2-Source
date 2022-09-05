@@ -25,7 +25,7 @@ var bool ba;
 var bool bs;
 var bool bd;
 var bool bdown;
-var bool bup;
+var bool bUp;
 var bool bact;
 var bool balternativekey;
 var bool bdemo04;
@@ -526,7 +526,7 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
                 bdown = true;
                 break;
             case 'LeftAlt':
-                bup = true;
+                bUp = true;
                 break;
             case 'SpaceBar':
                 if(bIsPaused && PC.WorldInfo.Pauser != none)
@@ -1215,7 +1215,7 @@ function bool InputKey(int ControllerId, name Key, Core.Object.EInputEvent Event
                     bdown = false;
                     break;
                 case 'LeftAlt':
-                    bup = false;
+                    bUp = false;
                     break;
                 case 'X':
                     balternativekey = false;

@@ -11891,7 +11891,6 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_13
 End Object
 
 Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_14
-   NewMaterial=MaterialInstanceConstant'ENV_BioticsLab_MAT.lab.ENV_BioticsLab_Centrifuge_Obj_Highlight'
    InputLinks(0)=(DrawY=-1926,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_17')),DrawY=-1926,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_208'),DrawX=285,OverrideDelta=23)
@@ -11906,7 +11905,6 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_14
 End Object
 
 Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_17
-   NewMaterial=MaterialInstanceConstant'ENV_BioticsLab_MAT.lab.ENV_BioticsLab_GloveBox_Obj_Highlight'
    MaterialIndex=1
    InputLinks(0)=(DrawY=-1910,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetMaterial'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetMaterial_15')),DrawY=-1910,OverrideDelta=11)
@@ -11977,7 +11975,6 @@ Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_16
 End Object
 
 Begin Object Class=SeqAct_SetMaterial Name=SeqAct_SetMaterial_15
-   NewMaterial=MaterialInstanceConstant'ENV_BioticsLab_MAT.lab.ENV_BioticsLab_LargeMicroscope_Obj_Highlight'
    InputLinks(0)=(DrawY=-1926,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-1926,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ZEDLANDING.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_172'),DrawX=757,OverrideDelta=23)

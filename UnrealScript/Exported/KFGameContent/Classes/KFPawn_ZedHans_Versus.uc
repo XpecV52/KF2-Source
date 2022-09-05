@@ -135,7 +135,7 @@ defaultproperties
 {
    NerveGasExplosiveBlastTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHans_Versus:ExploTemplate0'
    NerveGasAttackTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHans_Versus:ExploTemplate1'
-   ShieldImpactEffects=KFSkinTypeEffects_HansShield'kfgamecontent.Default__KFPawn_ZedHans_Versus:ShieldEffects'
+   ShieldImpactEffects=KFSkinTypeEffects_InvulnerabilityShield'kfgamecontent.Default__KFPawn_ZedHans_Versus:ShieldEffects'
    ShieldShatterExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedHans_Versus:ShatterExploTemplate0'
    bVersusZed=True
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedHans:MeleeHelper_0'

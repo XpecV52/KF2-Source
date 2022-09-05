@@ -106,7 +106,7 @@ defaultproperties
     BattlePhaseLightTemplateYellow=PointLightComponent'Default__KFPawn_ZedHans_Versus.PointLightComponent1'
     BattlePhaseLightTemplateRed=PointLightComponent'Default__KFPawn_ZedHans_Versus.PointLightComponent2'
     BattlePhaseLightTemplateBlinking=PointLightComponent'Default__KFPawn_ZedHans_Versus.PointLightComponent3'
-    ShieldImpactEffects=KFSkinTypeEffects_HansShield'Default__KFPawn_ZedHans_Versus.ShieldEffects'
+    ShieldImpactEffects=KFSkinTypeEffects_InvulnerabilityShield'Default__KFPawn_ZedHans_Versus.ShieldEffects'
     ShieldShatterExplosionTemplate=KFGameExplosion'Default__KFPawn_ZedHans_Versus.ShatterExploTemplate0'
     bVersusZed=true
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_ZedHans_Versus.MeleeHelper'

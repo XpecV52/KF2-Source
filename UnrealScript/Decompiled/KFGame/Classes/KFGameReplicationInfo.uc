@@ -111,7 +111,8 @@ var private const byte GameSharedUnlocks;
 var byte CurrentGameConductorStatus;
 var byte MusicIntensity;
 var int DebugingNextTraderIndex;
-var KFGFxObject_TraderItems TraderItems;
+var string TraderItemsPath;
+var transient KFGFxObject_TraderItems TraderItems;
 var bool bAllowGrenadePurchase;
 var repnotify bool bTraderIsOpen;
 var repnotify bool bWaveIsActive;
@@ -425,6 +426,7 @@ simulated event PostBeginPlay()
         TraderDialogManager = Spawn(TraderDialogManagerClass);
     }
     SetTimer(1, true);
+    TraderItems = KFGFxObject_TraderItems(DynamicLoadObject(TraderItemsPath, Class'KFGFxObject_TraderItems'));
 }
 
 simulated function ReceivedGameLength()
@@ -1054,7 +1056,14 @@ simulated function RemovePRI(PlayerReplicationInfo PRI)
             ConsoleGameSessionHost = NullId;
         }
     }
+    if(!bMatchHasBegun)
+    {
+        UpdateSharedUnlocks();
+    }
 }
+
+// Export UKFGameReplicationInfo::execUpdateSharedUnlocks(FFrame&, void* const)
+native simulated function UpdateSharedUnlocks();
 
 simulated event bool CanChangePerks()
 {
@@ -1868,7 +1877,7 @@ defaultproperties
     WaveMax=255
     MaxPerkLevel=4
     BossIndex=255
-    TraderItems=KFGFxObject_TraderItems'GP_Trader_ARCH.DefaultTraderItems'
+    TraderItemsPath="GP_Trader_ARCH.DefaultTraderItems"
     bAllowGrenadePurchase=true
     bTradersEnabled=true
     TraderDialogManagerClass=Class'KFTraderDialogManager'

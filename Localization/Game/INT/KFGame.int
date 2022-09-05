@@ -1446,6 +1446,7 @@ HeadShotResetString="Missed Headshot. Normal Damage!"
 SuicideMessage=" just gave up on life..."
 KilledMessage=" was eaten alive"
 KillzedBy_PatriarchString=" can't hurt Kevin's children anymore"
+KillzedBy_MatriarchString=" was killed for the greater good"
 KillzedBy_HansString="s body has been removed for further experimentation"
 KillzedBy_ZedCrawlerString="s ankles have been chewed off"
 KillzedBy_ZedBloatString=" has drowned in bodily fluids"
@@ -2351,11 +2352,11 @@ DoschHoldDesc="Keep Zeds out of the marked area"
 DescriptionDoshHold="Keep Zeds out of the marked area"
 DescriptionDoshHoldShort="Defend the Zone (Optional)"
 RepairObjective="WELD AND REPAIR"
-UseWelderToRepair="Use Welder to repair broken machines"
-UseWelderToRepairShort="Weld Broken Machines"
+UseWelderToRepair="Use Welder on the machines"
+UseWelderToRepairShort="Weld The Machines"
 UseWelderToRepairTraderPod="Use Welder to repair broken Trader Pods"
 UseWelderToRepairTraderPodShort="Weld Trader Pods"
-RepairObjectiveRequired="Broken machines to repair:"
+RepairObjectiveRequired="machines to weld:"
 EscortPawnsObjective="ESCORT"
 EscortPawnsDescription="Escort and defend the Drone from Zeds"
 EscortPawnsDescriptionShort="Escort the Drone"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="E.D.A.R Trapper"
 KFPawn_ZedDAR_Laser="E.D.A.R Blaster"
 KFPawn_ZedDAR_Rocket="E.D.A.R Bomber"
 KFPawn_ZedPatriarch="Patriarch"
+KFPawn_ZedMatriarch="Matriarch"
 KFPawn_ZedBloatKingSubspawn="Abomination Spawn"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bloat - Player"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="Kriss | Beyond Horizon | Space Elite"
 
 ChanceDropDescriptionStrings[0]="Treat Ticket"
 ChanceDropDescriptionStrings[1]="Golden Treat Ticket"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="A time-limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Black Seas of Infinity",DescriptionString="Defeat any boss on Survival Hard or Higher difficulty on Sanitarium")
+SpecialEventObjectiveInfoList[1]=(TitleString="Somewhat Extravagant Imagination",DescriptionString="Use the Tentacle Whip trap to kill 20 Zeds on Sanitarium")
+SpecialEventObjectiveInfoList[2]=(TitleString="Eldritch Contradictions",DescriptionString="Use the Suction Trap to kill 20 Zeds on Sanitarium")
+SpecialEventObjectiveInfoList[3]=(TitleString="Maternal Instincts",DescriptionString="Kill the Matriarch 10 times on any map or game mode")
+SpecialEventObjectiveInfoList[4]=(TitleString="Settling a Family Affair",DescriptionString="Complete Biotics Lab on Objective Hard or higher difficulty")
+
+AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dynamic"
+
+ChanceDropDescriptionStrings[0]="Krampus Ticket"
+ChanceDropDescriptionStrings[1]="Krampus Golden Ticket"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="Steam Fortress"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="Ashwood Asylum"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="Sanitarium"
 
 [KFMapInfo]
 ; defaults

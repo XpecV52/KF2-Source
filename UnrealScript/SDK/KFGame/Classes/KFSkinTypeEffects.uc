@@ -83,165 +83,106 @@ cpptext
 	virtual void PostLoad();
 }
 
-/** Plays clientside particle effect based on damage type  */
-function PlayImpactParticleEffect(KFPawn P, vector HitLocation, vector HitDirection, byte HitZoneIndex, EEffectDamageGroup EffectGroup)
+function PlayImpactParticleEffect(
+	KFPawn P, vector HitLocation, vector HitDirection, byte HitZoneIndex, EEffectDamageGroup EffectGroup)
 {
 	local ParticleSystem ParticleTemplate;
+	local name HitBoneName;
 
 	ParticleTemplate = GetImpactParticleEffect(EffectGroup);
-	if ( ParticleTemplate == None )
+	if (ParticleTemplate == None)
 	{
 		return;
 	}
 
-	if ( ImpactFXArray[EffectGroup].bAttachParticle ) // Spawn effect and attach to bone
-	{
-		AttachEffectToBone( P, ParticleTemplate, HitZoneIndex );
-	}
-	else if( ImpactFXArray[EffectGroup].bAttachToHitLocation ) // Spawn effect and attach to bone with offset
-	{
-		AttachEffectToHitLocation( P, ParticleTemplate, HitZoneIndex, HitLocation, HitDirection );
-	}
-	else // Spawn effect, no attachment
-	{
-		switch(EffectGroup)
-		{
-			case FXG_Bludgeon:
-			case FXG_Piercing:
-			case FXG_Slashing:
-			case FXG_SawBlade:
-				MeleeSpawnEffect(P , ParticleTemplate, HitLocation, HitDirection );
-				break;
-			default:
-				DefaultSpawnEffect(P , ParticleTemplate, HitLocation, HitDirection );
-				break;
-		}
-	}
-}
-
-function ParticleSystemComponent AttachEffectToBone( KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex )
-{
-	local name HitBoneName;
-	local ParticleSystemComponent PSC;
-
-	// make sure enough time passes between spawning emitters
-	if( `TimeSinceEx(P, P.LastImpactParticleEffectTime) < ImpactParticleEffectInterval )
-	{
-		return None;
-	}
-	P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
-
-	HitBoneName = (HitZoneIndex != 255 && HitZoneIndex < P.HitZones.Length) ? P.HitZones[HitZoneIndex].BoneName : P.TorsoBoneName;
-	PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitterMeshAttachment(ParticleTemplate, P.Mesh, HitBoneName, false);
-
-	// Make the particle system ignore bone rotation
-	PSC.SetAbsolute(false, true, true);
-	return PSC;
-}
-
-/** Attaches effect to nearest bone. Doesn't not account for rotation. Can be overridden for different effects. */
-function ParticleSystemComponent AttachEffectToHitLocation( KFPawn P, ParticleSystem ParticleTemplate, int HitZoneIndex, vector HitLocation, vector HitDirection )
-{
-	local name HitBoneName;
-	local int HitBoneIdx;
-	local vector BoneSpaceHitLocation, EmitterLocationOffset;
-	local ParticleSystemComponent PSC;
-
-	// make sure enough time passes between spawning emitters
-	if( `TimeSinceEx(P, P.LastImpactParticleEffectTime) < ImpactParticleEffectInterval )
-	{
-		return None;
-	}
-
-	// HitZone==255 is unsupported for this type
-	if ( HitZoneIndex != 255 && HitZoneIndex < P.HitZones.Length )
-	{
-		HitBoneName = P.HitZones[HitZoneIndex].BoneName;
-		HitBoneIdx = P.Mesh.MatchRefBone(HitBoneName);
-
-		if( HitBoneIdx != INDEX_NONE )
-		{
-			// Transform the hit location to the coordinate system of the hit bone
-			BoneSpaceHitLocation = InverseTransformVector(P.Mesh.GetBoneMatrix(HitBoneIdx), HitLocation);
-
-			// Now that we have the bone space hit location, the offset is = BoneSpaceHitLocation - vect(0,0,0)
-			EmitterLocationOffset = BoneSpaceHitLocation;
-
-			PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitterMeshAttachment(
-				ParticleTemplate,
-				P.Mesh,
-				HitBoneName,
-				false,
-				EmitterLocationOffset);
-
-			if( PSC != none )
-			{
-				P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
-
-				// Make the particle system ignore bone rotation
-				PSC.SetAbsolute(false, true, true);
-				return PSC;
-			}
-		}
-	}
-
-	return none;
-}
-
-/** For melee weapons orient along the hit direction */
-function ParticleSystemComponent MeleeSpawnEffect( KFPawn P, ParticleSystem ParticleTemplate, vector HitLocation, vector HitDirection )
-{
-	local ParticleSystemComponent PSC;
-
-	// Don't spawn more than one effect per frame
-	if( `TimeSinceEx(P, P.LastImpactParticleEffectTime) == 0 )
-	{
-		return None;
-	}
-	P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
-
-	// START DEBUG
-	//P.DrawDebugLine(HitLocation - HitDirection*20, HitLocation + HitDirection*20, 255, 0, 255, true);
-	// END DEBUG
-
-	PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitter(ParticleTemplate, HitLocation, rotator(-HitDirection));
-	if( PSC != none )
-	{
-		PSC.SetLightingChannels(P.PawnLightingChannel);
-	}
-	return PSC;
-}
-
-/** For normal bullet type weapons orient perpendicular to HitDirection */
-function ParticleSystemComponent DefaultSpawnEffect( KFPawn P, ParticleSystem ParticleTemplate, vector HitLocation, vector HitDirection )
-{
-	local vector EmitterDir, EmitterDirRight, EmitterDirLeft, RelativeHitLoc;
-	local ParticleSystemComponent PSC;
-
 	// Don't spawn more than one effect per frame if on low detail
-	if( P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == DM_Low )
+	if (P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == DM_Low)
 	{
-		if( `TimeSinceEx(P, P.LastImpactParticleEffectTime) == 0 )
+		if (`TimeSinceEx(P, P.LastImpactParticleEffectTime) == 0)
 		{
-			return None;
+			return;
 		}
 		P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
 	}
 
-	//P.DrawDebugLine(HitLocation - HitDirection*20, HitLocation + HitDirection*20, 255, 0, 0, true);
-
-	// orient the effect perpendicular to HitDirection and away from the victim to make it more noticeable
-	HitDirection.Z = 0.f;
-	EmitterDirRight = HitDirection cross vect(0,0,1);
-	EmitterDirLeft = -EmitterDirRight;
-	RelativeHitLoc = HitLocation - P.Location;
-	EmitterDir = EmitterDirRight dot RelativeHitLoc >= 0 ? EmitterDirRight : EmitterDirLeft;
-
-	PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitter(ParticleTemplate, HitLocation, rotator(EmitterDir));
-	if( PSC != none )
+	if (ConfigureEmitter(P, HitLocation, HitDirection, HitZoneIndex, HitLocation, HitDirection, HitBoneName, EffectGroup))
 	{
-		PSC.SetLightingChannels(P.PawnLightingChannel);
+		SpawnEmitter(P, ParticleTemplate, HitBoneName, HitLocation, HitDirection);
 	}
+}
+
+function bool ConfigureEmitter(KFPawn P, vector InHitLocation, vector InHitDirection, int HitZoneIndex,
+	out vector OutHitLocation, out vector OutHitDirection, out name OutHitBoneName, EEffectDamageGroup EffectGroup)
+{
+	local int HitBoneIdx;
+	local vector HitDirectionRight, HitDirectionLeft, RelativeHitDirection;
+
+	if (ImpactFXArray[EffectGroup].bAttachParticle) // Spawn effect and attach to bone
+	{
+		OutHitBoneName = (HitZoneIndex < P.HitZones.Length) ?
+			P.HitZones[HitZoneIndex].BoneName :
+			P.TorsoBoneName;
+	}
+	else if (ImpactFXArray[EffectGroup].bAttachToHitLocation) // Spawn effect and attach to bone with offset
+	{
+		if (HitZoneIndex >= P.HitZones.Length)
+		{
+			return false;
+		}
+
+		OutHitBoneName = P.HitZones[HitZoneIndex].BoneName;
+		HitBoneIdx = P.Mesh.MatchRefBone(OutHitBoneName);
+		OutHitLocation = InverseTransformVector(P.Mesh.GetBoneMatrix(HitBoneIdx), InHitLocation);
+	}
+	else // Spawn effect, no attachment
+	{
+		switch (EffectGroup)
+		{
+		case FXG_Bludgeon:
+		case FXG_Piercing:
+		case FXG_Slashing:
+		case FXG_SawBlade:
+			OutHitDirection = -InHitDirection;
+			break;
+		default:
+			InHitDirection.Z = 0.f;
+			HitDirectionRight = InHitDirection cross vect(0,0,1);
+			HitDirectionLeft = -HitDirectionRight;
+			RelativeHitDirection = InHitLocation - P.Location;
+			OutHitDirection = HitDirectionRight dot RelativeHitDirection >= 0 ? HitDirectionRight : HitDirectionLeft;
+			break;
+		}
+	}
+
+	return true;
+}
+
+function ParticleSystemComponent SpawnEmitter(
+	KFPawn P, ParticleSystem ParticleTemplate, optional name HitBoneName,
+	optional vector HitLocation, optional vector HitDirection)
+{
+	local ParticleSystemComponent PSC;
+
+	if (HitBoneName != `NAME_None)
+	{
+		PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitterMeshAttachment(
+			ParticleTemplate, P.Mesh, HitBoneName, false, HitLocation, rotator(HitDirection));
+
+		// Make the particle system ignore bone rotation
+		if (PSC != none)
+		{
+			PSC.SetAbsolute(false, true, true);
+		}
+	}
+	else
+	{
+		PSC = P.WorldInfo.ImpactFXEmitterPool.SpawnEmitter(ParticleTemplate, HitLocation, rotator(HitDirection));
+		if (PSC != none)
+		{
+			PSC.SetLightingChannels(P.PawnLightingChannel);
+		}
+	}
+
 	return PSC;
 }
 

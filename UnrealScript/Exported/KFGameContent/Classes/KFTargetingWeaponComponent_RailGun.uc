@@ -7,10 +7,15 @@
 //=============================================================================
 class KFTargetingWeaponComponent_RailGun extends KFTargetingWeaponComponent;
 
+/** returns true if lock-on is possible */
+simulated function bool AllowTargetLockOn(byte TargetingMode)
+{
+	return super.AllowTargetLockOn(TargetingMode) && KFW.bUsingSights;
+}
+
 defaultproperties
 {
-   TargetingEnabled(0)=1
-   TargetZeds(0)=1
+   TargetingModeFlags(0)=1
    LockRange(0)=200000.000000
    LockAcquireTime(0)=0.350000
    LockAcquireTime_Large(0)=0.600000
@@ -18,7 +23,7 @@ defaultproperties
    LockAcquireTime_Versus(0)=1.100000
    LockTolerance(0)=0.200000
    LockAim(0)=0.995000
-   LockTargetingSoundInterval=0.090000
+   LockTargetingSoundInterval(0)=0.090000
    LockAcquiredSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locked'
    LockLostSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Lost'
    LockTargetingSoundFirstPerson=AkEvent'WW_WEP_SA_Railgun.Play_Railgun_Scope_Locking'

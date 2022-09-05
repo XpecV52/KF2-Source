@@ -348,8 +348,8 @@ function ClearMarketplaceItemPurchasedDelegate( delegate<OnMarketplaceItemPurcha
 
 defaultproperties
 {
-   ConsumablesCount=59
-   DurablesCount=23
+   ConsumablesCount=72
+   DurablesCount=30
    Name="Default__OnlineMarketplaceInterfaceDingo"
    ObjectArchetype=Object'Core.Default__Object'
 }

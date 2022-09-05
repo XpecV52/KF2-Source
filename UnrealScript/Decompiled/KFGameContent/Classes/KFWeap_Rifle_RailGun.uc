@@ -85,13 +85,13 @@ simulated function StartAmbientSound()
 {
     if(((Instigator != none) && Instigator.IsLocallyControlled()) && Instigator.IsFirstPerson())
     {
-        PostAkEventOnBone(AmbientSoundPlayEvent, AmbientSoundSocketName, false, true);
+        PostAkEventOnBone(AmbientSoundPlayEvent, AmbientSoundSocketName, false, false);
     }
 }
 
 simulated function StopAmbientSound()
 {
-    PostAkEventOnBone(AmbientSoundStopEvent, AmbientSoundSocketName, false, true);
+    PostAkEventOnBone(AmbientSoundStopEvent, AmbientSoundSocketName, false, false);
 }
 
 simulated function DetachWeapon()
@@ -127,12 +127,14 @@ simulated function InstantFireClient()
     local int Idx;
     local ImpactInfo RealImpact;
     local float CurPenetrationValue;
+    local Vector AimLocation;
 
     bInstantHit = true;
+    AimLocation = GetInstantFireAimLocation();
     StartTrace = GetSafeStartTraceLocation();
-    if(!IsZero(TargetingComp.LockedAimLocation))
+    if(!IsZero(AimLocation))
     {
-        AimRot = rotator(Normal(TargetingComp.LockedAimLocation - StartTrace));
+        AimRot = rotator(Normal(AimLocation - StartTrace));
         EndTrace = StartTrace + (vector(AimRot) * (GetTraceRange()));        
     }
     else
@@ -159,19 +161,24 @@ simulated function InstantFireClient()
     {
         InstantFireClient_AddImpacts(StartTrace, AimRot, ImpactList);
         Idx = 0;
-        J0x27E:
+        J0x268:
 
         if(Idx < ImpactList.Length)
         {
             ProcessInstantHitEx(CurrentFireMode, ImpactList[Idx],, CurPenetrationValue, Idx);
             ++ Idx;
-            goto J0x27E;
+            goto J0x268;
         }
         if(Instigator.Role < ROLE_Authority)
         {
             SendClientImpactList(CurrentFireMode, ImpactList);
         }
     }
+}
+
+simulated function Vector GetInstantFireAimLocation()
+{
+    return TargetingComp.LockedAimLocation[0];
 }
 
 simulated function OnRender(Canvas C)
@@ -185,9 +192,9 @@ simulated function OnRender(Canvas C)
     I = 0;
     J0x1C:
 
-    if(I < TargetingComp.TargetVulnerableLocations.Length)
+    if(I < TargetingComp.TargetVulnerableLocations_Zed.Length)
     {
-        if(!IsZero(TargetingComp.TargetVulnerableLocations[I]))
+        if(!IsZero(TargetingComp.TargetVulnerableLocations_Zed[I]))
         {
             DrawTargetingIcon(C, I);
         }
@@ -203,7 +210,7 @@ simulated function DrawTargetingIcon(Canvas Canvas, int Index)
     local float IconSize, IconScale;
     local Vector2D ScreenPos;
 
-    WorldPos = TargetingComp.TargetVulnerableLocations[Index];
+    WorldPos = TargetingComp.TargetVulnerableLocations_Zed[Index];
     ScreenPos = WorldToCanvas(Canvas, WorldPos);
     IconScale = FMin(float(Canvas.SizeX) / 1024, 1);
     IconScale *= FClamp(1 - (VSize(WorldPos - Instigator.Location) / 4000), 0.2, 1);
@@ -215,13 +222,13 @@ simulated function DrawTargetingIcon(Canvas Canvas, int Index)
         return;
     }
     Canvas.SetPos(ScreenPos.X, ScreenPos.Y);
-    if((TargetingComp.LockedHitZone >= 0) && Index == TargetingComp.LockedHitZone)
+    if((TargetingComp.LockedHitZone[0] >= 0) && Index == TargetingComp.LockedHitZone[0])
     {
         Canvas.DrawTile(LockedHitZoneIcon, IconSize, IconSize, 0, 0, float(LockedHitZoneIcon.SizeX), float(LockedHitZoneIcon.SizeY), RedIconColor);        
     }
     else
     {
-        if((TargetingComp.PendingHitZone >= 0) && Index == TargetingComp.PendingHitZone)
+        if((TargetingComp.PendingHitZone[0] >= 0) && Index == TargetingComp.PendingHitZone[0])
         {
             Canvas.DrawTile(LockedHitZoneIcon, IconSize, IconSize, 0, 0, float(LockedHitZoneIcon.SizeX), float(LockedHitZoneIcon.SizeY), YellowIconColor);            
         }

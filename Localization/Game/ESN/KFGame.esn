@@ -1446,6 +1446,7 @@ HeadShotResetString="Disparo a la cabeza fallido. Daño normal."
 SuicideMessage=" no quiere seguir viviendo..."
 KilledMessage=" ha sido devorado vivo"
 KillzedBy_PatriarchString=" ya no puede hacerle daño a los hijos de Kevin"
+KillzedBy_MatriarchString=" ha sido asesinado por el bien común"
 KillzedBy_HansString="ha sido donado a la ciencia"
 KillzedBy_ZedCrawlerString="se ha quedado sin tobillos"
 KillzedBy_ZedBloatString=" se ha ahogado en fluidos corporales"
@@ -1735,13 +1736,13 @@ Fortitude="Acorazado"
 FortitudeDescription="Aumenta la salud total un 75 %."
 
 Ninja="Escaramuzador"
-NinjaDescription="Muévete un 20 % más rápido, esprinta un 25 % y regenera 1 punto de salud cada segundo al usar armas de especialización."
+NinjaDescription="Muévete un 20 % más rápido y esprinta un 25 % más rápido al usar armas de especialización. Además, regeneras 2 puntos de salud por segundo."
 
 Vampire="Vampiro"
 VampireDescription="Cúrate 4 puntos de salud por cada zed que mates con armas de especialización. Ataca un 20 % más rápido con armas c/c de esp."
 
 Speed="Carnicero"
-SpeedDescription="Ataca un 20 % más rápido e inflige un 20 % más de daño con armas cuerpo a cuerpo."
+SpeedDescription="Ataca un 20 % más rápido e inflige un 20 % más de daño con armas de especialización."
 
 Resistance="Resistencia"
 ResistanceDescription="Gana un 20 % de resistencia contra todo el daño. Gana un 20 % de resistencia adicional contra veneno y daño sónico."
@@ -2351,11 +2352,11 @@ DoschHoldDesc="Mantener a los zeds fuera de la zona marcada."
 DescriptionDoshHold="Mantener a los zeds fuera de la zona marcada."
 DescriptionDoshHoldShort="Defender el área (opcional)"
 RepairObjective="SOLDAR Y REPARAR"
-UseWelderToRepair="Usa el soldador para reparar máquinas rotas"
-UseWelderToRepairShort="Soldar máquinas rotas"
+UseWelderToRepair="Usa el soldador en las máquinas"
+UseWelderToRepairShort="Soldar máquinas"
 UseWelderToRepairTraderPod="Usa el soldador para reparar cápsulas de venta rotas"
 UseWelderToRepairTraderPodShort="Suelda cápsulas de venta"
-RepairObjectiveRequired="Máquinas rotas por reparar:"
+RepairObjectiveRequired="máquinas por soldar:"
 EscortPawnsObjective="ESCOLTA"
 EscortPawnsDescription="Escolta y defiende al dron frente a los zeds"
 EscortPawnsDescriptionShort="Escolta al dron"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="R.E.D.A. trampero"
 KFPawn_ZedDAR_Laser="R.E.D.A. artificiero"
 KFPawn_ZedDAR_Rocket="R.E.D.A. bombardero"
 KFPawn_ZedPatriarch="Patriarca"
+KFPawn_ZedMatriarch="Matriarca"
 KFPawn_ZedBloatKingSubspawn="Cría de abominación"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bloat - Jugador"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="Kriss | Más allá del horizonte | Élite es
 
 ChanceDropDescriptionStrings[0]="Boleto de trato"
 ChanceDropDescriptionStrings[1]="Boleto de trato dorado"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="Un evento especial por tiempo limitado con objetos exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Mar negro del infinito",DescriptionString="Derrota a un jefe cualquiera en la dificultad Difícil de Supervivencia o superior en el Manicomio")
+SpecialEventObjectiveInfoList[1]=(TitleString="Una imaginación desbordante",DescriptionString="Usa la trampa látigo tentacular para matar 20 Zeds en Manicomio")
+SpecialEventObjectiveInfoList[2]=(TitleString="Contradicciones sobrenaturales",DescriptionString="Usa la trampa de succión para matar 20 Zeds en Manicomio")
+SpecialEventObjectiveInfoList[3]=(TitleString="Instinto maternal",DescriptionString="Mata a La matriarca 10 veces en cualquier mapa o tipo de partida")
+SpecialEventObjectiveInfoList[4]=(TitleString="Arreglando un asunto familiar",DescriptionString="Completa Laboratorio biótico en la dificultad Difícil de Objetivo o superior")
+
+AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dinámico"
+
+ChanceDropDescriptionStrings[0]="Boleto Krampus"
+ChanceDropDescriptionStrings[1]="Boleto dorado Krampus"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="Steam Fortress"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="Manicomio de Ashwood"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="Manicomio"
 
 [KFMapInfo]
 ; defaults

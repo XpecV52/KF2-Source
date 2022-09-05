@@ -254,7 +254,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 		case SEI_Fall:
 			return class'KFGFxFall2019ObjectivesContainer';
 		case SEI_Winter:
-			return class'KFGFxChristmasObjectivesContainer';
+			return class'KFGFxSpecialEventObjectivesContainer_Xmas2019';
 	}
 
 	return class'KFGFxSpecialEventObjectivesContainer';
@@ -1966,9 +1966,10 @@ defaultproperties
    StockMaps(22)="kf-tragickingdom"
    StockMaps(23)="kf-shoppingspree"
    StockMaps(24)="kf-santasworkshop"
-   StockMaps(25)="kf-spillway"
-   StockMaps(26)="kf-steamfortress"
-   StockMaps(27)="kf-ashwoodasylum"
+   StockMaps(25)="kf-sanitarium"
+   StockMaps(26)="kf-spillway"
+   StockMaps(27)="kf-steamfortress"
+   StockMaps(28)="kf-ashwoodasylum"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
    SubWidgetBindings(1)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
    SubWidgetBindings(2)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')

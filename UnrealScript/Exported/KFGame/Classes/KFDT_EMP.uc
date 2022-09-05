@@ -627,6 +627,35 @@ class KFDT_EMP extends KFDamageType
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 14
 
 /** Returns ID of dialog event for killer to speak after killing a zed using this damage type */

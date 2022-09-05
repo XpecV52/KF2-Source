@@ -1446,6 +1446,7 @@ HeadShotResetString="爆頭未擊中。普通傷害！"
 SuicideMessage=" 已經放棄生命…"
 KilledMessage=" 被生吞了"
 KillzedBy_PatriarchString=" 不能再傷害凱文的孩子了"
+KillzedBy_MatriarchString=" 為了大義而被殺死"
 KillzedBy_HansString="的屍體已被收去進行研究"
 KillzedBy_ZedCrawlerString="的腳踝已被咬掉"
 KillzedBy_ZedBloatString=" 已淹死在體液中"
@@ -1735,13 +1736,13 @@ Fortitude="勇士"
 FortitudeDescription="血量增加 75%。"
 
 Ninja="散兵"
-NinjaDescription="移動速度增加 20%，衝刺速度增加 25%，使用職業近身武器時每秒回復 1 點血量。"
+NinjaDescription="移動速度增加 20%，衝刺速度增加 25%，使用職業武器時每秒回復 2 點血量。"
 
 Vampire="吸血鬼"
 VampireDescription="每次使用近身武器殺死 Zed 可回復 4 點血量。使用職業近身武器攻擊時速度增加 20%。"
 
 Speed="屠夫"
-SpeedDescription="使用職業近身武器時攻擊速度增加 20%，傷害增加 20%。"
+SpeedDescription="使用職業武器時攻擊速度增加 20%，傷害增加 20%。"
 
 Resistance="抗性"
 ResistanceDescription="對所有傷害抵抗增加 20%毒害與超音波傷害抵抗再增加 20%"
@@ -2351,11 +2352,11 @@ DoschHoldDesc="別讓喪屍進入標記的區域中"
 DescriptionDoshHold="別讓喪屍進入標記的區域中"
 DescriptionDoshHoldShort="保衛區域（非必要）"
 RepairObjective="焊接和維修"
-UseWelderToRepair="使用焊槍來維修壞掉的機器"
-UseWelderToRepairShort="焊接壞掉的機器"
+UseWelderToRepair="在機械上使用焊槍"
+UseWelderToRepairShort="焊接機器"
 UseWelderToRepairTraderPod="使用焊槍來維修壞掉的商人艙"
 UseWelderToRepairTraderPodShort="焊接商人艙"
-RepairObjectiveRequired="修理壞掉的機器數量："
+RepairObjectiveRequired="要焊接的機器："
 EscortPawnsObjective="護送"
 EscortPawnsDescription="護送並保護無人機不受 Zed 攻擊"
 EscortPawnsDescriptionShort="護送無人機"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="精銳攻防機器人獵手"
 KFPawn_ZedDAR_Laser="精銳攻防機器人爆破手"
 KFPawn_ZedDAR_Rocket="精銳攻防機器人投彈手"
 KFPawn_ZedPatriarch="長老"
+KFPawn_ZedMatriarch="Matriarch"
 KFPawn_ZedBloatKingSubspawn="產生憎惡"
 ;Human zeds
 KFPawn_ZedBloat_Versus="胖胖 - 玩家"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="Kriss | 超越地平線 | 太空菁英"
 
 ChanceDropDescriptionStrings[0]="優待票券"
 ChanceDropDescriptionStrings[1]="金色優待票券"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="內含特有道具的限時活動"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="無盡黑海",DescriptionString="在療養院以生存模式困難或更高難度擊敗任意頭目")
+SpecialEventObjectiveInfoList[1]=(TitleString="有些誇張的想象",DescriptionString="利用觸手鞭打陷阱於療養院擊殺 20 Zed")
+SpecialEventObjectiveInfoList[2]=(TitleString="可怕的矛盾",DescriptionString="利用抽吸陷阱於療養院擊殺 20 Zed")
+SpecialEventObjectiveInfoList[3]=(TitleString="母性本能",DescriptionString="於任意地圖或遊戲模式擊殺 Matriarch 10 次")
+SpecialEventObjectiveInfoList[4]=(TitleString="解決家庭事務",DescriptionString="在目標困難或更高難度下完成生化實驗室")
+
+AllCompleteRewardDescriptionString="FN FAL | 獵人 | 動態"
+
+ChanceDropDescriptionStrings[0]="坎普斯票券"
+ChanceDropDescriptionStrings[1]="坎普斯金色票券"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="蒸汽要塞"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="灰木瘋人院"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="療養院"
 
 [KFMapInfo]
 ; defaults

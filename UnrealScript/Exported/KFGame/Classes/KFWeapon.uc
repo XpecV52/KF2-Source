@@ -656,6 +656,9 @@ var transient float LastReloadAbortTime;
 /** How long to wait after firing to force reload */
 var() float	ForceReloadTimeOnEmpty;
 
+// In support of dynamic weapon skins
+var transient int ShotsHit;
+
 /*********************************************************************************************
  * @name  Fire Effects
  ******************************************************************************************* */
@@ -1299,10 +1302,18 @@ simulated event ReplicatedEvent(name VarName)
 	{
 	case nameof(MedicCompRepActor):
 		MedicComp = KFMedicWeaponComponent(MedicCompRepActor);
+		if (MedicComp != none)
+		{
+			MedicComp.Init(self, AmmoCost[ALTFIRE_FIREMODE]);
+		}
 		break;
 
 	case nameof(TargetingCompRepActor):
 		TargetingComp = KFTargetingWeaponComponent(TargetingCompRepActor);
+		if (TargetingComp != none)
+		{
+			TargetingComp.Init(self);
+		}
 		break;
 
 	default:
@@ -1340,15 +1351,15 @@ simulated event PreBeginPlay()
 	{
 		if (MedicCompClass != none)
 		{
-			MedicComp = Spawn(MedicCompClass, self);
-			MedicComp.Init(AmmoCost[ALTFIRE_FIREMODE]);
+			MedicComp = Spawn(MedicCompClass, Owner);
+			MedicComp.Init(self, AmmoCost[ALTFIRE_FIREMODE]);
 			MedicCompRepActor = MedicComp;
 		}
 
 		if (TargetingCompClass != none)
 		{
-			TargetingComp = Spawn(TargetingCompClass, self);
-			TargetingComp.Init();
+			TargetingComp = Spawn(TargetingCompClass, Owner);
+			TargetingComp.Init(self);
 			TargetingCompRepActor = TargetingComp;
 		}
 	}
@@ -1443,6 +1454,33 @@ native function SetWeaponSkinPostLoad();
 native reliable server private event ServerUpdateWeaponSkin(int ItemId);
 native private function ClearSkinItemId();
 
+simulated function Timer_UpdateWeaponSkin()
+{
+	local int i, AmmoType;
+	local float MagazinePct, ShotsFiredPct, ShotsHitPct;
+
+	if (WeaponMICs.Length > 0)
+    {
+		AmmoType = GetAmmoType(CurrentFireMode);
+		if (AmmoType == 0)
+		{
+			MagazinePct = 1.f - (float(AmmoCount[AmmoType]) / float(MagazineCapacity[AmmoType]));
+			ShotsFiredPct = float(MagazineCapacity[AmmoType] - AmmoCount[AmmoType]) / float(MagazineCapacity[AmmoType]);
+			ShotsHitPct = float(ShotsHit) / float(MagazineCapacity[AmmoType]);
+
+			for (i = 0; i < WeaponMICs.Length; ++i)
+			{
+				if (WeaponMICs[i] != none)
+				{
+					WeaponMICs[i].SetScalarParameterValue('AmmoCount', MagazinePct);
+					WeaponMICs[i].SetScalarParameterValue('ShotsFired', ShotsFiredPct);
+					WeaponMICs[i].SetScalarParameterValue('ShotsHit', ShotsHitPct);
+				}
+			}
+		}
+    }
+}
+
 //StartLoad will trigger an async package load.  The registered callback will then
 //		call LoadWeaponContent on this weapon when the package is ready.
 //
@@ -1515,6 +1553,14 @@ function ItemRemovedFromInvManager()
 	if (MedicComp != none)
 	{
 		MedicComp.OnWeaponRemovedFromInvManager();
+		MedicComp.Destroy();
+		MedicComp = none;
+	}
+
+	if (TargetingComp != none)
+	{
+		TargetingComp.Destroy();
+		TargetingComp = none;
 	}
 }
 
@@ -1685,6 +1731,12 @@ simulated function AttachWeaponTo( SkeletalMeshComponent MeshCpnt, optional Name
 	{
 		TargetingComp.OnWeaponAttachedTo();
 	}
+
+	if (WorldInfo.NetMode != NM_DedicatedServer && SkinItemId > 0 && class'KFWeaponSkinList'.static.SkinNeedsCodeUpdates(SkinItemId))
+	{
+		Timer_UpdateWeaponSkin();
+		SetTimer(0.5f, true, nameof(Timer_UpdateWeaponSkin));
+	}
 }
 
 /** Assign a new 3rd person weapon attachment  */
@@ -1774,6 +1826,11 @@ simulated function DetachWeapon()
 	if (TargetingComp != none)
 	{
 		TargetingComp.OnWeaponDetached();
+	}
+
+	if (IsTimerActive(nameof(Timer_UpdateWeaponSkin)))
+	{
+		ClearTimer(nameof(Timer_UpdateWeaponSkin));
 	}
 }
 
@@ -1918,12 +1975,6 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 				return;
 			}
 		}
-	}
-
-	// assign weapon skin from the pickup mesh
-	if ( PickedUpWeapon.SkinItemId > 0 )
-	{
-		ClientSetFirstPersonSkin(PickedUpWeapon.SkinItemId);
 	}
 
 	ClientForceAmmoUpdate( AmmoCount[0],SpareAmmoCount[0] );
@@ -3815,6 +3866,7 @@ simulated function TraceImpactHitZones(vector StartTrace, vector EndTrace, out a
 			// missed all hit zones.  Handle in KFPawn.AdjustDamage().
 			if ( HitZoneImpactList.Length > 0 )
 			{
+				HitZoneImpactList[0].StartTrace = ImpactList[i].StartTrace;
 				HitZoneImpactList[0].RayDir = ImpactList[i].RayDir;
 				ImpactList[i] = HitZoneImpactList[0];
 			}
@@ -4173,9 +4225,9 @@ simulated function KFProjectile SpawnProjectile( class<KFProjectile> KFProjClass
 
 	if (MedicComp != none && KFProj_HealingDart(SpawnedProjectile) != None)
 	{
-		if (TargetingComp != none && TargetingComp.LockedTarget != none)
+		if (TargetingComp != none && TargetingComp.LockedTarget[1] != none)
 		{
-			KFProj_HealingDart(SpawnedProjectile).SeekTarget = TargetingComp.LockedTarget;
+			KFProj_HealingDart(SpawnedProjectile).SeekTarget = TargetingComp.LockedTarget[1];
 		}
 	}
 
@@ -4297,6 +4349,11 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
             {
                 KFPlayer.AddShotsHit(1);
             }
+
+			if (GetAmmoType(FiringMode) == 0)
+			{
+				ShotsHit++;
+			}
 		}
 
 		Impact.HitActor.TakeDamage( TotalDamage, Instigator.Controller,
@@ -7371,6 +7428,8 @@ simulated function PerformReload(optional byte FireModeNum)
 	{
 		ReloadAmountLeft--;
 	}
+
+	ShotsHit = 0;
 }
 
 /**

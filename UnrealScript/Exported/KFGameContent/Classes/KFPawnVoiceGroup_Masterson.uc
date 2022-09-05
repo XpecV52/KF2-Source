@@ -616,6 +616,35 @@ class KFPawnVoiceGroup_Masterson extends KFPawnVoiceGroup;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 3
 
 defaultproperties

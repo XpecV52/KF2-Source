@@ -628,6 +628,35 @@ class KFDT_Ballistic_HansAK12 extends KFDT_Ballistic_AK12
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 15
 
 static function int GetKillerDialogID()

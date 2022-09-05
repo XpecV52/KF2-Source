@@ -30,6 +30,8 @@ HeadshotFXBundle1Name="Kopfschuss-FX Paket 1"
 HeadshotFXBundle2Name="Kopfschuss-FX Paket 2"
 RhinoRevolverBundleName="Rhino-Revolver-Paket"
 IonThrusterBundleName="Ionenschwert-Paket"
+RiotShieldG18BundleName="Aufstands-Schild und G18-Paket"
+MosinNagantBundleName="Mosin-Nagant-Paket"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Serie #4 Verschönerungs-Bronze-Box"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Serie #4 Verschönerungs-Silber-Box"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Serie #4 Verschönerungs-Gold-Box"
@@ -45,6 +47,9 @@ HorzineSupplyEmoteCrateSeries1GoldBundlePackName="Serie #1 Emote-Gold-Box"
 HorzineSupplyEmoteCrateSeries2BronzeBundlePackName="Serie #2 Emote-Bronze-Box"
 HorzineSupplyEmoteCrateSeries2SilverBundlePackName="Serie #2 Emote-Silber-Box"
 HorzineSupplyEmoteCrateSeries2GoldBundlePackName="Serie #2 Emote-Gold-Box"
+HorzineSupplyEmoteCrateSeries3BronzeBundlePackName="Serie #3 Emote-Bronze-Box"
+HorzineSupplyEmoteCrateSeries3SilverBundlePackName="Serie #3 Emote-Silber-Box"
+HorzineSupplyEmoteCrateSeries3GoldBundlePackName="Serie #3 Emote-Gold-Box"
 HorzineSupplyWeaponCrateSeries5BronzeBundlePackName="Serie #5 Waffen-Bronze-Box"
 HorzineSupplyWeaponCrateSeries5SilverBundlePackName="Serie #5 Waffen-Silber-Box"
 HorzineSupplyWeaponCrateSeries5GoldBundlePackName="Serie #5 Waffen-Gold-Box"
@@ -142,6 +147,33 @@ PremiumHalloweenGoldBundlePackName="Premium-Halloween-Goldschein-Box"
 NeonMKIIIEncryptedUSBBronzeBundlePackName="Verschlüsselter-Neon-MKIII-USB-Bronze-Box"
 NeonMKIIIEncryptedUSBSilverBundlePackName="Verschlüsselter-Neon-MKIII-USB-Silber-Box"
 NeonMKIIIEncryptedUSBGoldBundlePackName="Verschlüsselter-Neon-MKIII-USB-Gold-Box"
+SantasHelperOutfitBundleName="Weihnachtsmann-Helfer-Outfitpaket"
+JaegerEncryptedUSBBronzeBundlePackName="Verschlüsselter-Jäger-USB-Bronze-Box"
+JaegerEncryptedUSBSilverBundlePackName="Verschlüsselter-Jäger-USB-Silber-Box"
+JaegerEncryptedUSBGoldBundlePackName="Verschlüsselter-Jäger-USB-Gold-Box"
+PremiumChristmasBronzeBundlePackName="Premium-Weihnachts-Bronzeschein-Box"
+PremiumChristmasSilverBundlePackName="Premium-Weihnachts-Silberschein-Box"
+PremiumChristmasGoldBundlePackName="Premium-Weihnachts-Goldschein-Box"
+FostersFavoritesWeaponSkinPackName="Fosters Lieblings-Waffen-Skin-Paket"
+HorzineSupplyCosmeticCrateSeries5BronzeBundlePackName="Serie #5 Verschönerungs-Bronze-Box"
+HorzineSupplyCosmeticCrateSeries5SilverBundlePackName="Serie #5 Verschönerungs-Silber-Box"
+HorzineSupplyCosmeticCrateSeries5GoldBundlePackName="Serie #5 Verschönerungs-Gold-Box"
+HorzineSupplyCosmeticCrateSeries3BronzeBundlePackName="Serie #3 Verschönerungs-Bronze-Box"
+HorzineSupplyCosmeticCrateSeries3SilverBundlePackName="Serie #3 Verschönerungs-Silber-Box"
+HorzineSupplyCosmeticCrateSeries3GoldBundlePackName="Serie #3 Verschönerungs-Gold-Box"
+HorzineSupplyWeaponCrateSeries17BronzeBundlePackName="Serie #17 Waffen-Bronze-Box"
+HorzineSupplyWeaponCrateSeries17SilverBundlePackName="Serie #17 Waffen-Silber-Box"
+HorzineSupplyWeaponCrateSeries17GoldBundlePackName="Serie #17 Waffen-Gold-Box"
+GrimTreatmentsWeaponBundleName="Bittere-Behandlung-Waffen-Paket"
+YuletideHorrorWeaponBundleName="Weihnachtsschrecken-Waffen-Paket"
+JaegerWeaponSkinDoublePackBundleName="Jäger-Waffen-Skin-Doppelpaket"
+HorzineSupplyCrateSeries12BronzeBundlePackName="Serie #12 Vorrats-Bronze-Box"
+HorzineSupplyCrateSeries12SilverBundlePackName="Serie #12 Vorrats-Silber-Box"
+HorzineSupplyCrateSeries12GoldBundlePackName="Serie #12 Vorrats-Gold-Box"
+EmoteCrateSeries3BronzeBundlePackName="Serie #3 Emote-Bronze-Box"
+EmoteCrateSeries3SilverBundlePackName="Serie #3 Emote-Silber-Box"
+EmoteCrateSeries3GoldBundlePackName="Serie #3 Emote-Gold-Box"
+
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Beinhaltet Briars London-Uniform (inklusive 5 Skin-Stilen) und das kosmetische Accessoire Aufseher-Helm (inklusive 3 Skin-Stilen)."
@@ -168,6 +200,8 @@ HeadshotFXBundle1Description="Kommt mit fünf Kopfschuss-FX. Noble Kohle, Comic-
 HeadshotFXBundle2Description="Kommt mit fünf Kopfschuss-FX. Cartoon Platscher, Feuerwerk, Blütenblatt, Bug und Horzine-Schaltkreis."
 RhinoRevolverBundleDescription="Geht durch Zeds durch, als wären sie Butter. Rhino-Revolver für den Revolverheld-Vorteil. Beinhaltet 5 einzigartige Waffen-Skin-Varianten."
 IonThrusterBundleDescription="Bestens für Barbecues geeignet. Das für den Berserker-Vorteil entworfene Ionenschwert beinhaltet 5 einzigartige Skin-Varianten."
+RiotShieldG18BundleDescription="Gut für Feindeskontrolle geeignet. Der für den SWAT-Vorteil entworfene Aufstands-Schild und die G18 beinhalten 5 einzigartige Skin-Varianten."
+MosinNagantBundleDescription="Mit diesem klassischen Gewehr kannst du Zeds blocken, abstechen und abknallen. Mosin-Nagant für den Scharfschütze-Vorteil beinhaltet 5 einzigartige Skin-Varianten."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #4 Verschönerungs-Kiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Enthält zehn Exemplare der Serie #4 Verschönerungs-Kiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #4 Verschönerungs-Kiste sowie zwanzig dazugehörige Schlüssel."
@@ -183,12 +217,15 @@ HorzineSupplyEmoteCrateSeries1GoldBundlePackDescription="Enthält zwanzig Exempl
 HorzineSupplyEmoteCrateSeries2BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #2 Emote-Kiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyEmoteCrateSeries2SilverBundlePackDescription="Enthält zehn Exemplare der Serie #2 Emote-Kiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyEmoteCrateSeries2GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #2 Emote-Kiste sowie zwanzig dazugehörige Schlüssel."
+HorzineSupplyEmoteCrateSeries3BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #3 Emote-Kiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyEmoteCrateSeries3SilverBundlePackDescription="Enthält zehn Exemplare der Serie #3 Emote-Kiste sowie zehn dazugehörige Schlüssel."
+HorzineSupplyEmoteCrateSeries3GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #3 Emote-Kiste sowie zwanzig dazugehörige Schlüssel."
 HorzineSupplyWeaponCrateSeries5BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #5 Waffenkiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="Enthält zehn Exemplare der Serie #5 Waffenkiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #4 Waffenkiste sowie zwanzig dazugehörige Schlüssel."
 HorzineSupplyWeaponCrateSeries7BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #7 Waffenkiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyWeaponCrateSeries7SilverBundlePackDescription="Enthält zehn Exemplare der Serie #7 Waffenkiste sowie zehn dazugehörige Schlüssel."
-HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #7 Waffenkiste sowie zwanzig dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries7GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #7 crate along with twenty of its associated keys."
 HorzineSupplyWeaponCrateSeries8BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #8 Waffenkiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyWeaponCrateSeries8SilverBundlePackDescription="Enthält zehn Exemplare der Serie #8 Waffenkiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyWeaponCrateSeries8GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #8 Waffenkiste sowie zwanzig dazugehörige Schlüssel."
@@ -204,7 +241,7 @@ HorzineSupplyWeaponCrateSeries14GoldBundlePackDescription="Enthält zwanzig Exem
 HorzineSupplyCrateSeries15BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #15 Vorratskiste sowie fünf dazugehörige Schlüssel."
 HorzineSupplyCrateSeries15SilverBundlePackDescription="Enthält zehn Exemplare der Serie #15 Vorratskiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyCrateSeries15GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #15 Vorratskiste sowie zwanzig dazugehörige Schlüssel."
-HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription="Enthält fünf Exemplare der Cyber-Samurai-Kiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyCrateSeriesCyberSamuraiBronzeBundlePackDescription=Contains five of the Horzine Supply Crate | Series Cyber Samurai crate along with five of its associated keys."
 HorzineSupplyCrateSeriesCyberSamuraiSilverBundlePackDescription="Enthält zehn Exemplare der Cyber-Samurai-Kiste sowie zehn dazugehörige Schlüssel."
 HorzineSupplyCrateSeriesCyberSamuraiGoldBundlePackDescription="Enthält zwanzig Exemplare der Cyber-Samurai-Kiste sowie zwanzig dazugehörige Schlüssel."
 EmoteCrateSeries1BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #1 Emote-Kiste sowie fünf dazugehörige Schlüssel."
@@ -218,7 +255,7 @@ NeonEncryptedUSBSilverBundlePackDescription="Enthält zehn Exemplare der Verschl
 NeonEncryptedUSBGoldBundlePackDescription="Enthält zwanzig Exemplare der Verschlüsselter-Neon-USB-Kiste sowie zwanzig dazugehörige Schlüssel."
 WeaponCollectorsUSBBronzeBundlePackDescription="Enthält fünf Exemplare der Waffensammler-Pack-1-USB-Kiste sowie fünf dazugehörige Schlüssel."
 WeaponCollectorsUSBSilverBundlePackDescription="Enthält zehn Exemplare der Waffensammler-Pack-1-USB-Kiste sowie zehn dazugehörige Schlüssel."
-WeaponCollectorsUSBGoldBundlePackDescription="Enthält zwanzig Exemplare der Waffensammler-Pack-1-USB-Kiste sowie zwanzig dazugehörige Schlüssel."
+WeaponCollectorsUSBGoldBundlePackDescription=Contains twenty of the Weapons Collectors Pack 1 USB crate along with twenty of its associated keys."
 NeonMKIIEncryptedUSBBronzeBundlePackDescription="Enthält fünf Exemplare der Verschlüsselter-Neon-MKII-USB-Kiste sowie fünf dazugehörige Schlüssel."
 NeonMKIIEncryptedUSBSilverBundlePackDescription="Enthält zehn Exemplare der Verschlüsselter-Neon-MKII-USB-Kiste sowie zehn dazugehörige Schlüssel."
 NeonMKIIEncryptedUSBGoldBundlePackDescription="Enthält zwanzig Exemplare der Verschlüsselter-Neon-MKII-USB-Kiste sowie zwanzig dazugehörige Schlüssel."
@@ -280,6 +317,37 @@ PremiumHalloweenTicketGoldBundlePackDescription="Enthält zwanzig Premium-Hallow
 NeonMKIIIEncryptedUSBBronzeBundlePackDescription="Enthält fünf Exemplare der Verschlüsselter-Neon-MKIII-USB-Kiste sowie fünf dazugehörige Schlüssel."
 NeonMKIIIEncryptedUSBSilverBundlePackDescription="Enthält zehn Exemplare der Verschlüsselter-Neon-MKIII-USB-Kiste sowie zehn dazugehörige Schlüssel."
 NeonMKIIIEncryptedUSBGoldBundlePackDescription="Enthält zwanzig Exemplare der Verschlüsselter-Neon-MKIII-USB-Kiste sowie zwanzig dazugehörige Schlüssel."
+SantasHelperOutfitBundleDescription="Beinhaltet Weihnachtsmann-Helfer-Outfit für männliche und weibliche Charaktere (inklusive 6 Skin-Stilen). Mit den meisten Charakteren kompatibel."
+HorzineSupplyWeaponCrateSeries17BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #17 Waffenkiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries17SilverBundlePackDescription="Enthält zehn Exemplare der Serie #17 Waffenkiste sowie zehn dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries17GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #17 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries3BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #3 Waffenkiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries3SilverBundlePackDescription="Enthält zehn Exemplare der Serie #3 Waffenkiste sowie zehn dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries3GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #3 crate along with twenty of its associated keys."
+HorzineSupplyWeaponCrateSeries5BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #5 Waffenkiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="Enthält zehn Exemplare der Serie #5 Waffenkiste sowie zehn dazugehörige Schlüssel."
+HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription=Contains twenty of the Horzine Supply Weapon Crate | Series #5 crate along with twenty of its associated keys."
+JaegerEncryptedUSBBronzeBundlePackDescription="Enthält fünf Exemplare der Verschlüsselter-Jäger-USB-Kiste sowie fünf dazugehörige Schlüssel."
+JaegerEncryptedUSBSilverBundlePackDescription="Enthält zehn Exemplare der Verschlüsselter-Jäger-USB-Kiste sowie zehn dazugehörige Schlüssel."
+JaegerEncryptedUSBGoldBundlePackDescription="Enthält zwanzig Exemplare der Verschlüsselter-Jäger-USB-Kiste sowie zwanzig dazugehörige Schlüssel."
+PremiumChristmasTicketBronzeBundlePackDescription="Enthält fünf Premium-Weihnachts-Geschenkscheine zu einem geringen Preis. Nur für kurze Zeit erhältlich!"
+PremiumChristmasTicketSilverBundlePackDescription="Enthält zehn Premium-Weihnachts-Geschenkscheine und einen zusätzlichen goldenen Weihnachts-Schein zu einem geringen Preis. Nur für kurze Zeit erhältlich!"
+PremiumChristmasTicketGoldBundlePackDescription="Enthält zwanzig Premium-Weihnachts-Geschenkscheine und drei zusätzliche goldene Weihnachts-Scheine zu einem geringen Preis. Nur für kurze Zeit erhältlich!"
+GrimTreatmentsWeaponBundleDescription="Enthält den Rhino-Revolver und Ionenschwert-Waffen aus dem „Bittere Behandlung“-Update. Jede Waffe beinhaltet 5 einzigartige Waffen-Skin-Varianten."
+YuletideHorrorWeaponBundleDescription="Enthält Aufstands-Schild, G18 und Mosin-Nagant-Waffen aus dem „Weihnachtsschrecken“-Update. Jede Waffe beinhaltet 5 einzigartige Waffen-Skin-Varianten."
+JaegerWeaponSkinDoublePackBundleDescription="Enthält dynamische und Standard-Waffen-Skins für die Desert Eagle und P90 im Jäger-Stil."
+FostersFavoritesWeaponSkinBundleDescription="Enthält 8 Waffen-Skins einschließlich AK12, AA12, M14 EBR, M4, Desert Eagle, Boom-Knüppel, P90, und Kriss im Foster-Stil."
+EmoteCrateSeries3BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #3 Emote-Kiste sowie fünf dazugehörige Schlüssel."
+EmoteCrateSeries3SilverBundlePackDescription="Enthält zehn Exemplare der Serie #3 Emote-Kiste sowie zehn dazugehörige Schlüssel."
+EmoteCrateSeries3GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #3 Emote-Kiste sowie zwanzig dazugehörige Schlüssel."
+HorzineSupplyCrateSeries12BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #12 Vorratskiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyCrateSeries12SilverBundlePackDescription="Enthält zehn Exemplare der Serie #12 Vorratskiste sowie zehn dazugehörige Schlüssel."
+HorzineSupplyCrateSeries12GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #12 Vorratskiste sowie zwanzig dazugehörige Schlüssel."
+HorzineSupplyCrateCosmeticCrateSeries5BronzeBundlePackDescription="Enthält fünf Exemplare der Serie #5 Vorratskiste sowie fünf dazugehörige Schlüssel."
+HorzineSupplyCrateCosmeticCrateSeries5SilverBundlePackDescription="Enthält zehn Exemplare der Serie #5 Vorratskiste sowie zehn dazugehörige Schlüssel."
+HorzineSupplyCrateCosmeticCrateSeries5GoldBundlePackDescription="Enthält zwanzig Exemplare der Serie #5 Vorratskiste sowie zwanzig dazugehörige Schlüssel."
+
+
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Erhalte eine neue klassische Uniform eines Londoner Polizisten für den spielbaren Charakter Wachtmeister Rob Briar. Beinhaltet Briars London-Uniform (inklusive 5 Skin-Stilen) und das kosmetische Accessoire Aufseher-Helm (inklusive 3 Skin-Stilen)."
@@ -380,6 +448,8 @@ CyberpunkHelmetEventName="Cyberpunk-Event-Helm"
 CyberpunkOutfitEventName="Cyberpunk-Event-Outfit"
 HalloweenHatName="Hexenjägerhut"
 HalloweenOutfitName="Hexenjäger-Outfit"
+SantasHelperHatName="Weihnachtsmann-Helfer-Hut"
+SantasHelperOutfitName="Weihnachtsmann-Helfer-Outfit"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="Lt. Masterson | Cyberpunk | Grün"
@@ -504,6 +574,8 @@ JagerhornVaultPreciousSuitDescription="Eine Goldborte macht einfach alles besser
 MastersonVaultPreciousSuitDescription="Eine Goldborte macht einfach alles besser. Mit Masterson kompatibel."
 RaeVaultPreciousSuitDescription="Eine Goldborte macht einfach alles besser. Mit Rae kompatibel."
 StrasserVaultPreciousSuitDescription="Eine Goldborte macht einfach alles besser. Mit Strasser kompatibel."
+SantaHatDescription="Halte deine Rübe beim Zerstückeln warm."
+SantaSuitDescription="Läute das neue Jahr ein … indem du Hackfleisch aus den Zeds machst!"
 
 ;cyberpunk paint over description
 CyberPunkPaintoverDescription="Wenn du diese großartige Cyberpunk-Uniform trägst, wird dein zukünftiges Ich immer hässlicher als dein aktuelles bleiben."
@@ -540,7 +612,8 @@ HorzineSupplyCrateSeries14Name="Horzine-Vorratskiste | Serie #14"
 HorzineSupplyCrateSeries15Name="Horzine-Vorratskiste | Serie #15"
 HorzineSupplyCrateSeries16Name="Horzine-Vorratskiste | Serie Schlachthaus"
 EmoteCrateSeries1Name="Emote-Kiste | Serie #1"
-EmoteCrateSeries2Name="Emote-Kiste | Serie #3"
+EmoteCrateSeries2Name="Emote-Kiste | Serie #2"
+EmoteCrateSeries3Name="Emote-Kiste | Serie #3"
 DoshVaultUnlockedCrate1Name="Kohlekammer, Kiste #1"
 HorzineSupplyCrateSeriesDARName="Horzine-Vorratskiste | Serie D.A.R."
 HorzineSupplyCrateSeriesLocoName="Horzine-Vorratskiste | Serie Loco"
@@ -588,6 +661,8 @@ EmoteCrateSeries1Description="Man braucht einen Emote-Kistenschlüssel der Serie
 
 EmoteCrateSeries2Description="Man braucht einen Emote-Kistenschlüssel der Serie #2 zum Öffnen. Beinhaltet einen der folgenden Gegenstände:<br><font color="#4b69cd">Der Kosake</font><br><font color="#4b69cd">Die Welle</font><br><font color="#4b69cd">Breakdance</font><br><font color="#4b69cd">Freihändig</font><br><font color="#6600a1">Fersenkick</font><br><font color="#6600a1">Der Sprinkler</font><br><font color="#6600a1">Verrückter</font><br><font color="#8847ff">Der Läufer</font><br><font color="#8847ff">Der Roboter</font><br><font color="#8847ff">Air Metal</font><br><font color="#caab05">oder ein extrem seltenes Deluxe-Emote!</font>"
 
+EmoteCrateSeries2Description="Man braucht einen Emote-Kistenschlüssel der Serie #3 zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Kranich-Faust</font><br><font color="#4b69cd">Universelle Meisterschaft</font><br><font color="#4b69cd">Zed-Zeit</font><br><font color="#4b69cd">Deine Energie benötigt</font><br><font color="#4b69cd">Finale Form</font><br><font color="#4b69cd">Schnellste Waffe im Westen</font><br><font color="#4b69cd">Geisterfinger</font><br><font color="#4b69cd">Home-Run</font><br><font color="#4b69cd">Münztrick</font><br><font color="#4b69cd">Magischer Foster</font><br><font color="#caab05">oder ein extrem seltenes Deluxe-Emote!</font>"
+
 DoshVaultUnlockedCrate1Description="Beinhaltet einen der folgenden Gegenstände:<br>Spieler-Accessoire<br>Gesichtsfarbe<br>Uniform-Variante<br>Waffen-Skin<br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
 HorzineSupplyCrateSeriesDARDescription="Benötigt einen D.A.R.- Vorratskistenschlüssel zum Öffnen. Beinhaltet 1 d. folg. D.A.R.-Accessoires von selt. o. bess. Qual.:<br><font color="#4b69cd">Flug-Pz. o. Helm „P51“</font><br><font color="#4b69cd">CHONN-E-5-Pz. „Gym“ o. „Zeitwürfel“</font><br><font color="#4b69cd">CHONN-E-5-Helm „Chap“ o. „Stahl“</font><br><font color="#4b69cd">C-3HZ-Pz. o. Helm „Crash“</font><br><font color="#4b69cd">C-3HZ-Pz. o. Helm „Fluss-Blau“</font><br><font color="#6600a1">Flug-Pz. o. Helm „Galaktisch“</font><br><font color="#6600a1">Flug-Pz. o. Helm „Schrei“ </font><br><font color="#6600a1">CHONN-E-5-Pz. „Batcat“</font><br><font color="#6600a1">CHONN-E-5-Helm „Dunst“</font><br><font color="#6600a1">C-3HZ-Pz. o. Helm „Obsidian“</font><br><font color="#6600a1">C-3HZ-Pz. o. Helm „Raum“</font><br><font color="#8847ff">Flug-Pz. o. Helm „Blauer Engel“</font><br><font color="#8847ff">Flug-Pz. o. Helm „Spitfire“</font><br><font color="#8847ff">CHONN-E-5-Pz. o. Helm „Horzine“</font><br><font color="#8847ff">CHONN-E-5-Pz. „Radikal“</font><br><font color="#8847ff">CHONN-E-5-Helm „Sonnenuntergang“</font><br><font color="#8847ff">C-3HZ-Pz. o. Helm „Marmor“</font><br><font color="#caab05">o. 1 extr. selt. u. wertv. Accessoire!</font>"
@@ -598,9 +673,11 @@ HorzineSupplyCrateSeriesCyberSamuraiDescription="Man braucht zum Öffnen einen H
 
 HorzineSupplyCrateSeriesDeityDescription="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">Panzerungskapuze | Blau</font><br><font color="#4b69cd">Panzerungskapuze | Grün</font><br><font color="#4b69cd">Gesichtslose Maske | Blau</font><br><font color="#4b69cd">Gesichtslose Maske | Grün</font><br><font color="#4b69cd">SciFi-Kapuze | Blau</font><br><font color="#4b69cd">SciFi-Kapuze | Grün</font><br><font color="#4b69cd">Ausdruckslose Maske | Blau</font><br><font color="#4b69cd">Ausdruckslose Maske | Grün</font><br><font color="#6600a1">Panzerungskapuze | Rot</font><br><font color="#6600a1">Gesichtslose Maske | Rot</font><br><font color="#6600a1">SciFi-Kapuze | Rot</font><br><font color="#6600a1">Ausdruckslose Maske | Rot</font><br><font color="#6600a1">Bast | Rot</font><br><font color="#6600a1">Bast | Gelb</font><br><font color="#6600a1">Bast | Grün</font><br><font color="#6600a1">Bast | Blau</font><br><font color="#6600a1">Sobek | Rot</font><br><font color="#6600a1">Sobek | Gelb</font><br><font color="#6600a1">Sobek | Grün</font><br><font color="#6600a1">Sobek | Blau</font><br><font color="#8847ff">Panzerungskapuze | Schwarz</font><br><font color="#8847ff">Gesichtslose Maske | Schwarz</font><br><font color="#8847ff">Gesichtslose Maske | Weiß</font><br><font color="#8847ff">SciFi-Kapuze | Schwarz</font><br><font color="#8847ff">Ausdruckslose Maske | Schwarz</font><br><font color="#8847ff">Ausdruckslose Maske | Weiß</font><br><font color="#8847ff">Anubis | Rot</font><br><font color="#8847ff">Anubis | Blau</font><br><font color="#8847ff">Anubis | Grün</font><br><font color="#8847ff">Anubis | Gelb</font><br><font color="#8847ff">Ra | Rot</font><br><font color="#8847ff">Ra | Blau</font><br><font color="#8847ff">Ra | Grün</font><br><font color="#8847ff">Ra | Gelb</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
-HorzineSupplyCrateSeriesProjectHDescription="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel der Project H Serie #1. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">Project H-01 | Basis </font><br><font color="#4b69cd">Project H-01 | Fröhlich </font><br><font color="#4b69cd">Project H-01 | Fröhlich, offen </font><br><font color="#4b69cd">Project H-01 | Pokerface </font><br><font color="#4b69cd">Project H-01 | Pokerface, offen </font><br><font color="#4b69cd">Project H-01 | Unglücklich </font><br><font color="#4b69cd">Project H-01 | Unglücklich, offen </font><br><font color="#4b69cd">Project H-02 | Basis</font><br><font color="#4b69cd">Project H-02 | Fröhlich </font><br><font color="#4b69cd">Project H-02 | Fröhlich, offen </font><br><font color="#4b69cd">Project H-02 | Pokerface </font><br><font color="#4b69cd">Project H-02 | Pokerface, offen </font><br><font color="#4b69cd">Project H-02 | Unglücklich </font><br><font color="#4b69cd">Project H-02 | Unglücklich, offen </font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
+HorzineSupplyCrateSeriesProjectHDescription="Requires a Project H Series #1 Horzine Supply Crate Key to open.
+Contains one rare or better of the following:<br><font color="#4b69cd">Project H-01 | Basis </font><br><font color="#4b69cd">Project H-01 | Fröhlich </font><br><font color="#4b69cd">Project H-01 | Fröhlich, offen </font><br><font color="#4b69cd">Project H-01 | Pokerface </font><br><font color="#4b69cd">Project H-01 | Pokerface, offen </font><br><font color="#4b69cd">Project H-01 | Unglücklich </font><br><font color="#4b69cd">Project H-01 | Unglücklich, offen </font><br><font color="#4b69cd">Project H-02 | Basis </font><br><font color="#4b69cd">Project H-02 | Fröhlich </font><br><font color="#4b69cd">Project H-02 | Fröhlich, offen </font><br><font color="#4b69cd">Project H-02 | Pokerface </font><br><font color="#4b69cd">Project H-02 | Pokerface, offen </font><br><font color="#4b69cd">Project H-02 | Unglücklich </font><br><font color="#4b69cd">Project H-02 | Unglücklich, offen </font><br><font color="#caab05">oder extrem seltenes und wertvolles Accessoire!</font>"
 
-HorzineSupplyCrateSeriesBoneyardDescription="Man braucht einen Horzine-Vorratskistenschlüssel der Serie Friedhof zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Höllenqual </font><br><font color="#4b69cd">Seelenqual</font><br><font color="#4b69cd">Verzweiflung </font><br><font color="#4b69cd">Bedrängnis</font><br><font color="#4b69cd">Elend</font><br><font color="#4b69cd">Leidenschaft </font><br><font color="#4b69cd">Pein </font><br><font color="#4b69cd">Folter </font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
+HorzineSupplyCrateSeriesBoneyardDescription="Requires a Series Boneyard Horzine Supply Crate Key to open.
+Contains one rare or better of the following:<br><font color="#4b69cd">Höllenqual </font><br><font color="#4b69cd">Seelenqual </font><br><font color="#4b69cd">Verzweiflung </font><br><font color="#4b69cd">Bedrängnis </font><br><font color="#4b69cd">Elend </font><br><font color="#4b69cd">Leidenschaft </font><br><font color="#4b69cd">Pein </font><br><font color="#4b69cd">Folter </font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Horzine-Vorratskistenschlüssel | Serie #1"
@@ -621,6 +698,7 @@ HorzineSupplyCrateKeySeries15Name="Horzine-Vorratskisten-Schlüssel | Serie #15"
 HorzineSupplyCrateKeySeries16Name="Horzine-Vorratskisten-Schlüssel | Serie #16"
 EmoteCrateKeySeries1Name="Emote-Kistenschlüssel | Serie #1"
 EmoteCrateKeySeries2Name="Emote-Kistenschlüssel | Serie #2"
+EmoteCrateKeySeries3Name="Emote-Kistenschlüssel | Serie #3"
 HorzineSupplyCrateKeySeriesDARName="Horzine-Vorratskisten-Schlüssel | Serie D.A.R."
 HorzineSupplyCrateKeySeriesLocoName="Horzine-Vorratskisten-Schlüssel | Serie Loco"
 HorzineSupplyCrateKeySeriesCyberSamuraiName="Cyber-Samurai-Kistenschlüssel"
@@ -647,6 +725,7 @@ HorzineSupplyCrateKeySeries15Description="Dieser Schlüssel öffnet ausschließl
 HorzineSupplyCrateKeySeries16Description="Dieser Schlüssel öffnet ausschließlich die Horzine-Vorratskiste der Serie Schlachthaus."
 EmoteCrateKeySeries1Description="Dieser Schlüssel öffnet ausschließlich die Emote-Kiste der Serie #1."
 EmoteCrateKeySeries2Description="Dieser Schlüssel öffnet ausschließlich die Emote-Kiste der Serie #2."
+EmoteCrateKeySeries3Description="Dieser Schlüssel öffnet ausschließlich die Emote-Kiste der Serie #3."
 HorzineSupplyCrateKeySeriesDARDescription="Dieser Schlüssel öffnet ausschließlich die Horzine-Vorratskiste der Serie D.A.R."
 HorzineSupplyCrateKeySeriesLocoDescription="Dieser Schlüssel öffnet ausschließlich die Horzine-Vorratskiste der Serie Loco."
 HorzineSupplyCrateKeySeriesCyberSamuraiDescription="Dieser Schlüssel öffnet die Horzine-Vorratskiste der Serie Cyber Samurai."
@@ -750,6 +829,8 @@ SteampunkEncryptedUSBDescription="Man braucht zum Öffnen einen Steampunk-Baupla
 
 BeyondHorizonEncryptedUSBDescription="Man braucht zum Öffnen einen Beyond-Horizon-Bauplan-Schlüssel. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">Statischer Schläger | Beyond Horizon</font><br><font color="#4b69cd">HMTech-401 Sturmgewehr | Beyond Horizon </font><br><font color="#4b69cd">HMTech-301 Schrotflinte | Beyond Horizon</font><br><font color="#6600a1">RPG-7 | Beyond Horizon </font><br><font color="#6600a1">Flammenwerfer | Beyond Horizon </font><br><font color="#6600a1">Scar | Beyond Horizon</font><br><font color="#6600A1">HMTech-201 MP | Beyond Horizon </font><br><font color="#8847ff">Kriss | Beyond Horizon</font><br><font color="#8847ff">M99 | Beyond Horizon</font><br><font color="#8847ff">Helios-Gewehr | Beyond Horizon</font><br><font color="#8847ff">Desert Eagle | Beyond Horizon</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
 
+JaegerEncryptedUSBDescription="Man braucht zum Öffnen einen Jäger-Bauplan-Schlüssel. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität: <br><font color="#4b69cd">Kriss | Jäger</font><br><font color="#4b69cd">P90 | Jäger</font><br><font color="#4b69cd">Pulverisierer | Jäger</font><br><font color="#4b69cd">Hemogoblin | Jäger</font><br><font color="#6600a1">Scar | Jäger</font><br><font color="#6600a1">Desert Eagle | Jäger</font><br><font color="#6600A1">FN FAL | Jäger</font><br><font color="#6600A1">Mikrowellenwaffe | Jäger</font><br><font color="#8847ff">Doomstick | Jäger</font><br><font color="#8847ff">Helios-Gewehr | Jäger</font><br><font color="#8847ff">Killerwatt | Jäger</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
+
 
 ;usb key names
 CyberboneUSBKeyName="Cyberknochen-USB-Schlüssel"
@@ -845,6 +926,7 @@ HorzineSupplyWeaponSkinCrateSeries13Name="Serie #13 Horzine-Waffen-Skin-Kiste"
 HorzineSupplyWeaponSkinCrateSeries14Name="Serie #14 Horzine-Waffen-Skin-Kiste"
 HorzineSupplyWeaponSkinCrateSeries15Name="Serie #15 Waffen-Skin-Kiste"
 HorzineSupplyWeaponSkinCrateSeries16Name="Horzine Waffen-Skin Vorratskiste | Serie #16"
+HorzineSupplyWeaponSkinCrateSeries17Name="Serie #17 Waffen-Skin-Kiste"
 
 ;PSN Crate Descriptions
 HorzineSupplyCosmeticCrateSeries1Description="Man braucht einen Horzine-Vorratskistenschlüssel zum Öffnen. Beinhaltet einen dieser seltenen oder besseren Gegenstände:<br><font color="#4b69cd">Kugelsichere Devtac-Maske</font><br><font color="#4b69cd">US-Gasmaske</font><br><font color="#4b69cd">Skimaske</font><br><font color="#4b69cd">Baseballkappe</font><br><font color="#6600a1">Taktischer Rucksack</font><br><font color="#6600a1">Deutsche Gasmaske</font><br><font color="#6600a1">Chemische Gasmaske</font><br><font color="#6600a1">RPG7-Rucksack</font><br><font color="#8847ff">M2-Flammenwerfertank</font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
@@ -866,6 +948,8 @@ HorzineSupplyCosmeticCrateSeries3Description="Man braucht einen Horzine-Vorratsk
 HorzineSupplyEmoteCrateSeries1Description="Man braucht einen Horzine-Vorratskisten-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Total verrückt</font><br><font color="#4b69cd">Popo-Polka</font><br><font color="#4b69cd">Onkel Charlie</font><br><font color="#4b69cd">Albernes Winken</font><br><font color="#6600a1">Es regnet Kohle</font><br><font color="#6600a1">Lion Uppercut</font><br><font color="#6600a1">Balzritual</font><br><font color="#8847ff">Volltreffer</font><br><font color="#8847ff">Feuerball</font><br><font color="#8847ff">Lasst es regnen</font><br><font color="#caab05">oder ein extrem seltenes Deluxe-Emote!</font>"
 
 HorzineSupplyEmoteCrateSeries2Description="Man braucht einen Horzine-Vorratskisten-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Der Kosake</font><br><font color="#4b69cd">Die Welle</font><br><font color="#4b69cd">Breakdance</font><br><font color="#4b69cd">Freihändig</font><br><font color="#6600a1">Fersenkick</font><br><font color="#6600a1">Der Sprinkler</font><br><font color="#6600a1">Verrückter</font><br><font color="#8847ff">Der Läufer</font><br><font color="#8847ff">Der Roboter</font><br><font color="#8847ff">Air Metal</font><br><font color="#caab05">oder ein extrem seltenes Deluxe-Emote!</font>"
+
+HorzineSupplyEmoteCrateSeries3Description="Man braucht einen Horzine-Vorratskistenschlüssel zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Kranich-Faust</font><br><font color="#4b69cd">Universelle Meisterschaft</font><br><font color="#4b69cd">Zed-Zeit</font><br><font color="#4b69cd">Deine Energie benötigt</font><br><font color="#4b69cd">Finale Form</font><br><font color="#4b69cd">Schnellste Waffe im Westen</font><br><font color="#4b69cd">Geisterfinger</font><br><font color="#4b69cd">Home-Run</font><br><font color="#4b69cd">Münztrick</font><br><font color="#4b69cd">Magischer Foster</font><br><font color="#caab05">oder ein extrem seltenes Deluxe-Emote!</font>"
 
 HorzineSupplyCosmeticCrateSeries4Description="Man braucht einen Horzine-Vorratskisten-Schlüssel zum Öffnen. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Kobuto-Maske</font><br><font color="#4b69cd">Hannya-Maske</font><br><font color="#4b69cd">Drachen-Gasmaske</font><br><font color="#4b69cd">Imperiale Galea</font><br><font color="#4b69cd">Buschhut</font><br><font color="#4b69cd">Hopps</font><br><font color="#4b69cd">Viktorianisches Geheimnis</font><br><font color="#6600a1">Seuchenarzt-Maske</font><br><font color="#8847ff">Samurai-Gasmundstück</font><br><font color="#8847ff">Samurai-Gashelm</font><br><font color="#8847ff">Samurai-Gasmaske</font><br>"
 
@@ -903,7 +987,10 @@ HorzineSupplyWeaponSkinCrateSeries15Description="Man braucht zum Öffnen einen H
 
 HorzineSupplyWeaponSkinCrateSeries16Description="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität:<br><font color="#4b69cd">Statischer Schläger | Beyond Horizon</font><br><font color="#4b69cd">HMTech-401 Sturmgewehr | Beyond Horizon </font><br><font color="#4b69cd">HMTech-301 Schrotflinte | Beyond Horizon</font><br><font color="#6600a1">RPG-7 | Beyond Horizon </font><br><font color="#6600a1">Flammenwerfer | Beyond Horizon </font><br><font color="#6600a1">Scar | Beyond Horizon</font><br><font color="#6600A1">HMTech-201 MP | Beyond Horizon </font><br><font color="#8847ff">Kriss | Beyond Horizon</font><br><font color="#8847ff">M99 | Beyond Horizon</font><br><font color="#8847ff">Helios-Gewehr | Beyond Horizon</font><br><font color="#8847ff">Desert Eagle | Beyond Horizon</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
 
-HorzineSupplyCosmeticCrateSeries11Description="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen der folgenden Gegenstände von seltener oder besserer Qualität:<br><font color="#4b69cd">Höllenqual</font><br><font color="#4b69cd">Seelenqual</font><br><font color="#4b69cd">Verzweiflung</font><br><font color="#4b69cd">Bedrängnis</font><br><font color="#4b69cd">Elend</font><br><font color="#4b69cd">Leidenschaft </font><br><font color="#4b69cd">Pein </font><br><font color="#4b69cd">Folter </font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
+HorzineSupplyCosmeticCrateSeries11Description="Requires a  Horzine Supply Crate Key to open.
+Contains one rare or better of the following:<br><font color="#4b69cd">Höllenqual </font><br><font color="#4b69cd">Seelenqual </font><br><font color="#4b69cd">Verzweiflung </font><br><font color="#4b69cd">Bedrängnis </font><br><font color="#4b69cd">Elend </font><br><font color="#4b69cd">Leidenschaft </font><br><font color="#4b69cd">Pein </font><br><font color="#4b69cd">Folter </font><br><font color="#caab05">oder ein extrem seltenes und wertvolles Accessoire!</font>"
+
+HorzineSupplyWeaponSkinCrateSeries17Description="Man braucht zum Öffnen einen Horzine-Vorratskistenschlüssel. Beinhaltet einen der folgenden Waffen-Skins von seltener oder besserer Qualität: <br><font color="#4b69cd">Kriss | Jäger</font><br><font color="#4b69cd">P90 | Jäger</font><br><font color="#4b69cd">Pulverisierer | Jäger</font><br><font color="#4b69cd">Hemogoblin | Jäger</font><br><font color="#6600a1">Scar | Jäger</font><br><font color="#6600a1">Desert Eagle | Jäger</font><br><font color="#6600A1">FN FAL | Jäger</font><br><font color="#6600A1">Mikrowellenwaffe | Jäger</font><br><font color="#8847ff">Doomstick | Jäger</font><br><font color="#8847ff">Helios-Gewehr | Jaeger</font><br><font color="#8847ff">Killerwatt | Jäger</font><br><font color="#caab05">oder einen extrem seltenen und wertvollen Skin!</font>"
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="Horzine-Vorratskistenschlüssel"
@@ -1235,6 +1322,7 @@ AA12SteampunkFieldTestedName="AA12 | Steampunk | Praxisbewährt"
 AA12SteampunkMintName="AA12 | Steampunk | Tadellos"
 AA12SteampunkPreciousName="AA12 | Steampunk | Edel"
 AA12DragonKoiPreciousName="AA12 | Drache und Koi | Edel"
+AA12FostersFavoritesPreciousName="AA12 | Fosters Lieblinge | Edel"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Äußeres: Tadellos | Zusätzliche Läufe machen alles besser. Und toter."
@@ -1323,7 +1411,8 @@ AK12SynthwaveMintName="AK-12 | Synthwave | Tadellos"
 AK12SynthwaveFieldTestedName="AK-12 | Synthwave | Praxisbewährt"
 AK12SynthwaveBattleScarredName="AK-12 | Synthwave | Kampferprobt"
 AK12PrestigePreciousName="AK-12 | Ansehen | Edel"
-AK12DragonKoiPreciousName="Ak-12 | Drache und Koi | Edel"
+AK12DragonKoiPreciousName="AK-12 | Drache und Koi | Edel"
+AK12FostersFavoritesPreciousName="AK-12 | Fosters Lieblinge | Edel"
 
 ;AR15 Descriptions
 AR15MintDescription="Äußeres: Tadellos | Ein altbewährtes Mittel gegen Zeds, nicht gegen Ungeziefer."
@@ -1430,6 +1519,7 @@ BoomstickHorzineFirstEncounterFieldTestedName="Boom-Knüppel | Horzine-Erstbegeg
 BoomstickHorzineFirstEncounterBattleScarredName="Boom-Knüppel | Horzine-Erstbegegnung | Kampferprobt" 
 BoomstickPrestigePreciousName="Boom-Knüppel | Ansehen | Edel"
 BoomstickDragonKoiPreciousName="Boom-Knüppel | Drache und Koi | Edel"
+BoomstickFostersFavoritesPreciousName="Boom-Knüppel | Fosters Lieblinge | Edel"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="Äußeres: Tadellos | Handlicher und selbstgemachter Flammenwerfer. Bitte NICHT zu Hause nachmachen."
@@ -1576,6 +1666,11 @@ DesertEagleSteampunkFieldTestedName="Desert Eagle | Steampunk | Praxisbewährt"
 DesertEagleSteampunkMintName="Desert Eagle | Steampunk | Tadellos"
 DesertEagleSteampunkPreciousName="Desert Eagle | Steampunk | Edel"
 DesertEagleDragonKoiPreciousName="Desert Eagle | Drache und Koi | Edel"
+DesertEagleJaegerMintName="Desert Eagle | Jäger | Tadellos"
+DesertEagleJaegerFieldTestedName="Desert Eagle | Jäger | Praxisbewährt"
+DesertEagleJaegerBattleScarredName="Desert Eagle | Jäger | Kampferprobt"
+DesertEagleJaegerDynamicName="Desert Eagle | Jäger | Dynamisch"
+DesertEagleFostersFavoritesPreciousName="Desert Eagle | Fosters Lieblinge | Edel"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Äußeres: Tadellos | Wenn zwei Mal so viel Spaß nicht reicht … wie wär's mit vier?"
@@ -1588,6 +1683,11 @@ DoomstickNeonMintName="Doomstick | Neon | Tadellos"
 DoomstickNeonFieldTestedName="Doomstick | Neon | Praxisbewährt" 
 DoomstickNeonBattleScarredName="Doomstick | Neon | Kampferprobt" 
 DoomstickNeonRGBPreciousName="Doomstick | Neon-RGB | Edel" 
+DoomstickJaegerMintName="Doomstick | Jäger | Tadellos"
+DoomstickJaegerFieldTestedName="Doomstick | Jäger | Praxisbewährt"
+DoomstickJaegerBattleScarredName="Doomstick | Jäger | Kampferprobt"
+DoomstickJaegerDynamicName="Doomstick | Jäger | Dynamisch"
+DoomstickVaultVoshPreciousName="Doomstick | Kammer | Vosh | Edel"
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="Äußeres: Tadellos | Eine Schrotflinte mit Drachenatem-Brandmunition. Nicht nur tödlich, sondern sieht auch ziemlich toll aus."
@@ -1779,6 +1879,10 @@ HemogoblinNeonFieldTestedName="Hemogoblin | Neon | Praxisbewährt"
 HemogoblinNeonBattleScarredName="Hemogoblin | Neon | Kampferprobt"
 HemogoblinNeonRGBPreciousName="Hemogoblin | Neon-RGB | Edel"
 HemogoblinVaultVoshPreciousName="Hemogoblin | Kammer | Vosh | Edel"
+HemogoblinJaegerMintName="Hemogoblin | Jäger | Tadellos"
+HemogoblinJaegerFieldTestedName="Hemogoblin | Jäger | Praxisbewährt"
+HemogoblinJaegerBattleScarredName="Hemogoblin | Jäger | Kampferprobt"
+HemogoblinJaegerDynamicName="Hemogoblin | Jäger | Dynamisch"
 
 ;HK UMP Descriptions
 HKUMPMintDescription="Äußeres: Tadellos | Eines der neueren Mitglieder der MP-Familie. Vielleicht ein Onkel? Haben Maschinenpistolen Familien?"
@@ -1978,6 +2082,7 @@ HMTech501GrenadeRifleNeonMintName="HMTech-501-Granatgewehr | Neon | Tadellos"
 HMTech501GrenadeRifleNeonFieldTestedName="HMTech-501-Granatgewehr | Neon | Praxisbewährt"
 HMTech501GrenadeRifleNeonBattleScarredName="HMTech-501-Granatgewehr | Neon | Kampferprobt"
 HMTech501GrenadeRifleNeonRGBPreciousName="HMTech-501-Granatgewehr | Neon-RGB | Edel"
+HMTech501GrenadeLauncherVaultVoshPreciousName="HMTech-501-Granatgewehr | Kammer | Vosh | Edel"
 
 ;Husk Cannon Descriptions
 HuskCannonMintDescription="Äußeres: Tadellos | Die offizielle Horzine-Version der Husk-Kanone. Dieses Modell ist zu 95% explosionssicher."
@@ -2131,6 +2236,11 @@ KrissBeyondHorizonFieldTestedName="Kriss-MP | Beyond Horizon | Praxisbewährt"
 KrissBeyondHorizonBattleScarredName="Kriss-MP | Beyond Horizon | Kampferprobt"
 KrissBeyondHorizonSpaceEliteName="Kriss-MP | Beyond Horizon | Weltraum-Elite"
 KrissDragonKoiPreciousName="Kriss-MP | Drache und Koi | Edel"
+KrissJaegerMintName="Kriss | Jäger | Tadellos"
+KrissJaegerFieldTestedName="Kriss | Jäger | Praxisbewährt"
+KrissJaegerBattleScarredName="Kriss | Jäger | Kampferprobt"
+KrissJaegerDynamicName="Kriss | Jäger | Dynamisch"
+KrissFostersFavoritesPreciousName="Kriss | Fosters Lieblinge | Edel"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Äußeres: Tadellos | Die SA80 war die Standardwaffe der britischen Armee. Das war, bevor die Armee ... naja ... auf der Speisekarte landete."
@@ -2208,6 +2318,7 @@ M14EBRNeonRGBPreciousName="M14EBR | Neon-RGB | Edel"
 M14EBRVaultVoshPreciousName="M14 EBR | Kammer | Vosh | Edel"
 M14EBRPrestigePreciousName="M14 EBR | Ansehen | Edel"
 M14EBRDragonKoiPreciousName="M14 EBR | Drache und Koi | Edel"
+M14EBRFostersFavoritesPreciousName="M14 EBR | Fosters Lieblinge | Edel"
 
 ;M16M203 Descriptions
 M16M203MintDescription="Äußeres: Tadellos | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
@@ -2298,6 +2409,7 @@ M4NeonBattleScarredName="M4 | Neon | Kampferprobt"
 M4NeonRGBPreciousName="M4 | Neon-RGB | Edel"
 M4PrestigePreciousName="M4 | Ansehen | Edel"
 M4DragonKoiPreciousName="M4 | Drache und Koi | Edel"
+M4FostersFavoritesPreciousName="M4 | Fosters Lieblinge | Edel"
 
 ;M79 Descriptions
 M79MintDescription="Äußeres: Tadellos | Die Munition wird erst in ein paar Metern Entfernung scharf, damit du dir nicht aus Versehen dein eigenes Gesicht wegbläst."
@@ -2446,6 +2558,10 @@ MicrowaveGunNeonRGBPreciousName="Mikrowellenwaffe | Neon-RGB | Edel"
 MicrowaveGunVaultVoshPreciousName="Mikrowellenwaffe | Kammer | Vosh | Edel"
 MicrowaveGunPrestigePreciousName="Mikrowellenwaffe | Ansehen | Edel"
 MicrowaveGunDragonKoiPreciousName="Mikrowellenwaffe | Drache und Koi | Edel"
+MicrowaveGunJaegerMintName="Mikrowellenwaffe | Jäger | Tadellos"
+MicrowaveGunJaegerFieldTestedName="Mikrowellenwaffe | Jäger | Praxisbewährt"
+MicrowaveGunJaegerBattleScarredName="Mikrowellenwaffe | Jäger | Kampferprobt"
+MicrowaveGunJaegerDynamicName="Mikrowellenwaffe | Jäger | Dynamisch"
 
 ;MP5RAS Descriptions
 MP5RASMintDescription="Äußeres: Tadellos | Die aktuellste Version einer der am meisten verwendeten Maschinenpistolen der Welt."
@@ -2532,6 +2648,11 @@ P90NeonMintName="P90 | Neon | Tadellos"
 P90NeonRGBPreciousName="P90 | Neon-RGB | Edel"
 P90VaultVoshPreciousName="P90 | Kammer | Vosh | Edel"
 P90DragonKoiPreciousName="P90 | Drache und Koi | Edel"
+P90JaegerMintName="P90 | Jäger | Tadellos"
+P90JaegerFieldTestedName="P90 | Jäger | Praxisbewährt"
+P90JaegerBattleScarredName="P90 | Jäger | Kampferprobt"
+P90JaegerDynamicName="P90 | Jäger | Dynamisch"
+P90FostersFavoritesPreciousName="P90 | Fosters Lieblinge | Edel"
 
 ;Pulverizer Descriptions
 PulverizerMintDescription="Äußeres: Tadellos | Wer sagt denn schon zu einer Schrotflinte mit einem Vorschlaghammer Nein?"
@@ -2567,6 +2688,10 @@ PulverizerBeyondHorizonFieldTestedName="Pulverisator | Beyond Horizon | Praxisbe
 PulverizerBeyondHorizonBattleScarredName="Pulverisator | Beyond Horizon | Kampferprobt"
 PulverizerBeyondHorizonSpaceEliteName="Pulverisator | Beyond Horizon | Weltraum-Elite"
 PulverizerDragonKoiPreciousName="Pulverisator | Drache und Koi | Edel"
+PulverizerJaegerMintName="Pulverisator | Jäger | Tadellos"
+PulverizerJaegerFieldTestedName="Pulverisator | Jäger | Praxisbewährt"
+PulverizerJaegerBattleScarredName="Pulverisator | Jäger | Kampferprobt"
+PulverizerJaegerDynamicName="Pulverisator | Jäger | Dynamisch"
 
 ;Railgun Descriptions
 RailgunMintDescription="Äußeres: Tadellos | Diese Waffe feuert ein Stahlgeschoss mittels Magneten ab, das Zeds zu extrem hohen Geschwindigkeiten mit Leichtigkeit durchlöchert."
@@ -2698,6 +2823,10 @@ ScarBeyondHorizonFieldTestedName="Scar | Beyond Horizon | Praxisbewährt"
 ScarBeyondHorizonBattleScarredName="Scar | Beyond Horizon | Kampferprobt"
 ScarBeyondHorizonSpaceEliteName="Scar | Beyond Horizon | Weltraum-Elite"
 ScarDragonKoiPreciousName="Scar | Drache und Koi | Edel"
+ScarJaegerMintName="Scar | Jäger | Tadellos"
+ScarJaegerFieldTestedName="Scar | Jäger | Praxisbewährt"
+ScarJaegerBattleScarredName="Scar | Jäger | Kampferprobt"
+ScarJaegerDynamicName="SCAR | Jäger | Dynamisch"
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="Äußeres: Tadellos | Eine vielseitige, hochexplosive Waffe, die mehrere Ziele auf einmal verfolgen und bekämpfen kann."
@@ -2714,6 +2843,7 @@ SeekerSixBluefireMintName="Seeker Six | Blaufeuer | Tadellos"
 SeekerSixBluefireFieldTestedName="Seeker Six | Blaufeuer | Praxisbewährt" 
 SeekerSixBluefireBattleScarredName="Seeker Six | Blaufeuer | Kampferprobt" 
 SeekerSixNeonRGBPreciousName="Seeker Six | Neon-RGB | Edel" 
+SeekerSixVaultVoshPreciousName="Seeker Six | Kammer | Vosh | Edel"
 
 ;SG500 Descriptions
 SG500MintDescription="Äußeres: Tadellos | Die Mossberg-SG-500 mit Pumpprinzip und Pistolengriff ist wunderbar dafür geeignet, wenn man sich Zeds auf engem Raum vom Hals schaffen will. Einfach und wirksam."
@@ -2993,6 +3123,7 @@ MKB42NeonMintName="MKB42H | Neon | Tadellos"
 MKB42NeonFieldTestedName="MKB42H | Neon | Praxisbewährt"
 MKB42NeonBattleScarredName="MKB42H | Neon | Kampferprobt"
 MKB42NeonRGBPreciousName="MKB42H | Neon-RGB | Edel"
+MKB42VaultVoshPreciousName="MKB42H | Kammer | Vosh | Edel"
 
 ;TommyGun Descriptions
 TommyGunMintDescription="Äußeres: Tadellos | Früher als Chicago Typewriter bekannt, denn sie ist eine geeignete Waffe, um deinen Namen in deine Feinde zu schreiben."
@@ -3026,6 +3157,10 @@ LaserCutterBeyondHorizonBattleScarredName="Killerwatt | Beyond Horizon | Kampfer
 LaserCutterBeyondHorizonSpaceEliteName="Killerwatt | Beyond Horizon | Weltraum-Elite"
 LaserCutterVaultVoshPreciousName="Killerwatt | Kammer | Vosh | Edel"
 LaserCutterDragonKoiPreciousName="Killerwatt | Drache und Koi | Edel"
+LaserCutterJaegerMintName="Killerwatt | Jäger | Tadellos"
+LaserCutterJaegerFieldTestedName="Killerwatt | Jäger | Praxisbewährt"
+LaserCutterJaegerBattleScarredName="Killerwatt | Jäger | Kampferprobt"
+LaserCutterJaegerDynamicName="Killerwatt | Jäger | Dynamisch"
 
 ;FNFAL Descriptions
 FNFALMintDescription="Äußeres: Tadellos | Diese Waffe ist sicher kein REIN-FAL … okay, der war echt mies."
@@ -3039,6 +3174,10 @@ FNFALNeonFieldTestedName="FN FAL | Neon | Praxisbewährt"
 FNFALNeonBattleScarredName="FN FAL | Neon | Kampferprobt"
 FNFALNeonRGBPreciousName="FN FAL | Neon-RGB | Edel"
 FNFALVaultVoshPreciousName="FN FAL | Kammer | Vosh | Edel"
+FNFALJaegerMintName="FN FAL | Jäger | Tadellos"
+FNFALJaegerFieldTestedName="FN FAL | Jäger | Praxisbewährt"
+FNFALJaegerBattleScarredName="FN FAL | Jäger | Kampferprobt"
+FNFALJaegerDynamicName="FN FAL | Jäger | Dynamisch"
 
 ;FireAxe Descriptions
 FireAxeMintDescription="Äußeres: Tadellos | Warum heißt sie Feueraxt, wenn sie nicht brennt?"
@@ -3102,6 +3241,10 @@ MIcrowaveAssaultBeyondHorizonFieldTestedName="Helios-Gewehr | Beyond Horizon | P
 MIcrowaveAssaultBeyondHorizonBattleScarredName="Helios-Gewehr | Beyond Horizon | Kampferprobt"
 MIcrowaveAssaultBeyondHorizonSpaceEliteName="Helios-Gewehr | Beyond Horizon | Weltraum-Elite"
 MIcrowaveAssaultVaultVoshPreciousName="Helios-Gewehr | Kammer | Vosh | Edel"
+MIcrowaveAssaultJaegerMintName="Helios-Gewehr | Jäger | Tadellos"
+MIcrowaveAssaultJaegerFieldTestedName="Helios-Gewehr | Jäger | Praxisbewährt"
+MIcrowaveAssaultJaegerBattleScarredName="Helios-Gewehr | Jäger | Kampferprobt"
+MIcrowaveAssaultJaegerDynamicName="Helios-Gewehr | Jäger | Dynamisch"
 
 ;Rhino Descriptions
 RhinoMintDescription="Äußeres: Tadellos | Geht durch Zeds durch, als wären sie Butter."
@@ -3117,6 +3260,31 @@ RhinoLightningName="Rhino | Blitz | Edel"
 RhinoLuciferName="Rhino | Luzifer | Edel"
 RhinoRoyalShockName="Rhino | Schockkönig | Edel"
 RhinoShatterName="Rhino | Bruch | Edel"
+
+;Mosin Descriptions
+MosinNagantPreciousDescription="Äußeres: Edel | Egal ob aus der Nähe oder aus der Ferne – du wirst garantiert den Feind durchlöchern."
+
+;Mosin Names
+MosinNagantStandardPreciousName="Mosin-Nagant | Standard | Edel"
+MosinNagantCamouflagePreciousName="Mosin-Nagant | Camouflage | Edel"
+MosinNagantFiligreePreciousName="Mosin-Nagant | Filigran | Edel"
+MosinNagantFiligreeSilverPreciousName="Mosin-Nagant | Filigran-Silber | Edel"
+MosinNagantGreenPreciousName="Mosin-Nagant | Grün | Edel"
+MosinNagantWinterPreciousName="Mosin-Nagant | Winter | Edel"
+
+;RiotShield Descriptions
+RiotShieldandG18PreciousDescription="Äußeres: Edel | Für deine Freunde genauso nützlich wie für dich, vorausgesetzt sie sterben nicht alle hinter dir."
+
+;RiotShield Names
+RiotShieldandG18StandardPreciousName="Aufstands-Schild und G18 | Standard | Edel"
+RiotShieldandG18DesertPreciousName="Aufstands-Schild und G18 | Wüste | Edel"
+RiotShieldandG18ForestPreciousName="Aufstands-Schild und G18 | Wald | Edel"
+RiotShieldandG18VIGILPreciousName="Aufstands-Schild und G18 | WACHE | Edel"
+RiotShieldandG18WinterPreciousName="Aufstands-Schild und G18 | Winter | Edel"
+RiotShieldandG18SWATPreciousName="Aufstands-Schild und G18 | SWAT | Edel"
+
+;Dynamic Descriptions
+DynamicPreciousDescription="Äußeres: Dynamisch und Edel | Dynamische Skins zeigen die folgenden Statistiken live auf dem Waffen-Skin selbst: Magazin-Kapazität & Genauigkeit pro Magazin"
 
 [CosmeticSection]
 
@@ -4277,16 +4445,16 @@ DARC3HZHelmetMarbleName="D.A.R. | C-3HZ-Helm | Marmor"
 DARC3HZHelmetObsidianName="D.A.R. | C-3HZ-Helm | Obsidian"
 DARC3HZHelmetPreciousName="D.A.R. | C-3HZ-Helm | Edel"
 DARC3HZHelmetSpaceName="D.A.R. | C-3HZ-Helm | Raum"
-DARClassicArmorBloodyName="D.A.R. | Klassische Panzerung | Blutig"
-DARClassicArmorLoaderName="D.A.R. | Klassische Panzerung | Lader"
-DARClassicArmorPreciousName="D.A.R. | Klassische Panzerung | Edel"
-DARClassicArmorScullyName="D.A.R. | Klassische Panzerung | Scully"
-DARClassicArmorStandardName="D.A.R. | Klassische Panzerung | Standard"
-DARClassicHelmetBloodyName="D.A.R. | Klassischer Helm | Blutig"
-DARClassicHelmetLoaderName="D.A.R. | Klassischer Helm | Lader"
-DARClassicHelmetPreciousName="D.A.R. | Klassischer Helm | Edel"
-DARClassicHelmetScullyName="D.A.R. | Klassischer Helm | Scully"
-DARClassicHelmetStandardName="D.A.R. | Klassischer Helm | Standard"
+DARClassicArmorBloodyName="D.A.R. | Classic Armor | Bloody
+DARClassicArmorLoaderName="D.A.R. | Classic Armor | Loader
+DARClassicArmorPreciousName="D.A.R. | Classic Armor | Precious
+DARClassicArmorScullyName="D.A.R. | Classic Armor | Scully
+DARClassicArmorStandardName="D.A.R. | Classic Armor | Standard
+DARClassicHelmetBloodyName="D.A.R. | Classic Helmet | Bloody
+DARClassicHelmetLoaderName="D.A.R. | Classic Helmet | Loader
+DARClassicHelmetPreciousName="D.A.R. | Classic Helmet | Precious
+DARClassicHelmetScullyName="D.A.R. | Classic Helmet | Scully
+DARClassicHelmetStandardName="D.A.R. | Classic Helmet | Standard
 
 ;Steampunk Cosmetic Names
 SteampunkTopHatBlueName="Steampunk | Zylinder | Blau"
@@ -4780,6 +4948,50 @@ HalloweenGarlicClotBackpackBlackName="Halloween | Knoblauch-Clot-Rucksack | Schw
 HalloweenGarlicClotBackpackPurpleName="Halloween | Knoblauch-Clot-Rucksack | Lila"
 HalloweenGarlicClotBackpackPreciousName="Halloween | Knoblauch-Clot-Rucksack | Edel"
 
+;Christmas 2019 Cosmetic Names
+ChristmasKrampusMaskRedName="Weihnachten | Krampus-Maske | Rot"
+ChristmasKrampusMaskGreenName="Weihnachten | Krampus-Maske | Grün"
+ChristmasKrampusMaskPreciousName="Weihnachten | Krampus-Maske | Edel"
+ChristmasGorefastMaskGingerbreadName="Weihnachten | Gorefast-Maske | Lebkuchen"
+ChristmasGorefastMaskStrawberryFrostedName="Weihnachten | Gorefast-Maske | Gefrorene Erdbeere"
+ChristmasGorefastMaskPreciousName="Weihnachten | Gorefast-Maske | Edel"
+ChristmasClotHatGreenName="Weihnachten | Clot-Hut | Grün"
+ChristmasClotHatRedName="Weihnachten | Clot-Hut | Rot"
+ChristmasClotHatPreciousName="Weihnachten | Clot-Hut | Edel"
+ChristmasTopHatRedName="Weihnachten | Zylinder | Rot"
+ChristmasTopHatGreenName="Weihnachten | Zylinder | Grün"
+ChristmasTopHatPreciousName="Weihnachten | Zylinder | Edel"
+ChristmasSnowmanCapIceName="Weihnachten | Schneemann-Mütze | Eis"
+ChristmasSnowmanCapMagmaName="Weihnachten | Schneemann-Mütze | Magma"
+ChristmasSnowmanCapPreciousName="Weihnachten | Schneemann-Mütze | Edel"
+ChristmasMonsterCapGreenName="Weihnachten | Monster-Kappe | Grün"
+ChristmasMonsterCapRedName="Weihnachten | Monster-Kappe | Rot"
+ChristmasMonsterCapPreciousName="Weihnachten | Monster-Kappe | Edel"
+ChristmasScrakeMaskBrownName="Weihnachten | Scrake-Maske | Braun"
+ChristmasScrakeMaskBlackName="Weihnachten | Scrake-Maske | Schwarz"
+ChristmasScrakeMaskPreciousName="Weihnachten | Scrake-Maske | Edel"
+ChristmasReindeerBackpackBrownName="Weihnachten | Rentier-Rucksack | Braun"
+ChristmasReindeerBackpackDottedName="Weihnachten | Rentier-Rucksack | Gepunktet"
+ChristmasReindeerBackpackPreciousName="Weihnachten | Rentier-Rucksack | Edel"
+ChristmasTreeBackpackRedName="Weihnachten | Baum-Rucksack | Rot"
+ChristmasTreeBackpackGreenName="Weihnachten | Baum-Rucksack | Grün"
+ChristmasTreeBackpackPreciousName="Weihnachten | Baum-Rucksack | Edel"
+ChristmasGingerbreadHatOriginalName="Weihnachten | Lebkuchen-Hut | Original"
+ChristmasGingerbreadHatStrawberryFrostedName="Weihnachten | Lebkuchen-Hut | Gefrorene Erdbeere"
+ChristmasGingerbreadHatPreciousName="Weihnachten | Lebkuchen-Hut | Edel"
+ChristmasNiceSantaMaskRedName="Weihnachten | Guter-Santa-Maske | Rot"
+ChristmasNiceSantaMaskGreenName="Weihnachten | Guter-Santa-Maske | Grün"
+ChristmasNiceSantaMaskPreciousName="Weihnachten | Guter-Santa-Maske | Edel"
+ChristmasNaughtySantaMaskDarkGreyName="Weihnachten | Böser-Santa-Maske | Dunkelgrau"
+ChristmasNaughtySantaMaskBloodrushName="Weihnachten | Böser-Santa-Maske | Blutrausch"
+ChristmasNaughtySantaMaskPreciousName="Weihnachten | Böser-Santa-Maske | Edel"
+ChristmasSnowmanHelmetIceName="Weihnachten | Schneemann-Helm | Eis"
+ChristmasSnowmanHelmetMagmaName="Weihnachten | Schneemann-Helm | Magma"
+ChristmasSnowmanHelmetPreciousName="Weihnachten | Schneemann-Helm | Edel"
+ChristmasMistletoeClotBackpackRedName="Weihnachten | Mistelzweig-Clot-Rucksack | Rot"
+ChristmasMistletoeClotBackpackGreenName="Weihnachten | Mistelzweig-Clot-Rucksack | Grün"
+ChristmasMistletoeClotBackpackPreciousName="Weihnachten | Mistelzweig-Clot-Rucksack | Edel"
+
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Kann im Ausrüstung-Menü angelegt werden. Mit den meisten Charakteren kompatibel. Dies ist ein exklusiver Gegenstand aus dem „Summer Sideshow“-Saison-Event. Kann zu 1 Sideshow-Ticket recycelt werden."
 SummerSideshowFacePaintDescription="Kann im Ausrüstung-Menü angelegt werden. Dies ist ein exklusiver Gegenstand aus dem „Summer Sideshow“-Saison-Event. Kann zu 1 Sideshow-Ticket recycelt werden."
@@ -4975,6 +5187,26 @@ ManiacDeluxeEmoteName="Verrückter – Deluxe | Emote"
 TheRunningManDeluxeEmoteName="Der Läufer – Deluxe | Emote"
 TheRobotDeluxeEmoteName="Der Roboter – Deluxe | Emote"
 AirMetalDeluxeEmoteName="Air Metal – Deluxe | Emote"
+CraneFistEmoteName="Kranich-Faust | Emote"
+UniversalMasteryEmoteName="Universelle Meisterschaft | Emote"
+ZedTimeEmoteName="Zed-Zeit | Emote"
+NeedYourEnergyEmoteName="Deine Energie benötigt | Emote"
+FinalFormEmoteName=Final Form | Emote"
+FastestGunInTheWestEmoteName="Schnellste Waffe im Westen | Emote"
+SpiritFingersEmoteName="Geisterfinger | Emote"
+HomerunEmoteName="Homerun | Emote"
+CointTrickEmoteName="Münztrick | Emote"
+MagicFosterEmoteName="Magischer Foster | Emote"
+CraneFistDeluxeEmoteName="Kranich-Faust – Deluxe | Emote"
+UniversalMasteryDeluxeEmoteName="Universelle Meisterschaft – Deluxe | Emote"
+ZedTimeDeluxeEmoteName="Zed-Zeit – Deluxe | Emote"
+NeedYourEnergyDeluxeEmoteName="Deine Energie benötigt – Deluxe | Emote"
+FinalFormDeluxeEmoteName="Finale Form – Deluxe | Emote"
+FastestGunInTheWestDeluxeEmoteName="Schnellste Waffe im Westen – Deluxe | Emote"
+SpiritFingersDeluxeEmoteName="Geisterfinger – Deluxe | Emote"
+HomerunDeluxeEmoteName="Homerun – Deluxe | Emote"
+CointTrickDeluxeEmoteName="Münztrick – Deluxe | Emote"
+MagicFosterDeluxeEmoteName="Magischer Foster – Deluxe | Emote"
 
 ;Emote Descriptions
 
@@ -5018,6 +5250,26 @@ ManiacDeluxeEmoteDescription="Und du kriegst etwas Kohle, und du kriegst etwas K
 TheRunningManDeluxeEmoteDescription="Dieser Tanz wird für immer cool bleiben! FÜR IMMER! Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
 TheRobotDeluxeEmoteDescription="Domo arigato, Mr. Roboto. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
 AirMetalDeluxeEmoteDescription="Seht euch meine Shred-Technik an! WEENENENENENOOO! Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
+CraneFistEmoteDescription="Ein Kampfstil, dessen einziger Schwachpunkt ist, dass dies die Erde ist. Kann zu einem seltenen kosmetischen Material recycelt werden."
+UniversalMasteryEmoteDescription="Energie wird separat verkauft. Kann zu einem seltenen kosmetischen Material recycelt werden."
+ZedTimeEmoteDescription="Sei der Meister des Limbo wie damals, 1999. Kann zu einem seltenen kosmetischen Material recycelt werden."
+NeedYourEnergyEmoteDescription="Dies ist nicht nur meine Energie. Kann zu einem seltenen kosmetischen Material recycelt werden."
+FinalFormEmoteDescription="Gehe sogar noch weiter. Kann zu einem seltenen kosmetischen Material recycelt werden."
+FastestGunInTheWestEmoteDescription="Der Cowboy sollte niemals zuerst schießen. Kann zu einem seltenen kosmetischen Material recycelt werden."
+SpiritFingersEmoteDescription="Peng, peng peng … peng, peng. Kann zu einem seltenen kosmetischen Material recycelt werden."
+HomerunEmoteDescription="100% verlässlich, wenn du eine Null dranhängst. Kann zu einem seltenen kosmetischen Material recycelt werden."
+CointTrickEmoteDescription="Ein billiger Trick, der aber Kleingeld einbringt. Kann zu einem seltenen kosmetischen Material recycelt werden."
+MagicFosterEmoteDescription="Wie geschaffen für Verbrecher. Kann zu einem seltenen kosmetischen Material recycelt werden."
+CraneFistDeluxeEmoteDescription="Ein Kampfstil, dessen einziger Schwachpunkt ist, dass dies die Erde ist. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
+UniversalMasteryDeluxeEmoteDescription="Energie wird separat verkauft. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
+ZedTimeDeluxeEmoteDescription="Sei der Meister des Limbo wie damals, 1999. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
+NeedYourEnergyDeluxeEmoteDescription="Dies ist nicht nur meine Energie. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
+FinalFormDeluxeEmoteDescription="Gehe sogar noch weiter. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
+FastestGunInTheWestDeluxeEmoteDescription="Der Cowboy sollte niemals zuerst schießen. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
+SpiritFingersDeluxeEmoteDescription="Peng, peng peng … peng, peng. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
+HomerunDeluxeEmoteDescription="100% verlässlich, wenn du eine Null dranhängst. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
+CointTrickDeluxeEmoteDescription="Ein billiger Trick, der aber Kleingeld einbringt. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
+MagicFosterDeluxeEmoteDescription="Wie geschaffen für Verbrecher. Kann zu einem außergewöhnlichen kosmetischen Material recycelt werden."
 
 [FXSection]
 

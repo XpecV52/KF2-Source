@@ -24,6 +24,7 @@ var float GorgeBaseDamage[4];
 var bool bPullActive;
 var array<KFPawn> GorgeHitList;
 var array<KFPawn> DeferredRemovalList;
+var protected export editinline array<export editinline ParticleSystemComponent> AnimParticles;
 
 static function float GetGorgeCooldown(KFPawn inPawn, int Difficulty)
 {
@@ -38,6 +39,20 @@ function SpecialMoveStarted(bool bForced, name PrevMove)
     KFPOwner.SetTimer(GorgePullDelay, false, 'StartGorgePull', self);
 }
 
+function OnAnimNotifyParticleSystemSpawned(const AnimNotify_PlayParticleEffect AnimNotifyData, ParticleSystemComponent PSC)
+{
+    local AnimSequence AnimSeq;
+
+    if(AnimNotifyData.Outer != none)
+    {
+        AnimSeq = AnimSequence(AnimNotifyData.Outer);
+        if((AnimSeq != none) && string(AnimSeq.SequenceName) ~= string(AnimName))
+        {
+            AnimParticles.AddItem(PSC;
+        }
+    }
+}
+
 function StartGorgePull()
 {
     if(KFPOwner.Role == ROLE_Authority)
@@ -49,10 +64,15 @@ function StartGorgePull()
 function SpecialMoveEnded(name PrevMove, name NextMove)
 {
     local KFPawn PullPawn;
+    local int I;
 
     bPullActive = false;
-    foreach PullList(PullPawn,)
+    I = PullList.Length - 1;
+    J0x23:
+
+    if(I >= 0)
     {
+        PullPawn = PullList[I];
         if(KFPawn_Human(PullPawn) != none)
         {
             RemoveVictim(PullPawn, false);            
@@ -60,9 +80,21 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
         else
         {
             DeferredRemovalList.AddItem(PullPawn;
-        }        
-    }    
+        }
+        -- I;
+        goto J0x23;
+    }
     PullList.Length = 0;
+    I = 0;
+    J0xB9:
+
+    if(I < AnimParticles.Length)
+    {
+        AnimParticles[I].DeactivateSystem();
+        ++ I;
+        goto J0xB9;
+    }
+    AnimParticles.Length = 0;
     super.SpecialMoveEnded(PrevMove, NextMove);
 }
 

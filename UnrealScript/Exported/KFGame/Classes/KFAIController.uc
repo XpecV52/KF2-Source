@@ -4120,6 +4120,11 @@ simulated function Tick( FLOAT DeltaTime )
 {
 	Super.Tick(DeltaTime);
 
+	if (GetIsInZedVictoryState())
+	{
+		return;
+	}
+
 	if( bSpecialBumpHandling && Role == ROLE_Authority && MyKFPawn != None && MyKFPawn.Health >= 0 && !MyKFPawn.IsDoingSpecialMove() )
 	{
 		SpecialBumpHandling(DeltaTime);

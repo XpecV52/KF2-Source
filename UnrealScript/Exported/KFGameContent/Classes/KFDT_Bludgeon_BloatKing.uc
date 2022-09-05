@@ -627,6 +627,35 @@ class KFDT_Bludgeon_BloatKing extends KFDT_Bludgeon
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 14
 
 static function int GetKillerDialogID()

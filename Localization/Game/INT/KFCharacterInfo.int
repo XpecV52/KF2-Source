@@ -41,6 +41,7 @@ BodyMesh7="Holiday Pajama Outfit"
 BodyMesh8="Vault Pajama Outfit"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Witch Hunter"
+BodyMesh11="Santa Suit"
 HeadMesh0="Gas Mask"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -130,6 +131,14 @@ BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_MrsFoster_archetype.BodyMesh11]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="White"
 HeadSkin1="Green"
@@ -212,6 +221,7 @@ BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Witch Hunter"
+BodyMesh11="Santa Suit"
 HeadMesh0="Beard Power!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -306,6 +316,14 @@ BodySkin2="Blue"
 BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
+
+[CHR_Jagerhorn_archetype.BodyMesh11]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Swedish Blonde"
@@ -404,6 +422,7 @@ BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Witch Hunter"
+BodyMesh11="Santa Suit"
 HeadMesh0="Scully Mask"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -498,6 +517,14 @@ BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_DJSkully_archetype.BodyMesh11]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Blackest Black"
 HeadSkin1="Xtra Red"
@@ -542,6 +569,7 @@ BodyMesh8="Vault Pajama Outfit"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Witch Hunter"
+BodyMesh12="Santa Suit"
 HeadMesh0="Hair"
 
 [chr_briar_archetype.BodyMesh0]
@@ -642,6 +670,14 @@ BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_briar_archetype.BodyMesh12]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Highlights"
@@ -680,6 +716,7 @@ BodyMesh8="Vault Pajama Outfit"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Witch Hunter"
+BodyMesh12="Santa Suit"
 HeadMesh0="Gas Mask"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -784,6 +821,14 @@ BodySkin2="Blue"
 BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
+
+[CHR_MrFoster_archetype.BodyMesh12]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Original White"
@@ -943,6 +988,7 @@ BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Witch Hunter"
+BodyMesh11="Santa Suit"
 HeadMesh0="Face"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1035,6 +1081,14 @@ BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_Coleman_archetype.BodyMesh11]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
@@ -1072,6 +1126,7 @@ BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Witch Hunter"
+BodyMesh11="Santa Suit"
 HeadMesh0="Hair"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1165,6 +1220,14 @@ BodySkin2="Blue"
 BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
+
+[CHR_Alberts_archetype.BodyMesh11]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grey"
@@ -2063,6 +2126,7 @@ BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Witch Hunter"
+BodyMesh11="Santa Suit"
 HeadMesh0="Face"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2166,6 +2230,14 @@ BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_Masterson_archetype.BodyMesh11]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka is a conflicted individual with a serious death-wish problem. Born in Okinawa, he was brought up around Americans in the military. Moving to mainland Japan with his family, the Americanized Tanaka failed to fit in and took up drama classes. After college he moved to LA, playing cliched bit-parts in bad movies, before moving on to Europe trying to find more 'serious' work. All he got there were bad-guy roles in French gangster films and some tats. Now, in the apocalypse, he seems to be confusing his own reality with some of the movie parts he has played. This seems to involve visions of the Yakuza, demon, and a Hollywood take on bushido."
@@ -2181,6 +2253,7 @@ BodyMesh8="Vault Pajama Outfit"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Witch Hunter"
+BodyMesh12="Santa Suit"
 HeadMesh0="Hair"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2291,6 +2364,14 @@ BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_Tanaka_archetype.BodyMesh12]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Helmet"
 AttachmentSkin0="Rising Sun"
@@ -2332,6 +2413,7 @@ BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Witch Hunter"
+BodyMesh11="Santa Suit"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2435,6 +2517,14 @@ BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_Ana_archetype.BodyMesh11]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D Glasses"
 AttachmentSkin0="Anaglyph 3D"
@@ -2462,6 +2552,7 @@ BodyMesh8="Vault Pajama Outfit"
 BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Witch Hunter"
+BodyMesh12="Santa Suit"
 HeadMesh0="Hair"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2562,6 +2653,14 @@ BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_mark_archetype.BodyMesh12]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
 HeadSkin1="Bloody 5 O'Clock"
@@ -2586,6 +2685,7 @@ BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Witch Hunter"
+BodyMesh11="Santa Suit"
 HeadMesh0="Face"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2681,6 +2781,14 @@ BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
 
+[CHR_alan_archetype.BodyMesh11]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
 HeadSkin1="Ginger! Really?"
@@ -2712,6 +2820,7 @@ BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Witch Hunter"
+BodyMesh11="Santa Suit"
 HeadMesh0="Hair"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2803,6 +2912,14 @@ BodySkin2="Blue"
 BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
+
+[CHR_strasser_archetype.BodyMesh11]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Dark Steel"
@@ -2977,6 +3094,7 @@ BodyMesh7="Vault Pajama Outfit"
 BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Witch Hunter"
+BodyMesh11="Santa Suit"
 HeadMesh0="Default Head"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3072,6 +3190,14 @@ BodySkin2="Blue"
 BodySkin3="Purple"
 BodySkin4="Red"
 BodySkin5="White"
+
+[CHR_rockabilly_archetype.BodyMesh11]
+BodySkin0="Red"
+BodySkin1="Black"
+BodySkin2="Blue"
+BodySkin3="Green"
+BodySkin4="White"
+BodySkin5="Yellow"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Black"
@@ -3580,6 +3706,66 @@ EmoteName="Air Metal"
 
 [AirMetal_Deluxe]
 EmoteName="Air Metal+"
+
+[CraneFist]
+EmoteName="Crane Fist"
+
+[CraneFist_Deluxe]
+EmoteName="Crane Fist+"
+
+[UniversalMastery]
+EmoteName="Universal Mastery"
+
+[UniversalMastery_Deluxe]
+EmoteName="Universal Mastery+"
+
+[ZedTime]
+EmoteName="Zed Time"
+
+[ZedTime_Deluxe]
+EmoteName="Zed Time+"
+
+[NeedYourEnergy]
+EmoteName="Need Your Energy"
+
+[NeedYourEnergy_Deluxe]
+EmoteName="Need Your Energy+"
+
+[FinalForm]
+EmoteName="Final Form"
+
+[FinalForm_Deluxe]
+EmoteName="Final Form+"
+
+[FastestGun]
+EmoteName="Fastest Guns in the West"
+
+[FastestGun_Deluxe]
+EmoteName="Fastest Guns in the West+"
+
+[SpiritFingers]
+EmoteName="Spirit Fingers"
+
+[SpiritFingers_Deluxe]
+EmoteName="Spirit Fingers+"
+
+[HomeRun]
+EmoteName="Home Run"
+
+[HomeRun_Deluxe]
+EmoteName="Home Run+"
+
+[CoinTrick]
+EmoteName="Coin Trick"
+
+[CoinTrick_Deluxe]
+EmoteName="Coin Trick+"
+
+[MagicFoster]
+EmoteName="MagicFoster"
+
+[MagicFoster_Deluxe]
+EmoteName="MagicFoster+"
 
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="Firefighter Helmet"
@@ -5330,4 +5516,97 @@ AttachmentSkin2="Precious"
 Attachment="Garlic Clot Backpack"
 AttachmentSkin0="Black"
 AttachmentSkin1="Purple"
+AttachmentSkin2="Precious"
+
+[Cosmetic_SantaHat_ARCH]
+Attachment="Santa Hat"
+AttachmentSkin0="Red"
+AttachmentSkin1="Black"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Green"
+AttachmentSkin4="White"
+AttachmentSkin5="Yellow"
+
+[Cosmetic_Christmas19_KrampusMask_ARCH]
+Attachment="Christmas Krampus Mask"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_GorefastMask_ARCH]
+Attachment="Christmas Gorefast Mask"
+AttachmentSkin0="Gingerbread"
+AttachmentSkin1="Strawberry Frosted"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_ClotHat_ARCH]
+Attachment="Christmas Clot Hat"
+AttachmentSkin0="Green"
+AttachmentSkin1="Red"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_TopHat_ARCH]
+Attachment="Christmas Top Hat"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_SnowmanCap_ARCH]
+Attachment="Christmas Snowman Cap"
+AttachmentSkin0="Ice"
+AttachmentSkin1="Magma"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_MonsterCap_ARCH]
+Attachment="Christmas Monster Cap"
+AttachmentSkin0="Green"
+AttachmentSkin1="Red"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_ScrakeMask_ARCH]
+Attachment="Christmas Scrake Mask"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_ReindeerBackpack_ARCH]
+Attachment="Christmas Reindeer Backpack"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Dotted"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_TreeBackpack_ARCH]
+Attachment="Christmas Tree Backpack"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_GingerbreadHat_ARCH]
+Attachment="Christmas Gingerbread Hat"
+AttachmentSkin0="Original"
+AttachmentSkin1="Strawberry Frosted"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_NiceSantaMask_ARCH]
+Attachment="Christmas Nice Santa Mask"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_NaughtySantaMask_ARCH]
+Attachment="Christmas Naughty Santa Mask"
+AttachmentSkin0="Dark Grey"
+AttachmentSkin1="Bloodrush"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_SnowmanMask_ARCH]
+Attachment="Christmas Snowman Mask"
+AttachmentSkin0="Ice"
+AttachmentSkin1="Magma"
+AttachmentSkin2="Precious"
+
+[Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
+Attachment="Christmas Mistletoe Clot Backpack"
+AttachmentSkin0="Red"
+AttachmentSkin1="Green"
 AttachmentSkin2="Precious"

@@ -194,7 +194,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 3:
             return Class'KFGFxFall2019ObjectivesContainer';
         case 4:
-            return Class'KFGFxChristmasObjectivesContainer';
+            return Class'KFGFxSpecialEventObjectivesContainer_Xmas2019';
         default:
             return Class'KFGFxSpecialEventObjectivesContainer';
             break;
@@ -1762,8 +1762,9 @@ defaultproperties
     StockMaps(22)="kf-tragickingdom"
     StockMaps(23)="kf-shoppingspree"
     StockMaps(24)="kf-santasworkshop"
-    StockMaps(25)="kf-spillway"
-    StockMaps(26)="kf-steamfortress"
-    StockMaps(27)="kf-ashwoodasylum"
+    StockMaps(25)="kf-sanitarium"
+    StockMaps(26)="kf-spillway"
+    StockMaps(27)="kf-steamfortress"
+    StockMaps(28)="kf-ashwoodasylum"
     SubWidgetBindings=/* Array type was not detected. */
 }

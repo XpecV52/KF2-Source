@@ -41,6 +41,7 @@ BodyMesh7="Pijamas Natalino"
 BodyMesh8="Pijamas de Cofre"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Caçador de Bruxas"
+BodyMesh11="Traje de Noel"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -130,8 +131,16 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
 
+[CHR_MrsFoster_archetype.BodyMesh11]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branco"
+BodySkin5="Amarela"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
-HeadSkin0="Branco"
+HeadSkin0="Branca"
 HeadSkin1="Verde"
 HeadSkin2="Vermelho"
 HeadSkin3="Marrom"
@@ -212,6 +221,7 @@ BodyMesh7="Pijamas de Cofre"
 BodyMesh8="Steampunk"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Caçador de Bruxas"
+BodyMesh11="Traje de Noel"
 HeadMesh0="Poder da Barba!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -306,6 +316,14 @@ BodySkin2="Azul"
 BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
+
+[CHR_Jagerhorn_archetype.BodyMesh11]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Loira Sueca"
@@ -404,6 +422,7 @@ BodyMesh7="Pijamas de Cofre"
 BodyMesh8="Steampunk"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Caçador de Bruxas"
+BodyMesh11="Traje de Noel"
 HeadMesh0="Máscara do Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -498,6 +517,14 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
 
+[CHR_DJSkully_archetype.BodyMesh11]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Preto Total"
 HeadSkin1="Vermelho Extra"
@@ -542,6 +569,7 @@ BodyMesh8="Pijamas de Cofre"
 BodyMesh9="Steampunk"
 BodyMesh10="Ciberpunk"
 BodyMesh11="Caçador de Bruxas"
+BodyMesh12="Traje de Noel"
 HeadMesh0="Cabelo"
 
 [chr_briar_archetype.BodyMesh0]
@@ -642,6 +670,14 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
 
+[CHR_briar_archetype.BodyMesh12]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Destaques"
@@ -680,6 +716,7 @@ BodyMesh8="Pijamas de Cofre"
 BodyMesh9="Steampunk"
 BodyMesh10="Ciberpunk"
 BodyMesh11="Caçador de Bruxas"
+BodyMesh12="Traje de Noel"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -784,6 +821,14 @@ BodySkin2="Azul"
 BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
+
+[CHR_MrFoster_archetype.BodyMesh12]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Branco Original"
@@ -943,6 +988,7 @@ BodyMesh7="Pijamas de Cofre"
 BodyMesh8="Steampunk"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Caçador de Bruxas"
+BodyMesh11="Traje de Noel"
 HeadMesh0="Rosto"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1035,6 +1081,14 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
 
+[CHR_Coleman_archetype.BodyMesh11]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
@@ -1072,6 +1126,7 @@ BodyMesh7="Pijamas de Cofre"
 BodyMesh8="Steampunk"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Caçador de Bruxas"
+BodyMesh11="Traje de Noel"
 HeadMesh0="Cabelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1165,6 +1220,14 @@ BodySkin2="Azul"
 BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
+
+[CHR_Alberts_archetype.BodyMesh11]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Cinza"
@@ -2063,6 +2126,7 @@ BodyMesh7="Pijamas de Cofre"
 BodyMesh8="Steampunk"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Caçador de Bruxas"
+BodyMesh11="Traje de Noel"
 HeadMesh0="Rosto"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2166,6 +2230,14 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
 
+[CHR_Masterson_archetype.BodyMesh11]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka é um rapaz com sérios problemas pessoais e sério desejo de suicídio. Nascido em Okinawa, ele foi criado em meio a militares norte-americanos. Ao se mudar para a ilha central de Honshu com a família, o americanizado Tanaka não se adequou à nova vida e começou a fazer aulas de teatro. Depois do colegial, mudou-se para Los Angeles e começou a fazer pequenos papéis em filmes ruins até que se mudou para a Europa à procura de um trabalho mais “sério”. Porém, conseguiu apenas alguns papéis de vilão em filmes franceses de gângster e algumas tatuagens. Agora, no apocalipse, ele parece estar confundindo sua própria realidade com a dramaturgia. Com direito a visões de Yakuza, demônios e bushido em Hollywood."
@@ -2181,6 +2253,7 @@ BodyMesh8="Pijamas de Cofre"
 BodyMesh9="Steampunk"
 BodyMesh10="Ciberpunk"
 BodyMesh11="Caçador de Bruxas"
+BodyMesh12="Traje de Noel"
 HeadMesh0="Cabelo"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2291,6 +2364,14 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
 
+[CHR_Tanaka_archetype.BodyMesh12]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Capacete"
 AttachmentSkin0="Sol Nascente"
@@ -2332,6 +2413,7 @@ BodyMesh7="Pijamas de Cofre"
 BodyMesh8="Steampunk"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Caçador de Bruxas"
+BodyMesh11="Traje de Noel"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2435,6 +2517,14 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
 
+[CHR_Ana_archetype.BodyMesh11]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Óculos 3D"
 AttachmentSkin0="Anaglifo 3D"
@@ -2462,6 +2552,7 @@ BodyMesh8="Pijamas de Cofre"
 BodyMesh9="Steampunk"
 BodyMesh10="Ciberpunk"
 BodyMesh11="Caçador de Bruxas"
+BodyMesh12="Traje de Noel"
 HeadMesh0="Cabelo"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2562,6 +2653,14 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
 
+[CHR_mark_archetype.BodyMesh12]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
 HeadSkin1="5 Horas Sangrentas"
@@ -2586,6 +2685,7 @@ BodyMesh7="Pijamas de Cofre"
 BodyMesh8="Steampunk"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Caçador de Bruxas"
+BodyMesh11="Traje de Noel"
 HeadMesh0="Rosto"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2681,6 +2781,14 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
 
+[CHR_alan_archetype.BodyMesh11]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
 HeadSkin1="Ruivo! Sério?"
@@ -2712,6 +2820,7 @@ BodyMesh7="Pijamas de Cofre"
 BodyMesh8="Steampunk"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Caçador de Bruxas"
+BodyMesh11="Traje de Noel"
 HeadMesh0="Cabelo"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2803,6 +2912,14 @@ BodySkin2="Azul"
 BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
+
+[CHR_strasser_archetype.BodyMesh11]
+BodySkin0="Vermelhas"
+BodySkin1="Pretas"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Aço Escuro"
@@ -2977,6 +3094,7 @@ BodyMesh7="Pijamas de Cofre"
 BodyMesh8="Steampunk"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Caçador de Bruxas"
+BodyMesh11="Traje de Noel"
 HeadMesh0="Cabeça Padrão"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3073,8 +3191,16 @@ BodySkin3="Roxo"
 BodySkin4="Vermelho"
 BodySkin5="Branco"
 
+[CHR_rockabilly_archetype.BodyMesh11]
+BodySkin0="Vermelhas"
+BodySkin1="Preto"
+BodySkin2="Azuis"
+BodySkin3="Verdes"
+BodySkin4="Branca"
+BodySkin5="Amarela"
+
 [chr_rockabilly_archetype.HeadMesh0]
-HeadSkin0="Preto"
+HeadSkin0="Pretas"
 HeadSkin1="Moreno"
 HeadSkin2="Ruivo"
 HeadSkin3="Dourado"
@@ -3580,6 +3706,66 @@ EmoteName="Air Guitar"
 
 [AirMetal_Deluxe]
 EmoteName="Air Guitar+"
+
+[CraneFist]
+EmoteName="Punho de Garça"
+
+[CraneFist_Deluxe]
+EmoteName="Punho de Garça+"
+
+[UniversalMastery]
+EmoteName="Maestria Universal"
+
+[UniversalMastery_Deluxe]
+EmoteName="Maestria Universal+"
+
+[ZedTime]
+EmoteName="Surto atual: Hora dos Zeds"
+
+[ZedTime_Deluxe]
+EmoteName="Hora dos Zeds+"
+
+[NeedYourEnergy]
+EmoteName="Preciso da Sua Energia"
+
+[NeedYourEnergy_Deluxe]
+EmoteName="Preciso da Sua Energia+"
+
+[FinalForm]
+EmoteName="Forma Final"
+
+[FinalForm_Deluxe]
+EmoteName="Forma Final+"
+
+[FastestGun]
+EmoteName="Pistoleiro Mais Rápido do Oeste"
+
+[FastestGun_Deluxe]
+EmoteName="Pistoleiro Mais Rápido do Oeste+"
+
+[SpiritFingers]
+EmoteName="Dedos Espirituais"
+
+[SpiritFingers_Deluxe]
+EmoteName="Dedos Espirituais+"
+
+[HomeRun]
+EmoteName="Home Run"
+
+[HomeRun_Deluxe]
+EmoteName="Home Run+"
+
+[CoinTrick]
+EmoteName="Truque da Moeda"
+
+[CoinTrick_Deluxe]
+EmoteName="Truque da Moeda+"
+
+[MagicFoster]
+EmoteName="Foster Mágico"
+
+[MagicFoster_Deluxe]
+EmoteName="Foster Mágico+"
 
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="Casquete"
@@ -5262,7 +5448,7 @@ AttachmentSkin2="Preciosa"
 
 [Cosmetic_Halloween_PilgrimHat_ARCH]
 Attachment="Chapéu de Peregrino de Halloween"
-AttachmentSkin0="Preta"
+AttachmentSkin0="Pretas"
 AttachmentSkin1="Roxo"
 AttachmentSkin2="Preciosa"
 
@@ -5321,13 +5507,106 @@ AttachmentSkin1="Roxo"
 AttachmentSkin2="Preciosa"
 
 [Cosmetic_Halloween_StitchedMouthMask_ARCH]
-Attachment="Máscara de Boca Costurada de Halloween"
+Attachment="Máscara de Boca Costurada"
 AttachmentSkin0="Marrom"
 AttachmentSkin1="Roxo"
 AttachmentSkin2="Preciosa"
 
 [Cosmetic_Halloween_GarlicClotBackpack_ARCH]
-Attachment="Mochila Coágulo de Alho de Halloween"
+Attachment="Mochila Coágulo de Alho"
 AttachmentSkin0="Preta"
 AttachmentSkin1="Roxo"
 AttachmentSkin2="Preciosa"
+
+[Cosmetic_SantaHat_ARCH]
+Attachment="Gorro de Noel"
+AttachmentSkin0="Vermelhas"
+AttachmentSkin1="Pretas"
+AttachmentSkin2="Azuis"
+AttachmentSkin3="Verdes"
+AttachmentSkin4="Branca"
+AttachmentSkin5="Amarela"
+
+[Cosmetic_Christmas19_KrampusMask_ARCH]
+Attachment="Máscara de Krampus Natalino"
+AttachmentSkin0="Vermelhas"
+AttachmentSkin1="Verdes"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_GorefastMask_ARCH]
+Attachment="Máscara de Chacinador Natalino"
+AttachmentSkin0="Pão de mel"
+AttachmentSkin1="Glacê de Morango"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_ClotHat_ARCH]
+Attachment="Chapéu Coágulo Natalino"
+AttachmentSkin0="Verdes"
+AttachmentSkin1="Vermelhas"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_TopHat_ARCH]
+Attachment="Cartola Natalina"
+AttachmentSkin0="Vermelhas"
+AttachmentSkin1="Verdes"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_SnowmanCap_ARCH]
+Attachment="Boné do Boneco de Neve Natalino"
+AttachmentSkin0="Gelo"
+AttachmentSkin1="Magma"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_MonsterCap_ARCH]
+Attachment="Boné do Monstro Natalino"
+AttachmentSkin0="Verdes"
+AttachmentSkin1="Vermelhas"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_ScrakeMask_ARCH]
+Attachment="Máscara de Retalhador Natalina"
+AttachmentSkin0="Marrom"
+AttachmentSkin1="Pretas"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_ReindeerBackpack_ARCH]
+Attachment="Mochila de Rena de Natal"
+AttachmentSkin0="Marrom"
+AttachmentSkin1="Bolas"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_TreeBackpack_ARCH]
+Attachment="Mochila de Árvore de Natal"
+AttachmentSkin0="Vermelhas"
+AttachmentSkin1="Verdes"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_GingerbreadHat_ARCH]
+Attachment="Chapéu de Pão de Mel Natalino"
+AttachmentSkin0="Original"
+AttachmentSkin1="Glacê de Morango"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_NiceSantaMask_ARCH]
+Attachment="Máscara do Noel Simpático de Natal"
+AttachmentSkin0="Vermelhas"
+AttachmentSkin1="Verdes"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_NaughtySantaMask_ARCH]
+Attachment="Máscara do Noel Malvado de Natal"
+AttachmentSkin0="Cinza-escuro"
+AttachmentSkin1="Matança"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_SnowmanMask_ARCH]
+Attachment="Máscara do Boneco de Neve Natalino"
+AttachmentSkin0="Gelo"
+AttachmentSkin1="Magma"
+AttachmentSkin2="Preciosas"
+
+[Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
+Attachment="Mochila Coágulo de Visco de Natal"
+AttachmentSkin0="Vermelhas"
+AttachmentSkin1="Verdes"
+AttachmentSkin2="Preciosas"

@@ -1446,6 +1446,7 @@ HeadShotResetString="Tir en pleine tête manqué. Dégâts normaux !"
 SuicideMessage=" vient de renoncer à la vie..."
 KilledMessage=" a été dévoré vivant"
 KillzedBy_PatriarchString=" ne fera plus jamais de mal aux enfants de Kévin"
+KillzedBy_MatriarchString=" a péri pour le bien commun"
 KillzedBy_HansString="et son corps ont été emmenés afin de subir des expériences approfondies"
 KillzedBy_ZedCrawlerString="et ses chevilles se sont fait mâcher"
 KillzedBy_ZedBloatString=" s'est noyé dans des fluides corporels"
@@ -1735,13 +1736,13 @@ Fortitude="Cuirassé"
 FortitudeDescription="Augmente la Santé totale de 75 %."
 
 Ninja="Escarmoucheur"
-NinjaDescription="Se déplace 20 % plus vite, court 25 % plus vite et régénère 1 point de Santé par seconde lorsqu'il utilise une arme de mêlée de classe."
+NinjaDescription="Se déplace 20 % plus vite, court 25 % plus vite et régénère 2 point de santé par seconde lorsqu'il utilise une arme de classe."
 
 Vampire="Vampire"
 VampireDescription="Soigne 4 points de Santé pour chaque Zed tué avec des armes de classe. Attaque 20 % plus rapide avec des armes de mêlée de classe."
 
 Speed="Boucher"
-SpeedDescription="Attaque 20 % plus rapide et inflige 20 % de dégâts en plus avec des armes de mêlée de classe."
+SpeedDescription="Attaque 20 % plus rapide et inflige 20 % de dégâts en plus avec des armes de classe."
 
 Resistance="Résistance"
 ResistanceDescription="Gagne 20 % de résistance à tous les dégâts. Gagne 20 % de résistance supplémentaire aux Dégâts de Poison et Soniques."
@@ -2351,11 +2352,11 @@ DoschHoldDesc="Empêchez les Zeds d'entrer dans la zone indiquée"
 DescriptionDoshHold="Empêchez les Zeds d'entrer dans la zone indiquée"
 DescriptionDoshHoldShort="Défendre la zone (Optionnel)"
 RepairObjective="SOUDER ET RÉPARER"
-UseWelderToRepair="Utiliser le soudeur pour réparer les machines cassées"
-UseWelderToRepairShort="Souder les machines cassées"
+UseWelderToRepair="Utiliser le Soudeur sur les machines"
+UseWelderToRepairShort="Souder les machines"
 UseWelderToRepairTraderPod="Utiliser le soudeur pour réparer les modules de la marchande"
 UseWelderToRepairTraderPodShort="Souder les modules de la marchande"
-RepairObjectiveRequired="Machines cassées à réparer :"
+RepairObjectiveRequired="machines à souder :"
 EscortPawnsObjective="ESCORTER"
 EscortPawnsDescription="Escorter et protéger le drone contre les Zeds"
 EscortPawnsDescriptionShort="Escorter le drone"
@@ -2446,6 +2447,7 @@ KFPawn_ZedDAR_EMP="Piégeur R.E.D.A."
 KFPawn_ZedDAR_Laser="Exploseur R.E.D.A."
 KFPawn_ZedDAR_Rocket="Bombardier R.E.D.A."
 KFPawn_ZedPatriarch="Patriarche"
+KFPawn_ZedMatriarch="Matriarche"
 KFPawn_ZedBloatKingSubspawn="Rejeton d'Abomination"
 ;Human zeds
 KFPawn_ZedBloat_Versus="Bouffi - Joueur"
@@ -2675,6 +2677,20 @@ AllCompleteRewardDescriptionString="Kriss | Plus loin que l'horizon | Élite spa
 
 ChanceDropDescriptionStrings[0]="Ticket cadeau"
 ChanceDropDescriptionStrings[1]="Ticket cadeau doré"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2019]
+CurrentSpecialEventString="Un événement spécial d'une durée limitée avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Mers noires de l'infini",DescriptionString="Vaincre n'importe quel boss en Survie en mode difficile ou supérieur dans Sanatorium")
+SpecialEventObjectiveInfoList[1]=(TitleString="Une imagination quelque peu débordante",DescriptionString="Tuez 20 Zeds avec le Fouet tentaculaire dans Sanatorium")
+SpecialEventObjectiveInfoList[2]=(TitleString="Contradictions surnaturelles",DescriptionString="Tuez 20 Zeds avec le Piège aspirant dans Sanatorium")
+SpecialEventObjectiveInfoList[3]=(TitleString="Instincts maternels",DescriptionString="Tuer la Matriarche 10 fois dans n'importe quel mode de jeu ou carte")
+SpecialEventObjectiveInfoList[4]=(TitleString="Une affaire de famille",DescriptionString="Terminer le Labo biotique en mode Objectif Difficile ou supérieur")
+
+AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dynamique"
+
+ChanceDropDescriptionStrings[0]="Ticket Krampus"
+ChanceDropDescriptionStrings[1]="Ticket doré Krampus"
 
 ;============================================
 ; Daily Localization
@@ -3264,6 +3280,9 @@ DisplayName="Forteresse à vapeur"
 
 [KF-AshwoodAsylum KFMapSummary]
 DisplayName="Asile d'Ashwood"
+
+[KF-Sanitarium KFMapSummary]
+DisplayName="Sanatorium"
 
 [KFMapInfo]
 ; defaults

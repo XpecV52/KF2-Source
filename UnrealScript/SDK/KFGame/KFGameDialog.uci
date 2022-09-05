@@ -615,3 +615,32 @@
 `define PATTY_ChargeAttack				35
 `define PATTY_WhirlWindAttack			36
 `define PATTY_OnFire					37
+
+// extended Matriarch Boss dialog IDs
+`define MATTY_TauntBase						1
+`define MATTY_Taunt_Exposed_P12    			2
+`define MATTY_Taunt_Exposed_P34    			3
+`define MATTY_TauntPilotCompartDestroyed 	16
+`define MATTY_TauntPowerClawDestroyed 		17
+`define MATTY_NextBattlePhase1				18
+`define MATTY_NextBattlePhase2				19
+`define MATTY_NextBattlePhase3				20
+`define MATTY_DeadEDAR						21
+`define MATTY_ScorpionWhipWarning			22
+`define MATTY_ScorpionWhipAttack 			23
+`define MATTY_ScorpionWhipKill 				24
+`define MATTY_TeslaBlastWarning 			25
+`define MATTY_TeslaBlastKill				26
+`define MATTY_SweepingClawAttack			27
+`define MATTY_SweepingClawKill				28
+`define MATTY_PlasmaCannonWarning			29
+`define MATTY_PlasmaCannonAttack			30
+`define MATTY_PlasmaCannonKill 				31
+`define MATTY_LightningStormWarning			32
+`define MATTY_LightningStormKill 			33
+`define MATTY_WarningSirenWarning 			34
+`define MATTY_WarningSirenKill				35
+`define MATTY_ShieldActivate				36
+`define MATTY_Cloak							37
+`define MATTY_ChargeAttack					38
+`define MATTY_OnFire						39

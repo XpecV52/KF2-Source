@@ -628,6 +628,35 @@ class KFDT_Explosive_PatMissile extends KFDT_Explosive
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #linenumber 15
 
 static function int GetKillerDialogID()

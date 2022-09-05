@@ -45,7 +45,8 @@ var     byte 				TraderVolumeCheckType;
 var     int                 DebugingNextTraderIndex;
 
 /** The Archtype that holds all of our trader information */
-var KFGFxObject_TraderItems TraderItems;
+var string TraderItemsPath;
+var transient KFGFxObject_TraderItems TraderItems;
 
 /** Allow grenades */
 var bool bAllowGrenadePurchase;
@@ -511,6 +512,8 @@ simulated event PostBeginPlay()
 	// Override timer at a constant 1s instead of TimeDilation, so that it slows
 	// down during zedtime.  Also, removed the SetTimer() call from Timer()
 	SetTimer(1.f, true);
+
+	TraderItems = KFGFxObject_TraderItems(DynamicLoadObject(TraderItemsPath, class'KFGFxObject_TraderItems'));
 }
 
 simulated function ReceivedGameLength()
@@ -1182,8 +1185,15 @@ simulated function RemovePRI(PlayerReplicationInfo PRI)
 			ConsoleGameSessionHost = NullId;
 		}
 	}
+
+	if (!bMatchHasBegun)
+	{
+		UpdateSharedUnlocks();
+	}
 }
 //@HSL_END
+
+native simulated function UpdateSharedUnlocks();
 
 /** Called by the menu system to determine if perk changes are allowed */
 simulated event bool CanChangePerks()
@@ -2075,7 +2085,7 @@ defaultproperties
    WaveMax=255
    MaxPerkLevel=4
    BossIndex=255
-   TraderItems=KFGFxObject_TraderItems'GP_Trader_ARCH.DefaultTraderItems'
+   TraderItemsPath="GP_Trader_ARCH.DefaultTraderItems"
    bAllowGrenadePurchase=True
    bTradersEnabled=True
    TraderDialogManagerClass=Class'KFGame.KFTraderDialogManager'
