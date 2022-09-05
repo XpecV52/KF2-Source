@@ -678,7 +678,7 @@ ItemDescription="•Der Feuer-Modus schießt explodierende, Eiszapfen-Geschosse.
 [KFWeap_Rifle_HRGIncision]
 ItemName="HRG-Einschnitt"
 ItemCategory="Scharfschützengewehr"
-ItemDescription="•Der Feuer-Modus gibt elektrische Hochgeschwindigkeitskugeln ab.\n•Alt-Feuer schießt Heilpfeile zum Heilen von Teammitgliedern.\n•Mit dem Visier kannst du Spieler und leicht verletzliche Stellen von Zeds anvisieren."
+ItemDescription="•Der Feuer-Modus gibt elektrische Hochgeschwindigkeitskugeln ab.\n•Alt-Feuer schießt Heilpfeile zum Heilen von Teammitgliedern."
 
 [KFWeap_SMG_G18]
 ItemName="Taktischer Aufstands-Schild & Glock 18"

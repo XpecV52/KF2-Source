@@ -678,7 +678,7 @@ ItemDescription="•Tryb ataku strzela wy wybuchowymi soplami.\n•Tryb alternat
 [KFWeap_Rifle_HRGIncision]
 ItemName="HRG Nacięcie"
 ItemCategory="Karabin wyborowy"
-ItemDescription="•Tryb ataku strzela szybkimi pociskami elektrycznymi.\n•Tryb alternatywny strzela strzałkami leczniczymi, które leczą sojuszników.\n•Korzystanie z celownika umożliwia namierzenie graczy oraz czułych punktów zetów."
+ItemDescription="•Tryb ataku strzela szybkimi pociskami elektrycznymi.\n•Tryb alternatywny strzela strzałkami leczniczymi, które leczą sojuszników."
 
 [KFWeap_SMG_G18]
 ItemName="Tarcza policyjna z Glockiem 18"

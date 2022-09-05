@@ -678,7 +678,7 @@ ItemDescription="•射击模式发射爆炸、冰锥状的炮弹。\n•使用�
 [KFWeap_Rifle_HRGIncision]
 ItemName="HRG 切口"
 ItemCategory="狙击步枪"
-ItemDescription="•射击模式发射高速电弹\n•备用射击发射治疗飞镖以治疗队员\n•使用瞄准具可让你锁定玩家和丧尸的薄弱点。"
+ItemDescription="•射击模式发射高速电弹\n•备用射击发射治疗飞镖以治疗队员"
 
 [KFWeap_SMG_G18]
 ItemName="防爆盾牌和 格洛克 18 手枪"

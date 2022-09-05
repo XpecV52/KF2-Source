@@ -479,7 +479,13 @@ defaultproperties
    LightTemplate=FlashLightTemplate_0
    Begin Object Class=StaticMeshComponent Name=LightConeComp_0
       ReplacementPrimitive=None
+      bAcceptsStaticDecals=False
       CastShadow=False
+      CollideActors=False
+      BlockActors=False
+      BlockZeroExtent=False
+      BlockNonZeroExtent=False
+      BlockRigidBody=False
       Name="LightConeComp_0"
       ObjectArchetype=StaticMeshComponent'Engine.Default__StaticMeshComponent'
    End Object

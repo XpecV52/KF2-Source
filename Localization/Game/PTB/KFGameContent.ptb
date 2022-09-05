@@ -678,7 +678,7 @@ ItemDescription="•Disparo de projéteis de sincelo explosivos.\n•Tiro alt. p
 [KFWeap_Rifle_HRGIncision]
 ItemName="HRG Incisão"
 ItemCategory="Rifle de elite"
-ItemDescription="•Disparo de balas elétricas de alta-velocidade.\n•Tiro alt. para lançar dardos curativos e ajudar membros da equipe.\n•Usar a mira permite que você a trave em jogadores e pontos vulneráveis em Zeds."
+ItemDescription="•Disparo de balas elétricas de alta-velocidade.\n•Tiro alt. para lançar dardos curativos e ajudar membros da equipe."
 
 [KFWeap_SMG_G18]
 ItemName="Escudo Antitumulto e Glock 18"

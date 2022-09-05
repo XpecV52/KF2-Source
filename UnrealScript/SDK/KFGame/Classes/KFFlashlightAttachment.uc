@@ -478,6 +478,13 @@ defaultproperties
 
 	Begin Object Class=StaticMeshComponent Name=LightConeComp_0
 		CastShadow=FALSE
+		bAcceptsStaticDecals=FALSE
+		bAcceptsDecals=FALSE
+		CollideActors=FALSE
+		BlockActors=FALSE
+		BlockZeroExtent=FALSE
+		BlockNonZeroExtent=FALSE
+		BlockRigidBody=FALSE
 	End Object
 	LightConeMeshComp=LightConeComp_0
 

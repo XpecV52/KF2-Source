@@ -678,7 +678,7 @@ ItemDescription="•폭발하는 얼음 투사체를 발사합니다. \n•대�
 [KFWeap_Rifle_HRGIncision]
 ItemName="HRG 절개"
 ItemCategory="스나이퍼 소총"
-ItemDescription="•사격 모드 시 고속 전기탄을 발사합니다.\n•대체 - 치료 다트를 발사해 팀원의 체력을 회복합니다.\n•조준경을 사용해 플레이어 및 제드의 약점 부위를 조준할 수 있습니다."
+ItemDescription="•사격 모드 시 고속 전기탄을 발사합니다.\n•대체 - 치료 다트를 발사해 팀원의 체력을 회복합니다."
 
 [KFWeap_SMG_G18]
 ItemName="진압용 방패 & 글록 18"

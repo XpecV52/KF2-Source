@@ -389,7 +389,13 @@ defaultproperties
     LightTemplate=FlashLightTemplate
     begin object name=LightConeComp class=StaticMeshComponent
         ReplacementPrimitive=none
+        bAcceptsStaticDecals=false
         CastShadow=false
+        CollideActors=false
+        BlockActors=false
+        BlockZeroExtent=false
+        BlockNonZeroExtent=false
+        BlockRigidBody=false
     object end
     // Reference: StaticMeshComponent'Default__KFFlashlightAttachment.LightConeComp'
     LightConeMeshComp=LightConeComp

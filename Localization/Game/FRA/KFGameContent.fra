@@ -678,7 +678,7 @@ ItemDescription="• Tire des stalactites explosives.\n• Le tir alternatif c
 [KFWeap_Rifle_HRGIncision]
 ItemName="GRH Incision"
 ItemCategory="Fusil de précision"
-ItemDescription="• Tire des munitions électriques à très grande vitesse.\n• Le tir alternatif tire des fléchettes qui soignent vos coéquipiers.\n• La lunette de visée vous permet de verrouiller les joueurs et les points faibles des Zeds."
+ItemDescription="• Tire des munitions électriques à très grande vitesse.\n• Le tir alternatif tire des fléchettes qui soignent vos coéquipiers."
 
 [KFWeap_SMG_G18]
 ItemName="Bouclier antiémeute et Glock 18"

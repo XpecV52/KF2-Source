@@ -678,7 +678,7 @@ ItemDescription="•Modo de disparo: lanza carámbanos de hielo explosivos.\n•
 [KFWeap_Rifle_HRGIncision]
 ItemName="Incisión HRG"
 ItemCategory="Fusil de francotirador"
-ItemDescription="•Modo de disparo: dispara cargas eléctricas de alta velocidad.\n•El modo de disparo alternativo lanza dardos que curan a los miembros del equipo.\n•Con el visor puedes apuntar a los puntos débiles de los Zed y a los jugadores."
+ItemDescription="•Modo de disparo: dispara cargas eléctricas de alta velocidad.\n•El modo de disparo alternativo lanza dardos que curan a los miembros del equipo."
 
 [KFWeap_SMG_G18]
 ItemName="Escudo antidisturbios y Glock 18"

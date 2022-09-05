@@ -678,7 +678,7 @@ ItemDescription="•ファイアモードは爆発する氷柱の発射武器を
 [KFWeap_Rifle_HRGIncision]
 ItemName="HRG インシジョン"
 ItemCategory="スナイパーライフル"
-ItemDescription="•ファイアモードは高速電流弾を発射します。\n•オルトファイアでチームメンバーを回復させる回復ダーツを発射します。\n•照準器を使うと、プレイヤーとZedの弱点にロックオンできます。"
+ItemDescription="•ファイアモードは高速電流弾を発射します。\n•オルトファイアでチームメンバーを回復させる回復ダーツを発射します。"
 
 [KFWeap_SMG_G18]
 ItemName="ライオットシールド&グロック18"

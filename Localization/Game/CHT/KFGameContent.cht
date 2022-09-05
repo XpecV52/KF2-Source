@@ -678,7 +678,7 @@ ItemDescription="•主要攻擊模式為發射爆炸性的冰柱投擲物體。
 [KFWeap_Rifle_HRGIncision]
 ItemName="HRG 切割"
 ItemCategory="狙擊步槍"
-ItemDescription="•主要攻擊模式為發射高速電氣子彈。\n•Alt - 發射療傷飛鏢，為隊友治療。\n•用瞄準器鎖定玩家和 Zed 的弱點。"
+ItemDescription="•主要攻擊模式為發射高速電氣子彈。\n•Alt - 發射療傷飛鏢，為隊友治療。"
 
 [KFWeap_SMG_G18]
 ItemName="防護盾牌與格洛克 18"

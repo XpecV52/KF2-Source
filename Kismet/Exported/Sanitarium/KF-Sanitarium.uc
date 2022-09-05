@@ -199,18 +199,9 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
 End Object
 
 Begin Object Class=InterpData Name=InterpData_1
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Time=0.099017,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Cthulhu_Idle')
-         AkEvents(1)=(Time=3.226701,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Cthulhu_Idle')
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2.InterpTrackAkEvent_1'
-      GroupName="SFX"
-      GroupColor=(B=0,G=197,R=136,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
@@ -225,9 +216,18 @@ Begin Object Class=InterpData Name=InterpData_1
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Time=0.099017,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Cthulhu_Idle')
+         AkEvents(1)=(Time=3.226701,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Cthulhu_Idle')
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackAkEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2.InterpTrackAkEvent_1'
+      GroupName="SFX"
+      GroupColor=(B=0,G=197,R=136,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=4.200000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'
@@ -285,16 +285,21 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_189
 End Object
 
 Begin Object Class=InterpData Name=InterpData_3
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_6
-         AkEvents(0)=(Time=0.368503,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Cthulhu_Attack')
-         Name="InterpTrackAkEvent_6"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Taunt_Kill_V3",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_5.InterpTrackAkEvent_6'
-      GroupName="Audio"
-      GroupColor=(B=128,G=202,R=0,A=255)
-      Name="InterpGroup_5"
+      InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0.InterpTrackAnimControl_0'
+      GroupName="Cthulu"
+      GroupColor=(B=207,G=118,R=0,A=255)
+      GroupAnimSets(0)=AnimSet'ZED_Fleshpound_ANIM.Fleshpound_Anim_Master'
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
@@ -311,22 +316,17 @@ Begin Object Class=InterpData Name=InterpData_3
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Taunt_Kill_V3",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+   Begin Object Class=InterpGroup Name=InterpGroup_5
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_6
+         AkEvents(0)=(Time=0.368503,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Cthulhu_Attack')
+         Name="InterpTrackAkEvent_6"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0.InterpTrackAnimControl_0'
-      GroupName="Cthulu"
-      GroupColor=(B=207,G=118,R=0,A=255)
-      GroupAnimSets(0)=AnimSet'ZED_Fleshpound_ANIM.Fleshpound_Anim_Master'
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackAkEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_5.InterpTrackAkEvent_6'
+      GroupName="Audio"
+      GroupColor=(B=128,G=202,R=0,A=255)
+      Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.200000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0'
@@ -384,17 +384,30 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_166
 End Object
 
 Begin Object Class=InterpData Name=InterpData_24
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_1
-         ToggleTrack(0)=(ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=0.548944)
-         Name="InterpTrackToggle_1"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(StartTime=-0.201653,AnimSeqName="Jump_F_Land",AnimPlayRate=0.874097)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_2.InterpTrackToggle_1'
-      GroupName="Particle"
-      GroupColor=(B=0,G=222,R=79,A=255)
-      Name="InterpGroup_2"
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((OutVal=(X=0.000977,Y=0.000000,Z=-9250.722656),InterpMode=CIM_CurveAuto),(InVal=0.642976,OutVal=(X=0.000977,Y=0.000000,Z=0.000488),InterpMode=CIM_CurveAuto)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=0.642976,InterpMode=CIM_CurveAuto)))
+         LookupTrack=(Points=(,(Time=0.642976)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0.InterpTrackAnimControl_0'
+      InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Cthulu"
+      GroupColor=(B=207,G=118,R=0,A=255)
+      GroupAnimSets(0)=AnimSet'ZED_Fleshpound_ANIM.Fleshpound_Anim_Master'
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
@@ -409,31 +422,18 @@ Begin Object Class=InterpData Name=InterpData_24
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((OutVal=(X=0.000977,Y=0.000000,Z=-9250.722656),InterpMode=CIM_CurveAuto),(InVal=0.642976,OutVal=(X=0.000977,Y=0.000000,Z=0.000488),InterpMode=CIM_CurveAuto)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=0.642976,InterpMode=CIM_CurveAuto)))
-         LookupTrack=(Points=(,(Time=0.642976)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_1
+         ToggleTrack(0)=(ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=0.548944)
+         Name="InterpTrackToggle_1"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(StartTime=-0.201653,AnimSeqName="Jump_F_Land",AnimPlayRate=0.874097)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0.InterpTrackAnimControl_0'
-      InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Cthulu"
-      GroupColor=(B=207,G=118,R=0,A=255)
-      GroupAnimSets(0)=AnimSet'ZED_Fleshpound_ANIM.Fleshpound_Anim_Master'
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_2.InterpTrackToggle_1'
+      GroupName="Particle"
+      GroupColor=(B=0,G=222,R=79,A=255)
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.400000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_0'
@@ -589,17 +589,9 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_28
 End Object
 
 Begin Object Class=InterpData Name=InterpData_2
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_7
-         AkEvents(0)=(Time=0.857668,Event=AkEvent'ww_zed_fleshpound_2.Play_King_FP_Rage_Hit')
-         Name="InterpTrackAkEvent_7"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_6.InterpTrackAkEvent_7'
-      GroupName="Audio"
-      GroupColor=(B=225,G=0,R=74,A=255)
-      Name="InterpGroup_6"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
@@ -614,9 +606,17 @@ Begin Object Class=InterpData Name=InterpData_2
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_7
+         AkEvents(0)=(Time=0.857668,Event=AkEvent'ww_zed_fleshpound_2.Play_King_FP_Rage_Hit')
+         Name="InterpTrackAkEvent_7"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackAkEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_6.InterpTrackAkEvent_7'
+      GroupName="Audio"
+      GroupColor=(B=225,G=0,R=74,A=255)
+      Name="InterpGroup_6"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_0'
@@ -726,19 +726,23 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_5
 End Object
 
 Begin Object Class=InterpData Name=InterpData_27
-   Begin Object Class=InterpGroup Name=InterpGroup_2
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=0.071551,OutVal=(X=0.001953,Y=-0.007813,Z=0.000015),ArriveTangent=(X=0.032462,Y=-0.129847,Z=0.000254),LeaveTangent=(X=0.032462,Y=-0.129847,Z=0.000254),InterpMode=CIM_CurveAuto),(InVal=0.120334,OutVal=(X=0.003906,Y=-0.015625,Z=0.000031),ArriveTangent=(X=0.029907,Y=-0.119627,Z=0.000234),LeaveTangent=(X=0.029907,Y=-0.119627,Z=0.000234),InterpMode=CIM_CurveAuto),(InVal=0.202165,OutVal=(X=0.005859,Y=-0.023438,Z=0.000046),ArriveTangent=(X=0.021036,Y=-0.084145,Z=0.000164),LeaveTangent=(X=0.021036,Y=-0.084145,Z=0.000164),InterpMode=CIM_CurveAuto),(InVal=0.306027,OutVal=(X=0.007813,Y=-0.031250,Z=0.000061),ArriveTangent=(X=0.020515,Y=-0.082058,Z=0.000160),LeaveTangent=(X=0.020515,Y=-0.082058,Z=0.000160),InterpMode=CIM_CurveAuto),(InVal=0.392578,OutVal=(X=0.009766,Y=-0.039063,Z=0.000076),ArriveTangent=(X=-0.041018,Y=0.164073,Z=-0.000320),LeaveTangent=(X=-0.041018,Y=0.164073,Z=-0.000320),InterpMode=CIM_CurveAuto),(InVal=0.496491,LeaveTangent=(X=0.027278,Y=-0.109111,Z=0.000213),InterpMode=CIM_CurveAuto)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=0.071551,OutVal=(X=0.000000,Y=0.000000,Z=-1.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-8.764649),LeaveTangent=(X=0.000000,Y=0.000000,Z=-8.764649),InterpMode=CIM_CurveAuto),(InVal=0.120334,OutVal=(X=0.000000,Y=0.000000,Z=-1.054688),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.345806),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.345806),InterpMode=CIM_CurveAuto),(InVal=0.202165,OutVal=(X=0.000000,Y=0.000000,Z=-1.406250),ArriveTangent=(X=0.000000,Y=0.000000,Z=2.839879),LeaveTangent=(X=0.000000,Y=0.000000,Z=2.839879),InterpMode=CIM_CurveAuto),(InVal=0.306027,OutVal=(X=0.000000,Y=0.000000,Z=-0.527344),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.846313),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.846313),InterpMode=CIM_CurveAuto),(InVal=0.392578,OutVal=(X=0.000000,Y=0.000000,Z=-1.054688),ArriveTangent=(X=0.000000,Y=0.000000,Z=2.768728),LeaveTangent=(X=0.000000,Y=0.000000,Z=2.768728),InterpMode=CIM_CurveAuto),(InVal=0.496491,LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.364963),InterpMode=CIM_CurveAuto)))
-         LookupTrack=(Points=(,(Time=0.071551),(Time=0.120334),(Time=0.202165),(Time=0.306027),(Time=0.392578),(Time=0.496491)))
+         PosTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=0.123967,OutVal=(X=0.000000,Y=-1.319336,Z=6.516846),ArriveTangent=(X=-0.030385,Y=0.000000,Z=-0.000950),LeaveTangent=(X=-0.030385,Y=0.000000,Z=-0.000950),InterpMode=CIM_CurveAuto),(InVal=0.257117,OutVal=(X=-0.007813,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAuto),(InVal=0.371901,OutVal=(X=0.000000,Y=-1.319336,Z=6.516846),ArriveTangent=(X=0.032722,Y=0.000000,Z=0.001023),LeaveTangent=(X=0.032722,Y=0.000000,Z=0.001023),InterpMode=CIM_CurveAuto),(InVal=0.495868,LeaveTangent=(X=0.065445,Y=-11.051983,Z=54.593193),InterpMode=CIM_CurveAuto)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=0.123967,OutVal=(X=-0.296631,Y=-12.705688,Z=6.256714),ArriveTangent=(X=0.170916,Y=-3.909699,Z=-18.736645),LeaveTangent=(X=0.170916,Y=-3.909699,Z=-18.736645),InterpMode=CIM_CurveAuto),(InVal=0.257117,OutVal=(X=0.043945,Y=-1.005249,Z=-4.817505),ArriveTangent=(X=-4.630554,Y=-24.947384,Z=5.627563),LeaveTangent=(X=-4.630554,Y=-24.947384,Z=5.627563),InterpMode=CIM_CurveAuto),(InVal=0.371901,OutVal=(X=-1.444702,Y=-18.890991,Z=7.651978),ArriveTangent=(X=-0.184063,Y=4.210446,Z=20.177929),LeaveTangent=(X=-0.184063,Y=4.210446,Z=20.177929),InterpMode=CIM_CurveAuto),(InVal=0.495868,LeaveTangent=(X=-2.300792,Y=-106.388626,Z=52.596107),InterpMode=CIM_CurveAuto)))
+         LookupTrack=(Points=(,(Time=0.123967),(Time=0.257117),(Time=0.371901),(Time=0.495868)))
          MoveFrame=IMF_RelativeToInitial
          Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_2.InterpTrackMove_0'
-      GroupName="door"
-      GroupColor=(B=0,G=203,R=126,A=255)
-      Name="InterpGroup_2"
+      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Arm"
+      GroupColor=(B=131,G=200,R=0,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
@@ -756,24 +760,20 @@ Begin Object Class=InterpData Name=InterpData_27
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
+   Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=0.123967,OutVal=(X=0.000000,Y=-1.319336,Z=6.516846),ArriveTangent=(X=-0.030385,Y=0.000000,Z=-0.000950),LeaveTangent=(X=-0.030385,Y=0.000000,Z=-0.000950),InterpMode=CIM_CurveAuto),(InVal=0.257117,OutVal=(X=-0.007813,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAuto),(InVal=0.371901,OutVal=(X=0.000000,Y=-1.319336,Z=6.516846),ArriveTangent=(X=0.032722,Y=0.000000,Z=0.001023),LeaveTangent=(X=0.032722,Y=0.000000,Z=0.001023),InterpMode=CIM_CurveAuto),(InVal=0.495868,LeaveTangent=(X=0.065445,Y=-11.051983,Z=54.593193),InterpMode=CIM_CurveAuto)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=0.123967,OutVal=(X=-0.296631,Y=-12.705688,Z=6.256714),ArriveTangent=(X=0.170916,Y=-3.909699,Z=-18.736645),LeaveTangent=(X=0.170916,Y=-3.909699,Z=-18.736645),InterpMode=CIM_CurveAuto),(InVal=0.257117,OutVal=(X=0.043945,Y=-1.005249,Z=-4.817505),ArriveTangent=(X=-4.630554,Y=-24.947384,Z=5.627563),LeaveTangent=(X=-4.630554,Y=-24.947384,Z=5.627563),InterpMode=CIM_CurveAuto),(InVal=0.371901,OutVal=(X=-1.444702,Y=-18.890991,Z=7.651978),ArriveTangent=(X=-0.184063,Y=4.210446,Z=20.177929),LeaveTangent=(X=-0.184063,Y=4.210446,Z=20.177929),InterpMode=CIM_CurveAuto),(InVal=0.495868,LeaveTangent=(X=-2.300792,Y=-106.388626,Z=52.596107),InterpMode=CIM_CurveAuto)))
-         LookupTrack=(Points=(,(Time=0.123967),(Time=0.257117),(Time=0.371901),(Time=0.495868)))
+         PosTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=0.071551,OutVal=(X=0.001953,Y=-0.007813,Z=0.000015),ArriveTangent=(X=0.032462,Y=-0.129847,Z=0.000254),LeaveTangent=(X=0.032462,Y=-0.129847,Z=0.000254),InterpMode=CIM_CurveAuto),(InVal=0.120334,OutVal=(X=0.003906,Y=-0.015625,Z=0.000031),ArriveTangent=(X=0.029907,Y=-0.119627,Z=0.000234),LeaveTangent=(X=0.029907,Y=-0.119627,Z=0.000234),InterpMode=CIM_CurveAuto),(InVal=0.202165,OutVal=(X=0.005859,Y=-0.023438,Z=0.000046),ArriveTangent=(X=0.021036,Y=-0.084145,Z=0.000164),LeaveTangent=(X=0.021036,Y=-0.084145,Z=0.000164),InterpMode=CIM_CurveAuto),(InVal=0.306027,OutVal=(X=0.007813,Y=-0.031250,Z=0.000061),ArriveTangent=(X=0.020515,Y=-0.082058,Z=0.000160),LeaveTangent=(X=0.020515,Y=-0.082058,Z=0.000160),InterpMode=CIM_CurveAuto),(InVal=0.392578,OutVal=(X=0.009766,Y=-0.039063,Z=0.000076),ArriveTangent=(X=-0.041018,Y=0.164073,Z=-0.000320),LeaveTangent=(X=-0.041018,Y=0.164073,Z=-0.000320),InterpMode=CIM_CurveAuto),(InVal=0.496491,LeaveTangent=(X=0.027278,Y=-0.109111,Z=0.000213),InterpMode=CIM_CurveAuto)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAuto),(InVal=0.071551,OutVal=(X=0.000000,Y=0.000000,Z=-1.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-8.764649),LeaveTangent=(X=0.000000,Y=0.000000,Z=-8.764649),InterpMode=CIM_CurveAuto),(InVal=0.120334,OutVal=(X=0.000000,Y=0.000000,Z=-1.054688),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.345806),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.345806),InterpMode=CIM_CurveAuto),(InVal=0.202165,OutVal=(X=0.000000,Y=0.000000,Z=-1.406250),ArriveTangent=(X=0.000000,Y=0.000000,Z=2.839879),LeaveTangent=(X=0.000000,Y=0.000000,Z=2.839879),InterpMode=CIM_CurveAuto),(InVal=0.306027,OutVal=(X=0.000000,Y=0.000000,Z=-0.527344),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.846313),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.846313),InterpMode=CIM_CurveAuto),(InVal=0.392578,OutVal=(X=0.000000,Y=0.000000,Z=-1.054688),ArriveTangent=(X=0.000000,Y=0.000000,Z=2.768728),LeaveTangent=(X=0.000000,Y=0.000000,Z=2.768728),InterpMode=CIM_CurveAuto),(InVal=0.496491,LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.364963),InterpMode=CIM_CurveAuto)))
+         LookupTrack=(Points=(,(Time=0.071551),(Time=0.120334),(Time=0.202165),(Time=0.306027),(Time=0.392578),(Time=0.496491)))
          MoveFrame=IMF_RelativeToInitial
          Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Arm"
-      GroupColor=(B=131,G=200,R=0,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_2.InterpTrackMove_0'
+      GroupName="door"
+      GroupColor=(B=0,G=203,R=126,A=255)
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.495868
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_0'
@@ -1551,6 +1551,10 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
 End Object
 
 Begin Object Class=InterpData Name=InterpData_41
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InVal=0.010000,InterpMode=CIM_CurveAutoClamped),(InVal=0.100000,OutVal=(X=-0.000977,Y=0.000000,Z=-0.000061),ArriveTangent=(X=-0.002483,Y=0.000000,Z=-0.000977),LeaveTangent=(X=-0.002483,Y=0.000000,Z=-0.000977),InterpMode=CIM_CurveAutoClamped),(InVal=0.600000,OutVal=(X=-0.001465,Y=0.000000,Z=-448.000153),InterpMode=CIM_CurveAutoClamped)))
@@ -1565,10 +1569,6 @@ Begin Object Class=InterpData Name=InterpData_41
       GroupColor=(B=0,G=123,R=204,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.600000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_0'
@@ -1837,6 +1837,10 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_114
 End Object
 
 Begin Object Class=InterpData Name=InterpData_7
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -1851,10 +1855,6 @@ Begin Object Class=InterpData Name=InterpData_7
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_1'
@@ -2719,6 +2719,10 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_16
 End Object
 
 Begin Object Class=InterpData Name=InterpData_20
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.700000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.200000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=9.700000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -2733,10 +2737,6 @@ Begin Object Class=InterpData Name=InterpData_20
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_1'
@@ -2798,6 +2798,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_15
 End Object
 
 Begin Object Class=InterpData Name=InterpData_15
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.700000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.200000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=9.700000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -2812,10 +2816,6 @@ Begin Object Class=InterpData Name=InterpData_15
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_15.InterpGroup_1'
@@ -3130,6 +3130,32 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_17
 End Object
 
 Begin Object Class=InterpData Name=InterpData_17
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(Time=10.000000,EventName="Boiler1Sealed")
+         EventTrack(1)=(Time=20.000000,EventName="Boiler1Unsealed")
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000046)),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000046)),(InVal=22.000000)))
+         EulerTrack=(Points=((InVal=8.000000),(InVal=10.000000),(InVal=20.000000),(InVal=22.000000)))
+         LookupTrack=(Points=((Time=8.000000),(Time=10.000000),(Time=20.000000),(Time=22.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_2.InterpTrackMove_3'
+      InterpTracks(1)=InterpTrackEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_2.InterpTrackEvent_0'
+      GroupName="Boiler1Door1"
+      GroupColor=(B=139,G=0,R=195,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_4
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
          PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=-0.000031,Z=198.000046)),(InVal=20.000000,OutVal=(X=0.000000,Y=-0.000031,Z=198.000046)),(InVal=22.000000)))
@@ -3144,32 +3170,6 @@ Begin Object Class=InterpData Name=InterpData_17
       GroupColor=(B=0,G=189,R=147,A=255)
       Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InVal=8.000000),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000046)),(InVal=20.000000,OutVal=(X=0.000000,Y=0.000000,Z=198.000046)),(InVal=22.000000)))
-         EulerTrack=(Points=((InVal=8.000000),(InVal=10.000000),(InVal=20.000000),(InVal=22.000000)))
-         LookupTrack=(Points=((Time=8.000000),(Time=10.000000),(Time=20.000000),(Time=22.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(Time=10.000000,EventName="Boiler1Sealed")
-         EventTrack(1)=(Time=20.000000,EventName="Boiler1Unsealed")
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_2.InterpTrackMove_3'
-      InterpTracks(1)=InterpTrackEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_2.InterpTrackEvent_0'
-      GroupName="Boiler1Door1"
-      GroupColor=(B=139,G=0,R=195,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=25.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_2'
@@ -4600,6 +4600,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_21
 End Object
 
 Begin Object Class=InterpData Name=InterpData_21
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -4614,10 +4618,6 @@ Begin Object Class=InterpData Name=InterpData_21
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_1'
@@ -4657,6 +4657,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_22
 End Object
 
 Begin Object Class=InterpData Name=InterpData_22
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
+      Name="InterpCurveEdSetup_4"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -4671,10 +4675,6 @@ Begin Object Class=InterpData Name=InterpData_22
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
-      Name="InterpCurveEdSetup_4"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_22.InterpGroup_1'
@@ -5076,147 +5076,85 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
 End Object
 
 Begin Object Class=InterpData Name=InterpData_4
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      GroupColor=(B=195,G=0,R=140,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Tabs(0)=(Curves=((CurveObject=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5.InterpTrackFloatMaterialParam_1',CurveColor=(B=133,G=199,R=0,A=255),CurveName="RainMaterial_1_Float Material Param"),(CurveObject=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5.InterpTrackFloatMaterialParam_0',CurveColor=(B=133,G=199,R=0,A=255),CurveName="RainMaterial_1_Float Material Param")),ViewStartInput=-1.000398,ViewEndInput=11.004378,ViewStartOutput=-4.500000,ViewEndOutput=49.500000)
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_9
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Brick_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_344.StaticMeshComponent_831'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_358.StaticMeshComponent_842'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3074.StaticMeshComponent_842'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9539.StaticMeshComponent_319'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9539.StaticMeshComponent_319',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9406.StaticMeshComponent_321'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9408.StaticMeshComponent_333'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9408.StaticMeshComponent_333',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9543.StaticMeshComponent_335'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334',MaterialIndex=2),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2333.StaticMeshComponent_336'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9660.StaticMeshComponent_905'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9662.StaticMeshComponent_907'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2208.StaticMeshComponent_426',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9011.StaticMeshComponent_335'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2195.StaticMeshComponent_426',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2289.StaticMeshComponent_496'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2289.StaticMeshComponent_496',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2277.StaticMeshComponent_496'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2277.StaticMeshComponent_496',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5388.StaticMeshComponent_211')))
-         ParamName="Scalar_Rain_Specular_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_1"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Brick_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_344.StaticMeshComponent_831'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_358.StaticMeshComponent_842'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3074.StaticMeshComponent_842'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9539.StaticMeshComponent_319'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9539.StaticMeshComponent_319',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9406.StaticMeshComponent_321'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9408.StaticMeshComponent_333'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9408.StaticMeshComponent_333',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9543.StaticMeshComponent_335'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334',MaterialIndex=2),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2333.StaticMeshComponent_336'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9660.StaticMeshComponent_905'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9662.StaticMeshComponent_907'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2208.StaticMeshComponent_426',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9011.StaticMeshComponent_335'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2195.StaticMeshComponent_426',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2289.StaticMeshComponent_496'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2289.StaticMeshComponent_496',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2277.StaticMeshComponent_496'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2277.StaticMeshComponent_496',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5388.StaticMeshComponent_211')))
-         ParamName="Scalar_Rain_Splash_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_0"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_9.InterpTrackFloatMaterialParam_0'
-      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_9.InterpTrackFloatMaterialParam_1'
-      GroupName="RainMaterial_3"
-      GroupColor=(B=0,G=165,R=174,A=255)
-      bCollapsed=True
-      Name="InterpGroup_9"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_7
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_ext_trim_2_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2571.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8455.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2573.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3008.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2575.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2915.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11585.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14454.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11593.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11595.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11618.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2883.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_761.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_107.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11596.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11614.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11597.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11613.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11598.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11601.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11642.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11612.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2916.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11643.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11878.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11892.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11893.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11920.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11921.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11645.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11676.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11699.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11704.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11714.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11715.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_87.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_88.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11637.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11778.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_937.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_939.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11785.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11786.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11787.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13840.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2863.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2624.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11959.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11980.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11775.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11776.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11619.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11620.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13259.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13279.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11782.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11780.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13324.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13349.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_941.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_19.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9813.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1032.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1028.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1179.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9865.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1212.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5431.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1251.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8684.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_200.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1562.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1566.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1568.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1571.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1572.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1626.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_201.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6686.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6310.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_91.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_92.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_93.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_94.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_86.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11638.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_208.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_209.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1273.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1639.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14467.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14491.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_4285.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_284.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_286.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14499.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14494.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9580.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9581.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10529.StaticMeshComponent_94',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3074.StaticMeshComponent_842',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_271.StaticMeshComponent_258',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9406.StaticMeshComponent_321',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9543.StaticMeshComponent_335',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2333.StaticMeshComponent_336',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9582.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9583.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2208.StaticMeshComponent_426'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9011.StaticMeshComponent_335',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9991.StaticMeshComponent_2107'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9992.StaticMeshComponent_2109'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2195.StaticMeshComponent_426'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1134.StaticMeshComponent_204'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1134.StaticMeshComponent_204',MaterialIndex=2),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5393.StaticMeshComponent_212'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5394.StaticMeshComponent_213'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5395.StaticMeshComponent_214'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5395.StaticMeshComponent_214',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5402.StaticMeshComponent_215')))
-         ParamName="Scalar_Rain_Specular_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_1"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_ext_trim_2_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2571.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8455.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2573.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3008.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2575.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2915.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11585.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14454.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11593.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11595.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11618.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2883.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_761.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_107.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11596.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11614.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11597.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11613.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11598.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11601.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11642.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11612.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2916.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11643.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11878.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11892.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11893.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11920.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11921.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11645.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11676.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11699.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11704.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11714.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11715.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_87.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_88.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11637.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11778.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_937.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_939.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11785.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11786.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11787.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13840.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2863.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2624.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11959.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11980.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11775.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11776.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11619.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11620.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13259.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13279.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11782.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11780.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13324.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13349.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_941.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_19.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9813.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1032.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1028.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1179.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9865.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1212.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5431.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1251.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8684.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_200.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1562.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1566.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1568.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1571.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1572.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1626.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_201.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6686.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6310.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_91.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_92.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_93.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_94.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_86.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11638.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_208.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_209.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1273.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1639.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14467.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14491.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_4285.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_284.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_286.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14499.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14494.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9580.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9581.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10529.StaticMeshComponent_94',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3074.StaticMeshComponent_842',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_271.StaticMeshComponent_258',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9406.StaticMeshComponent_321',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9543.StaticMeshComponent_335',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2333.StaticMeshComponent_336',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9582.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9583.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2208.StaticMeshComponent_426'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9011.StaticMeshComponent_335',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9991.StaticMeshComponent_2107'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9992.StaticMeshComponent_2109'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2195.StaticMeshComponent_426'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1134.StaticMeshComponent_204'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1134.StaticMeshComponent_204',MaterialIndex=2),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5393.StaticMeshComponent_212'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5394.StaticMeshComponent_213'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5395.StaticMeshComponent_214'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5395.StaticMeshComponent_214',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5402.StaticMeshComponent_215')))
-         ParamName="Scalar_Rain_Splash_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_0"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_7.InterpTrackFloatMaterialParam_0'
-      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_7.InterpTrackFloatMaterialParam_1'
-      GroupName="RainMaterial_2"
-      GroupColor=(B=151,G=186,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_7"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Electric_Box_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2595.StaticMeshComponent_1415'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2610.StaticMeshComponent_1415')))
-         ParamName="Scalar_Rain_Specular_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_1"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Electric_Box_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2595.StaticMeshComponent_1415'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2610.StaticMeshComponent_1415')))
-         ParamName="Scalar_Rain_Splash_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_0"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_6.InterpTrackFloatMaterialParam_0'
-      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_6.InterpTrackFloatMaterialParam_1'
-      GroupName="RainMaterial_6"
-      GroupColor=(B=146,G=0,R=191,A=255)
-      bCollapsed=True
-      Name="InterpGroup_6"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Ext_Stone_Walls_Rain_3X_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2474.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5506.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_63.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10270.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8011.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11641.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10718.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12597.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14077.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7424.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14091.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_101.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15645.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1955.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11623.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12645.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11625.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11926.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11769.StaticMeshComponent_3237'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11731.StaticMeshComponent_3239'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13879.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2568.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7280.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7281.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11794.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11795.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11796.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11797.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11798.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13074.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11802.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11801.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6309.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11803.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11804.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11805.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11944.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12175.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12217.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12219.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12652.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12593.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12265.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11799.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12264.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12594.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12263.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8009.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13078.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13083.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13316.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13504.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13880.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2796.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_45.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_4452.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14464.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8928.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11793.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3052.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2034.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2043.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9737.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15600.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15603.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11632.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11634.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12216.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2771.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12267.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8260.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14462.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14461.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15611.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14488.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15798.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14166.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15800.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14144.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14150.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15658.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14392.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14398.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5663.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_70.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5937.StaticMeshComponent_462'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_198.StaticMeshComponent_462'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10454.StaticMeshComponent_596'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10280.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3167.StaticMeshComponent_2863'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7944.StaticMeshComponent_2864'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8155.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13258.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13077.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7545.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7429.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14090.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7426.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_69.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15799.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10299.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10300.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10295.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10278.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10301.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10287.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10286.StaticMeshComponent_59')))
-         ParamName="Scalar_Rain_Specular_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_1"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Ext_Stone_Walls_Rain_3X_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2474.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5506.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_63.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10270.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8011.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11641.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10718.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12597.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14077.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7424.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14091.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_101.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15645.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1955.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11623.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12645.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11625.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11926.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11769.StaticMeshComponent_3237'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11731.StaticMeshComponent_3239'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13879.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2568.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7280.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7281.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11794.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11795.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11796.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11797.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11798.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13074.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11802.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11801.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6309.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11803.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11804.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11805.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11944.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12175.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12217.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12219.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12652.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12593.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12265.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11799.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12264.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12594.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12263.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8009.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13078.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13083.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13316.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13504.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13880.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2796.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_45.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_4452.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14464.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8928.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11793.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3052.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2034.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2043.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9737.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15600.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15603.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11632.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11634.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12216.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2771.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12267.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8260.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14462.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14461.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15611.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14488.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15798.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14166.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15800.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14144.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14150.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15658.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14392.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14398.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5663.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_70.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5937.StaticMeshComponent_462'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_198.StaticMeshComponent_462'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10454.StaticMeshComponent_596'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10280.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3167.StaticMeshComponent_2863'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7944.StaticMeshComponent_2864'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8155.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13258.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13077.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7545.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7429.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14090.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7426.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_69.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15799.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10299.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10300.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10295.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10278.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10301.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10287.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10286.StaticMeshComponent_59')))
-         ParamName="Scalar_Rain_Splash_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_0"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5.InterpTrackFloatMaterialParam_0'
-      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5.InterpTrackFloatMaterialParam_1'
-      GroupName="RainMaterial_1"
-      GroupColor=(B=133,G=199,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_5"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_3
-         PropertyName="WindDirectionalSourceComponent0.Speed"
-         FloatTrack=(Points=((InVal=-0.000000,OutVal=0.500000,InterpMode=CIM_CurveAuto),(InVal=0.010589,OutVal=1.500000,InterpMode=CIM_CurveAuto)))
-         TrackTitle="Speed"
-         Name="InterpTrackFloatProp_3"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_2
-         PropertyName="WindDirectionalSourceComponent0.Strength"
-         FloatTrack=(Points=((InVal=-0.000000,OutVal=1.000000,InterpMode=CIM_CurveAuto),(InVal=0.010589,OutVal=1.500000,InterpMode=CIM_CurveAuto)))
-         TrackTitle="Strength"
-         Name="InterpTrackFloatProp_2"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      InterpTracks(0)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_4.InterpTrackFloatProp_2'
-      InterpTracks(1)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_4.InterpTrackFloatProp_3'
-      GroupName="Wind"
-      GroupColor=(B=192,G=0,R=145,A=255)
-      bCollapsed=True
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
+   Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="DominantDirectionalLightComponent0.Brightness"
-         FloatTrack=(Points=((InVal=0.066281,OutVal=0.500000,InterpMode=CIM_CurveAuto),(InVal=9.976710,OutVal=0.100000,InterpMode=CIM_CurveAuto)))
-         TrackTitle="Brightness"
+         PropertyName="HeightFogComponent0.FogDensity"
+         FloatTrack=(Points=((InVal=0.066281,OutVal=0.010000,InterpMode=CIM_CurveAuto),(InVal=10.004006,OutVal=0.250000,InterpMode=CIM_CurveAuto)))
+         TrackTitle="FogDensity"
          Name="InterpTrackFloatProp_0"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
-         PropertyName="DominantDirectionalLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=0.066281,OutVal=(X=0.297653,Y=0.547993,Z=0.796917),InterpMode=CIM_CurveAuto),(InVal=9.965751,OutVal=(X=0.183549,Y=0.334458,Z=0.487765),InterpMode=CIM_CurveAuto)))
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_0"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackColorProp_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackFloatProp_0'
-      GroupName="Main_Light"
-      GroupColor=(B=126,G=0,R=203,A=255)
+      InterpTracks(0)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0.InterpTrackFloatProp_0'
+      GroupName="Fog"
+      GroupColor=(B=69,G=225,R=0,A=255)
       bCollapsed=True
-      Name="InterpGroup_3"
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="FogVolumeComponent0.Density"
+         FloatTrack=(Points=((InVal=0.063928,OutVal=0.000020,InterpMode=CIM_CurveAuto),(InVal=9.974493,OutVal=0.000050,InterpMode=CIM_CurveAuto)))
+         TrackTitle="Density"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_1.InterpTrackFloatProp_1'
+      GroupName="Fog_2"
+      GroupColor=(B=69,G=225,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_11
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Concrete_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9570.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9394.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9395.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9396.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9397.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1705.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2070.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2914.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2917.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9571.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9713.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9615.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9536.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8629.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8637.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9704.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9705.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9706.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9707.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10812.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9702.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1132.StaticMeshComponent_203'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3518.StaticMeshComponent_208'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3523.StaticMeshComponent_209'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5386.StaticMeshComponent_210')))
+         ParamName="Scalar_Rain_Splash_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_0"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Concrete_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9570.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9394.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9395.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9396.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9397.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1705.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2070.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2914.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2917.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9571.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9713.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9615.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9536.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8629.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8637.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9704.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9705.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9706.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9707.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10812.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9702.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1132.StaticMeshComponent_203'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3518.StaticMeshComponent_208'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3523.StaticMeshComponent_209'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5386.StaticMeshComponent_210')))
+         ParamName="Scalar_Rain_Specular_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_1"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_11.InterpTrackFloatMaterialParam_0'
+      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_11.InterpTrackFloatMaterialParam_1'
+      GroupName="RainMaterial_4"
+      GroupColor=(B=134,G=0,R=199,A=255)
+      bCollapsed=True
+      Name="InterpGroup_11"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_13
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_ext_trim_3_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10529.StaticMeshComponent_94'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_271.StaticMeshComponent_258')))
+         ParamName="Scalar_Rain_Splash_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_0"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_ext_trim_3_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10529.StaticMeshComponent_94'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_271.StaticMeshComponent_258')))
+         ParamName="Scalar_Rain_Specular_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_1"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_13.InterpTrackFloatMaterialParam_0'
+      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_13.InterpTrackFloatMaterialParam_1'
+      GroupName="RainMaterial_5"
+      GroupColor=(B=207,G=118,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_13"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
@@ -5235,86 +5173,148 @@ Begin Object Class=InterpData Name=InterpData_4
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_13
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_ext_trim_3_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10529.StaticMeshComponent_94'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_271.StaticMeshComponent_258')))
-         ParamName="Scalar_Rain_Specular_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_1"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
+         PropertyName="DominantDirectionalLightComponent0.LightColor"
+         VectorTrack=(Points=((InVal=0.066281,OutVal=(X=0.297653,Y=0.547993,Z=0.796917),InterpMode=CIM_CurveAuto),(InVal=9.965751,OutVal=(X=0.183549,Y=0.334458,Z=0.487765),InterpMode=CIM_CurveAuto)))
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_0"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_ext_trim_3_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10529.StaticMeshComponent_94'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_271.StaticMeshComponent_258')))
-         ParamName="Scalar_Rain_Splash_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_0"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_13.InterpTrackFloatMaterialParam_0'
-      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_13.InterpTrackFloatMaterialParam_1'
-      GroupName="RainMaterial_5"
-      GroupColor=(B=207,G=118,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_13"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_11
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Concrete_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9570.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9394.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9395.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9396.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9397.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1705.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2070.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2914.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2917.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9571.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9713.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9615.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9536.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8629.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8637.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9704.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9705.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9706.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9707.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10812.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9702.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1132.StaticMeshComponent_203'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3518.StaticMeshComponent_208'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3523.StaticMeshComponent_209'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5386.StaticMeshComponent_210')))
-         ParamName="Scalar_Rain_Specular_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_1"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Concrete_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9570.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9394.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9395.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9396.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9397.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1705.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2070.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2914.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2917.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9571.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9713.StaticMeshComponent_174'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9615.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9536.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8629.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8637.StaticMeshComponent_301'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9704.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9705.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9706.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9707.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10812.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9702.StaticMeshComponent_835'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1132.StaticMeshComponent_203'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3518.StaticMeshComponent_208'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3523.StaticMeshComponent_209'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5386.StaticMeshComponent_210')))
-         ParamName="Scalar_Rain_Splash_Intensity"
-         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_0"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_11.InterpTrackFloatMaterialParam_0'
-      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_11.InterpTrackFloatMaterialParam_1'
-      GroupName="RainMaterial_4"
-      GroupColor=(B=134,G=0,R=199,A=255)
-      bCollapsed=True
-      Name="InterpGroup_11"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="FogVolumeComponent0.Density"
-         FloatTrack=(Points=((InVal=0.063928,OutVal=0.000020,InterpMode=CIM_CurveAuto),(InVal=9.974493,OutVal=0.000050,InterpMode=CIM_CurveAuto)))
-         TrackTitle="Density"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      InterpTracks(0)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_1.InterpTrackFloatProp_1'
-      GroupName="Fog_2"
-      GroupColor=(B=69,G=225,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="HeightFogComponent0.FogDensity"
-         FloatTrack=(Points=((InVal=0.066281,OutVal=0.010000,InterpMode=CIM_CurveAuto),(InVal=10.004006,OutVal=0.250000,InterpMode=CIM_CurveAuto)))
-         TrackTitle="FogDensity"
+         PropertyName="DominantDirectionalLightComponent0.Brightness"
+         FloatTrack=(Points=((InVal=0.066281,OutVal=0.500000,InterpMode=CIM_CurveAuto),(InVal=9.976710,OutVal=0.100000,InterpMode=CIM_CurveAuto)))
+         TrackTitle="Brightness"
          Name="InterpTrackFloatProp_0"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
-      InterpTracks(0)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0.InterpTrackFloatProp_0'
-      GroupName="Fog"
-      GroupColor=(B=69,G=225,R=0,A=255)
+      InterpTracks(0)=InterpTrackColorProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackColorProp_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_3.InterpTrackFloatProp_0'
+      GroupName="Main_Light"
+      GroupColor=(B=126,G=0,R=203,A=255)
       bCollapsed=True
-      Name="InterpGroup_0"
+      Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Tabs(0)=(Curves=((CurveObject=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5.InterpTrackFloatMaterialParam_1',CurveColor=(B=133,G=199,R=0,A=255),CurveName="RainMaterial_1_Float Material Param"),(CurveObject=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5.InterpTrackFloatMaterialParam_0',CurveColor=(B=133,G=199,R=0,A=255),CurveName="RainMaterial_1_Float Material Param")),ViewStartInput=-1.000398,ViewEndInput=11.004378,ViewStartOutput=-4.500000,ViewEndOutput=49.500000)
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_2
+         PropertyName="WindDirectionalSourceComponent0.Strength"
+         FloatTrack=(Points=((InVal=-0.000000,OutVal=1.000000,InterpMode=CIM_CurveAuto),(InVal=0.010589,OutVal=1.500000,InterpMode=CIM_CurveAuto)))
+         TrackTitle="Strength"
+         Name="InterpTrackFloatProp_2"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_3
+         PropertyName="WindDirectionalSourceComponent0.Speed"
+         FloatTrack=(Points=((InVal=-0.000000,OutVal=0.500000,InterpMode=CIM_CurveAuto),(InVal=0.010589,OutVal=1.500000,InterpMode=CIM_CurveAuto)))
+         TrackTitle="Speed"
+         Name="InterpTrackFloatProp_3"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_4.InterpTrackFloatProp_2'
+      InterpTracks(1)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_4.InterpTrackFloatProp_3'
+      GroupName="Wind"
+      GroupColor=(B=192,G=0,R=145,A=255)
+      bCollapsed=True
+      Name="InterpGroup_4"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_5
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Ext_Stone_Walls_Rain_3X_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2474.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5506.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_63.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10270.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8011.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11641.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10718.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12597.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14077.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7424.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14091.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_101.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15645.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1955.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11623.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12645.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11625.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11926.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11769.StaticMeshComponent_3237'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11731.StaticMeshComponent_3239'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13879.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2568.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7280.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7281.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11794.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11795.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11796.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11797.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11798.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13074.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11802.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11801.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6309.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11803.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11804.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11805.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11944.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12175.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12217.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12219.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12652.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12593.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12265.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11799.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12264.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12594.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12263.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8009.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13078.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13083.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13316.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13504.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13880.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2796.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_45.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_4452.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14464.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8928.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11793.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3052.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2034.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2043.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9737.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15600.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15603.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11632.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11634.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12216.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2771.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12267.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8260.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14462.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14461.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15611.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14488.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15798.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14166.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15800.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14144.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14150.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15658.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14392.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14398.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5663.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_70.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5937.StaticMeshComponent_462'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_198.StaticMeshComponent_462'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10454.StaticMeshComponent_596'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10280.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3167.StaticMeshComponent_2863'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7944.StaticMeshComponent_2864'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8155.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13258.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13077.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7545.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7429.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14090.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7426.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_69.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15799.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10299.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10300.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10295.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10278.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10301.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10287.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10286.StaticMeshComponent_59')))
+         ParamName="Scalar_Rain_Splash_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_0"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Ext_Stone_Walls_Rain_3X_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2474.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5506.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_63.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10270.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8011.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11641.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10718.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12597.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14077.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7424.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14091.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_101.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15645.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1955.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11623.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12645.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11625.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11926.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11769.StaticMeshComponent_3237'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11731.StaticMeshComponent_3239'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13879.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2568.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7280.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7281.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11794.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11795.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11796.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11797.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11798.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13074.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11802.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11801.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6309.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11803.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11804.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11805.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11944.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12175.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12217.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12219.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12652.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12593.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12265.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11799.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12264.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12594.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12263.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8009.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13078.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13083.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13316.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13504.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13880.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2796.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_45.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_4452.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14464.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8928.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11793.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3052.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2034.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2043.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9737.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15600.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15603.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11632.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11634.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12216.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2771.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_12267.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8260.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14462.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14461.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15611.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14488.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15798.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14166.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15800.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14144.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14150.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15658.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14392.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14398.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5663.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_70.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5937.StaticMeshComponent_462'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_198.StaticMeshComponent_462'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10454.StaticMeshComponent_596'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10280.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3167.StaticMeshComponent_2863'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7944.StaticMeshComponent_2864'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8155.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13258.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13077.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7545.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7429.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14090.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_7426.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_69.StaticMeshComponent_459'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_15799.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10299.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10300.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10295.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10278.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10301.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10287.StaticMeshComponent_59'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10286.StaticMeshComponent_59')))
+         ParamName="Scalar_Rain_Specular_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_1"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5.InterpTrackFloatMaterialParam_0'
+      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_5.InterpTrackFloatMaterialParam_1'
+      GroupName="RainMaterial_1"
+      GroupColor=(B=133,G=199,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_5"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Electric_Box_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2595.StaticMeshComponent_1415'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2610.StaticMeshComponent_1415')))
+         ParamName="Scalar_Rain_Splash_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_0"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Electric_Box_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2595.StaticMeshComponent_1415'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2610.StaticMeshComponent_1415')))
+         ParamName="Scalar_Rain_Specular_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_1"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_6.InterpTrackFloatMaterialParam_0'
+      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_6.InterpTrackFloatMaterialParam_1'
+      GroupName="RainMaterial_6"
+      GroupColor=(B=146,G=0,R=191,A=255)
+      bCollapsed=True
+      Name="InterpGroup_6"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_7
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_ext_trim_2_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2571.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8455.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2573.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3008.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2575.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2915.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11585.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14454.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11593.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11595.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11618.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2883.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_761.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_107.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11596.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11614.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11597.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11613.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11598.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11601.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11642.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11612.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2916.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11643.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11878.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11892.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11893.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11920.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11921.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11645.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11676.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11699.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11704.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11714.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11715.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_87.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_88.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11637.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11778.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_937.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_939.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11785.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11786.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11787.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13840.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2863.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2624.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11959.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11980.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11775.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11776.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11619.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11620.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13259.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13279.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11782.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11780.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13324.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13349.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_941.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_19.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9813.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1032.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1028.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1179.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9865.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1212.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5431.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1251.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8684.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_200.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1562.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1566.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1568.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1571.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1572.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1626.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_201.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6686.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6310.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_91.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_92.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_93.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_94.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_86.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11638.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_208.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_209.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1273.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1639.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14467.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14491.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_4285.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_284.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_286.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14499.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14494.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9580.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9581.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10529.StaticMeshComponent_94',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3074.StaticMeshComponent_842',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_271.StaticMeshComponent_258',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9406.StaticMeshComponent_321',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9543.StaticMeshComponent_335',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2333.StaticMeshComponent_336',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9582.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9583.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2208.StaticMeshComponent_426'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9011.StaticMeshComponent_335',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9991.StaticMeshComponent_2107'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9992.StaticMeshComponent_2109'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2195.StaticMeshComponent_426'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1134.StaticMeshComponent_204'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1134.StaticMeshComponent_204',MaterialIndex=2),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5393.StaticMeshComponent_212'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5394.StaticMeshComponent_213'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5395.StaticMeshComponent_214'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5395.StaticMeshComponent_214',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5402.StaticMeshComponent_215')))
+         ParamName="Scalar_Rain_Splash_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_0"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_ext_trim_2_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2571.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8455.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2573.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3008.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2575.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2915.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11585.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14454.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11593.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11595.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11618.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2883.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_761.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_107.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11596.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11614.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11597.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11613.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11598.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11601.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11642.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11612.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2916.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11643.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11878.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11892.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11893.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11920.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11921.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11645.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11676.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11699.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11704.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11714.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11715.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_87.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_88.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11637.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11778.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_937.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_939.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11785.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11786.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11787.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13840.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2863.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2624.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11959.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11980.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11775.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11776.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11619.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11620.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13259.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13279.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11782.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11780.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13324.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_13349.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_941.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_19.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9813.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1032.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1028.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1179.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9865.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1212.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5431.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1251.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_8684.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_200.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1562.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1566.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1568.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1571.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1572.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1626.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_201.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6686.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_6310.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_91.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_92.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_93.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_94.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_86.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_11638.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_208.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_209.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1273.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1639.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14467.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14491.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_4285.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_284.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_286.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14499.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_14494.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9580.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9581.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_10529.StaticMeshComponent_94',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3074.StaticMeshComponent_842',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_271.StaticMeshComponent_258',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9406.StaticMeshComponent_321',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9543.StaticMeshComponent_335',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2333.StaticMeshComponent_336',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9582.StaticMeshComponent_77'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9583.StaticMeshComponent_53'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2208.StaticMeshComponent_426'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9011.StaticMeshComponent_335',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9991.StaticMeshComponent_2107'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9992.StaticMeshComponent_2109'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2195.StaticMeshComponent_426'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1134.StaticMeshComponent_204'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_1134.StaticMeshComponent_204',MaterialIndex=2),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5393.StaticMeshComponent_212'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5394.StaticMeshComponent_213'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5395.StaticMeshComponent_214'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5395.StaticMeshComponent_214',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5402.StaticMeshComponent_215')))
+         ParamName="Scalar_Rain_Specular_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_1"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_7.InterpTrackFloatMaterialParam_0'
+      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_7.InterpTrackFloatMaterialParam_1'
+      GroupName="RainMaterial_2"
+      GroupColor=(B=151,G=186,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_7"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_9
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Brick_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_344.StaticMeshComponent_831'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_358.StaticMeshComponent_842'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3074.StaticMeshComponent_842'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9539.StaticMeshComponent_319'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9539.StaticMeshComponent_319',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9406.StaticMeshComponent_321'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9408.StaticMeshComponent_333'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9408.StaticMeshComponent_333',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9543.StaticMeshComponent_335'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334',MaterialIndex=2),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2333.StaticMeshComponent_336'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9660.StaticMeshComponent_905'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9662.StaticMeshComponent_907'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2208.StaticMeshComponent_426',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9011.StaticMeshComponent_335'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2195.StaticMeshComponent_426',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2289.StaticMeshComponent_496'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2289.StaticMeshComponent_496',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2277.StaticMeshComponent_496'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2277.StaticMeshComponent_496',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5388.StaticMeshComponent_211')))
+         ParamName="Scalar_Rain_Splash_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,InterpMode=CIM_CurveAutoClamped),(InVal=4.977531,OutVal=0.500000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_0"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_1
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Brick_Rain_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_344.StaticMeshComponent_831'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_358.StaticMeshComponent_842'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_3074.StaticMeshComponent_842'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9539.StaticMeshComponent_319'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9539.StaticMeshComponent_319',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9406.StaticMeshComponent_321'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9408.StaticMeshComponent_333'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9408.StaticMeshComponent_333',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9543.StaticMeshComponent_335'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2336.StaticMeshComponent_334',MaterialIndex=2),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2333.StaticMeshComponent_336'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9660.StaticMeshComponent_905'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9662.StaticMeshComponent_907'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2208.StaticMeshComponent_426',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_9011.StaticMeshComponent_335'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2195.StaticMeshComponent_426',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2289.StaticMeshComponent_496'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2289.StaticMeshComponent_496',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2277.StaticMeshComponent_496'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_2277.StaticMeshComponent_496',MaterialIndex=1),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.StaticMeshActor_5388.StaticMeshComponent_211')))
+         ParamName="Scalar_Rain_Specular_Intensity"
+         FloatTrack=(Points=((InVal=1.981228,OutVal=0.300000,InterpMode=CIM_CurveAutoClamped),(InVal=4.989761,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_1"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      InterpTracks(0)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_9.InterpTrackFloatMaterialParam_0'
+      InterpTracks(1)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_9.InterpTrackFloatMaterialParam_1'
+      GroupName="RainMaterial_3"
+      GroupColor=(B=0,G=165,R=174,A=255)
+      bCollapsed=True
+      Name="InterpGroup_9"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      GroupColor=(B=195,G=0,R=140,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    InterpLength=10.003981
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0'
@@ -6768,298 +6768,188 @@ Begin Object Class=SeqAct_ToggleHidden Name=SeqAct_ToggleHidden_10
 End Object
 
 Begin Object Class=Sequence Name=SND_Asylum
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_453
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_10
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-9817,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-9817,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9559,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9849
-      ObjPosY=-9764
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_453"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9607
+      ObjPosY=-9851
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_10"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_252
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_11
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-9577,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-9577,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9559,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9849
-      ObjPosY=-7836
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_252"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9607
+      ObjPosY=-9611
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_11"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_18
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-7306,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-7306,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9562,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9857
-      ObjPosY=-8380
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_20"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9610
+      ObjPosY=-7340
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_18"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_22
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-8191,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-8191,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9553,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9849
-      ObjPosY=-6924
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_19"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9601
+      ObjPosY=-8225
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_22"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_34
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-8455,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-8455,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9569,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9857
-      ObjPosY=-7220
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_18"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9617
+      ObjPosY=-8489
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_34"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_4
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-9369,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-9369,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9554,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9841
-      ObjPosY=-8116
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_17"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9602
+      ObjPosY=-9403
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_4"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_41
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-7626,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-7626,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9547,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9857
-      ObjPosY=-8628
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_15"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9595
+      ObjPosY=-7660
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_41"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_42
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-7010,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-7010,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9552,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9849
-      ObjPosY=-8844
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_14"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9600
+      ObjPosY=-7044
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_42"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_49
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-8905,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-8905,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9560,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9841
-      ObjPosY=-9084
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_13"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9608
+      ObjPosY=-8939
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_49"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_53
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-9145,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-9145,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9553,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9841
-      ObjPosY=-9308
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_12"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9601
+      ObjPosY=-9179
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_53"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_56
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-8694,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-8694,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9570,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9849
-      ObjPosY=-9540
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_11"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9618
+      ObjPosY=-8728
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_56"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
+   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_58
+      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
+      InputLinks(0)=(DrawY=-7922,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-7922,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=-9562,OverrideDelta=26)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9841
-      ObjPosY=-7540
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_0"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=-9610
+      ObjPosY=-7956
+      DrawWidth=96
+      DrawHeight=61
+      Name="SeqAct_AkPostEvent_58"
+      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_15
-      SizeX=540
-      SizeY=3108
-      bDrawBox=True
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9952
-      ObjPosY=-9938
-      ObjComment="Lightning Audio"
-      DrawWidth=540
-      DrawHeight=3108
-      Name="SequenceFrame_15"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_52
-      EventName="Lightning_7"
-      bClientSideOnly=True
-      MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_34')),DrawY=-8466,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_20'),DrawX=-9770,OverrideDelta=119)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9921
-      ObjPosY=-8532
-      ObjComment="Lightning_7"
-      DrawWidth=171
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_52"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_4
-      EventName="Lighting_1"
-      bClientSideOnly=True
-      MaxWidth=295
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_10')),DrawY=-9842,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_453'),DrawX=-9758,OverrideDelta=115)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9905
-      ObjPosY=-9908
-      ObjComment="Lighting_1"
-      DrawWidth=167
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_4"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_3
-      EventName="Lightning_3"
-      bClientSideOnly=True
-      MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_4')),ActivateDelay=1.000000,DrawY=-9394,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_12'),DrawX=-9754,OverrideDelta=119)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9905
-      ObjPosY=-9460
-      ObjComment="Lightning_3"
-      DrawWidth=171
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_3"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_20
-      EventName="Lightning_5"
-      bClientSideOnly=True
-      MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_49')),DrawY=-8930,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_14'),DrawX=-9762,OverrideDelta=119)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9913
-      ObjPosY=-8996
-      ObjComment="Lightning_5"
-      DrawWidth=171
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_20"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_2
-      EventName="Lightning_8"
-      bClientSideOnly=True
-      MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_22')),DrawY=-8202,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_17'),DrawX=-9754,OverrideDelta=119)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9905
-      ObjPosY=-8268
-      ObjComment="Lightning_8"
-      DrawWidth=171
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_2"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_19
-      EventName="Lightning_9"
-      bClientSideOnly=True
-      MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_58')),ActivateDelay=1.000000,DrawY=-7922,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_252'),DrawX=-9762,OverrideDelta=119)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9913
-      ObjPosY=-7988
-      ObjComment="Lightning_9"
-      DrawWidth=171
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_19"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_18
-      EventName="Lightning_2"
-      bClientSideOnly=True
-      MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_11')),DrawY=-9602,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_11'),DrawX=-9762,OverrideDelta=119)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9913
-      ObjPosY=-9668
-      ObjComment="Lightning_2"
-      DrawWidth=171
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_18"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_17
-      EventName="Lightning_11"
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_1
+      EventName="Lightning_10"
       bClientSideOnly=True
       MaxWidth=311
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_18')),DrawY=-7306,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_18'),DrawX=-9766,OverrideDelta=123)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9921
-      ObjPosY=-7372
-      ObjComment="Lightning_11"
-      DrawWidth=175
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_17"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_16
-      EventName="Lightning_4"
-      bClientSideOnly=True
-      MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_53')),DrawY=-9170,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_13'),DrawX=-9754,OverrideDelta=119)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_41')),DrawY=-7626,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_0'),DrawX=-9750,OverrideDelta=123)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
       ObjPosX=-9905
-      ObjPosY=-9236
-      ObjComment="Lightning_4"
-      DrawWidth=171
+      ObjPosY=-7692
+      ObjComment="Lightning_10"
+      DrawWidth=175
       DrawHeight=128
-      Name="SeqEvent_RemoteEvent_16"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
-   End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_14
-      EventName="Lightning_6"
-      bClientSideOnly=True
-      MaxWidth=303
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_56')),ActivateDelay=1.000000,DrawY=-8714,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_15'),DrawX=-9770,OverrideDelta=119)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9921
-      ObjPosY=-8780
-      ObjComment="Lightning_6"
-      DrawWidth=171
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_14"
+      Name="SeqEvent_RemoteEvent_1"
       ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
    Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_10
@@ -7078,189 +6968,299 @@ Begin Object Class=Sequence Name=SND_Asylum
       Name="SeqEvent_RemoteEvent_10"
       ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_1
-      EventName="Lightning_10"
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_14
+      EventName="Lightning_6"
       bClientSideOnly=True
-      MaxWidth=311
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_41')),DrawY=-7626,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_0'),DrawX=-9750,OverrideDelta=123)
+      MaxWidth=303
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_56')),ActivateDelay=1.000000,DrawY=-8714,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_15'),DrawX=-9770,OverrideDelta=119)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9921
+      ObjPosY=-8780
+      ObjComment="Lightning_6"
+      DrawWidth=171
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_14"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
+   End Object
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_16
+      EventName="Lightning_4"
+      bClientSideOnly=True
+      MaxWidth=303
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_53')),DrawY=-9170,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_13'),DrawX=-9754,OverrideDelta=119)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
       ObjPosX=-9905
-      ObjPosY=-7692
-      ObjComment="Lightning_10"
-      DrawWidth=175
+      ObjPosY=-9236
+      ObjComment="Lightning_4"
+      DrawWidth=171
       DrawHeight=128
-      Name="SeqEvent_RemoteEvent_1"
+      Name="SeqEvent_RemoteEvent_16"
       ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_58
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-7922,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-7922,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9562,OverrideDelta=26)
-      ObjInstanceVersion=1
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_17
+      EventName="Lightning_11"
+      bClientSideOnly=True
+      MaxWidth=311
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_18')),DrawY=-7306,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_18'),DrawX=-9766,OverrideDelta=123)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9610
-      ObjPosY=-7956
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_58"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9921
+      ObjPosY=-7372
+      ObjComment="Lightning_11"
+      DrawWidth=175
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_17"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_56
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-8694,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-8694,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9570,OverrideDelta=26)
-      ObjInstanceVersion=1
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_18
+      EventName="Lightning_2"
+      bClientSideOnly=True
+      MaxWidth=303
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_11')),DrawY=-9602,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_11'),DrawX=-9762,OverrideDelta=119)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9618
-      ObjPosY=-8728
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_56"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9913
+      ObjPosY=-9668
+      ObjComment="Lightning_2"
+      DrawWidth=171
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_18"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_53
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-9145,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-9145,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9553,OverrideDelta=26)
-      ObjInstanceVersion=1
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_19
+      EventName="Lightning_9"
+      bClientSideOnly=True
+      MaxWidth=303
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_58')),ActivateDelay=1.000000,DrawY=-7922,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_252'),DrawX=-9762,OverrideDelta=119)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9601
-      ObjPosY=-9179
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_53"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9913
+      ObjPosY=-7988
+      ObjComment="Lightning_9"
+      DrawWidth=171
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_19"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_49
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-8905,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-8905,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9560,OverrideDelta=26)
-      ObjInstanceVersion=1
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_2
+      EventName="Lightning_8"
+      bClientSideOnly=True
+      MaxWidth=303
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_22')),DrawY=-8202,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_17'),DrawX=-9754,OverrideDelta=119)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9608
-      ObjPosY=-8939
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_49"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9905
+      ObjPosY=-8268
+      ObjComment="Lightning_8"
+      DrawWidth=171
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_2"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_42
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-7010,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-7010,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9552,OverrideDelta=26)
-      ObjInstanceVersion=1
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_20
+      EventName="Lightning_5"
+      bClientSideOnly=True
+      MaxWidth=303
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_49')),DrawY=-8930,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_14'),DrawX=-9762,OverrideDelta=119)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9600
-      ObjPosY=-7044
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_42"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9913
+      ObjPosY=-8996
+      ObjComment="Lightning_5"
+      DrawWidth=171
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_20"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_41
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-7626,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-7626,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9547,OverrideDelta=26)
-      ObjInstanceVersion=1
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_3
+      EventName="Lightning_3"
+      bClientSideOnly=True
+      MaxWidth=303
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_4')),ActivateDelay=1.000000,DrawY=-9394,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_12'),DrawX=-9754,OverrideDelta=119)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9595
-      ObjPosY=-7660
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_41"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9905
+      ObjPosY=-9460
+      ObjComment="Lightning_3"
+      DrawWidth=171
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_3"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_4
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-9369,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-9369,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9554,OverrideDelta=26)
-      ObjInstanceVersion=1
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_4
+      EventName="Lighting_1"
+      bClientSideOnly=True
+      MaxWidth=295
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_10')),DrawY=-9842,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_453'),DrawX=-9758,OverrideDelta=115)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9602
-      ObjPosY=-9403
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_4"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9905
+      ObjPosY=-9908
+      ObjComment="Lighting_1"
+      DrawWidth=167
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_4"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_34
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-8455,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-8455,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9569,OverrideDelta=26)
-      ObjInstanceVersion=1
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_52
+      EventName="Lightning_7"
+      bClientSideOnly=True
+      MaxWidth=303
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqAct_AkPostEvent_34')),DrawY=-8466,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_20'),DrawX=-9770,OverrideDelta=119)
+      ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9617
-      ObjPosY=-8489
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_34"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9921
+      ObjPosY=-8532
+      ObjComment="Lightning_7"
+      DrawWidth=171
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_52"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_22
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-8191,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-8191,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9553,OverrideDelta=26)
+   Begin Object Class=SequenceFrame Name=SequenceFrame_15
+      SizeX=540
+      SizeY=3108
+      bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9601
-      ObjPosY=-8225
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_22"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9952
+      ObjPosY=-9938
+      ObjComment="Lightning Audio"
+      DrawWidth=540
+      DrawHeight=3108
+      Name="SequenceFrame_15"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_18
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-7306,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-7306,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9562,OverrideDelta=26)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9610
-      ObjPosY=-7340
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_18"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9841
+      ObjPosY=-7540
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_0"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_11
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-9577,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-9577,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9559,OverrideDelta=26)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9607
-      ObjPosY=-9611
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_11"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9849
+      ObjPosY=-9540
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_11"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_10
-      Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Thunder'
-      InputLinks(0)=(DrawY=-9817,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-9817,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=-9559,OverrideDelta=26)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_12
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
-      ObjPosX=-9607
-      ObjPosY=-9851
-      DrawWidth=96
-      DrawHeight=61
-      Name="SeqAct_AkPostEvent_10"
-      ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
+      ObjPosX=-9841
+      ObjPosY=-9308
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_12"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9841
+      ObjPosY=-9084
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_13"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9849
+      ObjPosY=-8844
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_14"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_15
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9857
+      ObjPosY=-8628
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_15"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_17
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9841
+      ObjPosY=-8116
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_17"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9857
+      ObjPosY=-7220
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_18"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9849
+      ObjPosY=-6924
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_19"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_20
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9857
+      ObjPosY=-8380
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_20"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_252
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9849
+      ObjPosY=-7836
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_252"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_453
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum'
+      ObjPosX=-9849
+      ObjPosY=-9764
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_453"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
    SequenceObjects(0)=SequenceFrame'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SequenceFrame_15'
    SequenceObjects(1)=SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.SND_Asylum.SeqVar_Object_0'
@@ -7786,20 +7786,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_339
 End Object
 
 Begin Object Class=InterpData Name=InterpData_33
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.238751,OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.477502,OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.707071,OutVal=(X=0.000000,Y=-0.000046,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.876951,OutVal=(X=0.000000,Y=-0.000046,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1.115701,OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.733701,OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.238751,ArriveTangent=(X=0.000000,Y=0.000000,Z=-186.354919),LeaveTangent=(X=0.000000,Y=0.000000,Z=-186.354919),InterpMode=CIM_CurveAutoClamped),(InVal=0.477502,OutVal=(X=0.000000,Y=0.000000,Z=-23.730469),InterpMode=CIM_CurveAutoClamped),(InVal=0.707071,OutVal=(X=0.000000,Y=0.000000,Z=3.691406),InterpMode=CIM_CurveAutoClamped),(InVal=0.876951,OutVal=(X=0.000000,Y=0.000000,Z=-7.207031),InterpMode=CIM_CurveAutoClamped),(InVal=1.115701,InterpMode=CIM_CurveAutoClamped),(InVal=4.733701,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=0.238751),(Time=0.477502),(Time=0.707071),(Time=0.876951),(Time=1.115701),(Time=4.733701),(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_3.InterpTrackMove_3'
-      GroupName="TrapDoor_2"
-      GroupColor=(B=177,G=0,R=163,A=255)
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -7816,9 +7805,20 @@ Begin Object Class=InterpData Name=InterpData_33
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.238751,OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.477502,OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.707071,OutVal=(X=0.000000,Y=-0.000046,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.876951,OutVal=(X=0.000000,Y=-0.000046,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1.115701,OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.733701,OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.000015,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.238751,ArriveTangent=(X=0.000000,Y=0.000000,Z=-186.354919),LeaveTangent=(X=0.000000,Y=0.000000,Z=-186.354919),InterpMode=CIM_CurveAutoClamped),(InVal=0.477502,OutVal=(X=0.000000,Y=0.000000,Z=-23.730469),InterpMode=CIM_CurveAutoClamped),(InVal=0.707071,OutVal=(X=0.000000,Y=0.000000,Z=3.691406),InterpMode=CIM_CurveAutoClamped),(InVal=0.876951,OutVal=(X=0.000000,Y=0.000000,Z=-7.207031),InterpMode=CIM_CurveAutoClamped),(InVal=1.115701,InterpMode=CIM_CurveAutoClamped),(InVal=4.733701,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=0.238751),(Time=0.477502),(Time=0.707071),(Time=0.876951),(Time=1.115701),(Time=4.733701),(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_3.InterpTrackMove_3'
+      GroupName="TrapDoor_2"
+      GroupColor=(B=177,G=0,R=163,A=255)
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_2'
    InterpGroups(1)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_3'
@@ -8088,6 +8088,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_55
 End Object
 
 Begin Object Class=InterpData Name=InterpData_49
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
+      Name="InterpCurveEdSetup_5"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -8102,10 +8106,6 @@ Begin Object Class=InterpData Name=InterpData_49
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
-      Name="InterpCurveEdSetup_5"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_49.InterpGroup_1'
@@ -9925,7 +9925,17 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_9
 End Object
 
 Begin Object Class=InterpData Name=InterpData_9
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Walk_F_V1",AnimPlayRate=1.000000)
+         AnimSeqs(1)=(StartTime=4.218559,AnimSeqName="Walk_F_V1",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((OutVal=(X=-0.000977,Y=-160.000000,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=0.987622,OutVal=(X=383.997070,Y=-128.000000,Z=-0.000244),ArriveTangent=(X=388.284729,Y=0.000000,Z=-0.000370),LeaveTangent=(X=388.284729,Y=0.000000,Z=-0.000370),InterpMode=CIM_CurveAutoClamped),(InVal=1.477155,OutVal=(X=573.567383,Y=-128.000000,Z=-78.960999),ArriveTangent=(X=356.409668,Y=0.000000,Z=-162.005417),LeaveTangent=(X=356.409668,Y=0.000000,Z=-162.005417),InterpMode=CIM_CurveAutoClamped),(InVal=1.975244,OutVal=(X=735.995117,Y=-128.000000,Z=-160.000366),ArriveTangent=(X=212.972260,Y=0.000000,Z=-0.000732),LeaveTangent=(X=212.972260,Y=0.000000,Z=-0.000732),InterpMode=CIM_CurveAutoClamped),(InVal=2.991084,OutVal=(X=895.992188,Y=320.000000,Z=-160.000610),ArriveTangent=(X=0.000000,Y=467.036957,Z=-0.000790),LeaveTangent=(X=0.000000,Y=467.036957,Z=-0.000790),InterpMode=CIM_CurveAutoClamped),(InVal=3.311310,OutVal=(X=887.193359,Y=495.992188,Z=-226.531982),ArriveTangent=(X=-34.784863,Y=576.655701,Z=-226.768921),LeaveTangent=(X=-34.784863,Y=576.655701,Z=-226.768921),InterpMode=CIM_CurveAutoClamped),(InVal=3.607597,OutVal=(X=874.546875,Y=675.515625,Z=-299.806549),ArriveTangent=(X=-34.045471,Y=633.902893,Z=-107.394508),LeaveTangent=(X=-34.045471,Y=633.902893,Z=-107.394508),InterpMode=CIM_CurveAutoClamped),(InVal=3.992815,OutVal=(X=863.991211,Y=928.000000,Z=-320.000671),ArriveTangent=(X=0.000000,Y=618.811157,Z=-101.681374),LeaveTangent=(X=0.000000,Y=618.811157,Z=-101.681374),InterpMode=CIM_CurveAutoClamped),(InVal=4.371271,OutVal=(X=864.656250,Y=1148.085938,Z=-405.245667),ArriveTangent=(X=4.222881,Y=576.019226,Z=-196.411835),LeaveTangent=(X=4.222881,Y=576.019226,Z=-196.411835),InterpMode=CIM_CurveAutoClamped),(InVal=4.770892,OutVal=(X=898.707031,Y=1376.187500,Z=-472.824280),ArriveTangent=(X=131.082184,Y=315.015076,Z=-26.138092),LeaveTangent=(X=131.082184,Y=315.015076,Z=-26.138092),InterpMode=CIM_CurveAutoClamped),(InVal=5.501128,OutVal=(X=1059.890625,Y=1504.007813,Z=-480.022003),ArriveTangent=(X=333.427551,Y=102.565308,Z=0.000000),LeaveTangent=(X=333.427551,Y=102.565308,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=6.010386,OutVal=(X=1311.988281,Y=1536.000000,Z=-480.001312),ArriveTangent=(X=431.325287,Y=0.000000,Z=0.103142),LeaveTangent=(X=431.325287,Y=0.000000,Z=0.103142),InterpMode=CIM_CurveAutoClamped),(InVal=6.494516,OutVal=(X=1488.364258,Y=1536.000000,Z=-401.259186),ArriveTangent=(X=391.741272,Y=0.000000,Z=139.907440),LeaveTangent=(X=391.741272,Y=0.000000,Z=139.907440),InterpMode=CIM_CurveAutoClamped),(InVal=7.153997,OutVal=(X=1759.988281,Y=1568.000000,Z=-320.001495),ArriveTangent=(X=368.650391,Y=116.027283,Z=0.000000),LeaveTangent=(X=368.650391,Y=116.027283,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.665339,OutVal=(X=1919.988281,Y=1856.000000,Z=-320.001556),ArriveTangent=(X=0.000000,Y=622.385864,Z=0.000000),LeaveTangent=(X=0.000000,Y=622.385864,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=8.032233,OutVal=(X=1919.988281,Y=2114.601563,Z=-207.287903),ArriveTangent=(X=0.000000,Y=789.635803,Z=209.340317),LeaveTangent=(X=0.000000,Y=789.635803,Z=209.340317),InterpMode=CIM_CurveAutoClamped),(InVal=8.394789,OutVal=(X=1919.988281,Y=2432.000000,Z=-160.001648),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.987622,InterpMode=CIM_CurveAutoClamped),(InVal=1.477155,OutVal=(X=0.000000,Y=-21.972656,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1.975244,InterpMode=CIM_CurveAutoClamped),(InVal=2.991084,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.311310,OutVal=(X=0.000000,Y=-18.105469,Z=90.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.607597,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.992815,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.371271,OutVal=(X=5.317383,Y=-22.434082,Z=75.498047),InterpMode=CIM_CurveAutoClamped),(InVal=4.770892,OutVal=(X=0.000000,Y=0.000000,Z=89.121094),InterpMode=CIM_CurveAutoClamped),(InVal=5.501128,OutVal=(X=0.000000,Y=0.000000,Z=-13.974609),InterpMode=CIM_CurveAutoClamped),(InVal=6.010386,InterpMode=CIM_CurveAutoClamped),(InVal=6.494516,OutVal=(X=0.000000,Y=30.585938,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.153997,InterpMode=CIM_CurveAutoClamped),(InVal=7.665339,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped),(InVal=8.032233,OutVal=(X=0.000000,Y=27.070313,Z=90.000000),InterpMode=CIM_CurveAutoClamped),(InVal=8.394789,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -9934,12 +9944,6 @@ Begin Object Class=InterpData Name=InterpData_9
          Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Walk_F_V1",AnimPlayRate=1.000000)
-         AnimSeqs(1)=(StartTime=4.218559,AnimSeqName="Walk_F_V1",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackAnimControl_0'
       InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0.InterpTrackMove_0'
       GroupName="Crawler"
@@ -9947,10 +9951,6 @@ Begin Object Class=InterpData Name=InterpData_9
       GroupAnimSets(0)=AnimSet'ZED_Crawler_ANIM.Crawler_Anim_Master'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=8.423009
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0'
@@ -10018,6 +10018,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_10
 End Object
 
 Begin Object Class=InterpData Name=InterpData_10
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_1
          AnimSeqs(0)=(AnimSeqName="Atk_Vomit_V3",AnimPlayRate=1.000000)
@@ -10030,10 +10034,6 @@ Begin Object Class=InterpData Name=InterpData_10
       GroupAnimSets(0)=AnimSet'ZED_BloatKing_ANIM.Bloat_King_Anim'
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=5.633333
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_1'
@@ -10087,6 +10087,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_14
 End Object
 
 Begin Object Class=InterpData Name=InterpData_14
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_2
          AnimSeqs(0)=(AnimSeqName="Block_Idle",AnimPlayRate=1.000000)
@@ -10099,10 +10103,6 @@ Begin Object Class=InterpData Name=InterpData_14
       GroupAnimSets(0)=AnimSet'ZED_BloatKing_ANIM.Bloat_King_Anim'
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.167020
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_14.InterpGroup_2'
@@ -10208,884 +10208,510 @@ Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_9
 End Object
 
 Begin Object Class=Sequence Name=Portal_Spawners
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
+   Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_0
+      CollisionType=COLLIDE_NoCollision
+      InputLinks(0)=(DrawY=-4440,OverrideDelta=11)
+      OutputLinks(0)=(DrawY=-4440,OverrideDelta=11)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_340'),DrawX=4278,OverrideDelta=36)
+      ObjInstanceVersion=5
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4220
+      ObjPosY=-4474
+      DrawWidth=116
+      DrawHeight=61
+      Name="SeqAct_ChangeCollision_0"
+      ObjectArchetype=SeqAct_ChangeCollision'Engine.Default__SeqAct_ChangeCollision'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
+      InputLinks(0)=(DrawY=-5635,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5614,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5593,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5614,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_0'),DrawX=5300,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=5351,OverrideDelta=76)
+      EventLinks(0)=(DrawX=5400,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6385
-      ObjPosY=-5166
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_9"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=5262
+      ObjPosY=-5672
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_0"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_24'
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
+      InputLinks(0)=(DrawY=-5630,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5609,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5588,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5609,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_251'),DrawX=5851,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=5902,OverrideDelta=76)
+      EventLinks(0)=(DrawX=5951,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6397
-      ObjPosY=-5493
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_8"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=5813
+      ObjPosY=-5667
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_1"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_23'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5820
-      ObjPosY=-4561
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_7"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_553
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_18'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5263
-      ObjPosY=-5216
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_553"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_506
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_43'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6944
-      ObjPosY=-3864
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_506"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_503
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_15'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6963
-      ObjPosY=-4700
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_503"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_486
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_16'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6962
-      ObjPosY=-4965
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_486"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_485
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_19'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6966
-      ObjPosY=-5228
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_485"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_484
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_5'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6377
-      ObjPosY=-4850
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_484"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_483
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_40'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5260
-      ObjPosY=-4886
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_483"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_482
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_12'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6970
-      ObjPosY=-5491
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_482"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_480
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_7'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4708
-      ObjPosY=-5491
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_480"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_478
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_9'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4704
-      ObjPosY=-5228
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_478"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_476
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_13'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4700
-      ObjPosY=-4965
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_476"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_474
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_11'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4701
-      ObjPosY=-4700
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_474"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_472
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_2'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4696
-      ObjPosY=-4435
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_472"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_466
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_17'
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
+      InputLinks(0)=(DrawY=-4839,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-4818,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4797,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-4818,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_474'),DrawX=4733,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=4784,OverrideDelta=76)
+      EventLinks(0)=(DrawX=4833,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
       ObjPosX=4695
-      ObjPosY=-4173
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_466"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosY=-4876
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_10"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_461
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_10'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7532
-      ObjPosY=-5489
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_461"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_449
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_6'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7525
-      ObjPosY=-4698
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_449"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_448
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_3'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7524
-      ObjPosY=-4963
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_448"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_447
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_1'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7528
-      ObjPosY=-5226
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_447"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_340
-      ObjValue=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_4'
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4246
-      ObjPosY=-4366
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_340"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-   End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_0'
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
+      InputLinks(0)=(DrawY=-4574,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-4553,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4532,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-4553,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_1'),DrawX=6990,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7041,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7090,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
       ObjPosX=6952
-      ObjPosY=-4152
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_30"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosY=-4611
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_11"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_22'
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
+      InputLinks(0)=(DrawY=-5318,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5297,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5276,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5297,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_2'),DrawX=5852,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=5903,OverrideDelta=76)
+      EventLinks(0)=(DrawX=5952,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5821
-      ObjPosY=-4870
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_3"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=5814
+      ObjPosY=-5355
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_2"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_251
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_20'
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
+      InputLinks(0)=(DrawY=-5007,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-4986,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4965,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-4986,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_3'),DrawX=5853,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=5904,OverrideDelta=76)
+      EventLinks(0)=(DrawX=5953,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5819
-      ObjPosY=-5493
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_251"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=5815
+      ObjPosY=-5044
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_3"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_21'
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
+      InputLinks(0)=(DrawY=-4698,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-4677,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4656,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-4677,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_7'),DrawX=5852,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=5903,OverrideDelta=76)
+      EventLinks(0)=(DrawX=5952,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5820
-      ObjPosY=-5181
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_2"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=5814
+      ObjPosY=-4735
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_4"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_14'
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_44
+      InputLinks(0)=(DrawY=-4291,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-4270,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4249,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-4270,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_30'),DrawX=6982,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7033,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7082,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6958
-      ObjPosY=-4435
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_1"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=6944
+      ObjPosY=-4328
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_44"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
-      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_4'
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
+      InputLinks(0)=(DrawY=-5630,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5609,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5588,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5609,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_8'),DrawX=6429,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=6480,OverrideDelta=76)
+      EventLinks(0)=(DrawX=6529,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5268
-      ObjPosY=-5498
-      DrawWidth=32
-      DrawHeight=32
-      Name="SeqVar_Object_0"
-      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+      ObjPosX=6391
+      ObjPosY=-5667
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_5"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_63
-      SizeX=515
-      SizeY=1262
-      bDrawBox=True
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_51
+      InputLinks(0)=(DrawY=-5102,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5081,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5060,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5081,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_448'),DrawX=7556,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7607,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7656,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5500
-      ObjPosY=-5729
-      ObjComment="Asylum Area"
-      DrawWidth=515
-      DrawHeight=1262
-      Name="SequenceFrame_63"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+      ObjPosX=7518
+      ObjPosY=-5139
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_51"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_62
-      SizeX=362
-      SizeY=390
-      bDrawBox=True
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_52
+      InputLinks(0)=(DrawY=-4837,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-4816,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4795,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-4816,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_449'),DrawX=7557,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7608,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7657,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4000
-      ObjPosY=-4648
-      ObjComment="When the storm starts, turn OFF spawn under water."
-      DrawWidth=362
-      DrawHeight=390
-      Name="SequenceFrame_62"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+      ObjPosX=7519
+      ObjPosY=-4874
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_52"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_4
-      SizeX=527
-      SizeY=1651
-      bDrawBox=True
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_58
+      InputLinks(0)=(DrawY=-5367,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5346,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5325,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5346,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_478'),DrawX=4736,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=4787,OverrideDelta=76)
+      EventLinks(0)=(DrawX=4836,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4372
-      ObjPosY=-5726
-      ObjComment="Garden Area"
-      DrawWidth=527
-      DrawHeight=1651
-      Name="SequenceFrame_4"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+      ObjPosX=4698
+      ObjPosY=-5404
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_58"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_3
-      SizeX=533
-      SizeY=973
-      bDrawBox=True
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_59
+      InputLinks(0)=(DrawY=-5104,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5083,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5062,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5083,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_476'),DrawX=4732,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=4783,OverrideDelta=76)
+      EventLinks(0)=(DrawX=4832,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6058
-      ObjPosY=-5728
-      ObjComment="Asylum -1 Floor"
-      DrawWidth=533
-      DrawHeight=973
-      Name="SequenceFrame_3"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+      ObjPosX=4694
+      ObjPosY=-5141
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_59"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_27
-      SizeX=522
-      SizeY=1124
-      bDrawBox=True
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
+      InputLinks(0)=(DrawY=-5303,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5282,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5261,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5282,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_9'),DrawX=6417,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=6468,OverrideDelta=76)
+      EventLinks(0)=(DrawX=6517,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7207
-      ObjPosY=-5726
-      ObjComment="Lighthouse Area"
-      DrawWidth=522
-      DrawHeight=1124
-      Name="SequenceFrame_27"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+      ObjPosX=6379
+      ObjPosY=-5340
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_6"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_26
-      SizeX=532
-      SizeY=2009
-      bDrawBox=True
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_61
+      InputLinks(0)=(DrawY=-5631,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5610,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5589,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5610,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_482'),DrawX=7003,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7054,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7103,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6635
-      ObjPosY=-5729
-      ObjComment="Cultist Area"
-      DrawWidth=532
-      DrawHeight=2009
-      Name="SequenceFrame_26"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+      ObjPosX=6965
+      ObjPosY=-5668
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_61"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SequenceFrame Name=SequenceFrame_1
-      SizeX=522
-      SizeY=932
-      bDrawBox=True
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_62
+      InputLinks(0)=(DrawY=-5367,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5346,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5325,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5346,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_485'),DrawX=6998,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7049,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7098,OverrideDelta=119)
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4944
-      ObjPosY=-5728
-      ObjComment="Balcony Area"
-      DrawWidth=522
-      DrawHeight=932
-      Name="SequenceFrame_1"
-      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+      ObjPosX=6960
+      ObjPosY=-5404
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_62"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
    End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_9
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_20'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_67')),DrawY=-5629,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5608,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5587,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=7333,OverrideDelta=54)
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_63
+      InputLinks(0)=(DrawY=-4987,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-4966,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4945,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-4966,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_484'),DrawX=6409,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=6460,OverrideDelta=76)
+      EventLinks(0)=(DrawX=6509,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6371
+      ObjPosY=-5024
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_63"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_64
+      InputLinks(0)=(DrawY=-5104,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5083,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5062,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5083,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_486'),DrawX=6994,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7045,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7094,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6956
+      ObjPosY=-5141
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_64"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_65
+      InputLinks(0)=(DrawY=-4839,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-4818,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4797,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-4818,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_503'),DrawX=6995,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7046,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7095,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6957
+      ObjPosY=-4876
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_65"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_66
+      InputLinks(0)=(DrawY=-4003,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-3982,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-3961,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-3982,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_506'),DrawX=6982,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7033,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7082,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6944
+      ObjPosY=-4040
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_66"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_67
+      InputLinks(0)=(DrawY=-5629,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5608,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5587,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5608,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_461'),DrawX=7565,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7616,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7665,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=7527
+      ObjPosY=-5666
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_67"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_68
+      InputLinks(0)=(DrawY=-5631,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5610,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5589,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5610,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_480'),DrawX=4741,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=4792,OverrideDelta=76)
+      EventLinks(0)=(DrawX=4841,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4703
+      ObjPosY=-5668
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_68"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_69
+      InputLinks(0)=(DrawY=-4574,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-4553,ActivateDelay=1.000000,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4532,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-4553,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_472'),DrawX=4726,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=4777,OverrideDelta=76)
+      EventLinks(0)=(DrawX=4826,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4688
+      ObjPosY=-4611
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_69"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
+      InputLinks(0)=(DrawY=-4312,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-4291,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4270,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-4291,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_466'),DrawX=4727,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=4778,OverrideDelta=76)
+      EventLinks(0)=(DrawX=4827,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4689
+      ObjPosY=-4349
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_7"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_75
+      InputLinks(0)=(DrawY=-5365,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5344,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5323,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5344,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_447'),DrawX=7560,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=7611,OverrideDelta=76)
+      EventLinks(0)=(DrawX=7660,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=7522
+      ObjPosY=-5402
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_75"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
+      InputLinks(0)=(DrawY=-5356,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5335,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-5314,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5335,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_553'),DrawX=5296,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=5347,OverrideDelta=76)
+      EventLinks(0)=(DrawX=5396,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=5258
+      ObjPosY=-5393
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_8"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
+      InputLinks(0)=(DrawY=-5023,OverrideDelta=14)
+      InputLinks(1)=(DrawY=-5002,OverrideDelta=35)
+      InputLinks(2)=(DrawY=-4981,OverrideDelta=56)
+      OutputLinks(0)=(DrawY=-5002,OverrideDelta=35)
+      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_483'),DrawX=5292,OverrideDelta=16)
+      VariableLinks(1)=(DrawX=5343,OverrideDelta=76)
+      EventLinks(0)=(DrawX=5392,OverrideDelta=119)
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=5254
+      ObjPosY=-5060
+      DrawWidth=173
+      DrawHeight=109
+      Name="SeqAct_Toggle_9"
+      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+   End Object
+   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_39
+      EventName="Storm_ON"
+      MaxWidth=183
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_69',InputLinkIdx=1),(LinkedOp=SeqAct_ChangeCollision'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_ChangeCollision_0')),DrawY=-4553,OverrideDelta=11)
+      VariableLinks(0)=(DrawX=4126,OverrideDelta=59)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7247
-      ObjPosY=-5698
-      ObjName="TriggerVolume_20 Touch"
-      ObjComment="VOL_LighthouseArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_9"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+      ObjPosX=4035
+      ObjPosY=-4619
+      DrawWidth=111
+      DrawHeight=128
+      Name="SeqEvent_RemoteEvent_39"
+      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
    End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_8
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_8'
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_0
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_6'
       MaxTriggerCount=0
       MaxWidth=165
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_1')),DrawY=-5630,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5609,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5588,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=5615,OverrideDelta=50)
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_0')),DrawY=-5635,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5614,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5593,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=5064,OverrideDelta=50)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5533
-      ObjPosY=-5699
-      ObjName="TriggerVolume_8 Touch"
-      ObjComment="VOL_AsylumArea"
-      DrawWidth=127
-      DrawHeight=176
-      Name="SeqEvent_Touch_8"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_23'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_52')),DrawY=-4837,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-4816,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4795,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=7325,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7239
-      ObjPosY=-4906
-      ObjName="TriggerVolume_23 Touch"
-      ObjComment="VOL_LighthouseArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_7"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_6
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_19'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_11')),DrawY=-4574,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-4553,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4532,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=6758,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6672
-      ObjPosY=-4643
-      ObjName="TriggerVolume_19 Touch"
-      ObjComment="VOL_CultistArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_6"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_5
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_21'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_75')),DrawY=-5365,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5344,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5323,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=7328,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7242
-      ObjPosY=-5434
-      ObjName="TriggerVolume_21 Touch"
-      ObjComment="VOL_LighthouseArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_5"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_4
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_14'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_63')),DrawY=-4987,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-4966,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4945,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=6177,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6091
-      ObjPosY=-5056
-      ObjName="TriggerVolume_14 Touch"
-      ObjComment="VOL_Asylum-1Floor"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_4"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_22'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_51')),DrawY=-5102,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5081,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5060,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=7324,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7238
-      ObjPosY=-5171
-      ObjName="TriggerVolume_22 Touch"
-      ObjComment="VOL_LighthouseArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_3"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_26
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_7'
-      MaxTriggerCount=0
-      MaxWidth=165
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_9')),DrawY=-5023,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5002,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4981,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=5056,OverrideDelta=50)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4974
-      ObjPosY=-5092
-      ObjName="TriggerVolume_7 Touch"
+      ObjPosX=4982
+      ObjPosY=-5704
+      ObjName="TriggerVolume_6 Touch"
       ObjComment="VOL_BalconyArea"
       DrawWidth=127
       DrawHeight=176
-      Name="SeqEvent_Touch_26"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_25
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_0'
-      MaxTriggerCount=0
-      MaxWidth=165
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_66')),DrawY=-4003,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-3982,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-3961,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=6746,OverrideDelta=50)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6664
-      ObjPosY=-4072
-      ObjName="TriggerVolume_0 Touch"
-      ObjComment="VOL_CultistArea"
-      DrawWidth=127
-      DrawHeight=176
-      Name="SeqEvent_Touch_25"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_24
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_18'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_65')),DrawY=-4839,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-4818,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4797,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=6763,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6677
-      ObjPosY=-4908
-      ObjName="TriggerVolume_18 Touch"
-      ObjComment="VOL_CultistArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_24"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_23
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_17'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_64')),DrawY=-5104,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5083,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5062,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=6762,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6676
-      ObjPosY=-5173
-      ObjName="TriggerVolume_17 Touch"
-      ObjComment="VOL_CultistArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_23"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_22
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_16'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_62')),DrawY=-5367,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5346,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5325,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=6766,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6680
-      ObjPosY=-5436
-      ObjName="TriggerVolume_16 Touch"
-      ObjComment="VOL_CultistArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_22"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_21
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_15'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_61')),DrawY=-5631,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5610,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5589,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=6771,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6685
-      ObjPosY=-5700
-      ObjName="TriggerVolume_15 Touch"
-      ObjComment="VOL_CultistArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_21"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_20
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_28'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_68')),DrawY=-5631,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5610,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5589,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=4509,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4423
-      ObjPosY=-5700
-      ObjName="TriggerVolume_28 Touch"
-      ObjComment="VOL_GardenArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_20"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_9'
-      MaxTriggerCount=0
-      MaxWidth=165
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_2')),DrawY=-5318,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5297,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5276,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=5616,OverrideDelta=50)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5534
-      ObjPosY=-5387
-      ObjName="TriggerVolume_9 Touch"
-      ObjComment="VOL_AsylumArea"
-      DrawWidth=127
-      DrawHeight=176
-      Name="SeqEvent_Touch_2"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_19
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_1'
-      MaxTriggerCount=0
-      MaxWidth=165
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_58')),DrawY=-5367,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5346,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5325,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=4500,OverrideDelta=50)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4418
-      ObjPosY=-5436
-      ObjName="TriggerVolume_1 Touch"
-      ObjComment="VOL_GardenArea"
-      DrawWidth=127
-      DrawHeight=176
-      Name="SeqEvent_Touch_19"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_18
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_2'
-      MaxTriggerCount=0
-      MaxWidth=165
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_59')),DrawY=-5104,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5083,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5062,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=4496,OverrideDelta=50)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4414
-      ObjPosY=-5173
-      ObjName="TriggerVolume_2 Touch"
-      ObjComment="VOL_GardenArea"
-      DrawWidth=127
-      DrawHeight=176
-      Name="SeqEvent_Touch_18"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_17
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_29'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_44')),DrawY=-4291,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-4270,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4249,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=6750,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6664
-      ObjPosY=-4360
-      ObjName="TriggerVolume_29 Touch"
-      ObjComment="VOL_CultistArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_17"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_16
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_3'
-      MaxTriggerCount=0
-      MaxWidth=165
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_10')),DrawY=-4839,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-4818,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4797,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=4497,OverrideDelta=50)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4415
-      ObjPosY=-4908
-      ObjName="TriggerVolume_3 Touch"
-      ObjComment="VOL_GardenArea"
-      DrawWidth=127
-      DrawHeight=176
-      Name="SeqEvent_Touch_16"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_15
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_4'
-      MaxTriggerCount=0
-      MaxWidth=165
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_69')),DrawY=-4574,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-4553,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4532,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=4492,OverrideDelta=50)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4410
-      ObjPosY=-4643
-      ObjName="TriggerVolume_4 Touch"
-      ObjComment="VOL_GardenArea"
-      DrawWidth=127
-      DrawHeight=176
-      Name="SeqEvent_Touch_15"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_14
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_5'
-      MaxTriggerCount=0
-      MaxWidth=165
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_7')),DrawY=-4312,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-4291,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4270,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=4491,OverrideDelta=50)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4409
-      ObjPosY=-4381
-      ObjName="TriggerVolume_5 Touch"
-      ObjComment="VOL_GardenArea"
-      DrawWidth=127
-      DrawHeight=176
-      Name="SeqEvent_Touch_14"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_13
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_13'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_6')),DrawY=-5303,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5282,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5261,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=6185,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6099
-      ObjPosY=-5372
-      ObjName="TriggerVolume_13 Touch"
-      ObjComment="VOL_Asylum-1Floor"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_13"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_12
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_12'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_5')),DrawY=-5630,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5609,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5588,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=6197,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6111
-      ObjPosY=-5699
-      ObjName="TriggerVolume_12 Touch"
-      ObjComment="VOL_Asylum-1Floor"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_12"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_11
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_11'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_4')),DrawY=-4698,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-4677,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4656,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=5620,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5534
-      ObjPosY=-4767
-      ObjName="TriggerVolume_11 Touch"
-      ObjComment="VOL_AsylumArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_11"
-      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-   End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_10
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_10'
-      MaxTriggerCount=0
-      MaxWidth=173
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_3')),DrawY=-5007,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-4986,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-4965,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=5621,OverrideDelta=54)
-      ObjInstanceVersion=2
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5535
-      ObjPosY=-5076
-      ObjName="TriggerVolume_10 Touch"
-      ObjComment="VOL_AsylumArea"
-      DrawWidth=131
-      DrawHeight=176
-      Name="SeqEvent_Touch_10"
+      Name="SeqEvent_Touch_0"
       ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
    End Object
    Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_1
@@ -11107,511 +10733,885 @@ Begin Object Class=Sequence Name=Portal_Spawners
       Name="SeqEvent_Touch_1"
       ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
    End Object
-   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_0
-      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_6'
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_10
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_10'
       MaxTriggerCount=0
-      MaxWidth=165
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_0')),DrawY=-5635,OverrideDelta=14)
-      OutputLinks(1)=(DrawY=-5614,OverrideDelta=35)
-      OutputLinks(2)=(DrawY=-5593,OverrideDelta=56)
-      VariableLinks(0)=(DrawX=5064,OverrideDelta=50)
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_3')),DrawY=-5007,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-4986,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4965,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=5621,OverrideDelta=54)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4982
-      ObjPosY=-5704
-      ObjName="TriggerVolume_6 Touch"
+      ObjPosX=5535
+      ObjPosY=-5076
+      ObjName="TriggerVolume_10 Touch"
+      ObjComment="VOL_AsylumArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_10"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_11
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_11'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_4')),DrawY=-4698,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-4677,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4656,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=5620,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=5534
+      ObjPosY=-4767
+      ObjName="TriggerVolume_11 Touch"
+      ObjComment="VOL_AsylumArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_11"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_12
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_12'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_5')),DrawY=-5630,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5609,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5588,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=6197,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6111
+      ObjPosY=-5699
+      ObjName="TriggerVolume_12 Touch"
+      ObjComment="VOL_Asylum-1Floor"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_12"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_13
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_13'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_6')),DrawY=-5303,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5282,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5261,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=6185,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6099
+      ObjPosY=-5372
+      ObjName="TriggerVolume_13 Touch"
+      ObjComment="VOL_Asylum-1Floor"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_13"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_14
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_5'
+      MaxTriggerCount=0
+      MaxWidth=165
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_7')),DrawY=-4312,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-4291,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4270,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=4491,OverrideDelta=50)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4409
+      ObjPosY=-4381
+      ObjName="TriggerVolume_5 Touch"
+      ObjComment="VOL_GardenArea"
+      DrawWidth=127
+      DrawHeight=176
+      Name="SeqEvent_Touch_14"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_15
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_4'
+      MaxTriggerCount=0
+      MaxWidth=165
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_69')),DrawY=-4574,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-4553,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4532,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=4492,OverrideDelta=50)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4410
+      ObjPosY=-4643
+      ObjName="TriggerVolume_4 Touch"
+      ObjComment="VOL_GardenArea"
+      DrawWidth=127
+      DrawHeight=176
+      Name="SeqEvent_Touch_15"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_16
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_3'
+      MaxTriggerCount=0
+      MaxWidth=165
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_10')),DrawY=-4839,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-4818,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4797,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=4497,OverrideDelta=50)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4415
+      ObjPosY=-4908
+      ObjName="TriggerVolume_3 Touch"
+      ObjComment="VOL_GardenArea"
+      DrawWidth=127
+      DrawHeight=176
+      Name="SeqEvent_Touch_16"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_17
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_29'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_44')),DrawY=-4291,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-4270,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4249,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=6750,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6664
+      ObjPosY=-4360
+      ObjName="TriggerVolume_29 Touch"
+      ObjComment="VOL_CultistArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_17"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_18
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_2'
+      MaxTriggerCount=0
+      MaxWidth=165
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_59')),DrawY=-5104,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5083,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5062,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=4496,OverrideDelta=50)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4414
+      ObjPosY=-5173
+      ObjName="TriggerVolume_2 Touch"
+      ObjComment="VOL_GardenArea"
+      DrawWidth=127
+      DrawHeight=176
+      Name="SeqEvent_Touch_18"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_19
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_1'
+      MaxTriggerCount=0
+      MaxWidth=165
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_58')),DrawY=-5367,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5346,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5325,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=4500,OverrideDelta=50)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4418
+      ObjPosY=-5436
+      ObjName="TriggerVolume_1 Touch"
+      ObjComment="VOL_GardenArea"
+      DrawWidth=127
+      DrawHeight=176
+      Name="SeqEvent_Touch_19"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_9'
+      MaxTriggerCount=0
+      MaxWidth=165
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_2')),DrawY=-5318,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5297,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5276,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=5616,OverrideDelta=50)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=5534
+      ObjPosY=-5387
+      ObjName="TriggerVolume_9 Touch"
+      ObjComment="VOL_AsylumArea"
+      DrawWidth=127
+      DrawHeight=176
+      Name="SeqEvent_Touch_2"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_20
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_28'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_68')),DrawY=-5631,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5610,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5589,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=4509,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4423
+      ObjPosY=-5700
+      ObjName="TriggerVolume_28 Touch"
+      ObjComment="VOL_GardenArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_20"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_21
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_15'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_61')),DrawY=-5631,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5610,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5589,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=6771,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6685
+      ObjPosY=-5700
+      ObjName="TriggerVolume_15 Touch"
+      ObjComment="VOL_CultistArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_21"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_22
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_16'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_62')),DrawY=-5367,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5346,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5325,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=6766,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6680
+      ObjPosY=-5436
+      ObjName="TriggerVolume_16 Touch"
+      ObjComment="VOL_CultistArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_22"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_23
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_17'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_64')),DrawY=-5104,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5083,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5062,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=6762,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6676
+      ObjPosY=-5173
+      ObjName="TriggerVolume_17 Touch"
+      ObjComment="VOL_CultistArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_23"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_24
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_18'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_65')),DrawY=-4839,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-4818,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4797,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=6763,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6677
+      ObjPosY=-4908
+      ObjName="TriggerVolume_18 Touch"
+      ObjComment="VOL_CultistArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_24"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_25
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_0'
+      MaxTriggerCount=0
+      MaxWidth=165
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_66')),DrawY=-4003,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-3982,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-3961,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=6746,OverrideDelta=50)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6664
+      ObjPosY=-4072
+      ObjName="TriggerVolume_0 Touch"
+      ObjComment="VOL_CultistArea"
+      DrawWidth=127
+      DrawHeight=176
+      Name="SeqEvent_Touch_25"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_26
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_7'
+      MaxTriggerCount=0
+      MaxWidth=165
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_9')),DrawY=-5023,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5002,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4981,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=5056,OverrideDelta=50)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4974
+      ObjPosY=-5092
+      ObjName="TriggerVolume_7 Touch"
       ObjComment="VOL_BalconyArea"
       DrawWidth=127
       DrawHeight=176
-      Name="SeqEvent_Touch_0"
+      Name="SeqEvent_Touch_26"
       ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
    End Object
-   Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_39
-      EventName="Storm_ON"
-      MaxWidth=183
-      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_69',InputLinkIdx=1),(LinkedOp=SeqAct_ChangeCollision'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_ChangeCollision_0')),DrawY=-4553,OverrideDelta=11)
-      VariableLinks(0)=(DrawX=4126,OverrideDelta=59)
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_22'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_51')),DrawY=-5102,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5081,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5060,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=7324,OverrideDelta=54)
       ObjInstanceVersion=2
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4035
-      ObjPosY=-4619
-      DrawWidth=111
-      DrawHeight=128
-      Name="SeqEvent_RemoteEvent_39"
-      ObjectArchetype=SeqEvent_RemoteEvent'Engine.Default__SeqEvent_RemoteEvent'
+      ObjPosX=7238
+      ObjPosY=-5171
+      ObjName="TriggerVolume_22 Touch"
+      ObjComment="VOL_LighthouseArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_3"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
-      InputLinks(0)=(DrawY=-5023,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5002,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4981,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5002,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_483'),DrawX=5292,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=5343,OverrideDelta=76)
-      EventLinks(0)=(DrawX=5392,OverrideDelta=119)
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_4
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_14'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_63')),DrawY=-4987,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-4966,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4945,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=6177,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6091
+      ObjPosY=-5056
+      ObjName="TriggerVolume_14 Touch"
+      ObjComment="VOL_Asylum-1Floor"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_4"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_5
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_21'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_75')),DrawY=-5365,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5344,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5323,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=7328,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=7242
+      ObjPosY=-5434
+      ObjName="TriggerVolume_21 Touch"
+      ObjComment="VOL_LighthouseArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_5"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_6
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_19'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_11')),DrawY=-4574,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-4553,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4532,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=6758,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6672
+      ObjPosY=-4643
+      ObjName="TriggerVolume_19 Touch"
+      ObjComment="VOL_CultistArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_6"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_23'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_52')),DrawY=-4837,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-4816,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-4795,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=7325,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=7239
+      ObjPosY=-4906
+      ObjName="TriggerVolume_23 Touch"
+      ObjComment="VOL_LighthouseArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_7"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_8
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_8'
+      MaxTriggerCount=0
+      MaxWidth=165
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_1')),DrawY=-5630,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5609,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5588,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=5615,OverrideDelta=50)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=5533
+      ObjPosY=-5699
+      ObjName="TriggerVolume_8 Touch"
+      ObjComment="VOL_AsylumArea"
+      DrawWidth=127
+      DrawHeight=176
+      Name="SeqEvent_Touch_8"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_9
+      Originator=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_20'
+      MaxTriggerCount=0
+      MaxWidth=173
+      OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_67')),DrawY=-5629,OverrideDelta=14)
+      OutputLinks(1)=(DrawY=-5608,OverrideDelta=35)
+      OutputLinks(2)=(DrawY=-5587,OverrideDelta=56)
+      VariableLinks(0)=(DrawX=7333,OverrideDelta=54)
+      ObjInstanceVersion=2
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=7247
+      ObjPosY=-5698
+      ObjName="TriggerVolume_20 Touch"
+      ObjComment="VOL_LighthouseArea"
+      DrawWidth=131
+      DrawHeight=176
+      Name="SeqEvent_Touch_9"
+      ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+   End Object
+   Begin Object Class=SequenceFrame Name=SequenceFrame_1
+      SizeX=522
+      SizeY=932
+      bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5254
-      ObjPosY=-5060
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_9"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=4944
+      ObjPosY=-5728
+      ObjComment="Balcony Area"
+      DrawWidth=522
+      DrawHeight=932
+      Name="SequenceFrame_1"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
-      InputLinks(0)=(DrawY=-5356,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5335,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5314,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5335,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_553'),DrawX=5296,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=5347,OverrideDelta=76)
-      EventLinks(0)=(DrawX=5396,OverrideDelta=119)
+   Begin Object Class=SequenceFrame Name=SequenceFrame_26
+      SizeX=532
+      SizeY=2009
+      bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5258
-      ObjPosY=-5393
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_8"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=6635
+      ObjPosY=-5729
+      ObjComment="Cultist Area"
+      DrawWidth=532
+      DrawHeight=2009
+      Name="SequenceFrame_26"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_75
-      InputLinks(0)=(DrawY=-5365,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5344,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5323,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5344,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_447'),DrawX=7560,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7611,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7660,OverrideDelta=119)
+   Begin Object Class=SequenceFrame Name=SequenceFrame_27
+      SizeX=522
+      SizeY=1124
+      bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7522
-      ObjPosY=-5402
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_75"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=7207
+      ObjPosY=-5726
+      ObjComment="Lighthouse Area"
+      DrawWidth=522
+      DrawHeight=1124
+      Name="SequenceFrame_27"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
-      InputLinks(0)=(DrawY=-4312,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-4291,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4270,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-4291,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_466'),DrawX=4727,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=4778,OverrideDelta=76)
-      EventLinks(0)=(DrawX=4827,OverrideDelta=119)
+   Begin Object Class=SequenceFrame Name=SequenceFrame_3
+      SizeX=533
+      SizeY=973
+      bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4689
-      ObjPosY=-4349
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_7"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=6058
+      ObjPosY=-5728
+      ObjComment="Asylum -1 Floor"
+      DrawWidth=533
+      DrawHeight=973
+      Name="SequenceFrame_3"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_69
-      InputLinks(0)=(DrawY=-4574,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-4553,ActivateDelay=1.000000,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4532,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-4553,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_472'),DrawX=4726,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=4777,OverrideDelta=76)
-      EventLinks(0)=(DrawX=4826,OverrideDelta=119)
+   Begin Object Class=SequenceFrame Name=SequenceFrame_4
+      SizeX=527
+      SizeY=1651
+      bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4688
-      ObjPosY=-4611
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_69"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=4372
+      ObjPosY=-5726
+      ObjComment="Garden Area"
+      DrawWidth=527
+      DrawHeight=1651
+      Name="SequenceFrame_4"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_68
-      InputLinks(0)=(DrawY=-5631,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5610,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5589,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5610,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_480'),DrawX=4741,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=4792,OverrideDelta=76)
-      EventLinks(0)=(DrawX=4841,OverrideDelta=119)
+   Begin Object Class=SequenceFrame Name=SequenceFrame_62
+      SizeX=362
+      SizeY=390
+      bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4703
-      ObjPosY=-5668
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_68"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=4000
+      ObjPosY=-4648
+      ObjComment="When the storm starts, turn OFF spawn under water."
+      DrawWidth=362
+      DrawHeight=390
+      Name="SequenceFrame_62"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_67
-      InputLinks(0)=(DrawY=-5629,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5608,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5587,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5608,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_461'),DrawX=7565,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7616,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7665,OverrideDelta=119)
+   Begin Object Class=SequenceFrame Name=SequenceFrame_63
+      SizeX=515
+      SizeY=1262
+      bDrawBox=True
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7527
-      ObjPosY=-5666
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_67"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=5500
+      ObjPosY=-5729
+      ObjComment="Asylum Area"
+      DrawWidth=515
+      DrawHeight=1262
+      Name="SequenceFrame_63"
+      ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_66
-      InputLinks(0)=(DrawY=-4003,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-3982,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-3961,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-3982,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_506'),DrawX=6982,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7033,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7082,OverrideDelta=119)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_4'
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6944
-      ObjPosY=-4040
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_66"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=5268
+      ObjPosY=-5498
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_0"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_65
-      InputLinks(0)=(DrawY=-4839,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-4818,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4797,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-4818,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_503'),DrawX=6995,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7046,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7095,OverrideDelta=119)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_14'
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6957
-      ObjPosY=-4876
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_65"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=6958
+      ObjPosY=-4435
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_1"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_64
-      InputLinks(0)=(DrawY=-5104,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5083,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5062,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5083,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_486'),DrawX=6994,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7045,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7094,OverrideDelta=119)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_21'
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6956
-      ObjPosY=-5141
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_64"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=5820
+      ObjPosY=-5181
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_2"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_63
-      InputLinks(0)=(DrawY=-4987,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-4966,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4945,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-4966,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_484'),DrawX=6409,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=6460,OverrideDelta=76)
-      EventLinks(0)=(DrawX=6509,OverrideDelta=119)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_251
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_20'
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6371
-      ObjPosY=-5024
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_63"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=5819
+      ObjPosY=-5493
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_251"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_62
-      InputLinks(0)=(DrawY=-5367,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5346,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5325,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5346,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_485'),DrawX=6998,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7049,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7098,OverrideDelta=119)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_22'
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6960
-      ObjPosY=-5404
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_62"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=5821
+      ObjPosY=-4870
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_3"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_61
-      InputLinks(0)=(DrawY=-5631,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5610,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5589,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5610,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_482'),DrawX=7003,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7054,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7103,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6965
-      ObjPosY=-5668
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_61"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
-      InputLinks(0)=(DrawY=-5303,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5282,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5261,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5282,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_9'),DrawX=6417,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=6468,OverrideDelta=76)
-      EventLinks(0)=(DrawX=6517,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6379
-      ObjPosY=-5340
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_6"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_59
-      InputLinks(0)=(DrawY=-5104,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5083,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5062,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5083,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_476'),DrawX=4732,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=4783,OverrideDelta=76)
-      EventLinks(0)=(DrawX=4832,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4694
-      ObjPosY=-5141
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_59"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_58
-      InputLinks(0)=(DrawY=-5367,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5346,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5325,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5346,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_478'),DrawX=4736,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=4787,OverrideDelta=76)
-      EventLinks(0)=(DrawX=4836,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4698
-      ObjPosY=-5404
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_58"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_52
-      InputLinks(0)=(DrawY=-4837,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-4816,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4795,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-4816,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_449'),DrawX=7557,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7608,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7657,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7519
-      ObjPosY=-4874
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_52"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_51
-      InputLinks(0)=(DrawY=-5102,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5081,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5060,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5081,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_448'),DrawX=7556,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7607,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7656,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=7518
-      ObjPosY=-5139
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_51"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
-      InputLinks(0)=(DrawY=-5630,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5609,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5588,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5609,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_8'),DrawX=6429,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=6480,OverrideDelta=76)
-      EventLinks(0)=(DrawX=6529,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6391
-      ObjPosY=-5667
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_5"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_44
-      InputLinks(0)=(DrawY=-4291,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-4270,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4249,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-4270,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_30'),DrawX=6982,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7033,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7082,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=6944
-      ObjPosY=-4328
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_44"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
-      InputLinks(0)=(DrawY=-4698,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-4677,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4656,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-4677,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_7'),DrawX=5852,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=5903,OverrideDelta=76)
-      EventLinks(0)=(DrawX=5952,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5814
-      ObjPosY=-4735
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_4"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
-      InputLinks(0)=(DrawY=-5007,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-4986,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4965,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-4986,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_3'),DrawX=5853,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=5904,OverrideDelta=76)
-      EventLinks(0)=(DrawX=5953,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5815
-      ObjPosY=-5044
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_3"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
-      InputLinks(0)=(DrawY=-5318,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5297,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5276,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5297,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_2'),DrawX=5852,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=5903,OverrideDelta=76)
-      EventLinks(0)=(DrawX=5952,OverrideDelta=119)
-      ObjInstanceVersion=1
-      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5814
-      ObjPosY=-5355
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_2"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-   End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
-      InputLinks(0)=(DrawY=-4574,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-4553,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4532,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-4553,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_1'),DrawX=6990,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=7041,OverrideDelta=76)
-      EventLinks(0)=(DrawX=7090,OverrideDelta=119)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_0'
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
       ObjPosX=6952
-      ObjPosY=-4611
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_11"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosY=-4152
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_30"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
-      InputLinks(0)=(DrawY=-4839,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-4818,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-4797,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-4818,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_474'),DrawX=4733,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=4784,OverrideDelta=76)
-      EventLinks(0)=(DrawX=4833,OverrideDelta=119)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_340
+      ObjValue=TriggerVolume'KF-SANITARIUM.TheWorld:PersistentLevel.TriggerVolume_4'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4246
+      ObjPosY=-4366
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_340"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_447
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_1'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=7528
+      ObjPosY=-5226
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_447"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_448
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_3'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=7524
+      ObjPosY=-4963
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_448"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_449
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_6'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=7525
+      ObjPosY=-4698
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_449"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_461
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_10'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=7532
+      ObjPosY=-5489
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_461"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_466
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_17'
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
       ObjPosX=4695
-      ObjPosY=-4876
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_10"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosY=-4173
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_466"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
-      InputLinks(0)=(DrawY=-5630,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5609,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5588,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5609,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_251'),DrawX=5851,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=5902,OverrideDelta=76)
-      EventLinks(0)=(DrawX=5951,OverrideDelta=119)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_472
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_2'
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5813
-      ObjPosY=-5667
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_1"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=4696
+      ObjPosY=-4435
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_472"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
-      InputLinks(0)=(DrawY=-5635,OverrideDelta=14)
-      InputLinks(1)=(DrawY=-5614,OverrideDelta=35)
-      InputLinks(2)=(DrawY=-5593,OverrideDelta=56)
-      OutputLinks(0)=(DrawY=-5614,OverrideDelta=35)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_0'),DrawX=5300,OverrideDelta=16)
-      VariableLinks(1)=(DrawX=5351,OverrideDelta=76)
-      EventLinks(0)=(DrawX=5400,OverrideDelta=119)
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_474
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_11'
       ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=5262
-      ObjPosY=-5672
-      DrawWidth=173
-      DrawHeight=109
-      Name="SeqAct_Toggle_0"
-      ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+      ObjPosX=4701
+      ObjPosY=-4700
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_474"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
-   Begin Object Class=SeqAct_ChangeCollision Name=SeqAct_ChangeCollision_0
-      CollisionType=COLLIDE_NoCollision
-      InputLinks(0)=(DrawY=-4440,OverrideDelta=11)
-      OutputLinks(0)=(DrawY=-4440,OverrideDelta=11)
-      VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqVar_Object_340'),DrawX=4278,OverrideDelta=36)
-      ObjInstanceVersion=5
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_476
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_13'
+      ObjInstanceVersion=1
       ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
-      ObjPosX=4220
-      ObjPosY=-4474
-      DrawWidth=116
-      DrawHeight=61
-      Name="SeqAct_ChangeCollision_0"
-      ObjectArchetype=SeqAct_ChangeCollision'Engine.Default__SeqAct_ChangeCollision'
+      ObjPosX=4700
+      ObjPosY=-4965
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_476"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_478
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_9'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4704
+      ObjPosY=-5228
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_478"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_480
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_7'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=4708
+      ObjPosY=-5491
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_480"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_482
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_12'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6970
+      ObjPosY=-5491
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_482"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_483
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_40'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=5260
+      ObjPosY=-4886
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_483"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_484
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_5'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6377
+      ObjPosY=-4850
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_484"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_485
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_19'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6966
+      ObjPosY=-5228
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_485"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_486
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_16'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6962
+      ObjPosY=-4965
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_486"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_503
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_15'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6963
+      ObjPosY=-4700
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_503"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_506
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_43'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6944
+      ObjPosY=-3864
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_506"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_553
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_18'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=5263
+      ObjPosY=-5216
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_553"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_23'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=5820
+      ObjPosY=-4561
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_7"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
+      ObjValue=KFSpawner'KF-SANITARIUM.TheWorld:PersistentLevel.KFSpawner_24'
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6397
+      ObjPosY=-5493
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_8"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+   End Object
+   Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
+      ObjInstanceVersion=1
+      ParentSequence=Sequence'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners'
+      ObjPosX=6385
+      ObjPosY=-5166
+      DrawWidth=32
+      DrawHeight=32
+      Name="SeqVar_Object_9"
+      ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
    End Object
    SequenceObjects(0)=SeqAct_Toggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqAct_Toggle_0'
    SequenceObjects(1)=SeqEvent_Touch'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.Portal_Spawners.SeqEvent_Touch_0'
@@ -12575,6 +12575,10 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_5
 End Object
 
 Begin Object Class=InterpData Name=InterpData_11
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
+      Name="InterpCurveEdSetup_5"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=43.790001,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=43.989998,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.290001,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.489998,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.789997,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=44.989998,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -12589,10 +12593,6 @@ Begin Object Class=InterpData Name=InterpData_11
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
-      Name="InterpCurveEdSetup_5"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=45.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_1'
@@ -12632,6 +12632,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_11
 End Object
 
 Begin Object Class=InterpData Name=InterpData_13
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
+      Name="InterpCurveEdSetup_4"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=43.709999,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=43.910000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.209999,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.410000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=44.709999,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=44.910000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -12646,10 +12650,6 @@ Begin Object Class=InterpData Name=InterpData_13
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
-      Name="InterpCurveEdSetup_4"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=45.000000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_13.InterpGroup_1'
@@ -12865,17 +12865,9 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_60
 End Object
 
 Begin Object Class=InterpData Name=InterpData_54
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
-         ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
-         Name="InterpTrackToggle_0"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_54.InterpGroup_1.InterpTrackToggle_0'
-      GroupName="Particle"
-      GroupColor=(B=129,G=0,R=202,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
@@ -12892,9 +12884,17 @@ Begin Object Class=InterpData Name=InterpData_54
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
+         ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
+         Name="InterpTrackToggle_0"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_54.InterpGroup_1.InterpTrackToggle_0'
+      GroupName="Particle"
+      GroupColor=(B=129,G=0,R=202,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=0.996327
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_54.InterpGroup_0'
@@ -13374,17 +13374,9 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_493
 End Object
 
 Begin Object Class=InterpData Name=InterpData_56
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
-         ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
-         Name="InterpTrackToggle_0"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_56.InterpGroup_1.InterpTrackToggle_0'
-      GroupName="Particle"
-      GroupColor=(B=129,G=0,R=202,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
@@ -13401,9 +13393,17 @@ Begin Object Class=InterpData Name=InterpData_56
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
+         ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
+         Name="InterpTrackToggle_0"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_56.InterpGroup_1.InterpTrackToggle_0'
+      GroupName="Particle"
+      GroupColor=(B=129,G=0,R=202,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=0.996327
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_56.InterpGroup_0'
@@ -14297,6 +14297,32 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
 End Object
 
 Begin Object Class=InterpData Name=InterpData_58
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Emerge_02",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.199367,OutVal=(X=63.989258,Y=-59.031006,Z=47.023438),ArriveTangent=(X=22.988159,Y=-441.326569,Z=360.568298),LeaveTangent=(X=22.988159,Y=-441.326569,Z=360.568298),InterpMode=CIM_CurveAutoClamped),(InVal=0.405460,OutVal=(X=65.932617,Y=-179.771240,Z=148.976563),ArriveTangent=(X=0.000000,Y=-565.279846,Z=574.111023),LeaveTangent=(X=0.000000,Y=-565.279846,Z=574.111023),InterpMode=CIM_CurveAutoClamped),(InVal=0.996327,OutVal=(X=50.180664,Y=-509.536377,Z=544.015625),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.199367,OutVal=(X=-11.381836,Y=-0.785522,Z=0.703125),ArriveTangent=(X=-80.366539,Y=-5.134679,Z=4.985651),LeaveTangent=(X=-80.366539,Y=-5.134679,Z=4.985651),InterpMode=CIM_CurveAutoClamped),(InVal=0.405460,OutVal=(X=-32.585449,Y=-2.081909,Z=2.021484),ArriveTangent=(X=-98.647583,Y=-6.072423,Z=6.175813),LeaveTangent=(X=-98.647583,Y=-6.072423,Z=6.175813),InterpMode=CIM_CurveAutoClamped),(InVal=0.996327,OutVal=(X=-90.000000,Y=-5.625000,Z=5.625000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=0.199367),(Time=0.405460),(Time=0.996327)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_58.InterpGroup_0.InterpTrackMove_2'
+      InterpTracks(1)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_58.InterpGroup_0.InterpTrackAnimControl_0'
+      GroupName="tentacle"
+      GroupColor=(B=0,G=120,R=206,A=255)
+      GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
          ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
@@ -14308,32 +14334,6 @@ Begin Object Class=InterpData Name=InterpData_58
       GroupColor=(B=129,G=0,R=202,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.199367,OutVal=(X=63.989258,Y=-59.031006,Z=47.023438),ArriveTangent=(X=22.988159,Y=-441.326569,Z=360.568298),LeaveTangent=(X=22.988159,Y=-441.326569,Z=360.568298),InterpMode=CIM_CurveAutoClamped),(InVal=0.405460,OutVal=(X=65.932617,Y=-179.771240,Z=148.976563),ArriveTangent=(X=0.000000,Y=-565.279846,Z=574.111023),LeaveTangent=(X=0.000000,Y=-565.279846,Z=574.111023),InterpMode=CIM_CurveAutoClamped),(InVal=0.996327,OutVal=(X=50.180664,Y=-509.536377,Z=544.015625),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.199367,OutVal=(X=-11.381836,Y=-0.785522,Z=0.703125),ArriveTangent=(X=-80.366539,Y=-5.134679,Z=4.985651),LeaveTangent=(X=-80.366539,Y=-5.134679,Z=4.985651),InterpMode=CIM_CurveAutoClamped),(InVal=0.405460,OutVal=(X=-32.585449,Y=-2.081909,Z=2.021484),ArriveTangent=(X=-98.647583,Y=-6.072423,Z=6.175813),LeaveTangent=(X=-98.647583,Y=-6.072423,Z=6.175813),InterpMode=CIM_CurveAutoClamped),(InVal=0.996327,OutVal=(X=-90.000000,Y=-5.625000,Z=5.625000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=0.199367),(Time=0.405460),(Time=0.996327)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Emerge_02",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_58.InterpGroup_0.InterpTrackMove_2'
-      InterpTracks(1)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_58.InterpGroup_0.InterpTrackAnimControl_0'
-      GroupName="tentacle"
-      GroupColor=(B=0,G=120,R=206,A=255)
-      GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.996327
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_58.InterpGroup_0'
@@ -15136,6 +15136,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_12
 End Object
 
 Begin Object Class=InterpData Name=InterpData_12
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_6
       Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_2
          Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_CthulhuEyes_INST',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.InterpActor_81.StaticMeshComponent_15125'),(Primitive=StaticMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.InterpActor_72.StaticMeshComponent_15125')))
@@ -15149,10 +15153,6 @@ Begin Object Class=InterpData Name=InterpData_12
       GroupColor=(B=182,G=0,R=157,A=255)
       Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.982399
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_6'
@@ -15986,18 +15986,39 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_24
 End Object
 
 Begin Object Class=InterpData Name=InterpData_18
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
-         ToggleTrack(0)=(ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=0.760000)
-         Name="InterpTrackToggle_0"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="TentacleMouth",AnimPlayRate=1.000000)
+         AnimSeqs(1)=(StartTime=3.742879,AnimSeqName="TentacleMouth",AnimPlayRate=1.000000,bReverse=True)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_2.InterpTrackToggle_0'
-      GroupName="EntrySplashes"
-      GroupColor=(B=129,G=0,R=202,A=255)
-      bCollapsed=True
-      Name="InterpGroup_2"
+      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_2
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Mouth_Monster_MIC',AffectedMaterialRefs=((Primitive=SkeletalMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.SkeletalMeshActor_21.SkeletalMeshComponent_4')))
+         ParamName="Scalar_EMP"
+         FloatTrack=(Points=((InVal=0.002787,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=0.501711,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackFloatMaterialParam_2"
+         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.005112,OutVal=(X=-120.765625,Y=-7937.998535,Z=5663.979004),ArriveTangent=(X=-570.567871,Y=-2275.613281,Z=19487.113281),LeaveTangent=(X=-570.567871,Y=-2275.613281,Z=19487.113281),InterpMode=CIM_CurveAutoClamped),(InVal=0.199372,OutVal=(X=-154.687500,Y=-8051.827637,Z=6765.355469),ArriveTangent=(X=-25.384216,Y=-564.526672,Z=1260.609375),LeaveTangent=(X=-25.384216,Y=-564.526672,Z=1260.609375),InterpMode=CIM_CurveAutoClamped),(InVal=0.296502,OutVal=(X=-155.992188,Y=-8103.223145,Z=6832.303711),ArriveTangent=(X=0.000000,Y=-528.516907,Z=0.000000),LeaveTangent=(X=0.000000,Y=-528.516907,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.760000,OutVal=(X=-95.523438,Y=-8348.128906,Z=6577.003418),InterpMode=CIM_CurveAutoClamped),(InVal=3.749648,OutVal=(X=-95.523438,Y=-8348.128906,Z=6577.003418),InterpMode=CIM_CurveAutoClamped),(InVal=3.951449,OutVal=(X=-155.992188,Y=-8103.223145,Z=6832.303711),ArriveTangent=(X=0.000000,Y=772.598877,Z=0.000000),LeaveTangent=(X=0.000000,Y=772.598877,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.047943,OutVal=(X=-154.687500,Y=-8051.827637,Z=6765.355469),ArriveTangent=(X=19.213051,Y=303.457092,Z=-943.667236),LeaveTangent=(X=19.213051,Y=303.457092,Z=-943.667236),InterpMode=CIM_CurveAutoClamped),(InVal=4.495924,OutVal=(X=-120.765625,Y=-7937.998535,Z=5663.979004),ArriveTangent=(X=249.487183,Y=993.728516,Z=-8517.468750),LeaveTangent=(X=249.487183,Y=993.728516,Z=-8517.468750),InterpMode=CIM_CurveAutoClamped),(InVal=4.503458,InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.005112,InterpMode=CIM_CurveAutoClamped),(InVal=0.199372,InterpMode=CIM_CurveAutoClamped),(InVal=0.296502,InterpMode=CIM_CurveAutoClamped),(InVal=0.760000,InterpMode=CIM_CurveAutoClamped),(InVal=3.749648,InterpMode=CIM_CurveAutoClamped),(InVal=3.951449,InterpMode=CIM_CurveAutoClamped),(InVal=4.047943,InterpMode=CIM_CurveAutoClamped),(InVal=4.495924,InterpMode=CIM_CurveAutoClamped),(InVal=4.503458,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=0.005112),(Time=0.199372),(Time=0.296502),(Time=0.760000),(Time=3.749648),(Time=3.951449),(Time=4.047943),(Time=4.495924),(Time=4.503458)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_0.InterpTrackAnimControl_0'
+      InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_0.InterpTrackMove_5'
+      InterpTracks(2)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_0.InterpTrackFloatMaterialParam_2'
+      GroupName="Mouth"
+      GroupColor=(B=42,G=0,R=230,A=255)
+      GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.MouthMonsterAnimations'
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
@@ -16012,40 +16033,19 @@ Begin Object Class=InterpData Name=InterpData_18
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.005112,OutVal=(X=-120.765625,Y=-7937.998535,Z=5663.979004),ArriveTangent=(X=-570.567871,Y=-2275.613281,Z=19487.113281),LeaveTangent=(X=-570.567871,Y=-2275.613281,Z=19487.113281),InterpMode=CIM_CurveAutoClamped),(InVal=0.199372,OutVal=(X=-154.687500,Y=-8051.827637,Z=6765.355469),ArriveTangent=(X=-25.384216,Y=-564.526672,Z=1260.609375),LeaveTangent=(X=-25.384216,Y=-564.526672,Z=1260.609375),InterpMode=CIM_CurveAutoClamped),(InVal=0.296502,OutVal=(X=-155.992188,Y=-8103.223145,Z=6832.303711),ArriveTangent=(X=0.000000,Y=-528.516907,Z=0.000000),LeaveTangent=(X=0.000000,Y=-528.516907,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.760000,OutVal=(X=-95.523438,Y=-8348.128906,Z=6577.003418),InterpMode=CIM_CurveAutoClamped),(InVal=3.749648,OutVal=(X=-95.523438,Y=-8348.128906,Z=6577.003418),InterpMode=CIM_CurveAutoClamped),(InVal=3.951449,OutVal=(X=-155.992188,Y=-8103.223145,Z=6832.303711),ArriveTangent=(X=0.000000,Y=772.598877,Z=0.000000),LeaveTangent=(X=0.000000,Y=772.598877,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.047943,OutVal=(X=-154.687500,Y=-8051.827637,Z=6765.355469),ArriveTangent=(X=19.213051,Y=303.457092,Z=-943.667236),LeaveTangent=(X=19.213051,Y=303.457092,Z=-943.667236),InterpMode=CIM_CurveAutoClamped),(InVal=4.495924,OutVal=(X=-120.765625,Y=-7937.998535,Z=5663.979004),ArriveTangent=(X=249.487183,Y=993.728516,Z=-8517.468750),LeaveTangent=(X=249.487183,Y=993.728516,Z=-8517.468750),InterpMode=CIM_CurveAutoClamped),(InVal=4.503458,InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.005112,InterpMode=CIM_CurveAutoClamped),(InVal=0.199372,InterpMode=CIM_CurveAutoClamped),(InVal=0.296502,InterpMode=CIM_CurveAutoClamped),(InVal=0.760000,InterpMode=CIM_CurveAutoClamped),(InVal=3.749648,InterpMode=CIM_CurveAutoClamped),(InVal=3.951449,InterpMode=CIM_CurveAutoClamped),(InVal=4.047943,InterpMode=CIM_CurveAutoClamped),(InVal=4.495924,InterpMode=CIM_CurveAutoClamped),(InVal=4.503458,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=0.005112),(Time=0.199372),(Time=0.296502),(Time=0.760000),(Time=3.749648),(Time=3.951449),(Time=4.047943),(Time=4.495924),(Time=4.503458)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
+         ToggleTrack(0)=(ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=0.760000)
+         Name="InterpTrackToggle_0"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
       End Object
-      Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_2
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Mouth_Monster_MIC',AffectedMaterialRefs=((Primitive=SkeletalMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.SkeletalMeshActor_21.SkeletalMeshComponent_4')))
-         ParamName="Scalar_EMP"
-         FloatTrack=(Points=((InVal=0.002787,OutVal=1.000000,InterpMode=CIM_CurveAutoClamped),(InVal=0.501711,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackFloatMaterialParam_2"
-         ObjectArchetype=InterpTrackFloatMaterialParam'Engine.Default__InterpTrackFloatMaterialParam'
-      End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="TentacleMouth",AnimPlayRate=1.000000)
-         AnimSeqs(1)=(StartTime=3.742879,AnimSeqName="TentacleMouth",AnimPlayRate=1.000000,bReverse=True)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_0.InterpTrackAnimControl_0'
-      InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_0.InterpTrackMove_5'
-      InterpTracks(2)=InterpTrackFloatMaterialParam'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_0.InterpTrackFloatMaterialParam_2'
-      GroupName="Mouth"
-      GroupColor=(B=42,G=0,R=230,A=255)
-      GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.MouthMonsterAnimations'
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_2.InterpTrackToggle_0'
+      GroupName="EntrySplashes"
+      GroupColor=(B=129,G=0,R=202,A=255)
+      bCollapsed=True
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.503458
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_0'
@@ -16383,7 +16383,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_35
 End Object
 
 Begin Object Class=InterpData Name=InterpData_35
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.021618,OutVal=(X=257.394531,Y=583.964844,Z=2717.965820),ArriveTangent=(X=0.000000,Y=0.000000,Z=2334.876953),LeaveTangent=(X=0.000000,Y=0.000000,Z=2334.876953),InterpMode=CIM_CurveAutoClamped),(InVal=2.996534,OutVal=(X=110.699219,Y=-773.187500,Z=6996.539063),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.021618,InterpMode=CIM_CurveAutoClamped),(InVal=2.996534,InterpMode=CIM_CurveAutoClamped)))
@@ -16392,11 +16401,6 @@ Begin Object Class=InterpData Name=InterpData_35
          Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_0.InterpTrackAnimControl_0'
       InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_0.InterpTrackMove_1'
       GroupName="tentacle"
@@ -16404,10 +16408,6 @@ Begin Object Class=InterpData Name=InterpData_35
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.373198
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_0'
@@ -16464,6 +16464,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_36
 End Object
 
 Begin Object Class=InterpData Name=InterpData_36
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_1
          AnimSeqs(0)=(StartTime=-0.041400,AnimSeqName="Move_02",AnimPlayRate=0.947923)
@@ -16476,10 +16480,6 @@ Begin Object Class=InterpData Name=InterpData_36
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.646500
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_36.InterpGroup_1'
@@ -16524,7 +16524,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_32
 End Object
 
 Begin Object Class=InterpData Name=InterpData_34
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.010692,OutVal=(X=226.617188,Y=1173.436523,Z=3100.545410),ArriveTangent=(X=381.597076,Y=0.000000,Z=3906.474854),LeaveTangent=(X=381.597076,Y=0.000000,Z=3906.474854),InterpMode=CIM_CurveAutoClamped),(InVal=1.496936,OutVal=(X=571.226563,Y=939.692383,Z=5847.744629),ArriveTangent=(X=0.000000,Y=-185.092926,Z=1191.837158),LeaveTangent=(X=0.000000,Y=-185.092926,Z=1191.837158),InterpMode=CIM_CurveAutoClamped),(InVal=2.999219,OutVal=(X=352.171875,Y=620.281250,Z=6923.354004),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.010692,InterpMode=CIM_CurveAutoClamped),(InVal=1.496936,OutVal=(X=-1.862183,Y=-1.999512,Z=26.790161),InterpMode=CIM_CurveAutoClamped),(InVal=2.999219,InterpMode=CIM_CurveAutoClamped)))
@@ -16533,11 +16542,6 @@ Begin Object Class=InterpData Name=InterpData_34
          Name="InterpTrackMove_2"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_34.InterpGroup_0.InterpTrackAnimControl_0'
       InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_34.InterpGroup_0.InterpTrackMove_2'
       GroupName="tentacle"
@@ -16545,10 +16549,6 @@ Begin Object Class=InterpData Name=InterpData_34
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.373198
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_34.InterpGroup_0'
@@ -16664,7 +16664,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_240
 End Object
 
 Begin Object Class=InterpData Name=InterpData_38
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.015980,OutVal=(X=-7.857422,Y=-84.429688,Z=634.660156),ArriveTangent=(X=-20.812931,Y=-223.719711,Z=1681.105957),LeaveTangent=(X=-20.812931,Y=-223.719711,Z=1681.105957),InterpMode=CIM_CurveAutoClamped),(InVal=4.339484,OutVal=(X=-90.317383,Y=-970.828125,Z=7295.132813),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.015980,InterpMode=CIM_CurveAutoClamped),(InVal=4.339484,InterpMode=CIM_CurveAutoClamped)))
@@ -16673,11 +16682,6 @@ Begin Object Class=InterpData Name=InterpData_38
          Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_0.InterpTrackAnimControl_0'
       InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_0.InterpTrackMove_3'
       GroupName="tentacle"
@@ -16685,10 +16689,6 @@ Begin Object Class=InterpData Name=InterpData_38
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.373198
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_0'
@@ -16768,7 +16768,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_39
 End Object
 
 Begin Object Class=InterpData Name=InterpData_39
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
+      Name="InterpCurveEdSetup_4"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.015688,OutVal=(X=361.826172,Y=-387.187500,Z=2176.707031),ArriveTangent=(X=271.815094,Y=-290.852844,Z=1635.218994),LeaveTangent=(X=271.815094,Y=-290.852844,Z=1635.218994),InterpMode=CIM_CurveAutoClamped),(InVal=4.373198,OutVal=(X=1188.701172,Y=-1271.957031,Z=7151.136719),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.015688,InterpMode=CIM_CurveAutoClamped),(InVal=4.373198,InterpMode=CIM_CurveAutoClamped)))
@@ -16777,11 +16786,6 @@ Begin Object Class=InterpData Name=InterpData_39
          Name="InterpTrackMove_4"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0.InterpTrackAnimControl_0'
       InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0.InterpTrackMove_4'
       GroupName="tentacle"
@@ -16789,10 +16793,6 @@ Begin Object Class=InterpData Name=InterpData_39
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
-      Name="InterpCurveEdSetup_4"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.373198
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0'
@@ -16908,7 +16908,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_245
 End Object
 
 Begin Object Class=InterpData Name=InterpData_43
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
+      Name="InterpCurveEdSetup_5"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.373198,OutVal=(X=625.883789,Y=-3507.117188,Z=8568.943359),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.373198,InterpMode=CIM_CurveAutoClamped)))
@@ -16917,11 +16926,6 @@ Begin Object Class=InterpData Name=InterpData_43
          Name="InterpTrackMove_5"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpGroup_0.InterpTrackAnimControl_0'
       InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpGroup_0.InterpTrackMove_5'
       GroupName="tentacle"
@@ -16929,10 +16933,6 @@ Begin Object Class=InterpData Name=InterpData_43
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
-      Name="InterpCurveEdSetup_5"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.373198
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpGroup_0'
@@ -17000,7 +17000,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_44
 End Object
 
 Begin Object Class=InterpData Name=InterpData_44
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_6
+      Name="InterpCurveEdSetup_6"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_8
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.005346,OutVal=(X=-0.013672,Y=0.011719,Z=0.050781),ArriveTangent=(X=0.000000,Y=2.212646,Z=9.588257),LeaveTangent=(X=0.000000,Y=2.212646,Z=9.588257),InterpMode=CIM_CurveAutoClamped),(InVal=1.688029,OutVal=(X=31.162109,Y=2741.292969,Z=2616.207031),ArriveTangent=(X=0.000000,Y=1578.909302,Z=2162.281006),LeaveTangent=(X=0.000000,Y=1578.909302,Z=2162.281006),InterpMode=CIM_CurveAutoClamped),(InVal=2.971508,OutVal=(X=29.730469,Y=4683.312500,Z=6413.726563),ArriveTangent=(X=-2.464529,Y=95.303772,Z=2540.511719),LeaveTangent=(X=-2.464529,Y=95.303772,Z=2540.511719),InterpMode=CIM_CurveAutoClamped),(InVal=4.373198,OutVal=(X=12.132813,Y=4737.031250,Z=9437.910156),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.005346,OutVal=(X=35.326538,Y=-1.115112,Z=-2.427979),InterpMode=CIM_CurveAutoClamped),(InVal=1.688029,OutVal=(X=23.620605,Y=-0.763550,Z=-1.664429),ArriveTangent=(X=-8.620796,Y=0.261124,Z=0.570399),LeaveTangent=(X=-8.620796,Y=0.261124,Z=0.570399),InterpMode=CIM_CurveAutoClamped),(InVal=2.971508,OutVal=(X=9.755859,Y=-0.340576,Z=-0.736084),ArriveTangent=(X=-8.796692,Y=0.284358,Z=0.619860),LeaveTangent=(X=-8.796692,Y=0.284358,Z=0.619860),InterpMode=CIM_CurveAutoClamped),(InVal=4.373198,InterpMode=CIM_CurveAutoClamped)))
@@ -17009,11 +17018,6 @@ Begin Object Class=InterpData Name=InterpData_44
          Name="InterpTrackMove_8"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_44.InterpGroup_0.InterpTrackAnimControl_0'
       InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_44.InterpGroup_0.InterpTrackMove_8'
       GroupName="tentacle"
@@ -17021,10 +17025,6 @@ Begin Object Class=InterpData Name=InterpData_44
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_6
-      Name="InterpCurveEdSetup_6"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.373198
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_44.InterpGroup_0'
@@ -17140,7 +17140,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_154
 End Object
 
 Begin Object Class=InterpData Name=InterpData_30
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_7
+      Name="InterpCurveEdSetup_7"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_9
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.024806,OutVal=(X=-259.929688,Y=-586.312500,Z=-1722.730957),ArriveTangent=(X=-952.135864,Y=0.000000,Z=0.000000),LeaveTangent=(X=-952.135864,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.434984,OutVal=(X=-414.164063,Y=-189.156250,Z=-1025.317871),ArriveTangent=(X=0.000000,Y=0.000000,Z=3124.933105),LeaveTangent=(X=0.000000,Y=0.000000,Z=3124.933105),InterpMode=CIM_CurveAutoClamped),(InVal=0.856248,OutVal=(X=-96.464844,Y=-2748.816406,Z=1531.483887),ArriveTangent=(X=1085.115723,Y=0.000000,Z=3581.253174),LeaveTangent=(X=1085.115723,Y=0.000000,Z=3581.253174),InterpMode=CIM_CurveAutoClamped),(InVal=1.587918,OutVal=(X=1034.871094,Y=3101.253906,Z=3103.628418),ArriveTangent=(X=694.744080,Y=2110.540283,Z=3123.574463),LeaveTangent=(X=694.744080,Y=2110.540283,Z=3123.574463),InterpMode=CIM_CurveAutoClamped),(InVal=2.884967,OutVal=(X=1465.652344,Y=4224.984375,Z=9033.091797),ArriveTangent=(X=183.976730,Y=0.000000,Z=2820.317383),LeaveTangent=(X=183.976730,Y=0.000000,Z=2820.317383),InterpMode=CIM_CurveAutoClamped),(InVal=3.486326,OutVal=(X=1538.617188,Y=3472.558594,Z=10195.513672),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.024806,OutVal=(X=30.778198,Y=-7.300415,Z=-7.921143),InterpMode=CIM_CurveAutoClamped),(InVal=0.434984,OutVal=(X=28.251343,Y=-6.723633,Z=-7.316895),ArriveTangent=(X=-8.938985,Y=2.081138,Z=2.198608),LeaveTangent=(X=-8.938985,Y=2.081138,Z=2.198608),InterpMode=CIM_CurveAutoClamped),(InVal=0.856248,OutVal=(X=23.345947,Y=-5.570068,Z=-6.086426),ArriveTangent=(X=-12.999733,Y=3.082153,Z=3.338892),LeaveTangent=(X=-12.999733,Y=3.082153,Z=3.338892),InterpMode=CIM_CurveAutoClamped),(InVal=1.587918,OutVal=(X=13.233032,Y=-3.158569,Z=-3.444214),ArriveTangent=(X=-11.507729,Y=2.745609,Z=3.000133),LeaveTangent=(X=-11.507729,Y=2.745609,Z=3.000133),InterpMode=CIM_CurveAutoClamped),(InVal=2.884967,InterpMode=CIM_CurveAutoClamped),(InVal=3.486326,InterpMode=CIM_CurveAutoClamped)))
@@ -17149,11 +17158,6 @@ Begin Object Class=InterpData Name=InterpData_30
          Name="InterpTrackMove_9"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Come_Out",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_0.InterpTrackAnimControl_0'
       InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_0.InterpTrackMove_9'
       GroupName="tentacle"
@@ -17161,10 +17165,6 @@ Begin Object Class=InterpData Name=InterpData_30
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_7
-      Name="InterpCurveEdSetup_7"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.373198
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_0'
@@ -17233,6 +17233,22 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_46
 End Object
 
 Begin Object Class=InterpData Name=InterpData_46
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_8
+      Name="InterpCurveEdSetup_8"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Time=0.273470,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Hole_Creature_Rise')
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackAkEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_46.InterpGroup_0.InterpTrackAkEvent_0'
+      GroupName="SFX"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_10
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=3040.009766),InterpMode=CIM_CurveAutoClamped)))
@@ -17247,22 +17263,6 @@ Begin Object Class=InterpData Name=InterpData_46
       GroupColor=(B=129,G=0,R=202,A=255)
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Time=0.273470,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Hole_Creature_Rise')
-         Name="InterpTrackAkEvent_0"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_46.InterpGroup_0.InterpTrackAkEvent_0'
-      GroupName="SFX"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_8
-      Name="InterpCurveEdSetup_8"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_46.InterpGroup_2'
    InterpGroups(1)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_46.InterpGroup_0'
@@ -17421,6 +17421,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_49
 End Object
 
 Begin Object Class=InterpData Name=InterpData_32
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.978993,OutVal=(X=-894.302734,Y=-159.316406,Z=470.391113),ArriveTangent=(X=0.000000,Y=0.000000,Z=543.452759),LeaveTangent=(X=0.000000,Y=0.000000,Z=543.452759),InterpMode=CIM_CurveAutoClamped),(InVal=1.442717,OutVal=(X=-786.703125,Y=72.960938,Z=784.048340),ArriveTangent=(X=336.460419,Y=174.904510,Z=651.731873),LeaveTangent=(X=336.460419,Y=174.904510,Z=651.731873),InterpMode=CIM_CurveAutoClamped),(InVal=1.517915,OutVal=(X=-712.976563,Y=83.132813,Z=832.088867),ArriveTangent=(X=605.883057,Y=168.337097,Z=549.309814),LeaveTangent=(X=605.883057,Y=168.337097,Z=549.309814),InterpMode=CIM_CurveAutoClamped),(InVal=1.989958,OutVal=(X=-455.138672,Y=254.597656,Z=1084.653564),ArriveTangent=(X=552.366760,Y=0.000000,Z=387.336121),LeaveTangent=(X=552.366760,Y=0.000000,Z=387.336121),InterpMode=CIM_CurveAutoClamped),(InVal=2.607909,OutVal=(X=-110.900391,Y=189.144531,Z=1254.282715),ArriveTangent=(X=266.772217,Y=-160.321747,Z=111.324493),LeaveTangent=(X=266.772217,Y=-160.321747,Z=111.324493),InterpMode=CIM_CurveAutoClamped),(InVal=3.433394,OutVal=(X=0.003906,Y=-0.007813,Z=1298.000977),InterpMode=CIM_CurveAutoClamped)))
@@ -17436,10 +17440,6 @@ Begin Object Class=InterpData Name=InterpData_32
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.433394
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_0'
@@ -17496,6 +17496,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_50
 End Object
 
 Begin Object Class=InterpData Name=InterpData_37
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
          AnimSeqs(0)=(AnimSeqName="Wrap_Around_01",AnimPlayRate=1.000000)
@@ -17508,10 +17512,6 @@ Begin Object Class=InterpData Name=InterpData_37
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.360000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_37.InterpGroup_1'
@@ -17616,16 +17616,21 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_4
 End Object
 
 Begin Object Class=InterpData Name=InterpData_5
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Time=0.199804,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Tentacle_Whip')
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(AnimSeqName="Attack_05",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
-      InterpTracks(0)=InterpTrackAkEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_2.InterpTrackAkEvent_1'
-      GroupName="SFX"
+      InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0.InterpTrackAnimControl_0'
+      GroupName="tentacle"
       GroupColor=(B=0,G=131,R=200,A=255)
-      Name="InterpGroup_2"
+      GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
@@ -17643,22 +17648,17 @@ Begin Object Class=InterpData Name=InterpData_5
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(AnimSeqName="Attack_05",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Time=0.199804,Event=AkEvent'WW_ENV_Sanitarium.Play_ENV_San_Tentacle_Whip')
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0.InterpTrackAnimControl_0'
-      GroupName="tentacle"
+      InterpTracks(0)=InterpTrackAkEvent'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_2.InterpTrackAkEvent_1'
+      GroupName="SFX"
       GroupColor=(B=0,G=131,R=200,A=255)
-      GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
-      Name="InterpGroup_0"
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.160000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0'
@@ -17741,6 +17741,10 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_286
 End Object
 
 Begin Object Class=InterpData Name=InterpData_19
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.107925,OutVal=(X=-700.988281,Y=-189.644531,Z=213.695801),ArriveTangent=(X=0.000000,Y=-395.626495,Z=222.402039),LeaveTangent=(X=0.000000,Y=-395.626495,Z=222.402039),InterpMode=CIM_CurveAutoClamped),(InVal=1.246599,OutVal=(X=-402.789063,Y=-493.187500,Z=277.246094),ArriveTangent=(X=0.000000,Y=0.000000,Z=999.971680),LeaveTangent=(X=0.000000,Y=0.000000,Z=999.971680),InterpMode=CIM_CurveAutoClamped),(InVal=1.348143,OutVal=(X=-601.750000,Y=-351.003906,Z=559.712402),ArriveTangent=(X=-1666.390015,Y=2365.352783,Z=2201.825195),LeaveTangent=(X=-1666.390015,Y=2365.352783,Z=2201.825195),InterpMode=CIM_CurveAutoClamped),(InVal=1.435478,OutVal=(X=-717.535156,Y=-31.679688,Z=695.958496),ArriveTangent=(X=0.000000,Y=1976.671997,Z=1455.008789),LeaveTangent=(X=0.000000,Y=1976.671997,Z=1455.008789),InterpMode=CIM_CurveAutoClamped),(InVal=1.619693,OutVal=(X=-663.851563,Y=185.761719,Z=954.820313),ArriveTangent=(X=363.239899,Y=773.665710,Z=192.528198),LeaveTangent=(X=363.239899,Y=773.665710,Z=192.528198),InterpMode=CIM_CurveAutoClamped),(InVal=1.745024,OutVal=(X=-605.095703,Y=248.628906,Z=966.379395),ArriveTangent=(X=580.000671,Y=526.299194,Z=161.319595),LeaveTangent=(X=580.000671,Y=526.299194,Z=161.319595),InterpMode=CIM_CurveAutoClamped),(InVal=1.989958,OutVal=(X=-437.437500,Y=380.941406,Z=1084.654053),ArriveTangent=(X=610.065063,Y=0.000000,Z=393.916107),LeaveTangent=(X=610.065063,Y=0.000000,Z=393.916107),InterpMode=CIM_CurveAutoClamped),(InVal=2.607909,OutVal=(X=-78.679688,Y=310.894531,Z=1306.283691),ArriveTangent=(X=189.414063,Y=-178.352951,Z=235.097305),LeaveTangent=(X=189.414063,Y=-178.352951,Z=235.097305),InterpMode=CIM_CurveAutoClamped),(InVal=3.433394,OutVal=(X=-8.425781,Y=85.585938,Z=1424.001953),InterpMode=CIM_CurveAutoClamped)))
@@ -17756,10 +17760,6 @@ Begin Object Class=InterpData Name=InterpData_19
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.433394
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_19.InterpGroup_0'
@@ -17837,6 +17837,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_47
 End Object
 
 Begin Object Class=InterpData Name=InterpData_31
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
          AnimSeqs(0)=(AnimSeqName="Idle_05",AnimPlayRate=1.000000)
@@ -17849,10 +17853,6 @@ Begin Object Class=InterpData Name=InterpData_31
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.800000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_0'
@@ -17926,6 +17926,10 @@ Begin Object Class=KFSeqEvent_MinigameActivated Name=KFSeqEvent_MinigameActivate
 End Object
 
 Begin Object Class=InterpData Name=InterpData_23
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.770180,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000005),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000005),InterpMode=CIM_CurveAutoClamped),(InVal=8.970179,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.270180,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.470180,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.770179,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=9.970179,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -17940,10 +17944,6 @@ Begin Object Class=InterpData Name=InterpData_23
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=9.970175
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_23.InterpGroup_1'
@@ -18036,6 +18036,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.797221,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000005),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000005),InterpMode=CIM_CurveAutoClamped),(InVal=8.997222,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.297223,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.497224,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.797224,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=9.997222,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -18050,10 +18054,6 @@ Begin Object Class=InterpData Name=InterpData_0
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=9.997225
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1'
@@ -18257,6 +18257,32 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_56
 End Object
 
 Begin Object Class=InterpData Name=InterpData_50
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
+         AnimSeqs(0)=(StartTime=0.495110,AnimSeqName="Emerge_01",AnimPlayRate=1.000000)
+         Name="InterpTrackAnimControl_0"
+         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.359382,OutVal=(X=0.031250,Y=0.001953,Z=-412.061523),ArriveTangent=(X=0.127871,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.127871,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.366579,OutVal=(X=0.046875,Y=0.001953,Z=3197.549316),ArriveTangent=(X=0.000000,Y=0.000000,Z=24879.804688),LeaveTangent=(X=0.000000,Y=0.000000,Z=24879.804688),InterpMode=CIM_CurveAutoClamped),(InVal=0.497859,OutVal=(X=0.023438,Y=0.001953,Z=4224.002441),ArriveTangent=(X=0.000000,Y=0.000000,Z=1712.670776),LeaveTangent=(X=0.000000,Y=0.000000,Z=1712.670776),InterpMode=CIM_CurveAutoClamped),(InVal=0.895110,OutVal=(X=0.031250,Y=0.001953,Z=4480.003418),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.359382,InterpMode=CIM_CurveAutoClamped),(InVal=0.366579,InterpMode=CIM_CurveAutoClamped),(InVal=0.497859,InterpMode=CIM_CurveAutoClamped),(InVal=0.895110,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=0.359382),(Time=0.366579),(Time=0.497859),(Time=0.895110)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_0.InterpTrackAnimControl_0'
+      InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_0.InterpTrackMove_0'
+      GroupName="tentacle"
+      GroupColor=(B=0,G=210,R=112,A=255)
+      GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
          ToggleTrack(0)=(Time=0.347999,ToggleAction=ETTA_On)
@@ -18268,32 +18294,6 @@ Begin Object Class=InterpData Name=InterpData_50
       GroupColor=(B=224,G=0,R=79,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.359382,OutVal=(X=0.031250,Y=0.001953,Z=-412.061523),ArriveTangent=(X=0.127871,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.127871,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.366579,OutVal=(X=0.046875,Y=0.001953,Z=3197.549316),ArriveTangent=(X=0.000000,Y=0.000000,Z=24879.804688),LeaveTangent=(X=0.000000,Y=0.000000,Z=24879.804688),InterpMode=CIM_CurveAutoClamped),(InVal=0.497859,OutVal=(X=0.023438,Y=0.001953,Z=4224.002441),ArriveTangent=(X=0.000000,Y=0.000000,Z=1712.670776),LeaveTangent=(X=0.000000,Y=0.000000,Z=1712.670776),InterpMode=CIM_CurveAutoClamped),(InVal=0.895110,OutVal=(X=0.031250,Y=0.001953,Z=4480.003418),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.359382,InterpMode=CIM_CurveAutoClamped),(InVal=0.366579,InterpMode=CIM_CurveAutoClamped),(InVal=0.497859,InterpMode=CIM_CurveAutoClamped),(InVal=0.895110,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=0.359382),(Time=0.366579),(Time=0.497859),(Time=0.895110)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
-         AnimSeqs(0)=(StartTime=0.495110,AnimSeqName="Emerge_01",AnimPlayRate=1.000000)
-         Name="InterpTrackAnimControl_0"
-         ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
-      End Object
-      InterpTracks(0)=InterpTrackAnimControl'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_0.InterpTrackAnimControl_0'
-      InterpTracks(1)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_0.InterpTrackMove_0'
-      GroupName="tentacle"
-      GroupColor=(B=0,G=210,R=112,A=255)
-      GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.895110
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_0'
@@ -18359,6 +18359,10 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_62
 End Object
 
 Begin Object Class=InterpData Name=InterpData_40
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackFloatMaterialParam Name=InterpTrackFloatMaterialParam_0
          Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Sanitarium_MAT.ENV_Sanitarium_Tentacles_2_MIC',AffectedMaterialRefs=((Primitive=SkeletalMeshComponent'KF-SANITARIUM.TheWorld:PersistentLevel.SkeletalMeshActor_23.SkeletalMeshComponent_1')))
@@ -18373,10 +18377,6 @@ Begin Object Class=InterpData Name=InterpData_40
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.MouthMonsterAnimations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.760000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_40.InterpGroup_0'
@@ -18843,6 +18843,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_65
 End Object
 
 Begin Object Class=InterpData Name=InterpData_55
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_0
          AnimSeqs(0)=(AnimSeqName="Idle_06",AnimPlayRate=1.000000)
@@ -18855,10 +18859,6 @@ Begin Object Class=InterpData Name=InterpData_55
       GroupAnimSets(0)=AnimSet'KF-SANITARIUM.Animations.Tentacle_Animations'
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.200000
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_55.InterpGroup_0'
@@ -18970,18 +18970,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_69
 End Object
 
 Begin Object Class=InterpData Name=InterpData_63
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
-         ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
-         Name="InterpTrackToggle_0"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_63.InterpGroup_1.InterpTrackToggle_0'
-      GroupName="Particle"
-      GroupColor=(B=129,G=0,R=202,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.064539,OutVal=(X=0.033203,Y=-5.100586,Z=-178.421875),ArriveTangent=(X=0.664522,Y=-102.482773,Z=0.000000),LeaveTangent=(X=0.664522,Y=-102.482773,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=0.501477,OutVal=(X=1.051758,Y=-170.683594,Z=-53.281250),ArriveTangent=(X=2.424606,Y=-394.264374,Z=351.713287),LeaveTangent=(X=2.424606,Y=-394.264374,Z=351.713287),InterpMode=CIM_CurveAutoClamped),(InVal=0.736362,OutVal=(X=1.662109,Y=-269.976440,Z=57.867188),ArriveTangent=(X=2.070151,Y=-338.103821,Z=398.668793),LeaveTangent=(X=2.070151,Y=-338.103821,Z=398.668793),InterpMode=CIM_CurveAutoClamped),(InVal=0.996327,OutVal=(X=2.076172,Y=-337.994263,Z=144.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -18995,6 +18983,18 @@ Begin Object Class=InterpData Name=InterpData_63
       GroupName="tentacle"
       GroupColor=(B=0,G=120,R=206,A=255)
       Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
+         ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
+         Name="InterpTrackToggle_0"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_63.InterpGroup_1.InterpTrackToggle_0'
+      GroupName="Particle"
+      GroupColor=(B=129,G=0,R=202,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=0.996327
@@ -19013,17 +19013,9 @@ Begin Object Class=InterpData Name=InterpData_63
 End Object
 
 Begin Object Class=InterpData Name=InterpData_25
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
-         ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
-         Name="InterpTrackToggle_0"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_1.InterpTrackToggle_0'
-      GroupName="Particle"
-      GroupColor=(B=129,G=0,R=202,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
@@ -19040,9 +19032,17 @@ Begin Object Class=InterpData Name=InterpData_25
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
+         ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
+         Name="InterpTrackToggle_0"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_1.InterpTrackToggle_0'
+      GroupName="Particle"
+      GroupColor=(B=129,G=0,R=202,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=0.996327
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0'
@@ -19107,17 +19107,9 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_18
 End Object
 
 Begin Object Class=InterpData Name=InterpData_61
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
-         ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
-         Name="InterpTrackToggle_0"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_61.InterpGroup_1.InterpTrackToggle_0'
-      GroupName="Particle"
-      GroupColor=(B=129,G=0,R=202,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
@@ -19134,9 +19126,17 @@ Begin Object Class=InterpData Name=InterpData_61
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
+         ToggleTrack(0)=(ToggleAction=ETTA_Trigger)
+         Name="InterpTrackToggle_0"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_61.InterpGroup_1.InterpTrackToggle_0'
+      GroupName="Particle"
+      GroupColor=(B=129,G=0,R=202,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=0.996327
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_61.InterpGroup_0'
@@ -19780,6 +19780,10 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_13
 End Object
 
 Begin Object Class=InterpData Name=InterpData_8
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.797221,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000005),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000005),InterpMode=CIM_CurveAutoClamped),(InVal=8.997222,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.297223,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.497224,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.797224,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=9.997222,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -19794,10 +19798,6 @@ Begin Object Class=InterpData Name=InterpData_8
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=9.997225
    InterpGroups(0)=InterpGroup'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_1'
@@ -20114,6 +20114,34 @@ Begin Object Class=SeqVar_Player Name=SeqVar_Player_1
 End Object
 
 Begin Object Class=InterpData Name=InterpData_6
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Tabs(0)=(ViewStartInput=184.512375,ViewEndInput=483.208618,ViewStartOutput=-2.164307,ViewEndOutput=0.604248)
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_0"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((OutVal=(X=0.000488,Y=-0.000244,Z=-0.000046),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=1401.355469,Y=-96.101563,Z=-24.687958),ArriveTangent=(X=250.251511,Y=0.000000,Z=-2.655620),LeaveTangent=(X=250.251511,Y=0.000000,Z=-2.655620),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=2502.515625,Y=138.613281,Z=-32.003479),ArriveTangent=(X=21.181671,Y=98.659012,Z=0.000000),LeaveTangent=(X=21.181671,Y=98.659012,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=13.000000,OutVal=(X=2533.609375,Y=813.148438,Z=-23.090485),ArriveTangent=(X=24.534554,Y=0.000000,Z=2.571589),LeaveTangent=(X=24.534554,Y=0.000000,Z=2.571589),InterpMode=CIM_CurveAutoClamped),(InVal=16.000000,OutVal=(X=3197.531250,Y=741.134766,Z=-16.573944),ArriveTangent=(X=192.578125,Y=0.000000,Z=0.000000),LeaveTangent=(X=192.578125,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=3881.656250,Y=1263.945313,Z=-27.366150),ArriveTangent=(X=219.000000,Y=28.489700,Z=0.000000),LeaveTangent=(X=219.000000,Y=28.489700,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=5168.531250,Y=1324.376953,Z=-20.608856),ArriveTangent=(X=84.365692,Y=30.997284,Z=1.901173),LeaveTangent=(X=84.365692,Y=30.997284,Z=1.901173),InterpMode=CIM_CurveAutoClamped),(InVal=28.000000,OutVal=(X=5306.421875,Y=1845.191406,Z=-12.156769),ArriveTangent=(X=90.126236,Y=67.590584,Z=0.000000),LeaveTangent=(X=90.126236,Y=67.590584,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=31.000000,OutVal=(X=5934.390625,Y=1945.808594,Z=-18.695831),ArriveTangent=(X=194.767853,Y=0.000000,Z=0.000000),LeaveTangent=(X=194.767853,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=35.000000,OutVal=(X=6669.796875,Y=1598.130859,Z=-16.507538),ArriveTangent=(X=213.664932,Y=0.000000,Z=0.475243),LeaveTangent=(X=213.664932,Y=0.000000,Z=0.475243),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=7857.375000,Y=2271.746094,Z=-14.418640),ArriveTangent=(X=177.858368,Y=0.000000,Z=1.028582),LeaveTangent=(X=177.858368,Y=0.000000,Z=1.028582),InterpMode=CIM_CurveAutoClamped),(InVal=45.000000,OutVal=(X=8449.140625,Y=1295.474609,Z=142.365143),ArriveTangent=(X=19.754711,Y=-262.984863,Z=0.031502),LeaveTangent=(X=19.754711,Y=-262.984863,Z=0.031502),InterpMode=CIM_CurveAutoClamped),(InVal=48.000000,OutVal=(X=8479.046875,Y=167.867188,Z=142.409607),ArriveTangent=(X=0.000000,Y=-374.648773,Z=0.000000),LeaveTangent=(X=0.000000,Y=-374.648773,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=51.000000,OutVal=(X=8479.046875,Y=-952.417969,Z=142.409546),ArriveTangent=(X=0.000000,Y=-390.936249,Z=-0.000048),LeaveTangent=(X=0.000000,Y=-390.936249,Z=-0.000048),InterpMode=CIM_CurveAutoClamped),(InVal=55.000000,OutVal=(X=8219.757813,Y=-2568.686523,Z=-9.823303),ArriveTangent=(X=-61.220486,Y=-322.225464,Z=0.000000),LeaveTangent=(X=-61.220486,Y=-322.225464,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=7928.062500,Y=-3852.447266,Z=306.925049),ArriveTangent=(X=0.000000,Y=-236.142685,Z=0.000000),LeaveTangent=(X=0.000000,Y=-236.142685,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=63.000000,OutVal=(X=7928.062500,Y=-4465.528320,Z=306.924988),InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=9720.765625,Y=-4465.528320,Z=306.924988),ArriveTangent=(X=232.040359,Y=0.000000,Z=0.000000),LeaveTangent=(X=232.040359,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=10712.546875,Y=-4465.528320,Z=306.924988),InterpMode=CIM_CurveAutoClamped),(InVal=82.500000,OutVal=(X=10712.546875,Y=-6064.268555,Z=306.924988),ArriveTangent=(X=0.000000,Y=-0.000854,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.000854,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=87.500000,OutVal=(X=9729.171875,Y=-6064.270508,Z=306.924988),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=9729.171875,Y=-4554.488281,Z=306.924988),ArriveTangent=(X=0.000000,Y=129.986389,Z=0.000000),LeaveTangent=(X=0.000000,Y=129.986389,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=98.000000,OutVal=(X=9376.421875,Y=-4273.212891,Z=306.924988),ArriveTangent=(X=0.000000,Y=129.877686,Z=0.000000),LeaveTangent=(X=0.000000,Y=129.877686,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=103.000000,OutVal=(X=9413.359375,Y=-3414.411133,Z=306.924988),ArriveTangent=(X=0.000000,Y=192.128662,Z=0.000000),LeaveTangent=(X=0.000000,Y=192.128662,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=106.000000,OutVal=(X=9413.359375,Y=-2736.183594,Z=137.032715),ArriveTangent=(X=0.000000,Y=179.278885,Z=0.000000),LeaveTangent=(X=0.000000,Y=179.278885,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=9413.359375,Y=-2159.458984,Z=137.034302),ArriveTangent=(X=0.000000,Y=173.528870,Z=0.000000),LeaveTangent=(X=0.000000,Y=173.528870,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=115.000000,OutVal=(X=9570.562500,Y=-1174.423828,Z=137.034241),ArriveTangent=(X=0.000000,Y=193.588287,Z=-0.000012),LeaveTangent=(X=0.000000,Y=193.588287,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=9570.562500,Y=-223.576172,Z=137.034180),ArriveTangent=(X=0.000000,Y=184.555084,Z=-0.000012),LeaveTangent=(X=0.000000,Y=184.555084,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=125.000000,OutVal=(X=9823.796875,Y=671.126953,Z=137.034119),ArriveTangent=(X=0.000000,Y=187.732697,Z=-0.000017),LeaveTangent=(X=0.000000,Y=187.732697,Z=-0.000017),InterpMode=CIM_CurveAutoClamped),(InVal=127.000000,OutVal=(X=9823.796875,Y=1090.552734,Z=137.034058),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000024),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000024),InterpMode=CIM_CurveAutoClamped),(InVal=130.000000,OutVal=(X=9358.445313,Y=1090.552734,Z=137.033997),ArriveTangent=(X=-126.197266,Y=0.000000,Z=-0.000011),LeaveTangent=(X=-126.197266,Y=0.000000,Z=-0.000011),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=8814.218750,Y=172.134766,Z=137.033966),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000009),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000009),InterpMode=CIM_CurveAutoClamped),(InVal=140.000000,OutVal=(X=9945.609375,Y=593.691406,Z=137.033905),ArriveTangent=(X=214.650391,Y=99.623291,Z=-0.000019),LeaveTangent=(X=214.650391,Y=99.623291,Z=-0.000019),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=10531.421875,Y=969.121094,Z=137.033813),ArriveTangent=(X=189.102676,Y=24.800053,Z=-0.000069),LeaveTangent=(X=189.102676,Y=24.800053,Z=-0.000069),InterpMode=CIM_CurveAutoClamped),(InVal=147.000000,OutVal=(X=11269.328125,Y=1010.105469,Z=-238.467285),ArriveTangent=(X=158.919647,Y=24.717419,Z=-84.130440),LeaveTangent=(X=158.919647,Y=24.717419,Z=-84.130440),InterpMode=CIM_CurveAutoClamped),(InVal=150.000000,OutVal=(X=11643.859375,Y=1374.474609,Z=-451.879272),ArriveTangent=(X=0.000000,Y=160.929337,Z=-0.000233),LeaveTangent=(X=0.000000,Y=160.929337,Z=-0.000233),InterpMode=CIM_CurveAutoClamped),(InVal=152.500000,OutVal=(X=11493.484375,Y=1895.216797,Z=-451.879517),ArriveTangent=(X=-108.087280,Y=109.321678,Z=-0.000122),LeaveTangent=(X=-108.087280,Y=109.321678,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=11002.906250,Y=2044.312500,Z=-451.879883),ArriveTangent=(X=-196.083328,Y=0.000000,Z=-0.000290),LeaveTangent=(X=-196.083328,Y=0.000000,Z=-0.000290),InterpMode=CIM_CurveAutoClamped),(InVal=160.000000,OutVal=(X=10022.859375,Y=2044.312500,Z=-767.781982),ArriveTangent=(X=-195.418396,Y=0.000000,Z=-0.000782),LeaveTangent=(X=-195.418396,Y=0.000000,Z=-0.000782),InterpMode=CIM_CurveAutoClamped),(InVal=164.000000,OutVal=(X=9244.140625,Y=2005.666016,Z=-767.783325),ArriveTangent=(X=-162.226563,Y=-20.455385,Z=-0.000840),LeaveTangent=(X=-162.226563,Y=-20.455385,Z=-0.000840),InterpMode=CIM_CurveAutoClamped),(InVal=168.000000,OutVal=(X=8725.046875,Y=1742.337891,Z=-774.387939),ArriveTangent=(X=-104.673828,Y=-108.133636,Z=-0.000153),LeaveTangent=(X=-104.673828,Y=-108.133636,Z=-0.000153),InterpMode=CIM_CurveAutoClamped),(InVal=172.000000,OutVal=(X=8406.750000,Y=1085.017578,Z=-774.388184),ArriveTangent=(X=-123.374893,Y=-58.316662,Z=-0.000137),LeaveTangent=(X=-123.374893,Y=-58.316662,Z=-0.000137),InterpMode=CIM_CurveAutoClamped),(InVal=177.500000,OutVal=(X=7386.296875,Y=938.677734,Z=-1086.661377),ArriveTangent=(X=0.000000,Y=-48.081577,Z=-61.395775),LeaveTangent=(X=0.000000,Y=-48.081577,Z=-61.395775),InterpMode=CIM_CurveAutoClamped),(InVal=182.500000,OutVal=(X=8269.953125,Y=511.248047,Z=-1419.043823),ArriveTangent=(X=198.117188,Y=-80.519920,Z=-0.000248),LeaveTangent=(X=198.117188,Y=-80.519920,Z=-0.000248),InterpMode=CIM_CurveAutoClamped),(InVal=187.500000,OutVal=(X=9367.468750,Y=133.478516,Z=-1419.044312),ArriveTangent=(X=221.975006,Y=0.000000,Z=-0.000292),LeaveTangent=(X=221.975006,Y=0.000000,Z=-0.000292),InterpMode=CIM_CurveAutoClamped),(InVal=190.000000,OutVal=(X=9934.765625,Y=133.478516,Z=-1576.375854),ArriveTangent=(X=0.000000,Y=0.000000,Z=-41.119499),LeaveTangent=(X=0.000000,Y=0.000000,Z=-41.119499),InterpMode=CIM_CurveAutoClamped),(InVal=195.000000,OutVal=(X=9934.765625,Y=-666.106445,Z=-1727.440552),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=10678.718750,Y=-666.106445,Z=-1727.441040),ArriveTangent=(X=143.964066,Y=0.000000,Z=-0.000098),LeaveTangent=(X=143.964066,Y=0.000000,Z=-0.000098),InterpMode=CIM_CurveAutoClamped),(InVal=205.000000,OutVal=(X=11374.406250,Y=-666.106445,Z=-1727.441528),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=210.000000,OutVal=(X=11374.406250,Y=-1684.353516,Z=-1892.089722),ArriveTangent=(X=0.000000,Y=-210.873734,Z=-32.451355),LeaveTangent=(X=0.000000,Y=-210.873734,Z=-32.451355),InterpMode=CIM_CurveAutoClamped),(InVal=215.000000,OutVal=(X=11374.406250,Y=-2774.843750,Z=-2051.955078),ArriveTangent=(X=0.000000,Y=-212.742554,Z=-0.000345),LeaveTangent=(X=0.000000,Y=-212.742554,Z=-0.000345),InterpMode=CIM_CurveAutoClamped),(InVal=218.000000,OutVal=(X=11374.406250,Y=-3386.293945,Z=-2051.955566),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000309),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000309),InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,OutVal=(X=9973.859375,Y=-3386.293945,Z=-2374.387695),ArriveTangent=(X=-185.660156,Y=0.000000,Z=-0.000441),LeaveTangent=(X=-185.660156,Y=0.000000,Z=-0.000441),InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=9146.484375,Y=-3386.293945,Z=-2374.388672),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=235.000000,OutVal=(X=9146.484375,Y=-4034.521484,Z=-2374.390137),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000134),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000134),InterpMode=CIM_CurveAutoClamped),(InVal=242.500000,OutVal=(X=7081.148438,Y=-4034.521484,Z=-2374.390625),ArriveTangent=(X=-214.765625,Y=0.000000,Z=-0.000114),LeaveTangent=(X=-214.765625,Y=0.000000,Z=-0.000114),InterpMode=CIM_CurveAutoClamped),(InVal=250.000000,OutVal=(X=5925.000000,Y=-4034.521484,Z=-2374.392090),ArriveTangent=(X=-147.495621,Y=0.000000,Z=-0.000142),LeaveTangent=(X=-147.495621,Y=0.000000,Z=-0.000142),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=5237.453125,Y=-4656.659180,Z=-2374.392578),ArriveTangent=(X=-139.404694,Y=0.000000,Z=-0.000146),LeaveTangent=(X=-139.404694,Y=0.000000,Z=-0.000146),InterpMode=CIM_CurveAutoClamped),(InVal=260.000000,OutVal=(X=4530.953125,Y=-4656.659180,Z=-2374.393555),ArriveTangent=(X=-140.595306,Y=0.000000,Z=-0.000244),LeaveTangent=(X=-140.595306,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=265.000000,OutVal=(X=3831.500000,Y=-4510.305664,Z=-2374.395020),ArriveTangent=(X=-129.584381,Y=57.810402,Z=-0.000244),LeaveTangent=(X=-129.584381,Y=57.810402,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=270.000000,OutVal=(X=3235.109375,Y=-3821.862305,Z=-2374.395996),ArriveTangent=(X=0.000000,Y=175.256256,Z=-0.000195),LeaveTangent=(X=0.000000,Y=175.256256,Z=-0.000195),InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=3235.109375,Y=-2757.743164,Z=-2374.396973),ArriveTangent=(X=0.000000,Y=91.367790,Z=-0.000305),LeaveTangent=(X=0.000000,Y=91.367790,Z=-0.000305),InterpMode=CIM_CurveAutoClamped),(InVal=278.000000,OutVal=(X=2860.187500,Y=-2600.087891,Z=-2374.398438),ArriveTangent=(X=-206.993698,Y=0.000000,Z=0.000000),LeaveTangent=(X=-206.993698,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=281.000000,OutVal=(X=1903.019531,Y=-2600.087891,Z=-1942.156982),ArriveTangent=(X=-231.563019,Y=0.000000,Z=106.530907),LeaveTangent=(X=-231.563019,Y=0.000000,Z=106.530907),InterpMode=CIM_CurveAutoClamped),(InVal=284.000000,OutVal=(X=1451.707031,Y=-2600.087891,Z=-1731.596191),ArriveTangent=(X=-128.834641,Y=0.000000,Z=0.000000),LeaveTangent=(X=-128.834641,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=287.000000,OutVal=(X=1130.011719,Y=-2814.991211,Z=-1731.596924),ArriveTangent=(X=-0.002438,Y=-118.479919,Z=0.000000),LeaveTangent=(X=-0.002438,Y=-118.479919,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=291.500000,OutVal=(X=1130.007813,Y=-3779.359375,Z=-1335.516113),ArriveTangent=(X=-0.002335,Y=-165.112320,Z=0.000000),LeaveTangent=(X=-0.002335,Y=-165.112320,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=926.121094,Y=-4184.988281,Z=-1335.516602),ArriveTangent=(X=-95.376122,Y=0.000000,Z=0.000000),LeaveTangent=(X=-95.376122,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=300.000000,OutVal=(X=108.304688,Y=-4184.988281,Z=-1012.595398),ArriveTangent=(X=-149.851700,Y=0.000000,Z=0.000000),LeaveTangent=(X=-149.851700,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=302.500000,OutVal=(X=-220.191406,Y=-4184.988281,Z=-1012.595642),ArriveTangent=(X=-154.458740,Y=0.000000,Z=-0.000081),LeaveTangent=(X=-154.458740,Y=0.000000,Z=-0.000081),InterpMode=CIM_CurveAutoClamped),(InVal=307.500000,OutVal=(X=-1086.695313,Y=-3877.942383,Z=-1012.596008),ArriveTangent=(X=-169.886795,Y=0.000000,Z=0.000000),LeaveTangent=(X=-169.886795,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=310.000000,OutVal=(X=-1496.082031,Y=-4024.288086,Z=-884.961731),ArriveTangent=(X=-111.186378,Y=-105.611641,Z=54.193714),LeaveTangent=(X=-111.186378,Y=-105.611641,Z=54.193714),InterpMode=CIM_CurveAutoClamped),(InVal=312.500000,OutVal=(X=-1668.605469,Y=-4508.147461,Z=-741.627441),ArriveTangent=(X=0.000000,Y=-211.204498,Z=61.222572),LeaveTangent=(X=0.000000,Y=-211.204498,Z=61.222572),InterpMode=CIM_CurveAutoClamped),(InVal=315.000000,OutVal=(X=-1444.390625,Y=-5080.310547,Z=-578.848877),ArriveTangent=(X=133.133591,Y=-90.821671,Z=56.156971),LeaveTangent=(X=133.133591,Y=-90.821671,Z=56.156971),InterpMode=CIM_CurveAutoClamped),(InVal=317.500000,OutVal=(X=-1002.937500,Y=-5193.530273,Z=-460.842590),ArriveTangent=(X=182.990631,Y=0.000000,Z=46.372437),LeaveTangent=(X=182.990631,Y=0.000000,Z=46.372437),InterpMode=CIM_CurveAutoClamped),(InVal=320.000000,OutVal=(X=-529.437500,Y=-5043.808594,Z=-346.986694),ArriveTangent=(X=133.270065,Y=109.377853,Z=55.987835),LeaveTangent=(X=133.270065,Y=109.377853,Z=55.987835),InterpMode=CIM_CurveAutoClamped),(InVal=322.500000,OutVal=(X=-317.710938,Y=-4527.581055,Z=-180.903412),ArriveTangent=(X=0.000000,Y=204.334564,Z=59.633770),LeaveTangent=(X=0.000000,Y=204.334564,Z=59.633770),InterpMode=CIM_CurveAutoClamped),(InVal=325.000000,OutVal=(X=-495.277344,Y=-4022.135742,Z=-48.817841),ArriveTangent=(X=-103.379684,Y=137.940430,Z=49.181499),LeaveTangent=(X=-103.379684,Y=137.940430,Z=49.181499),InterpMode=CIM_CurveAutoClamped),(InVal=327.500000,OutVal=(X=-834.609375,Y=-3807.436523,Z=65.004089),ArriveTangent=(X=-0.005089,Y=106.946808,Z=0.000000),LeaveTangent=(X=-0.005089,Y=106.946808,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=332.000000,OutVal=(X=-834.617188,Y=-3242.700195,Z=-16.717133),ArriveTangent=(X=0.000000,Y=95.484474,Z=-0.000064),LeaveTangent=(X=0.000000,Y=95.484474,Z=-0.000064),InterpMode=CIM_CurveAutoClamped),(InVal=337.000000,OutVal=(X=-206.707031,Y=-2900.333984,Z=-16.717255),ArriveTangent=(X=37.841522,Y=119.496376,Z=-0.000037),LeaveTangent=(X=37.841522,Y=119.496376,Z=-0.000037),InterpMode=CIM_CurveAutoClamped),(InVal=342.000000,OutVal=(X=-117.843750,Y=-1883.368164,Z=-16.717499),ArriveTangent=(X=39.411232,Y=99.706306,Z=-0.000023),LeaveTangent=(X=39.411232,Y=99.706306,Z=-0.000023),InterpMode=CIM_CurveAutoClamped),(InVal=347.000000,OutVal=(X=732.992188,Y=-1618.270508,Z=-16.717560),ArriveTangent=(X=184.364182,Y=0.000000,Z=-0.000014),LeaveTangent=(X=184.364182,Y=0.000000,Z=-0.000014),InterpMode=CIM_CurveAutoClamped),(InVal=355.000000,OutVal=(X=2278.890625,Y=-1618.270508,Z=-16.717682),ArriveTangent=(X=154.181732,Y=0.000000,Z=-0.000023),LeaveTangent=(X=154.181732,Y=0.000000,Z=-0.000023),InterpMode=CIM_CurveAutoClamped),(InVal=357.500000,OutVal=(X=2600.781250,Y=-1323.917969,Z=-16.717804),ArriveTangent=(X=162.299133,Y=0.000000,Z=-0.000082),LeaveTangent=(X=162.299133,Y=0.000000,Z=-0.000082),InterpMode=CIM_CurveAutoClamped),(InVal=365.000000,OutVal=(X=4250.671875,Y=-1323.917969,Z=-16.723358),ArriveTangent=(X=181.892853,Y=0.000000,Z=-0.000052),LeaveTangent=(X=181.892853,Y=0.000000,Z=-0.000052),InterpMode=CIM_CurveAutoClamped),(InVal=370.000000,OutVal=(X=4943.078125,Y=-903.528320,Z=-16.723480),ArriveTangent=(X=0.000000,Y=128.709198,Z=-0.000057),LeaveTangent=(X=0.000000,Y=128.709198,Z=-0.000057),InterpMode=CIM_CurveAutoClamped),(InVal=375.000000,OutVal=(X=4902.812500,Y=-23.339844,Z=-443.633392),ArriveTangent=(X=-20.337051,Y=145.823196,Z=-87.753387),LeaveTangent=(X=-20.337051,Y=145.823196,Z=-87.753387),InterpMode=CIM_CurveAutoClamped),(InVal=377.500000,OutVal=(X=4689.390625,Y=266.789063,Z=-674.873901),ArriveTangent=(X=-122.946877,Y=20.934204,Z=-86.307243),LeaveTangent=(X=-122.946877,Y=20.934204,Z=-86.307243),InterpMode=CIM_CurveAutoClamped),(InVal=380.000000,OutVal=(X=4288.078125,Y=289.728516,Z=-875.169617),ArriveTangent=(X=-136.934372,Y=0.000000,Z=-82.333374),LeaveTangent=(X=-136.934372,Y=0.000000,Z=-82.333374),InterpMode=CIM_CurveAutoClamped),(InVal=382.500000,OutVal=(X=4004.718750,Y=-22.927734,Z=-1086.540771),ArriveTangent=(X=0.000000,Y=-157.542191,Z=-92.543472),LeaveTangent=(X=0.000000,Y=-157.542191,Z=-92.543472),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=4103.281250,Y=-497.982422,Z=-1337.886963),ArriveTangent=(X=80.680801,Y=-140.998154,Z=-96.239380),LeaveTangent=(X=80.680801,Y=-140.998154,Z=-96.239380),InterpMode=CIM_CurveAutoClamped),(InVal=387.500000,OutVal=(X=4655.140625,Y=-730.860352,Z=-1567.737671),ArriveTangent=(X=0.000000,Y=-153.895294,Z=-0.000977),LeaveTangent=(X=0.000000,Y=-153.895294,Z=-0.000977),InterpMode=CIM_CurveAutoClamped),(InVal=390.000000,OutVal=(X=4655.140625,Y=-1321.309570,Z=-1567.738647),ArriveTangent=(X=0.000000,Y=-121.963013,Z=-0.000342),LeaveTangent=(X=0.000000,Y=-121.963013,Z=-0.000342),InterpMode=CIM_CurveAutoClamped),(InVal=392.500000,OutVal=(X=4338.718750,Y=-1486.596680,Z=-1567.739380),ArriveTangent=(X=-136.706390,Y=0.000000,Z=-0.000587),LeaveTangent=(X=-136.706390,Y=0.000000,Z=-0.000587),InterpMode=CIM_CurveAutoClamped),(InVal=397.500000,OutVal=(X=3623.312500,Y=-1482.742188,Z=-1888.357788),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.004692),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.004692),InterpMode=CIM_CurveAutoClamped),(InVal=400.000000,OutVal=(X=3623.312500,Y=-1792.624023,Z=-1888.363647),ArriveTangent=(X=0.000000,Y=-2.573635,Z=-0.004688),LeaveTangent=(X=0.000000,Y=-2.573635,Z=-0.004688),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=4644.437500,Y=-1796.970703,Z=-2207.059082),ArriveTangent=(X=149.604675,Y=-2.301918,Z=-53.886517),LeaveTangent=(X=149.604675,Y=-2.301918,Z=-53.886517),InterpMode=CIM_CurveAutoClamped),(InVal=409.000000,OutVal=(X=5047.453125,Y=-2431.261719,Z=-2373.342285),ArriveTangent=(X=169.940094,Y=0.000000,Z=-0.000614),LeaveTangent=(X=169.940094,Y=0.000000,Z=-0.000614),InterpMode=CIM_CurveAutoClamped),(InVal=413.000000,OutVal=(X=6129.750000,Y=-2431.261719,Z=-2373.343262),ArriveTangent=(X=284.626953,Y=0.000000,Z=-0.000244),LeaveTangent=(X=284.626953,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=417.000000,OutVal=(X=7324.468750,Y=-2591.160156,Z=-2373.344238),ArriveTangent=(X=298.048615,Y=0.000000,Z=-0.000271),LeaveTangent=(X=298.048615,Y=0.000000,Z=-0.000271),InterpMode=CIM_CurveAutoClamped),(InVal=422.000000,OutVal=(X=8812.187500,Y=-2591.160156,Z=-2373.345703),InterpMode=CIM_CurveAutoClamped),(InVal=425.000000,OutVal=(X=8812.187500,Y=-2030.762695,Z=-2362.138184),ArriveTangent=(X=0.000000,Y=204.401108,Z=9.343349),LeaveTangent=(X=0.000000,Y=204.401108,Z=9.343349),InterpMode=CIM_CurveAutoClamped),(InVal=427.500000,OutVal=(X=8812.187500,Y=-1466.954102,Z=-2127.674561),ArriveTangent=(X=0.000000,Y=221.614838,Z=101.536766),LeaveTangent=(X=0.000000,Y=221.614838,Z=101.536766),InterpMode=CIM_CurveAutoClamped),(InVal=430.000000,OutVal=(X=8812.187500,Y=-922.688477,Z=-1854.454346),ArriveTangent=(X=0.000000,Y=105.260658,Z=58.072056),LeaveTangent=(X=0.000000,Y=105.260658,Z=58.072056),InterpMode=CIM_CurveAutoClamped),(InVal=435.000000,OutVal=(X=9769.140625,Y=-664.002930,Z=-1692.134155),ArriveTangent=(X=0.000000,Y=0.000000,Z=43.224709),LeaveTangent=(X=0.000000,Y=0.000000,Z=43.224709),InterpMode=CIM_CurveAutoClamped),(InVal=440.000000,OutVal=(X=9769.140625,Y=-1647.002930,Z=-1422.207275),ArriveTangent=(X=0.000000,Y=-191.261429,Z=0.000000),LeaveTangent=(X=0.000000,Y=-191.261429,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=445.000000,OutVal=(X=9370.031250,Y=-2576.617188,Z=-1422.207764),ArriveTangent=(X=-132.454254,Y=0.000000,Z=-0.000122),LeaveTangent=(X=-132.454254,Y=0.000000,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=450.000000,OutVal=(X=8345.929688,Y=-2576.617188,Z=-1422.208496),ArriveTangent=(X=-173.074997,Y=0.000000,Z=0.000000),LeaveTangent=(X=-173.074997,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=455.000000,OutVal=(X=7639.281250,Y=-2576.617188,Z=-1103.671875),ArriveTangent=(X=-182.041412,Y=0.000000,Z=62.435974),LeaveTangent=(X=-182.041412,Y=0.000000,Z=62.435974),InterpMode=CIM_CurveAutoClamped),(InVal=460.000000,OutVal=(X=6525.515625,Y=-2576.617188,Z=-797.848755),ArriveTangent=(X=-101.432129,Y=0.000000,Z=48.131142),LeaveTangent=(X=-101.432129,Y=0.000000,Z=48.131142),InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=6262.421875,Y=-1742.960938,Z=-622.360474),ArriveTangent=(X=0.000000,Y=168.789841,Z=0.000000),LeaveTangent=(X=0.000000,Y=168.789841,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=467.500000,OutVal=(X=6581.585938,Y=-1310.693359,Z=-653.037964),ArriveTangent=(X=150.968231,Y=0.000000,Z=0.000000),LeaveTangent=(X=150.968231,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=472.500000,OutVal=(X=7433.445313,Y=-1310.693359,Z=-326.926636),ArriveTangent=(X=120.452911,Y=0.000000,Z=0.000000),LeaveTangent=(X=120.452911,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=475.000000,OutVal=(X=7649.578125,Y=-1774.751953,Z=-336.817993),ArriveTangent=(X=18.360243,Y=-153.672073,Z=-4.942950),LeaveTangent=(X=18.360243,Y=-153.672073,Z=-4.942950),InterpMode=CIM_CurveAutoClamped),(InVal=477.500000,OutVal=(X=7670.054688,Y=-2079.053711,Z=-351.641388),ArriveTangent=(X=16.040558,Y=0.000000,Z=-2.016943),LeaveTangent=(X=16.040558,Y=0.000000,Z=-2.016943),InterpMode=CIM_CurveAutoClamped),(InVal=482.500000,OutVal=(X=9093.125000,Y=-2079.053711,Z=-355.985657),ArriveTangent=(X=269.885040,Y=0.000000,Z=-0.000147),LeaveTangent=(X=269.885040,Y=0.000000,Z=-0.000147),InterpMode=CIM_CurveAutoClamped),(InVal=485.000000,OutVal=(X=9711.156250,Y=-2135.534180,Z=-355.985840),ArriveTangent=(X=0.000000,Y=-42.211700,Z=-0.000073),LeaveTangent=(X=0.000000,Y=-42.211700,Z=-0.000073),InterpMode=CIM_CurveAutoClamped),(InVal=490.000000,OutVal=(X=9711.156250,Y=-3358.351563,Z=-355.986206),ArriveTangent=(X=0.000000,Y=-250.782684,Z=-0.000166),LeaveTangent=(X=0.000000,Y=-250.782684,Z=-0.000166),InterpMode=CIM_CurveAutoClamped),(InVal=492.500000,OutVal=(X=9711.156250,Y=-4016.404297,Z=-355.987335),ArriveTangent=(X=0.000000,Y=-257.139069,Z=0.000000),LeaveTangent=(X=0.000000,Y=-257.139069,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=495.000000,OutVal=(X=9711.156250,Y=-4644.046875,Z=-355.986816),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.000519),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.000519),InterpMode=CIM_CurveAutoClamped),(InVal=497.500000,OutVal=(X=10182.726563,Y=-4644.046875,Z=-346.264313),ArriveTangent=(X=154.227081,Y=0.000000,Z=7.452118),LeaveTangent=(X=154.227081,Y=0.000000,Z=7.452118),InterpMode=CIM_CurveAutoClamped),(InVal=502.500000,OutVal=(X=10867.859375,Y=-4644.046875,Z=-11.674042),ArriveTangent=(X=129.187057,Y=0.000000,Z=11.475166),LeaveTangent=(X=129.187057,Y=0.000000,Z=11.475166),InterpMode=CIM_CurveAutoClamped),(InVal=505.000000,OutVal=(X=11161.375000,Y=-4309.133789,Z=3.672821),ArriveTangent=(X=0.000000,Y=127.940758,Z=11.404409),LeaveTangent=(X=0.000000,Y=127.940758,Z=11.404409),InterpMode=CIM_CurveAutoClamped),(InVal=510.000000,OutVal=(X=11161.375000,Y=-3684.491211,Z=310.102600),ArriveTangent=(X=0.000000,Y=90.955383,Z=0.000000),LeaveTangent=(X=0.000000,Y=90.955383,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=512.500000,OutVal=(X=11480.328125,Y=-3518.623047,Z=310.102600),ArriveTangent=(X=146.719681,Y=0.000000,Z=0.000000),LeaveTangent=(X=146.719681,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=517.500000,OutVal=(X=12286.906250,Y=-3518.623047,Z=310.102600),InterpMode=CIM_CurveAutoClamped),(InVal=522.500000,OutVal=(X=12286.906250,Y=-2883.138672,Z=310.102356),ArriveTangent=(X=0.000000,Y=61.558647,Z=-0.000124),LeaveTangent=(X=0.000000,Y=61.558647,Z=-0.000124),InterpMode=CIM_CurveAutoClamped),(InVal=527.500000,OutVal=(X=13188.953125,Y=-2720.159180,Z=1.533356),ArriveTangent=(X=0.000000,Y=30.792187,Z=-63.161354),LeaveTangent=(X=0.000000,Y=30.792187,Z=-63.161354),InterpMode=CIM_CurveAutoClamped),(InVal=532.500000,OutVal=(X=12258.718750,Y=-2575.216797,Z=-321.511200),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000095),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000095),InterpMode=CIM_CurveAutoClamped),(InVal=537.500000,OutVal=(X=12258.718750,Y=-3360.990234,Z=-321.511383),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=542.500000,OutVal=(X=13420.500000,Y=-3360.990234,Z=-635.452148),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000198),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped),(InVal=545.000000,OutVal=(X=13420.500000,Y=-3675.608398,Z=-635.452393),ArriveTangent=(X=0.000000,Y=-149.812057,Z=-0.000198),LeaveTangent=(X=0.000000,Y=-149.812057,Z=-0.000198),InterpMode=CIM_CurveAutoClamped),(InVal=550.000000,OutVal=(X=13367.921875,Y=-4526.583984,Z=-960.521362),ArriveTangent=(X=-24.769768,Y=0.000000,Z=-58.708679),LeaveTangent=(X=-24.769768,Y=0.000000,Z=-58.708679),InterpMode=CIM_CurveAutoClamped),(InVal=555.000000,OutVal=(X=12338.906250,Y=-4526.583984,Z=-1222.539185),ArriveTangent=(X=-209.949997,Y=0.000000,Z=-43.327587),LeaveTangent=(X=-209.949997,Y=0.000000,Z=-43.327587),InterpMode=CIM_CurveAutoClamped),(InVal=560.000000,OutVal=(X=11268.421875,Y=-4655.900391,Z=-1393.797241),ArriveTangent=(X=-182.619537,Y=0.000000,Z=-0.000246),LeaveTangent=(X=-182.619537,Y=0.000000,Z=-0.000246),InterpMode=CIM_CurveAutoClamped),(InVal=565.000000,OutVal=(X=10512.710938,Y=-4303.801758,Z=-1393.797729),ArriveTangent=(X=-134.646881,Y=76.588577,Z=-0.000098),LeaveTangent=(X=-134.646881,Y=76.588577,Z=-0.000098),InterpMode=CIM_CurveAutoClamped),(InVal=570.000000,OutVal=(X=9921.953125,Y=-3890.014648,Z=-1393.798218),ArriveTangent=(X=-121.625778,Y=0.000000,Z=-0.000244),LeaveTangent=(X=-121.625778,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=575.000000,OutVal=(X=9296.453125,Y=-3890.014648,Z=-1413.057129),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=580.000000,OutVal=(X=9296.453125,Y=-3058.528320,Z=-1413.057617),ArriveTangent=(X=0.000000,Y=193.249603,Z=-0.000098),LeaveTangent=(X=0.000000,Y=193.249603,Z=-0.000098),InterpMode=CIM_CurveAutoClamped),(InVal=585.000000,OutVal=(X=9296.453125,Y=-1957.518555,Z=-1413.058105),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000202),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000202),InterpMode=CIM_CurveAutoClamped),(InVal=590.000000,OutVal=(X=7891.593750,Y=-1957.518555,Z=-1413.061035),ArriveTangent=(X=-241.632813,Y=0.000000,Z=-0.001465),LeaveTangent=(X=-241.632813,Y=0.000000,Z=-0.001465),InterpMode=CIM_CurveAutoClamped),(InVal=595.000000,OutVal=(X=6880.125000,Y=-1957.518555,Z=-1568.072754),ArriveTangent=(X=-207.193359,Y=0.000000,Z=-54.776993),LeaveTangent=(X=-207.193359,Y=0.000000,Z=-54.776993),InterpMode=CIM_CurveAutoClamped),(InVal=598.000000,OutVal=(X=6234.046875,Y=-1791.106445,Z=-1851.276978),ArriveTangent=(X=-261.475006,Y=0.000000,Z=-0.000946),LeaveTangent=(X=-261.475006,Y=0.000000,Z=-0.000946),InterpMode=CIM_CurveAutoClamped),(InVal=600.000000,OutVal=(X=5572.750000,Y=-1791.106445,Z=-1851.277832),ArriveTangent=(X=-318.145844,Y=0.000000,Z=-0.000999),LeaveTangent=(X=-318.145844,Y=0.000000,Z=-0.000999),InterpMode=CIM_CurveAutoClamped),(InVal=602.500000,OutVal=(X=4802.390625,Y=-1791.106445,Z=-2194.170410),ArriveTangent=(X=0.000000,Y=0.000000,Z=-103.587990),LeaveTangent=(X=0.000000,Y=0.000000,Z=-103.587990),InterpMode=CIM_CurveAutoClamped),(InVal=605.000000,OutVal=(X=4802.390625,Y=-2312.512695,Z=-2369.217773),ArriveTangent=(X=0.000000,Y=-197.831833,Z=-0.000980),LeaveTangent=(X=0.000000,Y=-197.831833,Z=-0.000980),InterpMode=CIM_CurveAutoClamped),(InVal=607.500000,OutVal=(X=4714.765625,Y=-2780.265625,Z=-2369.218750),ArriveTangent=(X=-30.753124,Y=-179.595901,Z=-0.000293),LeaveTangent=(X=-30.753124,Y=-179.595901,Z=-0.000293),InterpMode=CIM_CurveAutoClamped),(InVal=610.000000,OutVal=(X=4648.625000,Y=-3210.492188,Z=-2369.219238),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=2.285156,Z=2.460938),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-1.933594,Z=-81.386719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-10.765893),LeaveTangent=(X=0.000000,Y=0.000000,Z=-10.765893),InterpMode=CIM_CurveAutoClamped),(InVal=13.000000,OutVal=(X=0.000000,Y=3.339844,Z=-102.656250),ArriveTangent=(X=0.000000,Y=0.140896,Z=-11.310842),LeaveTangent=(X=0.000000,Y=0.140896,Z=-11.310842),InterpMode=CIM_CurveAutoClamped),(InVal=16.000000,OutVal=(X=0.000000,Y=3.515625,Z=-151.875000),ArriveTangent=(X=0.000000,Y=0.114453,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.114453,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=4.921875,Z=-134.824219),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.310670),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.310670),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=0.000000,Y=4.218750,Z=-91.933594),ArriveTangent=(X=0.000000,Y=-0.341998,Z=11.403809),LeaveTangent=(X=0.000000,Y=-0.341998,Z=11.403809),InterpMode=CIM_CurveAutoClamped),(InVal=28.000000,OutVal=(X=0.000000,Y=0.175781,Z=-43.593750),ArriveTangent=(X=0.000000,Y=0.000000,Z=13.007813),LeaveTangent=(X=0.000000,Y=0.000000,Z=13.007813),InterpMode=CIM_CurveAutoClamped),(InVal=31.000000,OutVal=(X=0.000000,Y=5.625000,Z=-13.886719),ArriveTangent=(X=0.000000,Y=0.000000,Z=10.546875),LeaveTangent=(X=0.000000,Y=0.000000,Z=10.546875),InterpMode=CIM_CurveAutoClamped),(InVal=35.000000,OutVal=(X=0.000000,Y=-0.175781,Z=30.234375),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=2.636719,Z=-84.550781),ArriveTangent=(X=0.000000,Y=0.000000,Z=-20.390625),LeaveTangent=(X=0.000000,Y=0.000000,Z=-20.390625),InterpMode=CIM_CurveAutoClamped),(InVal=45.000000,OutVal=(X=0.000000,Y=-1.933594,Z=-173.671875),ArriveTangent=(X=0.000000,Y=0.000000,Z=-3.336672),LeaveTangent=(X=0.000000,Y=0.000000,Z=-3.336672),InterpMode=CIM_CurveAutoClamped),(InVal=48.000000,OutVal=(X=0.000000,Y=0.703125,Z=-178.769531),InterpMode=CIM_CurveAutoClamped),(InVal=51.000000,OutVal=(X=0.000000,Y=0.703125,Z=-178.769531),InterpMode=CIM_CurveAutoClamped),(InVal=55.000000,OutVal=(X=0.000000,Y=0.703125,Z=-223.769531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-10.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-10.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=0.703125,Z=-268.769531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.875000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.875000),InterpMode=CIM_CurveAutoClamped),(InVal=63.000000,OutVal=(X=0.000000,Y=0.703125,Z=-358.769531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-18.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-18.000000),InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=0.000000,Y=0.703125,Z=-448.769531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-15.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-15.000000),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=82.500000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=87.500000,OutVal=(X=0.000000,Y=0.703125,Z=-566.894531),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=98.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=103.000000,OutVal=(X=0.000000,Y=0.703125,Z=-628.769531),InterpMode=CIM_CurveAutoClamped),(InVal=106.000000,OutVal=(X=0.000000,Y=0.703125,Z=-628.769531),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=115.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=125.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=127.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=130.000000,OutVal=(X=0.000000,Y=0.703125,Z=-448.769531),ArriveTangent=(X=0.000000,Y=0.000000,Z=22.500000),LeaveTangent=(X=0.000000,Y=0.000000,Z=22.500000),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=0.000000,Y=0.703125,Z=-358.769531),InterpMode=CIM_CurveAutoClamped),(InVal=140.000000,OutVal=(X=0.000000,Y=0.703125,Z=-358.769531),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=-0.263672,Y=-10.546875,Z=-358.769531),ArriveTangent=(X=-0.056501,Y=-2.410714,Z=0.000000),LeaveTangent=(X=-0.056501,Y=-2.410714,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=147.000000,OutVal=(X=-0.395508,Y=-16.171875,Z=-336.247559),ArriveTangent=(X=0.000000,Y=0.000000,Z=11.905464),LeaveTangent=(X=0.000000,Y=0.000000,Z=11.905464),InterpMode=CIM_CurveAutoClamped),(InVal=150.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-246.335449),ArriveTangent=(X=0.000000,Y=0.000000,Z=24.529474),LeaveTangent=(X=0.000000,Y=0.000000,Z=24.529474),InterpMode=CIM_CurveAutoClamped),(InVal=152.500000,OutVal=(X=-0.065918,Y=0.703125,Z=-201.335449),ArriveTangent=(X=0.000000,Y=0.000000,Z=13.500000),LeaveTangent=(X=0.000000,Y=0.000000,Z=13.500000),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=-0.483398,Y=-16.171875,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=160.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=164.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-150.710449),ArriveTangent=(X=0.000000,Y=0.000000,Z=10.990287),LeaveTangent=(X=0.000000,Y=0.000000,Z=10.990287),InterpMode=CIM_CurveAutoClamped),(InVal=168.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=172.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=177.500000,OutVal=(X=-0.065918,Y=0.703125,Z=-55.085449),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.964286),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.964286),InterpMode=CIM_CurveAutoClamped),(InVal=182.500000,OutVal=(X=-0.065918,Y=0.703125,Z=-15.710449),InterpMode=CIM_CurveAutoClamped),(InVal=187.500000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=190.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=195.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=205.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=210.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=215.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-133.835449),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.250000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.250000),InterpMode=CIM_CurveAutoClamped),(InVal=218.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=235.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-268.835449),InterpMode=CIM_CurveAutoClamped),(InVal=242.500000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),ArriveTangent=(X=0.000000,Y=0.000000,Z=12.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=12.000000),InterpMode=CIM_CurveAutoClamped),(InVal=250.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=260.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-268.835449),ArriveTangent=(X=0.000000,Y=0.000000,Z=-15.454695),LeaveTangent=(X=0.000000,Y=0.000000,Z=-15.454695),InterpMode=CIM_CurveAutoClamped),(InVal=265.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-308.210449),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.000000),InterpMode=CIM_CurveAutoClamped),(InVal=270.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-358.835449),InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-358.835449),InterpMode=CIM_CurveAutoClamped),(InVal=278.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-268.835449),InterpMode=CIM_CurveAutoClamped),(InVal=281.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-268.835449),InterpMode=CIM_CurveAutoClamped),(InVal=284.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),ArriveTangent=(X=0.000000,Y=0.000000,Z=30.010986),LeaveTangent=(X=0.000000,Y=0.000000,Z=30.010986),InterpMode=CIM_CurveAutoClamped),(InVal=287.000000,OutVal=(X=0.373535,Y=23.203125,Z=-88.769531),InterpMode=CIM_CurveAutoClamped),(InVal=291.500000,OutVal=(X=-0.175781,Y=0.703125,Z=-88.967285),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.117887),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.117887),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=0.153809,Y=23.203125,Z=-178.945313),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.109156),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.109156),InterpMode=CIM_CurveAutoClamped),(InVal=300.000000,OutVal=(X=-0.285645,Y=0.703125,Z=-179.143066),InterpMode=CIM_CurveAutoClamped),(InVal=302.500000,OutVal=(X=-0.285645,Y=0.703125,Z=-179.143066),InterpMode=CIM_CurveAutoClamped),(InVal=307.500000,OutVal=(X=-0.285645,Y=0.703125,Z=-179.143066),InterpMode=CIM_CurveAutoClamped),(InVal=310.000000,OutVal=(X=0.021973,Y=6.328125,Z=-134.296875),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.929688),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.929688),InterpMode=CIM_CurveAutoClamped),(InVal=312.500000,OutVal=(X=-0.219727,Y=0.703125,Z=-89.494629),ArriveTangent=(X=0.000000,Y=0.000000,Z=21.331055),LeaveTangent=(X=0.000000,Y=0.000000,Z=21.331055),InterpMode=CIM_CurveAutoClamped),(InVal=315.000000,OutVal=(X=0.153809,Y=11.359863,Z=-27.641602),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.573812),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.573812),InterpMode=CIM_CurveAutoClamped),(InVal=317.500000,OutVal=(X=0.043945,Y=0.109863,Z=0.461426),ArriveTangent=(X=-0.039551,Y=0.000000,Z=14.607422),LeaveTangent=(X=-0.039551,Y=0.000000,Z=14.607422),InterpMode=CIM_CurveAutoClamped),(InVal=320.000000,OutVal=(X=-0.043945,Y=11.359863,Z=45.395508),ArriveTangent=(X=-0.035156,Y=0.000000,Z=17.982422),LeaveTangent=(X=-0.035156,Y=0.000000,Z=17.982422),InterpMode=CIM_CurveAutoClamped),(InVal=322.500000,OutVal=(X=-0.131836,Y=0.109863,Z=90.373535),ArriveTangent=(X=-0.039551,Y=0.000000,Z=17.916504),LeaveTangent=(X=-0.039551,Y=0.000000,Z=17.916504),InterpMode=CIM_CurveAutoClamped),(InVal=325.000000,OutVal=(X=-0.241699,Y=11.293945,Z=134.978027),InterpMode=CIM_CurveAutoClamped),(InVal=327.500000,OutVal=(X=-0.241699,Y=0.043945,Z=89.978027),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.071428),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.071428),InterpMode=CIM_CurveAutoClamped),(InVal=332.000000,OutVal=(X=-0.241699,Y=0.043945,Z=22.478027),InterpMode=CIM_CurveAutoClamped),(InVal=337.000000,OutVal=(X=-0.241699,Y=0.043945,Z=89.978027),InterpMode=CIM_CurveAutoClamped),(InVal=342.000000,OutVal=(X=-0.241699,Y=0.043945,Z=11.228027),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.783784),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.783784),InterpMode=CIM_CurveAutoClamped),(InVal=347.000000,OutVal=(X=-0.241699,Y=0.043945,Z=-0.021973),InterpMode=CIM_CurveAutoClamped),(InVal=355.000000,OutVal=(X=-0.241699,Y=0.043945,Z=-0.021973),InterpMode=CIM_CurveAutoClamped),(InVal=357.500000,OutVal=(X=-0.241699,Y=0.043945,Z=-0.021973),InterpMode=CIM_CurveAutoClamped),(InVal=365.000000,OutVal=(X=-0.241699,Y=-1.010742,Z=-83.518066),ArriveTangent=(X=0.000000,Y=-0.376408,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.376408,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=370.000000,OutVal=(X=-0.241699,Y=-25.268555,Z=89.978027),ArriveTangent=(X=0.000000,Y=-1.025105,Z=7.961601),LeaveTangent=(X=0.000000,Y=-1.025105,Z=7.961601),InterpMode=CIM_CurveAutoClamped),(InVal=375.000000,OutVal=(X=-0.241699,Y=-27.553711,Z=107.907715),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.291128),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.291128),InterpMode=CIM_CurveAutoClamped),(InVal=377.500000,OutVal=(X=-0.241699,Y=-23.159180,Z=168.024902),ArriveTangent=(X=0.000000,Y=0.000000,Z=22.451660),LeaveTangent=(X=0.000000,Y=0.000000,Z=22.451660),InterpMode=CIM_CurveAutoClamped),(InVal=380.000000,OutVal=(X=-1.933594,Y=-23.796387,Z=220.166016),ArriveTangent=(X=0.000000,Y=-0.540660,Z=20.377441),LeaveTangent=(X=0.000000,Y=-0.540660,Z=20.377441),InterpMode=CIM_CurveAutoClamped),(InVal=382.500000,OutVal=(X=-1.933594,Y=-28.190918,Z=269.912109),ArriveTangent=(X=0.000000,Y=0.000000,Z=24.363281),LeaveTangent=(X=0.000000,Y=0.000000,Z=24.363281),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=-1.933594,Y=-20.632324,Z=341.982422),ArriveTangent=(X=0.000000,Y=5.138203,Z=0.000000),LeaveTangent=(X=0.000000,Y=5.138203,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=387.500000,OutVal=(X=0.001211,Y=0.109863,Z=270.087891),InterpMode=CIM_CurveAutoClamped),(InVal=390.000000,OutVal=(X=0.000000,Y=-7.097168,Z=270.439453),ArriveTangent=(X=0.000000,Y=-3.339844,Z=0.000000),LeaveTangent=(X=0.000000,Y=-3.339844,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=392.500000,OutVal=(X=0.000000,Y=-16.589355,Z=270.439453),InterpMode=CIM_CurveAutoClamped),(InVal=397.500000,OutVal=(X=0.000000,Y=-11.667480,Z=350.244141),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.385525),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.385525),InterpMode=CIM_CurveAutoClamped),(InVal=400.000000,OutVal=(X=0.000000,Y=-19.929199,Z=359.736328),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=0.000000,Y=-14.831543,Z=270.615234),ArriveTangent=(X=0.000000,Y=1.941609,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.941609,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=409.000000,OutVal=(X=0.000000,Y=0.109863,Z=360.087891),InterpMode=CIM_CurveAutoClamped),(InVal=413.000000,OutVal=(X=0.000000,Y=0.109863,Z=360.087891),InterpMode=CIM_CurveAutoClamped),(InVal=417.000000,OutVal=(X=0.000000,Y=0.109863,Z=360.087891),InterpMode=CIM_CurveAutoClamped),(InVal=422.000000,OutVal=(X=0.000000,Y=0.109863,Z=450.087891),InterpMode=CIM_CurveAutoClamped),(InVal=425.000000,OutVal=(X=0.000000,Y=11.359863,Z=450.087891),InterpMode=CIM_CurveAutoClamped),(InVal=427.500000,OutVal=(X=0.000000,Y=11.359863,Z=450.087891),InterpMode=CIM_CurveAutoClamped),(InVal=430.000000,OutVal=(X=-0.043945,Y=0.109863,Z=360.087891),ArriveTangent=(X=0.000000,Y=0.000000,Z=-24.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-24.000000),InterpMode=CIM_CurveAutoClamped),(InVal=435.000000,OutVal=(X=-0.043945,Y=0.109863,Z=270.087891),InterpMode=CIM_CurveAutoClamped),(InVal=440.000000,OutVal=(X=-0.043945,Y=0.109863,Z=270.087891),InterpMode=CIM_CurveAutoClamped),(InVal=445.000000,OutVal=(X=-0.043945,Y=0.109863,Z=180.087891),InterpMode=CIM_CurveAutoClamped),(InVal=450.000000,OutVal=(X=-0.087891,Y=16.984863,Z=180.087891),ArriveTangent=(X=-0.008789,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.008789,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=455.000000,OutVal=(X=-0.131836,Y=5.734863,Z=180.087891),ArriveTangent=(X=-0.006592,Y=-1.687500,Z=0.000000),LeaveTangent=(X=-0.006592,Y=-1.687500,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=460.000000,OutVal=(X=-0.153809,Y=0.109863,Z=90.087891),ArriveTangent=(X=0.000000,Y=0.000000,Z=-18.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-18.000000),InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=467.500000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=472.500000,OutVal=(X=-0.153809,Y=0.109863,Z=-89.912109),InterpMode=CIM_CurveAutoClamped),(InVal=475.000000,OutVal=(X=-0.153809,Y=0.109863,Z=-89.912109),InterpMode=CIM_CurveAutoClamped),(InVal=477.500000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=482.500000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=485.000000,OutVal=(X=-0.153809,Y=0.109863,Z=-89.912109),InterpMode=CIM_CurveAutoClamped),(InVal=490.000000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=492.500000,OutVal=(X=-0.153809,Y=0.109863,Z=-89.912109),InterpMode=CIM_CurveAutoClamped),(InVal=495.000000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=497.500000,OutVal=(X=-0.197754,Y=22.609863,Z=0.087891),ArriveTangent=(X=-0.017578,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.017578,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=502.500000,OutVal=(X=-0.285645,Y=0.109863,Z=0.065918),ArriveTangent=(X=-0.020508,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.020508,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=505.000000,OutVal=(X=-0.351563,Y=22.609863,Z=90.065918),ArriveTangent=(X=-0.029007,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.029007,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=510.000000,OutVal=(X=-0.505371,Y=0.109863,Z=90.065918),InterpMode=CIM_CurveAutoClamped),(InVal=512.500000,OutVal=(X=-0.505371,Y=0.109863,Z=0.065918),InterpMode=CIM_CurveAutoClamped),(InVal=517.500000,OutVal=(X=-0.505371,Y=0.109863,Z=90.065918),InterpMode=CIM_CurveAutoClamped),(InVal=522.500000,OutVal=(X=-0.637207,Y=-22.390137,Z=0.065918),ArriveTangent=(X=-0.026367,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.026367,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=527.500000,OutVal=(X=-0.769043,Y=-22.390137,Z=180.065918),ArriveTangent=(X=0.000000,Y=0.000000,Z=27.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=27.000000),InterpMode=CIM_CurveAutoClamped),(InVal=532.500000,OutVal=(X=-0.769043,Y=0.109863,Z=270.065918),InterpMode=CIM_CurveAutoClamped),(InVal=537.500000,OutVal=(X=-0.769043,Y=0.109863,Z=180.065918),InterpMode=CIM_CurveAutoClamped),(InVal=542.500000,OutVal=(X=-0.878906,Y=-16.765137,Z=270.043945),ArriveTangent=(X=-0.032227,Y=-2.813063,Z=0.000000),LeaveTangent=(X=-0.032227,Y=-2.813063,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=545.000000,OutVal=(X=-1.010742,Y=-22.390137,Z=270.043945),InterpMode=CIM_CurveAutoClamped),(InVal=550.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),InterpMode=CIM_CurveAutoClamped),(InVal=555.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),InterpMode=CIM_CurveAutoClamped),(InVal=560.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),InterpMode=CIM_CurveAutoClamped),(InVal=565.000000,OutVal=(X=-1.010742,Y=0.109863,Z=146.293945),InterpMode=CIM_CurveAutoClamped),(InVal=570.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),InterpMode=CIM_CurveAutoClamped),(InVal=575.000000,OutVal=(X=-1.010742,Y=0.109863,Z=90.043945),InterpMode=CIM_CurveAutoClamped),(InVal=580.000000,OutVal=(X=-1.010742,Y=0.109863,Z=90.043945),InterpMode=CIM_CurveAutoClamped),(InVal=585.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.434611),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.434611),InterpMode=CIM_CurveAutoClamped),(InVal=590.000000,OutVal=(X=-1.010742,Y=-13.249512,Z=180.922852),ArriveTangent=(X=0.000000,Y=-2.408203,Z=0.000000),LeaveTangent=(X=0.000000,Y=-2.408203,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=595.000000,OutVal=(X=-1.010742,Y=-23.972168,Z=180.219727),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.089386),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.089386),InterpMode=CIM_CurveAutoClamped),(InVal=598.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),InterpMode=CIM_CurveAutoClamped),(InVal=600.000000,OutVal=(X=-1.010742,Y=-20.632324,Z=181.625977),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.805246),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.805246),InterpMode=CIM_CurveAutoClamped),(InVal=602.500000,OutVal=(X=-1.010742,Y=-14.831543,Z=270.571289),ArriveTangent=(X=0.000000,Y=3.855614,Z=0.000000),LeaveTangent=(X=0.000000,Y=3.855614,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=605.000000,OutVal=(X=-1.010742,Y=0.109863,Z=270.043945),InterpMode=CIM_CurveAutoClamped),(InVal=607.500000,OutVal=(X=-1.010742,Y=0.109863,Z=270.043945),InterpMode=CIM_CurveAutoClamped),(InVal=610.000000,OutVal=(X=-1.010742,Y=0.109863,Z=270.043945),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000),(Time=10.000000),(Time=13.000000),(Time=16.000000),(Time=20.000000),(Time=25.000000),(Time=28.000000),(Time=31.000000),(Time=35.000000),(Time=40.000000),(Time=45.000000),(Time=48.000000),(Time=51.000000),(Time=55.000000),(Time=60.000000),(Time=63.000000),(Time=70.000000),(Time=75.000000),(Time=82.500000),(Time=87.500000),(Time=95.000000),(Time=98.000000),(Time=103.000000),(Time=106.000000),(Time=110.000000),(Time=115.000000),(Time=120.000000),(Time=125.000000),(Time=127.000000),(Time=130.000000),(Time=135.000000),(Time=140.000000),(Time=143.000000),(Time=147.000000),(Time=150.000000),(Time=152.500000),(Time=155.000000),(Time=160.000000),(Time=164.000000),(Time=168.000000),(Time=172.000000),(Time=177.500000),(Time=182.500000),(Time=187.500000),(Time=190.000000),(Time=195.000000),(Time=200.000000),(Time=205.000000),(Time=210.000000),(Time=215.000000),(Time=218.000000),(Time=225.000000),(Time=230.000000),(Time=235.000000),(Time=242.500000),(Time=250.000000),(Time=255.000000),(Time=260.000000),(Time=265.000000),(Time=270.000000),(Time=275.000000),(Time=278.000000),(Time=281.000000),(Time=284.000000),(Time=287.000000),(Time=291.500000),(Time=295.000000),(Time=300.000000),(Time=302.500000),(Time=307.500000),(Time=310.000000),(Time=312.500000),(Time=315.000000),(Time=317.500000),(Time=320.000000),(Time=322.500000),(Time=325.000000),(Time=327.500000),(Time=332.000000),(Time=337.000000),(Time=342.000000),(Time=347.000000),(Time=355.000000),(Time=357.500000),(Time=365.000000),(Time=370.000000),(Time=375.000000),(Time=377.500000),(Time=380.000000),(Time=382.500000),(Time=385.000000),(Time=387.500000),(Time=390.000000),(Time=392.500000),(Time=397.500000),(Time=400.000000),(Time=405.000000),(Time=409.000000),(Time=413.000000),(Time=417.000000),(Time=422.000000),(Time=425.000000),(Time=427.500000),(Time=430.000000),(Time=435.000000),(Time=440.000000),(Time=445.000000),(Time=450.000000),(Time=455.000000),(Time=460.000000),(Time=465.000000),(Time=467.500000),(Time=472.500000),(Time=475.000000),(Time=477.500000),(Time=482.500000),(Time=485.000000),(Time=490.000000),(Time=492.500000),(Time=495.000000),(Time=497.500000),(Time=502.500000),(Time=505.000000),(Time=510.000000),(Time=512.500000),(Time=517.500000),(Time=522.500000),(Time=527.500000),(Time=532.500000),(Time=537.500000),(Time=542.500000),(Time=545.000000),(Time=550.000000),(Time=555.000000),(Time=560.000000),(Time=565.000000),(Time=570.000000),(Time=575.000000),(Time=580.000000),(Time=585.000000),(Time=590.000000),(Time=595.000000),(Time=598.000000),(Time=600.000000),(Time=602.500000),(Time=605.000000),(Time=607.500000),(Time=610.000000)))
+         bShowRotationOnCurveEd=True
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackFloatProp_0'
+      GroupName="NewCameraGroup"
+      GroupColor=(B=51,G=0,R=229,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
    Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
       Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
          CutTrack(0)=(TargetCamGroup="NewCameraGroup",ShotNumber=10)
@@ -20124,34 +20152,6 @@ Begin Object Class=InterpData Name=InterpData_6
       GroupColor=(B=0,G=203,R=126,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((OutVal=(X=0.000488,Y=-0.000244,Z=-0.000046),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=1401.355469,Y=-96.101563,Z=-24.687958),ArriveTangent=(X=250.251511,Y=0.000000,Z=-2.655620),LeaveTangent=(X=250.251511,Y=0.000000,Z=-2.655620),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=2502.515625,Y=138.613281,Z=-32.003479),ArriveTangent=(X=21.181671,Y=98.659012,Z=0.000000),LeaveTangent=(X=21.181671,Y=98.659012,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=13.000000,OutVal=(X=2533.609375,Y=813.148438,Z=-23.090485),ArriveTangent=(X=24.534554,Y=0.000000,Z=2.571589),LeaveTangent=(X=24.534554,Y=0.000000,Z=2.571589),InterpMode=CIM_CurveAutoClamped),(InVal=16.000000,OutVal=(X=3197.531250,Y=741.134766,Z=-16.573944),ArriveTangent=(X=192.578125,Y=0.000000,Z=0.000000),LeaveTangent=(X=192.578125,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=3881.656250,Y=1263.945313,Z=-27.366150),ArriveTangent=(X=219.000000,Y=28.489700,Z=0.000000),LeaveTangent=(X=219.000000,Y=28.489700,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=5168.531250,Y=1324.376953,Z=-20.608856),ArriveTangent=(X=84.365692,Y=30.997284,Z=1.901173),LeaveTangent=(X=84.365692,Y=30.997284,Z=1.901173),InterpMode=CIM_CurveAutoClamped),(InVal=28.000000,OutVal=(X=5306.421875,Y=1845.191406,Z=-12.156769),ArriveTangent=(X=90.126236,Y=67.590584,Z=0.000000),LeaveTangent=(X=90.126236,Y=67.590584,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=31.000000,OutVal=(X=5934.390625,Y=1945.808594,Z=-18.695831),ArriveTangent=(X=194.767853,Y=0.000000,Z=0.000000),LeaveTangent=(X=194.767853,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=35.000000,OutVal=(X=6669.796875,Y=1598.130859,Z=-16.507538),ArriveTangent=(X=213.664932,Y=0.000000,Z=0.475243),LeaveTangent=(X=213.664932,Y=0.000000,Z=0.475243),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=7857.375000,Y=2271.746094,Z=-14.418640),ArriveTangent=(X=177.858368,Y=0.000000,Z=1.028582),LeaveTangent=(X=177.858368,Y=0.000000,Z=1.028582),InterpMode=CIM_CurveAutoClamped),(InVal=45.000000,OutVal=(X=8449.140625,Y=1295.474609,Z=142.365143),ArriveTangent=(X=19.754711,Y=-262.984863,Z=0.031502),LeaveTangent=(X=19.754711,Y=-262.984863,Z=0.031502),InterpMode=CIM_CurveAutoClamped),(InVal=48.000000,OutVal=(X=8479.046875,Y=167.867188,Z=142.409607),ArriveTangent=(X=0.000000,Y=-374.648773,Z=0.000000),LeaveTangent=(X=0.000000,Y=-374.648773,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=51.000000,OutVal=(X=8479.046875,Y=-952.417969,Z=142.409546),ArriveTangent=(X=0.000000,Y=-390.936249,Z=-0.000048),LeaveTangent=(X=0.000000,Y=-390.936249,Z=-0.000048),InterpMode=CIM_CurveAutoClamped),(InVal=55.000000,OutVal=(X=8219.757813,Y=-2568.686523,Z=-9.823303),ArriveTangent=(X=-61.220486,Y=-322.225464,Z=0.000000),LeaveTangent=(X=-61.220486,Y=-322.225464,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=7928.062500,Y=-3852.447266,Z=306.925049),ArriveTangent=(X=0.000000,Y=-236.142685,Z=0.000000),LeaveTangent=(X=0.000000,Y=-236.142685,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=63.000000,OutVal=(X=7928.062500,Y=-4465.528320,Z=306.924988),InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=9720.765625,Y=-4465.528320,Z=306.924988),ArriveTangent=(X=232.040359,Y=0.000000,Z=0.000000),LeaveTangent=(X=232.040359,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=10712.546875,Y=-4465.528320,Z=306.924988),InterpMode=CIM_CurveAutoClamped),(InVal=82.500000,OutVal=(X=10712.546875,Y=-6064.268555,Z=306.924988),ArriveTangent=(X=0.000000,Y=-0.000854,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.000854,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=87.500000,OutVal=(X=9729.171875,Y=-6064.270508,Z=306.924988),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=9729.171875,Y=-4554.488281,Z=306.924988),ArriveTangent=(X=0.000000,Y=129.986389,Z=0.000000),LeaveTangent=(X=0.000000,Y=129.986389,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=98.000000,OutVal=(X=9376.421875,Y=-4273.212891,Z=306.924988),ArriveTangent=(X=0.000000,Y=129.877686,Z=0.000000),LeaveTangent=(X=0.000000,Y=129.877686,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=103.000000,OutVal=(X=9413.359375,Y=-3414.411133,Z=306.924988),ArriveTangent=(X=0.000000,Y=192.128662,Z=0.000000),LeaveTangent=(X=0.000000,Y=192.128662,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=106.000000,OutVal=(X=9413.359375,Y=-2736.183594,Z=137.032715),ArriveTangent=(X=0.000000,Y=179.278885,Z=0.000000),LeaveTangent=(X=0.000000,Y=179.278885,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=9413.359375,Y=-2159.458984,Z=137.034302),ArriveTangent=(X=0.000000,Y=173.528870,Z=0.000000),LeaveTangent=(X=0.000000,Y=173.528870,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=115.000000,OutVal=(X=9570.562500,Y=-1174.423828,Z=137.034241),ArriveTangent=(X=0.000000,Y=193.588287,Z=-0.000012),LeaveTangent=(X=0.000000,Y=193.588287,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=9570.562500,Y=-223.576172,Z=137.034180),ArriveTangent=(X=0.000000,Y=184.555084,Z=-0.000012),LeaveTangent=(X=0.000000,Y=184.555084,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=125.000000,OutVal=(X=9823.796875,Y=671.126953,Z=137.034119),ArriveTangent=(X=0.000000,Y=187.732697,Z=-0.000017),LeaveTangent=(X=0.000000,Y=187.732697,Z=-0.000017),InterpMode=CIM_CurveAutoClamped),(InVal=127.000000,OutVal=(X=9823.796875,Y=1090.552734,Z=137.034058),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000024),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000024),InterpMode=CIM_CurveAutoClamped),(InVal=130.000000,OutVal=(X=9358.445313,Y=1090.552734,Z=137.033997),ArriveTangent=(X=-126.197266,Y=0.000000,Z=-0.000011),LeaveTangent=(X=-126.197266,Y=0.000000,Z=-0.000011),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=8814.218750,Y=172.134766,Z=137.033966),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000009),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000009),InterpMode=CIM_CurveAutoClamped),(InVal=140.000000,OutVal=(X=9945.609375,Y=593.691406,Z=137.033905),ArriveTangent=(X=214.650391,Y=99.623291,Z=-0.000019),LeaveTangent=(X=214.650391,Y=99.623291,Z=-0.000019),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=10531.421875,Y=969.121094,Z=137.033813),ArriveTangent=(X=189.102676,Y=24.800053,Z=-0.000069),LeaveTangent=(X=189.102676,Y=24.800053,Z=-0.000069),InterpMode=CIM_CurveAutoClamped),(InVal=147.000000,OutVal=(X=11269.328125,Y=1010.105469,Z=-238.467285),ArriveTangent=(X=158.919647,Y=24.717419,Z=-84.130440),LeaveTangent=(X=158.919647,Y=24.717419,Z=-84.130440),InterpMode=CIM_CurveAutoClamped),(InVal=150.000000,OutVal=(X=11643.859375,Y=1374.474609,Z=-451.879272),ArriveTangent=(X=0.000000,Y=160.929337,Z=-0.000233),LeaveTangent=(X=0.000000,Y=160.929337,Z=-0.000233),InterpMode=CIM_CurveAutoClamped),(InVal=152.500000,OutVal=(X=11493.484375,Y=1895.216797,Z=-451.879517),ArriveTangent=(X=-108.087280,Y=109.321678,Z=-0.000122),LeaveTangent=(X=-108.087280,Y=109.321678,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=11002.906250,Y=2044.312500,Z=-451.879883),ArriveTangent=(X=-196.083328,Y=0.000000,Z=-0.000290),LeaveTangent=(X=-196.083328,Y=0.000000,Z=-0.000290),InterpMode=CIM_CurveAutoClamped),(InVal=160.000000,OutVal=(X=10022.859375,Y=2044.312500,Z=-767.781982),ArriveTangent=(X=-195.418396,Y=0.000000,Z=-0.000782),LeaveTangent=(X=-195.418396,Y=0.000000,Z=-0.000782),InterpMode=CIM_CurveAutoClamped),(InVal=164.000000,OutVal=(X=9244.140625,Y=2005.666016,Z=-767.783325),ArriveTangent=(X=-162.226563,Y=-20.455385,Z=-0.000840),LeaveTangent=(X=-162.226563,Y=-20.455385,Z=-0.000840),InterpMode=CIM_CurveAutoClamped),(InVal=168.000000,OutVal=(X=8725.046875,Y=1742.337891,Z=-774.387939),ArriveTangent=(X=-104.673828,Y=-108.133636,Z=-0.000153),LeaveTangent=(X=-104.673828,Y=-108.133636,Z=-0.000153),InterpMode=CIM_CurveAutoClamped),(InVal=172.000000,OutVal=(X=8406.750000,Y=1085.017578,Z=-774.388184),ArriveTangent=(X=-123.374893,Y=-58.316662,Z=-0.000137),LeaveTangent=(X=-123.374893,Y=-58.316662,Z=-0.000137),InterpMode=CIM_CurveAutoClamped),(InVal=177.500000,OutVal=(X=7386.296875,Y=938.677734,Z=-1086.661377),ArriveTangent=(X=0.000000,Y=-48.081577,Z=-61.395775),LeaveTangent=(X=0.000000,Y=-48.081577,Z=-61.395775),InterpMode=CIM_CurveAutoClamped),(InVal=182.500000,OutVal=(X=8269.953125,Y=511.248047,Z=-1419.043823),ArriveTangent=(X=198.117188,Y=-80.519920,Z=-0.000248),LeaveTangent=(X=198.117188,Y=-80.519920,Z=-0.000248),InterpMode=CIM_CurveAutoClamped),(InVal=187.500000,OutVal=(X=9367.468750,Y=133.478516,Z=-1419.044312),ArriveTangent=(X=221.975006,Y=0.000000,Z=-0.000292),LeaveTangent=(X=221.975006,Y=0.000000,Z=-0.000292),InterpMode=CIM_CurveAutoClamped),(InVal=190.000000,OutVal=(X=9934.765625,Y=133.478516,Z=-1576.375854),ArriveTangent=(X=0.000000,Y=0.000000,Z=-41.119499),LeaveTangent=(X=0.000000,Y=0.000000,Z=-41.119499),InterpMode=CIM_CurveAutoClamped),(InVal=195.000000,OutVal=(X=9934.765625,Y=-666.106445,Z=-1727.440552),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=10678.718750,Y=-666.106445,Z=-1727.441040),ArriveTangent=(X=143.964066,Y=0.000000,Z=-0.000098),LeaveTangent=(X=143.964066,Y=0.000000,Z=-0.000098),InterpMode=CIM_CurveAutoClamped),(InVal=205.000000,OutVal=(X=11374.406250,Y=-666.106445,Z=-1727.441528),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=210.000000,OutVal=(X=11374.406250,Y=-1684.353516,Z=-1892.089722),ArriveTangent=(X=0.000000,Y=-210.873734,Z=-32.451355),LeaveTangent=(X=0.000000,Y=-210.873734,Z=-32.451355),InterpMode=CIM_CurveAutoClamped),(InVal=215.000000,OutVal=(X=11374.406250,Y=-2774.843750,Z=-2051.955078),ArriveTangent=(X=0.000000,Y=-212.742554,Z=-0.000345),LeaveTangent=(X=0.000000,Y=-212.742554,Z=-0.000345),InterpMode=CIM_CurveAutoClamped),(InVal=218.000000,OutVal=(X=11374.406250,Y=-3386.293945,Z=-2051.955566),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000309),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000309),InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,OutVal=(X=9973.859375,Y=-3386.293945,Z=-2374.387695),ArriveTangent=(X=-185.660156,Y=0.000000,Z=-0.000441),LeaveTangent=(X=-185.660156,Y=0.000000,Z=-0.000441),InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=9146.484375,Y=-3386.293945,Z=-2374.388672),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=235.000000,OutVal=(X=9146.484375,Y=-4034.521484,Z=-2374.390137),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000134),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000134),InterpMode=CIM_CurveAutoClamped),(InVal=242.500000,OutVal=(X=7081.148438,Y=-4034.521484,Z=-2374.390625),ArriveTangent=(X=-214.765625,Y=0.000000,Z=-0.000114),LeaveTangent=(X=-214.765625,Y=0.000000,Z=-0.000114),InterpMode=CIM_CurveAutoClamped),(InVal=250.000000,OutVal=(X=5925.000000,Y=-4034.521484,Z=-2374.392090),ArriveTangent=(X=-147.495621,Y=0.000000,Z=-0.000142),LeaveTangent=(X=-147.495621,Y=0.000000,Z=-0.000142),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=5237.453125,Y=-4656.659180,Z=-2374.392578),ArriveTangent=(X=-139.404694,Y=0.000000,Z=-0.000146),LeaveTangent=(X=-139.404694,Y=0.000000,Z=-0.000146),InterpMode=CIM_CurveAutoClamped),(InVal=260.000000,OutVal=(X=4530.953125,Y=-4656.659180,Z=-2374.393555),ArriveTangent=(X=-140.595306,Y=0.000000,Z=-0.000244),LeaveTangent=(X=-140.595306,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=265.000000,OutVal=(X=3831.500000,Y=-4510.305664,Z=-2374.395020),ArriveTangent=(X=-129.584381,Y=57.810402,Z=-0.000244),LeaveTangent=(X=-129.584381,Y=57.810402,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=270.000000,OutVal=(X=3235.109375,Y=-3821.862305,Z=-2374.395996),ArriveTangent=(X=0.000000,Y=175.256256,Z=-0.000195),LeaveTangent=(X=0.000000,Y=175.256256,Z=-0.000195),InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=3235.109375,Y=-2757.743164,Z=-2374.396973),ArriveTangent=(X=0.000000,Y=91.367790,Z=-0.000305),LeaveTangent=(X=0.000000,Y=91.367790,Z=-0.000305),InterpMode=CIM_CurveAutoClamped),(InVal=278.000000,OutVal=(X=2860.187500,Y=-2600.087891,Z=-2374.398438),ArriveTangent=(X=-206.993698,Y=0.000000,Z=0.000000),LeaveTangent=(X=-206.993698,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=281.000000,OutVal=(X=1903.019531,Y=-2600.087891,Z=-1942.156982),ArriveTangent=(X=-231.563019,Y=0.000000,Z=106.530907),LeaveTangent=(X=-231.563019,Y=0.000000,Z=106.530907),InterpMode=CIM_CurveAutoClamped),(InVal=284.000000,OutVal=(X=1451.707031,Y=-2600.087891,Z=-1731.596191),ArriveTangent=(X=-128.834641,Y=0.000000,Z=0.000000),LeaveTangent=(X=-128.834641,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=287.000000,OutVal=(X=1130.011719,Y=-2814.991211,Z=-1731.596924),ArriveTangent=(X=-0.002438,Y=-118.479919,Z=0.000000),LeaveTangent=(X=-0.002438,Y=-118.479919,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=291.500000,OutVal=(X=1130.007813,Y=-3779.359375,Z=-1335.516113),ArriveTangent=(X=-0.002335,Y=-165.112320,Z=0.000000),LeaveTangent=(X=-0.002335,Y=-165.112320,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=926.121094,Y=-4184.988281,Z=-1335.516602),ArriveTangent=(X=-95.376122,Y=0.000000,Z=0.000000),LeaveTangent=(X=-95.376122,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=300.000000,OutVal=(X=108.304688,Y=-4184.988281,Z=-1012.595398),ArriveTangent=(X=-149.851700,Y=0.000000,Z=0.000000),LeaveTangent=(X=-149.851700,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=302.500000,OutVal=(X=-220.191406,Y=-4184.988281,Z=-1012.595642),ArriveTangent=(X=-154.458740,Y=0.000000,Z=-0.000081),LeaveTangent=(X=-154.458740,Y=0.000000,Z=-0.000081),InterpMode=CIM_CurveAutoClamped),(InVal=307.500000,OutVal=(X=-1086.695313,Y=-3877.942383,Z=-1012.596008),ArriveTangent=(X=-169.886795,Y=0.000000,Z=0.000000),LeaveTangent=(X=-169.886795,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=310.000000,OutVal=(X=-1496.082031,Y=-4024.288086,Z=-884.961731),ArriveTangent=(X=-111.186378,Y=-105.611641,Z=54.193714),LeaveTangent=(X=-111.186378,Y=-105.611641,Z=54.193714),InterpMode=CIM_CurveAutoClamped),(InVal=312.500000,OutVal=(X=-1668.605469,Y=-4508.147461,Z=-741.627441),ArriveTangent=(X=0.000000,Y=-211.204498,Z=61.222572),LeaveTangent=(X=0.000000,Y=-211.204498,Z=61.222572),InterpMode=CIM_CurveAutoClamped),(InVal=315.000000,OutVal=(X=-1444.390625,Y=-5080.310547,Z=-578.848877),ArriveTangent=(X=133.133591,Y=-90.821671,Z=56.156971),LeaveTangent=(X=133.133591,Y=-90.821671,Z=56.156971),InterpMode=CIM_CurveAutoClamped),(InVal=317.500000,OutVal=(X=-1002.937500,Y=-5193.530273,Z=-460.842590),ArriveTangent=(X=182.990631,Y=0.000000,Z=46.372437),LeaveTangent=(X=182.990631,Y=0.000000,Z=46.372437),InterpMode=CIM_CurveAutoClamped),(InVal=320.000000,OutVal=(X=-529.437500,Y=-5043.808594,Z=-346.986694),ArriveTangent=(X=133.270065,Y=109.377853,Z=55.987835),LeaveTangent=(X=133.270065,Y=109.377853,Z=55.987835),InterpMode=CIM_CurveAutoClamped),(InVal=322.500000,OutVal=(X=-317.710938,Y=-4527.581055,Z=-180.903412),ArriveTangent=(X=0.000000,Y=204.334564,Z=59.633770),LeaveTangent=(X=0.000000,Y=204.334564,Z=59.633770),InterpMode=CIM_CurveAutoClamped),(InVal=325.000000,OutVal=(X=-495.277344,Y=-4022.135742,Z=-48.817841),ArriveTangent=(X=-103.379684,Y=137.940430,Z=49.181499),LeaveTangent=(X=-103.379684,Y=137.940430,Z=49.181499),InterpMode=CIM_CurveAutoClamped),(InVal=327.500000,OutVal=(X=-834.609375,Y=-3807.436523,Z=65.004089),ArriveTangent=(X=-0.005089,Y=106.946808,Z=0.000000),LeaveTangent=(X=-0.005089,Y=106.946808,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=332.000000,OutVal=(X=-834.617188,Y=-3242.700195,Z=-16.717133),ArriveTangent=(X=0.000000,Y=95.484474,Z=-0.000064),LeaveTangent=(X=0.000000,Y=95.484474,Z=-0.000064),InterpMode=CIM_CurveAutoClamped),(InVal=337.000000,OutVal=(X=-206.707031,Y=-2900.333984,Z=-16.717255),ArriveTangent=(X=37.841522,Y=119.496376,Z=-0.000037),LeaveTangent=(X=37.841522,Y=119.496376,Z=-0.000037),InterpMode=CIM_CurveAutoClamped),(InVal=342.000000,OutVal=(X=-117.843750,Y=-1883.368164,Z=-16.717499),ArriveTangent=(X=39.411232,Y=99.706306,Z=-0.000023),LeaveTangent=(X=39.411232,Y=99.706306,Z=-0.000023),InterpMode=CIM_CurveAutoClamped),(InVal=347.000000,OutVal=(X=732.992188,Y=-1618.270508,Z=-16.717560),ArriveTangent=(X=184.364182,Y=0.000000,Z=-0.000014),LeaveTangent=(X=184.364182,Y=0.000000,Z=-0.000014),InterpMode=CIM_CurveAutoClamped),(InVal=355.000000,OutVal=(X=2278.890625,Y=-1618.270508,Z=-16.717682),ArriveTangent=(X=154.181732,Y=0.000000,Z=-0.000023),LeaveTangent=(X=154.181732,Y=0.000000,Z=-0.000023),InterpMode=CIM_CurveAutoClamped),(InVal=357.500000,OutVal=(X=2600.781250,Y=-1323.917969,Z=-16.717804),ArriveTangent=(X=162.299133,Y=0.000000,Z=-0.000082),LeaveTangent=(X=162.299133,Y=0.000000,Z=-0.000082),InterpMode=CIM_CurveAutoClamped),(InVal=365.000000,OutVal=(X=4250.671875,Y=-1323.917969,Z=-16.723358),ArriveTangent=(X=181.892853,Y=0.000000,Z=-0.000052),LeaveTangent=(X=181.892853,Y=0.000000,Z=-0.000052),InterpMode=CIM_CurveAutoClamped),(InVal=370.000000,OutVal=(X=4943.078125,Y=-903.528320,Z=-16.723480),ArriveTangent=(X=0.000000,Y=128.709198,Z=-0.000057),LeaveTangent=(X=0.000000,Y=128.709198,Z=-0.000057),InterpMode=CIM_CurveAutoClamped),(InVal=375.000000,OutVal=(X=4902.812500,Y=-23.339844,Z=-443.633392),ArriveTangent=(X=-20.337051,Y=145.823196,Z=-87.753387),LeaveTangent=(X=-20.337051,Y=145.823196,Z=-87.753387),InterpMode=CIM_CurveAutoClamped),(InVal=377.500000,OutVal=(X=4689.390625,Y=266.789063,Z=-674.873901),ArriveTangent=(X=-122.946877,Y=20.934204,Z=-86.307243),LeaveTangent=(X=-122.946877,Y=20.934204,Z=-86.307243),InterpMode=CIM_CurveAutoClamped),(InVal=380.000000,OutVal=(X=4288.078125,Y=289.728516,Z=-875.169617),ArriveTangent=(X=-136.934372,Y=0.000000,Z=-82.333374),LeaveTangent=(X=-136.934372,Y=0.000000,Z=-82.333374),InterpMode=CIM_CurveAutoClamped),(InVal=382.500000,OutVal=(X=4004.718750,Y=-22.927734,Z=-1086.540771),ArriveTangent=(X=0.000000,Y=-157.542191,Z=-92.543472),LeaveTangent=(X=0.000000,Y=-157.542191,Z=-92.543472),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=4103.281250,Y=-497.982422,Z=-1337.886963),ArriveTangent=(X=80.680801,Y=-140.998154,Z=-96.239380),LeaveTangent=(X=80.680801,Y=-140.998154,Z=-96.239380),InterpMode=CIM_CurveAutoClamped),(InVal=387.500000,OutVal=(X=4655.140625,Y=-730.860352,Z=-1567.737671),ArriveTangent=(X=0.000000,Y=-153.895294,Z=-0.000977),LeaveTangent=(X=0.000000,Y=-153.895294,Z=-0.000977),InterpMode=CIM_CurveAutoClamped),(InVal=390.000000,OutVal=(X=4655.140625,Y=-1321.309570,Z=-1567.738647),ArriveTangent=(X=0.000000,Y=-121.963013,Z=-0.000342),LeaveTangent=(X=0.000000,Y=-121.963013,Z=-0.000342),InterpMode=CIM_CurveAutoClamped),(InVal=392.500000,OutVal=(X=4338.718750,Y=-1486.596680,Z=-1567.739380),ArriveTangent=(X=-136.706390,Y=0.000000,Z=-0.000587),LeaveTangent=(X=-136.706390,Y=0.000000,Z=-0.000587),InterpMode=CIM_CurveAutoClamped),(InVal=397.500000,OutVal=(X=3623.312500,Y=-1482.742188,Z=-1888.357788),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.004692),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.004692),InterpMode=CIM_CurveAutoClamped),(InVal=400.000000,OutVal=(X=3623.312500,Y=-1792.624023,Z=-1888.363647),ArriveTangent=(X=0.000000,Y=-2.573635,Z=-0.004688),LeaveTangent=(X=0.000000,Y=-2.573635,Z=-0.004688),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=4644.437500,Y=-1796.970703,Z=-2207.059082),ArriveTangent=(X=149.604675,Y=-2.301918,Z=-53.886517),LeaveTangent=(X=149.604675,Y=-2.301918,Z=-53.886517),InterpMode=CIM_CurveAutoClamped),(InVal=409.000000,OutVal=(X=5047.453125,Y=-2431.261719,Z=-2373.342285),ArriveTangent=(X=169.940094,Y=0.000000,Z=-0.000614),LeaveTangent=(X=169.940094,Y=0.000000,Z=-0.000614),InterpMode=CIM_CurveAutoClamped),(InVal=413.000000,OutVal=(X=6129.750000,Y=-2431.261719,Z=-2373.343262),ArriveTangent=(X=284.626953,Y=0.000000,Z=-0.000244),LeaveTangent=(X=284.626953,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=417.000000,OutVal=(X=7324.468750,Y=-2591.160156,Z=-2373.344238),ArriveTangent=(X=298.048615,Y=0.000000,Z=-0.000271),LeaveTangent=(X=298.048615,Y=0.000000,Z=-0.000271),InterpMode=CIM_CurveAutoClamped),(InVal=422.000000,OutVal=(X=8812.187500,Y=-2591.160156,Z=-2373.345703),InterpMode=CIM_CurveAutoClamped),(InVal=425.000000,OutVal=(X=8812.187500,Y=-2030.762695,Z=-2362.138184),ArriveTangent=(X=0.000000,Y=204.401108,Z=9.343349),LeaveTangent=(X=0.000000,Y=204.401108,Z=9.343349),InterpMode=CIM_CurveAutoClamped),(InVal=427.500000,OutVal=(X=8812.187500,Y=-1466.954102,Z=-2127.674561),ArriveTangent=(X=0.000000,Y=221.614838,Z=101.536766),LeaveTangent=(X=0.000000,Y=221.614838,Z=101.536766),InterpMode=CIM_CurveAutoClamped),(InVal=430.000000,OutVal=(X=8812.187500,Y=-922.688477,Z=-1854.454346),ArriveTangent=(X=0.000000,Y=105.260658,Z=58.072056),LeaveTangent=(X=0.000000,Y=105.260658,Z=58.072056),InterpMode=CIM_CurveAutoClamped),(InVal=435.000000,OutVal=(X=9769.140625,Y=-664.002930,Z=-1692.134155),ArriveTangent=(X=0.000000,Y=0.000000,Z=43.224709),LeaveTangent=(X=0.000000,Y=0.000000,Z=43.224709),InterpMode=CIM_CurveAutoClamped),(InVal=440.000000,OutVal=(X=9769.140625,Y=-1647.002930,Z=-1422.207275),ArriveTangent=(X=0.000000,Y=-191.261429,Z=0.000000),LeaveTangent=(X=0.000000,Y=-191.261429,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=445.000000,OutVal=(X=9370.031250,Y=-2576.617188,Z=-1422.207764),ArriveTangent=(X=-132.454254,Y=0.000000,Z=-0.000122),LeaveTangent=(X=-132.454254,Y=0.000000,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(InVal=450.000000,OutVal=(X=8345.929688,Y=-2576.617188,Z=-1422.208496),ArriveTangent=(X=-173.074997,Y=0.000000,Z=0.000000),LeaveTangent=(X=-173.074997,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=455.000000,OutVal=(X=7639.281250,Y=-2576.617188,Z=-1103.671875),ArriveTangent=(X=-182.041412,Y=0.000000,Z=62.435974),LeaveTangent=(X=-182.041412,Y=0.000000,Z=62.435974),InterpMode=CIM_CurveAutoClamped),(InVal=460.000000,OutVal=(X=6525.515625,Y=-2576.617188,Z=-797.848755),ArriveTangent=(X=-101.432129,Y=0.000000,Z=48.131142),LeaveTangent=(X=-101.432129,Y=0.000000,Z=48.131142),InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=6262.421875,Y=-1742.960938,Z=-622.360474),ArriveTangent=(X=0.000000,Y=168.789841,Z=0.000000),LeaveTangent=(X=0.000000,Y=168.789841,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=467.500000,OutVal=(X=6581.585938,Y=-1310.693359,Z=-653.037964),ArriveTangent=(X=150.968231,Y=0.000000,Z=0.000000),LeaveTangent=(X=150.968231,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=472.500000,OutVal=(X=7433.445313,Y=-1310.693359,Z=-326.926636),ArriveTangent=(X=120.452911,Y=0.000000,Z=0.000000),LeaveTangent=(X=120.452911,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=475.000000,OutVal=(X=7649.578125,Y=-1774.751953,Z=-336.817993),ArriveTangent=(X=18.360243,Y=-153.672073,Z=-4.942950),LeaveTangent=(X=18.360243,Y=-153.672073,Z=-4.942950),InterpMode=CIM_CurveAutoClamped),(InVal=477.500000,OutVal=(X=7670.054688,Y=-2079.053711,Z=-351.641388),ArriveTangent=(X=16.040558,Y=0.000000,Z=-2.016943),LeaveTangent=(X=16.040558,Y=0.000000,Z=-2.016943),InterpMode=CIM_CurveAutoClamped),(InVal=482.500000,OutVal=(X=9093.125000,Y=-2079.053711,Z=-355.985657),ArriveTangent=(X=269.885040,Y=0.000000,Z=-0.000147),LeaveTangent=(X=269.885040,Y=0.000000,Z=-0.000147),InterpMode=CIM_CurveAutoClamped),(InVal=485.000000,OutVal=(X=9711.156250,Y=-2135.534180,Z=-355.985840),ArriveTangent=(X=0.000000,Y=-42.211700,Z=-0.000073),LeaveTangent=(X=0.000000,Y=-42.211700,Z=-0.000073),InterpMode=CIM_CurveAutoClamped),(InVal=490.000000,OutVal=(X=9711.156250,Y=-3358.351563,Z=-355.986206),ArriveTangent=(X=0.000000,Y=-250.782684,Z=-0.000166),LeaveTangent=(X=0.000000,Y=-250.782684,Z=-0.000166),InterpMode=CIM_CurveAutoClamped),(InVal=492.500000,OutVal=(X=9711.156250,Y=-4016.404297,Z=-355.987335),ArriveTangent=(X=0.000000,Y=-257.139069,Z=0.000000),LeaveTangent=(X=0.000000,Y=-257.139069,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=495.000000,OutVal=(X=9711.156250,Y=-4644.046875,Z=-355.986816),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.000519),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.000519),InterpMode=CIM_CurveAutoClamped),(InVal=497.500000,OutVal=(X=10182.726563,Y=-4644.046875,Z=-346.264313),ArriveTangent=(X=154.227081,Y=0.000000,Z=7.452118),LeaveTangent=(X=154.227081,Y=0.000000,Z=7.452118),InterpMode=CIM_CurveAutoClamped),(InVal=502.500000,OutVal=(X=10867.859375,Y=-4644.046875,Z=-11.674042),ArriveTangent=(X=129.187057,Y=0.000000,Z=11.475166),LeaveTangent=(X=129.187057,Y=0.000000,Z=11.475166),InterpMode=CIM_CurveAutoClamped),(InVal=505.000000,OutVal=(X=11161.375000,Y=-4309.133789,Z=3.672821),ArriveTangent=(X=0.000000,Y=127.940758,Z=11.404409),LeaveTangent=(X=0.000000,Y=127.940758,Z=11.404409),InterpMode=CIM_CurveAutoClamped),(InVal=510.000000,OutVal=(X=11161.375000,Y=-3684.491211,Z=310.102600),ArriveTangent=(X=0.000000,Y=90.955383,Z=0.000000),LeaveTangent=(X=0.000000,Y=90.955383,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=512.500000,OutVal=(X=11480.328125,Y=-3518.623047,Z=310.102600),ArriveTangent=(X=146.719681,Y=0.000000,Z=0.000000),LeaveTangent=(X=146.719681,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=517.500000,OutVal=(X=12286.906250,Y=-3518.623047,Z=310.102600),InterpMode=CIM_CurveAutoClamped),(InVal=522.500000,OutVal=(X=12286.906250,Y=-2883.138672,Z=310.102356),ArriveTangent=(X=0.000000,Y=61.558647,Z=-0.000124),LeaveTangent=(X=0.000000,Y=61.558647,Z=-0.000124),InterpMode=CIM_CurveAutoClamped),(InVal=527.500000,OutVal=(X=13188.953125,Y=-2720.159180,Z=1.533356),ArriveTangent=(X=0.000000,Y=30.792187,Z=-63.161354),LeaveTangent=(X=0.000000,Y=30.792187,Z=-63.161354),InterpMode=CIM_CurveAutoClamped),(InVal=532.500000,OutVal=(X=12258.718750,Y=-2575.216797,Z=-321.511200),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000095),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000095),InterpMode=CIM_CurveAutoClamped),(InVal=537.500000,OutVal=(X=12258.718750,Y=-3360.990234,Z=-321.511383),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=542.500000,OutVal=(X=13420.500000,Y=-3360.990234,Z=-635.452148),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000198),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped),(InVal=545.000000,OutVal=(X=13420.500000,Y=-3675.608398,Z=-635.452393),ArriveTangent=(X=0.000000,Y=-149.812057,Z=-0.000198),LeaveTangent=(X=0.000000,Y=-149.812057,Z=-0.000198),InterpMode=CIM_CurveAutoClamped),(InVal=550.000000,OutVal=(X=13367.921875,Y=-4526.583984,Z=-960.521362),ArriveTangent=(X=-24.769768,Y=0.000000,Z=-58.708679),LeaveTangent=(X=-24.769768,Y=0.000000,Z=-58.708679),InterpMode=CIM_CurveAutoClamped),(InVal=555.000000,OutVal=(X=12338.906250,Y=-4526.583984,Z=-1222.539185),ArriveTangent=(X=-209.949997,Y=0.000000,Z=-43.327587),LeaveTangent=(X=-209.949997,Y=0.000000,Z=-43.327587),InterpMode=CIM_CurveAutoClamped),(InVal=560.000000,OutVal=(X=11268.421875,Y=-4655.900391,Z=-1393.797241),ArriveTangent=(X=-182.619537,Y=0.000000,Z=-0.000246),LeaveTangent=(X=-182.619537,Y=0.000000,Z=-0.000246),InterpMode=CIM_CurveAutoClamped),(InVal=565.000000,OutVal=(X=10512.710938,Y=-4303.801758,Z=-1393.797729),ArriveTangent=(X=-134.646881,Y=76.588577,Z=-0.000098),LeaveTangent=(X=-134.646881,Y=76.588577,Z=-0.000098),InterpMode=CIM_CurveAutoClamped),(InVal=570.000000,OutVal=(X=9921.953125,Y=-3890.014648,Z=-1393.798218),ArriveTangent=(X=-121.625778,Y=0.000000,Z=-0.000244),LeaveTangent=(X=-121.625778,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=575.000000,OutVal=(X=9296.453125,Y=-3890.014648,Z=-1413.057129),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=580.000000,OutVal=(X=9296.453125,Y=-3058.528320,Z=-1413.057617),ArriveTangent=(X=0.000000,Y=193.249603,Z=-0.000098),LeaveTangent=(X=0.000000,Y=193.249603,Z=-0.000098),InterpMode=CIM_CurveAutoClamped),(InVal=585.000000,OutVal=(X=9296.453125,Y=-1957.518555,Z=-1413.058105),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000202),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000202),InterpMode=CIM_CurveAutoClamped),(InVal=590.000000,OutVal=(X=7891.593750,Y=-1957.518555,Z=-1413.061035),ArriveTangent=(X=-241.632813,Y=0.000000,Z=-0.001465),LeaveTangent=(X=-241.632813,Y=0.000000,Z=-0.001465),InterpMode=CIM_CurveAutoClamped),(InVal=595.000000,OutVal=(X=6880.125000,Y=-1957.518555,Z=-1568.072754),ArriveTangent=(X=-207.193359,Y=0.000000,Z=-54.776993),LeaveTangent=(X=-207.193359,Y=0.000000,Z=-54.776993),InterpMode=CIM_CurveAutoClamped),(InVal=598.000000,OutVal=(X=6234.046875,Y=-1791.106445,Z=-1851.276978),ArriveTangent=(X=-261.475006,Y=0.000000,Z=-0.000946),LeaveTangent=(X=-261.475006,Y=0.000000,Z=-0.000946),InterpMode=CIM_CurveAutoClamped),(InVal=600.000000,OutVal=(X=5572.750000,Y=-1791.106445,Z=-1851.277832),ArriveTangent=(X=-318.145844,Y=0.000000,Z=-0.000999),LeaveTangent=(X=-318.145844,Y=0.000000,Z=-0.000999),InterpMode=CIM_CurveAutoClamped),(InVal=602.500000,OutVal=(X=4802.390625,Y=-1791.106445,Z=-2194.170410),ArriveTangent=(X=0.000000,Y=0.000000,Z=-103.587990),LeaveTangent=(X=0.000000,Y=0.000000,Z=-103.587990),InterpMode=CIM_CurveAutoClamped),(InVal=605.000000,OutVal=(X=4802.390625,Y=-2312.512695,Z=-2369.217773),ArriveTangent=(X=0.000000,Y=-197.831833,Z=-0.000980),LeaveTangent=(X=0.000000,Y=-197.831833,Z=-0.000980),InterpMode=CIM_CurveAutoClamped),(InVal=607.500000,OutVal=(X=4714.765625,Y=-2780.265625,Z=-2369.218750),ArriveTangent=(X=-30.753124,Y=-179.595901,Z=-0.000293),LeaveTangent=(X=-30.753124,Y=-179.595901,Z=-0.000293),InterpMode=CIM_CurveAutoClamped),(InVal=610.000000,OutVal=(X=4648.625000,Y=-3210.492188,Z=-2369.219238),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=2.285156,Z=2.460938),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.000000,Y=-1.933594,Z=-81.386719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-10.765893),LeaveTangent=(X=0.000000,Y=0.000000,Z=-10.765893),InterpMode=CIM_CurveAutoClamped),(InVal=13.000000,OutVal=(X=0.000000,Y=3.339844,Z=-102.656250),ArriveTangent=(X=0.000000,Y=0.140896,Z=-11.310842),LeaveTangent=(X=0.000000,Y=0.140896,Z=-11.310842),InterpMode=CIM_CurveAutoClamped),(InVal=16.000000,OutVal=(X=0.000000,Y=3.515625,Z=-151.875000),ArriveTangent=(X=0.000000,Y=0.114453,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.114453,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=0.000000,Y=4.921875,Z=-134.824219),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.310670),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.310670),InterpMode=CIM_CurveAutoClamped),(InVal=25.000000,OutVal=(X=0.000000,Y=4.218750,Z=-91.933594),ArriveTangent=(X=0.000000,Y=-0.341998,Z=11.403809),LeaveTangent=(X=0.000000,Y=-0.341998,Z=11.403809),InterpMode=CIM_CurveAutoClamped),(InVal=28.000000,OutVal=(X=0.000000,Y=0.175781,Z=-43.593750),ArriveTangent=(X=0.000000,Y=0.000000,Z=13.007813),LeaveTangent=(X=0.000000,Y=0.000000,Z=13.007813),InterpMode=CIM_CurveAutoClamped),(InVal=31.000000,OutVal=(X=0.000000,Y=5.625000,Z=-13.886719),ArriveTangent=(X=0.000000,Y=0.000000,Z=10.546875),LeaveTangent=(X=0.000000,Y=0.000000,Z=10.546875),InterpMode=CIM_CurveAutoClamped),(InVal=35.000000,OutVal=(X=0.000000,Y=-0.175781,Z=30.234375),InterpMode=CIM_CurveAutoClamped),(InVal=40.000000,OutVal=(X=0.000000,Y=2.636719,Z=-84.550781),ArriveTangent=(X=0.000000,Y=0.000000,Z=-20.390625),LeaveTangent=(X=0.000000,Y=0.000000,Z=-20.390625),InterpMode=CIM_CurveAutoClamped),(InVal=45.000000,OutVal=(X=0.000000,Y=-1.933594,Z=-173.671875),ArriveTangent=(X=0.000000,Y=0.000000,Z=-3.336672),LeaveTangent=(X=0.000000,Y=0.000000,Z=-3.336672),InterpMode=CIM_CurveAutoClamped),(InVal=48.000000,OutVal=(X=0.000000,Y=0.703125,Z=-178.769531),InterpMode=CIM_CurveAutoClamped),(InVal=51.000000,OutVal=(X=0.000000,Y=0.703125,Z=-178.769531),InterpMode=CIM_CurveAutoClamped),(InVal=55.000000,OutVal=(X=0.000000,Y=0.703125,Z=-223.769531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-10.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-10.000000),InterpMode=CIM_CurveAutoClamped),(InVal=60.000000,OutVal=(X=0.000000,Y=0.703125,Z=-268.769531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.875000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.875000),InterpMode=CIM_CurveAutoClamped),(InVal=63.000000,OutVal=(X=0.000000,Y=0.703125,Z=-358.769531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-18.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-18.000000),InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=0.000000,Y=0.703125,Z=-448.769531),ArriveTangent=(X=0.000000,Y=0.000000,Z=-15.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-15.000000),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=82.500000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=87.500000,OutVal=(X=0.000000,Y=0.703125,Z=-566.894531),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=98.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=103.000000,OutVal=(X=0.000000,Y=0.703125,Z=-628.769531),InterpMode=CIM_CurveAutoClamped),(InVal=106.000000,OutVal=(X=0.000000,Y=0.703125,Z=-628.769531),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=115.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=120.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=125.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=127.000000,OutVal=(X=0.000000,Y=0.703125,Z=-538.769531),InterpMode=CIM_CurveAutoClamped),(InVal=130.000000,OutVal=(X=0.000000,Y=0.703125,Z=-448.769531),ArriveTangent=(X=0.000000,Y=0.000000,Z=22.500000),LeaveTangent=(X=0.000000,Y=0.000000,Z=22.500000),InterpMode=CIM_CurveAutoClamped),(InVal=135.000000,OutVal=(X=0.000000,Y=0.703125,Z=-358.769531),InterpMode=CIM_CurveAutoClamped),(InVal=140.000000,OutVal=(X=0.000000,Y=0.703125,Z=-358.769531),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=-0.263672,Y=-10.546875,Z=-358.769531),ArriveTangent=(X=-0.056501,Y=-2.410714,Z=0.000000),LeaveTangent=(X=-0.056501,Y=-2.410714,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=147.000000,OutVal=(X=-0.395508,Y=-16.171875,Z=-336.247559),ArriveTangent=(X=0.000000,Y=0.000000,Z=11.905464),LeaveTangent=(X=0.000000,Y=0.000000,Z=11.905464),InterpMode=CIM_CurveAutoClamped),(InVal=150.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-246.335449),ArriveTangent=(X=0.000000,Y=0.000000,Z=24.529474),LeaveTangent=(X=0.000000,Y=0.000000,Z=24.529474),InterpMode=CIM_CurveAutoClamped),(InVal=152.500000,OutVal=(X=-0.065918,Y=0.703125,Z=-201.335449),ArriveTangent=(X=0.000000,Y=0.000000,Z=13.500000),LeaveTangent=(X=0.000000,Y=0.000000,Z=13.500000),InterpMode=CIM_CurveAutoClamped),(InVal=155.000000,OutVal=(X=-0.483398,Y=-16.171875,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=160.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=164.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-150.710449),ArriveTangent=(X=0.000000,Y=0.000000,Z=10.990287),LeaveTangent=(X=0.000000,Y=0.000000,Z=10.990287),InterpMode=CIM_CurveAutoClamped),(InVal=168.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=172.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=177.500000,OutVal=(X=-0.065918,Y=0.703125,Z=-55.085449),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.964286),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.964286),InterpMode=CIM_CurveAutoClamped),(InVal=182.500000,OutVal=(X=-0.065918,Y=0.703125,Z=-15.710449),InterpMode=CIM_CurveAutoClamped),(InVal=187.500000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=190.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=195.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=200.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=205.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=210.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=215.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-133.835449),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.250000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.250000),InterpMode=CIM_CurveAutoClamped),(InVal=218.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),InterpMode=CIM_CurveAutoClamped),(InVal=235.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-268.835449),InterpMode=CIM_CurveAutoClamped),(InVal=242.500000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),ArriveTangent=(X=0.000000,Y=0.000000,Z=12.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=12.000000),InterpMode=CIM_CurveAutoClamped),(InVal=250.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-88.835449),InterpMode=CIM_CurveAutoClamped),(InVal=260.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-268.835449),ArriveTangent=(X=0.000000,Y=0.000000,Z=-15.454695),LeaveTangent=(X=0.000000,Y=0.000000,Z=-15.454695),InterpMode=CIM_CurveAutoClamped),(InVal=265.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-308.210449),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.000000),InterpMode=CIM_CurveAutoClamped),(InVal=270.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-358.835449),InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-358.835449),InterpMode=CIM_CurveAutoClamped),(InVal=278.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-268.835449),InterpMode=CIM_CurveAutoClamped),(InVal=281.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-268.835449),InterpMode=CIM_CurveAutoClamped),(InVal=284.000000,OutVal=(X=-0.065918,Y=0.703125,Z=-178.835449),ArriveTangent=(X=0.000000,Y=0.000000,Z=30.010986),LeaveTangent=(X=0.000000,Y=0.000000,Z=30.010986),InterpMode=CIM_CurveAutoClamped),(InVal=287.000000,OutVal=(X=0.373535,Y=23.203125,Z=-88.769531),InterpMode=CIM_CurveAutoClamped),(InVal=291.500000,OutVal=(X=-0.175781,Y=0.703125,Z=-88.967285),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.117887),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.117887),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=0.153809,Y=23.203125,Z=-178.945313),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.109156),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.109156),InterpMode=CIM_CurveAutoClamped),(InVal=300.000000,OutVal=(X=-0.285645,Y=0.703125,Z=-179.143066),InterpMode=CIM_CurveAutoClamped),(InVal=302.500000,OutVal=(X=-0.285645,Y=0.703125,Z=-179.143066),InterpMode=CIM_CurveAutoClamped),(InVal=307.500000,OutVal=(X=-0.285645,Y=0.703125,Z=-179.143066),InterpMode=CIM_CurveAutoClamped),(InVal=310.000000,OutVal=(X=0.021973,Y=6.328125,Z=-134.296875),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.929688),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.929688),InterpMode=CIM_CurveAutoClamped),(InVal=312.500000,OutVal=(X=-0.219727,Y=0.703125,Z=-89.494629),ArriveTangent=(X=0.000000,Y=0.000000,Z=21.331055),LeaveTangent=(X=0.000000,Y=0.000000,Z=21.331055),InterpMode=CIM_CurveAutoClamped),(InVal=315.000000,OutVal=(X=0.153809,Y=11.359863,Z=-27.641602),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.573812),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.573812),InterpMode=CIM_CurveAutoClamped),(InVal=317.500000,OutVal=(X=0.043945,Y=0.109863,Z=0.461426),ArriveTangent=(X=-0.039551,Y=0.000000,Z=14.607422),LeaveTangent=(X=-0.039551,Y=0.000000,Z=14.607422),InterpMode=CIM_CurveAutoClamped),(InVal=320.000000,OutVal=(X=-0.043945,Y=11.359863,Z=45.395508),ArriveTangent=(X=-0.035156,Y=0.000000,Z=17.982422),LeaveTangent=(X=-0.035156,Y=0.000000,Z=17.982422),InterpMode=CIM_CurveAutoClamped),(InVal=322.500000,OutVal=(X=-0.131836,Y=0.109863,Z=90.373535),ArriveTangent=(X=-0.039551,Y=0.000000,Z=17.916504),LeaveTangent=(X=-0.039551,Y=0.000000,Z=17.916504),InterpMode=CIM_CurveAutoClamped),(InVal=325.000000,OutVal=(X=-0.241699,Y=11.293945,Z=134.978027),InterpMode=CIM_CurveAutoClamped),(InVal=327.500000,OutVal=(X=-0.241699,Y=0.043945,Z=89.978027),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.071428),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.071428),InterpMode=CIM_CurveAutoClamped),(InVal=332.000000,OutVal=(X=-0.241699,Y=0.043945,Z=22.478027),InterpMode=CIM_CurveAutoClamped),(InVal=337.000000,OutVal=(X=-0.241699,Y=0.043945,Z=89.978027),InterpMode=CIM_CurveAutoClamped),(InVal=342.000000,OutVal=(X=-0.241699,Y=0.043945,Z=11.228027),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.783784),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.783784),InterpMode=CIM_CurveAutoClamped),(InVal=347.000000,OutVal=(X=-0.241699,Y=0.043945,Z=-0.021973),InterpMode=CIM_CurveAutoClamped),(InVal=355.000000,OutVal=(X=-0.241699,Y=0.043945,Z=-0.021973),InterpMode=CIM_CurveAutoClamped),(InVal=357.500000,OutVal=(X=-0.241699,Y=0.043945,Z=-0.021973),InterpMode=CIM_CurveAutoClamped),(InVal=365.000000,OutVal=(X=-0.241699,Y=-1.010742,Z=-83.518066),ArriveTangent=(X=0.000000,Y=-0.376408,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.376408,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=370.000000,OutVal=(X=-0.241699,Y=-25.268555,Z=89.978027),ArriveTangent=(X=0.000000,Y=-1.025105,Z=7.961601),LeaveTangent=(X=0.000000,Y=-1.025105,Z=7.961601),InterpMode=CIM_CurveAutoClamped),(InVal=375.000000,OutVal=(X=-0.241699,Y=-27.553711,Z=107.907715),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.291128),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.291128),InterpMode=CIM_CurveAutoClamped),(InVal=377.500000,OutVal=(X=-0.241699,Y=-23.159180,Z=168.024902),ArriveTangent=(X=0.000000,Y=0.000000,Z=22.451660),LeaveTangent=(X=0.000000,Y=0.000000,Z=22.451660),InterpMode=CIM_CurveAutoClamped),(InVal=380.000000,OutVal=(X=-1.933594,Y=-23.796387,Z=220.166016),ArriveTangent=(X=0.000000,Y=-0.540660,Z=20.377441),LeaveTangent=(X=0.000000,Y=-0.540660,Z=20.377441),InterpMode=CIM_CurveAutoClamped),(InVal=382.500000,OutVal=(X=-1.933594,Y=-28.190918,Z=269.912109),ArriveTangent=(X=0.000000,Y=0.000000,Z=24.363281),LeaveTangent=(X=0.000000,Y=0.000000,Z=24.363281),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=-1.933594,Y=-20.632324,Z=341.982422),ArriveTangent=(X=0.000000,Y=5.138203,Z=0.000000),LeaveTangent=(X=0.000000,Y=5.138203,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=387.500000,OutVal=(X=0.001211,Y=0.109863,Z=270.087891),InterpMode=CIM_CurveAutoClamped),(InVal=390.000000,OutVal=(X=0.000000,Y=-7.097168,Z=270.439453),ArriveTangent=(X=0.000000,Y=-3.339844,Z=0.000000),LeaveTangent=(X=0.000000,Y=-3.339844,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=392.500000,OutVal=(X=0.000000,Y=-16.589355,Z=270.439453),InterpMode=CIM_CurveAutoClamped),(InVal=397.500000,OutVal=(X=0.000000,Y=-11.667480,Z=350.244141),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.385525),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.385525),InterpMode=CIM_CurveAutoClamped),(InVal=400.000000,OutVal=(X=0.000000,Y=-19.929199,Z=359.736328),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=0.000000,Y=-14.831543,Z=270.615234),ArriveTangent=(X=0.000000,Y=1.941609,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.941609,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=409.000000,OutVal=(X=0.000000,Y=0.109863,Z=360.087891),InterpMode=CIM_CurveAutoClamped),(InVal=413.000000,OutVal=(X=0.000000,Y=0.109863,Z=360.087891),InterpMode=CIM_CurveAutoClamped),(InVal=417.000000,OutVal=(X=0.000000,Y=0.109863,Z=360.087891),InterpMode=CIM_CurveAutoClamped),(InVal=422.000000,OutVal=(X=0.000000,Y=0.109863,Z=450.087891),InterpMode=CIM_CurveAutoClamped),(InVal=425.000000,OutVal=(X=0.000000,Y=11.359863,Z=450.087891),InterpMode=CIM_CurveAutoClamped),(InVal=427.500000,OutVal=(X=0.000000,Y=11.359863,Z=450.087891),InterpMode=CIM_CurveAutoClamped),(InVal=430.000000,OutVal=(X=-0.043945,Y=0.109863,Z=360.087891),ArriveTangent=(X=0.000000,Y=0.000000,Z=-24.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-24.000000),InterpMode=CIM_CurveAutoClamped),(InVal=435.000000,OutVal=(X=-0.043945,Y=0.109863,Z=270.087891),InterpMode=CIM_CurveAutoClamped),(InVal=440.000000,OutVal=(X=-0.043945,Y=0.109863,Z=270.087891),InterpMode=CIM_CurveAutoClamped),(InVal=445.000000,OutVal=(X=-0.043945,Y=0.109863,Z=180.087891),InterpMode=CIM_CurveAutoClamped),(InVal=450.000000,OutVal=(X=-0.087891,Y=16.984863,Z=180.087891),ArriveTangent=(X=-0.008789,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.008789,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=455.000000,OutVal=(X=-0.131836,Y=5.734863,Z=180.087891),ArriveTangent=(X=-0.006592,Y=-1.687500,Z=0.000000),LeaveTangent=(X=-0.006592,Y=-1.687500,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=460.000000,OutVal=(X=-0.153809,Y=0.109863,Z=90.087891),ArriveTangent=(X=0.000000,Y=0.000000,Z=-18.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-18.000000),InterpMode=CIM_CurveAutoClamped),(InVal=465.000000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=467.500000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=472.500000,OutVal=(X=-0.153809,Y=0.109863,Z=-89.912109),InterpMode=CIM_CurveAutoClamped),(InVal=475.000000,OutVal=(X=-0.153809,Y=0.109863,Z=-89.912109),InterpMode=CIM_CurveAutoClamped),(InVal=477.500000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=482.500000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=485.000000,OutVal=(X=-0.153809,Y=0.109863,Z=-89.912109),InterpMode=CIM_CurveAutoClamped),(InVal=490.000000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=492.500000,OutVal=(X=-0.153809,Y=0.109863,Z=-89.912109),InterpMode=CIM_CurveAutoClamped),(InVal=495.000000,OutVal=(X=-0.153809,Y=0.109863,Z=0.087891),InterpMode=CIM_CurveAutoClamped),(InVal=497.500000,OutVal=(X=-0.197754,Y=22.609863,Z=0.087891),ArriveTangent=(X=-0.017578,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.017578,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=502.500000,OutVal=(X=-0.285645,Y=0.109863,Z=0.065918),ArriveTangent=(X=-0.020508,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.020508,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=505.000000,OutVal=(X=-0.351563,Y=22.609863,Z=90.065918),ArriveTangent=(X=-0.029007,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.029007,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=510.000000,OutVal=(X=-0.505371,Y=0.109863,Z=90.065918),InterpMode=CIM_CurveAutoClamped),(InVal=512.500000,OutVal=(X=-0.505371,Y=0.109863,Z=0.065918),InterpMode=CIM_CurveAutoClamped),(InVal=517.500000,OutVal=(X=-0.505371,Y=0.109863,Z=90.065918),InterpMode=CIM_CurveAutoClamped),(InVal=522.500000,OutVal=(X=-0.637207,Y=-22.390137,Z=0.065918),ArriveTangent=(X=-0.026367,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.026367,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=527.500000,OutVal=(X=-0.769043,Y=-22.390137,Z=180.065918),ArriveTangent=(X=0.000000,Y=0.000000,Z=27.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=27.000000),InterpMode=CIM_CurveAutoClamped),(InVal=532.500000,OutVal=(X=-0.769043,Y=0.109863,Z=270.065918),InterpMode=CIM_CurveAutoClamped),(InVal=537.500000,OutVal=(X=-0.769043,Y=0.109863,Z=180.065918),InterpMode=CIM_CurveAutoClamped),(InVal=542.500000,OutVal=(X=-0.878906,Y=-16.765137,Z=270.043945),ArriveTangent=(X=-0.032227,Y=-2.813063,Z=0.000000),LeaveTangent=(X=-0.032227,Y=-2.813063,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=545.000000,OutVal=(X=-1.010742,Y=-22.390137,Z=270.043945),InterpMode=CIM_CurveAutoClamped),(InVal=550.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),InterpMode=CIM_CurveAutoClamped),(InVal=555.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),InterpMode=CIM_CurveAutoClamped),(InVal=560.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),InterpMode=CIM_CurveAutoClamped),(InVal=565.000000,OutVal=(X=-1.010742,Y=0.109863,Z=146.293945),InterpMode=CIM_CurveAutoClamped),(InVal=570.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),InterpMode=CIM_CurveAutoClamped),(InVal=575.000000,OutVal=(X=-1.010742,Y=0.109863,Z=90.043945),InterpMode=CIM_CurveAutoClamped),(InVal=580.000000,OutVal=(X=-1.010742,Y=0.109863,Z=90.043945),InterpMode=CIM_CurveAutoClamped),(InVal=585.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.434611),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.434611),InterpMode=CIM_CurveAutoClamped),(InVal=590.000000,OutVal=(X=-1.010742,Y=-13.249512,Z=180.922852),ArriveTangent=(X=0.000000,Y=-2.408203,Z=0.000000),LeaveTangent=(X=0.000000,Y=-2.408203,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=595.000000,OutVal=(X=-1.010742,Y=-23.972168,Z=180.219727),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.089386),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.089386),InterpMode=CIM_CurveAutoClamped),(InVal=598.000000,OutVal=(X=-1.010742,Y=0.109863,Z=180.043945),InterpMode=CIM_CurveAutoClamped),(InVal=600.000000,OutVal=(X=-1.010742,Y=-20.632324,Z=181.625977),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.805246),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.805246),InterpMode=CIM_CurveAutoClamped),(InVal=602.500000,OutVal=(X=-1.010742,Y=-14.831543,Z=270.571289),ArriveTangent=(X=0.000000,Y=3.855614,Z=0.000000),LeaveTangent=(X=0.000000,Y=3.855614,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=605.000000,OutVal=(X=-1.010742,Y=0.109863,Z=270.043945),InterpMode=CIM_CurveAutoClamped),(InVal=607.500000,OutVal=(X=-1.010742,Y=0.109863,Z=270.043945),InterpMode=CIM_CurveAutoClamped),(InVal=610.000000,OutVal=(X=-1.010742,Y=0.109863,Z=270.043945),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000),(Time=10.000000),(Time=13.000000),(Time=16.000000),(Time=20.000000),(Time=25.000000),(Time=28.000000),(Time=31.000000),(Time=35.000000),(Time=40.000000),(Time=45.000000),(Time=48.000000),(Time=51.000000),(Time=55.000000),(Time=60.000000),(Time=63.000000),(Time=70.000000),(Time=75.000000),(Time=82.500000),(Time=87.500000),(Time=95.000000),(Time=98.000000),(Time=103.000000),(Time=106.000000),(Time=110.000000),(Time=115.000000),(Time=120.000000),(Time=125.000000),(Time=127.000000),(Time=130.000000),(Time=135.000000),(Time=140.000000),(Time=143.000000),(Time=147.000000),(Time=150.000000),(Time=152.500000),(Time=155.000000),(Time=160.000000),(Time=164.000000),(Time=168.000000),(Time=172.000000),(Time=177.500000),(Time=182.500000),(Time=187.500000),(Time=190.000000),(Time=195.000000),(Time=200.000000),(Time=205.000000),(Time=210.000000),(Time=215.000000),(Time=218.000000),(Time=225.000000),(Time=230.000000),(Time=235.000000),(Time=242.500000),(Time=250.000000),(Time=255.000000),(Time=260.000000),(Time=265.000000),(Time=270.000000),(Time=275.000000),(Time=278.000000),(Time=281.000000),(Time=284.000000),(Time=287.000000),(Time=291.500000),(Time=295.000000),(Time=300.000000),(Time=302.500000),(Time=307.500000),(Time=310.000000),(Time=312.500000),(Time=315.000000),(Time=317.500000),(Time=320.000000),(Time=322.500000),(Time=325.000000),(Time=327.500000),(Time=332.000000),(Time=337.000000),(Time=342.000000),(Time=347.000000),(Time=355.000000),(Time=357.500000),(Time=365.000000),(Time=370.000000),(Time=375.000000),(Time=377.500000),(Time=380.000000),(Time=382.500000),(Time=385.000000),(Time=387.500000),(Time=390.000000),(Time=392.500000),(Time=397.500000),(Time=400.000000),(Time=405.000000),(Time=409.000000),(Time=413.000000),(Time=417.000000),(Time=422.000000),(Time=425.000000),(Time=427.500000),(Time=430.000000),(Time=435.000000),(Time=440.000000),(Time=445.000000),(Time=450.000000),(Time=455.000000),(Time=460.000000),(Time=465.000000),(Time=467.500000),(Time=472.500000),(Time=475.000000),(Time=477.500000),(Time=482.500000),(Time=485.000000),(Time=490.000000),(Time=492.500000),(Time=495.000000),(Time=497.500000),(Time=502.500000),(Time=505.000000),(Time=510.000000),(Time=512.500000),(Time=517.500000),(Time=522.500000),(Time=527.500000),(Time=532.500000),(Time=537.500000),(Time=542.500000),(Time=545.000000),(Time=550.000000),(Time=555.000000),(Time=560.000000),(Time=565.000000),(Time=570.000000),(Time=575.000000),(Time=580.000000),(Time=585.000000),(Time=590.000000),(Time=595.000000),(Time=598.000000),(Time=600.000000),(Time=602.500000),(Time=605.000000),(Time=607.500000),(Time=610.000000)))
-         bShowRotationOnCurveEd=True
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_0"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0.InterpTrackFloatProp_0'
-      GroupName="NewCameraGroup"
-      GroupColor=(B=51,G=0,R=229,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Tabs(0)=(ViewStartInput=184.512375,ViewEndInput=483.208618,ViewStartOutput=-2.164307,ViewEndOutput=0.604248)
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=610.000000
    InterpGroups(0)=InterpGroupDirector'KF-SANITARIUM.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroupDirector_0'

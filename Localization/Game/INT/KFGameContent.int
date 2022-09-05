@@ -678,7 +678,7 @@ ItemDescription="•Fire mode shoots exploding icicle projectiles.\n•Alt-fire 
 [KFWeap_Rifle_HRGIncision]
 ItemName="HRG Incision"
 ItemCategory="Sniper Rifle"
-ItemDescription="•Fire mode shoots high velocity electrical rounds.\n•Alt-fire shoots healing darts to heal team members.\n•Using the sight lets you lock on to players and vulnerable spots on Zeds."
+ItemDescription="•Fire mode shoots high velocity electrical rounds.\n•Alt-fire shoots healing darts to heal team members."
 
 [KFWeap_SMG_G18]
 ItemName="Riot Shield & Glock 18"

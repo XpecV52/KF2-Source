@@ -1,10 +1,10 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 7243447225524538472 / 11/19/2019 2:20:54 PM
+Manifest ID / date     : 1715315091761192961 / 12/5/2019 2:46:35 PM
 Total number of files  : 4588
 Total number of chunks : 4653
-Total bytes on disk    : 95408811
-Total bytes compressed : 27472928
+Total bytes on disk    : 95419226
+Total bytes compressed : 27481136
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
@@ -12,12 +12,12 @@ Total bytes compressed : 27472928
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
         546816      1 8A2B0597A4CC9BED598D6BB7EB771F113849AFB3     0 Binaries\SDKFrontend.exe
          75264      1 1B891EE290FAFF7D6B51E41CDACEDE5D166CF2DF     0 Binaries\UnrealControls.dll
-       1592832      2 95462B75AC9D48DF90889872624E4FF8D061FDCB     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 E6585115AA3435BA33F4917C0EC06E06AFA938A2     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      64900096     62 83838C86A2FEAD27725E46544DCEC47497D0E49A     0 Binaries\Win64\KFEditor.exe
+      64910336     62 6F4071473924E3E37DAEE846FBB930B445120EDC     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -2768,7 +2768,7 @@ Total bytes compressed : 27472928
           1927      1 C7BBC022E17D164BDE38E942C6D6734F881E8BD2     0 Development\Src\KFGame\Classes\KFFirstPersonCamera.uc
            547      1 2960730A5E244A1D098CB91122239614C278629C     0 Development\Src\KFGame\Classes\KFFixupCosmeticReferencesCommandlet.uc
            547      1 9E7E5CDB70CF2E3D8A7DA69E6F2892E3ED9ABEFB     0 Development\Src\KFGame\Classes\KFFixupCosmeticUITexturesCommandlet.uc
-         13598      1 33E3A83D07CE5D83531659218192DFE1321EC6B2     0 Development\Src\KFGame\Classes\KFFlashlightAttachment.uc
+         13773      1 5FF2D793B70DE7A74A2A7D43752AE93174DE0A7D     0 Development\Src\KFGame\Classes\KFFlashlightAttachment.uc
           1313      1 AE95A5D61A67F606A92F067A338F9EC74D049161     0 Development\Src\KFGame\Classes\KFForcedReachSpec.uc
          10879      1 6B90DF324789A145F67E57AD375097DE4F07AC42     0 Development\Src\KFGame\Classes\KFFracturedMeshActor.uc
           4443      1 8C2F11BCBD80195A389506F469D49DC08762DC7B     0 Development\Src\KFGame\Classes\KFFracturedMeshGlass.uc

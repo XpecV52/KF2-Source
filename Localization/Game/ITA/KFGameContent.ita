@@ -678,7 +678,7 @@ ItemDescription="•Lancia proiettili di ghiaccio esplosivi.\n•Il fuoco altern
 [KFWeap_Rifle_HRGIncision]
 ItemName="HRG incisivo"
 ItemCategory="Fucile di precisione"
-ItemDescription="•Spara colpi elettrici ad alta velocità.\n•Il fuoco alternativo lancia dardi curativi per la tua squadra.\n•Il mirino ti permette di agganciare i giocatori e i punti vulnerabili degli Zed."
+ItemDescription="•Spara colpi elettrici ad alta velocità.\n•Il fuoco alternativo lancia dardi curativi per la tua squadra."
 
 [KFWeap_SMG_G18]
 ItemName="Scudo antisommossa e Glock 18"
