@@ -53,7 +53,7 @@ defaultproperties
     Components(0)=CollisionCylinder
     Components(1)=AkComponent'Default__KFProj_HighExplosive_M79.AmbientAkSoundComponent'
     Physics=EPhysics.PHYS_Falling
-    LifeSpan=1000
+    LifeSpan=25
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

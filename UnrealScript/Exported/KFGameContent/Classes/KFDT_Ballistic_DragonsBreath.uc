@@ -66,7 +66,6 @@ defaultproperties
    WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
    EffectGroup=FXG_IncendiaryRound
    StumblePower=21.000000
-   LegStumblePower=21.000000
    GunHitPower=12.000000
    BurnPower=20.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
@@ -75,7 +74,7 @@ defaultproperties
    BloodScale=0.600000
    KDamageImpulse=900.000000
    KDeathVel=350.000000
-   KDeathUpKick=-500.000000
+   KDeathUpKick=500.000000
    Name="Default__KFDT_Ballistic_DragonsBreath"
    ObjectArchetype=KFDT_Ballistic_Shotgun'kfgamecontent.Default__KFDT_Ballistic_Shotgun'
 }

@@ -485,7 +485,7 @@ simulated event bool GetIsHeadShotComboActive()
  */
 simulated function float GetPenetrationModifier( byte Level, class<KFDamageType> DamageType, optional bool bForce  )
 {
-    // Only buff damage types that are associated with support
+    // Only buff damage types that are associated with Gunslinger
     if( (!IsPenetrationActive() && !bForce) || (DamageType == none || !IsDamageTypeOnPerk( Damagetype )) )
     {
         return 0;
@@ -844,7 +844,7 @@ defaultproperties
    PerkSkills(1)=(Name="QuickSwitch",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_QuickSwitch")
    PerkSkills(2)=(Name="RhythmMethod",StartingValue=0.100000,MaxValue=0.100000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_RackEmUp")
    PerkSkills(3)=(Name="BoneBreaker",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_BoneBreaker")
-   PerkSkills(4)=(Name="Penetration",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LineEmUp")
+   PerkSkills(4)=(Name="Penetration",StartingValue=10.000000,MaxValue=10.000000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LineEmUp")
    PerkSkills(5)=(Name="SpeedReload",IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_SpeedReload")
    PerkSkills(6)=(Name="Skullcracker",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Skullcracker")
    PerkSkills(7)=(Name="KnockEmDown",StartingValue=4.100000,MaxValue=4.100000,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_KnockEmDown")

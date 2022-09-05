@@ -492,32 +492,38 @@ DefaultProperties
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
 								SoloChanceMultiplier=1.0)}
+	DangerEvadeSettings(7)={(ClassName="KFDT_Explosive_HRGIncendiaryRifle",
+								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
+								EvadeChances=(0.0, 0.5, 0.9, 1.0),
+								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
+								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
+								SoloChanceMultiplier=1.0)}
 
 
 	//shooting fire
-	DangerEvadeSettings(7)={(ClassName="KFProj_CaulkNBurn_GroundFire",
+	DangerEvadeSettings(8)={(ClassName="KFProj_CaulkNBurn_GroundFire",
 								Cooldowns=(3.0, 0.3, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 1.0, 1.0, 1.0),
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.00))},
 								SoloChanceMultiplier=1.0)}
-	DangerEvadeSettings(8)={(ClassName="KFProj_FlameThrower_GroundFire",
+	DangerEvadeSettings(9)={(ClassName="KFProj_FlameThrower_GroundFire",
 								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 1.0, 1.0, 1.0),
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.00))},
 								SoloChanceMultiplier=1.0)}
-	DangerEvadeSettings(9)={(ClassName="KFWeap_Flame_CaulkBurn",
+	DangerEvadeSettings(10)={(ClassName="KFWeap_Flame_CaulkBurn",
 								Cooldowns=(3.0, 0.3, 0.1,  0.1), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.5, 1.0, 1.0),
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.00))},
 								SoloChanceMultiplier=1.0)}
-	DangerEvadeSettings(10)={(ClassName="KFWeap_Flame_Flamethrower",
+	DangerEvadeSettings(11)={(ClassName="KFWeap_Flame_Flamethrower",
 								Cooldowns=(3.0, 1.0, 0.1,  0.1), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.5, 1.0, 1.0),
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.00))},
 								SoloChanceMultiplier=1.0)}
-	DangerEvadeSettings(11)={(ClassName="KFWeap_Beam_Microwave",
+	DangerEvadeSettings(12)={(ClassName="KFWeap_Beam_Microwave",
 							    Cooldowns=(3.0, 3.0, 2.5,  1.5), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.3, 0.5, 0.8),
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.00))},
@@ -525,25 +531,25 @@ DefaultProperties
 
 
     //Aimed weapons it dodges //sharpshooter
-    DangerEvadeSettings(12)={(ClassName="KFWeap_Bow_Crossbow",
+    DangerEvadeSettings(13)={(ClassName="KFWeap_Bow_Crossbow",
                                 Cooldowns=(2.3, 2.3, 2.3, 1.3), // Normal, Hard, Suicidal, HoE
                                 EvadeChances=(0.08, 0.1, 0.2, 0.35),
                                 ForcedEvadeChances={((FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
                                 ReactionDelayRanges={((X=0.0, Y=0.15), (X=0.0, Y=0.15), (X=0.0, Y=0.15), (X=0.0, Y=0.15))},
                                 SoloChanceMultiplier=1.0)}  
-    DangerEvadeSettings(13)={(ClassName="KFWeap_Rifle_M14EBR",
+    DangerEvadeSettings(14)={(ClassName="KFWeap_Rifle_M14EBR",
                                 Cooldowns=(2.3, 2.3, 2.3, 1.3), // Normal, Hard, Suicidal, HoE
                                 EvadeChances=(0.08, 0.1, 0.2, 0.35),
                                 ForcedEvadeChances={((FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
                                 ReactionDelayRanges={((X=0.0, Y=0.15), (X=0.0, Y=0.15), (X=0.0, Y=0.15), (X=0.0, Y=0.15))},
                                 SoloChanceMultiplier=1.0)}
-    DangerEvadeSettings(14)={(ClassName="KFWeap_Rifle_Winchester1894",
+    DangerEvadeSettings(15)={(ClassName="KFWeap_Rifle_Winchester1894",
                                 Cooldowns=(2.3, 2.3, 2.3, 1.3), // Normal, Hard, Suicidal, HoE
                                 EvadeChances=(0.08, 0.1, 0.2, 0.35),
                                 ForcedEvadeChances={((FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
                                 ReactionDelayRanges={((X=0.0, Y=0.15), (X=0.0, Y=0.15), (X=0.0, Y=0.15), (X=0.0, Y=0.15))},
                                 SoloChanceMultiplier=1.0)}
-    DangerEvadeSettings(15)={(ClassName="KFWeap_Rifle_RailGun",
+    DangerEvadeSettings(16)={(ClassName="KFWeap_Rifle_RailGun",
                                 Cooldowns=(2.3, 2.3, 2.3, 1.3), // Normal, Hard, Suicidal, HoE
                                 EvadeChances=(0.08, 0.1, 0.2, 0.35),
                                 ForcedEvadeChances={((FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
@@ -551,37 +557,43 @@ DefaultProperties
                                 SoloChanceMultiplier=1.0)}
 
 	//Grenades
-	DangerEvadeSettings(16)={(ClassName="KFProj_FragGrenade",
+	DangerEvadeSettings(17)={(ClassName="KFProj_FragGrenade",
 								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.5, 0.9, 1.0),
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
 								SoloChanceMultiplier=1.0)}	
-	DangerEvadeSettings(17)={(ClassName="KFProj_MolotovGrenade",
+	DangerEvadeSettings(18)={(ClassName="KFProj_MolotovGrenade",
 								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.5, 0.9, 1.0),
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
 								SoloChanceMultiplier=1.0)}	
-	DangerEvadeSettings(18)={(ClassName="KFProj_DynamiteGrenade",
+	DangerEvadeSettings(19)={(ClassName="KFProj_DynamiteGrenade",
 								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.5, 0.9, 1.0),
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
 								SoloChanceMultiplier=1.0)}	
-	DangerEvadeSettings(19)={(ClassName="KFProj_NailBombGrenade",
+	DangerEvadeSettings(20)={(ClassName="KFProj_NailBombGrenade",
 								Cooldowns=(3.0, 1.0, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.5, 0.9, 1.0),
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
 								SoloChanceMultiplier=1.0)}	
-	DangerEvadeSettings(20)={(ClassName="KFProj_HEGrenade",
+	DangerEvadeSettings(21)={(ClassName="KFProj_HEGrenade",
 								Cooldowns=(3.0, 1.0, 0.1, 0.0), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.5, 0.9, 1.0),
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
 								SoloChanceMultiplier=1.0)}
-	DangerEvadeSettings(21)={(ClassName="KFProj_HighExplosive_M16M203",
+	DangerEvadeSettings(22)={(ClassName="KFProj_HighExplosive_M16M203",
+								Cooldowns=(3.0, 1.0, 0.1, 0.0), // Normal, Hard, Suicidal, HoE
+								EvadeChances=(0.0, 0.5, 0.9, 1.0),
+								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
+								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
+								SoloChanceMultiplier=1.0)}
+	DangerEvadeSettings(23)={(ClassName="KFProj_Grenade_HRGIncendiaryRifle",
 								Cooldowns=(3.0, 1.0, 0.1, 0.0), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.5, 0.9, 1.0),
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
@@ -589,10 +601,17 @@ DefaultProperties
 								SoloChanceMultiplier=1.0)}
 
 	// Flashlight
-	DangerEvadeSettings(22)={(ClassName="KFFlashlightAttachment",
+	DangerEvadeSettings(24)={(ClassName="KFFlashlightAttachment",
 								Cooldowns=(3.0, 1.0, 0.75, 0.5), // Normal, Hard, Suicidal, HoE
 								EvadeChances=(0.0, 0.5, 0.8, 0.9),
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.5), (X=0.0, Y=0.5), (X=0.0, Y=0.5))},
+								SoloChanceMultiplier=1.0)}
+
+	// Ground Fire
+	DangerEvadeSettings(25)={(ClassName="KFProj_Flame_HRGIncendiaryRifle",
+								Cooldowns=(3.0, 0.3, 0.1,  0.0), // Normal, Hard, Suicidal, HoE
+								EvadeChances=(0.0, 1.0, 1.0, 1.0),
+								ReactionDelayRanges={((X=0.0, Y=0.2), (X=0.0, Y=0.0), (X=0.0, Y=0.15), (X=0.0, Y=0.00))},
 								SoloChanceMultiplier=1.0)}
 }

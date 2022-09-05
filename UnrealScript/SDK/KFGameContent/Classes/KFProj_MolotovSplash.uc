@@ -90,14 +90,42 @@ simulated protected function PrepareExplosionActor(GameExplosionActor GEA)
 	}
 }
 
+/** 
+* Use alternative explosion effects when Ground Fire Perk is active
+*/
+simulated function PostBeginPlay()
+{
+	local KFPlayerReplicationInfo InstigatorPRI;
+
+	if( AltExploEffects != none && Instigator != none )
+	{
+		InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+		if( InstigatorPRI != none )
+		{
+			bAltExploEffects = InstigatorPRI.bSplashActive;
+		}
+	}
+	else
+	{
+		bAltExploEffects = false;
+	}
+
+	super.PostBeginPlay();
+}
+
 /**
  * Force the fire not to burn the instigator, since setting it in the default props is not working for some reason - Ramm
+ * Use the alternative FX for the Ground Fire Perk Skill - Tulio
  */
 simulated protected function PrepareExplosionTemplate()
 {
 	ExplosionTemplate.bIgnoreInstigator=true;
-
     super.PrepareExplosionTemplate();
+	
+	if( bAltExploEffects )
+	{
+		ExplosionTemplate.ExplosionEffects = AltExploEffects;
+	}
 }
 
 defaultproperties
@@ -154,10 +182,10 @@ defaultproperties
 		// Don't burn the guy that tossed it, it's just too much damage with multiple fires, its almost guaranteed to kill the guy that tossed it
         bIgnoreInstigator=true
 
-		MomentumTransferScale=0
+		MomentumTransferScale=1
 
 		// Damage Effects
-		MyDamageType=class'KFDT_Fire_MolotovGrenade'
+		MyDamageType=class'KFDT_Fire_Ground_MolotovGrenade'
 		KnockDownStrength=0
 		FractureMeshRadius=0
 		ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_GroundFire'
@@ -180,4 +208,7 @@ defaultproperties
 	MaxTimeFlarotov=10
 
 	AssociatedPerkClass=class'KFPerk_Firebug'
+
+	// Ground Fire Perk Skill Alternative FX
+    AltExploEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Splash_Impacts'
 }

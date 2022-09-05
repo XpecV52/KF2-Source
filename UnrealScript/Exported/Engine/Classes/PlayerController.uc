@@ -9654,6 +9654,7 @@ defaultproperties
    bIsPlayer=True
    bCanDoSpecial=True
    Components(0)=CollisionCylinder
+   CollisionType=COLLIDE_CustomDefault
    NetPriority=3.000000
    CollisionComponent=CollisionCylinder
    Name="Default__PlayerController"

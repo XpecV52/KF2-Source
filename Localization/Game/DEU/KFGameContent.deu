@@ -33,11 +33,11 @@ InventoryDescriptionKey="Jede Vorteil-Ladung beginnt mit einer einzigartigen Pri
 InventoryContTitleKey="Kenne dein Inventar"
 InventoryContDescriptionKey="Jede Vorteil-Ladung beginnt mit einer einzigartigen Primärwaffe, einer 9-mm-Hilfspistole, einem Spezialistenmesser und Granaten. Halte <font color="#caab05">%x%</font> und benutze die Richtungstasten, um eine Waffe auszuwählen."
 AlternateFireKey="Alternatives Feuer"
-AlternateFireDescription="Die meisten Primärwaffen haben einen alternativen Feuer-Modus. Drücke <font color="#caab05">%x%</font> um deinen aktuellen Feuer-Modus umzuschalten. Ein Icon in deiner Ansicht wird den aktuell gewählten Feuer-Modus anzeigen."
+AlternateFireDescription="Die meisten Primärwaffen haben einen alternativen Feuer-Modus. Drücke <font color="#caab05">%x%</font>, um deinen aktuellen Feuer-Modus umzuschalten. Ein Icon in deiner Ansicht wird den aktuell gewählten Feuer-Modus anzeigen."
 FlashLightBatteryTitleKey="Benutzen einer Taschenlampe"
 FlashLightBatteryDescriptionKey="Dort draußen kann es ziemlich düster werden. Drücke <font color="#caab05">%x%</font> um deine <font color="#caab05">TASCHENLAMPE</font> ein- und auszuschalten Die Batterie deiner Taschenlampe wird sich langsam leeren. Wenn sie leer ist, schaltet sie sich aus und beginnt automatisch sich wieder aufzuladen."
 GrenadeTitleKey="Benutzen von Granaten"
-GrenadeDescriptionKey="Granaten erlauben dir, mit dicht gepackten Gruppen von Zeds fertigzuwerden. Vorteile haben verschiedene Typen von Granaten in ihren <font color="#caab05">WAFFEN-LADUNGEN</font>, die allen Zeds Schaden zufügen, aber zusätzliche Effekte besitzen können. Drücke <font color="#caab05">%x%</font> um eine Granate zu werfen.“ "
+GrenadeDescriptionKey="Granaten erlauben dir, mit dicht gepackten Gruppen von Zeds fertigzuwerden. Vorteile haben verschiedene Typen von Granaten in ihren <font color="#caab05">WAFFEN-LADUNGEN</font>, die alle Zeds Schaden zufügen, aber zusätzliche Effekte besitzen können. Drücke <font color="#caab05">%x%</font> um eine Granate zu werfen."
 
 ;Wave 1 end
 TraderTimeTitleKey="Zeit für die Händlerin"
@@ -116,48 +116,48 @@ ItemDescription="•Kampfrüstung beschützt dich vor diversen Arten von Schaden
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 Stange Dynamit"
-ItemCategory =" Sprengstoffe"
-ItemDescription="•Einfach ein kleines Stück Dynamit mit Lunte.\n•Es kann auch dich verletzen, also sei vorsichtig damit! "
+ItemCategory ="Sprengstoffe"
+ItemDescription="•Einfach ein kleines Stück Dynamit mit Lunte.\n•Es kann auch dich verletzen, also sei vorsichtig damit!"
 
 [KFProj_MedicGrenade]
 ItemName="Sanitäter-Granate"
-ItemCategory =" Sprengstoffe"
-ItemDescription="•Setzt ein Gas frei, das Zeds vergiftet und Menschen heilt.\n\n•Stell dich in die blaue Gaswolke um geheilt zu werden.\nWir zitieren unsere Wissenschaftler: ‚Der von diesen Granaten freigesetzte Wirkstoff belebt den Homo Sapiens wieder und schläfert den Homo Zedicus ein.‘ Alles klar?“ "
+ItemCategory ="Sprengstoffe"
+ItemDescription="•Setzt ein Gas frei, das Zeds vergiftet und Menschen heilt.\n\n•Stell dich in die blaue Gaswolke um geheilt zu werden.\nWir zitieren unsere Wissenschaftler: „Der von diesen Granaten freigesetzte Wirkstoff belebt den Homo Sapiens wieder und schläfert den Homo Zedicus ein.“ Alles klar?"
 
 [KFProj_MolotovGrenade]
 ItemName="Molotowcocktail"
 ItemCategory="Sprengstoffe"
-ItemDescription="•Ganz einfach, eine Flammengranate, die Zeds verbrennt.\n\nVon den Finnen abwertend während des Winterkrieges von 1939-40 nach W. M. Molotow, dem sowjetischen Außenminister unter Stalin, benannt … Oh, du wolltest keine Geschichtslektion?“ "
+ItemDescription="•Ganz einfach, eine Flammengranate, die Zeds verbrennt.\n\nVon den Finnen abwertend während des Winterkrieges von 1939-40 nach W. M. Molotow, dem sowjetischen Außenminister unter Stalin, benannt … Oh, du wolltest keine Geschichtslektion?"
 
 [KFProj_EMPGrenade]
 ItemName="EMP-Granate"
 ItemCategory="Sprengstoffe"
-ItemDescription="•Erzeugt einen elektrischen Impuls, der Zeds Schaden zufügt und eventuell kurz betäubt.\n\nWenn du es genauer magst – bei der Explosion wird für Nanosekunden ein elektromagnetischer Impuls erzeugt, der elektrische Systeme in naher Umgebung stört. Insbesondere die in den Zeds. Wie praktisch.“ "
+ItemDescription="•Erzeugt einen elektrischen Impuls, der Zeds Schaden zufügt und eventuell kurz betäubt.\n\nWenn du es genauer magst – bei der Explosion wird für Nanosekunden ein elektromagnetischer Impuls erzeugt, der elektrische Systeme in naher Umgebung stört. Insbesondere die in den Zeds. Wie praktisch."
 
 [KFProj_HEGrenade]
 ItemName="HE-Granate"
 ItemCategory="Sprengstoffe"
-ItemDescription="•Eine sehr einfache, hochexplosive Granate. Verletzt Zeds und Menschen gleichermaßen.\n\nEinfacher geht es wirklich nicht. HE – hochexplosiv – macht BUMM und sprengt Sachen in die Luft. Müssen wir dir das wirklich erklären?“ "
+ItemDescription="•Eine sehr einfache, hochexplosive Granate. Verletzt Zeds und Menschen gleichermaßen.\n\nEinfacher geht es wirklich nicht. HE – hochexplosiv – macht BOOM und sprengt Sachen in die Luft. Müssen wir dir das wirklich erklären?"
 
 [KFProj_FragGrenade]
 ItemName="Splittergranate"
 ItemCategory="Sprengstoffe"
-ItemDescription="•Die klassische Splittergranate: schleudert fiese kleine Metallteile herum und tut allen weh.\n\nIch bin mir sicher, ihr habt alle vor dem Ausbruch genug Videospiele gespielt, also wisst ihr, was eine Splittergranate ist. Was, dem ist nicht so? Wer genau soll euch das denn glauben?“ "
+ItemDescription="•Die klassische Splittergranate: schleudert fiese kleine Metallteile herum und tut allen weh.\n\nIch bin mir sicher, ihr habt alle vor dem Ausbruch genug Videospiele gespielt, also wisst ihr, was eine Splittergranate ist. Was, dem ist nicht so? Wer genau soll euch das denn glauben?"
 
 [KFProj_NailBombGrenade]
 ItemName="Nagelbombe"
-ItemCategory =" Sprengstoffe"
+ItemCategory ="Sprengstoffe"
 ItemDescription="•Ein einfacher Kanister voll mit alten Nägeln und einer kleinen Sprengladung in der Mitte.\n\nNicht die angenehmste oder subtilste Art und Weise mit Zeds fertig zu werden, aber es gibt nichts an Zeds, das angenehm oder subtil wäre, nicht wahr?"
 
 [KFProj_FreezeGrenade]
 ItemName="Gefriergranate"
-ItemCategory =" Sprengstoffe"
+ItemCategory ="Sprengstoffe"
 ItemDescription="•Ein technologisch fortgeschrittener Kanister mit unter Druck stehendem flüssigem Stickstoff.\n\nAusreichender Kontakt mit seinem Inhalt friert Zeds eine Weile an Ort und Stelle eine. Das Resultat kann ziemlich zerschmetternd sein."
 
 [KFProj_FlashBangGrenade]
 ItemName="Blendgranate"
-ItemCategory =" Sprengstoffe"
-ItemDescription="•Grell und laut zugleich – du solltest nicht direkt hinschauen. Hinhören solltest du auch nicht.\n•Obwohl sie technisch gesehen nicht direkt tödlich sind, können dich Blendgranaten trotzdem verletzen, also sei vorsichtig! "
+ItemCategory ="Sprengstoffe"
+ItemDescription="•Grell und laut zugleich – du solltest nicht direkt hinschauen. Hinhören solltest du auch nicht.\n•Obwohl sie technisch gesehen nicht direkt tödlich sind, können dich Blendgranaten trotzdem verletzen, also sei vorsichtig!"
 
 [KFWeap_Healer_Syringe]
 ItemName="Medizinische Spritze"
@@ -439,13 +439,13 @@ ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-F
 ItemName="Rhino"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Feuermodus schießt Splittergeschosse.\n•Splittergeschosse explodieren bei Aufprall und feuern 3 Schrapnellstücke.\n•Geht durch Zeds durch wie Butter!"
-SharedUnlockSource="Rhino-Revolver-Paket"
+SharedUnlockSource="Rhino-Revolver-Waffen-Paket, Bittere-Behandlung-Waffen-Paket"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="Zwei Rhinos"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Feuermodus schießt Splittergeschosse.\n•Splittergeschosse explodieren bei Aufprall und feuern 3 Schrapnelstücke.\n•Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n•Geht doppelt so sehr durch Zeds durch wie Butter!"
-SharedUnlockSource="Rhino-Revolver-Paket"
+SharedUnlockSource="Rhino-Revolver-Waffen-Paket, Bittere-Behandlung-Waffen-Paket"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858-Revolver"
@@ -486,7 +486,7 @@ ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Das klass
 ItemName="Mosin-Nagant"
 ItemCategory="Gewehr"
 ItemDescription="•Der Feuer-Modus gibt nur einzelne Schüsse ab.\n•Alt – blocken/parieren.\nDie M91/30 spezialisiert sich auf Stechen, Schießen und Stechschießen."
-SharedUnlockSource="Mosin-Nagant-Paket"
+SharedUnlockSource="Mosin-Nagant-Waffen-Paket, Weihnachtsschrecken-Waffen-Paket"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Centerfire"
@@ -532,7 +532,7 @@ ItemDescription="•Hier besteht die Wahl zwischen vollautomatischem und halbaut
 [KFWeap_SMG_Kriss]
 ItemName="Kriss-MP"
 ItemCategory="Maschinenpistole"
-ItemDescription="•Hier besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer wechselt den Feuer-Modus.\n•Der letzte Schrei in kompakter Munitionsverteilung. Ein wahrlicher Gartenschlauch der Vernichtung."
+ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\n•Der letzte Schrei in kompakter Munitionsverteilung. Ein wahrlicher Gartenschlauch der Vernichtung."
 
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"
@@ -586,7 +586,7 @@ ItemDescription="•Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-F
 ItemName="Ionenschwert"
 ItemCategory="Nahkampf"
 ItemDescription="•Primär – schneller Schlitzangriff, der brennt; Primär halten für Komboangriff.\n•Sekundär – schwerer Schlitzangriff, der brennt.\n•Nachladen – Führe bei 100% Aufladung eine Spezialattacke aus.\n•Alt – blocken/parieren.\n•Bestens für Barbecues geeignet."
-SharedUnlockSource="Ionenschwert"
+SharedUnlockSource="Ionenschwert-Waffen-Paket, Bittere-Behandlung-Waffen-Paket"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Doomstick"
@@ -621,7 +621,7 @@ ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautom
 [KFWeap_Edged_AbominationAxe]
 ItemName="Kampfaxt"
 ItemCategory="Nahkampf"
-ItemDescription="•Primär – schneller Schlitzangriff, Primär halten für Komboangriff.\n•Sekundär – schwerer, langsamer Angriff, der im Tod verschwindet.\n•Alt – blocken/parieren\n• Altmodisch, haut aber immer noch rein wie ein Laster. Ein großer, scharfer Laster."
+ItemDescription="•Primär – schneller Schlitzangriff; Primär halten für Komboangriff.\n•Sekundär – schwerer, langsamer Angriff, der im Tod verschwindet.\n•Alt – blocken/parieren\n•Altmodisch, haut aber immer noch rein wie ein Laster. Ein großer, scharfer Laster."
 SharedUnlockSource="Kampfaxt"
 
 [KFWeap_Edged_FireAxe]
@@ -684,7 +684,19 @@ ItemDescription="•Der Feuer-Modus gibt elektrische Hochgeschwindigkeitskugeln 
 ItemName="Taktischer Aufstands-Schild & Glock 18"
 ItemCategory="Maschinenpistole"
 ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\n•Visiereinrichtung bringt den Schild hoch, um frontalen Schaden von den meisten Angriffen zu reduzieren."
-SharedUnlockSource="„Taktischer Aufstands-Schild & Glock 18“-Paket"
+SharedUnlockSource="Aufstands-Schild-&-G18-Waffen-Paket, Weihnachtsschrecken-Waffen-Paket"
+
+[KFWeap_AssaultRifle_HRGIncendiaryRifle]
+ItemName="HRG-Brandgewehr"
+ItemCategory="Sturmgewehr"
+ItemDescription="•Ein ausschließlich vollautomatischer Feuer-Modus.\n•Alt-Feuer zum Abfeuern von Brandgranaten.\n•Für alle diejenigen, die sich nicht zwischen Feuer und mehr Feuer entscheiden können."
+SecondaryAmmo="M203-Brandgranate"
+
+[KFWeap_Bow_CompoundBow]
+ItemName="Compoundbogen"
+ItemCategory="Bow"
+ItemDescription="•Ausschließlich im Einzelfeuer-Modus.\n•Reichweite und Schaden erhöhen sich, je länger du hältst.\n•Alt-Feuer wechselt zwischen scharfen und Kryo-Pfeilen.\n•Wenn man als Amor etwas mehr Schmackes braucht."
+SharedUnlockSource="Compoundbogen-Waffen-Paket"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -29,6 +29,8 @@ KF-SantasWorkshop="Joue dans l'atelier du Père Noël"
 KF-Spillway="Exutoire hebdomadaire"
 KF-Steamfortress="Joue sur Forteresse à vapeur"
 KF-AshwoodAsylum="Joue dans l'Asile d'Ashwood."
+KF-Sanitarium="Joue sur le Sanatorium"
+KF-Biolapse="Joue sur Biolapse"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

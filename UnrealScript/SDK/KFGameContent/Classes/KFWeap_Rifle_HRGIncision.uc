@@ -212,6 +212,5 @@ defaultproperties
     GreenIconColor=(R=1, G=255, B=1)
 
 	// Weapon Upgrade stat boosts
-	WeaponUpgrades.Empty()
 	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.2f), (Stat=EWUS_Damage1, Scale=1.2f), (Stat=EWUS_Weight, Add=1), (Stat=EWUS_HealFullRecharge, Scale=0.9f)))
 }

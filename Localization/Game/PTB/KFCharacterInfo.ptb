@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="Noel Fodão"
-Description="Primeiro, Krampus veio pelos elfos e pela rena. Depois, Krampus veio pela sua casa. Agora, o Noel não vai mais aceitar isso. Agora, ele tem uma metralhadora. Ho ho ho!\n\nSão Nicolau começou a zelar pelas crianças do mundo centenas de anos atrás, pensando que ele passaria a eternidade levando felicidade e presentes de Natal para as boas crianças do mundo.  Mas aí Krampus chegou.  Desde o ano do Natal de Krampus, o Papai Noel se dedica a vingar seus funcionários, amigos e parentes mortos. As bochechas coradas e a pança grande cheia de doces viraram uma cara feia em uma camada de músculos sobre músculos. Não haverá noite feliz neste final de ano; acabou a gentileza e a alegria de natal do Papai Noel. Agora, ele só tem pura raiva, vingança e uma vasta quantidade de munição para comemorar."
+Description="Primeiro, Krampus veio pelos elfos e pela rena. Depois, Krampus veio pela sua casa. Agora, o Noel não vai mais aceitar isso. Agora, ele tem uma metralhadora. Ho ho ho!\n\nSão Nicolau começou a zelar pelas crianças do mundo centenas de anos atrás, pensando que ele passaria a eternidade levando felicidade e presentes de Natal para as boas crianças do mundo. Mas aí Krampus chegou. Desde o ano do Natal de Krampus, o Papai Noel se dedica a vingar seus funcionários, amigos e parentes mortos. As bochechas coradas e a pança grande cheia de doces viraram uma cara feia em uma camada de músculos sobre músculos. Não haverá noite feliz neste final de ano; acabou a gentileza e a alegria de natal do Papai Noel. Agora, ele só tem pura raiva, vingança e uma vasta quantidade de munição para comemorar."
 BodyMesh0="Traje de Noel"
 BodyMesh1="Galinha Comando"
 HeadMesh0="Cabeça de Noel"
@@ -5606,7 +5606,72 @@ AttachmentSkin1="Magma"
 AttachmentSkin2="Preciosas"
 
 [Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
-Attachment="Mochila Coágulo de Visco de Natal"
+Attachment="Mochila Coágulo de Visco"
 AttachmentSkin0="Vermelhas"
 AttachmentSkin1="Verdes"
 AttachmentSkin2="Preciosas"
+
+[Cosmetic_Cyber2020HalfMask_ARCH]
+Attachment="Máscara Facial Ciberfesta"
+AttachmentSkin0="Em branco"
+AttachmentSkin1="Mordida"
+AttachmentSkin2="Scully"
+AttachmentSkin3="Caveira"
+AttachmentSkin4="Dentes"
+AttachmentSkin5="Preciosas"
+
+[Cosmetic_Cyber2020FullMask_ARCH]
+Attachment="Máscara de Cabeça Ciberfesta"
+AttachmentSkin0="Em branco"
+AttachmentSkin1="Borboleta"
+AttachmentSkin2="Muerto"
+AttachmentSkin3="Rorschach"
+AttachmentSkin4="Berro"
+AttachmentSkin5="Scully"
+AttachmentSkin6="Sinistro"
+AttachmentSkin7="Caveira"
+AttachmentSkin8="Redemoinho"
+AttachmentSkin9="Dentes"
+AttachmentSkin10="Preciosas"
+
+[Cosmetic_Cyber2020Goggles_ARCH]
+Attachment="Óculos de Pontas Ciberfesta"
+AttachmentSkin0="Turquesa"
+AttachmentSkin1="Rosa"
+AttachmentSkin2="Roxas"
+AttachmentSkin3="Vermelhas"
+AttachmentSkin4="Branca"
+AttachmentSkin5="Preciosas"
+
+[Cosmetic_Cyber2020Unicorn_ARCH]
+Attachment="Chapéu de Unicórnio Ciberfesta"
+AttachmentSkin0="Ás"
+AttachmentSkin1="Daltônico"
+AttachmentSkin2="Azuis"
+AttachmentSkin3="Rosa"
+AttachmentSkin4="Luz refratada"
+AttachmentSkin5="Romano"
+AttachmentSkin6="Preciosas"
+
+[Cosmetic_Cyber2020Horns_ARCH]
+Attachment="Chifres Ciberfesta"
+AttachmentSkin0="Pretas"
+AttachmentSkin1="Cinza"
+AttachmentSkin2="Vermelhas"
+AttachmentSkin3="Roxas"
+AttachmentSkin4="Turquesa"
+AttachmentSkin5="Preto ondulado"
+AttachmentSkin6="Cinza ondulado"
+AttachmentSkin7="Vermelho ondulado"
+AttachmentSkin8="Roxo ondulado"
+AttachmentSkin9="Turquesa ondulado"
+AttachmentSkin10="Preciosas"
+
+[Cosmetic_Cyber2020Skullpack_ARCH]
+Attachment="Mochila de Caveira Ciberfesta"
+AttachmentSkin0="Pretas"
+AttachmentSkin1="Turquesa"
+AttachmentSkin2="Rosa"
+AttachmentSkin3="Roxas"
+AttachmentSkin4="Branca"
+AttachmentSkin5="Preciosas"

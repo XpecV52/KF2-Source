@@ -68,6 +68,8 @@ defaultproperties
    bWarnAIWhenAiming=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
+   FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletArrow'
+   FireModeIconPaths(1)=()
    InventorySize=6
    MagazineCapacity(0)=1
    PenetrationPower(0)=4.000000

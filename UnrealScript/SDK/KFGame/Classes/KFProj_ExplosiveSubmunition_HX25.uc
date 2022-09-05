@@ -102,7 +102,7 @@ defaultproperties
 	GravityScale=0.5
     MomentumTransfer=50000.0
     ArmDistSquared=0 // Arm instantly
-	LifeSpan = +1000.0f
+	LifeSpan=25.0f
 
 	bWarnAIWhenFired=true
 

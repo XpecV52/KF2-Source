@@ -113,4 +113,12 @@ DefaultProperties
 								ForcedEvadeChances={((FL=0.0, FR=0.0), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5), (FL=0.5, FR=0.5))},
 								ReactionDelayRanges={((X=0.0, Y=0.5), (X=0.0, Y=0.3), (X=0.0, Y=0.15), (X=0.0, Y=0.05))},
 								SoloChanceMultiplier=1.0)}
+
+	// Ground Fire
+	DangerEvadeSettings(16)={(ClassName="KFProj_Flame_HRGIncendiaryRifle",
+								Cooldowns=(3.0, 1.0, 1.0,  1.0), // Normal, Hard, Suicidal, HoE 
+								EvadeChances=(0.2, 0.2, 0.3, 0.4),
+								ReactionDelayRanges={((X=0.3, Y=0.5), (X=0.3, Y=0.5), (X=0.3, Y=0.5), (X=0.3, Y=0.5))},
+								SoloChanceMultiplier=1.0)}
+
 }

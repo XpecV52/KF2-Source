@@ -29,6 +29,8 @@ KF-SantasWorkshop="Gra w Warsztat Mikołaja"
 KF-Spillway="rozgrywa: Przelew"
 KF-Steamfortress="rozgrywa: Forteca Pary"
 KF-AshwoodAsylum="Gra na mapie Zakład Ashwood"
+KF-Sanitarium="Gra na mapie Sanatorium"
+KF-Biolapse="Gra na mapie Biorobota"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -174,7 +176,7 @@ UnableToPlayTogetherMessage="Nie można utworzyć gry Zagrajmy Razem. Spróbuj p
 CheckPlusTitle="Sprawdzanie stanu PlayStation®Plus"
 CheckPlusMessage="Poczekaj na sprawdzenie stanu PlayStation®Plus."
 ConnectionLostTitle="Utracono połączenie"
-ConnectionLostMessage="Utracono połączenie z internetem.  Nastąpił powrót do menu głównego."
+ConnectionLostMessage="Utracono połączenie z internetem. Nastąpił powrót do menu głównego."
 ConnectionLostMessageLive="Utracono połączenie z usługą Xbox Live. Nastąpił powrót do menu głównego."
 PSNSignoutMessage="Wypisano z PlayStation™Network. Nastąpił powrót do menu głównego."
 InviteMessage="Zapraszam na rozwałkę zetów!"

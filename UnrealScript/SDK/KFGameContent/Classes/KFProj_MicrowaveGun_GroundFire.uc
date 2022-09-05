@@ -36,7 +36,7 @@ defaultproperties
 		FracturePartVel=0
 	    ExplosionEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Impacts'
 		ExplosionSound=none
-		MomentumTransferScale=0
+		MomentumTransferScale=1
 		bAllowPerMaterialFX=true
 
 		// Camera Shake

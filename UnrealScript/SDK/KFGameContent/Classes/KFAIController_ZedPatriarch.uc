@@ -1993,4 +1993,7 @@ DefaultProperties
     DangerEvadeSettings(3)={(ClassName="KFWeap_Rifle_RailGun",
                                 Cooldowns=(0.0, 0.0, 0.3, 0.2), // Normal, Hard, Suicidal, HoE
                                 BlockChances=(0.0, 0.0, 1.0, 1.0))}	
+    DangerEvadeSettings(4)={(ClassName="KFWeap_Bow_CompoundBow",
+                                Cooldowns=(0.0, 0.0, 0.3, 0.2), // Normal, Hard, Suicidal, HoE
+                                BlockChances=(0.0, 0.0, 1.0, 1.0))}
 }

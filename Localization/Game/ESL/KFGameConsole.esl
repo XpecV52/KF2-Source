@@ -29,6 +29,8 @@ KF-SantasWorkshop="Jugando en el taller de Papá Noel"
 KF-Spillway="Jugando Desagüe"
 KF-Steamfortress="Jugando en Steam Fortress"
 KF-AshwoodAsylum="Jugando en Manicomio de Ashwood"
+KF-Sanitarium="Jugando Manicomio"
+KF-Biolapse="Jugando Biolapso"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

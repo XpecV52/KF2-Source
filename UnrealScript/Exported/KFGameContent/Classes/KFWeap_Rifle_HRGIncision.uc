@@ -187,7 +187,6 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Rifle_HRGIncision:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
-   WeaponUpgrades(0)=(Stats=)
    WeaponUpgrades(1)=(Stats=((Scale=1.200000),(Scale=1.200000),,(Stat=EWUS_HealFullRecharge,Scale=0.900000)))
    MedicCompClass=Class'kfgamecontent.KFMedicWeaponComponent_HRGIncision'
    TargetingCompClass=Class'kfgamecontent.KFTargetingWeaponComponent_HRGIncision'

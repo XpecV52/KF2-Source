@@ -3762,10 +3762,10 @@ EmoteName="Coin Trick"
 EmoteName="Coin Trick+"
 
 [MagicFoster]
-EmoteName="MagicFoster"
+EmoteName="Magic Foster"
 
 [MagicFoster_Deluxe]
-EmoteName="MagicFoster+"
+EmoteName="Magic Foster+"
 
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="Firefighter Helmet"
@@ -5606,7 +5606,72 @@ AttachmentSkin1="Magma"
 AttachmentSkin2="Precious"
 
 [Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
-Attachment="Christmas Mistletoe Clot Backpack"
+Attachment="Mistletoe Clot Backpack"
 AttachmentSkin0="Red"
 AttachmentSkin1="Green"
 AttachmentSkin2="Precious"
+
+[Cosmetic_Cyber2020HalfMask_ARCH]
+Attachment="Cyber Rave Facemask"
+AttachmentSkin0="Blank"
+AttachmentSkin1="Chomp"
+AttachmentSkin2="Scully"
+AttachmentSkin3="Skull"
+AttachmentSkin4="Teeth"
+AttachmentSkin5="Precious"
+
+[Cosmetic_Cyber2020FullMask_ARCH]
+Attachment="Cyber Rave Headmask"
+AttachmentSkin0="Blank"
+AttachmentSkin1="Butterfly"
+AttachmentSkin2="Muerto"
+AttachmentSkin3="R-Test"
+AttachmentSkin4="Scream"
+AttachmentSkin5="Scully"
+AttachmentSkin6="Sinister"
+AttachmentSkin7="Skull"
+AttachmentSkin8="Swirl"
+AttachmentSkin9="Teeth"
+AttachmentSkin10="Precious"
+
+[Cosmetic_Cyber2020Goggles_ARCH]
+Attachment="Cyber Rave Spiked Glasses"
+AttachmentSkin0="Teal"
+AttachmentSkin1="Pink"
+AttachmentSkin2="Purple"
+AttachmentSkin3="Red"
+AttachmentSkin4="White"
+AttachmentSkin5="Precious"
+
+[Cosmetic_Cyber2020Unicorn_ARCH]
+Attachment="Cyber Rave Unicorn Hat"
+AttachmentSkin0="Ace"
+AttachmentSkin1="Blind"
+AttachmentSkin2="Blue"
+AttachmentSkin3="Pink"
+AttachmentSkin4="Refracted Light"
+AttachmentSkin5="Roman"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Cyber2020Horns_ARCH]
+Attachment="Cyber Rave Horns"
+AttachmentSkin0="Black"
+AttachmentSkin1="Grey"
+AttachmentSkin2="Red"
+AttachmentSkin3="Purple"
+AttachmentSkin4="Teal"
+AttachmentSkin5="Wavy Black"
+AttachmentSkin6="Wavy Grey"
+AttachmentSkin7="Wavy Red"
+AttachmentSkin8="Wavy Purple"
+AttachmentSkin9="Wavy Teal"
+AttachmentSkin10="Precious"
+
+[Cosmetic_Cyber2020Skullpack_ARCH]
+Attachment="Cyber Rave Skullpack"
+AttachmentSkin0="Black"
+AttachmentSkin1="Teal"
+AttachmentSkin2="Pink"
+AttachmentSkin3="Purple"
+AttachmentSkin4="White"
+AttachmentSkin5="Precious"

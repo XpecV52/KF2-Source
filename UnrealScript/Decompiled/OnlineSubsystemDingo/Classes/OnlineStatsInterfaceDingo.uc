@@ -116,6 +116,7 @@ const STATID_ACHIEVE_SteamFortressCollectibles = 4050;
 const STATID_ACHIEVE_AsylumCollectibles = 4051;
 const STATID_ACHIEVE_SanitariumCollectibles = 4052;
 const STATID_ACHIEVE_DefeatMatriarch = 4053;
+const STATID_ACHIEVE_BiolapseCollectibles = 4054;
 
 enum RealTimeActivityConnectionStatus
 {

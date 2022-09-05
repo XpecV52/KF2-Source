@@ -63,7 +63,7 @@ defaultproperties
    Components(0)=CollisionCylinder
    Components(1)=AmbientAkSoundComponent
    Physics=PHYS_Falling
-   LifeSpan=1000.000000
+   LifeSpan=25.000000
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_HighExplosive_M16M203"
    ObjectArchetype=KFProj_BallisticExplosive'KFGame.Default__KFProj_BallisticExplosive'

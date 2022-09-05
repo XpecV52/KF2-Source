@@ -115,7 +115,7 @@ StartOfflineGameString="離線開始遊戲"
 StartOfflineGameDescriptionString="離線開始遊戲將解散你的隊伍。\n是否繼續？"
 
 ProceedToTutorialString="繼續訓練？"
-ProceedToTutorialDescriptionString="在受控的环境中进行基础学习。  完成時可以使所選的0級職業升級為1級職業。"
+ProceedToTutorialDescriptionString="在受控的环境中进行基础学习。 完成時可以使所選的0級職業升級為1級職業。"
 
 NotAvailableInFreeTrialString="功能不對免費版開放"
 NetworkCheckFreeTrialFailedString="網路錯誤：免費活動狀態無法確認檢查網絡連接狀態"
@@ -1416,7 +1416,7 @@ KickVoteNoSpectatorsString="觀戰者無法提出踢除投票"
 KickedFromServerString="你已退出本伺服器"
 BannedFromServerString="你已退出本伺服器。你現在無法再加入"
 ServerNoLongerAvailableString="無法再加入該伺服器"
-SkipTraderTimeString="跳過商人激活在遊戲選單中選擇「跳過商人」進行投票。  需要所有玩家的同意。"
+SkipTraderTimeString="跳過商人激活在遊戲選單中選擇「跳過商人」進行投票。 需要所有玩家的同意。"
 SkipTraderSuccessString="跳過商人投票成功！"
 
 [KFLocalMessage_Game]
@@ -1760,7 +1760,7 @@ Spartan="ZED 時間 - 斯巴達"
 SpartanDescription="Zed 時間發動時，你可在使用職業武器的同時移動。"
 
 Rage="ZED 時間 - 狂戰士之怒"
-RageDescription="只要 Zed 時間啟動或更新，治療 25% 血量並使附近的 Zed 逃跑。"
+RageDescription="只要 Zed 時間啟動或更新，治療 50% 血量並使附近的 Zed 逃跑。"
 
 [KFPerk_Commando]
 PerkName="突擊隊"
@@ -1937,7 +1937,7 @@ Fuse="烤肉"
 FuseDescription="職業武器的燒傷效果延長 150%，隨時間增加傷害。"
 
 GroundFire="地面火力"
-GroundFireDescription="地面火力造成兩倍傷害，並降低 Zed 移動速度 30%。燃燒彈不適用。"
+GroundFireDescription="地面火力造成三倍傷害，並降低 Zed 移動速度 30%。"
 
 ZedShrapnel="Zed 霰彈"
 ZedShrapnelDescription="以火焰殺害的 Zed 有 30% 可能性會爆炸，對附近其他 Zed 造成傷害並使其暈眩。"
@@ -1990,7 +1990,7 @@ SpeedReload="快速裝填"
 SpeedReloadDescription="職業武器裝填速度增加"
 
 Penetration="排排站"
-PenetrationDescription="以職業武器射擊穿透 Zed 時，穿透後擊中其他 Zed 也不會減輕傷害。"
+PenetrationDescription="以職業武器射擊穿透 Zed 時，穿透後擊中其他 Zed 也不會減輕傷害，並提升穿透力。"
 
 Skullcracker="頭骨粉碎者"
 SkullcrackerDescription="以職業武器將 Zed 爆頭，會使 Zed 速度減少 30%"
@@ -2033,7 +2033,7 @@ Stun="驚悚彈道"
 StunDescription="職業武器暈眩效果增加 100%"
 
 RhythmMethod="連擊王"
-RhythmMethodDescription="連續以職業武器爆頭時，每次可增加 10% 傷害，最多增加到 50%。  "
+RhythmMethodDescription="連續以職業武器爆頭時，每次可增加 10% 傷害，最多增加到 50%。 "
 
 TacticalReload="戰略裝填"
 TacticalReloadDescription="職業武器裝填速度增加"
@@ -2094,7 +2094,7 @@ ConcussionRounds="腦震盪回合"
 ConcussionRoundsDescription="職業武器踉蹌力量增加 150%"
 
 Perforate="ZED 時間 - 貫穿射手"
-PerforateDescription="Zed 時間發動時，你的職業武器會貫穿任何擊中的目標。"
+PerforateDescription="Zed 時間發動時，以職業武器射擊穿透 Zed 時，穿透後擊中其他 Zed 也不會減輕傷害，並提升穿透力。"
 
 Barrage="ZED 時間 - 彈幕"
 BarrageDescription="Zed 時間發動時，你的職業武器即時射擊。"
@@ -2190,7 +2190,7 @@ Madman="ZED 時間 - 狂人"
 MadmanDescription="Zed 時間發動時，你的所有武器射速變為 3 倍。"
 
 IncapMaster="ZED 時間 - 鎖定"
-IncapMasterDescription="Zed 時間發動時，所有武器限制行動的功能都增加 200%。"
+IncapMasterDescription="Zed 時間發動時，武器的擊倒、踉蹌和暈眩率提升至最大值。"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2569,7 +2569,7 @@ KFWeap_MKB="漢斯的萬聖節武器"
 Source0="騎士制度宣傳影片"
 
 ;============================================
-; SpecialEvent  Localization (Base class)
+; SpecialEvent Localization (Base class)
 ;============================================
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
@@ -2682,7 +2682,7 @@ ChanceDropDescriptionStrings[1]="金色優待票券"
 CurrentSpecialEventString="內含特有道具的限時活動"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="無盡黑海",DescriptionString="在療養院以生存模式困難或更高難度擊敗任意頭目")
-SpecialEventObjectiveInfoList[1]=(TitleString="有些誇張的想象",DescriptionString="利用觸手鞭打陷阱於療養院擊殺 20 Zed")
+SpecialEventObjectiveInfoList[1]=(TitleString="過度想像",DescriptionString="利用觸手鞭打陷阱於療養院擊殺 20 Zed")
 SpecialEventObjectiveInfoList[2]=(TitleString="可怕的矛盾",DescriptionString="利用抽吸陷阱於療養院擊殺 20 Zed")
 SpecialEventObjectiveInfoList[3]=(TitleString="母性本能",DescriptionString="於任意地圖或遊戲模式擊殺 Matriarch 10 次")
 SpecialEventObjectiveInfoList[4]=(TitleString="解決家庭事務",DescriptionString="在目標困難或更高難度下完成生化實驗室")
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | 獵人 | 動態"
 
 ChanceDropDescriptionStrings[0]="坎普斯票券"
 ChanceDropDescriptionStrings[1]="坎普斯金色票券"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="內含特有道具的限時活動"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="實驗失敗",DescriptionString="在任意地圖擊殺 1500 個 Zed")
+SpecialEventObjectiveInfoList[1]=(TitleString="每週事故",DescriptionString="完成每週生化事故區任務")
+SpecialEventObjectiveInfoList[2]=(TitleString="混合器失常",DescriptionString="在生化事故區利用血液混合器擊殺 20 個 Zed")
+SpecialEventObjectiveInfoList[3]=(TitleString="這是陷阱！",DescriptionString="在生化事故區利用機關門擊殺 20 個 Zed")
+SpecialEventObjectiveInfoList[4]=(TitleString="危機再現",DescriptionString="在生化事故區以生存模式困難或更高難度擊敗任意頭目")
+
+AllCompleteRewardDescriptionString="AA12 動態飾品雙倍同捆包"
+
+ChanceDropDescriptionStrings[0]="賽博龐克票券"
+ChanceDropDescriptionStrings[1]="賽博龐克黃金票券"
 
 ;============================================
 ; Daily Localization
@@ -2708,7 +2722,7 @@ KnifeString="刀"
 FriendlyName="目前暴動：頭顱粉碎者"
 DescriptionStrings[0]="最佳的傷害位置就是頭部傷害。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="這場暴動中的Zed突變得嚴重，要永久消滅他們只能瞄準頭部攻擊。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[0]="這場暴動中的Zed突變得嚴重，要永久消滅他們只能瞄準頭部攻擊。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2718,7 +2732,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：微型恐攻"
 DescriptionStrings[0]="就算是小型恐攻也算是威脅之一。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="在這場暴動中射擊Zed群將會使他們縮水，更難擊中目標。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[0]="在這場暴動中射擊Zed群將會使他們縮水，更難擊中目標。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2728,7 +2742,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：絞碎者魔王"
 DescriptionStrings[0]="滿滿的絞碎者，打好打滿。沒有別的選擇。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="絞碎者大會在城裡召開！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[0]="絞碎者大會在城裡召開！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2748,7 +2762,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：Zed時間 "
 DescriptionStrings[0]="全世界只剩下Zed時間。"
 DescriptionStrings[1]="長度：短（4 波攻擊）"
-ModifierDescriptions[0]="有想過要浪費時間嗎？在這個暴動中可不會讓你浪費任何時間！任何時候只要靠近Zed就會變成Zed時間。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[0]="有想過要浪費時間嗎？在這個暴動中可不會讓你浪費任何時間！任何時候只要靠近Zed就會變成Zed時間。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2757,7 +2771,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：砰砰砰"
 DescriptionStrings[0]="壓力過大的Zed；可能會爆炸。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="難道是因為他們吃的東西？廢氣？管它是什麼體，反正在這場暴動中Zed死掉的時候會爆炸。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[0]="難道是因為他們吃的東西？廢氣？管它是什麼體，反正在這場暴動中Zed死掉的時候會爆炸。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2766,7 +2780,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：健美先生"
 DescriptionStrings[0]="越壯越難打。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="在這場暴動中，當Zed攻擊玩家或受到某些Zed能力影響的時候，血量、體型跟臂展都會增加。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[0]="在這場暴動中，當Zed攻擊玩家或受到某些Zed能力影響的時候，血量、體型跟臂展都會增加。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2776,7 +2790,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：Zed大頭泡泡"
 DescriptionStrings[0]="……脖子應該很痛。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="這一批殭屍不知道吃錯什麼藥，他們的頭變得比平常還要大－－－－－－好幾倍！大得不得了！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。 "
+ModifierDescriptions[0]="這一批殭屍不知道吃錯什麼藥，他們的頭變得比平常還要大－－－－－－好幾倍！大得不得了！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3283,6 +3297,9 @@ DisplayName="灰木瘋人院"
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="療養院"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="生化事故區"
 
 [KFMapInfo]
 ; defaults

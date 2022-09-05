@@ -373,7 +373,7 @@ simulated state Active
 
 defaultproperties
 {
-    SecondaryFireOffset=(X=20,Y=4.5,Z=-7)
+    SecondaryFireOffset=(X=39,Y=4.5,Z=-10)
     HealingDartDamageType=Class'KFDT_Dart_Healing'
     HealImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Heal'
     HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'

@@ -49,7 +49,7 @@ simulated protected function StopSimulating()
 
 defaultproperties
 {
-	GroundFireChance=0.1f
+	GroundFireChance=1.f
 	Physics=PHYS_Falling
 
 	MaxSpeed=7000.0

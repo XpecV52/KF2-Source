@@ -107,7 +107,7 @@ defaultproperties
 	RecoilISMinPitchLimit=65460
 
 	// DEFAULT_FIREMODE
-	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
+	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletArrow'
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFireAndReload
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bolt_Crossbow'

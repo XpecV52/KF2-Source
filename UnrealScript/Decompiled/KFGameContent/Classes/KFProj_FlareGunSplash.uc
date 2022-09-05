@@ -11,7 +11,7 @@ class KFProj_FlareGunSplash extends KFProj_MolotovSplash
 defaultproperties
 {
     begin object name=ExploTemplate0 class=KFGameExplosion
-        MyDamageType=Class'KFDT_Fire_FlareGunDoT'
+        MyDamageType=Class'KFDT_Fire_Ground_FlareGun'
         ExploLight=PointLightComponent'Default__KFProj_FlareGunSplash.FlamePointLight'
     object end
     // Reference: KFGameExplosion'Default__KFProj_FlareGunSplash.ExploTemplate0'

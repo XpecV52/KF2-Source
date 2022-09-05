@@ -382,6 +382,12 @@ var const 		KFFlashlightAttachment FlashLightTemplate;
 /** Toggles a clients flashlight for all other clients */
 var repnotify 	bool					bFlashlightOn;
 
+/** Toggles a client iron sight for all other clients */
+var repnotify	bool					bUsingIronSights;
+
+/** Toggles a client iron sight for all other clients */
+var repnotify	bool					bUsingAltFireMode;
+
 var() float BatteryDrainRate;
 var() float BatteryRechargeRate;
 var	float	BatteryCharge;
@@ -493,7 +499,7 @@ replication
 
 	// Replicated to all but the owning client
 	if(bNetDirty && (!bNetOwner || bDemoRecording))
-		CurrentWeaponState, WeaponAttachmentAnimRateByte, bFlashlightOn;
+		CurrentWeaponState, WeaponAttachmentAnimRateByte, bFlashlightOn, bUsingIronSights, bUsingAltFireMode;
 }
 
 // (cpptext)
@@ -622,7 +628,14 @@ simulated event ReplicatedEvent(name VarName)
 	case nameof(bFlashlightOn):
 		SetFlashlight(bFlashlightOn, false);
 		break;
+	case nameof(bUsingIronSights):
+		SetIronSights(bUsingIronSights, false);
+		break;
+	case nameof(bUsingAltFireMode):
+		SetUsingAltFireMode (bUsingAltFireMode, false);
+		break;
 	}
+
 
 	Super.ReplicatedEvent(VarName);
 }
@@ -753,6 +766,11 @@ simulated event StartCrouch( float HeightAdjust )
 {
 	super.StartCrouch( HeightAdjust );
 	UpdateGroundSpeed();
+
+	if (WeaponAttachment != none)
+	{
+		WeaponAttachment.StartPawnCrouch ();
+	}
 }
 
 /**
@@ -766,6 +784,11 @@ simulated event EndCrouch( float HeightAdjust )
 {
 	Super.EndCrouch( HeightAdjust );
 	UpdateGroundSpeed();
+
+	if (WeaponAttachment != none)
+	{
+		WeaponAttachment.EndPawnCrouch ();
+	}
 }
 
 /**
@@ -1925,6 +1948,69 @@ reliable server private function ServerSetFlashlight(bool bEnabled)
 		SetFlashlight(bEnabled, false);
 	}
 }
+
+simulated function SetIronSights (bool bEnabled, optional bool bReplicate)
+{
+	bUsingIronSights = bEnabled;
+
+	if (WeaponAttachment != none)
+	{
+		WeaponAttachment.SetWeaponUsingIronSights (bEnabled);
+	}
+
+	if( WorldInfo.NetMode == NM_DedicatedServer )
+	{
+		return;
+	}
+
+	// replicate for third person Iron Sight
+	if( bReplicate && Role == ROLE_AutonomousProxy)
+	{
+		ServerSetIronSights(bUsingIronSights);
+	}
+}
+
+reliable server private function ServerSetIronSights(bool bEnabled)
+{
+	bUsingIronSights = bEnabled;
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		SetIronSights(bEnabled, false);
+	}
+}
+
+simulated function SetUsingAltFireMode(bool bEnabled, optional bool bReplicate)
+{
+	bUsingAltFireMode = bEnabled;
+
+	if (WeaponAttachment != none)
+	{
+		WeaponAttachment.SetWeaponAltFireMode (bEnabled);
+	}
+
+	if( WorldInfo.NetMode == NM_DedicatedServer )
+	{
+		return;
+	}
+
+	// replicate for third person Iron Sight
+	if( bReplicate && Role == ROLE_AutonomousProxy)
+	{
+		ServerSetUsingAltFireMode(bUsingAltFireMode);
+	}
+}
+
+reliable server private function ServerSetUsingAltFireMode(bool bEnabled)
+{
+	bUsingAltFireMode = bEnabled;
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		SetUsingAltFireMode(bEnabled, false);
+	}
+}
+
 
 /** Called when BatteryCharge hits zero */
 simulated event NotifyOutOfBattery()

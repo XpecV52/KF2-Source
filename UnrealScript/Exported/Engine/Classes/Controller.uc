@@ -1962,7 +1962,6 @@ defaultproperties
    NavigationHandleClass=Class'Engine.NavigationHandle'
    SightCounterInterval=0.200000
    MaxMoveTowardPawnTargetTime=1.200000
-   CollisionType=COLLIDE_CustomDefault
    bHidden=True
    bOnlyRelevantToOwner=True
    bHiddenEd=True

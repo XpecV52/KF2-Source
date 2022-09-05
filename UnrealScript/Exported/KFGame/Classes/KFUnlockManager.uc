@@ -21,6 +21,7 @@ enum ESharedContentUnlock
 	SCU_IonThruster,
 	SCU_MosinNagant,
 	SCU_G18RiotShield,
+	SCU_CompoundBow,
 };
 
 
@@ -277,6 +278,7 @@ defaultproperties
    SharedContentList(4)=(Name="KFWeap_Edged_IonThruster",IconPath="WEP_UI_Ion_Sword_TEX.UI_WeaponSelect_IonSword",Id=7715)
    SharedContentList(5)=(Name="KFWeap_Rifle_MosinNagant",IconPath="wep_ui_mosin_tex.UI_WeaponSelect_MosinNagant",Id=7856)
    SharedContentList(6)=(Name="KFWeap_SMG_G18",IconPath="WEP_UI_RiotShield_TEX.UI_WeaponSelect_RiotShield",Id=7850)
+   SharedContentList(7)=(Name="KFWeap_Bow_CompoundBow",IconPath="WEP_UI_CompoundBow_TEX.UI_WeaponSelect_Compound_Bow",Id=8169)
    Name="Default__KFUnlockManager"
    ObjectArchetype=Object'Core.Default__Object'
 }

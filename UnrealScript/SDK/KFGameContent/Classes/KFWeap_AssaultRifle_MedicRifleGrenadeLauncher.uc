@@ -560,7 +560,7 @@ defaultproperties
 	Spread(DEFAULT_FIREMODE)=0.0085
 	InstantHitDamage(DEFAULT_FIREMODE)=47.0 //24
 	FireOffset=(X=30,Y=4.5,Z=-5)
-	SecondaryFireOffset=(X=20.f,Y=4.5,Z=-7.f)
+	SecondaryFireOffset=(X=39,Y=4.5,Z=-10)
 
 	// ALT_FIREMODE
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'

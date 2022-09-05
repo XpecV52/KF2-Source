@@ -331,10 +331,10 @@ defaultproperties
 		// Don't burn the guy that tossed it, it's just too much damage with multiple fires, its almost guaranteed to kill the guy that tossed it
         bIgnoreInstigator=true
 
-		MomentumTransferScale=0
+		MomentumTransferScale=1
 
 		// Damage Effects
-		MyDamageType=class'KFDT_Fire_Ground'
+		MyDamageType=class'KFDT_Fire_Ground_HuskCannon'
 		KnockDownStrength=0
 		FractureMeshRadius=0
 		ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_GroundFire'

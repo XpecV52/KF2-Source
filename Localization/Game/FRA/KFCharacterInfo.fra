@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="Le Père Noël est un gros dur"
-Description="D'abord, Krampus s'en est pris à ses lutins et son renne. Ensuite, sa maison. Papa Noël en a marre. Alors il va sortir sa mitrailleuse. Ho ho ho !\n\n St-Nicolas surveille les enfants du monde entier depuis des siècles, espérant pouvoir passer l'éternité à apporter de la joie et des cadeaux de Noël aux gentils petits garçons et petites filles.  Mais ça, c'était avant Krampus.  Depuis le tristement célèbre Noël de Krampus, Papa Noël a juré de venger sa famille, ses amis et ouvriers disparus. Adieu les joues roses et le ventre rebondi, bonjour le regard noir et le corps d'athlète bodybuildé. La nuit sera loin d'être douce en cette saison des fêtes ; cette année, Papa Noël en a ras le bonnet. Sa hotte ne contient plus qu'une colère bouillonnante et trois tonnes de munitions."
+Description="D'abord, Krampus s'en est pris à ses lutins et son renne. Ensuite, sa maison. Papa Noël en a marre. Alors il va sortir sa mitrailleuse. Ho ho ho !\n\n St-Nicolas surveille les enfants du monde entier depuis des siècles, espérant pouvoir passer l'éternité à apporter de la joie et des cadeaux de Noël aux gentils petits garçons et petites filles. Mais ça, c'était avant Krampus. Depuis le tristement célèbre Noël de Krampus, Papa Noël a juré de venger sa famille, ses amis et ouvriers disparus. Adieu les joues roses et le ventre rebondi, bonjour le regard noir et le corps d'athlète bodybuildé. La nuit sera loin d'être douce en cette saison des fêtes ; cette année, Papa Noël en a ras le bonnet. Sa hotte ne contient plus qu'une colère bouillonnante et trois tonnes de munitions."
 BodyMesh0="Tenue de Père Noël"
 BodyMesh1="Poulet commando"
 HeadMesh0="Tête de Père Noël"
@@ -5606,7 +5606,72 @@ AttachmentSkin1="Magma"
 AttachmentSkin2="Doré"
 
 [Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
-Attachment="Sac à dos andouille gui de Noël"
+Attachment="Sac à dos andouille gui"
 AttachmentSkin0="Rouge"
 AttachmentSkin1="Vert"
 AttachmentSkin2="Doré"
+
+[Cosmetic_Cyber2020HalfMask_ARCH]
+Attachment="Masque facial CyberRave"
+AttachmentSkin0="Vierge"
+AttachmentSkin1="Crounch"
+AttachmentSkin2="Scully"
+AttachmentSkin3="Crâne"
+AttachmentSkin4="Dents"
+AttachmentSkin5="Doré"
+
+[Cosmetic_Cyber2020FullMask_ARCH]
+Attachment="Masque complet CyberRave"
+AttachmentSkin0="Vierge"
+AttachmentSkin1="Papillon"
+AttachmentSkin2="Muerto"
+AttachmentSkin3="Test de R."
+AttachmentSkin4="Cri"
+AttachmentSkin5="Scully"
+AttachmentSkin6="Sinistre"
+AttachmentSkin7="Crâne"
+AttachmentSkin8="Tourbillon"
+AttachmentSkin9="Dents"
+AttachmentSkin10="Doré"
+
+[Cosmetic_Cyber2020Goggles_ARCH]
+Attachment="Lunettes à pointes CyberRave"
+AttachmentSkin0="Sarcelle"
+AttachmentSkin1="Rose"
+AttachmentSkin2="Violet"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Blanc"
+AttachmentSkin5="Doré"
+
+[Cosmetic_Cyber2020Unicorn_ARCH]
+Attachment="Chapeau licorne CyberRave"
+AttachmentSkin0="As"
+AttachmentSkin1="Daltonien"
+AttachmentSkin2="Bleu"
+AttachmentSkin3="Rose"
+AttachmentSkin4="Lumière réfractée"
+AttachmentSkin5="Romain"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Cyber2020Horns_ARCH]
+Attachment="Cornes CyberRave"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Gris"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Violet"
+AttachmentSkin4="Sarcelle"
+AttachmentSkin5="Noir ondulé"
+AttachmentSkin6="Gris ondulé"
+AttachmentSkin7="Rouge ondulé"
+AttachmentSkin8="Violet ondulé"
+AttachmentSkin9="Sarcelle ondulé"
+AttachmentSkin10="Doré"
+
+[Cosmetic_Cyber2020Skullpack_ARCH]
+Attachment="Sac crâne CyberRave"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Sarcelle"
+AttachmentSkin2="Rose"
+AttachmentSkin3="Violet"
+AttachmentSkin4="Blanc"
+AttachmentSkin5="Doré"

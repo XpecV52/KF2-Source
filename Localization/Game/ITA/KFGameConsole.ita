@@ -29,6 +29,8 @@ KF-SantasWorkshop="Giocare al Laboratorio di Babbo Natale"
 KF-Spillway="In gioco - Sfioratore"
 KF-Steamfortress="In gioco - La Fortezza di Vapore"
 KF-AshwoodAsylum="In gioco - Manicomio di Frassino"
+KF-Sanitarium="In gioco - Manicomio"
+KF-Biolapse="In gioco - Biolapsus"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

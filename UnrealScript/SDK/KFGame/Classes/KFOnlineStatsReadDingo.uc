@@ -62,6 +62,7 @@ defaultproperties
 	ColumnIds.Add(STATID_ACHIEVE_AsylumCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_SanitariumCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_DefeatMatriarch)
+	ColumnIds.Add(STATID_ACHIEVE_BiolapseCollectibles)
 
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky5, Name="AchievementMrPerky5"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky10, Name = "AchievementMrPerky10"))
@@ -112,4 +113,5 @@ defaultproperties
 	ColumnMappings.Add((Id=STATID_ACHIEVE_AsylumCollectibles,Name="AchievementCollectAsylum"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_SanitariumCollectibles,Name="AchievementCollectSanitarium"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_DefeatMatriarch,Name="AchievementDefeatMatriarch"))
+	ColumnMappings.Add((Id=STATID_ACHIEVE_BiolapseCollectibles,Name="AchievementCollectBiolapse"))
 }

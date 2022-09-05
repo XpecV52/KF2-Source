@@ -1193,7 +1193,7 @@ simulated function RemovePRI(PlayerReplicationInfo PRI)
 }
 //@HSL_END
 
-native simulated function UpdateSharedUnlocks();
+native private simulated function UpdateSharedUnlocks();
 
 /** Called by the menu system to determine if perk changes are allowed */
 simulated event bool CanChangePerks()

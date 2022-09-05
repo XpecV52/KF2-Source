@@ -409,6 +409,10 @@ const KFACHID_SanitariumCollectibles			=	266;
 
 const KFACHID_DefeatMatriarch					=	267;
 
+const KFACHID_BiolapseHard						=	268;
+const KFACHID_BiolapseHellOnEarth				=	269;
+const KFACHID_BiolapseCollectibles				=	270;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -1937,6 +1941,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_DragonsBreath, KFDT_Ballistic_DragonsBreath,KFDT_Bludgeon_DragonsBreath,KFDT_Fire_DragonsBreathDoT),CompletionAmount=7000)) //5000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Mac10, KFDT_Bludgeon_Mac10,KFDT_Fire_Mac10,KFDT_Fire_Mac10DoT),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Flame_Flamethrower, KFDT_Bludgeon_Flamethrower,KFDT_Fire_FlameThrower,KFDT_Fire_Ground_FlameThrower),CompletionAmount=9000)) //7000
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_HRGIncendiaryRifle, KFDT_Bludgeon_HRGIncendiaryRifle,KFDT_Ballistic_HRGIncendiaryRifle,KFDT_Explosive_HRGIncendiaryRifle,KFDT_Ballistic_HRGIncendiaryRifleGrenadeImpact,KFDT_Fire_HRGIncendiaryRifleBulletDoT,KFDT_Fire_HRGIncendiaryRifleGrenadeDoT,KFDT_Fire_Ground_HRGIncendiaryRifle),CompletionAmount=9000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Beam_Microwave, KFDT_Bludgeon_MicrowaveGun,KFDT_Fire_Ground_MicrowaveGun,KFDT_Microwave,KFDT_Microwave_Beam,KFDT_Microwave_Blast),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_HuskCannon, KFDT_Bludgeon_HuskCannon, KFDT_Explosive_HuskCannon, KFDT_HuskCannonDot, KFDT_Explosive_HuskCannonImpact),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Microwave, KFDT_Ballistic_MicrowaveRifle, KFDT_Fire_MicrowaveRifleDoT, KFDT_Bludgeon_MicrowaveRifle),CompletionAmount=10000))
@@ -2093,6 +2098,9 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANITARIUM),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANITARIUM),CompletionAmount=2))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-SANITARIUM),CompletionAmount=3))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-BIOLAPSE),CompletionAmount=1))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-BIOLAPSE),CompletionAmount=2))
+    DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-BIOLAPSE),CompletionAmount=3))
 
     //Versus Damage
     //    Per design doc that I have right now, these are x class damage y players, not damage y amount

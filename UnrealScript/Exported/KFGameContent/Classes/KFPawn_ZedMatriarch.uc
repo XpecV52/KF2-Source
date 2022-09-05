@@ -1466,6 +1466,7 @@ defaultproperties
    BossCaptionStrings(5)="The Matriarch deploys a cloaking field when close to death. Unlike her father, she doesn't run away."
    bCloakOnMeleeEnd=True
    MonsterArchPath="ZED_ARCH.ZED_Matriarch_Archetype"
+   ParryResistance=4
    RepArmorPct(0)=255
    RepArmorPct(1)=255
    ArmorZoneStatus=3

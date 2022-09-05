@@ -69,10 +69,33 @@ protected simulated function PrepareExplosionActor(GameExplosionActor GEA)
     }
 }
 
+simulated function PostBeginPlay()
+{
+    local KFPlayerReplicationInfo InstigatorPRI;
+
+    if((AltExploEffects != none) && Instigator != none)
+    {
+        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+        if(InstigatorPRI != none)
+        {
+            bAltExploEffects = InstigatorPRI.bSplashActive;
+        }        
+    }
+    else
+    {
+        bAltExploEffects = false;
+    }
+    super.PostBeginPlay();
+}
+
 protected simulated function PrepareExplosionTemplate()
 {
     ExplosionTemplate.bIgnoreInstigator = true;
     super.PrepareExplosionTemplate();
+    if(bAltExploEffects)
+    {
+        ExplosionTemplate.ExplosionEffects = AltExploEffects;
+    }
 }
 
 defaultproperties
@@ -87,9 +110,9 @@ defaultproperties
         bDirectionalExplosion=true
         Damage=10
         DamageRadius=150
-        MyDamageType=Class'KFDT_Fire_MolotovGrenade'
+        MyDamageType=Class'KFDT_Fire_Ground_MolotovGrenade'
         KnockDownStrength=0
-        MomentumTransferScale=0
+        MomentumTransferScale=1
         ExploLight=PointLightComponent'Default__KFProj_MolotovSplash.FlamePointLight'
         ExploLightFadeOutTime=0.3
         ExploLightStartFadeOutTime=4.2
@@ -98,6 +121,7 @@ defaultproperties
     object end
     // Reference: KFGameExplosion'Default__KFProj_MolotovSplash.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
+    AltExploEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Splash_Impacts'
     ProjFlightTemplate=ParticleSystem'WEP_3P_Molotov_EMIT.FX_Molotov_Grenade_Spread_01'
     AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'
     AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_Residual_Fire_Loop'

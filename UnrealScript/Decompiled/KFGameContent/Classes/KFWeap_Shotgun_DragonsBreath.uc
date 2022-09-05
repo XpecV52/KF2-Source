@@ -36,7 +36,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
-    SpareAmmoCapacity=57
+    SpareAmmoCapacity=60
     InitialSpareMags=4
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
     BonesToLockOnEmpty=/* Array type was not detected. */

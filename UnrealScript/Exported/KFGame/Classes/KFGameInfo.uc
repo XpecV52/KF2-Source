@@ -4104,7 +4104,7 @@ defaultproperties
    BossIndex=-1
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-BurningParis","KF-Bioticslab","KF-Outpost","KF-VolterManor","KF-Catacombs","KF-EvacuationPoint","KF-Farmhouse","KF-BlackForest","KF-Prison","KF-ContainmentStation","KF-HostileGrounds","KF-InfernalRealm","KF-ZedLanding","KF-Nuked","KF-TheDescent","KF-TragicKingdom","KF-Nightmare","KF-KrampusLair","KF-DieSector","KF-Powercore_Holdout","KF-Lockdown","KF-Airship","KF-ShoppingSpree","KF-MonsterBall","KF-SantasWorkshop","KF-Spillway","KF-SteamFortress","KF-AshwoodAsylum","KF-Sanitarium"))
+   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-EvacuationPoint","KF-Farmhouse","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

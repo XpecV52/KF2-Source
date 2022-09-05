@@ -577,8 +577,8 @@ defaultproperties
     SmashHeadDamageModifier=0.25
     VampireAttackSpeedModifier=0.2
     ParryDamageReduction=0.4
-    RageRadius=650
-    RageFleeDuration=3
+    RageRadius=1000
+    RageFleeDuration=5
     RageFleeDistance=2500
     RageDialogEvent=229
     ParrySkillSoundModeStart=AkEvent'WW_GLO_Runtime.Play_Beserker_Parry_Mode'
@@ -610,7 +610,7 @@ defaultproperties
     PerkSkills(5)=(Name="Parry",Increment=0,Rank=0,StartingValue=0.35,MaxValue=0.35,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",bActive=false)
     PerkSkills(6)=(Name="Smash",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",bActive=false)
     PerkSkills(7)=(Name="Fury",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Intimidate",bActive=false)
-    PerkSkills(8)=(Name="Rage",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",bActive=false)
+    PerkSkills(8)=(Name="Rage",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",bActive=false)
     PerkSkills(9)=(Name="Spartan",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Flash",bActive=false)
     RegenerationAmount=2
     ZedTimeModifyingStates(0)=MeleeChainAttacking

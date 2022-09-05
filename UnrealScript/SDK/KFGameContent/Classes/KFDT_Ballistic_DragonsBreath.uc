@@ -67,12 +67,11 @@ defaultproperties
 	BloodScale=0.6
 
 	KDamageImpulse=900
-	KDeathUpKick=-500
+	KDeathUpKick=500
 	KDeathVel=350
 
 	BurnPower=20
 	StumblePower=21
-	LegStumblePower=21
 	GunHitPower=12
 
 	WeaponDef=class'KFWeapDef_DragonsBreath'

@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="坏圣诞老人"
-Description="首先，坎卜斯来找他的精灵和驯鹿。然后，坎卜斯来到他的家。现在，坎卜斯再也受不了了。现在，他有了一把机枪。吼吼吼！\n\n圣。几百年前，尼古拉斯开始照看世界上的孩子们，他坚信自己会永远把圣诞节的欢乐和玩具带给世界上善良的孩子们。  但后来，坎卜斯来了。  在坎卜斯圣诞节之后的一年里，圣诞老人致力于为他的工人、朋友和家人报仇。红润的脸颊和果冻一样的肚皮消失了，被永久的愁容和一层又一层的肌肉所取代。今年的假期将不再有一个安静的夜晚；今年，圣诞老人已经失去了善意和圣诞节的欢呼。他只有沸腾的愤怒，复仇，和大量的弹药，枪声将在假日响起。"
+Description="首先，坎卜斯来找他的精灵和驯鹿。然后，坎卜斯来到他的家。现在，坎卜斯再也受不了了。现在，他有了一把机枪。吼吼吼！\n\n圣。几百年前，尼古拉斯开始照看世界上的孩子们，他坚信自己会永远把圣诞节的欢乐和玩具带给世界上善良的孩子们。 但后来，坎卜斯来了。 在坎卜斯圣诞节之后的一年里，圣诞老人致力于为他的工人、朋友和家人报仇。红润的脸颊和果冻一样的肚皮消失了，被永久的愁容和一层又一层的肌肉所取代。今年的假期将不再有一个安静的夜晚；今年，圣诞老人已经失去了善意和圣诞节的欢呼。他只有沸腾的愤怒，复仇，和大量的弹药，枪声将在假日响起。"
 BodyMesh0="圣诞老人服装"
 BodyMesh1="突击兵战斗鸡"
 HeadMesh0="圣诞老人头部"
@@ -3762,10 +3762,10 @@ EmoteName="硬币魔术"
 EmoteName="硬币魔术+"
 
 [MagicFoster]
-EmoteName="神奇的福斯特"
+EmoteName="魔法福斯特"
 
 [MagicFoster_Deluxe]
-EmoteName="神奇的福斯特+"
+EmoteName="魔法福斯特+"
 
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="消防员头盔"
@@ -5606,7 +5606,72 @@ AttachmentSkin1="熔岩"
 AttachmentSkin2="宝贵的"
 
 [Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
-Attachment="圣诞节榭寄生血凝丧尸背包"
+Attachment="榭寄生血块背包"
 AttachmentSkin0="红色"
 AttachmentSkin1="绿色"
 AttachmentSkin2="宝贵的"
+
+[Cosmetic_Cyber2020HalfMask_ARCH]
+Attachment="赛博狂热面具"
+AttachmentSkin0="空"
+AttachmentSkin1="咬"
+AttachmentSkin2="斯库利"
+AttachmentSkin3="骷髅头"
+AttachmentSkin4="牙齿"
+AttachmentSkin5="宝贵的"
+
+[Cosmetic_Cyber2020FullMask_ARCH]
+Attachment="赛博狂热头罩"
+AttachmentSkin0="空"
+AttachmentSkin1="蝴蝶"
+AttachmentSkin2="Muerto"
+AttachmentSkin3="R-检测"
+AttachmentSkin4="尖叫"
+AttachmentSkin5="斯库利"
+AttachmentSkin6="邪恶"
+AttachmentSkin7="骷髅头"
+AttachmentSkin8="漩涡"
+AttachmentSkin9="牙齿"
+AttachmentSkin10="宝贵的"
+
+[Cosmetic_Cyber2020Goggles_ARCH]
+Attachment="赛博狂热尖刺眼镜"
+AttachmentSkin0="水鸭色"
+AttachmentSkin1="粉红"
+AttachmentSkin2="紫色"
+AttachmentSkin3="红色"
+AttachmentSkin4="白色"
+AttachmentSkin5="宝贵的"
+
+[Cosmetic_Cyber2020Unicorn_ARCH]
+Attachment="赛博狂热独角兽帽"
+AttachmentSkin0="王牌"
+AttachmentSkin1="遮蔽"
+AttachmentSkin2="蓝色"
+AttachmentSkin3="粉红"
+AttachmentSkin4="折射光"
+AttachmentSkin5="罗马"
+AttachmentSkin6="宝贵的"
+
+[Cosmetic_Cyber2020Horns_ARCH]
+Attachment="赛博狂热角"
+AttachmentSkin0="黑色"
+AttachmentSkin1="灰色"
+AttachmentSkin2="红色"
+AttachmentSkin3="紫色"
+AttachmentSkin4="水鸭色"
+AttachmentSkin5="波浪黑"
+AttachmentSkin6="波浪灰"
+AttachmentSkin7="波浪红"
+AttachmentSkin8="波浪紫"
+AttachmentSkin9="波浪水鸭色"
+AttachmentSkin10="宝贵的"
+
+[Cosmetic_Cyber2020Skullpack_ARCH]
+Attachment="赛博狂热骷髅包"
+AttachmentSkin0="黑色"
+AttachmentSkin1="水鸭色"
+AttachmentSkin2="粉红"
+AttachmentSkin3="紫色"
+AttachmentSkin4="白色"
+AttachmentSkin5="宝贵的"

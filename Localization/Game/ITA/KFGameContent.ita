@@ -33,11 +33,11 @@ InventoryDescriptionKey="Ogni equipaggiamento classe inizia con un’arma primar
 InventoryContTitleKey="Scopri il tuo inventario"
 InventoryContDescriptionKey="Ogni equipaggiamento classe inizia con un’arma primaria unica, una pistola da 9mm di riserva, un coltello militare e delle granate. Tieni premuto <font color="#caab05">%x%</font> e usa i tasti direzionali per selezionare un'arma."
 AlternateFireKey="Modalità fuoco alternativa"
-AlternateFireDescription="La maggior parte delle armi primarie possiedono una modalità di fuoco alternativa. Premi <font color="#caab05">%x%</font> per selezionare la tua modalità di fuoco. Un icona ti mostrerà la modalità selezionata."
+AlternateFireDescription="La maggior parte delle armi primarie possiede una modalità di fuoco alternativa. Premi <font color="#caab05">%x%</font> per selezionare la tua modalità di fuoco. Un'icona ti mostrerà la modalità selezionata."
 FlashLightBatteryTitleKey="Utilizzare la torcia"
 FlashLightBatteryDescriptionKey="Può essere molto buio là fuori. Premi <font color="#caab05">%x%</font> per accendere o spegnere la <font color="#caab05">TORCIA</font>. La batteria della torcia si consumerà lentamente. Quando sarà esaurita, si spegnerà e si ricaricherà automaticamente."
 GrenadeTitleKey="Utilizzare le granate"
-GrenadeDescriptionKey="Le granate ti consentono di affrontare un gruppo di Zed vicini tra loro. Le classi hanno diverse granate negli <font color="#caab05">EQUIPAGGIAMENTI ARMI</font>. Tutte danneggiano gli Zed, ma possono avere effetti aggiuntivi. Premi <font color="#caab05">%x%</font> per lanciare una granata." "
+GrenadeDescriptionKey="Le granate ti consentono di affrontare un gruppo di Zed vicini tra loro. Le classi hanno diverse granate negli <font color="#caab05">EQUIPAGGIAMENTI ARMI</font>. Tutte danneggiano gli Zed, ma possono avere effetti aggiuntivi. Premi <font color="#caab05">%x%</font> per lanciare una granata."
 
 ;Wave 1 end
 TraderTimeTitleKey="Commerciante"
@@ -116,48 +116,48 @@ ItemDescription="•L'armatura da combattimento ti protegge da diverse forme di 
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 candelotto dinamite"
-ItemCategory =" Esplosivi"
-ItemDescription="•Un piccolo pezzo di dinamite con miccia.\n•Potrebbe ferire anche te, perciò fai attenzione!" "
+ItemCategory ="Esplosivi"
+ItemDescription="•Un piccolo pezzo di dinamite con miccia.\n•Potrebbe ferire anche te, perciò fai attenzione!"
 
 [KFProj_MedicGrenade]
 ItemName="Granata medica"
-ItemCategory =" Esplosivi"
-ItemDescription="•Rilascia un gas che avvelena gli Zed ma cura gli umani.\n\n•Posizionati nella nube di gas blu per essere curato.\nCitando uno dei nostri scienziati: 'L'agente rilasciato da queste granate rinvigorisce l'Homo Sapiens, mentre sopprime l'Homo Zedicus.' Speriamo possa essere d'aiuto." "
+ItemCategory ="Esplosivi"
+ItemDescription="•Rilascia un gas che avvelena gli Zed ma cura gli umani.\n\n•Posizionati nella nube di gas blu per essere curato.\nCitando uno dei nostri scienziati: 'L'agente rilasciato da queste granate rinvigorisce l'Homo Sapiens, mentre sopprime l'Homo Zedicus.' Speriamo possa essere d'aiuto."
 
 [KFProj_MolotovGrenade]
 ItemName="Bomba molotov"
 ItemCategory="Esplosivi"
-ItemDescription="•È una granata esplosiva che brucia gli Zed.\n\nIl nome è stato dato dai Finlandesi durante la Guerra d'Inverno del 1939-40, dopo che Vyacheslav Mikhailovich Molotov, Ministro di Stalin... Scusa, non avevi chiesto una lezione di storia?" "
+ItemDescription="•È una granata esplosiva che brucia gli Zed.\n\nIl nome è stato dato dai Finlandesi durante la Guerra d'Inverno del 1939-40, dopo che Vyacheslav Mikhailovich Molotov, Ministro di Stalin... Scusa, non avevi chiesto una lezione di storia?"
 
 [KFProj_EMPGrenade]
 ItemName="Granata EMP"
 ItemCategory="Esplosivi"
-ItemDescription="•Genera un impulso elettrico che danneggia gli Zed e potrebbe anche stordirli per un po’.\n\nNello specifico, la detonazione genera un impulso elettromagnetico di un nanosecondo che interrompe i sistemi elettrici lì vicino. In particolare, quelli tra gli Zed. Comodo, no?" "
+ItemDescription="•Genera un impulso elettrico che danneggia gli Zed e potrebbe anche stordirli per un po’.\n\nNello specifico, la detonazione genera un impulso elettromagnetico di un nanosecondo che interrompe i sistemi elettrici lì vicino. In particolare, quelli tra gli Zed. Comodo, no?"
 
 [KFProj_HEGrenade]
 ItemName="Granata HE"
 ItemCategory="Esplosivi"
-ItemDescription="•Una semplicissima granata dall'alto potenziale esplosivo. Ferisce Zed e umani allo stesso modo.\n\nPiù semplice di così. HE: High Explosive. Un BOOM e tutto salta in aria. C'è davvero bisogno di spiegartelo?" "
+ItemDescription="•Una semplicissima granata dall'alto potenziale esplosivo. Ferisce Zed e umani allo stesso modo.\n\nPiù semplice di così. HE: High Explosive. Un BOOM e tutto salta in aria. C'è davvero bisogno di spiegartelo?"
 
 [KFProj_FragGrenade]
 ItemName="Granata frammentazione"
 ItemCategory="Esplosivi"
-ItemDescription="•Classica bomba a mano: si frammenta in piccoli pezzi di metallo che colpiscono in giro.\n\nSono sicuro che hai giocato a un po' di videogiochi prima dell'epidemia, quindi dovresti sapere di cosa si tratta. E smetti di fingere che non lo sai. Nessuno ti crederà." "
+ItemDescription="•Classica bomba a mano: si frammenta in piccoli pezzi di metallo che colpiscono in giro.\n\nSono sicuro che hai giocato a un po' di videogiochi prima dell'epidemia, quindi dovresti sapere di cosa si tratta. E smetti di fingere che non lo sai. Nessuno ti crederà."
 
 [KFProj_NailBombGrenade]
 ItemName="Bomba di chiodi"
-ItemCategory =" Esplosivi"
+ItemCategory ="Esplosivi"
 ItemDescription="•Un semplice barattolo pieno di vecchi chiodi con una piccola carica esplosiva al suo interno.\n\nNon certo il metodo più bello o raffinato di affrontare gli Zed, ma dopotutto non c'è nulla di bello o raffinato riguardo agli Zed, no?"
 
 [KFProj_FreezeGrenade]
 ItemName="Granata congelante"
-ItemCategory =" Esplosivi"
+ItemCategory ="Esplosivi"
 ItemDescription="•Un barattolo ad alta tecnologia di azoto liquido sotto pressione.\n\nEntrando in contatto con il contenuto, gli Zed saranno congelati per un po'. I risultati possono essere devastanti."
 
 [KFProj_FlashBangGrenade]
 ItemName="FlashBang"
-ItemCategory =" Esplosivi"
-ItemDescription="•Accecante e rumoroso, meglio non guardarlo direttamente. Sarebbe bene non sentirlo nemmeno.\n•Sebbene tecnicamente non letale, i flashbang possono ferirti, dunque fai attenzione!" "
+ItemCategory ="Esplosivi"
+ItemDescription="•Accecante e rumoroso, meglio non guardarlo direttamente. Sarebbe bene non sentirlo nemmeno.\n•Sebbene tecnicamente non letale, i flashbang possono ferirti, dunque fai attenzione!"
 
 [KFWeap_Healer_Syringe]
 ItemName="Siringa medica"
@@ -439,13 +439,13 @@ ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il meto
 ItemName="Rhino"
 ItemCategory="Pistola"
 ItemDescription="•Spara Colpi frangibili.\n•I Colpi frangibili esplodono all'impatto e sparano 3 schegge.\n•Sciogli gli Zed come burro!"
-SharedUnlockSource="Bundle Revolver Rhino"
+SharedUnlockSource="Bundle armi Revolver Rhino, Bundle armi Terapia mietitrice"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="Rhino doppio"
 ItemCategory="Pistola"
 ItemDescription="•Spara Colpi frangibili.\n•I Colpi frangibili esplodono all'impatto e sparano 3 schegge.\n•Il fuoco alternativo cambia lo stile di mira quando usi il mirino di precisione.\nSciogli gli Zed come burro due volte più velocemente!"
-SharedUnlockSource="Bundle Revolver Rhino"
+SharedUnlockSource="Bundle armi Revolver Rhino, Bundle armi Terapia mietitrice"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="Revolver 1858"
@@ -486,7 +486,7 @@ ItemDescription="•Spara un colpo alla volta.\n•Il classico modello di fucile
 ItemName="Mosin Nagant"
 ItemCategory="Fucile da caccia"
 ItemDescription="•Spara un colpo alla volta.\n•Alt - blocca/para.\n•L'M91/30 si specializza in pugnalata, sparatoria e sparatoria di pugnali."
-SharedUnlockSource="Bundle Mosin Nagant"
+SharedUnlockSource="Bundle armi Mosin Nagant, Bundle armi Orrore natalizio"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 centrale"
@@ -586,7 +586,7 @@ ItemDescription="•Solo semiautomatica.\n•Il fuoco alternativo cambia il meto
 ItemName="Propulsore ionico"
 ItemCategory="Mischia"
 ItemDescription="•Primario - attacco veloce di fendente che brucia; tieni premuto Primario per le combo.\n•Secondario - attacco pesante di fendente che brucia.\n•Ricarica - Effettua un attacco speciale quando è carico al 100%.\n•Alt - blocca/para.\n•Ottimo per barbecue."
-SharedUnlockSource="Propulsore ionico"
+SharedUnlockSource="Bundle armi Propulsore ionico, Bundle armi Terapia mietitrice"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Bastone del destino"
@@ -621,7 +621,7 @@ ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n�
 [KFWeap_Edged_AbominationAxe]
 ItemName="Ascia da battaglia"
 ItemCategory="Mischia"
-ItemDescription="•Primario - attacco veloce di fendente; tieni premuto Primario per le combo.\n•Secondario - attacco violento e lento che disintegra l'avversario alla morte.\n•Alt - blocca/para.\n•Obsoleta, ma è comunque come essere travolti da un camion... grosso e affilato."
+ItemDescription="•Primario: attacco veloce di fendente. Tieni premuto Primario per le combo.\n•Secondario: attacco violento e lento che disintegra l'avversario morto.\n•Alt: blocca/para.\n•Obsoleta, ma è comunque come essere travolti da un camion... grosso e affilato."
 SharedUnlockSource="Ascia da battaglia"
 
 [KFWeap_Edged_FireAxe]
@@ -684,7 +684,19 @@ ItemDescription="•Spara colpi elettrici ad alta velocità.\n•Il fuoco altern
 ItemName="Scudo antisommossa e Glock 18"
 ItemCategory="Mitra"
 ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.\n•Il mirino fa apparire uno scudo per ridurre i danni frontali della maggior parte degli attacchi."
-SharedUnlockSource="Bundle Scudo antisommossa e G18"
+SharedUnlockSource="Bundle armi Scudo antisommossa e G18, Bundle armi Orrore natalizio"
+
+[KFWeap_AssaultRifle_HRGIncendiaryRifle]
+ItemName="Fucile incend. HRG"
+ItemCategory="Fucile d'assalto"
+ItemDescription="•Solo automatico.\n•Usa il fuoco alternativo per lanciare granate incendiarie.\n•Per chi non sa scegliere tra il fuoco e fare fuoco."
+SecondaryAmmo="Granata incend. M203"
+
+[KFWeap_Bow_CompoundBow]
+ItemName="Arco Compound"
+ItemCategory="Arco"
+ItemDescription="•La modalità di fuoco funziona solo caricando la freccia.\n•Più a lungo tiri la corda, più il raggio e i danni aumentano.\n•Con il Fuoco alternativo si alternano frecce appuntite e criogeniche.\n•Quando a Cupido serve più potenza."
+SharedUnlockSource="Bundle armi Arco Compound"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

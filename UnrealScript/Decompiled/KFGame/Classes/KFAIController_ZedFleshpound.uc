@@ -274,6 +274,7 @@ defaultproperties
     DangerEvadeSettings(1)=(ClassName=KFWeap_Bow_Crossbow,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
     DangerEvadeSettings(2)=(ClassName=KFWeap_Rifle_M14EBR,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
     DangerEvadeSettings(3)=(ClassName=KFWeap_Rifle_RailGun,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
+    DangerEvadeSettings(4)=(ClassName=KFWeap_Bow_CompoundBow,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
     bNotifyApex=true
     MinHitWall=-0.42
 }

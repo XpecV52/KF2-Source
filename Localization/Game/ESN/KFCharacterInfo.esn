@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="Papá Noel brutal"
-Description="Primero, Krampus fue a por sus duendes y sus renos. Después, fue a por su hogar. Pero Papá Noel ya no se anda con chiquitas. Ahora tiene una ametralladora. ¡Jo, jo, jo!\n\nSan Nicolás comenzó a vigilar a los niños del mundo hace cientos de años, pensando que pasaría la eternidad trayendo alegría navideña y juguetes a los niños y niñas buenos del mundo.  Pero entonces llegó Krampus.  En el año transcurrido desde la Navidad de Krampus, Papá Noel se ha dedicado a vengar a sus trabajadores, amigos y familiares caídos. Atrás quedaron sus mejillas rosadas y su barrigota mullidita, ahora luce un ceño fruncido permanente y una tableta que no es de turrón. Estas fiestas no habrá noche de paz: este año, la buena voluntad y la alegría de Papá Noel no vuelven a casa por Navidad. Solo trae ira, venganza y una gran cantidad de munición para celebrar la Navidad."
+Description="Primero, Krampus fue a por sus duendes y sus renos. Después, fue a por su hogar. Pero Papá Noel ya no se anda con chiquitas. Ahora tiene una ametralladora. ¡Jo, jo, jo!\n\nSan Nicolás comenzó a vigilar a los niños del mundo hace cientos de años, pensando que pasaría la eternidad trayendo alegría navideña y juguetes a los niños y niñas buenos del mundo. Pero entonces llegó Krampus. En el año transcurrido desde la Navidad de Krampus, Papá Noel se ha dedicado a vengar a sus trabajadores, amigos y familiares caídos. Atrás quedaron sus mejillas rosadas y su barrigota mullidita, ahora luce un ceño fruncido permanente y una tableta que no es de turrón. Estas fiestas no habrá noche de paz: este año, la buena voluntad y la alegría de Papá Noel no vuelven a casa por Navidad. Solo trae ira, venganza y una gran cantidad de munición para celebrar la Navidad."
 BodyMesh0="Atuendo de Papá Noel"
 BodyMesh1="Pollo de comando"
 HeadMesh0="Cabeza de Papá Noel"
@@ -3762,10 +3762,10 @@ EmoteName="Truco de moneda"
 EmoteName="Truco de moneda+"
 
 [MagicFoster]
-EmoteName="Foster mágico"
+EmoteName="Foster mágica"
 
 [MagicFoster_Deluxe]
-EmoteName="Foster mágico+"
+EmoteName="Foster mágica+"
 
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="Casco de bombero"
@@ -5606,7 +5606,72 @@ AttachmentSkin1="Magma"
 AttachmentSkin2="Precioso"
 
 [Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
-Attachment="Mochila Clot muérdago navideño"
+Attachment="Mochila clot muérdago"
 AttachmentSkin0="Rojo"
 AttachmentSkin1="Verde"
 AttachmentSkin2="Precioso"
+
+[Cosmetic_Cyber2020HalfMask_ARCH]
+Attachment="Máscara ciberjuerga"
+AttachmentSkin0="En blanco"
+AttachmentSkin1="Bocado"
+AttachmentSkin2="Calavera"
+AttachmentSkin3="Calavera"
+AttachmentSkin4="Dientes"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_Cyber2020FullMask_ARCH]
+Attachment="Máscara completa ciberjuerga"
+AttachmentSkin0="En blanco"
+AttachmentSkin1="Mariposa"
+AttachmentSkin2="Muerto"
+AttachmentSkin3="R-Test"
+AttachmentSkin4="Grito"
+AttachmentSkin5="Calavera"
+AttachmentSkin6="Siniestro"
+AttachmentSkin7="Calavera"
+AttachmentSkin8="Remolino"
+AttachmentSkin9="Dientes"
+AttachmentSkin10="Precioso"
+
+[Cosmetic_Cyber2020Goggles_ARCH]
+Attachment="Gafas con pinchos ciberjuerga"
+AttachmentSkin0="Turquesa"
+AttachmentSkin1="Rosa"
+AttachmentSkin2="Morado"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Blanco"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_Cyber2020Unicorn_ARCH]
+Attachment="Gorro de unicornio ciberjuerga"
+AttachmentSkin0="As"
+AttachmentSkin1="Ciego"
+AttachmentSkin2="Azul"
+AttachmentSkin3="Rosa"
+AttachmentSkin4="Luz refractada"
+AttachmentSkin5="Romano"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Cyber2020Horns_ARCH]
+Attachment="Cuernos ciberjuerga"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Gris"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Morado"
+AttachmentSkin4="Turquesa"
+AttachmentSkin5="Negro ondulado"
+AttachmentSkin6="Gris ondulado"
+AttachmentSkin7="Rojo ondulado"
+AttachmentSkin8="Morado ondulado"
+AttachmentSkin9="Turquesa ondulado"
+AttachmentSkin10="Precioso"
+
+[Cosmetic_Cyber2020Skullpack_ARCH]
+Attachment="Mochila calavera ciberjuerga"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Turquesa"
+AttachmentSkin2="Rosa"
+AttachmentSkin3="Morado"
+AttachmentSkin4="Blanco"
+AttachmentSkin5="Precioso"

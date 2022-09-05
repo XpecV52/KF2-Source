@@ -396,7 +396,7 @@ defaultproperties
 	End Object
 
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
-	InstantHitDamage(DEFAULT_FIREMODE)=70
+	InstantHitDamage(DEFAULT_FIREMODE)=80
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Bludgeon_Pulverizer'
 
 	FireModeIconPaths(HEAVY_ATK_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'

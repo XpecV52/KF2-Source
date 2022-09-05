@@ -1,3 +1,19 @@
+Begin Object Class=SequenceFrame Name=SequenceFrame_17
+   SizeX=2412
+   SizeY=2243
+   bDrawBox=True
+   FillColor=(B=82,G=0,R=255,A=16)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-NIGHTMARE.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-4376
+   ObjPosY=-5744
+   ObjComment="Clown"
+   DrawWidth=2412
+   DrawHeight=2243
+   Name="SequenceFrame_17"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_11
    Originator=TriggerVolume'KF-NIGHTMARE.TheWorld:PersistentLevel.TriggerVolume_0'
    MaxWidth=165
@@ -8525,22 +8541,6 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_21
    DrawHeight=61
    Name="SeqAct_ActivateRemoteEvent_21"
    ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
-End Object
-
-Begin Object Class=SequenceFrame Name=SequenceFrame_17
-   SizeX=2412
-   SizeY=2243
-   bDrawBox=True
-   FillColor=(B=82,G=0,R=255,A=16)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-NIGHTMARE.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-4376
-   ObjPosY=-5744
-   ObjComment="Clown"
-   DrawWidth=2412
-   DrawHeight=2243
-   Name="SequenceFrame_17"
-   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_29

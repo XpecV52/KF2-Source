@@ -115,7 +115,7 @@ StartOfflineGameString="Rozpocznij grę offline"
 StartOfflineGameDescriptionString="Rozpoczęcie gry offline spowoduje rozwiązanie drużyny. \nCzy chcesz kontynuować?"
 
 ProceedToTutorialString="PRZEJŚĆ DO SZKOLENIA?"
-ProceedToTutorialDescriptionString="Naucz się podstaw w kontrolowanym środowisku.  Po ukończeniu zapewnia wybrane klasy poziomu 0-1."
+ProceedToTutorialDescriptionString="Naucz się podstaw w kontrolowanym środowisku. Po ukończeniu zapewnia wybrane klasy poziomu 0-1."
 
 NotAvailableInFreeTrialString="Funkcja niedostępna w darmowej wersji próbnej"
 NetworkCheckFreeTrialFailedString="Błąd sieci: Nie można zweryfikować stanu darmowego wydarzenia. Sprawdź stan połączenia internetowego."
@@ -1416,7 +1416,7 @@ KickVoteNoSpectatorsString="Widzowie nie mogą inicjować głosowania o wyrzucen
 KickedFromServerString="Usunięto cię z serwera"
 BannedFromServerString="Usunięto cię z tego serwera. Nie możesz teraz ponownie dołączyć"
 ServerNoLongerAvailableString="Nie można już dołączyć do serwera"
-SkipTraderTimeString="Akt.  „HANDL. – POMIŃ”. Głosowanie: wybierz  „HANDL. – POMIŃ”.  Wsz. muszą wyrazić zgodę."
+SkipTraderTimeString="Akt. „HANDL. – POMIŃ”. Głosowanie: wybierz „HANDL. – POMIŃ”. Wsz. muszą wyrazić zgodę."
 SkipTraderSuccessString="Głosowanie nad pominięciem opcji handlowej zakończone!"
 
 [KFLocalMessage_Game]
@@ -1760,7 +1760,7 @@ Spartan="CZAS ZET – Spartanin"
 SpartanDescription="W czasie zet atakujesz bronią specjalizacji i poruszasz się w czasie rzeczywistym."
 
 Rage="CZAS ZET – Szał berserkera"
-RageDescription="Gdy aktywuje się lub odświeża czas zetów, przywracasz 25% zdrowia i zmuszasz pobliskie zety do ucieczki."
+RageDescription="Gdy aktywuje się lub odświeża czas zetów, przywracasz 50% zdrowia i zmuszasz pobliskie zety do ucieczki."
 
 [KFPerk_Commando]
 PerkName="Komandos"
@@ -1937,7 +1937,7 @@ Fuse="Grillowanie"
 FuseDescription="Efekt podpalenia bronią specjalizacji trwa o 150% dłużej, a obrażenia w czasie zostają zwiększone."
 
 GroundFire="Pożar ziemny"
-GroundFireDescription="Pożary ziemne powodują podwójne obrażenia i zmniejszają szybkość ruchu zetów o 30%. Nie dotyczy to mołotowów."
+GroundFireDescription="Pożary ziemne powodują 3x większe obrażenia i spowalniają zety o 30%."
 
 ZedShrapnel="Szrapnel na zetów"
 ZedShrapnelDescription="30% szans, że zety zabite przez ciebie ogniem eksplodują, ogłuszając inne, pobliskie zety i zadając im obrażenia."
@@ -1990,7 +1990,7 @@ SpeedReload="Przyspieszenie przeładowania"
 SpeedReloadDescription="Zwiększenie szybkości przeładowywania broni specjalizacji."
 
 Penetration="Gęsiego"
-PenetrationDescription="Brak zmniejszenia obrażeń przy strzelaniu do zetów przez innych zetów podczas używania broni specjalizacji."
+PenetrationDescription="Brak zmniejszenia obrażeń przy strzelaniu do zetów przez innych zetów i większa penetracja podczas używania broni specjalizacji."
 
 Skullcracker="Czaszkołamacz"
 SkullcrackerDescription="Strzały w głowę z broni specjalizacji spowalniają zetów o 30%."
@@ -2033,7 +2033,7 @@ Stun="Wstrząs balistyczny"
 StunDescription="Zwiększenie siły ogłuszania broni specjalizacji o 100%."
 
 RhythmMethod="Kumulacja"
-RhythmMethodDescription="Każdy kolejny strzał w głowę za pomocą broni specjalizacji zadaje o 10% większe obrażenia, kumulując się do premii 50%.  "
+RhythmMethodDescription="Każdy kolejny strzał w głowę za pomocą broni specjalizacji zadaje o 10% większe obrażenia, kumulując się do premii 50%. "
 
 TacticalReload="Taktyczne przeładowanie"
 TacticalReloadDescription="Zwiększenie szybkości przeładowywania broni specjalizacji."
@@ -2045,10 +2045,10 @@ AmmoPouch="Stała gotowość"
 AmmoPouchDescription="Możesz nosić dodatkowy granat i 25% więcej amunicji dla broni specjalizacji."
 
 ZTKnockdown="CZAS ZET – Asasyn"
-ZTKnockdownDescription="Każdy strzał w głowę bronią specjalizacji ma 5% szans uruchomienia czasu zet.  W czasie zet obrażenia strzału w głowę bronią specjalizacji są zwiększone o 35%."
+ZTKnockdownDescription="Każdy strzał w głowę bronią specjalizacji ma 5% szans uruchomienia czasu zet. W czasie zet obrażenia strzału w głowę bronią specjalizacji są zwiększone o 35%."
 
 ZTStun="CZAS ZET – Łowca"
-ZTStunDescription="Każdy strzał w głowę bronią specjalizacji ma 5% szans uruchomienia czasu zet.  Strzały w głowę bronią spec. w czasie zet ogłuszają każdego zeta."
+ZTStunDescription="Każdy strzał w głowę bronią specjalizacji ma 5% szans uruchomienia czasu zet. Strzały w głowę bronią spec. w czasie zet ogłuszają każdego zeta."
 
 [KFPerk_Support]
 PerkName="Wsparcie"
@@ -2088,13 +2088,13 @@ TightChoke="Silny czok"
 TightChokeDescription="Zmniejszenie rozrzutu broni specjalizacji o 50%."
 
 Resupply="Zestaw zapasów"
-ResupplyDescription="Raz na falę sojusznicy mogą przez interakcję z tobą przywrócić 30% amunicji i 20% pancerza.  Możesz nosić 20% więcej amunicji dla broni specjalizacji."
+ResupplyDescription="Raz na falę sojusznicy mogą przez interakcję z tobą przywrócić 30% amunicji i 20% pancerza. Możesz nosić 20% więcej amunicji dla broni specjalizacji."
 
 ConcussionRounds="Pociski ogłuszające"
 ConcussionRoundsDescription="Zwiększenie siły oszołamiania broni specjalizacji o 150%."
 
 Perforate="CZAS ZET – Penetrator"
-PerforateDescription="W czasie zet bronie specjalizacji penetrują wszystkie trafione cele."
+PerforateDescription="W czasie zet brak zmniejszenia obrażeń przy strzelaniu do zetów przez innych zetów i większa penetracja podczas używania broni specjalizacji."
 
 Barrage="CZAS ZET – Ogień zaporowy"
 BarrageDescription="W czasie zet broń specjalizacji strzela prawie tak szybko, jak w czasie rzeczywistym."
@@ -2190,7 +2190,7 @@ Madman="CZAS ZET – Szaleniec"
 MadmanDescription="W czasie zet każda twoja broń strzela 3 razy szybciej."
 
 IncapMaster="CZAS ZET – Kwarantanna"
-IncapMasterDescription="W czasie zet siła wszystkich efektów obezwładniających zostaje zwiększona o 200% dla każdej broni."
+IncapMasterDescription="Podczas czasu zetów współczynnik powalenia, oszołamiania i ogłuszenia twoich broni wzrasta do ich maksimum."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2682,7 +2682,7 @@ ChanceDropDescriptionStrings[1]="Złoty kupon na prezent"
 CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Czarne morza nieskończoności",DescriptionString="Pokonaj dowolnego bossa w Przetrwaniu na wysokim lub wyższym poziomie trudności na mapie „Sanatorium”.")
-SpecialEventObjectiveInfoList[1]=(TitleString="Dość bujna wyobraźnia",DescriptionString="Użyj w „Sanatorium” pułapki z biczem macki, aby zabić 20 zetów.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Bujna wyobraźnia",DescriptionString="Użyj w „Sanatorium” pułapki z biczem macki, aby zabić 20 zetów.")
 SpecialEventObjectiveInfoList[2]=(TitleString="Nadprzyrodzone sprzeczności",DescriptionString="Użyj w „Sanatorium” pułapki zasysania, aby zabić 20 zetów.")
 SpecialEventObjectiveInfoList[3]=(TitleString="Instynkt macierzyński",DescriptionString="Zabij 10 razy Matriarchini na dowolnej mapie i w dowolnym trybie gry.")
 SpecialEventObjectiveInfoList[4]=(TitleString="Rozwiązanie sprawy rodzinnej",DescriptionString="Ukończ „Laboratorium biotyczne” na wysokim lub wyższym poziomie trudności celu")
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dynamiczny"
 
 ChanceDropDescriptionStrings[0]="Kupon Krampusa"
 ChanceDropDescriptionStrings[1]="Złoty kupon Krampusa"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Nieudane eksperymenty",DescriptionString="Zabij 1500 zetów na dowolnej mapie")
+SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowa robota",DescriptionString="Ukończ tygodniowe wydarzenia na mapie Biopomyłka")
+SpecialEventObjectiveInfoList[2]=(TitleString="Plama z mikserem",DescriptionString="Użyj krwawego miksera, aby zabić 20 zetów w Biopomyłce")
+SpecialEventObjectiveInfoList[3]=(TitleString="To pułapka!",DescriptionString="Użyj drzwi pułapek, aby zabić 20 zetów w Biopomyłce")
+SpecialEventObjectiveInfoList[4]=(TitleString="Zabójcze nawrót",DescriptionString="Pokonaj dowolnego bossa w Przetrwaniu na wysokim lub wyższym poziomie trudności na mapie „Biopomyłka”.")
+
+AllCompleteRewardDescriptionString="AA12 – podwójny zestaw dynamicznych skórek"
+
+ChanceDropDescriptionStrings[0]="Cyberpunkowy kupon"
+ChanceDropDescriptionStrings[1]="Złoty bilet Cyberpunk"
 
 ;============================================
 ; Daily Localization
@@ -3283,6 +3297,9 @@ DisplayName="Zakład Ashwood"
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="Sanatorium"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="Biorobota"
 
 [KFMapInfo]
 ; defaults

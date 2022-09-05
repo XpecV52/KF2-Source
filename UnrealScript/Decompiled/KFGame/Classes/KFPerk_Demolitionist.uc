@@ -104,7 +104,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
         }
         if(((IsDirectHitActive()) && DamageType != none) && IsDamageTypeOnPerk(DamageType))
         {
-            if(class<KFDT_Ballistic_Shell>(DamageType) != none)
+            if((class<KFDT_Ballistic_Shell>(DamageType) != none) || class<KFDT_Bludgeon>(DamageType) != none)
             {
                 TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[2])));
             }

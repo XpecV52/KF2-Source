@@ -11,14 +11,15 @@ class KFProj_DragonsBreathSplash extends KFProj_FlareGunSplash;
 
 defaultproperties
 {
+   ExplosionActorClass=Class'kfgamecontent.KFExplosion_GroundFire'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0 Archetype=KFGameExplosion'kfgamecontent.Default__KFProj_FlareGunSplash:ExploTemplate0'
-      ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_GroundFire'
+      ExplosionEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Impacts'
       bDirectionalExplosion=True
-      Damage=10.000000
+      Damage=8.000000
       DamageRadius=150.000000
-      MyDamageType=Class'kfgamecontent.KFDT_Fire_DragonsBreathDoT'
+      MyDamageType=Class'kfgamecontent.KFDT_Fire_Ground_DragonsBreath'
       KnockDownStrength=0.000000
-      MomentumTransferScale=0.000000
+      MomentumTransferScale=1.000000
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_DragonsBreathSplash:FlamePointLight'
       ExploLightFadeOutTime=0.300000
       ExploLightStartFadeOutTime=4.200000
@@ -28,6 +29,7 @@ defaultproperties
       ObjectArchetype=KFGameExplosion'kfgamecontent.Default__KFProj_FlareGunSplash:ExploTemplate0'
    End Object
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_DragonsBreathSplash:ExploTemplate0'
+   PostExplosionLifetime=2.500000
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFProj_FlareGunSplash:AmbientAkSoundComponent'
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True

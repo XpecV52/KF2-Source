@@ -53,6 +53,8 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 defaultproperties
 {
    FuseTime=0.010000
+   bSyncToOriginalLocation=True
+   bSyncToThirdPersonMuzzleLocation=True
    bDamageDestructiblesOnTouch=True
    bWarnAIWhenFired=True
    TossZ=150.000000

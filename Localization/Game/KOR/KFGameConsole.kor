@@ -29,6 +29,8 @@ KF-SantasWorkshop="산타의 작업장 플레이"
 KF-Spillway="배수로 플레이 중"
 KF-Steamfortress="스팀 포트리스 플레이 중"
 KF-AshwoodAsylum="애쉬우드 정신병원 플레이 중"
+KF-Sanitarium="요양원 플레이 중"
+KF-Biolapse="바이오랩스 플레이 중"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -252,7 +254,7 @@ HorzineSupplyCrate2ProductName="Horzine 보급상자 시리즈 2"
 HorzineSupplyCrate2ShortDesription="Horzine 보급상자는 꾸미기 액세서리가 들어 있습니다. 상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. Devtac 탄도 마스크, 미군 가스 마스크, 스키 마스크, 야구 모자, 전술 백백, 독일군 가스 마스크, 화학 가스 마스크, RPG7 백백, M2 화염방사기 탱크, 또는 희귀한 고급 액세서리 희귀한 꾸미기 아이템이나 더 좋은 꾸미기 아이템이 들어 있습니다!"
 
 HorzineSupplyCrate3ProductName="Horzine 보급상자 시리즈 3"
-HorzineSupplyCrate3ShortDesription="이 Horzine 보급상자에는 무기 스킨이 들어 있습니다. 상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. Horzine 보급상자 시리즈 4와 같은"
+HorzineSupplyCrate3ShortDesription="이 Horzine 보급상자에는 무기 스킨이 들어 있습니다. 상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. 라이선스 대상 소프트웨어 (us.playstation.com/softwarelicense)와 같은"
 
 HorzineSupplyCrate4ProductName="희귀 무기 스킨이나 더 좋은 무기 스킨이 포함되어 있습니다."
 HorzineSupplyCrate4ShortDesription="이 Horzine 보급상자에는 무기 스킨이 들어 있습니다. 상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. 라이선스 대상 소프트웨어 (us.playstation.com/softwarelicense)와 같은"

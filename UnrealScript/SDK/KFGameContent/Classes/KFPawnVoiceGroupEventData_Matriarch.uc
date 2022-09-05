@@ -121,9 +121,9 @@ defaultproperties
 	//This is not used
 	Events[`MATTY_ScorpionWhipKill]={(
 		EventID=`MATTY_ScorpionWhipKill,
-		Priority=1,
+		Priority=3,
 		Weight=1,
-		Chance=1,
+		Chance=0,
 		CooldownTime=0,
 		bCanBeMinimized=0
 	)}
@@ -131,7 +131,7 @@ defaultproperties
 		EventID=`MATTY_TeslaBlastWarning,
 		Priority=1,
 		Weight=1,
-		Chance=0.5,
+		Chance=1.0,
 		CooldownTime=0,
 		bCanBeMinimized=0
 	)}
@@ -147,18 +147,18 @@ defaultproperties
 	//This is not used
 	Events[`MATTY_SweepingClawAttack]={(
 		EventID=`MATTY_SweepingClawAttack,
-		Priority=1,
+		Priority=3,
 		Weight=1,
-		Chance=1,
+		Chance=0,
 		CooldownTime=0,
 		bCanBeMinimized=0
 	)}
 	//This is not used
 	Events[`MATTY_SweepingClawKill]={(
 		EventID=`MATTY_SweepingClawKill,
-		Priority=1,
+		Priority=3,
 		Weight=1,
-		Chance=1,
+		Chance=0,
 		CooldownTime=0,
 		bCanBeMinimized=0
 	)}
@@ -166,16 +166,16 @@ defaultproperties
 		EventID=`MATTY_PlasmaCannonWarning,
 		Priority=1,
 		Weight=1,
-		Chance=0.5,
+		Chance=1.0,
 		CooldownTime=0,
 		bCanBeMinimized=0
 	)}
 	//This is not used
 	Events[`MATTY_PlasmaCannonAttack]={(
 		EventID=`MATTY_PlasmaCannonAttack,
-		Priority=1,
+		Priority=3,
 		Weight=1,
-		Chance=1,
+		Chance=0,
 		CooldownTime=0,
 		bCanBeMinimized=0
 	)}
@@ -225,27 +225,27 @@ defaultproperties
 	// This is not used
 	Events[`MATTY_ShieldActivate]={(
 		EventID=`MATTY_ShieldActivate,
-		Priority=1,
+		Priority=3,
 		Weight=1,
-		Chance=1,
+		Chance=0,
 		CooldownTime=3,
 		bCanBeMinimized=0
 	)}
 	// This is not used
 	Events[`MATTY_Cloak]={(
 		EventID=`MATTY_Cloak,
-		Priority=1,
+		Priority=3,
 		Weight=1,
-		Chance=1,
+		Chance=0,
 		CooldownTime=0,
 		bCanBeMinimized=0
 	)}
 	// This is not used
 	Events[`MATTY_ChargeAttack]={(
 		EventID=`MATTY_ChargeAttack,
-		Priority=1,
+		Priority=3,
 		Weight=1,
-		Chance=1,
+		Chance=0,
 		CooldownTime=0,
 		bCanBeMinimized=0
 	)}

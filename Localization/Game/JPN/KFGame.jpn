@@ -115,7 +115,7 @@ StartOfflineGameString="オフラインゲームを開始"
 StartOfflineGameDescriptionString="オフラインゲームを開始するとパーティーが解体されます。\n続行しますか？"
 
 ProceedToTutorialString="トレーニングに進みますか？"
-ProceedToTutorialDescriptionString="基本を学ぶために制御環境へと向かいましょう。  一度完了すると選択されたレベル0Perkがレベル1になります。"
+ProceedToTutorialDescriptionString="基本を学ぶために制御環境へと向かいましょう。 一度完了すると選択されたレベル0Perkがレベル1になります。"
 
 NotAvailableInFreeTrialString="この機能は無料トライアルではご利用いただけません"
 NetworkCheckFreeTrialFailedString="ネットワークエラー: フリーイベントの状態を確認できません。ネットワークの接続状態をご確認ください。"
@@ -1416,7 +1416,7 @@ KickVoteNoSpectatorsString="観客は追放投票を開始できません"
 KickedFromServerString="サーバーから取り除かれました"
 BannedFromServerString="このサーバーから取り除かれました。現時点では再加入できません"
 ServerNoLongerAvailableString="このサーバーにはもう参加できません"
-SkipTraderTimeString="「トレーダーのスキップ」を有効にしました。ゲームメニューの「トレーダーのスキップ」をオンにして選択できるようにします。  すべてのプレイヤーが同意する必要があります。"
+SkipTraderTimeString="「トレーダーのスキップ」を有効にしました。ゲームメニューの「トレーダーのスキップ」をオンにして選択できるようにします。 すべてのプレイヤーが同意する必要があります。"
 SkipTraderSuccessString="トレーダースキップの投票が成功しました！"
 
 [KFLocalMessage_Game]
@@ -1760,7 +1760,7 @@ Spartan="Zed-Time―スパルタン"
 SpartanDescription="Zed-Time中、Perk武器で攻撃し、リアルタイムで動作する。"
 
 Rage="Zed-Time―バーサーカーの怒り"
-RageDescription="Zed Timeが起動、または更新される度に25%のヘルスを回復し、付近のZedを強制的に撤退させる。"
+RageDescription="Zed Timeが起動、または更新される度に50%のヘルスを回復し、付近のZedを強制的に撤退させる。"
 
 [KFPerk_Commando]
 PerkName="コマンドー"
@@ -1937,7 +1937,7 @@ Fuse="バーベキュー"
 FuseDescription="Perk武器の燃焼効果の持続時間が150%増加し、時間経過でダメージが増加する。"
 
 GroundFire="地上炎"
-GroundFireDescription="地上炎はダメージを2倍にし、Zedの移動速度が30%減少する。これはモロトフには適用しない。"
+GroundFireDescription="地上炎のダメージが3倍に増加し、Zedの移動速度が30%減少する。"
 
 ZedShrapnel="zed榴散弾"
 ZedShrapnelDescription="炎でキルしたzedは30%の確率で爆発し、近くのzedにダメージを与えてスタンする。"
@@ -1990,7 +1990,7 @@ SpeedReload="スピードローダー"
 SpeedReloadDescription="Perk武器のリロード速度が上昇する。"
 
 Penetration="並べろ"
-PenetrationDescription="Perk武器で、zedに弾を貫通させて他のzedにも当てる際、ダメージ減少を受けない。"
+PenetrationDescription="Perk武器で、zedに弾を貫通させて他のzedにも当てる際、ダメージ減少を受けず、貫通力も上昇する。"
 
 Skullcracker="スカルクラッカー"
 SkullcrackerDescription="Perk武器によるヘッドショットでzedが30%遅くなる。"
@@ -2033,7 +2033,7 @@ Stun="弾道ショック"
 StunDescription="Perk武器のスタンパワーが100%増加する。"
 
 RhythmMethod="溜めろ"
-RhythmMethodDescription="Perk武器による各連続ヘッドショットで、ダメージが10%増加する(最大50%まで)。  "
+RhythmMethodDescription="Perk武器による各連続ヘッドショットで、ダメージが10%増加する(最大50%まで)。 "
 
 TacticalReload="戦術的リロード"
 TacticalReloadDescription="Perk武器のリロード速度が上昇する。"
@@ -2094,7 +2094,7 @@ ConcussionRounds="震とう弾"
 ConcussionRoundsDescription="Perk武器の怯みパワーが150%増加する。"
 
 Perforate="Zed-Time―侵入者"
-PerforateDescription="Zed-Time中、Perk武器はヒットしたターゲットを必ず貫通する。"
+PerforateDescription="Zed-Time中、Perk武器で、zedに弾を貫通させて他のzedにも当てる際、ダメージ減少を受けず、貫通力も上昇する。"
 
 Barrage="Zed-Time―集中砲火"
 BarrageDescription="Zed-Time中、Perk武器の発射速度がほぼリアルタイムになる。"
@@ -2190,7 +2190,7 @@ Madman="Zed-Time―狂人"
 MadmanDescription="Zed-Time中、全武器の発射速度が3倍になる。"
 
 IncapMaster="Zed-Time―ロックダウン"
-IncapMasterDescription="Zed-Time中、全武器のすべての状態異常パワーが200%増加する。"
+IncapMasterDescription="Zed Time中、武器によるノックダウン、ひるませ、スタン効果の発現率が最大化する。"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2682,7 +2682,7 @@ ChanceDropDescriptionStrings[1]="ゴールデン景品チケット"
 CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="無限の黒海",DescriptionString="サバイバルHardかそれ以上の難易度で、Sanitariumにてボスを倒す")
-SpecialEventObjectiveInfoList[1]=(TitleString="何だか途方も無い想像力",DescriptionString="Sanitariumにて触手ムチの罠を使って20体のZedを殺す")
+SpecialEventObjectiveInfoList[1]=(TitleString="途方も無い想像力",DescriptionString="Sanitariumにて触手ムチの罠を使って20体のZedを殺す")
 SpecialEventObjectiveInfoList[2]=(TitleString="エルドリッチの矛盾",DescriptionString="Sanitariumにて吸引の罠を使って20体のZedを殺す")
 SpecialEventObjectiveInfoList[3]=(TitleString="母性本能",DescriptionString="いずれかのマップ、あるいはゲームモードでマトリアークを10回殺す")
 SpecialEventObjectiveInfoList[4]=(TitleString="家族関係の解決",DescriptionString="任務 Hard かそれ以上の難易度で Biotics Lab をクリアする")
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | イェーガー | ダイナミッ�
 
 ChanceDropDescriptionStrings[0]="クランプス・チケット"
 ChanceDropDescriptionStrings[1]="クランプス・ゴールデン・チケット"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="失敗作",DescriptionString="マップを問わず、Zedを1500体殺す")
+SpecialEventObjectiveInfoList[1]=(TitleString="週の経過報告",DescriptionString="Biolapseでウィークリーをクリア")
+SpecialEventObjectiveInfoList[2]=(TitleString="ブレンダーブランダー",DescriptionString="Biolapseにて血液撹拌機を使って20体のZedを殺す")
+SpecialEventObjectiveInfoList[3]=(TitleString="罠だ！",DescriptionString="Biolapseにて細工扉を使って20体のZedを殺す")
+SpecialEventObjectiveInfoList[4]=(TitleString="死の再来",DescriptionString="サバイバルHardかそれ以上の難易度で、Biolapseにてボスを倒す")
+
+AllCompleteRewardDescriptionString="AA12 ダイナミック ダブルバンドルスキン"
+
+ChanceDropDescriptionStrings[0]="サイバーパンク・チケット"
+ChanceDropDescriptionStrings[1]="サイバーパンク ゴールデンチケット"
 
 ;============================================
 ; Daily Localization
@@ -3283,6 +3297,9 @@ DisplayName="アッシュウッド精神科病院"
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="Sanitarium"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="Biolapse"
 
 [KFMapInfo]
 ; defaults

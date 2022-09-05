@@ -530,7 +530,7 @@ defaultproperties
     PerkSkills(6)=(Name="ZedShrapnel",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel",bActive=false)
     PerkSkills(7)=(Name="MakeThingsGoBoom",Increment=0,Rank=0,StartingValue=1.4,MaxValue=1.4,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom",bActive=false)
     PerkSkills(8)=(Name="MadMan",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman",bActive=false)
-    PerkSkills(9)=(Name="IncapMaster",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster",bActive=false)
+    PerkSkills(9)=(Name="IncapMaster",Increment=0,Rank=0,StartingValue=99,MaxValue=99,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster",bActive=false)
     ZedTimeModifyingStates(0)=WeaponFiring
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
@@ -538,6 +538,7 @@ defaultproperties
     ZedTimeModifyingStates(4)=SprayingFire
     ZedTimeModifyingStates(5)=WeaponAltFiring
     ZedTimeModifyingStates(6)=HuskCannonCharge
+    ZedTimeModifyingStates(7)=CompoundBowCharge
     PrimaryWeaponDef=Class'KFWeapDef_Random'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Survivalist'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Commando'

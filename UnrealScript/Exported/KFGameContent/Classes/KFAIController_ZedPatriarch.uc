@@ -1948,6 +1948,7 @@ defaultproperties
    DangerEvadeSettings(1)=(ClassName="KFWeap_Bow_Crossbow",Cooldowns=(0.000000,0.000000,0.300000,0.200000),BlockChances=(0.000000,0.000000,1.000000,1.000000))
    DangerEvadeSettings(2)=(ClassName="KFWeap_Rifle_M14EBR",Cooldowns=(0.000000,0.000000,0.300000,0.200000),BlockChances=(0.000000,0.000000,1.000000,1.000000))
    DangerEvadeSettings(3)=(ClassName="KFWeap_Rifle_RailGun",Cooldowns=(0.000000,0.000000,0.300000,0.200000),BlockChances=(0.000000,0.000000,1.000000,1.000000))
+   DangerEvadeSettings(4)=(ClassName="KFWeap_Bow_CompoundBow",Cooldowns=(0.000000,0.000000,0.300000,0.200000),BlockChances=(0.000000,0.000000,1.000000,1.000000))
    Name="Default__KFAIController_ZedPatriarch"
    ObjectArchetype=KFAIController_ZedBoss'KFGame.Default__KFAIController_ZedBoss'
 }

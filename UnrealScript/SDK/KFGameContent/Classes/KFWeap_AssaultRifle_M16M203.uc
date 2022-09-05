@@ -51,10 +51,15 @@ simulated function AltFireMode()
  */
 function InitializeAmmo()
 {
+	local KFPerk CurrentPerk;
 	Super.InitializeAmmo();
-
 	// Add Secondary ammo to our secondary spare ammo count both of these are important, in order to allow dropping the weapon to function properly.
-	SpareAmmoCount[1]	= Min(SpareAmmoCount[1] + InitialSpareMags[1] * default.MagazineCapacity[1], GetMaxAmmoAmount(1) - AmmoCount[1]);
+	SpareAmmoCount[1]	= Min(SpareAmmoCount[1] + (InitialSpareMags[1] * MagazineCapacity[1]) + AmmoCount[1], GetMaxAmmoAmount(1) - AmmoCount[1]);
+	
+	//Because SpareAmmoCount was set to zero before the previous line, we call again the variable modification depending on perk abilities
+	CurrentPerk = GetPerk();
+	CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[ALTFIRE_FIREMODE], , true);
+	SpareAmmoCount[ALTFIRE_FIREMODE] -= AmmoCount[1]; //Accounting for the extra shot calculated.
 	ServerTotalAltAmmo += SpareAmmoCount[1];
 
 	// Make sure the server doesn't get extra shots on listen servers.
@@ -116,7 +121,6 @@ simulated event bool HasAmmo( byte FireModeNum, optional int Amount=1 )
 function int AddSecondaryAmmo(int Amount)
 {
 	local int OldAmmo;
-
 	// If we can't accept spare ammo, then abort
 	if( !CanRefillSecondaryAmmo() )
 	{
@@ -126,7 +130,6 @@ function int AddSecondaryAmmo(int Amount)
 	if(Role == ROLE_Authority && !Instigator.IsLocallyControlled())
 	{
 		OldAmmo = ServerTotalAltAmmo;
-
 		ServerTotalAltAmmo = Min(ServerTotalAltAmmo + Amount, GetMaxAmmoAmount(1));
 		ClientGiveSecondaryAmmo(Amount);
 		return ServerTotalAltAmmo - OldAmmo;

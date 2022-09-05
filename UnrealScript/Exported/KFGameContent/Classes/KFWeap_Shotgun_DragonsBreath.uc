@@ -38,7 +38,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
-   SpareAmmoCapacity(0)=57
+   SpareAmmoCapacity(0)=60
    InitialSpareMags(0)=4
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    BonesToLockOnEmpty(0)="RW_Hammer"
@@ -53,7 +53,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ShotgunBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Shotgun_DragonsBreath:MeleeHelper_0'
-   NumPellets(0)=8
+   NumPellets(0)=6
    NumPellets(1)=()
    NumPellets(2)=()
    NumPellets(3)=()
@@ -92,14 +92,14 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_DragonsBreath'
-   FireInterval(0)=0.690000
+   FireInterval(0)=0.770000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.160000
    Spread(1)=()
-   InstantHitDamage(0)=26.000000
+   InstantHitDamage(0)=35.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=25.000000

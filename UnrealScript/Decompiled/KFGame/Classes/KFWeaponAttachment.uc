@@ -369,6 +369,14 @@ simulated function StopFirstPersonFireEffects(Weapon W)
 
 simulated function StartFire();
 
+simulated function StartPawnCrouch();
+
+simulated function EndPawnCrouch();
+
+simulated function SetWeaponUsingIronSights(bool bUsingIronSights);
+
+simulated function SetWeaponAltFireMode(bool bUsingAltFireMode);
+
 simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byte ThirdPersonAnimRateByte)
 {
     local KFPawn.EAnimSlotStance AnimType;

@@ -552,7 +552,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_9719
+    BoneBreakerBodyParts(1)=.!=_9727
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -583,7 +583,7 @@ Parameter name: index
     PerkSkills(1)=(Name="QuickSwitch",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_QuickSwitch",bActive=false)
     PerkSkills(2)=(Name="RhythmMethod",Increment=0,Rank=0,StartingValue=0.1,MaxValue=0.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_RackEmUp",bActive=false)
     PerkSkills(3)=(Name="BoneBreaker",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_BoneBreaker",bActive=false)
-    PerkSkills(4)=(Name="Penetration",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LineEmUp",bActive=false)
+    PerkSkills(4)=(Name="Penetration",Increment=0,Rank=0,StartingValue=10,MaxValue=10,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_LineEmUp",bActive=false)
     PerkSkills(5)=(Name="SpeedReload",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_SpeedReload",bActive=false)
     PerkSkills(6)=(Name="Skullcracker",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_Skullcracker",bActive=false)
     PerkSkills(7)=(Name="KnockEmDown",Increment=0,Rank=0,StartingValue=4.1,MaxValue=4.1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Gunslinger.UI_Talents_Gunslinger_KnockEmDown",bActive=false)
@@ -602,7 +602,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_1196
+    BodyPartsCanStumble(1)=.!=_1197
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4

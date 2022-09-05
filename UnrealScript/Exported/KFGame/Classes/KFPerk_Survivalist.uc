@@ -755,7 +755,7 @@ defaultproperties
    PerkSkills(6)=(Name="ZedShrapnel",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel")
    PerkSkills(7)=(Name="MakeThingsGoBoom",StartingValue=1.400000,MaxValue=1.400000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom")
    PerkSkills(8)=(Name="MadMan",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman")
-   PerkSkills(9)=(Name="IncapMaster",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster")
+   PerkSkills(9)=(Name="IncapMaster",StartingValue=99.000000,MaxValue=99.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster")
    ZedTimeModifyingStates(0)="WeaponFiring"
    ZedTimeModifyingStates(1)="WeaponBurstFiring"
    ZedTimeModifyingStates(2)="WeaponSingleFiring"
@@ -763,6 +763,7 @@ defaultproperties
    ZedTimeModifyingStates(4)="SprayingFire"
    ZedTimeModifyingStates(5)="WeaponAltFiring"
    ZedTimeModifyingStates(6)="HuskCannonCharge"
+   ZedTimeModifyingStates(7)="CompoundBowCharge"
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_Random'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Survivalist'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'

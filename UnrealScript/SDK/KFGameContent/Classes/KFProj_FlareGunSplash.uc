@@ -12,7 +12,7 @@ class KFProj_FlareGunSplash extends KFProj_MolotovSplash;
 defaultproperties
 {
     Begin Object Name=ExploTemplate0
-        MyDamageType=class'KFDT_Fire_FlareGunDoT'
+        MyDamageType=class'KFDT_Fire_Ground_FlareGun'
     End Object
 
     AssociatedPerkClass=none

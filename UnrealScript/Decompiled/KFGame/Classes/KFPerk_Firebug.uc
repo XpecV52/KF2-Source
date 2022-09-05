@@ -232,7 +232,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 
 simulated function float GetSnareSpeedModifier()
 {
-    return ((IsGroundFireActive()) ? SnareSpeedModifier : 1);
+    return ((IsGroundFireActive() || IsInfernoActive()) ? SnareSpeedModifier : 1);
 }
 
 simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)

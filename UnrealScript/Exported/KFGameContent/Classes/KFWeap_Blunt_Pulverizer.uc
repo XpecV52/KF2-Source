@@ -435,7 +435,7 @@ defaultproperties
    WeaponFireTypes(6)=EWFT_Custom
    FireInterval(5)=0.000000
    FireInterval(6)=1.000000
-   InstantHitDamage(0)=70.000000
+   InstantHitDamage(0)=80.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=20.000000

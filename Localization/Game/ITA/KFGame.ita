@@ -1416,7 +1416,7 @@ KickVoteNoSpectatorsString="Gli spettatori non possono richiedere un kick"
 KickedFromServerString="Sei stato rimosso dal server"
 BannedFromServerString="Sei stato rimosso da questo server Non puoi rientrare in questo momento"
 ServerNoLongerAvailableString="Impossibile raggiungere il server"
-SkipTraderTimeString="SALTA COMMERCIANTE attivo. Scegli SALTA COMMERCIANTE nel menu per votare.  Devono accettare tutti."
+SkipTraderTimeString="SALTA COMMERCIANTE attivo. Scegli SALTA COMMERCIANTE nel menu per votare. Devono accettare tutti."
 SkipTraderSuccessString="Voto “Salta commerciante” approvato!"
 
 [KFLocalMessage_Game]
@@ -1760,7 +1760,7 @@ Spartan="ZED TIME - Spartano"
 SpartanDescription="Durante gli Zed time, puoi attaccare con armi di classe e muoverti in tempo reale."
 
 Rage="ZED TIME - Furia berserker"
-RageDescription="Quando lo Zed time si attiva o si aggiorna, cura il 25% della Salute e obbliga gli Zed vicini a fuggire."
+RageDescription="Quando lo Zed time si attiva o si aggiorna, cura il 50% della Salute e obbliga gli Zed vicini a fuggire."
 
 [KFPerk_Commando]
 PerkName="Commando"
@@ -1937,7 +1937,7 @@ Fuse="Barbecue"
 FuseDescription="Effetto incendiario armi di classe 150% più lungo, con danni sempre crescenti."
 
 GroundFire="Fuoco di terra"
-GroundFireDescription="I fuochi di terra provocano danni doppi e riducono la velocità degli Zed del 30%. Non si applica alle molotov."
+GroundFireDescription="I fuochi di terra provocano danni x3 e riducono la velocità degli Zed del 30%."
 
 ZedShrapnel="Sharpnel Zed"
 ZedShrapnelDescription="Gli Zed che uccidi col fuoco hanno il 30% di possibilità di esplodere, danneggiando e stordendo gli Zed vicini."
@@ -1990,7 +1990,7 @@ SpeedReload="Ricarica fulminea"
 SpeedReloadDescription="Aumenta la velocità di ricarica con armi di classe."
 
 Penetration="Allineamento"
-PenetrationDescription="Annulla la riduzione del danno quando spari attraverso gli Zed per colpirne altri usando armi di classe."
+PenetrationDescription="Annulla la riduzione del danno quando spari attraverso gli Zed per colpirne altri e aumenta la penetrazione con le armi di classe."
 
 Skullcracker="Spaccateste"
 SkullcrackerDescription="I colpi alla testa con armi di classe rallentano gli Zed del 30%."
@@ -2033,7 +2033,7 @@ Stun="Shock balistico"
 StunDescription="Aumenta la forza di stordimento delle armi di classe del 100%."
 
 RhythmMethod="Esecuzione di massa"
-RhythmMethodDescription="Ogni colpo alla testa consecutivo con armi di classe aumenta il danno del 10% fino a un massimo del 50%.  "
+RhythmMethodDescription="Ogni colpo alla testa consecutivo con armi di classe aumenta il danno del 10% fino a un massimo del 50%. "
 
 TacticalReload="Ricarica tattica"
 TacticalReloadDescription="Aumenta la velocità di ricarica con armi di classe."
@@ -2094,7 +2094,7 @@ ConcussionRounds="Colpi concussione"
 ConcussionRoundsDescription="Aumenta la forza d'urto delle armi di classe del 150%."
 
 Perforate="ZED TIME - Perforatore"
-PerforateDescription="Durante gli Zed time, le tue armi di classe perforano ogni bersaglio che colpiscono."
+PerforateDescription="Durante gli Zed time, annulla la riduzione del danno quando spari attraverso gli Zed per colpirne altri e aumenta la penetrazione con le armi di classe."
 
 Barrage="ZED TIME - Raffica"
 BarrageDescription="Durante gli Zed time, le tue armi di classe sparano quasi in tempo reale."
@@ -2190,7 +2190,7 @@ Madman="ZED TIME - Follia"
 MadmanDescription="Durante gli Zed time, tutte le tue armi sparano 3 volte più veloci."
 
 IncapMaster="ZED TIME - Debilitazione"
-IncapMasterDescription="Durante gli Zed time, la potenza di tutti i metodi di indebolimento aumenta del 200% per tutte le armi."
+IncapMasterDescription="Durante lo Zed time, l'abbattimento, la forza d'urto e il tasso di stordimento delle tue armi sono portati al massimo."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2569,7 +2569,7 @@ KFWeap_MKB="Arma di Halloween di Hans"
 Source0="Promo Chivalry"
 
 ;============================================
-; SpecialEvent  Localization (Base class)
+; SpecialEvent Localization (Base class)
 ;============================================
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
@@ -2682,7 +2682,7 @@ ChanceDropDescriptionStrings[1]="Biglietto Delizia Oro"
 CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Mari neri dell'Infinito",DescriptionString="Sconfiggi qualsiasi boss in modalità difficile Survival o superiore nel Manicomio")
-SpecialEventObjectiveInfoList[1]=(TitleString="Fantasia alquanto stravagante",DescriptionString="Usa la Trappola della Frusta tentacolare per uccidere 20 Zed nel Manicomio")
+SpecialEventObjectiveInfoList[1]=(TitleString="Fantasia stravagante",DescriptionString="Usa la Trappola della Frusta tentacolare per uccidere 20 Zed nel Manicomio")
 SpecialEventObjectiveInfoList[2]=(TitleString="Contraddizioni sinistre",DescriptionString="Usa la Trappola della Suzione per uccidere 20 Zed nel Manicomio")
 SpecialEventObjectiveInfoList[3]=(TitleString="Istinti materni",DescriptionString="Uccidi 10 volte la Matriarca in qualsiasi mappa e modalità di gioco")
 SpecialEventObjectiveInfoList[4]=(TitleString="Una questione di famiglia",DescriptionString="Completa Laboratori biologici in difficoltà Obiettivo Difficile o superiore")
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dinamico"
 
 ChanceDropDescriptionStrings[0]="Biglietto Krampus"
 ChanceDropDescriptionStrings[1]="Biglietto Oro del Krampus"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Esperimenti falliti",DescriptionString="Uccidi 1500 Zed in qualsiasi mappa")
+SpecialEventObjectiveInfoList[1]=(TitleString="Lapsus settimanale",DescriptionString="Completa il Settimanale in Biolapsus")
+SpecialEventObjectiveInfoList[2]=(TitleString="Che macello!",DescriptionString="Usa il frullacarne per uccidere 20 Zed in Biolapsus")
+SpecialEventObjectiveInfoList[3]=(TitleString="È una trappola!",DescriptionString="Usa le botole per uccidere 20 Zed in Biolapsus")
+SpecialEventObjectiveInfoList[4]=(TitleString="Biorecidiva mortale",DescriptionString="Sconfiggi qualsiasi boss in modalità difficile Survival o superiore in Biolapsus")
+
+AllCompleteRewardDescriptionString="Bundle con due Skin dinamiche per AA12"
+
+ChanceDropDescriptionStrings[0]="Biglietto Cyberpunk"
+ChanceDropDescriptionStrings[1]="Biglietto Oro Cyberpunk"
 
 ;============================================
 ; Daily Localization
@@ -3283,6 +3297,9 @@ DisplayName="Manicomio di Frassino"
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="Manicomio"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="Biolapsus"
 
 [KFMapInfo]
 ; defaults

@@ -1236,6 +1236,7 @@ defaultproperties
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Explosive_RPG7',DamageScale=(1.200000))
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_RailGun',DamageScale=(0.900000))
    DamageTypeModifiers(14)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(0.900000))
+   DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Fire_Ground_DragonsBreath',DamageScale=(0.900000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Hans'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:SprintAkComponent0'

@@ -155,7 +155,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 		if( IsDirectHitActive() && DamageType != none && IsDamageTypeOnPerk( DamageType ) )
 		{
-			if( class<KFDT_Ballistic_Shell>(DamageType) != none )
+			if( class<KFDT_Ballistic_Shell>(DamageType) != none || class<KFDT_Bludgeon>(DamageType)!=none)
 			{
 				TempDamage += InDamage * GetSkillValue( PerkSkills[EDemoDirectHit] );
 				`QALog( "High Impact Damage Given" @ DamageType @ KFW @ InDamage * GetSkillValue( PerkSkills[EDemoDirectHit] ), bLogPerk );

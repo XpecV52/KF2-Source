@@ -1760,7 +1760,7 @@ Spartan="ZED TIME - Spartan"
 SpartanDescription="During Zed time, you attack with perk weapons and move in real-time."
 
 Rage="ZED TIME - Berserker Rage"
-RageDescription="Whenever Zed time activates or refreshes, heal 25% Health and force nearby Zeds to flee."
+RageDescription="Whenever Zed time activates or refreshes, heal 50% Health and force nearby Zeds to flee."
 
 [KFPerk_Commando]
 PerkName="Commando"
@@ -1937,7 +1937,7 @@ Fuse="Barbecue"
 FuseDescription="Perk weapons’ burn effect lasts 150% longer, increasing damage over time."
 
 GroundFire="Ground Fire"
-GroundFireDescription="Ground fires deal twice the damage and reduce Zed movement speed 30%. This does not apply to molotovs."
+GroundFireDescription="Ground fires deal 3x the damage and reduce Zed movement speed 30%."
 
 ZedShrapnel="Zed Shrapnel"
 ZedShrapnelDescription="Zeds you kill with fire have a 30% chance to explode, damaging and stunning nearby Zeds."
@@ -1990,7 +1990,7 @@ SpeedReload="Speedloader"
 SpeedReloadDescription="Increase reload speed with perk weapons."
 
 Penetration="Line 'em Up"
-PenetrationDescription="Suffer no damage reduction from shooting through Zeds to hit other Zeds with perk weapons."
+PenetrationDescription="Suffer no damage reduction from shooting through Zeds to hit other Zeds and increase penetration with perk weapons."
 
 Skullcracker="Skullcracker"
 SkullcrackerDescription="Headshots with perk weapons slow Zeds 30%."
@@ -2094,7 +2094,7 @@ ConcussionRounds="Concussion Rounds"
 ConcussionRoundsDescription="Increase stumble power for perk weapons 150%."
 
 Perforate="ZED TIME - Penetrator"
-PerforateDescription="During Zed time, your perk weapons penetrate through any targets they hit."
+PerforateDescription="During Zed time, your perk weapons suffer no damage reduction from penetration and you penetrate through all Zeds."
 
 Barrage="ZED TIME - Barrage"
 BarrageDescription="During Zed time, your perk weapons shoot in near real-time."
@@ -2190,7 +2190,7 @@ Madman="ZED TIME - Madman"
 MadmanDescription="During Zed time, all your weapons shoot 3x faster."
 
 IncapMaster="ZED TIME - Lockdown"
-IncapMasterDescription="During Zed time, the power of all incapacitation methods are increased 200% for all weapons."
+IncapMasterDescription="During Zed time, the knockdown, stumble, and stun rates of your weapons are increased to their max."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dynamic"
 
 ChanceDropDescriptionStrings[0]="Krampus Ticket"
 ChanceDropDescriptionStrings[1]="Krampus Golden Ticket"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="A time-limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Failed Experiments",DescriptionString="Kill 1500 Zeds on any map")
+SpecialEventObjectiveInfoList[1]=(TitleString="Weekly Lapse",DescriptionString="Complete the Weekly on Biolapse")
+SpecialEventObjectiveInfoList[2]=(TitleString="Blender Blunder",DescriptionString="Use the blood blender to kill 20 Zeds on Biolapse")
+SpecialEventObjectiveInfoList[3]=(TitleString="It's a Trap!",DescriptionString="Use the trap doors to kill 20 Zeds on Biolapse")
+SpecialEventObjectiveInfoList[4]=(TitleString="Deadly Relapse",DescriptionString="Defeat any boss on Survival Hard or higher difficulty on Biolapse")
+
+AllCompleteRewardDescriptionString="AA12 Dynamic Double Bundle Skins"
+
+ChanceDropDescriptionStrings[0]="Cyberpunk Ticket"
+ChanceDropDescriptionStrings[1]="Cyperpunk Golden Ticket"
 
 ;============================================
 ; Daily Localization
@@ -3283,6 +3297,9 @@ DisplayName="Ashwood Asylum"
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="Sanitarium"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="Biolapse"
 
 [KFMapInfo]
 ; defaults

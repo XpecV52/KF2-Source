@@ -858,8 +858,8 @@ DefaultProperties
 	SmashHeadDamageModifier=0.25
 	VampireAttackSpeedModifier=0.2f
 	ParryDamageReduction=0.4f //0.75
-	RageRadius=650 //300
-	RageFleeDuration=3.f
+	RageRadius=1000 //300
+	RageFleeDuration=5.f //3
 	RageFleeDistance=2500 //5000
 	RageDialogEvent=229
 
@@ -899,7 +899,7 @@ DefaultProperties
 	PerkSkills(EBerserkerParry)=(Name="Parry",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",Increment=0.f,Rank=0,StartingValue=0.35,MaxValue=0.35)
 	PerkSkills(EBerserkerSmash)=(Name="Smash",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(EBerserkerFury)=(Name="Fury",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Intimidate",Increment=0.f,Rank=0,StartingValue=0.3f,MaxValue=0.3f)
-	PerkSkills(EBerserkerRage)=(Name="Rage",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
+	PerkSkills(EBerserkerRage)=(Name="Rage",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",Increment=0.f,Rank=0,StartingValue=0.5,MaxValue=0.5)
 	PerkSkills(EBerserkerSpartan)=(Name="Spartan",IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Flash",Increment=0.f,Rank=0,StartingValue=0.f,MaxValue=0.f)
 
 	ParrySkillSoundModeStart=AkEvent'WW_GLO_Runtime.Play_Beserker_Parry_Mode'

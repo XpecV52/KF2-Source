@@ -1840,7 +1840,7 @@ System.ArgumentException: Requested value '!=_1028443340' was not found.
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_CaulkNBurn_GroundFire,Cooldowns=/* Array type was not detected. */,
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFDT_Explosive_HRGIncendiaryRifle,Cooldowns=/* Array type was not detected. */,
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
@@ -1855,7 +1855,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    DangerEvadeSettings(7)=EvadeChances=(0,0.3,0.5,0.8),ForcedEvadeChances=none,ReactionDelayRanges=(
+    DangerEvadeSettings(7)=EvadeChances=(0.1,0.3,0.5,0.6),ForcedEvadeChances=((FL=0,FR=0),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentException: Requested value '!=' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
@@ -1864,12 +1864,12 @@ System.ArgumentException: Requested value '!=' was not found.
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=' was not found.
+System.ArgumentException: Requested value '!=_1028443340' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_FlameThrower_GroundFire,Cooldowns=/* Array type was not detected. */,
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_CaulkNBurn_GroundFire,Cooldowns=/* Array type was not detected. */,
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
@@ -1898,7 +1898,7 @@ System.ArgumentException: Requested value '!=' was not found.
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Flame_CaulkBurn,Cooldowns=/* Array type was not detected. */,
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_FlameThrower_GroundFire,Cooldowns=/* Array type was not detected. */,
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
@@ -1927,7 +1927,7 @@ System.ArgumentException: Requested value '!=' was not found.
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Flame_Flamethrower,Cooldowns=/* Array type was not detected. */,
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Flame_CaulkBurn,Cooldowns=/* Array type was not detected. */,
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
@@ -1942,7 +1942,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    DangerEvadeSettings(10)=EvadeChances=(0.1,0.3,0.5,0.8),ForcedEvadeChances=none,ReactionDelayRanges=(
+    DangerEvadeSettings(10)=EvadeChances=(0,0.3,0.5,0.8),ForcedEvadeChances=none,ReactionDelayRanges=(
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentException: Requested value '!=' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
@@ -1956,7 +1956,7 @@ System.ArgumentException: Requested value '!=' was not found.
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Beam_Microwave,Cooldowns=/* Array type was not detected. */,
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Flame_Flamethrower,Cooldowns=/* Array type was not detected. */,
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
@@ -1985,65 +1985,65 @@ System.ArgumentException: Requested value '!=' was not found.
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Beam_Microwave,Cooldowns=/* Array type was not detected. */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
+/* Exception thrown while deserializing DangerEvadeSettings
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    DangerEvadeSettings(12)=EvadeChances=(0.1,0.3,0.5,0.8),ForcedEvadeChances=none,ReactionDelayRanges=(
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_Flame_HRGIncendiaryRifle,Cooldowns=/* Array type was not detected. */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
+/* Exception thrown while deserializing DangerEvadeSettings
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    DangerEvadeSettings(13)=EvadeChances=(0,0.3,0.5,0.8),ForcedEvadeChances=none,ReactionDelayRanges=(
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Bow_Crossbow,Cooldowns=/* Array type was not detected. */,
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
-/* Exception thrown while deserializing DangerEvadeSettings
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    DangerEvadeSettings(12)=EvadeChances=(0.08,0.1,0.2,0.35),ForcedEvadeChances=((FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=_1041865113' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=_1041865113' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Rifle_M14EBR,Cooldowns=/* Array type was not detected. */,
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
-/* Exception thrown while deserializing DangerEvadeSettings
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    DangerEvadeSettings(13)=EvadeChances=(0.08,0.1,0.2,0.35),ForcedEvadeChances=((FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=_1041865113' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=_1041865113' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Rifle_Winchester1894,Cooldowns=/* Array type was not detected. */,
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
@@ -2072,7 +2072,7 @@ System.ArgumentException: Requested value '!=_1041865113' was not found.
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Rifle_RailGun,Cooldowns=/* Array type was not detected. */,
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Bow_CompoundBow,Cooldowns=/* Array type was not detected. */,
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
@@ -2101,94 +2101,94 @@ System.ArgumentException: Requested value '!=_1041865113' was not found.
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Rifle_M14EBR,Cooldowns=/* Array type was not detected. */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
+/* Exception thrown while deserializing DangerEvadeSettings
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    DangerEvadeSettings(16)=EvadeChances=(0.08,0.1,0.2,0.35),ForcedEvadeChances=((FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=_1041865113' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=_1041865113' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Rifle_Winchester1894,Cooldowns=/* Array type was not detected. */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
+/* Exception thrown while deserializing DangerEvadeSettings
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    DangerEvadeSettings(17)=EvadeChances=(0.08,0.1,0.2,0.35),ForcedEvadeChances=((FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=_1041865113' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=_1041865113' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Rifle_RailGun,Cooldowns=/* Array type was not detected. */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
+/* Exception thrown while deserializing DangerEvadeSettings
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    DangerEvadeSettings(18)=EvadeChances=(0.08,0.1,0.2,0.35),ForcedEvadeChances=((FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=_1041865113' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=_1041865113' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_FragGrenade,Cooldowns=/* Array type was not detected. */,
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
-/* Exception thrown while deserializing DangerEvadeSettings
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    DangerEvadeSettings(16)=EvadeChances=(0.1,0.3,0.5,0.6),ForcedEvadeChances=((FL=0,FR=0),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=_1028443340' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_MolotovGrenade,Cooldowns=/* Array type was not detected. */,
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
-/* Exception thrown while deserializing DangerEvadeSettings
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    DangerEvadeSettings(17)=EvadeChances=(0.1,0.3,0.5,0.6),ForcedEvadeChances=((FL=0,FR=0),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=_1028443340' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_DynamiteGrenade,Cooldowns=/* Array type was not detected. */,
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
-/* Exception thrown while deserializing DangerEvadeSettings
-System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
-Parameter name: index
-   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    DangerEvadeSettings(18)=EvadeChances=(0.1,0.3,0.5,0.6),ForcedEvadeChances=((FL=0,FR=0),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
-/* Exception thrown while deserializing ReactionDelayRanges
-System.ArgumentException: Requested value '!=_1028443340' was not found.
-   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
-   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
-   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
-   at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_NailBombGrenade,Cooldowns=/* Array type was not detected. */,
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
@@ -2217,7 +2217,7 @@ System.ArgumentException: Requested value '!=_1028443340' was not found.
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_HEGrenade,Cooldowns=/* Array type was not detected. */,
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_MolotovGrenade,Cooldowns=/* Array type was not detected. */,
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
@@ -2246,6 +2246,93 @@ System.ArgumentException: Requested value '!=_1028443340' was not found.
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_DynamiteGrenade,Cooldowns=/* Array type was not detected. */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
+/* Exception thrown while deserializing DangerEvadeSettings
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    DangerEvadeSettings(21)=EvadeChances=(0.1,0.3,0.5,0.6),ForcedEvadeChances=((FL=0,FR=0),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=_1028443340' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_NailBombGrenade,Cooldowns=/* Array type was not detected. */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
+/* Exception thrown while deserializing DangerEvadeSettings
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    DangerEvadeSettings(22)=EvadeChances=(0.1,0.3,0.5,0.6),ForcedEvadeChances=((FL=0,FR=0),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=_1028443340' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFProj_HEGrenade,Cooldowns=/* Array type was not detected. */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
+/* Exception thrown while deserializing DangerEvadeSettings
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    DangerEvadeSettings(23)=EvadeChances=(0.1,0.3,0.5,0.6),ForcedEvadeChances=((FL=0,FR=0),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5),(FL=0.5,FR=0.5)),ReactionDelayRanges=(
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing ReactionDelayRanges
+System.ArgumentException: Requested value '!=_1028443340' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,(BlockChances=none,SoloChanceMultiplier=1,LastEvadeTime=0),ClassName=KFWeap_Rifle_Winchester1894,Cooldowns=/* Array type was not detected. */,
 /* Exception thrown while deserializing ReactionDelayRanges
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
@@ -2261,9 +2348,10 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    DangerEvadeSettings(21)=(EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
-    DangerEvadeSettings(22)=(ClassName=KFWeap_Bow_Crossbow,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
-    DangerEvadeSettings(23)=(ClassName=KFWeap_Rifle_M14EBR,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
-    DangerEvadeSettings(24)=(ClassName=KFWeap_Rifle_RailGun,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
+    DangerEvadeSettings(24)=(EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
+    DangerEvadeSettings(25)=(ClassName=KFWeap_Bow_Crossbow,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
+    DangerEvadeSettings(26)=(ClassName=KFWeap_Rifle_M14EBR,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
+    DangerEvadeSettings(27)=(ClassName=KFWeap_Rifle_RailGun,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
+    DangerEvadeSettings(28)=(ClassName=KFWeap_Bow_CompoundBow,Cooldowns=(0.5,0.4,0.3,0.2),EvadeChances=none,ForcedEvadeChances=none,ReactionDelayRanges=none,BlockChances=(0.1,0.2,0.7,0.85),SoloChanceMultiplier=0,LastEvadeTime=0)
     AggroEnemySwitchWaitTime=7
 }

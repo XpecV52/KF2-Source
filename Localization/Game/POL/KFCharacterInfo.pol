@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="Twardy Mikołaj"
-Description="Na początku Krampus przyszedł po renifery. Potem Krampus przyszedł po dom. Na koniec Mikołaj dał Krampusowi poczuć zimno lufy karabinu na skroni. Ho ho ho!\n\nŚwięty Mikołaj od setek lat opiekował się dziećmi z całego świata, przynosił im prezenty, a na ich twarzach wywoływał uśmiechy radości. Czy taka sielanka mogła trwać wiecznie na tym świecie pełnym złości?  „NIE!” — odkąd Krampus tu zagościł.  Od pamiętnych Krampusowych Świąt myśli Mikołaja krążą wokół pomszczenia swoich zabitych pracowników, przyjaciół i członków rodziny. Różowe poliki i galaretowaty brzusio to śpiewka przeszłości — Mikołaj stał się umięśnioną, wnerwioną maszyną do zabijania. Tegoroczna noc nie będzie cicha, dzwonić będą jedynie dzwony pogrzebowe, a zamiast łamania się opłatkiem Mikołaj wprowadzi nowy zwyczaj: dzielenie się seriami ołowiu."
+Description="Na początku Krampus przyszedł po renifery. Potem Krampus przyszedł po dom. Na koniec Mikołaj dał Krampusowi poczuć zimno lufy karabinu na skroni. Ho ho ho!\n\nŚwięty Mikołaj od setek lat opiekował się dziećmi z całego świata, przynosił im prezenty, a na ich twarzach wywoływał uśmiechy radości. Czy taka sielanka mogła trwać wiecznie na tym świecie pełnym złości? „NIE!” — odkąd Krampus tu zagościł. Od pamiętnych Krampusowych Świąt myśli Mikołaja krążą wokół pomszczenia swoich zabitych pracowników, przyjaciół i członków rodziny. Różowe poliki i galaretowaty brzusio to śpiewka przeszłości — Mikołaj stał się umięśnioną, wnerwioną maszyną do zabijania. Tegoroczna noc nie będzie cicha, dzwonić będą jedynie dzwony pogrzebowe, a zamiast łamania się opłatkiem Mikołaj wprowadzi nowy zwyczaj: dzielenie się seriami ołowiu."
 BodyMesh0="Strój Mikołaja"
 BodyMesh1="Kurczak-komandos"
 HeadMesh0="Głowa Mikołaja"
@@ -976,7 +976,7 @@ AttachmentSkin6="Biały"
 
 [CHR_Coleman_archetype]
 CharacterName="Donovan Neal"
-Description="Donovan jest duży, twardy i umie sobie poradzić w każdej sytuacji. Kryje się w nim jednak coś więcej, niż widać na pierwszy rzut oka. Nie był zwykłym kolesiem zapewniającym ochronę osobistą grupie zapaśników; był kolesiem, który założył, posiadał i prowadził wielką ochroniarską firmę. Donovan, urodził się w Atlancie, w stanie Georgia, był inteligentny i dobrze wykształcony. Zanim założył własny biznes, pracował w organach ścigania.  Był nie tylko mięśniami, lecz całym mózgiem operacji. Teraz jest tylko jednym z ocalałych, który znalazł się w nieodpowiednim miejscu i czasie. Pora zmówić krótką modlitwę za wszystkie zety, którzy stoją pomiędzy Donovanem a tym, czego chce. Albo do niego dołączyć!"
+Description="Donovan jest duży, twardy i umie sobie poradzić w każdej sytuacji. Kryje się w nim jednak coś więcej, niż widać na pierwszy rzut oka. Nie był zwykłym kolesiem zapewniającym ochronę osobistą grupie zapaśników; był kolesiem, który założył, posiadał i prowadził wielką ochroniarską firmę. Donovan, urodził się w Atlancie, w stanie Georgia, był inteligentny i dobrze wykształcony. Zanim założył własny biznes, pracował w organach ścigania. Był nie tylko mięśniami, lecz całym mózgiem operacji. Teraz jest tylko jednym z ocalałych, który znalazł się w nieodpowiednim miejscu i czasie. Pora zmówić krótką modlitwę za wszystkie zety, którzy stoją pomiędzy Donovanem a tym, czego chce. Albo do niego dołączyć!"
 BodyMesh0="Zakapturzony RQ"
 BodyMesh1="Kartonowy rycerz"
 BodyMesh2="Ochroniarz Horzine"
@@ -3762,10 +3762,10 @@ EmoteName="Magiczna moneta"
 EmoteName="Magiczna moneta+"
 
 [MagicFoster]
-EmoteName="Magia Fosterów"
+EmoteName="Magia Fostera"
 
 [MagicFoster_Deluxe]
-EmoteName="Magia Fosterów+"
+EmoteName="Magia Fostera+"
 
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="Hełm strażacki"
@@ -5606,7 +5606,72 @@ AttachmentSkin1="Magma"
 AttachmentSkin2="Cenny egz."
 
 [Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
-Attachment="Świąteczny plecak jemiołowego skrzepu"
+Attachment="Plecak jemiołowego skrzepu"
 AttachmentSkin0="Czerwień"
 AttachmentSkin1="Zieleń"
 AttachmentSkin2="Cenny egz."
+
+[Cosmetic_Cyber2020HalfMask_ARCH]
+Attachment="Maska na twarz cyberrave"
+AttachmentSkin0="Puste"
+AttachmentSkin1="Gryz"
+AttachmentSkin2="Scully"
+AttachmentSkin3="Czaszka"
+AttachmentSkin4="Zęby"
+AttachmentSkin5="Cenny egz."
+
+[Cosmetic_Cyber2020FullMask_ARCH]
+Attachment="Maska na głowę cyberrave"
+AttachmentSkin0="Puste"
+AttachmentSkin1="Motyl"
+AttachmentSkin2="Muerto"
+AttachmentSkin3="R-Test"
+AttachmentSkin4="Krzyk"
+AttachmentSkin5="Scully"
+AttachmentSkin6="Podłe"
+AttachmentSkin7="Czaszka"
+AttachmentSkin8="Wir"
+AttachmentSkin9="Zęby"
+AttachmentSkin10="Cenny egz."
+
+[Cosmetic_Cyber2020Goggles_ARCH]
+Attachment="Kolczaste okulary cyberrave"
+AttachmentSkin0="Turkus"
+AttachmentSkin1="Różowa"
+AttachmentSkin2="Fiolet"
+AttachmentSkin3="Czerwień"
+AttachmentSkin4="Biel"
+AttachmentSkin5="Cenny egz."
+
+[Cosmetic_Cyber2020Unicorn_ARCH]
+Attachment="Czapka jednorożca cyberrave"
+AttachmentSkin0="As"
+AttachmentSkin1="Ślepo"
+AttachmentSkin2="Błękit"
+AttachmentSkin3="Różowa"
+AttachmentSkin4="Załamane światło"
+AttachmentSkin5="Rzym"
+AttachmentSkin6="Cenny egz."
+
+[Cosmetic_Cyber2020Horns_ARCH]
+Attachment="Rogi cyberrave"
+AttachmentSkin0="Czerń"
+AttachmentSkin1="Szary"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Fiolet"
+AttachmentSkin4="Turkus"
+AttachmentSkin5="Falisty czarny"
+AttachmentSkin6="Falisty szary"
+AttachmentSkin7="Falisty czerwony"
+AttachmentSkin8="Falisty fioletowy"
+AttachmentSkin9="Falisty turkusowy"
+AttachmentSkin10="Cenny egz."
+
+[Cosmetic_Cyber2020Skullpack_ARCH]
+Attachment="Czaszkowa torba cyberrave"
+AttachmentSkin0="Czerń"
+AttachmentSkin1="Turkus"
+AttachmentSkin2="Różowa"
+AttachmentSkin3="Fiolet"
+AttachmentSkin4="Biel"
+AttachmentSkin5="Cenny egz."

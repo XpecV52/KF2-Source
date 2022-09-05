@@ -90,15 +90,15 @@ WeaponTypeStrings[8]="近战"
 WeaponTypeStrings[9]="冲锋枪"
 WeaponTypeStrings[10]="所有"
 
-MixerGaveAmmoString=" Mixer 观众  给了你弹药。"
-MixerGaveArmorString=" Mixer 观众  给了你护甲。"
-MixerGaveDoshString=" Mixer 观众  给了你金钱。"
-MixerGaveGrenadeString=" Mixer 观众  给了你一个手榴弹。"
-MixerGaveHealthString=" Mixer 观众  治疗了你。"
-MixerZedTimeString=" Mixer 观众  激活了丧尸时间。"
-MixerRageZedsString=" Mixer 观众  激怒了周围的丧尸。"
-MixerPukeString=" Mixer 观众  在你身上呕吐。"
-MixerSpawnedFPString=" Mixer 观众  引出了一只闪击丧尸。"
+MixerGaveAmmoString=" Mixer 观众 给了你弹药。"
+MixerGaveArmorString=" Mixer 观众 给了你护甲。"
+MixerGaveDoshString=" Mixer 观众 给了你金钱。"
+MixerGaveGrenadeString=" Mixer 观众 给了你一个手榴弹。"
+MixerGaveHealthString=" Mixer 观众 治疗了你。"
+MixerZedTimeString=" Mixer 观众 激活了丧尸时间。"
+MixerRageZedsString=" Mixer 观众 激怒了周围的丧尸。"
+MixerPukeString=" Mixer 观众 在你身上呕吐。"
+MixerSpawnedFPString=" Mixer 观众 引出了一只闪击丧尸。"
 MixerSpawnedScrakeString="，Mixer 观众，引出了一只刮痕丧尸！"
 MixerSpawnedMiniFPString="，Mixer 观众，引出了一些小丧尸！"
 
@@ -115,7 +115,7 @@ StartOfflineGameString="开始离线游戏"
 StartOfflineGameDescriptionString="开始离线游戏将会解散你的队伍。\n你要继续吗？"
 
 ProceedToTutorialString="继续训练？"
-ProceedToTutorialDescriptionString="在受控制的环境中进行基础学习。  完成时可以使选择的0级天赋升级为1级天赋。"
+ProceedToTutorialDescriptionString="在受控制的环境中进行基础学习。 完成时可以使选择的0级天赋升级为1级天赋。"
 
 NotAvailableInFreeTrialString="免费试玩不支持该功能"
 NetworkCheckFreeTrialFailedString="网络错误：免费活动状态无法确认。检查网络连接状态"
@@ -1416,7 +1416,7 @@ KickVoteNoSpectatorsString="旁观者不能发起踢人投票"
 KickedFromServerString="你已被从服务器上删除"
 BannedFromServerString="你已被从本服务器上删除。你现在不能再次加入"
 ServerNoLongerAvailableString="服务器不能再用于加入"
-SkipTraderTimeString="跳过商人激活。在游戏菜单中选择“跳过商人”进行投票。  必须征得所有玩家同意。"
+SkipTraderTimeString="跳过商人激活。在游戏菜单中选择“跳过商人”进行投票。 必须征得所有玩家同意。"
 SkipTraderSuccessString="跳过商人投票成功！"
 
 [KFLocalMessage_Game]
@@ -1760,7 +1760,7 @@ Spartan="丧尸时间 - 斯巴达式"
 SpartanDescription="在丧尸时间中，你要使用神射武器进行攻击并且实时移动。"
 
 Rage="丧尸时间 - 狂战士的咆哮"
-RageDescription="只要丧尸时间启动或刷新，则治愈 25% 生命并迫使附近丧尸逃跑。"
+RageDescription="只要丧尸时间启动或刷新，治愈 50% 生命并迫使附近丧尸逃跑。"
 
 [KFPerk_Commando]
 PerkName="突击兵"
@@ -1937,7 +1937,7 @@ Fuse="烧烤"
 FuseDescription="神射武器的燃烧效果延长 150%，伤害随着时间而增加。"
 
 GroundFire="地火"
-GroundFireDescription="地火造成双倍伤害，同时降低丧尸移动速度 30%。这不适用于燃烧弹。"
+GroundFireDescription="地火造成3倍伤害，同时降低丧尸移动速度 30%。"
 
 ZedShrapnel="丧尸弹片"
 ZedShrapnelDescription="你用火焰杀死的丧尸有30%的几率爆炸，进而伤害和击倒附近的丧尸。"
@@ -1990,7 +1990,7 @@ SpeedReload="装弹器"
 SpeedReloadDescription="提升神射武器的填弹速度。"
 
 Penetration="直线枪毙"
-PenetrationDescription="神射武器可以对一排丧尸造成伤害，而且威力不减。"
+PenetrationDescription="使用天赋武器时穿透提升，可对一排丧失造成伤害，且威力不减。"
 
 Skullcracker="大铁球"
 SkullcrackerDescription="使用神射武器爆头，使丧尸速度降低 30%。"
@@ -2033,7 +2033,7 @@ Stun="弹道冲击"
 StunDescription="提升神射武器的击晕力 100%。"
 
 RhythmMethod="连击起来"
-RhythmMethodDescription="每次连续的爆头都会增加神射武器的伤害 10%，最高可达 50%。  "
+RhythmMethodDescription="每次连续的爆头都会增加神射武器的伤害 10%，最高可达 50%。 "
 
 TacticalReload="策略填弹"
 TacticalReloadDescription="提升神射武器的填弹速度。"
@@ -2094,7 +2094,7 @@ ConcussionRounds="震荡弹"
 ConcussionRoundsDescription="提升神射武器的击退力 150%。"
 
 Perforate="丧尸时间 - 贯穿者"
-PerforateDescription="在丧尸时间中，神射武器可以穿刺其击中的任何目标。"
+PerforateDescription="在丧尸时间中，使用天赋武器时穿透提升，可对一排丧失造成伤害，且威力不减。"
 
 Barrage="丧尸时间 - 弹幕"
 BarrageDescription="在丧尸时间中，神射武器可以近乎实时射击。"
@@ -2190,7 +2190,7 @@ Madman="丧尸时间 - 狂人"
 MadmanDescription="在丧尸时间中，你的所有武器射击速度提升 3 倍。"
 
 IncapMaster="丧尸时间 - 禁闭"
-IncapMasterDescription="在丧尸时间中，所有武器使丧尸丧失能力的效果提升 200%。"
+IncapMasterDescription="丧尸时间中，你武器的击倒、击退和眩晕率提升至最大。"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2569,7 +2569,7 @@ KFWeap_MKB="汉斯的万圣节武器"
 Source0="骑士推销"
 
 ;============================================
-; SpecialEvent  Localization (Base class)
+; SpecialEvent Localization (Base class)
 ;============================================
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
@@ -2682,7 +2682,7 @@ ChanceDropDescriptionStrings[1]="黄金招待券"
 CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="无尽黑暗之海",DescriptionString="在困难生存或以上难度的疗养院中成功击败任意首领")
-SpecialEventObjectiveInfoList[1]=(TitleString="某种奢侈的想象",DescriptionString="使用触手鞭击陷阱在疗养院杀死 20 具丧尸")
+SpecialEventObjectiveInfoList[1]=(TitleString="丰富想象力",DescriptionString="使用触手鞭击陷阱在疗养院杀死 20 具丧尸")
 SpecialEventObjectiveInfoList[2]=(TitleString="可怕的矛盾",DescriptionString="使用吸捕器在疗养院杀死 20 具丧尸")
 SpecialEventObjectiveInfoList[3]=(TitleString="母性本能",DescriptionString="在任意地图或游戏模式下杀死女族长 10 次")
 SpecialEventObjectiveInfoList[4]=(TitleString="处理家庭事务",DescriptionString="以目标模式困难或更高难度通关生命学实验室")
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | 贼鸥 | 动态"
 
 ChanceDropDescriptionStrings[0]="坎卜斯券"
 ChanceDropDescriptionStrings[1]="坎卜斯金奖券"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="失败的实验",DescriptionString="在任意地图击杀 1500 个丧尸")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周生化",DescriptionString="完成每周生化实验室")
+SpecialEventObjectiveInfoList[2]=(TitleString="漏洞搅拌机",DescriptionString="使用鲜血搅拌机在生化实验室击杀 20 个丧尸")
+SpecialEventObjectiveInfoList[3]=(TitleString="这是个陷阱！",DescriptionString="使用机关门在生化实验室击杀 20 个丧尸")
+SpecialEventObjectiveInfoList[4]=(TitleString="致命生化",DescriptionString="在困难生存或以上难度的生化实验室中成功击败任意首领")
+
+AllCompleteRewardDescriptionString="AA12动态两件捆绑皮肤"
+
+ChanceDropDescriptionStrings[0]="赛博朋克奖劵"
+ChanceDropDescriptionStrings[1]="赛博朋克金奖劵"
 
 ;============================================
 ; Daily Localization
@@ -2708,7 +2722,7 @@ KnifeString="匕首"
 FriendlyName="当前爆发：头颅爆竹"
 DescriptionStrings[0]="大脑伤害是最好的伤害。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="在此次爆发中，丧尸发生了突变，它们只能通过头部的伤害来镇压。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[0]="在此次爆发中，丧尸发生了突变，它们只能通过头部的伤害来镇压。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2718,7 +2732,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：小恐怖"
 DescriptionStrings[0]="小的威胁仍然是威胁。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="在此次爆发中射击丧尸，会让它们缩小，因此就更难打击。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[0]="在此次爆发中射击丧尸，会让它们缩小，因此就更难打击。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2728,7 +2742,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：丧尸崇拜"
 DescriptionStrings[0]="至始至终全部都是闪击丧尸。几乎都是。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="闪击丧尸大会在市内举办！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[0]="闪击丧尸大会在市内举办！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2748,7 +2762,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：丧尸时间"
 DescriptionStrings[0]="这个世界里的所有丧尸时间。"
 DescriptionStrings[1]="长度：短（4 波）"
-ModifierDescriptions[0]="有没有想过生命会与你擦肩而过？不是在这次爆发中！只要你接近一个丧尸，你随时就在丧尸时间里。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[0]="有没有想过生命会与你擦肩而过？不是在这次爆发中！只要你接近一个丧尸，你随时就在丧尸时间里。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2757,7 +2771,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：爆炸"
 DescriptionStrings[0]="丧尸在压力之下；可能会爆炸。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="或许是因为他们吃的东西？有毒气体？不管是因为什么，丧尸在此次爆发中被杀死时会爆炸。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[0]="或许是因为他们吃的东西？有毒气体？不管是因为什么，丧尸在此次爆发中被杀死时会爆炸。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2766,7 +2780,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：健美丧尸"
 DescriptionStrings[0]="他们越大，你摔的越重。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="在此次爆发中，丧尸会在击打玩家或受某些丧尸能力的影响时，增加他们的生命、大小和范围，在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[0]="在此次爆发中，丧尸会在击打玩家或受某些丧尸能力的影响时，增加他们的生命、大小和范围，在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2776,7 +2790,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：毛球丧尸"
 DescriptionStrings[0]="…他们肯定弄伤了他们的脖子。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="这批丧尸出现了非常可怕的错误，它们的头比正常的大了很多多多多多多！甚至是巨大！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。 "
+ModifierDescriptions[0]="这批丧尸出现了非常可怕的错误，它们的头比正常的大了很多多多多多多！甚至是巨大！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3283,6 +3297,9 @@ DisplayName="阿什伍德疯人院"
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="疗养院"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="化实验室"
 
 [KFMapInfo]
 ; defaults

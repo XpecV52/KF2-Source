@@ -335,6 +335,7 @@ simulated final event string GetActionString()
 
 defaultproperties
 {
+   CollisionType=COLLIDE_CustomDefault
    Name="Default__GameAIController"
    ObjectArchetype=AIController'Engine.Default__AIController'
 }

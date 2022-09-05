@@ -18,7 +18,7 @@ defaultproperties
       DamageRadius=150.000000
       MyDamageType=Class'KFGame.KFDT_Fire_Mac10DoT'
       KnockDownStrength=0.000000
-      MomentumTransferScale=0.000000
+      MomentumTransferScale=1.000000
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_Mac10Splash:FlamePointLight'
       ExploLightFadeOutTime=0.300000
       ExploLightStartFadeOutTime=4.200000

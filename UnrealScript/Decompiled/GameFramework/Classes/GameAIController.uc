@@ -247,3 +247,8 @@ state DebugState
     }
     stop;    
 }
+
+defaultproperties
+{
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
+}

@@ -1416,7 +1416,7 @@ KickVoteNoSpectatorsString="Espectadores não podem iniciar uma votação de exp
 KickedFromServerString="Você foi removido do servidor."
 BannedFromServerString="Você foi removido deste servidor. Não é possível reentrar no momento"
 ServerNoLongerAvailableString="O servidor não está mais disponível para entrar"
-SkipTraderTimeString="IGNORAR COMERCIANTE ativado. Vote no menu de jogo.  Todos os jogadores devem aceitar."
+SkipTraderTimeString="IGNORAR COMERCIANTE ativado. Vote no menu de jogo. Todos os jogadores devem aceitar."
 SkipTraderSuccessString="Votação para ignorar o comerciante bem sucedida!"
 
 [KFLocalMessage_Game]
@@ -1760,7 +1760,7 @@ Spartan="HORA DOS ZEDS - Espartano"
 SpartanDescription="Durante a hora dos Zeds, você ataca com armas da classe e se movimenta em tempo real."
 
 Rage="HORA DOS ZEDS - Fúria do berserker"
-RageDescription="Sempre que a hora dos Zed é ativada ou atualizada, cura 25% de vida e força os Zeds próximos a fugirem."
+RageDescription="Sempre que a hora dos Zed é ativada ou atualizada, cura 50% de vida e força os Zeds próximos a fugirem."
 
 [KFPerk_Commando]
 PerkName="Comando"
@@ -1937,7 +1937,7 @@ Fuse="Churrasco"
 FuseDescription="O efeito de incendiar das armas de classe dura 150% a mais, aumentando o dano ao longo do tempo."
 
 GroundFire="Fogo de chão"
-GroundFireDescription="Incendeia o chão causando o dobro do dano e reduzindo em 30% na velocidade de movimento dos Zeds. Não se aplica a molotovs."
+GroundFireDescription="Incendeia o chão causando 3x o dano e reduzindo em 30% na velocidade de movimento dos Zeds."
 
 ZedShrapnel="Estilhaços de Zed"
 ZedShrapnelDescription="Zeds abatidos com fogo têm 30% de chance de explodir, causando dano e atordoando os Zeds próximos."
@@ -1990,7 +1990,7 @@ SpeedReload="Carregamento rápido"
 SpeedReloadDescription="Aumenta a velocidade de recarga com armas de classe."
 
 Penetration="Um atrás do outro"
-PenetrationDescription="Não sofre redução de dano em tiros que atravessam Zeds com armas de classe."
+PenetrationDescription="Não sofre redução de dano em tiros que atravessam Zeds e aumenta a penetração com armas de classe."
 
 Skullcracker="Racha-coco"
 SkullcrackerDescription="Os tiros na cabeça de Zeds causam 30% de lentidão com armas de classe."
@@ -2033,7 +2033,7 @@ Stun="Choque balístico"
 StunDescription="Aumenta em 100% o poder de atordoamento de armas de classe."
 
 RhythmMethod="Acaba com eles"
-RhythmMethodDescription="Cada tiro na cabeça consecutivo com arma de classe aumenta em 10% o dano até 50%.  "
+RhythmMethodDescription="Cada tiro na cabeça consecutivo com arma de classe aumenta em 10% o dano até 50%. "
 
 TacticalReload="Recarga tática"
 TacticalReloadDescription="Aumenta a velocidade de recarga com armas de classe."
@@ -2094,7 +2094,7 @@ ConcussionRounds="Rodadas de concussão"
 ConcussionRoundsDescription="Aumenta em 150% o poder de derrubar para armas de classe."
 
 Perforate="HORA DOS ZEDS - Penetrante"
-PerforateDescription="Durante a hora dos Zeds, suas armas de classe penetram qualquer alvo que atingir."
+PerforateDescription="Durante a hora dos Zeds, não sofre redução de dano em tiros que atravessam Zeds e aumenta a penetração com armas de classe."
 
 Barrage="HORA DOS ZEDS - Barragem"
 BarrageDescription="Durante a hora dos Zeds, suas armas de classe atiram quase que em tempo real."
@@ -2190,7 +2190,7 @@ Madman="HORA DOS ZEDS - Maluco"
 MadmanDescription="Durante a hora dos Zeds, todas as armas atiram 3x mais rápido."
 
 IncapMaster="HORA DOS ZEDS - Confinamento"
-IncapMasterDescription="Durante a hora dos Zeds, o poder de todos os métodos de incapacitação aumenta em 200% para todas as armas."
+IncapMasterDescription="Durante a hora dos Zeds, as taxas de derrubada, tropeção e atordoamento das suas armas aumentam ao máximo."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2682,7 +2682,7 @@ ChanceDropDescriptionStrings[1]="Bilhete de Gostosura Dourado"
 CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Mares Sombrios do Infinito",DescriptionString="Derrote qualquer chefe no Sanatório no modo Sobrevivência Difícil ou maior.")
-SpecialEventObjectiveInfoList[1]=(TitleString="Imaginação de um tanto Extravagante",DescriptionString="Use a Armadilha Chicote de Tentáculo para matar 20 Zeds no Sanatório")
+SpecialEventObjectiveInfoList[1]=(TitleString="Imaginação Extravagante",DescriptionString="Use a Armadilha Chicote de Tentáculo para matar 20 Zeds no Sanatório")
 SpecialEventObjectiveInfoList[2]=(TitleString="Contradições Sobrenaturais",DescriptionString="Use a Armadilha de Sucção para matar 20 Zeds no Sanatório")
 SpecialEventObjectiveInfoList[3]=(TitleString="Instintos Maternais",DescriptionString="Mate a Matriarca 10 vezes em qualquer mapa ou modo de jogo")
 SpecialEventObjectiveInfoList[4]=(TitleString="Apaziguando um Assunto Familiar",DescriptionString="Conclua o Laboratório de Biótica em Objetivo na dificuldade Difícil ou maior.")
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dinâmico"
 
 ChanceDropDescriptionStrings[0]="Bilhete do Krampus"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado do Krampus"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Experiências Fracassadas",DescriptionString="Mate 1.500 Zeds em qualquer mapa")
+SpecialEventObjectiveInfoList[1]=(TitleString="Lapso Semanal",DescriptionString="Conclua o semanal em Biolapso")
+SpecialEventObjectiveInfoList[2]=(TitleString="Liquidibatedor",DescriptionString="Use o misturador de sangue para matar 20 Zeds no Biolapso")
+SpecialEventObjectiveInfoList[3]=(TitleString="É uma Cilada!",DescriptionString="Use as portas de armadilha para matar 20 Zeds no Biolapso")
+SpecialEventObjectiveInfoList[4]=(TitleString="Relapso Fatal",DescriptionString="Derrote qualquer chefe no Biolapso na dificuldade sobrevivência difícil ou maior.")
+
+AllCompleteRewardDescriptionString="Aparências de Conjunto Duplo Dinâmico AA12"
+
+ChanceDropDescriptionStrings[0]="Bilhete Ciberpunk"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado Ciberpunk"
 
 ;============================================
 ; Daily Localization
@@ -3283,6 +3297,9 @@ DisplayName="Hospício Ashwood"
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="Sanatório"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="Biolapso"
 
 [KFMapInfo]
 ; defaults

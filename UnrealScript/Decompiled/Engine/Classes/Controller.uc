@@ -961,7 +961,6 @@ defaultproperties
     NavigationHandleClass=Class'NavigationHandle'
     SightCounterInterval=0.2
     MaxMoveTowardPawnTargetTime=1.2
-    CollisionType=ECollisionType.COLLIDE_CustomDefault
     bHidden=true
     bOnlyRelevantToOwner=true
     bHiddenEd=true

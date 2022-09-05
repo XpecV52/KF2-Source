@@ -845,7 +845,7 @@ defaultproperties
    PerkSkills(5)=(Name="TightChoke",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_TightChoke")
    PerkSkills(6)=(Name="Resupply",StartingValue=0.200000,MaxValue=0.200000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_ResupplyPack")
    PerkSkills(7)=(Name="ConcussionRounds",StartingValue=1.500000,MaxValue=1.500000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_ConcussionRounds")
-   PerkSkills(8)=(Name="Perforate",StartingValue=40.000000,MaxValue=40.000000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Penetrator")
+   PerkSkills(8)=(Name="Perforate",StartingValue=30.000000,MaxValue=30.000000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Penetrator")
    PerkSkills(9)=(Name="Barrage",StartingValue=5.000000,MaxValue=5.000000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Barrage")
    ZedTimeModifyingStates(0)="WeaponFiring"
    ZedTimeModifyingStates(1)="WeaponBurstFiring"

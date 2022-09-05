@@ -682,6 +682,7 @@ DefaultProperties
    	ZedTimeModifyingStates(0)="WeaponFiring"
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"
    	ZedTimeModifyingStates(2)="WeaponSingleFiring"
+	ZedTimeModifyingStates(3)="CompoundBowCharge"
 
    	PerkSkills(ESharpshooterStationaryAim)=(Name="StationaryAim",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_StationaryAim", Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)    //0.1
 	PerkSkills(ESharpshooterTrigger)=(Name="Trigger",IconPath="UI_PerkTalent_TEX.Sharpshooter.UI_Talents_Sharpshooter_Trigger",	Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)

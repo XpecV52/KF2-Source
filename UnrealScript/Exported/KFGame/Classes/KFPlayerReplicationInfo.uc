@@ -525,7 +525,7 @@ var				int 			VoiceCommsStatusDisplayIntervalMax;
 /************************************
  *  Replicated Unlocks
  ************************************/
- var  		byte		SharedUnlocks;
+var private byte		SharedUnlocks;
 
 var repnotify private int CurrentHeadShotEffectID;
 /************************************

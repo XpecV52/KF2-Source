@@ -37,7 +37,7 @@ AlternateFireDescription="대부분의 기본 무기는 대체 사격 모드를 
 FlashLightBatteryTitleKey="플래시 이용"
 FlashLightBatteryDescriptionKey="어두운 곳이 나타날 수 있습니다. <font color="#caab05">%x%</font>을(를) 누르면 <font color="#caab05">플래시</font>를 켜고 끕니다. 플래시 배터리는 천천히 소진됩니다. 전력이 소진되면 꺼지고 다시 충전을 시작합니다."
 GrenadeTitleKey="수류탄 사용"
-GrenadeDescriptionKey="수류탄을 이용하여 가까이 뭉쳐 있는 제드 집단에 대미지를 가합니다. 병과에 따라 <font color="#caab05">장착 무기</font>에 부착된 수류탄이 달라지며 모두 제드에게 피해를 주지만 부가 효과가 추가되어 있습니다. <font color="#caab05">%x%</font>을(를) 누르면 수류탄을 투척합니다." "
+GrenadeDescriptionKey="수류탄을 이용하여 가까이 뭉쳐 있는 제드 집단에 데미지를 가할 수 있습니다. 병과에 따라 <font color="#caab05">장착 무기</font>에 있는 수류탄은 다르며 모두 제드를 공격하지만 부가적인 효과가 들어갑니다. <font color="#caab05">%x%</font>을(를) 누르면 수류탄을 투척합니다."
 
 ;Wave 1 end
 TraderTimeTitleKey="상점 시간"
@@ -116,48 +116,48 @@ ItemDescription="•전투 장갑은 다양한 데미지로부터 플레이어�
 
 [KFProj_DynamiteGrenade]
 ItemName="1/2 다이너마이트 부착"
-ItemCategory =" “폭발물"
-ItemDescription="•퓨즈를 장착한 작은 다이너마이트 조각\n•본인도 부상을 당할 수 있으므로 조심하십시오!” "
+ItemCategory ="폭탄"
+ItemDescription="•퓨즈를 장착한 작은 다이너마이트 조각\n•본인도 부상을 당할 수 있으므로 조심하십시오!"
 
 [KFProj_MedicGrenade]
 ItemName="치료용 수류탄"
-ItemCategory =" “폭발물"
-ItemDescription="•가스를 방출해 제드를 중독시키고 사람을 치료합니다.\n\n•파란색 가스 안개 안에 있으면 치료됩니다.\n과학자 중 한 명은 "이 수류탄에서 방출된 약제는 호모 사피엔스에게는 생명을 주지만 호모 제디쿠스는 안락사시키죠.’ 도움이 되기를 바랍니다."라고 언급했습니다. "
+ItemCategory ="폭탄"
+ItemDescription="•가스를 방출하여 제드는 중독시키지만 사람은 치료합니다.\n\n•파란색 가스 안개 속에 서 있으면 치료됩니다.\n우리 과학자 한 명은 이렇게 설명하였습니다. '이 수류탄에서 방출된 약제는 호모 사피엔스에게는 새 생명을 주지만 호모 제디쿠스는 안락사를 시키죠.’ 도움이 되기를 바랍니다."
 
 [KFProj_MolotovGrenade]
 ItemName="화염병"
 ItemCategory="폭발물"
-ItemDescription="•제드를 불태우는 매우 심플한 화염 투척 무기입니다.\n\n화염병은 몰로토프 칵테일이라는 이름으로도 불리는데 핀란드 사람들이 1939-40년 겨울 전쟁에서 스탈린 치하 외교부 수상인 바체슬라프 비하일로비치 몰로토프가... 죄송합니다, 역사 수업은 별로죠?" "
+ItemDescription="•제드를 불태우는 아주 간단한 화염 투척무기입니다.\n\n화염병은 몰로토프 칵테일이라는 이름으로도 불리는데 핀란드인들이 1939-40년 겨울전쟁에서 스탈린 치하 외교부 수상인 바체슬라프 비하일로비치 몰로토프가... 죄송합니다, 역사수업은 싫으시죠?"
 
 [KFProj_EMPGrenade]
 ItemName="EMP 수류탄"
 ItemCategory="폭발물"
-ItemDescription="•전자파를 발생시켜 제드에게 대미지를 주고 잠시 멈추게 만듭니다.\n\n좀 더 자세히 설명하자면 폭발과 동시에 나노 초 동안 전자기 파장이 발생해 짧은 시간 동안 전기 시스템을 교란시킵니다. 그 중에서도 제드 내부의 전기 시스템을 교란시킵니다. 편리하죠." "
+ItemDescription="•전자파를 발생시켜 제드에게 데미지를 가하고 잠시 멈추게 만듭니다.\n\n좀 더 자세히 설명하자면, 폭발하였을 때 나노초 동안 전자기 파장을 발생시켜 짧은 시간 동안 전기 시스템을 교란시킵니다. 특별히 제드 안에 존재하는 전기 시스템을 교란시킵니다. 편리하죠."
 
 [KFProj_HEGrenade]
 ItemName="HE 수류탄"
 ItemCategory="폭발물"
-ItemDescription="•매우 심플한 고성능 수류탄입니다. 제드와 인간 모두에게 피해를 줍니다.\n\n이보다 단순할 수는 없죠. HE, 고폭발성 무기라는 뜻입니다. 폭발과 함께 모든 걸 날려버리죠. 더 설명이 필요하나요?" "
+ItemDescription="•아주 단순한 고성능 수류탄. 제드와 인간 모두에게 피해를 줍니다.\n\n이보다 단순할 수는 없죠. HE - 폭발성이 뛰어나다는 말입니다. 폭발하면 모든걸 날려버리죠. 설명이 필요한가요?"
 
 [KFProj_FragGrenade]
 ItemName="파쇄성 수류탄"
 ItemCategory="폭발물"
-ItemDescription="•전통적인 파열 수류탄입니다. 이 작은 금속 조각을 던지는 순간 모두가 피해를 입습니다.\n\n여러분 모두 아웃브레이크가 발생하기 전에 비디오 게임을 많이 해봤으니 파열 수류탄이 뭔지 잘 아실 겁니다. 모르는 척 하지 마세요. 안 믿거든요." "
+ItemDescription="•전통적인 파쇄성 수류탄입니다. 이 작은 금속 조각을 던지면 모두가 다칩니다.\n\n여러분 모두 아웃브레이크가 발생하기 전에 비디오 게임을 많이 해봤으니 파쇄성 수류탄이 뭔지 잘 알고 있으리라 생각합니다. 게임 안해본 척 하지 마세요. 아무도 안 믿으니까요."
 
 [KFProj_NailBombGrenade]
 ItemName="네일밤"
-ItemCategory =" “폭발물"
+ItemCategory ="폭탄"
 ItemDescription="•가운데 약간의 폭발물과 함께 오래된 못이 가득 들어있는 단순한 깡통.\n\n제드를 우아하고 기분 좋게 처치하는 방법은 아니지만, 어찌 되었든 제드와 함께 우아하고 기분 좋은 시간을 보낼 방법 따위는 없잖아요?"
 
 [KFProj_FreezeGrenade]
 ItemName="프리즈 수류탄"
-ItemCategory =" “폭발물"
+ItemCategory ="폭탄"
 ItemDescription="•기술적으로 진보된 압축 액화질소 통.\n\n내용물과 충분히 접촉하게 되면 제드를 얼마 동안 제자리에 멈춰 놓습니다. 그 결과로 큰 피해를 줄 수 있죠."
 
 [KFProj_FlashBangGrenade]
 ItemName="플래시뱅"
-ItemCategory =" “폭발물"
-ItemDescription="•밝고 소리도 크니 직접 바라보지 마십시오. 소리도 듣지 마십시오.\n•치명적이지는 않지만 플래시뱅은 본인에게도 피해를 줄 수 있습니다. 조심하십시오! "
+ItemCategory ="폭탄"
+ItemDescription="•밝고 소리도 크니 직접 바라보지 마세요. 소리도 듣지 마십시오.\n•치명적이지는 않지만 플래시뱅은 본인에게도 피해를 줄 수 있습니다. 조심하세요!"
 
 [KFWeap_Healer_Syringe]
 ItemName="의료용 주사기"
@@ -439,13 +439,13 @@ ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 �
 ItemName="라이노"
 ItemCategory="핸드건"
 ItemDescription="•사격 모드 사용 시 파편 탄환을 발사합니다.\n•파편 탄환은 충격을 받으면 폭발하면서 3개의 파편이 발사됩니다.\n•제드를 버터처럼 썰어보세요!"
-SharedUnlockSource="라이노 리볼버 번들"
+SharedUnlockSource="라이노 리볼버 무기 번들, 어둠의 치료 무기 번들"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="듀얼 라이노"
 ItemCategory="핸드건"
 ItemDescription="•사격 모드 사용 시 파편 탄환을 발사합니다.\n•파편 탄환은 충격을 받으면 폭발하면서 3개의 파편이 발사됩니다.\n•가늠좌 사용 시 조준 스타일이 변경됩니다.\n•두 배 많이 제드를 버터처럼 썰어보세요!"
-SharedUnlockSource="라이노 리볼버 번들"
+SharedUnlockSource="라이노 리볼버 무기 번들, 어둠의 치료 무기 번들"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 리볼버"
@@ -486,7 +486,7 @@ ItemDescription="•사격 모드는 단발 전용.\n•클래식 모델 1894 �
 ItemName="모신 나강"
 ItemCategory="소총"
 ItemDescription="•기본 사격은 단발 전용입니다.\n•대체 - 차단/회피.\nM91/30은 찌르기, 쏘기, 찌르며 쏘기에 특화되어 있습니다."
-SharedUnlockSource="모신 나강 번들"
+SharedUnlockSource="모신 나강 무기 번들, 크리스마스 연휴 호러 무기 번들"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 센터파이어"
@@ -586,7 +586,7 @@ ItemDescription="•반자동 전용입니다.\n•가늠좌 사용 시 조준 �
 ItemName="이온 스러스터"
 ItemCategory="백병전"
 ItemDescription="•기본 - 화상을 입히는 빠른 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 화상을 입히는 세게 베기 공격\n•재장전 - 100% 충전 상태에서는 특별 공격\n•대체 - 차단/회피\n•바베큐에 딱입니다."
-SharedUnlockSource="이온 스러스터"
+SharedUnlockSource="이온 스러스터 무기 번들, 어둠의 치료 무기 번들"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="둠스틱"
@@ -621,7 +621,7 @@ ItemDescription="•전자동 및 폭발 사격 모드를 선택할 수 있습�
 [KFWeap_Edged_AbominationAxe]
 ItemName="전투도끼"
 ItemCategory="백병전"
-ItemDescription="•기본 - 느린 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 사망 시 사라지는 강하고 느린 공격.\n•대체 - 차단 / 회피\n•구식이지만 아직 트럭처럼 강력합니다. 크고 날카로운 트럭 말이죠."
+ItemDescription="•기본 - 느린 베기 공격, 기본 공격을 오래 누르면 콤보 공격.\n•보조 - 사망 시 사라지는 강하고 느린 공격.\n•대체 - 차단 / 회피\n•구식이지만 아직 트럭처럼 강력합니다... 크고 날카로운 트럭이라고 볼 수 있죠."
 SharedUnlockSource="전투도끼"
 
 [KFWeap_Edged_FireAxe]
@@ -684,7 +684,19 @@ ItemDescription="•사격 모드 시 고속 전기탄을 발사합니다.\n•�
 ItemName="진압용 방패 & 글록 18"
 ItemCategory="서브머신건"
 ItemDescription="•전자동 및 폭발 사격 모드를 선택할 수 있습니다.\n•사격 모드를 변경할 수 있습니다.\n•조준경을 사용 시 방패를 들기 때문에 전면 공격 대미지가 감소합니다."
-SharedUnlockSource="진압용 방패 & G18 번들"
+SharedUnlockSource="진압용 방패 & G18 무기 번들, 크리스마스 연휴 호러 무기 번들"
+
+[KFWeap_AssaultRifle_HRGIncendiaryRifle]
+ItemName="HRG 소이탄 소총"
+ItemCategory="돌격소총"
+ItemDescription="•사격 모드는 전자동 전용.\n•대체 사격 시 소이탄 발사.\n•폭발과 더 큰 폭발 중에 선택을 못하신 분에게 권합니다."
+SecondaryAmmo="M203 소이탄"
+
+[KFWeap_Bow_CompoundBow]
+ItemName="콤파운드 활"
+ItemCategory="보우"
+ItemDescription="•사격 모드는 차지 샷 전용.\n•길게 누를수록 범위와 데미지 증가.\n•대체 사격 시 날카로운 화살과 냉기 화살 사이 전환합니다.\n•큐피드가 될 때 더 많은 펀치가 필요합니다."
+SharedUnlockSource="콤파운드 활 무기 번들"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -1063,7 +1063,7 @@ simulated function RemovePRI(PlayerReplicationInfo PRI)
 }
 
 // Export UKFGameReplicationInfo::execUpdateSharedUnlocks(FFrame&, void* const)
-native simulated function UpdateSharedUnlocks();
+private native final simulated function UpdateSharedUnlocks();
 
 simulated event bool CanChangePerks()
 {

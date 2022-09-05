@@ -49,7 +49,7 @@ simulated protected function StopSimulating()
 
 defaultproperties
 {
-   GroundFireChance=0.100000
+   GroundFireChance=1.000000
    bWarnAIWhenFired=True
    GravityScale=0.350000
    TerminalVelocity=7000.000000

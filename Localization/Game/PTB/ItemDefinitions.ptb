@@ -32,6 +32,7 @@ RhinoRevolverBundleName="Conjunto de Revólver Rino"
 IonThrusterBundleName="Conjunto de Propulsor de Íons"
 RiotShieldG18BundleName="Conjunto Escudo Antitumulto e G18"
 MosinNagantBundleName="Conjunto Mosin Nagant"
+CompoundBowBundleName="Conjunto Arco Composto"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Cx. de sup. cosméticos Horzine | Pcte. Cj. Bronze Série 4"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Cx. de sup. cosméticos Horzine | Pcte. Cj. Prata Série 4"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Cx. de sup. cosméticos Horzine | Pcte. Cj. Ouro Série 4"
@@ -173,7 +174,17 @@ HorzineSupplyCrateSeries12GoldBundlePackName="Cx. de sup. Horzine | Pcte. Cj. Ou
 EmoteCrateSeries3BronzeBundlePackName="Cx. de emotes | Pcte. Conjunto Bronze Série 3"
 EmoteCrateSeries3SilverBundlePackName="Cx. de emotes | Pcte. Conjunto Prata Série 3"
 EmoteCrateSeries3GoldBundlePackName="Cx. de emotes | Pcte. Conjunto Ouro Série 3"
-
+PremiumCyberpunkBronzeBundlePackName="Pacote de Conjunto de Bilhetes Bronze Ciberpunk Premium"
+PremiumCyberpunkSilverBundlePackName="Pacote de Conjunto de Bilhetes Prata Ciberpunk Premium"
+PremiumCyberpunkGoldBundlePackName="Pacote de Conjunto de Bilhetes Ouro Ciberpunk Premium"
+JaegerMKIIWeaponSkinPackName="Pacote de Aparência de Arma Jaeger MKII"
+SpectreWeaponSkinPackName="Pacote de Aparência de Arma Espectro HRG"
+HorzineSupplyCosmeticCrateSeries7BronzeBundlePackName="Caixote de suprimentos cosméticos Horzine | Pacote de Conjunto Bronze Série 7"
+HorzineSupplyCosmeticCrateSeries7SilverBundlePackName="Caixote de suprimentos cosméticos Horzine | Pacote de Conjunto Prata Série 7"
+HorzineSupplyCosmeticCrateSeries7GoldBundlePackName="Caixote de suprimentos cosméticos Horzine | Pacote de Conjunto Ouro Série 7"
+HorzineSupplyCrateSeriesLocoBronzeBundlePackName="Caixote de suprimentos de Horzine | Pacote de Conjunto Bronze Série Loco"
+HorzineSupplyCrateSeriesLocoSilverBundlePackName="Caixote de suprimentos de Horzine | Pacote de Conjunto Prata Série Loco"
+HorzineSupplyCrateSeriesLocoGoldBundlePackName="Caixote de suprimentos de Horzine | Pacote de Conjunto Ouro Série Loco"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Vem com Uniforme Londrino de Briar (com 5 estilos de aparência) e o acessório cosmético Capacete de Guarda (com 3 estilos de aparência)."
@@ -202,6 +213,7 @@ RhinoRevolverBundleDescription="Despedaça os Zeds que nem queijo. Os Revólvere
 IonThrusterBundleDescription="Ótimo para fazer churrasco. O Propulsor de Íons, projetado para a classe Berserker, vem com 5 aparências únicas."
 RiotShieldG18BundleDescription="Uma ótima escolha para controle de multidão. Escudo Antitumulto e G18 projetado para a classe SWAT com 5 variantes de aparência exclusivas."
 MosinNagantBundleDescription="Bloqueie, apunhale e apanhe Zeds de longe com este fuzil clássico. O Mosin Nagant foi projetado para a classe Atirador Exímio e vem com 5 variantes de aparência exclusivas."
+CompoundBowBundleDescription="Versão moderna de uma arma antiga. Arco Composto projetado para a classe Atirador Exímio e vem com 5 variantes de aparência exclusivas."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Contém cinco das cx. sup. cosméticos Horzine | Caixa Série 4 junto com cinco de suas chaves associadas."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Contém dez das cx. sup. cosméticos Horzine | Caixa Série 4 junto com dez de suas chaves associadas."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Contém vinte das cx. sup. cosméticos Horzine | Caixa Série 4 junto com vinte de suas chaves associadas."
@@ -289,13 +301,13 @@ HorzineSupplyCrateSeriesProjectHSilverBundlePackDescription="Contém dez cx. de 
 HorzineSupplyCrateSeriesProjectHGoldBundlePackDescription="Contém vinte cx. de sup. Horzine | Série Projeto H e vinte de suas chaves associadas."
 SteampunkEncryptedUSBBronzeBundlePackDescription="Contém cinco cx. de USB criptografado Steampunk e cinco de suas chaves associadas."
 SteampunkEncryptedUSBSilverBundlePackDescription="Contém dez cx. de USB Steampunk Criptografado e dez de suas chaves associadas."
-SteampunkEncryptedUSBGoldBundlePackDescription="Contém vinte  cx. de USB Steampunk Criptografado e vinte de suas chaves associadas."
+SteampunkEncryptedUSBGoldBundlePackDescription="Contém vinte cx. de USB Steampunk Criptografado e vinte de suas chaves associadas."
 DragonKoiTier1BundlePackDescription="Inclui 10 ap. de raridade Preciosa de Dragão e Carpa de gr. 1 para todas as classes. Inclui: Pá-de-cabra, AR15, HX25, Pistola de Fogo, Revólver 1858, Pistola HMTech-101, Winchester 1894, SG 500, MP7 e 9MM."
 DragonKoiTier2BundlePackDescription="Inclui 10 ap. de raridade Preciosa de Dragão e Carpa de gr. 2 para todas as classes. Inclui: Katana, L85A2, M79, Lança-chamas, M1911, SMG HMTech-201, Besta, Espingarda, Tommy Gun, MP5RAS."
 ClotBackpackBundleDescription="Inclui todos os acessórios de Mochilas Coágulo sazonais lançadas anteriormente incluindo as variações de cor."
 DragonKoiTier3BundlePackDescription="Inclui 10 aparências de raridade Preciosa de Dragão e Carpa de grau 3 para todas as classes. Inclui: M4, P90, Jato Frio, M14EBR, Espingarda HMTech-301, Desert Eagle, Lança-chamas, M16 M203, AK12 e Pulverizador."
 DragonKoiTier4BundlePackDescription="Inclui 10 aparências de raridade Preciosa de Dragão e Carpa de grau 4 para todas as classes. Inclui: Scar, RPG-7, Arma de Micro-ondas, Revólver Magnum .500, Canhão Eletromagnético, Fuzil de Assalto HMTech-01, AA-12, Killerwatt, Kriss e Eviscerador."
-DragonKoiCompleteBundlePackDescription="Inclui todas as 40 aparências de raridade Preciosa de Dragão e Carpa de grau 1 a 4 para todas as classes. Inclui: Pá-de-cabra, AR15, HX25, Pistola de Fogo, Revólver 1858, Pistola HMTech-101, Winchester 1894, SG 500, MP7, 9 MM, Katana, L85A2, M79, Lança-chamas, M1911, SM HMTech-201, Besta, Espingarda, Tommy Gun, MP5RAS, M4, P90, Jato Frio, M14EBR, Espingarda HMTech-301, Desert Eagle, Lança-chamas, M16 M203, AK12, Pulverizador, Scar, RPG-7, Arma de Micro-ondas, Revólver Magnum .500, Canhão Eletromagnético, Fuzil de Assalto HMTech-01, AA-12, Killerwatt, Kriss e Eviscerador."
+DragonKoiCompleteBundlePackDescription="As 40 ap. Preciosas de Dragão e Carpa de todas as classes gr. 1 a 4. Inclui: Pá-de-cabra, AR15, HX25, Pistola de Fogo, Revólver 1858, Pistola HMTech-101, Winchester 1894, SG 500, MP7, 9 MM, Katana, L85A2, M79, Lança-chamas, M1911, SM HMTech-201, Besta, Espingarda, Tommy Gun, MP5RAS, M4, P90, Jato Frio, M14EBR, Espingarda HMTech-301, Desert Eagle, Lança-chamas, M16 M203, AK12, Pulverizador, Scar, RPG-7, Arma de Micro-ondas, Revólver Magnum .500, Canhão Eletromagnético, Fuzil de Assalto HMTech-01, AA-12, Killerwatt, Kriss e Eviscerador."
 HorzineSupplyCosmeticCrateSeries11BronzeBundlePackDescription="Contém cinco das cx. sup. cosméticos Horzine | Caixa Série 11 junto com cinco de suas chaves associadas."
 HorzineSupplyCosmeticCrateSeries11SilverBundlePackDescription="Contém dez das cx. sup. cosméticos Horzine | Caixa Série 11 junto com dez de suas chaves associadas."
 HorzineSupplyCosmeticCrateSeries11GoldBundlePackDescription="Contém vinte das cx. sup. cosméticos Horzine | Caixa Série 11 junto com vinte de suas chaves associadas."
@@ -323,10 +335,10 @@ HorzineSupplyWeaponCrateSeries17SilverBundlePackDescription="Contém dez cx. de 
 HorzineSupplyWeaponCrateSeries17GoldBundlePackDescription="Contém vinte cx. sup. de armas Horzine | Caixa Série 17 e vinte de suas chaves associadas."
 HorzineSupplyWeaponCrateSeries3BronzeBundlePackDescription="Contém cinco cx. sup. de armas Horzine | Caixa Série 3 e cinco de suas chaves associadas."
 HorzineSupplyWeaponCrateSeries3SilverBundlePackDescription="Contém dez cx. sup. de armas Horzine | Caixa Série 3 e dez de suas chaves associadas."
-HorzineSupplyWeaponCrateSeries3GoldBundlePackDescription="Contém vinte cx. sup. de armas Horzine | Caixa Série 3 e vinte de suas chaves associadas."
+HorzineSupplyWeaponCrateSeries3GoldBundlePackDescription="Contém vinte das cx. sup. de armas Horzine | Caixa Série 3 junto com vinte de suas chaves associadas."
 HorzineSupplyWeaponCrateSeries5BronzeBundlePackDescription="Contém cinco das cx. sup. de armas Horzine | Caixa Série 5 junto com cinco de suas chaves associadas."
 HorzineSupplyWeaponCrateSeries5SilverBundlePackDescription="Contém dez das cx. sup. de armas Horzine | Caixa Série 5 junto com dez de suas chaves associadas."
-HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="Contém vinte cx. sup. de armas Horzine | Caixa Série 5 e vinte de suas chaves associadas."
+HorzineSupplyWeaponCrateSeries5GoldBundlePackDescription="Contém vinte das cx. sup. de armas Horzine | Caixa Série 5 junto com vinte de suas chaves associadas."
 JaegerEncryptedUSBBronzeBundlePackDescription="Contém cinco cx. de USB criptografado Jaeger e cinco de suas chaves associadas."
 JaegerEncryptedUSBSilverBundlePackDescription="Contém dez cx. de USB Criptografado Jaeger e dez de suas chaves associadas."
 JaegerEncryptedUSBGoldBundlePackDescription="Contém vinte cx. de USB Criptografado Jaeger e vinte de suas chaves associadas."
@@ -346,7 +358,17 @@ HorzineSupplyCrateSeries12GoldBundlePackDescription="Contém vinte cx. sup. de a
 HorzineSupplyCrateCosmeticCrateSeries5BronzeBundlePackDescription="Contém cinco cx. sup. de armas Horzine | Caixa Série 5 e cinco de suas chaves associadas."
 HorzineSupplyCrateCosmeticCrateSeries5SilverBundlePackDescription="Contém dez cx. sup. de armas Horzine | Caixa Série 5 e dez de suas chaves associadas."
 HorzineSupplyCrateCosmeticCrateSeries5GoldBundlePackDescription="Contém vinte cx. sup. Horzine | Caixa Série 5 e vinte de suas chaves associadas."
-
+HorzineSupplyCosmeticCrateSeries7BronzeBundlePackDescription="Contém cinco cx. de sup. cosméticos Horzine | Série 7 e cinco de suas chaves associadas."
+HorzineSupplyCosmeticCrateSeries7SilverBundlePackDescription="Contém dez das cx. sup. cosméticos Horzine | Caixa Série 7 e dez de suas chaves associadas."
+HorzineSupplyCosmeticCrateSeries7GoldBundlePackDescription="Contém vinte das cx. sup. cosméticos Horzine | Caixa Série 7 e vinte de suas chaves associadas."
+JaegerMKIIWeaponSkinBundleDescription="Vem com 20 aparências de arma de tema Jaeger (10 RGB e 10 Dinâmicas). As armas apresentadas neste conjunto são: AK-12, UMP45, MAC10, SW500, Tommy Gun, M16, HMTech-501, M1911, HZ12, AF2011"
+SpectreWeaponSkinBundleDescription="Vem com 10 aparências de arma de tema Espectro para o conjunto de armas HRG (5 aparências dinâmicas, 5 dinâmicas croma). As armas apresentadas neste conjunto são: Revólveres de Chumbo Grosso HRG, Pregadeira HRG PDW, Lança-cura HRG, HRG Incisão, HRG Winterbites"
+PremiumCyberpunkTicketBronzeBundlePackDescription="Contém cinco Bilhetes de Gostosura de Ciberpunk Premium a preço baixo. Disponível por tempo limitado!"
+PremiumCyberpunkTicketSilverBundlePackDescription="Contém dez Bilhetes de Gostosura de Ciberpunk Premium e um Bilhete Dourado de Ciberpunk extra a preço baixo. Disponível por tempo limitado!"
+PremiumCyberpunkTicketGoldBundlePackDescription="Contém vinte Bilhetes de Gostosura de Ciberpunk Premium e três Bilhetes Dourados de Ciberpunk de bônus a preço baixo. Disponível por tempo limitado!"
+HorzineSupplyCrateSeriesLocoBronzeBundlePackDescription="Contém cinco das cx. sup. de armas Horzine | Caixa Série Loco junto com cinco de suas chaves associadas."
+HorzineSupplyCrateSeriesLocoSilverBundlePackDescription="Contém dez das cx. sup. de armas Horzine | Caixa Série Loco junto com dez de suas chaves associadas."
+HorzineSupplyCrateSeriesLocoGoldBundlePackDescription="Contém vinte das cx. sup. de armas Horzine | Caixa Série Loco junto com vinte de suas chaves associadas."
 
 
 ;PSN Bundle Descriptions
@@ -612,7 +634,7 @@ HorzineSupplyCrateSeries14Name="Caixote de suprimentos de Horzine | Série 14"
 HorzineSupplyCrateSeries15Name="Caixote de suprimentos de Horzine | Série 15"
 HorzineSupplyCrateSeries16Name="Caixote de suprimentos de Horzine | Série Matadouro"
 EmoteCrateSeries1Name="Caixote de emotes | Série 1"
-EmoteCrateSeries2Name="Caixote de emotes | Série 2"
+EmoteCrateSeries2Name="Caixote de emotes | Série 3"
 EmoteCrateSeries3Name="Caixote de emotes | Série 3"
 DoshVaultUnlockedCrate1Name="Caixote #1 Cofre de Grana"
 HorzineSupplyCrateSeriesDARName="Caixote de suprimentos de Horzine | Série D.A.R."
@@ -673,9 +695,9 @@ HorzineSupplyCrateSeriesCyberSamuraiDescription="Requer chave do cx. de suprimen
 
 HorzineSupplyCrateSeriesDeityDescription="Requer chave do cx. de suprimentos de Horzine para abrir. Contém um acessório raro ou melhor dos seguintes<br><font color="#4b69cd">Capuz de Armadura | Azul</font><br><font color="#4b69cd">Capuz de Armadura | Verde</font><br><font color="#4b69cd">Máscara Sem Rosto | Azul</font><br><font color="#4b69cd">Máscara Sem Rosto | Verde</font><br><font color="#4b69cd">Capuz de Ficção Científica | Azul</font><br><font color="#4b69cd">Capuz de Ficção Científica | Verde</font><br><font color="#4b69cd">Máscara Sem Expressão | Azul</font><br><font color="#4b69cd">Máscara Sem Expressão | Verde</font><br><font color="#6600a1">Capuz de Armadura | Vermelha</font><br><font color="#6600a1">Máscara Sem Rosto | Vermelha</font><br><font color="#6600a1">Capuz de Ficção Científica | Vermelho</font><br><font color="#6600a1">Máscara Sem Expressão | Vermelha</font><br><font color="#6600a1">Bastet | Vermelha</font><br><font color="#6600a1">Bastet | Amarela</font><br><font color="#6600a1">Bastet | Verde</font><br><font color="#6600a1">Bastet | Azul</font><br><font color="#6600a1">Sobek | Vermelho</font><br><font color="#6600a1">Sobek | Amarelo</font><br><font color="#6600a1">Sobek | Verde</font><br><font color="#6600a1">Sobek | Azul</font><br><font color="#8847ff">Capuz de Armadura | Preto</font><br><font color="#8847ff">Máscara Sem Rosto | Preta</font><br><font color="#8847ff">Máscara Sem Rosto | Branca</font><br><font color="#8847ff">Capuz de Ficção Científica | Preto</font><br><font color="#8847ff">Máscara Sem Expressão | Preta</font><br><font color="#8847ff">Máscara Sem Expressão | Branca</font><br><font color="#8847ff">Anúbis | Vermelho</font><br><font color="#8847ff">Anúbis | Azul</font><br><font color="#8847ff">Anúbis | Verde</font><br><font color="#8847ff">Anúbis | Amarelo</font><br><font color="#8847ff">Rá | Vermelho</font><br><font color="#8847ff">Rá| Azul</font><br><font color="#8847ff">Rá | Verde</font><br><font color="#8847ff">Rá | Amarelo</font><br><font color="#caab05">ou um acessório precioso extremamente raro!</font>"
 
-HorzineSupplyCrateSeriesProjectHDescription="Requer uma chave de cx. do Horzine Project H Series 1 a ser aberto. Contém um raro ou melhor do seguinte:<br><font color="#4b69cd">Projeto H-01 | Base </font><br><font color="#4b69cd">Projeto H-01 | Feliz </font><br><font color="#4b69cd">Projeto H-01 | Abertura Feliz </font><br><font color="#4b69cd">Projeto H-01 | Cara de paisagem </font><br><font color="#4b69cd">Projeto H-01 | Abertura com cara de paisagem </font><br><font color="#4b69cd">Projeto H-01 | Infeliz </font><br><font color="#4b69cd">Projeto H-01 | Abertura Infeliz </font><br><font color="#4b69cd">Projeto H-02 | Base </font><br><font color="#4b69cd">Projeto H-02 | Feliz </font><br><font color="#4b69cd">Projeto H-02 | Abertura Feliz </font><br><font color="#4b69cd">Projeto H-02 | Cara de paisagem </font><br><font color="#4b69cd">Projeto H-02 | Abertura com cara de paisagem </font><br><font color="#4b69cd">Projeto H-02 | Infeliz </font><br><font color="#4b69cd">Projeto H-02 | Abertura Infeliz </font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
+HorzineSupplyCrateSeriesProjectHDescription="Requer uma Chave de Caixote de Suprimentos de Horzine Projeto H Série 1 para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Projeto H-01 | Base </font><br><font color="#4b69cd">Projeto H-01 | Feliz </font><br><font color="#4b69cd">Projeto H-01 | Abertura Feliz </font><br><font color="#4b69cd">Projeto H-01 | Cara de paisagem </font><br><font color="#4b69cd">Projeto H-01 | Abertura com cara de paisagem </font><br><font color="#4b69cd">Projeto H-01 | Infeliz </font><br><font color="#4b69cd">Projeto H-01 | Abertura Infeliz </font><br><font color="#4b69cd">Projeto H-02 | Base </font><br><font color="#4b69cd">Projeto H-02 | Feliz </font><br><font color="#4b69cd">Projeto H-02 | Abertura Infeliz </font><br><font color="#4b69cd">Projeto H-02 | Cara de paisagem </font><br><font color="#4b69cd">Projeto H-02 | Abertura com cara de paisagem </font><br><font color="#4b69cd">Projeto H-02 | Infeliz </font><br><font color="#4b69cd">Projeto H-02 | Abertura Infeliz </font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
 
-HorzineSupplyCrateSeriesBoneyardDescription="Requer uma chave da cx de Horzina Ossária em Série para abrir. Contém um raro ou melhor dos seguintes itens: <br><font color="#4b69cd”>Agonia </font><br><font color="#4b69cd">Angústia </font><br><font color="#4b69cd">Desespero </font><br><font color="#4b69cd">Socorro </font><br><font color="#4b69cd">Miséria </font><br><font color="#4b69cd">Paixão </font><br><font color="#4b69cd">Tormento </font><br><font color="#4b69cd">Tortura </font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
+HorzineSupplyCrateSeriesBoneyardDescription="Requer uma Chave de Caixote de suprimentos de Horzine Série Ossário para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Agonia </font><br><font color="#4b69cd">Angustia </font><br><font color="#4b69cd">Desespero </font><br><font color="#4b69cd">Socorro </font><br><font color="#4b69cd">Miséria </font><br><font color="#4b69cd">Paixão </font><br><font color="#4b69cd">Tormento </font><br><font color="#4b69cd">Tortura </font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Chave de cx. de sup. Horzine | S. 1"
@@ -826,7 +848,7 @@ NeonMKVEncryptedUSBDescription="Requer chave de projeto Neon MKV para abrir. Con
 
 SteampunkEncryptedUSBDescription="Requer uma chave de Projeto Steampunk para abrir. Contém uma aparência de arma rara ou melhor das seguintes:<br><font color="#4b69cd">Tommy Gun | Steampunk</font><br><font color="#4b69cd">Winchester 1894 | Steampunk</font><br><font color="#4b69cd">MP5RAS | Steampunk</font><br><font color="#6600a1">Sopro de dragão | Steampunk</font><br><font color="#6600a1">M79 | Steampunk</font><br><font color="#6600a1">Espadão | Steampunk</font><br><font color="#6600A1">MAC 10 | Steampunk</font><br><font color="#8847ff">Revólver Magnum 500 | Steampunk</font><br><font color="#8847ff">AA12 | Steampunk</font><br><font color="#8847ff">M99 | Steampunk</font><br><font color="#8847ff">Desert Eagle | Steampunk</font><br><font color="#caab05">ou uma aparência extremamente rara e preciosa!</font>"
 
-BeyondHorizonEncryptedUSBDescription="Requer uma Chave de Projeto Além do Horizonte para abrir. Contém uma aparência de arma rara ou melhor das seguintes: <br><font color="#4b69cd">Batedoras Estáticas | Além do Horizonte</font><br><font color="#4b69cd">Pistola HMTech-101 | Além do Horizonte </font><br><font color="#4b69cd">SM HMTech-201 | Além do Horizonte </font><br><font color="#4b69cd">Espingarda HMTech-301 | Além do Horizonte </font><br><font color="#4b69cd">Fuzil de assalto HMTech-401 | Além do Horizonte </font><br><font color="#6600a1">RPG-7 | Além do Horizonte </font><br><font color="#6600a1">Lança-chamas | Além do Horizonte </font><br><font color="#6600a1">Scar | Além do Horizontek</font><br><font color="#8847ff">Kriss | Além do Horizonte</font><br><font color="#8847ff">M99 | Além do Horizonte</font><br><font color="#8847ff">Rifle Helios | Além do Horizonte</font><br><font color="#8847ff">Killerwatt | Além do Horizonte</font><br><font color="#8847ff">Pulverizador | Além do Horizonte</font><br><font color="#caab05">ou uma aparência extremamente rara e preciosa!</font>"
+BeyondHorizonEncryptedUSBDescription="Requer uma Chave de Projeto Além do Horizonte para abrir. Contém uma aparência de arma rara ou melhor das seguintes: <br><font color="#4b69cd">Batedoras Estáticas | Além do Horizonte</font><br><font color="#4b69cd">Pistola HMTech-101 | Além do Horizonte </font><br><font color="#4b69cd">Submetralhadora HMTech-201 | Além do Horizonte </font><br><font color="#4b69cd">Espingarda HMTech-301 | Além do Horizonte </font><br><font color="#4b69cd">Fuzil de assalto HMTech-401 | Além do Horizonte </font><br><font color="#6600a1">RPG-7 | Além do Horizonte </font><br><font color="#6600a1">Lança-chamas | Além do Horizonte </font><br><font color="#6600a1">Cicatriz | Além do Horizonte</font><br><font color="#8847ff">Kriss | Além do Horizonte</font><br><font color="#8847ff">M99 | Além do Horizonte</font><br><font color="#8847ff">Rifle Helios | Além do Horizonte </font><br><font color="#8847ff">Killerwatt | Além do Horizonte </font><br><font color="#8847ff">Pulverizador | Além do Horizonte </font><br><font color="#caab05">ou uma aparência preciosa e extremamente rara!</font>"
 
 JaegerEncryptedUSBDescription="Requer uma Chave de Projeto Jaeger para abrir. Contém uma aparência de arma rara ou melhor das seguintes: <br><font color="#4b69cd">Kriss | Jaeger</font><br><font color="#4b69cd">P90 | Jaeger</font><br><font color="#4b69cd">Pulverizador | Jaeger</font><br><font color="#4b69cd">Hemogoblin | Jaeger</font><br><font color="#6600a1">Scar | Jaeger</font><br><font color="#6600a1">Desert Eagle | Jaeger</font><br><font color="#6600A1">FN FAL | Jaeger</font><br><font color="#6600A1">Arma de Micro-ondas | Jaeger</font><br><font color="#8847ff">Doomstick | Jaeger</font><br><font color="#8847ff">Rifle Helios | Jaeger</font><br><font color="#8847ff">Killerwatt | Jaeger</font><br><font color="#caab05">ou uma aparência preciosa e extremamente rara!</font>"
 
@@ -897,7 +919,7 @@ DragonwaveUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado M
 NeonMKVUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado MKIV Neon"
 SteampunkUSBKeyDescription="Esta chave descriptografa o Projeto Criptografado Steampunk"
 BeyondHorizonUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Além do Horizonte."
-JaegerUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Jaeger."
+JaegerUSBKeyDescription="Esta chave só decodifica o Projeto Criptografado Jaeger"
 
 ;PSN crate names
 HorzineSupplyCosmeticCrateSeries1Name="Cx. de sup. cosméticos Horzine | Série 1"
@@ -986,9 +1008,9 @@ HorzineSupplyCosmeticCrateSeries10Description="Requer uma Chave de Caixote de Su
 
 HorzineSupplyWeaponSkinCrateSeries15Description="Requer uma Chave de Caixote de Suprimentos de Horzine para abrir. Contém uma aparência de arma rara ou melhor das seguintes:<br><font color="#4b69cd">Tommy Gun | Steampunk</font><br><font color="#4b69cd">Winchester 1894 | Steampunk</font><br><font color="#4b69cd">MP5RAS | Steampunk</font><br><font color="#6600a1">Sopro de dragão | Steampunk</font><br><font color="#6600a1">M79 | Steampunk</font><br><font color="#6600a1">Espadão | Steampunk</font><br><font color="#6600A1">MAC 10 | Steampunk</font><br><font color="#8847ff">Revólver Magnum .500 | Steampunk</font><br><font color="#8847ff">AA12 | Steampunk</font><br><font color="#8847ff">M99 | Steampunk</font><br><font color="#8847ff">Desert Eagle | Steampunk</font><br><font color="#caab05">ou uma aparência extremamente rara e preciosa!</font>"
 
-HorzineSupplyWeaponSkinCrateSeries16Description="Requer uma Chave de Caixote de suprimentos de Horzine para abrir. Contém uma aparência de arma rara ou melhor das seguintes: <br><font color="#4b69cd">Batedoras Estáticas | Além do Horizonte</font><br><font color="#4b69cd">Pistola HMTech-101 | Além do Horizonte </font><br><font color="#4b69cd">SM HMTech-201 | Além do Horizonte </font><br><font color="#4b69cd">Espingarda HMTech-301 | Além do Horizonte </font><br><font color="#4b69cd">Fuzil de assalto HMTech-401 | Além do Horizonte </font><br><font color="#6600a1">RPG-7 | Além do Horizonte </font><br><font color="#6600a1">Lança-chamas | Além do Horizonte </font><br><font color="#6600a1">Scar | Além do Horizontek</font><br><font color="#8847ff">Kriss | Além do Horizonte</font><br><font color="#8847ff">M99 | Além do Horizonte</font><br><font color="#8847ff">Rifle Helios | Além do Horizonte</font><br><font color="#8847ff">Killerwatt | Além do Horizonte</font><br><font color="#8847ff">Pulverizador | Além do Horizonte</font><br><font color="#caab05">ou uma aparência extremamente rara e preciosa!</font>"
+HorzineSupplyWeaponSkinCrateSeries16Description="Requer uma Chave de Caixote de Suprimentos de Horzine. Contém uma aparência de arma rara ou melhor das seguintes: <br><font color="#4b69cd">Batedoras Estáticas | Além do Horizonte</font><br><font color="#4b69cd">Pistola HMTech-101 | Além do Horizonte </font><br><font color="#4b69cd">Submetralhadora HMTech-201 | Além do Horizonte </font><br><font color="#4b69cd">Espingarda HMTech-301 | Além do Horizonte </font><br><font color="#4b69cd">Fuzil de assalto HMTech-401 | Além do Horizonte </font><br><font color="#6600a1">RPG-7 | Além do Horizonte </font><br><font color="#6600a1">Lança-chamas | Além do Horizonte </font><br><font color="#6600a1">Cicatriz | Além do Horizonte</font><br><font color="#8847ff">Kriss | Além do Horizonte</font><br><font color="#8847ff">M99 | Além do Horizonte</font><br><font color="#8847ff">Rifle Helios | Além do Horizonte </font><br><font color="#8847ff">Killerwatt | Além do Horizonte </font><br><font color="#8847ff">Pulverizador | Além do Horizonte </font><br><font color="#caab05">ou uma aparência preciosa e extremamente rara!</font>"
 
-HorzineSupplyCosmeticCrateSeries11Description="Requer uma chave de caixote de suprimentos de Horzine para abrir. Contém uma aparência de arma rara ou melhor das seguintes: <br><font color="#4b69cd”>Agonia </font><br><font color="#4b69cd">Angústia </font><br><font color="#4b69cd">Desespero </font><br><font color="#4b69cd">Socorro </font><br><font color="#4b69cd">Miséria </font><br><font color="#4b69cd">Paixão </font><br><font color="#4b69cd">Tormento </font><br><font color="#4b69cd">Tortura </font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
+HorzineSupplyCosmeticCrateSeries11Description="Requer uma Chave de Caixote de suprimentos de Horzine para abrir. Contém um acessório raro ou melhor dos seguintes:<br><font color="#4b69cd">Agonia </font><br><font color="#4b69cd">Angustia </font><br><font color="#4b69cd">Desespero </font><br><font color="#4b69cd">Socorro </font><br><font color="#4b69cd">Miséria </font><br><font color="#4b69cd">Paixão </font><br><font color="#4b69cd">Tormento </font><br><font color="#4b69cd">Tortura </font><br><font color="#caab05">ou um acessório precioso e extremamente raro!</font>"
 
 HorzineSupplyWeaponSkinCrateSeries17Description="Requer uma chave de caixote de suprimentos de Horzine para abrir. Contém uma aparência de arma rara ou melhor das seguintes: <br><font color="#4b69cd">Kriss | Jaeger</font><br><font color="#4b69cd">P90 | Jaeger</font><br><font color="#4b69cd">Pulverizador | Jaeger</font><br><font color="#4b69cd">Hemogoblin | Jaeger</font><br><font color="#6600a1">Scar | Jaeger</font><br><font color="#6600a1">Desert Eagle | Jaeger</font><br><font color="#6600A1">FN FAL | Jaeger</font><br><font color="#6600A1">Arma de Micro-ondas | Jaeger</font><br><font color="#8847ff">Doomstick | Jaeger</font><br><font color="#8847ff">Rifle Helios | Jaeger</font><br><font color="#8847ff">Killerwatt | Jaeger</font><br><font color="#caab05">ou uma aparência preciosa e extremamente rara!</font>"
 
@@ -1089,7 +1111,7 @@ ExceptionalWeaponSkinMaterialDescription="Material de produção excepcional que
 CraftingSideshowDescription="Troque os bilhetes de prêmio por um item da Feira de Verão! <font color="#4b69cd">5 bilhetes de prêmio necessários.</font>"
 CraftingPremiumSideshowDescription="Este bilhete exclusivo vale um item da Feira de Verão! <font color="#4b69cd">Só é necessário 1 bilhete!</font>"
 CraftingGoldenSideshowDescription="Você ganhou um bilhete dourado! <font color="#4b69cd">Só é necessário 1 bilhete!</font> Troque este bilhete dourado por um item <font color="#caab05">PRECIOSO extremamente raro</font> da feira de verão."
-CraftingHllwnDescription="Troque os bilhetes de prêmio por um item exclusivo de Halloween! Requer <font color="#4b69cd">5 bilhetes de prêmio.</font>"
+CraftingHllwnDescription="Troque os bilhetes de prêmio por um item exclusivo de Halloween! Requer <font color="#4b69cd">5 bilhetes de prêmio."
 CraftingPremiumHllwnDescription="Este bilhete exclusivo vale um item exclusivo de Halloween! <font color="#4b69cd">Só é necessário 1 bilhete!</font>"
 CraftingGoldenHllwnDescription="Você ganhou um bilhete dourado! <font color="#4b69cd">Só é necessário 1 bilhete</font> Troque este bilhete dourado por um item <font color="#caab05">PRECIOSO extremamente raro</font> de Halloween."
 VaultCraftingMaterialDescription="Material de produção do Cofre de Grana que, se combinado, é útil para fazer itens do Cofre de Grana."
@@ -1191,6 +1213,14 @@ HMTechHealerSynthwaveBattleScarredName="Médico HMTech | Synthwave | Usado"
 500MagnumRevolverSteampunkMintName="Revólver Magnum .500 | Steampunk | Novo"
 500MagnumRevolverSteampunkPreciousName="Revólver Magnum .500 | Steampunk | Precioso"
 500MagnumRevolverDragonKoiPreciousName="Revólver Magnum .500 | Dragão e Carpa | Precioso"
+500MagnumRevolverJaegerDynamicName="Revólver Magnum .500 | Jaeger | Dinâmico"
+500MagnumRevolverJaegerDynamicRGBName="Revólver Magnum 500 | Jaeger | Dinâmico RGB"
+500MagnumRevolverSpectreHRGDynamicName="Revólver Magnum 500 | Espectro HRG | Dinâmico"
+500MagnumRevolverSpectreHRGDynamicChromaName="Revólver Magnum 500 | Espectro HRG | Dinâmico Croma"
+
+;HRG Buckshot Revolvers Names
+HRGBuckshotRevolversSpectreHRGDynamicName="Revólveres de Chumbo Grosso HRG | Espectro HRG | Dinâmico"
+HRGBuckshotRevolversSpectreHRGDynamicChromaName="Revólveres de Chumbo Grosso HRG | Espectro HRG | Dinâmico Croma"
 
 ;9mm Descriptions
 9MMMintDescription="Exterior: Novo | Simples e barata (para você, sinceramente muito barata), é a arma mais básica para todos os operantes de Horzine."
@@ -1323,6 +1353,8 @@ AA12SteampunkMintName="AA12 | Steampunk | Nova"
 AA12SteampunkPreciousName="AA12 | Steampunk | Precioso"
 AA12DragonKoiPreciousName="AA12 | Dragão e Carpa | Precioso"
 AA12FostersFavoritesPreciousName="AA12 | Favoritas de Foster | Precioso"
+AA12JaegerDynamicName="AA12 | Jaeger | Dinâmico"
+AA12JaegerDynamicRGBName="AA12 | Jaeger | Dinâmico RGB"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Exterior: Novo | Tudo é melhor quando tem mais canos. É tipo adicionar mais bacon."
@@ -1338,6 +1370,8 @@ AF2011A1NeonFieldTestedName="AF2011-A1 | Neon | Testada"
 AF2011A1NeonMintName="AF2011-A1 | Neon | Nova"
 AF2011A1NeonRGBPreciousName="AF2011-A1 | Neon RGB | Preciosa"
 AF2011A1VaultVoshPreciousName="AF2011-A1 | Cofre | Vosh | Precioso"
+AF2011A1JaegerDynamicName="AF2011-A1 | Jaeger | Dinâmico"
+AF2011A1JaegerDynamicRGBName="AF2011-A1 | Jaeger | Dinâmico RGB"
 
 ;AK12 Descriptions
 AK12MintDescription="Exterior: Novo | O modelo deste AK-12 feito de um exemplar tirado de uma unidade russa abatida."
@@ -1413,6 +1447,8 @@ AK12SynthwaveBattleScarredName="AK-12 | Synthwave | Usado"
 AK12PrestigePreciousName="AK-12 | Prestígio | Precioso"
 AK12DragonKoiPreciousName="AK-12 | Dragão e Carpa | Precioso"
 AK12FostersFavoritesPreciousName="AK-12 | Favoritas de Foster | Precioso"
+AK12JaegerDynamicName="AK-12 | Jaeger | Dinâmico"
+AK12JaegerDynamicRGBName="AK-12 | Jaeger | Dinâmico RGB"
 
 ;AR15 Descriptions
 AR15MintDescription="Exterior: Novo | É para os Zeds, não para animais selvagens."
@@ -1819,6 +1855,12 @@ FlarePistolHeirloomFieldTestedName="Lança-chamas | Herança | Testado"
 FlarePistolHeirloomBattleScarredName="Lança-chamas | Herança | Usado"
 FlarePistolVaultVoshPreciousName="Lança-chamas | Cofre | Vosh | Precioso"
 FlarePistolDragonKoiPreciousName="Lança-chamas | Dragão e Carpa | Precioso"
+FlarePistolSpectreHRGDynamicName="Lança-chamas | Espectro HRG | Dinâmico"
+FlarePistolSpectreHRGDynamicChromaName="Lança-chamas | Espectro HRG | Dinâmico Croma"
+
+;HRG Winterbites Names
+HRGWinterbitesSpectreHRGDynamicName="HRG Winterbites | Espectro HRG | Dinâmico"
+HRGWinterbitesSpectreHRGDynamicChromaName="HRG Winterbites | Espectro HRG | Dinâmico Croma"
 
 ;Freeze Thrower Names
 FreezeThrowerPreciousName="Jato Frio | Precioso"
@@ -1856,12 +1898,18 @@ FreezeThrowerNeonFieldTestedName="Jato Frio | Neon | Testado"
 FreezeThrowerNeonBattleScarredName="Jato Frio | Neon | Usado"
 FreezeThrowerNeonRGBPreciousName="Jato Frio | Neon RGB | Precioso"
 FreezeThrowerDragonKoiPreciousName="Jato Frio | Dragão e Carpa | Precioso"
+FreezeThrowerSpectreHRGDynamicName="Jato Frio | Espectro HRG | Dinâmico"
+FreezeThrowerSpectreHRGDynamicChromaName="Jato Frio | Espectro HRG | Dinâmico Croma"
 
 ;Freeze Thrower Descriptions
 FreezeThrowerMintDescription="Exterior: Novo | A matéria viva quase não suporta tanto frio."
 FreezeThrowerFieldTestedDescription="Exterior: Testado | A matéria viva quase não suporta tanto frio."
 FreezeThrowerBattleScarredDescription="Exterior: Usado | A matéria viva quase não suporta tanto frio."
 FreezeThrowerPreciousDescription="Exterior: Precioso | A matéria viva quase não suporta tanto frio."
+
+;HRG Healthrower Names
+HRGHealthrowerSpectreHRGDynamicName="Lança-cura HRG | Espectro HRG | Dinâmico"
+HRGHealthrowerSpectreHRGDynamicChromaName="Lança-cura HRG | Espectro HRG | Dinâmico Croma"
 
 ;Hemogoblin Descriptions
 HemogoblinMintDescription="Exterior: Novo | Inviável como dieta de emagrecimento."
@@ -1902,6 +1950,8 @@ HKUMPHorzineFirstEncounterBattleScarredName="Heckler & Koch UMP | Primeiro Conta
 HKUMPNeonRGBPreciousName="Heckler & Koch UMP | NEON RGB | Preciosa"
 HKUMPPrestigePreciousName="Heckler & Koch UMP | Prestígio | Precioso"
 HKUMPVaultVoshPreciousName="Heckler & Koch UMP | Cofre | Vosh | Precioso"
+HKUMPJaegerDynamicName="Heckler & Koch UMP | Jaeger | Dinâmico"
+HKUMPJaegerDynamicRGBName="Heckler & Koch UMP | Jaeger | Dinâmico RGB"
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="Exterior: Novo | Um bisturi. Como você entende de medicina, presumimos que qualquer explicação seria desnecessária."
@@ -2083,6 +2133,8 @@ HMTech501GrenadeRifleNeonFieldTestedName="Rifle Gr. HMTech-501 | Neon | Testado"
 HMTech501GrenadeRifleNeonBattleScarredName="Rifle Gr. HMTech-501 | Neon | Usado"
 HMTech501GrenadeRifleNeonRGBPreciousName="Rifle Gr. HMTech-501 | Neon RGB | Precioso"
 HMTech501GrenadeLauncherVaultVoshPreciousName="Rifle de Granada HMTech-501 | Cofre | Vosh | Precioso"
+HMTech501GrenadeRifleJaegerDynamicName="Rifle de Granada HMTech-501 | Jaeger | Dinâmico"
+HMTech501GrenadeRifleJaegerDynamicRGBName="Rifle de Granada HMTech-501 | Jaeger | Dinâmico RGB"
 
 ;Husk Cannon Descriptions
 HuskCannonMintDescription="Exterior: Novo | Versão oficial Horzine do canhão esfolador. Este modelo tem 95% de garantia de não explodir."
@@ -2142,7 +2194,9 @@ HZ12PreciousName="HZ12 | Preciosa"
 HZ12HorzineFirstEncounterMintName="HZ12 | Primeiro Contato Horzine | Novo" 
 HZ12HorzineFirstEncounterFieldTestedName="HZ12 | Primeiro Contato Horzine | Testado" 
 HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Primeiro Contato Horzine | Usado"
-HZ12VaultVoshPreciousName="HZ12 | Cofre | Vosh | Precioso" 
+HZ12VaultVoshPreciousName="HZ12 | Cofre | Vosh | Precioso"
+HZ12JaegerDynamicName="HZ12 | Jaeger | Dinâmico"
+HZ12JaegerDynamicRGBName="HZ12 | Jaeger | Dinâmico RGB"
 
 ;Katana Descriptions
 KatanaMintDescription="Exterior: Novo | Demonstre respeito por sua classe."
@@ -2343,6 +2397,8 @@ M16M2036NeonRGBPreciousName="M16 M203 | Neon RGB | Precioso"
 M16M203PrestigePreciousName="M16 M203 | Prestígio | Precioso"
 M16M203VaultVoshPreciousName="M16 M203 | Cofre | Vosh | Precioso"
 M16M203DragonKoiPreciousName="M16 M203 | Dragão e Carpa | Precioso"
+M16M203JaegerDynamicName="M16 M203 | Jaeger | Dinâmico"
+M16M203JaegerDynamicRGBName="M16 M203 | Jaeger | Dinâmico RGB"
 
 
 ;M1911 Descriptions
@@ -2374,6 +2430,8 @@ M1911YinYangMintName="M1911 | Yin Yang | Novo"
 M1911YinYangFieldTestedName="M1911 | Yin Yang | Testado"
 M1911YinYangBattleScarredName="M1911 | Yin Yang | Usado"
 M1911DragonKoiPreciousName="M1911 | Dragão e Carpa | Precioso"
+M1911JaegerDynamicName="M1911 | Jaeger | Dinâmico"
+M1911JaegerDynamicRGBName="M1911 | Jaeger | Dinâmico RGB"
 
 ;M4 Descriptions
 M4MintDescription="Exterior: Novo | Benelli projetou a Espingarda de Combate M4 para o exército norte-americano. Como é semiautomática, tem uma cadência de tiro boa e estável."
@@ -2526,6 +2584,8 @@ Mac10SteampunkFieldTestedName="MAC 10 | Steampunk | Testado"
 Mac10SteampunkMintName="MAC 10 | Steampunk | Novo"
 Mac10SteampunkPreciousName="MAC 10 | Steampunk | Precioso"
 Mac10VaultVoshPreciousName="MAC 10 | Cofre | Vosh | Precioso"
+Mac10JaegerDynamicName="MAC 10 | Jaeger | Dinâmico"
+Mac10JaegerDynamicRGBName="MAC 10 | Jaeger | Dinâmico RGB"
 
 ;Medic Bat Descriptions
 MedicBatMintDescription="Exterior: Novo | Para pessoas que não reconheceriam uma boa cura mesmo que caísse na cabeça delas."
@@ -2713,6 +2773,12 @@ RailgunBluefireBattleScarredName="Canhão Eletromagnético | Bluefire | Usado"
 RailgunVaultVoshPreciousName="Canhão Eletromagnético | Cofre | Vosh | Precioso"
 RailgunPrestigePreciousName="Canhão Eletromagnético | Prestígio | Precioso"
 RailgunDragonKoiPreciousName="Canhão Eletromagnético | Dragão e Carpa | Precioso"
+RailgunSpectreHRGDynamicName="Canhão Eletromagnético | Espectro HRG | Dinâmico"
+RailgunSpectreHRGDynamicChromaName="Canhão Eletromagnético | Espectro HRG | Dinâmico Croma"
+
+;HRG Incision Names
+HRGIncisionSpectreHRGDynamicName="HRG Incisão | Espectro HRG | Dinâmico"
+HRGIncisionSpectreHRGDynamicChromaName="HRG Incisão | Espectro HRG | Dinâmico Croma"
 
 ;RPG-7 Descriptions
 RPG7MintDescription="Exterior: Novo | Ela se arma a alguns metros de distância do objetivo para que você não exploda junto. Cuidado com o refugo!"
@@ -2908,6 +2974,7 @@ StaticStrikersBeyondHorizonMintName="Batedoras Estáticas | Além do Horizonte |
 StaticStrikersBeyondHorizonFieldTestedName="Batedoras Estáticas | Além do Horizonte | Testado"
 StaticStrikersBeyondHorizonBattleScarredName="Batedoras Estáticas | Além do Horizonte | Usado"
 StaticStrikersBeyondHorizonSpaceEliteName="Batedoras Estáticas | Além do Horizonte | Elite Espacial"
+StaticStrikersVaultVoshPreciousName="Batedoras Estáticas | Cofre | Vosh | Precioso" 
 
 ;Stoner 63A Descriptions
 Stoner63AMintDescription="Exterior: Nova | Uma submetralhadora dos SEALs da Marinha norte-americana usada na Guerra do Vietnã, a Stoner 63A tem alta capacidade de munição e um grande poder de contenção."
@@ -2926,7 +2993,8 @@ Stoner63AVietnamBattleScarredName="Stoner 63A | Vietnã | Usado"
 Stoner63ANeonMintName="Stoner 63A | Neon | Novo" 
 Stoner63ANeonFieldTestedName="Stoner 63A | Neon | Testado" 
 Stoner63ANeonBattleScarredName="Stoner 63A | Neon | Usado" 
-Stoner63ANeonRGBPreciousName="Stoner 63A | NEON RGB | Precioso" 
+Stoner63ANeonRGBPreciousName="Stoner 63A | NEON RGB | Precioso"
+Stoner63AVaultVoshPreciousName="Stoner 63A | Cofre | Vosh | Precioso" 
 
 ;Support Knife Descriptions
 SupportKnifeMintDescription="Exterior: Novo | Não vá pensar que é especial só porque lhe demos a faca maior."
@@ -2969,6 +3037,12 @@ VLAD1000NailgunBluefireMintName="Pregadeira VLAD-1000 | Bluefire | Novo"
 VLAD1000NailgunBluefireFieldTestedName="Pregadeira VLAD-1000 | Bluefire | Testado" 
 VLAD1000NailgunBluefireBattleScarredName="Pregadeira VLAD-1000 | Bluefire | Usado" 
 VLAD1000NailgunPrestigePreciousName="Pist. VLAD-1000 | Prestígio | Precioso"
+VLAD1000NailgunSpectreHRGDynamicName="Pregadeira VLAD-1000 | Espectro HRG | Dinâmico"
+VLAD1000NailgunSpectreHRGDynamicChromaName="Pregadeira VLAD-1000 | Espectro HRG | Dinâmico Croma"
+
+;HRG Nailgun Names
+HRGNailgunPDWSpectreHRGDynamicName="Pregadeira HRG PDW | Espectro HRG | Dinâmico"
+HRGNailgunPDWSpectreHRGDynamicChromaName="Pregadeira HRG PDW | Espectro HRG | Dinâmico Croma"
 
 ;Welder Descriptions
 WelderMintDescription="Exterior: Novo | Soldador, vamos soldar esta porta!"
@@ -3041,6 +3115,7 @@ ZweihanderSteampunkBattleScarredName="Espadão | Steampunk | Usado"
 ZweihanderSteampunkFieldTestedName="Espadão | Steampunk | Testado"
 ZweihanderSteampunkMintName="Espadão | Steampunk | Novo"
 ZweihanderSteampunkPreciousName="Espadão | Steampunk | Precioso"
+ZweihanderVaultVoshPreciousName="Espadão | Cofre | Vosh | Precioso" 
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="Exterior: Novo | Uma faca do Velho Oeste, só que crescida. Perfeita para fatiar uns Zeds."
@@ -3101,10 +3176,10 @@ SwatKnifePrestigePreciousName="Faca tática | Prestígio | Preciosa"
 SwatKnifeVaultVoshPreciousName="Faca tática | Cofre | Vosh | Preciosa"
 
 ;SurvivalistKnife Descriptions
-SurvivalistKnifeMintDescription="Exterior: Novo | Temos que estripar!  Mostra pra eles do quê cê é feito."
-SurvivalistKnifeFieldTestedDescription="Exterior: Testado | Temos que estripar!  Mostra pra eles do quê cê é feito."
-SurvivalistKnifeBattleScarredDescription="Exterior: Usado | Temos que estripar!  Mostra pra eles do quê cê é feito."
-SurvivalistKnifePreciousDescription="Exterior: Precioso | Temos que estripar!  Mostra pra eles do quê cê é feito."
+SurvivalistKnifeMintDescription="Exterior: Novo | Temos que estripar! Mostra pra eles do quê cê é feito."
+SurvivalistKnifeFieldTestedDescription="Exterior: Testado | Temos que estripar! Mostra pra eles do quê cê é feito."
+SurvivalistKnifeBattleScarredDescription="Exterior: Usado | Temos que estripar! Mostra pra eles do quê cê é feito."
+SurvivalistKnifePreciousDescription="Exterior: Precioso | Temos que estripar! Mostra pra eles do quê cê é feito."
 
 ;SurvivalistKnife Names
 SurvivalistKnifePreciousName="Faca de Chacinador | Preciosa"
@@ -3142,6 +3217,9 @@ TommyGunSteampunkBattleScarredName="Tommy Gun | Steampunk | Usado"
 TommyGunSteampunkFieldTestedName="Tommy Gun | Steampunk | Testado"
 TommyGunSteampunkMintName="Tommy Gun | Steampunk | Novo"
 TommyGunSteampunkPreciousName="Tommy Gun | Steampunk | Precioso"
+TommyGunVaultVoshPreciousName="Tommy Gun | Cofre | Vosh | Precioso"
+TommyGunJaegerDynamicName="Tommy Gun | Jaeger | Dinâmico"
+TommyGunJaegerDynamicRGBName="Tommy Gun | Jaeger | Dinâmico RGB"
 
 ;Laser Cutter Descriptions
 LaserCutterMintDescription="Exterior: Novo | Modo sobrecarregado - carrega com o botão de disparo apertado e descarrega ao soltar o botão."
@@ -3284,7 +3362,35 @@ RiotShieldandG18WinterPreciousName="Escudo Antitumulto e G18| Inverno | Precioso
 RiotShieldandG18SWATPreciousName="Escudo Antitumulto e G18| SWAT | Precioso"
 
 ;Dynamic Descriptions
+DynamicDescription="Exterior: Dinâmico | As aparências dinâmicas exibem as seguintes estatísticas em tempo real na própria arma: Munição restante no pente e Precisão por pente."
 DynamicPreciousDescription="Exterior: Precioso Dinâmico | As aparências dinâmicas exibem as seguintes estatísticas em tempo real na própria arma: Munição restante no pente e Precisão por pente."
+
+;Spectre Descriptions
+SpectreDescription="Exterior: Dinâmico | Exterior: As aparências dinâmicas exibem as seguintes estatísticas em tempo real na própria arma: Indicador de pouca munição."
+SpectrePreciousDescription="Exterior: Precioso Dinâmico | Exterior: As aparências dinâmicas exibem as seguintes estatísticas em tempo real na própria arma: Indicador de pouca munição."
+
+;Road Redeemer Descriptions
+RoadRedeemerMintDescription="Exterior: Novo | Seja o pugilista dos seus sonhos! Lembre-se de limpar após cada uso."
+RoadRedeemerFieldTestedDescription="Exterior: Testado | Seja o pugilista dos seus sonhos! Lembre-se de limpar após cada uso."
+RoadRedeemerBattleScarredDescription="Exterior: Usado | Seja o pugilista dos seus sonhos! Lembre-se de limpar após cada uso."
+RoadRedeemerPreciousDescription="Exterior: Precioso | Seja o pugilista dos seus sonhos! Lembre-se de limpar após cada uso."
+
+;Road Redeemer Names
+RoadRedeemerVaultVoshPreciousName="Redentor da Via | Cofre | Vosh | Precioso"
+
+;Compound Bow Descriptions
+CompoundBowMintDescription="Exterior: Novo | Quando é preciso de um pouco mais de ímpeto para ser o Cupido."
+CompoundBowFieldTestedDescription="Exterior: Testado | Quando é preciso de um pouco mais de ímpeto para ser o Cupido."
+CompoundBowBattleScarredDescription="Exterior: Usado | Quando é preciso de um pouco mais de ímpeto para ser o Cupido."
+CompoundBowPreciousDescription="Exterior: Precioso | Quando é preciso de um pouco mais de ímpeto para ser o Cupido."
+
+;Compound Bow Names
+CompoundBowCamoPreciousName="Arco Composto | Camuflagem | Precioso"
+CompoundBowCarbonPreciousName="Arco Composto | Carbono | Precioso"
+CompoundBowGorePreciousName="Arco Composto | Sanguinolência | Precioso"
+CompoundBowSnowOpsPreciousName="Arco Composto | Operação na Neve | Precioso"
+CompoundBowStickerStrikerPreciousName="Arco Composto | Loucura dos Adesivos | Precioso"
+CompoundBowStandardPreciousName="Arco Composto | Padrão | Precioso"
 
 [CosmeticSection]
 
@@ -4445,16 +4551,16 @@ DARC3HZHelmetMarbleName="D.A.R. | Capacete C3HZ | Mármore"
 DARC3HZHelmetObsidianName="D.A.R. | Capacete C3HZ | Obsidiana"
 DARC3HZHelmetPreciousName="D.A.R. | Capacete C3HZ | Precioso"
 DARC3HZHelmetSpaceName="D.A.R. | Capacete C3HZ | Espaço"
-DARClassicArmorBloodyName="D.A.R. | Classic Armor | Bloody
-DARClassicArmorLoaderName="D.A.R. | Classic Armor | Loader
-DARClassicArmorPreciousName="D.A.R. | Classic Armor | Precious
-DARClassicArmorScullyName="D.A.R. | Classic Armor | Scully
-DARClassicArmorStandardName="D.A.R. | Classic Armor | Standard
-DARClassicHelmetBloodyName="D.A.R. | Classic Helmet | Bloody
-DARClassicHelmetLoaderName="D.A.R. | Classic Helmet | Loader
-DARClassicHelmetPreciousName="D.A.R. | Classic Helmet | Precious
-DARClassicHelmetScullyName="D.A.R. | Classic Helmet | Scully
-DARClassicHelmetStandardName="D.A.R. | Classic Helmet | Standard
+DARClassicArmorBloodyName="D.A.R. | Armadura Clássica | Sangrento"
+DARClassicArmorLoaderName="D.A.R. | Armadura Clássica | Carregador"
+DARClassicArmorPreciousName="D.A.R. | Armadura Clássica | Precioso"
+DARClassicArmorScullyName="D.A.R. | Armadura Clássica | Scully"
+DARClassicArmorStandardName="D.A.R. | Armadura Clássica | Padrão"
+DARClassicHelmetBloodyName="D.A.R. | Capacete Clássico | Sangrento"
+DARClassicHelmetLoaderName="D.A.R. | Capacete Clássico | Carregador"
+DARClassicHelmetPreciousName="D.A.R. | Capacete Clássico | Precioso"
+DARClassicHelmetScullyName="D.A.R. | Capacete Clássico | Scully"
+DARClassicHelmetStandardName="D.A.R. | Capacete Clássico | Padrão"
 
 ;Steampunk Cosmetic Names
 SteampunkTopHatBlueName="Steampunk | Cartola | Azul"
@@ -4992,6 +5098,56 @@ ChristmasMistletoeClotBackpackRedName="Natal | Mochila de Coágulo de Visco | Ve
 ChristmasMistletoeClotBackpackGreenName="Natal | Mochila de Coágulo de Visco | Verde"
 ChristmasMistletoeClotBackpackPreciousName="Natal | Mochila de Coágulo de Visco | Preciosa"
 
+;Cyber Rave 2020 Cosmetic Names
+CyberRaveFacemaskBlankName="Ciberfesta | Máscara Facial | Em branco"
+CyberRaveFacemaskChompName="Ciberfesta | Máscara Facial | Mordida"
+CyberRaveFacemaskScullyName="Ciberfesta | Máscara Facial | Scully"
+CyberRaveFacemaskSkullName="Ciberfesta | Máscara Facial | Caveira"
+CyberRaveFacemaskTeethName="Ciberfesta | Máscara Facial | Dentes"
+CyberRaveFacemaskPreciousName="Ciberfesta | Máscara Facial | Preciosa"
+CyberRaveHeadmaskBlankName="Ciberfesta | Máscara de Cabeça | Em branco"
+CyberRaveHeadmaskButterflyName="Ciberfesta | Máscara de Cabeça | Borboleta"
+CyberRaveHeadmaskMuertoName="Ciberfesta | Máscara de Cabeça | Muerto"
+CyberRaveHeadmaskRTestName="Ciberfesta | Máscara de Cabeça | Rorschach"
+CyberRaveHeadmaskScreamName="Ciberfesta | Máscara de Cabeça | Grito"
+CyberRaveHeadmaskScullyName="Ciberfesta | Máscara de Cabeça | Scully"
+CyberRaveHeadmaskSinisterName="Ciberfesta | Máscara de Cabeça | Sinistra"
+CyberRaveHeadmaskSkullName="Ciberfesta | Máscara de Cabeça | Caveira"
+CyberRaveHeadmaskSwirlName="Ciberfesta | Máscara de Cabeça | Redemoinho"
+CyberRaveHeadmaskTeethName="Ciberfesta | Máscara de Cabeça | Dentes"
+CyberRaveHeadmaskPreciousName="Ciberfesta | Máscara de Cabeça | Preciosa"
+CyberRaveHornsBlackName="Ciberfesta | Chifres | Pretos"
+CyberRaveHornsGreyName="Ciberfesta | Chifres | Cinza"
+CyberRaveHornsPurpleName="Ciberfesta | Chifres | Roxos"
+CyberRaveHornsRedName="Ciberfesta | Chifres | Vermelhos"
+CyberRaveHornsTealName="Ciberfesta | Chifres | Turquesa"
+CyberRaveHornsWavyBlackName="Ciberfesta | Chifres | Pretos ondulados"
+CyberRaveHornsWavyGreyName="Ciberfesta | Chifres | Cinza ondulados"
+CyberRaveHornsWavyPurpleName="Ciberfesta | Chifres | Roxos ondulados"
+CyberRaveHornsWavyRedName="Ciberfesta | Chifres | Vermelhos ondulados"
+CyberRaveHornsWavyTealName="Ciberfesta | Chifres | Turquesa ondulados"
+CyberRaveHornsPreciousName="Ciberfesta | Chifres | Preciosos"
+CyberRaveSkullpackBlackName="Ciberfesta | Mochila de Caveira | Preto"
+CyberRaveSkullpackGreenName="Ciberfesta | Mochila de Caveira | Turquesa"
+CyberRaveSkullpackPinkName="Ciberfesta | Mochila de Caveira | Rosa"
+CyberRaveSkullpackPurpleName="Ciberfesta | Mochila de Caveira | Roxo"
+CyberRaveSkullpackWhiteName="Ciberfesta | Mochila de Caveira | Branco"
+CyberRaveSkullpackPreciousName="Ciberfesta | Mochila de Caveira | Precioso"
+CyberRaveSpikedGlassesGreenName="Ciberfesta | Óculos de Pontas | Turquesa"
+CyberRaveSpikedGlassesPinkName="Ciberfesta | Óculos de Pontas | Rosa"
+CyberRaveSpikedGlassesPurpleName="Ciberfesta | Óculos de Pontas | Roxo"
+CyberRaveSpikedGlassesRedName="Ciberfesta | Óculos de Pontas | Vermelho"
+CyberRaveSpikedGlassesWhiteName="Ciberfesta | Óculos de Pontas | Branco"
+CyberRaveSpikedGlassesPreciousName="Ciberfesta | Óculos de Pontas | Precioso"
+CyberRaveUnicornHatAceName="Ciberfesta | Chapéu de Unicórnio | Ás"
+CyberRaveUnicornHatBlindName="Ciberfesta | Chapéu de Unicórnio | Daltônico"
+CyberRaveUnicornHatBlueName="Ciberfesta | Chapéu de Unicórnio | Azul"
+CyberRaveUnicornHatPinkName="Ciberfesta | Chapéu de Unicórnio | Rosa"
+CyberRaveUnicornHatRefractedLightName="Ciberfesta | Chapéu de Unicórnio | Luz refratada"
+CyberRaveUnicornHatRomanName="Ciberfesta | Chapéu de Unicórnio | Romano"
+CyberRaveUnicornHatPreciousName="Ciberfesta | Chapéu de Unicórnio | Precioso"
+
+
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Usável no menu equipamento; compatível com a maioria dos personagens. Item exclusivo do evento sazonal “Feira de Verão”. Recicle em 1 Bilhete de Feira."
 SummerSideshowFacePaintDescription="Usável no menu equipamento. Item exclusivo do evento sazonal “Feira de Verão”. Recicle em 1 Bilhete de Feira."
@@ -5148,7 +5304,7 @@ SamuraiArmorLegsDescription="Usável no menu equipamento; compat. com DJ Scully,
 ;Emote Names
 
 LetsGetCrazyName="Vamos Pirar | Emote"
-ThunderClapName="Bumbum  | Emote"
+ThunderClapName="Bumbum | Emote"
 UncleCharlieName="Tio Zé | Emote"
 WackyWavyName="Bonecão do Posto | Emote"
 ItsRainingDoshName="Chuva de Grana | Emote"
@@ -5158,7 +5314,7 @@ KickinItName="Chute Alto | Emote"
 FireBallName="Bola de Fogo | Emote"
 MakeItRainName="Deixa Chover | Emote"
 LetsGetCrazyDeluxeName="Vamos Pirar de Luxo | Emote"
-ThunderClapDeluxeName="Bumbum  Deluxe | Emote"
+ThunderClapDeluxeName="Bumbum Deluxe | Emote"
 UncleCharlieDeluxeName="Tio Zé de Luxo | Emote"
 WackyWavyDeluxeName="Bonecão do Posto de Luxo | Emote"
 ItsRainingDoshDeluxeName="Chuva de Grana de Luxo | Emote"
@@ -5256,7 +5412,7 @@ ZedTimeEmoteDescription="Seja o mestre do limbo como se estivesse em 1999. Pode 
 NeedYourEnergyEmoteDescription="Isso não é só o meu poder. Pode ser reciclado em um material cosmético raro."
 FinalFormEmoteDescription="Vá muito mais além. Pode ser reciclado em um material cosmético raro."
 FastestGunInTheWestEmoteDescription="O vaqueiro jamais deve atirar primeiro. Pode ser reciclado em um material cosmético raro."
-SpiritFingersEmoteDescription="Tac, tac, tac... tac, tac. Pode ser reciclado em um material cosmético raro."
+SpiritFingersEmoteDescription="Tac, tac, tac....tac, tac. Pode ser reciclado em um material cosmético raro."
 HomerunEmoteDescription="Se adicionar um zero, seriam 1.000 rebatidas. Pode ser reciclado em um material cosmético raro."
 CointTrickEmoteDescription="Um truque barato, mas que faz dinheiro. Pode ser reciclado em um material cosmético raro."
 MagicFosterEmoteDescription="Feito para os criminosos presentes. Pode ser reciclado em um material cosmético raro."
@@ -5266,7 +5422,7 @@ ZedTimeDeluxeEmoteDescription="Seja o mestre do limbo como se estivesse em 1999.
 NeedYourEnergyDeluxeEmoteDescription="Isso não é só o meu poder. Pode ser reciclado em um material cosmético excepcional."
 FinalFormDeluxeEmoteDescription="Vá muito mais além. Pode ser reciclado em um material cosmético excepcional."
 FastestGunInTheWestDeluxeEmoteDescription="O vaqueiro jamais deve atirar primeiro. Pode ser reciclado em um material cosmético excepcional."
-SpiritFingersDeluxeEmoteDescription="Tac, tac, tac... tac, tac. Pode ser reciclado em um material cosmético excepcional."
+SpiritFingersDeluxeEmoteDescription="Tac, tac, tac....tac, tac. Pode ser reciclado em um material cosmético excepcional."
 HomerunDeluxeEmoteDescription="Se adicionar um zero, seriam 1.000 rebatidas. Pode ser reciclado em um material cosmético excepcional."
 CointTrickDeluxeEmoteDescription="Um truque barato, mas que faz dinheiro. Pode ser reciclado em um material cosmético excepcional."
 MagicFosterDeluxeEmoteDescription="Feito para os criminosos presentes. Pode ser reciclado em um material cosmético excepcional."

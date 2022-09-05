@@ -29,6 +29,8 @@ KF-SantasWorkshop="Jogando na Fábrica do Papai Noel"
 KF-Spillway="Jogando Vertedouro"
 KF-Steamfortress="Jogando Fortaleza do Vapor"
 KF-AshwoodAsylum="Jogando no Hospício Ashwood"
+KF-Sanitarium="Jogando Sanatório"
+KF-Biolapse="Jogando Biolapso"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -174,7 +176,7 @@ UnableToPlayTogetherMessage="Não foi possível criar um jogo de Jogar Junto. Te
 CheckPlusTitle="Verificando PlayStation®Plus"
 CheckPlusMessage="Espere enquanto verificamos o status do PlayStation®Plus."
 ConnectionLostTitle="Perda de conexão"
-ConnectionLostMessage="A conexão com o jogo encerrou.  Você voltou ao menu inicial."
+ConnectionLostMessage="A conexão com o jogo encerrou. Você voltou ao menu inicial."
 ConnectionLostMessageLive="Conexão com o Xbox Live perdida. Você voltou ao menu principal."
 PSNSignoutMessage="Você se desconectou da PlayStation™Network. Você voltou ao menu inicial."
 InviteMessage="Vamos explodir uns Zeds juntos!"

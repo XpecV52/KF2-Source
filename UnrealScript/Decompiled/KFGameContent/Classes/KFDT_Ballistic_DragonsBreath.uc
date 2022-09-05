@@ -53,7 +53,6 @@ defaultproperties
     WeaponDef=Class'KFGame.KFWeapDef_DragonsBreath'
     EffectGroup=EEffectDamageGroup.FXG_IncendiaryRound
     StumblePower=21
-    LegStumblePower=21
     GunHitPower=12
     BurnPower=20
     ModifierPerkList=/* Array type was not detected. */
@@ -62,5 +61,5 @@ defaultproperties
     BloodScale=0.6
     KDamageImpulse=900
     KDeathVel=350
-    KDeathUpKick=-500
+    KDeathUpKick=500
 }

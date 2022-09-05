@@ -65,8 +65,8 @@ defaultproperties
    MaxSpeed=7500.000000
    MomentumTransfer=50000.000000
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_BallisticExplosive:CollisionCylinder'
-      CollisionHeight=5.000000
-      CollisionRadius=5.000000
+      CollisionHeight=0.000000
+      CollisionRadius=0.000000
       ReplacementPrimitive=None
       CollideActors=True
       BlockNonZeroExtent=False

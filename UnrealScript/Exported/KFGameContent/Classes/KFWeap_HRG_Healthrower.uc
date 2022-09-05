@@ -1015,7 +1015,6 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_FieldMedic'
-   WeaponUpgrades(0)=(Stats=)
    WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Add=1),(Stat=EWUS_HealFullRecharge,Scale=0.800000)))
    WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.300000),(Add=2),(Stat=EWUS_HealFullRecharge,Scale=0.600000)))
    FiringStatesArray(0)="SprayingFire"

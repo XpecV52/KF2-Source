@@ -40,8 +40,13 @@ simulated function AltFireMode()
 
 function InitializeAmmo()
 {
+    local KFPerk CurrentPerk;
+
     super(KFWeapon).InitializeAmmo();
-    SpareAmmoCount[1] = Min(SpareAmmoCount[1] + (InitialSpareMags[1] * default.MagazineCapacity[1]), (GetMaxAmmoAmount(1)) - AmmoCount[1]);
+    SpareAmmoCount[1] = Min((SpareAmmoCount[1] + (InitialSpareMags[1] * MagazineCapacity[1])) + AmmoCount[1], (GetMaxAmmoAmount(1)) - AmmoCount[1]);
+    CurrentPerk = GetPerk();
+    CurrentPerk.ModifySpareAmmoAmount(self, SpareAmmoCount[1],, true);
+    SpareAmmoCount[1] -= AmmoCount[1];
     ServerTotalAltAmmo += SpareAmmoCount[1];
     if((Role == ROLE_Authority) && !Instigator.IsLocallyControlled())
     {

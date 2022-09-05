@@ -7440,6 +7440,7 @@ defaultproperties
     object end
     // Reference: CylinderComponent'Default__PlayerController.CollisionCylinder'
     Components(0)=CollisionCylinder
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
     NetPriority=3
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

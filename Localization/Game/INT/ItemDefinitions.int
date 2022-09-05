@@ -32,6 +32,7 @@ RhinoRevolverBundleName="Rhino Revolver Bundle"
 IonThrusterBundleName="Ion Thruster Bundle"
 RiotShieldG18BundleName="Riot Shield and G18 Bundle"
 MosinNagantBundleName="Mosin Nagant Bundle"
+CompoundBowBundleName="Compound Bow Bundle"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Horzine Supply Cosmetic Crate | Series #4 Bronze Bundle Pack"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Horzine Supply Cosmetic Crate | Series #4 Silver Bundle Pack"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Horzine Supply Cosmetic Crate | Series #4 Gold Bundle Pack"
@@ -173,7 +174,17 @@ HorzineSupplyCrateSeries12GoldBundlePackName="Horzine Supply Crate | Series #12 
 EmoteCrateSeries3BronzeBundlePackName="Emote Crate | Series #3 Bronze Bundle Pack"
 EmoteCrateSeries3SilverBundlePackName="Emote Crate | Series #3 Silver Bundle Pack"
 EmoteCrateSeries3GoldBundlePackName="Emote Crate | Series #3 Gold Bundle Pack"
-
+PremiumCyberpunkBronzeBundlePackName="Premium Cyberpunk Bronze Ticket Bundle Pack"
+PremiumCyberpunkSilverBundlePackName="Premium Cyberpunk Silver Ticket Bundle Pack"
+PremiumCyberpunkGoldBundlePackName="Premium Cyberpunk Gold Ticket Bundle Pack"
+JaegerMKIIWeaponSkinPackName="Jaeger MKII Weapon Skin Pack"
+SpectreWeaponSkinPackName="Spectre HRG Weapon Skin Pack"
+HorzineSupplyCosmeticCrateSeries7BronzeBundlePackName="Horzine Supply Cosmetic Crate | Series #7 Bronze Bundle Pack"
+HorzineSupplyCosmeticCrateSeries7SilverBundlePackName="Horzine Supply Cosmetic Crate | Series #7 Silver Bundle Pack"
+HorzineSupplyCosmeticCrateSeries7GoldBundlePackName="Horzine Supply Cosmetic Crate | Series #7 Gold Bundle Pack"
+HorzineSupplyCrateSeriesLocoBronzeBundlePackName="Horzine Supply Crate | Series Loco Bronze Bundle Pack"
+HorzineSupplyCrateSeriesLocoSilverBundlePackName="Horzine Supply Crate | Series Loco Silver Bundle Pack"
+HorzineSupplyCrateSeriesLocoGoldBundlePackName="Horzine Supply Crate | Series Loco Gold Bundle Pack"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles)."
@@ -202,6 +213,7 @@ RhinoRevolverBundleDescription="Shreds Zeds like cheese. Rhino Revolvers designe
 IonThrusterBundleDescription="Great for barbecues. Ion Thruster designed for the Berserker perk comes with 5 unique skin variants."
 RiotShieldG18BundleDescription="Solid choice for crowd control. Riot Shield & G18 designed for the SWAT perk comes with 5 unique skin variants."
 MosinNagantBundleDescription="Block, stab, and pick off Zeds at distance with this classic rifle. Mosin Nagant designed for the Sharpshooter perk comes with 5 unique skin variants."
+CompoundBowBundleDescription="A modern take on an ancient weapon. Compound Bow designed for the Sharpshooter perk comes with 5 unique skin variants."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Contains five of the Horzine Supply Cosmetic Crate | Series #4 crate along with five of its associated keys."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Contains ten of the Horzine Supply Cosmetic Crate | Series #4 crate along with ten of its associated keys."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Contains twenty of the Horzine Supply Cosmetic Crate | Series #4 crate along with twenty of its associated keys."
@@ -346,7 +358,17 @@ HorzineSupplyCrateSeries12GoldBundlePackDescription="Contains twenty of the Horz
 HorzineSupplyCrateCosmeticCrateSeries5BronzeBundlePackDescription="Contains five of the Horzine Supply Crate | Series #5 crate along with five of its associated keys."
 HorzineSupplyCrateCosmeticCrateSeries5SilverBundlePackDescription="Contains ten of the Horzine Supply Crate | Series #5 crate along with ten of its associated keys."
 HorzineSupplyCrateCosmeticCrateSeries5GoldBundlePackDescription="Contains twenty of the Horzine Supply Crate | Series #5 crate along with twenty of its associated keys."
-
+HorzineSupplyCosmeticCrateSeries7BronzeBundlePackDescription="Contains five of the Horzine Supply Cosmetic Crate | Series #7 crate along with five of its associated keys."
+HorzineSupplyCosmeticCrateSeries7SilverBundlePackDescription="Contains ten of the Horzine Supply Cosmetic Crate | Series #7 crate along with ten of its associated keys."
+HorzineSupplyCosmeticCrateSeries7GoldBundlePackDescription="Contains twenty of the Horzine Supply Cosmetic Crate | Series #7 crate along with twenty of its associated keys."
+JaegerMKIIWeaponSkinBundleDescription="Includes 20 Jaeger themed weapon skins (10 RGB and 10 Dynamic) Weapons featured in this set are: AK12, UMP45, MAC10, SW500, Tommy Gun, M16, HM 501, M1911, HZ12, AF2011"
+SpectreWeaponSkinBundleDescription="Includes 10 Spectre themed weapons skins for the HRG Weapon Set(5 Dynamic Skins, 5 Chroma Dynamic)  Weapons featured in this set are: HRG Buckshot Revolvers, HRG Nailgun PDW, HRG Healthrower, HRG Incision, HRG Winterbites"
+PremiumCyberpunkTicketBronzeBundlePackDescription="Contains five Premium Cyberpunk Treat Tickets for one low price. Available for a limited time!"
+PremiumCyberpunkTicketSilverBundlePackDescription="Contains ten Premium Cyberpunk Treat Tickets and an additional bonus Cyberpunk Golden Ticket  for one low price. Available for a limited time!"
+PremiumCyberpunkTicketGoldBundlePackDescription="Contains twenty Premium Cyberpunk Treat Tickets and  three bonus Cyberpunk Golden Tickets  for one low price. Available for a limited time!"
+HorzineSupplyCrateSeriesLocoBronzeBundlePackDescription="Contains five of the Horzine Supply Crate | Series Loco crate along with five of its associated keys."
+HorzineSupplyCrateSeriesLocoSilverBundlePackDescription="Contains ten of the Horzine Supply Crate | Series Loco crate along with ten of its associated keys."
+HorzineSupplyCrateSeriesLocoGoldBundlePackDescription="Contains twenty of the Horzine Supply Crate | Series Loco crate along with twenty of its associated keys."
 
 
 ;PSN Bundle Descriptions
@@ -988,8 +1010,7 @@ HorzineSupplyWeaponSkinCrateSeries15Description="Requires a Horzine Supply Crate
 
 HorzineSupplyWeaponSkinCrateSeries16Description="Requires a Horzine Supply Crate Key  to open. Contains one of the following rare or better weapon skins: <br><font color="#4b69cd">Static Strikers | Beyond Horizon</font><br><font color="#4b69cd">HMTech-101 Pistol| Beyond Horizon </font><br><font color="#4b69cd">HMTech-201 SMG | Beyond Horizon  </font><br><font color="#4b69cd">HMTech-301 Shotgun | Beyond Horizon </font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Beyond Horizon </font><br><font color="#6600a1">RPG-7 | Beyond Horizon </font><br><font color="#6600a1">Flamethrower | Beyond Horizon </font><br><font color="#6600a1">Scar | Beyond Horizon</font><br><font color="#8847ff">Kriss | Beyond Horizon</font><br><font color="#8847ff">M99 | Beyond Horizon</font><br><font color="#8847ff">Helios Rifle | Beyond Horizon </font><br><font color="#8847ff">Killerwatt | Beyond Horizon </font><br><font color="#8847ff">Pulverizer | Beyond Horizon </font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-HorzineSupplyCosmeticCrateSeries11Description="Requires a  Horzine Supply Crate Key to open.
-Contains one rare or better of the following:<br><font color="#4b69cd">Agony </font><br><font color="#4b69cd">Anguish </font><br><font color="#4b69cd">Despair  </font><br><font color="#4b69cd">Distress </font><br><font color="#4b69cd">Misery </font><br><font color="#4b69cd">Passion </font><br><font color="#4b69cd">Torment </font><br><font color="#4b69cd">Torture </font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
+HorzineSupplyCosmeticCrateSeries11Description="Requires a  Horzine Supply Crate Key to open.  Contains one rare or better of the following:<br><font color="#4b69cd">Agony </font><br><font color="#4b69cd">Anguish </font><br><font color="#4b69cd">Despair  </font><br><font color="#4b69cd">Distress </font><br><font color="#4b69cd">Misery </font><br><font color="#4b69cd">Passion </font><br><font color="#4b69cd">Torment </font><br><font color="#4b69cd">Torture </font><br><font color="#caab05">or an Exceedingly Rare Precious Accessory!</font>"
 
 HorzineSupplyWeaponSkinCrateSeries17Description="Requires a Horzine Supply Crate Key to open. Contains one of the following rare or better weapon skins: <br><font color="#4b69cd">Kriss | Jaeger</font><br><font color="#4b69cd">P90 | Jaeger</font><br><font color="#4b69cd">Pulverizer | Jaeger</font><br><font color="#4b69cd">Hemogoblin | Jaeger</font><br><font color="#6600a1">Scar | Jaeger</font><br><font color="#6600a1">Desert Eagle | Jaeger</font><br><font color="#6600A1">FN FAL | Jaeger</font><br><font color="#6600A1">Microwave Gun | Jaeger</font><br><font color="#8847ff">Doomstick | Jaeger</font><br><font color="#8847ff">Helios Rifle | Jaeger</font><br><font color="#8847ff">Killerwatt | Jaeger</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
@@ -1192,6 +1213,14 @@ HMTechHealerSynthwaveBattleScarredName="HMTech Healer | Synthwave | Battle-Scarr
 500MagnumRevolverSteampunkMintName=".500 Magnum Revolver | Steampunk | Mint"
 500MagnumRevolverSteampunkPreciousName=".500 Magnum Revolver | Steampunk | Precious"
 500MagnumRevolverDragonKoiPreciousName=".500 Magnum Revolver | Dragon&Koi | Precious"
+500MagnumRevolverJaegerDynamicName="500 Magnum Revolver | Jaeger | Dynamic"
+500MagnumRevolverJaegerDynamicRGBName="500 Magnum Revolver | Jaeger | Dynamic RGB"
+500MagnumRevolverSpectreHRGDynamicName="500 Magnum Revolver | Spectre HRG | Dynamic"
+500MagnumRevolverSpectreHRGDynamicChromaName="500 Magnum Revolver | Spectre HRG | Dynamic Chroma"
+
+;HRG Buckshot Revolvers Names
+HRGBuckshotRevolversSpectreHRGDynamicName="HRG Buckshot Revolvers | Spectre HRG | Dynamic"
+HRGBuckshotRevolversSpectreHRGDynamicChromaName="HRG Buckshot Revolvers | Spectre HRG | Dynamic Chroma"
 
 ;9mm Descriptions
 9MMMintDescription="Exterior: Mint | Simple and cheap (very cheap, frankly, to you), it is the basic sidearm for all Horzine operatives."
@@ -1324,6 +1353,8 @@ AA12SteampunkMintName="AA12 | Steampunk | Mint"
 AA12SteampunkPreciousName="AA12 | Steampunk | Precious"
 AA12DragonKoiPreciousName="AA12 | Dragon & Koi | Precious"
 AA12FostersFavoritesPreciousName="AA12 | Foster's Favorites | Precious"
+AA12JaegerDynamicName="AA12 | Jaeger | Dynamic"
+AA12JaegerDynamicRGBName="AA12 | Jaeger | Dynamic RGB"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Exterior: Mint | Everything is better when you put more barrels on it. It's like adding more bacon."
@@ -1339,6 +1370,8 @@ AF2011A1NeonFieldTestedName="AF2011-A1 | Neon | Field-Tested"
 AF2011A1NeonMintName="AF2011-A1 | Neon | Mint"
 AF2011A1NeonRGBPreciousName="AF2011-A1 | Neon RGB | Precious"
 AF2011A1VaultVoshPreciousName="AF2011-A1 | Vault | Vosh | Precious"
+AF2011A1JaegerDynamicName="AF2011-A1 | Jaeger | Dynamic"
+AF2011A1JaegerDynamicRGBName="AF2011-A1 | Jaeger | Dynamic RGB"
 
 ;AK12 Descriptions
 AK12MintDescription="Exterior: Mint | This AK-12 was taken from a dead Russian Spetsnaz operative for scanning."
@@ -1414,6 +1447,8 @@ AK12SynthwaveBattleScarredName="AK-12 | Synthwave | Battle-Scarred"
 AK12PrestigePreciousName="AK-12 | Prestige | Precious"
 AK12DragonKoiPreciousName="AK-12 | Dragon & Koi | Precious"
 AK12FostersFavoritesPreciousName="AK-12 | Foster's Favorites | Precious"
+AK12JaegerDynamicName="AK12 | Jaeger | Dynamic"
+AK12JaegerDynamicRGBName="AK12 | Jaeger | Dynamic RGB"
 
 ;AR15 Descriptions
 AR15MintDescription="Exterior: Mint | This is for Zeds, not 'varmints.'"
@@ -1820,6 +1855,12 @@ FlarePistolHeirloomFieldTestedName="Spitfire | Heirloom | Field-Tested"
 FlarePistolHeirloomBattleScarredName="Spitfire | Heirloom | Battle-Scarred"
 FlarePistolVaultVoshPreciousName="Spitfire | Vault | Vosh | Precious"
 FlarePistolDragonKoiPreciousName="Spitfire | Dragon & Koi | Precious"
+FlarePistolSpectreHRGDynamicName="Spitfire | Spectre HRG | Dynamic"
+FlarePistolSpectreHRGDynamicChromaName="Spitfire | Spectre HRG | Dynamic Chroma"
+
+;HRG Winterbites Names
+HRGWinterbitesSpectreHRGDynamicName="HRG Winterbites | Spectre HRG | Dynamic"
+HRGWinterbitesSpectreHRGDynamicChromaName="HRG Winterbites | Spectre HRG | Dynamic Chroma"
 
 ;Freeze Thrower Names
 FreezeThrowerPreciousName="Freeze Thrower | Precious"
@@ -1857,12 +1898,18 @@ FreezeThrowerNeonFieldTestedName="Freeze Thrower | Neon | Field-Tested"
 FreezeThrowerNeonBattleScarredName="Freeze Thrower | Neon | Battle-Scarred"
 FreezeThrowerNeonRGBPreciousName="Freeze Thrower | Neon RGB | Precious"
 FreezeThrowerDragonKoiPreciousName="Freeze Thrower | Dragon & Koi | Precious"
+FreezeThrowerSpectreHRGDynamicName="Freeze Thrower | Spectre HRG | Dynamic"
+FreezeThrowerSpectreHRGDynamicChromaName="Freeze Thrower | Spectre HRG | Dynamic Chroma"
 
 ;Freeze Thrower Descriptions
 FreezeThrowerMintDescription="Exterior: Mint | Biological matter can only withstand so much cold."
 FreezeThrowerFieldTestedDescription="Exterior: Field-Tested | Biological matter can only withstand so much cold."
 FreezeThrowerBattleScarredDescription="Exterior: Battle-Scarred | Biological matter can only withstand so much cold."
 FreezeThrowerPreciousDescription="Exterior: Precious | Biological matter can only withstand so much cold."
+
+;HRG Healthrower Names
+HRGHealthrowerSpectreHRGDynamicName="HRG Healthrower | Spectre HRG | Dynamic"
+HRGHealthrowerSpectreHRGDynamicChromaName="HRG Healthrower | Spectre HRG | Dynamic Chroma"
 
 ;Hemogoblin Descriptions
 HemogoblinMintDescription="Exterior: Mint | Not a viable weight loss plan."
@@ -1903,6 +1950,8 @@ HKUMPHorzineFirstEncounterBattleScarredName="Heckler & Koch UMP | Horzine First 
 HKUMPNeonRGBPreciousName="Heckler & Koch UMP | Neon RGB | Precious"
 HKUMPPrestigePreciousName="Heckler & Koch UMP | Prestige | Precious"
 HKUMPVaultVoshPreciousName="Heckler & Koch UMP | Vault | Vosh | Precious"
+HKUMPJaegerDynamicName="Heckler & Koch UMP | Jaeger | Dynamic"
+HKUMPJaegerDynamicRGBName="Heckler & Koch UMP | Jaeger | Dynamic RGB"
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="Exterior: Mint | It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it."
@@ -2084,6 +2133,8 @@ HMTech501GrenadeRifleNeonFieldTestedName="HMTech-501 Grenade Rifle | Neon | Fiel
 HMTech501GrenadeRifleNeonBattleScarredName="HMTech-501 Grenade Rifle | Neon | Battle-Scarred"
 HMTech501GrenadeRifleNeonRGBPreciousName="HMTech-501 Grenade Rifle | Neon RGB | Precious"
 HMTech501GrenadeLauncherVaultVoshPreciousName="HMTech-501 Grenade Rifle | Vault | Vosh | Precious"
+HMTech501GrenadeRifleJaegerDynamicName="HMTech-501 Grenade Rifle | Jaeger | Dynamic"
+HMTech501GrenadeRifleJaegerDynamicRGBName="HMTech-501 Grenade Rifle | Jaeger | Dynamic RGB"
 
 ;Husk Cannon Descriptions
 HuskCannonMintDescription="Exterior: Mint | The official Horzine version of the husk cannon. This model is 95% guaranteed not to explode."
@@ -2143,7 +2194,9 @@ HZ12PreciousName="HZ12 | Precious"
 HZ12HorzineFirstEncounterMintName="HZ12 | Horzine First Encounter | Mint" 
 HZ12HorzineFirstEncounterFieldTestedName="HZ12 | Horzine First Encounter | Field-Tested" 
 HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Horzine First Encounter | Battle-Scarred"
-HZ12VaultVoshPreciousName="HZ12 | Vault | Vosh | Precious" 
+HZ12VaultVoshPreciousName="HZ12 | Vault | Vosh | Precious"
+HZ12JaegerDynamicName="HZ12 | Jaeger | Dynamic"
+HZ12JaegerDynamicRGBName="HZ12 | Jaeger | Dynamic RGB"
 
 ;Katana Descriptions
 KatanaMintDescription="Exterior: Mint | Try and show a little respect for its class."
@@ -2344,6 +2397,8 @@ M16M2036NeonRGBPreciousName="M16 M203 | Neon RGB | Precious"
 M16M203PrestigePreciousName="M16 M203 | Prestige | Precious"
 M16M203VaultVoshPreciousName="M16 M203 | Vault | Vosh | Precious"
 M16M203DragonKoiPreciousName="M16 M203 | Dragon & Koi | Precious"
+M16M203JaegerDynamicName="M16 M203 | Jaeger | Dynamic"
+M16M203JaegerDynamicRGBName="M16 M203 | Jaeger | Dynamic RGB"
 
 
 ;M1911 Descriptions
@@ -2375,6 +2430,8 @@ M1911YinYangMintName="M1911 | Yin Yang | Mint"
 M1911YinYangFieldTestedName="M1911 | Yin Yang | Field-Tested"
 M1911YinYangBattleScarredName="M1911 | Yin Yang | Battle-Scarred"
 M1911DragonKoiPreciousName="M1911 | Dragon & Koi | Precious"
+M1911JaegerDynamicName="M1911 | Jaeger | Dynamic"
+M1911JaegerDynamicRGBName="M1911 | Jaeger | Dynamic RGB"
 
 ;M4 Descriptions
 M4MintDescription="Exterior: Mint | Benelli designed the M4 Combat Shotgun for the US military. It is semi-automatic, allowing for a good, steady rate of fire."
@@ -2527,6 +2584,8 @@ Mac10SteampunkFieldTestedName="MAC 10 | Steampunk | Field-Tested"
 Mac10SteampunkMintName="MAC 10 | Steampunk | Mint"
 Mac10SteampunkPreciousName="MAC 10 | Steampunk | Precious"
 Mac10VaultVoshPreciousName="MAC 10 | Vault | Vosh | Precious"
+Mac10JaegerDynamicName="MAC 10 | Jaeger | Dynamic"
+Mac10JaegerDynamicRGBName="MAC 10 | Jaeger | Dynamic RGB"
 
 ;Medic Bat Descriptions
 MedicBatMintDescription="Exterior: Mint | For people that wouldn't know good healing if it hit them upside the head"
@@ -2714,6 +2773,12 @@ RailgunBluefireBattleScarredName="Railgun | Bluefire | Battle-Scarred"
 RailgunVaultVoshPreciousName="Railgun | Vault | Vosh | Precious"
 RailgunPrestigePreciousName="Railgun | Prestige | Precious"
 RailgunDragonKoiPreciousName="Railgun | Dragon & Koi | Precious"
+RailgunSpectreHRGDynamicName="Railgun | Spectre HRG | Dynamic"
+RailgunSpectreHRGDynamicChromaName="Railgun | Spectre HRG | Dynamic Chroma"
+
+;HRG Incision Names
+HRGIncisionSpectreHRGDynamicName="HRG Incision | Spectre HRG | Dynamic"
+HRGIncisionSpectreHRGDynamicChromaName="HRG Incision | Spectre HRG | Dynamic Chroma"
 
 ;RPG-7 Descriptions
 RPG7MintDescription="Exterior: Mint | Only arms itself a few meters down-range, so you don't blow your own face off. Watch the back-blast!"
@@ -2909,6 +2974,7 @@ StaticStrikersBeyondHorizonMintName="Static Strikers | Beyond Horizon | Mint"
 StaticStrikersBeyondHorizonFieldTestedName="Static Strikers | Beyond Horizon | Field-Tested"
 StaticStrikersBeyondHorizonBattleScarredName="Static Strikers | Beyond Horizon | Battle-Scarred"
 StaticStrikersBeyondHorizonSpaceEliteName="Static Strikers | Beyond Horizon | Space Elite"
+StaticStrikersVaultVoshPreciousName="Static Strikers | Vault | Vosh | Precious" 
 
 ;Stoner 63A Descriptions
 Stoner63AMintDescription="Exterior: Mint | A staple of U.S. Navy SEALs in the Vietnam War, the Stoner 63A has high ammo capacity and tons of stopping power."
@@ -2927,7 +2993,8 @@ Stoner63AVietnamBattleScarredName="Stoner 63A | Vietnam | Battle-Scarred"
 Stoner63ANeonMintName="Stoner 63A | Neon | Mint" 
 Stoner63ANeonFieldTestedName="Stoner 63A | Neon | Field-Tested" 
 Stoner63ANeonBattleScarredName="Stoner 63A | Neon | Battle-Scarred" 
-Stoner63ANeonRGBPreciousName="Stoner 63A | Neon RGB | Precious" 
+Stoner63ANeonRGBPreciousName="Stoner 63A | Neon RGB | Precious"
+Stoner63AVaultVoshPreciousName="Stoner 63A | Vault | Vosh | Precious" 
 
 ;Support Knife Descriptions
 SupportKnifeMintDescription="Exterior: Mint | Don't go feeling all special just because we gave you the biggest knife."
@@ -2970,6 +3037,12 @@ VLAD1000NailgunBluefireMintName="VLAD-1000 Nailgun | Bluefire | Mint"
 VLAD1000NailgunBluefireFieldTestedName="VLAD-1000 Nailgun | Bluefire | Field-Tested" 
 VLAD1000NailgunBluefireBattleScarredName="VLAD-1000 Nailgun | Bluefire | Battle-Scarred" 
 VLAD1000NailgunPrestigePreciousName="VLAD-1000 Nailgun | Prestige | Precious"
+VLAD1000NailgunSpectreHRGDynamicName="VLAD-1000 Nailgun | Spectre HRG | Dynamic"
+VLAD1000NailgunSpectreHRGDynamicChromaName="VLAD-1000 Nailgun | Spectre HRG | Dynamic Chroma"
+
+;HRG Nailgun Names
+HRGNailgunPDWSpectreHRGDynamicName="HRG Nailgun PDW | Spectre HRG | Dynamic"
+HRGNailgunPDWSpectreHRGDynamicChromaName="HRG Nailgun PDW | Spectre HRG | Dynamic Chroma"
 
 ;Welder Descriptions
 WelderMintDescription="Exterior: Mint | Welder, I'm welding this door!"
@@ -3042,6 +3115,7 @@ ZweihanderSteampunkBattleScarredName="Zweihander | Steampunk | Battle-Scarred"
 ZweihanderSteampunkFieldTestedName="Zweihander | Steampunk | Field-Tested"
 ZweihanderSteampunkMintName="Zweihander | Steampunk | Mint"
 ZweihanderSteampunkPreciousName="Zweihander | Steampunk | Precious"
+ZweihanderVaultVoshPreciousName="Zweihander | Vault | Vosh | Precious" 
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="Exterior: Mint | The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
@@ -3143,6 +3217,9 @@ TommyGunSteampunkBattleScarredName="Tommy Gun | Steampunk | Battle-Scarred"
 TommyGunSteampunkFieldTestedName="Tommy Gun | Steampunk | Field-Tested"
 TommyGunSteampunkMintName="Tommy Gun | Steampunk | Mint"
 TommyGunSteampunkPreciousName="Tommy Gun | Steampunk | Precious"
+TommyGunVaultVoshPreciousName="Tommy Gun| Vault | Vosh | Precious"
+TommyGunJaegerDynamicName="Tommy Gun | Jaeger | Dynamic"
+TommyGunJaegerDynamicRGBName="Tommy Gun | Jaeger | Dynamic RGB"
 
 ;Laser Cutter Descriptions
 LaserCutterMintDescription="Exterior: Mint | Overcharge mode - Charges up while the fire button is pressed and discharges when the fire button is released."
@@ -3222,7 +3299,7 @@ IonSwordRoyalShockName="Ion Thruster | Royal Shock | Precious"
 IonSwordShatterName="Ion Thruster | Shatter | Precious"
 
 ;Seal Squeal Descriptions
-SealSquealMintDescription="Exterior: Mint | A more elegant Horzine gives this their seal of approval!"
+SealSquealMintDescription="Exterior: Mint | Horzine gives this their seal of approval!"
 SealSquealFieldTestedDescription="Exterior: Field-Tested | Horzine gives this their seal of approval!"
 SealSquealBattleScarredDescription="Exterior: Battle-Scarred | Horzine gives this their seal of approval!"
 SealSquealPreciousDescription="Exterior: Precious | Horzine gives this their seal of approval!"
@@ -3285,7 +3362,35 @@ RiotShieldandG18WinterPreciousName="Riot Shield and G18 | Winter | Precious"
 RiotShieldandG18SWATPreciousName="Riot Shield and G18 | SWAT | Precious"
 
 ;Dynamic Descriptions
+DynamicDescription="Exterior: Dynamic | Dynamic skins show the following stats live on the weapon skin itself : Magazine Capacity Left & Accuracy per Magazine"
 DynamicPreciousDescription="Exterior: Dynamic Precious | Dynamic skins show the following stats live on the weapon skin itself : Magazine Capacity Left & Accuracy per Magazine"
+
+;Spectre Descriptions
+SpectreDescription="Exterior: Dynamic | Exterior: Dynamic skins show the following stats live on the weapon skin itself: Low Ammo Indicator."
+SpectrePreciousDescription="Exterior: Dynamic Precious | Exterior: Dynamic skins show the following stats live on the weapon skin itself: Low Ammo Indicator."
+
+;Road Redeemer Descriptions
+RoadRedeemerMintDescription="Exterior: Mint | Be the slugger you always wanted to be! Remember to clean after every use."
+RoadRedeemerFieldTestedDescription="Exterior: Field-Tested | Be the slugger you always wanted to be! Remember to clean after every use."
+RoadRedeemerBattleScarredDescription="Exterior: Battle-Scarred | Be the slugger you always wanted to be! Remember to clean after every use."
+RoadRedeemerPreciousDescription="Exterior: Precious | Be the slugger you always wanted to be! Remember to clean after every use."
+
+;Road Redeemer Names
+RoadRedeemerVaultVoshPreciousName="Road Redeemer | Vault | Vosh | Precious"
+
+;Compound Bow Descriptions
+CompoundBowMintDescription="Exterior: Mint | When being Cupid needs a little more punch."
+CompoundBowFieldTestedDescription="Exterior: Field-Tested | When being Cupid needs a little more punch."
+CompoundBowBattleScarredDescription="Exterior: Battle-Scarred | When being Cupid needs a little more punch."
+CompoundBowPreciousDescription="Exterior: Precious | When being Cupid needs a little more punch."
+
+;Compound Bow Names
+CompoundBowCamoPreciousName="Compound Bow | Camo | Precious"
+CompoundBowCarbonPreciousName="Compound Bow | Carbon | Precious"
+CompoundBowGorePreciousName="Compound Bow | Gore | Precious"
+CompoundBowSnowOpsPreciousName="Compound Bow | Snow Ops | Precious"
+CompoundBowStickerStrikerPreciousName="Compound Bow | Sticker Striker | Precious"
+CompoundBowStandardPreciousName="Compound Bow | Standard | Precious"
 
 [CosmeticSection]
 
@@ -4992,6 +5097,56 @@ ChristmasSnowmanHelmetPreciousName="Christmas | Snowman Helmet | Precious"
 ChristmasMistletoeClotBackpackRedName="Christmas | Mistletoe Clot Backpack | Red"
 ChristmasMistletoeClotBackpackGreenName="Christmas | Mistletoe Clot Backpack | Green"
 ChristmasMistletoeClotBackpackPreciousName="Christmas | Mistletoe Clot Backpack | Precious"
+
+;Cyber Rave 2020 Cosmetic Names
+CyberRaveFacemaskBlankName="Cyber Rave | Facemask | Blank"
+CyberRaveFacemaskChompName="Cyber Rave | Facemask | Chomp"
+CyberRaveFacemaskScullyName="Cyber Rave | Facemask | Scully"
+CyberRaveFacemaskSkullName="Cyber Rave | Facemask | Skull"
+CyberRaveFacemaskTeethName="Cyber Rave | Facemask | Teeth"
+CyberRaveFacemaskPreciousName="Cyber Rave | Facemask | Precious"
+CyberRaveHeadmaskBlankName="Cyber Rave | Headmask | Blank"
+CyberRaveHeadmaskButterflyName="Cyber Rave | Headmask | Butterfly"
+CyberRaveHeadmaskMuertoName="Cyber Rave | Headmask | Muerto"
+CyberRaveHeadmaskRTestName="Cyber Rave | Headmask | R-Test"
+CyberRaveHeadmaskScreamName="Cyber Rave | Headmask | Scream"
+CyberRaveHeadmaskScullyName="Cyber Rave | Headmask | Scully"
+CyberRaveHeadmaskSinisterName="Cyber Rave | Headmask | Sinister"
+CyberRaveHeadmaskSkullName="Cyber Rave | Headmask | Skull"
+CyberRaveHeadmaskSwirlName="Cyber Rave | Headmask | Swirl"
+CyberRaveHeadmaskTeethName="Cyber Rave | Headmask | Teeth"
+CyberRaveHeadmaskPreciousName="Cyber Rave | Headmask | Precious"
+CyberRaveHornsBlackName="Cyber Rave | Horns | Black"
+CyberRaveHornsGreyName="Cyber Rave | Horns | Grey"
+CyberRaveHornsPurpleName="Cyber Rave | Horns | Purple"
+CyberRaveHornsRedName="Cyber Rave | Horns | Red"
+CyberRaveHornsTealName="Cyber Rave | Horns | Teal"
+CyberRaveHornsWavyBlackName="Cyber Rave | Horns | Wavy Black"
+CyberRaveHornsWavyGreyName="Cyber Rave | Horns | Wavy Grey"
+CyberRaveHornsWavyPurpleName="Cyber Rave | Horns | Wavy Purple"
+CyberRaveHornsWavyRedName="Cyber Rave | Horns | Wavy Red"
+CyberRaveHornsWavyTealName="Cyber Rave | Horns | Wavy Teal"
+CyberRaveHornsPreciousName="Cyber Rave | Horns | Precious"
+CyberRaveSkullpackBlackName="Cyber Rave | Skullpack | Black"
+CyberRaveSkullpackGreenName="Cyber Rave | Skullpack | Teal"
+CyberRaveSkullpackPinkName="Cyber Rave | Skullpack | Pink"
+CyberRaveSkullpackPurpleName="Cyber Rave | Skullpack | Purple"
+CyberRaveSkullpackWhiteName="Cyber Rave | Skullpack | White"
+CyberRaveSkullpackPreciousName="Cyber Rave | Skullpack | Precious"
+CyberRaveSpikedGlassesGreenName="Cyber Rave | Spiked Glasses | Teal"
+CyberRaveSpikedGlassesPinkName="Cyber Rave | Spiked Glasses | Pink"
+CyberRaveSpikedGlassesPurpleName="Cyber Rave | Spiked Glasses | Purple"
+CyberRaveSpikedGlassesRedName="Cyber Rave | Spiked Glasses | Red"
+CyberRaveSpikedGlassesWhiteName="Cyber Rave | Spiked Glasses | White"
+CyberRaveSpikedGlassesPreciousName="Cyber Rave | Spiked Glasses | Precious"
+CyberRaveUnicornHatAceName="Cyber Rave | Unicorn Hat | Ace"
+CyberRaveUnicornHatBlindName="Cyber Rave | Unicorn Hat | Blind"
+CyberRaveUnicornHatBlueName="Cyber Rave | Unicorn Hat | Blue"
+CyberRaveUnicornHatPinkName="Cyber Rave | Unicorn Hat | Pink"
+CyberRaveUnicornHatRefractedLightName="Cyber Rave | Unicorn Hat | Refracted Light"
+CyberRaveUnicornHatRomanName="Cyber Rave | Unicorn Hat | Roman"
+CyberRaveUnicornHatPreciousName="Cyber Rave | Unicorn Hat | Precious"
+
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Equippable from the gear menu; Compatible with most characters. This is an exclusive item from the "Summer Sideshow" seasonal event. Recycles into 1 Sideshow Ticket."

@@ -57,6 +57,8 @@ var transient name DeathMaterialEffectParamName;
 var transient KFFlashlightAttachment FlashLight;
 var const KFFlashlightAttachment FlashLightTemplate;
 var repnotify bool bFlashlightOn;
+var repnotify bool bUsingIronSights;
+var repnotify bool bUsingAltFireMode;
 var bool bObjectivePlayer;
 var bool bDisableTraderDialog;
 var() float BatteryDrainRate;
@@ -104,7 +106,8 @@ replication
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         CurrentWeaponState, WeaponAttachmentAnimRateByte, 
-        bFlashlightOn;
+        bFlashlightOn, bUsingAltFireMode, 
+        bUsingIronSights;
 }
 
 simulated event Tick(float DeltaTime)
@@ -198,6 +201,12 @@ simulated event ReplicatedEvent(name VarName)
             break;
         case 'bFlashlightOn':
             SetFlashlight(bFlashlightOn, false);
+            break;
+        case 'bUsingIronSights':
+            SetIronSights(bUsingIronSights, false);
+            break;
+        case 'bUsingAltFireMode':
+            SetUsingAltFireMode(bUsingAltFireMode, false);
             break;
         default:
             break;
@@ -298,12 +307,20 @@ simulated event StartCrouch(float HeightAdjust)
 {
     super.StartCrouch(HeightAdjust);
     UpdateGroundSpeed();
+    if(WeaponAttachment != none)
+    {
+        WeaponAttachment.StartPawnCrouch();
+    }
 }
 
 simulated event EndCrouch(float HeightAdjust)
 {
     super.EndCrouch(HeightAdjust);
     UpdateGroundSpeed();
+    if(WeaponAttachment != none)
+    {
+        WeaponAttachment.EndPawnCrouch();
+    }
 }
 
 function UpdateGroundSpeed()
@@ -1282,6 +1299,58 @@ private reliable server final function ServerSetFlashlight(bool bEnabled)
     if(WorldInfo.NetMode != NM_DedicatedServer)
     {
         SetFlashlight(bEnabled, false);
+    }
+}
+
+simulated function SetIronSights(bool bEnabled, optional bool bReplicate)
+{
+    bUsingIronSights = bEnabled;
+    if(WeaponAttachment != none)
+    {
+        WeaponAttachment.SetWeaponUsingIronSights(bEnabled);
+    }
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
+    if(bReplicate && Role == ROLE_AutonomousProxy)
+    {
+        ServerSetIronSights(bUsingIronSights);
+    }
+}
+
+private reliable server final function ServerSetIronSights(bool bEnabled)
+{
+    bUsingIronSights = bEnabled;
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        SetIronSights(bEnabled, false);
+    }
+}
+
+simulated function SetUsingAltFireMode(bool bEnabled, optional bool bReplicate)
+{
+    bUsingAltFireMode = bEnabled;
+    if(WeaponAttachment != none)
+    {
+        WeaponAttachment.SetWeaponAltFireMode(bEnabled);
+    }
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
+    if(bReplicate && Role == ROLE_AutonomousProxy)
+    {
+        ServerSetUsingAltFireMode(bUsingAltFireMode);
+    }
+}
+
+private reliable server final function ServerSetUsingAltFireMode(bool bEnabled)
+{
+    bUsingAltFireMode = bEnabled;
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        SetUsingAltFireMode(bEnabled, false);
     }
 }
 

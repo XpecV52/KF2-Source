@@ -37,4 +37,5 @@ defaultproperties
 	WeaponDef=class'KFWeapDef_NailGun'
 
 	ModifierPerkList(0)=class'KFPerk_Berserker'
+	ModifierPerkList(1)=class'KFPerk_Support'
 }

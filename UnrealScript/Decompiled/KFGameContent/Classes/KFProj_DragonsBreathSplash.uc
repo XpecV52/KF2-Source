@@ -10,12 +10,16 @@ class KFProj_DragonsBreathSplash extends KFProj_FlareGunSplash
 
 defaultproperties
 {
+    ExplosionActorClass=Class'KFExplosion_GroundFire'
     begin object name=ExploTemplate0 class=KFGameExplosion
-        MyDamageType=Class'KFDT_Fire_DragonsBreathDoT'
+        ExplosionEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Impacts'
+        Damage=8
+        MyDamageType=Class'KFDT_Fire_Ground_DragonsBreath'
         ExploLight=PointLightComponent'Default__KFProj_DragonsBreathSplash.FlamePointLight'
     object end
     // Reference: KFGameExplosion'Default__KFProj_DragonsBreathSplash.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
+    PostExplosionLifetime=2.5
     AmbientComponent=AkComponent'Default__KFProj_DragonsBreathSplash.AmbientAkSoundComponent'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

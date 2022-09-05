@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="Krasser Santa"
-Description="Zuerst hatte es Krampus auf seine Wichtel und Rentiere abgesehen. Dann schnappte er sich sein Zuhause. Das lässt Santa sich nicht mehr gefallen. Jetzt hat er ein Maschinengewehr. Hohoho!\n\nDer Heilige Nikolaus begann vor hunderten von Jahren damit, Weihnachtsfreude zu verbreiten und brave Kinder mit Geschenken zu belohnen. Er dachte, dass er das noch bis in alle Ewigkeit tun würde.  Doch dann kam Krampus.  In diesem Jahr hat Santa sich entschieden, seine gefallenen Arbeiter, Freunde und Familie zu rächen. Jetzt ist es vorbei mit rosa Pausbäckchen und dem großen, weichen Bauch – Santa hat sich ordentlich Muckis und ein vernünftiges Waffenarsenal zugelegt. Dies Jahr ist nichts mit stiller Nacht, Wohlwollen und Weihnachtsfreude. Dies Jahr kennt er nur Wut, Rache und das Schellen mit Waffenmunition."
+Description="Zuerst hatte es Krampus auf seine Wichtel und Rentiere abgesehen. Dann schnappte er sich sein Zuhause. Das lässt Santa sich nicht mehr gefallen. Jetzt hat er ein Maschinengewehr. Hohoho!\n\nDer Heilige Nikolaus begann vor hunderten von Jahren damit, Weihnachtsfreude zu verbreiten und brave Kinder mit Geschenken zu belohnen. Er dachte, dass er das noch bis in alle Ewigkeit tun würde. Doch dann kam Krampus. In diesem Jahr hat Santa sich entschieden, seine gefallenen Arbeiter, Freunde und Familie zu rächen. Jetzt ist es vorbei mit rosa Pausbäckchen und dem großen, weichen Bauch – Santa hat sich ordentlich Muckis und ein vernünftiges Waffenarsenal zugelegt. Dies Jahr ist nichts mit stiller Nacht, Wohlwollen und Weihnachtsfreude. Dies Jahr kennt er nur Wut, Rache und das Schellen mit Waffenmunition."
 BodyMesh0="Santa-Outfit"
 BodyMesh1="Kommando-Huhn"
 HeadMesh0="Santa-Kopf"
@@ -3762,10 +3762,10 @@ EmoteName="Münztrick"
 EmoteName="Münztrick+"
 
 [MagicFoster]
-EmoteName="Magievorschub"
+EmoteName="Magischer Foster"
 
 [MagicFoster_Deluxe]
-EmoteName="Magievorschub+"
+EmoteName="Magischer Foster+"
 
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="Feuerwehrhelm"
@@ -5606,7 +5606,72 @@ AttachmentSkin1="Magma"
 AttachmentSkin2="Precious"
 
 [Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
-Attachment="Weihnachts-Mistelzweig-Clot-Rucksack"
+Attachment="Mistelzweig-Clot-Rucksack"
 AttachmentSkin0="Rot"
 AttachmentSkin1="Grün"
 AttachmentSkin2="Precious"
+
+[Cosmetic_Cyber2020HalfMask_ARCH]
+Attachment="Cyber-Rave-Gesichtsmaske"
+AttachmentSkin0="Ohne Aufdruck"
+AttachmentSkin1="Happs"
+AttachmentSkin2="Scully"
+AttachmentSkin3="Schädel"
+AttachmentSkin4="Zähne"
+AttachmentSkin5="Precious"
+
+[Cosmetic_Cyber2020FullMask_ARCH]
+Attachment="Cyber-Rave-Kopfmaske"
+AttachmentSkin0="Ohne Aufdruck"
+AttachmentSkin1="Schmetterling"
+AttachmentSkin2="Muerto"
+AttachmentSkin3="R-Test"
+AttachmentSkin4="Schrei"
+AttachmentSkin5="Scully"
+AttachmentSkin6="Unheimlich"
+AttachmentSkin7="Schädel"
+AttachmentSkin8="Wirbel"
+AttachmentSkin9="Zähne"
+AttachmentSkin10="Precious"
+
+[Cosmetic_Cyber2020Goggles_ARCH]
+Attachment="Cyber-Rave-Stachelbrille"
+AttachmentSkin0="Seegrün"
+AttachmentSkin1="Rosa"
+AttachmentSkin2="Lila"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Weiß"
+AttachmentSkin5="Precious"
+
+[Cosmetic_Cyber2020Unicorn_ARCH]
+Attachment="Cyber-Rave-Einhornhut"
+AttachmentSkin0="Ass"
+AttachmentSkin1="Blind"
+AttachmentSkin2="Blau"
+AttachmentSkin3="Rosa"
+AttachmentSkin4="Gebrochenes Licht"
+AttachmentSkin5="Römisch"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Cyber2020Horns_ARCH]
+Attachment="Cyber-Rave-Hörner"
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Grau"
+AttachmentSkin2="Rot"
+AttachmentSkin3="Lila"
+AttachmentSkin4="Seegrün"
+AttachmentSkin5="Gewelltes Schwarz"
+AttachmentSkin6="Gewelltes Grau"
+AttachmentSkin7="Gewelltes Rot"
+AttachmentSkin8="Gewelltes Lila"
+AttachmentSkin9="Gewelltes Seegrün"
+AttachmentSkin10="Precious"
+
+[Cosmetic_Cyber2020Skullpack_ARCH]
+Attachment="Cyber-Rave-Schädelrucksack"
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Seegrün"
+AttachmentSkin2="Rosa"
+AttachmentSkin3="Lila"
+AttachmentSkin4="Weiß"
+AttachmentSkin5="Precious"

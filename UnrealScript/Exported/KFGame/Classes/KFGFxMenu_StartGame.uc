@@ -248,7 +248,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 	switch (SpecialEventID)
 	{
 		case SEI_Spring:
-			return class'KFGFxSpring2019ObjectivesContainer';
+			return class'KFGFxSpecialEventObjectivesContainer_Spring2020';
 		case SEI_Summer:
 			return class'KFGFxSummer2019ObjectivesContainer';
 		case SEI_Fall:
@@ -1941,35 +1941,36 @@ defaultproperties
    MaxResultsToTry=20000
    ServerConnectTimeout=4
    ServerTakeoverTimeout=30
-   StockMaps(0)="kf-bioticslab"
-   StockMaps(1)="kf-burningparis"
-   StockMaps(2)="kf-outpost"
-   StockMaps(3)="kf-voltermanor"
-   StockMaps(4)="kf-catacombs"
-   StockMaps(5)="kf-evacuationpoint"
-   StockMaps(6)="kf-blackforest"
-   StockMaps(7)="kf-farmhouse"
-   StockMaps(8)="kf-prison"
-   StockMaps(9)="kf-containmentstation"
-   StockMaps(10)="kf-hostilegrounds"
-   StockMaps(11)="kf-infernalrealm"
-   StockMaps(12)="kf-zedlanding"
-   StockMaps(13)="kf-thedescent"
-   StockMaps(14)="kf-nuked"
-   StockMaps(15)="kf-nightmare"
-   StockMaps(16)="kf-krampuslair"
-   StockMaps(17)="kf-diesector"
-   StockMaps(18)="kf-powercore_holdout"
-   StockMaps(19)="kf-lockdown"
-   StockMaps(20)="kf-monsterball"
-   StockMaps(21)="kf-airship"
-   StockMaps(22)="kf-tragickingdom"
-   StockMaps(23)="kf-shoppingspree"
-   StockMaps(24)="kf-santasworkshop"
-   StockMaps(25)="kf-sanitarium"
-   StockMaps(26)="kf-spillway"
-   StockMaps(27)="kf-steamfortress"
-   StockMaps(28)="kf-ashwoodasylum"
+   StockMaps(0)="kf-biolapse"
+   StockMaps(1)="kf-bioticslab"
+   StockMaps(2)="kf-burningparis"
+   StockMaps(3)="kf-outpost"
+   StockMaps(4)="kf-voltermanor"
+   StockMaps(5)="kf-catacombs"
+   StockMaps(6)="kf-evacuationpoint"
+   StockMaps(7)="kf-blackforest"
+   StockMaps(8)="kf-farmhouse"
+   StockMaps(9)="kf-prison"
+   StockMaps(10)="kf-containmentstation"
+   StockMaps(11)="kf-hostilegrounds"
+   StockMaps(12)="kf-infernalrealm"
+   StockMaps(13)="kf-zedlanding"
+   StockMaps(14)="kf-thedescent"
+   StockMaps(15)="kf-nuked"
+   StockMaps(16)="kf-nightmare"
+   StockMaps(17)="kf-krampuslair"
+   StockMaps(18)="kf-diesector"
+   StockMaps(19)="kf-powercore_holdout"
+   StockMaps(20)="kf-lockdown"
+   StockMaps(21)="kf-monsterball"
+   StockMaps(22)="kf-airship"
+   StockMaps(23)="kf-tragickingdom"
+   StockMaps(24)="kf-shoppingspree"
+   StockMaps(25)="kf-santasworkshop"
+   StockMaps(26)="kf-sanitarium"
+   StockMaps(27)="kf-spillway"
+   StockMaps(28)="kf-steamfortress"
+   StockMaps(29)="kf-ashwoodasylum"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
    SubWidgetBindings(1)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
    SubWidgetBindings(2)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')

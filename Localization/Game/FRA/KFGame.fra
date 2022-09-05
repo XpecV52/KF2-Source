@@ -115,7 +115,7 @@ StartOfflineGameString="Lancer partie hors ligne"
 StartOfflineGameDescriptionString="Commencer une partie hors ligne dissoudra votre groupe. \nVoulez-vous continuer ?"
 
 ProceedToTutorialString="LANCER L'ENTRAÎNEMENT ?"
-ProceedToTutorialDescriptionString="Découvrez les bases dans un environnement contrôlé.  Une fois terminé, la classe sélectionnée passera au niveau 1."
+ProceedToTutorialDescriptionString="Découvrez les bases dans un environnement contrôlé. Une fois terminé, la classe sélectionnée passera au niveau 1."
 
 NotAvailableInFreeTrialString="Contenu indisponible pour le mode démo"
 NetworkCheckFreeTrialFailedString="Erreur réseau : vérification du statut de l'évènement gratuit impossible. Vérifier l'état du réseau"
@@ -1416,7 +1416,7 @@ KickVoteNoSpectatorsString="Les spectateurs ne peuvent pas demander un vote d'ex
 KickedFromServerString="Vous avez été retiré du serveur"
 BannedFromServerString="Vous avez été retiré du serveur. Vous ne pouvez pas rejoindre pour le moment"
 ServerNoLongerAvailableString="Le serveur n'est plus disponible."
-SkipTraderTimeString="PASSER LA MARCHANDE activé. Choisissez PASSER LA MARCHANDE pour voter.  Unanimité requise."
+SkipTraderTimeString="PASSER LA MARCHANDE activé. Choisissez PASSER LA MARCHANDE pour voter. Unanimité requise."
 SkipTraderSuccessString="Vote pour passer la marchande réussi !"
 
 [KFLocalMessage_Game]
@@ -1760,7 +1760,7 @@ Spartan="ZED TIME - Spartiate"
 SpartanDescription="Pendant le Zed time, vous attaquez avec vos armes de classe et vous déplacez en temps réel."
 
 Rage="ZED TIME - Rage du Fou furieux"
-RageDescription="Lorsque Zed Time s'active ou se recharge, soigne 25 % de la santé et fait fuir les Zeds proches."
+RageDescription="Lorsque le Zed time s'active ou se recharge, soigne 50 % de la santé et fait fuir les Zeds proches."
 
 [KFPerk_Commando]
 PerkName="Commando"
@@ -1937,7 +1937,7 @@ Fuse="Barbecue"
 FuseDescription="L'effet de brûlure des armes de classe dure 150 % plus longtemps, ce qui augmente les dégâts continus."
 
 GroundFire="Incendie au sol"
-GroundFireDescription="Les incendies au sol infligent deux fois plus de dégâts et réduisent la vitesse de mouvement des Zeds de 30 %. Ne s'applique pas aux cocktails Molotov."
+GroundFireDescription="Les incendies au sol infligent trois fois plus de dégâts et réduisent la vitesse de mouvement des Zeds de 30 %."
 
 ZedShrapnel="Shrapnel Zed"
 ZedShrapnelDescription="Les Zeds que vous tuez par le feu ont 30 % de chances d'exploser, infligeant des dommages et étourdissant les Zeds à proximité."
@@ -1990,7 +1990,7 @@ SpeedReload="Rechargement éclair"
 SpeedReloadDescription="Augmente la vitesse de rechargement des armes de classe."
 
 Penetration="Chacun son tour !"
-PenetrationDescription="Ne subit aucune perte de dégâts quand il tire à travers des Zeds pour toucher d'autres Zeds avec des armes de classe."
+PenetrationDescription="Ne subit aucune perte de dégâts quand il tire à travers des Zeds pour toucher d'autres Zeds et augmente la pénétration avec des armes de classe."
 
 Skullcracker="Écerveleur"
 SkullcrackerDescription="Les tirs à la tête avec des armes de classe ralentissent les Zeds de 30 %."
@@ -2033,7 +2033,7 @@ Stun="Choc balistique"
 StunDescription="Augmente le pouvoir d'étourdissement des armes de classe de 100 %."
 
 RhythmMethod="C'est l'heure du massacre !"
-RhythmMethodDescription="Les dégâts des tirs à la tête consécutifs avec des armes de classe augmentent de 10 % jusqu'à 50 % maximum.  "
+RhythmMethodDescription="Les dégâts des tirs à la tête consécutifs avec des armes de classe augmentent de 10 % jusqu'à 50 % maximum. "
 
 TacticalReload="Rechargement tactique"
 TacticalReloadDescription="Augmente la vitesse de rechargement des armes de classe."
@@ -2094,7 +2094,7 @@ ConcussionRounds="Balles de commotion"
 ConcussionRoundsDescription="Augmente le pouvoir de renversement des armes de classe de 150 %."
 
 Perforate="ZED TIME - Pénétrateur"
-PerforateDescription="Pendant le Zed time, vos armes de classe traversent les cibles qu'elles touchent."
+PerforateDescription="Pendant le Zed time, ne subit aucune perte de dégâts quand il tire à travers des Zeds pour toucher d'autres Zeds et augmente la pénétration avec des armes de classe."
 
 Barrage="ZED TIME - Barrage"
 BarrageDescription="Pendant le Zed time, vos armes de classe tirent presque en temps réel."
@@ -2190,7 +2190,7 @@ Madman="ZED TIME - Malade mental"
 MadmanDescription="Pendant le Zed time, toutes vos armes tirent 3x plus vite."
 
 IncapMaster="ZED TIME - État d'urgence"
-IncapMasterDescription="Pendant le Zed time, la puissance de toutes les méthodes incapacitantes de toutes les armes est augmentée de 200 %."
+IncapMasterDescription="Pendant le Zed time, les taux de démolition, de renversement et d'étourdissement de vos armes sont augmentés jusqu'à leur maximum."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2569,7 +2569,7 @@ KFWeap_MKB="Armes Halloween Hans"
 Source0="Promo Chivalry"
 
 ;============================================
-; SpecialEvent  Localization (Base class)
+; SpecialEvent Localization (Base class)
 ;============================================
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
@@ -2607,7 +2607,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Ragoût de monstre",DescriptionSt
 SpecialEventObjectiveInfoList[3]=(TitleString="S'amuser toute la nuit",DescriptionString="Terminer 25 vagues en Infini en mode difficile ou supérieur")
 SpecialEventObjectiveInfoList[4]=(TitleString="Maître des lieux",DescriptionString="Vaincre le Comte Hans en Survie en mode Difficile ou supérieur")
 
-AllCompleteRewardDescriptionString="MKB Hans :  arme + m. Halloween"
+AllCompleteRewardDescriptionString="MKB Hans : arme + m. Halloween"
 
 ChanceDropDescriptionStrings[0]="Ticket de récompense"
 ChanceDropDescriptionStrings[1]="Ticket Or"
@@ -2682,7 +2682,7 @@ ChanceDropDescriptionStrings[1]="Ticket cadeau doré"
 CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Mers noires de l'infini",DescriptionString="Vaincre n'importe quel boss en Survie en mode difficile ou supérieur dans le Sanatorium")
-SpecialEventObjectiveInfoList[1]=(TitleString="Une imagination quelque peu débordante",DescriptionString="Tuez 20 Zeds avec le Fouet tentaculaire dans le Sanatorium")
+SpecialEventObjectiveInfoList[1]=(TitleString="Une imagination débordante",DescriptionString="Tuez 20 Zeds avec le Fouet tentaculaire dans le Sanatorium")
 SpecialEventObjectiveInfoList[2]=(TitleString="Contradictions surnaturelles",DescriptionString="Tuez 20 Zeds avec le Piège aspirant dans le Sanatorium")
 SpecialEventObjectiveInfoList[3]=(TitleString="Instincts maternels",DescriptionString="Tuer la Matriarche 10 fois dans n'importe quel mode de jeu ou carte")
 SpecialEventObjectiveInfoList[4]=(TitleString="Une affaire de famille",DescriptionString="Terminer le Labo biotique en mode Objectif Difficile ou supérieur")
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dynamique"
 
 ChanceDropDescriptionStrings[0]="Ticket de Krampus"
 ChanceDropDescriptionStrings[1]="Ticket doré de Krampus"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Expérimentations ratées",DescriptionString="Tuer 1 500 Zeds sur n'importe quelle carte")
+SpecialEventObjectiveInfoList[1]=(TitleString="Laps hebdomadaire",DescriptionString="Terminer l'hebdomadaire de Biolapse")
+SpecialEventObjectiveInfoList[2]=(TitleString="Erreur de mixeur",DescriptionString="Tuez 20 Zeds avec le mixeur sanglant dans Biolapse")
+SpecialEventObjectiveInfoList[3]=(TitleString="C'est un piège !",DescriptionString="Tuez 20 Zeds avec les trappes piégées dans Biolapse")
+SpecialEventObjectiveInfoList[4]=(TitleString="Biologie mortelle",DescriptionString="Vaincre n'importe quel boss en Survie en mode Difficile ou supérieur dans Biolapse")
+
+AllCompleteRewardDescriptionString="Pack double de modèles dynamiques pour AA12"
+
+ChanceDropDescriptionStrings[0]="Ticket cyberpunk"
+ChanceDropDescriptionStrings[1]="Ticket doré cyberpunk"
 
 ;============================================
 ; Daily Localization
@@ -3279,10 +3293,13 @@ DisplayName="Exutoire"
 DisplayName="Forteresse à vapeur"
 
 [KF-AshwoodAsylum KFMapSummary]
-DisplayName="Asile d'Ashwood"
+DisplayName="Asile d'Ashwood."
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="Sanatorium"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="Biolapse"
 
 [KFMapInfo]
 ; defaults

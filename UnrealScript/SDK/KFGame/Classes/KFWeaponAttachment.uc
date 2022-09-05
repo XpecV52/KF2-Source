@@ -470,6 +470,25 @@ simulated function StartFire()
 
 }
 
+simulated function StartPawnCrouch ()
+{
+
+}
+
+simulated function EndPawnCrouch ()
+{
+
+}
+
+simulated function SetWeaponUsingIronSights (bool bUsingIronSights)
+{
+}
+
+simulated function SetWeaponAltFireMode (bool bUsingAltFireMode)
+{
+
+}
+
 /**
  * Spawn all of the effects that will be seen in behindview/remote clients.  This
  * function is called from the pawn, and should only be called when on a remote client or

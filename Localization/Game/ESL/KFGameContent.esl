@@ -33,11 +33,11 @@ InventoryDescriptionKey="Cada configuración de especialización cuenta, al prin
 InventoryContTitleKey="Familiarizarse con el inventario"
 InventoryContDescriptionKey="Cada configuración de especialización cuenta, al principio, con un arma principal específica, una pistola de 9 mm de repuesto, y un cuchillo de especialista y granadas. Para seleccionar un arma, mantén pulsado <font color="#caab05">%x%</font> y utiliza los botones de dirección."
 AlternateFireKey="Disparo alternativo"
-AlternateFireDescription="La mayoría de armas principales cuentan con un modo de disparo alternativo. Pulsa <font color="#caab05">%x%</font> para cambiar tu modo de disparo actual. Aparecerá un icono indicando el modo que esté seleccionado."
+AlternateFireDescription="La mayoría de armas principales cuentan con un modo de disparo alternativo. Presiona <font color="#caab05">%x%</font> para cambiar tu modo de disparo actual. Aparecerá un icono indicando el modo que esté seleccionado."
 FlashLightBatteryTitleKey="Usar la linterna"
 FlashLightBatteryDescriptionKey="En ocasiones, lo verás todo muy oscuro. Pulsa <font color="#caab05">%x%</font> para encender y apagar la <font color="#caab05">LINTERNA</font>. Poco a poco, la linterna se irá quedando sin batería. Cuando se agote, se apagará y empezará a recargarse de nuevo automáticamente."
 GrenadeTitleKey="Usar las granadas"
-GrenadeDescriptionKey="Las granadas te permiten enfrentarte a grupos compactos de zeds. Las especializaciones cuentan con varios tipos de granadas en sus <font color="#caab05">CONFIGURACIONES DE ARMAS</font>; todas ellas dañan a los zeds, pero tienen efectos adicionales distintos. Para lanzar una granada, presiona <font color="#caab05">%x%</font>. "
+GrenadeDescriptionKey="Las granadas te permiten hacer frente a grupos compactos de zeds. Las especializaciones cuentan con varios tipos de granadas en sus <font color="#caab05">CONFIGURACIONES DE ARMAS</font>; todas ellas dañan a los zeds, pero tienen efectos adicionales distintos. Para lanzar una granada, pulsa <font color="#caab05">%x%</font>."
 
 ;Wave 1 end
 TraderTimeTitleKey="Mercader"
@@ -116,48 +116,48 @@ ItemDescription="•La armadura de combate te protege de varios tipos de daño, 
 
 [KFProj_DynamiteGrenade]
 ItemName="Media dinamita"
-ItemCategory =" "Explosivos"
-ItemDescription="•Un simple trozo de dinamita con un detonador acoplado.\n•Tú también puedes hacerte daño con ella, ¡ten cuidado! "
+ItemCategory ="Explosivos"
+ItemDescription="•Un simple trozo de dinamita con un detonador acoplado.\n•Tú también puedes hacerte daño con ella, ¡ten cuidado!"
 
 [KFProj_MedicGrenade]
 ItemName="Granada médica"
-ItemCategory =" "Explosivos"
-ItemDescription="•Suelta un gas que envenena a los zeds y cura a las personas.\n\n•Colócate en la nube de gas azul para que te cure.\nSegún uno de nuestros científicos: "El agente que desprenden las granadas revigoriza a los Homo Sapiens y mata a los Homo Zedicus". Esperamos que te sea útil. "
+ItemCategory ="Explosivos"
+ItemDescription="•Suelta un gas que envenena a los zeds y cura a las personas.\n\n•Colócate en la nube de gas azul para que te cure.\nSegún uno de nuestros científicos: "El agente que desprenden las granadas revigoriza a los Homo Sapiens y mata a los Homo Zedicus". Esperamos que te sea útil."
 
 [KFProj_MolotovGrenade]
 ItemName="Cóctel Molotov"
 ItemCategory="Explosivos"
-ItemDescription="•Muy simple: una granada ígnea que quema a los zeds.\n\nLos finlandeses le pusieron ese nombre durante la Guerra de Invierno, en referencia a Vyacheslav Mikhailovich Molotov, uno de los ministros de Stalin... Ah, perdón por la clase de historia. "
+ItemDescription="•Muy simple: una granada ígnea que quema a los zeds.\n\nLos finlandeses le pusieron ese nombre durante la Guerra de Invierno, en referencia a Vyacheslav Mikhailovich Molotov, uno de los ministros de Stalin... Ah, perdón por la clase de historia."
 
 [KFProj_EMPGrenade]
 ItemName="Granada EM"
 ItemCategory="Explosivos"
-ItemDescription="•Emite una energía electromagnética que hiere a los zeds y puede aturdirlos durante un breve instante.\n\nAl detonarla genera un pulso electromagnético de un nanosegundo que afecta a los sistemas eléctricos a corta distancia. Sobre todo a los de los zeds. Útil, ¿verdad? "
+ItemDescription="•Emite una energía electromagnética que hiere a los zeds y puede aturdirlos durante un breve instante.\n\nAl detonarla genera un pulso electromagnético de un nanosegundo que afecta a los sistemas eléctricos a corta distancia. Sobre todo, a los de los zeds. Útil, ¿verdad?"
 
 [KFProj_HEGrenade]
 ItemName="Granada explosiva"
 ItemCategory="Explosivos"
-ItemDescription="•Una granada explosiva de funcionamiento sencillo. Afecta a humanos y zeds por igual.\n\nMás simple, imposible. Como su propio nombre indica, es explosiva. Hace PUM y todo sale por los aires. ¿Necesitas más explicaciones? "
+ItemDescription="•Una granada explosiva de funcionamiento sencillo. Afecta a humanos y zeds por igual.\n\nMás simple, imposible. Como su propio nombre indica, es explosiva. Hace "bum" y todo sale por los aires. ¿Necesitáis más explicaciones?"
 
 [KFProj_FragGrenade]
 ItemName="Gr. de fragmentación"
 ItemCategory="Explosivos"
-ItemDescription="•La clásica granada de fragmentación que suelta esquirlas de metal y lo destroza todo.\n\nSeguro que antes del brote jugaste suficientes videojuegos como para saber de lo que estoy hablando. No finjas que no. Aquí nadie te iba a creer. "
+ItemDescription="•La clásica granada de fragmentación que suelta esquirlas de metal y lo destroza todo.\n\nSeguro antes del brote jugaste a suficientes videojuegos como para saber de lo que estoy hablando. No finjas que no. Aquí nadie te iba a creer."
 
 [KFProj_NailBombGrenade]
 ItemName="Bomba de clavos"
-ItemCategory =" "Explosivos"
+ItemCategory ="Explosivos"
 ItemDescription="•Una lata llena de clavos oxidados con una carga explosiva en medio. Ni más ni menos.\n\nQuizá no sea la forma más sutil ni agradable de lidiar con los zeds, pero ¿acaso hay algo de sutil o agradable en ellos?"
 
 [KFProj_FreezeGrenade]
 ItemName="Gr. de congelación"
-ItemCategory =" "Explosivos"
+ItemCategory ="Explosivos"
 ItemDescription="•Un recipiente de tecnología punta que contiene nitrógeno líquido a presión.\n\nCuando los zeds establecen contacto con ella, los congela en el sitio durante un tiempo. Su efectividad te dejará helado."
 
 [KFProj_FlashBangGrenade]
 ItemName="Granada cegadora"
-ItemCategory =" "Explosivos"
-ItemDescription="•Brillante y ruidosa. Aviso: no mirar directamente. Tampoco escuchar directamente, si puedes.\n•¡Cuidado! Aunque no son letales, las granadas cegadoras pueden hacerte daño a ti también. "
+ItemCategory ="Explosivos"
+ItemDescription="•Brillante y ruidosa. Aviso: no mirar directamente. No escuchar directamente, tampoco, si puedes.\n•¡Cuidado! Aunque no son letales, las granadas cegadoras pueden hacerte daño a ti también."
 
 [KFWeap_Healer_Syringe]
 ItemName="Jeringa médica"
@@ -439,13 +439,13 @@ ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al u
 ItemName="Rhino"
 ItemCategory="Arma corta"
 ItemDescription="•Dispara balas de fragmentación.\n•Las balas de fragmentación explotan al impactar y liberan 3 trozos de metralla.\n•¡Hace picadillo a los zeds!"
-SharedUnlockSource="Paquete Rino-Revólver"
+SharedUnlockSource="Paquete de armas Revólver Rhino, Paquete de armas Tratos macabros"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="Rhinos dobles"
 ItemCategory="Arma corta"
 ItemDescription="•Dispara balas de fragmentación.\n•Las balas de fragmentación explotan al impactar y liberan 3 trozos de metralla.\n•Disparo alternativo: al usar la mirilla, cambia la forma de apuntar.\n•¡Hace el doble de picadillo a los zeds!"
-SharedUnlockSource="Paquete Rino-Revólver"
+SharedUnlockSource="Paquete de armas Revólver Rhino, Paquete de armas Tratos macabros"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="Revólver 1858"
@@ -486,7 +486,7 @@ ItemDescription="•Modo de disparo: solo tiro único.\n•El clásico rifle de 
 ItemName="Mosin Nagant"
 ItemCategory="Rifle"
 ItemDescription="•Modo de disparo: tiro único.\n•Disparo/Parada Alt.\n•El M91/30 está hecho para apuñalar, disparar y apuñalar disparando."
-SharedUnlockSource="Paquete Mosin Nagant"
+SharedUnlockSource="Paquete de armas Mosin Nagant, Paquete de armas Horror navideño"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Central"
@@ -532,7 +532,7 @@ ItemDescription="•Elige entre dos modos de disparo: automático o semiautomát
 [KFWeap_SMG_Kriss]
 ItemName="Subfusil Kriss"
 ItemCategory="Subfusil"
-ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•Es lo último en redistribución de balas compactas: destruye zeds a chorrazo limpio."
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•Es lo último en redistribución de balas compactas: destruye zeds como una manguera de destrucción."
 
 [KFWeap_SMG_HK_UMP]
 ItemName="Heckler & Koch UMP"
@@ -586,7 +586,7 @@ ItemDescription="•Modo de disparo: solo semiautomático.\n•Alternativo: al u
 ItemName="Espada iónica"
 ItemCategory="CaC"
 ItemDescription="•Principal: ataque cortante rápido que quema; mantén pulsado el botón de modo principal para realizar un combo.\n•Secundario: ataque cortante potente que quema.\n•Recargar: realiza un ataque especial cuando está cargado al 100 %.\n•Alternativo: bloquear/parar.\n•Genial para una barbacoa."
-SharedUnlockSource="Espada iónica"
+SharedUnlockSource="Paquete de armas Espada iónica, Paquete de armas Tratos macabros"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Trabucondena"
@@ -621,7 +621,7 @@ ItemDescription="•Elige entre dos modos de disparo: automático o semiautomát
 [KFWeap_Edged_AbominationAxe]
 ItemName="Hacha de guerra"
 ItemCategory="Cuerpo a cuerpo"
-ItemDescription="•Principal: ataque cortante lento; mantén presionado el botón del modo principal para hacer un combo.\n•Secundario: Ataque pesado y lento que acaba en la muerte.\n•Alternativo: bloquear/parar.\n•Obsoleto, pero golpea como un camión... un camión grande y afilado."
+ItemDescription="•Principal: ataque cortante lento; mantén presionado el botón del modo principal para hacer un combo.\n•Secundario: Ataque pesado y lento que acaba en la muerte.\n•Alternativo: bloquear/parar.\n•Obsoleto, pero sigue golpeando como un camión... un camión grande y afilado."
 SharedUnlockSource="Hacha de guerra"
 
 [KFWeap_Edged_FireAxe]
@@ -678,13 +678,25 @@ ItemDescription="•Modo de disparo: lanza carámbanos de hielo explosivos. \n�
 [KFWeap_Rifle_HRGIncision]
 ItemName="Incisión HRG"
 ItemCategory="Rifle de francotirador"
-ItemDescription="•Modo de disparo: dispara cargas eléctricas de alta velocidad.\n•Modo de disparo alternativo lanza dardos que curan a los miembros del equipo."
+ItemDescription="•Modo de disparo: dispara cargas eléctricas de alta velocidad.\n•El modo de disparo alternativo lanza dardos que curan a los miembros del equipo."
 
 [KFWeap_SMG_G18]
 ItemName="Escudo antidisturbios y Glock 18"
 ItemCategory="Subfusil"
 ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Disparo alternativo cambio los modos de disparo.\n•La mirilla sube el escudo para reducir el daño frontal de casi todos los ataques."
-SharedUnlockSource="Paquete de escudo antidisturbios y G18"
+SharedUnlockSource="Paquete de armas Escudo antidisturbios y G18, Paquete de armas Horror navideño"
+
+[KFWeap_AssaultRifle_HRGIncendiaryRifle]
+ItemName="Rifle incendiario HRG"
+ItemCategory="Rifle de asalto"
+ItemDescription="•Modo de disparo: solo automático.\n•Alternativo: dispara granadas.\n•Para los que no se deciden entre fuego o más fuego."
+SecondaryAmmo="Granada inc. M203"
+
+[KFWeap_Bow_CompoundBow]
+ItemName="Arco compuesto"
+ItemCategory="Arco"
+ItemDescription="•Modo de disparo: solo disparo cargado.\n•El alcance y el daño aumentan cuanto más tiempo lo dejes pulsado.\n•El modo de disparo alternativo alterna flechas afiladas y criogénicas\n•Cuando Cupido necesita un poco más de fuerza."
+SharedUnlockSource="Paquete de armas Arco compuesto"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

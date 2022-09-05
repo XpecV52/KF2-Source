@@ -115,7 +115,7 @@ StartOfflineGameString="Comenzar sin conexión"
 StartOfflineGameDescriptionString="Al comenzar una partida sin conexión, tu grupo se disolverá.\n¿Quieres continuar?"
 
 ProceedToTutorialString="¿IR A ENTRENAMIENTO?"
-ProceedToTutorialDescriptionString="Ve al entorno controlado y aprende lo básico.  Si lo consigues, aumentas el nivel de la especialización elegida de 0 a 1."
+ProceedToTutorialDescriptionString="Ve al entorno controlado y aprende lo básico. Si lo consigues, aumentas el nivel de la especialización elegida de 0 a 1."
 
 NotAvailableInFreeTrialString="No disponible en la versión de prueba"
 NetworkCheckFreeTrialFailedString="Error de red: No se pudo verificar el estado del evento gratis. Comprueba tu conexión de red"
@@ -1416,7 +1416,7 @@ KickVoteNoSpectatorsString="Los espectadores no pueden iniciar votaciones de exp
 KickedFromServerString="Te han expulsado del servidor"
 BannedFromServerString="Te han expulsado de este servidor. No puedes volver a unirte"
 ServerNoLongerAvailableString="Ya no puedes unirte a este servidor."
-SkipTraderTimeString="SALTAR MERCADER activado. Selecciona "SALTAR MERCADER" para votar.  Todos deben aceptar."
+SkipTraderTimeString="SALTAR MERCADER activado. Selecciona "SALTAR MERCADER" para votar. Todos deben aceptar."
 SkipTraderSuccessString="¡Voto de omitir mercader realizado!"
 
 [KFLocalMessage_Game]
@@ -1760,7 +1760,7 @@ Spartan="MOMENTO ZED - Espartano"
 SpartanDescription="En los momentos zed tu movimiento y ataques con armas de esp. ocurren en tiempo real."
 
 Rage="MOMENTO ZED - Furia berserker"
-RageDescription="Cuando se activa o se reinicia el momento zed, recupera un 25 % de salud y haz que los zeds cercanos huyan."
+RageDescription="Cuando se activa o se reinicia el momento zed, recupera un 50 % de salud y haz que los zeds cercanos huyan."
 
 [KFPerk_Commando]
 PerkName="Comando"
@@ -1937,7 +1937,7 @@ Fuse="Barbacoa"
 FuseDescription="El efecto ígneo de las armas de especialización dura un 150 % más, por lo que aumenta el daño prolongado."
 
 GroundFire="Fuego terrestre"
-GroundFireDescription="El daño del fuego terrestre se duplica y reduce un 30 % la velocidad de movimiento de los zed. No se aplica a los molotovs."
+GroundFireDescription="El daño del fuego terrestre se triplica y reduce un 30 % la velocidad de movimiento de los zed."
 
 ZedShrapnel="Metralla zed"
 ZedShrapnelDescription="Los zeds a los que mates con fuego tienen un 30 % de posibilidades de explotar, infligiendo daño y aturdimiento a otros zeds cercanos."
@@ -1990,7 +1990,7 @@ SpeedReload="Carga rápida"
 SpeedReloadDescription="Aumenta la velocidad de recarga con armas de especialización."
 
 Penetration="En fila"
-PenetrationDescription="Elimina la reducción del daño al disparar a zeds a través de otros zeds con armas de especialización."
+PenetrationDescription="Elimina la reducción del daño al disparar a zeds a través de otros zeds y aumenta la penetración con armas de especialización."
 
 Skullcracker="Partecráneos"
 SkullcrackerDescription="Los disparos a la cabeza con armas de especialización ralentizan un 30 % a los zeds."
@@ -2033,7 +2033,7 @@ Stun="Choque balístico"
 StunDescription="Aumenta un 100 % la potencia de aturdimiento de las armas de especialización."
 
 RhythmMethod="Sin parar"
-RhythmMethodDescription="Cada disparo consecutivo en la cabeza con armas de especialización aumenta el daño un 10 % (hasta un máximo del 50 %).  "
+RhythmMethodDescription="Cada disparo consecutivo en la cabeza con armas de especialización aumenta el daño un 10 % (hasta un máximo del 50 %). "
 
 TacticalReload="Recarga táctica"
 TacticalReloadDescription="Aumenta la velocidad de recarga con armas de especialización."
@@ -2094,7 +2094,7 @@ ConcussionRounds="Rondas de conmoción"
 ConcussionRoundsDescription="Aumenta la potencia de empuje de las armas de especialización un 150 %."
 
 Perforate="MOMENTO ZED - Penetrador"
-PerforateDescription="Durante el momento zed, tus armas de especialización penetran prácticamente en cualquier objetivo que alcancen."
+PerforateDescription="Durante el momento zed, elimina la reducción del daño al disparar a zeds a través de otros zeds y aumenta la penetración con armas de especialización."
 
 Barrage="MOMENTO ZED - Bombardeo"
 BarrageDescription="Durante el momento zed, tus armas de especialización disparan prácticamente en tiempo real."
@@ -2190,7 +2190,7 @@ Madman="MOMENTO ZED - Demencia"
 MadmanDescription="En el momento zed, todas tus armas disparan 3 veces más rápido."
 
 IncapMaster="MOMENTO ZED - Bloqueo"
-IncapMasterDescription="En el momento zed, la potencia de los métodos de incapacitación de todas las armas aumenta un 200 %."
+IncapMasterDescription="Durante el momento zed, la capacidad de derribo, empuje y aturdimiento de tus armas aumenta al máximo."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2682,7 +2682,7 @@ ChanceDropDescriptionStrings[1]="Boleto de trato dorado"
 CurrentSpecialEventString="Un evento especial por tiempo limitado con objetos exclusivos"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Mar negro del infinito",DescriptionString="Derrota a un jefe cualquiera en la dificultad Difícil de Supervivencia o superior en el Manicomio")
-SpecialEventObjectiveInfoList[1]=(TitleString="Una imaginación desbordante",DescriptionString="Usa la trampa látigo tentacular para matar 20 Zeds en Manicomio")
+SpecialEventObjectiveInfoList[1]=(TitleString="Imaginación desbordante",DescriptionString="Usa la trampa látigo tentacular para matar 20 Zeds en Manicomio")
 SpecialEventObjectiveInfoList[2]=(TitleString="Contradicciones sobrenaturales",DescriptionString="Usa la trampa de succión para matar 20 Zeds en Manicomio")
 SpecialEventObjectiveInfoList[3]=(TitleString="Instinto maternal",DescriptionString="Mata a La matriarca 10 veces en cualquier mapa o tipo de partida")
 SpecialEventObjectiveInfoList[4]=(TitleString="Arreglando un asunto familiar",DescriptionString="Completa Laboratorio biótico en la dificultad Difícil de Objetivo o superior")
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | Jaeger | Dinámico"
 
 ChanceDropDescriptionStrings[0]="Boleto Krampus"
 ChanceDropDescriptionStrings[1]="Boleto dorado Krampus"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="Un evento especial por tiempo limitado con objetos exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Experimentos fallidos",DescriptionString="Mata a 1500 Zeds en cualquiera de los mapas.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Lapso semanal",DescriptionString="Completa la semana en el Biolapso")
+SpecialEventObjectiveInfoList[2]=(TitleString="Mezcla equivocada",DescriptionString="Usa la batidora de sangre para matar 20 zeds en Biolapso")
+SpecialEventObjectiveInfoList[3]=(TitleString="¡Es una trampa!",DescriptionString="Usa las trampillas para matar a 20 zeds en Biolapso")
+SpecialEventObjectiveInfoList[4]=(TitleString="Recaída letal",DescriptionString="Derrota a un jefe cualquiera en la dificultad Difícil de Supervivencia o superior en el Biolapso")
+
+AllCompleteRewardDescriptionString="Apariencias AA12 dinámicas de doble paquete"
+
+ChanceDropDescriptionStrings[0]="Boleto de Ciberpunk"
+ChanceDropDescriptionStrings[1]="Boleto dorado de Ciberpunk"
 
 ;============================================
 ; Daily Localization
@@ -3283,6 +3297,9 @@ DisplayName="Manicomio de Ashwood"
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="Manicomio"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="Biolapso"
 
 [KFMapInfo]
 ; defaults

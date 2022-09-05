@@ -111,7 +111,7 @@ var byte PlayerHealth;
 var byte PlayerHealthPercent;
 var byte PerkSupplyLevel;
 var KFLocalMessage_VoiceComms.EVoiceCommsType CurrentVoiceCommsRequest;
-var byte SharedUnlocks;
+var private byte SharedUnlocks;
 var bool bHasSpawnedIn;
 var bool bAllowDoshEarning;
 var repnotify bool bVOIPRegisteredWithOSS;

@@ -90,14 +90,42 @@ simulated protected function PrepareExplosionActor(GameExplosionActor GEA)
 	}
 }
 
+/** 
+* Use alternative explosion effects when Ground Fire Perk is active
+*/
+simulated function PostBeginPlay()
+{
+	local KFPlayerReplicationInfo InstigatorPRI;
+
+	if( AltExploEffects != none && Instigator != none )
+	{
+		InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+		if( InstigatorPRI != none )
+		{
+			bAltExploEffects = InstigatorPRI.bSplashActive;
+		}
+	}
+	else
+	{
+		bAltExploEffects = false;
+	}
+
+	super.PostBeginPlay();
+}
+
 /**
  * Force the fire not to burn the instigator, since setting it in the default props is not working for some reason - Ramm
+ * Use the alternative FX for the Ground Fire Perk Skill - Tulio
  */
 simulated protected function PrepareExplosionTemplate()
 {
 	ExplosionTemplate.bIgnoreInstigator=true;
-
     super.PrepareExplosionTemplate();
+	
+	if( bAltExploEffects )
+	{
+		ExplosionTemplate.ExplosionEffects = AltExploEffects;
+	}
 }
 
 defaultproperties
@@ -112,9 +140,9 @@ defaultproperties
       bDirectionalExplosion=True
       Damage=10.000000
       DamageRadius=150.000000
-      MyDamageType=Class'kfgamecontent.KFDT_Fire_MolotovGrenade'
+      MyDamageType=Class'kfgamecontent.KFDT_Fire_Ground_MolotovGrenade'
       KnockDownStrength=0.000000
-      MomentumTransferScale=0.000000
+      MomentumTransferScale=1.000000
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_MolotovSplash:FlamePointLight'
       ExploLightFadeOutTime=0.300000
       ExploLightStartFadeOutTime=4.200000
@@ -124,6 +152,7 @@ defaultproperties
       ObjectArchetype=KFGameExplosion'KFGame.Default__KFGameExplosion'
    End Object
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_MolotovSplash:ExploTemplate0'
+   AltExploEffects=KFImpactEffectInfo'WEP_Flamethrower_ARCH.GroundFire_Splash_Impacts'
    ProjFlightTemplate=ParticleSystem'WEP_3P_Molotov_EMIT.FX_Molotov_Grenade_Spread_01'
    AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'
    AmbientSoundStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_Residual_Fire_Loop'

@@ -1220,6 +1220,7 @@ DefaultProperties
     DamageTypeModifiers.Add((DamageType=class'KFDT_Explosive_RPG7',             DamageScale=(1.2))) //1.2
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_RailGun',          DamageScale=(0.9))) //1.2 0.4 //0.75
     DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_HRGHealthrower',       DamageScale=(0.9)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_Ground_DragonsBreath',  DamageScale=(0.9)))
 
 
 	// ---------------------------------------------

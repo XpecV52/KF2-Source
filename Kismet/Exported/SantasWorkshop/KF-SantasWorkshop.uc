@@ -8714,7 +8714,7 @@ Begin Object Class=InterpData Name=InterpData_43
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -21859,7 +21859,7 @@ Begin Object Class=InterpData Name=InterpData_44
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_44.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -22110,7 +22110,7 @@ Begin Object Class=InterpData Name=InterpData_45
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_45.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -22191,7 +22191,7 @@ Begin Object Class=InterpData Name=InterpData_46
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_46.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -22300,7 +22300,7 @@ Begin Object Class=InterpData Name=InterpData_47
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_47.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -22403,7 +22403,7 @@ Begin Object Class=InterpData Name=InterpData_48
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_48.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -22654,7 +22654,7 @@ Begin Object Class=InterpData Name=InterpData_49
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_49.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -22735,7 +22735,7 @@ Begin Object Class=InterpData Name=InterpData_50
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_50.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -22865,7 +22865,7 @@ Begin Object Class=InterpData Name=InterpData_41
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -22946,7 +22946,7 @@ Begin Object Class=InterpData Name=InterpData_51
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_51.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -23197,7 +23197,7 @@ Begin Object Class=InterpData Name=InterpData_40
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_40.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -23278,7 +23278,7 @@ Begin Object Class=InterpData Name=InterpData_2
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"
@@ -23439,7 +23439,7 @@ Begin Object Class=InterpData Name=InterpData_42
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
       End Object
       InterpTracks(0)=InterpTrackAnimControl'KF-SANTASWORKSHOP.TheWorld:PersistentLevel.Main_Sequence.InterpData_42.InterpGroup_1.InterpTrackAnimControl_3'
-      GroupName="Train"
+      GroupName="train"
       GroupColor=(B=121,G=0,R=206,A=255)
       GroupAnimSets(0)=AnimSet'ENV_SantasWorkshop_ANIM_ANIM.ENV_XMAS_Toy_Train_ANIM'
       Name="InterpGroup_1"

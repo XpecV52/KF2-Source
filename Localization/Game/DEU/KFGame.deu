@@ -115,7 +115,7 @@ StartOfflineGameString="Offline-Spiel beginnen"
 StartOfflineGameDescriptionString="Wenn du ein Offline-Spiel beginnst, wird deine Gruppe aufgelöst. \nMöchtest du fortfahren?"
 
 ProceedToTutorialString="WEITER ZUM TRAINING??"
-ProceedToTutorialDescriptionString="Lerne die Grundlagen in einer kontrollierten Umgebung.  Bringt bei Abschluss ausgewählten Vorteil von Level 0 auf 1."
+ProceedToTutorialDescriptionString="Lerne die Grundlagen in einer kontrollierten Umgebung. Bringt bei Abschluss ausgewählten Vorteil von Level 0 auf 1."
 
 NotAvailableInFreeTrialString="Funktion in kostenloser Testversion nicht verfügbar"
 NetworkCheckFreeTrialFailedString="Netzwerk-Fehler: Status des kostenlosen Events konnte nicht verifiziert werden. Status der Netzwerk-Verbindung prüfen"
@@ -1416,7 +1416,7 @@ KickVoteNoSpectatorsString="Zuschauer können keine Kick-Abstimmung initiieren"
 KickedFromServerString="Du wurdest von diesem Server entfernt"
 BannedFromServerString="Du wurdest von diesem Server entfernt. Du kannst zur Zeit nicht wieder beitreten"
 ServerNoLongerAvailableString="Dem Server kann nicht mehr beigetreten werden"
-SkipTraderTimeString="HÄNDLERIN ÜBERSPRINGEN aktiv. Wähl im Menü HÄNDLERIN ÜBERSPRINGEN zum Stimmen.  Alle müssen zustimmen."
+SkipTraderTimeString="HÄNDLERIN ÜBERSPRINGEN aktiv. Wähl im Menü HÄNDLERIN ÜBERSPRINGEN zum Stimmen. Alle müssen zustimmen."
 SkipTraderSuccessString="Abstimmung zum Überspringen der Händlerin erfolgreich!"
 
 [KFLocalMessage_Game]
@@ -1760,7 +1760,7 @@ Spartan="ZED-ZEIT – Spartaner"
 SpartanDescription="Während der Zed-Zeit greifst du mit Vorteils-Waffen an und bewegst dich in Echtzeit."
 
 Rage="ZED-ZEIT – Berserker-Wut"
-RageDescription="Wenn die Zed-Zeit aktiviert oder aktualisiert wird, heile 25% deiner LP und bringe Zeds in der Nähe zur Flucht."
+RageDescription="Wenn die Zed-Zeit aktiviert oder aktualisiert wird, heile 50% deiner LP und bringe Zeds in der Nähe zur Flucht."
 
 [KFPerk_Commando]
 PerkName="Kommando"
@@ -1937,7 +1937,7 @@ Fuse="Grillparty"
 FuseDescription="Der Brenneffekt von Vorteils-Waffen hält 150% länger an, und erhöht den Schaden über Zeit."
 
 GroundFire="Bodenfeuer"
-GroundFireDescription="Bodenfeuer verursachen doppelten Schaden und verringern die Bewegungsgeschwindigkeit der Zed um 30%. Dies gilt nicht für Molotowcocktails."
+GroundFireDescription="Bodenfeuer verursachen 3-fachen Schaden und verringern die Bewegungsgeschwindigkeit der Zeds um 30%."
 
 ZedShrapnel="Zed-Schrapnell"
 ZedShrapnelDescription="Von dir durch Feuer getötete Zeds haben eine Chance von 30%, zu explodieren, Zeds in der Nähe Schaden zuzufügen und sie zu betäuben."
@@ -1990,7 +1990,7 @@ SpeedReload="Schnelllader"
 SpeedReloadDescription="Erhöhe Nachladegeschwindigkeit mit Vorteils-Waffen"
 
 Penetration="Reih sie auf"
-PenetrationDescription="Erleide keine Schadensverringerung, wenn du mit Vorteils-Waffen durch Zeds hindurch schießt um andere Zeds zu treffen."
+PenetrationDescription="Erleide keine Schadensverringerung und erhöhe den Durchschlag, wenn du mit Vorteils-Waffen durch Zeds hindurchschießt, um andere Zeds zu treffen."
 
 Skullcracker="Schädelkracher"
 SkullcrackerDescription="Kopfschüsse mit Vorteils-Waffen verlangsamen Zeds um 30%."
@@ -2033,7 +2033,7 @@ Stun="Ballistischer Schock"
 StunDescription="Erhöhe die Betäubungs-Macht von Vorteils-Waffen um 100%."
 
 RhythmMethod="Hol sie dir"
-RhythmMethodDescription="Jeder aufeinanderfolgende Kopfschuss mit Vorteils-Waffen erhöht den Schaden um 10%, bis zu einem Maximum von 50%.  "
+RhythmMethodDescription="Jeder aufeinanderfolgende Kopfschuss mit Vorteils-Waffen erhöht den Schaden um 10%, bis zu einem Maximum von 50%. "
 
 TacticalReload="Taktisches Nachladen"
 TacticalReloadDescription="Erhöhe die Nachladegeschwindigkeit mit Vorteils-Waffen"
@@ -2094,7 +2094,7 @@ ConcussionRounds="Schlaggeschosse"
 ConcussionRoundsDescription="Erhöhe die Strauchel-Macht von Vorteils-Waffen um 150%."
 
 Perforate="ZED-ZEIT – Durchdringer"
-PerforateDescription="Während der Zed-Zeit durchschlagen deine Vorteils-Waffen alle Ziele, die sie treffen."
+PerforateDescription="Während der Zed-Zeit erleiden Ihre Bonuswaffen keine Schadensreduzierung durch das Eindringen und Sie durchdringen alle Zeds."
 
 Barrage="ZED-ZEIT – Sperrfeuer"
 BarrageDescription="Während der Zed-Zeit schießen deine Waffen in Fast-Echtzeit."
@@ -2190,7 +2190,7 @@ Madman="ZED-ZEIT – Irrer"
 MadmanDescription="Während der Zed-Zeit schießen alle deine Waffen 3x schneller."
 
 IncapMaster="ZED-ZEIT – Ausschalten"
-IncapMasterDescription="Während der Zed-Zeit erhöht sich die Macht aller deiner Methoden zur Untauglichmachung für alle Waffen um 200%."
+IncapMasterDescription="Während der Zed-Zeit erhöhen sich die Niederschlags-, Strauchel- und Betäubungs-Raten für deine Waffen auf ihr Maximum."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2682,7 +2682,7 @@ ChanceDropDescriptionStrings[1]="Goldener Geschenkschein"
 CurrentSpecialEventString="Ein zeitbegrenztes Spezial-Event mit exklusiven Gegenständen"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Schwarze Meere der Unendlichkeit",DescriptionString="Besiege einen Boss von Sanatorium bei Überleben auf mindestens Schwer")
-SpecialEventObjectiveInfoList[1]=(TitleString="Überaus extravagante Einbildung",DescriptionString="Verwende die Tentakelpeitschen-Falle, um 20 Zeds in Sanatorium zu töten")
+SpecialEventObjectiveInfoList[1]=(TitleString="Extravagante Einbildung",DescriptionString="Verwende die Tentakelpeitschen-Falle, um 20 Zeds in Sanatorium zu töten")
 SpecialEventObjectiveInfoList[2]=(TitleString="Unheimliche Ungereimtheiten",DescriptionString="Verwende die Ansaug-Falle, um 20 Zeds in Sanatorium zu töten")
 SpecialEventObjectiveInfoList[3]=(TitleString="Mütterliche Instinkte",DescriptionString="Töte die Matriarchin 10 auf irgendeiner Karte in irgendeinem Spielmodus")
 SpecialEventObjectiveInfoList[4]=(TitleString="Eine Familienangelegenheit klären",DescriptionString="Schließe Biotika-Labor bei Aufgabe auf mindestens Schwer ab")
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | Jäger | Dynamisch"
 
 ChanceDropDescriptionStrings[0]="Schein „Krampus“"
 ChanceDropDescriptionStrings[1]="Goldener Schein „Krampus“"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="Ein zeitbegrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Gescheiterte Experimente",DescriptionString="Töte 1.500 Zeds auf einer beliebigen Karte")
+SpecialEventObjectiveInfoList[1]=(TitleString="Wöchentlicher Verfall",DescriptionString="Schaffe den wöchentlichen Bioverfall")
+SpecialEventObjectiveInfoList[2]=(TitleString="Mixermalheur",DescriptionString="Verwende den Blutmixer, um 20 Zeds in Bioverfall zu töten")
+SpecialEventObjectiveInfoList[3]=(TitleString="Das ist eine Falle!",DescriptionString="Verwende die Falltüren, um 20 Zeds in Bioverfall zu töten")
+SpecialEventObjectiveInfoList[4]=(TitleString="Tödlicher Rückfall",DescriptionString="Besiege einen Boss von Bioverfall bei Überleben auf mindestens Schwer")
+
+AllCompleteRewardDescriptionString="Dynamische AA12-Doppelpaket-Skins"
+
+ChanceDropDescriptionStrings[0]="Cyberpunk-Schein"
+ChanceDropDescriptionStrings[1]="Goldener Cyberpunk-Schein"
 
 ;============================================
 ; Daily Localization
@@ -3283,6 +3297,9 @@ DisplayName="Ashwood-Anstalt"
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="Sanatorium"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="Bioverfall"
 
 [KFMapInfo]
 ; defaults

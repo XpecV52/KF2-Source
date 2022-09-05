@@ -1441,6 +1441,7 @@ defaultproperties
 	Health=7000
 	Mass=200.f
 	DoshValue=500
+	ParryResistance=4
 
 	TentacleDamageType=class'KFDT_Slashing_MatriarchTentacle'
 	DifficultySettings=class'KFDifficulty_Matriarch'
@@ -1487,7 +1488,7 @@ defaultproperties
 
 	BattlePhases(0)={(
 		NextPhaseHealthPctThreshold=0.75f,
-		bCanUseSweepingClaw=true,
+		bCanUseSweepingClaw=true, //Deprecated, Sweeping Claw is not a special move anymore.
 		bCanUseTeslaBlast=true,
 		bCanUsePlasmaCannon=true,
 		bCanUseLightningStorm=true,
@@ -1515,7 +1516,7 @@ defaultproperties
 	)}
 	BattlePhases(1)={(
 		NextPhaseHealthPctThreshold=0.5f,
-		bCanUseSweepingClaw=true,
+		bCanUseSweepingClaw=true, //Deprecated, Sweeping Claw is not a special move anymore.
 		bCanUseTeslaBlast=true,
 		bCanUsePlasmaCannon=true,
 		bCanUseLightningStorm=true,
@@ -1556,7 +1557,7 @@ defaultproperties
 	)}
 	BattlePhases(2)={(
 		NextPhaseHealthPctThreshold=0.25f,
-		bCanUseSweepingClaw=true,
+		bCanUseSweepingClaw=true, //Deprecated, Sweeping Claw is not a special move anymore.
 		bCanUseTeslaBlast=false,
 		bCanUsePlasmaCannon=false,
 		bCanUseLightningStorm=true,
@@ -1609,7 +1610,7 @@ defaultproperties
 	)}
 	BattlePhases(3)={(
 		NextPhaseHealthPctThreshold=0, // Set to 0, she doesn't have a phase after this one.
-		bCanUseSweepingClaw=true,
+		bCanUseSweepingClaw=true, //Deprecated, Sweeping Claw is not a special move anymore.
 		bCanUseTeslaBlast=false,
 		bCanUsePlasmaCannon=false,
 		bCanUseLightningStorm=false,

@@ -84,7 +84,6 @@ defaultproperties
 	WeaponSelectTexture=Texture2D'WEP_UI_HRG_SW_500_TEX.UI_WeaponSelect_HRG_SW500'
 
 	//Weqapon Upgrades
-	WeaponUpgrades.Empty()
 	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.15f), (Stat=EWUS_Weight, Add=1)))
 	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.3f), (Stat=EWUS_Weight, Add=2)))
 

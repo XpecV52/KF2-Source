@@ -52,6 +52,7 @@ defaultproperties
     bWarnAIWhenAiming=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
+    FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
     MagazineCapacity=1
     PenetrationPower=/* Array type was not detected. */

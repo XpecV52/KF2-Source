@@ -41,6 +41,11 @@ defaultproperties
 	ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
 	AltExploEffects=KFImpactEffectInfo'WEP_HRG_Winterbite_ARCH.FX_WinterBite_Projectile_Explosion_Concussive_Force'
 
+	Begin Object Name=CollisionCylinder
+		CollisionRadius=0.f
+		CollisionHeight=0.f
+	End Object
+
 	// Grenade explosion light
 	Begin Object Class=PointLightComponent Name=ExplosionPointLight
 	    LightColor=(R=50,G=100,B=150,A=255)

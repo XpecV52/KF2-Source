@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="Babbo Natale tosto"
-Description="Prima, Krampus colpì i suoi elfi e la sua renna. Poi colpì la sua casa. Babbo Natale ne ha avuto abbastanza. Ora possiede una mitragliatrice. Oh oh oh!\n\nSan Nicola ha iniziato a sorvegliare i bambini del mondo centinaia di anni fa, con il pensiero di passare l'eternità a distribuire spirito natalizio e giocattoli a tutti i bravi bambini e bambine.  Ma poi, arrivò Krampus.  Da quando ha avuto inizio il Natale di Krampus, Babbo Natale si dedica a vendicare i suoi lavoratori, amici e famigliari caduti. Le guance rosse e la pancia tonda come una palla sono un lontano ricordo, rimpiazzate da un broncio fisso e da strati di muscoli. Nessun Astro del ciel per queste festività. Niente benevolenza e spirito natalizio per Babbo Natale, quest'anno. Gli restano solo rabbia ribollente, desiderio di vendetta e tante munizioni con cui festeggiare."
+Description="Prima, Krampus colpì i suoi elfi e la sua renna. Poi colpì la sua casa. Babbo Natale ne ha avuto abbastanza. Ora possiede una mitragliatrice. Oh oh oh!\n\nSan Nicola ha iniziato a sorvegliare i bambini del mondo centinaia di anni fa, con il pensiero di passare l'eternità a distribuire spirito natalizio e giocattoli a tutti i bravi bambini e bambine. Ma poi, arrivò Krampus. Da quando ha avuto inizio il Natale di Krampus, Babbo Natale si dedica a vendicare i suoi lavoratori, amici e famigliari caduti. Le guance rosse e la pancia tonda come una palla sono un lontano ricordo, rimpiazzate da un broncio fisso e da strati di muscoli. Nessun Astro del ciel per queste festività. Niente benevolenza e spirito natalizio per Babbo Natale, quest'anno. Gli restano solo rabbia ribollente, desiderio di vendetta e tante munizioni con cui festeggiare."
 BodyMesh0="Completo Babbo Natale"
 BodyMesh1="Pollo Commando"
 HeadMesh0="Testa Babbo Natale"
@@ -3762,10 +3762,10 @@ EmoteName="Gioco di prestigio"
 EmoteName="Gioco di prestigio+"
 
 [MagicFoster]
-EmoteName="FosterMagico"
+EmoteName="Foster magico"
 
 [MagicFoster_Deluxe]
-EmoteName="FosterMagico+"
+EmoteName="Foster magico+"
 
 [Cosmetic_FirefighterHelmet_ARCH]
 Attachment="Elmetto da pompiere"
@@ -5546,13 +5546,13 @@ AttachmentSkin1="Rossi"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_TopHat_ARCH]
-Attachment="Cappello a cilindro Clot"
+Attachment="Cappello a cilindro natalizio Clot"
 AttachmentSkin0="Rossi"
 AttachmentSkin1="Verdi"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_SnowmanCap_ARCH]
-Attachment="Cappello Pupazzo di neve"
+Attachment="Cappello natalizio Pupazzo di neve"
 AttachmentSkin0="Ghiaccio"
 AttachmentSkin1="Magma"
 AttachmentSkin2="Preziosa"
@@ -5582,19 +5582,19 @@ AttachmentSkin1="Verdi"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_GingerbreadHat_ARCH]
-Attachment="Cappello Pan di zenzero"
+Attachment="Cappello natalizio Pan di zenzero"
 AttachmentSkin0="Originale"
 AttachmentSkin1="Glassa alla fragola"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_NiceSantaMask_ARCH]
-Attachment="Maschera Babbo Natale buono"
+Attachment="Maschera natalizia Babbo Natale buono"
 AttachmentSkin0="Rossi"
 AttachmentSkin1="Verdi"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_NaughtySantaMask_ARCH]
-Attachment="Maschera Babbo Natale cattivo"
+Attachment="Maschera natalizia Babbo Natale cattivo"
 AttachmentSkin0="Grigio scuro"
 AttachmentSkin1="Afflusso di sangue"
 AttachmentSkin2="Preziosa"
@@ -5606,7 +5606,72 @@ AttachmentSkin1="Magma"
 AttachmentSkin2="Preziosa"
 
 [Cosmetic_Christmas19_MistletoeClotBackpack_ARCH]
-Attachment="Zaino vischio natalizio Clot"
+Attachment="Zaino vischio Clot"
 AttachmentSkin0="Rossi"
 AttachmentSkin1="Verdi"
 AttachmentSkin2="Preziosa"
+
+[Cosmetic_Cyber2020HalfMask_ARCH]
+Attachment="Maschera facciale Cyber Rave"
+AttachmentSkin0="Normale"
+AttachmentSkin1="Morsa"
+AttachmentSkin2="Scully"
+AttachmentSkin3="Teschio"
+AttachmentSkin4="Denti"
+AttachmentSkin5="Preziosa"
+
+[Cosmetic_Cyber2020FullMask_ARCH]
+Attachment="Maschera per la testa Cyber Rave"
+AttachmentSkin0="Normale"
+AttachmentSkin1="Farfalla"
+AttachmentSkin2="Muerto"
+AttachmentSkin3="Test di Rorschach"
+AttachmentSkin4="Urla"
+AttachmentSkin5="Scully"
+AttachmentSkin6="Minacciosa"
+AttachmentSkin7="Teschio"
+AttachmentSkin8="Vortice"
+AttachmentSkin9="Denti"
+AttachmentSkin10="Preziosa"
+
+[Cosmetic_Cyber2020Goggles_ARCH]
+Attachment="Occhiali borchiati Cyber Rave"
+AttachmentSkin0="Azzurro"
+AttachmentSkin1="Rosa"
+AttachmentSkin2="Viola"
+AttachmentSkin3="Rossi"
+AttachmentSkin4="Bianca"
+AttachmentSkin5="Preziosa"
+
+[Cosmetic_Cyber2020Unicorn_ARCH]
+Attachment="Cappello a unicorno Cyber Rave"
+AttachmentSkin0="Asso"
+AttachmentSkin1="Daltonismo"
+AttachmentSkin2="Blu"
+AttachmentSkin3="Rosa"
+AttachmentSkin4="Luce rifratta"
+AttachmentSkin5="Romano"
+AttachmentSkin6="Preziosa"
+
+[Cosmetic_Cyber2020Horns_ARCH]
+Attachment="Corna Cyber Rave"
+AttachmentSkin0="Nera"
+AttachmentSkin1="Grigio"
+AttachmentSkin2="Rossi"
+AttachmentSkin3="Viola"
+AttachmentSkin4="Azzurro"
+AttachmentSkin5="Nere con strisce ondulate"
+AttachmentSkin6="Grigie con strisce ondulate"
+AttachmentSkin7="Rosse con strisce ondulate"
+AttachmentSkin8="Viola con strisce ondulate"
+AttachmentSkin9="Azzurre con strisce ondulate"
+AttachmentSkin10="Preziosa"
+
+[Cosmetic_Cyber2020Skullpack_ARCH]
+Attachment="Zaino con teschio Cyber Rave"
+AttachmentSkin0="Nera"
+AttachmentSkin1="Azzurro"
+AttachmentSkin2="Rosa"
+AttachmentSkin3="Viola"
+AttachmentSkin4="Bianca"
+AttachmentSkin5="Preziosa"

@@ -33,7 +33,7 @@ InventoryDescriptionKey="Each perk loadout starts with a unique primary weapon, 
 InventoryContTitleKey="Know Your Inventory"
 InventoryContDescriptionKey="Each perk loadout starts with a unique primary weapon, a backup 9mm pistol, a specialist knife and grenade. Hold <font color="#caab05">%x%</font> and use the directional buttons to select a weapon."
 AlternateFireKey="Alternate Fire"
-AlternateFireDescription="Most primary weapon have an alternate fire mode. Press <font color="#caab05">%x%</font> to toggle your current fire mode. An icon in your view will show the currently selected firemode."
+AlternateFireDescription="Most primary weapons have an alternate fire mode. Press <font color="#caab05">%x%</font> to toggle your current fire mode. An icon in your view will show the currently selected firemode."
 FlashLightBatteryTitleKey="Using a Flashlight"
 FlashLightBatteryDescriptionKey="It can get dark out there. Press <font color="#caab05">%x%</font> to toggle your <font color="#caab05">FLASHLIGHT</font> on and off. Your flashlight battery will slowly run out of power. When it is out of power it will turn off and automatically start recharging again."
 GrenadeTitleKey="Using Grenades"
@@ -439,13 +439,13 @@ ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming st
 ItemName="Rhino"
 ItemCategory="Hand Gun"
 ItemDescription="•Fire mode shoots fragmentation rounds.\n•Fragmentation rounds explode on impact and fire 3 shrapnel pieces.\n•Shreds through Zeds like butter!"
-SharedUnlockSource="Rhino Revolver Bundle"
+SharedUnlockSource="Rhino Revolver Weapon Bundle, Grim Treatments Weapon Bundle"
 
 [KFWeap_Pistol_ChiappaRhinoDual]
 ItemName="Dual Rhinos"
 ItemCategory="Hand Gun"
 ItemDescription="•Fire mode shoots fragmentation rounds.\n•Fragmentation rounds explode on impact and fire 3 shrapnel pieces.\n•Alt-fire switches aiming styles when using iron sights.\n•Shreds through Zeds like butter twice as much!"
-SharedUnlockSource="Rhino Revolver Bundle"
+SharedUnlockSource="Rhino Revolver Weapon Bundle, Grim Treatments Weapon Bundle"
 
 [KFWeap_Revolver_Rem1858]
 ItemName="1858 Revolver"
@@ -486,7 +486,7 @@ ItemDescription="•Fire mode is single shot only.\n•The classic Model 1894 Wi
 ItemName="Mosin Nagant"
 ItemCategory="Rifle"
 ItemDescription="•Fire mode is single shot only.\n•Alt - block/parry.\n•The M91/30 specializes in stabbing, shooting, and stab shooting."
-SharedUnlockSource="Mosin Nagant Bundle"
+SharedUnlockSource="Mosin Nagant Weapon Bundle, Yuletide Horrors Weapon Bundle"
 
 [KFWeap_Rifle_CenterfireMB464]
 ItemName="SPX 464 Centerfire"
@@ -586,7 +586,7 @@ ItemDescription="•Fire mode is semi-auto only.\n•Alt-fire switches aiming st
 ItemName="Ion Thruster"
 ItemCategory="Melee"
 ItemDescription="•Primary - fast slash attack that burns; hold Primary for combo attack.\n•Secondary - heavy slash attack that burns.\n•Reload - Perform a special attack when at 100% charge.\n•Alt - block/parry.\n•Great for barbecues."
-SharedUnlockSource="Ion Thruster"
+SharedUnlockSource="Ion Thruster Weapon Bundle, Grim Treatments Weapon Bundle"
 
 [KFWeap_Shotgun_ElephantGun]
 ItemName="Doomstick"
@@ -621,7 +621,7 @@ ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire t
 [KFWeap_Edged_AbominationAxe]
 ItemName="Battleaxe"
 ItemCategory="Melee"
-ItemDescription="•Primary - slow slash attack; hoold Primary for combo attack.\n•Secondary - heavy, slow attack that obliterates on death.\n•Alt - block / parry\n•Outdated but still hits like a truck...a large, sharp truck."
+ItemDescription="•Primary - slow slash attack; hold Primary for combo attack.\n•Secondary - heavy, slow attack that obliterates on death.\n•Alt - block / parry\n•Outdated but still hits like a truck...a large, sharp truck."
 SharedUnlockSource="Battleaxe"
 
 [KFWeap_Edged_FireAxe]
@@ -684,7 +684,19 @@ ItemDescription="•Fire mode shoots high velocity electrical rounds.\n•Alt-fi
 ItemName="Riot Shield & Glock 18"
 ItemCategory="Sub Machine Gun"
 ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Iron sight brings up shield to reduce frontal damage from most attacks."
-SharedUnlockSource="Riot Shield & G18 Bundle"
+SharedUnlockSource="Riot Shield & G18 Weapon Bundle, Yuletide Horrors Weapon Bundle"
+
+[KFWeap_AssaultRifle_HRGIncendiaryRifle]
+ItemName="HRG Incendiary Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription="•Fire mode is full-auto only.\n•Alt-fire to fire incendiary grenades.\n•For those who can't decide between fire and more fire."
+SecondaryAmmo="M203 Incendiary Grenade"
+
+[KFWeap_Bow_CompoundBow]
+ItemName="Compound Bow"
+ItemCategory="Bow"
+ItemDescription="•Fire mode is charge shot only.\n•Range and damage increase the longer you hold.\n•Alt-fire switches between sharp and cryo arrows.\n•When being Cupid needs a little more punch."
+SharedUnlockSource="Compound Bow Weapon Bundle"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

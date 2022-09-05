@@ -29,6 +29,8 @@ KF-SantasWorkshop="Игра «Мастерская Санты»"
 KF-Spillway="Игра в водоотводе"
 KF-Steamfortress="Игра в «Паровой крепости»"
 KF-AshwoodAsylum="Игра в Приюте Эшвуд"
+KF-Sanitarium="Игра в санатории"
+KF-Biolapse="Игра в «Биопромахе»"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

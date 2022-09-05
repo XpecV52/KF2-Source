@@ -18,7 +18,7 @@ defaultproperties
       DamageRadius=100.000000
       MyDamageType=Class'kfgamecontent.KFDT_Fire_Ground_MicrowaveGun'
       KnockDownStrength=0.000000
-      MomentumTransferScale=0.000000
+      MomentumTransferScale=1.000000
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_MicrowaveGun_GroundFire:FlamePointLight'
       ExploLightFadeOutTime=0.500000
       ExploLightStartFadeOutTime=1.500000

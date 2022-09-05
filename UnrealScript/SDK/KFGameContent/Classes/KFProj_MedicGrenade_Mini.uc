@@ -69,6 +69,9 @@ defaultproperties
 
 	bWarnAIWhenFired=true
 
+	bSyncToOriginalLocation=true
+	bSyncToThirdPersonMuzzleLocation=true
+
 	bDamageDestructiblesOnTouch=true
 	Damage=50
 	MyDamageType=class'KFDT_Ballistic_MedicRifleGrenadeLauncherImpact'

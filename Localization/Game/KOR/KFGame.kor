@@ -115,7 +115,7 @@ StartOfflineGameString="온라인 게임 시작"
 StartOfflineGameDescriptionString="오프라인 게임을 시작하면 파티가 해산됩니다. \n계속 하시겠습니까?"
 
 ProceedToTutorialString="훈련을 진행하시겠습니까?"
-ProceedToTutorialDescriptionString="통제된 환경으로 가서 기본 사항을 배우십시오.  완료되면 선택한 레벨 0 병과를 레벨 1에 부여하십시오."
+ProceedToTutorialDescriptionString="통제된 환경으로 가서 기본 사항을 배우십시오. 완료되면 선택한 레벨 0 병과를 레벨 1에 부여하십시오."
 
 NotAvailableInFreeTrialString="무료 체험에 사용할 수 없는 기능"
 NetworkCheckFreeTrialFailedString="네트워크 오류: 무료 이벤트 상태를 확인할 수 없습니다. 네트워크 연결 상태 확인"
@@ -1416,7 +1416,7 @@ KickVoteNoSpectatorsString="참관자는 추방 투표를 시작할 수 없습�
 KickedFromServerString="서버에서 추방되었습니다."
 BannedFromServerString="이 서버에서 추방되었습니다. 이번에 다시 들어갈 수 없습니다."
 ServerNoLongerAvailableString="더 이상 서버 입장을 할 수 없습니다."
-SkipTraderTimeString="상인 건너뛰기 활성화 게임 메뉴에서 '상인 건너뛰기'를 선택하여 투표하세요.  모두가 동의해야 합니다."
+SkipTraderTimeString="상인 건너뛰기 활성화 게임 메뉴에서 '상인 건너뛰기'를 선택하여 투표하세요. 모두가 동의해야 합니다."
 SkipTraderSuccessString="상인 건너뛰기 투표가 성공적으로 끝났습니다!"
 
 [KFLocalMessage_Game]
@@ -1468,8 +1468,8 @@ FoundAllMapCollectiblesMessage="모든 %x%을(를) 찾았습니다!"
 MapCollectibleName="Dosh 조각이 반짝입니다"
 
 [KFLocalMessage_Priority]
-WaveStartMessage="웨 이 브   준 비"
-WaveEndMessage="웨 이 브   종 료"
+WaveStartMessage="웨 이 브 준 비"
+WaveEndMessage="웨 이 브 종 료"
 GetToTraderMessage="상점에 가기"
 ScavengeMessage="먹이 찾기"
 YouLostMessage="패 배"
@@ -1486,7 +1486,7 @@ HumansLoseMessage="인간 부대가 패배했습니다!"
 HumansWinMessage="인간 부대가 생존했습니다!"
 AttackHumanPlayersString="인간 플레이어를 공격하십시오!"
 ZedGroupRegroupingString="제드 무리가 다시 집결하고 있습니다!"
-NextRoundBeginString="다 음   라 운 드"
+NextRoundBeginString="다 음 라 운 드"
 PlayerCanChangePerksString="병과 변경이 허용되었습니다"
 ZedWaitingForNextRoundString="제드 무리가 곧 침입합니다!"
 LastPlayerStandingString="최후의 승자"
@@ -1760,7 +1760,7 @@ Spartan="제드 타임 - 스파르탄"
 SpartanDescription="제드 타임 동안 병과 무기로 공격하며 실시간으로 이동."
 
 Rage="제드 타임 - 버서커의 분노"
-RageDescription="제드 타임이 활성화 또는 갱신될 때마다, 체력 25%를 치유하고 근처 Zed가 도망가게 합니다."
+RageDescription="제드 타임이 활성화 또는 갱신될 때마다, 체력 50%를 치유하고 근처 Zed가 도망가게 합니다."
 
 [KFPerk_Commando]
 PerkName="코만도"
@@ -1937,7 +1937,7 @@ Fuse="바베큐"
 FuseDescription="병과 무기의 발화 효과가 150% 오래 지속되어 시간에 따른 데미지 증가"
 
 GroundFire="지상포"
-GroundFireDescription="지상포의 데미지 두 배 증가 및 Zed 이동 속도 30% 감소. 화염병에는 적용되지 않음"
+GroundFireDescription="지상포의 데미지 3배 증가 및 Zed 이동 속도 30% 감소"
 
 ZedShrapnel="제드 산탄"
 ZedShrapnelDescription="플레이어가 처치한 Zed가 30%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 기절시킴"
@@ -1949,7 +1949,7 @@ Range="파이어스톰"
 RangeDescription="코크 앤 번, 화염방사기, 마이크로웨이브 건의 사거리 증가"
 
 SplashDamage="열파"
-SplashDamageDescription="직사거리에서 화염을 맞은 제드가  뒤로 비틀거림"
+SplashDamageDescription="직사거리에서 화염을 맞은 제드가 뒤로 비틀거림"
 
 Inferno="제드 타임 - 인페르노"
 InfernoDescription="제드 타임 동안 화염을 맞은 모든 제드의 속도가 30% 느려지고 화상 데미지는 50% 높아짐"
@@ -1990,7 +1990,7 @@ SpeedReload="스피드로더"
 SpeedReloadDescription="병과 무기 이용 시 재장전 속도 향상"
 
 Penetration="관통 사격"
-PenetrationDescription="병과 무기로 사격 시 제드를 관통하여 다른 제드에 맞은 경우에도 데미지가 약화되지 않음"
+PenetrationDescription="병과 무기로 사격 시 Zed를 관통하여 다른 Zed에 맞은 경우에도 데미지가 약화되지 않으며 관통력이 증가합니다."
 
 Skullcracker="스컬크래커"
 SkullcrackerDescription="병과 무기로 헤드샷을 쏠 경우 제드의 속도 30% 감소"
@@ -2033,7 +2033,7 @@ Stun="탄도 쇼크"
 StunDescription="병과 무기 스턴 파워 100% 증가"
 
 RhythmMethod="쓸어 버리기"
-RhythmMethodDescription="병과 무기로 연속 헤드샷에 성공하면 최대 50%까지 데미지가 10%씩 증가  "
+RhythmMethodDescription="병과 무기로 연속 헤드샷에 성공하면 최대 50%까지 데미지가 10%씩 증가 "
 
 TacticalReload="전술 재장전"
 TacticalReloadDescription="병과 무기 이용 시 재장전 속도 향상"
@@ -2045,10 +2045,10 @@ AmmoPouch="유비무환"
 AmmoPouchDescription="1개의 추가 수류탄 및 병과 무기의 탄약 25% 추가 운반"
 
 ZTKnockdown="제드 타임 - 암살자"
-ZTKnockdownDescription="병과 무기를 이용한 헤드샷 시 5% 확률로 제드 타임 개시  제드 타임 동안 병과 무기의 헤드샷 데미지 35% 증가"
+ZTKnockdownDescription="병과 무기를 이용한 헤드샷 시 5% 확률로 제드 타임 개시 제드 타임 동안 병과 무기의 헤드샷 데미지 35% 증가"
 
 ZTStun="제드 타임 - 레인저"
-ZTStunDescription="병과 무기를 이용한 헤드샷 시 5% 확률로 제드 타임 개시  제드 타임 동안 병과 무기 헤드샷이 모든 제드를 스턴 상태로 만듦"
+ZTStunDescription="병과 무기를 이용한 헤드샷 시 5% 확률로 제드 타임 개시 제드 타임 동안 병과 무기 헤드샷이 모든 제드를 스턴 상태로 만듦"
 
 [KFPerk_Support]
 PerkName="서포트"
@@ -2088,13 +2088,13 @@ TightChoke="타이트 초크"
 TightChokeDescription="병과 무기의 산탄을 50% 감소"
 
 Resupply="재보급 팩"
-ResupplyDescription="웨이브 당 한 번 팀 동료와 접촉하면 동료의 탄약 30%, 장갑 20% 증가  병과 무기의 탄약을 20% 더 운반할 수 있습니다."
+ResupplyDescription="웨이브 당 한 번 팀 동료와 접촉하면 동료의 탄약 30%, 장갑 20% 증가 병과 무기의 탄약을 20% 더 운반할 수 있습니다."
 
 ConcussionRounds="진동 탄환"
 ConcussionRoundsDescription="병과 무기 스텀블 파워 150% 증가"
 
 Perforate="제드 타임 - 관통"
-PerforateDescription="제드 타임 동안 병과 무기가 모든 목표물을 관통함"
+PerforateDescription="제드 타임 동안 병과 무기로 사격 시 Zed를 관통하여 다른 Zed에 맞은 경우에도 데미지가 약화되지 않으며 관통력이 증가합니다."
 
 Barrage="제드 타임 - 일제 엄호사격"
 BarrageDescription="제드 타임 동안 병과 무기가 가까운 곳을 실시간으로 사격"
@@ -2190,7 +2190,7 @@ Madman="제드 타임 - 미치광이"
 MadmanDescription="제드 타임 동안 모든 무기가 3배 빠르게 발사"
 
 IncapMaster="제드 타임 - 감금"
-IncapMasterDescription="제드 타임 동안 모든 무기의 무력화 능력이 200% 증가합니다."
+IncapMasterDescription="제드 타임 도중 무기의 녹다운, 스텀블, 스턴 속도가 최대로 증가합니다."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2569,7 +2569,7 @@ KFWeap_MKB="한스 할로윈 무기"
 Source0="기사 프로모션"
 
 ;============================================
-; SpecialEvent  Localization (Base class)
+; SpecialEvent Localization (Base class)
 ;============================================
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
@@ -2691,6 +2691,20 @@ AllCompleteRewardDescriptionString="FN FAL | 재거 | 다이나믹"
 
 ChanceDropDescriptionStrings[0]="크램퍼스 티켓"
 ChanceDropDescriptionStrings[1]="크램퍼스 황금 티켓"
+
+[KFGFxSpecialEventObjectivesContainer_Spring2020]
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특별 이벤트입니다"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="실패한 실험",DescriptionString="아무 지도에서 Zed 1500마리를 처치하십시오")
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 랩스",DescriptionString="바이오랩스에서 주간 게임 모드를 완료하십시오")
+SpecialEventObjectiveInfoList[2]=(TitleString="블렌더 블런더",DescriptionString="바이오랩스에서 블러드 블렌더로 Zed 20마리 처치")
+SpecialEventObjectiveInfoList[3]=(TitleString="함정이야!",DescriptionString="바이오랩스에서 트랩 도어로 Zed 20마리 처치")
+SpecialEventObjectiveInfoList[4]=(TitleString="치명적인 재발",DescriptionString="바이오랩스에서 서바이벌 어려움 또는 그 이상 난이도에서 아무 보스나 해치우기")
+
+AllCompleteRewardDescriptionString="AA12 다이나믹 더블 번들 스킨"
+
+ChanceDropDescriptionStrings[0]="사이버펑크 티켓"
+ChanceDropDescriptionStrings[1]="사이버펑크 황금 티켓"
 
 ;============================================
 ; Daily Localization
@@ -3283,6 +3297,9 @@ DisplayName="애쉬우드 정신병원"
 
 [KF-Sanitarium KFMapSummary]
 DisplayName="요양원"
+
+[KF-Biolapse KFMapSummary]
+DisplayName="바이오랩스"
 
 [KFMapInfo]
 ; defaults

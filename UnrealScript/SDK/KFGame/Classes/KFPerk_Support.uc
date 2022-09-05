@@ -826,7 +826,7 @@ DefaultProperties
 	PerkSkills(ESupportTightChoke)=(Name="TightChoke",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_TightChoke",Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f) //0.7
 	PerkSkills(ESupportResupply)=(Name="Resupply",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_ResupplyPack",Increment=0.f ,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(ESupportConcussionRounds)=(Name="ConcussionRounds",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_ConcussionRounds",Increment=0.f,Rank=0,StartingValue=1.5f,MaxValue=1.5f)
-	PerkSkills(ESupportPerforate)=(Name="Perforate",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Penetrator",Increment=0.f,Rank=0,StartingValue=40.f,MaxValue=40.f)
+	PerkSkills(ESupportPerforate)=(Name="Perforate",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Penetrator",Increment=0.f,Rank=0,StartingValue=30.f,MaxValue=30.f)
 	PerkSkills(ESupportBarrage)=(Name="Barrage",IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Barrage",Increment=0.f,Rank=0,StartingValue=5.f,MaxValue=5.f)
 
 	SecondaryXPModifier[0]=8

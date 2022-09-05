@@ -212,8 +212,6 @@ defaultproperties
    minRecoilYaw=-300
    RecoilBlendOutRatio=0.350000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Support'
-   WeaponUpgrades(0)=(Stats=)
-   WeaponUpgrades(1)=()
    WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.300000),(Stat=EWUS_Damage1,Scale=1.300000),(Add=4)))
    WeaponFireTypes(0)=EWFT_Projectile
    WeaponFireTypes(1)=EWFT_Projectile

@@ -966,6 +966,7 @@ simulated exec function Firebug()
     GiveWeapon("KFGameContent.KFWeap_Beam_Microwave");
     GiveWeapon("KFGameContent.KFWeap_HuskCannon");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Microwave");
+    GiveWeapon("KFGameContent.KFWeap_AssaultRifle_HRGIncendiaryRifle");
 }
 
 simulated exec function Dualies()
@@ -1011,6 +1012,7 @@ simulated exec function Sharpshooter()
     GiveWeapon("KFGameContent.KFWeap_Revolver_Rem1858");
     GiveWeapon("KFGameContent.KFWeap_Revolver_SW500");
     GiveWeapon("KFGameContent.KFWeap_Pistol_Flare");
+    GiveWeapon("KFGameContent.KFWeap_Bow_CompoundBow");
 }
 
 simulated exec function SWAT()

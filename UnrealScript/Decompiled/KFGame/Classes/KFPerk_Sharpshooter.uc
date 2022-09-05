@@ -506,6 +506,7 @@ defaultproperties
     ZedTimeModifyingStates(0)=WeaponFiring
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
+    ZedTimeModifyingStates(3)=CompoundBowCharge
     PrimaryWeaponDef=Class'KFWeapDef_Winchester1894'
     KnifeWeaponDef=Class'KFWeapDef_Knife_SharpShooter'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Sharpshooter'

@@ -16,9 +16,9 @@ defaultproperties
       bDirectionalExplosion=True
       Damage=10.000000
       DamageRadius=150.000000
-      MyDamageType=Class'kfgamecontent.KFDT_Fire_FlareGunDoT'
+      MyDamageType=Class'kfgamecontent.KFDT_Fire_Ground_FlareGun'
       KnockDownStrength=0.000000
-      MomentumTransferScale=0.000000
+      MomentumTransferScale=1.000000
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_FlareGunSplash:FlamePointLight'
       ExploLightFadeOutTime=0.300000
       ExploLightStartFadeOutTime=4.200000

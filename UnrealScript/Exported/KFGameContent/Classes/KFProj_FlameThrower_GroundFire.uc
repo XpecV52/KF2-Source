@@ -20,7 +20,7 @@ defaultproperties
       DamageRadius=100.000000
       MyDamageType=Class'kfgamecontent.KFDT_Fire_Ground_FlameThrower'
       KnockDownStrength=0.000000
-      MomentumTransferScale=0.000000
+      MomentumTransferScale=1.000000
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_FlameThrower_GroundFire:FlamePointLight'
       ExploLightFadeOutTime=0.500000
       ExploLightStartFadeOutTime=1.500000

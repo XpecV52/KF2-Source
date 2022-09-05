@@ -55,11 +55,15 @@ defaultproperties
     MaxSpeed=7500
     MomentumTransfer=50000
     begin object name=CollisionCylinder class=CylinderComponent
+        CollisionHeight=0
+        CollisionRadius=0
         ReplacementPrimitive=none
     object end
     // Reference: CylinderComponent'Default__KFProj_Explosive_HRGWinterbite.CollisionCylinder'
     CylinderComponent=CollisionCylinder
     begin object name=CollisionCylinder class=CylinderComponent
+        CollisionHeight=0
+        CollisionRadius=0
         ReplacementPrimitive=none
     object end
     // Reference: CylinderComponent'Default__KFProj_Explosive_HRGWinterbite.CollisionCylinder'
@@ -68,6 +72,8 @@ defaultproperties
     Physics=EPhysics.PHYS_Falling
     LifeSpan=10
     begin object name=CollisionCylinder class=CylinderComponent
+        CollisionHeight=0
+        CollisionRadius=0
         ReplacementPrimitive=none
     object end
     // Reference: CylinderComponent'Default__KFProj_Explosive_HRGWinterbite.CollisionCylinder'

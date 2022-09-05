@@ -47,14 +47,14 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_DragonsBreath'
-	InstantHitDamage(DEFAULT_FIREMODE)=26 //15 //27
+	InstantHitDamage(DEFAULT_FIREMODE)=35 //15 //27
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_DragonsBreath'
 	PenetrationPower(DEFAULT_FIREMODE)=2.0 //3.0
-	FireInterval(DEFAULT_FIREMODE)=0.69 // 78 RPM //0.77
+	FireInterval(DEFAULT_FIREMODE)=0.77 // 78 RPM //0.77
 	FireOffset=(X=30,Y=3,Z=-3)
 	// Shotgun
 	Spread(DEFAULT_FIREMODE)=0.16 //0.1
-	NumPellets(DEFAULT_FIREMODE)=8 //9
+	NumPellets(DEFAULT_FIREMODE)=6 //9
 
 	// ALT_FIREMODE
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
@@ -79,7 +79,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=6
-	SpareAmmoCapacity[0]=57
+	SpareAmmoCapacity[0]=60
 	InitialSpareMags[0]=4
 	bCanBeReloaded=true
 	bReloadFromMagazine=false

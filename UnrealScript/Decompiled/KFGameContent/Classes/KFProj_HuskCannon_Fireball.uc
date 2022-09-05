@@ -268,9 +268,9 @@ defaultproperties
         bDirectionalExplosion=true
         Damage=3
         DamageRadius=150
-        MyDamageType=Class'KFGame.KFDT_Fire_Ground'
+        MyDamageType=Class'KFDT_Fire_Ground_HuskCannon'
         KnockDownStrength=0
-        MomentumTransferScale=0
+        MomentumTransferScale=1
         ExploLight=PointLightComponent'Default__KFProj_HuskCannon_Fireball.FlamePointLight'
         ExploLightFadeOutTime=0.3
         ExploLightStartFadeOutTime=1.5

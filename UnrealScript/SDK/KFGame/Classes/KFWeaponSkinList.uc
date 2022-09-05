@@ -2884,7 +2884,7 @@ defaultproperties
     Skins.Add((Id=7839, Weapondef=class'KFWeapDef_M14EBR', MIC_1P=("WEP_SkinSet_Mr_Fosters_MAT.mrfosters_m14ebr.MrFosters_M14EBR_1P_Mint_MIC", "WEP_SkinSet_MrFosters_MAT.mrfosters_m14ebr.MrFosters_M14EBR_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_Mr_Fosters_MAT.mrfosters_m14ebr.MrFosters_M14EBR_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_Mr_Fosters_MAT.mrfosters_m14ebr.MrFosters_M14EBR_3P_Pickup_MIC"))
 
 //Foster's Favorites M4
-    Skins.Add((Id=7840, Weapondef=class'KFWeapDef_M4', MIC_1P=("WEP_SkinSet_Mr_Fosters_MAT.mrfosters_m4.MrFosters_M4_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_Mr_Fosters_MAT.mrfosters_m4.MrFosters_M4_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_MrFosters_MAT.mr_fosters_m4.MrFosters_M4_3P_Pickup_MIC"))
+    Skins.Add((Id=7840, Weapondef=class'KFWeapDef_M4', MIC_1P=("WEP_SkinSet_Mr_Fosters_MAT.mrfosters_m4.MrFosters_M4_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_Mr_Fosters_MAT.mrfosters_m4.MrFosters_M4_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_Mr_Fosters_MAT.mrfosters_m4.MrFosters_M4_3P_Pickup_MIC"))
 
 //Foster's Favorites Desert Eagle
     Skins.Add((Id=7841, Weapondef=class'KFWeapDef_Deagle', MIC_1P=("WEP_SkinSet_Mr_Fosters_MAT.mrfosters_deagle.MrFosters_Deagle_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_Mr_Fosters_MAT.mrfosters_deagle.MrFosters_Deagle_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_Mr_Fosters_MAT.mrfosters_deagle.MrFosters_Deagle_3P_Pickup_MIC"))
@@ -2945,4 +2945,133 @@ defaultproperties
 
 // Riot Shield and G18 SWAT
     Skins.Add((Id=7855, Weapondef=class'KFWeapDef_G18', MIC_1P=("WEP_1P_RiotShield_MAT.g18c.WEP_1P_G18C_SWAT_MIC", "WEP_1P_RiotShield_MAT.Riotshield.WEP_1P_RiotShield_SWAT_MIC", "WEP_1P_RiotShield_MAT.Wep_1stp_Glass"), MIC_3P="WEP_3P_RiotShield_MAT.WEP_3P_RiotShield_SWAT_MIC", MIC_Pickup="WEP_3P_RiotShield_MAT.WEP_3P_RiotShield_SWAT_Pickup_MIC"))
+
+//Vault Vosh Chainbat
+    Skins.Add((Id=8037, Weapondef=class'KFWeapDef_ChainBat', MIC_1P=("WEP_SkinSet_VaultVosh10_MAT.vosh_chainbat.Vault_Vosh_Chainbat_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh10_MAT.vosh_chainbat.Vault_Vosh_Chainbat_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh10_MAT.vosh_chainbat.Vault_Vosh_Chainbat_3P_Pickup_MIC"))
+
+//Vault Vosh Static Strikers
+    Skins.Add((Id=8038, Weapondef=class'KFWeapDef_PowerGloves', MIC_1P=("WEP_SkinSet_VaultVosh10_MAT.vosh_staticstrikers.Vault_Vosh_StaticStrikers_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh10_MAT.vosh_staticstrikers.Vault_Vosh_StaticStrikers_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh10_MAT.vosh_staticstrikers.Vault_Vosh_StaticStrikers_3P_Pickup_MIC"))
+
+//Vault Vosh Stoner 63A
+    Skins.Add((Id=8039, Weapondef=class'KFWeapDef_Stoner63A', MIC_1P=("WEP_SkinSet_VaultVosh10_MAT.vosh_stoner63a.Vault_Vosh_Stoner63a_1P_MIC", "WEP_SkinSet_VaultVosh10_MAT.vosh_stoner63a.Vault_Vosh_Stoner63a_Receiver_1P_MIC"), MIC_3P="WEP_SkinSet_VaultVosh10_MAT.vosh_stoner63a.Vault_Vosh_Stoner63A_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh10_MAT.vosh_stoner63a.Vault_Vosh_Stoner63A_3P_Pickup_MIC"))
+
+//Vault Vosh Tommy Gun
+    Skins.Add((Id=8040, Weapondef=class'KFWeapDef_Thompson', MIC_1P=("WEP_SkinSet_VaultVosh10_MAT.vosh_thompson.Vault_Vosh_Thompson_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh10_MAT.vosh_thompson.Vault_Vosh_Thompson_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh10_MAT.vosh_thompson.Vault_Vosh_Thompson_3P_Pickup_MIC"))
+
+//Vault Vosh Zweihander
+    Skins.Add((Id=8041, Weapondef=class'KFWeapDef_Zweihander', MIC_1P=("WEP_SkinSet_VaultVosh10_MAT.vosh_zweihander.Vault_Vosh_Zweihander_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_VaultVosh10_MAT.vosh_zweihander.Vault_Vosh_Zweihander_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_VaultVosh10_MAT.vosh_zweihander.Vault_Vosh_Zweihander_3P_Pickup_MIC"))
+
+//Jaeger Dynamic AF2011
+    Skins.Add((Id=8089, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_AF2011', MIC_1P=("WEP_SkinSet28_MAT.dynamic_af2011.Dynamic_AF2011_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_af2011.Dynamic_AF2011_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_af2011.Dynamic_AF2011_3P_Pickup_MIC"))
+
+//Jaeger Dynamic AK12
+    Skins.Add((Id=8090, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_Ak12', MIC_1P=("WEP_SkinSet28_MAT.dynamic_ak12.Dynamic_AK12_1P_Mint_MIC", "WEP_SkinSet28_MAT.dynamic_ak12.Dynamic_AK12_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_ak12.Dynamic_AK12_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_ak12.Dynamic_AK12_3P_Pickup_MIC"))
+
+//Jaeger Dynamic HK UMP
+    Skins.Add((Id=8091, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_HK_UMP', MIC_1P=("WEP_SkinSet28_MAT.dynamic_hk_ump.Dynamic_HK_UMP_1P_Mint_MIC", "WEP_SkinSet28_MAT.dynamic_hk_ump.Dynamic_HK_UMP_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_hk_ump.Dynamic_HK_UMP_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_hk_ump.Dynamic_HK_UMP_3P_Pickup_MIC"))
+
+//Jaeger Dynamic HZ12
+    Skins.Add((Id=8092, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_HZ12', MIC_1P=("WEP_SkinSet28_MAT.dynamic_hz12.Dynamic_HZ12_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_hz12.Dynamic_HZ12_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_hz12.Dynamic_HZ12_3P_Pickup_MIC"))
+
+//Jaeger Dynamic M16M203
+    Skins.Add((Id=8093, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_M16M203', MIC_1P=("WEP_SkinSet28_MAT.dynamic_m16m203.Dynamic_M16_1P_Mint_MIC", "WEP_SkinSet28_MAT.dynamic_m16m203.Dynamic_M203_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_m16m203.Dynamic_M16M203_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_m16m203.Dynamic_M16M203_3P_Pickup_MIC"))
+
+//Jaeger Dynamic M1911
+    Skins.Add((Id=8094, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_Colt1911', MIC_1P=("WEP_SkinSet28_MAT.dynamic_m1911.Dynamic_M1911_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_m1911.Dynamic_M1911_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_m1911.Dynamic_M1911_3P_Pickup_MIC"))
+
+//Jaeger Dynamic Mac 10
+    Skins.Add((Id=8095, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_Mac10', MIC_1P=("WEP_SkinSet28_MAT.dynamic_mac10.Dynamic_MAC10_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_mac10.Dynamic_MAC10_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_mac10.Dynamic_MAC10_3P_Pickup_MIC"))
+
+//Jaeger Dynamic HMTech-501 Grenade Rifle
+    Skins.Add((Id=8096, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_MedicRifleGrenadeLauncher', MIC_1P=("WEP_SkinSet28_MAT.dynamic_medicgrenaderifle.Dynamic_MedicGrenadeRifle_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_medicgrenaderifle.Dynamic_MedicGrenadeRifle_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_medicgrenaderifle.Dynamic_MedicGrenadeRifle_3P_Pickup_MIC"))
+
+//Jaeger Dynamic SW500
+    Skins.Add((Id=8097, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_SW500', MIC_1P=("WEP_SkinSet28_MAT.dynamic_sw500.Dynamic_SW500_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_sw500.Dynamic_SW500_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_sw500.Dynamic_SW500_3P_Pickup_MIC"))
+
+//Jaeger Dynamic Tommy Gun
+    Skins.Add((Id=8098, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_Thompson', MIC_1P=("WEP_SkinSet28_MAT.dynamic_tommygun.Dynamic_TommyGun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_tommygun.Dynamic_TommyGun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_tommygun.Dynamic_TommyGun_3P_Pickup_MIC"))
+
+//Jaeger Dynamic AA12
+    Skins.Add((Id=8099, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_AA12', MIC_1P=("WEP_SkinSet28_MAT.dynamic_aa12.Dynamic_AA12_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamic_aa12.Dynamic_AA12_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamic_aa12.Dynamic_AA12_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB AF2011
+    Skins.Add((Id=8100, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_AF2011', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_af2011.DynamicRGB_AF2011_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_af2011.DynamicRGB_AF2011_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_af2011.DynamicRGB_AF2011_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB AK12
+    Skins.Add((Id=8101, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_Ak12', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_ak12.DynamicRGB_AK12_1P_Mint_MIC", "WEP_SkinSet28_MAT.dynamicrgb_ak12.DynamicRGB_AK12_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_ak12.DynamicRGB_AK12_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_ak12.DynamicRGB_AK12_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB HK UMP
+    Skins.Add((Id=8102, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_HK_UMP', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_hk_ump.DynamicRGB_HK_UMP_1P_Mint_MIC", "WEP_SkinSet28_MAT.dynamicrgb_hk_ump.DynamicRGB_HK_UMP_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_hk_ump.DynamicRGB_HK_UMP_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_hk_ump.DynamicRGB_HK_UMP_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB HZ12
+    Skins.Add((Id=8103, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_HZ12', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_hz12.DynamicRGB_HZ12_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_hz12.DynamicRGB_HZ12_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_hz12.DynamicRGB_HZ12_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB M16M203
+    Skins.Add((Id=8104, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_M16M203', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_m16m203.DynamicRGB_M16_1P_Mint_MIC", "WEP_SkinSet28_MAT.dynamicrgb_m16m203.DynamicRGB_M203_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_m16m203.DynamicRGB_M16M203_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_m16m203.DynamicRGB_M16M203_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB M1911
+    Skins.Add((Id=8105, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_Colt1911', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_m1911.DynamicRGB_M1911_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_m1911.DynamicRGB_M1911_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_m1911.DynamicRGB_M1911_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB Mac 10
+    Skins.Add((Id=8106, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_Mac10', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_mac10.DynamicRGB_MAC10_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_mac10.DynamicRGB_MAC10_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_mac10.DynamicRGB_MAC10_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB HMTech-501 Grenade Rifle
+    Skins.Add((Id=8107, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_MedicRifleGrenadeLauncher', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_medicgrenaderifle.DynamicRGB_MedicGrenadeRifle_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_medicgrenaderifle.DynamicRGB_MedicGrenadeRifle_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_medicgrenaderifle.DynamicRGB_MedicGrenadeRifle_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB SW500
+    Skins.Add((Id=8108, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_SW500', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_sw500.DynamicRGB_SW500_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_sw500.DynamicRGB_SW500_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_sw500.DynamicRGB_SW500_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB Tommy Gun
+    Skins.Add((Id=8109, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_Thompson', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_tommygun.DynamicRGB_TommyGun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_tommygun.DynamicRGB_TommyGun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_tommygun.DynamicRGB_TommyGun_3P_Pickup_MIC"))
+
+//Jaeger Dynamic RGB AA12
+    Skins.Add((Id=8110, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_AA12', MIC_1P=("WEP_SkinSet28_MAT.dynamicrgb_aa12.DynamicRGB_AA12_1P_Mint_MIC"), MIC_3P="WEP_SkinSet28_MAT.dynamicrgb_aa12.DynamicRGB_AA12_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet28_MAT.dynamicrgb_aa12.DynamicRGB_AA12_3P_Pickup_MIC"))
+
+//Spectre HRG Dynamic HRG Freeze Thrower (HealThrower)
+    Skins.Add((Id=8135, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_Healthrower_HRG', MIC_1P=("WEP_SkinSet29_MAT.spectre_hrgcryogun.Spectre_HRGCryoGun_Alt_1P_Mint_MIC", "WEP_SkinSet29_MAT.spectre_hrgcryogun.Spectre_HRGCryoGun_Main_1P_Mint_MIC"), MIC_3P="WEP_SkinSet29_MAT.spectre_hrgcryogun.Spectre_HRGCryoGun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet29_MAT.spectre_hrgcryogun.Spectre_HRGCryoGun_3P_Pickup_MIC"))
+
+//Spectre HRG Dynamic HRG FlareGun (Winterbites)
+    Skins.Add((Id=8136, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_HRGWinterbite', MIC_1P=("WEP_SkinSet29_MAT.spectre_hrgflaregun.Spectre_HRGFlaregun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet29_MAT.spectre_hrgflaregun.Spectre_HRGFlaregun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet29_MAT.spectre_hrgflaregun.Spectre_HRGFlaregun_3P_Pickup_MIC"))
+
+//Spectre HRG Dynamic HRG Nailgun
+    Skins.Add((Id=8137, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_NailGun_HRG', MIC_1P=("WEP_SkinSet29_MAT.spectre_hrgnailgun.Spectre_HRGNailgun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet29_MAT.spectre_hrgnailgun.Spectre_HRGNailgun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet29_MAT.spectre_hrgnailgun.Spectre_HRGNailgun_3P_Pickup_MIC"))
+
+//Spectre HRG Dynamic HRG Railgun (Incision)
+    Skins.Add((Id=8138, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_HRGIncision', MIC_1P=("WEP_SkinSet29_MAT.spectre_hrgrailgun.Spectre_HRGRailgun_1P_Mint_MIC", "WEP_SkinSet29_MAT.spectre_hrgrailgun.Spectre_HRGRailgun_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet29_MAT.spectre_hrgrailgun.Spectre_HRGRailgun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet29_MAT.spectre_hrgrailgun.Spectre_HRGRailgun_3P_Pickup_MIC"))
+
+//Spectre HRG Dynamic HRG SW500
+    Skins.Add((Id=8139, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_SW500_HRG', MIC_1P=("WEP_SkinSet29_MAT.spectre_hrgsw500.Spectre_HRGSW500_1P_Mint_MIC"), MIC_3P="WEP_SkinSet29_MAT.spectre_hrgsw500.Spectre_HRGSW500_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet29_MAT.spectre_hrgsw500.Spectre_HRGSW500_3P_Pickup_MIC"))
+
+//Spectre HRG Dynamic Chroma HRG Freeze Thrower (HealThrower)
+    Skins.Add((Id=8140, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_Healthrower_HRG', MIC_1P=("WEP_SkinSet29_MAT.spectrechroma_hrgcryogun.SpectreChroma_HRGCryoGun_Alt_1P_Mint_MIC", "WEP_SkinSet29_MAT.spectrechroma_hrgcryogun.SpectreChroma_HRGCryoGun_Main_1P_Mint_MIC"), MIC_3P="WEP_SkinSet29_MAT.spectrechroma_hrgcryogun.SpectreChroma_HRGCryoGun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet29_MAT.spectrechroma_hrgcryogun.SpectreChroma_HRGCryoGun_3P_Pickup_MIC"))
+
+//Spectre HRG Dynamic Chroma HRG FlareGun (Winterbites)
+    Skins.Add((Id=8141, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_HRGWinterbite', MIC_1P=("WEP_SkinSet29_MAT.spectrechroma_hrgflaregun.SpectreChroma_HRGFlaregun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet29_MAT.spectrechroma_hrgflaregun.SpectreChroma_HRGFlaregun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet29_MAT.spectrechroma_hrgflaregun.SpectreChroma_HRGFlaregun_3P_Pickup_MIC"))
+
+//Spectre HRG Dynamic Chroma HRG Nailgun
+    Skins.Add((Id=8142, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_NailGun_HRG', MIC_1P=("WEP_SkinSet29_MAT.spectrechroma_hrgnailgun.SpectreChroma_HRGNailgun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet29_MAT.spectrechroma_hrgnailgun.SpectreChroma_HRGNailgun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet29_MAT.spectrechroma_hrgnailgun.SpectreChroma_HRGNailgun_3P_Pickup_MIC"))
+
+//Spectre HRG Dynamic Chroma HRG Railgun (Incision)
+    Skins.Add((Id=8143, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_HRGIncision', MIC_1P=("WEP_SkinSet29_MAT.spectrechroma_hrgrailgun.SpectreChroma_HRGRailgun_1P_Mint_MIC", "WEP_SkinSet29_MAT.spectrechroma_hrgrailgun.SpectreChroma_HRGRailgun_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet29_MAT.spectrechroma_hrgrailgun.SpectreChroma_HRGRailgun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet29_MAT.spectrechroma_hrgrailgun.SpectreChroma_HRGRailgun_3P_Pickup_MIC"))
+
+//Spectre HRG Dynamic Chroma HRG SW500
+    Skins.Add((Id=8144, bNeedsCodeUpdates = true, Weapondef=class'KFWeapDef_SW500_HRG', MIC_1P=("WEP_SkinSet29_MAT.spectrechroma_hrgsw500.SpectreChroma_HRGSW500_1P_Mint_MIC"), MIC_3P="WEP_SkinSet29_MAT.spectrechroma_hrgsw500.SpectreChroma_HRGSW500_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet29_MAT.spectrechroma_hrgsw500.SpectreChroma_HRGSW500_3P_Pickup_MIC"))
+
+// Camo Compound Bow
+	Skins.Add((Id=8145, Weapondef=class'KFWeapDef_CompoundBow', MIC_1P=("WEP_SkinSet30_MAT.Wep_1stP_CompoundBow_Camo_MIC"), MIC_3P="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_Camo_MIC", MIC_Pickup="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_Camo_Pickup_MIC"))
+
+// Carbon Compound Bow
+	Skins.Add((Id=8146, Weapondef=class'KFWeapDef_CompoundBow', MIC_1P=("WEP_SkinSet30_MAT.Wep_1stP_CompoundBow_Carbon_MIC"), MIC_3P="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_Carbon_MIC", MIC_Pickup="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_Carbon_Pickup_MIC"))
+
+// Gore Compound Bow
+	Skins.Add((Id=8147, Weapondef=class'KFWeapDef_CompoundBow', MIC_1P=("WEP_SkinSet30_MAT.Wep_1stP_CompoundBow_Gore_MIC"), MIC_3P="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_Gore_MIC", MIC_Pickup="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_Gore_Pickup_MIC"))
+
+// Snow Ops Compound Bow
+	Skins.Add((Id=8148, Weapondef=class'KFWeapDef_CompoundBow', MIC_1P=("WEP_SkinSet30_MAT.Wep_1stP_CompoundBow_SnowOps_MIC"), MIC_3P="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_SnowOps_MIC", MIC_Pickup="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_SnowOps_Pickup_MIC"))
+
+// Sticker Stricker Compound Bow
+	Skins.Add((Id=8149, Weapondef=class'KFWeapDef_CompoundBow', MIC_1P=("WEP_SkinSet30_MAT.Wep_1stP_CompoundBow_StickerStriker_MIC"), MIC_3P="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_StickerStriker_MIC", MIC_Pickup="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_StickerStriker_Pickup_MIC"))
+
+// Standard Compound Bow
+	Skins.Add((Id=8169, Weapondef=class'KFWeapDef_CompoundBow', MIC_1P=("WEP_SkinSet30_MAT.Wep_1stP_CompoundBow_MIC"), MIC_3P="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_MIC", MIC_Pickup="WEP_SkinSet30_MAT.Wep_CompoundBow_Pickup_MIC"))
 }

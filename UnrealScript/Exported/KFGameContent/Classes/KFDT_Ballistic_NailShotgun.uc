@@ -25,6 +25,7 @@ defaultproperties
    WeaponDef=Class'KFGame.KFWeapDef_Nailgun'
    StumblePower=24.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
+   ModifierPerkList(1)=Class'KFGame.KFPerk_Support'
    BloodSpread=0.400000
    BloodScale=0.600000
    KDamageImpulse=400.000000
