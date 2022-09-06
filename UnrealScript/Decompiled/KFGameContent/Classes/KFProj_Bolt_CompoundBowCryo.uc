@@ -10,7 +10,8 @@ class KFProj_Bolt_CompoundBowCryo extends KFProj_RicochetBullet
 
 var float StartingDamageRadius;
 var repnotify int ChargeLevel;
-var float ChargeTrailPerLevel;
+var bool bHasChargeLevel;
+var bool bHasExplodedReplicated;
 
 replication
 {
@@ -22,7 +23,23 @@ simulated event ReplicatedEvent(name VarName)
 {
     if(VarName == 'ChargeLevel')
     {
+        bHasChargeLevel = true;
         SpawnFlightEffects();
+        if(bHasExploded && bHasExplodedReplicated)
+        {
+            bHasExploded = false;
+        }        
+    }
+    else
+    {
+        if(VarName == 'bHasExploded')
+        {
+            bHasExplodedReplicated = true;
+            if(!bHasChargeLevel)
+            {
+                return;
+            }
+        }
     }
     super(KFProjectile).ReplicatedEvent(VarName);
 }
@@ -37,20 +54,43 @@ simulated function PostBeginPlay()
         if(CompoundBow != none)
         {
             ChargeLevel = CompoundBow.GetChargeLevel();
+            bHasChargeLevel = true;
         }
     }
     super(KFProjectile).PostBeginPlay();
 }
 
+simulated function float GetChargeLevelTrail()
+{
+    if(ChargeLevel >= 2)
+    {
+        return 1;
+    }
+    if(ChargeLevel == 1)
+    {
+        if(WorldInfo.NetMode == NM_Client)
+        {
+            return 0.8;
+        }
+        return 0.5;
+    }
+    if(WorldInfo.NetMode == NM_Client)
+    {
+        return 0.5;
+    }
+    return 0;
+}
+
 simulated function SpawnFlightEffects()
 {
-    local float ChargeLevelTrail;
-
+    if((!bHasChargeLevel || bHasExploded) || bHasDisintegrated)
+    {
+        return;
+    }
     super(KFProjectile).SpawnFlightEffects();
     if(ProjEffects != none)
     {
-        ChargeLevelTrail = float(ChargeLevel) * ChargeTrailPerLevel;
-        ProjEffects.SetVectorParameter('ChargeLevelTrail', ChargeLevelTrail * vect(1, 1, 1));
+        ProjEffects.SetVectorParameter('ChargeLevelTrail', (GetChargeLevelTrail()) * vect(1, 1, 1));
     }
 }
 
@@ -95,20 +135,25 @@ protected simulated function PrepareExplosionTemplate()
 
 simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
 {
+    local editinline ParticleSystemComponent ComponentIt;
+
     super(KFProj_Bullet).TriggerExplosion(HitLocation, HitNormal, HitActor);
     if(bHasExploded)
     {
-        SetHidden(true);
+        foreach ComponentList(Class'ParticleSystemComponent', ComponentIt)
+        {
+            ComponentIt.DeactivateSystem();            
+        }        
     }
 }
 
 defaultproperties
 {
     ChargeLevel=-1
-    ChargeTrailPerLevel=0.5
     BouncesLeft=0
     bNoReplicationToInstigator=false
     bReplicateLocationOnExplosion=true
+    bValidateExplosionNormalOnClient=true
     bAlwaysReplicateDisintegration=true
     bAlwaysReplicateExplosion=true
     bCanDisintegrate=true

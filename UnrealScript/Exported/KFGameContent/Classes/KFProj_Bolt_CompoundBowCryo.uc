@@ -15,7 +15,12 @@ class KFProj_Bolt_CompoundBowCryo extends KFProj_RicochetBullet
 var float StartingDamageRadius;
 
 var repnotify int ChargeLevel;
-var float ChargeTrailPerLevel;
+
+/** Set to true if the ChargeLevel was replicated */
+var bool bHasChargeLevel;
+
+/** Set to true if the bHasExploded was replicated */
+var bool bHasExplodedReplicated;
 
 replication
 {
@@ -27,7 +32,23 @@ simulated event ReplicatedEvent(name VarName)
 {
 	if (VarName == nameof(ChargeLevel))
 	{
+		bHasChargeLevel = true;
 		SpawnFlightEffects();
+
+		// Mark the explosion here to trigger it in the client
+		if (bHasExploded && bHasExplodedReplicated)
+		{
+			bHasExploded = false;
+		}
+	}
+	else if (VarName == nameof(bHasExploded))
+	{
+		bHasExplodedReplicated = true;
+		if (!bHasChargeLevel)
+		{
+			// do not explode if ChargeLevel hasn't been replicated.
+			return;
+		}
 	}
 
 	Super.ReplicatedEvent(VarName);
@@ -43,22 +64,53 @@ simulated function PostBeginPlay ()
 		if (CompoundBow != none)
 		{
 			ChargeLevel = CompoundBow.GetChargeLevel();
+			bHasChargeLevel = true;
 		}
 	}
 
 	Super.PostBeginPlay ();
 }
 
+simulated function float GetChargeLevelTrail ()
+{
+	if (ChargeLevel >= 2)
+	{
+		return 1.0;
+	}
+
+	if (ChargeLevel == 1)
+	{
+		if (WorldInfo.NetMode == NM_Client)
+		{
+			return 0.8;
+		}
+
+		return 0.5;
+	}
+
+	// For level 0, no charge on the arrow:
+	if (WorldInfo.NetMode == NM_Client)
+	{
+		return 0.5;
+	}
+
+	return 0;
+}
+
 simulated function SpawnFlightEffects ()
 {
-	local float ChargeLevelTrail;
+	if (!bHasChargeLevel || bHasExploded || bHasDisintegrated)
+	{
+		// we need ChargeLevel to be replicated to Spawn the projectile!
+		// and also stop if the projectile already exploded (likely high speed arrows!)
+		return;
+	}
 
 	super.SpawnFlightEffects ();
 
 	if (ProjEffects != none)
 	{
-		ChargeLevelTrail = float(ChargeLevel) * ChargeTrailPerLevel;
-		ProjEffects.SetVectorParameter('ChargeLevelTrail', ChargeLevelTrail * vect(1.f, 1.f, 1.f));
+		ProjEffects.SetVectorParameter('ChargeLevelTrail', GetChargeLevelTrail() * vect(1.f, 1.f, 1.f));
 	}
 }
 
@@ -108,21 +160,24 @@ simulated protected function PrepareExplosionTemplate()
 
 simulated function TriggerExplosion (Vector HitLocation, Vector HitNormal, Actor HitActor)
 {
+	local ParticleSystemComponent ComponentIt;
 	super.TriggerExplosion (HitLocation, HitNormal, HitActor);
-
 	if (bHasExploded)
 	{
-		SetHidden (true);
+		foreach ComponentList(class'ParticleSystemComponent',ComponentIt)
+		{
+			ComponentIt.DeactivateSystem();
+		}
 	}
 }
 
 defaultproperties
 {
    ChargeLevel=-1
-   ChargeTrailPerLevel=0.500000
    BouncesLeft=0
    bNoReplicationToInstigator=False
    bReplicateLocationOnExplosion=True
+   bValidateExplosionNormalOnClient=True
    bAlwaysReplicateDisintegration=True
    bAlwaysReplicateExplosion=True
    bCanDisintegrate=True

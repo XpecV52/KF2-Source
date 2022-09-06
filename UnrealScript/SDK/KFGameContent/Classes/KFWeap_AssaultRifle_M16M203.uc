@@ -47,6 +47,72 @@ simulated function AltFireMode()
 }
 
 /**
+ * Drop this item out in to the world
+ */
+function DropFrom(vector StartLocation, vector StartVelocity)
+{
+	local DroppedPickup P;
+
+	// Offset spawn closer to eye location
+	StartLocation.Z += Instigator.BaseEyeHeight / 2;
+
+	// for some reason, Inventory::DropFrom removes weapon from inventory whether it was able to spawn the pickup or not.
+	// we only want the weapon removed from inventory if pickup was successfully spawned, so instead of calling the supers,
+	// do all the super functionality here.
+
+	if( !CanThrow() )
+	{
+		return;
+	}
+
+	if( DroppedPickupClass == None || DroppedPickupMesh == None )
+	{
+		Destroy();
+		return;
+	}
+
+	// the last bool param is to prevent collision from preventing spawns
+	P = Spawn(DroppedPickupClass,,, StartLocation,,,true);
+	if( P == None )
+	{
+		// if we can't spawn the pickup (likely for collision reasons),
+		// just return without removing from inventory or destroying, which removes from inventory
+		PlayerController(Instigator.Controller).ReceiveLocalizedMessage( class'KFLocalMessage_Game', GMT_FailedDropInventory );
+		return;
+	}
+
+	if( Instigator != None && Instigator.InvManager != None )
+	{
+		Instigator.InvManager.RemoveFromInventory(Self);
+
+		if( Instigator.IsAliveAndWell() && !Instigator.InvManager.bPendingDelete )
+		{
+			`DialogManager.PlayDropWeaponDialog( KFPawn(Instigator) );
+		}
+	}
+
+	//`Warn("DropFromA SPARE AMMO 0"$SpareAmmoCount[0]$"\n SPARE AMMO 1" $SpareAmmoCount[1]$"\n AmmoCount 0" $AmmoCount[0]$"\n AmmoCount 1" $AmmoCount[1]$"\n ServerTotalAltAmmo" $ServerTotalAltAmmo$"\	n");
+	if(Role == ROLE_Authority && !Instigator.IsLocallyControlled())
+	{
+		SpareAmmoCount[1] = ServerTotalAltAmmo;
+		AmmoCount[1] = AmmoCount[1];
+	}
+	else
+	{
+		//do nothing because we are offline
+	}
+
+	//`Warn("DropFromB SPARE AMMO 0"$SpareAmmoCount[0]$"\n SPARE AMMO 1" $SpareAmmoCount[1]$"\n AmmoCount 0" $AmmoCount[0]$"\n AmmoCount 1" $AmmoCount[1]$"\n ServerTotalAltAmmo" $ServerTotalAltAmmo$"\	n");
+
+	SetupDroppedPickup( P, StartVelocity );
+
+	Instigator = None;
+	GotoState('');
+
+	AIController = None;
+}
+
+/**
  * Initializes ammo counts, when weapon is spawned.
  */
 function InitializeAmmo()
@@ -160,6 +226,7 @@ function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
 		Weap = KFWeap_AssaultRifle_M16M203(PickedUpWeapon);
 		ServerTotalAltAmmo = Weap.ServerTotalAltAmmo;
 		SpareAmmoCount[1] = ServerTotalAltAmmo - AmmoCount[1];
+		//`Warn("SPARE AMMO 0"$SpareAmmoCount[0]$"\n SPARE AMMO 1" $SpareAmmoCount[1]$"\n AmmoCount 0" $AmmoCount[0]$"\n AmmoCount 1" $AmmoCount[1]$"\n ServerTotalAltAmmo" $ServerTotalAltAmmo$"\	n");
 		ClientForceSecondarySpareAmmo(SpareAmmoCount[1]);
 	}
 	else
@@ -180,7 +247,7 @@ reliable client function ClientForceSecondarySpareAmmo(byte NewSecondarySpareAmm
 		NotifyHUDofWeapon(Pawn(Owner));
 	}
 }
-
+	
 /*********************************************************************************************
  * State GrenadeFiring
  * Handles firing grenade launcher.

@@ -21,6 +21,7 @@ var() bool bAttach;
 var() editoronly bool bPreview;
 /** If Owner is hidden, skip particle effect */
 var() bool bSkipIfOwnerIsHidden;
+var() bool bUsePostUpdateWorkTickGroup;
 /** If this is extreme content(bIsExtremeContent == TRUE), play this instead */
 var() ParticleSystem PSNonExtremeContentTemplate;
 /** The socketname in which to play the particle effect.  Looks for a socket name first then bone name */

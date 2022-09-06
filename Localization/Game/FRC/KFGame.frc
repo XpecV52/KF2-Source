@@ -2703,7 +2703,7 @@ SpecialEventObjectiveInfoList[4]=(TitleString="Biologie mortelle",DescriptionStr
 
 AllCompleteRewardDescriptionString="Modèles de double-pack dynamiques AA12"
 
-ChanceDropDescriptionStrings[0]="Ticket cyberpunk"
+ChanceDropDescriptionStrings[0]="Ticket Cyberpunk"
 ChanceDropDescriptionStrings[1]="Ticket doré Cyberpunk"
 
 ;============================================

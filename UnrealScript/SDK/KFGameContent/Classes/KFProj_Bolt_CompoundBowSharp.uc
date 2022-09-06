@@ -12,7 +12,6 @@ class KFProj_Bolt_CompoundBowSharp extends KFProj_RicochetStickBullet
 	hidedropdown;
 
 var repnotify int ChargeLevel;
-var float ChargeTrailPerLevel;
 
 replication
 {
@@ -46,16 +45,50 @@ simulated function PostBeginPlay ()
 	Super.PostBeginPlay ();
 }
 
+simulated function float GetChargeLevelTrail ()
+{
+	if (ChargeLevel >= 2)
+	{
+		if (WorldInfo.NetMode == NM_Client)
+		{
+			return 1.0;
+		}
+
+		return 0.73;
+	}
+
+	if (ChargeLevel == 1)
+	{
+		if (WorldInfo.NetMode == NM_Client)
+		{
+			return 0.825;
+		}
+
+		return 0.365;
+	}
+
+	// For level 0, no charge on the arrow:
+	if (WorldInfo.NetMode == NM_Client)
+	{
+		return 0.66;
+	}
+
+	return 0;
+}
+
 simulated function SpawnFlightEffects ()
 {
-	local float ChargeLevelTrail;
+	if (ChargeLevel < 0)
+	{
+		// we need ChargeLevel to be replicated to Spawn the projectile!
+		return;
+	}
 
 	super.SpawnFlightEffects ();
 
 	if (ProjEffects != none)
 	{
-		ChargeLevelTrail = float(ChargeLevel) * ChargeTrailPerLevel;
-		ProjEffects.SetVectorParameter('ChargeLevelTrail', ChargeLevelTrail * vect(1.f, 1.f, 1.f));
+		ProjEffects.SetVectorParameter('ChargeLevelTrail', GetChargeLevelTrail() * vect(1.f, 1.f, 1.f));
 	}
 }
 
@@ -79,7 +112,6 @@ defaultproperties
 	DamageRadius=0
 
 	ChargeLevel=-1
-	ChargeTrailPerLevel=0.5
 
     BouncesLeft=0
 	ProjFlightTemplate=ParticleSystem'WEP_CompoundBow_EMIT.FX_Compound_Bow_Sharp_Projectile'

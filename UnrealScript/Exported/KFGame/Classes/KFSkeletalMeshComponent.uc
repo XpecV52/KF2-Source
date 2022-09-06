@@ -107,7 +107,10 @@ event bool PlayParticleEffect( const AnimNotify_PlayParticleEffect AnimNotifyDat
 		PSC.SetTemplate( AnimNotifyData.PSTemplate );
 		PSC.SetDepthPriorityGroup(SDPG_Foreground);
 		PSC.SetFOV(FOV);
-		PSC.SetTickGroup(TG_PostUpdateWork);
+		if (AnimNotifyData.bUsePostUpdateWorkTickGroup)
+		{
+			PSC.SetTickGroup(TG_PostUpdateWork);
+		}
 
 		if( AnimNotifyData.SocketName != '' )
 		{

@@ -20,6 +20,13 @@ var transient float ChargeTime;
 var transient float MaxChargeLevel;
 var transient bool bIsFullyCharged;
 
+
+/** Flag to check if we are still firing in the CompoundBowCharge state in order to check for interrupts when we are making the reload animation  */
+var transient bool bHasArrowBeenFired;
+/** Name to check from where we come from at active state begin play in order to prevent it to go from active to ironsights if a reload is pending  */
+//var transient Name sPreviousStateName;
+
+
 /** The FireMode to start fire after the Reload is complete
 **  Used to keep charging the CompoundBow while reloading */
 var byte StartFireModeAfterReload;
@@ -309,6 +316,11 @@ simulated function StopLoopingFireEffects(byte FireModeNum)
 	StopLoopingFireSound( FireModeNum );
 }
 
+simulated function CauseMuzzleFlash(byte FireModeNum)
+{
+	return;
+}
+
 /** Charging functionality inspired by HuskCannon fire ball **/
 simulated function StartFire(byte FiremodeNum)
 {
@@ -363,8 +375,21 @@ simulated function bool AllowSprinting()
 /** ActiveIronSight and Active States to play Idle to Iron - Iron to Idle animations  **/
 simulated state Active
 {
+	simulated function BeginState(Name PreviousStateName)
+	{
+		if (IsTimerActive('Timer_StopFireEffects'))
+		{
+			return;
+		}	
+		super.BeginState(PreviousStateName);
+	}
+
 	simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
 	{
+		if (IsTimerActive('Timer_StopFireEffects'))
+		{
+			return;
+		}
 		GotoState('ActiveIronSight');
 	}
 }
@@ -384,6 +409,7 @@ simulated state ActiveIronSight extends Active
 
 	simulated function BeginState( Name PreviousStateName )
 	{
+		//bHasArrowBeenFired
 		local float ZoomTimeToGo;
 
 		ZoomTimeToGo = MySkelMesh.GetAnimLength(IdleToIronSightAnim);
@@ -420,6 +446,7 @@ simulated state CompoundBowCharge extends WeaponSingleFireAndReload
 		ChargeTime = 0;
 		MaxChargeLevel = int(StateMaxChargeTime / StateValueIncreaseTime);
 		bIsFullyCharged = false;
+		bHasArrowBeenFired = false;
 		global.OnStartFire();
     }
 
@@ -458,6 +485,15 @@ simulated state CompoundBowCharge extends WeaponSingleFireAndReload
 
 		KFPawn(Instigator).bHasStartedFire = false;
 		KFPawn(Instigator).bNetDirty = true;
+
+		if (bUsingSights)
+    	{
+		// do this locally and replicate to avoid sync errors w/ bIronSightOnBringUp
+			if ( Instigator.IsLocallyControlled() )
+			{
+				SetIronSights(false);
+			}
+    	}
 	}
 
 	simulated function PutDownWeapon()
@@ -470,7 +506,8 @@ simulated state CompoundBowCharge extends WeaponSingleFireAndReload
 	simulated function HandleFinishedFiring ()
 	{
 		super.FireAmmunition ();
-		
+		bHasArrowBeenFired = true;
+
 		if (bPlayingLoopingFireAnim)
 		{
 			StopLoopingFireEffects(CurrentFireMode);
@@ -486,13 +523,24 @@ simulated state CompoundBowCharge extends WeaponSingleFireAndReload
 		}
 
 		NotifyWeaponFinishedFiring(CurrentFireMode);
-
+		
+		
 		super.HandleFinishedFiring ();
+
+		
 	}
 
 	/** override ZoomIn and ZoomOut for Idle to Iron animations **/
 	simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
 	{
+		if (bHasArrowBeenFired || !bIsFullyCharged)
+		{
+			return;
+		}
+		if (IsTimerActive('Timer_StopFireEffects'))
+		{
+			return;
+		}	
 		ZoomTimeToGo = MySkelMesh.GetAnimLength(ShootToIronSightShootAnim);
 
 		Global.ZoomIn( true, ZoomTimeToGo );
@@ -501,7 +549,11 @@ simulated state CompoundBowCharge extends WeaponSingleFireAndReload
 	}
 
 	simulated function ZoomOut (bool bAnimateTransition, float ZoomTimeToGo)
-	{
+	{		
+		if (IsTimerActive('Timer_StopFireEffects'))
+		{
+			return;
+		}	
 		ZoomTimeToGo = MySkelMesh.GetAnimLength(IronSightShootToShootAnim);
 
 		Global.ZoomOut( true, ZoomTimeToGo );
@@ -547,8 +599,22 @@ simulated state Reloading
 
 		if (StartFireModeAfterReload != FIREMODE_NONE)
 		{
-			super.StartFire (StartFireModeAfterReload);
+			SetTimer(0.01f, true, 'Timer_StartFireAfterReload');
 		}
+	}
+}
+
+simulated function Timer_StartFireAfterReload()
+{
+	if (IsTimerActive('Timer_StopFireEffects'))
+	{
+		return;
+	}
+	
+	ClearTimer('Timer_StartFireAfterReload');
+	if (StartFireModeAfterReload != FIREMODE_NONE)
+	{
+		super.StartFire (StartFireModeAfterReload);
 	}
 }
 
@@ -627,8 +693,8 @@ defaultproperties
 	GroupPriority=125
 
 	// Charge props
-    MaxChargeTime=0.6333 //ShootLoop_Start[20] Time Length
-    ValueIncreaseTime=0.22
+    MaxChargeTime=0.50664 //ShootLoop_Start[20] Time Length
+    ValueIncreaseTime=0.2
 	DmgIncreasePerCharge=0.5
 
 	ArrowSpeedPerCharge(0)=4000.0

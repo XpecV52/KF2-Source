@@ -17,42 +17,42 @@ var ParticleSystem CryoProjectileEffectOn;
 var ParticleSystem CryoProjectileEffectOff;
 var() ParticleSystemComponent CryoProjectilePSC;
 
-/** set to True if we allow interruption on the weapon animation **/
-var bool bEnableInterruptWeaponAnim;
-
 /** set to True if we started charging **/
 var bool bCharging;
 
+const WeaponIdleAnim = 'Idle_master';
+const WeaponIronIdleAnim = 'Idle_Iron_V1';
 const WeaponFireLoopStartAnim = 'ShootLoop_Start';
 const WeaponFireLoopAnim = 'ShootLoop';
+const WeaponFireLoopIronAnim = 'ShootLoop_Sight';
 const WeaponFireEndLoopAnim = 'ShootLoop_End';
 
+const CH_WeapondleAnim = 'Idle_CH_V1';
 const CH_WeaponFireStartAnim = 'ShootLoop_Start_CH';
 const CH_WeaponFireLoopAnim = 'ShootLoop_CH';
+const CH_WeaponFireLoopIronAnim = 'ShootLoop_Sight_CH';
 const CH_WeaponFireEndLoopAnim = 'ShootLoop_End_CH';
-
-const WeaponIronIdleAnim = 'Idle_Iron_V1';
-const CH_WeapondleAnim = 'Idle_CH_V1';
 
 const ArrowSocketName = 'RW_Weapon';
 
 simulated function StartFire()
 {
-	local KFPawn P;
+	local KFPawn_Human P;
+	local name WeaponLoopAnimName;
 	
-	P = KFPawn(Owner);
+	P = KFPawn_Human(Owner);
 
 	bCharging = true;
-	bEnableInterruptWeaponAnim = false;
+	WeaponLoopAnimName = GetWeaponFireLoopAnim (P);
 
 	// ShootLoop animation is determined in PlayLoopAnim(), our "outro" animation is the actual ShootLoop_End:
 	if (P.bIsCrouched)
 	{
-		StartLoopingAnim(P, '', CH_WeaponFireStartAnim, '', true);
+		StartLoopingAnim(P, WeaponLoopAnimName, CH_WeaponFireStartAnim, '', true);
 	}
 	else
 	{
-		StartLoopingAnim(P, '', WeaponFireLoopStartAnim, '', true);
+		StartLoopingAnim(P, WeaponLoopAnimName, WeaponFireLoopStartAnim, '', true);
 	}
 }
 
@@ -209,14 +209,6 @@ simulated function SetArrowVisbility (bool bVisible)
 	}
 }
 
-simulated function InterruptWeaponAnim ()
-{
-	if (bEnableInterruptWeaponAnim)
-	{
-		Super.InterruptWeaponAnim ();
-	}
-}
-
 simulated function StartPawnCrouch ()
 {
 	if (KFPawn_Human (Owner) != none)
@@ -248,35 +240,7 @@ simulated function SetWeaponAltFireMode (bool bUsingAltFireMode)
 
 simulated function ResetAnimationState (KFPawn_Human P)
 {
-	local float Duration;
-
-	if (bCharging)
-	{
-		// Restore the animation on the Character that will sync the weapon too.
-		if (P.bIsCrouched)
-		{
-			PlayCharacterMeshAnim(P, CH_WeaponFireLoopAnim, true, true);
-		}
-		else
-		{
-			PlayCharacterMeshAnim(P, WeaponFireLoopAnim, true, true);
-		}
-	}
-	else if (P.bUsingIronSights)
-	{
-		Duration = WeapMesh.GetAnimLength(WeaponIronIdleAnim);
-		WeapMesh.PlayAnim(WeaponIronIdleAnim, Duration / ThirdPersonAnimRate, true, true);
-	}
-	else if (P.bIsCrouched)
-	{
-		Duration = WeapMesh.GetAnimLength(CH_WeapondleAnim);
-		WeapMesh.PlayAnim(CH_WeapondleAnim, Duration / ThirdPersonAnimRate, true, true);
-	}
-	else
-	{
-		bEnableInterruptWeaponAnim = true;
-		InterruptWeaponAnim ();
-	}
+	PlayCharacterMeshAnim (P, GetCharacterAnimationName(P), true, true);
 }
 
 simulated function ToggleCryoFX(bool bEnable)
@@ -295,23 +259,44 @@ simulated function ToggleCryoFX(bool bEnable)
 	}
 }
 
-
-simulated State LoopingWeaponAction
+simulated function name GetWeaponFireLoopAnim (KFPawn_Human P)
 {
-	simulated function PlayLoopAnim ()
+	if (P.bIsCrouched && P.bUsingIronSights)
 	{
-		// Select loop animation based on Pawn
-		if (Instigator.bIsCrouched)
-		{
-			LoopingAnim = CH_WeaponFireLoopAnim;
-		}
-		else
-		{
-			LoopingAnim = WeaponFireLoopAnim;
-		}
-
-		Super.PlayLoopAnim ();
+		return CH_WeaponFireLoopIronAnim;
 	}
+	if (P.bIsCrouched)
+	{
+		return CH_WeaponFireLoopAnim;
+	}
+	if (P.bUsingIronSights)
+	{
+		return WeaponFireLoopIronAnim;
+	}
+
+	return WeaponFireLoopAnim;
+}
+
+simulated function name GetCharacterAnimationName (KFPawn_Human P)
+{
+	if (bCharging)
+	{
+		return GetWeaponFireLoopAnim (P);
+	}
+	if (P.bUsingIronSights && P.bIsCrouched)
+	{
+		return CH_WeaponFireLoopIronAnim;
+	}
+	if (P.bUsingIronSights)
+	{
+		return WeaponIronIdleAnim;
+	}
+	if (P.bIsCrouched)
+	{
+		return CH_WeapondleAnim;
+	}
+	
+	return WeaponIdleAnim;
 }
 
 simulated function AttachTo (KFPawn P)
@@ -323,6 +308,9 @@ simulated function AttachTo (KFPawn P)
 		// Attach Weapon mesh to player skel mesh
 		WeapMesh.SetShadowParent(P.Mesh);
 		P.Mesh.AttachComponent (WeapMesh, 'LW_Weapon');
+		
+		// Keep the arrow from the weapon mesh unvisible
+		WeapMesh.HideBoneByName (ArrowSocketName, PBO_None);
 	}
 
 	// Animation
@@ -375,6 +363,7 @@ simulated function DetachFrom(KFPawn P)
 
     Super.DetachFrom(P);
 }
+
 event SetWeaponSkin(int ItemId, optional bool bFinishedLoading = false)
 {
 	local array<MaterialInterface> SkinMICs;

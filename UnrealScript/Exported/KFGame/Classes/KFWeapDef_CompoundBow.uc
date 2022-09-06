@@ -16,7 +16,7 @@ defaultproperties
 {
    WeaponClassPath="KFGameContent.KFWeap_Bow_CompoundBow"
    ImagePath="WEP_UI_CompoundBow_TEX.UI_WeaponSelect_Compound_Bow"
-   BuyPrice=1750
+   BuyPrice=2000
    AmmoPricePerMag=16
    SharedUnlockId=SCU_CompoundBow
    EffectiveRange=80

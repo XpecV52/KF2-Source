@@ -16,7 +16,7 @@ defaultproperties
 {
 	WeaponClassPath="KFGameContent.KFWeap_Bow_CompoundBow"
 
-	BuyPrice=1750
+	BuyPrice=2000
 
 	AmmoPricePerMag=16
 

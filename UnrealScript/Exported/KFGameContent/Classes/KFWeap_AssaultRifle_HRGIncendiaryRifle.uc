@@ -41,6 +41,29 @@ simulated function ModifyMagSizeAndNumber(out byte InMagazineCapacity, optional 
 	super.ModifyMagSizeAndNumber (InMagazineCapacity, FireMode, UpgradeIndex, CurrentPerk);
 }
 
+/**
+* @see Weapon::ConsumeAmmo
+*/
+simulated function ConsumeAmmo(byte FireModeNum)
+{
+	local KFPerk_Firebug FirebugPerk;
+
+
+
+
+
+
+
+
+    FirebugPerk = KFPerk_Firebug(GetPerk());
+    if (FirebugPerk != none && FirebugPerk.GetIsUberAmmoActive(self)) //check for pyro maniac
+    {
+        return;
+    }
+	
+	super.ConsumeAmmo(FireModeNum);
+}
+
 defaultproperties
 {
    PackageKey="HRG_IncendiaryRifle"
@@ -63,7 +86,6 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_HRGIncendiaryRifle:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Firebug'
-   WeaponUpgrades(2)=(Stats=(,,(Add=1)))
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_HRGIncendiaryRifle'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Grenade_HRGIncendiaryRifle'
    InstantHitDamage(0)=30.000000

@@ -1250,7 +1250,7 @@ HideRemodeHeadshotEffectsString="Откл. эф. попадания в голо�
 ToggleToRunString="Бег по нажатию"
 ClassicPlayerInfoString="Прежняя версия шкалы здоровья"
 
-EnableMixerString="Переключить интерактивность Mixer"
+EnableMixerString="Включить Mixer"
 DisableMixerString="Отключить Mixer"
 
 [LocalizedControls]

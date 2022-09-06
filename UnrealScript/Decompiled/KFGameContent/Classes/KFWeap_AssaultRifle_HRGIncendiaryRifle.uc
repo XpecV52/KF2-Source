@@ -40,6 +40,18 @@ simulated function ModifyMagSizeAndNumber(out byte InMagazineCapacity, optional 
     super(KFWeapon).ModifyMagSizeAndNumber(InMagazineCapacity, FireMode, UpgradeIndex, CurrentPerk);
 }
 
+simulated function ConsumeAmmo(byte FireModeNum)
+{
+    local KFPerk_Firebug FirebugPerk;
+
+    FirebugPerk = KFPerk_Firebug(GetPerk());
+    if((FirebugPerk != none) && FirebugPerk.GetIsUberAmmoActive(self))
+    {
+        return;
+    }
+    super.ConsumeAmmo(FireModeNum);
+}
+
 defaultproperties
 {
     PackageKey="HRG_IncendiaryRifle"
@@ -55,7 +67,6 @@ defaultproperties
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_AssaultRifle_HRGIncendiaryRifle.MeleeHelper'
     AssociatedPerkClasses=/* Array type was not detected. */
-    WeaponUpgrades=/* Array type was not detected. */
     WeaponProjectiles=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */

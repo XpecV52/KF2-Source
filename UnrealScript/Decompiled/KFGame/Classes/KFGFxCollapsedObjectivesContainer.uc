@@ -39,27 +39,31 @@ function PopulateData()
         {
             Class'KFGFxDailyObjectivesContainer'.static.MakeDailyDataObject(KFPC.GetDailyObjective(I), I, KFPC, DataObject);
             if(DataObject == none)
-            {
-                goto J0x184;
+            {                
             }
-            DataProvider.SetElementObject(ItemIndex, DataObject);
+            else
+            {
+                DataProvider.SetElementObject(ItemIndex, DataObject);
+                ++ ItemIndex;
+            }
         }
-        ++ ItemIndex;
-        J0x184:
-
         ++ I;
         goto J0x82;
     }
     if(KFPC.IsA('KFPlayerController_WeeklySurvival') || Class'WorldInfo'.static.IsMenuLevel())
     {
-        DataProvider.SetElementObject(ItemIndex, GetWeeklyDataObject());
-        ++ ItemIndex;
+        DataObject = GetWeeklyDataObject();
+        if(DataObject != none)
+        {
+            DataProvider.SetElementObject(ItemIndex, DataObject);
+            ++ ItemIndex;
+        }
     }
     SpecialEventClass = Class'KFGFxMenu_StartGame'.static.GetSpecialEventClass(Class'KFGameEngine'.static.GetSeasonalEventID());
     if((SpecialEventClass != none) && SpecialEventClass != Class'KFGFxSpecialEventObjectivesContainer')
     {
         I = 0;
-        J0x292:
+        J0x2B4:
 
         if(I < SpecialEventClass.default.SpecialEventObjectiveInfoList.Length)
         {
@@ -78,7 +82,7 @@ function PopulateData()
             DataProvider.SetElementObject(ItemIndex, DataObject);
             ++ ItemIndex;
             ++ I;
-            goto J0x292;
+            goto J0x2B4;
         }
     }
     SetObject("objectives", DataProvider);

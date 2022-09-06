@@ -9,7 +9,6 @@ class KFProj_Bolt_CompoundBowSharp extends KFProj_RicochetStickBullet
     hidecategories(Navigation);
 
 var repnotify int ChargeLevel;
-var float ChargeTrailPerLevel;
 
 replication
 {
@@ -41,15 +40,41 @@ simulated function PostBeginPlay()
     super(KFProjectile).PostBeginPlay();
 }
 
+simulated function float GetChargeLevelTrail()
+{
+    if(ChargeLevel >= 2)
+    {
+        if(WorldInfo.NetMode == NM_Client)
+        {
+            return 1;
+        }
+        return 0.73;
+    }
+    if(ChargeLevel == 1)
+    {
+        if(WorldInfo.NetMode == NM_Client)
+        {
+            return 0.825;
+        }
+        return 0.365;
+    }
+    if(WorldInfo.NetMode == NM_Client)
+    {
+        return 0.66;
+    }
+    return 0;
+}
+
 simulated function SpawnFlightEffects()
 {
-    local float ChargeLevelTrail;
-
+    if(ChargeLevel < 0)
+    {
+        return;
+    }
     super.SpawnFlightEffects();
     if(ProjEffects != none)
     {
-        ChargeLevelTrail = float(ChargeLevel) * ChargeTrailPerLevel;
-        ProjEffects.SetVectorParameter('ChargeLevelTrail', ChargeLevelTrail * vect(1, 1, 1));
+        ProjEffects.SetVectorParameter('ChargeLevelTrail', (GetChargeLevelTrail()) * vect(1, 1, 1));
     }
 }
 
@@ -62,7 +87,6 @@ simulated function SyncOriginalLocation()
 defaultproperties
 {
     ChargeLevel=-1
-    ChargeTrailPerLevel=0.5
     WeaponClassName=KFWeap_Bow_CompoundBow
     AmmoPickupSound=AkEvent'WW_WEP_SA_Crossbow.Play_Crossbow_Bolt_Pickup'
     ProjPickupTemplate=ParticleSystem'WEP_Crossbow_EMIT.FX_Crossbow_Projectile_Pickup'

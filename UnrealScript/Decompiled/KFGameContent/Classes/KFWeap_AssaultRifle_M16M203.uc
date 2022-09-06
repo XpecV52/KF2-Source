@@ -38,6 +38,48 @@ simulated function AltFireMode()
     StartFire(1);
 }
 
+function DropFrom(Vector StartLocation, Vector StartVelocity)
+{
+    local DroppedPickup P;
+
+    StartLocation.Z += (Instigator.BaseEyeHeight / float(2));
+    if(!CanThrow())
+    {
+        return;
+    }
+    if((DroppedPickupClass == none) || DroppedPickupMesh == none)
+    {
+        Destroy();
+        return;
+    }
+    P = Spawn(DroppedPickupClass,,, StartLocation,,, true);
+    if(P == none)
+    {
+        PlayerController(Instigator.Controller).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 21);
+        return;
+    }
+    if((Instigator != none) && Instigator.InvManager != none)
+    {
+        Instigator.InvManager.RemoveFromInventory(self);
+        if(Instigator.IsAliveAndWell() && !Instigator.InvManager.bPendingDelete)
+        {
+            if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
+            {
+                KFGameInfo(WorldInfo.Game).DialogManager.PlayDropWeaponDialog(KFPawn(Instigator));
+            }
+        }
+    }
+    if((Role == ROLE_Authority) && !Instigator.IsLocallyControlled())
+    {
+        SpareAmmoCount[1] = ServerTotalAltAmmo;
+        AmmoCount[1] = AmmoCount[1];        
+    }
+    SetupDroppedPickup(P, StartVelocity);
+    Instigator = none;
+    GotoState('None');
+    AIController = none;
+}
+
 function InitializeAmmo()
 {
     local KFPerk CurrentPerk;

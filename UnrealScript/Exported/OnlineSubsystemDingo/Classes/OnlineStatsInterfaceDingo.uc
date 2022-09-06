@@ -173,7 +173,7 @@ var OnlineSubsystemDingo OwningSubsystem;
 var config float ReadProfileAsyncTimeout;
 
 /** Track the current stats read so we don't allow more than one in-flight at a time */
-var native pointer CurrentStatsRead{class FDingoAsyncTaskReadOnlineStats};
+var init array<native pointer> CurrentStatsRead{class FDingoAsyncTaskReadOnlineStats};
 
 /** This is the list of delegates requesting notification when a stats read finishes */
 var array<delegate<OnReadOnlineStatsComplete> > ReadOnlineStatsCompleteDelegates;

@@ -95,16 +95,6 @@ function PlayImpactParticleEffect(
 		return;
 	}
 
-	// Don't spawn more than one effect per frame if on low detail
-	if (P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == DM_Low)
-	{
-		if (`TimeSinceEx(P, P.LastImpactParticleEffectTime) == 0)
-		{
-			return;
-		}
-		P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
-	}
-
 	if (ConfigureEmitter(P, HitLocation, HitDirection, HitZoneIndex, HitLocation, HitDirection, HitBoneName, EffectGroup))
 	{
 		SpawnEmitter(P, ParticleTemplate, HitBoneName, HitLocation, HitDirection);
@@ -119,13 +109,26 @@ function bool ConfigureEmitter(KFPawn P, vector InHitLocation, vector InHitDirec
 
 	if (ImpactFXArray[EffectGroup].bAttachParticle) // Spawn effect and attach to bone
 	{
+		// make sure enough time passes between spawning emitters
+		if (`TimeSinceEx(P, P.LastImpactParticleEffectTime) < ImpactParticleEffectInterval)
+		{
+			return false;
+		}
+
 		OutHitBoneName = (HitZoneIndex < P.HitZones.Length) ?
 			P.HitZones[HitZoneIndex].BoneName :
 			P.TorsoBoneName;
+		OutHitLocation = vect(0,0,0);
 	}
 	else if (ImpactFXArray[EffectGroup].bAttachToHitLocation) // Spawn effect and attach to bone with offset
 	{
 		if (HitZoneIndex >= P.HitZones.Length)
+		{
+			return false;
+		}
+
+		// make sure enough time passes between spawning emitters
+		if (`TimeSinceEx(P, P.LastImpactParticleEffectTime) < ImpactParticleEffectInterval)
 		{
 			return false;
 		}
@@ -136,6 +139,15 @@ function bool ConfigureEmitter(KFPawn P, vector InHitLocation, vector InHitDirec
 	}
 	else // Spawn effect, no attachment
 	{
+		// Don't spawn more than one effect per frame if on low detail
+		if( P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == DM_Low )
+		{
+			if( `TimeSinceEx(P, P.LastImpactParticleEffectTime) == 0 )
+			{
+				return false;
+			}
+		}
+
 		switch (EffectGroup)
 		{
 		case FXG_Bludgeon:
@@ -181,6 +193,11 @@ function ParticleSystemComponent SpawnEmitter(
 		{
 			PSC.SetLightingChannels(P.PawnLightingChannel);
 		}
+	}
+
+	if (PSC != none)
+	{
+		P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
 	}
 
 	return PSC;

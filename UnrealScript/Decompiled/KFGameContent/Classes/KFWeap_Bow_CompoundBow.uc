@@ -18,6 +18,7 @@ var float StateValueIncreaseTime;
 var transient float ChargeTime;
 var transient float MaxChargeLevel;
 var transient bool bIsFullyCharged;
+var transient bool bHasArrowBeenFired;
 var bool bReloadingFromEmptyMag;
 var byte StartFireModeAfterReload;
 var float DmgIncreasePerCharge;
@@ -242,6 +243,11 @@ simulated function StopLoopingFireEffects(byte FireModeNum)
     StopLoopingFireSound(FireModeNum);
 }
 
+simulated function CauseMuzzleFlash(byte FireModeNum)
+{
+    return;
+}
+
 simulated function StartFire(byte FireModeNum)
 {
     if((((FireModeNum == 0) || FireModeNum == 1) || FireModeNum == 4) || FireModeNum == 3)
@@ -293,6 +299,19 @@ simulated function Timer_StopFireEffects()
     }
     ClearFlashCount();
     ClearFlashLocation();
+}
+
+simulated function Timer_StartFireAfterReload()
+{
+    if(IsTimerActive('Timer_StopFireEffects'))
+    {
+        return;
+    }
+    ClearTimer('Timer_StartFireAfterReload');
+    if(StartFireModeAfterReload != 255)
+    {
+        StartFire(StartFireModeAfterReload);
+    }
 }
 
 simulated function int GetModifiedDamage(byte FireModeNum, optional Vector RayDir)
@@ -349,8 +368,21 @@ simulated function ANIMNOTIFY_LockBolt()
 
 simulated state Active
 {
+    simulated function BeginState(name PreviousStateName)
+    {
+        if(IsTimerActive('Timer_StopFireEffects'))
+        {
+            return;
+        }
+        super.BeginState(PreviousStateName);
+    }
+
     simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
     {
+        if(IsTimerActive('Timer_StopFireEffects'))
+        {
+            return;
+        }
         GotoState('ActiveIronSight');
     }
     stop;    
@@ -397,6 +429,7 @@ simulated state CompoundBowCharge extends WeaponSingleFireAndReload
         ChargeTime = 0;
         MaxChargeLevel = float(int(StateMaxChargeTime / StateValueIncreaseTime));
         bIsFullyCharged = false;
+        bHasArrowBeenFired = false;
         global.OnStartFire();
     }
 
@@ -429,6 +462,13 @@ simulated state CompoundBowCharge extends WeaponSingleFireAndReload
         ClearTimer('RefireCheckTimer');
         KFPawn(Instigator).bHasStartedFire = false;
         KFPawn(Instigator).bNetDirty = true;
+        if(bUsingSights)
+        {
+            if(Instigator.IsLocallyControlled())
+            {
+                SetIronSights(false);
+            }
+        }
     }
 
     simulated function PutDownWeapon()
@@ -441,6 +481,7 @@ simulated state CompoundBowCharge extends WeaponSingleFireAndReload
     simulated function HandleFinishedFiring()
     {
         FireAmmunition();
+        bHasArrowBeenFired = true;
         if(bPlayingLoopingFireAnim)
         {
             StopLoopingFireEffects(CurrentFireMode);
@@ -459,6 +500,14 @@ simulated state CompoundBowCharge extends WeaponSingleFireAndReload
 
     simulated function ZoomIn(bool bAnimateTransition, float ZoomTimeToGo)
     {
+        if(bHasArrowBeenFired || !bIsFullyCharged)
+        {
+            return;
+        }
+        if(IsTimerActive('Timer_StopFireEffects'))
+        {
+            return;
+        }
         ZoomTimeToGo = MySkelMesh.GetAnimLength(ShootToIronSightShootAnim);
         global.ZoomIn(true, ZoomTimeToGo);
         PlayAnimation(ShootToIronSightShootAnim, ZoomTime, false);
@@ -466,6 +515,10 @@ simulated state CompoundBowCharge extends WeaponSingleFireAndReload
 
     simulated function ZoomOut(bool bAnimateTransition, float ZoomTimeToGo)
     {
+        if(IsTimerActive('Timer_StopFireEffects'))
+        {
+            return;
+        }
         ZoomTimeToGo = MySkelMesh.GetAnimLength(IronSightShootToShootAnim);
         global.ZoomOut(true, ZoomTimeToGo);
         PlayAnimation(IronSightShootToShootAnim, ZoomTime, false);
@@ -494,7 +547,7 @@ simulated state Reloading
         super.ReloadComplete();
         if(StartFireModeAfterReload != 255)
         {
-            StartFire(StartFireModeAfterReload);
+            SetTimer(0.01, true, 'Timer_StartFireAfterReload');
         }
     }
     stop;    
@@ -502,8 +555,8 @@ simulated state Reloading
 
 defaultproperties
 {
-    MaxChargeTime=0.6333
-    ValueIncreaseTime=0.22
+    MaxChargeTime=0.50664
+    ValueIncreaseTime=0.2
     StartFireModeAfterReload=255
     DmgIncreasePerCharge=0.5
     ArrowSpeedPerCharge(0)=4000

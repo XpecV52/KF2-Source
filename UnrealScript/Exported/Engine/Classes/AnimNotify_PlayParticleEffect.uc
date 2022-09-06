@@ -33,6 +33,10 @@ var() bool bSkipIfOwnerIsHidden;
   */
 var() name BoneSocketModuleActorName;
 
+
+var() bool bUsePostUpdateWorkTickGroup;
+
+
 // (cpptext)
 // (cpptext)
 // (cpptext)

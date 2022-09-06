@@ -48,17 +48,21 @@ function PopulateData()
 				continue;
 			}
 			DataProvider.SetElementObject(ItemIndex, DataObject);
+			ItemIndex++;
 		}
 		
-		ItemIndex++;
 	}
 	//end DAILY
 	
 	//get weekly
 	if( KFPC.isA('KFPlayerController_WeeklySurvival') ||  class'WorldInfo'.static.IsMenuLevel())
 	{
-		DataProvider.SetElementObject(ItemIndex, GetWeeklyDataObject());
-		ItemIndex++;
+		DataObject = GetWeeklyDataObject();
+		if (DataObject != none)
+		{
+			DataProvider.SetElementObject(ItemIndex, DataObject);
+			ItemIndex++;
+		}
 	}
 
 	//get special event
@@ -83,12 +87,10 @@ function PopulateData()
 				DataObject.SetFloat("progress", ProgressCompletePercentage);
 				DataObject.SetString("textValue", CurrentProgressValue $"/" $MaxProgressValue);
 			}
-
 	        DataProvider.SetElementObject(ItemIndex, DataObject); //add it to the array
 	        ItemIndex++;
 		}
 	}
-
 	SetObject("objectives", DataProvider);
 }
 

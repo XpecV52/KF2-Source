@@ -4341,14 +4341,16 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 		}
 
 		// The the skill tracking know that we got our initial impact for this shot
-		if( KFPlayer != none && KFPawn_Monster(Impact.HitActor) != none )
+		if( KFPawn_Monster(Impact.HitActor) != none )
 		{
-            InitialPenetrationPower = GetInitialPenetrationPower(FiringMode);
-
-            if( InitialPenetrationPower <= 0 || OriginalPenetrationVal == InitialPenetrationPower )
-            {
-                KFPlayer.AddShotsHit(1);
-            }
+			if ( KFPlayer != none )
+			{
+				InitialPenetrationPower = GetInitialPenetrationPower(FiringMode);
+				if( InitialPenetrationPower <= 0 || OriginalPenetrationVal == InitialPenetrationPower )
+				{
+					KFPlayer.AddShotsHit(1);
+				}
+			}
 
 			if (GetAmmoType(FiringMode) == 0)
 			{

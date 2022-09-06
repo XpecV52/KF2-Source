@@ -83,14 +83,6 @@ function PlayImpactParticleEffect(KFPawn P, Vector HitLocation, Vector HitDirect
     {
         return;
     }
-    if(P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == 0)
-    {
-        if((P.WorldInfo.TimeSeconds - P.LastImpactParticleEffectTime) == float(0))
-        {
-            return;
-        }
-        P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
-    }
     if(ConfigureEmitter(P, HitLocation, HitDirection, HitZoneIndex, HitLocation, HitDirection, HitBoneName, EffectGroup))
     {
         SpawnEmitter(P, ParticleTemplate, HitBoneName, HitLocation, HitDirection);
@@ -104,7 +96,12 @@ function bool ConfigureEmitter(KFPawn P, Vector InHitLocation, Vector InHitDirec
 
     if(ImpactFXArray[EffectGroup].bAttachParticle)
     {
-        OutHitBoneName = ((HitZoneIndex < P.HitZones.Length) ? P.HitZones[HitZoneIndex].BoneName : P.TorsoBoneName);        
+        if((P.WorldInfo.TimeSeconds - P.LastImpactParticleEffectTime) < ImpactParticleEffectInterval)
+        {
+            return false;
+        }
+        OutHitBoneName = ((HitZoneIndex < P.HitZones.Length) ? P.HitZones[HitZoneIndex].BoneName : P.TorsoBoneName);
+        OutHitLocation = vect(0, 0, 0);        
     }
     else
     {
@@ -114,12 +111,23 @@ function bool ConfigureEmitter(KFPawn P, Vector InHitLocation, Vector InHitDirec
             {
                 return false;
             }
+            if((P.WorldInfo.TimeSeconds - P.LastImpactParticleEffectTime) < ImpactParticleEffectInterval)
+            {
+                return false;
+            }
             OutHitBoneName = P.HitZones[HitZoneIndex].BoneName;
             HitBoneIdx = P.Mesh.MatchRefBone(OutHitBoneName);
             OutHitLocation = InverseTransformVector(P.Mesh.GetBoneMatrix(HitBoneIdx), InHitLocation);            
         }
         else
         {
+            if(P.WorldInfo.bDropDetail || P.WorldInfo.GetDetailMode() == 0)
+            {
+                if((P.WorldInfo.TimeSeconds - P.LastImpactParticleEffectTime) == float(0))
+                {
+                    return false;
+                }
+            }
             switch(EffectGroup)
             {
                 case 1:
@@ -161,6 +169,10 @@ function ParticleSystemComponent SpawnEmitter(KFPawn P, ParticleSystem ParticleT
         {
             PSC.SetLightingChannels(P.PawnLightingChannel);
         }
+    }
+    if(PSC != none)
+    {
+        P.LastImpactParticleEffectTime = P.WorldInfo.TimeSeconds;
     }
     return PSC;
 }

@@ -2699,7 +2699,7 @@ SpecialEventObjectiveInfoList[0]=(TitleString="Nieudane eksperymenty",Descriptio
 SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowa robota",DescriptionString="Ukończ tygodniowe wydarzenia na mapie Biopomyłka")
 SpecialEventObjectiveInfoList[2]=(TitleString="Plama z mikserem",DescriptionString="Użyj krwawego miksera, aby zabić 20 zetów w Biopomyłce")
 SpecialEventObjectiveInfoList[3]=(TitleString="To pułapka!",DescriptionString="Użyj drzwi pułapek, aby zabić 20 zetów w Biopomyłce")
-SpecialEventObjectiveInfoList[4]=(TitleString="Zabójcze nawrót",DescriptionString="Pokonaj dowolnego bossa w Przetrwaniu na wysokim lub wyższym poziomie trudności na mapie „Biopomyłka”.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Zabójcze nawrót",DescriptionString="Pokonaj dowolnego bossa na poziomie poziomie przetrwania ciężkim lub wyższym na Biopomyłka")
 
 AllCompleteRewardDescriptionString="AA12 – podwójny zestaw dynamicznych skórek"
 

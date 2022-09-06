@@ -155,6 +155,7 @@ simulated function PostBeginPlay()
 
 simulated protected function PrepareExplosionTemplate()
 {
+	Super.PrepareExplosionTemplate();
 	// Swap the ExplosionTemplate's effect if necessary
 	if( bAltExploEffects )
 	{

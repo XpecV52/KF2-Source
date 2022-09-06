@@ -126,6 +126,7 @@ simulated function PostBeginPlay()
 
 protected simulated function PrepareExplosionTemplate()
 {
+    super(KFProj_BallisticExplosive).PrepareExplosionTemplate();
     if(bAltExploEffects)
     {
         ExplosionTemplate.ExplosionEffects = AltExploEffects;

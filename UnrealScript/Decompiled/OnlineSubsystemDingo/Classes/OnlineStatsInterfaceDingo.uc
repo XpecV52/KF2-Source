@@ -165,7 +165,7 @@ struct native XboxLiveContextPlayerData
 
 var onlinesubsystemdingo OwningSubsystem;
 var config float ReadProfileAsyncTimeout;
-var native Pointer CurrentStatsRead;
+var init native array<init Pointer> CurrentStatsRead;
 var array< delegate<OnReadOnlineStatsComplete> > ReadOnlineStatsCompleteDelegates;
 var bool EventsRegistered;
 var native map<0, 0> PlayerXboxLiveContextMap;

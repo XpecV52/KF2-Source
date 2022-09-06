@@ -21,7 +21,7 @@ defaultproperties
 	// How often, in seconds, we should apply burn
 	Interval=0.5
 	// How long the ground fire should stick around
-	MaxTime=5.0
+	MaxTime=10.0
 
 	LoopingParticleEffect=ParticleSystem'WEP_3P_Molotov_EMIT.FX_Molotov_ground_fire_01'
 

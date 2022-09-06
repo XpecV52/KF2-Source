@@ -15,7 +15,6 @@ class KFProj_Flame_HRGIncendiaryRifle extends KFProj_MolotovSplash;
 
 defaultproperties
 {
-   MaxTimeFlarotov=5.000000
    Begin Object Class=KFGameExplosion Name=ExploTemplate0 Archetype=KFGameExplosion'kfgamecontent.Default__KFProj_MolotovSplash:ExploTemplate0'
       ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_GroundFire'
       bDirectionalExplosion=True

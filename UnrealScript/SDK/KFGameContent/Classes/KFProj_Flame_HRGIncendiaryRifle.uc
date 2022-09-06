@@ -13,8 +13,8 @@ class KFProj_Flame_HRGIncendiaryRifle extends KFProj_MolotovSplash;
 
 defaultproperties
 {
-	// Let the flames FX to last only for 5 secs
-	MaxTimeFlarotov=5
+	// Let the flames FX to last only for 10 secs
+	MaxTimeFlarotov=10
 	
     Begin Object Name=ExploTemplate0
 		Damage=4

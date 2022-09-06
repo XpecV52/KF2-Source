@@ -3108,12 +3108,15 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
                 }
             }
         }
-        if((KFPlayer != none) && KFPawn_Monster(Impact.HitActor) != none)
+        if(KFPawn_Monster(Impact.HitActor) != none)
         {
-            InitialPenetrationPower = GetInitialPenetrationPower(FiringMode);
-            if((InitialPenetrationPower <= float(0)) || OriginalPenetrationVal == InitialPenetrationPower)
+            if(KFPlayer != none)
             {
-                KFPlayer.AddShotsHit(1);
+                InitialPenetrationPower = GetInitialPenetrationPower(FiringMode);
+                if((InitialPenetrationPower <= float(0)) || OriginalPenetrationVal == InitialPenetrationPower)
+                {
+                    KFPlayer.AddShotsHit(1);
+                }
             }
             if((GetAmmoType(FiringMode)) == 0)
             {

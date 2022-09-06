@@ -8,14 +8,17 @@
 class KFWeapAttach_CompoundBow extends KFWeaponAttachment
     hidecategories(Navigation,Object,Movement,Attachment,Collision,Physics,Advanced,Debug,Mobile);
 
+const WeaponIdleAnim = 'Idle_master';
+const WeaponIronIdleAnim = 'Idle_Iron_V1';
 const WeaponFireLoopStartAnim = 'ShootLoop_Start';
 const WeaponFireLoopAnim = 'ShootLoop';
+const WeaponFireLoopIronAnim = 'ShootLoop_Sight';
 const WeaponFireEndLoopAnim = 'ShootLoop_End';
+const CH_WeapondleAnim = 'Idle_CH_V1';
 const CH_WeaponFireStartAnim = 'ShootLoop_Start_CH';
 const CH_WeaponFireLoopAnim = 'ShootLoop_CH';
+const CH_WeaponFireLoopIronAnim = 'ShootLoop_Sight_CH';
 const CH_WeaponFireEndLoopAnim = 'ShootLoop_End_CH';
-const WeaponIronIdleAnim = 'Idle_Iron_V1';
-const CH_WeapondleAnim = 'Idle_CH_V1';
 const ArrowSocketName = 'RW_Weapon';
 
 /** The static mesh for arrow */
@@ -23,23 +26,23 @@ var() export editinline StaticMeshComponent ArrowSMC;
 var ParticleSystem CryoProjectileEffectOn;
 var ParticleSystem CryoProjectileEffectOff;
 var() export editinline ParticleSystemComponent CryoProjectilePSC;
-var bool bEnableInterruptWeaponAnim;
 var bool bCharging;
 
 simulated function StartFire()
 {
-    local KFPawn P;
+    local KFPawn_Human P;
+    local name WeaponLoopAnimName;
 
-    P = KFPawn(Owner);
+    P = KFPawn_Human(Owner);
     bCharging = true;
-    bEnableInterruptWeaponAnim = false;
+    WeaponLoopAnimName = GetWeaponFireLoopAnim(P);
     if(P.bIsCrouched)
     {
-        StartLoopingAnim(P, 'None', 'ShootLoop_Start_CH', 'None', true);        
+        StartLoopingAnim(P, WeaponLoopAnimName, 'ShootLoop_Start_CH', 'None', true);        
     }
     else
     {
-        StartLoopingAnim(P, 'None', 'ShootLoop_Start', 'None', true);
+        StartLoopingAnim(P, WeaponLoopAnimName, 'ShootLoop_Start', 'None', true);
     }
 }
 
@@ -174,14 +177,6 @@ simulated function SetArrowVisbility(bool bVisible)
     }
 }
 
-simulated function InterruptWeaponAnim()
-{
-    if(bEnableInterruptWeaponAnim)
-    {
-        super.InterruptWeaponAnim();
-    }
-}
-
 simulated function StartPawnCrouch()
 {
     if(KFPawn_Human(Owner) != none)
@@ -213,40 +208,7 @@ simulated function SetWeaponAltFireMode(bool bUsingAltFireMode)
 
 simulated function ResetAnimationState(KFPawn_Human P)
 {
-    local float Duration;
-
-    if(bCharging)
-    {
-        if(P.bIsCrouched)
-        {
-            PlayCharacterMeshAnim(P, 'ShootLoop_CH', true, true);            
-        }
-        else
-        {
-            PlayCharacterMeshAnim(P, 'ShootLoop', true, true);
-        }        
-    }
-    else
-    {
-        if(P.bUsingIronSights)
-        {
-            Duration = WeapMesh.GetAnimLength('Idle_Iron_V1');
-            WeapMesh.PlayAnim('Idle_Iron_V1', Duration / ThirdPersonAnimRate, true, true);            
-        }
-        else
-        {
-            if(P.bIsCrouched)
-            {
-                Duration = WeapMesh.GetAnimLength('Idle_CH_V1');
-                WeapMesh.PlayAnim('Idle_CH_V1', Duration / ThirdPersonAnimRate, true, true);                
-            }
-            else
-            {
-                bEnableInterruptWeaponAnim = true;
-                InterruptWeaponAnim();
-            }
-        }
-    }
+    PlayCharacterMeshAnim(P, GetCharacterAnimationName(P), true, true);
 }
 
 simulated function ToggleCryoFX(bool bEnable)
@@ -265,6 +227,44 @@ simulated function ToggleCryoFX(bool bEnable)
     }
 }
 
+simulated function name GetWeaponFireLoopAnim(KFPawn_Human P)
+{
+    if(P.bIsCrouched && P.bUsingIronSights)
+    {
+        return 'ShootLoop_Sight_CH';
+    }
+    if(P.bIsCrouched)
+    {
+        return 'ShootLoop_CH';
+    }
+    if(P.bUsingIronSights)
+    {
+        return 'ShootLoop_Sight';
+    }
+    return 'ShootLoop';
+}
+
+simulated function name GetCharacterAnimationName(KFPawn_Human P)
+{
+    if(bCharging)
+    {
+        return GetWeaponFireLoopAnim(P);
+    }
+    if(P.bUsingIronSights && P.bIsCrouched)
+    {
+        return 'ShootLoop_Sight_CH';
+    }
+    if(P.bUsingIronSights)
+    {
+        return 'Idle_Iron_V1';
+    }
+    if(P.bIsCrouched)
+    {
+        return 'Idle_CH_V1';
+    }
+    return 'Idle_master';
+}
+
 simulated function AttachTo(KFPawn P)
 {
     local byte WeaponAnimSetIdx;
@@ -273,6 +273,7 @@ simulated function AttachTo(KFPawn P)
     {
         WeapMesh.SetShadowParent(P.Mesh);
         P.Mesh.AttachComponent(WeapMesh, 'LW_Weapon');
+        WeapMesh.HideBoneByName('RW_Weapon', 0);
     }
     if(CharacterAnimSet != none)
     {
@@ -332,23 +333,6 @@ event SetWeaponSkin(int ItemId, optional bool bFinishedLoading)
             ArrowSMC.SetMaterial(0, SkinMICs[0]);
         }
     }
-}
-
-simulated state LoopingWeaponAction
-{
-    simulated function PlayLoopAnim()
-    {
-        if(Instigator.bIsCrouched)
-        {
-            LoopingAnim = 'ShootLoop_CH';            
-        }
-        else
-        {
-            LoopingAnim = 'ShootLoop';
-        }
-        super.PlayLoopAnim();
-    }
-    stop;    
 }
 
 defaultproperties

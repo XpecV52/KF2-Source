@@ -10,7 +10,6 @@ class KFProj_Flame_HRGIncendiaryRifle extends KFProj_MolotovSplash
 
 defaultproperties
 {
-    MaxTimeFlarotov=5
     begin object name=ExploTemplate0 class=KFGameExplosion
         Damage=4
         MyDamageType=Class'KFDT_Fire_Ground_HRGIncendiaryRifle'

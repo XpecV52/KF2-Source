@@ -41,6 +41,29 @@ simulated function ModifyMagSizeAndNumber(out byte InMagazineCapacity, optional 
 	super.ModifyMagSizeAndNumber (InMagazineCapacity, FireMode, UpgradeIndex, CurrentPerk);
 }
 
+/**
+* @see Weapon::ConsumeAmmo
+*/
+simulated function ConsumeAmmo(byte FireModeNum)
+{
+	local KFPerk_Firebug FirebugPerk;
+
+`if(`notdefined(ShippingPC))
+    if (bInfiniteAmmo)
+    {
+        return;
+    }
+`endif
+
+    FirebugPerk = KFPerk_Firebug(GetPerk());
+    if (FirebugPerk != none && FirebugPerk.GetIsUberAmmoActive(self)) //check for pyro maniac
+    {
+        return;
+    }
+	
+	super.ConsumeAmmo(FireModeNum);
+}
+
 defaultproperties
 {
 	
@@ -106,5 +129,5 @@ defaultproperties
 
 	// Weapon Upgrade
 	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.2f), (Stat=EWUS_Damage1, Scale=1.2f), (Stat=EWUS_Weight, Add=1)))
-	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Damage1, Scale=1.4f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f), (Stat=EWUS_Damage1, Scale=1.4f), (Stat=EWUS_Weight, Add=2)))
 }
