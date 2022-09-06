@@ -669,20 +669,20 @@ defaultproperties
    XPValues(1)=1694.000000
    XPValues(2)=1790.000000
    XPValues(3)=1843.000000
-   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.500000))
-   DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.500000))
-   DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.750000))
-   DamageTypeModifiers(16)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.750000))
-   DamageTypeModifiers(17)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.750000))
-   DamageTypeModifiers(18)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.500000))
-   DamageTypeModifiers(19)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.600000))
-   DamageTypeModifiers(20)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.300000))
-   DamageTypeModifiers(21)=(DamageType=Class'KFGame.KFDT_Microwave',DamageScale=(0.900000))
-   DamageTypeModifiers(22)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.800000))
-   DamageTypeModifiers(23)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.750000))
-   DamageTypeModifiers(24)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.250000))
-   DamageTypeModifiers(25)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(0.600000))
-   DamageTypeModifiers(26)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGTeslauncher',DamageScale=(0.700000))
+   DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.500000))
+   DamageTypeModifiers(16)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.500000))
+   DamageTypeModifiers(17)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.750000))
+   DamageTypeModifiers(18)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.750000))
+   DamageTypeModifiers(19)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.750000))
+   DamageTypeModifiers(20)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.500000))
+   DamageTypeModifiers(21)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.600000))
+   DamageTypeModifiers(22)=(DamageType=Class'KFGame.KFDT_Fire',DamageScale=(0.300000))
+   DamageTypeModifiers(23)=(DamageType=Class'KFGame.KFDT_Microwave',DamageScale=(0.900000))
+   DamageTypeModifiers(24)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.800000))
+   DamageTypeModifiers(25)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.750000))
+   DamageTypeModifiers(26)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.250000))
+   DamageTypeModifiers(27)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(0.600000))
+   DamageTypeModifiers(28)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGTeslauncher',DamageScale=(0.700000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_FleshpoundKing'
    MinBlockFOV=0.200000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:FootstepCameraShake0'

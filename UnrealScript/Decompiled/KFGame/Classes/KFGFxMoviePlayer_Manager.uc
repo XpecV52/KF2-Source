@@ -208,6 +208,7 @@ var bool bSearchingForGame;
 var bool bCanCloseMenu;
 var bool bPlayerInLobby;
 var bool bSetGamma;
+var bool bCheckConnectionOnFirstLaunch;
 var SDelayedPriorityMessage DelayedPriorityMessage;
 var float LastForceCloseTime;
 var float AllowMenusOpenAfterForceCloseTime;
@@ -283,6 +284,7 @@ function Init(optional LocalPlayer LocPlay)
     Class'KFUIDataStore_GameResource'.static.InitializeProviders();
     HUD = KFHUDBase(GetPC().myHUD);
     super.Init(LocPlay);
+    bCheckConnectionOnFirstLaunch = true;
     if(OnlineSub == none)
     {
         OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
@@ -333,6 +335,7 @@ function LaunchMenus(optional bool bForceSkipLobby)
     local KFPlayerController KFPC;
     local bool bShowMenuBg;
     local TextureMovie BGTexture;
+    local OnlineSubsystem MyOnlineSub;
 
     GVC = KFGameViewportClient(GetGameViewportClient());
     KFPC = KFPlayerController(GetPC());
@@ -390,7 +393,19 @@ function LaunchMenus(optional bool bForceSkipLobby)
         if(GVC.bNeedDisconnectMessage)
         {
             Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'DelayedShowDisconnectMessage', self);
-            GVC.bNeedDisconnectMessage = false;
+            GVC.bNeedDisconnectMessage = false;            
+        }
+        else
+        {
+            if(Class'WorldInfo'.static.IsConsoleBuild(9) && bCheckConnectionOnFirstLaunch)
+            {
+                bCheckConnectionOnFirstLaunch = false;
+                MyOnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+                if((MyOnlineSub != none) && MyOnlineSub.SystemInterface.GetCurrentConnectionStatus() != 1)
+                {
+                    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'DelayedShowStartDisconnectMessage', self);
+                }
+            }
         }
         if(GVC.bHandlePlayTogether)
         {
@@ -592,6 +607,18 @@ function DelayedShowDisconnectMessage()
     else
     {
         DelayedOpenPopup(2, 6, Localize("Notifications", "ConnectionLostTitle", "KFGameConsole"), Localize("Notifications", ((Class'WorldInfo'.static.IsConsoleBuild(9)) ? "ConnectionLostMessageLive" : "ConnectionLostMessage"), "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
+    }
+}
+
+function DelayedShowStartDisconnectMessage()
+{
+    if(Class'KFGameEngine'.static.IsFullScreenMoviePlaying())
+    {
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'DelayedShowStartDisconnectMessage', self);        
+    }
+    else
+    {
+        DelayedOpenPopup(2, 6, Localize("Notifications", "NotConnectedTitle", "KFGameConsole"), Localize("Notifications", "NotConnectedMessage", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
     }
 }
 

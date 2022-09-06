@@ -10,7 +10,6 @@ class KFProj_Nail_Blunderbuss extends KFProj_Nail_Nailgun
 
 defaultproperties
 {
-   BouncesLeft=1
    RicochetEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Light_bullet_impact'
    ProjFlightTemplate=ParticleSystem'WEP_Blunderbuss_EMIT.FX_Blunderbuss_Shard_Tracer'
    ProjFlightTemplateZedTime=ParticleSystem'WEP_Blunderbuss_EMIT.FX_Blunderbuss_Shard_Tracer_ZEDTime'

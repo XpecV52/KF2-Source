@@ -59,19 +59,18 @@ simulated event PreBeginPlay()
 	}
 }
 
+/** Healing charge doesn't count as ammo for purposes of inventory management (e.g. switching) */
 simulated function bool HasAnyAmmo()
 {
-
-	if (HasAmmo(CUSTOM_FIREMODE))
+	// Special ammo is stored in the default firemode (heal darts are separate)
+	if (HasSpareAmmo() || AmmoCount[DEFAULT_FIREMODE] >= AmmoCost[CUSTOM_FIREMODE])
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
 
+	return false;
 }
+
 
 simulated event bool HasAmmo(byte FireModeNum, optional int Amount)
 {
@@ -386,6 +385,28 @@ simulated state MeleeHeavyAttacking
 	}
 }
 
+simulated state Active
+{
+	/**
+	 * Called from Weapon:Active.BeginState when HasAnyAmmo (which is overridden above) returns false.
+	 */
+	simulated function WeaponEmpty()
+	{
+		local int i;
+
+		// Copied from Weapon:Active.BeginState where HasAnyAmmo returns true.
+		// Basically, pretend the weapon isn't empty in this case.
+		for (i=0; i<GetPendingFireLength(); i++)
+		{
+			if (PendingFire(i))
+			{
+				BeginFire(i);
+				break;
+			}
+		}
+	}
+}
+
 defaultproperties
 {
    ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'
@@ -412,11 +433,11 @@ defaultproperties
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
    FireModeIconPaths(6)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=6
-   MagazineCapacity(0)=1
+   MagazineCapacity(0)=5
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
    AmmoCost(6)=1
-   SpareAmmoCapacity(0)=1
+   SpareAmmoCapacity(0)=15
    WeaponFireSnd(6)=(DefaultCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_1P')
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
       bUseDirectionalMelee=True

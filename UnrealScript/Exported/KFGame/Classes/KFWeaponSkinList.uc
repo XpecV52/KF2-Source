@@ -1589,7 +1589,7 @@ defaultproperties
    Skins(1538)=(Id=8306,MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_MKB42H_MIC"),MIC_3P="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_MKB42H_MIC",MIC_Pickup="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_MKB42H_Pickup_MIC",WeaponDef=Class'KFGame.KFWeapDef_MKB42')
    Skins(1539)=(Id=8307,MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_Thompson_MIC"),MIC_3P="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Thompson_MIC",MIC_Pickup="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Thompson_Pickup_MIC",WeaponDef=Class'KFGame.KFWeapDef_Thompson')
    Skins(1540)=(Id=8308,MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_Double_Barrel_MIC"),MIC_3P="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Double_Barrel_MIC",MIC_Pickup="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Double_Barrel_Pickup_MIC",WeaponDef=Class'KFGame.KFWeapDef_DoubleBarrel')
-   Skins(1541)=(Id=8309,MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_M99_MIC"),MIC_3P="WEP_SkinSet31_MAT.Vault_Stars_3rdP_M99_MIC",MIC_Pickup="WEP_SkinSet31_MAT.Vault_Stars_3rdP_M99_Pickup_MIC",WeaponDef=Class'KFGame.KFWeapDef_M99')
+   Skins(1541)=(Id=8309,MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_M99_MIC"),MIC_3P="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_M99_MIC",MIC_Pickup="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_M99_Pickup_MIC",WeaponDef=Class'KFGame.KFWeapDef_M99')
    Name="Default__KFWeaponSkinList"
    ObjectArchetype=Object'Core.Default__Object'
 }

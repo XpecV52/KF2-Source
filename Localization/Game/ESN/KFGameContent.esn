@@ -671,7 +671,7 @@ ItemCategory="Criogénica"
 ItemDescription="•Modo de disparo: lanza carámbanos de hielo explosivos.\n•La mejor manera de romper el hielo."
 
 [KFWeap_Pistol_DualHRGWinterbite]
-ItemName="Mordisco invernal HRG dual"
+ItemName="2 Mordisco invernal HRG"
 ItemCategory="Criogénica"
 ItemDescription="•Modo de disparo: lanza carámbanos de hielo explosivos.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•El doble de hielo."
 
@@ -706,7 +706,7 @@ ItemDescription="•El modo principal usa solo un cañón.\n•El modo alternati
 [KFWeap_Pistol_Blunderbuss]
 ItemName="Trabucón"
 ItemCategory="Explosivos"
-ItemDescription="•El modo principal lanza una bala de cañón.\n•Mantén pulsado el botón principal durante 0,1 segundos para evitar que la bala explote. Suelta para que explote.\n•El modo alternativo dispara metralla de cañón.\n•¡La pata de palo y el loro se venden por separado!"
+ItemDescription="•El modo principal lanza una bala de cañón.\n•Mantén pulsado el botón principal para evitar que la bala explote. Suelta para que explote.\n•El modo alternativo dispara metralla de cañón.\n•¡La pata de palo y el loro se venden por separado!"
 SharedUnlockSource="Paquete de armas Trabucón"
 
 [KFWeap_Pistol_G18C]

@@ -57,7 +57,7 @@ simulated event Tick( float DeltaTime )
 defaultproperties
 {
    SeekStrength=928000.000000
-   ArmDistSquared=20000.000000
+   ArmDistSquared=110000.000000
    ProjDudTemplate=ParticleSystem'WEP_SeekerSix_EMIT.FX_SeekerSix_Projectile_Dud'
    GrenadeBounceEffectInfo=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Projectile_Impacts'
    bWarnAIWhenFired=True

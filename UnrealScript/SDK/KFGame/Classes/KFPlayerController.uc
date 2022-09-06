@@ -1668,7 +1668,8 @@ simulated function HandleNetworkError( bool bConnectionLost )
 	local string ErrorMessage;
 
 	GVC = KFGameViewportClient(MyGFxManager.GetGameViewportClient());
-
+	
+	`log("KFPlayerController.uc --- HandleNetworkError --- bConnectionLost?"@bConnectionLost);
 	if( GVC.bSeenIIS )
 	{
 		OnlineSub.GameInterface.DestroyOnlineGame('Game');
@@ -1687,7 +1688,7 @@ simulated function HandleNetworkError( bool bConnectionLost )
 				{
 					GVC.bNeedSignoutMessage = true;
 				}
-
+				
 				ConsoleCommand("open KFMainMenu");
 			}
 		}
@@ -10131,7 +10132,8 @@ function OnOSSLoginComplete( byte LocalUserNum, bool bWasSuccessful, EOnlineServ
 	OnlineSub.PlayerInterface.ClearLoginCompleteDelegate( LocalUserNum, OnOSSLoginComplete );
 	PlayerReplicationInfo.PlayerName = LocalPlayer(Player).GetNickname();
 	PlayerReplicationInfo.UniqueId = LocalPlayer(Player).GetUniqueNetId();
-
+	
+	`log("KFPlayerController.uc --- OnOSSLoginComplete --- ErrorCode == OSCS_Connected"@ErrorCode);
 	if( ErrorCode == OSCS_Connected )
 	{
 		if( WorldInfo.IsConsoleBuild( CONSOLE_Orbis ) )
@@ -10220,6 +10222,14 @@ function OnOSSLoginComplete( byte LocalUserNum, bool bWasSuccessful, EOnlineServ
 		}
 
 		MyGFxManager.DelayedOpenPopup(EConfirmation, EDPPID_Misc, Localize( "KFGFxMenu_IIS", "NoOnlinePlay", "KFGameConsole" ), Localize( "KFGFxMenu_IIS", "PatchAvailable", "KFGameConsole" ), class'KFCommon_LocalizedStrings'.default.OKString );
+	}
+	else if( WorldInfo.IsConsoleBuild( CONSOLE_Durango ) && ErrorCode != OSCS_Connected )
+	{
+		OnLoginCompleted( !bLoggingInForOnlinePlay );
+		MyGFxManager.DelayedOpenPopup(ENotification, EDPPID_Misc,
+			Localize("Notifications", "NotConnectedTitle",   "KFGameConsole"),
+			Localize("Notifications", bLoggingInForOnlinePlay ? "NotConnectedMessage" : "NotConnectedForOnlinePlay", "KFGameConsole"),
+		class'KFCommon_LocalizedStrings'.default.OKString);
 	}
 	// Unhandled error. Shouldn't ever hit this, but its there to warn us in case if does happen
 	else if( ErrorCode != OSCS_Connected )

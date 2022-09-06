@@ -706,7 +706,7 @@ ItemDescription="•主要攻击只射击一发。\n•备用射击可以一次�
 [KFWeap_Pistol_Blunderbuss]
 ItemName="雷筒"
 ItemCategory="炸弹"
-ItemDescription="•主要射击发射一枚炮弹。\n•长按主要射击 0.1 秒可令炮弹不致爆炸。炮弹在松开时爆炸。\n•备用射击可发射炮弹榴霰弹。\n•木腿和鹦鹉单独销售！"
+ItemDescription="•主要射击发射一枚炮弹。\n•长按主要射击 可令炮弹不致爆炸。炮弹在松开时爆炸。\n•备用射击可发射炮弹榴霰弹。\n•木腿和鹦鹉单独销售！"
 SharedUnlockSource="雷筒武器包"
 
 [KFWeap_Pistol_G18C]

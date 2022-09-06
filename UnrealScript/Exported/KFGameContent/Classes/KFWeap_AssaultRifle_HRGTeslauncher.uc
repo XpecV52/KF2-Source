@@ -285,14 +285,14 @@ defaultproperties
    FirstPersonAnimSetNames(0)="WEP_1P_HRG_Teslauncher_ANIM.Wep_1stP_HRG_Teslauncher_Anim"
    PickupMeshName="WEP_3P_HRG_Teslauncher_MESH.Wep_3rdP_Medic_GrenadeLauncher_Pickup"
    AttachmentArchetypeName="WEP_HRG_Teslauncher_ARCH.Wep_HRG_Teslauncher_3P"
-   MuzzleFlashTemplateName="WEP_HRG_Teslauncher_ARCH.Wep_HRG_Teslauncher_MuzzleFlash_3P"
+   MuzzleFlashTemplateName="WEP_HRG_Teslauncher_ARCH.Wep_HRG_Teslauncher_MuzzleFlash"
    InventorySize=7
    PenetrationPower(0)=5.000000
    PenetrationPower(1)=()
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HRG_Teslauncher_TEX.UI_WeaponSelect_HRG_Teslauncher'
    SpareAmmoCapacity(0)=240
-   SpareAmmoCapacity(1)=9
+   SpareAmmoCapacity(1)=7
    InitialSpareMags(0)=2
    InitialSpareMags(1)=1
    bLoopingFireSnd(0)=False
@@ -312,6 +312,7 @@ defaultproperties
    RecoilRate=0.110000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
+   WeaponUpgrades(1)=(Stats=((Scale=1.125000),(Scale=1.125000),))
    WeaponFireTypes(0)=EWFT_Projectile
    WeaponFireTypes(1)=()
    WeaponFireTypes(2)=()

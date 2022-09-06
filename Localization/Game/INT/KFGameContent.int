@@ -706,7 +706,7 @@ ItemDescription="•Primary fire uses a single barrel only.\n•Alt-fire shoots 
 [KFWeap_Pistol_Blunderbuss]
 ItemName="Blunderbuss"
 ItemCategory="Explosives"
-ItemDescription="•Primary fire launches a cannonball.\n•Hold primary fire for 0.1 seconds to keep cannonball from exploding. Explodes on release.\n•Alt-fire shoots cannonball shrapnel.\n•Pegleg and parrot sold separately!"
+ItemDescription="•Primary fire launches a cannonball.\n•Hold primary fire to keep cannonball from exploding. Explodes on release.\n•Alt-fire shoots cannonball shrapnel.\n•Pegleg and parrot sold separately!"
 SharedUnlockSource="Blunderbuss Weapon Bundle"
 
 [KFWeap_Pistol_G18C]

@@ -706,7 +706,7 @@ ItemDescription="•主要攻擊只射擊一發。\n•次要攻擊會一次射�
 [KFWeap_Pistol_Blunderbuss]
 ItemName="手銃"
 ItemCategory="炸藥"
-ItemDescription="•主要攻擊會發射砲彈。\n•按住主要攻擊0.1秒可讓砲彈不會爆炸，放開後則會爆炸。\n•次要攻擊會發射砲彈霰彈\n•木腿和鸚鵡單獨販售！"
+ItemDescription="•主要攻擊會發射砲彈。\n•按住主要攻擊可讓砲彈不會爆炸，放開後則會爆炸。\n•次要攻擊會發射砲彈霰彈\n•木腿和鸚鵡單獨販售！"
 SharedUnlockSource="手銃武器同捆包"
 
 [KFWeap_Pistol_G18C]

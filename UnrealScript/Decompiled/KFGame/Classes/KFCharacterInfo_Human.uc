@@ -285,6 +285,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
 {
     local int AttachmentIdx, CosmeticMeshIdx;
     local bool bMaskHeadMesh;
+    local int NumberOfCosmetics, NumberOfCosmeticsPostRemoval;
 
     super.SetCharacterMeshFromArch(KFP, KFPRI);
     if(KFPRI == none)
@@ -314,11 +315,30 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
             if((CosmeticMeshIdx != -1) && CosmeticMeshIdx != -1)
             {
+                ++ NumberOfCosmetics;
                 bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
                 SetAttachmentMeshAndSkin(CosmeticMeshIdx, KFPRI.RepCustomizationInfo.AttachmentSkinIndices[AttachmentIdx], KFP, KFPRI);
             }
             ++ AttachmentIdx;
             goto J0x260;
+        }
+        AttachmentIdx = 0;
+        J0x3A2:
+
+        if(AttachmentIdx < 3)
+        {
+            CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
+            if((CosmeticMeshIdx != -1) && CosmeticMeshIdx != -1)
+            {
+                ++ NumberOfCosmeticsPostRemoval;
+            }
+            ++ AttachmentIdx;
+            goto J0x3A2;
+        }
+        if(NumberOfCosmeticsPostRemoval != NumberOfCosmetics)
+        {
+            SetCharacterMeshFromArch(KFP, KFPRI);
+            return;
         }
         InitCharacterMICs(KFP, bMaskHeadMesh);
     }

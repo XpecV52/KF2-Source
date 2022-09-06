@@ -706,7 +706,7 @@ ItemDescription="•O tiro principal usa um cano.\n•Tiro alt. atira com os doi
 [KFWeap_Pistol_Blunderbuss]
 ItemName="Bacamarte"
 ItemCategory="Explosivos"
-ItemDescription="•O tiro principal dispara uma bala de canhão.\n•Segure o tiro principal por 0,1 segundo para impedir que a bala de canhão exploda. Explode ao soltar.\n•Tiro alt. dispara estilhaços de bala de canhão.\n•Perna de pau e papagaio vendidos separadamente!"
+ItemDescription="•O tiro principal dispara uma bala de canhão.\n•Segure o tiro principal para impedir que a bala de canhão exploda. Explode ao soltar.\n•Tiro alt. dispara estilhaços de bala de canhão.\n•Perna de pau e papagaio vendidos separadamente!"
 SharedUnlockSource="Conjunto de Armas de Bacamarte"
 
 [KFWeap_Pistol_G18C]

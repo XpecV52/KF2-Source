@@ -312,6 +312,7 @@ defaultproperties
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.250000))
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm',DamageScale=(0.650000))
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AR15',DamageScale=(0.400000))
+   DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGTeslauncher',DamageScale=(0.580000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Bloat'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'

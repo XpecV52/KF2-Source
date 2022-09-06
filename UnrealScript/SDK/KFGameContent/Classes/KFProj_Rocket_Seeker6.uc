@@ -62,7 +62,7 @@ defaultproperties
 	TossZ=0
 	GravityScale=1.0
     MomentumTransfer=50000.0f
-    ArmDistSquared=20000.0f // 110000.0f // 4 meters 150000.0
+	ArmDistSquared=110000.0f //20000.0f // 110000.0f // 4 meters 150000.0
     
     SeekStrength=928000.0f  // 128000.0f
 

@@ -111,7 +111,7 @@ defaultproperties
    PackageKey="G18C"
    FirstPersonMeshName="WEP_1P_G18C_MESH.Wep_1stP_G18C_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_G18C_ANIM.WEP_1st_G18C_Anim"
-   PickupMeshName="WEP_3P_Dual_G18C_MESH.Wep_3rdP_Dual_G18C_Pickup"
+   PickupMeshName="WEP_3P_G18C_MESH.Wep_G18C_Pickup"
    AttachmentArchetypeName="WEP_G18C_ARCH.Wep_G18C_3P"
    MuzzleFlashTemplateName="WEP_G18C_ARCH.Wep_G18C_MuzzleFlash"
    bHasIronSights=True
@@ -127,7 +127,7 @@ defaultproperties
    PenetrationPower(3)=0.000000
    PenetrationDamageReductionCurve(3)=(Points=(,(InVal=1.000000,OutVal=1.000000)))
    MeshFOV=96.000000
-   MeshIronSightFOV=77.000000
+   MeshIronSightFOV=55.000000
    PlayerIronSightFOV=77.000000
    IronSightPosition=(X=-3.000000,Y=0.000000,Z=0.000000)
    DOF_FG_FocalRadius=40.000000
@@ -151,8 +151,8 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Pistol_G18C:MeleeHelper_0'
-   maxRecoilPitch=220
-   minRecoilPitch=165
+   maxRecoilPitch=300
+   minRecoilPitch=225
    maxRecoilYaw=85
    minRecoilYaw=-85
    RecoilRate=0.045000
@@ -168,7 +168,7 @@ defaultproperties
    WalkingRecoilModifier=1.100000
    IronSightMeshFOVCompensationScale=1.650000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.250000),(Stat=EWUS_Damage1,Scale=1.250000),(Add=1)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.125000),(Stat=EWUS_Damage1,Scale=1.125000),(Add=1)))
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -182,8 +182,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.060000
    Spread(1)=0.015000
-   InstantHitDamage(0)=39.000000
-   InstantHitDamage(1)=39.000000
+   InstantHitDamage(0)=37.000000
+   InstantHitDamage(1)=37.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=25.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_G18C'

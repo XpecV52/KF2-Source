@@ -47,14 +47,11 @@ simulated event PreBeginPlay()
 
 simulated function bool HasAnyAmmo()
 {
-    if(HasAmmo(6))
+    if((HasSpareAmmo()) || AmmoCount[0] >= AmmoCost[6])
     {
-        return true;        
+        return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
 simulated event bool HasAmmo(byte FireModeNum, optional int Amount)
@@ -309,6 +306,31 @@ simulated state MeleeHeavyAttacking
     stop;    
 }
 
+simulated state Active
+{
+    simulated function WeaponEmpty()
+    {
+        local int I;
+
+        I = 0;
+        J0x0B:
+
+        if(I < GetPendingFireLength())
+        {
+            if(PendingFire(I))
+            {
+                BeginFire(byte(I));
+                goto J0x5F;
+            }
+            ++ I;
+            goto J0x0B;
+        }
+        J0x5F:
+
+    }
+    stop;    
+}
+
 defaultproperties
 {
     ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'
@@ -330,11 +352,11 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
-    MagazineCapacity=1
+    MagazineCapacity=5
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=1
+    SpareAmmoCapacity=15
     WeaponFireSnd=/* Array type was not detected. */
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         ChainSequence_F=/* Array type was not detected. */

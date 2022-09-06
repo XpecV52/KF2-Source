@@ -100,8 +100,8 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedScrake_Versus:MeleeHelper_0'
    DoshValue=260
    XPValues(0)=102.000000
-   DamageTypeModifiers(15)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.600000))
-   DamageTypeModifiers(16)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.500000))
+   DamageTypeModifiers(16)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.600000))
+   DamageTypeModifiers(17)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.500000))
    MoveListGamepadScheme(0)=SM_None
    MoveListGamepadScheme(1)=SM_PlayerZedMove_MMB
    MoveListGamepadScheme(2)=SM_PlayerZedMove_LMB

@@ -786,7 +786,7 @@ defaultproperties
    PerkSkills(0)=(Name="TacticalReload",StartingValue=0.250000,MaxValue=0.250000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_TacticalReload")
    PerkSkills(1)=(Name="HeavyWeaponsReload",StartingValue=2.500000,MaxValue=2.500000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_HeavyWeapons")
    PerkSkills(2)=(Name="FieldMedic",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_FieldMedic")
-   PerkSkills(3)=(Name="MeleeExpert",StartingValue=0.700000,MaxValue=0.750000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert")
+   PerkSkills(3)=(Name="MeleeExpert",StartingValue=0.750000,MaxValue=0.750000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert")
    PerkSkills(4)=(Name="AmmoVest",StartingValue=0.150000,MaxValue=0.150000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_AmmoVest")
    PerkSkills(5)=(Name="BigPockets",StartingValue=5.000000,MaxValue=5.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_BigPockets")
    PerkSkills(6)=(Name="ZedShrapnel",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel")

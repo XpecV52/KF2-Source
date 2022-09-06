@@ -9,6 +9,36 @@ class KFWeap_Pistol_DualG18 extends KFWeap_DualBase
     config(Game)
     hidecategories(Navigation,Advanced,Collision,Mobile,Movement,Object,Physics,Attachment,Debug);
 
+simulated event Vector GetMuzzleLoc()
+{
+    local Rotator ViewRotation;
+
+    if(bFireFromRightWeapon)
+    {
+        if(Instigator != none)
+        {
+            ViewRotation = Instigator.GetViewRotation();
+            if(KFPlayerController(Instigator.Controller) != none)
+            {
+                ViewRotation += KFPlayerController(Instigator.Controller).WeaponBufferRotation;
+            }
+            if(bUsingSights)
+            {
+                return Instigator.GetWeaponStartTraceLocation() + (FireOffset >> ViewRotation);                
+            }
+            else
+            {
+                return Instigator.GetPawnViewLocation() + (FireOffset >> ViewRotation);
+            }
+        }
+        return Location;        
+    }
+    else
+    {
+        return GetLeftMuzzleLoc();
+    }
+}
+
 simulated state WeaponFiring
 {
     simulated function BeginState(name PrevStateName)
@@ -81,13 +111,14 @@ defaultproperties
     InitialSpareMags=2
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
+    FireTweenTime=0.03
     WeaponFireSnd=/* Array type was not detected. */
     WeaponFireLoopEndSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=-15,Y=0,Z=0)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_DualG18.MeleeHelper'
-    maxRecoilPitch=220
-    minRecoilPitch=165
+    maxRecoilPitch=260
+    minRecoilPitch=200
     maxRecoilYaw=85
     minRecoilYaw=-85
     RecoilRate=0.045

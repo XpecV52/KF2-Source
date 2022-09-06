@@ -245,6 +245,8 @@ var bool bSetGamma;	// Set to true if we've already set the gamma on the first l
 //@HSL_MOD_END
 var OnlineSubsystem OnlineSub;
 
+var bool bCheckConnectionOnFirstLaunch;
+
 /** The playfab interface used for console */
 var PlayfabInterface PlayfabInter;
 
@@ -270,6 +272,8 @@ function Init(optional LocalPlayer LocPlay)
 	HUD = KFHUDBase(GetPC().myHUD);
 
 	super.Init( LocPlay );
+
+	bCheckConnectionOnFirstLaunch = true;
 
 	if(OnlineSub == none)
 	{
@@ -331,6 +335,7 @@ function LaunchMenus( optional bool bForceSkipLobby )
 	local KFPlayerController KFPC;
 	local bool bShowMenuBg;
 	local TextureMovie BGTexture;
+	local OnlineSubsystem MyOnlineSub;
 
 	GVC = KFGameViewportClient(GetGameViewportClient());
 	KFPC = KFPlayerController(GetPC());
@@ -384,7 +389,7 @@ function LaunchMenus( optional bool bForceSkipLobby )
 			WidgetBinding.WidgetClass = class'KFGFxOptionsMenu_Graphics';
 			WidgetBindings.AddItem(WidgetBinding);
 	}
-
+	
 	if (!bSkippedLobby)
 	{
 		LoadWidgets(WidgetPaths);
@@ -406,6 +411,16 @@ function LaunchMenus( optional bool bForceSkipLobby )
 			`TimerHelper.SetTimer(0.1f, false, 'DelayedShowDisconnectMessage', self);
 			GVC.bNeedDisconnectMessage = false;
 		}
+		else if(class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) && bCheckConnectionOnFirstLaunch)
+		{
+			bCheckConnectionOnFirstLaunch = false;
+			MyOnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
+			if(MyOnlineSub != None && MyOnlineSub.SystemInterface.GetCurrentConnectionStatus() != OSCS_Connected)
+			{
+				`TimerHelper.SetTimer(0.1f, false, 'DelayedShowStartDisconnectMessage', self);
+			}
+		}
+
 		if(GVC.bHandlePlayTogether)
 		{
 			KFPC.OnGameDestroyedForPlayTogetherComplete('Party', true);
@@ -640,6 +655,21 @@ function DelayedShowDisconnectMessage()
 	}
 }
 
+function DelayedShowStartDisconnectMessage()
+{
+	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying())
+	{
+		`TimerHelper.SetTimer(0.1f, false, 'DelayedShowStartDisconnectMessage', self);
+	}
+	else
+	{
+		DelayedOpenPopup(ENotification, EDPPID_JoinFailure,
+			Localize("Notifications", "NotConnectedTitle",   "KFGameConsole"),
+			Localize("Notifications", "NotConnectedMessage", "KFGameConsole"),
+			class'KFCommon_LocalizedStrings'.default.OKString);
+	}
+}
+
 //function DelayedOpenPopup( EPopUpType PopUpType, string TitleString, string DescriptionString,
 //	string LeftButtonString, optional int Priority = 0)
 function DelayedOpenPopup( EPopUpType PopUpType, int PopupPriority, string TitleString, string DescriptionString,
@@ -666,7 +696,7 @@ function DelayedOpenPopup( EPopUpType PopUpType, int PopupPriority, string Title
 	Popup.MiddleButtonDelegate = MiddleButtonDelegate;
 	Popup.OverridingSoundEffect = OverridingSoundEffect;
 	Popup.Priority = PopupPriority;
-
+	
 
 	// Special Case - RegionBest Popup replaces RegionWait popup
 	if(PopupPriority == EDPPID_RegionBest
@@ -700,20 +730,21 @@ function DelayedOpenPopup( EPopUpType PopUpType, int PopupPriority, string Title
 			return;
 		}
 	}
-
+	
 	// Empty case, simply insert and show
 	DelayedPopups.InsertItem(0, Popup);
 	`TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
+	
 }
 
 function ShowDelayedPopupMessage()
 {
-	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying() || (CurrentMenu == IISMenu && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis)) )
+	if(class'KFGameEngine'.static.IsFullScreenMoviePlaying() || (CurrentMenu == IISMenu && class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Orbis)))
 	{
 		`TimerHelper.SetTimer(0.1f, false, 'ShowDelayedPopupMessage', self);
 		return;
 	}
-
+	
 	if(DelayedPopups.Length > 0 && !DelayedPopups[DelayedPopups.Length - 1].bShown)
 	{
 		OpenPopup(	DelayedPopups[DelayedPopups.Length - 1].PopUpType,
@@ -1504,6 +1535,7 @@ private function OpenPopup( EPopUpType PopUpType, string TitleString, string Des
 	//}
 	//else
 	//@HSL_END
+	
 	if(PopupData[PopUpType].SWFPath != "")
 	{
 		UnloadCurrentPopup();

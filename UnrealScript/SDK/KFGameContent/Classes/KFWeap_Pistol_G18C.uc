@@ -112,7 +112,7 @@ defaultproperties
 
     // FOV [FFERRANDO NEEDS TO BE UPDATED TO G18]
 	MeshFOV=96
-	MeshIronSightFOV=77
+	MeshIronSightFOV=55 //77
     PlayerIronSightFOV=77
 
 	// Depth of field [FFERRANDO NEEDS TO BE UPDATED TO G18]
@@ -127,7 +127,7 @@ defaultproperties
 	PackageKey="G18C"
 	FirstPersonMeshName="WEP_1P_G18C_MESH.Wep_1stP_G18C_Rig"
 	FirstPersonAnimSetNames(0)="WEP_1P_G18C_ANIM.WEP_1st_G18C_Anim"
-	PickupMeshName="WEP_3P_Dual_G18C_MESH.Wep_3rdP_Dual_G18C_Pickup"
+	PickupMeshName="WEP_3P_G18C_MESH.Wep_G18C_Pickup"
 	AttachmentArchetypeName="WEP_G18C_ARCH.Wep_G18C_3P"
 	MuzzleFlashTemplateName="WEP_G18C_ARCH.Wep_G18C_MuzzleFlash"
 
@@ -142,8 +142,8 @@ defaultproperties
 	BonesToLockOnEmpty=(RW_Bolt)
 
 	// Recoil
-	maxRecoilPitch=220 //165 //150 //100
-	minRecoilPitch=165 //125 //112 //75
+	maxRecoilPitch=300 //220 //165 //150 //100
+	minRecoilPitch=225 //165 //125 //112 //75
 	maxRecoilYaw=85
 	minRecoilYaw=-85
 	RecoilRate=0.045
@@ -168,7 +168,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_G18C' //DEFAULT & ALT MODE TYPE DAMAGE
 	FireInterval(DEFAULT_FIREMODE)=+0.075 // 800 RPM //Single Default Firemode (Automatic) firerate
 	Spread(DEFAULT_FIREMODE)=0.06
-	InstantHitDamage(DEFAULT_FIREMODE)=39 //41 // DEFAULT & ALT MODE DAMAGE DAMAGE
+	InstantHitDamage(DEFAULT_FIREMODE)=37 //39 //41 // DEFAULT & ALT MODE DAMAGE DAMAGE
 	PenetrationPower(DEFAULT_FIREMODE)=0.0 //Default Firemode (Automatic) & Altfire Firemode (Single Fire) penetration
 	PenetrationDamageReductionCurve(DEFAULT_FIREMODE)=(Points=((InVal=0.f,OutVal=0.f),(InVal=1.f, OutVal=1.f))) //Default Firemode (Automatic) & Altfire Firemode (Single Fire) penetration
 
@@ -179,7 +179,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_G18c'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_G18c' //DEFAULT & ALT MODE TYPE DAMAGE
 	FireInterval(ALTFIRE_FIREMODE)=+0.175 // 343 RPM //Single Altfire Firemode (Single Fire) firerate
-	InstantHitDamage(ALTFIRE_FIREMODE)=39 //41 //DEFAULT & ALT MODE DAMAGE DAMAGE
+	InstantHitDamage(ALTFIRE_FIREMODE)=37 //39 //41 //DEFAULT & ALT MODE DAMAGE DAMAGE
 	Spread(ALTFIRE_FIREMODE)=0.015
 	PenetrationPower(ALTFIRE_FIREMODE)=0.0 //Default Firemode (Automatic) & Altfire Firemode (Single Fire) penetration
 	PenetrationDamageReductionCurve(ALTFIRE_FIREMODE)=(Points=((InVal=0.f,OutVal=0.f),(InVal=1.f, OutVal=1.f))) //Default Firemode (Automatic) & Altfire Firemode (Single Fire) penetration
@@ -241,7 +241,7 @@ defaultproperties
 	//WeaponUpgrades[4]=(IncrementDamage=1.8f,IncrementWeight=0) //2
 	//WeaponUpgrades[5]=(IncrementDamage=2.0f,IncrementWeight=0) //3
 	
-	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.25f), (Stat=EWUS_Damage1, Scale=1.25f), (Stat=EWUS_Weight, Add=1)))
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.125f), (Stat=EWUS_Damage1, Scale=1.125f), (Stat=EWUS_Weight, Add=1)))
 	//WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.25f), (Stat=EWUS_Weight, Add=1)))
 	//WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f)))
 	//WeaponUpgrades[3]=(Stats=((Stat=EWUS_Damage0, Scale=1.6f)))

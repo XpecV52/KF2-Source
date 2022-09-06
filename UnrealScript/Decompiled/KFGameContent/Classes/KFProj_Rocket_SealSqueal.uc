@@ -9,6 +9,32 @@ class KFProj_Rocket_SealSqueal extends KFProjectile
     hidecategories(Navigation);
 
 var float FuseTime;
+/** This is the effect indicator that is played for the current user */
+var(Projectile) ParticleSystem ProjIndicatorTemplate;
+var export editinline ParticleSystemComponent ProjIndicatorEffects;
+var bool IndicatorActive;
+
+simulated function TryActivateIndicator()
+{
+    if(!IndicatorActive && Instigator != none)
+    {
+        IndicatorActive = true;
+        if(((WorldInfo.NetMode == NM_Standalone) || Instigator.Role == ROLE_AutonomousProxy) || ((Instigator.Role == ROLE_Authority) && WorldInfo.NetMode == NM_ListenServer) && Instigator.IsLocallyControlled())
+        {
+            if(ProjIndicatorTemplate != none)
+            {
+                ProjIndicatorEffects = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ProjIndicatorTemplate);
+            }
+            if(ProjIndicatorEffects != none)
+            {
+                ProjIndicatorEffects.SetAbsolute(false, false, false);
+                ProjIndicatorEffects.SetLODLevel(((WorldInfo.bDropDetail) ? 1 : 0));
+                ProjIndicatorEffects.bUpdateComponentInTick = true;
+                AttachComponent(ProjIndicatorEffects);
+            }
+        }
+    }
+}
 
 simulated event PostBeginPlay()
 {
@@ -59,6 +85,7 @@ simulated event Tick(float DeltaTime)
     {
         SetRelativeRotation(rotator(Velocity));
     }
+    TryActivateIndicator();
 }
 
 function Detonate()
@@ -121,9 +148,19 @@ simulated function SyncOriginalLocation()
     }
 }
 
+protected simulated function StopSimulating()
+{
+    super.StopSimulating();
+    if(ProjIndicatorEffects != none)
+    {
+        ProjIndicatorEffects.DeactivateSystem();
+    }
+}
+
 defaultproperties
 {
     FuseTime=4
+    ProjIndicatorTemplate=ParticleSystem'WEP_Seal_Squeal_EMIT.FX_Harpoon_Projectile_Indicator'
     bSyncToOriginalLocation=true
     bSyncToThirdPersonMuzzleLocation=true
     bUseClientSideHitDetection=true

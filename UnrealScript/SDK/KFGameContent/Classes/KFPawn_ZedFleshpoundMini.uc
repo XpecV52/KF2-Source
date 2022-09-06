@@ -55,7 +55,9 @@ defaultproperties
     //DamageTypeModifiers.Add((DamageType=class'KFDamageType', 	DamageScale=(0.5))) // All others
 
     //special case
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MicrowaveRifle',             DamageScale=(0.8)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MicrowaveRifle',   DamageScale=(0.8)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_HRGTeslauncher',   DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_HRGTeslauncherDoT',     DamageScale=(0.5)))
 
         // for reference: Vulnerability=(default, head, legs, arms, special)
     IncapSettings(AF_Stun)=     (Vulnerability=(0.5, 0.55, 0.5, 0.0, 0.55),   Cooldown=10.0, Duration=1.55) //1.2

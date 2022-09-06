@@ -59,19 +59,18 @@ simulated event PreBeginPlay()
 	}
 }
 
+/** Healing charge doesn't count as ammo for purposes of inventory management (e.g. switching) */
 simulated function bool HasAnyAmmo()
 {
-
-	if (HasAmmo(CUSTOM_FIREMODE))
+	// Special ammo is stored in the default firemode (heal darts are separate)
+	if (HasSpareAmmo() || AmmoCount[DEFAULT_FIREMODE] >= AmmoCost[CUSTOM_FIREMODE])
 	{
 		return true;
 	}
-	else
-	{
-		return false;
-	}
 
+	return false;
 }
+
 
 simulated event bool HasAmmo(byte FireModeNum, optional int Amount)
 {
@@ -386,6 +385,28 @@ simulated state MeleeHeavyAttacking
 	}
 }
 
+simulated state Active
+{
+	/**
+	 * Called from Weapon:Active.BeginState when HasAnyAmmo (which is overridden above) returns false.
+	 */
+	simulated function WeaponEmpty()
+	{
+		local int i;
+
+		// Copied from Weapon:Active.BeginState where HasAnyAmmo returns true.
+		// Basically, pretend the weapon isn't empty in this case.
+		for (i=0; i<GetPendingFireLength(); i++)
+		{
+			if (PendingFire(i))
+			{
+				BeginFire(i);
+				break;
+			}
+		}
+	}
+}
+
 defaultproperties
 {
 	AssociatedPerkClasses(0)=class'KFPerk_Berserker'
@@ -452,8 +473,8 @@ defaultproperties
 	FiringStatesArray(RELOAD_FIREMODE)=Reloading
 
 	// Ammo
-	MagazineCapacity[0]=1
-	SpareAmmoCapacity[0]=1
+	MagazineCapacity[0]=5
+	SpareAmmoCapacity[0]=15
 	InitialSpareMags[0]=0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true

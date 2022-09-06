@@ -706,7 +706,7 @@ ItemDescription="•기본 사격은 단발 전용입니다.\n•대체 사격 �
 [KFWeap_Pistol_Blunderbuss]
 ItemName="나팔총"
 ItemCategory="폭발물"
-ItemDescription="•기본 사격은 캐논볼을 발사합니다.\n•기본 사격을 0.1초간 누르면 캐논볼이 폭발하지 않도록 할 수 있습니다. 캐논볼은 발사 시 폭발합니다.\n•대체 사격 시 캐논볼 파편을 발사합니다.\n•의족과 앵무새는 별도로 판매합니다!"
+ItemDescription="•기본 사격은 캐논볼을 발사합니다.\n•베이스 샷을 누르면 대포가 폭발하는 것을 막을 수 있습니다. 캐논볼은 발사 시 폭발합니다.\n•대체 사격 시 캐논볼 파편을 발사합니다.\n•의족과 앵무새는 별도로 판매합니다!"
 SharedUnlockSource="나팔총 무기 번들"
 
 [KFWeap_Pistol_G18C]

@@ -14,7 +14,7 @@ defaultproperties
     PackageKey="G18C"
     FirstPersonMeshName="WEP_1P_G18C_MESH.Wep_1stP_G18C_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
-    PickupMeshName="WEP_3P_Dual_G18C_MESH.Wep_3rdP_Dual_G18C_Pickup"
+    PickupMeshName="WEP_3P_G18C_MESH.Wep_G18C_Pickup"
     AttachmentArchetypeName="WEP_G18C_ARCH.Wep_G18C_3P"
     MuzzleFlashTemplateName="WEP_G18C_ARCH.Wep_G18C_MuzzleFlash"
     bHasIronSights=true
@@ -28,7 +28,7 @@ defaultproperties
     PenetrationPower=/* Array type was not detected. */
     PenetrationDamageReductionCurve=/* Array type was not detected. */
     MeshFOV=96
-    MeshIronSightFOV=77
+    MeshIronSightFOV=55
     PlayerIronSightFOV=77
     IronSightPosition=(X=-3,Y=0,Z=0)
     DOF_FG_FocalRadius=40
@@ -45,8 +45,8 @@ defaultproperties
     WeaponDryFireSnd=/* Array type was not detected. */
     PlayerViewOffset=(X=-15,Y=12,Z=-6)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_G18C.MeleeHelper'
-    maxRecoilPitch=220
-    minRecoilPitch=165
+    maxRecoilPitch=300
+    minRecoilPitch=225
     maxRecoilYaw=85
     minRecoilYaw=-85
     RecoilRate=0.045

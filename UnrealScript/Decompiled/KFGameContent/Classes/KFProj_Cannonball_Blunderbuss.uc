@@ -181,51 +181,46 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
         }
         VNorm = (Velocity Dot HitNormal) * HitNormal;
         Velocity = (-VNorm * DampenFactor) + ((Velocity - VNorm) * DampenFactorParallel);
-        Speed = VSize(Velocity);
+        Speed = VSize(Velocity);        
     }
-    if(!bDud && !bIsTimedExplosive)
+    else
     {
-        if((Other != Instigator) && !Other.bStatic)
+        if(!bDud && !bIsTimedExplosive)
         {
-            if(!CheckRepeatingTouch(Other) && Other.GetTeamNum() != GetTeamNum())
+            if((Other != Instigator) && !Other.bStatic)
             {
-                ProcessBulletTouch(Other, HitLocation, HitNormal);
+                if(!CheckRepeatingTouch(Other) && Other.GetTeamNum() != GetTeamNum())
+                {
+                    ProcessBulletTouch(Other, HitLocation, HitNormal);
+                }
             }
-        }
-        if((WorldInfo.NetMode == NM_Standalone) || ((WorldInfo.NetMode == NM_ListenServer) && Instigator != none) && Instigator.IsLocallyControlled())
-        {
-            super.ProcessTouch(Other, HitLocation, HitNormal);
-            return;
-        }
-        if(((Owner != none) && KFWeapon(Owner) != none) && Instigator != none)
-        {
-            if((Instigator.Role < ROLE_Authority) && Instigator.IsLocallyControlled())
+            if((WorldInfo.NetMode == NM_Standalone) || ((WorldInfo.NetMode == NM_ListenServer) && Instigator != none) && Instigator.IsLocallyControlled())
             {
-                KFWeapon(Owner).HandleClientProjectileExplosion(HitLocation, self);
                 super.ProcessTouch(Other, HitLocation, HitNormal);
                 return;
             }
+            if(((Owner != none) && KFWeapon(Owner) != none) && Instigator != none)
+            {
+                if((Instigator.Role < ROLE_Authority) && Instigator.IsLocallyControlled())
+                {
+                    KFWeapon(Owner).HandleClientProjectileExplosion(HitLocation, self);
+                    super.ProcessTouch(Other, HitLocation, HitNormal);
+                    return;
+                }
+            }
+            StopSimulating();
         }
-        StopSimulating();
     }
 }
 
 protected simulated function StopSimulating()
 {
-    if(bHasExploded || Instigator.Role < ROLE_Authority)
-    {
-        Velocity = vect(0, 0, 0);
-        Acceleration = vect(0, 0, 0);
-        RotationRate = rot(0, 0, 0);
-        SetPhysics(0);
-        SetCollision(false, false);
-        StopFlightEffects();
-        bRotationFollowsVelocity = false;        
-    }
-    else
-    {
-        super(KFProjectile).StopSimulating();
-    }
+    Velocity = vect(0, 0, 0);
+    Acceleration = vect(0, 0, 0);
+    RotationRate = rot(0, 0, 0);
+    SetCollision(false, false);
+    StopFlightEffects();
+    bRotationFollowsVelocity = false;
     if(ProjIndicatorEffects != none)
     {
         ProjIndicatorEffects.DeactivateSystem();
@@ -246,6 +241,7 @@ defaultproperties
     WallHitDampenFactorParallel=0.5
     MinSpeedBeforeStop=5
     bWarnAIWhenFired=true
+    TouchTimeThreshhold=60
     TossZ=150
     TerminalVelocity=3200
     ExplosionActorClass=Class'KFExplosion_BlunderbussCannonball'
@@ -269,8 +265,6 @@ defaultproperties
     AltExploEffects=KFImpactEffectInfo'WEP_Blunderbuss_ARCH.Cannonball_Explosion_Concussive_Force'
     ProjFlightTemplate=ParticleSystem'WEP_Blunderbuss_EMIT.FX_Cannonball_Projectile'
     ProjFlightTemplateZedTime=ParticleSystem'WEP_Blunderbuss_EMIT.FX_Cannonball_Projectile_ZEDTIME'
-    AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Projectile_Loop'
-    AmbientSoundStopEvent=AkEvent'WW_WEP_SA_M79.Stop_WEP_SA_M79_Projectile_Loop'
     AmbientComponent=AkComponent'Default__KFProj_Cannonball_Blunderbuss.AmbientAkSoundComponent'
     Speed=3200
     MaxSpeed=3200

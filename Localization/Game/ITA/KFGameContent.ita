@@ -706,7 +706,7 @@ ItemDescription="•La modalità di fuoco primaria utilizza una sola canna.\n•
 [KFWeap_Pistol_Blunderbuss]
 ItemName="Archibugio"
 ItemCategory="Esplosivi"
-ItemDescription="•Il fuoco primario spara una palla di cannone.\n•Tieni premuto il fuoco primario per 0,1 secondi per evitare che la palla di cannone esploda. Esplode al rilascio.\n•La modalità Fuoco alternativo spara schegge.\n•Gamba di legno e pappagallo sono venduti separatamente!"
+ItemDescription="•Il fuoco primario spara una palla di cannone.\n•Tieni premuto il fuoco primario per evitare che la palla di cannone esploda. Esplode al rilascio.\n•La modalità Fuoco alternativo spara schegge.\n•Gamba di legno e pappagallo sono venduti separatamente!"
 SharedUnlockSource="Bundle armi Archibugio"
 
 [KFWeap_Pistol_G18C]

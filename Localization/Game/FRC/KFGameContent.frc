@@ -706,7 +706,7 @@ ItemDescription="• Le tir principal utilise uniquement un canon.\n• Alt-Feu 
 [KFWeap_Pistol_Blunderbuss]
 ItemName="Tromblon"
 ItemCategory="Explosifs"
-ItemDescription="• Le tir principal lance un boulet de canon.\n• Maintenez le tir principal pendant 0,1 seconde pour empêcher le boulet de canon d'exploser. Explose quand vous relâchez.\n• Le tir alternatif tire du shrapnel de boulet de canon."
+ItemDescription="• Le tir principal lance un boulet de canon.\n• Maintenez le tir principal pour empêcher le boulet de canon d'exploser. Explose quand vous relâchez.\n• Le tir alternatif tire du shrapnel de boulet de canon."
 SharedUnlockSource="Pack d'arme Tromblon"
 
 [KFWeap_Pistol_G18C]

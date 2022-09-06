@@ -28,7 +28,7 @@ ConsolePermissionStrings[0]="Public"
 ConsolePermissionStrings[1]="Invitation uniquement"
 
 ModeStrings[0]="Survie"
-ModeStrings[1]="Hebdomadaire"
+ModeStrings[1]="Hebdo"
 ModeStrings[2]="Survie VS"
 ModeStrings[3]="Infini"
 ModeStrings[4]="Objectif"
@@ -902,7 +902,7 @@ BackButtonString="<< RETOUR"
 HeaderTitle="CHOISIR LA CLASSE"
 EndOfWaveString="Les échanger de classe se produiront à la fin de la vague!"
 ChangesAppliedOnCloseString="Les échanger de classes seront appliqués à la fermeture."
-OncePerWaveString="Les changements de classes ne sont possible qu'une fois par vague!"
+OncePerWaveString="Échanges de classe autorisés une fois par vague!"
 
 [KFGFxPerksContainer_Prestige]
 AtMaxPrestigeLevelString="Niveau de prestige de classe max atteint !"

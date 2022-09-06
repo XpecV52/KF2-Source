@@ -468,12 +468,12 @@ ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para rewolwerów Magnum .500 – „Kolekcjoner kości”."
 
 [KFWeap_HRG_Revolver_Buckshot]
-ItemName="Rewolwer śrutowy HRG"
+ItemName="Rewolwer śrut HRG"
 ItemCategory="Broń krótka"
 ItemDescription="• Wyłącznie tryb pojedynczego strzału.\n• Broń, która wymaga sporo szczęścia."
 
 [KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="Dwa rewolwery śrutowe HRG"
+ItemName="Dwa rewolwery śrut HRG"
 ItemCategory="Broń krótka"
 ItemDescription="• Tryb strzelania: tylko ogień pojedynczy.\n• Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n• Broń, która wymaga sporo szczęścia."
 
@@ -681,7 +681,7 @@ ItemCategory="Karabin wyborowy"
 ItemDescription="•Tryb ataku strzela szybkimi pociskami elektrycznymi.\n•Tryb alternatywny strzela strzałkami leczniczymi, które leczą sojuszników."
 
 [KFWeap_SMG_G18]
-ItemName="Tarcza policyjna z Glockiem 18"
+ItemName="Tarcza policyjna z G18"
 ItemCategory="Pistolet maszynowy"
 ItemDescription="•Wybór ostrzału automatycznego i półautomatycznego.\n•Tryb alternatywny przełącza tryby ostrzału.\n•Używanie celownika mechanicznego unosi tarczę redukującą większość ataków od przodu."
 SharedUnlockSource="Zestaw broni tarcza policyjna z G18, zestaw broni Świąteczny Horror"
@@ -706,7 +706,7 @@ ItemDescription="•Podstawowy tryb ognia to strzał z jednej lufy.\n•Tryb alt
 [KFWeap_Pistol_Blunderbuss]
 ItemName="Garłacz"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Podstawowy atak wystrzeliwuje kulę armatnią.\nPrzytrzymaj podstawowy atak przez 0,1 sekundy, aby kula armatnia nie wybuchła. Wybuchnie po puszczeniu.\n• Dodatkowy atak strzela odłamkami kul armatnich.\n•Drewniana noga i papuga sprzedawane osobno!"
+ItemDescription="•Podstawowy atak wystrzeliwuje kulę armatnią.\n•Przytrzymaj podstawowy atak, aby kula armatnia nie wybuchła. Wybuchnie po puszczeniu.\n• Dodatkowy atak strzela odłamkami kul armatnich.\n•Drewniana noga i papuga sprzedawane osobno!"
 SharedUnlockSource="Zestaw broni garłacza"
 
 [KFWeap_Pistol_G18C]

@@ -10,6 +10,37 @@ class KFProj_Rocket_SealSqueal extends KFProjectile;
 
 var float FuseTime;
 
+/** This is the effect indicator that is played for the current user **/
+var(Projectile) ParticleSystem ProjIndicatorTemplate;
+var ParticleSystemComponent	ProjIndicatorEffects;
+
+var bool IndicatorActive;
+
+simulated function TryActivateIndicator()
+{
+	if(!IndicatorActive && Instigator != None)
+	{
+		IndicatorActive = true;
+
+		if(WorldInfo.NetMode == NM_Standalone || Instigator.Role == Role_AutonomousProxy ||
+		 (Instigator.Role == ROLE_Authority && WorldInfo.NetMode == NM_ListenServer && Instigator.IsLocallyControlled() ))
+		{
+			if( ProjIndicatorTemplate != None )
+			{
+			    ProjIndicatorEffects = WorldInfo.MyEmitterPool.SpawnEmitterCustomLifetime(ProjIndicatorTemplate);
+			}
+
+			if(ProjIndicatorEffects != None)
+			{
+				ProjIndicatorEffects.SetAbsolute(false, false, false);
+				ProjIndicatorEffects.SetLODLevel(WorldInfo.bDropDetail ? 1 : 0);
+				ProjIndicatorEffects.bUpdateComponentInTick = true;
+				AttachComponent(ProjIndicatorEffects);
+			}
+		}
+	}
+}
+
 /**
  * Set the initial velocity and cook time
  */
@@ -79,6 +110,8 @@ simulated event Tick(float DeltaTime)
 	{
 		SetRelativeRotation(rotator(Velocity));
 	}
+
+	TryActivateIndicator();
 }
 
 /** Causes charge to explode */
@@ -151,9 +184,20 @@ simulated function SyncOriginalLocation()
 	}
 }
 
+simulated protected function StopSimulating()
+{
+	super.StopSimulating();
+
+	if (ProjIndicatorEffects!=None)
+	{
+        ProjIndicatorEffects.DeactivateSystem();
+	}
+}
+
 defaultproperties
 {
    FuseTime=4.000000
+   ProjIndicatorTemplate=ParticleSystem'WEP_Seal_Squeal_EMIT.FX_Harpoon_Projectile_Indicator'
    bSyncToOriginalLocation=True
    bSyncToThirdPersonMuzzleLocation=True
    bUseClientSideHitDetection=True

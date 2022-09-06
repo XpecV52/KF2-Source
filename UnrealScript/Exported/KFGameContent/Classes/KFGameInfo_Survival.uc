@@ -1853,6 +1853,13 @@ function NotifyTraderClosed()
 	}
 }
 
+final function ForceChangeLevel()
+{
+    bGameRestarted = false;
+    bChangeLevels = true;
+    RestartGame();
+}
+
  /*********************************************************************************************
  * state MatchEnded
  *********************************************************************************************/
@@ -1876,6 +1883,7 @@ function NotifyTraderClosed()
 			LogPlayersKillCount();
 		}
 
+		SetTimer(90.f, false, 'ForceChangeLevel');
 		SetTimer(1.f, false, nameof(ProcessAwards));
 		SetTimer(AARDisplayDelay, false, nameof(ShowPostGameMenu));
 	}

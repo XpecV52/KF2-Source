@@ -616,6 +616,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 {
 	local int AttachmentIdx, CosmeticMeshIdx;
 	local bool bMaskHeadMesh;
+	local int NumberOfCosmetics, NumberOfCosmeticsPostRemoval;
 
    	super.SetCharacterMeshFromArch( KFP, KFPRI );
 
@@ -661,6 +662,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 			CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
 			if ( CosmeticMeshIdx != -1&& CosmeticMeshIdx != INDEX_NONE)
 			{
+					NumberOfCosmetics++;
 					bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
 
 					// Attach all saved attachments to the character
@@ -671,6 +673,23 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 			}
 		}
 
+		// Check again for all cosmetic in case one of them was removed, this will fix problems with masked heads
+		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
+		{
+			CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
+			if ( CosmeticMeshIdx != -1&& CosmeticMeshIdx != INDEX_NONE)
+			{
+					NumberOfCosmeticsPostRemoval++;
+			}
+		}
+		
+		// If the number of cosmetics changed, made a new set of the mesh/cosmetics recursively and return
+		if(NumberOfCosmeticsPostRemoval != NumberOfCosmetics)
+		{
+			SetCharacterMeshFromArch( KFP, KFPRI );
+			return;
+		}
+
 		InitCharacterMICs(KFP, bMaskHeadMesh);
 	}
 }
@@ -679,7 +698,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 private function InitCharacterMICs(KFPawn P, optional bool bMaskHead)
 {
 	local int i;
-
+	
 	if( P.WorldInfo.NetMode == NM_DedicatedServer )
 	{
 		return;
@@ -1171,7 +1190,7 @@ function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, op
 {
 	local name NewAttachmentSocketName;
 	local int i, CurrentAttachmentIdx;
-
+	
 	if ( CosmeticVariants.length > 0 &&
 		 NewAttachmentMeshIndex < CosmeticVariants.length && NewAttachmentMeshIndex != INDEX_NONE)
 	{

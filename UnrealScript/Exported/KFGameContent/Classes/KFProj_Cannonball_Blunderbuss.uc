@@ -33,6 +33,8 @@ var(Projectile) ParticleSystem ProjIndicatorTemplate;
 /** This is the effect indicator that is played for the current user in zed time **/
 var(Projectile) ParticleSystem ProjIndicatorTemplateZedTime;
 
+//var array<Actor> vActorsTouched;
+
 function Init(vector Direction)
 {
 	Super.Init(Direction);
@@ -173,6 +175,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
     local bool bWantsClientSideDudHit;
 	local float TraveledDistance;
 	local Vector VNorm;
+	//local int Index;
 
     // If we collided with a Siren shield, let the shield code handle touches
     if( Other.IsA('KFTrigger_SirenProjectileShield') )
@@ -200,6 +203,20 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
     if( (!bDud || ( bWantsClientSideDudHit && !bClientDudHit)) && ((TraveledDistance < ArmDistSquared) || bIsTimedExplosive || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0)))
     {
+		//for (Index = 0; Index < vActorsTouched.Length; Index++)
+		//{
+		//	if(vActorsTouched[Index] == Other)
+		//	{
+		//		return;
+		//	}
+		//}
+		//if(Other == LastActorTouched)
+		//{
+		//	return;
+		//}
+		//LastActorTouched = Other;
+		//bForceNetUpdate=true;
+		//vActorsTouched.AddItem(Other);
         // Don't touch the same actor multiple time's immediately after just
         // touching it if the TouchTimeThreshhold is set to greater than 0.
         // This was causing projectiles just to "stop" sometimes when hitting
@@ -225,7 +242,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 			Speed = VSize(Velocity);
 		//}
     }
-	if (!bDud && !bIsTimedExplosive)
+	else if (!bDud && !bIsTimedExplosive)
 	{
         // Process impact hits
     	if (Other != Instigator && !Other.bStatic)
@@ -260,22 +277,14 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
 simulated protected function StopSimulating()
 {
-	if(bHasExploded || Instigator.Role < ROLE_Authority)
-	{
-		Velocity = vect(0,0,0);
-		Acceleration = vect(0,0,0);
-		RotationRate = rot(0,0,0);
-		SetPhysics(PHYS_None);
-		SetCollision(FALSE, FALSE);
+	Velocity = vect(0,0,0);
+	Acceleration = vect(0,0,0);
+	RotationRate = rot(0,0,0);
+	SetCollision(FALSE, FALSE);
 
-		StopFlightEffects();
+	StopFlightEffects();
 
-		bRotationFollowsVelocity = FALSE;
-	}
-	else
-	{
-		super.StopSimulating();
-	}
+	bRotationFollowsVelocity = FALSE;
 
 	if (ProjIndicatorEffects!=None)
 	{
@@ -297,6 +306,7 @@ defaultproperties
    WallHitDampenFactorParallel=0.500000
    MinSpeedBeforeStop=5.000000
    bWarnAIWhenFired=True
+   TouchTimeThreshhold=60.000000
    TossZ=150.000000
    TerminalVelocity=3200.000000
    ExplosionActorClass=Class'kfgamecontent.KFExplosion_BlunderbussCannonball'
@@ -321,8 +331,6 @@ defaultproperties
    AltExploEffects=KFImpactEffectInfo'WEP_Blunderbuss_ARCH.Cannonball_Explosion_Concussive_Force'
    ProjFlightTemplate=ParticleSystem'WEP_Blunderbuss_EMIT.FX_Cannonball_Projectile'
    ProjFlightTemplateZedTime=ParticleSystem'WEP_Blunderbuss_EMIT.FX_Cannonball_Projectile_ZEDTIME'
-   AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_M79.Play_WEP_SA_M79_Projectile_Loop'
-   AmbientSoundStopEvent=AkEvent'WW_WEP_SA_M79.Stop_WEP_SA_M79_Projectile_Loop'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'KFGame.Default__KFProj_BallisticExplosive:AmbientAkSoundComponent'
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True

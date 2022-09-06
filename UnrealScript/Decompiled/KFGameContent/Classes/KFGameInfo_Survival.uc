@@ -1284,6 +1284,13 @@ function NotifyTraderClosed()
     }
 }
 
+final function ForceChangeLevel()
+{
+    bGameRestarted = false;
+    bChangeLevels = true;
+    RestartGame();
+}
+
 function EndOfMatch(bool bVictory)
 {
     local KFPlayerController KFPC;
@@ -1541,6 +1548,7 @@ state MatchEnded
         {
             LogPlayersKillCount();
         }
+        SetTimer(90, false, 'ForceChangeLevel');
         SetTimer(1, false, 'ProcessAwards');
         SetTimer(AARDisplayDelay, false, 'ShowPostGameMenu');
     }

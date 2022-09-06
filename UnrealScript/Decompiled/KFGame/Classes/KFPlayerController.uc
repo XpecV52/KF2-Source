@@ -1392,6 +1392,7 @@ simulated function HandleNetworkError(bool bConnectionLost)
     local string ErrorMessage;
 
     GVC = KFGameViewportClient(MyGFxManager.GetGameViewportClient());
+    LogInternal("KFPlayerController.uc --- HandleNetworkError --- bConnectionLost?" @ string(bConnectionLost));
     if(GVC.bSeenIIS)
     {
         OnlineSub.GameInterface.DestroyOnlineGame('Game');
@@ -7171,6 +7172,7 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
     OnlineSub.PlayerInterface.ClearLoginCompleteDelegate(LocalUserNum, OnOSSLoginComplete);
     PlayerReplicationInfo.PlayerName = LocalPlayer(Player).GetNickname();
     PlayerReplicationInfo.UniqueId = LocalPlayer(Player).GetUniqueNetId();
+    LogInternal("KFPlayerController.uc --- OnOSSLoginComplete --- ErrorCode == OSCS_Connected" @ string(ErrorCode));
     if(ErrorCode == 1)
     {
         if(WorldInfo.IsConsoleBuild(8))
@@ -7252,9 +7254,17 @@ function OnOSSLoginComplete(byte LocalUserNum, bool bWasSuccessful, Engine.Onlin
                     }
                     else
                     {
-                        if(ErrorCode != 1)
+                        if(WorldInfo.IsConsoleBuild(9) && ErrorCode != 1)
                         {
-                            OnLoginCompleted(false);
+                            OnLoginCompleted(!bLoggingInForOnlinePlay);
+                            MyGFxManager.DelayedOpenPopup(2, 0, Localize("Notifications", "NotConnectedTitle", "KFGameConsole"), Localize("Notifications", ((bLoggingInForOnlinePlay) ? "NotConnectedMessage" : "NotConnectedForOnlinePlay"), "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);                            
+                        }
+                        else
+                        {
+                            if(ErrorCode != 1)
+                            {
+                                OnLoginCompleted(false);
+                            }
                         }
                     }
                 }

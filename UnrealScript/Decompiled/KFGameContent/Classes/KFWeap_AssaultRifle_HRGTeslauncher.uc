@@ -167,13 +167,13 @@ defaultproperties
     FirstPersonAnimSetNames=/* Array type was not detected. */
     PickupMeshName="WEP_3P_HRG_Teslauncher_MESH.Wep_3rdP_Medic_GrenadeLauncher_Pickup"
     AttachmentArchetypeName="WEP_HRG_Teslauncher_ARCH.Wep_HRG_Teslauncher_3P"
-    MuzzleFlashTemplateName="WEP_HRG_Teslauncher_ARCH.Wep_HRG_Teslauncher_MuzzleFlash_3P"
+    MuzzleFlashTemplateName="WEP_HRG_Teslauncher_ARCH.Wep_HRG_Teslauncher_MuzzleFlash"
     InventorySize=7
     PenetrationPower=/* Array type was not detected. */
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_HRG_Teslauncher_TEX.UI_WeaponSelect_HRG_Teslauncher'
     SpareAmmoCapacity[0]=240
-    SpareAmmoCapacity[1]=9
+    SpareAmmoCapacity[1]=7
     InitialSpareMags[0]=2
     InitialSpareMags[1]=1
     bLoopingFireSnd=/* Array type was not detected. */

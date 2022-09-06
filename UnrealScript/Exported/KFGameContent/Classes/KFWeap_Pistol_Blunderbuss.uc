@@ -37,10 +37,17 @@ var transient float FireHoldTime;
 /** Amount of time we should pass with the fire button on hold to trigger a timed explosion, used in BlunderbussDeployAndDetonate **/
 var transient float TimedDetonationThresholdTime;
 
+var(Animations) const editconst	name		FireLoopStartLastSightedAnim;
+var(Animations) const editconst	name		FireLoopStartLastAnim;
+var(Animations) const editconst	name		FireLoopLastSightedAnim;
+
+var bool bLastAnim;
+
 replication
 {
 	if (bNetDirty)
-		NumDeployedCannonballs;
+		bDeployedCannonball, NumDeployedCannonballs, bCannonballWasDetonated;
+
 }
 
 simulated function AltFireMode()
@@ -92,6 +99,7 @@ function RemoveDeployedCannonball(optional int CannonballIndex = INDEX_NONE, opt
 
 simulated function EndFire(byte FireModeNum)
 {
+	//if(PendingFire(DEFAULT_FIREMODE)) return;
 	bForceStandardCannonbal = true;
 	super.EndFire(FireModeNum);
 }
@@ -126,10 +134,13 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
     {
 		local int iNumOfCannonballs, i;
 
-		iNumOfCannonballs = DeployedCannonballs.Length;
-		for(i=0; i < iNumOfCannonballs; i++)
+		if (Role == ROLE_Authority)
 		{
-			DeployedCannonballs[0].Detonate();
+			iNumOfCannonballs = DeployedCannonballs.Length;
+			for(i=0; i < iNumOfCannonballs; i++)
+			{
+				DeployedCannonballs[0].Detonate();
+			}
 		}
 		bDeployedCannonball = false;
 		ClearTimer( nameof(TryDetonateCannonBall) );
@@ -171,9 +182,10 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
 		global.Tick(DeltaTime);
 
 		// Timed bomb is not allowed if we press the button after releasing it
-		if(bForceStandardCannonbal && !bCannonballConvertedToTimeBomb)
+		if(Role == ROLE_Authority && bForceStandardCannonbal && !bCannonballConvertedToTimeBomb)
 		{
 			bDeployedCannonball = false;
+			bNetDirty=true;
 			return;
 		}
 
@@ -202,11 +214,12 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
     }
 	
     simulated function FireAmmunition()
-    {
+    { 
 		if (!bDeployedCannonball)
 		{
 			super.FireAmmunition();
 			ResetFireState();
+			bNetDirty=true;
 		}
 		
 		bDeployedCannonball = true;
@@ -232,15 +245,16 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
 				Cannonball = DeployedCannonballs[DeployedCannonballs.Length - 1];
 				if (Cannonball.bIsTimedExplosive)
 				{
-					bDeployedCannonball = false;
 					Cannonball.Detonate();
 					bCannonballWasDetonated = true;
 
+					ClientResetFireInterval();
 					if( IsTimerActive('RefireCheckTimer') )
 					{
 						ClearTimer( nameof(RefireCheckTimer) );
 					}
 					SetTimer( GetFireInterval(0), true, nameof(RefireCheckTimer) );
+					bDeployedCannonball = false;
 				}
 			}
 		}
@@ -262,6 +276,15 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
 
 		super.HandleFinishedFiring();
 	}
+}
+
+reliable client function ClientResetFireInterval()
+{
+	if( IsTimerActive('RefireCheckTimer') )
+	{
+		ClearTimer( nameof(RefireCheckTimer) );
+	}
+	SetTimer( GetFireInterval(0), true, nameof(RefireCheckTimer) );
 }
 
 simulated function HandleProjectileImpact(byte ProjectileFireMode, ImpactInfo Impact, optional float PenetrationValue)
@@ -299,9 +322,61 @@ simulated function KFProjectile SpawnAllProjectiles(class<KFProjectile> KFProjCl
 	return super.SpawnAllProjectiles(KFProjClass, RealStartLoc, AimDir);
 }
 
+/** Get name of the animation to play for PlayFireEffects */
+simulated function name GetLoopStartFireAnim(byte FireModeNum)
+{
+	if ( bUsingSights )
+	{
+		if(AmmoCount[GetAmmoType(FireModeNum)] <= 1 && FireModeNum == DEFAULT_FIREMODE)
+		{
+			return FireLoopStartLastSightedAnim;
+		}
+		else
+		{
+			return FireLoopStartSightedAnim;
+		}
+	}
+
+	if(AmmoCount[GetAmmoType(FireModeNum)] <= 1 && FireModeNum == DEFAULT_FIREMODE)
+	{
+		return FireLoopStartLastAnim;
+	}
+	else
+	{ 
+		return FireLoopStartAnim;
+	}
+}
+
+/** Get name of the animation to play for PlayFireEffects */
+simulated function name GetLoopingFireAnim(byte FireModeNum)
+{
+	// scoped-sight anims
+	if( bUsingScopePosition )
+	{
+		return FireLoopScopedAnim;
+	}
+	// ironsights animations
+	else if ( bUsingSights )
+	{
+		if(AmmoCount[GetAmmoType(FireModeNum)] < 1 && FireModeNum == DEFAULT_FIREMODE)
+		{
+			return FireLoopLastSightedAnim;
+		}
+		else
+		{
+			return FireLoopSightedAnim;
+		}
+	}
+
+	return FireLoopAnim;
+}
+
 defaultproperties
 {
-   SelfDamageReductionValue=1.000000
+   SelfDamageReductionValue=0.500000
+   FireLoopStartLastSightedAnim="ShootLoop_Iron_Start_Last"
+   FireLoopStartLastAnim="ShootLoop_Start_Last"
+   FireLoopLastSightedAnim="ShootLoop_Iron_Last"
    bRevolver=True
    bUseDefaultResetOnReload=False
    CylinderRotInfo=(InC=120.000000,Time=0.200000)
@@ -374,15 +449,15 @@ defaultproperties
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Cannonball_Blunderbuss'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Nail_Blunderbuss'
-   FireInterval(0)=0.750000
+   FireInterval(0)=0.690000
    FireInterval(1)=0.690000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.015000
-   Spread(1)=0.250000
+   Spread(1)=0.175000
    InstantHitDamage(0)=300.000000
-   InstantHitDamage(1)=45.000000
+   InstantHitDamage(1)=50.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_BlunderbussImpact'
@@ -404,7 +479,6 @@ defaultproperties
    End Object
    Mesh=FirstPersonMesh
    ItemName="Blunderbuss"
-   bDropOnDeath=False
    Begin Object Class=StaticMeshComponent Name=StaticPickupComponent Archetype=StaticMeshComponent'KFGame.Default__KFWeap_PistolBase:StaticPickupComponent'
       StaticMesh=StaticMesh'EngineMeshes.Cube'
       ReplacementPrimitive=None

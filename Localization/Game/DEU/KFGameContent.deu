@@ -706,7 +706,7 @@ ItemDescription="• Das Primär-Feuer nutzt nur einen einzelnen Lauf.\n• Alt-
 [KFWeap_Pistol_Blunderbuss]
 ItemName="Donnerbüchse"
 ItemCategory="Sprengstoffe"
-ItemDescription="• Primärfeuer schießt eine Kanonenkugel.\n• Primärfeuer 0,1 Sekunden halten, damit die Kanonenkugel nicht explodiert. Explodiert bei Freigabe.\n• Alt-Feuer schießt Kanonenkugel-Schrapnell.\n• Holzbein und Papagei werden einzeln verkauft!"
+ItemDescription="• Primärfeuer schießt eine Kanonenkugel.\n• Primärfeuer halten, damit die Kanonenkugel nicht explodiert. Explodiert bei Freigabe.\n• Alt-Feuer schießt Kanonenkugel-Schrapnell.\n• Holzbein und Papagei werden einzeln verkauft!"
 SharedUnlockSource="Donnerbüchse-Waffen-Paket"
 
 [KFWeap_Pistol_G18C]

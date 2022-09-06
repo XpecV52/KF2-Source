@@ -472,7 +472,9 @@ DefaultProperties
     //DamageTypeModifiers.Add((DamageType=class'KFDamageType', 	DamageScale=(0.5))) // All others
 
     //special case
-    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MicrowaveRifle',             DamageScale=(0.8)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MicrowaveRifle',   DamageScale=(0.8)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_HRGTeslauncher',   DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_HRGTeslauncherDoT',     DamageScale=(0.5)))
 
 	// ---------------------------------------------
 	// Block Settings

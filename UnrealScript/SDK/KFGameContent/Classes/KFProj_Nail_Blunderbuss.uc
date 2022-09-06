@@ -19,7 +19,7 @@ defaultproperties
 
 	LifeSpan = 2.0
 
-    BouncesLeft=1
+    BouncesLeft=2
     DampingFactor=0.65
     RicochetEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Light_bullet_impact'
 

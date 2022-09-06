@@ -137,26 +137,69 @@ simulated state WeaponFiring
 	}
 }
 
+/**
+ * This function returns the world location for spawning the visual effects
+ *
+ * Overridden to allow for left weapon location
+ */
+simulated event vector GetMuzzleLoc()
+{
+    local Rotator ViewRotation;
+	if( bFireFromRightWeapon )
+	{
+
+		if( Instigator != none )
+		{
+				ViewRotation = Instigator.GetViewRotation();
+
+				// Add in the free-aim rotation
+				if ( KFPlayerController(Instigator.Controller) != None )
+				{	
+					ViewRotation += KFPlayerController(Instigator.Controller).WeaponBufferRotation;
+				}
+
+			if( bUsingSights )
+			{
+				return Instigator.GetWeaponStartTraceLocation() + (FireOffset >> ViewRotation);
+			}
+			else
+			{
+				return Instigator.GetPawnViewLocation() + (FireOffset >> ViewRotation);
+			}
+
+		}
+		return Location;
+	}
+	else
+	{
+		return GetLeftMuzzleLoc();
+	}
+}
 
 defaultproperties
 {
-    // FOV [FFERRANDO NEEDS TO BE UPDATED TO G18]
+
+	SingleClass=class'KFWeap_Pistol_G18C'
+
+    // FOV
 	MeshFOV=96
 	MeshIronSightFOV=77
     PlayerIronSightFOV=77
 
-	// Depth of field [FFERRANDO NEEDS TO BE UPDATED TO G18]
+	//RecoilBlendOutRatio=0
+	FireTweenTime=0.03
+	// Depth of field 
 	DOF_FG_FocalRadius=40
 	DOF_FG_MaxNearBlurSize=3.5
 
-	// Zooming/Position [FFERRANDO NEEDS TO BE UPDATED TO G18]
+	// Zooming/Position 
 	IronSightPosition=(X=-3,Y=0,Z=0)
 	PlayerViewOffset=(X=-15,Y=0,Z=0)
 
 	FireOffset=(X=17,Y=4.0,Z=-2.25)
 	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
 
-	// Content [FFERRANDO NEEDS TO BE UPDATED TO G18]
+	// Content 
 	PackageKey="Dual_G18C"
 	FirstPersonMeshName="WEP_1P_Dual_G18C_MESH.Wep_1stP_Dual_G18C_Rig"
 	FirstPersonAnimSetNames(0)="WEP_1P_Dual_G18C_ANIM.WEP_1st_Dual_G18C_ANIM"
@@ -174,8 +217,8 @@ defaultproperties
 	bHasFireLastAnims=true
 
 	// Recoil
-	maxRecoilPitch=220 //165 //150 //100
-	minRecoilPitch=165 //125 //112 //75
+	maxRecoilPitch=260 //220 //165 //150 //100
+	minRecoilPitch=200 //165 //125 //112 //75
 	maxRecoilYaw=85
 	minRecoilYaw=-85
 	RecoilRate=0.045
@@ -199,7 +242,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_G18c' //DEFAULT MODE TYPE DAMAGE
 	FireInterval(DEFAULT_FIREMODE)=+0.05 ‬ // 1200 RPM //Default Firemode (Automatic) firerate
 	Spread(DEFAULT_FIREMODE)=0.06
-	InstantHitDamage(DEFAULT_FIREMODE)=39 //41 // DEFAULT MODE DAMAGE
+	InstantHitDamage(DEFAULT_FIREMODE)=37 //39 //41 // DEFAULT MODE DAMAGE
 	PenetrationPower(DEFAULT_FIREMODE)=0.0 //Default Firemode (Automatic) & Altfire Firemode (Single Fire) penetration
 	PenetrationDamageReductionCurve(DEFAULT_FIREMODE)=(Points=((InVal=0.f,OutVal=0.f),(InVal=1.f, OutVal=1.f))) //Default Firemode (Automatic) & Altfire Firemode (Single Fire) penetration
 
@@ -211,7 +254,7 @@ defaultproperties
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_G18c' //DEFAULT MODE TYPE DAMAGE
 	FireInterval(ALTFIRE_FIREMODE)=+0.05 ‬ // 1200 RPM //Default Firemode (Automatic) firerate
 	Spread(ALTFIRE_FIREMODE)=0.06
-	InstantHitDamage(ALTFIRE_FIREMODE)=39 //41 // DEFAULT MODE DAMAGE
+	InstantHitDamage(ALTFIRE_FIREMODE)=37 //39 //41 // DEFAULT MODE DAMAGE
 	PenetrationPower(ALTFIRE_FIREMODE)=0.0 //Default Firemode (Automatic) & Altfire Firemode (Single Fire) penetration
 	PenetrationDamageReductionCurve(ALTFIRE_FIREMODE)=(Points=((InVal=0.f,OutVal=0.f),(InVal=1.f, OutVal=1.f))) //Default Firemode (Automatic) & Altfire Firemode (Single Fire) penetration
 
@@ -242,16 +285,15 @@ defaultproperties
 	WeaponFireSnd(2)=(DefaultCue=AkEvent'WW_WEP_G18c.Play_WEP_G18c_Fire_3P_Single', FirstPersonCue=AkEvent'WW_WEP_G18c.Play_WEP_G18c_Fire_1P_Single')
 	SingleFireSoundIndex=2
 
-	// Attachments [FFERRANDO NEEDS TO BE RECHECKED FOR G18]
+	// Attachments 
 	bHasIronSights=true
 	bHasFlashlight=true
 
-	SingleClass=class'KFWeap_Pistol_G18C'
 
 
 	AssociatedPerkClasses(0)=class'KFPerk_Gunslinger' //Main Perk
 
-	// Inventory [FFERRANDO NEEDS TO BE RECHECKED FOR G18]
+	// Inventory 
 	InventorySize=8 //Weight Ammount
 	GroupPriority=100
 	bCanThrow=true
@@ -264,16 +306,7 @@ defaultproperties
 
 	//FireSightedAnims=(Shoot_Iron, Shoot_Iron2, Shoot_Iron3)
 
-
-	//[FFERRANDO NEEDS TO BE UPDATED TO G18]
-	// Weapon Upgrade stat boosts. Setting weight to 0 because single 9MM cannot be sold.
-	//WeaponUpgrades[1]=(IncrementDamage=1.2f,IncrementWeight=0)
-	//WeaponUpgrades[2]=(IncrementDamage=1.4f,IncrementWeight=0) //1
-	//WeaponUpgrades[3]=(IncrementDamage=1.6f,IncrementWeight=0) //1
-	//WeaponUpgrades[4]=(IncrementDamage=1.8f,IncrementWeight=0) //2
-	//WeaponUpgrades[5]=(IncrementDamage=2.0f,IncrementWeight=0) //3
-
-	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.25f), (Stat=EWUS_Damage1, Scale=1.25f), (Stat=EWUS_Weight, Add=2)))
+	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.125f), (Stat=EWUS_Damage1, Scale=1.125f), (Stat=EWUS_Weight, Add=2)))
 	//WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.25f), (Stat=EWUS_Weight, Add=2)))
 	//WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.2f)))
 	//WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.4f)))

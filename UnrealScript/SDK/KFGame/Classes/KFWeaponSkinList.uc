@@ -3184,6 +3184,6 @@ defaultproperties
     Skins.Add((Id=8308, Weapondef=class'KFWeapDef_DoubleBarrel', MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_Double_Barrel_MIC"), MIC_3P="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Double_Barrel_MIC", MIC_Pickup="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Double_Barrel_Pickup_MIC")) 
 
 //Vault Stars M99
-    Skins.Add((Id=8309, Weapondef=class'KFWeapDef_M99', MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_M99_MIC"), MIC_3P="WEP_SkinSet31_MAT.Vault_Stars_3rdP_M99_MIC", MIC_Pickup="WEP_SkinSet31_MAT.Vault_Stars_3rdP_M99_Pickup_MIC")) 
+    Skins.Add((Id=8309, Weapondef=class'KFWeapDef_M99', MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_M99_MIC"), MIC_3P="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_M99_MIC", MIC_Pickup="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_M99_Pickup_MIC")) 
 
 }

@@ -137,6 +137,45 @@ simulated state WeaponFiring
 	}
 }
 
+/**
+ * This function returns the world location for spawning the visual effects
+ *
+ * Overridden to allow for left weapon location
+ */
+simulated event vector GetMuzzleLoc()
+{
+    local Rotator ViewRotation;
+	if( bFireFromRightWeapon )
+	{
+
+		if( Instigator != none )
+		{
+				ViewRotation = Instigator.GetViewRotation();
+
+				// Add in the free-aim rotation
+				if ( KFPlayerController(Instigator.Controller) != None )
+				{	
+					ViewRotation += KFPlayerController(Instigator.Controller).WeaponBufferRotation;
+				}
+
+			if( bUsingSights )
+			{
+				return Instigator.GetWeaponStartTraceLocation() + (FireOffset >> ViewRotation);
+			}
+			else
+			{
+				return Instigator.GetPawnViewLocation() + (FireOffset >> ViewRotation);
+			}
+
+		}
+		return Location;
+	}
+	else
+	{
+		return GetLeftMuzzleLoc();
+	}
+}
+
 defaultproperties
 {
    LeftFireOffset=(X=17.000000,Y=-4.000000,Z=-2.250000)
@@ -173,6 +212,7 @@ defaultproperties
    bLoopingFireAnim(1)=False
    bLoopingFireSnd(0)=True
    bLoopingFireSnd(1)=True
+   FireTweenTime=0.030000
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_G18c.Play_WEP_G18c_Auto_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_G18c.Play_WEP_G18c_Auto_Loop')
    WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_G18c.Play_WEP_G18c_Auto_3P_Loop',FirstPersonCue=AkEvent'WW_WEP_G18c.Play_WEP_G18c_Auto_Loop')
    WeaponFireSnd(2)=(DefaultCue=AkEvent'WW_WEP_G18c.Play_WEP_G18c_Fire_3P_Single',FirstPersonCue=AkEvent'WW_WEP_G18c.Play_WEP_G18c_Fire_1P_Single')
@@ -187,8 +227,8 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_DualBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Pistol_DualG18:MeleeHelper_0'
-   maxRecoilPitch=220
-   minRecoilPitch=165
+   maxRecoilPitch=260
+   minRecoilPitch=200
    maxRecoilYaw=85
    minRecoilYaw=-85
    RecoilRate=0.045000
@@ -204,7 +244,7 @@ defaultproperties
    WalkingRecoilModifier=1.100000
    IronSightMeshFOVCompensationScale=1.650000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Gunslinger'
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.250000),(Stat=EWUS_Damage1,Scale=1.250000),(Add=2)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.125000),(Stat=EWUS_Damage1,Scale=1.125000),(Add=2)))
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_G18c'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_G18c'
    FireInterval(0)=0.050000
@@ -214,8 +254,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.060000
    Spread(1)=0.060000
-   InstantHitDamage(0)=39.000000
-   InstantHitDamage(1)=39.000000
+   InstantHitDamage(0)=37.000000
+   InstantHitDamage(1)=37.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=25.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_G18C'

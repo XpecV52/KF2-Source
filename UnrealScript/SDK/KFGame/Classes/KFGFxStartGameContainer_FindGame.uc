@@ -168,11 +168,13 @@ DefaultProperties
 {
 // Latest Update
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_PerilousPlunder_Event", Textfield="LatestUpdate", RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")) 
+// Featured Time Limited Item
+      WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_SS_PremiumTicket", Textfield="FeaturedEventItem", RedirectURL="https://store.steampowered.com/buyitem/232090/4928"))
 // Featured Weapon Skin Bundle
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_NeonMKVI", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8185"))
-// Featured Weapon Skin Bundle
+// Featured Cosmetic Bundle
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_FutureNeonGear", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8187"))
-// Featured Weapon Skin Bundle
+// Featured Cosmetic Bundle
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_RetroNeonGear", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8186"))
 // Featured Weapon Bundle
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_BlunderBluss", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8189"))
@@ -180,9 +182,9 @@ DefaultProperties
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_G18C", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8188"))
 // Featured Weapon Bundle
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_PerilousPlunder", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8190"))
-// Featured Weapon Bundle
+// Featured Cosmetic Bundle
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_FullGearBundle_SpacePirate", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8122"))
-// Featured Weapon Bundle
+// Featured Outfit Bundle
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_SpacePirate", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8183"))
 
 // Misc Community Links

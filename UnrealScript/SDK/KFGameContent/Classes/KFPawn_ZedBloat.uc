@@ -359,8 +359,9 @@ DefaultProperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 		                DamageScale=(0.25)))
 
 	//Special Case damage resistance
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm',              DamageScale=(0.65))
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',             DamageScale=(0.40))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_9mm',              DamageScale=(0.65)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_AR15',             DamageScale=(0.40)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_HRGTeslauncher',   DamageScale=(0.58)))
 
 	// ---------------------------------------------
 	// Block Settings

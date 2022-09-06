@@ -462,6 +462,8 @@ defaultproperties
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.750000))
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.250000))
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MicrowaveRifle',DamageScale=(0.800000))
+   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGTeslauncher',DamageScale=(0.500000))
+   DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGTeslauncherDoT',DamageScale=(0.500000))
    ZedBumpDamageScale=0.000000
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Fleshpound'
    BumpFrequency=0.100000
