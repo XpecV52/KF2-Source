@@ -698,6 +698,36 @@ ItemCategory="Bow"
 ItemDescription="• Mode de tir à charger seulement.\n• Plus vous maintenez, plus la portée et les dégâts infligés augmentent.\n• Le tir alternatif permet de changer entre des flèches aiguisées et cryo.\n• Quand Cupidon a besoin de plus de jus."
 SharedUnlockSource="Pack d'arme Arc à poulies"
 
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="Kaboomstick GRH"
+ItemCategory="Fusil à pompe"
+ItemDescription="• Le tir principal utilise uniquement un canon.\n• Alt-Feu tire avec les deux canons à la fois.\n• Munitions explosives pour pimenter l'expérience."
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="Tromblon"
+ItemCategory="Explosifs"
+ItemDescription="• Le tir principal lance un boulet de canon.\n• Maintenez le tir principal pendant 0,1 seconde pour empêcher le boulet de canon d'exploser. Explose quand vous relâchez.\n• Le tir alternatif tire du shrapnel de boulet de canon."
+SharedUnlockSource="Pack d'arme Tromblon"
+
+[KFWeap_Pistol_G18C]
+ItemName="Glock 18C"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="• Modes tir automatique et semi-automatique.\n• Attention : envies incontrôlables de décliner son identité aux autorités lorsqu'il est utilisé."
+SharedUnlockSource="Pack d'arme Glock 18C simple et double"
+
+[KFWeap_Pistol_DualG18]
+ItemName="Glock 18C double"
+ItemCategory="Pistolet mitrailleur"
+ItemDescription="• Mode de tir automatique seulement.\n• Mode de tir automatique seulement.\n• Attention : envies incontrôlables de décliner son identité aux autorités lorsqu'il est utilisé."
+SharedUnlockSource="Pack d'arme Glock 18C simple et double"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="Fusil d'assaut Tesla GRH"
+ItemCategory="Fusil d'assaut"
+ItemDescription="• Mode de tir automatique seulement.\n• Tir alternatif pour lancer des grenades IEM.\n• Avec cette arme électrique écologique, vous pouvez massacrer des centaines de Zeds sans nuire à la planète."
+SecondaryAmmo="Grenade IEM"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

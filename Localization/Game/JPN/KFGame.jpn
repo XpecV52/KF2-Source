@@ -115,7 +115,7 @@ StartOfflineGameString="オフラインゲームを開始"
 StartOfflineGameDescriptionString="オフラインゲームを開始するとパーティーが解体されます。\n続行しますか？"
 
 ProceedToTutorialString="トレーニングに進みますか？"
-ProceedToTutorialDescriptionString="基本を学ぶために制御環境へと向かいましょう。 一度完了すると選択されたレベル0Perkがレベル1になります。"
+ProceedToTutorialDescriptionString="基本を学ぶために制御環境へと向かいましょう。  一度完了すると選択されたレベル0Perkがレベル1になります。"
 
 NotAvailableInFreeTrialString="この機能は無料トライアルではご利用いただけません"
 NetworkCheckFreeTrialFailedString="ネットワークエラー: フリーイベントの状態を確認できません。ネットワークの接続状態をご確認ください。"
@@ -1015,6 +1015,8 @@ ThrowString="投てき武器"
 
 [KFGFxWidget_KickVote]
 VoteKickString="プレイヤー追放しますか？"
+VoteSkipTraderString="トレーダーをスキップしますか？"
+VoteSkipTraderDetailString="がカウントダウンをスキップしたがっています"
 
 [KFLocalMessage_PlayerKills]
 KilledString="キルした"
@@ -1399,6 +1401,7 @@ LoggedOutAsAdminString=" サーバー管理者としてログアウトしまし�
 MustLoginToCheatString="チートを有効にするにはログインする必要があります"
 CheatsEnabledString=" がチートを有効にしました。本セッションでは能力は無効になっています"
 ServerMaintenanceString="ゲーム終了後、メンテナンスのためサーバーをシャットダウンします"
+OtherVoteInProgressString="現在の投票が終了するまで新しい投票を開始することはできません"
 KickVoteStartedString="次のプレイヤーを追放する投票が始まりました："
 KickVoteSucceededString="次のプレイヤーを追放する投票は可決されました："
 KickVoteFailedString="次のプレイヤーを追放する投票は否決されました："
@@ -1416,8 +1419,17 @@ KickVoteNoSpectatorsString="観客は追放投票を開始できません"
 KickedFromServerString="サーバーから取り除かれました"
 BannedFromServerString="このサーバーから取り除かれました。現時点では再加入できません"
 ServerNoLongerAvailableString="このサーバーにはもう参加できません"
-SkipTraderTimeString="「トレーダーのスキップ」を有効にしました。ゲームメニューの「トレーダーのスキップ」をオンにして選択できるようにします。 すべてのプレイヤーが同意する必要があります。"
+SkipTraderVoteStartedString="がトレーダースキップ投票を始めました"
+SkipTraderTimeString="「トレーダーのスキップ」を有効にしました。ゲームメニューの「トレーダーのスキップ」をオンにして選択できるようにします。  すべてのプレイヤーが同意する必要があります。"
 SkipTraderSuccessString="トレーダースキップの投票が成功しました！"
+SkipTraiderVoteFailedString="トレーダースキップ投票却下！"
+SkipTraderVoteNoSpectatorsString="観客はトレーダースキップ投票を始められません"
+SkipTraderIsNotOpenString="ウェーブ中にはトレーダースキップができません"
+SkipTraderVoteInProgressString="すでにトレーダースキップ投票が進行中のため、新たに開始できません"
+SkipTraderVoteYesReceivedString="トレーダースキップに投票しました"
+SkipTraderVoteNoReceivedString="トレーダースキップしないに投票しました"
+SkipTraderNoEnoughTimeString="トレーダースキップ投票を開始するには時間が足りません"
+SkipTraderThisUserAlreadyStartedAVoteString="次にトレーダーが利用可能になるまで新しいトレーダースキップ投票を始めることはできません"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="弾薬を受け取りました："
@@ -1760,7 +1772,7 @@ Spartan="Zed-Time―スパルタン"
 SpartanDescription="Zed-Time中、Perk武器で攻撃し、リアルタイムで動作する。"
 
 Rage="Zed-Time―バーサーカーの怒り"
-RageDescription="Zed Timeが起動、または更新される度に50%のヘルスを回復し、付近のZedを強制的に撤退させる。"
+RageDescription="Zed Timeが起動、または更新される度にヘルスが50%回復し、付近のZedを全員行動不能にする。"
 
 [KFPerk_Commando]
 PerkName="コマンドー"
@@ -2033,7 +2045,7 @@ Stun="弾道ショック"
 StunDescription="Perk武器のスタンパワーが100%増加する。"
 
 RhythmMethod="溜めろ"
-RhythmMethodDescription="Perk武器による各連続ヘッドショットで、ダメージが10%増加する(最大50%まで)。 "
+RhythmMethodDescription="Perk武器による各連続ヘッドショットで、ダメージが10%増加する(最大50%まで)。  "
 
 TacticalReload="戦術的リロード"
 TacticalReloadDescription="Perk武器のリロード速度が上昇する。"
@@ -2094,7 +2106,7 @@ ConcussionRounds="震とう弾"
 ConcussionRoundsDescription="Perk武器の怯みパワーが150%増加する。"
 
 Perforate="Zed-Time―侵入者"
-PerforateDescription="Zed-Time中、Perk武器で、zedに弾を貫通させて他のzedにも当てる際、ダメージ減少を受けず、貫通力も上昇する。"
+PerforateDescription="Zed-Time中、Perk武器は貫通によってダメージが減少することなく、Zed全員を貫通させることができる。"
 
 Barrage="Zed-Time―集中砲火"
 BarrageDescription="Zed-Time中、Perk武器の発射速度がほぼリアルタイムになる。"
@@ -2172,7 +2184,7 @@ FieldMedic="メディック訓練"
 FieldMedicDescription="すべての回復の効力が30%増加し、注射器および回復ダーツのクールダウンが50%減少する。"
 
 MeleeExpert="近接攻撃専門家"
-MeleeExpertDescription="近接武器を使用中、近接攻撃速度が20%、与えるダメージが50%、移動速度が25%増加する。"
+MeleeExpertDescription="近接武器を使用中、近接攻撃速度が20%、与えるダメージが75%、移動速度が25%増加する。"
 
 AmmoVest="弾薬ベスト"
 AmmoVestDescription="全武器の弾薬を持てる量が最大15%増加し、手榴弾が回復グレネードになる。"
@@ -2190,7 +2202,7 @@ Madman="Zed-Time―狂人"
 MadmanDescription="Zed-Time中、全武器の発射速度が3倍になる。"
 
 IncapMaster="Zed-Time―ロックダウン"
-IncapMasterDescription="Zed Time中、武器によるノックダウン、ひるませ、スタン効果の発現率が最大化する。"
+IncapMasterDescription="Zed-Time中、全武器がいずれかのZedをスタンさせることができる。"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2705,6 +2717,20 @@ AllCompleteRewardDescriptionString="AA12 ダイナミック ダブルバンド�
 
 ChanceDropDescriptionStrings[0]="サイバーパンク・チケット"
 ChanceDropDescriptionStrings[1]="サイバーパンク ゴールデンチケット"
+
+[KFGFxSpecialEventObjectivesContainer_Summer2020]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="ゾクゾクするぜ！",DescriptionString="マップやモードを問わず、ボスを15人殺す")
+SpecialEventObjectiveInfoList[1]=(TitleString="毎週の掛け声",DescriptionString="Desolationでウィークリーをクリア")
+SpecialEventObjectiveInfoList[2]=(TitleString="うぉー！火を点けろ！",DescriptionString="Desolationで発電機を起動する")
+SpecialEventObjectiveInfoList[3]=(TitleString="ドゥーブロンだらけ",DescriptionString="Desolationでのキル、報酬、回復から75,000 Doshを獲得する")
+SpecialEventObjectiveInfoList[4]=(TitleString="エンドレスな略奪",DescriptionString="エンドレスHardかそれ以上の難易度で、Desolationのウェーブ15をクリアする")
+
+AllCompleteRewardDescriptionString="スペースパイレーツ | スペースモンキーバックパック"
+
+ChanceDropDescriptionStrings[0]="サマーチケット"
+ChanceDropDescriptionStrings[1]="サマー・ゴールデン・チケット"
 
 ;============================================
 ; Daily Localization
@@ -3300,6 +3326,9 @@ DisplayName="Sanitarium"
 
 [KF-Biolapse KFMapSummary]
 DisplayName="Biolapse"
+
+[KF-Desolation KFMapSummary]
+DisplayName="Desolation"
 
 [KFMapInfo]
 ; defaults

@@ -225,6 +225,10 @@ simulated event ReplicatedEvent(name VarName)
         UpdateShield();
         break;
 
+	case nameOf(bIsCloakingSpottedByTeam):
+		UpdateGameplayMICParams();
+		break;
+		
 	case nameof(bShieldUp):
 		SetShieldUp(bShieldUp);
 		break;
@@ -1080,7 +1084,6 @@ simulated function UpdateGameplayMICParams()
 
 		// visible by local player or team (must go after ServerCallOutCloaking)
 		bIsSpotted = (bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam);
-
 		if ((!bIsCloaking || IsImpaired()) && CharacterMICs[0].Parent != MonsterInfo.Skins[0])
 		{
 			for (i = 0; i < MonsterInfo.Skins.Length; ++i)
@@ -1940,6 +1943,7 @@ defaultproperties
     //special case
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_MicrowaveRifle',   DamageScale=(0.7)))
     DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_HRGHealthrower',       DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_HRGTeslauncher',   DamageScale=(0.7)))
 
 	// ---------------------------------------------
     // Armor

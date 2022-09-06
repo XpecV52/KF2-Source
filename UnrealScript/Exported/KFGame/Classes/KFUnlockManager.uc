@@ -22,6 +22,8 @@ enum ESharedContentUnlock
 	SCU_MosinNagant,
 	SCU_G18RiotShield,
 	SCU_CompoundBow,
+	SCU_G18C,
+	SCU_Blunderbuss,
 };
 
 
@@ -85,18 +87,18 @@ static native function 		InitSharedUnlocksFor(KFPlayerReplicationInfo PRI, optio
  * returns TRUE if any player on this server has this unlock
  * Network: All
  */
-static native function bool IsSharedContentUnlocked(ESharedContentUnlock UnlockId);
+static native function bool IsSharedContentUnlocked(int UnlockId);
 
 /**
 *Returns TRUE if a player has event weapon skin
 */
-static native function bool GetObjectiveItemGranted(ESharedContentUnlock UnlockId);
+static native function bool GetObjectiveItemGranted(int UnlockId);
 
 /**
  * returns a list of all available (aka connected ) players with a given unlock
  * Network: All
  */
-static native function 		GetSharedContentPlayerList(ESharedContentUnlock UnlockId, out array<PlayerReplicationInfo> out_PRIArray);
+static native function 		GetSharedContentPlayerList(int UnlockId, out array<PlayerReplicationInfo> out_PRIArray);
 
 
 
@@ -279,6 +281,8 @@ defaultproperties
    SharedContentList(5)=(Name="KFWeap_Rifle_MosinNagant",IconPath="wep_ui_mosin_tex.UI_WeaponSelect_MosinNagant",Id=7856)
    SharedContentList(6)=(Name="KFWeap_SMG_G18",IconPath="WEP_UI_RiotShield_TEX.UI_WeaponSelect_RiotShield",Id=7850)
    SharedContentList(7)=(Name="KFWeap_Bow_CompoundBow",IconPath="WEP_UI_CompoundBow_TEX.UI_WeaponSelect_Compound_Bow",Id=8169)
+   SharedContentList(8)=(Name="KFWeap_Pistol_G18C",IconPath="wep_ui_g18c_tex.UI_WeaponSelect_G18C",Id=8293)
+   SharedContentList(9)=(Name="KFWeap_Pistol_Blunderbuss",IconPath="WEP_UI_Blunderbuss_TEX.UI_WeaponSelect_BlunderBluss",Id=8299)
    Name="Default__KFUnlockManager"
    ObjectArchetype=Object'Core.Default__Object'
 }

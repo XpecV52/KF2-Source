@@ -115,7 +115,7 @@ StartOfflineGameString="Offline-Spiel beginnen"
 StartOfflineGameDescriptionString="Wenn du ein Offline-Spiel beginnst, wird deine Gruppe aufgelöst. \nMöchtest du fortfahren?"
 
 ProceedToTutorialString="WEITER ZUM TRAINING??"
-ProceedToTutorialDescriptionString="Lerne die Grundlagen in einer kontrollierten Umgebung. Bringt bei Abschluss ausgewählten Vorteil von Level 0 auf 1."
+ProceedToTutorialDescriptionString="Lerne die Grundlagen in einer kontrollierten Umgebung.  Bringt bei Abschluss ausgewählten Vorteil von Level 0 auf 1."
 
 NotAvailableInFreeTrialString="Funktion in kostenloser Testversion nicht verfügbar"
 NetworkCheckFreeTrialFailedString="Netzwerk-Fehler: Status des kostenlosen Events konnte nicht verifiziert werden. Status der Netzwerk-Verbindung prüfen"
@@ -1015,6 +1015,8 @@ ThrowString="WAFFE ABWERFEN"
 
 [KFGFxWidget_KickVote]
 VoteKickString="Spieler kicken?"
+VoteSkipTraderString="Händlerin überspringen?"
+VoteSkipTraderDetailString="will den Countdown überspringen"
 
 [KFLocalMessage_PlayerKills]
 KilledString="getötet"
@@ -1399,6 +1401,7 @@ LoggedOutAsAdminString=" hat sich als Serveradministrator abgemeldet"
 MustLoginToCheatString="Du musst dich anmelden um Cheats zu aktivieren"
 CheatsEnabledString=" hat Cheats aktiviert. Statistiken sind für diese Sitzung deaktiviert"
 ServerMaintenanceString="Der Server wird am Ende des Spiels für Wartungsarbeiten heruntergefahren"
+OtherVoteInProgressString="Eine neue Abstimmung kann erst gestartet werden, wenn die aktuelle Abstimmung abgeschlossen ist"
 KickVoteStartedString="Es wurde eine Abstimmung gestartet, um folgenden Spieler zu kicken:"
 KickVoteSucceededString="Es wurde per Abstimmung beschlossen, folgenden Spieler zu kicken:"
 KickVoteFailedString="Es wurde per Abstimmung beschlossen, folgenden Spieler nicht zu kicken:"
@@ -1416,8 +1419,17 @@ KickVoteNoSpectatorsString="Zuschauer können keine Kick-Abstimmung initiieren"
 KickedFromServerString="Du wurdest von diesem Server entfernt"
 BannedFromServerString="Du wurdest von diesem Server entfernt. Du kannst zur Zeit nicht wieder beitreten"
 ServerNoLongerAvailableString="Dem Server kann nicht mehr beigetreten werden"
-SkipTraderTimeString="HÄNDLERIN ÜBERSPRINGEN aktiv. Wähl im Menü HÄNDLERIN ÜBERSPRINGEN zum Stimmen. Alle müssen zustimmen."
+SkipTraderVoteStartedString="die Abstimmung „Händlerin überspringen“ wurde gestartet"
+SkipTraderTimeString="HÄNDLERIN ÜBERSPRINGEN aktiv. Wähl im Menü HÄNDLERIN ÜBERSPRINGEN zum Stimmen.  Alle müssen zustimmen."
 SkipTraderSuccessString="Abstimmung zum Überspringen der Händlerin erfolgreich!"
+SkipTraiderVoteFailedString="Abstimmung zum Überspringen der Händlerin ist gescheitert!"
+SkipTraderVoteNoSpectatorsString="Zuschauer können keine Abstimmung zum Überspringen der Händlerin initiieren"
+SkipTraderIsNotOpenString="„Händlerin überspringen“ während einer Welle nicht möglich"
+SkipTraderVoteInProgressString="Die Abstimmung „Händlerin überspringen“ kann nicht gestartet werden, weil schon eine aktiv ist"
+SkipTraderVoteYesReceivedString="Du hast dafür gestimmt, die Händlerin zu überspringen"
+SkipTraderVoteNoReceivedString="Du hast dagegen gestimmt, die Händlerin zu überspringen"
+SkipTraderNoEnoughTimeString="Nicht genug Zeit, die Abstimmung „Händlerin überspringen“ zu starten"
+SkipTraderThisUserAlreadyStartedAVoteString="Du kannst bis zur nächsten Händlerin keine neue Abstimmung zum Überspringen der Händlerin starten"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Du hast Munition erhalten von"
@@ -1760,7 +1772,7 @@ Spartan="ZED-ZEIT – Spartaner"
 SpartanDescription="Während der Zed-Zeit greifst du mit Vorteils-Waffen an und bewegst dich in Echtzeit."
 
 Rage="ZED-ZEIT – Berserker-Wut"
-RageDescription="Wenn die Zed-Zeit aktiviert oder aktualisiert wird, heile 50% deiner LP und bringe Zeds in der Nähe zur Flucht."
+RageDescription="Wenn die Zed-Zeit aktiviert oder aktualisiert wird, heile 50% deiner LP und immobilisiere Zeds in der Nähe."
 
 [KFPerk_Commando]
 PerkName="Kommando"
@@ -2033,7 +2045,7 @@ Stun="Ballistischer Schock"
 StunDescription="Erhöhe die Betäubungs-Macht von Vorteils-Waffen um 100%."
 
 RhythmMethod="Hol sie dir"
-RhythmMethodDescription="Jeder aufeinanderfolgende Kopfschuss mit Vorteils-Waffen erhöht den Schaden um 10%, bis zu einem Maximum von 50%. "
+RhythmMethodDescription="Jeder aufeinanderfolgende Kopfschuss mit Vorteils-Waffen erhöht den Schaden um 10%, bis zu einem Maximum von 50%.  "
 
 TacticalReload="Taktisches Nachladen"
 TacticalReloadDescription="Erhöhe die Nachladegeschwindigkeit mit Vorteils-Waffen"
@@ -2094,7 +2106,7 @@ ConcussionRounds="Schlaggeschosse"
 ConcussionRoundsDescription="Erhöhe die Strauchel-Macht von Vorteils-Waffen um 150%."
 
 Perforate="ZED-ZEIT – Durchdringer"
-PerforateDescription="Während der Zed-Zeit erleiden Ihre Bonuswaffen keine Schadensreduzierung durch das Eindringen und Sie durchdringen alle Zeds."
+PerforateDescription="Während der Zed-Zeit durchschlagen deine Vorteils-Waffen alle Zeds und erleiden dabei keine Schadensverringerung."
 
 Barrage="ZED-ZEIT – Sperrfeuer"
 BarrageDescription="Während der Zed-Zeit schießen deine Waffen in Fast-Echtzeit."
@@ -2172,7 +2184,7 @@ FieldMedic="Sanitäter-Ausbildung"
 FieldMedicDescription="Erhöhe die Wirksamkeit all deiner Heilungen um 30% und verringere die Abklingzeit deiner Spritze und heilenden Pfeile um 50%."
 
 MeleeExpert="Nahkampfexperte"
-MeleeExpertDescription="Erhöhe Nahkampf-Angriffsgeschwindigkeit um 20%, verursache 50% mehr Schaden und bewege dich 25% schneller, wenn du Nahkampfwaffen benutzt."
+MeleeExpertDescription="Erhöhe Nahkampf-Angriffsgeschwindigkeit um 20%, verursache 75% mehr Schaden und bewege dich 25% schneller, wenn du Nahkampfwaffen benutzt."
 
 AmmoVest="Munitionsweste"
 AmmoVestDescription="Trage bis zu 15% mehr Munition für alle Waffen und deine Granate wird zur Heilgranate."
@@ -2190,7 +2202,7 @@ Madman="ZED-ZEIT – Irrer"
 MadmanDescription="Während der Zed-Zeit schießen alle deine Waffen 3x schneller."
 
 IncapMaster="ZED-ZEIT – Ausschalten"
-IncapMasterDescription="Während der Zed-Zeit erhöhen sich die Niederschlags-, Strauchel- und Betäubungs-Raten für deine Waffen auf ihr Maximum."
+IncapMasterDescription="Während der Zed-Zeit können all deine Waffen jeden Zed betäuben."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2705,6 +2717,20 @@ AllCompleteRewardDescriptionString="Dynamische AA12-Doppelpaket-Skins"
 
 ChanceDropDescriptionStrings[0]="Cyberpunk-Schein"
 ChanceDropDescriptionStrings[1]="Goldener Cyberpunk-Schein"
+
+[KFGFxSpecialEventObjectivesContainer_Summer2020]
+CurrentSpecialEventString="Ein zeitlich begrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Potz Blitz!",DescriptionString="Töte 15 Bosse auf einer beliebigen Karte oder in einem beliebigen Modus")
+SpecialEventObjectiveInfoList[1]=(TitleString="Wöchentliches Ahoi",DescriptionString="Schaffe die wöchentliche Verwüstung")
+SpecialEventObjectiveInfoList[2]=(TitleString="Arr! Licht an!",DescriptionString="Aktiviere den Stromerzeuger in Verwüstung")
+SpecialEventObjectiveInfoList[3]=(TitleString="Voller Dublonen",DescriptionString="Verdiene 75.000 Kohle durch Kills, Belohnungen und Heilung in Verwüstung")
+SpecialEventObjectiveInfoList[4]=(TitleString="Endlos-Plünderer",DescriptionString="Schließe Welle 15 bei Verwüstung auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="Weltraumpirat | Weltraumaffen-Rucksack"
+
+ChanceDropDescriptionStrings[0]="Summer-Schein"
+ChanceDropDescriptionStrings[1]="Summer-Goldschein"
 
 ;============================================
 ; Daily Localization
@@ -3300,6 +3326,9 @@ DisplayName="Sanatorium"
 
 [KF-Biolapse KFMapSummary]
 DisplayName="Bioverfall"
+
+[KF-Desolation KFMapSummary]
+DisplayName="Verwüstung"
 
 [KFMapInfo]
 ; defaults

@@ -2018,7 +2018,14 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
 					{
 						if( KFPCP.CanEarnSmallRadiusKillXP( LastHitByDamageType ) )
 						{
-							CheckForBerserkerSmallRadiusKill( MonsterPawn, KFPC );
+							if(KFPCP.GetPerkClass() == class'KFPerk_Berserker'.static.GetPerkClass())
+							{
+								CheckForSmallRadiusKill( MonsterPawn, KFPC, class'KFPerk_Berserker' );
+							}
+							else if(KFPCP.GetPerkClass() == class'KFPerk_Survivalist'.static.GetPerkClass())
+							{
+								CheckForSmallRadiusKill( MonsterPawn, KFPC, class'KFPerk_Survivalist' );
+							}
 						}
 
 						KFPCP.AddVampireHealth( KFPC, LastHitByDamageType );
@@ -2320,7 +2327,7 @@ function NotifyIgnoredScream(KFPawn ScreamPawn)
 	}
 }
 
-function CheckForBerserkerSmallRadiusKill(KFPawn_Monster MonsterPawn, KFPlayerController KFPC)
+function CheckForSmallRadiusKill(KFPawn_Monster MonsterPawn, KFPlayerController KFPC, class<KFPerk> PerkClass)
 {
 	local KFPawn_Human KFPH;
 
@@ -2335,7 +2342,7 @@ function CheckForBerserkerSmallRadiusKill(KFPawn_Monster MonsterPawn, KFPlayerCo
 		{
 			if( VSizeSq( KFPH.Location - MonsterPawn.Location ) <= class'KFPerk_Berserker'.static.GetSmallRadiusKillDistanceSQ() )
 			{
-				KFPC.AddSmallRadiusKill( GameDifficulty );
+				KFPC.AddSmallRadiusKill( GameDifficulty, PerkClass );
 				break;
 			}
 		}
@@ -3384,11 +3391,6 @@ auto State PendingMatch
 
 	event Timer()
 	{
-		if (WorldInfo.NetMode == NM_DedicatedServer)
-		{
-			`REMOVEMESOON_ZombieServerLog("KFGameInfo:PendingMatch.Timer - bDelayedStart: "$bDelayedStart);
-		}
-
 		global.Timer();
  		if (bDelayedStart)
 		{

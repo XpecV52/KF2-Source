@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="Twardy Mikołaj"
-Description="Na początku Krampus przyszedł po renifery. Potem Krampus przyszedł po dom. Na koniec Mikołaj dał Krampusowi poczuć zimno lufy karabinu na skroni. Ho ho ho!\n\nŚwięty Mikołaj od setek lat opiekował się dziećmi z całego świata, przynosił im prezenty, a na ich twarzach wywoływał uśmiechy radości. Czy taka sielanka mogła trwać wiecznie na tym świecie pełnym złości? „NIE!” — odkąd Krampus tu zagościł. Od pamiętnych Krampusowych Świąt myśli Mikołaja krążą wokół pomszczenia swoich zabitych pracowników, przyjaciół i członków rodziny. Różowe poliki i galaretowaty brzusio to śpiewka przeszłości — Mikołaj stał się umięśnioną, wnerwioną maszyną do zabijania. Tegoroczna noc nie będzie cicha, dzwonić będą jedynie dzwony pogrzebowe, a zamiast łamania się opłatkiem Mikołaj wprowadzi nowy zwyczaj: dzielenie się seriami ołowiu."
+Description="Na początku Krampus przyszedł po renifery. Potem Krampus przyszedł po dom. Na koniec Mikołaj dał Krampusowi poczuć zimno lufy karabinu na skroni. Ho ho ho!\n\nŚwięty Mikołaj od setek lat opiekował się dziećmi z całego świata, przynosił im prezenty, a na ich twarzach wywoływał uśmiechy radości. Czy taka sielanka mogła trwać wiecznie na tym świecie pełnym złości?  „NIE!” — odkąd Krampus tu zagościł.  Od pamiętnych Krampusowych Świąt myśli Mikołaja krążą wokół pomszczenia swoich zabitych pracowników, przyjaciół i członków rodziny. Różowe poliki i galaretowaty brzusio to śpiewka przeszłości — Mikołaj stał się umięśnioną, wnerwioną maszyną do zabijania. Tegoroczna noc nie będzie cicha, dzwonić będą jedynie dzwony pogrzebowe, a zamiast łamania się opłatkiem Mikołaj wprowadzi nowy zwyczaj: dzielenie się seriami ołowiu."
 BodyMesh0="Strój Mikołaja"
 BodyMesh1="Kurczak-komandos"
 HeadMesh0="Głowa Mikołaja"
@@ -42,6 +42,7 @@ BodyMesh8="Piżama skarbca"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
+BodyMesh12="Strój kosmicznego pirata"
 HeadMesh0="Maska gazowa"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -139,6 +140,14 @@ BodySkin3="Zieleń"
 BodySkin4="Biała"
 BodySkin5="Żółte"
 
+[CHR_MrsFoster_archetype.BodyMesh12]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Biel"
 HeadSkin1="Zielona"
@@ -222,6 +231,7 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
+BodyMesh12="Strój kosmicznego pirata"
 HeadMesh0="Moc brody!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -325,6 +335,14 @@ BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
 
+[CHR_Jagerhorn_archetype.BodyMesh12]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Szwedzki blondyn"
 HeadSkin1="Czarny album"
@@ -423,6 +441,7 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
+BodyMesh12="Space Pirate"
 HeadMesh0="Maska Scully'ego"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -525,6 +544,14 @@ BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
 
+[CHR_DJSkully_archetype.BodyMesh12]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Najczarniejsza czerń"
 HeadSkin1="Ekstra czerwień"
@@ -570,6 +597,7 @@ BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
+BodyMesh13="Strój kosmicznego pirata"
 HeadMesh0="Włosy"
 
 [chr_briar_archetype.BodyMesh0]
@@ -678,6 +706,14 @@ BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
 
+[CHR_briar_archetype.BodyMesh13]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Oryginalny"
 HeadSkin1="Pasemka"
@@ -717,6 +753,7 @@ BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
+BodyMesh13="Strój pirata"
 HeadMesh0="Maska gazowa"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -829,6 +866,14 @@ BodySkin2="Błękit"
 BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
+
+[CHR_MrFoster_archetype.BodyMesh13]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Oryginalny Biały"
@@ -976,7 +1021,7 @@ AttachmentSkin6="Biały"
 
 [CHR_Coleman_archetype]
 CharacterName="Donovan Neal"
-Description="Donovan jest duży, twardy i umie sobie poradzić w każdej sytuacji. Kryje się w nim jednak coś więcej, niż widać na pierwszy rzut oka. Nie był zwykłym kolesiem zapewniającym ochronę osobistą grupie zapaśników; był kolesiem, który założył, posiadał i prowadził wielką ochroniarską firmę. Donovan, urodził się w Atlancie, w stanie Georgia, był inteligentny i dobrze wykształcony. Zanim założył własny biznes, pracował w organach ścigania. Był nie tylko mięśniami, lecz całym mózgiem operacji. Teraz jest tylko jednym z ocalałych, który znalazł się w nieodpowiednim miejscu i czasie. Pora zmówić krótką modlitwę za wszystkie zety, którzy stoją pomiędzy Donovanem a tym, czego chce. Albo do niego dołączyć!"
+Description="Donovan jest duży, twardy i umie sobie poradzić w każdej sytuacji. Kryje się w nim jednak coś więcej, niż widać na pierwszy rzut oka. Nie był zwykłym kolesiem zapewniającym ochronę osobistą grupie zapaśników; był kolesiem, który założył, posiadał i prowadził wielką ochroniarską firmę. Donovan, urodził się w Atlancie, w stanie Georgia, był inteligentny i dobrze wykształcony. Zanim założył własny biznes, pracował w organach ścigania.  Był nie tylko mięśniami, lecz całym mózgiem operacji. Teraz jest tylko jednym z ocalałych, który znalazł się w nieodpowiednim miejscu i czasie. Pora zmówić krótką modlitwę za wszystkie zety, którzy stoją pomiędzy Donovanem a tym, czego chce. Albo do niego dołączyć!"
 BodyMesh0="Zakapturzony RQ"
 BodyMesh1="Kartonowy rycerz"
 BodyMesh2="Ochroniarz Horzine"
@@ -989,6 +1034,7 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
+BodyMesh12="Strój kosmicznego pirata"
 HeadMesh0="Twarz"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1089,6 +1135,14 @@ BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
 
+[CHR_Coleman_archetype.BodyMesh12]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Dziara"
@@ -1127,6 +1181,7 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
+BodyMesh12="Strój kosmicznego pirata"
 HeadMesh0="Włosy"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1228,6 +1283,14 @@ BodySkin2="Błękit"
 BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
+
+[CHR_Alberts_archetype.BodyMesh12]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Szary"
@@ -2127,6 +2190,7 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
+BodyMesh12="Strój kosmicznego pirata"
 HeadMesh0="Twarz"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2238,6 +2302,14 @@ BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
 
+[CHR_Masterson_archetype.BodyMesh12]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka to pełen wewnętrznych sprzeczności osobnik, który najwyraźniej szuka okazji, by umrzeć. Urodził się na Okinawie i dorastał pośród amerykańskich żołnierzy. Po przeprowadzce wraz z rodziną do Japonii właściwej zamerykanizowany Tanaka nie mógł się odnaleźć w nowym otoczeniu i zapisał się do szkoły aktorskiej. Po ukończeniu koledżu przeniósł się do LA i grał oklepane rólki w nędznych filmach, po czym udał się do Europy w poszukiwaniu „poważniejszej” pracy. Angażowano go jednak tylko do ról przestępców we francuskich filmach gangsterskich i drugorzędnych produkcjach. Teraz, gdy nastała apokalipsa, otaczająca go rzeczywistość nierzadko myli mu się z zagranymi niegdyś rolami. Wizje te obejmują yakuzę, demony i bushido w wydaniu hollywoodzkim."
@@ -2254,6 +2326,7 @@ BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
+BodyMesh13="Strój kosmicznego pirata"
 HeadMesh0="Włosy"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2372,6 +2445,14 @@ BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
 
+[CHR_Tanaka_archetype.BodyMesh13]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Hełm"
 AttachmentSkin0="Wschodzące słońce"
@@ -2414,6 +2495,7 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
+BodyMesh12="Strój kosmicznego pirata"
 HeadMesh0="Irokez"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2525,6 +2607,14 @@ BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
 
+[CHR_Ana_archetype.BodyMesh12]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Okulary 3D"
 AttachmentSkin0="Anaglif 3D"
@@ -2553,6 +2643,7 @@ BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
+BodyMesh13="Strój kosmicznego pirata"
 HeadMesh0="Włosy"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2661,6 +2752,14 @@ BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
 
+[CHR_mark_archetype.BodyMesh13]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
 HeadSkin1="Krwisty"
@@ -2686,6 +2785,7 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
+BodyMesh12="Strój kosmicznego pirata"
 HeadMesh0="Twarz"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2789,6 +2889,14 @@ BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
 
+[CHR_alan_archetype.BodyMesh12]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
 HeadSkin1="Rudy! Serio?"
@@ -2821,6 +2929,7 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
+BodyMesh12="Strój kosmicznego pirata"
 HeadMesh0="Włosy"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2920,6 +3029,14 @@ BodySkin2="Błękit"
 BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
+
+[CHR_strasser_archetype.BodyMesh12]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Ciemny stalowy"
@@ -3095,6 +3212,7 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
+BodyMesh12="Strój kosmicznego pirata"
 HeadMesh0="Domyślna głowa"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3198,6 +3316,14 @@ BodySkin2="Błękit"
 BodySkin3="Zieleń"
 BodySkin4="Biel"
 BodySkin5="Żółte"
+
+[CHR_rockabilly_archetype.BodyMesh12]
+BodySkin0="Oliwka"
+BodySkin1="Granat"
+BodySkin2="Karmazyn"
+BodySkin3="Limonka"
+BodySkin4="Lawenda"
+BodySkin5="Klementynka"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Czerń"
@@ -5675,3 +5801,189 @@ AttachmentSkin2="Różowa"
 AttachmentSkin3="Fiolet"
 AttachmentSkin4="Biel"
 AttachmentSkin5="Cenny egz."
+
+[Cosmetic_Neon_Headphones_ARCH]
+Attachment="Słuchawki"
+AttachmentSkin0="Neon"
+AttachmentSkin1="Tęcza"
+AttachmentSkin2="Neon RGB"
+AttachmentSkin3="Tęcza RGB"
+
+[Cosmetic_Retro_Sign_ARCH]
+Attachment="Plecak wyjścia"
+AttachmentSkin0="Neon"
+AttachmentSkin1="Tęcza"
+AttachmentSkin2="Neon RGB"
+AttachmentSkin3="Tęcza RGB"
+
+[Cosmetic_Retro_TV_ARCH]
+Attachment="Plecak TV"
+AttachmentSkin0="Neon"
+AttachmentSkin1="Tęcza"
+AttachmentSkin2="Neon RGB"
+AttachmentSkin3="Tęcza RGB"
+
+[Cosmetic_Retro_Boombox_ARCH]
+Attachment="Boombox"
+AttachmentSkin0="Neon"
+AttachmentSkin1="Tęcza"
+AttachmentSkin2="Neon RGB"
+AttachmentSkin3="Tęcza RGB"
+
+[Cosmetic_Retro_Watch_ARCH]
+Attachment="Mocny zegarek"
+AttachmentSkin0="Neon"
+AttachmentSkin1="Tęcza"
+AttachmentSkin2="Neon RGB"
+AttachmentSkin3="Tęcza RGB"
+
+[Cosmetic_Neon_Display_ARCH]
+Attachment="Wyświetlacz plecakowy"
+AttachmentSkin0="Wsparcie"
+AttachmentSkin1="Destrukcja"
+AttachmentSkin2="Sanitariusz"
+AttachmentSkin3="Niespodzianka Fostera"
+
+[Cosmetic_Retro_Helmet_ARCH]
+Attachment="Kask do rugby"
+AttachmentSkin0="Neon"
+AttachmentSkin1="Tęcza"
+AttachmentSkin2="Neon RGB"
+AttachmentSkin3="Tęcza RGB"
+
+[Cosmetic_Neon_CylinderHat_ARCH]
+Attachment="Cylinder"
+AttachmentSkin0="Neon"
+AttachmentSkin1="Tęcza"
+AttachmentSkin2="Neon RGB"
+AttachmentSkin3="Tęcza RGB"
+
+[Cosmetic_Neon_Armband_ARCH]
+Attachment="Przepaska Horzine"
+AttachmentSkin0="Neon"
+AttachmentSkin1="Tęcza"
+AttachmentSkin2="Neon RGB"
+AttachmentSkin3="Tęcza RGB"
+
+[Cosmetic_Neon_Cap_ARCH]
+Attachment="Czapka Horzine"
+AttachmentSkin0="Neon"
+AttachmentSkin1="Tęcza"
+AttachmentSkin2="Neon RGB"
+AttachmentSkin3="Tęcza RGB"
+
+[Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
+Attachment="Cylinder z piórami kosmicznego pirata"
+AttachmentSkin0="Granat"
+AttachmentSkin1="Czerń"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Czerwień"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_SpacePirate_GoggleDreads_ARCH]
+Attachment="Dredy z goglami kosmicznego pirata"
+AttachmentSkin0="Granat"
+AttachmentSkin1="Czaszka"
+AttachmentSkin2="Paski"
+AttachmentSkin3="Brąz i złoto"
+AttachmentSkin4="Złoto i srebro"
+
+[Cosmetic_SpacePirate_TricornHat_ARCH]
+Attachment="Trójróg kosmicznego pirata"
+AttachmentSkin0="Brąz"
+AttachmentSkin1="Czerń"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Czerwień"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_SpacePirate_RumHead_ARCH]
+Attachment="Hełm rumowy kosmicznego pirata"
+AttachmentSkin0="Drewno"
+AttachmentSkin1="Dynamit"
+AttachmentSkin2="Węgiel"
+AttachmentSkin3="As i piki"
+AttachmentSkin4="Tęcza"
+
+[Cosmetic_SpacePirate_SkullBeard_ARCH]
+Attachment="Broda czaszki kosmicznego pirata"
+AttachmentSkin0="Granat"
+AttachmentSkin1="Czerń"
+AttachmentSkin2="Zieleń"
+AttachmentSkin3="Starszy"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_SpacePirate_GuyChomper_ARCH]
+Attachment="Pożeracz ludzi kosmicznego pirata"
+AttachmentSkin0="Błękit"
+AttachmentSkin1="Akwamaryn"
+AttachmentSkin2="Albinos"
+AttachmentSkin3="Paski"
+AttachmentSkin4="Megalodon"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_ARCH]
+Attachment="Plecak kosmicznego pirata"
+AttachmentSkin0="Kosmiczna małpa"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Alberts_ARCH]
+Attachment="Plecak kosmicznego pirata"
+AttachmentSkin0="Kosmiczna małpa"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Coleman_ARCH]
+Attachment="Plecak kosmicznego pirata"
+AttachmentSkin0="Kosmiczna małpa"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_JagerHorn_ARCH]
+Attachment="Plecak kosmicznego pirata"
+AttachmentSkin0="Kosmiczna małpa"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Knight_ARCH]
+Attachment="Plecak kosmicznego pirata"
+AttachmentSkin0="Kosmiczna małpa"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_MrFoster_ARCH]
+Attachment="Plecak kosmicznego pirata"
+AttachmentSkin0="Kosmiczna małpa"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_MrsFoster_ARCH]
+Attachment="Plecak kosmicznego pirata"
+AttachmentSkin0="Kosmiczna małpa"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_RockabillyGirl_ARCH]
+Attachment="Plecak kosmicznego pirata"
+AttachmentSkin0="Kosmiczna małpa"
+
+[Cosmetic_SpacePirate_MaleCaptainHat_ARCH]
+Attachment="Czapka kosmicznego pirata"
+AttachmentSkin0="Oliwka"
+AttachmentSkin1="Granat"
+AttachmentSkin2="Karmazyn"
+AttachmentSkin3="Limonka"
+AttachmentSkin4="Lawenda"
+AttachmentSkin5="Klementynka"
+
+[Cosmetic_SpacePirate_FemaleCaptainHat_ARCH]
+Attachment="Czapka kosmicznego pirata"
+AttachmentSkin0="Oliwka"
+AttachmentSkin1="Granat"
+AttachmentSkin2="Karmazyn"
+AttachmentSkin3="Limonka"
+AttachmentSkin4="Lawenda"
+AttachmentSkin5="Klementynka"
+
+[Cosmetic_SpacePirate_MaleCaptainMask_ARCH]
+Attachment="Kościana maska"
+AttachmentSkin0="Oliwka"
+AttachmentSkin1="Granat"
+AttachmentSkin2="Karmazyn"
+AttachmentSkin3="Limonka"
+AttachmentSkin4="Lawenda"
+AttachmentSkin5="Klementynka"
+
+[Cosmetic_SpacePirate_FemaleCaptainMask_ARCH]
+Attachment="Kościana maska"
+AttachmentSkin0="Oliwka"
+AttachmentSkin1="Granat"
+AttachmentSkin2="Karmazyn"
+AttachmentSkin3="Limonka"
+AttachmentSkin4="Lawenda"
+AttachmentSkin5="Klementynka"

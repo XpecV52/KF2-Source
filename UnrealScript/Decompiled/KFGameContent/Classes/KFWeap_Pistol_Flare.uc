@@ -45,7 +45,7 @@ defaultproperties
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */
     WeaponDryFireSnd=/* Array type was not detected. */
-    PlayerViewOffset=(X=15,Y=14,Z=-6)
+    PlayerViewOffset=(X=12,Y=14,Z=-6)
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_Pistol_Flare.MeleeHelper'
     maxRecoilPitch=400
     minRecoilPitch=350

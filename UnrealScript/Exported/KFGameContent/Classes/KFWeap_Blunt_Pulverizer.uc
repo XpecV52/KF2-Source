@@ -59,6 +59,31 @@ simulated event PreBeginPlay()
 	}
 }
 
+simulated function bool HasAnyAmmo()
+{
+
+	if (HasAmmo(CUSTOM_FIREMODE))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
+simulated event bool HasAmmo(byte FireModeNum, optional int Amount)
+{
+	// Default fire mode either has ammo to trigger the heal or needs to return true to still allow a basic swing
+	if (FireModeNum == DEFAULT_FIREMODE)
+	{
+		return true;
+	}
+
+	return super.HasAmmo(FireModeNum, Amount);
+}
+
 /** Pulverizer should be able to interrupt its reload state with any melee attack */
 simulated function bool CanOverrideMagReload(byte FireModeNum)
 {
@@ -387,11 +412,11 @@ defaultproperties
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
    FireModeIconPaths(6)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=6
-   MagazineCapacity(0)=5
+   MagazineCapacity(0)=1
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
    AmmoCost(6)=1
-   SpareAmmoCapacity(0)=15
+   SpareAmmoCapacity(0)=1
    WeaponFireSnd(6)=(DefaultCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_MEL_Pulverizer.Play_WEP_MEL_Pulverizer_Fire_1P')
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
       bUseDirectionalMelee=True

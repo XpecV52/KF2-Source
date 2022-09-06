@@ -851,6 +851,7 @@ defaultproperties
    ZedTimeModifyingStates(1)="WeaponBurstFiring"
    ZedTimeModifyingStates(2)="WeaponSingleFiring"
    ZedTimeModifyingStates(3)="WeaponAltFiring"
+   ZedTimeModifyingStates(4)="BlunderbussDeployAndDetonate"
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_MB500'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Support'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Support'

@@ -115,7 +115,7 @@ StartOfflineGameString="離線開始遊戲"
 StartOfflineGameDescriptionString="離線開始遊戲將解散你的隊伍。\n是否繼續？"
 
 ProceedToTutorialString="繼續訓練？"
-ProceedToTutorialDescriptionString="在受控的环境中进行基础学习。 完成時可以使所選的0級職業升級為1級職業。"
+ProceedToTutorialDescriptionString="在受控的环境中进行基础学习。  完成時可以使所選的0級職業升級為1級職業。"
 
 NotAvailableInFreeTrialString="功能不對免費版開放"
 NetworkCheckFreeTrialFailedString="網路錯誤：免費活動狀態無法確認檢查網絡連接狀態"
@@ -1015,6 +1015,8 @@ ThrowString="投擲武器"
 
 [KFGFxWidget_KickVote]
 VoteKickString="將玩家踢出遊戲？"
+VoteSkipTraderString="跳過商人？"
+VoteSkipTraderDetailString="想要跳過倒數計時"
 
 [KFLocalMessage_PlayerKills]
 KilledString="殺敵數"
@@ -1399,6 +1401,7 @@ LoggedOutAsAdminString=" 已登出伺服器管理員"
 MustLoginToCheatString="你必須登入以開啟金手指"
 CheatsEnabledString=" 已開啟金手指。本次遊戲不計入統計資料"
 ServerMaintenanceString="遊戲結束後伺服器將進行維護"
+OtherVoteInProgressString="處理完當前投票才能發起新的投票"
 KickVoteStartedString="開始投票決定踢除："
 KickVoteSucceededString="已投票通過踢除："
 KickVoteFailedString="投票未通過踢除："
@@ -1416,8 +1419,17 @@ KickVoteNoSpectatorsString="觀戰者無法提出踢除投票"
 KickedFromServerString="你已退出本伺服器"
 BannedFromServerString="你已退出本伺服器。你現在無法再加入"
 ServerNoLongerAvailableString="無法再加入該伺服器"
-SkipTraderTimeString="跳過商人激活在遊戲選單中選擇「跳過商人」進行投票。 需要所有玩家的同意。"
+SkipTraderVoteStartedString="發起了跳過商人投票"
+SkipTraderTimeString="跳過商人激活在遊戲選單中選擇「跳過商人」進行投票。  需要所有玩家的同意。"
 SkipTraderSuccessString="跳過商人投票成功！"
+SkipTraiderVoteFailedString="跳過商人投票失敗！"
+SkipTraderVoteNoSpectatorsString="觀戰者無法發起跳過商人投票"
+SkipTraderIsNotOpenString="在攻擊波數期間無法跳過商人"
+SkipTraderVoteInProgressString="無法開始跳過商人投票，已有投票在進行"
+SkipTraderVoteYesReceivedString="你投票跳過商人"
+SkipTraderVoteNoReceivedString="你投票不跳過商人"
+SkipTraderNoEnoughTimeString="發起跳過商人投票的時間不足"
+SkipTraderThisUserAlreadyStartedAVoteString="下次商人階段前無法發起跳過新的跳過商人投票"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="你收到的彈藥來自"
@@ -1760,7 +1772,7 @@ Spartan="ZED 時間 - 斯巴達"
 SpartanDescription="Zed 時間發動時，你可在使用職業武器的同時移動。"
 
 Rage="ZED 時間 - 狂戰士之怒"
-RageDescription="只要 Zed 時間啟動或更新，治療 50% 血量並使附近的 Zed 逃跑。"
+RageDescription="只要Zed時間啟動或更新，治療50%血量並癱瘓所有附近的Zed。"
 
 [KFPerk_Commando]
 PerkName="突擊隊"
@@ -2033,7 +2045,7 @@ Stun="驚悚彈道"
 StunDescription="職業武器暈眩效果增加 100%"
 
 RhythmMethod="連擊王"
-RhythmMethodDescription="連續以職業武器爆頭時，每次可增加 10% 傷害，最多增加到 50%。 "
+RhythmMethodDescription="連續以職業武器爆頭時，每次可增加 10% 傷害，最多增加到 50%。  "
 
 TacticalReload="戰略裝填"
 TacticalReloadDescription="職業武器裝填速度增加"
@@ -2094,7 +2106,7 @@ ConcussionRounds="腦震盪回合"
 ConcussionRoundsDescription="職業武器踉蹌力量增加 150%"
 
 Perforate="ZED 時間 - 貫穿射手"
-PerforateDescription="Zed 時間發動時，以職業武器射擊穿透 Zed 時，穿透後擊中其他 Zed 也不會減輕傷害，並提升穿透力。"
+PerforateDescription="Zed時間發動時，你的職業武器不會因為貫穿而減少傷害，並可貫穿所有Zed。"
 
 Barrage="ZED 時間 - 彈幕"
 BarrageDescription="Zed 時間發動時，你的職業武器即時射擊。"
@@ -2172,7 +2184,7 @@ FieldMedic="醫護訓練"
 FieldMedicDescription="增加治療效果 30%，並將注射以及注射器的效用延長 50%。"
 
 MeleeExpert="近身戰專家"
-MeleeExpertDescription="使用近身武器時增加近身攻速 20%，增加 50% 傷害並增加 25% 移動速度。"
+MeleeExpertDescription="使用任何近身武器時，增加近身攻速20%，造成75%額外傷害，增加25%移動速度。"
 
 AmmoVest="彈匣背心"
 AmmoVestDescription="為每樣武器多帶最多 15% 的彈藥，且你的手榴彈變為治療手榴彈"
@@ -2190,7 +2202,7 @@ Madman="ZED 時間 - 狂人"
 MadmanDescription="Zed 時間發動時，你的所有武器射速變為 3 倍。"
 
 IncapMaster="ZED 時間 - 鎖定"
-IncapMasterDescription="Zed 時間發動時，武器的擊倒、踉蹌和暈眩率提升至最大值。"
+IncapMasterDescription="Zed時間發動時，你的所有武器可以暈眩任何Zed。"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2569,7 +2581,7 @@ KFWeap_MKB="漢斯的萬聖節武器"
 Source0="騎士制度宣傳影片"
 
 ;============================================
-; SpecialEvent Localization (Base class)
+; SpecialEvent  Localization (Base class)
 ;============================================
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
@@ -2705,6 +2717,20 @@ AllCompleteRewardDescriptionString="AA12 動態飾品雙倍同捆包"
 
 ChanceDropDescriptionStrings[0]="賽博龐克票券"
 ChanceDropDescriptionStrings[1]="賽博龐克黃金票券"
+
+[KFGFxSpecialEventObjectivesContainer_Summer2020]
+CurrentSpecialEventString="附有專屬道具的限時活動"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="老子不怕！",DescriptionString="在任何地圖或模式擊殺15個頭目")
+SpecialEventObjectiveInfoList[1]=(TitleString="每週海盜任務",DescriptionString="完成每週廢墟任務")
+SpecialEventObjectiveInfoList[2]=(TitleString="呀！照亮一切！",DescriptionString="啟動廢墟的發電機")
+SpecialEventObjectiveInfoList[3]=(TitleString="滿滿金幣",DescriptionString="在廢墟透過擊殺、獎勵和治療賺取75,000金錢")
+SpecialEventObjectiveInfoList[4]=(TitleString="無盡掠奪",DescriptionString="在無盡困難以上難度的廢墟完成第15波攻勢")
+
+AllCompleteRewardDescriptionString="太空海盜 | 太空猴子背包"
+
+ChanceDropDescriptionStrings[0]="夏日票券"
+ChanceDropDescriptionStrings[1]="夏日金色票券"
 
 ;============================================
 ; Daily Localization
@@ -3300,6 +3326,9 @@ DisplayName="療養院"
 
 [KF-Biolapse KFMapSummary]
 DisplayName="生化事故區"
+
+[KF-Desolation KFMapSummary]
+DisplayName="廢墟"
 
 [KFMapInfo]
 ; defaults

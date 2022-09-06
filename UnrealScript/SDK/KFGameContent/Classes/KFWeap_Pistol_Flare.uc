@@ -29,7 +29,7 @@ defaultproperties
 	End Object
 
    	// Position and FOV
-   	PlayerViewOffset=(X=15.0,Y=14,Z=-6)
+   	PlayerViewOffset=(X=12.0,Y=14,Z=-6)
 	IronSightPosition=(X=4,Y=0,Z=0)
 	MeshFOV=60
 	MeshIronSightFOV=55

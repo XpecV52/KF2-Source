@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="Le Père Noël est un gros dur"
-Description="D'abord, Krampus s'en est pris à ses lutins et son renne. Ensuite, sa maison. Papa Noël en a marre. Alors il va sortir sa mitrailleuse. Ho ho ho !\n\n St-Nicolas surveille les enfants du monde entier depuis des siècles, espérant pouvoir passer l'éternité à apporter de la joie et des cadeaux de Noël aux gentils petits garçons et petites filles. Mais ça, c'était avant Krampus. Depuis le tristement célèbre Noël de Krampus, Papa Noël a juré de venger sa famille, ses amis et ouvriers disparus. Adieu les joues roses et le ventre rebondi, bonjour le regard noir et le corps d'athlète bodybuildé. La nuit sera loin d'être douce en cette saison des fêtes ; cette année, Papa Noël en a ras le bonnet. Sa hotte ne contient plus qu'une colère bouillonnante et trois tonnes de munitions."
+Description="D'abord, Krampus s'en est pris à ses lutins et son renne. Ensuite, sa maison. Papa Noël en a marre. Alors il va sortir sa mitrailleuse. Ho ho ho !\n\n St-Nicolas surveille les enfants du monde entier depuis des siècles, espérant pouvoir passer l'éternité à apporter de la joie et des cadeaux de Noël aux gentils petits garçons et petites filles.  Mais ça, c'était avant Krampus.  Depuis le tristement célèbre Noël de Krampus, Papa Noël a juré de venger sa famille, ses amis et ouvriers disparus. Adieu les joues roses et le ventre rebondi, bonjour le regard noir et le corps d'athlète bodybuildé. La nuit sera loin d'être douce en cette saison des fêtes ; cette année, Papa Noël en a ras le bonnet. Sa hotte ne contient plus qu'une colère bouillonnante et trois tonnes de munitions."
 BodyMesh0="Tenue de Père Noël"
 BodyMesh1="Poulet commando"
 HeadMesh0="Tête de Père Noël"
@@ -42,6 +42,7 @@ BodyMesh8="Tenue de pyjama coffre"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
+BodyMesh12="Tenue de pirate de l'espace"
 HeadMesh0="Masque à gaz"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -139,6 +140,14 @@ BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
 
+[CHR_MrsFoster_archetype.BodyMesh12]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Blanc"
 HeadSkin1="Vert"
@@ -222,6 +231,7 @@ BodyMesh8="Punk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
+BodyMesh12="Tenue de pirate de l'espace"
 HeadMesh0="Pouvoir aux barbus !"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -325,6 +335,14 @@ BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
 
+[CHR_Jagerhorn_archetype.BodyMesh12]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Blond suédois"
 HeadSkin1="Le Black Album"
@@ -423,6 +441,7 @@ BodyMesh8="Punk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
+BodyMesh12="Pirate de l'espace"
 HeadMesh0="Masque de Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -525,6 +544,14 @@ BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
 
+[CHR_DJSkully_archetype.BodyMesh12]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Noir ultime"
 HeadSkin1="Rouge Xtra"
@@ -570,6 +597,7 @@ BodyMesh9="Punk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de père Noël"
+BodyMesh13="Tenue de pirate de l'espace"
 HeadMesh0="Cheveux"
 
 [chr_briar_archetype.BodyMesh0]
@@ -678,6 +706,14 @@ BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
 
+[CHR_briar_archetype.BodyMesh13]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Faits marquants"
@@ -717,6 +753,7 @@ BodyMesh9="Punk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de père Noël"
+BodyMesh13="Tenue de pirate"
 HeadMesh0="Masque à gaz"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -829,6 +866,14 @@ BodySkin2="Bleu"
 BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
+
+[CHR_MrFoster_archetype.BodyMesh13]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Blanc original"
@@ -989,6 +1034,7 @@ BodyMesh8="Punk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
+BodyMesh12="Tenue de pirate de l'espace"
 HeadMesh0="Visage"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1089,6 +1135,14 @@ BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
 
+[CHR_Coleman_archetype.BodyMesh12]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Camelote"
@@ -1127,6 +1181,7 @@ BodyMesh8="Punk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
+BodyMesh12="Tenue de pirate de l'espace"
 HeadMesh0="Cheveux"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1228,6 +1283,14 @@ BodySkin2="Bleu"
 BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
+
+[CHR_Alberts_archetype.BodyMesh12]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Gris"
@@ -2127,6 +2190,7 @@ BodyMesh8="Punk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
+BodyMesh12="Tenue de pirate de l'espace"
 HeadMesh0="Visage"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2238,6 +2302,14 @@ BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
 
+[CHR_Masterson_archetype.BodyMesh12]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka est un individu en plein doute souffrant d'un sérieux penchant suicidaire. Né à Okinawa, il fut élevé parmi des Américains dans l'armée. Après un déménagement sur l'île principale du Japon avec sa famille, le jeune Tanaka, trop emprunt de culture américaine, ne parvint pas à s'intégrer et commença à suivre des cours de théâtre. Après le lycée, il s'installa à Los Angeles, où il joua des rôles de figurant clichés dans de mauvais films, avant de partir pour l'Europe où il se mit en quête d'un travail plus « sérieux ». Il n'eut droit qu'à des rôles de méchants dans des films de gangsters français et à quelques camelotes. Aujourd'hui, en plein apocalypse, il semble confondre la réalité et quelques-uns des rôles qu'il a interprétés. On y trouve pèle-mêle ses visions des Yakuzas, des démons, et l'interprétation hollywoodienne du bushido."
@@ -2254,6 +2326,7 @@ BodyMesh9="Punk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de père Noël"
+BodyMesh13="Tenue de pirate de l'espace"
 HeadMesh0="Cheveux"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2372,6 +2445,14 @@ BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
 
+[CHR_Tanaka_archetype.BodyMesh13]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Casque"
 AttachmentSkin0="Soleil levant"
@@ -2414,6 +2495,7 @@ BodyMesh8="Punk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
+BodyMesh12="Tenue de pirate de l'espace"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2525,6 +2607,14 @@ BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
 
+[CHR_Ana_archetype.BodyMesh12]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Lunettes 3D"
 AttachmentSkin0="Anaglyphes 3D"
@@ -2553,6 +2643,7 @@ BodyMesh9="Punk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de père Noël"
+BodyMesh13="Tenue de pirate de l'espace"
 HeadMesh0="Cheveux"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2661,6 +2752,14 @@ BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
 
+[CHR_mark_archetype.BodyMesh13]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Le seul et unique"
 HeadSkin1="Foutues 5h du mat'"
@@ -2686,6 +2785,7 @@ BodyMesh8="Punk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
+BodyMesh12="Tenue de pirate de l'espace"
 HeadMesh0="Visage"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2789,6 +2889,14 @@ BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
 
+[CHR_alan_archetype.BodyMesh12]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Le seul et unique"
 HeadSkin1="Roux ! Vraiment ?"
@@ -2821,6 +2929,7 @@ BodyMesh8="Punk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
+BodyMesh12="Tenue de pirate de l'espace"
 HeadMesh0="Cheveux"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2920,6 +3029,14 @@ BodySkin2="Bleu"
 BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
+
+[CHR_strasser_archetype.BodyMesh12]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acier sombre"
@@ -3095,6 +3212,7 @@ BodyMesh8="Punk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
+BodyMesh12="Tenue de pirate de l'espace"
 HeadMesh0="Tête par défaut"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3198,6 +3316,14 @@ BodySkin2="Bleu"
 BodySkin3="Vert"
 BodySkin4="Blanc"
 BodySkin5="Jaune"
+
+[CHR_rockabilly_archetype.BodyMesh12]
+BodySkin0="Olive"
+BodySkin1="Bleu marine"
+BodySkin2="Carmin"
+BodySkin3="Citron vert"
+BodySkin4="Lavande"
+BodySkin5="Clémentine"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Noir"
@@ -5675,3 +5801,189 @@ AttachmentSkin2="Rose"
 AttachmentSkin3="Violet"
 AttachmentSkin4="Blanc"
 AttachmentSkin5="Doré"
+
+[Cosmetic_Neon_Headphones_ARCH]
+Attachment="Écouteurs"
+AttachmentSkin0="Néon"
+AttachmentSkin1="Arc-en-ciel"
+AttachmentSkin2="Néon RVB"
+AttachmentSkin3="Arc-en-ciel RVB"
+
+[Cosmetic_Retro_Sign_ARCH]
+Attachment="Sac à dos Sortie"
+AttachmentSkin0="Néon"
+AttachmentSkin1="Arc-en-ciel"
+AttachmentSkin2="Néon RVB"
+AttachmentSkin3="Arc-en-ciel RVB"
+
+[Cosmetic_Retro_TV_ARCH]
+Attachment="Sac à dos TV"
+AttachmentSkin0="Néon"
+AttachmentSkin1="Arc-en-ciel"
+AttachmentSkin2="Néon RVB"
+AttachmentSkin3="Arc-en-ciel RVB"
+
+[Cosmetic_Retro_Boombox_ARCH]
+Attachment="Radiocassette"
+AttachmentSkin0="Néon"
+AttachmentSkin1="Arc-en-ciel"
+AttachmentSkin2="Néon RVB"
+AttachmentSkin3="Arc-en-ciel RVB"
+
+[Cosmetic_Retro_Watch_ARCH]
+Attachment="Montre sans charge"
+AttachmentSkin0="Néon"
+AttachmentSkin1="Arc-en-ciel"
+AttachmentSkin2="Néon RVB"
+AttachmentSkin3="Arc-en-ciel RVB"
+
+[Cosmetic_Neon_Display_ARCH]
+Attachment="Affichage de sac à dos"
+AttachmentSkin0="Soutien"
+AttachmentSkin1="Démolition"
+AttachmentSkin2="Médecin"
+AttachmentSkin3="Surprise de Foster"
+
+[Cosmetic_Retro_Helmet_ARCH]
+Attachment="Casque de rugby"
+AttachmentSkin0="Néon"
+AttachmentSkin1="Arc-en-ciel"
+AttachmentSkin2="Néon RVB"
+AttachmentSkin3="Arc-en-ciel RVB"
+
+[Cosmetic_Neon_CylinderHat_ARCH]
+Attachment="Haut-de-forme"
+AttachmentSkin0="Néon"
+AttachmentSkin1="Arc-en-ciel"
+AttachmentSkin2="Néon RVB"
+AttachmentSkin3="Arc-en-ciel RVB"
+
+[Cosmetic_Neon_Armband_ARCH]
+Attachment="Brassard Horzine"
+AttachmentSkin0="Néon"
+AttachmentSkin1="Arc-en-ciel"
+AttachmentSkin2="Néon RVB"
+AttachmentSkin3="Arc-en-ciel RVB"
+
+[Cosmetic_Neon_Cap_ARCH]
+Attachment="Casquette Horzine"
+AttachmentSkin0="Néon"
+AttachmentSkin1="Arc-en-ciel"
+AttachmentSkin2="Néon RVB"
+AttachmentSkin3="Arc-en-ciel RVB"
+
+[Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
+Attachment="Haut-de-forme à plume de pirate de l'espace"
+AttachmentSkin0="Marine"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Doré"
+
+[Cosmetic_SpacePirate_GoggleDreads_ARCH]
+Attachment="Lunettes à dreads de pirate de l'espace"
+AttachmentSkin0="Marine"
+AttachmentSkin1="Crâne"
+AttachmentSkin2="Rayures"
+AttachmentSkin3="Marron et or"
+AttachmentSkin4="Or et argent"
+
+[Cosmetic_SpacePirate_TricornHat_ARCH]
+Attachment="Tricorne de pirate de l'espace"
+AttachmentSkin0="Marron"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Doré"
+
+[Cosmetic_SpacePirate_RumHead_ARCH]
+Attachment="Tonneau de rhum de pirate de l'espace"
+AttachmentSkin0="Bois"
+AttachmentSkin1="Dynamite"
+AttachmentSkin2="Charbon"
+AttachmentSkin3="As et piques"
+AttachmentSkin4="Arc-en-ciel"
+
+[Cosmetic_SpacePirate_SkullBeard_ARCH]
+Attachment="Crâne à barbe de pirate de l'espace"
+AttachmentSkin0="Marine"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Ancien"
+AttachmentSkin4="Doré"
+
+[Cosmetic_SpacePirate_GuyChomper_ARCH]
+Attachment="Mâche-monsieur de pirate de l'espace"
+AttachmentSkin0="Céruléen"
+AttachmentSkin1="Aqua"
+AttachmentSkin2="Albinos"
+AttachmentSkin3="Rayures"
+AttachmentSkin4="Mégalodon"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_ARCH]
+Attachment="Sac à dos de pirate de l'espace"
+AttachmentSkin0="Singe de l'espace"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Alberts_ARCH]
+Attachment="Sac à dos de pirate de l'espace"
+AttachmentSkin0="Singe de l'espace"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Coleman_ARCH]
+Attachment="Sac à dos de pirate de l'espace"
+AttachmentSkin0="Singe de l'espace"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_JagerHorn_ARCH]
+Attachment="Sac à dos de pirate de l'espace"
+AttachmentSkin0="Singe de l'espace"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Knight_ARCH]
+Attachment="Sac à dos de pirate de l'espace"
+AttachmentSkin0="Singe de l'espace"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_MrFoster_ARCH]
+Attachment="Sac à dos de pirate de l'espace"
+AttachmentSkin0="Singe de l'espace"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_MrsFoster_ARCH]
+Attachment="Sac à dos de pirate de l'espace"
+AttachmentSkin0="Singe de l'espace"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_RockabillyGirl_ARCH]
+Attachment="Sac à dos de pirate de l'espace"
+AttachmentSkin0="Singe de l'espace"
+
+[Cosmetic_SpacePirate_MaleCaptainHat_ARCH]
+Attachment="Chapeau de bretteur"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Bleu marine"
+AttachmentSkin2="Carmin"
+AttachmentSkin3="Citron vert"
+AttachmentSkin4="Lavande"
+AttachmentSkin5="Clémentine"
+
+[Cosmetic_SpacePirate_FemaleCaptainHat_ARCH]
+Attachment="Chapeau de bretteur"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Bleu marine"
+AttachmentSkin2="Carmin"
+AttachmentSkin3="Citron vert"
+AttachmentSkin4="Lavande"
+AttachmentSkin5="Clémentine"
+
+[Cosmetic_SpacePirate_MaleCaptainMask_ARCH]
+Attachment="Masque d'os"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Bleu marine"
+AttachmentSkin2="Carmin"
+AttachmentSkin3="Citron vert"
+AttachmentSkin4="Lavande"
+AttachmentSkin5="Clémentine"
+
+[Cosmetic_SpacePirate_FemaleCaptainMask_ARCH]
+Attachment="Masque d'os"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Bleu marine"
+AttachmentSkin2="Carmin"
+AttachmentSkin3="Citron vert"
+AttachmentSkin4="Lavande"
+AttachmentSkin5="Clémentine"

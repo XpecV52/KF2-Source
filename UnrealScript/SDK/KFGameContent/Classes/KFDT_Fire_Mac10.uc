@@ -69,12 +69,11 @@ defaultproperties
 	ModifierPerkList(0)=class'KFPerk_Firebug'
 	ModifierPerkList(1)=class'KFPerk_SWAT'
 
-	BurnPower=18.5 //1.0
+	BurnPower= 12//18.5 //1.0
 	GunHitPower=12
 
 	KnockdownPower=0
-	StumblePower=12
-	LegStumblePower=12
+	StumblePower=20 //12
 
 	CameraLensEffectTemplate = class'KFCameraLensEmit_Fire'
 	EffectGroup = FXG_IncendiaryRound

@@ -20,8 +20,8 @@ defaultproperties
 	DoT_Type = DOT_Fire
 	DoT_Duration = 2.0 //5.0 //1.0 //2.7
 	DoT_Interval = 0.5
-	DoT_DamageScale = 0.3 //1.0 //0.7
+	DoT_DamageScale = 0.4 //0.3 //1.0 //0.7
 
-	BurnPower = 8.5 //1.0 //18.5
+	BurnPower = 4 //8.5 //1.0 //18.5
 }
 

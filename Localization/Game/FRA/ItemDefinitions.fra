@@ -26,6 +26,8 @@ SteampunkOutfitBundleName="Pack de tenue punk"
 CyberpunkOutfitBundleName="Pack de tenues Cyberpunk"
 CyberpunkOutfitObjectiveBundleName="Pack de tenues d'objectif Cyberpunk"
 HalloweenOutfitBundleName="Pack de tenue chasseur de sorcières"
+SpacePirateOutfitBundleName="Pack de tenue de pirate de l'espace"
+SpacePirateFullGearBundleName="Pack d'équipement complet de pirate de l'espace"
 HeadshotFXBundle1Name="Pack d'effets tir en pleine tête 1"
 HeadshotFXBundle2Name="Pack d'effets de tirs à la tête 2"
 RhinoRevolverBundleName="Pack Revolver rhino"
@@ -33,6 +35,8 @@ IonThrusterBundleName="Pack Trancheur ionique"
 RiotShieldG18BundleName="Pack Bouclier antiémeute et G18"
 MosinNagantBundleName="Pack Mosin Nagant"
 CompoundBowBundleName="Pack Arc à poulies"
+BlunderbussBundleName="Pack Tromblon"
+Glock18cBundleName="Pack Glock 18C"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Caisse cosmétique Horzine | Pack bronze Série 4"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Caisse cosmétique Horzine | Pack argent Série 4"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Caisse cosmétique Horzine | Pack or Série 4"
@@ -165,6 +169,7 @@ HorzineSupplyCosmeticCrateSeries3GoldBundlePackName="Caisse cosmétique Horzine 
 HorzineSupplyWeaponCrateSeries17BronzeBundlePackName="Caisse d'armes Horzine | Pack bronze Série #17"
 HorzineSupplyWeaponCrateSeries17SilverBundlePackName="Caisse d'armes Horzine | Pack argent Série #17"
 HorzineSupplyWeaponCrateSeries17GoldBundlePackName="Caisse d'armes Horzine | Pack or Série #17"
+PerilousPlunderWeaponBundleName="Pack d'arme de butin dangereux"
 GrimTreatmentsWeaponBundleName="Pack d'arme Traitements morbides"
 YuletideHorrorWeaponBundleName="Pack d'arme Horreur de Yule"
 JaegerWeaponSkinDoublePackBundleName="Double pack de modèle d'arme de Jaeger"
@@ -185,6 +190,12 @@ HorzineSupplyCosmeticCrateSeries7GoldBundlePackName="Caisse cosmétique Horzine 
 HorzineSupplyCrateSeriesLocoBronzeBundlePackName="Caisse d'approvisionnement Horzine | Pack bronze Série Loco"
 HorzineSupplyCrateSeriesLocoSilverBundlePackName="Caisse d'approvisionnement Horzine | Pack argent Série Loco"
 HorzineSupplyCrateSeriesLocoGoldBundlePackName="Caisse d'approvisionnement Horzine | Pack or Série Loco"
+PremiumSummerSideshowBronzeBundlePackName="Pack de ticket bronze de cirque estival premium"
+PremiumSummerSideshowSilverBundlePackName="Pack de ticket argent de cirque estival premium"
+PremiumSummerSideshowGoldBundlePackName="Pack de ticket or de cirque estival premium"
+NeonMKVIWeaponSkinPackName="Pack de modèle d'arme Néon MKVI"
+RetroNeonGearCosmeticBundleName="Pack de cosmétiques d'équipement Néon rétro"
+FutureNeonGearCosmeticBundleName="Pack de cosmétiques d'équipement Néon futuriste"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Contient l'uniforme Policier londonien de Briar (5 modèles différents), et le casque de gardien (3 modèles différents)."
@@ -207,6 +218,8 @@ SteampunkOutfitBundleDescription="Contient des tenues punk pour homme et pour fe
 CyberpunkOutfitBundleDescription="Contient des tenues Cyberpunk pour homme (6 modèles différents dans chaque). Compatible avec la plupart des personnages."
 CyberpunkOutfitObjectiveBundleDescription="Contient des tenues Cyberpunk pour homme (1 modèle différent dans chaque). Compatible avec la plupart des personnages."
 HalloweenOutfitBundleDescription="Contient une tenue chasseur de sorcières (6 modèles différents). Compatible avec la plupart des personnages."
+SpacePirateOutfitBundleDescription="Contient une tenue de pirate de l'espace (6 modèles différents). Compatible avec la plupart des personnages."
+SpacePirateFullGearBundleDescription="Contient 6 éléments cosmétiques de pirate de l'espace, chacun livré avec 5 textures alternatives dans un seul pack. Compatible avec la plupart des personnages."
 HeadshotFXBundle1Description="Contient cinq effets tir en pleine tête. Le fric, c'est chic, Action comique, C'est la fête, Coup de foudre balistique et Fantômes flippants."
 HeadshotFXBundle2Description="Contient cinq effets de tir à la tête. Tache d'encre, Feux d’artifice, Pétale, Chatoiement, Circuit Horzine."
 RhinoRevolverBundleDescription="Change les Zeds en gruyère. Des Revolvers Rhino pensés pour la classe Flingueur. Livré avec 5 modèles d'arme uniques."
@@ -214,6 +227,8 @@ IonThrusterBundleDescription="Pratique pour les barbecues, le Trancheur ionique 
 RiotShieldG18BundleDescription="Un choix solide pour le contrôle des foules. Bouclier antiémeute et G18 conçus pour la classe SWAT, livrés avec 5 modèles uniques."
 MosinNagantBundleDescription="Bloquez, poignardez et descendez des Zeds à distance avec ce fusil classique. Mosin Nagant conçu pour la classe Tireur d'élite, livré avec 5 modèles uniques."
 CompoundBowBundleDescription="Refonte moderne d'une arme ancienne. L'arc à poulies est conçu pour la classe Tireur d'élite, livré avec 5 modèles uniques."
+BlunderbussBundleDescription="Jambe de bois et perroquet vendus séparément. Tromblon conçu pour les classes de Démolisseur et de Soutien, livré avec 5 modèles uniques."
+Glock18cBundleDescription="Attention : provoque une envie incontrôlable de se désigner comme étant la loi lorsqu'il est utilisé. Glock 18C simple et double conçu pour la classe Flingueur, livré avec 5 modèles uniques."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Contient cinq caisses cosmétiques Horzine | Série 4 et leurs cinq clés assorties."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Contient dix caisses cosmétiques Horzine | Série 4 et leurs dix clés assorties."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Contient vingt caisses cosmétiques Horzine | Série 4 et leurs vingt clés assorties."
@@ -345,6 +360,7 @@ JaegerEncryptedUSBGoldBundlePackDescription="Contient vingt caisses de clés USB
 PremiumChristmasTicketBronzeBundlePackDescription="Contient cinq tickets cadeaux de Noël premium à un prix réduit. Disponible pour une durée limitée !"
 PremiumChristmasTicketSilverBundlePackDescription="Contient dix tickets cadeaux de Noël premium et un ticket or Halloween supplémentaire à un prix réduit. Disponible pour une durée limitée !"
 PremiumChristmasTicketGoldBundlePackDescription="Contient vingt tickets cadeaux de Noël premium et trois tickets or Halloween supplémentaires à un prix réduit. Disponible pour une durée limitée !"
+PerilousPlunderWeaponBundleDescription="Contient les Glock 18C simple et double et les armes Tromblon de la mise à jour Butin dangereux. Chaque arme est livrée avec 5 modèles uniques."
 GrimTreatmentsWeaponBundleDescription="Contient le Revolver Rhino et le Trancheur ionique de la mise à jour Traitements morbides. Chaque arme est livrée avec 5 modèles uniques."
 YuletideHorrorWeaponBundleDescription="Contient le Bouclier antiémeute et G18 et le Mosin Nagant de la mise à jour Horreur de Yule. Chaque arme est livrée avec 5 modèles uniques."
 JaegerWeaponSkinDoublePackBundleDescription="Contient des modèles d'arme standards et dynamiques de Jaeger pour le Desert Eagle et le P90."
@@ -369,7 +385,12 @@ PremiumCyberpunkTicketGoldBundlePackDescription="Contient vingt tickets cadeaux 
 HorzineSupplyCrateSeriesLocoBronzeBundlePackDescription="Contient cinq caisses d'approvisionnement Horzine | Série Loco et leurs cinq clés assorties."
 HorzineSupplyCrateSeriesLocoSilverBundlePackDescription="Contient dix caisses d'approvisionnement Horzine | Série Loco et leurs dix clés assorties."
 HorzineSupplyCrateSeriesLocoGoldBundlePackDescription="Contient vingt caisses d'approvisionnement Horzine | Série Loco et leurs vingt clés assorties."
-
+PremiumSummerSideshowTicketBronzeBundlePackDescription="Contient cinq tickets cadeaux de cirque estival premium à un prix réduit. Disponible pour une durée limitée !"
+PremiumSummerSideshowTicketSilverBundlePackDescription="Contient dix tickets cadeaux de cirque estival premium et un ticket or de cirque estival bonus supplémentaire à un prix réduit. Disponible pour une durée limitée !"
+PremiumSummerSideshowTicketGoldBundlePackDescription="Contient vingt tickets cadeaux de cirque estival premium et trois tickets or de cirque estival bonus à un prix réduit. Disponible pour une durée limitée !"
+NeonMKVIWeaponSkinBundleDescription="Contient 20 modèles d'armes Néon (10 Néon standard et 10 Néon RVB). Les armes comprises dans cet ensemble sont : le Flingue à watts, le Baleinier, la Winchester 1894, la Carabine d'Helios, les Cracheurs de feu, la VLAD Cloueuse, le fusil d'assaut L85A2, le Pulvériseur, le lance-grenade M79 et le Frap'hemo."
+RetroNeonCosmeticBundleDescription="Contient 5 éléments cosmétiques Néon rétro, chacun livré avec 4 textures alternatives dans un seul pack. Compatible avec la plupart des personnages."
+FutureNeonCosmeticBundleDescription="Contient 5 éléments cosmétiques Néon futuriste, chacun livré avec 4 textures alternatives dans un seul pack. Compatible avec la plupart des personnages."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Obtenez le nouvel uniforme typique Policier londonien pour PC Rob Briar. Contient l'uniforme Policier londonien de Briar (5 modèles différents), et le casque de gardien (3 modèles différents)."
@@ -472,6 +493,9 @@ HalloweenHatName="Chapeau chasseur de sorcières"
 HalloweenOutfitName="Tenue chasseur de sorcières"
 SantasHelperHatName="Chapeau d'assistant du Père Noël"
 SantasHelperOutfitName="Tenue d'assistant du Père Noël"
+SpacePirateOutfitName="Tenue de pirate de l'espace"
+SpacePirateCaptainsMaskName="Masque d'os"
+SpacePirateCaptainsHatName="Chapeau de bretteur"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="Lt. Bill Masterson | Cyberpunk | Vert"
@@ -1219,8 +1243,8 @@ HMTechHealerSynthwaveBattleScarredName="Médikit HMTech | Synthwave | Érodé"
 500MagnumRevolverSpectreHRGDynamicChromaName="Revolver 500 Magnum | GRH Spectre | Dynamique chroma"
 
 ;HRG Buckshot Revolvers Names
-HRGBuckshotRevolversSpectreHRGDynamicName="GRH Revolver à chevrotine | GRH Spectre | Dynamique"
-HRGBuckshotRevolversSpectreHRGDynamicChromaName="GRH Revolver à chevrotine | GRH Spectre | Dynamique chroma"
+HRGBuckshotRevolversSpectreHRGDynamicName="GRH Revolvers à chevrotine | GRH Spectre | Dynamique"
+HRGBuckshotRevolversSpectreHRGDynamicChromaName="GRH Revolvers à chevrotine | GRH Spectre | Dynamique chroma"
 
 ;9mm Descriptions
 9MMMintDescription="Aspect : neuf | Simple et de qualité plutôt (très) médiocre, c'est l'arme de base des agents de Horzine."
@@ -1556,6 +1580,7 @@ BoomstickHorzineFirstEncounterBattleScarredName="Boomstick | Horzine First Encou
 BoomstickPrestigePreciousName="Boomstick | Prestige | Doré"
 BoomstickDragonKoiPreciousName="Boomstick | Dragon et Koï | Doré"
 BoomstickFostersFavoritesPreciousName="Boomstick | Les préférées de Foster | Doré"
+BoomstickStarsName="Boomstick | Coffre | Étoiles"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="Aspect : neuf | Lance-flammes artisanal portatif. N'essayez PAS d'en fabriquer un chez vous."
@@ -1857,6 +1882,8 @@ FlarePistolVaultVoshPreciousName="Cracheur de feu | Coffre | Cric | Doré"
 FlarePistolDragonKoiPreciousName="Cracheur de feu | Dragon et Koï | Doré"
 FlarePistolSpectreHRGDynamicName="Cracheur de feu | GRH Spectre | Dynamique"
 FlarePistolSpectreHRGDynamicChromaName="Cracheur de feu | GRH Spectre | Dynamique chroma"
+FlarePistolNeonMintName="Cracheur de feu | Néon | Neuf"
+FlarePistolNeonRGBPreciousName="Cracheur de feu | Néon RVB | Doré"
 
 ;HRG Winterbites Names
 HRGWinterbitesSpectreHRGDynamicName="GRH Engelure | GRH Spectre | Dynamique"
@@ -1908,8 +1935,8 @@ FreezeThrowerBattleScarredDescription="Aspect : Érodé | La matière organique
 FreezeThrowerPreciousDescription="Aspect : Doré | La matière organique ne peut pas résister à un tel froid."
 
 ;HRG Healthrower Names
-HRGHealthrowerSpectreHRGDynamicName="GRH Lance-soin | GRH Spectre | Dynamique"
-HRGHealthrowerSpectreHRGDynamicChromaName="GRH Lance-soin | GRH Spectre | Dynamique chroma"
+HRGHealthrowerSpectreHRGDynamicName="GRH lance-soin | GRH Spectre | Dynamique"
+HRGHealthrowerSpectreHRGDynamicChromaName="GRH lance-soin | GRH Spectre | Dynamique chroma"
 
 ;Hemogoblin Descriptions
 HemogoblinMintDescription="Aspect : neuf | Ne permet pas de perdre du poids."
@@ -2019,6 +2046,7 @@ HMTech101PistolBeyondHorizonMintName="Pistolet HMTech-101 | Plus loin que l'hor
 HMTech101PistolBeyondHorizonFieldTestedName="Pistolet HMTech-101 | Plus loin que l'horizon | Usé"
 HMTech101PistolBeyondHorizonBattleScarredName="Pistolet HMTech-101 | Plus loin que l'horizon | Érodé"
 HMTech101PistolBeyondHorizonSpaceEliteName="Pistolet HMTech-101 | Plus loin que l'horizon | Élite spatiale"
+HMTech101PistolStarsName="Pistolet HMTech-101 | Coffre | Étoiles"
 
 ;HMTech-201 SMG Descriptions
 HMTech201SMGMintDescription="Aspect : neuf | Tire des fléchettes de guérison pour soigner les coéquipiers. Votre pistolet, en plus costaud !"
@@ -2343,6 +2371,8 @@ L85A2JunkyardBattleScarredName="L85A2 | Décharge | Érodé"
 L85A2VaultVoshPreciousName="L85A2 | Coffre | Cric | Doré"
 L85A2PrestigePreciousName="L85A2 | Prestige | Doré"
 L85A2DragonKoiPreciousName="L85A2 | Dragon et Koï | Doré"
+L85A2NeonMintName="L85A2 | Néon | Neuf"
+L85A2NeonRGBPreciousName="L85A2 | Néon RVB | Doré"
 
 ;M14EBR Descriptions
 M14EBRMintDescription="Aspect : neuf | Le fusil de précision favori des Navy Seals, Delta Force, et autres durs à cuire."
@@ -2511,6 +2541,8 @@ M79SteampunkBattleScarredName="M79 | Punk | Érodé"
 M79SteampunkFieldTestedName="M79 | Punk | Usé"
 M79SteampunkMintName="M79 | Punk | Neuf"
 M79SteampunkPreciousName="M79 | Punk | Doré"
+M79NeonMintName="M79 | Néon | Neuf"
+M79NeonRGBPreciousName="M79 | Néon RVB | Doré"
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="Aspect : Neuf | Dispose d'une puissante attaque de bouclier."
@@ -2537,6 +2569,7 @@ M99BeyondHorizonMintName="M99 | Plus loin que l'horizon | Neuf"
 M99BeyondHorizonFieldTestedName="M99 | Plus loin que l'horizon | Usé"
 M99BeyondHorizonBattleScarredName="M99 | Plus loin que l'horizon | Érodé"
 M99BeyondHorizonSpaceEliteName="M99 | Plus loin que l'horizon | Élite spatiale"
+M99StarsName="M99 | Coffre | Étoiles"
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="Broyeur d'os | Circuit | Neuf"
@@ -2596,6 +2629,8 @@ MedicBatPreciousDescription="Aspect : Doré | Pour ceux qui n'arriveraient pas 
 ;Medic Bat Names
 MedicBatPreciousName="Frap'hemo | Doré"
 MedicBatVaultVoshPreciousName="Frap'hemo | Coffre | Cric | Doré"
+MedicBatNeonMintName="Frap'hemo | Néon | Neuf"
+MedicBatNeonRGBPreciousName="Frap'hemo | Néon RVB | Doré"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Aspect : neuf | Les merveilles de la technologie moderne : un cuiseur de Zed portatif."
@@ -2752,6 +2787,8 @@ PulverizerJaegerMintName="Pulvériseur | Jaeger | Neuf"
 PulverizerJaegerFieldTestedName="Pulvériseur | Jaeger | Usé"
 PulverizerJaegerBattleScarredName="Pulvériseur | Jaeger | Érodé"
 PulverizerJaegerDynamicName="Pulvériseur | Jaeger | Dynamique"
+PulverizerNeonMintName="Pulvériseur | Néon | Neuf"
+PulverizerNeonRGBPreciousName="Pulvériseur | Néon RVB | Doré"
 
 ;Railgun Descriptions
 RailgunMintDescription="Aspect : neuf | Cette arme tire des cartouches d'acier à haute vitesse grâce à des aimants. Elles traversent les Zeds comme dans du beurre."
@@ -3039,6 +3076,8 @@ VLAD1000NailgunBluefireBattleScarredName="VLAD-1000 Cloueuse | Bluefire | Érod�
 VLAD1000NailgunPrestigePreciousName="VLAD-1000 Cloueuse | Prestige | Doré"
 VLAD1000NailgunSpectreHRGDynamicName="VLAD-1000 Cloueuse | GRH Spectre | Dynamique"
 VLAD1000NailgunSpectreHRGDynamicChromaName="VLAD-1000 Cloueuse | GRH Spectre | Dynamique chroma"
+VLAD1000NailgunNeonMintName="VLAD-1000 Cloueuse | Néon | Neuf"
+VLAD1000NailgunNeonRGBPreciousName="VLAD-1000 Cloueuse | Néon RVB | Doré"
 
 ;HRG Nailgun Names
 HRGNailgunPDWSpectreHRGDynamicName="GRH Cloueuse | GRH Spectre | Dynamique"
@@ -3099,6 +3138,8 @@ Winchester1894SteampunkBattleScarredName="Winchester 1894 | Punk | Érodé"
 Winchester1894SteampunkFieldTestedName="Winchester 1894 | Punk | Usé"
 Winchester1894SteampunkMintName="Winchester 1894 | Punk | Neuf"
 Winchester1894SteampunkPreciousName="Winchester 1894 | Punk | Doré"
+Winchester1894NeonMintName="Winchester 1894 | Néon | Neuf"
+Winchester1894NeonRGBPreciousName="Winchester 1894 | Néon RVB | Doré"
 
 ;Zweihander Descriptions
 ZweihanderMintDescription="Aspect : neuf | Une épée. Une très grande épée médiévale."
@@ -3199,6 +3240,7 @@ MKB42NeonFieldTestedName="MKB42H | Néon | Usé"
 MKB42NeonBattleScarredName="MKB42H | Néon | Érodé"
 MKB42NeonRGBPreciousName="MKB42H | Néon RVB | Doré"
 MKB42VaultVoshPreciousName="MKB42H | Coffre | Cric | Doré"
+MKB42StarsName="MKB42H | Coffre | Étoiles"
 
 ;TommyGun Descriptions
 TommyGunMintDescription="Aspect : Neuf | Appelée « Chicago Typewriter » par certains, c'est l'arme idéale pour écrire son nom."
@@ -3220,6 +3262,7 @@ TommyGunSteampunkPreciousName="Tommy Gun | Punk | Doré"
 TommyGunVaultVoshPreciousName="Tommy Gun | Coffre | Cric | Doré"
 TommyGunJaegerDynamicName="Tommy Gun | Jaeger | Dynamique"
 TommyGunJaegerDynamicRGBName="Tommy Gun | Jaeger | Dynamique RVB"
+TommyGunStarsName="Tommy Gun | Coffre | Étoiles"
 
 ;Laser Cutter Descriptions
 LaserCutterMintDescription="Aspect : neuf | Mode surcharge - Se recharge lorsque vous appuyez sur le bouton de tir et se décharge lorsque vous le relâchez."
@@ -3239,6 +3282,8 @@ LaserCutterJaegerMintName="Flingue à watts | Jaeger | Neuf"
 LaserCutterJaegerFieldTestedName="Flingue à watts | Jaeger | Usé"
 LaserCutterJaegerBattleScarredName="Flingue à watts | Jaeger | Érodé"
 LaserCutterJaegerDynamicName="Flingue à watts | Jaeger | Dynamique"
+LaserCutterNeonMintName="Flingue à watts | Néon | Neuf"
+LaserCutterNeonRGBPreciousName="Flingue à watts | Néon RVB | Doré"
 
 ;FNFAL Descriptions
 FNFALMintDescription="Aspect : neuf | Une arme qui ne passe pas... ACOGnito. Oui, c'était mauvais."
@@ -3306,6 +3351,8 @@ SealSquealPreciousDescription="Aspect : Doré | Approuvé par Horzine !"
 
 ;SealSqueal Names
 SealSquealVaultVoshPreciousName="Baleinier | Coffre | Cric | Doré"
+SealSquealNeonMintName="Baleinier | Néon | Neuf"
+SealSquealNeonRGBPreciousName="Baleinier | Néon RVB | Doré"
 
 ;MIcrowaveAssault Descriptions
 MIcrowaveAssaultMintDescription="Aspect : Neuf | Que le feu soit avec vous."
@@ -3323,6 +3370,8 @@ MIcrowaveAssaultJaegerMintName="Carabine d'Helios | Jaeger | Neuf"
 MIcrowaveAssaultJaegerFieldTestedName="Carabine d'Helios | Jaeger | Usé"
 MIcrowaveAssaultJaegerBattleScarredName="Carabine d'Helios | Jaeger | Érodé"
 MIcrowaveAssaultJaegerDynamicName="Carabine d'Helios | Jaeger | Dynamique"
+MicrowaveAssaultNeonMintName="Carabine d'Helios | Néon | Neuf"
+MicrowaveAssaultNeonRGBPreciousName="Carabine d'Helios | Néon RVB | Doré"
 
 ;Rhino Descriptions
 RhinoMintDescription="Aspect : Neuf | Change les Zeds en gruyère"
@@ -3366,8 +3415,8 @@ DynamicDescription="Aspect : Dynamique | Les modèles dynamiques affichent les 
 DynamicPreciousDescription="Extérieur : Dynamique Doré | Les modèles dynamiques affichent les stats suivantes directement sur le modèle d'arme : munitions restantes et précision par chargeur"
 
 ;Spectre Descriptions
-SpectreDescription="Aspect : Dynamique | Aspect : Les modèles dynamiques affichent les stats suivantes directement sur le modèle d'arme : Indicateur de dernières munitions."
-SpectrePreciousDescription="Extérieur : Dynamique Doré | Aspect : Les modèles dynamiques affichent les stats suivantes directement sur le modèle d'arme : Indicateur de dernières munitions."
+SpectreDescription="Aspect : Dynamique | Aspect : Les modèles dynamiques affichent les stats suivantes directement sur le modèle d'arme : Indicateur de dernières munitions"
+SpectrePreciousDescription="Aspect : Dynamique Doré | Aspect : Les modèles dynamiques affichent les stats suivantes directement sur le modèle d'arme : Indicateur de dernières munitions"
 
 ;Road Redeemer Descriptions
 RoadRedeemerMintDescription="Aspect : Neuf | Soyez le cogneur que vous avez toujours voulu être ! Rappelez-vous de le nettoyer après utilisation."
@@ -3391,6 +3440,34 @@ CompoundBowGorePreciousName="Arc à poulies | Gore | Doré"
 CompoundBowSnowOpsPreciousName="Arc à poulies | Camouflage arctique | Doré"
 CompoundBowStickerStrikerPreciousName="Arc à poulies | Attaquant avec autocollants | Doré"
 CompoundBowStandardPreciousName="Arc à poulies | Standard | Doré"
+
+;Blunderbuss Descriptions
+BlunderbussMintDescription="Aspect : Neuf | Jambe de bois et perroquet vendus séparément !"
+BlunderbussFieldTestedDescription="Aspect : Usé | Jambe de bois et perroquet vendus séparément !"
+BlunderbussBattleScarredDescription="Aspect : Érodé | Jambe de bois et perroquet vendus séparément !"
+BlunderbussPreciousDescription="Aspect : Doré | Jambe de bois et perroquet vendus séparément !"
+
+;Blunderbuss Names
+BlunderbussRottenPreciousName="Tromblon | Pourri | Doré"
+BlunderbussGoldenboyPreciousName="Tromblon | Favori | Doré"
+BlunderbussInfernoPreciousName="Tromblon | Inferno | Doré"
+BlunderbussJequePreciousName="Tromblon | Jeque | Doré"
+BlunderbussSilverPreciousName="Tromblon | Argent | Doré"
+BlunderbussStandardPreciousName="Tromblon | Standard | Doré"
+
+;Glock 18c Descriptions
+Glock18cMintDescription="Aspect : Neuf | Attention : provoque une envie incontrôlable de se désigner comme étant la loi lorsqu'il est utilisé."
+Glock18cFieldTestedDescription="Aspect : Usé | Attention : provoque une envie incontrôlable de se désigner comme étant la loi lorsqu'il est utilisé."
+Glock18cBattleScarredDescription="Aspect : Érodé | Attention : provoque une envie incontrôlable de se désigner comme étant la loi lorsqu'il est utilisé."
+Glock18cPreciousDescription="Aspect : Doré | Attention : provoque une envie incontrôlable de se désigner comme étant la loi lorsqu'il est utilisé."
+
+;Glock 18c Names
+Glock18cPeppermintDropsPreciousName="Glock 18C | Bonbons mentholés | Doré"
+Glock18cGoldSwatPreciousName="Glock 18C | Swat doré | Doré"
+Glock18cBumblebeePreciousName="Glock 18C | Bourdon | Doré"
+Glock18cCamoPreciousName="Glock 18C | Camouflage | Doré"
+Glock18cGorePreciousName="Glock 18C | Gore | Doré"
+Glock18cStandardPreciousName="Glock 18C | Standard | Doré"
 
 [CosmeticSection]
 
@@ -5147,6 +5224,80 @@ CyberRaveUnicornHatRefractedLightName="CyberRave | Chapeau licorne | Lumière r�
 CyberRaveUnicornHatRomanName="CyberRave | Chapeau licorne | Romain"
 CyberRaveUnicornHatPreciousName="CyberRave | Chapeau licorne | Doré"
 
+;Neon Gear Cosmetic Names
+NeonGearHeadphonesNeonName="Équipement Néon | Écouteurs | Néon"
+NeonGearHeadphonesRainbowName="Équipement Néon | Écouteurs | Arc-en-ciel"
+NeonGearHeadphonesNeonRGBName="Équipement Néon | Écouteurs | Néon RVB"
+NeonGearHeadphonesRainbowRGBName="Équipement Néon | Écouteurs | Arc-en-ciel RVB"
+NeonGearExitBackpackNeonName="Équipement Néon | Sac à dos Sortie | Néon"
+NeonGearExitBackpackRainbowName="Équipement Néon | Sac à dos Sortie | Arc-en-ciel"
+NeonGearExitBackpackNeonRGBName="Équipement Néon | Sac à dos Sortie | Néon RVB"
+NeonGearExitBackpackRainbowRGBName="Équipement Néon | Sac à dos Sortie | Arc-en-ciel RVB"
+NeonGearTVBackpackNeonName="Équipement Néon | Sac à dos TV | Néon"
+NeonGearTVBackpackRainbowName="Équipement Néon | Sac à dos TV | Arc-en-ciel"
+NeonGearTVBackpackNeonRGBName="Équipement Néon | Sac à dos TV | Néon RVB"
+NeonGearTVBackpackRainbowRGBName="Équipement Néon | Sac à dos TV | Arc-en-ciel RVB"
+NeonGearBoomboxNeonName="Équipement Néon | Radiocassette | Néon"
+NeonGearBoomboxRainbowName="Équipement Néon | Radiocassette | Arc-en-ciel"
+NeonGearBoomboxNeonRGBName="Équipement Néon | Radiocassette | Néon RVB"
+NeonGearBoomboxRainbowRGBName="Équipement Néon | Radiocassette | Arc-en-ciel RVB"
+NeonGearPowerWatchNeonName="Équipement Néon | Montre sans charge | Néon"
+NeonGearPowerWatchRainbowName="Équipement Néon | Montre sans charge | Arc-en-ciel"
+NeonGearPowerWatchNeonRGBName="Équipement Néon | Montre sans charge | Néon RVB"
+NeonGearPowerWatchRainbowRGBName="Équipement Néon | Montre sans charge | Arc-en-ciel RVB"
+NeonGearBackpackDisplaySupporterName="Équipement Néon | Affichage de sac à dos | Soutien"
+NeonGearBackpackDisplayDemolitionName="Équipement Néon | Affichage de sac à dos | Démolition"
+NeonGearBackpackDisplayMedicName="Équipement Néon | Affichage de sac à dos | Médecin"
+NeonGearBackpackDisplayFostersSurpriseName="Équipement Néon | Affichage de sac à dos | Surprise de Foster"
+NeonGearRugbyHelmetNeonName="Équipement Néon | Casque de rugby | Néon"
+NeonGearRugbyHelmetRainbowName="Équipement Néon | Casque de rugby | Arc-en-ciel"
+NeonGearRugbyHelmetNeonRGBName="Équipement Néon | Casque de rugby | Néon RVB"
+NeonGearRugbyHelmetRainbowRGBName="Équipement Néon | Casque de rugby | Arc-en-ciel RVB"
+NeonGearTopHatNeonName="Équipement Néon | Haut-de-forme | Néon"
+NeonGearTopHatRainbowName="Équipement Néon | Haut-de-forme | Arc-en-ciel"
+NeonGearTopHatNeonRGBName="Équipement Néon | Haut-de-forme | Néon RVB"
+NeonGearTopHatRainbowRGBName="Équipement Néon | Haut-de-forme | Arc-en-ciel RVB"
+NeonGearHorzineArmbandNeonName="Équipement Néon | Brassard Horzine | Néon"
+NeonGearHorzineArmbandRainbowName="Équipement Néon | Brassard Horzine | Arc-en-ciel"
+NeonGearHorzineArmbandNeonRGBName="Équipement Néon | Brassard Horzine | Néon RVB"
+NeonGearHorzineArmbandRainbowRGBName="Équipement Néon | Brassard Horzine | Arc-en-ciel RVB"
+NeonGearHorzineCapNeonName="Équipement Néon | Casquette Horzine | Néon"
+NeonGearHorzineCapRainbowName="Équipement Néon | Casquette Horzine | Arc-en-ciel"
+NeonGearHorzineCapNeonRGBName="Équipement Néon | Casquette Horzine | Néon RVB"
+NeonGearHorzineCapRainbowRGBName="Équipement Néon | Casquette Horzine | Arc-en-ciel RVB"
+
+;Space Pirate Cosmetic Names
+SpacePirateFeatheredTopHatNavyName="Pirate de l'espace | Haut-de-forme à plume | Marine"
+SpacePirateFeatheredTopHatBlackName="Pirate de l'espace | Haut-de-forme à plume | Noir"
+SpacePirateFeatheredTopHatGreenName="Pirate de l'espace | Haut-de-forme à plume | Vert"
+SpacePirateFeatheredTopHatRedName="Pirate de l'espace | Haut-de-forme à plume | Rouge"
+SpacePirateFeatheredTopHatPreciousName="Pirate de l'espace | Haut-de-forme à plume | Doré"
+SpacePirateGoggleDreadsNavyName="Pirate de l'espace | Lunettes à dreads | Marine"
+SpacePirateGoggleDreadsSkullName="Pirate de l'espace | Lunettes à dreads | Crâne"
+SpacePirateGoggleDreadsStripesName="Pirate de l'espace | Lunettes à dreads | Rayures"
+SpacePirateGoggleDreadsBrownandGoldName="Pirate de l'espace | Lunettes à dreads | Marron et or"
+SpacePirateGoggleDreadsGoldandSilverName="Pirate de l'espace | Lunettes à dreads | Or et argent"
+SpacePirateTricornHatBrownName="Pirate de l'espace | Tricorne | Marron"
+SpacePirateTricornHatBlackName="Pirate de l'espace | Tricorne | Noir"
+SpacePirateTricornHatGreenName="Pirate de l'espace | Tricorne | Vert"
+SpacePirateTricornHatRedName="Pirate de l'espace | Tricorne | Rouge"
+SpacePirateTricornHatPreciousName="Pirate de l'espace | Tricorne | Doré"
+SpacePirateRumHeadWoodName="Pirate de l'espace | Tonneau de rhum | Bois"
+SpacePirateRumHeadDynamiteName="Pirate de l'espace | Tonneau de rhum | Dynamite"
+SpacePirateRumHeadCharcoalName="Pirate de l'espace | Tonneau de rhum | Charbon"
+SpacePirateRumHeadAce&SpadesName="Pirate de l'espace | Tonneau de rhum | As et piques"
+SpacePirateRumHeadRainbowName="Pirate de l'espace | Tonneau de rhum | Arc-en-ciel"
+SpacePirateSkullBeardNavyName="Pirate de l'espace | Crâne à barbe | Marine"
+SpacePirateSkullBeardBlackName="Pirate de l'espace | Crâne à barbe | Noir"
+SpacePirateSkullBeardGreenName="Pirate de l'espace | Crâne à barbe | Vert"
+SpacePirateSkullBeardElderName="Pirate de l'espace | Crâne à barbe | Ancien"
+SpacePirateSkullBeardPreciousName="Pirate de l'espace | Crâne à barbe | Doré"
+SpacePirateGuyChomperCeruleanName="Pirate de l'espace | Mâche-monsieur | Céruléen"
+SpacePirateGuyChomperAquaName="Pirate de l'espace | Mâche-monsieur | Aqua"
+SpacePirateGuyChomperAlbinoName="Pirate de l'espace | Mâche-monsieur | Albinos"
+SpacePirateGuyChomperStripesName="Pirate de l'espace | Mâche-monsieur | Rayures"
+SpacePirateGuyChomperMegladonName="Pirate de l'espace | Mâche-monsieur | Mégalodon"
+SpacePirateSpaceMonkeyBackpackName="Pirate de l'espace | Sac à dos Singe de l'espace"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec la plupart des personnages. Cet objet n'est disponible que dans l'événement saisonnier « Cirque estival ». Se recycle en 1 ticket de cirque."
@@ -5159,6 +5310,8 @@ DoshVaultAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Com
 DoshVaultFacePaintDescription="Ouvrez le menu d'équipement pour l'utiliser."
 SteampunkAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec la plupart des personnages."
 SteampunkFacePaintDescription="Ouvrez le menu d'équipement pour l'utiliser."
+SpacePirateAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec la plupart des personnages."
+SpacePirateFacePaintDescription="Ouvrez le menu d'équipement pour l'utiliser."
 SteampunkMrsFosterMaskDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec Miss Foster, Ana Larive et Rae Higgins."
 DARAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec D.A.R."
 CyberPunkAccessoryDescription="Ouvrez le menu d'équipement pour l'utiliser. Compatible avec la plupart des personnages. Cet objet n'est disponible que dans l'événement saisonnier « Cyberpunk »."

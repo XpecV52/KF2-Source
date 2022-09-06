@@ -666,6 +666,7 @@ DefaultProperties
 
     //special case
     DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_HRGHealthrower',       DamageScale=(0.6)))
+    DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_HRGTeslauncher',   DamageScale=(0.7)))
 
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		Damage=40 //20

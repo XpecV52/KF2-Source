@@ -1445,7 +1445,7 @@ state PlayingWave
     function BeginState(name PreviousStateName)
     {
         MyKFGRI.SetWaveActive(true, GetGameIntensityForMusic());
-        MyKFGRI.VoteCollector.ResetTraderVote();
+        MyKFGRI.VoteCollector.ResetSkipTraderVote();
         StartWave();
         if(AllowBalanceLogging())
         {

@@ -268,7 +268,7 @@ ItemCategory="ショットガン"
 ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•AA-12は自動ショットガンです。近距離から中距離で壊滅的な火力を発揮しますが、フルオートでは弾薬が食われます！"
 
 [KFWeap_Shotgun_MB500]
-ItemName="SG 500ポンプアクションショットガン"
+ItemName="SG 500ポンプショットガン"
 ItemCategory="ショットガン"
 ItemDescription="•ファイアモードはポンプアクションのみ。\n•ピストルグリップを持つポンプアクションモスバーグSG 500は、素晴らしい接近戦用zedキラーです。シンプルで効果的です。"
 
@@ -698,6 +698,36 @@ ItemCategory="ボウ"
 ItemDescription="•ファイアモードはチャージショットのみ。\n•長押しするほど射程とダメージが上昇。\n•オルトファイアで矢の形状を細型かサイロ型に切り替え。\n• キューピッドを演じるためにもうちょっとパンチが欲しい時に。"
 SharedUnlockSource="複合弓武器バンドル"
 
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="HRGカブームスティック"
+ItemCategory="ショットガン"
+ItemDescription="•プライマリファイアはシングルバレルのみ使用。\n•オルトファイアは両方のバレルを同時発射。\n•更に素晴らしい体験を提供するため、爆発弾が含まれています。"
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="ラッパ銃"
+ItemCategory="爆発物"
+ItemDescription="•プライマリファイアはキャノンボールを放射。\n•プライマリファイアを0.1秒間長押しして、キャノンボールの起爆を抑えます。放すと爆発します。\n•オルトファイアはキャノンボール榴散弾を発射。\n•義足とオウムは別売りです！"
+SharedUnlockSource="ラッパ銃の武器バンドル"
+
+[KFWeap_Pistol_G18C]
+ItemName="グロック18C"
+ItemCategory="サブマシンガン"
+ItemDescription="•好みのフルオートとセミオートのファイアモード。\n•注意： 外観： 希少 | 注意：使用すると、法律に則って自己同定宣言をしたくなる制御不能な衝動に駆られます。"
+SharedUnlockSource="シングル&デュアルグロック18C武器バンドル"
+
+[KFWeap_Pistol_DualG18]
+ItemName="デュアルグロック18C"
+ItemCategory="サブマシンガン"
+ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアは、アイアンサイト使用時の照準スタイル切り替え。\n•注意： 外観： 希少 | 注意：使用すると、法律に則って自己同定宣言をしたくなる制御不能な衝動に駆られます。"
+SharedUnlockSource="シングル&デュアルグロック18C武器バンドル"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="HRG テスランチャー"
+ItemCategory="アサルトライフル"
+ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアでEMP手榴弾を発射。\n•この電撃的でエコフレンドリーな武器があれば、惑星を傷付けることなく何百ものZedを倒すことができます。"
+SecondaryAmmo="EMP手榴弾"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="ドクター ハンス・ヴォルター"
@@ -765,8 +795,8 @@ BossName_RUS="Король-отбивальщик"
 BossCaptionStrings[0]="キングフレッシュパウンドは攻撃を受ければ受けるほど、クォーターパウンドを呼ぶ間隔が速くなる。 気をつけて！"
 BossCaptionStrings[1]="伏せろ！キングフレッシュパウンドの胸から出るビームは、地面に近いターゲットを狙うことができない。"
 BossCaptionStrings[2]="キングフレッシュパウンドが痛手を負っているからといって、戦闘が終わったわけじゃない。シールドを張るぞ。 "
-BossCaptionStrings[3]="キングフレッシュパウンドの胸から出るビームは、他のzedにダメージを与えることができる。うまく射線におびき寄せよう。 "
-BossCaptionStrings[4]="キングフレッシュパウンドは通常のフレッシュパウンドと同様の弱点を持っている。ただ単に大きいだけだ。 "
+BossCaptionStrings[3]="キングフレッシュパウンドの胸から出るビームは、他のzedにダメージを与えることができる。うまく射線におびき寄せよう。  "
+BossCaptionStrings[4]="キングフレッシュパウンドは通常のフレッシュパウンドと同様の弱点を持っている。ただ単に大きいだけだ。  "
 BossCaptionStrings[5]="キングフレッシュパウンドは常にたくさんのクォーターパウンドを従えている。無視すると命取りになるぞ！"
 
 [KFPawn_ZedBloatKing]

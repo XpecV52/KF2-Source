@@ -29,6 +29,7 @@ var private const PerkSkill WeaponDamage;
 var private const PerkSkill DamageResistance;
 var private const PerkSkill HeavyBodyArmor;
 var private const PerkSkill ZedTimeReload;
+var const int SecondaryNearKillXPModifier[4];
 var private const float InjectionPotencyModifier;
 var private const float MeleeExpertAttackSpeedModifier;
 var private const GameExplosion ShrapnelExplosionTemplate;
@@ -313,7 +314,7 @@ function float GetKnockdownPowerModifier(optional class<DamageType> DamageType, 
     bIsSprinting = false;
     if(GetIncapMasterActive())
     {
-        return GetSkillValue(PerkSkills[9]);
+        return 0;
     }
     return 0;
 }
@@ -322,7 +323,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 {
     if(GetIncapMasterActive())
     {
-        return GetSkillValue(PerkSkills[9]);
+        return 0;
     }
     return 0;
 }
@@ -359,6 +360,11 @@ simulated function class<KFProj_Grenade> GetGrenadeClass()
         }
     }
     return GrenadeClass;
+}
+
+static function int GetSmallRadiusKillXP(byte Difficulty)
+{
+    return default.SecondaryNearKillXPModifier[Difficulty];
 }
 
 function bool CanEarnSmallRadiusKillXP(class<DamageType> DT)
@@ -426,6 +432,11 @@ private final simulated function bool IsIncapMasterActive()
     return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
 }
 
+static simulated function int GetClotKillXP(byte Difficulty)
+{
+    return default.SecondaryXPModifier[Difficulty];
+}
+
 static simulated function GetPassiveStrings(out array<string> PassiveValues, out array<string> Increments, byte Level)
 {
     PassiveValues[0] = Left(string((GetPassiveValue(default.WeaponDamage, Level)) * float(100)), InStr(string((GetPassiveValue(default.WeaponDamage, Level)) * float(100)), ".") + 2) $ "%";
@@ -476,6 +487,10 @@ defaultproperties
     DamageResistance=(Name="Damage Resistance",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     HeavyBodyArmor=(Name="Heavy Body Armor",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
     ZedTimeReload=(Name="Zed Time Reload",Increment=0.03,Rank=0,StartingValue=0,MaxValue=0.75,ModifierValue=0,IconPath="",bActive=false)
+    SecondaryNearKillXPModifier[0]=6
+    SecondaryNearKillXPModifier[1]=8
+    SecondaryNearKillXPModifier[2]=10
+    SecondaryNearKillXPModifier[3]=14
     InjectionPotencyModifier=1.3
     MeleeExpertAttackSpeedModifier=0.2
     begin object name=ExploTemplate0 class=KFGameExplosion
@@ -507,6 +522,10 @@ defaultproperties
     MakeThingsGoBoomExplosiveResistance=0.4
     ProgressStatID=70
     PerkBuildStatID=71
+    SecondaryXPModifier[0]=2
+    SecondaryXPModifier[1]=3
+    SecondaryXPModifier[2]=4
+    SecondaryXPModifier[3]=7
     PerkName="Survivalist"
     Passives(0)=(Title="Weapon Damage",Description="Increase weapon damage %x% per level",IconPath="")
     Passives(1)=(Title="Global Damage Resistance",Description="Increase resistance to all damage %x% per level",IconPath="")
@@ -524,13 +543,13 @@ defaultproperties
     PerkSkills(0)=(Name="TacticalReload",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_TacticalReload",bActive=false)
     PerkSkills(1)=(Name="HeavyWeaponsReload",Increment=0,Rank=0,StartingValue=2.5,MaxValue=2.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_HeavyWeapons",bActive=false)
     PerkSkills(2)=(Name="FieldMedic",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_FieldMedic",bActive=false)
-    PerkSkills(3)=(Name="MeleeExpert",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert",bActive=false)
+    PerkSkills(3)=(Name="MeleeExpert",Increment=0,Rank=0,StartingValue=0.7,MaxValue=0.75,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert",bActive=false)
     PerkSkills(4)=(Name="AmmoVest",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_AmmoVest",bActive=false)
     PerkSkills(5)=(Name="BigPockets",Increment=0,Rank=0,StartingValue=5,MaxValue=5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_BigPockets",bActive=false)
     PerkSkills(6)=(Name="ZedShrapnel",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel",bActive=false)
     PerkSkills(7)=(Name="MakeThingsGoBoom",Increment=0,Rank=0,StartingValue=1.4,MaxValue=1.4,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom",bActive=false)
     PerkSkills(8)=(Name="MadMan",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman",bActive=false)
-    PerkSkills(9)=(Name="IncapMaster",Increment=0,Rank=0,StartingValue=99,MaxValue=99,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster",bActive=false)
+    PerkSkills(9)=(Name="IncapMaster",Increment=0,Rank=0,StartingValue=5000,MaxValue=5000,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster",bActive=false)
     ZedTimeModifyingStates(0)=WeaponFiring
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
@@ -539,6 +558,7 @@ defaultproperties
     ZedTimeModifyingStates(5)=WeaponAltFiring
     ZedTimeModifyingStates(6)=HuskCannonCharge
     ZedTimeModifyingStates(7)=CompoundBowCharge
+    ZedTimeModifyingStates(8)=BlunderbussDeployAndDetonate
     PrimaryWeaponDef=Class'KFWeapDef_Random'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Survivalist'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Commando'

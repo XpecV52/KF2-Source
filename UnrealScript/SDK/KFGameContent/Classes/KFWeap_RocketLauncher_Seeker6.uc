@@ -527,7 +527,7 @@ defaultproperties
 	// Inventory
 	InventoryGroup=IG_Primary
 	GroupPriority=100
-	InventorySize=9 //10
+	InventorySize=8 // 9 //10
 	WeaponSelectTexture=Texture2D'WEP_UI_SeekerSix_TEX.UI_WeaponSelect_SeekerSix'
 
     // FOV
@@ -603,7 +603,7 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Rocket_Seeker6'
 	FireInterval(DEFAULT_FIREMODE)=+0.35
-	InstantHitDamage(DEFAULT_FIREMODE)=120.0 //100.00
+	InstantHitDamage(DEFAULT_FIREMODE)=125 //140 // 120.0 //100.00
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_Seeker6Impact'
 	Spread(DEFAULT_FIREMODE)=0.025
 	FireOffset=(X=20,Y=4.0,Z=-3)
@@ -614,7 +614,7 @@ defaultproperties
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Rocket_Seeker6'
 	FireInterval(ALTFIRE_FIREMODE)=+0.3 //0.1
-	InstantHitDamage(ALTFIRE_FIREMODE)=120.0 //100.00
+	InstantHitDamage(ALTFIRE_FIREMODE)=125 //140 // 120.0 //100.00
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_Seeker6Impact'
 	Spread(ALTFIRE_FIREMODE)=0.025
 	AmmoCost(ALTFIRE_FIREMODE)=1

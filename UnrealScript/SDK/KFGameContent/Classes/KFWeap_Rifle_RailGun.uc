@@ -74,6 +74,13 @@ simulated function InitFOV(float SizeX, float SizeY, float DefaultPlayerFOV)
     }
 }
 
+simulated function AltFireMode ()
+{
+	super.AltFireMode();
+	TargetingComp.AdjustLockTarget(ETargetingMode_Zed, none);
+	TargetingComp.AdjustLockTarget(ETargetingMode_Player, none);
+}
+
 /**
  * Set parameters for the weapon once replication is complete (works in Standalone as well)
  */

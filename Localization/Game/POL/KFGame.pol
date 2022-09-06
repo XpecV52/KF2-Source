@@ -115,7 +115,7 @@ StartOfflineGameString="Rozpocznij grę offline"
 StartOfflineGameDescriptionString="Rozpoczęcie gry offline spowoduje rozwiązanie drużyny. \nCzy chcesz kontynuować?"
 
 ProceedToTutorialString="PRZEJŚĆ DO SZKOLENIA?"
-ProceedToTutorialDescriptionString="Naucz się podstaw w kontrolowanym środowisku. Po ukończeniu zapewnia wybrane klasy poziomu 0-1."
+ProceedToTutorialDescriptionString="Naucz się podstaw w kontrolowanym środowisku.  Po ukończeniu zapewnia wybrane klasy poziomu 0-1."
 
 NotAvailableInFreeTrialString="Funkcja niedostępna w darmowej wersji próbnej"
 NetworkCheckFreeTrialFailedString="Błąd sieci: Nie można zweryfikować stanu darmowego wydarzenia. Sprawdź stan połączenia internetowego."
@@ -257,14 +257,14 @@ BackString="WSTECZ"
 FindGameString="ZNAJDŹ GRĘ"
 
 [KFGFxStartContainer_InGameOverview]
-OverviewString="PRZEGLĄD ROZGRYWKI"
+OverviewString="PRZEGLĄD MECZU"
 ChangeString="ZMIEŃ"
 SharedByString="Udostępnione przez:"
 SharedContentString="UDOSTĘPNIONA ZAWARTOŚĆ"
 AuthorString="Autor "
 
 [KFGFxStartContainer_ServerBrowserOverview]
-OverviewString="PRZEGLĄD ROZGRYWKI"
+OverviewString="PRZEGLĄD MECZU"
 DescriptionString="szuka gry w przeglądarce serwerów…"
 
 [KFGFxTraderContainer_GameInfo]
@@ -957,7 +957,7 @@ ServerBrowserString="SERWERY"
 MatchmakingString="MATCHMAKING"
 CreateGameString="STWÓRZ GRĘ"
 SoloString="SOLO"
-OverviewString="PRZEGLĄD ROZGRYWKI"
+OverviewString="PRZEGLĄD MECZU"
 
 TitleStrings[0]="Opuszczasz walkę tak szybko?"
 TitleStrings[1]="Tak szybko rezygnujesz?"
@@ -1015,6 +1015,8 @@ ThrowString="UPUŚĆ BROŃ"
 
 [KFGFxWidget_KickVote]
 VoteKickString="Wyrzucić gracza?"
+VoteSkipTraderString="Pominąć handlarkę?"
+VoteSkipTraderDetailString="chce pominąć odliczanie"
 
 [KFLocalMessage_PlayerKills]
 KilledString="zabija"
@@ -1399,6 +1401,7 @@ LoggedOutAsAdminString=" – wylogowano z funkcji administratora serwera"
 MustLoginToCheatString="Aby włączyć cheaty, należy się zalogować"
 CheatsEnabledString=" włącza cheaty. Statystyki zostały wyłączone dla tej sesji"
 ServerMaintenanceString="Po zakończeniu rozgrywki serwer zostanie wyłączony w celu konserwacji"
+OtherVoteInProgressString="Nie można rozpocząć nowego głosowania, dopóki nie zostanie rozstrzygnięte obecne"
 KickVoteStartedString="Rozpoczęło się głosowanie, żeby wyrzucić:"
 KickVoteSucceededString="Przegłosowano wyrzucenie:"
 KickVoteFailedString="Nie przegłosowano wyrzucenia:"
@@ -1416,8 +1419,17 @@ KickVoteNoSpectatorsString="Widzowie nie mogą inicjować głosowania o wyrzucen
 KickedFromServerString="Usunięto cię z serwera"
 BannedFromServerString="Usunięto cię z tego serwera. Nie możesz teraz ponownie dołączyć"
 ServerNoLongerAvailableString="Nie można już dołączyć do serwera"
-SkipTraderTimeString="Akt. „HANDL. – POMIŃ”. Głosowanie: wybierz „HANDL. – POMIŃ”. Wsz. muszą wyrazić zgodę."
+SkipTraderVoteStartedString="rozpoczyna głosowanie na pominięcie handlarki"
+SkipTraderTimeString="Akt.  „HANDL. – POMIŃ”. Głosowanie: wybierz  „HANDL. – POMIŃ”.  Wsz. muszą wyrazić zgodę."
 SkipTraderSuccessString="Głosowanie nad pominięciem opcji handlowej zakończone!"
+SkipTraiderVoteFailedString="Głosowanie nad pominięciem handlarki nieudane!"
+SkipTraderVoteNoSpectatorsString="Widzowie nie mogą rozpocząć głosowania nad pominięciem handlarki"
+SkipTraderIsNotOpenString="Pominięcie handlarki niedozwolone podczas fali"
+SkipTraderVoteInProgressString="Nie można rozpocząć głosowania nad pominięciem handlarki, ponieważ jest już ono aktywne"
+SkipTraderVoteYesReceivedString="Głosujesz, aby pominąć handlarkę"
+SkipTraderVoteNoReceivedString="Głosujesz, aby nie pomijać handlarki"
+SkipTraderNoEnoughTimeString="Za mało czasu na rozpoczęcie głosowania nad pominięciem handlarki"
+SkipTraderThisUserAlreadyStartedAVoteString="Nie możesz rozpocząć nowego głosowania nad pominięciem handlarki aż do następnej fazy handlarki"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Otrzymujesz amunicję od gracza"
@@ -1526,7 +1538,7 @@ SkillCatagories[2]=""
 SkillCatagories[3]=""
 SkillCatagories[4]=""
 
-LevelString="Poziom"
+LevelString="Poz."
 
 SpecialAbilityName="Popisowa zdolność"
 SpecialAbilityDescription=""
@@ -1760,7 +1772,7 @@ Spartan="CZAS ZET – Spartanin"
 SpartanDescription="W czasie zet atakujesz bronią specjalizacji i poruszasz się w czasie rzeczywistym."
 
 Rage="CZAS ZET – Szał berserkera"
-RageDescription="Gdy aktywuje się lub odświeża czas zetów, przywracasz 50% zdrowia i zmuszasz pobliskie zety do ucieczki."
+RageDescription="Gdy aktywuje się lub odświeża czas zetów, przywracasz 50% zdrowia i unieruchamiasz pobliskie zety."
 
 [KFPerk_Commando]
 PerkName="Komandos"
@@ -2033,7 +2045,7 @@ Stun="Wstrząs balistyczny"
 StunDescription="Zwiększenie siły ogłuszania broni specjalizacji o 100%."
 
 RhythmMethod="Kumulacja"
-RhythmMethodDescription="Każdy kolejny strzał w głowę za pomocą broni specjalizacji zadaje o 10% większe obrażenia, kumulując się do premii 50%. "
+RhythmMethodDescription="Każdy kolejny strzał w głowę za pomocą broni specjalizacji zadaje o 10% większe obrażenia, kumulując się do premii 50%.  "
 
 TacticalReload="Taktyczne przeładowanie"
 TacticalReloadDescription="Zwiększenie szybkości przeładowywania broni specjalizacji."
@@ -2045,10 +2057,10 @@ AmmoPouch="Stała gotowość"
 AmmoPouchDescription="Możesz nosić dodatkowy granat i 25% więcej amunicji dla broni specjalizacji."
 
 ZTKnockdown="CZAS ZET – Asasyn"
-ZTKnockdownDescription="Każdy strzał w głowę bronią specjalizacji ma 5% szans uruchomienia czasu zet. W czasie zet obrażenia strzału w głowę bronią specjalizacji są zwiększone o 35%."
+ZTKnockdownDescription="Każdy strzał w głowę bronią specjalizacji ma 5% szans uruchomienia czasu zet.  W czasie zet obrażenia strzału w głowę bronią specjalizacji są zwiększone o 35%."
 
 ZTStun="CZAS ZET – Łowca"
-ZTStunDescription="Każdy strzał w głowę bronią specjalizacji ma 5% szans uruchomienia czasu zet. Strzały w głowę bronią spec. w czasie zet ogłuszają każdego zeta."
+ZTStunDescription="Każdy strzał w głowę bronią specjalizacji ma 5% szans uruchomienia czasu zet.  Strzały w głowę bronią spec. w czasie zet ogłuszają każdego zeta."
 
 [KFPerk_Support]
 PerkName="Wsparcie"
@@ -2088,13 +2100,13 @@ TightChoke="Silny czok"
 TightChokeDescription="Zmniejszenie rozrzutu broni specjalizacji o 50%."
 
 Resupply="Zestaw zapasów"
-ResupplyDescription="Raz na falę sojusznicy mogą przez interakcję z tobą przywrócić 30% amunicji i 20% pancerza. Możesz nosić 20% więcej amunicji dla broni specjalizacji."
+ResupplyDescription="Raz na falę sojusznicy mogą przez interakcję z tobą przywrócić 30% amunicji i 20% pancerza.  Możesz nosić 20% więcej amunicji dla broni specjalizacji."
 
 ConcussionRounds="Pociski ogłuszające"
 ConcussionRoundsDescription="Zwiększenie siły oszołamiania broni specjalizacji o 150%."
 
 Perforate="CZAS ZET – Penetrator"
-PerforateDescription="W czasie zet brak zmniejszenia obrażeń przy strzelaniu do zetów przez innych zetów i większa penetracja podczas używania broni specjalizacji."
+PerforateDescription="Podczas czasu zetów twoje bronie specjalizacji nie otrzymują kary do obrażeń z penetracji. Masz penetrację przez wszystkich zetów."
 
 Barrage="CZAS ZET – Ogień zaporowy"
 BarrageDescription="W czasie zet broń specjalizacji strzela prawie tak szybko, jak w czasie rzeczywistym."
@@ -2172,7 +2184,7 @@ FieldMedic="Wyszkolenie medyczne"
 FieldMedicDescription="Wartość twojego leczenia wzrasta o 30%, a czas odnowienia strzykawki i strzałek leczniczych zmniejsza się o 50%."
 
 MeleeExpert="Ekspert od broni białej"
-MeleeExpertDescription="Zwiększenie szybkości ataku o 20%, zadawanych obrażeń o 50% i szybkości ruchu o 25% podczas używania dowolnej broni białej."
+MeleeExpertDescription="Zwiększenie szybkości ataku o 20%, zadawanych obrażeń o 75% i szybkości ruchu o 25% podczas używania dowolnej broni białej."
 
 AmmoVest="Kamizelka z ładownicami"
 AmmoVestDescription="Możesz nosić 15% więcej amunicji dla każdej broni, a twój granat zmienia się w granat leczący."
@@ -2190,7 +2202,7 @@ Madman="CZAS ZET – Szaleniec"
 MadmanDescription="W czasie zet każda twoja broń strzela 3 razy szybciej."
 
 IncapMaster="CZAS ZET – Kwarantanna"
-IncapMasterDescription="Podczas czasu zetów współczynnik powalenia, oszołamiania i ogłuszenia twoich broni wzrasta do ich maksimum."
+IncapMasterDescription="Podczas czasu zetów wszystkie twoje bronie mogą ogłuszyć każdego zeta."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2699,12 +2711,26 @@ SpecialEventObjectiveInfoList[0]=(TitleString="Nieudane eksperymenty",Descriptio
 SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowa robota",DescriptionString="Ukończ tygodniowe wydarzenia na mapie Biopomyłka")
 SpecialEventObjectiveInfoList[2]=(TitleString="Plama z mikserem",DescriptionString="Użyj krwawego miksera, aby zabić 20 zetów w Biopomyłce")
 SpecialEventObjectiveInfoList[3]=(TitleString="To pułapka!",DescriptionString="Użyj drzwi pułapek, aby zabić 20 zetów w Biopomyłce")
-SpecialEventObjectiveInfoList[4]=(TitleString="Zabójcze nawrót",DescriptionString="Pokonaj dowolnego bossa na poziomie poziomie przetrwania ciężkim lub wyższym na Biopomyłka")
+SpecialEventObjectiveInfoList[4]=(TitleString="Zabójcze nawrót",DescriptionString="Pokonaj dowolnego bossa w Przetrwaniu na wysokim lub wyższym poziomie trudności na mapie „Biopomyłka”.")
 
 AllCompleteRewardDescriptionString="AA12 – podwójny zestaw dynamicznych skórek"
 
 ChanceDropDescriptionStrings[0]="Cyberpunkowy kupon"
 ChanceDropDescriptionStrings[1]="Złoty bilet Cyberpunk"
+
+[KFGFxSpecialEventObjectivesContainer_Summer2020]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Niech mnie kule biją!",DescriptionString="Zabij 15 bossów na dowolnej mapie i w dowolnym trybie")
+SpecialEventObjectiveInfoList[1]=(TitleString="Tygodniowe ahoj",DescriptionString="Ukończ tygodniowy incydent na mapie Dewastacja")
+SpecialEventObjectiveInfoList[2]=(TitleString="Grrr! Odpalić to!",DescriptionString="Aktywuj generator prądu na mapie Dewastacja")
+SpecialEventObjectiveInfoList[3]=(TitleString="Mnóstwo dublonów",DescriptionString="Zdobądź 75 000 forsy poprzez zabicia, nagrody i leczenie na mapie Dewastacja")
+SpecialEventObjectiveInfoList[4]=(TitleString="Wieczne plądrowanie",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności na mapie Dewastacja")
+
+AllCompleteRewardDescriptionString="Kosmiczny pirat | Plecak kosmicznej małpy"
+
+ChanceDropDescriptionStrings[0]="Kupon letni"
+ChanceDropDescriptionStrings[1]="Złoty kupon letni"
 
 ;============================================
 ; Daily Localization
@@ -3299,7 +3325,10 @@ DisplayName="Zakład Ashwood"
 DisplayName="Sanatorium"
 
 [KF-Biolapse KFMapSummary]
-DisplayName="Biorobota"
+DisplayName="Biopomyłka"
+
+[KF-Desolation KFMapSummary]
+DisplayName="Dewastacja"
 
 [KFMapInfo]
 ; defaults

@@ -33,6 +33,8 @@ enum ESurvivalistPerkSkills
 	ESurvivalist_IncapMaster
 };
 
+var	const 	int						SecondaryNearKillXPModifier[4];
+
 var private const float 			InjectionPotencyModifier;
 var private const float 			MeleeExpertAttackSpeedModifier;
 var private const GameExplosion		ShrapnelExplosionTemplate;
@@ -465,7 +467,9 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
 	if( GetIncapMasterActive() )
 	{
 		;
-		return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
+		//[FFERRANDO @ SABER3D] INCAP MASTER NOW ONLY MODIFIES STUN POWER
+		return 0;
+		//return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
 	}
 
 	return 0.f;
@@ -480,7 +484,9 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	if( GetIncapMasterActive() )
 	{
 		;
-        return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
+		//[FFERRANDO @ SABER3D] INCAP MASTER NOW ONLY MODIFIES STUN POWER
+		return 0;
+        //return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
 	}
 
 	return 0.f;
@@ -495,7 +501,7 @@ function float GetStunPowerModifier( optional class<DamageType> DamageType, opti
 	if( GetIncapMasterActive() )
 	{
 		;
-		return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
+		return (GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] ) );
 	}
 
     return 0.f;
@@ -524,6 +530,17 @@ simulated function class< KFProj_Grenade > GetGrenadeClass()
     }
 
     return GrenadeClass;
+}
+
+/**
+ * @brief Gets the small radius kill xp based on the difficulty
+ *
+ * @param Difficulty game difficulty
+ * @return XP
+ */
+static function int GetSmallRadiusKillXP( byte Difficulty )
+{
+	return default.SecondaryNearKillXPModifier[Difficulty];
 }
 
 /**
@@ -660,8 +677,20 @@ simulated private function bool IsIncapMasterActive()
 }
 
 /*********************************************************************************************
-* @name	 UI
+* @name	 Hud/UI/Stats/Exp
 ********************************************************************************************* */
+
+/**
+ * @brief how much XP is earned by a clot kill depending on the game's difficulty
+ *
+ * @param Difficulty current game difficulty
+ * @return XP earned
+ */
+simulated static function int GetClotKillXP( byte Difficulty )
+{
+	return default.SecondaryXPModifier[Difficulty];
+}
+
 simulated static function GetPassiveStrings( out array<string> PassiveValues, out array<string> Increments, byte Level )
 {
 	PassiveValues[0] = Left( string(GetPassiveValue( default.WeaponDamage, Level ) * 100 ), InStr(string(GetPassiveValue( default.WeaponDamage, Level ) * 100 ), ".") + 2 ) $ "%";
@@ -710,6 +739,10 @@ defaultproperties
    DamageResistance=(Name="Damage Resistance",Increment=0.010000,MaxValue=0.250000)
    HeavyBodyArmor=(Name="Heavy Body Armor",Increment=0.010000,MaxValue=0.250000)
    ZedTimeReload=(Name="Zed Time Reload",Increment=0.030000,MaxValue=0.750000)
+   SecondaryNearKillXPModifier(0)=6
+   SecondaryNearKillXPModifier(1)=8
+   SecondaryNearKillXPModifier(2)=10
+   SecondaryNearKillXPModifier(3)=14
    InjectionPotencyModifier=1.300000
    MeleeExpertAttackSpeedModifier=0.200000
    ShrapnelExplosionTemplate=KFGameExplosion'KFGame.Default__KFPerk_Survivalist:ExploTemplate0'
@@ -732,6 +765,10 @@ defaultproperties
    MakeThingsGoBoomExplosiveResistance=0.400000
    ProgressStatID=70
    PerkBuildStatID=71
+   SecondaryXPModifier(0)=2
+   SecondaryXPModifier(1)=3
+   SecondaryXPModifier(2)=4
+   SecondaryXPModifier(3)=7
    PerkName="Survivalist"
    Passives(0)=(Title="Weapon Damage",Description="Increase weapon damage %x% per level")
    Passives(1)=(Title="Global Damage Resistance",Description="Increase resistance to all damage %x% per level")
@@ -749,13 +786,13 @@ defaultproperties
    PerkSkills(0)=(Name="TacticalReload",StartingValue=0.250000,MaxValue=0.250000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_TacticalReload")
    PerkSkills(1)=(Name="HeavyWeaponsReload",StartingValue=2.500000,MaxValue=2.500000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_HeavyWeapons")
    PerkSkills(2)=(Name="FieldMedic",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_FieldMedic")
-   PerkSkills(3)=(Name="MeleeExpert",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert")
+   PerkSkills(3)=(Name="MeleeExpert",StartingValue=0.700000,MaxValue=0.750000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert")
    PerkSkills(4)=(Name="AmmoVest",StartingValue=0.150000,MaxValue=0.150000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_AmmoVest")
    PerkSkills(5)=(Name="BigPockets",StartingValue=5.000000,MaxValue=5.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_BigPockets")
    PerkSkills(6)=(Name="ZedShrapnel",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel")
    PerkSkills(7)=(Name="MakeThingsGoBoom",StartingValue=1.400000,MaxValue=1.400000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom")
    PerkSkills(8)=(Name="MadMan",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman")
-   PerkSkills(9)=(Name="IncapMaster",StartingValue=99.000000,MaxValue=99.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster")
+   PerkSkills(9)=(Name="IncapMaster",StartingValue=5000.000000,MaxValue=5000.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster")
    ZedTimeModifyingStates(0)="WeaponFiring"
    ZedTimeModifyingStates(1)="WeaponBurstFiring"
    ZedTimeModifyingStates(2)="WeaponSingleFiring"
@@ -764,6 +801,7 @@ defaultproperties
    ZedTimeModifyingStates(5)="WeaponAltFiring"
    ZedTimeModifyingStates(6)="HuskCannonCharge"
    ZedTimeModifyingStates(7)="CompoundBowCharge"
+   ZedTimeModifyingStates(8)="BlunderbussDeployAndDetonate"
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_Random'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Survivalist'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'

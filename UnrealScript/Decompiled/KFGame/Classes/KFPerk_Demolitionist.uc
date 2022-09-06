@@ -789,6 +789,7 @@ defaultproperties
     ZedTimeModifyingStates(6)=AltReloading
     ZedTimeModifyingStates(7)=WeaponThrowing
     ZedTimeModifyingStates(8)=HuskCannonCharge
+    ZedTimeModifyingStates(9)=BlunderbussDeployAndDetonate
     PrimaryWeaponDef=Class'KFWeapDef_HX25'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Demo'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Demo'

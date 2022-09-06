@@ -16,6 +16,8 @@ var localized string MustLoginToCheatString;
 var localized string CheatsEnabledString;
 var localized string ServerMaintenanceString;
 
+var localized string OtherVoteInProgressString;
+
 var localized string KickVoteStartedString;
 var localized string KickVoteFailedString;
 var localized string KickVoteSucceededString;
@@ -37,8 +39,18 @@ var localized string KickedFromServerString;
 var localized string BannedFromServerString;
 var localized string ServerNoLongerAvailableString;
 
+var localized string SkipTraderVoteStartedString;
 var localized string SkipTraderTimeString; 
 var localized string SkipTraderSuccessString;
+var localized string SkipTraiderVoteFailedString;
+var localized string SkipTraderVoteNoSpectatorsString;
+var localized string SkipTraderIsNotOpenString;
+var localized string SkipTraderVoteInProgressString;
+var localized string SkipTraderNoEnoughTimeString;
+var localized string SkipTraderThisUserAlreadyStartedAVoteString;
+
+var localized string SkipTraderVoteYesReceivedString;
+var localized string SkipTraderVoteNoReceivedString;
 
 enum ELocalMessageType
 {
@@ -47,6 +59,7 @@ enum ELocalMessageType
     LMT_MustLoginToCheat,
     LMT_CheatsEnabled,
 	LMT_ServerMaintenance,
+	LMT_OtherVoteInProgress,
     LMT_KickVoteStarted,
     LMT_KickVoteFailed,
     LMT_KickVoteSucceeded,
@@ -61,8 +74,17 @@ enum ELocalMessageType
     LMT_KickVoteMaxKicksReached,
     LMT_KickVoteNotEnoughPlayers,
     LMT_KickVoteNoSpectators,
+	LMT_SkipTraderVoteStarted,
 	LMT_SkipTraderTime,
-	LMT_SkipTraderTimeSuccess
+	LMT_SkipTraderTimeSuccess,
+	LMT_SkipTraderVoteFailed,
+	LMT_SkipTraderVoteNoSpectators,
+	LMT_SkipTraderIsNotOpen,
+	LMT_SkipTraderVoteInProgress,
+    LMT_SkipTraderVoteYesReceived,
+    LMT_SkipTraderVoteNoReceived,
+	LMT_SkipTraderNoEnoughTime,
+	LMT_SkipTraderThisUserAlreadyStartedAVote
 };
 
 /** Message area on HUD (index into UTHUD.MessageOffset[]) */
@@ -142,10 +164,42 @@ static function string GetString(
 
     switch (Switch)
     {
-	case LMT_SkipTraderTimeSuccess:
-		return default.SkipTraderSuccessString;
+		case LMT_OtherVoteInProgress:
+			return default.OtherVoteInProgressString;
+
+		case LMT_SkipTraderVoteStarted:
+            return RelatedPRI_1.PlayerName@Default.SkipTraderVoteStartedString;
+
+		case LMT_SkipTraderTimeSuccess:
+			return default.SkipTraderSuccessString;
+
+        case LMT_SkipTraderVoteFailed:
+            return Default.SkipTraiderVoteFailedString;
+
 		case LMT_SkipTraderTime:
 			return default.SkipTraderTimeString;
+
+        case LMT_SkipTraderVoteNoSpectators:
+            return Default.SkipTraderVoteNoSpectatorsString;
+
+        case LMT_SkipTraderIsNotOpen:
+            return Default.SkipTraderIsNotOpenString;
+			
+        case LMT_SkipTraderVoteInProgress:
+            return Default.SkipTraderVoteInProgressString;
+			
+        case LMT_SkipTraderVoteYesReceived:
+            return Default.SkipTraderVoteYesReceivedString;
+			
+        case LMT_SkipTraderVoteNoReceived:
+            return Default.SkipTraderVoteNoReceivedString;
+
+		case LMT_SkipTraderNoEnoughTime:
+            return Default.SkipTraderNoEnoughTimeString;
+
+		case LMT_SkipTraderThisUserAlreadyStartedAVote:
+            return Default.SkipTraderThisUserAlreadyStartedAVoteString;
+
         case LMT_AdminLogin:
             return RelatedPRI_1.PlayerName@Default.LoggedInAsAdminString;
             

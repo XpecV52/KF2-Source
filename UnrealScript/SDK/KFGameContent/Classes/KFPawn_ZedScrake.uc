@@ -327,6 +327,7 @@ defaultproperties
 
     //special cases
     DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_Hemogoblin',       DamageScale=(0.75)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_HRGTeslauncher',   DamageScale=(0.9)))
 
 	// ---------------------------------------------
 	// Block Settings

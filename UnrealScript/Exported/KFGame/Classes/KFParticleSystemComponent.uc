@@ -25,6 +25,11 @@ var public{private} const vector SavedScale3D;
 // (cpptext)
 // (cpptext)
 // (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
 
 
 /** This changes the FOV used for rendering the particle system component. A value of 0 means to use the default. */

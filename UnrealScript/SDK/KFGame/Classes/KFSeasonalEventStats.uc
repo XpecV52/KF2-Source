@@ -64,5 +64,8 @@ simulated function OnMapObjectiveDeactivated(Actor ObjectiveInterfaceActor);
 simulated function OnZedKilled(class<KFPawn_Monster> MonsterClass, int Difficulty, class<DamageType> DT);
 simulated function OnMapCollectibleFound(PlayerReplicationInfo FinderPRI, int CollectibleID);
 simulated event OnGameWon(class<GameInfo> GameClass, int Difficulty, int GameLength, bool bCoOp);
+simulated event OnGameEnd(class<GameInfo> GameClass);
 simulated function OnBossDied();
 simulated event OnWaveCompleted(class<GameInfo> GameClass, int Difficulty, int WaveNum);
+simulated event OnTriggerUsed(class<Trigger_PawnsOnly> TriggerClass);
+simulated event OnTryCompleteObjective(int ObjectiveIndex, int EventIndex);

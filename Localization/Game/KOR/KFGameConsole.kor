@@ -31,6 +31,7 @@ KF-Steamfortress="스팀 포트리스 플레이 중"
 KF-AshwoodAsylum="애쉬우드 정신병원 플레이 중"
 KF-Sanitarium="요양원 플레이 중"
 KF-Biolapse="바이오랩스 플레이 중"
+KF-Desolation="황폐화 플레이"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

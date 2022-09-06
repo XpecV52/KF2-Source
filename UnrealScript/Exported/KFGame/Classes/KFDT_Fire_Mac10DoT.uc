@@ -17,8 +17,8 @@ defaultproperties
    WeaponDef=Class'KFGame.KFWeapDef_Mac10'
    DoT_Duration=2.000000
    DoT_Interval=0.500000
-   DoT_DamageScale=0.300000
-   BurnPower=8.500000
+   DoT_DamageScale=0.400000
+   BurnPower=4.000000
    Name="Default__KFDT_Fire_Mac10DoT"
    ObjectArchetype=KFDT_Fire'KFGame.Default__KFDT_Fire'
 }

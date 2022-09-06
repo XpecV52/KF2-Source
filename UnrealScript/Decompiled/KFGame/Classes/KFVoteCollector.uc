@@ -7,7 +7,7 @@
  *******************************************************************************/
 class KFVoteCollector extends Object within KFGameReplicationInfo;
 
-struct sKickVoteInfo
+struct sVoteInfo
 {
     var UniqueNetId PlayerID;
     var PlayerReplicationInfo PlayerPRI;
@@ -54,20 +54,26 @@ struct TopVotes
 };
 
 var byte VoteTime;
-var byte ShortenedTime;
 var byte YesVotes;
 var byte NoVotes;
+var byte ShortenedTime;
 var byte KickedPlayers;
-var byte LastKickVoteValue;
-var sKickVoteInfo CurrentVote;
-var bool bIsVoteInProgress;
+var byte LastKickVoteYesValue;
+var byte LastKickVoteNoValue;
+var byte LastSkipTraderYesVoteValue;
+var byte LastSkipTraderNoVoteValue;
+var byte CurrentVoteTime;
+var sVoteInfo CurrentKickVote;
+var bool bIsKickVoteInProgress;
 var bool bIsFailedVoteTimerActive;
+var bool bIsSkipTraderVoteInProgress;
 var bool bAllPlayersVotedOnMap;
 var const int TopResultsToShow;
 var const int ActiveTimeUntilVoteEnabled;
 var array<PlayerReplicationInfo> PlayersThatHaveVoted;
-var array<PlayerReplicationInfo> PlayersReadyToSkipTrader;
+var sVoteInfo CurrentSkipTraderVote;
 var int TimeAfterSkipTrader;
+var int SkipTraderVoteLimit;
 var TopVotes TopVotesObject;
 var array<MapVote> MapVoteList;
 var array<string> MapList;
@@ -84,135 +90,74 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
     KickeePC = KFPlayerController(PRI_Kickee.Owner);
     if(KFGI.bDisableKickVote)
     {
-        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 10);
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 11);
         return;
     }
     if(PRI_Kicker.bOnlySpectator)
     {
-        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 18);
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 19);
         return;
     }
     if(KFGI.NumPlayers <= 2)
     {
-        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 17);
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 18);
         return;
     }
     if(KickedPlayers >= 2)
     {
-        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 16);
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 17);
         return;
     }
     if(KFGI.AccessControl != none)
     {
         if(KFGI.AccessControl.IsAdmin(KickeePC))
         {
-            KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 13);
+            KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 14);
             return;
         }
     }
     if(bIsFailedVoteTimerActive)
     {
-        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 8);
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 9);
         return;
     }
-    if(!bIsVoteInProgress)
+    if(bIsSkipTraderVoteInProgress)
+    {
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 5);
+        return;
+    }
+    if(!bIsKickVoteInProgress)
     {
         PlayersThatHaveVoted.Length = 0;
-        CurrentVote.PlayerID = PRI_Kickee.UniqueId;
-        CurrentVote.PlayerPRI = PRI_Kickee;
-        CurrentVote.PlayerIPAddress = KickeePC.GetPlayerNetworkAddress();
-        bIsVoteInProgress = true;
+        CurrentKickVote.PlayerID = PRI_Kickee.UniqueId;
+        CurrentKickVote.PlayerPRI = PRI_Kickee;
+        CurrentKickVote.PlayerIPAddress = KickeePC.GetPlayerNetworkAddress();
+        bIsKickVoteInProgress = true;
         Outer.GetKFPRIArray(PRIs);
         I = 0;
-        J0x3A8:
+        J0x3E4:
 
         if(I < PRIs.Length)
         {
             PRIs[I].ShowKickVote(PRI_Kickee, VoteTime, !(PRIs[I] == PRI_Kicker) || PRIs[I] == PRI_Kickee);
             ++ I;
-            goto J0x3A8;
+            goto J0x3E4;
         }
-        KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 5, CurrentVote.PlayerPRI);
+        KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 6, CurrentKickVote.PlayerPRI);
         Outer.SetTimer(float(VoteTime), false, 'ConcludeVoteKick', self);
         RecieveVoteKick(PRI_Kicker, true);        
     }
     else
     {
-        if(PRI_Kickee == CurrentVote.PlayerPRI)
+        if(PRI_Kickee == CurrentKickVote.PlayerPRI)
         {
             RecieveVoteKick(PRI_Kicker, false);            
         }
         else
         {
-            KFPlayerController(PRI_Kicker.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage', 9);
+            KFPlayerController(PRI_Kicker.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage', 10);
         }
     }
-}
-
-reliable server function ResetTraderVote()
-{
-    PlayersReadyToSkipTrader.Length = 0;
-}
-
-reliable server function SkipTraderTime()
-{
-    local KFGameReplicationInfo KFGRI;
-    local KFGameInfo KFGI;
-
-    KFGI = KFGameInfo(Outer.WorldInfo.Game);
-    KFGRI = Outer;
-    if(KFGRI.RemainingTime > TimeAfterSkipTrader)
-    {
-        KFGRI.RemainingTime = TimeAfterSkipTrader;
-        KFGRI.RemainingMinute = TimeAfterSkipTrader;
-        KFGI.SkipTrader(TimeAfterSkipTrader);
-    }
-}
-
-reliable server function RecieveSkipTraderTimeVote(PlayerReplicationInfo PRI)
-{
-    local KFGameInfo KFGI;
-
-    KFGI = KFGameInfo(Outer.WorldInfo.Game);
-    if(PlayersThatHaveVoted.Find(PRI == -1)
-    {
-        PlayersReadyToSkipTrader.AddItem(PRI;
-        if(ShouldSkipTrader())
-        {
-            SkipTraderTime();
-            ResetTraderVote();
-            KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 20);            
-        }
-        else
-        {
-            KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 19);
-        }
-    }
-}
-
-function bool ShouldSkipTrader()
-{
-    local array<KFPlayerReplicationInfo> PRIs;
-    local int I;
-
-    if(PlayersReadyToSkipTrader.Length <= 0)
-    {
-        return false;
-    }
-    Outer.GetKFPRIArray(PRIs);
-    I = 0;
-    J0x46:
-
-    if(I < PRIs.Length)
-    {
-        if(PlayersReadyToSkipTrader.Find(PRIs[I] == -1)
-        {
-            return false;
-        }
-        ++ I;
-        goto J0x46;
-    }
-    return true;
 }
 
 reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)
@@ -235,52 +180,59 @@ reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)
         {
             if(bKick)
             {
-                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 11, CurrentVote.PlayerPRI);                
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 12, CurrentKickVote.PlayerPRI);                
             }
             else
             {
-                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 12, CurrentVote.PlayerPRI);
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 13, CurrentKickVote.PlayerPRI);
             }
         }
-        if(ShouldConcludeVote())
+        if(ShouldConcludeKickVote())
         {
             ConcludeVoteKick();            
         }
         else
         {
-            ReplicateVotes();
+            ReplicateKickVotes();
         }
     }
 }
 
-function ReplicateVotes()
+function ReplicateKickVotes()
 {
-    Outer.RepKickVotes = byte(Min(YesVotes, 15) << 4);
-    Outer.RepKickVotes = byte(Outer.RepKickVotes | Min(NoVotes, 15));
+    local KFGameReplicationInfo KFGRI;
+
+    Outer.RepKickYesVotes = YesVotes;
+    Outer.RepKickNoVotes = NoVotes;
+    KFGRI = Outer;
+    KFGRI.bForceNetUpdate = true;
+    LogInternal((("Replicate vote count" @ string(Outer.RepKickYesVotes)) @ "/") @ string(Outer.RepKickNoVotes));
     if((Outer.Role == ROLE_Authority) && Outer.WorldInfo.NetMode != NM_DedicatedServer)
     {
-        UnPackVotes();
+        UnPackKickVotes();
     }
 }
 
-function UnPackVotes()
+function UnPackKickVotes()
 {
     local KFPlayerController KFPC;
 
-    if(LastKickVoteValue != Outer.RepKickVotes)
+    LogInternal((("Unpack vote count" @ string(Outer.RepKickYesVotes)) @ "/") @ string(Outer.RepKickNoVotes));
+    if((LastKickVoteYesValue != Outer.RepKickYesVotes) || LastKickVoteNoValue != Outer.RepKickNoVotes)
     {
-        NoVotes = byte(Outer.RepKickVotes & 15);
-        YesVotes = byte(Outer.RepKickVotes >> 4);
+        NoVotes = Outer.RepKickNoVotes;
+        YesVotes = Outer.RepKickYesVotes;
         KFPC = KFPlayerController(Outer.GetALocalPlayerController());
         if((KFPC != none) && KFPC.myGfxHUD != none)
         {
             KFPC.myGfxHUD.UpdateKickVoteCount(YesVotes, NoVotes);
         }
-        LastKickVoteValue = Outer.RepKickVotes;
+        LastKickVoteYesValue = Outer.RepKickYesVotes;
+        LastKickVoteNoValue = Outer.RepKickNoVotes;
     }
 }
 
-function bool ShouldConcludeVote()
+function bool ShouldConcludeKickVote()
 {
     local array<KFPlayerReplicationInfo> PRIs;
     local KFGameInfo KFGI;
@@ -289,7 +241,7 @@ function bool ShouldConcludeVote()
     KFGI = KFGameInfo(Outer.WorldInfo.Game);
     Outer.GetKFPRIArray(PRIs);
     NumPRIs = PRIs.Length;
-    if(PRIs.Find(CurrentVote.PlayerPRI != -1)
+    if(PRIs.Find(CurrentKickVote.PlayerPRI != -1)
     {
         -- NumPRIs;
     }
@@ -328,7 +280,7 @@ reliable server function ConcludeVoteKick()
     local int KickVotesNeeded;
 
     KFGI = KFGameInfo(Outer.WorldInfo.Game);
-    if(bIsVoteInProgress)
+    if(bIsKickVoteInProgress)
     {
         Outer.GetKFPRIArray(PRIs);
         I = 0;
@@ -341,7 +293,7 @@ reliable server function ConcludeVoteKick()
             goto J0x87;
         }
         NumPRIs = PRIs.Length;
-        if(PRIs.Find(CurrentVote.PlayerPRI != -1)
+        if(PRIs.Find(CurrentKickVote.PlayerPRI != -1)
         {
             -- NumPRIs;
         }
@@ -349,16 +301,16 @@ reliable server function ConcludeVoteKick()
         KickVotesNeeded = Clamp(KickVotesNeeded, 1, NumPRIs);
         if(YesVotes >= KickVotesNeeded)
         {
-            if((CurrentVote.PlayerPRI == none) || CurrentVote.PlayerPRI.bPendingDelete)
+            if((CurrentKickVote.PlayerPRI == none) || CurrentKickVote.PlayerPRI.bPendingDelete)
             {
                 I = 0;
                 J0x203:
 
                 if(I < Outer.WorldInfo.Game.InactivePRIArray.Length)
                 {
-                    if(Outer.WorldInfo.Game.InactivePRIArray[I].UniqueId == CurrentVote.PlayerID)
+                    if(Outer.WorldInfo.Game.InactivePRIArray[I].UniqueId == CurrentKickVote.PlayerID)
                     {
-                        CurrentVote.PlayerPRI = Outer.WorldInfo.Game.InactivePRIArray[I];
+                        CurrentKickVote.PlayerPRI = Outer.WorldInfo.Game.InactivePRIArray[I];
                         goto J0x369;
                     }
                     ++ I;
@@ -369,21 +321,21 @@ reliable server function ConcludeVoteKick()
 
             if(KFGI.AccessControl != none)
             {
-                KickedPC = (((CurrentVote.PlayerPRI != none) && CurrentVote.PlayerPRI.Owner != none) ? KFPlayerController(CurrentVote.PlayerPRI.Owner) : none);
-                KFAccessControl(KFGI.AccessControl).KickSessionBanPlayer(KickedPC, CurrentVote.PlayerID, KFGI.AccessControl.KickedMsg);
+                KickedPC = (((CurrentKickVote.PlayerPRI != none) && CurrentKickVote.PlayerPRI.Owner != none) ? KFPlayerController(CurrentKickVote.PlayerPRI.Owner) : none);
+                KFAccessControl(KFGI.AccessControl).KickSessionBanPlayer(KickedPC, CurrentKickVote.PlayerID, KFGI.AccessControl.KickedMsg);
             }
-            KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 7, CurrentVote.PlayerPRI);
+            KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 8, CurrentKickVote.PlayerPRI);
             ++ KickedPlayers;            
         }
         else
         {
             bIsFailedVoteTimerActive = true;
             Outer.SetTimer(KFGI.TimeBetweenFailedVotes, false, 'ClearFailedVoteFlag', self);
-            KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 6, CurrentVote.PlayerPRI);
+            KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 7, CurrentKickVote.PlayerPRI);
         }
-        bIsVoteInProgress = false;
-        CurrentVote.PlayerPRI = none;
-        CurrentVote.PlayerID = Class'PlayerReplicationInfo'.default.UniqueId;
+        bIsKickVoteInProgress = false;
+        CurrentKickVote.PlayerPRI = none;
+        CurrentKickVote.PlayerID = Class'PlayerReplicationInfo'.default.UniqueId;
         YesVotes = 0;
         NoVotes = 0;
     }
@@ -392,6 +344,257 @@ reliable server function ConcludeVoteKick()
 function ClearFailedVoteFlag()
 {
     bIsFailedVoteTimerActive = false;
+}
+
+function ServerStartVoteSkipTrader(PlayerReplicationInfo PRI)
+{
+    local int I;
+    local array<KFPlayerReplicationInfo> PRIs;
+    local KFGameInfo KFGI;
+    local KFPlayerController KFPC;
+    local KFGameReplicationInfo KFGRI;
+    local byte TraderTimeRemaining;
+
+    KFGRI = KFGameReplicationInfo(Outer.WorldInfo.GRI);
+    KFGI = KFGameInfo(Outer.WorldInfo.Game);
+    KFPC = KFPlayerController(PRI.Owner);
+    if(PRI.bOnlySpectator)
+    {
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 24);
+        return;
+    }
+    if(!KFGRI.bTraderIsOpen)
+    {
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 25);
+        return;
+    }
+    if(bIsKickVoteInProgress)
+    {
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 5);
+        return;
+    }
+    TraderTimeRemaining = byte(KFGRI.GetTraderTimeRemaining());
+    if(TraderTimeRemaining <= SkipTraderVoteLimit)
+    {
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 29);
+        return;
+    }
+    if(!bIsSkipTraderVoteInProgress)
+    {
+        PlayersThatHaveVoted.Length = 0;
+        CurrentSkipTraderVote.PlayerID = PRI.UniqueId;
+        CurrentSkipTraderVote.PlayerPRI = PRI;
+        CurrentSkipTraderVote.PlayerIPAddress = KFPC.GetPlayerNetworkAddress();
+        bIsSkipTraderVoteInProgress = true;
+        CurrentVoteTime = byte(Min(VoteTime, TraderTimeRemaining - SkipTraderVoteLimit));
+        Outer.GetKFPRIArray(PRIs);
+        I = 0;
+        J0x337:
+
+        if(I < PRIs.Length)
+        {
+            PRIs[I].ShowSkipTraderVote(PRI, CurrentVoteTime, !PRIs[I] == PRI);
+            ++ I;
+            goto J0x337;
+        }
+        KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 20, CurrentSkipTraderVote.PlayerPRI);
+        Outer.SetTimer(float(CurrentVoteTime), false, 'ConcludeVoteSkipTrader', self);
+        Outer.SetTimer(1, true, 'UpdateTimer', self);
+        RecieveVoteSkipTrader(PRI, true);
+        KFPlayerReplicationInfo(PRI).bAlreadyStartedASkipTraderVote = true;        
+    }
+    else
+    {
+        KFPlayerController(PRI.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage', 26);
+    }
+}
+
+reliable server function UpdateTimer()
+{
+    local array<KFPlayerReplicationInfo> PRIs;
+    local int I;
+
+    CurrentVoteTime -= 1;
+    Outer.GetKFPRIArray(PRIs);
+    I = 0;
+    J0x41:
+
+    if(I < PRIs.Length)
+    {
+        PRIs[I].UpdateSkipTraderTime(CurrentVoteTime);
+        ++ I;
+        goto J0x41;
+    }
+}
+
+reliable server function RecieveVoteSkipTrader(PlayerReplicationInfo PRI, bool bSkip)
+{
+    local KFPlayerController KFPC;
+
+    if(PlayersThatHaveVoted.Find(PRI == -1)
+    {
+        PlayersThatHaveVoted.AddItem(PRI;
+        if(bSkip)
+        {
+            ++ YesVotes;            
+        }
+        else
+        {
+            ++ NoVotes;
+        }
+        KFPC = KFPlayerController(PRI.Owner);
+        if(KFPC != none)
+        {
+            if(bSkip)
+            {
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 27);                
+            }
+            else
+            {
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 28);
+            }
+        }
+        if(ShouldConcludeSkipTraderVote())
+        {
+            ConcludeVoteSkipTrader();            
+        }
+        else
+        {
+            ReplicateSkipTraderVotes();
+        }
+    }
+}
+
+function ReplicateSkipTraderVotes()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    Outer.RepSkipTraderYesVotes = YesVotes;
+    Outer.RepSkipTraderNoVotes = NoVotes;
+    KFGRI = Outer;
+    KFGRI.bForceNetUpdate = true;
+    LogInternal((("Replicate vote count" @ string(Outer.RepSkipTraderYesVotes)) @ "/") @ string(Outer.RepSkipTraderNoVotes));
+    if((Outer.Role == ROLE_Authority) && Outer.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        UnPackSkipTraderVotes();
+    }
+}
+
+function UnPackSkipTraderVotes()
+{
+    local KFPlayerController KFPC;
+
+    LogInternal((("Unpack vote count" @ string(Outer.RepSkipTraderYesVotes)) @ "/") @ string(Outer.RepSkipTraderNoVotes));
+    if((LastSkipTraderYesVoteValue != Outer.RepSkipTraderYesVotes) || LastSkipTraderNoVoteValue != Outer.RepSkipTraderNoVotes)
+    {
+        NoVotes = Outer.RepSkipTraderNoVotes;
+        YesVotes = Outer.RepSkipTraderYesVotes;
+        KFPC = KFPlayerController(Outer.GetALocalPlayerController());
+        if((KFPC != none) && KFPC.myGfxHUD != none)
+        {
+            KFPC.myGfxHUD.UpdateSkipTraderVoteCount(YesVotes, NoVotes);
+        }
+        LastSkipTraderYesVoteValue = Outer.RepSkipTraderYesVotes;
+        LastSkipTraderNoVoteValue = Outer.RepSkipTraderNoVotes;
+    }
+}
+
+function bool ShouldConcludeSkipTraderVote()
+{
+    local array<KFPlayerReplicationInfo> PRIs;
+    local int NumPRIs;
+
+    Outer.GetKFPRIArray(PRIs);
+    NumPRIs = PRIs.Length;
+    if(((YesVotes + NoVotes) >= NumPRIs) || NoVotes > 0)
+    {
+        return true;
+    }
+    return false;
+}
+
+reliable server function ConcludeVoteSkipTrader()
+{
+    local array<KFPlayerReplicationInfo> PRIs;
+    local int I, NumPRIs;
+    local KFGameInfo KFGI;
+
+    KFGI = KFGameInfo(Outer.WorldInfo.Game);
+    if(bIsSkipTraderVoteInProgress)
+    {
+        Outer.GetKFPRIArray(PRIs);
+        I = 0;
+        J0x87:
+
+        if(I < PRIs.Length)
+        {
+            PRIs[I].HideSkipTraderVote();
+            ++ I;
+            goto J0x87;
+        }
+        NumPRIs = PRIs.Length;
+        Outer.SetTimer(0, true, 'UpdateTimer', self);
+        if(NoVotes > 0)
+        {
+            bIsFailedVoteTimerActive = true;
+            Outer.SetTimer(KFGI.TimeBetweenFailedVotes, false, 'ClearFailedVoteFlag', self);
+            KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 23);            
+        }
+        else
+        {
+            if(YesVotes >= NumPRIs)
+            {
+                SkipTraderTime();
+                ResetSkipTraderVote();
+                KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 22);                
+            }
+            else
+            {
+                bIsFailedVoteTimerActive = true;
+                Outer.SetTimer(KFGI.TimeBetweenFailedVotes, false, 'ClearFailedVoteFlag', self);
+                KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 23);
+            }
+        }
+        bIsSkipTraderVoteInProgress = false;
+        CurrentSkipTraderVote.PlayerPRI = none;
+        CurrentSkipTraderVote.PlayerID = Class'PlayerReplicationInfo'.default.UniqueId;
+        YesVotes = 0;
+        NoVotes = 0;
+    }
+}
+
+reliable server function SkipTraderTime()
+{
+    local KFGameReplicationInfo KFGRI;
+    local KFGameInfo KFGI;
+
+    KFGI = KFGameInfo(Outer.WorldInfo.Game);
+    KFGRI = Outer;
+    if(KFGRI.RemainingTime > TimeAfterSkipTrader)
+    {
+        KFGRI.RemainingTime = TimeAfterSkipTrader;
+        KFGRI.RemainingMinute = TimeAfterSkipTrader;
+        KFGI.SkipTrader(TimeAfterSkipTrader);
+    }
+}
+
+reliable server function ResetSkipTraderVote();
+
+function ResetSkipTraderBeforeWaveStarts()
+{
+    local array<KFPlayerReplicationInfo> PRIs;
+    local int I;
+
+    Outer.GetKFPRIArray(PRIs);
+    I = 0;
+    J0x34:
+
+    if(I < PRIs.Length)
+    {
+        PRIs[I].bAlreadyStartedASkipTraderVote = false;
+        ++ I;
+        goto J0x34;
+    }
 }
 
 function AddMapOption(string MapOption)
@@ -604,5 +807,6 @@ defaultproperties
     TopResultsToShow=3
     ActiveTimeUntilVoteEnabled=30
     TimeAfterSkipTrader=5
+    SkipTraderVoteLimit=5
     TopVotesObject=(Map1Name="",Map1Votes=255,Map2Name="",Map2Votes=255,Map3Name="",Map3Votes=255)
 }

@@ -199,8 +199,11 @@ var array<string> WidgetPaths;
 
 var bool bStatsInitialized;
 
-//The target PRI for currnet vote
-var PlayerReplicationInfo VotePRI;
+//The target PRI for current kick vote
+var PlayerReplicationInfo KickVotePRI;
+
+//The target PRI for current skip trader vote
+var PlayerReplicationInfo SkipTraderVotePRI;
 
 /** Cached version of the TWOnlineLobby */
 var TWOnlineLobby OnlineLobby;
@@ -228,6 +231,8 @@ var const int MouseInputChangedThreshold;
 
 /** TRUE if the kick vote popup is open */
 var bool bKickVotePopupActive;
+/** TRUE if the skip trader vote popup is open */
+var bool bSkipTraderVotePopupActive;
 var bool bUsingGamepad; // True if we are using a gamepad, otherwise we are using mouse and keyboard
 var bool bAfterLobby;	// Set to true once we have readied up
 var bool bMenusOpen;	// true if we're using menus, otherwise we're using the HUD
@@ -1081,9 +1086,14 @@ function OpenMenu( byte NewMenuIndex, optional bool bShowWidgets = true )
 		SetMenusOpen(true);
 	}
 
-	if(VotePRI != none)
+	if(KickVotePRI != none)
 	{
-		ShowKickVote(VotePRI);
+		ShowKickVote(KickVotePRI);
+	}
+
+	if(SkipTraderVotePRI != none && NewMenuIndex != UI_Trader)
+	{
+		ShowSkipTraderVote(SkipTraderVotePRI);
 	}
 
 	// Close our last menu if we are already in a menu
@@ -1943,17 +1953,78 @@ function NotifySpectateStateChanged( bool bIsSpectating )
 }
 
 /*********************************************************************************************
+* @name Skip Trader Vote
+********************************************************************************************* */
+
+function ShowSkipTraderVote(PlayerReplicationInfo PRI)
+{
+	SkipTraderVotePRI = PRI;
+	if(bMenusOpen && CurrentMenu != TraderMenu)
+	{
+		bSkipTraderVotePopupActive = true;
+		DelayedOpenPopup(EConfirmation, EDPPID_Misc, Class'KFGFxWidget_KickVote'.default.VoteSkipTraderString, 
+		SkipTraderVotePRI.PlayerName@Class'KFGFxWidget_KickVote'.default.VoteSkipTraderDetailString,
+		Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVoteSkipTrader, CastNoVoteSkipTrader);
+	}
+}
+
+simulated function HideSkipTraderVote()
+{
+	if( bSkipTraderVotePopupActive )
+	{
+		bSkipTraderVotePopupActive = false;
+		UnloadCurrentPopup();
+	}
+
+	SkipTraderVotePRI = none;
+}
+
+function CastYesVoteSkipTrader()
+{
+	local KFplayerReplicationInfo KFPRI;
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(GetPC());
+	if(KFPC != none)
+	{
+		KFPRI = KFplayerReplicationInfo(KFPC.PlayerReplicationInfo);
+
+		if(KFPRI != none)
+		{
+			KFPRI.CastSkipTraderVote(KFPRI, true);
+		}
+	}
+}
+
+function CastNoVoteSkipTrader()
+{
+	local KFplayerReplicationInfo KFPRI;
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(GetPC());
+	if(KFPC != none)
+	{
+		KFPRI = KFplayerReplicationInfo(KFPC.PlayerReplicationInfo);
+
+		if(KFPRI != none)
+		{
+			KFPRI.CastSkipTraderVote(KFPRI, false);
+		}
+	}
+}
+
+/*********************************************************************************************
 * @name Kick Vote
 ********************************************************************************************* */
 
 function ShowKickVote(PlayerReplicationInfo PRI)
 {
-	VotePRI = PRI;
+	KickVotePRI = PRI;
 	if(bMenusOpen)
 	{
 		bKickVotePopupActive = true;
-		DelayedOpenPopup(EConfirmation, EDPPID_Misc, Class'KFGFxWidget_KickVote'.default.VoteKickString, VotePRI.PLayerName,
-		 Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVote, CastNoVote);
+		DelayedOpenPopup(EConfirmation, EDPPID_Misc, Class'KFGFxWidget_KickVote'.default.VoteKickString, KickVotePRI.PLayerName,
+		 Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVoteKick, CastNoVoteKick);
 	}
 }
 
@@ -1965,10 +2036,10 @@ simulated function HideKickVote()
 		UnloadCurrentPopup();
 	}
 
-	VotePRI = none;
+	KickVotePRI = none;
 }
 
-function CastYesVote()
+function CastYesVoteKick()
 {
 	local KFplayerReplicationInfo KFPRI;
 	local KFPlayerController KFPC;
@@ -1985,7 +2056,7 @@ function CastYesVote()
 	}
 }
 
-function CastNoVote()
+function CastNoVoteKick()
 {
 	local KFplayerReplicationInfo KFPRI;
 	local KFPlayerController KFPC;
@@ -2051,7 +2122,7 @@ function int GetModeIndex(optional bool bAdjustedIndex = true)
 
 	SavedModeIndex = CachedProfile.GetProfileInt(KFID_SavedModeIndex);
 	
-	if (!class'GameEngine'.Static.IsGameFullyInstalled() && (SavedModeIndex == EGameMode_Objective || SavedModeIndex == EGameMode_Weekly))
+	if (!class'GameEngine'.Static.IsGameFullyInstalled() && (SavedModeIndex == EGameMode_Objective || SavedModeIndex == EGameMode_Weekly || SavedModeIndex == EGameMode_Endless))
 	{
 		CachedProfile.SetProfileSettingValueInt(KFID_SavedModeIndex, EGameMode_Survival);
 		return EGameMode_Survival;

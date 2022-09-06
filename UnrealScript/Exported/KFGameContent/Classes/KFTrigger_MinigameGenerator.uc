@@ -395,9 +395,17 @@ function bool UsedBy(Pawn User)
 function TriggerObjectiveCompletion()
 {
     local KFPlayercontroller KFPC;
+	local bool bIsObjectiveDataValid;
+
+	bIsObjectiveDataValid = ObjectiveIndex >= 0 && ObjectiveIndex < 5 && EventIndex > SEI_None && EventIndex < SEI_MAX;
+
     foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
     {
-		// @todo: hook up seasonal event here if/when desired
+		KFPC.ClientOnTriggerUsed(class'KFTrigger_MinigameGenerator');
+		if(bIsObjectiveDataValid)
+		{
+			KFPC.ClientOnTryCompleteObjective(ObjectiveIndex, EventIndex);
+		}
     }
 }
 

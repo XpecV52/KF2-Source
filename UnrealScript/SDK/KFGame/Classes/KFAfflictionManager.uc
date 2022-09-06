@@ -246,6 +246,11 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, vector H
     StumblePower *= StumbleModifier;
     StunPower *= StunModifier;
 
+	// [FFERRANDO @ SABER3D] INCAP MASTER NOW MODIFIES THE STUN POWER BY SETTING IT TO THE GIVEN VALUE
+    if (InstigatorPerk != None && InstigatorPerk.GetIncapMasterActive())
+    {
+        StunPower += InstigatorPerk.GetStunPowerModifier( DamageType, HitZoneIdx );
+    }
     // increment affliction power
 	if (KnockdownPower > 0 && CanDoSpecialmove(SM_Knockdown))
 	{

@@ -65,10 +65,9 @@ defaultproperties
    BurnDamageType=Class'KFGame.KFDT_Fire_Mac10DoT'
    WeaponDef=Class'KFGame.KFWeapDef_Mac10'
    EffectGroup=FXG_IncendiaryRound
-   StumblePower=12.000000
-   LegStumblePower=12.000000
+   StumblePower=20.000000
    GunHitPower=12.000000
-   BurnPower=18.500000
+   BurnPower=12.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Firebug'
    ModifierPerkList(1)=Class'KFGame.KFPerk_SWAT'
    CameraLensEffectTemplate=Class'KFGame.KFCameraLensEmit_Fire'

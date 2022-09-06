@@ -202,9 +202,13 @@ defaultproperties
 	// Blocking
 	BlockTypes.Add((DmgType=class'KFDT_Fire_HuskFireball', BlockSound=None, ParrySound=None, BlockParticleSys=None, ParryParticleSys=None))
 	BlockTypes.Add((DmgType=class'KFDT_Fire_HuskFlamethrower'))
+	BlockTypes.Add((DmgType=class'KFDT_EvilDAR_Rocket', BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal'))
+	BlockTypes.Add((DmgType=class'KFDT_EvilDAR_Laser', BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal'))
+	BlockTypes.Add((DmgType=class'KFDT_DAR_EMPBlast', BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal'))
 	BlockTypes.Add((DmgType=class'KFDT_Ballistic_PatMinigun', BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal'))
 	BlockTypes.Add((DmgType=class'KFDT_Explosive_PatMissile'))
 	BlockTypes.Add((DmgType=class'KFDT_Ballistic_HansAK12', BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal'))
+	BlockTypes.Add((DmgType=class'KFDT_EMP_MatriarchTeslaBlast', BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal'))
 	ParryDamageMitigationPercent=0.3
 	BlockDamageMitigation=0.3//0.5
 	ParryStrength=6

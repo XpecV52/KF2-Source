@@ -111,7 +111,6 @@ var byte PlayerHealth;
 var byte PlayerHealthPercent;
 var byte PerkSupplyLevel;
 var KFLocalMessage_VoiceComms.EVoiceCommsType CurrentVoiceCommsRequest;
-var private byte SharedUnlocks;
 var bool bHasSpawnedIn;
 var bool bAllowDoshEarning;
 var repnotify bool bVOIPRegisteredWithOSS;
@@ -122,6 +121,7 @@ var bool bConcussiveActive;
 var bool bPerkPrimarySupplyUsed;
 var bool bPerkSecondarySupplyUsed;
 var bool bVotedToSkipTraderTime;
+var bool bAlreadyStartedASkipTraderVote;
 var bool bObjectivePlayer;
 var bool bShowNonRelevantPlayers;
 var transient bool bWaitingForInventory;
@@ -137,6 +137,7 @@ var int Assists;
 var float VoiceCommsStatusDisplayInterval;
 var int VoiceCommsStatusDisplayIntervalCount;
 var int VoiceCommsStatusDisplayIntervalMax;
+var private int SharedUnlocks;
 var private repnotify int CurrentHeadShotEffectID;
 var private Vector PawnLocationCompressed;
 var private Vector LastReplicatedSmoothedLocation;
@@ -237,6 +238,7 @@ simulated event PostBeginPlay()
     if(Role == ROLE_Authority)
     {
         KFPlayerOwner = KFPlayerController(Owner);
+        ResetSkipTrader();
     }
 }
 
@@ -607,20 +609,95 @@ reliable server function ServerCastKickVote(PlayerReplicationInfo PRI, bool bKic
     }
 }
 
+reliable client simulated function ShowSkipTraderVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Owner);
+    if((KFPC != none) && KFPC.myGfxHUD != none)
+    {
+        KFPC.myGfxHUD.ShowSkipTraderVote(PRI, VoteDuration, bShowChoices);
+    }
+    if(((KFPC != none) && KFPC.MyGFxManager != none) && bShowChoices)
+    {
+        KFPC.MyGFxManager.ShowSkipTraderVote(PRI);
+    }
+}
+
+reliable client simulated function UpdateSkipTraderTime(byte CurrentVoteTime)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Owner);
+    if((KFPC != none) && KFPC.myGfxHUD != none)
+    {
+        KFPC.myGfxHUD.UpdateSkipTraderTime(CurrentVoteTime);
+    }
+}
+
+reliable client simulated function HideSkipTraderVote()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Owner);
+    if((KFPC != none) && KFPC.myGfxHUD != none)
+    {
+        KFPC.myGfxHUD.HideSkipTraderVote();
+    }
+    if((KFPC != none) && KFPC.MyGFxManager != none)
+    {
+        KFPC.MyGFxManager.HideSkipTraderVote();
+    }
+}
+
 simulated function RequestSkiptTrader(PlayerReplicationInfo PRI)
 {
     bVotedToSkipTraderTime = true;
-    ServerRequestSkipTrader(self);
+    ServerRequestSkipTraderVote(self);
 }
 
-reliable server function ServerRequestSkipTrader(PlayerReplicationInfo PRI)
+reliable server function ServerRequestSkipTraderVote(PlayerReplicationInfo PRI)
 {
     local KFGameReplicationInfo KFGRI;
 
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(KFGRI != none)
     {
-        KFGRI.VoteCollector.RecieveSkipTraderTimeVote(PRI);
+        KFGRI.ServerStartVoteSkipTrader(PRI);
+    }
+}
+
+simulated function CastSkipTraderVote(PlayerReplicationInfo PRI, bool bSkipTrader)
+{
+    local KFPlayerController KFPC;
+
+    ServerCastSkipTraderVote(self, bSkipTrader);
+    KFPC = KFPlayerController(Owner);
+    if((KFPC != none) && KFPC.MyGFxManager != none)
+    {
+        KFPC.MyGFxManager.HideSkipTraderVote();
+    }
+}
+
+reliable server function ServerCastSkipTraderVote(PlayerReplicationInfo PRI, bool bSkipTrader)
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if(KFGRI != none)
+    {
+        KFGRI.RecieveVoteSkipTrader(PRI, bSkipTrader);
+    }
+}
+
+reliable server function ResetSkipTrader()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.VoteCollector != none)
+    {
+        KFGRI.VoteCollector.ConcludeVoteSkipTrader();
     }
 }
 
@@ -686,7 +763,7 @@ reliable client simulated function RecieveTopMaps(TopVotes VoteObject)
 }
 
 // Export UKFPlayerReplicationInfo::execServerSetSharedUnlocks(FFrame&, void* const)
-private reliable server native final event ServerSetSharedUnlocks(byte NewUnlocks);
+private reliable server native final event ServerSetSharedUnlocks(int NewUnlocks);
 
 // Export UKFPlayerReplicationInfo::execServerSetCharacterCustomization(FFrame&, void* const)
 private reliable server native final event ServerSetCharacterCustomization(CustomizationInfo NewMeshInfo);

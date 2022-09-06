@@ -60,7 +60,7 @@ function UpdateReadyButtonVisibility()
 			if (KFGRI.bMatchHasBegun && (MyKFPRI != none && MyKFPRI.bHasSpawnedIn && KFGRI.bTraderIsOpen) && !KFGRI.bMatchIsOver && !KFGRI.bVersusGame)
 			{
 				bShowingSkipTrader = !MyKFPRI.bVotedToSkipTraderTime;
-				if (bShowingSkipTrader)
+				if (bShowingSkipTrader && !ReadyButton.GetBool("visible"))
 				{
 					UpdateReadyButtonText();
 					SetReadyButtonVisibility(true, false);

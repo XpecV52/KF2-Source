@@ -491,7 +491,7 @@ replication
 	// Replicated to ALL
 	if(bNetDirty)
 		Armor, MaxArmor, bObjectivePlayer, WeaponSkinItemId, HealingSpeedBoost,
-		HealingDamageBoost, HealingShield;
+		HealingDamageBoost, HealingShield, HealthToRegen;
 
     // Replicated to owning client
     if (bNetDirty && bNetOwner)

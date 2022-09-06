@@ -225,6 +225,10 @@ simulated event ReplicatedEvent(name VarName)
         UpdateShield();
         break;
 
+	case nameOf(bIsCloakingSpottedByTeam):
+		UpdateGameplayMICParams();
+		break;
+		
 	case nameof(bShieldUp):
 		SetShieldUp(bShieldUp);
 		break;
@@ -1080,7 +1084,6 @@ simulated function UpdateGameplayMICParams()
 
 		// visible by local player or team (must go after ServerCallOutCloaking)
 		bIsSpotted = (bIsCloakingSpottedByLP || bIsCloakingSpottedByTeam);
-
 		if ((!bIsCloaking || IsImpaired()) && CharacterMICs[0].Parent != MonsterInfo.Skins[0])
 		{
 			for (i = 0; i < MonsterInfo.Skins.Length; ++i)
@@ -1500,6 +1503,7 @@ defaultproperties
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MicrowaveRifle',DamageScale=(0.700000))
    DamageTypeModifiers(13)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(0.500000))
+   DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGTeslauncher',DamageScale=(0.700000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Matriarch'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_MonsterBoss:SprintAkComponent0'

@@ -75,7 +75,7 @@ RarityStrings[1]="POCO COMÚN"
 RarityStrings[2]="INFRECUENTE"
 RarityStrings[3]="EXCEPCIONAL"
 RarityStrings[4]="ELABORADO"
-RarityStrings[5]="SUMAMENTE INFRECUENTE"
+RarityStrings[5]="MUY RARO"
 RarityStrings[6]="CUALQUIERA"
 
 WeaponTypeStrings[0]="PISTOLA"
@@ -115,7 +115,7 @@ StartOfflineGameString="Comenzar sin conexión"
 StartOfflineGameDescriptionString="Al comenzar una partida sin conexión, tu grupo se disolverá.\n¿Quieres continuar?"
 
 ProceedToTutorialString="¿IR A ENTRENAMIENTO?"
-ProceedToTutorialDescriptionString="Ve al entorno controlado y aprende lo básico. Si lo consigues, aumentas el nivel de la especialización elegida de 0 a 1."
+ProceedToTutorialDescriptionString="Ve al entorno controlado y aprende lo básico.  Si lo consigues, aumentas el nivel de la especialización elegida de 0 a 1."
 
 NotAvailableInFreeTrialString="No disponible en la versión de prueba"
 NetworkCheckFreeTrialFailedString="Error de red: No se pudo verificar el estado del evento gratis. Comprueba tu conexión de red"
@@ -293,7 +293,7 @@ NameString="NOMBRE"
 RefreshString="ACTUALIZAR"
 GamesFoundString="PARTIDAS:"
 
-ServerBrowserString="EXPLORAR SERVIDORES"
+ServerBrowserString="EXPLORAR SERVID."
 
 JoinString="UNIRSE"
 PasswordPromptString="ESCRIBE LA CONTRASEÑA"
@@ -953,7 +953,7 @@ MenuStrings[5]="TIENDA"
 MenuStrings[6]="OPCIONES"
 MenuStrings[7]="SALIR"
 
-ServerBrowserString="EXPLORAR SERVIDORES"
+ServerBrowserString="EXPLORAR SERVID."
 MatchmakingString="EMPAREJAMIENTO"
 CreateGameString="CREAR PARTIDA"
 SoloString="UN JUGADOR"
@@ -1015,6 +1015,8 @@ ThrowString="LANZAR ARMA"
 
 [KFGFxWidget_KickVote]
 VoteKickString="¿Expulsar jugador?"
+VoteSkipTraderString="¿Saltar mercader?"
+VoteSkipTraderDetailString="quiere saltar la cuenta regresiva"
 
 [KFLocalMessage_PlayerKills]
 KilledString="muerto"
@@ -1399,6 +1401,7 @@ LoggedOutAsAdminString=" ha cerrado sesión como administrador del servidor"
 MustLoginToCheatString="Debes iniciar sesión para activar los trucos"
 CheatsEnabledString=" ha activado los trucos. Las estadísticas han sido desactivadas esta sesión"
 ServerMaintenanceString="El servidor se apagará por mantenimiento al final de la partida"
+OtherVoteInProgressString="No se puede iniciar nueva votación hasta resolver la actual"
 KickVoteStartedString="Se va a votar una expulsión:"
 KickVoteSucceededString="Votación aprobada para expulsar:"
 KickVoteFailedString="Votación fallida para expulsar:"
@@ -1416,8 +1419,17 @@ KickVoteNoSpectatorsString="Los espectadores no pueden iniciar votaciones de exp
 KickedFromServerString="Te han expulsado del servidor"
 BannedFromServerString="Te han expulsado de este servidor. No puedes volver a unirte"
 ServerNoLongerAvailableString="Ya no puedes unirte a este servidor."
-SkipTraderTimeString="SALTAR MERCADER activado. Selecciona "SALTAR MERCADER" para votar. Todos deben aceptar."
+SkipTraderVoteStartedString="ha iniciado una votación para Saltar mercader"
+SkipTraderTimeString="SALTAR MERCADER activado. Selecciona "SALTAR MERCADER" para votar.  Todos deben aceptar."
 SkipTraderSuccessString="¡Voto de omitir mercader realizado!"
+SkipTraiderVoteFailedString="¡Voto de omitir mercader fallido!"
+SkipTraderVoteNoSpectatorsString="Los espectadores no pueden iniciar una votación para Saltar mercader"
+SkipTraderIsNotOpenString="Saltar mercader no está permitido durante una oleada"
+SkipTraderVoteInProgressString="No se puede iniciar una votación de Saltar mercader, ya hay una activa."
+SkipTraderVoteYesReceivedString="Has votado a favor de Saltar mercader"
+SkipTraderVoteNoReceivedString="Has votado en contra de Saltar mercader"
+SkipTraderNoEnoughTimeString="No queda tiempo suficiente para una votación de Saltar mercader"
+SkipTraderThisUserAlreadyStartedAVoteString="No puedes iniciar una votación de Saltar mercader hasta la siguiente fase de mercader"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Has recibido munición de"
@@ -1760,7 +1772,7 @@ Spartan="MOMENTO ZED - Espartano"
 SpartanDescription="En los momentos zed tu movimiento y ataques con armas de esp. ocurren en tiempo real."
 
 Rage="MOMENTO ZED - Furia berserker"
-RageDescription="Cuando se activa o se reinicia el momento zed, recupera un 50% de salud y haz que los zeds cercanos huyan."
+RageDescription="Cuando se activa o se reinicia el momento zed, recupera un 50 % de salud y haz que los zeds cercanos queden inmovilizados."
 
 [KFPerk_Commando]
 PerkName="Comando"
@@ -2033,7 +2045,7 @@ Stun="Choque balístico"
 StunDescription="Aumenta un 100 % la potencia de aturdimiento de las armas de especialización."
 
 RhythmMethod="Sin parar"
-RhythmMethodDescription="Cada disparo consecutivo en la cabeza con armas de especialización aumenta el daño un 10 % (hasta un máximo del 50 %). "
+RhythmMethodDescription="Cada disparo consecutivo en la cabeza con armas de especialización aumenta el daño un 10 % (hasta un máximo del 50 %).  "
 
 TacticalReload="Recarga táctica"
 TacticalReloadDescription="Aumenta la velocidad de recarga con armas de especialización."
@@ -2094,7 +2106,7 @@ ConcussionRounds="Rondas de conmoción"
 ConcussionRoundsDescription="Aumenta la potencia de empuje de las armas de especialización un 150 %."
 
 Perforate="MOMENTO ZED - Penetrador"
-PerforateDescription="Durante el momento zed, elimina la reducción del daño al disparar a zeds a través de otros zeds y aumenta la penetración con armas de especialización."
+PerforateDescription="Durante el momento zed, tus armas de especialización no sufren penalización por penetración y además penetran a todos los zed."
 
 Barrage="MOMENTO ZED - Bombardeo"
 BarrageDescription="Durante el momento zed, tus armas de especialización disparan prácticamente en tiempo real."
@@ -2172,7 +2184,7 @@ FieldMedic="Entrenamiento médico"
 FieldMedicDescription="Aumenta un 30 % la potencia de todas tus curaciones. Además, reduce un 50 % el tiempo de reutilización de tu jeringa y tus dardos."
 
 MeleeExpert="Experto cuerpo a cuerpo"
-MeleeExpertDescription="Velocidad de ataque cuerpo a cuerpo: +20 %. Daño infligido: +50 %. Velocidad de movimiento al usar cualquier arma cuerpo a cuerpo: 25 %."
+MeleeExpertDescription="Velocidad de ataque cuerpo a cuerpo: +20 %. Daño infligido: +75 %. Velocidad de movimiento al usar cualquier arma cuerpo a cuerpo: 25 %."
 
 AmmoVest="Chaleco de munición"
 AmmoVestDescription="Puedes llevar hasta un 15 % más de munición de todas las armas y granadas. Además, tu granada se vuelve curativa."
@@ -2190,7 +2202,7 @@ Madman="MOMENTO ZED - Demencia"
 MadmanDescription="En el momento zed, todas tus armas disparan 3 veces más rápido."
 
 IncapMaster="MOMENTO ZED - Bloqueo"
-IncapMasterDescription="Durante el momento zed, la capacidad de derribo, empuje y aturdimiento de tus armas aumenta al máximo."
+IncapMasterDescription="En el momento zed, todas tus armas aturden a cualquier zed."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2705,6 +2717,20 @@ AllCompleteRewardDescriptionString="Aspectos AA12 dinámicos de doble paquete"
 
 ChanceDropDescriptionStrings[0]="Boleto de Ciberpunk"
 ChanceDropDescriptionStrings[1]="Boleto dorado de Ciberpunk"
+
+[KFGFxSpecialEventObjectivesContainer_Summer2020]
+CurrentSpecialEventString="Un evento especial por tiempo limitado con objetos exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="¡Me tiemblan las piernas!",DescriptionString="Mata a 15 jefes en cualquiera de los mapas y modos")
+SpecialEventObjectiveInfoList[1]=(TitleString="Arrr semanal",DescriptionString="Completa la semana en Desolación")
+SpecialEventObjectiveInfoList[2]=(TitleString="¡Arrr, encendido!",DescriptionString="Activa el generador de energía en Desolación")
+SpecialEventObjectiveInfoList[3]=(TitleString="Lleno de doblones",DescriptionString="Consigue 75.000 de dinero con muertes, recompensas y curaciones en Desolación")
+SpecialEventObjectiveInfoList[4]=(TitleString="Saqueo sin fin",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior en Desolación")
+
+AllCompleteRewardDescriptionString="Pirata espacial | Mochila de mono espacial"
+
+ChanceDropDescriptionStrings[0]="Boleto Verano"
+ChanceDropDescriptionStrings[1]="Boleto Verano dorado"
 
 ;============================================
 ; Daily Localization
@@ -3300,6 +3326,9 @@ DisplayName="Manicomio"
 
 [KF-Biolapse KFMapSummary]
 DisplayName="Biolapso"
+
+[KF-Desolation KFMapSummary]
+DisplayName="Desolación"
 
 [KFMapInfo]
 ; defaults

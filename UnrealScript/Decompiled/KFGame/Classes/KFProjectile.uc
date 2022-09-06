@@ -51,6 +51,7 @@ var bool bAlwaysReplicateExplosion;
 var bool bAttachExplosionToHitMover;
 var bool bCanDisintegrate;
 var bool bAltExploEffects;
+var bool bHasAlreadyExploded;
 var bool bFadingOutProjEffects;
 var bool bWaitForEffects;
 var bool bShuttingDown;
@@ -243,8 +244,9 @@ simulated event ReplicatedEvent(name VarName)
 {
     local Vector ExplosionNormal;
 
-    if(VarName == 'bHasExploded')
+    if((VarName == 'bHasExploded') && !bHasAlreadyExploded)
     {
+        bHasAlreadyExploded = true;
         bHasExploded = false;
         ExplosionNormal = vect(0, 0, 1);
         if(bValidateExplosionNormalOnClient)

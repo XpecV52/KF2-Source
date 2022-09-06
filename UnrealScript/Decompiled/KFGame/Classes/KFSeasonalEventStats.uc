@@ -60,6 +60,12 @@ simulated function OnMapCollectibleFound(PlayerReplicationInfo FinderPRI, int Co
 
 simulated event OnGameWon(class<GameInfo> GameClass, int Difficulty, int GameLength, bool bCoop);
 
+simulated event OnGameEnd(class<GameInfo> GameClass);
+
 simulated function OnBossDied();
 
 simulated event OnWaveCompleted(class<GameInfo> GameClass, int Difficulty, int WaveNum);
+
+simulated event OnTriggerUsed(class<Trigger_PawnsOnly> TriggerClass);
+
+simulated event OnTryCompleteObjective(int ObjectiveIndex, int EventIndex);

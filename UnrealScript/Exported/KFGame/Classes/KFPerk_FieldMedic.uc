@@ -587,7 +587,7 @@ defaultproperties
    PerkSkills(2)=(Name="HealingSpeedBoost",StartingValue=10.000000,MaxValue=10.000000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AdrenalineShot")
    PerkSkills(3)=(Name="Combatant",StartingValue=0.500000,MaxValue=0.500000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_CombatantDoctor")
    PerkSkills(4)=(Name="HealingDamageBoost",StartingValue=5.000000,MaxValue=5.000000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_FocusInjection")
-   PerkSkills(5)=(Name="AcidicCompound",StartingValue=0.500000,MaxValue=0.500000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AcidicRounds")
+   PerkSkills(5)=(Name="AcidicCompound",StartingValue=0.650000,MaxValue=0.650000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AcidicRounds")
    PerkSkills(6)=(Name="HealingShield",StartingValue=10.000000,MaxValue=10.000000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_CoagulantBooster")
    PerkSkills(7)=(Name="Enforcer",StartingValue=0.200000,MaxValue=0.200000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_BattleSurgeon")
    PerkSkills(8)=(Name="AirborneAgent",StartingValue=0.200000,MaxValue=0.200000,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AirborneAgent")

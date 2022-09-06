@@ -13,7 +13,9 @@ var repnotify bool bDud;
 /** When true this projectile will collide/hit/explode when hitting teammates */
 var() bool bCollideWithTeammates;
 var bool bClientDudHit;
-var bool bIsTimedExplosive;
+var repnotify bool bIsTimedExplosive;
+/** Set to true to reset the projectile rotation when it stops because of low speed */
+var() bool ResetRotationOnStop;
 /** Distance this projectile arms itself at */
 var() float ArmDistSquared;
 /** The effect to display when the projectile becomes a dud */
@@ -27,6 +29,8 @@ var() float DampenFactorParallel;
 var() float WallHitDampenFactor;
 /** Dampen amount for parallel angle to velocity */
 var() float WallHitDampenFactorParallel;
+/** A smaller speed will cause the projectile to stop */
+var() float MinSpeedBeforeStop;
 /** How much to offset the emitter mesh when the grenade has landed so that it doesn't penetrate the ground */
 var() Vector LandedTranslationOffset;
 var array<Actor> ImpactList;
@@ -38,6 +42,9 @@ replication
 
      if(bNetInitial && !bNetOwner)
         ArmDistSquared;
+
+     if(bNetDirty)
+        bIsTimedExplosive;
 }
 
 simulated function SyncOriginalLocation()
@@ -119,7 +126,7 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
         {
             KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(Location, Instigator, HitNormal, GrenadeBounceEffectInfo, true);
         }
-        if(Speed < float(40))
+        if(Speed < MinSpeedBeforeStop)
         {
             ImpactedActor = Wall;
             SetPhysics(0);
@@ -132,7 +139,10 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
             RotationRate.Roll = 0;
             NewRotation = Rotation;
             NewRotation.Pitch = 0;
-            SetRotation(NewRotation);
+            if(ResetRotationOnStop)
+            {
+                SetRotation(NewRotation);
+            }
             Offset.Z = LandedTranslationOffset.X;
             SetLocation(Location + Offset);
         }
@@ -303,10 +313,12 @@ protected simulated function SetExplosionActorClass()
 
 defaultproperties
 {
+    ResetRotationOnStop=true
     DampenFactor=0.025
     DampenFactorParallel=0.05
     WallHitDampenFactor=0.025
     WallHitDampenFactorParallel=0.05
+    MinSpeedBeforeStop=40
     LandedTranslationOffset=(X=2,Y=0,Z=0)
     bSyncToOriginalLocation=true
     bSyncToThirdPersonMuzzleLocation=true
@@ -324,7 +336,7 @@ defaultproperties
     TouchTimeThreshhold=0.15
     ExtraLineCollisionOffsets(0)=
 /* Exception thrown while deserializing ExtraLineCollisionOffsets
-System.ArgumentException: Requested value '!=_9274' was not found.
+System.ArgumentException: Requested value '!=_9305' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

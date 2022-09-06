@@ -413,6 +413,10 @@ const KFACHID_BiolapseHard						=	268;
 const KFACHID_BiolapseHellOnEarth				=	269;
 const KFACHID_BiolapseCollectibles				=	270;
 
+const KFACHID_DesolationHard					=	271;
+const KFACHID_DesolationHellOnEarth				=	272;
+const KFACHID_DesolationCollectibles			=	273;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -1102,6 +1106,10 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
 	{
 		AddClotKill( Difficulty );
 	}
+	else if( IsClotSurvivalistKill( MonsterClass ) )
+	{
+		AddClotSurvivalistKill( Difficulty );
+	}
 	else if( IsBloatKill( MonsterClass, DT ) )
 	{
 		AddBloatKill( Difficulty );
@@ -1148,13 +1156,24 @@ private function AddStalkerKill( byte Difficulty )
  *
  * @param Difficulty current game difficulty
  */
-private event AddSmallRadiusKill( byte Difficulty )
+private event AddSmallRadiusKill( byte Difficulty, class<KFPerk> PerkClass )
 {
-	AddXP( class'KFPerk_Berserker', class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(Difficulty) );
+	if(PerkClass == class'KFPerk_Berserker'.static.GetPerkClass())
+	{
+		AddXP( class'KFPerk_Berserker', class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(Difficulty) );
 
-	//AAR
-	`RecordSecondaryXPGain( MyKFPC, class'KFPerk_Berserker', class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(Difficulty) );
-	KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(Difficulty);
+		//AAR
+		`RecordSecondaryXPGain( MyKFPC, class'KFPerk_Berserker', class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(Difficulty) );
+		KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_Berserker'.static.GetSmallRadiusKillXP(Difficulty);
+	}
+	else if(PerkClass == class'KFPerk_Survivalist'.static.GetPerkClass())
+	{
+		AddXP( class'KFPerk_Survivalist', class'KFPerk_Survivalist'.static.GetSmallRadiusKillXP(Difficulty) );
+
+		//AAR
+		`RecordSecondaryXPGain( MyKFPC, class'KFPerk_Survivalist', class'KFPerk_Survivalist'.static.GetSmallRadiusKillXP(Difficulty) );
+		KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_Survivalist'.static.GetSmallRadiusKillXP(Difficulty);
+	}
 }
 
 /**
@@ -1206,6 +1225,21 @@ private function AddClotKill( byte Difficulty )
 	//AAR
 	`RecordSecondaryXPGain( MyKFPC, class'KFPerk_SWAT', class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty ) );
 	KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_SWAT'.static.GetClotKillXP( Difficulty );
+}
+
+/**
+ * @brief Adds EXP for a qualified clot kill
+ * @details The Survivalist perk receives extra EXP when a clot is killed
+ * 			with any weapon
+ * @param Difficulty current game difficulty
+ */
+private function AddClotSurvivalistKill( byte Difficulty )
+{
+	AddXP( class'KFPerk_Survivalist', class'KFPerk_Survivalist'.static.GetClotKillXP( Difficulty ) );
+
+	//AAR
+	`RecordSecondaryXPGain( MyKFPC, class'KFPerk_Survivalist', class'KFPerk_Survivalist'.static.GetClotKillXP( Difficulty ) );
+	KFGameReplicationInfo(MyKFPC.WorldInfo.GRI).SecondaryXPAccumulator += class'KFPerk_Survivalist'.static.GetClotKillXP( Difficulty );
 }
 
 /**
@@ -1273,6 +1307,17 @@ private final function bool IsClotKill( class<KFPawn_Monster> MonsterClass, clas
 {
 	return  MonsterClass.static.IsClotClass() &&
 			class'KFPerk'.static.IsDamageTypeOnThisPerk(class<KFDamageType>(DT), class'KFPerk_SWAT'.static.GetPerkClass());
+}
+
+/**
+ * @brief Checks if a clot kill qualifies for survivalist EXP
+ *
+ * @param MonsterClass the killed zed's class
+ * @return true if the zed was a clot
+ */
+private final function bool IsClotSurvivalistKill( class<KFPawn_Monster> MonsterClass )
+{
+	return  MonsterClass.static.IsClotClass();
 }
 
 /**
@@ -1728,6 +1773,8 @@ final simulated function SeasonalEventStats_OnMapCollectibleFound(PlayerReplicat
 
 final native simulated event SeasonalEventStats_OnGameWon(class<GameInfo> GameClass, int Difficulty, int GameLength, bool bCoOp);
 
+final native simulated event SeasonalEventStats_OnGameEnd(class<GameInfo> GameClass);
+
 final simulated function SeasonalEventStats_OnZedKilled(class<KFPawn_Monster> MonsterClass, int Difficulty, class<DamageType> DT)
 {
 	if (SeasonalEventIsValid())
@@ -1741,6 +1788,22 @@ final simulated function SeasonalEventStats_OnBossDied()
 	if (SeasonalEventIsValid())
 	{
 		SeasonalEvent.OnBossDied();
+	}
+}
+
+final simulated function SeasonalEventStats_OnTriggerUsed(class<Trigger_PawnsOnly> TriggerClass)
+{
+	if (SeasonalEventIsValid())
+	{
+		SeasonalEvent.OnTriggerUsed(TriggerClass);
+	}
+}
+
+final simulated function SeasonalEventStats_OnTryCompleteObjective(int ObjectiveIndex, int EventIndex)
+{
+	if (SeasonalEventIsValid())
+	{
+		SeasonalEvent.OnTryCompleteObjective(ObjectiveIndex, EventIndex);
 	}
 }
 
@@ -1929,6 +1992,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_GrenadeLauncher_HX25, KFDT_ExplosiveSubmunition_HX25,KFDT_Ballistic_HX25Impact,KFDT_Ballistic_HX25SubmunitionImpact,KFDT_Bludgeon_HX25),CompletionAmount=5000)) //3000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Thrown_C4, KFDT_Explosive_C4,KFDT_Bludgeon_C4),CompletionAmount=2500))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_GrenadeLauncher_M79, KFDT_Ballistic_M79Impact,KFDT_Explosive_M79,KFDT_Bludgeon_M79),CompletionAmount=7000))
+	DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Shotgun_HRG_Kaboomstick, KFDT_Ballistic_HRG_Kaboomstick,KFDT_Explosive_HRG_Kaboomstick,KFDT_Bludgeon_HRG_Kaboomstick),CompletionAmount=9000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_RocketLauncher_RPG7, KFDT_Ballistic_RPG7Impact,KFDT_Explosive_RPG7,KFDT_Explosive_RPG7BackBlast,KFDT_Bludgeon_RPG7),CompletionAmount=7500))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_M16M203, KFDT_Ballistic_M16M203,KFDT_Bludgeon_M16M203,KFDT_Ballistic_M203Impact,KFDT_Explosive_M16M203),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_RocketLauncher_SealSqueal, KFDT_Bludgeon_SealSqueal, KFDT_Explosive_SealSqueal, KFDT_Ballistic_SealSquealImpact),CompletionAmount=7500))
@@ -1956,6 +2020,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Eviscerator, KFDT_Slashing_Eviscerator,KFDT_Slashing_EvisceratorProj),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_MaceAndShield, KFDT_Bludgeon_MaceAndShield,KFDT_Bludgeon_MaceAndShield_Bash,KFDT_Bludgeon_MaceAndShield_MaceHeavy,KFDT_Bludgeon_MaceAndShield_ShieldHeavy,KFDT_Bludgeon_MaceAndShield_ShieldLight),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Blunt_PowerGloves, KFDT_Bludgeon_PowerGloves,KFDT_Bludgeon_PowerGlovesBash,KFDT_Bludgeon_PowerGlovesHeavy),CompletionAmount=10000))
+	DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_HRGTeslauncher, KFDT_Ballistic_HRGTeslauncher, KFDT_Fire_HRGTeslauncherDoT, KFDT_Ballistic_HRGTeslauncherGrenadeImpact, KFDT_Bludgeon_HRGTeslauncher, KFDT_EMP_TeslauncherEMPGrenade),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Edged_AbominationAxe, KFDT_Slashing_AbominationAxe,KFDT_Piercing_AbominationAxeStab,KFDT_Slashing_AbominationAxeHeavy),CompletionAmount=10000))
 
     //Gunslinger Weapons
@@ -2101,6 +2166,9 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-BIOLAPSE),CompletionAmount=1))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-BIOLAPSE),CompletionAmount=2))
     DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-BIOLAPSE),CompletionAmount=3))
+	DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-DESOLATION),CompletionAmount=1))
+	DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-DESOLATION),CompletionAmount=2))
+	DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-DESOLATION),CompletionAmount=3))
 
     //Versus Damage
     //    Per design doc that I have right now, these are x class damage y players, not damage y amount

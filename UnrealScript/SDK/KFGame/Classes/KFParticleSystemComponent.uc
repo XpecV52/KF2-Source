@@ -20,6 +20,11 @@ var public{private} const vector SavedScale3D;
 
 cpptext
 {
+// SABER CODE BEGIN [mfalcon] Moved custom FOV calculations to render thread.
+	/** Creates a FKFParticleSystemSceneProxy (defined in UTWeapon.cpp) */
+	virtual FPrimitiveSceneProxy* CreateSceneProxy() override;
+// SABER CODE END
+
 private:
 	/** Override LocalToWorld with custom FOV changes */
 	virtual void SetTransformedToWorld();

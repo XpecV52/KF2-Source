@@ -65,4 +65,5 @@ defaultproperties
 	Properties.Add((PropertyId = STATID_ACHIEVE_SanitariumCollectibles,Data = (Type = SDT_Int32,Value1 = 0)))
 	Properties.Add((PropertyId = STATID_ACHIEVE_DefeatMatriarch,Data = (Type = SDT_Int32,Value1 = 0)))
 	Properties.Add((PropertyId = STATID_ACHIEVE_BiolapseCollectibles,Data = (Type = SDT_Int32,Value1 = 0)))
+	Properties.Add((PropertyId = STATID_ACHIEVE_DesolationCollectibles,Data = (Type = SDT_Int32,Value1 = 0)))
 }

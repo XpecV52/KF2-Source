@@ -30,6 +30,23 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
     OutOfBladesBlendNode = AnimNodeBlendPerBone(SkelComp.FindAnimNode('OutOfBladesBlend'));
 }
 
+simulated function bool HasAnyAmmo()
+{
+    if((HasSpareAmmo()) || HasAmmo(0))
+    {
+        return true;
+    }
+    if(MedicComp != none)
+    {
+        return false;
+    }
+    if((UsesSecondaryAmmo()) && (HasSpareAmmo(5)) || HasAmmo(5))
+    {
+        return true;
+    }
+    return false;
+}
+
 simulated function StartFire(byte FireModeNum)
 {
     if((FireModeNum == 5) && !HasAmmo(FireModeNum))

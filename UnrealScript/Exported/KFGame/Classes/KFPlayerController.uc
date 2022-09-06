@@ -163,6 +163,7 @@ const STATID_ACHIEVE_AsylumCollectibles				= 4051;
 const STATID_ACHIEVE_SanitariumCollectibles			= 4052;
 const STATID_ACHIEVE_DefeatMatriarch				= 4053;
 const STATID_ACHIEVE_BiolapseCollectibles			= 4054;
+const STATID_ACHIEVE_DesolationCollectibles			= 4055;
  
 #linenumber 15
 
@@ -7448,6 +7449,22 @@ final simulated function SeasonalEventStats_OnMapObjectiveDeactivated(Actor Obje
 	StatsWrite.SeasonalEventStats_OnMapObjectiveDeactivated(ObjectiveInterfaceActor);
 }
 
+reliable client function ClientOnTriggerUsed(class<Trigger_PawnsOnly> TriggerClass)
+{
+	if (StatsWrite != none)
+	{
+		StatsWrite.SeasonalEventStats_OnTriggerUsed(TriggerClass);
+	}
+}
+
+reliable client function ClientOnTryCompleteObjective(int ObjectiveIndex, int EventIndex)
+{
+	if (StatsWrite != none)
+	{
+		StatsWrite.SeasonalEventStats_OnTryCompleteObjective(ObjectiveIndex, EventIndex);
+	}
+}
+
 /**
  * @brief Unlock an achievement on the client
  *
@@ -7576,11 +7593,11 @@ native reliable client private event ClientAddPlayerXP( int XP, class<KFPerk> Pe
 event OnPlayerXPAdded(INT XP, class<KFPerk> PerkClass);
 
 /** Radius kill stat */
-function AddSmallRadiusKill( byte Difficulty )
+function AddSmallRadiusKill( byte Difficulty, class<KFPerk> PerkClass )
 {
-	ClientAddSmallRadiusKill( Difficulty );
+	ClientAddSmallRadiusKill( Difficulty, PerkClass );
 }
-native reliable client private function ClientAddSmallRadiusKill(byte Difficulty);
+native reliable client private function ClientAddSmallRadiusKill(byte Difficulty, class<KFPerk> PerkClass);
 
 /** Welding stat */
 function AddWeldPoints( int PointsWelded )

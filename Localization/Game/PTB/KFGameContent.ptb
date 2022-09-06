@@ -127,7 +127,7 @@ ItemDescription="•Libera um gás que envenena os Zeds, mas cura pessoas.\n\n�
 [KFProj_MolotovGrenade]
 ItemName="Coquetel molotov"
 ItemCategory="Explosivos"
-ItemDescription="•Muito simples: uma granada de fogo que queima os Zeds.\n\nBatizado pelos finlandeses na Segunda Guerra com o nome de Vyacheslav Mikhailovich Molotov, o Ministro do Exterior Soviético de Stalin… Perdão, você não queria uma aula de história?" Perdão, você não queria uma aula de história?"
+ItemDescription="•Muito simples: uma granada de fogo que queima os Zeds.\n\nBatizado pelos finlandeses na Segunda Guerra com o nome de Vyacheslav Mikhailovich Molotov, o Ministro do Exterior Soviético de Stalin… Perdão, você não queria uma aula de história?"  Perdão, você não queria uma aula de história?"
 
 [KFProj_EMPGrenade]
 ItemName="Granada de IEM"
@@ -473,7 +473,7 @@ ItemCategory="Pistola de mão"
 ItemDescription="•Apenas disparo único.\n•Atirar a esmo nunca foi tão divertido."
 
 [KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="Chumbo Grosso HRG Duplo"
+ItemName="Duas Chumbo Grosso HRG"
 ItemCategory="Pistola de mão"
 ItemDescription="•Apenas disparo semiautomático.\n•Tiro alt. alterna estilos de mira ao usar a mira metálica.\n•Atirar a esmo nunca foi tão divertido, de verdade."
 
@@ -695,8 +695,38 @@ SecondaryAmmo="Granada Incendiária M203"
 [KFWeap_Bow_CompoundBow]
 ItemName="Arco Composto"
 ItemCategory="Arco"
-ItemDescription="•O modo de disparo é somente tiro carregado.\n•Quanto mais segurar, maior o alcance e o dano.\n•Tiro alt. alterna entre flechas afiadas e criogênicas.\n•Quando é preciso de um pouco mais de ímpeto para ser o Cupido."
+ItemDescription="•O modo de tiro é somente tiro carregado.\n•Quanto mais segurar, maior o alcance e o dano.\n•Tiro alt. alterna entre flechas afiadas e criogênicas.\n•Quando é preciso de um pouco mais de ímpeto para ser o Cupido."
 SharedUnlockSource="Conjunto de Armas Arco Composto"
+
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="Bum-camarte HRG"
+ItemCategory="Espingarda"
+ItemDescription="•O tiro principal usa um cano.\n•Tiro alt. atira com os dois canos de uma vez.\n•Munição explosiva inclusa para incrementar a experiência."
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="Bacamarte"
+ItemCategory="Explosivos"
+ItemDescription="•O tiro principal dispara uma bala de canhão.\n•Segure o tiro principal por 0,1 segundo para impedir que a bala de canhão exploda. Explode ao soltar.\n•Tiro alt. dispara estilhaços de bala de canhão.\n•Perna de pau e papagaio vendidos separadamente!"
+SharedUnlockSource="Conjunto de Armas de Bacamarte"
+
+[KFWeap_Pistol_G18C]
+ItemName="Glock 18c"
+ItemCategory="Submetralhadora"
+ItemDescription="•Opção de modos de tiro automático e semiautomático.\n•Atenção: quando usado, desperta uma necessidade incontrolável de declarar autoidentificação com a lei."
+SharedUnlockSource="Conjunto de armas Glock 18C única e dupla"
+
+[KFWeap_Pistol_DualG18]
+ItemName="Glock 18c Dupla"
+ItemCategory="Submetralhadora"
+ItemDescription="•Modo de tiro somente automático.\n•Tiro alt. alterna entre estilos de mira ao usar mira metálica.\n•Atenção: quando usado, desperta uma necessidade incontrolável de declarar autoidentificação com a lei."
+SharedUnlockSource="Conjunto de armas Glock 18C única e dupla"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="Lançador Tesla HRG"
+ItemCategory="Fuzil de assalto"
+ItemDescription="•Modo de tiro somente automático.\n•Tiro alt. para disparar granadas de IEM.\n•Com esta arma elétrica e ecológica, é possível abater centenas de Zeds sem prejudicar o meio ambiente."
+SecondaryAmmo="Granada de IEM"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

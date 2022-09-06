@@ -90,15 +90,15 @@ WeaponTypeStrings[8]="近战"
 WeaponTypeStrings[9]="冲锋枪"
 WeaponTypeStrings[10]="所有"
 
-MixerGaveAmmoString=" Mixer 观众 给了你弹药。"
-MixerGaveArmorString=" Mixer 观众 给了你护甲。"
-MixerGaveDoshString=" Mixer 观众 给了你金钱。"
-MixerGaveGrenadeString=" Mixer 观众 给了你一个手榴弹。"
-MixerGaveHealthString=" Mixer 观众 治疗了你。"
-MixerZedTimeString=" Mixer 观众 激活了丧尸时间。"
-MixerRageZedsString=" Mixer 观众 激怒了周围的丧尸。"
-MixerPukeString=" Mixer 观众 在你身上呕吐。"
-MixerSpawnedFPString=" Mixer 观众 引出了一只闪击丧尸。"
+MixerGaveAmmoString=" Mixer 观众  给了你弹药。"
+MixerGaveArmorString=" Mixer 观众  给了你护甲。"
+MixerGaveDoshString=" Mixer 观众  给了你金钱。"
+MixerGaveGrenadeString=" Mixer 观众  给了你一个手榴弹。"
+MixerGaveHealthString=" Mixer 观众  治疗了你。"
+MixerZedTimeString=" Mixer 观众  激活了丧尸时间。"
+MixerRageZedsString=" Mixer 观众  激怒了周围的丧尸。"
+MixerPukeString=" Mixer 观众  在你身上呕吐。"
+MixerSpawnedFPString=" Mixer 观众  引出了一只闪击丧尸。"
 MixerSpawnedScrakeString="，Mixer 观众，引出了一只刮痕丧尸！"
 MixerSpawnedMiniFPString="，Mixer 观众，引出了一些小丧尸！"
 
@@ -115,7 +115,7 @@ StartOfflineGameString="开始离线游戏"
 StartOfflineGameDescriptionString="开始离线游戏将会解散你的队伍。\n你要继续吗？"
 
 ProceedToTutorialString="继续训练？"
-ProceedToTutorialDescriptionString="在受控制的环境中进行基础学习。 完成时可以使选择的0级天赋升级为1级天赋。"
+ProceedToTutorialDescriptionString="在受控制的环境中进行基础学习。  完成时可以使选择的0级天赋升级为1级天赋。"
 
 NotAvailableInFreeTrialString="免费试玩不支持该功能"
 NetworkCheckFreeTrialFailedString="网络错误：免费活动状态无法确认。检查网络连接状态"
@@ -1015,6 +1015,8 @@ ThrowString="投掷武器"
 
 [KFGFxWidget_KickVote]
 VoteKickString="踢除玩家？"
+VoteSkipTraderString="跳过商人？"
+VoteSkipTraderDetailString="想要跳过倒计时"
 
 [KFLocalMessage_PlayerKills]
 KilledString="杀死了"
@@ -1399,6 +1401,7 @@ LoggedOutAsAdminString=" 已作为服务器管理员注销"
 MustLoginToCheatString="你必须登录才能启用作弊"
 CheatsEnabledString=" 已启用作弊统计数据已在本会话中禁用"
 ServerMaintenanceString="服务器将在游戏结束后关闭进行维护"
+OtherVoteInProgressString="当前投票确定前无法开始新的投票"
 KickVoteStartedString="已开始踢除此人之投票："
 KickVoteSucceededString="踢除此人之投票已通过："
 KickVoteFailedString="踢除此人之投票未通过："
@@ -1416,8 +1419,17 @@ KickVoteNoSpectatorsString="旁观者不能发起踢人投票"
 KickedFromServerString="你已被从服务器上删除"
 BannedFromServerString="你已被从本服务器上删除。你现在不能再次加入"
 ServerNoLongerAvailableString="服务器不能再用于加入"
-SkipTraderTimeString="跳过商人激活。在游戏菜单中选择“跳过商人”进行投票。 必须征得所有玩家同意。"
+SkipTraderVoteStartedString="发起了跳过商人投票"
+SkipTraderTimeString="跳过商人激活。在游戏菜单中选择“跳过商人”进行投票。  必须征得所有玩家同意。"
 SkipTraderSuccessString="跳过商人投票成功！"
+SkipTraiderVoteFailedString="跳过商人投票失败！"
+SkipTraderVoteNoSpectatorsString="旁观者无法发起跳过商人投票"
+SkipTraderIsNotOpenString="一波进行中无法跳过商人"
+SkipTraderVoteInProgressString="不能开始跳过商人投票，因为已有一个正在进行的投票"
+SkipTraderVoteYesReceivedString="你投票跳过商人"
+SkipTraderVoteNoReceivedString="你投票不跳过商人"
+SkipTraderNoEnoughTimeString="发起跳过商人投票的时间不足"
+SkipTraderThisUserAlreadyStartedAVoteString="下次商人阶段前无法发起新的跳过商人投票"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="你收到了来自此人的弹药："
@@ -1760,7 +1772,7 @@ Spartan="丧尸时间 - 斯巴达式"
 SpartanDescription="在丧尸时间中，你要使用神射武器进行攻击并且实时移动。"
 
 Rage="丧尸时间 - 狂战士的咆哮"
-RageDescription="只要丧尸时间启动或刷新，治愈 50% 生命并迫使附近丧尸逃跑。"
+RageDescription="只要丧尸时间启动或刷新，治愈 50% 生命并令附近丧尸无法动弹。"
 
 [KFPerk_Commando]
 PerkName="突击兵"
@@ -2033,7 +2045,7 @@ Stun="弹道冲击"
 StunDescription="提升神射武器的击晕力 100%。"
 
 RhythmMethod="连击起来"
-RhythmMethodDescription="每次连续的爆头都会增加神射武器的伤害 10%，最高可达 50%。 "
+RhythmMethodDescription="每次连续的爆头都会增加神射武器的伤害 10%，最高可达 50%。  "
 
 TacticalReload="策略填弹"
 TacticalReloadDescription="提升神射武器的填弹速度。"
@@ -2094,7 +2106,7 @@ ConcussionRounds="震荡弹"
 ConcussionRoundsDescription="提升神射武器的击退力 150%。"
 
 Perforate="丧尸时间 - 贯穿者"
-PerforateDescription="在丧尸时间中，使用天赋武器时穿透提升，可对一排丧失造成伤害，且威力不减。"
+PerforateDescription="在丧尸时间中，专精武器可穿刺所有丧尸，且不受穿刺伤害削减。"
 
 Barrage="丧尸时间 - 弹幕"
 BarrageDescription="在丧尸时间中，神射武器可以近乎实时射击。"
@@ -2172,7 +2184,7 @@ FieldMedic="医疗医疗兵训练"
 FieldMedicDescription="使你各种治疗的效能提升30%，注射器和治愈飞镖的冷却时间减少50%。"
 
 MeleeExpert="近战专家"
-MeleeExpertDescription="使用任意近战武器时，近战速度提升20%，造成50%的额外伤害，移动速度提升25%。"
+MeleeExpertDescription="使用任意近战武器时，近战速度提升 20%，造成 75% 的额外伤害，移动速度提升 25%。"
 
 AmmoVest="弹药背心"
 AmmoVestDescription="所有武器可以多携带 15% 弹药，而且手榴弹变成治愈手榴弹。"
@@ -2190,7 +2202,7 @@ Madman="丧尸时间 - 狂人"
 MadmanDescription="在丧尸时间中，你的所有武器射击速度提升 3 倍。"
 
 IncapMaster="丧尸时间 - 禁闭"
-IncapMasterDescription="丧尸时间中，你武器的击倒、击退和眩晕率提升至最大。"
+IncapMasterDescription="在丧尸时间中，你的所有武器可眩晕丧尸。"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2569,7 +2581,7 @@ KFWeap_MKB="汉斯的万圣节武器"
 Source0="骑士推销"
 
 ;============================================
-; SpecialEvent Localization (Base class)
+; SpecialEvent  Localization (Base class)
 ;============================================
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
@@ -2705,6 +2717,20 @@ AllCompleteRewardDescriptionString="AA12动态两件捆绑皮肤"
 
 ChanceDropDescriptionStrings[0]="赛博朋克奖劵"
 ChanceDropDescriptionStrings[1]="赛博朋克金奖劵"
+
+[KFGFxSpecialEventObjectivesContainer_Summer2020]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="让我战栗吧，廷伯斯！",DescriptionString="在任意地图或模式击杀 15 名首领")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周吆喝",DescriptionString="完成每周废墟")
+SpecialEventObjectiveInfoList[2]=(TitleString="哈！让它亮起来！",DescriptionString="激活废墟的发电机")
+SpecialEventObjectiveInfoList[3]=(TitleString="大堆大金币",DescriptionString="在废墟通过杀敌、奖励和治疗赚取 75,000 金钱")
+SpecialEventObjectiveInfoList[4]=(TitleString="无尽掠夺",DescriptionString="在困难无尽或以上难度的废墟中成功抵御 15 波丧尸")
+
+AllCompleteRewardDescriptionString="太空海盗 | 太空猴子背包"
+
+ChanceDropDescriptionStrings[0]="夏季奖劵"
+ChanceDropDescriptionStrings[1]="夏季金奖券"
 
 ;============================================
 ; Daily Localization
@@ -3299,7 +3325,10 @@ DisplayName="阿什伍德疯人院"
 DisplayName="疗养院"
 
 [KF-Biolapse KFMapSummary]
-DisplayName="化实验室"
+DisplayName="生化实验室"
+
+[KF-Desolation KFMapSummary]
+DisplayName="废墟"
 
 [KFMapInfo]
 ; defaults

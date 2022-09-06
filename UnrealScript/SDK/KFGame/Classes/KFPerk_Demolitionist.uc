@@ -1150,6 +1150,7 @@ DefaultProperties
    	ZedTimeModifyingStates(6)="AltReloading"
     ZedTimeModifyingStates(7)="WeaponThrowing"
 	ZedTimeModifyingStates(8)="HuskCannonCharge"
+	ZedTimeModifyingStates(9)="BlunderbussDeployAndDetonate"
 
    	PassiveExtraAmmoIgnoredClassNames(0)="KFProj_DynamiteGrenade"
 

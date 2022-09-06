@@ -22,6 +22,8 @@ enum ESharedContentUnlock
 	SCU_MosinNagant,
 	SCU_G18RiotShield,
 	SCU_CompoundBow,
+	SCU_G18C,
+	SCU_Blunderbuss,
 };
 
 
@@ -65,7 +67,7 @@ cpptext
 	/** TRUE if this PRI is valid for shared content unlock */
 	UBOOL CanShareContent(APlayerReplicationInfo* PRI);
 	/** return TRUE if the UnlockId bit is set for a given set of flags */
-	UBOOL CheckSharedUnlock(BYTE UnlockFlags, BYTE UnlockId);
+	UBOOL CheckSharedUnlock(int UnlockFlags, int UnlockId);
 
 	/** Steam Id of the Killing Floor 2 group */
 	static const FUniqueNetId KF2Group;
@@ -85,18 +87,18 @@ static native function 		InitSharedUnlocksFor(KFPlayerReplicationInfo PRI, optio
  * returns TRUE if any player on this server has this unlock
  * Network: All
  */
-static native function bool IsSharedContentUnlocked(ESharedContentUnlock UnlockId);
+static native function bool IsSharedContentUnlocked(int UnlockId);
 
 /**
 *Returns TRUE if a player has event weapon skin
 */
-static native function bool GetObjectiveItemGranted(ESharedContentUnlock UnlockId);
+static native function bool GetObjectiveItemGranted(int UnlockId);
 
 /**
  * returns a list of all available (aka connected ) players with a given unlock
  * Network: All
  */
-static native function 		GetSharedContentPlayerList(ESharedContentUnlock UnlockId, out array<PlayerReplicationInfo> out_PRIArray);
+static native function 		GetSharedContentPlayerList(int UnlockId, out array<PlayerReplicationInfo> out_PRIArray);
 
 
 
@@ -300,4 +302,12 @@ defaultproperties
 		Name=KFWeap_Bow_CompoundBow,
 		IconPath="WEP_UI_CompoundBow_TEX.UI_WeaponSelect_Compound_Bow",
 		ID=8169)}
+	SharedContentList(SCU_G18C)={(
+		Name=KFWeap_Pistol_G18C,
+		IconPath="wep_ui_g18c_tex.UI_WeaponSelect_G18C",
+		ID=8293)}
+	SharedContentList(SCU_Blunderbuss)={(
+		Name=KFWeap_Pistol_Blunderbuss,
+		IconPath="WEP_UI_Blunderbuss_TEX.UI_WeaponSelect_BlunderBluss",
+		ID=8299)}
 }

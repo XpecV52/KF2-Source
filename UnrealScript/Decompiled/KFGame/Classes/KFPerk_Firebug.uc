@@ -208,7 +208,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
 {
     local name StateName;
 
-    if(GetScorchActive() && IsWeaponOnPerk(W,, self.Class))
+    if(IsScorchActive() && IsWeaponOnPerk(W,, self.Class))
     {
         StateName = W.GetStateName();
         if(ZedTimeModifyingStates.Find(StateName != -1)

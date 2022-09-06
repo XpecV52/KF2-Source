@@ -45,6 +45,27 @@ simulated event PreBeginPlay()
     }
 }
 
+simulated function bool HasAnyAmmo()
+{
+    if(HasAmmo(6))
+    {
+        return true;        
+    }
+    else
+    {
+        return false;
+    }
+}
+
+simulated event bool HasAmmo(byte FireModeNum, optional int Amount)
+{
+    if(FireModeNum == 0)
+    {
+        return true;
+    }
+    return super(KFWeapon).HasAmmo(FireModeNum, Amount);
+}
+
 simulated function bool CanOverrideMagReload(byte FireModeNum)
 {
     return FireModeNum != 2;
@@ -309,11 +330,11 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
-    MagazineCapacity=5
+    MagazineCapacity=1
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=15
+    SpareAmmoCapacity=1
     WeaponFireSnd=/* Array type was not detected. */
     begin object name=MeleeHelper class=KFMeleeHelperWeapon
         ChainSequence_F=/* Array type was not detected. */

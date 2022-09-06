@@ -1583,7 +1583,17 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
                     {
                         if(KFPCP.CanEarnSmallRadiusKillXP(LastHitByDamageType))
                         {
-                            CheckForBerserkerSmallRadiusKill(MonsterPawn, KFPC);
+                            if(KFPCP.GetPerkClass() == Class'KFPerk_Berserker'.static.GetPerkClass())
+                            {
+                                CheckForSmallRadiusKill(MonsterPawn, KFPC, Class'KFPerk_Berserker');                                
+                            }
+                            else
+                            {
+                                if(KFPCP.GetPerkClass() == Class'KFPerk_Survivalist'.static.GetPerkClass())
+                                {
+                                    CheckForSmallRadiusKill(MonsterPawn, KFPC, Class'KFPerk_Survivalist');
+                                }
+                            }
                         }
                         KFPCP.AddVampireHealth(KFPC, LastHitByDamageType);
                     }
@@ -1857,7 +1867,7 @@ function NotifyIgnoredScream(KFPawn ScreamPawn)
     }
 }
 
-function CheckForBerserkerSmallRadiusKill(KFPawn_Monster MonsterPawn, KFPlayerController KFPC)
+function CheckForSmallRadiusKill(KFPawn_Monster MonsterPawn, KFPlayerController KFPC, class<KFPerk> PerkClass)
 {
     local KFPawn_Human KFPH;
 
@@ -1871,7 +1881,7 @@ function CheckForBerserkerSmallRadiusKill(KFPawn_Monster MonsterPawn, KFPlayerCo
         {
             if(VSizeSq(KFPH.Location - MonsterPawn.Location) <= float(Class'KFPerk_Berserker'.static.GetSmallRadiusKillDistanceSQ()))
             {
-                KFPC.AddSmallRadiusKill(byte(GameDifficulty));
+                KFPC.AddSmallRadiusKill(byte(GameDifficulty), PerkClass);
                 break;
             }
         }        
@@ -3138,10 +3148,6 @@ auto state PendingMatch
 
     event Timer()
     {
-        if(WorldInfo.NetMode == NM_DedicatedServer)
-        {
-            LogInternal(("(TW ZOMBIE SERVER LOG)" @ "KFGameInfo:PendingMatch.Timer - bDelayedStart: ") $ string(bDelayedStart));
-        }
         global.Timer();
         if(bDelayedStart)
         {
@@ -3269,7 +3275,7 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-DieSector","KF-EvacuationPoint","KF-Farmhouse","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-EvacuationPoint","KF-Farmhouse","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

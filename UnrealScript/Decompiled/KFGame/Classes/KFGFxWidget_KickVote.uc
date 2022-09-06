@@ -8,16 +8,18 @@
 class KFGFxWidget_KickVote extends GFxObject within GFxMoviePlayer;
 
 var const localized string VoteKickString;
+var const localized string VoteSkipTraderString;
+var const localized string VoteSkipTraderDetailString;
 var bool bIsVoteActive;
+var bool bIsSkipTraderVoteActive;
+var bool bShowChoicesOnTimerUpdate;
 var const string GBA_VoteYes;
 var const string GBA_VoteNo;
+var GFxObject KickVoteData;
 
-function InitializeHUD()
-{
-    LocalizeText();
-}
+function InitializeHUD();
 
-function LocalizeText()
+function LocalizeText(bool bIsSkipTraderVote)
 {
     local GFxObject TempObject;
     local KFPlayerInput KFInput;
@@ -31,34 +33,70 @@ function LocalizeText()
     TempObject.SetString("noKey", string(TempKeyBind.Name));
     TempObject.SetString("yes", Class'KFCommon_LocalizedStrings'.default.YesString);
     TempObject.SetString("no", Class'KFCommon_LocalizedStrings'.default.NoString);
-    TempObject.SetString("voteKick", VoteKickString);
+    if(bIsSkipTraderVote)
+    {
+        TempObject.SetString("voteKick", VoteSkipTraderString);        
+    }
+    else
+    {
+        TempObject.SetString("voteKick", VoteKickString);
+    }
     SetObject("localizedText", TempObject);
 }
 
-function ShowKickVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices)
+function ResetVote()
+{
+    bShowChoicesOnTimerUpdate = false;
+    ActionScriptVoid("onYesReleased");
+    ActionScriptVoid("onNoReleased");
+}
+
+function ShowVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices, bool bIsSkipTraderVote)
 {
     if(PRI != none)
     {
-        LocalizeText();
+        LocalizeText(bIsSkipTraderVote);
         bIsVoteActive = true;
-        SendVoteKickToAS3(PRI.PlayerName, VoteDuration, bShowChoices);        
+        bIsSkipTraderVoteActive = bIsSkipTraderVote;
+        SendVoteToAS3(PRI.PlayerName, VoteDuration, bShowChoices);        
     }
     else
     {
         bIsVoteActive = false;
+        bIsSkipTraderVoteActive = false;
     }
 }
 
-function SendVoteKickToAS3(string PlayerName, byte VoteDuration, bool bShowChoices)
+function SendVoteToAS3(string PlayerName, byte VoteDuration, bool bShowChoices)
 {
-    local GFxObject KickVoteData;
-
-    KickVoteData = Outer.CreateObject("Object");
-    KickVoteData.SetString("playerName", PlayerName);
+    if(KickVoteData == none)
+    {
+        KickVoteData = Outer.CreateObject("Object");
+    }
+    if(bIsSkipTraderVoteActive)
+    {
+        KickVoteData.SetString("playerName", PlayerName @ VoteSkipTraderDetailString);        
+    }
+    else
+    {
+        KickVoteData.SetString("playerName", PlayerName);
+    }
     KickVoteData.SetInt("voteDuration", VoteDuration);
     KickVoteData.SetBool("bShowChoices", bShowChoices);
+    bShowChoicesOnTimerUpdate = bShowChoices;
     SetObject("kickVoteData", KickVoteData);
     UpdateUsingGamePad(Outer.GetPC().PlayerInput.bUsingGamepad);
+}
+
+function UpdateVoteDuration(byte VoteDuration)
+{
+    if(KickVoteData != none)
+    {
+        KickVoteData.SetInt("voteDuration", VoteDuration);
+        KickVoteData.SetBool("bShowChoices", bShowChoicesOnTimerUpdate);
+        SetObject("kickVoteData", KickVoteData);
+        UpdateUsingGamePad(Outer.GetPC().PlayerInput.bUsingGamepad);
+    }
 }
 
 function UpdateUsingGamePad(bool bIsUsingGamepad)
@@ -66,11 +104,11 @@ function UpdateUsingGamePad(bool bIsUsingGamepad)
     SetBool("bUsingGamepad", bIsUsingGamepad);
     if(!bIsUsingGamepad)
     {
-        LocalizeText();
+        LocalizeText(bIsSkipTraderVoteActive);
     }
 }
 
-function UpdateKickVoteCount(byte YesVotes, byte NoVotes)
+function UpdateVoteCount(byte YesVotes, byte NoVotes)
 {
     ActionScriptVoid("updateKickVoteCount");
 }
@@ -116,6 +154,8 @@ function OnNoReleased()
 defaultproperties
 {
     VoteKickString="Kick Player?"
+    VoteSkipTraderString="Skip Trader?"
+    VoteSkipTraderDetailString="wants to skip the countdown"
     GBA_VoteYes="GBA_VoteYes"
     GBA_VoteNo="GBA_VoteNo"
 }

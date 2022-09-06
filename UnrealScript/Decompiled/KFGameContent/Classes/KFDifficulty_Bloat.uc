@@ -34,9 +34,9 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PukeMinesToSpawnOnDeathByDifficulty(1)=.0_1733
+    PukeMinesToSpawnOnDeathByDifficulty(1)=.0_1749
     PukeMinesToSpawnOnDeathByDifficulty(2)=.0
-    PukeMinesToSpawnOnDeathByDifficulty(3)=.0_7792
+    PukeMinesToSpawnOnDeathByDifficulty(3)=.0_7898
     PukeMinesToSpawnOnDeath_Player_Versus=3
     Normal=(HealthMod=0.75,HeadHealthMod=0.75,DamageMod=0.4,SoloDamageMod=0.3,BlockSettings=(Duration=1.25,MaxBlocks=3,Cooldown=3.5,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.3,DamageModifier=0.3,AfflictionModifier=0.2,SoloChanceMultiplier=0.1),RallySettings=(bCanRally=false))
     Hard=(DamageMod=0.75,SoloDamageMod=0.75,BlockSettings=(Chance=0.1,Duration=1.25,MaxBlocks=4,Cooldown=3.5,DamagedHealthPctToTrigger=0.1,MeleeDamageModifier=0.9,DamageModifier=0.9,AfflictionModifier=0.2,SoloChanceMultiplier=0.1),RallySettings=(bCanRally=false))

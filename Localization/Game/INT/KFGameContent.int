@@ -698,6 +698,36 @@ ItemCategory="Bow"
 ItemDescription="•Fire mode is charge shot only.\n•Range and damage increase the longer you hold.\n•Alt-fire switches between sharp and cryo arrows.\n•When being Cupid needs a little more punch."
 SharedUnlockSource="Compound Bow Weapon Bundle"
 
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="HRG Kaboomstick"
+ItemCategory="Shotgun"
+ItemDescription="•Primary fire uses a single barrel only.\n•Alt-fire shoots both barrels at once.\n•Explosive ammo included to spice up the experience."
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="Blunderbuss"
+ItemCategory="Explosives"
+ItemDescription="•Primary fire launches a cannonball.\n•Hold primary fire for 0.1 seconds to keep cannonball from exploding. Explodes on release.\n•Alt-fire shoots cannonball shrapnel.\n•Pegleg and parrot sold separately!"
+SharedUnlockSource="Blunderbuss Weapon Bundle"
+
+[KFWeap_Pistol_G18C]
+ItemName="Glock 18c"
+ItemCategory="Sub Machine Gun"
+ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Caution: Uncontrollable urges to declare self-identification with the law when used."
+SharedUnlockSource="Single and Dual Glock 18C Weapon Bundle"
+
+[KFWeap_Pistol_DualG18]
+ItemName="Dual Glock 18c"
+ItemCategory="Sub Machine Gun"
+ItemDescription="•Fire mode is full-auto only.\n•Alt-fire switches aiming styles when using iron sights.\n•Caution: Uncontrollable urges to declare self-identification with the law when used."
+SharedUnlockSource="Single and Dual Glock 18C Weapon Bundle"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="HRG Teslauncher"
+ItemCategory="Assault Rifle"
+ItemDescription="•Fire mode is full-auto only.\n•Alt-fire to fire EMP grenades.\n•With this electric, eco-friendly weapon you can slay hundreds of Zeds without harming the planet."
+SecondaryAmmo="EMP Grenade"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

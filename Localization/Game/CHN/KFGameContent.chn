@@ -698,6 +698,36 @@ ItemCategory="弓"
 ItemDescription="•射击模式只有蓄力射击。\n•按住时间越长，射程和伤害越大。\n•备用射击在利箭和冰箭中切换。\n•丘比特需要更强力射箭时使用。"
 SharedUnlockSource="复合弓武器包"
 
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="HRG 大爆炸射手"
+ItemCategory="霰弹枪"
+ItemDescription="•主要攻击只射击一发。\n•备用射击可以一次射两发。\n•采用爆炸子弹，体验倍增。"
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="雷筒"
+ItemCategory="炸弹"
+ItemDescription="•主要射击发射一枚炮弹。\n•长按主要射击 0.1 秒可令炮弹不致爆炸。炮弹在松开时爆炸。\n•备用射击可发射炮弹榴霰弹。\n•木腿和鹦鹉单独销售！"
+SharedUnlockSource="雷筒武器包"
+
+[KFWeap_Pistol_G18C]
+ItemName="格洛克 18c"
+ItemCategory="冲锋枪"
+ItemDescription="•可选择全自动和半自动射击模式。\n•注意：使用时会有无法控制的法律认同感。"
+SharedUnlockSource="单手或双持格洛克 18C 武器包"
+
+[KFWeap_Pistol_DualG18]
+ItemName="双持格洛克 18c"
+ItemCategory="冲锋枪"
+ItemDescription="•射击模式只有全自动。\n•使用机械瞄准具时，备用射击会切换瞄准方式。\n•注意：使用时会有无法控制的法律认同感。"
+SharedUnlockSource="单手或双持格洛克 18C 武器包"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="HRG 特斯拉发射器"
+ItemCategory="突击步枪"
+ItemDescription="•射击模式只有全自动。\n•备用射击发射 EMP 榴弹。\n•借助这把电力驱动的生态友好型武器，您可以屠戮成百上千的丧尸，而不会对星球造成丝毫的损害。"
+SecondaryAmmo="EMP 手榴弹"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

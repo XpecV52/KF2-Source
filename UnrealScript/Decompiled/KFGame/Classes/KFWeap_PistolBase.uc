@@ -15,6 +15,7 @@ const CYLINDERSTATE_PENDING = 1;
 const CYLINDERSTATE_ROTATING = 2;
 
 var bool bRevolver;
+var bool bUseDefaultResetOnReload;
 var SkeletalMesh UnusedBulletMeshTemplate;
 var SkeletalMesh UsedBulletMeshTemplate;
 var array<name> BulletFXSocketNames;
@@ -69,8 +70,11 @@ simulated event PostInitAnimTreeRevolver(SkeletalMeshComponent SkelComp)
 
 simulated function ConsumeAmmoRevolver()
 {
-    CheckCylinderRotation(CylinderRotInfo);
-    CylinderRotInfo.State = 1;
+    if(bUseDefaultResetOnReload)
+    {
+        CheckCylinderRotation(CylinderRotInfo);
+        CylinderRotInfo.State = 1;
+    }
 }
 
 simulated function CheckCylinderRotation(out CylinderRotationInfo RotInfo, optional bool bResetState)
@@ -88,6 +92,11 @@ simulated function CheckCylinderRotation(out CylinderRotationInfo RotInfo, optio
 simulated function ANIMNOTIFY_RotateCylinder()
 {
     RotateCylinder(CylinderRotInfo);
+}
+
+simulated function ANIMNOTIFY_ResetCylinder()
+{
+    ResetCylinder();
 }
 
 simulated function RotateCylinder(out CylinderRotationInfo RotInfo, optional bool bInstant)
@@ -241,7 +250,7 @@ simulated state Reloading
     simulated function BeginState(name PreviousStateName)
     {
         super.BeginState(PreviousStateName);
-        if(bRevolver)
+        if(bRevolver && bUseDefaultResetOnReload)
         {
             ResetCylinder();
         }
@@ -261,6 +270,7 @@ simulated state WeaponPuttingDown
 
 defaultproperties
 {
+    bUseDefaultResetOnReload=true
     InventoryGroup=EInventoryGroup.IG_Secondary
     AimCorrectionSize=40
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_PistolBase.MeleeHelper'

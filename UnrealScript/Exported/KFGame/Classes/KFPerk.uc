@@ -163,6 +163,7 @@ const STATID_ACHIEVE_AsylumCollectibles				= 4051;
 const STATID_ACHIEVE_SanitariumCollectibles			= 4052;
 const STATID_ACHIEVE_DefeatMatriarch				= 4053;
 const STATID_ACHIEVE_BiolapseCollectibles			= 4054;
+const STATID_ACHIEVE_DesolationCollectibles			= 4055;
  
 #linenumber 15
 
@@ -1347,6 +1348,9 @@ simulated function OnBump(Actor BumpedActor, KFPawn_Human BumpInstigator, vector
 simulated function int GetArmorDamageAmount( int AbsorbedAmt ) { return AbsorbedAmt; }
 simulated event float GetZedTimeSpeedScale() { return 1.f; }
 
+
+/** Survivalist dunctions */
+simulated function bool GetIncapMasterActive(){ return false; }
 
 static function ModifyAssistDosh( out int EarnedDosh )
 {

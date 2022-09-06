@@ -115,6 +115,7 @@ const STATID_ACHIEVE_AsylumCollectibles = 4051;
 const STATID_ACHIEVE_SanitariumCollectibles = 4052;
 const STATID_ACHIEVE_DefeatMatriarch = 4053;
 const STATID_ACHIEVE_BiolapseCollectibles = 4054;
+const STATID_ACHIEVE_DesolationCollectibles = 4055;
 
 var KFOnlineStatsWrite LinkedWriteObject;
 var UniqueNetId OwningUniqueID;

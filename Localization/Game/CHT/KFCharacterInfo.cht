@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="壞聖誕老人"
-Description="一開始，坎普斯是為他的小精靈和麋鹿而來。後來，坎普斯更是要奪走他的家園。現在，聖誕老人下定決心勢不兩立。現在，他的手裡緊緊握著機關槍。齁齁齁！\n\n聖尼可拉斯在數百年前便開始守衛世界上的所有孩童，以為他能夠在接下來永恆的時間裡不斷地將聖誕禮物和愉快的心情帶給無數的善良小男孩和小女孩。 然而，坎普斯的出現讓一切破滅。 自從坎普斯聖誕節那一年起，聖誕老人便為了逝去的員工、朋友、家庭而展開了復仇計畫。拋下了先前宛如大地之慈的肚子和艷如玫瑰的紅鼻子，取而代之的是看似永遠展不開的眉頭和百經淬鍊的雄厚肌肉。這次的聖誕佳節將不會有平安夜；聖誕老人的字典裡已經沒有聖誕佳節和親善。他的眼裡只有復仇之火，他的憤怒與他所準備的彈藥一般源源不絕，佳節大戰的鐘聲即將敲響。"
+Description="一開始，坎普斯是為他的小精靈和麋鹿而來。後來，坎普斯更是要奪走他的家園。現在，聖誕老人下定決心勢不兩立。現在，他的手裡緊緊握著機關槍。齁齁齁！\n\n聖尼可拉斯在數百年前便開始守衛世界上的所有孩童，以為他能夠在接下來永恆的時間裡不斷地將聖誕禮物和愉快的心情帶給無數的善良小男孩和小女孩。  然而，坎普斯的出現讓一切破滅。  自從坎普斯聖誕節那一年起，聖誕老人便為了逝去的員工、朋友、家庭而展開了復仇計畫。拋下了先前宛如大地之慈的肚子和艷如玫瑰的紅鼻子，取而代之的是看似永遠展不開的眉頭和百經淬鍊的雄厚肌肉。這次的聖誕佳節將不會有平安夜；聖誕老人的字典裡已經沒有聖誕佳節和親善。他的眼裡只有復仇之火，他的憤怒與他所準備的彈藥一般源源不絕，佳節大戰的鐘聲即將敲響。"
 BodyMesh0="聖誕老人服裝"
 BodyMesh1="突雞部隊"
 HeadMesh0="聖誕老人頭"
@@ -42,6 +42,7 @@ BodyMesh8="金庫睡衣服飾"
 BodyMesh9="賽博龐克"
 BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
+BodyMesh12="太空海盜服飾"
 HeadMesh0="防毒面具"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -139,6 +140,14 @@ BodySkin3="綠"
 BodySkin4="白色"
 BodySkin5="黃"
 
+[CHR_MrsFoster_archetype.BodyMesh12]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="白"
 HeadSkin1="綠色"
@@ -222,6 +231,7 @@ BodyMesh8="蒸汽龐克"
 BodyMesh9="賽博龐克"
 BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
+BodyMesh12="太空海盜服飾"
 HeadMesh0="鬍子的力量！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -325,6 +335,14 @@ BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
 
+[CHR_Jagerhorn_archetype.BodyMesh12]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="金髮瑞典人"
 HeadSkin1="黑色相簿"
@@ -423,6 +441,7 @@ BodyMesh8="蒸汽龐克"
 BodyMesh9="賽博龐克"
 BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
+BodyMesh12="Space Pirate"
 HeadMesh0="史骷利面具"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -525,6 +544,14 @@ BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
 
+[CHR_DJSkully_archetype.BodyMesh12]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="黑中之黑"
 HeadSkin1="超級紅"
@@ -570,6 +597,7 @@ BodyMesh9="蒸汽龐克"
 BodyMesh10="賽博龐克"
 BodyMesh11="女巫獵人"
 BodyMesh12="聖誕老人套裝"
+BodyMesh13="太空海盜服飾"
 HeadMesh0="頭髮"
 
 [chr_briar_archetype.BodyMesh0]
@@ -678,6 +706,14 @@ BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
 
+[CHR_briar_archetype.BodyMesh13]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
 HeadSkin1="亮光"
@@ -717,6 +753,7 @@ BodyMesh9="蒸汽龐克"
 BodyMesh10="賽博龐克"
 BodyMesh11="女巫獵人"
 BodyMesh12="聖誕老人套裝"
+BodyMesh13="海盜服飾"
 HeadMesh0="防毒面具"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -829,6 +866,14 @@ BodySkin2="藍"
 BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
+
+[CHR_MrFoster_archetype.BodyMesh13]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
@@ -989,6 +1034,7 @@ BodyMesh8="蒸汽龐克"
 BodyMesh9="賽博龐克"
 BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
+BodyMesh12="太空海盜服飾"
 HeadMesh0="臉"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1089,6 +1135,14 @@ BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
 
+[CHR_Coleman_archetype.BodyMesh12]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="唐納文"
 HeadSkin1="麻布"
@@ -1127,6 +1181,7 @@ BodyMesh8="蒸汽龐克"
 BodyMesh9="賽博龐克"
 BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
+BodyMesh12="太空海盜服飾"
 HeadMesh0="頭髮"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1228,6 +1283,14 @@ BodySkin2="藍"
 BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
+
+[CHR_Alberts_archetype.BodyMesh12]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰"
@@ -2127,6 +2190,7 @@ BodyMesh8="蒸汽龐克"
 BodyMesh9="賽博龐克"
 BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
+BodyMesh12="太空海盜服飾"
 HeadMesh0="臉"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2238,6 +2302,14 @@ BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
 
+[CHR_Masterson_archetype.BodyMesh12]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
+
 [CHR_Tanaka_Archetype]
 CharacterName="田中隼人"
 Description="田中性格複雜，有時還有求死慾望。出生在沖繩，他從小就跟軍隊裡的美國人相處。後來跟父母搬到本州後，美國化的田中無法適應，開始對戲劇產生興趣。大學畢業後他搬到洛杉磯，在爛電影裡演了些小角色，後來又到歐洲找尋一些更好的機會。不過他還是只得到法國幫派電影的反派角色和一些跑龍套。天啟發生後，他似乎把現實跟一些之前扮演過的角色混淆了。這些角色包含黑社會、惡魔，還有好萊塢版的武士道。"
@@ -2254,6 +2326,7 @@ BodyMesh9="蒸汽龐克"
 BodyMesh10="賽博龐克"
 BodyMesh11="女巫獵人"
 BodyMesh12="聖誕老人套裝"
+BodyMesh13="太空海盜服飾"
 HeadMesh0="頭髮"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2372,6 +2445,14 @@ BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
 
+[CHR_Tanaka_archetype.BodyMesh13]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="頭盔"
 AttachmentSkin0="太陽"
@@ -2414,6 +2495,7 @@ BodyMesh8="蒸汽龐克"
 BodyMesh9="賽博龐克"
 BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
+BodyMesh12="太空海盜服飾"
 HeadMesh0="莫霍克"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2525,6 +2607,14 @@ BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
 
+[CHR_Ana_archetype.BodyMesh12]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 眼鏡"
 AttachmentSkin0="浮雕 3D"
@@ -2553,6 +2643,7 @@ BodyMesh9="蒸汽龐克"
 BodyMesh10="賽博龐克"
 BodyMesh11="女巫獵人"
 BodyMesh12="聖誕老人套裝"
+BodyMesh13="太空海盜服飾"
 HeadMesh0="頭髮"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2661,6 +2752,14 @@ BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
 
+[CHR_mark_archetype.BodyMesh13]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="真品"
 HeadSkin1="血腥 5 點鐘"
@@ -2686,6 +2785,7 @@ BodyMesh8="蒸汽龐克"
 BodyMesh9="賽博龐克"
 BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
+BodyMesh12="太空海盜服飾"
 HeadMesh0="臉"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2789,6 +2889,14 @@ BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
 
+[CHR_alan_archetype.BodyMesh12]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="真品"
 HeadSkin1="打起精神！真的？"
@@ -2821,6 +2929,7 @@ BodyMesh8="蒸汽龐克"
 BodyMesh9="賽博龐克"
 BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
+BodyMesh12="太空海盜服飾"
 HeadMesh0="頭髮"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2920,6 +3029,14 @@ BodySkin2="藍"
 BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
+
+[CHR_strasser_archetype.BodyMesh12]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑鋼"
@@ -3095,6 +3212,7 @@ BodyMesh8="蒸汽龐克"
 BodyMesh9="賽博龐克"
 BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
+BodyMesh12="太空海盜服飾"
 HeadMesh0="預設頭部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3198,6 +3316,14 @@ BodySkin2="藍"
 BodySkin3="綠"
 BodySkin4="白"
 BodySkin5="黃"
+
+[CHR_rockabilly_archetype.BodyMesh12]
+BodySkin0="橄欖綠"
+BodySkin1="深蓝色"
+BodySkin2="血紅"
+BodySkin3="青檸"
+BodySkin4="薰衣草"
+BodySkin5="紅橘"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑"
@@ -5675,3 +5801,189 @@ AttachmentSkin2="粉紅"
 AttachmentSkin3="紫色"
 AttachmentSkin4="白"
 AttachmentSkin5="珍貴"
+
+[Cosmetic_Neon_Headphones_ARCH]
+Attachment="耳機"
+AttachmentSkin0="霓虹"
+AttachmentSkin1="彩虹"
+AttachmentSkin2="霓虹RGB"
+AttachmentSkin3="彩虹RGB"
+
+[Cosmetic_Retro_Sign_ARCH]
+Attachment="逃生背包"
+AttachmentSkin0="霓虹"
+AttachmentSkin1="彩虹"
+AttachmentSkin2="霓虹RGB"
+AttachmentSkin3="彩虹RGB"
+
+[Cosmetic_Retro_TV_ARCH]
+Attachment="TV背包"
+AttachmentSkin0="霓虹"
+AttachmentSkin1="彩虹"
+AttachmentSkin2="霓虹RGB"
+AttachmentSkin3="彩虹RGB"
+
+[Cosmetic_Retro_Boombox_ARCH]
+Attachment="手提音響"
+AttachmentSkin0="霓虹"
+AttachmentSkin1="彩虹"
+AttachmentSkin2="霓虹RGB"
+AttachmentSkin3="彩虹RGB"
+
+[Cosmetic_Retro_Watch_ARCH]
+Attachment="能量手錶"
+AttachmentSkin0="霓虹"
+AttachmentSkin1="彩虹"
+AttachmentSkin2="霓虹RGB"
+AttachmentSkin3="彩虹RGB"
+
+[Cosmetic_Neon_Display_ARCH]
+Attachment="背包顯示"
+AttachmentSkin0="支援"
+AttachmentSkin1="殲滅"
+AttachmentSkin2="醫療"
+AttachmentSkin3="佛斯特的驚喜"
+
+[Cosmetic_Retro_Helmet_ARCH]
+Attachment="橄欖球頭盔"
+AttachmentSkin0="霓虹"
+AttachmentSkin1="彩虹"
+AttachmentSkin2="霓虹RGB"
+AttachmentSkin3="彩虹RGB"
+
+[Cosmetic_Neon_CylinderHat_ARCH]
+Attachment="大禮帽"
+AttachmentSkin0="霓虹"
+AttachmentSkin1="彩虹"
+AttachmentSkin2="霓虹RGB"
+AttachmentSkin3="彩虹RGB"
+
+[Cosmetic_Neon_Armband_ARCH]
+Attachment="Horzine臂環"
+AttachmentSkin0="霓虹"
+AttachmentSkin1="彩虹"
+AttachmentSkin2="霓虹RGB"
+AttachmentSkin3="彩虹RGB"
+
+[Cosmetic_Neon_Cap_ARCH]
+Attachment="Horzine帽子"
+AttachmentSkin0="霓虹"
+AttachmentSkin1="彩虹"
+AttachmentSkin2="霓虹RGB"
+AttachmentSkin3="彩虹RGB"
+
+[Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
+Attachment="太空海盜羽毛禮帽"
+AttachmentSkin0="海軍藍"
+AttachmentSkin1="黑"
+AttachmentSkin2="綠"
+AttachmentSkin3="紅"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_SpacePirate_GoggleDreads_ARCH]
+Attachment="太空海盜恐怖護目鏡"
+AttachmentSkin0="海軍藍"
+AttachmentSkin1="骷髏頭"
+AttachmentSkin2="條紋"
+AttachmentSkin3="棕金"
+AttachmentSkin4="金銀"
+
+[Cosmetic_SpacePirate_TricornHat_ARCH]
+Attachment="太空海盜三角帽"
+AttachmentSkin0="棕"
+AttachmentSkin1="黑"
+AttachmentSkin2="綠"
+AttachmentSkin3="紅"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_SpacePirate_RumHead_ARCH]
+Attachment="太空海盜蘭姆酒頭"
+AttachmentSkin0="木頭"
+AttachmentSkin1="炸藥"
+AttachmentSkin2="木炭"
+AttachmentSkin3="王牌黑桃"
+AttachmentSkin4="彩虹"
+
+[Cosmetic_SpacePirate_SkullBeard_ARCH]
+Attachment="太空海盜骷髏頭鬍子"
+AttachmentSkin0="海軍藍"
+AttachmentSkin1="黑"
+AttachmentSkin2="綠"
+AttachmentSkin3="長老"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_SpacePirate_GuyChomper_ARCH]
+Attachment="太空海盜咀嚼者"
+AttachmentSkin0="蔚藍"
+AttachmentSkin1="水藍"
+AttachmentSkin2="白化"
+AttachmentSkin3="條紋"
+AttachmentSkin4="巨齒鯊"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_ARCH]
+Attachment="太空海盜背包"
+AttachmentSkin0="太空猴子"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Alberts_ARCH]
+Attachment="太空海盜背包"
+AttachmentSkin0="太空猴子"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Coleman_ARCH]
+Attachment="太空海盜背包"
+AttachmentSkin0="太空猴子"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_JagerHorn_ARCH]
+Attachment="太空海盜背包"
+AttachmentSkin0="太空猴子"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Knight_ARCH]
+Attachment="太空海盜背包"
+AttachmentSkin0="太空猴子"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_MrFoster_ARCH]
+Attachment="太空海盜背包"
+AttachmentSkin0="太空猴子"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_MrsFoster_ARCH]
+Attachment="太空海盜背包"
+AttachmentSkin0="太空猴子"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_RockabillyGirl_ARCH]
+Attachment="太空海盜背包"
+AttachmentSkin0="太空猴子"
+
+[Cosmetic_SpacePirate_MaleCaptainHat_ARCH]
+Attachment="俠盜帽"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="深蓝色"
+AttachmentSkin2="血紅"
+AttachmentSkin3="青檸"
+AttachmentSkin4="薰衣草"
+AttachmentSkin5="紅橘"
+
+[Cosmetic_SpacePirate_FemaleCaptainHat_ARCH]
+Attachment="俠盜帽"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="深蓝色"
+AttachmentSkin2="血紅"
+AttachmentSkin3="青檸"
+AttachmentSkin4="薰衣草"
+AttachmentSkin5="紅橘"
+
+[Cosmetic_SpacePirate_MaleCaptainMask_ARCH]
+Attachment="交叉骨面具"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="深蓝色"
+AttachmentSkin2="血紅"
+AttachmentSkin3="青檸"
+AttachmentSkin4="薰衣草"
+AttachmentSkin5="紅橘"
+
+[Cosmetic_SpacePirate_FemaleCaptainMask_ARCH]
+Attachment="交叉骨面具"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="深蓝色"
+AttachmentSkin2="血紅"
+AttachmentSkin3="青檸"
+AttachmentSkin4="薰衣草"
+AttachmentSkin5="紅橘"

@@ -689,14 +689,44 @@ SharedUnlockSource="진압용 방패 & G18 무기 번들, 크리스마스 연휴
 [KFWeap_AssaultRifle_HRGIncendiaryRifle]
 ItemName="HRG 소이탄 소총"
 ItemCategory="돌격소총"
-ItemDescription="•사격 모드는 전자동 전용.\n•대체 사격 시 소이탄 발사.\n•폭발과 더 큰 폭발 중에 선택을 못하신 분에게 권합니다."
+ItemDescription="•사격 모드는 전자동 전용입니다.\n•대체 사격 시 소이탄을 발사합니다.\n•크건 작건 폭발을 좋아하는 플레이어에게 이상적입니다."
 SecondaryAmmo="M203 소이탄"
 
 [KFWeap_Bow_CompoundBow]
 ItemName="콤파운드 활"
 ItemCategory="보우"
-ItemDescription="•사격 모드는 차지 샷 전용.\n•길게 누를수록 범위와 데미지 증가.\n•대체 사격 시 날카로운 화살과 냉기 화살 사이 전환합니다.\n•큐피드가 될 때 더 많은 펀치가 필요합니다."
+ItemDescription="•사격 모드는 차지 샷 전용입니다.\n•길게 누를수록 범위와 데미지가 증가합니다.\n•대체 사격 시 날카로운 화살과 냉기 화살 사이 전환됩니다.\n•큐피드가 될 때 더 많은 펀치가 필요합니다."
 SharedUnlockSource="콤파운드 활 무기 번들"
+
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="HRG 카붐스틱"
+ItemCategory="산탄총"
+ItemDescription="•기본 사격은 단발 전용입니다.\n•대체 사격 시 두 총구에서 한 번에 총알을 발사합니다.\n•경험치를 증가시키는 폭발 탄약이 포함되어 있습니다."
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="나팔총"
+ItemCategory="폭발물"
+ItemDescription="•기본 사격은 캐논볼을 발사합니다.\n•기본 사격을 0.1초간 누르면 캐논볼이 폭발하지 않도록 할 수 있습니다. 캐논볼은 발사 시 폭발합니다.\n•대체 사격 시 캐논볼 파편을 발사합니다.\n•의족과 앵무새는 별도로 판매합니다!"
+SharedUnlockSource="나팔총 무기 번들"
+
+[KFWeap_Pistol_G18C]
+ItemName="글록 18c"
+ItemCategory="서브머신건"
+ItemDescription="•완전 자동과 반자동 발사 모드 중 선택할 수 있습니다.\n•주의: 사용 시 자신이 곧 법이라고 선언하고 싶어지는 충동을 통제하지 못할 수 있습니다."
+SharedUnlockSource="싱글 앤 듀얼 글록 18C 무기 번들"
+
+[KFWeap_Pistol_DualG18]
+ItemName="듀얼 글록 18c"
+ItemCategory="서브머신건"
+ItemDescription="•발사 모드는 완전 자동 전용입니다.\n•아이언 사이트 사용 시 대체 사격 중 조준 방식을 변경합니다.\n•주의: 사용 시 자신이 곧 법이라고 선언하고 싶어지는 충동을 통제하지 못할 수 있습니다."
+SharedUnlockSource="싱글 앤 듀얼 글록 18C 무기 번들"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="HRG 테스론처"
+ItemCategory="돌격소총"
+ItemDescription="•발사 모드는 완전 자동 전용입니다.\n•대체 사격 시 EMP 수류탄을 발사합니다.\n•이 전기를 이용해 수백 명의 제드를 학살하면서도 환경에는 전혀 영향을 주지 않을 수 있습니다."
+SecondaryAmmo="EMP 수류탄"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

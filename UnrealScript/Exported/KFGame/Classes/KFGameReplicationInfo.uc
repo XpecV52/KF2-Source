@@ -62,7 +62,12 @@ var repnotify bool bWaveStarted;
 /** Replicates at beginning and end of waves to change track / track type */
 var repnotify byte MusicTrackRepCount;
 
-var repnotify byte RepKickVotes;
+var repnotify byte RepKickYesVotes;
+var repnotify byte RepKickNoVotes;
+
+var repnotify byte RepSkipTraderYesVotes;
+var repnotify byte RepSkipTraderNoVotes;
+
 /** whether the current game can use stats */
 var private const bool bIsUnrankedGame;
 
@@ -112,7 +117,7 @@ var repnotify		byte						BossIndex;
 var					KFCharacterInfo_Monster		CachedBossArch;
 
 /** Combined from the PRI unlocks, but does not subtract logged out players */
-var private const byte GameSharedUnlocks;
+var private const int GameSharedUnlocks;
 
 /************************************
 * Wave Debugging
@@ -136,7 +141,7 @@ var                 bool                        bDebugSpawnManager;
 var                 bool                        bTrackingMapEnabled;
 
 /************************************
-* @name 	Map/Kick vote Collector
+* @name 	Map/Kick/Trader vote Collector
 ************************************/
 
 var KFVoteCollector				VoteCollector;
@@ -353,6 +358,11 @@ replication
 	if ( bNetInitial && Role == ROLE_Authority )
 		ServerAdInfo;
 
+	if( bNetDirty && VoteCollector != none && VoteCollector.bIsKickVoteInProgress)
+		RepKickNoVotes, RepKickYesVotes;
+	if( bNetDirty && VoteCollector != none && VoteCollector.bIsSkipTraderVoteInProgress)
+		RepSkipTraderNoVotes, RepSkipTraderYesVotes;
+
 // !SHIPPING_PC_GAME && !FINAL_RELEASE in C++
 	if ( bDebugSpawnManager && bNetDirty )
 		CurrentSineMod, CurrentNextSpawnTime, CurrentSineWavFreq, CurrentNextSpawnTimeMod,
@@ -362,8 +372,6 @@ replication
         bTrackingMapEnabled;
 	if ( bTrackingMapEnabled && bNetDirty )
 		SpawnVolumeInfos, ZedInfos, HumanInfos, FailedSpawnInfos, PickupInfos;
-	if( bNetDirty && VoteCollector != none && VoteCollector.bIsVoteInProgress)
-		RepKickVotes;
     if( bNetDirty )
         bGameConductorGraphingEnabled;
 	if ( bGameConductorGraphingEnabled && bNetDirty )
@@ -428,9 +436,13 @@ simulated event ReplicatedEvent(name VarName)
     		WarnInternal(GetFuncName() @ "Game is UNRANKED!");
     	}
     }
-    else if( VarName == nameOf(RepKickVotes) )
+    else if( VarName == nameOf(RepKickYesVotes) || VarName == nameOf(RepKickNoVotes) )
     {
-    	VoteCollector.UnPackVotes();
+    	VoteCollector.UnPackKickVotes();
+    }
+    else if( VarName == nameOf(RepSkipTraderYesVotes) || VarName == nameOf(RepSkipTraderNoVotes) )
+    {
+    	VoteCollector.UnPackSkipTraderVotes();
     }
     else if( VarName == 'ServerAdInfo')
 	{
@@ -1739,6 +1751,22 @@ reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)
 	if(VoteCollector != none)
 	{
 		VoteCollector.RecieveVoteKick(PRI, bKick);
+	}
+}
+
+function ServerStartVoteSkipTrader(PlayerReplicationInfo PRI)
+{
+	if(VoteCollector != none)
+	{
+		VoteCollector.ServerStartVoteSkipTrader(PRI);
+	}
+}
+
+reliable server function RecieveVoteSkipTrader(PlayerReplicationInfo PRI, bool bSkipTrader)
+{
+	if(VoteCollector != none)
+	{
+		VoteCollector.RecieveVoteSkipTrader(PRI, bSkipTrader);
 	}
 }
 

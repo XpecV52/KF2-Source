@@ -291,7 +291,7 @@ MultiplayerMenuString="CRIADOR DE PARTIDA"
 LeaveMenuString="Se você sair deste menu, o grupo será desfeito. Ir para o criador de partidas"
 NameString="NOME"
 RefreshString="ATUALIZAR"
-GamesFoundString="JOGOS ENCONTRADOS:"
+GamesFoundString="JOGOS ACHADO:"
 
 ServerBrowserString="SERVIDOR LISTA"
 
@@ -1015,6 +1015,8 @@ ThrowString="ARMA DE LANÇAMENTO"
 
 [KFGFxWidget_KickVote]
 VoteKickString="Expulsar jogador?"
+VoteSkipTraderString="Ignorar comerciante?"
+VoteSkipTraderDetailString="quer ignorar a contagem regressiva"
 
 [KFLocalMessage_PlayerKills]
 KilledString="abateu"
@@ -1399,6 +1401,7 @@ LoggedOutAsAdminString=" desconectou-se como admin do servidor"
 MustLoginToCheatString="É necessário estar conectado para ativar trapaças"
 CheatsEnabledString=" ativou trapaças. Os atributos foram desativados para esta sessão"
 ServerMaintenanceString="O servidor será desligado para manutenção no fim do jogo"
+OtherVoteInProgressString="Impossível iniciar uma nova votação até resolver a atual"
 KickVoteStartedString="Votação iniciada para expulsar:"
 KickVoteSucceededString="Sucesso na votação para expulsar:"
 KickVoteFailedString="Falha na votação para expulsar:"
@@ -1416,8 +1419,17 @@ KickVoteNoSpectatorsString="Espectadores não podem iniciar uma votação de exp
 KickedFromServerString="Você foi removido do servidor."
 BannedFromServerString="Você foi removido deste servidor. Não é possível reentrar no momento"
 ServerNoLongerAvailableString="O servidor não está mais disponível para entrar"
-SkipTraderTimeString="IGNORAR COMERCIANTE ativado. Vote no menu de jogo. Todos os jogadores devem aceitar."
+SkipTraderVoteStartedString="iniciou uma votação para ignorar o comerciante"
+SkipTraderTimeString="IGNORAR COMERCIANTE ativado. Vote no menu de jogo.  Todos os jogadores devem aceitar."
 SkipTraderSuccessString="Votação para ignorar o comerciante bem sucedida!"
+SkipTraiderVoteFailedString="Falha na votação para ignorar o comerciante!"
+SkipTraderVoteNoSpectatorsString="Os espectadores não podem iniciar votações para ignorar o comerciante"
+SkipTraderIsNotOpenString="Não é possível ignorar o comerciante durante uma leva"
+SkipTraderVoteInProgressString="Não foi possível iniciar a votação de ignorar o comerciante porque já há uma em andamento."
+SkipTraderVoteYesReceivedString="Você votou para ignorar o comerciante"
+SkipTraderVoteNoReceivedString="Você votou para não ignorar o comerciante"
+SkipTraderNoEnoughTimeString="Tempo insuficiente para iniciar uma votação para ignorar o comerciante"
+SkipTraderThisUserAlreadyStartedAVoteString="Não é possível iniciar uma nova votação para ignorar o comerciante até a próxima fase do comerciante"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Você recebeu munição de"
@@ -1760,7 +1772,7 @@ Spartan="HORA DOS ZEDS - Espartano"
 SpartanDescription="Durante a hora dos Zeds, você ataca com armas da classe e se movimenta em tempo real."
 
 Rage="HORA DOS ZEDS - Fúria do berserker"
-RageDescription="Sempre que a hora dos Zed é ativada ou atualizada, cura 50% de vida e força os Zeds próximos a fugirem."
+RageDescription="Sempre que a hora dos Zeds é ativada ou atualizada, cura 50% de vida e imobiliza todos os Zeds próximos."
 
 [KFPerk_Commando]
 PerkName="Comando"
@@ -2033,7 +2045,7 @@ Stun="Choque balístico"
 StunDescription="Aumenta em 100% o poder de atordoamento de armas de classe."
 
 RhythmMethod="Acaba com eles"
-RhythmMethodDescription="Cada tiro na cabeça consecutivo com arma de classe aumenta em 10% o dano até 50%. "
+RhythmMethodDescription="Cada tiro na cabeça consecutivo com arma de classe aumenta em 10% o dano até 50%.  "
 
 TacticalReload="Recarga tática"
 TacticalReloadDescription="Aumenta a velocidade de recarga com armas de classe."
@@ -2064,7 +2076,7 @@ Passives[1]=(Title="Dano de espingarda",Description="Aumenta em %x% o dano de ar
 Passives[2]=(Title="Penetração de espingarda",Description="Aumenta em %x% a penetração de arma de classe por nível");
 Passives[3]=(Title="Munição",Description="Aumenta em 15% a munição mais %x% por nível");
 Passives[4]=(Title="Maior capacidade de peso",Description="Cap. peso aumentada em 1 a cada 5 níveis");
-Passives[5]=(Title="Mochila munição + conserto de porta",Description="Uma vez por rodada, todos os jogadores podem pegar munição da mochila e consertar portas destruídas");
+Passives[5]=(Title="Mochila munição + reparo porta",Description="Uma vez por rodada, todos os jogadores podem pegar munição da mochila e consertar portas destruídas");
 
 EXPAction1="Causando dano de arma de apoio"
 EXPAction2="Solda de portas"
@@ -2094,7 +2106,7 @@ ConcussionRounds="Rodadas de concussão"
 ConcussionRoundsDescription="Aumenta em 150% o poder de derrubar para armas de classe."
 
 Perforate="HORA DOS ZEDS - Penetrante"
-PerforateDescription="Durante a hora dos Zeds, não sofre redução de dano em tiros que atravessam Zeds e aumenta a penetração com armas de classe."
+PerforateDescription="Durante a hora dos Zeds, suas armas de classe não sofrem redução de dano da penetração e você penetra por todos os Zeds."
 
 Barrage="HORA DOS ZEDS - Barragem"
 BarrageDescription="Durante a hora dos Zeds, suas armas de classe atiram quase que em tempo real."
@@ -2172,7 +2184,7 @@ FieldMedic="Treinamento médico"
 FieldMedicDescription="Aumenta em 30% a potência de qualquer cura e diminui em 50% o tempo de recarga da seringa e de dardos curativos."
 
 MeleeExpert="Especialista em corpo a corpo"
-MeleeExpertDescription="Aumenta em 20% a velocidade de ataque corpo a corpo, concede 50% mais dano e movimenta 25% mais rápido ao usar qualquer arma corpo a corpo."
+MeleeExpertDescription="Aumenta em 20% a velocidade de ataque corpo a corpo, concede 75% mais dano e movimenta 25% mais rápido ao usar qualquer arma corpo a corpo."
 
 AmmoVest="Colete de munição"
 AmmoVestDescription="Carrega até 15% mais munição de todas as armas e as granadas se tornam granadas de cura."
@@ -2190,7 +2202,7 @@ Madman="HORA DOS ZEDS - Maluco"
 MadmanDescription="Durante a hora dos Zeds, todas as armas atiram 3x mais rápido."
 
 IncapMaster="HORA DOS ZEDS - Confinamento"
-IncapMasterDescription="Durante a hora dos Zeds, as taxas de derrubada, tropeção e atordoamento das suas armas aumentam ao máximo."
+IncapMasterDescription="Durante a hora dos Zeds, todas as armas podem atordoar qualquer Zed."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2705,6 +2717,20 @@ AllCompleteRewardDescriptionString="Aparências de Conjunto Duplo Dinâmico AA12
 
 ChanceDropDescriptionStrings[0]="Bilhete Ciberpunk"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado Ciberpunk"
+
+[KFGFxSpecialEventObjectivesContainer_Summer2020]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Macacos me mordam!",DescriptionString="Mate 15 chefes em qualquer mapa ou modo")
+SpecialEventObjectiveInfoList[1]=(TitleString="Avante semanal",DescriptionString="Conclua o semanal em Desolação")
+SpecialEventObjectiveInfoList[2]=(TitleString="Iarr! Acende aí!",DescriptionString="Ative o gerador de força em Desolação")
+SpecialEventObjectiveInfoList[3]=(TitleString="Cheio de dobrões",DescriptionString="Ganhe 75.000 de grana em abates, recompensas e curas em Desolação")
+SpecialEventObjectiveInfoList[4]=(TitleString="Saque infinito",DescriptionString="Conclua a 15ª leva na Desolação no modo Difícil Infinito ou maior")
+
+AllCompleteRewardDescriptionString="Pirata Espacial | Mochila do Macaco Espacial"
+
+ChanceDropDescriptionStrings[0]="Bilhete de Verão"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado de Verão"
 
 ;============================================
 ; Daily Localization
@@ -3300,6 +3326,9 @@ DisplayName="Sanatório"
 
 [KF-Biolapse KFMapSummary]
 DisplayName="Biolapso"
+
+[KF-Desolation KFMapSummary]
+DisplayName="Desolação"
 
 [KFMapInfo]
 ; defaults

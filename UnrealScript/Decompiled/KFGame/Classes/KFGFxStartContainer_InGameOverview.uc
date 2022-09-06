@@ -197,7 +197,7 @@ function UpdateSharedContent()
                 TempWeaponObj.SetString("iconPath", "img://" $ UnlockManagerClass.default.SharedContentList[I].IconPath);
                 UnlockManagerClass.static.GetSharedContentPlayerList(byte(I), WeaponSharedList);
                 J = 0;
-                J0x3DA:
+                J0x3DE:
 
                 if(J < WeaponSharedList.Length)
                 {
@@ -210,7 +210,7 @@ function UpdateSharedContent()
                         PlayerNameList = (PlayerNameList $ ",") @ WeaponSharedList[J].PlayerName;
                     }
                     ++ J;
-                    goto J0x3DA;
+                    goto J0x3DE;
                 }
                 TempWeaponObj.SetString("names", PlayerNameList);
                 DataProvider.SetElementObject(ItemCount, TempWeaponObj);

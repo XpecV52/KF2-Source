@@ -550,7 +550,8 @@ function NotifyZedTimeStarted()
 			KFAIC = KFAIController(P.Controller);
 			if( KFAIC != none )
 			{
-				KFAIC.DoFleeFrom( OwnerPawn, static.GetRageFleeDuration(), static.GetRageFleeDistance(),, true );
+				KFAIC.DoPauseAI( static.GetRageFleeDuration(), true, false, true);
+				//KFAIC.DoFleeFrom( OwnerPawn, static.GetRageFleeDuration(), static.GetRageFleeDistance(),, true );
 				bScaredAI = true;
 			}
 			else
@@ -843,6 +844,26 @@ simulated function LogPerkSkills()
 
 	if ( bLogPerk )
 	{
+	}
+}
+
+static function PrepareExplosive( Pawn ProjOwner, KFProjectile Proj, optional float AuxRadiusMod = 1.0f, optional float AuxDmgMod = 1.0f )
+{
+    local KFPlayerController KFPC;
+    local KFPerk InstigatorPerk;
+
+    if( ProjOwner != none )
+    {
+	    // Change the radius and damage based on the perk
+	    if( ProjOwner.Role == ROLE_Authority )
+	    {
+	    	KFPC = KFPlayerController( ProjOwner.Controller );
+	    	if( KFPC != none )
+	    	{
+		        InstigatorPerk = KFPC.GetPerk();
+		        Proj.ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier() * AuxRadiusMod;
+		    }
+	    }
 	}
 }
 

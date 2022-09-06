@@ -86,8 +86,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.010000
    Spread(1)=0.010000
-   InstantHitDamage(0)=25.000000
-   InstantHitDamage(1)=25.000000
+   InstantHitDamage(0)=28.000000
+   InstantHitDamage(1)=28.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Fire_Mac10'

@@ -635,7 +635,7 @@ ItemCategory="Materiały wybuchowe"
 ItemDescription="•Wystrzeliwuje granaty.\n•Granaty eksplodują po trafieniu w cel.\n•Broń dla tych, którzy sklejenie sześciu granatników M79 taśmą uważają za nieeleganckie."
 
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
-ItemName="Karabin HMTech-501 z granatnikiem"
+ItemName="Karabin HMTech-501"
 ItemCategory="Karabin szturmowy"
 ItemDescription="•Strzela wyłącznie ogniem ciągłym.\n•Alt. — wystrzeliwuje granaty medyczne.\n•Jeśli lubisz ciskać granatami w swoich, to broń dla ciebie!"
 SecondaryAmmo="Granat medyczny"
@@ -689,7 +689,7 @@ SharedUnlockSource="Zestaw broni tarcza policyjna z G18, zestaw broni Świątecz
 [KFWeap_AssaultRifle_HRGIncendiaryRifle]
 ItemName="Karabin zapalający HRG"
 ItemCategory="Karabin szturmowy"
-ItemDescription="•Tryb ataku: tylko ogień ciągły.\n•Tryb alternatywny wystrzeliwuje granaty zapalające.\n•Dla tych, którzy nie potrafią wybrać między ogniem i dokładką ognia."
+ItemDescription="•Tryb ataku: tylko ogień ciągły.\n•Tryb alternatywny wystrzeliwuje granaty zapalające.\n•Dla tych, którzy nie potrafią wybrać między ogniem a dokładką ognia."
 SecondaryAmmo="Granat zapalający do M203"
 
 [KFWeap_Bow_CompoundBow]
@@ -697,6 +697,36 @@ ItemName="Łuk bloczkowy"
 ItemCategory="Łuk"
 ItemDescription="•Tryb ataku: tylko strzały ładowane.\n•Zasięg i obrażenia rosną wraz z długością ładowania.\n•Tryb alternatywny przełącza między strzałami ostrymi i kriogenicznymi.\n•Gdy Kupidyn musi trochę przywalić."
 SharedUnlockSource="Zestaw broni łuk bloczkowy"
+
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="Dwururka HRG"
+ItemCategory="Strzelba"
+ItemDescription="•Podstawowy tryb ognia to strzał z jednej lufy.\n•Tryb alternatywny umożliwia salwę z obu luf jednocześnie.\n•Załączona jest wybuchowa amunicja, która wyostrza zabawę."
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="Garłacz"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="•Podstawowy atak wystrzeliwuje kulę armatnią.\nPrzytrzymaj podstawowy atak przez 0,1 sekundy, aby kula armatnia nie wybuchła. Wybuchnie po puszczeniu.\n• Dodatkowy atak strzela odłamkami kul armatnich.\n•Drewniana noga i papuga sprzedawane osobno!"
+SharedUnlockSource="Zestaw broni garłacza"
+
+[KFWeap_Pistol_G18C]
+ItemName="Glock 18c"
+ItemCategory="Pistolet maszynowy"
+ItemDescription="•Tryb strzelania: ogień ciągły lub pojedynczy.\n•Uwaga: używanie grozi niekontrolowanym identyfikowaniem się z uosobieniem prawa."
+SharedUnlockSource="Zestaw broni: jeden i dwa pistolety Glock 18c"
+
+[KFWeap_Pistol_DualG18]
+ItemName="Dwa pistolety Glock 18c"
+ItemCategory="Pistolet maszynowy"
+ItemDescription="•Tryb strzelania: tylko ogień ciągły.\n•Atak alternatywny zmienia styl celowania przy korzystaniu z celownika mechanicznego.\n•Uwaga: używanie grozi niekontrolowanym identyfikowaniem się z uosobieniem prawa."
+SharedUnlockSource="Zestaw broni: jeden i dwa pistolety Glock 18c"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="Miotacz Tesli HRG"
+ItemCategory="Karabin szturmowy"
+ItemDescription="•Tryb strzelania: tylko ogień ciągły.\n• Atak alternatywny wystrzeliwuje granaty EMP.\n• Za pomocą tej ekologicznej broni elektrycznej możesz zabić setki zetów bez szkody dla planety."
+SecondaryAmmo="Granat EMP"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

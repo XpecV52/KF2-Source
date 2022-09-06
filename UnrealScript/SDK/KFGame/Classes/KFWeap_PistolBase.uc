@@ -17,6 +17,9 @@ class KFWeap_PistolBase extends KFWeapon
 // Whether this weapon is a revolver. Enables revolver functionality like rotating cylinder and noticeably-used shells
 var bool bRevolver;
 
+// Whether this revolver resets its rotation at the start of the reload state
+var bool bUseDefaultResetOnReload;
+
 // Meshes to indicate which rounds have been fired or not
 var SkeletalMesh UnusedBulletMeshTemplate;
 var SkeletalMesh UsedBulletMeshTemplate;
@@ -88,7 +91,7 @@ simulated state Reloading
 	{
 		super.BeginState( PreviousStateName );
 
-		if( bRevolver )
+		if( bRevolver && bUseDefaultResetOnReload )
 		{
 			ResetCylinder();
 		}
@@ -119,8 +122,11 @@ simulated event PostInitAnimTreeRevolver( SkeletalMeshComponent SkelComp )
 
 simulated function ConsumeAmmoRevolver()
 {
-	CheckCylinderRotation( CylinderRotInfo );
-	CylinderRotInfo.State = CYLINDERSTATE_PENDING;
+	if(bUseDefaultResetOnReload)
+	{
+		CheckCylinderRotation( CylinderRotInfo );
+		CylinderRotInfo.State = CYLINDERSTATE_PENDING;
+	}
 }
 
 simulated function CheckCylinderRotation( out CylinderRotationInfo RotInfo, optional bool bResetState )
@@ -140,6 +146,12 @@ simulated function CheckCylinderRotation( out CylinderRotationInfo RotInfo, opti
 simulated function ANIMNOTIFY_RotateCylinder()
 {
 	RotateCylinder( CylinderRotInfo );
+}
+
+/** Reset the rotation of the cylinder via notification, ddefault revolvers do not need this */
+simulated function ANIMNOTIFY_ResetCylinder()
+{
+	ResetCylinder();
 }
 
 /** Initiates cylinder rotation process */
@@ -342,4 +354,7 @@ DefaultProperties
 
 	// Aim Assist
 	AimCorrectionSize=40.f
+
+	// All revolvers resets their rotation by default
+	bUseDefaultResetOnReload=true
 }

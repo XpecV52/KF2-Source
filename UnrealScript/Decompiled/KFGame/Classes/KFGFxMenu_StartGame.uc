@@ -190,7 +190,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 1:
             return Class'KFGFxSpecialEventObjectivesContainer_Spring2020';
         case 2:
-            return Class'KFGFxSummer2019ObjectivesContainer';
+            return Class'KFGFxSpecialEventObjectivesContainer_Summer2020';
         case 3:
             return Class'KFGFxFall2019ObjectivesContainer';
         case 4:
@@ -467,6 +467,7 @@ function string GetMapSource(string MapName)
     MapData = Class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
     if(MapData != none)
     {
+        LogInternal(MapData.ScreenshotPathName);
         return "img://" $ MapData.ScreenshotPathName;        
     }
     else
@@ -1767,5 +1768,6 @@ defaultproperties
     StockMaps(27)="kf-spillway"
     StockMaps(28)="kf-steamfortress"
     StockMaps(29)="kf-ashwoodasylum"
+    StockMaps(30)="kf-desolation"
     SubWidgetBindings=/* Array type was not detected. */
 }

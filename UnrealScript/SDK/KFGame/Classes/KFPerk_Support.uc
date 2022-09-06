@@ -855,6 +855,7 @@ DefaultProperties
    	ZedTimeModifyingStates(1)="WeaponBurstFiring"
    	ZedTimeModifyingStates(2)="WeaponSingleFiring"
    	ZedTimeModifyingStates(3)="WeaponAltFiring"
+   	ZedTimeModifyingStates(4)="BlunderbussDeployAndDetonate"
 
 	HighCapMagExemptList(0)="KFWeap_Shotgun_DoubleBarrel"
 	HighCapMagExemptList(1)="KFWeap_HRG_Revolver_Buckshot"

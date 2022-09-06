@@ -3074,4 +3074,116 @@ defaultproperties
 
 // Standard Compound Bow
 	Skins.Add((Id=8169, Weapondef=class'KFWeapDef_CompoundBow', MIC_1P=("WEP_SkinSet30_MAT.Wep_1stP_CompoundBow_MIC"), MIC_3P="WEP_SkinSet30_MAT.Wep_3rdP_CompoundBow_MIC", MIC_Pickup="WEP_SkinSet30_MAT.Wep_CompoundBow_Pickup_MIC"))
+
+//Neon Killerwatt
+    Skins.Add((Id=8191, Weapondef=class'KFWeapDef_LazerCutter', MIC_1P=("WEP_SkinSet31_MAT.neon_lasercutter.Neon_LaserCutter_Optic_1P_Mint_MIC", "WEP_SkinSet31_MAT.neon_lasercutter.Neon_LaserCutter_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neon_lasercutter.Neon_LaserCutter_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neon_lasercutter.Neon_LaserCutter_3P_Pickup_MIC")) 
+
+//Neon Seal Squeal
+    Skins.Add((Id=8192, Weapondef=class'KFWeapDef_SealSqueal', MIC_1P=("WEP_SkinSet31_MAT.neon_sealsqueal.Neon_SealSqueal_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neon_sealsqueal.Neon_SealSqueal_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neon_sealsqueal.Neon_SealSqueal_3P_Pickup_MIC")) 
+
+//Neon Winchester 1894
+    Skins.Add((Id=8193, Weapondef=class'KFWeapDef_Winchester1894', MIC_1P=("WEP_SkinSet31_MAT.neon_winchester.Neon_Winchester_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neon_winchester.Neon_Winchester_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neon_winchester.Neon_Winchester_3P_Pickup_MIC")) 
+
+//Neon Helios Rifle
+    Skins.Add((Id=8194, Weapondef=class'KFWeapDef_MicrowaveRifle', MIC_1P=("WEP_SkinSet31_MAT.neon_microwaveassault.Neon_MicrowaveAssault_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neon_microwaveassault.Neon_MicrowaveAssault_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neon_microwaveassault.Neon_MicrowaveAssault_3P_Pickup_MIC")) 
+
+//Neon Spitfire
+    Skins.Add((Id=8195, Weapondef=class'KFWeapDef_Flaregun', MIC_1P=("WEP_SkinSet31_MAT.neon_flaregun.Neon_FlareGun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neon_flaregun.Neon_FlareGun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neon_flaregun.Neon_FlareGun_3P_Pickup_MIC")) 
+
+//Neon VLAD-1000 Nailgun
+    Skins.Add((Id=8196, Weapondef=class'KFWeapDef_NailGun', MIC_1P=("WEP_SkinSet31_MAT.neon_nailgun.Neon_Nailgun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neon_nailgun.Neon_Nailgun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neon_nailgun.Neon_Nailgun_3P_Pickup_MIC")) 
+
+//Neon L85A2
+    Skins.Add((Id=8197, Weapondef=class'KFWeapDef_Bullpup', MIC_1P=("WEP_SkinSet31_MAT.neon_l85a2.Neon_L85A2_1P_Mint_MIC", "WEP_SkinSet31_MAT.neon_l85a2.Neon_L85A2_Optic_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neon_l85a2.Neon_L85A2_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neon_l85a2.Neon_L85A2_3P_Pickup_MIC")) 
+
+//Neon Pulverizer
+    Skins.Add((Id=8198, Weapondef=class'KFWeapDef_Pulverizer', MIC_1P=("WEP_SkinSet31_MAT.neon_pulverizer.Neon_Pulverizer_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neon_pulverizer.Neon_Pulverizer_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neon_pulverizer.Neon_Pulverizer_3P_Pickup_MIC")) 
+
+//Neon M79
+    Skins.Add((Id=8199, Weapondef=class'KFWeapDef_M79', MIC_1P=("WEP_SkinSet31_MAT.neon_m79.Neon_M79_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neon_m79.Neon_M79_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neon_m79.Neon_M79_3P_Pickup_MIC")) 
+
+//Neon Hemoclobber
+    Skins.Add((Id=8200, Weapondef=class'KFWeapDef_MedicBat', MIC_1P=("WEP_SkinSet31_MAT.neon_medicbat.Neon_MedicBat_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neon_medicbat.Neon_MedicBat_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neon_medicbat.Neon_MedicBat_3P_Pickup_MIC")) 
+
+//Neon RGB Killerwatt
+    Skins.Add((Id=8201, Weapondef=class'KFWeapDef_LazerCutter', MIC_1P=("WEP_SkinSet31_MAT.neonrgb_lasercutter.NeonRGB_LaserCutter_Optic_1P_Mint_MIC", "WEP_SkinSet31_MAT.neonrgb_lasercutter.NeonRGB_LaserCutter_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neonrgb_lasercutter.NeonRGB_LaserCutter_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neonrgb_lasercutter.NeonRGB_LaserCutter_3P_Pickup_MIC")) 
+
+//Neon RGB Seal Squeal
+    Skins.Add((Id=8202, Weapondef=class'KFWeapDef_SealSqueal', MIC_1P=("WEP_SkinSet31_MAT.neonrgb_sealsqueal.NeonRGB_SealSqueal_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neonrgb_sealsqueal.NeonRGB_SealSqueal_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neonrgb_sealsqueal.NeonRGB_SealSqueal_3P_Pickup_MIC")) 
+
+//Neon RGB Winchester 1894
+    Skins.Add((Id=8203, Weapondef=class'KFWeapDef_Winchester1894', MIC_1P=("WEP_SkinSet31_MAT.neonrgb_winchester.NeonRGB_Winchester_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neonrgb_winchester.NeonRGB_Winchester_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neonrgb_winchester.NeonRGB_Winchester_3P_Pickup_MIC")) 
+
+//Neon RGB Helios Rifle
+    Skins.Add((Id=8204, Weapondef=class'KFWeapDef_MicrowaveRifle', MIC_1P=("WEP_SkinSet31_MAT.neonrgb_microwaveassault.NeonRGB_MicrowaveAssault_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neonrgb_microwaveassault.NeonRGB_MicrowaveAssault_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neonrgb_microwaveassault.NeonRGB_MicrowaveAssault_3P_Pickup_MIC")) 
+
+//Neon RGB Spitfire
+    Skins.Add((Id=8205, Weapondef=class'KFWeapDef_Flaregun', MIC_1P=("WEP_SkinSet31_MAT.neonrgb_flaregun.NeonRGB_FlareGun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neonrgb_flaregun.NeonRGB_FlareGun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neonrgb_flaregun.NeonRGB_FlareGun_3P_Pickup_MIC")) 
+
+//Neon RGB VLAD-1000 Nailgun
+    Skins.Add((Id=8206, Weapondef=class'KFWeapDef_NailGun', MIC_1P=("WEP_SkinSet31_MAT.neonrgb_nailgun.NeonRGB_Nailgun_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neonrgb_nailgun.NeonRGB_Nailgun_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neonrgb_nailgun.NeonRGB_Nailgun_3P_Pickup_MIC")) 
+
+//Neon RGB L85A2
+    Skins.Add((Id=8207, Weapondef=class'KFWeapDef_Bullpup', MIC_1P=("WEP_SkinSet31_MAT.neonrgb_l85a2.NeonRGB_L85A2_1P_Mint_MIC", "WEP_SkinSet31_MAT.neonrgb_l85a2.NeonRGB_L85A2_Optic_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neonrgb_l85a2.NeonRGB_L85A2_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neonrgb_l85a2.NeonRGB_L85A2_3P_Pickup_MIC")) 
+
+//Neon RGB Pulverizer
+    Skins.Add((Id=8208, Weapondef=class'KFWeapDef_Pulverizer', MIC_1P=("WEP_SkinSet31_MAT.neonrgb_pulverizer.NeonRGB_Pulverizer_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neonrgb_pulverizer.NeonRGB_Pulverizer_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neonrgb_pulverizer.NeonRGB_Pulverizer_3P_Pickup_MIC")) 
+
+//Neon RGB M79
+    Skins.Add((Id=8209, Weapondef=class'KFWeapDef_M79', MIC_1P=("WEP_SkinSet31_MAT.neonrgb_m79.NeonRGB_M79_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neonrgb_m79.NeonRGB_M79_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neonrgb_m79.NeonRGB_M79_3P_Pickup_MIC")) 
+
+//Neon RGB Hemoclobber
+    Skins.Add((Id=8210, Weapondef=class'KFWeapDef_MedicBat', MIC_1P=("WEP_SkinSet31_MAT.neonrgb_medicbat.NeonRGB_MedicBat_1P_Mint_MIC"), MIC_3P="WEP_SkinSet31_MAT.neonrgb_medicbat.NeonRGB_MedicBat_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet31_MAT.neonrgb_medicbat.NeonRGB_MedicBat_3P_Pickup_MIC")) 
+	
+//Blunderbuss Standard
+    Skins.Add((Id=8299, Weapondef=class'KFWeapDef_Blunderbuss', MIC_1P=("wep_1p_blunderbuss_mat.Wep_1stP_Blunderbuss_MIC"), MIC_3P="WEP_3P_Blunderbuss_MAT.Wep_3rdP_Blunderbuss_MIC", MIC_Pickup="WEP_3P_Blunderbuss_MAT.Wep_Blunderbuss_Pickup_MIC")) 
+	
+//Blunderbuss Rotten
+    Skins.Add((Id=8300, Weapondef=class'KFWeapDef_Blunderbuss', MIC_1P=("wep_skinset33_mat.Wep_1stP_Blunderbuss_Rotten_MIC"), MIC_3P="wep_skinset33_mat.Wep_3rdP_Blunderbuss_Rotten_MIC", MIC_Pickup="wep_skinset33_mat.Wep_3rdP_Blunderbuss_Rotten_Pickup_MIC")) 
+
+//Blunderbuss Goldenboy
+    Skins.Add((Id=8301, Weapondef=class'KFWeapDef_Blunderbuss', MIC_1P=("wep_skinset33_mat.Wep_1stP_Blunderbuss_Goldenboy_MIC"), MIC_3P="wep_skinset33_mat.Wep_3rdP_Blunderbuss_Goldenboy_MIC", MIC_Pickup="wep_skinset33_mat.Wep_3rdP_Blunderbuss_Goldenboy_Pickup_MIC")) 
+
+//Blunderbuss Inferno
+    Skins.Add((Id=8302, Weapondef=class'KFWeapDef_Blunderbuss', MIC_1P=("wep_skinset33_mat.Wep_1stP_Blunderbuss_Inferno_MIC"), MIC_3P="wep_skinset33_mat.Wep_3rdP_Blunderbuss_Inferno_MIC", MIC_Pickup="wep_skinset33_mat.Wep_3rdP_Blunderbuss_Inferno_Pickup_MIC")) 
+
+//Blunderbuss Jeque
+    Skins.Add((Id=8303, Weapondef=class'KFWeapDef_Blunderbuss', MIC_1P=("wep_skinset33_mat.Wep_1stP_Blunderbuss_Jeque_MIC"), MIC_3P="wep_skinset33_mat.Wep_3rdP_Blunderbuss_Jeque_MIC", MIC_Pickup="wep_skinset33_mat.Wep_3rdP_Blunderbuss_Jeque_Pickup_MIC")) 
+
+//Blunderbuss Silver
+    Skins.Add((Id=8304, Weapondef=class'KFWeapDef_Blunderbuss', MIC_1P=("wep_skinset33_mat.Wep_1stP_Blunderbuss_Silver_MIC"), MIC_3P="wep_skinset33_mat.Wep_3rdP_Blunderbuss_Silver_MIC", MIC_Pickup="wep_skinset33_mat.Wep_3rdP_Blunderbuss_Silver_Pickup_MIC")) 
+
+//Glock18c Standard
+    Skins.Add((Id=8293, Weapondef=class'KFWeapDef_Pistol_G18C', MIC_1P=("WEP_1P_Dual_G18C_MAT.Wep_1stP_Dual_G18C_MIC"), MIC_3P="wep_3p_dual_g18c_mat.Wep_3rdP_Dual_G18C_MIC", MIC_Pickup="wep_3p_dual_g18c_mat.Wep_Dual_G18C_Pickup_MIC")) 
+
+//Glock18c Peppermint
+    Skins.Add((Id=8294, Weapondef=class'KFWeapDef_Pistol_G18C', MIC_1P=("wep_skinset32_mat.Wep_1stP_Dual_G18C_Peppermint_MIC"), MIC_3P="WEP_SkinSet32_MAT.Wep_3rdP_Dual_G18C_Peppermint_MIC", MIC_Pickup="WEP_SkinSet32_MAT.Wep_3rdP_Dual_G18C_Peppermint_Pickup_MIC")) 
+
+//Glock18c Gold Swat
+    Skins.Add((Id=8295, Weapondef=class'KFWeapDef_Pistol_G18C', MIC_1P=("wep_skinset32_mat.Wep_1stP_Dual_G18C_Swat_MIC"), MIC_3P="WEP_SkinSet32_MAT.Wep_3rdP_Dual_G18C_Swat_MIC", MIC_Pickup="WEP_SkinSet32_MAT.Wep_3rdP_Dual_G18C_Swat_Pickup_MIC")) 
+
+//Glock18c Bumblebee
+    Skins.Add((Id=8296, Weapondef=class'KFWeapDef_Pistol_G18C', MIC_1P=("wep_skinset32_mat.Wep_1stP_Dual_G18C_Bumblebee_MIC"), MIC_3P="WEP_SkinSet32_MAT.Wep_3rdP_Dual_G18C_Bumblebee_MIC", MIC_Pickup="WEP_SkinSet32_MAT.Wep_3rdP_Dual_G18C_Bumblebee_Pickup_MIC")) 
+
+//Glock18c Camo
+    Skins.Add((Id=8297, Weapondef=class'KFWeapDef_Pistol_G18C', MIC_1P=("wep_skinset32_mat.Wep_1stP_Dual_G18C_Camo_MIC"), MIC_3P="WEP_SkinSet32_MAT.Wep_3rdP_Dual_G18C_Camo_MIC", MIC_Pickup="WEP_SkinSet32_MAT.Wep_3rdP_Dual_G18C_Camo_Pickup_MIC")) 
+
+//Glock18c Gore
+    Skins.Add((Id=8298, Weapondef=class'KFWeapDef_Pistol_G18C', MIC_1P=("wep_skinset32_mat.Wep_1stP_Dual_G18C_Gore_MIC"), MIC_3P="WEP_SkinSet32_MAT.Wep_3rdP_Dual_G18C_Gore_MIC", MIC_Pickup="WEP_SkinSet32_MAT.Wep_3rdP_Dual_G18C_Gore_Pickup_MIC")) 
+
+//Vault Stars HMTech-101
+    Skins.Add((Id=8305, Weapondef=class'KFWeapDef_MedicPistol', MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_Medic_Pistol_MIC"), MIC_3P="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Medic_Pistol_MIC", MIC_Pickup="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Medic_Pistol_Pickup_MIC")) 
+	
+//Vault Stars MKB42H
+    Skins.Add((Id=8306, Weapondef=class'KFWeapDef_MKB42', MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_MKB42H_MIC"), MIC_3P="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_MKB42H_MIC", MIC_Pickup="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_MKB42H_Pickup_MIC")) 
+
+//Vault Stars Tommy Gun
+    Skins.Add((Id=8307, Weapondef=class'KFWeapDef_Thompson', MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_Thompson_MIC"), MIC_3P="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Thompson_MIC", MIC_Pickup="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Thompson_Pickup_MIC")) 
+
+//Vault Stars Boomstick
+    Skins.Add((Id=8308, Weapondef=class'KFWeapDef_DoubleBarrel', MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_Double_Barrel_MIC"), MIC_3P="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Double_Barrel_MIC", MIC_Pickup="wep_skinset_vaultstars01_mat.Vault_Stars_3rdP_Double_Barrel_Pickup_MIC")) 
+
+//Vault Stars M99
+    Skins.Add((Id=8309, Weapondef=class'KFWeapDef_M99', MIC_1P=("wep_skinset_vaultstars01_mat.Vault_Stars_1stP_M99_MIC"), MIC_3P="WEP_SkinSet31_MAT.Vault_Stars_3rdP_M99_MIC", MIC_Pickup="WEP_SkinSet31_MAT.Vault_Stars_3rdP_M99_Pickup_MIC")) 
+
 }

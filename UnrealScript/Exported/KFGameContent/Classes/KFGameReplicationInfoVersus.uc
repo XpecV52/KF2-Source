@@ -230,8 +230,8 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
 
 reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)
 {
-	if (VoteCollector != none && VoteCollector.bIsVoteInProgress &&
-		VoteCollector.CurrentVote.PlayerPRI.GetTeamNum() != PRI.GetTeamNum())
+	if (VoteCollector != none && VoteCollector.bIsKickVoteInProgress &&
+		VoteCollector.CurrentKickVote.PlayerPRI.GetTeamNum() != PRI.GetTeamNum())
 	{
 		return;
 	}

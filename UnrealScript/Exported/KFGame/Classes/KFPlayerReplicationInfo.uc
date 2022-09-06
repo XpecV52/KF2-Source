@@ -510,7 +510,8 @@ var 			byte 			PerkSupplyLevel;
 var 			bool 			bPerkPrimarySupplyUsed;
 var 			bool 			bPerkSecondarySupplyUsed;
 
-var				bool			bVotedToSkipTraderTime;
+var bool bVotedToSkipTraderTime;
+var	bool bAlreadyStartedASkipTraderVote;
 
 /************************************
  *  Not replicated Voice Comms Request
@@ -525,7 +526,7 @@ var				int 			VoiceCommsStatusDisplayIntervalMax;
 /************************************
  *  Replicated Unlocks
  ************************************/
-var private byte		SharedUnlocks;
+var private int		SharedUnlocks;
 
 var repnotify private int CurrentHeadShotEffectID;
 /************************************
@@ -646,6 +647,7 @@ simulated event PostBeginPlay()
 	if( Role == ROLE_Authority )
 	{
 		KFPlayerOwner = KFPlayerController( Owner );
+		ResetSkipTrader();
 	}
 }
 
@@ -1047,13 +1049,63 @@ reliable server function ServerCastKickVote(PlayerReplicationInfo PRI, bool bKic
 	}
 }
 
+/*********************************************************************************************
+`* Skip Trader
+********************************************************************************************* */
+
+reliable client function ShowSkipTraderVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices)
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Owner);
+
+	if(KFPC != none && KFPC.MyGFxHUD != none)
+	{
+		KFPC.MyGFxHUD.ShowSkipTraderVote(PRI, VoteDuration, bShowChoices);
+	}
+
+	if(KFPC != none && KFPC.MyGFxManager != none && bShowChoices)
+	{
+		KFPC.MyGFxManager.ShowSkipTraderVote(PRI);
+	}
+}
+
+reliable client function UpdateSkipTraderTime(byte CurrentVoteTime)
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Owner);
+
+	if(KFPC != none && KFPC.MyGFxHUD != none)
+	{
+		KFPC.MyGFxHUD.UpdateSkipTraderTime(CurrentVoteTime);
+	}
+}
+
+reliable client function HideSkipTraderVote()
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Owner);
+
+	if(KFPC != none && KFPC.MyGFxHUD != none)
+	{
+		KFPC.MyGFxHUD.HideSkipTraderVote();
+	}
+
+	if(KFPC != none && KFPC.MyGFxManager != none)
+	{
+		KFPC.MyGFxManager.HideSkipTraderVote();
+	}
+}
+
 simulated function RequestSkiptTrader(PlayerReplicationInfo PRI)
 {
 	bVotedToSkipTraderTime = true;
-	ServerRequestSkipTrader(self);
+	ServerRequestSkipTraderVote(self);
 }
 
-reliable server function ServerRequestSkipTrader(PlayerReplicationInfo PRI)
+reliable server function ServerRequestSkipTraderVote(PlayerReplicationInfo PRI)
 {
 	local KFGameReplicationInfo KFGRI;
 
@@ -1061,11 +1113,47 @@ reliable server function ServerRequestSkipTrader(PlayerReplicationInfo PRI)
 
 	if (KFGRI != none)
 	{
-		KFGRI.VoteCollector.RecieveSkipTraderTimeVote(PRI);
+		KFGRI.ServerStartVoteSkipTrader(PRI);
 	}
 }
 
+simulated function CastSkipTraderVote(PlayerReplicationInfo PRI, bool bSkipTrader)
+{
+	local KFPlayerController KFPC;
 
+	ServerCastSkipTraderVote(self, bSkipTrader);
+
+	KFPC = KFPlayerController(Owner);
+
+	if(KFPC != none && KFPC.MyGFxManager != none)
+	{
+		KFPC.MyGFxManager.HideSkipTraderVote();
+	}
+}
+
+reliable server function ServerCastSkipTraderVote(PlayerReplicationInfo PRI, bool bSkipTrader)
+{
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+
+	if(KFGRI != none)
+	{
+		KFGRI.RecieveVoteSkipTrader(PRI, bSkipTrader);
+	}
+}
+
+reliable server function ResetSkipTrader()
+{
+	local KFGameReplicationInfo KFGRI;
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+
+	if(KFGRI != none && KFGRI.VoteCollector != none)
+	{
+		KFGRI.VoteCollector.ConcludeVoteSkipTrader();
+	}
+}
 
 /*********************************************************************************************
 `* Map Vote
@@ -1141,7 +1229,7 @@ reliable client function RecieveTopMaps(TopVotes VoteObject)
 `* Character Customization
 ********************************************************************************************* */
 
-native reliable server private event ServerSetSharedUnlocks(byte NewUnlocks);
+native reliable server private event ServerSetSharedUnlocks(int NewUnlocks);
 
 native reliable server private event ServerSetCharacterCustomization(CustomizationInfo NewMeshInfo);
 
@@ -1639,6 +1727,17 @@ simulated function ResetSupplierUsed()
 simulated function NotifyWaveEnded()
 {
 	bVotedToSkipTraderTime = false;
+	
+	/*local KFGameReplicationInfo KFGRI;
+
+	if( Role == ROLE_Authority )
+	{
+		KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+		if (KFGRI != none)
+		{
+			KFGRI.VoteCollector.ResetSkipTraderBeforeWaveStarts();
+		}
+	}*/
 }
 
 //reset the icons here

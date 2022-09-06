@@ -1196,6 +1196,9 @@ simulated function int GetArmorDamageAmount( int AbsorbedAmt ) { return Absorbed
 simulated event float GetZedTimeSpeedScale() { return 1.f; }
 
 
+/** Survivalist dunctions */
+simulated function bool GetIncapMasterActive(){ return false; }
+
 static function ModifyAssistDosh( out int EarnedDosh )
 {
 	local float TempDosh;

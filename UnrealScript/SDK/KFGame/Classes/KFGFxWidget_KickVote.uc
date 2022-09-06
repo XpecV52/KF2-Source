@@ -11,17 +11,23 @@
 class KFGFxWidget_KickVote extends GFxObject;
 
 var localized string VoteKickString;
+var localized string VoteSkipTraderString;
+var localized string VoteSkipTraderDetailString;
 var bool bIsVoteActive;
+var bool bIsSkipTraderVoteActive;
+var bool bShowChoicesOnTimerUpdate;
 
 var const string GBA_VoteYes;
 var const string GBA_VoteNo;
 
+var GFxObject KickVoteData;
+
 function InitializeHUD()
 {
-    LocalizeText();
+    //LocalizeText();
 }
 
-function LocalizeText()
+function LocalizeText(bool bIsSkipTraderVote)
 {
 	local GFxObject TempObject;
 	local KFPlayerInput KFInput;
@@ -39,38 +45,74 @@ function LocalizeText()
 
     TempObject.SetString("yes", Class'KFCommon_LocalizedStrings'.default.YesString);
     TempObject.SetString("no", Class'KFCommon_LocalizedStrings'.default.NoString);
-    TempObject.SetString("voteKick", VoteKickString);
+
+	if(bIsSkipTraderVote)
+	{
+		TempObject.SetString("voteKick", VoteSkipTraderString);
+	}
+	else
+	{
+		TempObject.SetString("voteKick", VoteKickString);
+	}
 
     SetObject("localizedText", TempObject);
 }
 
-function ShowKickVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices)
+function ResetVote()
+{
+	bShowChoicesOnTimerUpdate = false;
+	ActionScriptVoid("onYesReleased");
+	ActionScriptVoid("onNoReleased");
+}
+
+function ShowVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices, bool bIsSkipTraderVote)
 {
 	if(PRI != none)
 	{
-		LocalizeText(); //Added this here if the user changes their keybind, it will update
+		LocalizeText(bIsSkipTraderVote); //Added this here if the user changes their keybind, it will update
 		bIsVoteActive = true;
-		SendVoteKickToAS3(PRI.PlayerName, VoteDuration, bShowChoices);
+		bIsSkipTraderVoteActive = bIsSkipTraderVote;
+		SendVoteToAS3(PRI.PlayerName, VoteDuration, bShowChoices);
 	}
 	else
 	{
 		bIsVoteActive = false;
+		bIsSkipTraderVoteActive = false;
 	}
 }
 
-function SendVoteKickToAS3(string PlayerName, byte VoteDuration, bool bShowChoices)
+function SendVoteToAS3(string PlayerName, byte VoteDuration, bool bShowChoices)
 {
-	local GFxObject KickVoteData;
+	if(KickVoteData == None)
+	{
+		KickVoteData = CreateObject("Object");
+	}
 
-	KickVoteData = CreateObject("Object");
-
-	KickVoteData.SetString("playerName", PlayerName);
+	if(bIsSkipTraderVoteActive)
+	{
+		KickVoteData.SetString("playerName", PlayerName@VoteSkipTraderDetailString);
+	}
+	else
+	{
+		KickVoteData.SetString("playerName", PlayerName);
+	}
 	KickVoteData.SetInt("voteDuration", VoteDuration);
 	KickVoteData.SetBool("bShowChoices", bShowChoices);
+	bShowChoicesOnTimerUpdate = bShowChoices;
 
 	SetObject("kickVoteData", kickVoteData);
 	UpdateUsingGamepad(GetPC().PlayerInput.bUsingGamepad);  // Moved call to here as the initialize seemed to be too early to show controller controls in some cases (orbis mainly) - HSL
+}
 
+function UpdateVoteDuration(byte VoteDuration)
+{
+	if(kickVoteData != None)
+	{
+		KickVoteData.SetInt("voteDuration", VoteDuration);
+		KickVoteData.SetBool("bShowChoices", bShowChoicesOnTimerUpdate);
+		SetObject("kickVoteData", kickVoteData);
+		UpdateUsingGamepad(GetPC().PlayerInput.bUsingGamepad);
+	}
 }
 
 function UpdateUsingGamepad(bool bIsUsingGamepad)
@@ -79,11 +121,11 @@ function UpdateUsingGamepad(bool bIsUsingGamepad)
     if(!bIsUsingGamepad)
 	{
 		//the gamepad text will show on the input so we need to change it back to keyboard, it is simpler to just relocalize 
-		LocalizeText();
+		LocalizeText(bIsSkipTraderVoteActive);
 	}
 }
 
-function UpdateKickVoteCount(byte YesVotes, byte NoVotes)
+function UpdateVoteCount(byte YesVotes, byte NoVotes)
 {
 	ActionScriptVoid("updateKickVoteCount");
 }

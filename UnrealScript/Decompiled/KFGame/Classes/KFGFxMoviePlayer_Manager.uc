@@ -199,6 +199,7 @@ var bool bDisplayedInitialFreePopUp;
 var bool bPostGameState;
 var bool bStatsInitialized;
 var bool bKickVotePopupActive;
+var bool bSkipTraderVotePopupActive;
 var bool bUsingGamepad;
 var bool bAfterLobby;
 var bool bMenusOpen;
@@ -248,7 +249,8 @@ var KFGFxWidget_MenuBar MenuBarWidget;
 var KFGFxWidget_BaseParty PartyWidget;
 var KFGFxWidget_ButtonPrompt ButtonPromptWidget;
 var array<string> WidgetPaths;
-var PlayerReplicationInfo VotePRI;
+var PlayerReplicationInfo KickVotePRI;
+var PlayerReplicationInfo SkipTraderVotePRI;
 var TWOnlineLobby OnlineLobby;
 var UniqueNetId CurrentInviteLobbyId;
 var const UniqueNetId ZeroUniqueId;
@@ -982,9 +984,13 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
     {
         SetMenusOpen(true);
     }
-    if(VotePRI != none)
+    if(KickVotePRI != none)
     {
-        ShowKickVote(VotePRI);
+        ShowKickVote(KickVotePRI);
+    }
+    if((SkipTraderVotePRI != none) && NewMenuIndex != 15)
+    {
+        ShowSkipTraderVote(SkipTraderVotePRI);
     }
     if((bMenusOpen && NewMenuIndex != CurrentMenuIndex) && CurrentMenu != none)
     {
@@ -1720,13 +1726,65 @@ function NotifySpectateStateChanged(bool bIsSpectating)
     }
 }
 
+function ShowSkipTraderVote(PlayerReplicationInfo PRI)
+{
+    SkipTraderVotePRI = PRI;
+    if(bMenusOpen && CurrentMenu != TraderMenu)
+    {
+        bSkipTraderVotePopupActive = true;
+        DelayedOpenPopup(0, 0, Class'KFGFxWidget_KickVote'.default.VoteSkipTraderString, SkipTraderVotePRI.PlayerName @ Class'KFGFxWidget_KickVote'.default.VoteSkipTraderDetailString, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVoteSkipTrader, CastNoVoteSkipTrader);
+    }
+}
+
+simulated function HideSkipTraderVote()
+{
+    if(bSkipTraderVotePopupActive)
+    {
+        bSkipTraderVotePopupActive = false;
+        UnloadCurrentPopup();
+    }
+    SkipTraderVotePRI = none;
+}
+
+function CastYesVoteSkipTrader()
+{
+    local KFPlayerReplicationInfo KFPRI;
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(GetPC());
+    if(KFPC != none)
+    {
+        KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+        if(KFPRI != none)
+        {
+            KFPRI.CastSkipTraderVote(KFPRI, true);
+        }
+    }
+}
+
+function CastNoVoteSkipTrader()
+{
+    local KFPlayerReplicationInfo KFPRI;
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(GetPC());
+    if(KFPC != none)
+    {
+        KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+        if(KFPRI != none)
+        {
+            KFPRI.CastSkipTraderVote(KFPRI, false);
+        }
+    }
+}
+
 function ShowKickVote(PlayerReplicationInfo PRI)
 {
-    VotePRI = PRI;
+    KickVotePRI = PRI;
     if(bMenusOpen)
     {
         bKickVotePopupActive = true;
-        DelayedOpenPopup(0, 0, Class'KFGFxWidget_KickVote'.default.VoteKickString, VotePRI.PlayerName, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVote, CastNoVote);
+        DelayedOpenPopup(0, 0, Class'KFGFxWidget_KickVote'.default.VoteKickString, KickVotePRI.PlayerName, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVoteKick, CastNoVoteKick);
     }
 }
 
@@ -1737,10 +1795,10 @@ simulated function HideKickVote()
         bKickVotePopupActive = false;
         UnloadCurrentPopup();
     }
-    VotePRI = none;
+    KickVotePRI = none;
 }
 
-function CastYesVote()
+function CastYesVoteKick()
 {
     local KFPlayerReplicationInfo KFPRI;
     local KFPlayerController KFPC;
@@ -1756,7 +1814,7 @@ function CastYesVote()
     }
 }
 
-function CastNoVote()
+function CastNoVoteKick()
 {
     local KFPlayerReplicationInfo KFPRI;
     local KFPlayerController KFPC;
@@ -1814,7 +1872,7 @@ function int GetModeIndex(optional bool bAdjustedIndex)
 
     bAdjustedIndex = true;
     SavedModeIndex = CachedProfile.GetProfileInt(148);
-    if(!Class'GameEngine'.static.IsGameFullyInstalled() && (SavedModeIndex == 4) || SavedModeIndex == 1)
+    if(!Class'GameEngine'.static.IsGameFullyInstalled() && ((SavedModeIndex == 4) || SavedModeIndex == 1) || SavedModeIndex == 3)
     {
         CachedProfile.SetProfileSettingValueInt(148, 0);
         return 0;

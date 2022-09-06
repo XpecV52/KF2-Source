@@ -45,7 +45,7 @@ defaultproperties
    BonesToLockOnEmpty(0)="RW_Hammer"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_Flare_Gun.Play_WEP_Flare_Gun_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_Flare_Gun.Play_WEP_Flare_Gun_Fire_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_Flare_Gun.Play_WEP_Flare_Gun_DryFire'
-   PlayerViewOffset=(X=15.000000,Y=14.000000,Z=-6.000000)
+   PlayerViewOffset=(X=12.000000,Y=14.000000,Z=-6.000000)
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_PistolBase:MeleeHelper_0'
       MaxHitRange=175.000000
       Name="MeleeHelper_0"

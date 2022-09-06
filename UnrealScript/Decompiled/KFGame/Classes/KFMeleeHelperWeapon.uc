@@ -343,7 +343,7 @@ simulated function BeginMeleeAttack(optional bool bIsChainAttack)
         KFPlayerController(Outer.Instigator.Controller).AddShotsFired(1);
     }
     bResetChainSequence = false;
-    CurrentAttackDir = ((Outer.CurrentFireMode == Outer.3) ? 8 : NextAttackDir);
+    CurrentAttackDir = (((Outer.CurrentFireMode == Outer.3) || Outer.CurrentFireMode == Outer.6) ? 8 : NextAttackDir);
     if(Outer.WorldInfo.NetMode != NM_Client)
     {
         foreach Outer.WorldInfo.AllPawns(Class'Pawn', P)
@@ -632,25 +632,25 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
 
 defaultproperties
 {
-    ChainSequence_F(0)=84
+    ChainSequence_F(0)=115
     ChainSequence_F(1)=29
     ChainSequence_F(2)=0
     ChainSequence_F(3)=0
     ChainSequence_F(4)=0
-    ChainSequence_B(0)=80
+    ChainSequence_B(0)=111
     ChainSequence_B(1)=29
     ChainSequence_B(2)=0
     ChainSequence_B(3)=0
     ChainSequence_B(4)=0
     ChainSequence_B(5)=0
     ChainSequence_B(6)=0
-    ChainSequence_L(0)=87
+    ChainSequence_L(0)=118
     ChainSequence_L(1)=29
     ChainSequence_L(2)=0
     ChainSequence_L(3)=0
     ChainSequence_L(4)=0
     ChainSequence_L(5)=0
-    ChainSequence_R(0)=84
+    ChainSequence_R(0)=115
     ChainSequence_R(1)=29
     ChainSequence_R(2)=0
     ChainSequence_R(3)=0

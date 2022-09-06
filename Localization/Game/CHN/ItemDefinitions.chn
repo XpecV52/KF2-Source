@@ -26,6 +26,8 @@ SteampunkOutfitBundleName="蒸汽朋克装备包"
 CyberpunkOutfitBundleName="赛博朋克服装包"
 CyberpunkOutfitObjectiveBundleName="赛博朋克服装目标物品包"
 HalloweenOutfitBundleName="巫师猎人服装包"
+SpacePirateOutfitBundleName="太空海盗服装包"
+SpacePirateFullGearBundleName="太空海盗全套装备包"
 HeadshotFXBundle1Name="1 号爆头特效同捆"
 HeadshotFXBundle2Name="爆头特效包 2"
 RhinoRevolverBundleName="犀牛式左轮手枪包"
@@ -33,6 +35,8 @@ IonThrusterBundleName="离子推进器包"
 RiotShieldG18BundleName="防爆盾牌和 G18 手枪包"
 MosinNagantBundleName="莫辛纳甘狙击步枪包"
 CompoundBowBundleName="复合弓包"
+BlunderbussBundleName="雷筒物品包"
+Glock18cBundleName="格洛克 18c 物品包"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="霍因装饰品供应箱 | 系列 #4 青铜物品包"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="霍因装饰品供应箱 | 系列 #4 白银物品包"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="霍因装饰品供应箱 | 系列 #4 黄金物品包"
@@ -165,6 +169,7 @@ HorzineSupplyCosmeticCrateSeries3GoldBundlePackName="霍因装饰品供应箱 | 
 HorzineSupplyWeaponCrateSeries17BronzeBundlePackName="霍因武器供应箱 | 系列 #17 青铜包"
 HorzineSupplyWeaponCrateSeries17SilverBundlePackName="霍因武器供应箱 | 系列 #17 白银包"
 HorzineSupplyWeaponCrateSeries17GoldBundlePackName="霍因武器供应箱 | 系列 #17 黄金包"
+PerilousPlunderWeaponBundleName="危险掠夺武器包"
 GrimTreatmentsWeaponBundleName="黑医术武器包"
 YuletideHorrorWeaponBundleName="Yuletide Horror 武器包"
 JaegerWeaponSkinDoublePackBundleName="贼鸥武器皮肤双包"
@@ -185,6 +190,12 @@ HorzineSupplyCosmeticCrateSeries7GoldBundlePackName="霍因装饰品供应箱 | 
 HorzineSupplyCrateSeriesLocoBronzeBundlePackName="霍因供应箱 | 疯狂系列青铜包"
 HorzineSupplyCrateSeriesLocoSilverBundlePackName="霍因供应箱 | 疯狂系列白银包"
 HorzineSupplyCrateSeriesLocoGoldBundlePackName="霍因供应箱 | 疯狂系列黄金包"
+PremiumSummerSideshowBronzeBundlePackName="高级夏日余兴节目青铜券包"
+PremiumSummerSideshowSilverBundlePackName="高级夏日余兴节目白银券包"
+PremiumSummerSideshowGoldBundlePackName="高级夏日余兴节目黄金券包"
+NeonMKVIWeaponSkinPackName="霓虹灯 MKVI 武器皮肤同捆包"
+RetroNeonGearCosmeticBundleName="复古霓虹灯装备装饰品物品包"
+FutureNeonGearCosmeticBundleName="未来霓虹灯装备装饰品物品包"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="包括布莱尔的伦敦警服（含 5 种皮肤风格）和监护人头盔装饰配件（含 3 种皮肤风格）。"
@@ -207,6 +218,8 @@ SteampunkOutfitBundleDescription="包括女性和男性蒸汽朋克装备（每�
 CyberpunkOutfitBundleDescription="内含男性赛博朋克服装（每种均含6种皮肤风格）。大部分角色均可兼容使用。"
 CyberpunkOutfitObjectiveBundleDescription="内含男性赛博朋克服装（每种均含1种皮肤风格）。大部分角色均可兼容使用。"
 HalloweenOutfitBundleDescription="内含巫师猎人服装（包含 6 款皮肤风格）。大部分角色均可兼容使用。"
+SpacePirateOutfitBundleDescription="内含太空海盗服装（包含 6 款皮肤风格）。大部分角色均可兼容使用。"
+SpacePirateFullGearBundleDescription="一个物品包中包含 6 款太空海盗主题装饰品配件，每款均有 5 种材质变体。大部分角色均可兼容使用。"
 HeadshotFXBundle1Description="内含五种种爆头特效。奢侈财富，滑稽举动，派对时刻，一枪钟情及悚然幽灵。"
 HeadshotFXBundle2Description="内含5款爆头特效。卡通爆炸、烟花、花瓣、程序错误和霍因电路。"
 RhinoRevolverBundleDescription="穿透丧尸如切瓜砍菜。犀牛左轮手枪专为枪手的天赋所设计。拥有 5 款独特的皮肤种类。"
@@ -214,6 +227,8 @@ IonThrusterBundleDescription="烧烤的绝佳装备。离子推进器专为狂�
 RiotShieldG18BundleDescription="群体控制的绝佳装备。防爆盾牌和 G18 手枪专为 SWAT 天赋设计，拥有 5款独特的皮肤种类。"
 MosinNagantBundleDescription="用这款经典的来复枪远距离阻截、刺杀和击爆丧尸。莫辛纳甘狙击步枪专为神射手天赋设计，拥有 5 款独特的皮肤类型。"
 CompoundBowBundleDescription="用现代手法改造的古兵器。这款复合弓专为神射手的天赋设计，拥有 5 款独特的皮肤类型。"
+BlunderbussBundleDescription="木腿和鹦鹉单独销售。雷筒专为爆破手和支援天赋设计，拥有 5 款独特的皮肤种类。"
+Glock18cBundleDescription="注意：使用时会有无法控制的法律认同感。单手和双持格洛克 18C 专为枪手天赋设计，拥有 5 款独特的皮肤种类。"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="包含5个霍因装饰品供应箱 | 系列 #4以及相应的5把钥匙。 "
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="包含10个霍因装饰品供应箱 | 系列 #4以及相应的10把钥匙。"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="包含20个霍因装饰品供应箱 | 系列 #4以及相应的20把钥匙。"
@@ -345,6 +360,7 @@ JaegerEncryptedUSBGoldBundlePackDescription="包含 20 个贼鸥加密 USB 箱�
 PremiumChristmasTicketBronzeBundlePackDescription="包含 5 张高级圣诞节招待券。低价限时供应！"
 PremiumChristmasTicketSilverBundlePackDescription="包含 10 张高级圣诞节招待券和 1 张额外的圣诞节黄金券。低价限时供应！"
 PremiumChristmasTicketGoldBundlePackDescription="包含 20 张高级圣诞节招待券和 3 张额外的圣诞节黄金券。低价限时供应！"
+PerilousPlunderWeaponBundleDescription="包括来自危险掠夺升级版的单手和双持格洛克 18C 和雷筒武器。每种武器拥有 5 款独特的皮肤类型。"
 GrimTreatmentsWeaponBundleDescription="包括来自黑医术升级版的犀牛式左轮手枪和离子推进器。每种武器拥有 5 款独特的皮肤类型。"
 YuletideHorrorWeaponBundleDescription="包括来自 Yuletide Horror 升级版的防爆盾牌，G18 手枪和莫辛纳甘狙击步枪。每种武器拥有 5 款独特的皮肤类型。"
 JaegerWeaponSkinDoublePackBundleDescription="包括为沙漠之鹰和 P90 配备的贼鸥主题动态和标准武器皮肤。"
@@ -369,7 +385,12 @@ PremiumCyberpunkTicketGoldBundlePackDescription="包含 20 张高级赛博朋克
 HorzineSupplyCrateSeriesLocoBronzeBundlePackDescription="包含5个霍因供应箱 | 疯狂系列箱以及5把相应的钥匙。"
 HorzineSupplyCrateSeriesLocoSilverBundlePackDescription="包含10个霍因供应箱 | 疯狂系列箱以及10把相应的钥匙。"
 HorzineSupplyCrateSeriesLocoGoldBundlePackDescription="包含20个霍因供应箱 | 疯狂系列箱以及20把相应的钥匙。"
-
+PremiumSummerSideshowTicketBronzeBundlePackDescription="包含 5 张高级夏日余兴节目招待券。低价限时供应！"
+PremiumSummerSideshowTicketSilverBundlePackDescription="包含 10 张高级夏日余兴节目招待券和 1 张额外的夏日余兴节目黄金券。低价限时供应！"
+PremiumSummerSideshowTicketGoldBundlePackDescription="包含 20 张高级夏日余兴节目招待券和 3 张额外的夏日余兴节目黄金券。低价限时供应！"
+NeonMKVIWeaponSkinBundleDescription="包含 20 款霓虹灯主题武器皮肤（10 款标准霓虹灯与 10 款 RGB 霓虹灯）。该套装中所涉武器有：千瓦杀手、封印尖叫、温彻斯特 1894、赫利俄斯步枪、喷火式战斗机、VLAD 钉枪、L85A2 突击步枪、粉碎机、M79 榴弹发射器和鲜血大棒。"
+RetroNeonCosmeticBundleDescription="一个物品包中包含 5 款复古霓虹灯主题装饰品配件，每款均有 4 种材质变体。大部分角色均可兼容使用。"
+FutureNeonCosmeticBundleDescription="一个物品包中包含 5 款未来霓虹灯主题装饰品配件，每款均有 4 种材质变体。大部分角色均可兼容使用。"
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="为可参加游戏的人物 PC 罗伯-布莱尔获得一套新的经典伦敦警服。包括布莱尔的伦敦警服（含 5 种皮肤风格）和监护人头盔装饰配件（含 3 种皮肤风格）。"
@@ -472,6 +493,9 @@ HalloweenHatName="巫师猎人帽"
 HalloweenOutfitName="巫师猎人服装"
 SantasHelperHatName="圣诞老人助手帽"
 SantasHelperOutfitName="圣诞老人助手服装"
+SpacePirateOutfitName="太空海盗服装"
+SpacePirateCaptainsMaskName="交叉骨面具"
+SpacePirateCaptainsHatName="侠盗帽"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="中将比尔·马斯特森 | 赛博朋克 | 绿色"
@@ -717,7 +741,7 @@ HorzineSupplyCrateKeySeries14Name="霍因供应箱钥匙 | 系列 #14"
 HorzineSupplyCrateKeySeries15Name="霍因供应箱钥匙 | 系列 #15"
 HorzineSupplyCrateKeySeries16Name="霍因供应箱钥匙 | 系列 #16"
 EmoteCrateKeySeries1Name="表情供应箱钥匙 | 系列 #1"
-EmoteCrateKeySeries2Name="表情供应箱钥匙 | 系列 #3"
+EmoteCrateKeySeries2Name="表情供应箱钥匙 | 系列 #2"
 EmoteCrateKeySeries3Name="表情供应箱钥匙 | 系列 #3"
 HorzineSupplyCrateKeySeriesDARName="霍因供应箱钥匙 | D.A.R.系列。"
 HorzineSupplyCrateKeySeriesLocoName="霍因供应箱钥匙 | 疯狂系列"
@@ -1219,8 +1243,8 @@ HMTechHealerSynthwaveBattleScarredName="HMTech 治疗器 | 合成声波 | 身经
 500MagnumRevolverSpectreHRGDynamicChromaName="500 马格南左轮 | 幽灵 HRG | 动态 彩色"
 
 ;HRG Buckshot Revolvers Names
-HRGBuckshotRevolversSpectreHRGDynamicName="HRG大号铅弹左轮手枪 | 幽灵 HRG | 动态"
-HRGBuckshotRevolversSpectreHRGDynamicChromaName="HRG大号铅弹左轮手枪 | 幽灵 HRGG | 动态 彩色"
+HRGBuckshotRevolversSpectreHRGDynamicName="HRG 大号铅弹左轮手枪 | 幽灵 HRG | 动态"
+HRGBuckshotRevolversSpectreHRGDynamicChromaName="HRG 大号铅弹左轮手枪 | 幽灵 HRG | 动态 彩色"
 
 ;9mm Descriptions
 9MMMintDescription="外部：硬币 | 简单又便宜（老实说，非常便宜），这是所有霍因行动的基本装备。"
@@ -1556,6 +1580,7 @@ BoomstickHorzineFirstEncounterBattleScarredName="短管霰弹枪 | 霍因初次�
 BoomstickPrestigePreciousName="短管霰弹枪 | 威望 | 宝物"
 BoomstickDragonKoiPreciousName="短管霰弹枪 | 龙锦鲤 | 宝物"
 BoomstickFostersFavoritesPreciousName="散弹枪 | 福斯特的收藏夹 | 宝物"
+BoomstickStarsName="短管霰弹枪 | 金库 | 星星"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="外部：硬币 | 手持式自制喷火器。切勿在家自行尝试。"
@@ -1857,6 +1882,8 @@ FlarePistolVaultVoshPreciousName="喷火枪 | 金库 | V字 | 宝物"
 FlarePistolDragonKoiPreciousName="喷火枪 | 龙锦鲤 | 宝物"
 FlarePistolSpectreHRGDynamicName="喷火枪 | 幽灵 HRG | 动态"
 FlarePistolSpectreHRGDynamicChromaName="喷火枪 | 幽灵 HRG | 动态 彩色"
+FlarePistolNeonMintName="喷火式战斗机 | 霓虹 | 硬币"
+FlarePistolNeonRGBPreciousName="喷火式战斗机 | 霓虹灯 RGB | 宝物"
 
 ;HRG Winterbites Names
 HRGWinterbitesSpectreHRGDynamicName="HRG 冬刺 | 幽灵 HRG | 动态"
@@ -1908,8 +1935,8 @@ FreezeThrowerBattleScarredDescription="外部：身经百战 | 生物物质只�
 FreezeThrowerPreciousDescription="外部：宝贵 | 生物物质只能承受温度这么低的寒冷。"
 
 ;HRG Healthrower Names
-HRGHealthrowerSpectreHRGDynamicName="HRG治疗喷射器 | 幽灵 HRG | 动态"
-HRGHealthrowerSpectreHRGDynamicChromaName="HRG治疗喷射器 | 幽灵 HRG | 动态 彩色"
+HRGHealthrowerSpectreHRGDynamicName="HRG 治疗发射器 | 幽灵 HRG | 动态"
+HRGHealthrowerSpectreHRGDynamicChromaName="HRG 治疗发射器 | 幽灵 HRG | 动态 彩色"
 
 ;Hemogoblin Descriptions
 HemogoblinMintDescription="外部：硬币 | 这可不是个可行的减肥方案。"
@@ -2019,6 +2046,7 @@ HMTech101PistolBeyondHorizonMintName="HMTech-101 手枪 | 超越地平线 | 崭�
 HMTech101PistolBeyondHorizonFieldTestedName="HMTech-101 手枪 | 超越地平线 | 久经沙场"
 HMTech101PistolBeyondHorizonBattleScarredName="HMTech-101 手枪 | 超越地平线 | 身经百战"
 HMTech101PistolBeyondHorizonSpaceEliteName="HMTech-101 手枪 | 超越地平线 | 太空精英"
+HMTech101PistolStarsName="HMTech-101 手枪 | 金库 | 星星"
 
 ;HMTech-201 SMG Descriptions
 HMTech201SMGMintDescription="外部：硬币 | 可以射出治愈飞镖治疗队友。手枪让你如虎添翼！"
@@ -2343,6 +2371,8 @@ L85A2JunkyardBattleScarredName="L85A2 | 垃圾场 | 身经百战"
 L85A2VaultVoshPreciousName="L85A2 | 金库 | V 字 | 宝物"
 L85A2PrestigePreciousName="L85A2 | 威望 | 宝物"
 L85A2DragonKoiPreciousName="L85A2 | 龙锦鲤 | 宝物"
+L85A2NeonMintName="L85A2 | 霓虹灯 | 硬币"
+L85A2NeonRGBPreciousName="L85A2 | 霓虹灯 RGB | 宝物"
 
 ;M14EBR Descriptions
 M14EBRMintDescription="外部：硬币 | 海军海豹突击队、三角洲特种部队和其他各种坏蛋的首选狙击步枪。"
@@ -2511,6 +2541,8 @@ M79SteampunkBattleScarredName="M79 | 蒸汽朋克 | 身经百战"
 M79SteampunkFieldTestedName="M79 | 蒸汽朋克 | 久经沙场"
 M79SteampunkMintName="M79 | 蒸汽朋克 | 崭新"
 M79SteampunkPreciousName="M79 | 蒸汽朋克 | 宝物"
+M79NeonMintName="M79 | 霓虹灯 | 硬币"
+M79NeonRGBPreciousName="M79 | 霓虹灯 RGB | 宝物"
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="外部：硬币 | 拥有威力强大的盾击攻击。"
@@ -2537,6 +2569,7 @@ M99BeyondHorizonMintName="M99 | 超越地平线 | 崭新"
 M99BeyondHorizonFieldTestedName="M99 | 超越地平线 | 久经沙场"
 M99BeyondHorizonBattleScarredName="M99 | 超越地平线 | 身经百战"
 M99BeyondHorizonSpaceEliteName="M99 | 超越地平线 | 太空精英"
+M99StarsName="M99 | 金库 | 星星"
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="碎骨者 | 电路 | 硬币"
@@ -2596,6 +2629,8 @@ MedicBatPreciousDescription="外部：宝物 | 专为那些就算被优质治疗
 ;Medic Bat Names
 MedicBatPreciousName="鲜血大棒 | 宝物"
 MedicBatVaultVoshPreciousName="鲜血大棒 | 金库 | V 字 | 宝物"
+MedicBatNeonMintName="鲜血大棒 | 霓虹灯 | 硬币"
+MedicBatNeonRGBPreciousName="鲜血大棒 | 霓虹灯 RGB | 宝物"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="外部：硬币 | 现代工艺奇迹：一款手持式丧尸烹煮工具。"
@@ -2752,6 +2787,8 @@ PulverizerJaegerMintName="粉碎机 | 贼鸥 | 硬币"
 PulverizerJaegerFieldTestedName="粉碎机 | 贼鸥 | 久经沙场"
 PulverizerJaegerBattleScarredName="粉碎机 | 贼鸥 | 身经百战"
 PulverizerJaegerDynamicName="粉碎机 | 贼鸥 | 动态"
+PulverizerNeonMintName="粉碎机 | 霓虹灯 | 硬币"
+PulverizerNeonRGBPreciousName="粉碎机 | 霓虹灯 RGB | 宝物"
 
 ;Railgun Descriptions
 RailgunMintDescription="外部：硬币 | 这个武器使用磁铁快速射出实心钢炮弹，像穿透薄纸一样穿透丧尸。"
@@ -2777,8 +2814,8 @@ RailgunSpectreHRGDynamicName="轨道炮 | 幽灵 HRG | 动态"
 RailgunSpectreHRGDynamicChromaName="轨道炮 | 幽灵 HRG | 动态 彩色"
 
 ;HRG Incision Names
-HRGIncisionSpectreHRGDynamicName="HRG切口 | 幽灵 HRG | 动态"
-HRGIncisionSpectreHRGDynamicChromaName="HRG切口 | 幽灵 HRG | 动态 彩色"
+HRGIncisionSpectreHRGDynamicName="HRG 切口 | 幽灵 HRG | 动态"
+HRGIncisionSpectreHRGDynamicChromaName="HRG 切口 | 幽灵 HRG | 动态 彩色"
 
 ;RPG-7 Descriptions
 RPG7MintDescription="外部：硬币 | 射出的榴弹在经过几米的保险距离后装备完成，避免炸到自己的脸部。小心向后爆破！"
@@ -3039,10 +3076,12 @@ VLAD1000NailgunBluefireBattleScarredName="VLAD-1000 钉枪 | 蓝焰 |身经百�
 VLAD1000NailgunPrestigePreciousName="VLAD-1000 射钉枪 | 威望 | 宝物"
 VLAD1000NailgunSpectreHRGDynamicName="VLAD-1000 钉枪 | 幽灵 HRG | 动态"
 VLAD1000NailgunSpectreHRGDynamicChromaName="VLAD-1000 钉枪 | 幽灵 HRG | 动态 彩色"
+VLAD1000NailgunNeonMintName="VLAD-1000 钉枪 | 霓虹灯 | 硬币"
+VLAD1000NailgunNeonRGBPreciousName="VLAD-1000 钉枪 | 霓虹灯 RGB | 宝物"
 
 ;HRG Nailgun Names
-HRGNailgunPDWSpectreHRGDynamicName="HRG钉枪PDW | 幽灵 HRG | 动态"
-HRGNailgunPDWSpectreHRGDynamicChromaName="HRG钉枪PDW |  幽灵 HRG | 动态 彩色"
+HRGNailgunPDWSpectreHRGDynamicName="HRG 钉枪 PDW | 幽灵 HRG | 动态"
+HRGNailgunPDWSpectreHRGDynamicChromaName="HRG 钉枪 PDW | 幽灵 HRG | 动态 彩色"
 
 ;Welder Descriptions
 WelderMintDescription="外部：硬币 | 焊机，我正在焊这扇门！"
@@ -3099,6 +3138,8 @@ Winchester1894SteampunkBattleScarredName="温彻斯特 1894 | 蒸汽朋克 | 身
 Winchester1894SteampunkFieldTestedName="温彻斯特 1894 | 蒸汽朋克 | 久经沙场"
 Winchester1894SteampunkMintName="温彻斯特 1894 | 蒸汽朋克 | 崭新"
 Winchester1894SteampunkPreciousName="温彻斯特 1894 | 蒸汽朋克 | 宝物"
+Winchester1894NeonMintName="温彻斯特 1894 | 霓虹灯 | 硬币"
+Winchester1894NeonRGBPreciousName="温彻斯特 1894 | 霓虹灯 RGB | 宝物"
 
 ;Zweihander Descriptions
 ZweihanderMintDescription="外部：硬币 | 一把剑。这是一把中世纪时期的大剑。"
@@ -3199,6 +3240,7 @@ MKB42NeonFieldTestedName="MKB42H | 霓虹灯 | 久经沙场"
 MKB42NeonBattleScarredName="MKB42H | 霓虹灯 | 身经百战"
 MKB42NeonRGBPreciousName="MKB42H | 霓虹灯RGB | 宝物"
 MKB42VaultVoshPreciousName="MKB42H 步枪 | 金库 | V 字 | 宝物"
+MKB42StarsName="MKB42H | 金库 | 星星"
 
 ;TommyGun Descriptions
 TommyGunMintDescription="外部：硬币 | 它被一些人称为芝加哥打字机，很适合用它把你的名字写出来。"
@@ -3220,6 +3262,7 @@ TommyGunSteampunkPreciousName="汤姆逊冲锋枪 | 蒸汽朋克 | 宝物"
 TommyGunVaultVoshPreciousName="汤姆逊冲锋枪 | 金库 | V字 | 宝物"
 TommyGunJaegerDynamicName="汤姆逊冲锋枪 | 贼鸥 | 动态"
 TommyGunJaegerDynamicRGBName="汤姆逊冲锋枪 | 贼鸥 | 动态 RGB"
+TommyGunStarsName="汤姆逊冲锋枪 | 金库 | 星星"
 
 ;Laser Cutter Descriptions
 LaserCutterMintDescription="外部：崭新 | 过充能模式 - 按下开火按钮后开始充能，松开按钮后释放能量。"
@@ -3239,6 +3282,8 @@ LaserCutterJaegerMintName="千瓦杀手 | 贼鸥 | 硬币"
 LaserCutterJaegerFieldTestedName="千瓦杀手 | 贼鸥 | 久经沙场"
 LaserCutterJaegerBattleScarredName="千瓦杀手 | 贼鸥 | 身经百战"
 LaserCutterJaegerDynamicName="千瓦杀手 | 贼鸥 | 动态"
+LaserCutterNeonMintName="千瓦杀手 | 霓虹灯 | 硬币"
+LaserCutterNeonRGBPreciousName="千瓦杀手 | 霓虹灯 RGB | 宝物"
 
 ;FNFAL Descriptions
 FNFALMintDescription="外部：崭新 | 可以说，这把枪算是 FN FAL 的成功之作……"
@@ -3306,6 +3351,8 @@ SealSquealPreciousDescription="外部：宝物 | 霍因给予官方认证！"
 
 ;SealSqueal Names
 SealSquealVaultVoshPreciousName="封印尖叫 | 金库 | V 字 | 宝物"
+SealSquealNeonMintName="封印尖叫 | 霓虹灯 | 硬币"
+SealSquealNeonRGBPreciousName="封印尖叫 | 霓虹灯 RGB | 宝物"
 
 ;MIcrowaveAssault Descriptions
 MIcrowaveAssaultMintDescription="外部：崭新 | 愿火焰之力与你同在。"
@@ -3323,6 +3370,8 @@ MIcrowaveAssaultJaegerMintName="赫利俄斯步枪 | 贼鸥 | 硬币"
 MIcrowaveAssaultJaegerFieldTestedName="赫利俄斯步枪 | 贼鸥 | 久经沙场"
 MIcrowaveAssaultJaegerBattleScarredName="赫利俄斯步枪 | 贼鸥 | 身经百战"
 MIcrowaveAssaultJaegerDynamicName="赫利俄斯步枪 | 贼鸥 | 动态"
+MicrowaveAssaultNeonMintName="赫利俄斯步枪 | 霓虹灯 | 硬币"
+MicrowaveAssaultNeonRGBPreciousName="赫利俄斯步枪 | 霓虹灯 RGB | 宝物"
 
 ;Rhino Descriptions
 RhinoMintDescription="外部：崭新 | 穿透丧尸如切瓜砍菜"
@@ -3366,8 +3415,8 @@ DynamicDescription="外部： 动态 | 动态皮肤显示武器皮肤本身的�
 DynamicPreciousDescription="外部： 动态宝物 | 动态皮肤显示武器皮肤本身的以下状态： 每个弹匣的剩余弹匣容量和命中率"
 
 ;Spectre Descriptions
-SpectreDescription="外部： 动态 | 外部： 动态皮肤显示武器皮肤本身的以下状态： 低弹药指示器"
-SpectrePreciousDescription="外部： 动态宝物 | 外部： 动态皮肤显示武器皮肤本身的以下状态： 低弹药指示器"
+SpectreDescription="外部：动态 | 动态皮肤显示武器皮肤本身的以下状态：低弹药指示器。"
+SpectrePreciousDescription="外部：动态宝物 | 动态皮肤显示武器皮肤本身的以下状态：低弹药指示器。"
 
 ;Road Redeemer Descriptions
 RoadRedeemerMintDescription="外部：崭新 | 立刻变身为你一直想做的猛男吧！记得每次用过后要清理干净喔。"
@@ -3391,6 +3440,34 @@ CompoundBowGorePreciousName="复合弓 | 鲜血 | 宝物"
 CompoundBowSnowOpsPreciousName="复合弓 | 雪地行动 | 宝物"
 CompoundBowStickerStrikerPreciousName="复合弓 | 贴纸打击者 | 宝物"
 CompoundBowStandardPreciousName="复合弓 | 标准 | 宝物"
+
+;Blunderbuss Descriptions
+BlunderbussMintDescription="外部：硬币 | 木腿和鹦鹉单独销售！"
+BlunderbussFieldTestedDescription="外部：久经沙场 | 木腿和鹦鹉单独销售！"
+BlunderbussBattleScarredDescription="外部：身经百战 | 木腿和鹦鹉单独销售！"
+BlunderbussPreciousDescription="外部：宝物 | 木腿和鹦鹉单独销售！"
+
+;Blunderbuss Names
+BlunderbussRottenPreciousName="雷筒 | 腐朽 | 宝物"
+BlunderbussGoldenboyPreciousName="雷筒 | 黄金宝贝 | 宝物"
+BlunderbussInfernoPreciousName="雷筒 | 地狱 | 宝物"
+BlunderbussJequePreciousName="雷筒 | 酋长 | 宝物"
+BlunderbussSilverPreciousName="雷筒 | 白银 | 宝物"
+BlunderbussStandardPreciousName="雷筒 | 标准 | 宝物"
+
+;Glock 18c Descriptions
+Glock18cMintDescription="外部：硬币 | 注意：使用时会有无法控制的法律认同感。"
+Glock18cFieldTestedDescription="外部：久经沙场 | 注意：使用时会有无法控制的法律认同感。"
+Glock18cBattleScarredDescription="外部：身经百战 | 注意：使用时会有无法控制的法律认同感。"
+Glock18cPreciousDescription="外部：宝物 | 注意：使用时会有无法控制的法律认同感。"
+
+;Glock 18c Names
+Glock18cPeppermintDropsPreciousName="格洛克 18c | 薄荷糖 | 宝物"
+Glock18cGoldSwatPreciousName="格洛克 18c | 金色 SWAT | 宝物"
+Glock18cBumblebeePreciousName="格洛克 18c | 大黄蜂 | 宝物"
+Glock18cCamoPreciousName="格洛克 18c | 迷彩 | 宝物"
+Glock18cGorePreciousName="格洛克 18c | 血肉 | 宝物"
+Glock18cStandardPreciousName="格洛克 18c | 标准 | 宝物"
 
 [CosmeticSection]
 
@@ -5147,6 +5224,80 @@ CyberRaveUnicornHatRefractedLightName="赛博狂热 | 独角兽帽 | 折射光"
 CyberRaveUnicornHatRomanName="赛博狂热 | 独角兽帽 | 罗马"
 CyberRaveUnicornHatPreciousName="赛博狂热 | 独角兽帽 | 宝物"
 
+;Neon Gear Cosmetic Names
+NeonGearHeadphonesNeonName="霓虹灯装备 | 耳机 | 霓虹灯"
+NeonGearHeadphonesRainbowName="霓虹灯装备 | 耳机 | 彩虹"
+NeonGearHeadphonesNeonRGBName="霓虹灯装备 | 耳机 | 霓虹灯 RGB"
+NeonGearHeadphonesRainbowRGBName="霓虹灯装备 | 耳机 | 彩虹 RGB"
+NeonGearExitBackpackNeonName="霓虹灯装备 | 逃生背包 | 霓虹灯"
+NeonGearExitBackpackRainbowName="霓虹灯装备 | 逃生背包 | 彩虹"
+NeonGearExitBackpackNeonRGBName="霓虹灯装备 | 逃生背包 | 霓虹灯 RGB"
+NeonGearExitBackpackRainbowRGBName="霓虹灯装备 | 逃生背包 | 彩虹 RGB"
+NeonGearTVBackpackNeonName="霓虹灯装备 | TV 背包 | 霓虹灯"
+NeonGearTVBackpackRainbowName="霓虹灯装备 | TV 背包 | 彩虹"
+NeonGearTVBackpackNeonRGBName="霓虹灯装备 | TV 背包 | 霓虹灯 RGB"
+NeonGearTVBackpackRainbowRGBName="霓虹灯装备 | TV 背包 | 彩虹 RGB"
+NeonGearBoomboxNeonName="霓虹灯装备 | 手提音响 | 霓虹灯"
+NeonGearBoomboxRainbowName="霓虹灯装备 | 手提音响 | 彩虹"
+NeonGearBoomboxNeonRGBName="霓虹灯装备 | 手提音响 | 霓虹灯 RGB"
+NeonGearBoomboxRainbowRGBName="霓虹灯装备 | 手提音响 | 彩虹 RGB"
+NeonGearPowerWatchNeonName="霓虹灯装备 | 能量手表 | 霓虹灯"
+NeonGearPowerWatchRainbowName="霓虹灯装备 | 能量手表 | 彩虹"
+NeonGearPowerWatchNeonRGBName="霓虹灯装备 | 能量手表 | 霓虹灯 RGB"
+NeonGearPowerWatchRainbowRGBName="霓虹灯装备 | 能量手表 | 彩虹 RGB"
+NeonGearBackpackDisplaySupporterName="霓虹灯装备 | 背包显示 | 支援"
+NeonGearBackpackDisplayDemolitionName="霓虹灯装备 | 背包显示 | 爆破兵"
+NeonGearBackpackDisplayMedicName="霓虹灯装备 | 背包显示 | 医疗兵"
+NeonGearBackpackDisplayFostersSurpriseName="霓虹灯装备 | 背包显示 | 福斯特的惊喜"
+NeonGearRugbyHelmetNeonName="霓虹灯装备 | 橄榄球头盔 | 霓虹灯"
+NeonGearRugbyHelmetRainbowName="霓虹灯装备 | 橄榄球头盔 | 彩虹"
+NeonGearRugbyHelmetNeonRGBName="霓虹灯装备 | 橄榄球头盔 | 霓虹灯 RGB"
+NeonGearRugbyHelmetRainbowRGBName="霓虹灯装备 | 橄榄球头盔 | 彩虹 RGB"
+NeonGearTopHatNeonName="霓虹灯装备 | 大礼帽 | 霓虹灯"
+NeonGearTopHatRainbowName="霓虹灯装备 | 大礼帽 | 彩虹"
+NeonGearTopHatNeonRGBName="霓虹灯装备 | 大礼帽 | 霓虹灯 RGB"
+NeonGearTopHatRainbowRGBName="霓虹灯装备 | 大礼帽 | 彩虹 RGB"
+NeonGearHorzineArmbandNeonName="霓虹灯装备 | 霍因臂环 | 霓虹灯"
+NeonGearHorzineArmbandRainbowName="霓虹灯装备 | 霍因臂环 | 彩虹"
+NeonGearHorzineArmbandNeonRGBName="霓虹灯装备 | 霍因臂环 | 霓虹灯 RGB"
+NeonGearHorzineArmbandRainbowRGBName="霓虹灯装备 | 霍因臂环 | 彩虹 RGB"
+NeonGearHorzineCapNeonName="霓虹灯装备 | 霍因帽子 | 霓虹灯"
+NeonGearHorzineCapRainbowName="霓虹灯装备 | 霍因帽子 | 彩虹"
+NeonGearHorzineCapNeonRGBName="霓虹灯装备 | 霍因帽子 | 霓虹灯 RGB"
+NeonGearHorzineCapRainbowRGBName="霓虹灯装备 | 霍因帽子 | 彩虹 RGB"
+
+;Space Pirate Cosmetic Names
+SpacePirateFeatheredTopHatNavyName="太空海盗 | 羽毛礼帽 | 海军色"
+SpacePirateFeatheredTopHatBlackName="太空海盗 | 羽毛礼帽 | 黑色"
+SpacePirateFeatheredTopHatGreenName="太空海盗 | 羽毛礼帽 | 绿色"
+SpacePirateFeatheredTopHatRedName="太空海盗 | 羽毛礼帽 | 红色"
+SpacePirateFeatheredTopHatPreciousName="太空海盗 | 羽毛礼帽 | 宝物"
+SpacePirateGoggleDreadsNavyName="太空海盗 | 恐怖护目镜 | 海军色"
+SpacePirateGoggleDreadsSkullName="太空海盗 | 恐怖护目镜 | 骷髅头"
+SpacePirateGoggleDreadsStripesName="太空海盗 | 恐怖护目镜 | 条纹"
+SpacePirateGoggleDreadsBrownandGoldName="太空海盗 | 恐怖护目镜 | 棕色和金色"
+SpacePirateGoggleDreadsGoldandSilverName="太空海盗 | 恐怖护目镜 | 金色和银色"
+SpacePirateTricornHatBrownName="太空海盗 | 三角帽 | 棕色"
+SpacePirateTricornHatBlackName="太空海盗 | 三角帽 | 黑色"
+SpacePirateTricornHatGreenName="太空海盗 | 三角帽 | 绿色"
+SpacePirateTricornHatRedName="太空海盗 | 三角帽 | 红色"
+SpacePirateTricornHatPreciousName="太空海盗 | 三角帽 | 宝物"
+SpacePirateRumHeadWoodName="太空海盗 | 朗姆酒头 | 木材"
+SpacePirateRumHeadDynamiteName="太空海盗 | 朗姆酒头 | 炸药"
+SpacePirateRumHeadCharcoalName="太空海盗 | 朗姆酒头 | 焦炭"
+SpacePirateRumHeadAce&SpadesName="太空海盗 | 朗姆酒头 | 王牌黑桃"
+SpacePirateRumHeadRainbowName="太空海盗 | 朗姆酒头 | 彩虹"
+SpacePirateSkullBeardNavyName="太空海盗 | 骷髅头胡须 | 海军色"
+SpacePirateSkullBeardBlackName="太空海盗 | 骷髅头胡须 | 黑色"
+SpacePirateSkullBeardGreenName="太空海盗 | 骷髅头胡须 | 绿色"
+SpacePirateSkullBeardElderName="太空海盗 | 骷髅头胡须 | 长者"
+SpacePirateSkullBeardPreciousName="太空海盗 | 骷髅头胡须 | 宝物"
+SpacePirateGuyChomperCeruleanName="太空海盗 | 食人者 | 蔚蓝色"
+SpacePirateGuyChomperAquaName="太空海盗 | 食人者 | 水蓝色"
+SpacePirateGuyChomperAlbinoName="太空海盗 | 食人者 | 白化"
+SpacePirateGuyChomperStripesName="太空海盗 | 食人者 | 条纹"
+SpacePirateGuyChomperMegladonName="太空海盗 | 食人者 | 巨齿鲨"
+SpacePirateSpaceMonkeyBackpackName="太空海盗 | 太空猴子背包"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="可在装备菜单进行装备；与大部分角色兼容。这是“夏日余兴节目”季节活动专属的一个物品。回收换为 1 张余兴节目奖券"
@@ -5159,6 +5310,8 @@ DoshVaultAccessoryDescription="可在装备菜单进行装备；与大部分角�
 DoshVaultFacePaintDescription="可在装备菜单进行装备。"
 SteampunkAccessoryDescription="可在装备菜单进行装备；与大部分角色兼容。"
 SteampunkFacePaintDescription="可在装备菜单进行装备。"
+SpacePirateAccessoryDescription="可在装备菜单进行装备；与大部分角色兼容。"
+SpacePirateFacePaintDescription="可在装备菜单进行装备。"
 SteampunkMrsFosterMaskDescription="可在装备菜单进行装备；适用于福斯特夫人、安娜·拉维和瑞伊·希金斯。"
 DARAccessoryDescription="可在装备菜单进行装备；与D.A.R.兼容。"
 CyberPunkAccessoryDescription="可在装备菜单进行装备；与大部分角色兼容。这是赛博朋克活动季专属的一个物品。"

@@ -217,7 +217,12 @@ function SetGenericItemDetails(const out STraderItem TraderItem, out GFxObject I
         if((UpgradeLevel + 1) < 6)
         {
             NextDamageValue = TraderItem.WeaponStats[0].StatValue * TraderItem.WeaponUpgradeDmgMultiplier[UpgradeLevel + 1];
-            ItemData.SetInt("damageUpgradePercent", int((FMin(NextDamageValue / (GetStatMax(TraderItem.WeaponStats[0].StatType)), 1) ** 0.5) * 100));
+            ItemData.SetInt("damageUpgradePercent", int((FMin(NextDamageValue / (GetStatMax(TraderItem.WeaponStats[0].StatType)), 1) ** 0.5) * 100));            
+        }
+        else
+        {
+            NextDamageValue = DamageValue;
+            ItemData.SetInt("damageUpgradePercent", int((FMin(DamageValue / (GetStatMax(TraderItem.WeaponStats[0].StatType)), 1) ** 0.5) * 100));
         }        
     }
     else

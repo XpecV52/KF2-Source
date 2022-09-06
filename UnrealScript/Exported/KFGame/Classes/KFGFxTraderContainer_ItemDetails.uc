@@ -257,6 +257,11 @@ function SetGenericItemDetails(const out STraderItem TraderItem, out GFxObject I
 			ItemData.SetInt("damageUpgradePercent", (FMin(NextDamageValue / GetStatMax(TraderItem.WeaponStats[TWS_Damage].StatType), 1.f) ** 0.5f) * 100.f);
 
 		}
+		else
+		{
+			NextDamageValue = DamageValue;
+			ItemData.SetInt("damageUpgradePercent", (FMin(DamageValue / GetStatMax(TraderItem.WeaponStats[TWS_Damage].StatType), 1.f) ** 0.5f) * 100.f);
+		}
 		//`log("THIS IS THE old DAMAGE VALUE: " @((FMin(DamageValue / GetStatMax(TraderItem.WeaponStats[TWS_Damage].StatType), 1.f) ** 0.5f) * 100.f));
 		//`log("THIS IS THE NEXT DAMAGE VALUE: " @((FMin(NextDamageValue / GetStatMax(TraderItem.WeaponStats[TWS_Damage].StatType), 1.f) ** 0.5f) * 100.f));
 	}

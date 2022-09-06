@@ -49,6 +49,30 @@ simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
 	OutOfBladesBlendNode = AnimNodeBlendPerBone(SkelComp.FindAnimNode('OutOfBladesBlend'));
 }
 
+/* OVERRIDE BECAUSE WE DONT NEED TO LOOK AT ALTFIRE_MODE, AS FOR MELEE WEAPONS IS THE BLOCK FIREMODE AND WILL RESULT IN 
+	THE WEAPON ALWAYS GLOWING GREEN
+ */
+
+simulated function bool HasAnyAmmo()
+{
+	if ( HasSpareAmmo() || HasAmmo(DEFAULT_FIREMODE) )
+	{
+		return true;
+	}
+
+	if (MedicComp != none)
+	{
+		return false;
+	}
+
+    if( UsesSecondaryAmmo() && (HasSpareAmmo(HEAVY_ATK_FIREMODE) || HasAmmo(HEAVY_ATK_FIREMODE) ))
+    {
+		return true;
+	}
+
+	return false;
+}
+
 /*********************************************************************************************
  * @name		Ammunition
  ********************************************************************************************* */

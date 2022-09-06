@@ -377,7 +377,7 @@ function NotifyZedTimeStarted()
             KFAIC = KFAIController(P.Controller);
             if(KFAIC != none)
             {
-                KFAIC.DoFleeFrom(OwnerPawn, GetRageFleeDuration(), float(GetRageFleeDistance()),, true);
+                KFAIC.DoPauseAI(GetRageFleeDuration(), true, false, true);
                 bScaredAI = true;
                 continue;
             }
@@ -558,6 +558,27 @@ simulated function LogPerkSkills()
     super.LogPerkSkills();
     if(bLogPerk)
     {
+    }
+}
+
+static function PrepareExplosive(Pawn ProjOwner, KFProjectile Proj, optional float AuxRadiusMod, optional float AuxDmgMod)
+{
+    local KFPlayerController KFPC;
+    local KFPerk InstigatorPerk;
+
+    AuxRadiusMod = 1;
+    AuxDmgMod = 1;
+    if(ProjOwner != none)
+    {
+        if(ProjOwner.Role == ROLE_Authority)
+        {
+            KFPC = KFPlayerController(ProjOwner.Controller);
+            if(KFPC != none)
+            {
+                InstigatorPerk = KFPC.GetPerk();
+                Proj.ExplosionTemplate.DamageRadius *= (InstigatorPerk.GetAoERadiusModifier() * AuxRadiusMod);
+            }
+        }
     }
 }
 

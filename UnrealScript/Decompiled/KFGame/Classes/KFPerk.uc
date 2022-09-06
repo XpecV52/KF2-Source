@@ -118,6 +118,7 @@ const STATID_ACHIEVE_AsylumCollectibles = 4051;
 const STATID_ACHIEVE_SanitariumCollectibles = 4052;
 const STATID_ACHIEVE_DefeatMatriarch = 4053;
 const STATID_ACHIEVE_BiolapseCollectibles = 4054;
+const STATID_ACHIEVE_DesolationCollectibles = 4055;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -1395,6 +1396,11 @@ simulated function int GetArmorDamageAmount(int AbsorbedAmt)
 simulated event float GetZedTimeSpeedScale()
 {
     return 1;
+}
+
+simulated function bool GetIncapMasterActive()
+{
+    return false;
 }
 
 static function ModifyAssistDosh(out int EarnedDosh)

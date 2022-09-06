@@ -1,6 +1,6 @@
 [CHR_BadSanta_Archetype]
 CharacterName="상남자 산타"
-Description="먼저 크램퍼스가 요정들과 순록들을 찾아 옵니다. 그 다음에 크램퍼스가 집에 옵니다. 이제 산타는 봐주지 않습니다. 산타는 기관총을 들고 있습니다 호 호 호!\n\n 성 니콜라스는 수백 년 전 전세계 아이들을 지켜보며 영원히 크리스마스의 즐거움을 전하며 전세계 소년 소녀들에게 장난감을 선물해주기로 마음 먹었습니다. 그러던 중 크램퍼스가 나타났습니다. 크램퍼스 크리스마스가 시작된 후 산타클로스는 쓰러져간 일꾼들, 친구들, 가족들의 복수에 자신을 바쳤습니다. 빨간 볼과 젤리가 가득 찬 것 같은 뱃살은 사라지고 날카로운 눈빛과 겹겹이 쌓인 근육이 그 자리를 대신하게 되었습니다. 이번 크리스마스에는 결코 고요한 밤이 오지 않을 것입니다. 산타클로스는 선량함과 크리스마스의 즐거움을 모두 잊었습니다. 그에게는 오직 분노와 복수, 명절 내내 총성을 퍼뜨릴 방대한 탄약만이 있을 뿐입니다."
+Description="먼저 크램퍼스가 요정들과 순록들을 찾아 옵니다. 그 다음에 크램퍼스가 집에 옵니다. 이제 산타는 봐주지 않습니다. 산타는 기관총을 들고 있습니다 호 호 호!\n\n 성 니콜라스는 수백 년 전 전세계 아이들을 지켜보며 영원히 크리스마스의 즐거움을 전하며 전세계 소년 소녀들에게 장난감을 선물해주기로 마음 먹었습니다.  그러던 중 크램퍼스가 나타났습니다.  크램퍼스 크리스마스가 시작된 후 산타클로스는 쓰러져간 일꾼들, 친구들, 가족들의 복수에 자신을 바쳤습니다. 빨간 볼과 젤리가 가득 찬 것 같은 뱃살은 사라지고 날카로운 눈빛과 겹겹이 쌓인 근육이 그 자리를 대신하게 되었습니다. 이번 크리스마스에는 결코 고요한 밤이 오지 않을 것입니다. 산타클로스는 선량함과 크리스마스의 즐거움을 모두 잊었습니다. 그에게는 오직 분노와 복수, 명절 내내 총성을 퍼뜨릴 방대한 탄약만이 있을 뿐입니다."
 BodyMesh0="산타 의상"
 BodyMesh1="코만도 치킨"
 HeadMesh0="산타 머리"
@@ -42,6 +42,7 @@ BodyMesh8="볼트 파자마 복장"
 BodyMesh9="사이버펑크"
 BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
+BodyMesh12="우주 해적 복장"
 HeadMesh0="가스 마스크"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -139,6 +140,14 @@ BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
 
+[CHR_MrsFoster_archetype.BodyMesh12]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="화이트"
 HeadSkin1="그린"
@@ -222,6 +231,7 @@ BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
 BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
+BodyMesh12="우주 해적 복장"
 HeadMesh0="수염의 힘!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -325,6 +335,14 @@ BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
 
+[CHR_Jagerhorn_archetype.BodyMesh12]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="스웨덴 금발"
 HeadSkin1="블랙 앨범"
@@ -423,6 +441,7 @@ BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
 BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
+BodyMesh12="Space Pirate"
 HeadMesh0="스컬리 마스크"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -525,6 +544,14 @@ BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
 
+[CHR_DJSkully_archetype.BodyMesh12]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="가장 어두운 블랙"
 HeadSkin1="엑스트라 레드"
@@ -570,6 +597,7 @@ BodyMesh9="스팀펑크"
 BodyMesh10="사이버펑크"
 BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
+BodyMesh13="우주 해적 복장"
 HeadMesh0="헤어"
 
 [chr_briar_archetype.BodyMesh0]
@@ -678,6 +706,14 @@ BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
 
+[CHR_briar_archetype.BodyMesh13]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="오리지널"
 HeadSkin1="하이라이트"
@@ -717,6 +753,7 @@ BodyMesh9="스팀펑크"
 BodyMesh10="사이버펑크"
 BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
+BodyMesh13="해적 복장"
 HeadMesh0="가스 마스크"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -829,6 +866,14 @@ BodySkin2="블루"
 BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
+
+[CHR_MrFoster_archetype.BodyMesh13]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="오리지널 화이트"
@@ -989,6 +1034,7 @@ BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
 BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
+BodyMesh12="우주 해적 복장"
 HeadMesh0="페이스"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1089,6 +1135,14 @@ BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
 
+[CHR_Coleman_archetype.BodyMesh12]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="도노반"
 HeadSkin1="탯"
@@ -1127,6 +1181,7 @@ BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
 BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
+BodyMesh12="우주 해적 복장"
 HeadMesh0="헤어"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1228,6 +1283,14 @@ BodySkin2="블루"
 BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
+
+[CHR_Alberts_archetype.BodyMesh12]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="그레이"
@@ -2127,6 +2190,7 @@ BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
 BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
+BodyMesh12="우주 해적 복장"
 HeadMesh0="페이스"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2238,6 +2302,14 @@ BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
 
+[CHR_Masterson_archetype.BodyMesh12]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
+
 [CHR_Tanaka_Archetype]
 CharacterName="하야토 타나카"
 Description="타나카는 죽음에 대한 동경으로 어려움을 겪고 있습니다. 오키나와에서 태어난 그는 미군 가정에서 자랍니다. 가족과 함께 일본으로 이주한 타나카는 미국 문화에 젖어 연기 수업을 받지 못합니다. 대학을 졸업한 후 LA로 이주하여 형편없는 영화에 단역으로 출연하던 그는 보다 ‘진지한’ 작업을 위해 유럽으로 옮깁니다. 그가 맡게 된 역할은 고작 프랑스 갱스터 영화의 악역이었습니다. 이제 세계가 멸망하자 그는 현실과 영화 속에서 자신이 맡았던 역할을 혼동하게 되었습니다. 여기에는 야쿠자와 악마, 할리우드판 무사도의 환상이 섞여 있는 것처럼 보입니다."
@@ -2254,6 +2326,7 @@ BodyMesh9="스팀펑크"
 BodyMesh10="사이버펑크"
 BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
+BodyMesh13="우주 해적 복장"
 HeadMesh0="헤어"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2372,6 +2445,14 @@ BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
 
+[CHR_Tanaka_archetype.BodyMesh13]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="헬멧"
 AttachmentSkin0="라이징 선"
@@ -2414,6 +2495,7 @@ BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
 BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
+BodyMesh12="우주 해적 복장"
 HeadMesh0="모호크"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2525,6 +2607,14 @@ BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
 
+[CHR_Ana_archetype.BodyMesh12]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 안경"
 AttachmentSkin0="애너그리프 3D"
@@ -2553,6 +2643,7 @@ BodyMesh9="스팀펑크"
 BodyMesh10="사이버펑크"
 BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
+BodyMesh13="우주 해적 복장"
 HeadMesh0="헤어"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2661,6 +2752,14 @@ BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
 
+[CHR_mark_archetype.BodyMesh13]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
 HeadSkin1="피바다 5시"
@@ -2686,6 +2785,7 @@ BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
 BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
+BodyMesh12="우주 해적 복장"
 HeadMesh0="페이스"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2789,6 +2889,14 @@ BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
 
+[CHR_alan_archetype.BodyMesh12]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
 HeadSkin1="진저! 정말?"
@@ -2821,6 +2929,7 @@ BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
 BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
+BodyMesh12="우주 해적 복장"
 HeadMesh0="헤어"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -2920,6 +3029,14 @@ BodySkin2="블루"
 BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
+
+[CHR_strasser_archetype.BodyMesh12]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="다크 스틸"
@@ -3095,6 +3212,7 @@ BodyMesh8="스팀펑크"
 BodyMesh9="사이버펑크"
 BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
+BodyMesh12="우주 해적 복장"
 HeadMesh0="기본 머리"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3198,6 +3316,14 @@ BodySkin2="블루"
 BodySkin3="그린"
 BodySkin4="화이트"
 BodySkin5="옐로우"
+
+[CHR_rockabilly_archetype.BodyMesh12]
+BodySkin0="올리브색"
+BodySkin1="남색"
+BodySkin2="진홍색"
+BodySkin3="라임색"
+BodySkin4="라벤더색"
+BodySkin5="귤색"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="블랙"
@@ -5675,3 +5801,189 @@ AttachmentSkin2="핑크"
 AttachmentSkin3="퍼플"
 AttachmentSkin4="화이트"
 AttachmentSkin5="프레셔스"
+
+[Cosmetic_Neon_Headphones_ARCH]
+Attachment="헤드폰"
+AttachmentSkin0="네온"
+AttachmentSkin1="레인보우"
+AttachmentSkin2="네온 RGB"
+AttachmentSkin3="레인보우 RGB"
+
+[Cosmetic_Retro_Sign_ARCH]
+Attachment="비상 배낭"
+AttachmentSkin0="네온"
+AttachmentSkin1="레인보우"
+AttachmentSkin2="네온 RGB"
+AttachmentSkin3="레인보우 RGB"
+
+[Cosmetic_Retro_TV_ARCH]
+Attachment="TV 배낭"
+AttachmentSkin0="네온"
+AttachmentSkin1="레인보우"
+AttachmentSkin2="네온 RGB"
+AttachmentSkin3="레인보우 RGB"
+
+[Cosmetic_Retro_Boombox_ARCH]
+Attachment="붐 박스"
+AttachmentSkin0="네온"
+AttachmentSkin1="레인보우"
+AttachmentSkin2="네온 RGB"
+AttachmentSkin3="레인보우 RGB"
+
+[Cosmetic_Retro_Watch_ARCH]
+Attachment="파워 워치"
+AttachmentSkin0="네온"
+AttachmentSkin1="레인보우"
+AttachmentSkin2="네온 RGB"
+AttachmentSkin3="레인보우 RGB"
+
+[Cosmetic_Neon_Display_ARCH]
+Attachment="배낭 디스플레이"
+AttachmentSkin0="지원가"
+AttachmentSkin1="파괴"
+AttachmentSkin2="간호병"
+AttachmentSkin3="부모님의 깜짝 선물"
+
+[Cosmetic_Retro_Helmet_ARCH]
+Attachment="럭비 헬멧"
+AttachmentSkin0="네온"
+AttachmentSkin1="레인보우"
+AttachmentSkin2="네온 RGB"
+AttachmentSkin3="레인보우 RGB"
+
+[Cosmetic_Neon_CylinderHat_ARCH]
+Attachment="신사 모자"
+AttachmentSkin0="네온"
+AttachmentSkin1="레인보우"
+AttachmentSkin2="네온 RGB"
+AttachmentSkin3="레인보우 RGB"
+
+[Cosmetic_Neon_Armband_ARCH]
+Attachment="Horzine 완장"
+AttachmentSkin0="네온"
+AttachmentSkin1="레인보우"
+AttachmentSkin2="네온 RGB"
+AttachmentSkin3="레인보우 RGB"
+
+[Cosmetic_Neon_Cap_ARCH]
+Attachment="Horzine 모자"
+AttachmentSkin0="네온"
+AttachmentSkin1="레인보우"
+AttachmentSkin2="네온 RGB"
+AttachmentSkin3="레인보우 RGB"
+
+[Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
+Attachment="우주 해적 깃털 달린 신사 모자"
+AttachmentSkin0="네이비"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_SpacePirate_GoggleDreads_ARCH]
+Attachment="우주 해적 고글 드레드락"
+AttachmentSkin0="네이비"
+AttachmentSkin1="스컬"
+AttachmentSkin2="스트라이프"
+AttachmentSkin3="브라운과 골드"
+AttachmentSkin4="골드와 실버"
+
+[Cosmetic_SpacePirate_TricornHat_ARCH]
+Attachment="우주 해적 삼각 모자"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그린"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_SpacePirate_RumHead_ARCH]
+Attachment="우주 해적 럼 헤드"
+AttachmentSkin0="목재"
+AttachmentSkin1="다이너마이트"
+AttachmentSkin2="차콜"
+AttachmentSkin3="에이스 앤 스페이드"
+AttachmentSkin4="레인보우"
+
+[Cosmetic_SpacePirate_SkullBeard_ARCH]
+Attachment="우주 해적 두개골 수염"
+AttachmentSkin0="네이비"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그린"
+AttachmentSkin3="엘더"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_SpacePirate_GuyChomper_ARCH]
+Attachment="우주 해적 상남자 먹보"
+AttachmentSkin0="세루리안"
+AttachmentSkin1="아쿠아"
+AttachmentSkin2="알비노"
+AttachmentSkin3="스트라이프"
+AttachmentSkin4="메갈로돈"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_ARCH]
+Attachment="우주 해적 배낭"
+AttachmentSkin0="우주 원숭이"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Alberts_ARCH]
+Attachment="우주 해적 배낭"
+AttachmentSkin0="우주 원숭이"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Coleman_ARCH]
+Attachment="우주 해적 배낭"
+AttachmentSkin0="우주 원숭이"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_JagerHorn_ARCH]
+Attachment="우주 해적 배낭"
+AttachmentSkin0="우주 원숭이"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_Knight_ARCH]
+Attachment="우주 해적 배낭"
+AttachmentSkin0="우주 원숭이"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_MrFoster_ARCH]
+Attachment="우주 해적 배낭"
+AttachmentSkin0="우주 원숭이"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_MrsFoster_ARCH]
+Attachment="우주 해적 배낭"
+AttachmentSkin0="우주 원숭이"
+
+[Cosmetic_SpacePirate_SpaceMonkeyBackpack_RockabillyGirl_ARCH]
+Attachment="우주 해적 배낭"
+AttachmentSkin0="우주 원숭이"
+
+[Cosmetic_SpacePirate_MaleCaptainHat_ARCH]
+Attachment="허세꾼 모자"
+AttachmentSkin0="올리브색"
+AttachmentSkin1="남색"
+AttachmentSkin2="진홍색"
+AttachmentSkin3="라임색"
+AttachmentSkin4="라벤더색"
+AttachmentSkin5="귤색"
+
+[Cosmetic_SpacePirate_FemaleCaptainHat_ARCH]
+Attachment="허세꾼 모자"
+AttachmentSkin0="올리브색"
+AttachmentSkin1="남색"
+AttachmentSkin2="진홍색"
+AttachmentSkin3="라임색"
+AttachmentSkin4="라벤더색"
+AttachmentSkin5="귤색"
+
+[Cosmetic_SpacePirate_MaleCaptainMask_ARCH]
+Attachment="해적 가면"
+AttachmentSkin0="올리브색"
+AttachmentSkin1="남색"
+AttachmentSkin2="진홍색"
+AttachmentSkin3="라임색"
+AttachmentSkin4="라벤더색"
+AttachmentSkin5="귤색"
+
+[Cosmetic_SpacePirate_FemaleCaptainMask_ARCH]
+Attachment="해적 가면"
+AttachmentSkin0="올리브색"
+AttachmentSkin1="남색"
+AttachmentSkin2="진홍색"
+AttachmentSkin3="라임색"
+AttachmentSkin4="라벤더색"
+AttachmentSkin5="귤색"

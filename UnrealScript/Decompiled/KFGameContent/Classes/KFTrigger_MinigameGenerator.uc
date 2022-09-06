@@ -430,9 +430,16 @@ function bool UsedBy(Pawn User)
 function TriggerObjectiveCompletion()
 {
     local KFPlayerController KFPC;
+    local bool bIsObjectiveDataValid;
 
+    bIsObjectiveDataValid = (((ObjectiveIndex >= 0) && ObjectiveIndex < 5) && EventIndex > 0) && EventIndex < 5;
     foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
-    {        
+    {
+        KFPC.ClientOnTriggerUsed(Class'KFTrigger_MinigameGenerator');
+        if(bIsObjectiveDataValid)
+        {
+            KFPC.ClientOnTryCompleteObjective(ObjectiveIndex, EventIndex);
+        }        
     }    
 }
 

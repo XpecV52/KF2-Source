@@ -21,7 +21,7 @@ var() bool bCollideWithTeammates;
 
 var bool bClientDudHit;
 
-var bool bIsTimedExplosive;
+var repnotify bool bIsTimedExplosive;
 
 /** Distance this projectile arms itself at */
 var()   float               ArmDistSquared;
@@ -44,6 +44,12 @@ var() float WallHitDampenFactor;
 /** Dampen amount for parallel angle to velocity */
 var() float WallHitDampenFactorParallel;
 
+/** A smaller speed will cause the projectile to stop */
+var() float MinSpeedBeforeStop; 
+
+/** Set to true to reset the projectile rotation when it stops because of low speed */
+var() bool ResetRotationOnStop;
+
 /** How much to offset the emitter mesh when the grenade has landed so that it doesn't penetrate the ground */
 var() vector LandedTranslationOffset;
 
@@ -57,6 +63,9 @@ replication
 
     if( bNetInitial && !bNetOwner )
         ArmDistSquared;
+
+	if (bNetDirty)
+		bIsTimedExplosive;
 }
 
 simulated function SyncOriginalLocation()
@@ -167,7 +176,7 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
     	}
 
 		// if we hit a pawn or we are moving too slowly stop moving and lay down flat
-		if ( Speed < 40  )
+		if ( Speed < MinSpeedBeforeStop  )
 		{
 			ImpactedActor = Wall;
 			SetPhysics(PHYS_None);
@@ -183,7 +192,10 @@ simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallCom
         	RotationRate.Roll = 0;
         	NewRotation = Rotation;
         	NewRotation.Pitch = 0;
-			SetRotation(NewRotation);
+			if(ResetRotationOnStop)
+			{
+				SetRotation(NewRotation);
+			}
 			Offset.Z = LandedTranslationOffset.X;
 			SetLocation(Location + Offset);
 		}
@@ -402,10 +414,12 @@ simulated protected function SetExplosionActorClass()
 
 defaultproperties
 {
+   ResetRotationOnStop=True
    DampenFactor=0.025000
    DampenFactorParallel=0.050000
    WallHitDampenFactor=0.025000
    WallHitDampenFactorParallel=0.050000
+   MinSpeedBeforeStop=40.000000
    LandedTranslationOffset=(X=2.000000,Y=0.000000,Z=0.000000)
    bSyncToOriginalLocation=True
    bSyncToThirdPersonMuzzleLocation=True

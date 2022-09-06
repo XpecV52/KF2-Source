@@ -661,6 +661,7 @@ defaultproperties
    DamageTypeModifiers(28)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingSubspawnExplosion',DamageScale=(0.750000))
    DamageTypeModifiers(29)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower')
    DamageTypeModifiers(30)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MicrowaveRifle',DamageScale=(0.700000))
+   DamageTypeModifiers(31)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGTeslauncher',DamageScale=(0.600000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_BloatKing'
    FootstepCameraShakeInnerRadius=200.000000
    FootstepCameraShakeOuterRadius=900.000000

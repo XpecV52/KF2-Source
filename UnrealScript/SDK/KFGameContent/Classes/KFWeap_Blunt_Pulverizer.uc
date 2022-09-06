@@ -59,6 +59,31 @@ simulated event PreBeginPlay()
 	}
 }
 
+simulated function bool HasAnyAmmo()
+{
+
+	if (HasAmmo(CUSTOM_FIREMODE))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
+}
+
+simulated event bool HasAmmo(byte FireModeNum, optional int Amount)
+{
+	// Default fire mode either has ammo to trigger the heal or needs to return true to still allow a basic swing
+	if (FireModeNum == DEFAULT_FIREMODE)
+	{
+		return true;
+	}
+
+	return super.HasAmmo(FireModeNum, Amount);
+}
+
 /** Pulverizer should be able to interrupt its reload state with any melee attack */
 simulated function bool CanOverrideMagReload(byte FireModeNum)
 {
@@ -427,8 +452,8 @@ defaultproperties
 	FiringStatesArray(RELOAD_FIREMODE)=Reloading
 
 	// Ammo
-	MagazineCapacity[0]=5
-	SpareAmmoCapacity[0]=15
+	MagazineCapacity[0]=1
+	SpareAmmoCapacity[0]=1
 	InitialSpareMags[0]=0
 	bCanBeReloaded=true
 	bReloadFromMagazine=true

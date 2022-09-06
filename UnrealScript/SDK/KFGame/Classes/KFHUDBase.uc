@@ -31,7 +31,7 @@ var const color LightGoldColor;
 
 var const color LightGreenColor, YellowColor, OrangeColor, RedHealthColor;
 
-var const color ArmorColor, HealthColor, ClassicArmorColor, ClassicHealthColor, NonPlayerHealth;
+var const color ArmorColor, HealthColor, ClassicArmorColor, ClassicHealthColor, NonPlayerHealth, HealthBeingRegeneratedColor;
 var const color PlayerBarBGColor, PlayerBarTextColor, PlayerBarIconColor, PlayerBarShadowColor;
 var const color SupplierActiveColor, SupplierUsableColor, SupplierHalfUsableColor;
 
@@ -763,7 +763,7 @@ simulated function DrawPerkIcons(KFPawn_Human KFPH, float PerkIconSize, float Pe
  */
 simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 {
-	local float Percentage;
+	local float Percentage, PercentageHealth;
 	local float BarHeight, BarLength;
 	local vector ScreenPos, TargetLocation;
 	local KFPlayerReplicationInfo KFPRI;
@@ -812,10 +812,18 @@ simulated function bool DrawFriendlyHumanPlayerInfo( KFPawn_Human KFPH )
 	CurrentArmorColor = ClassicPlayerInfo ? ClassicArmorColor : ArmorColor;
 	DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y + BarHeight + (36 * FontScale * ResModifier), CurrentArmorColor);
 
+
+
 	//Draw health bar
-	Percentage = FMin(float(KFPH.Health) / float(KFPH.HealthMax), 100);
+	PercentageHealth = FMin(float(KFPH.Health) / float(KFPH.HealthMax), 100);
 	CurrentHealthColor = ClassicPlayerInfo ? ClassicHealthColor : HealthColor;
-	DrawKFBar(Percentage, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y + BarHeight * 2 + (36 * FontScale * ResModifier), CurrentHealthColor);
+	DrawKFBar(PercentageHealth, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5f), ScreenPos.Y + BarHeight * 2 + (36 * FontScale * ResModifier), CurrentHealthColor);
+
+
+	//Draw health being regenerated bar
+	Percentage = FMin(float(KFPH.HealthToRegen) / float(KFPH.HealthMax), 100);
+	CurrentHealthColor = HealthBeingRegeneratedColor;
+	DrawKFBar(1, Percentage * BarLength, BarHeight, ScreenPos.X + BarLength * (PercentageHealth - 0.5f), ScreenPos.Y + BarHeight * 2 + (36 * FontScale * ResModifier), HealthBeingRegeneratedColor);
 
 	if( KFPRI.CurrentPerkClass == none )
 	{
@@ -1335,6 +1343,7 @@ defaultproperties
 	ClassicHealthColor=(R=95, G=210, B=255, A=192)
 	ArmorColor=(R=0, G=100, B=210, A=192)		// slightly less saturated
 	HealthColor=(R=0, G=192, B=0, A=192)		// changed to match 'LightGreenColor'
+	HealthBeingRegeneratedColor=(R=211, G=211, B=211, A=192)
 	NonPlayerHealth=(R=0, G=184, B=97, A=192)
 	PlayerBarBGColor=(R=16, G=16, B=16, A=192) 	// changed to grey so that depleted health is more obvious. More transparent.
 	PlayerBarTextColor=(R=255, G=255, B=255, A=192)

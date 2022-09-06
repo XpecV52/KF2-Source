@@ -698,6 +698,36 @@ ItemCategory="Arco"
 ItemDescription="•La modalità di fuoco funziona solo caricando la freccia.\n•Più a lungo tiri la corda, più il raggio e i danni aumentano.\n•Con il Fuoco alternativo si alternano frecce appuntite e criogeniche.\n•Quando a Cupido serve più potenza."
 SharedUnlockSource="Bundle armi Arco Compound"
 
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="Bastone esplosivo HRG"
+ItemCategory="Fucile"
+ItemDescription="•La modalità di fuoco primaria utilizza una sola canna.\n•Fuoco alternativo per usare entrambe le canne.\n•Munizioni esplosive incluse per vivacizzare l'esperienza."
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="Archibugio"
+ItemCategory="Esplosivi"
+ItemDescription="•Il fuoco primario spara una palla di cannone.\n•Tieni premuto il fuoco primario per 0,1 secondi per evitare che la palla di cannone esploda. Esplode al rilascio.\n•La modalità Fuoco alternativo spara schegge.\n•Gamba di legno e pappagallo sono venduti separatamente!"
+SharedUnlockSource="Bundle armi Archibugio"
+
+[KFWeap_Pistol_G18C]
+ItemName="Glock 18C"
+ItemCategory="Mitra"
+ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico.\n•Attenzione: quando utilizzata, suscita un bisogno irrefrenabile di autoidentificarsi con la legge."
+SharedUnlockSource="Bundle armi Glock 18C singola e doppia"
+
+[KFWeap_Pistol_DualG18]
+ItemName="Glock 18C doppia"
+ItemCategory="Mitra"
+ItemDescription="•Solo automatico.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Attenzione: quando utilizzata, suscita un bisogno irrefrenabile di autoidentificarsi con la legge."
+SharedUnlockSource="Bundle armi Glock 18C singola e doppia"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="LanciaTesla HRG"
+ItemCategory="Fucile d'assalto"
+ItemDescription="•Solo automatico.\n•Usa il fuoco alternativo per lanciare granate EMP.\n•Con quest'arma elettrica ed ecologica puoi uccidere centinaia di Zed senza danneggiare il pianeta."
+SecondaryAmmo="Granata EMP"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

@@ -54,7 +54,7 @@ var KFGFxWidget_LevelUpNotification LevelUpNotificationWidget;
 var KFGFxWidget_VoiceComms VoiceCommsWidget;
 //Widget for displaying song info
 var KFGFxWidget_MusicNotification MusicNotification;
-// widget for displaying a current vote
+// widget for displaying a current kick vote and trader vote
 var KFGFxWidget_KickVote KickVoteWidget;
 // Widget that shows unimportant messages such as receiving ammo
 var KFGFxWidget_NonCriticalGameMessage NonCriticalGameMessageWidget;
@@ -68,6 +68,10 @@ var KFPlayerController KFPC;
 var config float HUDScale;
 
 var GFxObject KFGXHUDManager;
+
+var bool bIsSkipTraderVoteActive;
+var bool bIsKickVoteActive;
+var bool bUserAlreadyStartASkipTraderVote;
 
 var bool bIsSpectating;
 var bool bIsVisible;
@@ -100,7 +104,6 @@ function Init(optional LocalPlayer LocPlay)
     UpdateScale();
     // Let the HUD Manager know if we are in a console build of the game.
     KFGXHUDManager.SetBool("bConsoleBuild",class'WorldInfo'.static.IsConsoleBuild());
-
 }
 
 function CreateScoreboard()
@@ -1055,11 +1058,17 @@ function OpenChatBox()
     }
 }
 
+//==============================================================
+// Kick and Skip Trader Vote
+//==============================================================
+
 function ShowKickVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices)
 {
     if(KickVoteWidget != none)
     {
-        KickVoteWidget.ShowKickVote(PRI, VoteDuration, bShowChoices);
+		bIsSkipTraderVoteActive = false;
+		bIsKickVoteActive = true;
+        KickVoteWidget.ShowVote(PRI, VoteDuration, bShowChoices, bIsSkipTraderVoteActive);
     }
 }
 
@@ -1067,6 +1076,8 @@ simulated function HideKickVote()
 {
     if(KickVoteWidget != none)
     {
+		bIsSkipTraderVoteActive = false;
+		bIsKickVoteActive = false;
         KickVoteWidget.VoteClosed();
     }
 }
@@ -1075,7 +1086,43 @@ function UpdateKickVoteCount(byte YesVotes, byte NoVotes)
 {
     if(KickVoteWidget != none)
     {
-        KickVoteWidget.UpdateKickVoteCount(YesVotes, NoVotes);
+        KickVoteWidget.UpdateVoteCount(YesVotes, NoVotes);
+    }
+}
+
+function ShowSkipTraderVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices)
+{
+    if(KickVoteWidget != none)
+    {
+		bIsSkipTraderVoteActive = true;
+		bIsKickVoteActive = false;
+        KickVoteWidget.ShowVote(PRI, VoteDuration, bShowChoices, bIsSkipTraderVoteActive);
+    }
+}
+
+function UpdateSkipTraderTime(byte VoteDuration)
+{
+    if(KickVoteWidget != none)
+    {
+        KickVoteWidget.UpdateVoteDuration(VoteDuration);
+    }
+}
+
+simulated function HideSkipTraderVote()
+{
+    if(KickVoteWidget != none)
+    {
+		bIsSkipTraderVoteActive = false;
+		bIsKickVoteActive = false;
+        KickVoteWidget.VoteClosed();
+    }
+}
+
+function UpdateSkipTraderVoteCount(byte YesVotes, byte NoVotes)
+{
+    if(KickVoteWidget != none)
+    {
+        KickVoteWidget.UpdateVoteCount(YesVotes, NoVotes);
     }
 }
 
@@ -1215,13 +1262,25 @@ function Callback_VoiceCommsSelection( int CommsIndex )
     }
 }
 
-function Callback_VoteKick(bool bKick)
+function Callback_VoteKick(bool bKickOrSkip)
 {
     local KFPlayerReplicationInfo KFPRI;
 
     KFPRI=KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
 
-    KFPRI.CastKickVote(KFPRI, bKick);
+	if(bIsSkipTraderVoteActive)
+	{
+		KFPRI.CastSkipTraderVote(KFPRI, bKickOrSkip);
+	}
+	else
+	{
+		KFPRI.CastKickVote(KFPRI, bKickOrSkip);
+	}
+
+	if(KickVoteWidget != none)
+	{
+		KickVoteWidget.ResetVote();
+	}
 }
 
 defaultproperties

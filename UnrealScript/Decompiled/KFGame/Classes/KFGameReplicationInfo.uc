@@ -99,7 +99,10 @@ var KFTraderTrigger OpenedTrader;
 var Volume TraderVolume;
 var byte TraderVolumeCheckType;
 var repnotify byte MusicTrackRepCount;
-var repnotify byte RepKickVotes;
+var repnotify byte RepKickYesVotes;
+var repnotify byte RepKickNoVotes;
+var repnotify byte RepSkipTraderYesVotes;
+var repnotify byte RepSkipTraderNoVotes;
 var byte WaveMax;
 var repnotify byte WaveNum;
 var repnotify byte GameLength;
@@ -107,7 +110,6 @@ var byte GameDifficulty;
 var byte GameDifficultyModifier;
 var byte MaxPerkLevel;
 var repnotify byte BossIndex;
-var private const byte GameSharedUnlocks;
 var byte CurrentGameConductorStatus;
 var byte MusicIntensity;
 var int DebugingNextTraderIndex;
@@ -143,6 +145,7 @@ var UniqueNetId ConsoleGameSessionHost;
 var array<UniqueNetId> ConsoleGameSessionPendingPlayers;
 var float GameAmmoCostScale;
 var KFCharacterInfo_Monster CachedBossArch;
+var private const int GameSharedUnlocks;
 var float CurrentSineMod;
 var float CurrentNextSpawnTime;
 var float CurrentSineWavFreq;
@@ -222,6 +225,12 @@ replication
      if(bNetInitial && Role == ROLE_Authority)
         ServerAdInfo;
 
+     if((bNetDirty && VoteCollector != none) && VoteCollector.bIsKickVoteInProgress)
+        RepKickNoVotes, RepKickYesVotes;
+
+     if((bNetDirty && VoteCollector != none) && VoteCollector.bIsSkipTraderVoteInProgress)
+        RepSkipTraderNoVotes, RepSkipTraderYesVotes;
+
      if(bDebugSpawnManager && bNetDirty)
         CurrentAIAliveCount, CurrentMaxMonsters, 
         CurrentNextSpawnTime, CurrentNextSpawnTimeMod, 
@@ -236,9 +245,6 @@ replication
         FailedSpawnInfos, HumanInfos, 
         PickupInfos, SpawnVolumeInfos, 
         ZedInfos;
-
-     if((bNetDirty && VoteCollector != none) && VoteCollector.bIsVoteInProgress)
-        RepKickVotes;
 
      if(bNetDirty)
         bGameConductorGraphingEnabled;
@@ -328,72 +334,79 @@ simulated event ReplicatedEvent(name VarName)
                         }
                         else
                         {
-                            if(VarName == 'RepKickVotes')
+                            if((VarName == 'RepKickYesVotes') || VarName == 'RepKickNoVotes')
                             {
-                                VoteCollector.UnPackVotes();                                
+                                VoteCollector.UnPackKickVotes();                                
                             }
                             else
                             {
-                                if(VarName == 'ServerAdInfo')
+                                if((VarName == 'RepSkipTraderYesVotes') || VarName == 'RepSkipTraderNoVotes')
                                 {
-                                    ShowPreGameServerWelcomeScreen();                                    
+                                    VoteCollector.UnPackSkipTraderVotes();                                    
                                 }
                                 else
                                 {
-                                    if(VarName == 'WaveNum')
+                                    if(VarName == 'ServerAdInfo')
                                     {
-                                        UpdateHUDWaveCount();
-                                        TriggerClientWaveStartEvents();                                        
+                                        ShowPreGameServerWelcomeScreen();                                        
                                     }
                                     else
                                     {
-                                        if(VarName == 'ConsoleGameSessionGuid')
+                                        if(VarName == 'WaveNum')
                                         {
-                                            KFPlayerController(GetALocalPlayerController()).TryJoinGameSession();                                            
+                                            UpdateHUDWaveCount();
+                                            TriggerClientWaveStartEvents();                                            
                                         }
                                         else
                                         {
-                                            if(VarName == 'CurrentObjective')
+                                            if(VarName == 'ConsoleGameSessionGuid')
                                             {
-                                                if(CurrentObjective != none)
-                                                {
-                                                    ObjectiveInterface = KFInterface_MapObjective(CurrentObjective);
-                                                    ObjectiveInterface.ActivateObjective();                                                    
-                                                }
-                                                else
-                                                {
-                                                    if(GetALocalPlayerController() != none)
-                                                    {
-                                                        KFPlayerController(GetALocalPlayerController()).SeasonalEventStats_OnMapObjectiveDeactivated(Actor(bool(ObjectiveInterface)));
-                                                    }
-                                                    ObjectiveInterface.DeactivateObjective();
-                                                    ObjectiveInterface = none;
-                                                }                                                
+                                                KFPlayerController(GetALocalPlayerController()).TryJoinGameSession();                                                
                                             }
                                             else
                                             {
-                                                if(VarName == 'BossIndex')
+                                                if(VarName == 'CurrentObjective')
                                                 {
-                                                    CacheSelectedBoss(BossIndex);                                                    
-                                                }
-                                                else
-                                                {
-                                                    if(VarName == 'NextObjective')
+                                                    if(CurrentObjective != none)
                                                     {
-                                                        if(NextObjective != none)
-                                                        {
-                                                            KFInterface_MapObjective(NextObjective).NotifyObjectiveSelected();
-                                                        }                                                        
+                                                        ObjectiveInterface = KFInterface_MapObjective(CurrentObjective);
+                                                        ObjectiveInterface.ActivateObjective();                                                        
                                                     }
                                                     else
                                                     {
-                                                        if(VarName == 'GameLength')
+                                                        if(GetALocalPlayerController() != none)
                                                         {
-                                                            ReceivedGameLength();                                                            
+                                                            KFPlayerController(GetALocalPlayerController()).SeasonalEventStats_OnMapObjectiveDeactivated(Actor(bool(ObjectiveInterface)));
+                                                        }
+                                                        ObjectiveInterface.DeactivateObjective();
+                                                        ObjectiveInterface = none;
+                                                    }                                                    
+                                                }
+                                                else
+                                                {
+                                                    if(VarName == 'BossIndex')
+                                                    {
+                                                        CacheSelectedBoss(BossIndex);                                                        
+                                                    }
+                                                    else
+                                                    {
+                                                        if(VarName == 'NextObjective')
+                                                        {
+                                                            if(NextObjective != none)
+                                                            {
+                                                                KFInterface_MapObjective(NextObjective).NotifyObjectiveSelected();
+                                                            }                                                            
                                                         }
                                                         else
                                                         {
-                                                            super.ReplicatedEvent(VarName);
+                                                            if(VarName == 'GameLength')
+                                                            {
+                                                                ReceivedGameLength();                                                                
+                                                            }
+                                                            else
+                                                            {
+                                                                super.ReplicatedEvent(VarName);
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -1572,6 +1585,22 @@ reliable server function RecieveVoteKick(PlayerReplicationInfo PRI, bool bKick)
     if(VoteCollector != none)
     {
         VoteCollector.RecieveVoteKick(PRI, bKick);
+    }
+}
+
+function ServerStartVoteSkipTrader(PlayerReplicationInfo PRI)
+{
+    if(VoteCollector != none)
+    {
+        VoteCollector.ServerStartVoteSkipTrader(PRI);
+    }
+}
+
+reliable server function RecieveVoteSkipTrader(PlayerReplicationInfo PRI, bool bSkipTrader)
+{
+    if(VoteCollector != none)
+    {
+        VoteCollector.RecieveVoteSkipTrader(PRI, bSkipTrader);
     }
 }
 

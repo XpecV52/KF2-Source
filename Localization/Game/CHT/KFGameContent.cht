@@ -90,7 +90,7 @@ HealOthersTitleKey="使用治療武器為隊友療傷"
 HealOthersDescriptionKey="治療職業武器可以藉由輔助功能模式，從遠距離為隊友療傷。使用治療武器時，按下 <font color="#caab05">%x%</font> 發射治療鏢。另外，如果你選擇了戰地軍醫這個職業，也可按下 <font color="#caab05">%x%</font> 投擲治療瓦斯手榴彈。"
 
 ;Zed Time
-ZedTimeTitleKey="目前暴動：Zed時間"
+ZedTimeTitleKey="Zed 時間"
 ZedTimeDescriptionKey="<font color="#caab05">Zed 慢動作時間</font> 會在造成爆頭或是炸死大量敵人等很酷的事情發生時開始。你可以利用這段時間休息一下，或是奮發起來，多殺幾個敵人。"
 
 ;Melee Section
@@ -127,7 +127,7 @@ ItemDescription="•會放出對 Zed 有毒但對人類有治療效果的氣體�
 [KFProj_MolotovGrenade]
 ItemName="莫洛托夫雞尾酒"
 ItemCategory="炸藥"
-ItemDescription="•簡單來說，這是會使 Zed 起火燃燒的火焰手榴彈。\n•小心，可能會傷到自己！\n這東西名稱的由來是當初在 1939-40 年進行的冬季遊擊戰期間由芬蘭士兵們以當時的蘇聯外交部長「維亞切斯拉夫·米哈伊洛維奇·莫洛托夫」所取的無禮名稱…嗯？你不是想來一堂速成歷史課嗎？"
+ItemDescription="•簡單來說，這是會使 Zed 起火燃燒的火焰手榴彈。\n\n•小心，可能會傷到自己！這東西名稱的由來是當初在 1939-40 年進行的冬季遊擊戰期間由芬蘭士兵們以當時的蘇聯外交部長「維亞切斯拉夫·米哈伊洛維奇·莫洛托夫」所取的無禮名稱…嗯？你不是想來一堂速成歷史課嗎？"
 
 [KFProj_EMPGrenade]
 ItemName="電磁脈衝手榴彈"
@@ -204,7 +204,7 @@ ItemDescription="•主要攻擊模式只有全自動。\n•美國海軍海豹�
 
 [KFWeap_Knife_Survivalist]
 ItemName="刺刀"
-ItemCategory="近身"
+ItemCategory="近戰"
 ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n•次要攻擊鍵：重砍。\n•輔助功能鍵：防禦 / 格擋。\n•曾經屬於別人。不過，現在它是你的了！"
 
 [KFWeap_Knife_Demolitionist]
@@ -310,7 +310,7 @@ ItemDescription="•主要攻擊鍵：快速揮砍，長按以連續攻擊。\n�
 [KFWeap_Shotgun_Nailgun]
 ItemName="VLAD-1000 釘槍"
 ItemCategory="霰彈槍"
-ItemDescription="•可選擇射擊一根或多根鐵釘。\n•按下輔助功能鍵變更主要攻擊模式。\n•我們得知這把釘槍是 Horzine 科學家從一個（死去的）維修人員那裡拿來改造過的。"
+ItemDescription="•可選擇射擊一根或多根鐵釘。\n•按下輔助功能鍵變更主要攻擊模式。\n•我們得知這把釘槍是 Horzine 科學家是從一個（死去的）維修人員那裡拿來改造過的。"
 
 [KFWeap_HRG_Nailgun]
 ItemName="HRG 釘槍"
@@ -330,7 +330,7 @@ ItemDescription="•主要攻擊鍵：快速揮擊，長按以連續攻擊。\n�
 
 [KFWeap_Blunt_MedicBat]
 ItemName="血腥痛擊者"
-ItemCategory="近身"
+ItemCategory="近戰"
 ItemDescription="•主要攻擊鍵：快速揮擊可治療隊友，長按以連續功擊。\n•次要攻擊鍵：造成碰觸到物品即爆炸的治療。沒有彈藥的話，次要攻擊為重揮擊。\n•輔助功能鍵：防禦 / 格擋。"
 
 [KFWeap_Eviscerator]
@@ -401,7 +401,7 @@ ItemCategory="炸藥"
 ItemDescription="•主要攻擊模式會射出一枚手榴彈。\n•手榴彈碰觸到物品即爆炸。\n•射出後才會解除保險，所以你不會炸爛自己的臉。"
 
 [KFWeap_RocketLauncher_RPG7]
-ItemName="RPG-7"
+ItemName="RPG-7 "
 ItemCategory="炸藥"
 ItemDescription="•主要攻擊模式會射出一枚火箭。\n•火箭碰觸到物品即爆炸。\n•射出後才會解除保險，所以你不會炸爛自己的臉。\n•小心後座力！"
 
@@ -465,7 +465,7 @@ ItemDescription="•主要攻擊模式只有單發。\n•一把手裡的大砲�
 [KFWeap_Revolver_DualSW500]
 ItemName="點 500 馬格南左輪雙槍"
 ItemCategory="手槍"
-ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 .500 馬格南「骨頭收集者」左輪手槍。"
+ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，則按下輔助功能鍵會切換瞄準方式。\n•這是一對 .500 馬格南左輪手槍。"
 
 [KFWeap_HRG_Revolver_Buckshot]
 ItemName="HRG 鹿彈"
@@ -584,7 +584,7 @@ ItemDescription="•主要攻擊模式只有半自動。\n•若使用瞄具，�
 
 [KFWeap_Edged_IonThruster]
 ItemName="離子推進器"
-ItemCategory="近身"
+ItemCategory="近戰"
 ItemDescription="•主要功能鍵 - 帶有燃燒的快速揮砍，長按以連續攻擊。\n•次要功能鍵 - 帶有燃燒的重砍。\n裝填 - 100% 充能後執行特殊攻擊。\n•輔助功能鍵 - 格擋/迴避。\n•拿來烤肉的好工具。"
 SharedUnlockSource="離子推進器武器同捆包，嚴酷處理武器同捆包"
 
@@ -689,18 +689,48 @@ SharedUnlockSource="防護盾牌與G18武器同捆包，聖誕驚魂武器同捆
 [KFWeap_AssaultRifle_HRGIncendiaryRifle]
 ItemName="HRG燃燒彈步槍"
 ItemCategory="突擊步槍"
-ItemDescription="•主要攻擊模式只有全自動。\n•按下輔助功能鍵會射出燃燒彈。\n•適合難以決定使用多少火力的人。"
+ItemDescription="•射擊模式只有全自動。\n•次要射擊會發射燃燒彈。\n•適合喜歡火力全開的人使用。"
 SecondaryAmmo="M203燃燒彈"
 
 [KFWeap_Bow_CompoundBow]
 ItemName="複合弓"
 ItemCategory="弓"
-ItemDescription="•主要攻擊模式只有蓄能射擊。\n•範圍和傷害隨著按住的時間提升。\n•按下輔助功能鍵會切換銳利箭矢和冰凍箭矢。\n•身為邱比特還是需要一點威力。"
+ItemDescription="•射擊模式只有蓄能射擊。\n•範圍和傷害隨著按住的時間提升。\n•次要射擊會切換銳利箭矢和冰凍箭矢。\n•身為邱比特還是需要一點威力。"
 SharedUnlockSource="複合弓武器同捆包"
+
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="HRG滅絕預言者"
+ItemCategory="霰彈槍"
+ItemDescription="•主要攻擊只射擊一發。\n•次要攻擊會一次射擊兩發。\n•使用爆炸彈藥，體驗加倍。"
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="手銃"
+ItemCategory="炸藥"
+ItemDescription="•主要攻擊會發射砲彈。\n•按住主要攻擊0.1秒可讓砲彈不會爆炸，放開後則會爆炸。\n•次要攻擊會發射砲彈霰彈\n•木腿和鸚鵡單獨販售！"
+SharedUnlockSource="手銃武器同捆包"
+
+[KFWeap_Pistol_G18C]
+ItemName="格洛克18C"
+ItemCategory="衝鋒槍"
+ItemDescription="•可選擇全自動和半自動射擊模式。\n•注意：使用時會無法受控地認同法律。"
+SharedUnlockSource="單手和雙持格洛克18C武器同捆包"
+
+[KFWeap_Pistol_DualG18]
+ItemName="雙持格洛克18C"
+ItemCategory="衝鋒槍"
+ItemDescription="•射擊模式只有全自動。\n•使用瞄具時，次要射擊會切換瞄準方式。\n•注意：使用時會無法受控地認同法律。"
+SharedUnlockSource="單手和雙持格洛克18C武器同捆包"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="HRG特斯拉發射器"
+ItemCategory="突擊步槍"
+ItemDescription="•射擊模式只有全自動。\n•次要射擊會發射電磁脈衝手榴彈。\n•這把環保的電力武器可以讓你屠殺上百個Zed，完全不會對星球造成破壞。"
+SecondaryAmmo="電磁脈衝手榴彈"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
-BossName="Dr. Hans Volter"
+BossName="漢斯華特博士"
 BossName_CHN="汉斯-沃尔特博士"
 BossName_CHT="漢斯華特博士"
 BossName_DEU="Dr. Hans Volter"
@@ -724,7 +754,7 @@ BossCaptionStrings[5]="注意紅色的手榴彈提醒，它會告訴你手榴彈
 BossCaptionStrings[6]="當漢斯拿出槍時，請躲到射程視線外。人盡皆知，但真的很重要！"
 
 [KFPawn_ZedPatriarch]
-BossName="The Patriarch"
+BossName="長老"
 BossName_CHN="长老丧尸"
 BossName_CHT="長老"
 BossName_DEU="Der Patriarch"
@@ -770,7 +800,7 @@ BossCaptionStrings[4]="絞碎者之王跟一般的絞碎者擁有相同的弱點
 BossCaptionStrings[5]="絞碎者之王擁有殺不完的絞碎者爪牙。忽略他們可是非常危險！"
 
 [KFPawn_ZedBloatKing]
-BossName="Abomination"
+BossName="憎惡"
 BossName_CHN="憎恶"
 BossName_CHT="憎惡"
 BossName_DEU="Abscheulichkeit"
@@ -793,7 +823,7 @@ BossCaptionStrings[4]="如果你讓憎惡靠太近，那麼他可就不止是吐
 BossCaptionStrings[5]="破壞掉憎惡的護甲會讓他進入憤怒狀態，也就是他最致命的狀態。"
 
 [KFPawn_ZedBloatKing_Winter]
-BossName="Krampus"
+BossName="坎普斯"
 BossName_CHN="坎卜斯"
 BossName_CHT="坎普斯"
 BossName_DEU="Krampus"
@@ -817,8 +847,8 @@ BossCaptionStrings[5]="破壞掉坎普斯的護甲會讓他進入憤怒狀態，
 
 [KFPawn_ZedMatriarch]
 BossName="Matriarch"
-BossName_CHN="Fill Me"
-BossName_CHT="Fill Me"
+BossName_CHN="女族长"
+BossName_CHT="女族长"
 BossName_DEU="Fill Me"
 BossName_ESL="Fill Me"
 BossName_ESN="Fill Me"

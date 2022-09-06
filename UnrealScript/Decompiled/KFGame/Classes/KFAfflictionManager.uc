@@ -171,6 +171,10 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     KnockdownPower *= KnockdownModifier;
     StumblePower *= StumbleModifier;
     StunPower *= StunModifier;
+    if((InstigatorPerk != none) && InstigatorPerk.GetIncapMasterActive())
+    {
+        StunPower += InstigatorPerk.GetStunPowerModifier(DamageType, HitZoneIdx);
+    }
     if((KnockdownPower > float(0)) && Outer.CanDoSpecialMove(6))
     {
         AccrueAffliction(8, KnockdownPower, BodyPart, InstigatorPerk);

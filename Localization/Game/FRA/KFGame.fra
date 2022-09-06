@@ -115,7 +115,7 @@ StartOfflineGameString="Lancer partie hors ligne"
 StartOfflineGameDescriptionString="Commencer une partie hors ligne dissoudra votre groupe. \nVoulez-vous continuer ?"
 
 ProceedToTutorialString="LANCER L'ENTRAÎNEMENT ?"
-ProceedToTutorialDescriptionString="Découvrez les bases dans un environnement contrôlé. Une fois terminé, la classe sélectionnée passera au niveau 1."
+ProceedToTutorialDescriptionString="Découvrez les bases dans un environnement contrôlé.  Une fois terminé, la classe sélectionnée passera au niveau 1."
 
 NotAvailableInFreeTrialString="Contenu indisponible pour le mode démo"
 NetworkCheckFreeTrialFailedString="Erreur réseau : vérification du statut de l'évènement gratuit impossible. Vérifier l'état du réseau"
@@ -283,7 +283,7 @@ CannotCarryString="Impossible de porter l'objet. Libérez de la place."
 
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="INVENTAIRE"
-SelectPerkString="SELECTIONNER LA CLASSE"
+SelectPerkString="CHOISIR LA CLASSE"
 
 [KFGFxMenu_ServerBrowser]
 FavoriteString="FAVORI"
@@ -899,10 +899,10 @@ ConfigureSkillsString="CONFIGURER LES COMPÉTENCES"
 BackButtonString="<< RETOUR"
 
 [KFGFxPerksContainer_Selection]
-HeaderTitle="SELECTIONNER LA CLASSE"
-EndOfWaveString="Les changements de classes seront appliqués à la fin de la vague !"
-ChangesAppliedOnCloseString="Les changements de classes seront appliqués à la fermeture de ce menu."
-OncePerWaveString="Les changements de classes ne sont possible qu'une fois par vague !"
+HeaderTitle="CHOISIR LA CLASSE"
+EndOfWaveString="Les échanger de classe se produiront à la fin de la vague!"
+ChangesAppliedOnCloseString="Les échanger de classes seront appliqués à la fermeture."
+OncePerWaveString="Les changements de classes ne sont possible qu'une fois par vague!"
 
 [KFGFxPerksContainer_Prestige]
 AtMaxPrestigeLevelString="Niveau de prestige de classe max atteint !"
@@ -1015,6 +1015,8 @@ ThrowString="LANCER ARME"
 
 [KFGFxWidget_KickVote]
 VoteKickString="Exclure joueur ?"
+VoteSkipTraderString="Passer la marchande ?"
+VoteSkipTraderDetailString="veut passer le décompte"
 
 [KFLocalMessage_PlayerKills]
 KilledString="tués"
@@ -1399,6 +1401,7 @@ LoggedOutAsAdminString=" déconnecté comme Administrateur du serveur"
 MustLoginToCheatString="Vous devez être connecté pour activer les codes de triche"
 CheatsEnabledString=" a activé les codes de triche. Les statistiques ont été désactivées pour cette session."
 ServerMaintenanceString="Le serveur sera arrêté pour maintenance à la fin de la partie."
+OtherVoteInProgressString="Impossible de lancer un nouveau vote tant que celui en cours n'est pas terminé."
 KickVoteStartedString="Un vote a débuté pour exclure :"
 KickVoteSucceededString="Vote adopté pour exclure :"
 KickVoteFailedString="Vote rejeté pour exclure :"
@@ -1416,8 +1419,17 @@ KickVoteNoSpectatorsString="Les spectateurs ne peuvent pas demander un vote d'ex
 KickedFromServerString="Vous avez été retiré du serveur"
 BannedFromServerString="Vous avez été retiré du serveur. Vous ne pouvez pas rejoindre pour le moment"
 ServerNoLongerAvailableString="Le serveur n'est plus disponible."
-SkipTraderTimeString="PASSER LA MARCHANDE activé. Choisissez PASSER LA MARCHANDE pour voter. Unanimité requise."
+SkipTraderVoteStartedString="a lancé un vote pour passer la marchande."
+SkipTraderTimeString="PASSER LA MARCHANDE activé. Choisissez PASSER LA MARCHANDE pour voter.  Unanimité requise."
 SkipTraderSuccessString="Vote pour passer la marchande réussi !"
+SkipTraiderVoteFailedString="Le vote pour passer la marchande a échoué !"
+SkipTraderVoteNoSpectatorsString="Les spectateurs ne peuvent pas demander un vote pour passer la marchande."
+SkipTraderIsNotOpenString="Passer la marchande n'est pas autorisé pendant une vague."
+SkipTraderVoteInProgressString="Impossible de lancer un vote pour passer la marchande car il y en a déjà un en cours."
+SkipTraderVoteYesReceivedString="Vous avez voté pour passer la marchande."
+SkipTraderVoteNoReceivedString="Vous avez voté pour ne pas passer la marchande."
+SkipTraderNoEnoughTimeString="Temps insuffisant pour lancer un vote pour passer la marchande."
+SkipTraderThisUserAlreadyStartedAVoteString="Vous ne pouvez pas lancer un nouveau vote pour passer la marchande avant la prochaine phase de la marchande."
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Vous avez reçu des munitions de"
@@ -1526,7 +1538,7 @@ SkillCatagories[2]=""
 SkillCatagories[3]=""
 SkillCatagories[4]=""
 
-LevelString="Niveau"
+LevelString="Niv."
 
 SpecialAbilityName="Capacité symbolique"
 SpecialAbilityDescription=""
@@ -1760,7 +1772,7 @@ Spartan="ZED TIME - Spartiate"
 SpartanDescription="Pendant le Zed time, vous attaquez avec vos armes de classe et vous déplacez en temps réel."
 
 Rage="ZED TIME - Rage du Fou furieux"
-RageDescription="Lorsque le Zed time s'active ou se recharge, soigne 50 % de la santé et fait fuir les Zeds proches."
+RageDescription="Lorsque le Zed time s'active ou se recharge, soigne 50 % de la santé et immobilise tous les Zeds proches."
 
 [KFPerk_Commando]
 PerkName="Commando"
@@ -2033,7 +2045,7 @@ Stun="Choc balistique"
 StunDescription="Augmente le pouvoir d'étourdissement des armes de classe de 100 %."
 
 RhythmMethod="C'est l'heure du massacre !"
-RhythmMethodDescription="Les dégâts des tirs à la tête consécutifs avec des armes de classe augmentent de 10 % jusqu'à 50 % maximum. "
+RhythmMethodDescription="Les dégâts des tirs à la tête consécutifs avec des armes de classe augmentent de 10 % jusqu'à 50 % maximum.  "
 
 TacticalReload="Rechargement tactique"
 TacticalReloadDescription="Augmente la vitesse de rechargement des armes de classe."
@@ -2094,7 +2106,7 @@ ConcussionRounds="Balles de commotion"
 ConcussionRoundsDescription="Augmente le pouvoir de renversement des armes de classe de 150 %."
 
 Perforate="ZED TIME - Pénétrateur"
-PerforateDescription="Pendant le Zed time, ne subit aucune perte de dégâts quand il tire à travers des Zeds pour toucher d'autres Zeds et augmente la pénétration avec des armes de classe."
+PerforateDescription="Pendant le Zed time, vos armes de classe ne subissent aucune perte de dégâts de pénétration et vous infligez des dégâts de pénétration à tous les Zeds."
 
 Barrage="ZED TIME - Barrage"
 BarrageDescription="Pendant le Zed time, vos armes de classe tirent presque en temps réel."
@@ -2172,7 +2184,7 @@ FieldMedic="Formation médicale"
 FieldMedicDescription="Augmente la puissance de vos soins de 30 %, réduit le temps de recharge de votre seringue et de vos fléchettes de soin de 50 %."
 
 MeleeExpert="Expert en mêlée"
-MeleeExpertDescription="Augmente la vitesse des attaques de mêlée de 20 %, les dégâts de 50 %, et la vitesse de déplacement de 25 % lorsque vous utilisez une arme de mêlée."
+MeleeExpertDescription="Augmente la vitesse des attaques de mêlée de 20 %, les dégâts de 75 %, et la vitesse de déplacement de 25 % lorsque vous utilisez une arme de mêlée."
 
 AmmoVest="Veste tactique"
 AmmoVestDescription="Transportez jusqu'à 15 % de munitions en plus. Vos grenades deviennent des grenades soignantes."
@@ -2190,7 +2202,7 @@ Madman="ZED TIME - Malade mental"
 MadmanDescription="Pendant le Zed time, toutes vos armes tirent 3x plus vite."
 
 IncapMaster="ZED TIME - État d'urgence"
-IncapMasterDescription="Pendant le Zed time, les taux de démolition, de renversement et d'étourdissement de vos armes sont augmentés jusqu'à leur maximum."
+IncapMasterDescription="Pendant le Zed time, toutes vos armes peuvent étourdir tous les Zeds."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2569,7 +2581,7 @@ KFWeap_MKB="Armes Halloween Hans"
 Source0="Promo Chivalry"
 
 ;============================================
-; SpecialEvent Localization (Base class)
+; SpecialEvent  Localization (Base class)
 ;============================================
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
@@ -2607,7 +2619,7 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Ragoût de monstre",DescriptionSt
 SpecialEventObjectiveInfoList[3]=(TitleString="S'amuser toute la nuit",DescriptionString="Terminer 25 vagues en Infini en mode difficile ou supérieur")
 SpecialEventObjectiveInfoList[4]=(TitleString="Maître des lieux",DescriptionString="Vaincre le Comte Hans en Survie en mode Difficile ou supérieur")
 
-AllCompleteRewardDescriptionString="MKB Hans : arme + m. Halloween"
+AllCompleteRewardDescriptionString="MKB Hans :  arme + m. Halloween"
 
 ChanceDropDescriptionStrings[0]="Ticket de récompense"
 ChanceDropDescriptionStrings[1]="Ticket Or"
@@ -2703,8 +2715,22 @@ SpecialEventObjectiveInfoList[4]=(TitleString="Biologie mortelle",DescriptionStr
 
 AllCompleteRewardDescriptionString="Pack double de modèles dynamiques pour AA12"
 
-ChanceDropDescriptionStrings[0]="Ticket Cyberpunk"
-ChanceDropDescriptionStrings[1]="Ticket doré Cyberpunk"
+ChanceDropDescriptionStrings[0]="Ticket cyberpunk"
+ChanceDropDescriptionStrings[1]="Ticket doré cyberpunk"
+
+[KFGFxSpecialEventObjectivesContainer_Summer2020]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Mille millions de mille sabords !",DescriptionString="Tuer 15 boss sur n'importe quelle carte ou dans n'importe quel mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Ohé hebdomadaire",DescriptionString="Terminer l'hebdomadaire de Désolation")
+SpecialEventObjectiveInfoList[2]=(TitleString="Yarr ! Feu !",DescriptionString="Activer le générateur électrique sur Désolation")
+SpecialEventObjectiveInfoList[3]=(TitleString="Plein de doublons",DescriptionString="Gagner du fric (75 000 balles) par éliminations, des récompenses et du soin sur Désolation.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Butin infini",DescriptionString="Terminer 15 vagues en Infini en mode difficile ou supérieur sur Désolation")
+
+AllCompleteRewardDescriptionString="Pirate de l'espace | Sac à dos Singe de l'espace"
+
+ChanceDropDescriptionStrings[0]="Ticket estival"
+ChanceDropDescriptionStrings[1]="Ticket doré estival"
 
 ;============================================
 ; Daily Localization
@@ -3300,6 +3326,9 @@ DisplayName="Sanatorium"
 
 [KF-Biolapse KFMapSummary]
 DisplayName="Biolapse"
+
+[KF-Desolation KFMapSummary]
+DisplayName="Désolation"
 
 [KFMapInfo]
 ; defaults

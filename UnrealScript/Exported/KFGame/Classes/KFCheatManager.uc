@@ -738,6 +738,17 @@ exec function DebugShowVoteKick()
 	}
 }
 
+exec function DebugShowVoteSkipTrader()
+{
+	local KFPlayerReplicationInfo KFPRI;
+	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+
+	if (KFPlayerController(Outer).MyGFxHUD != none && KFPRI != None)
+	{
+		KFPlayerController(Outer).MyGFxHUD.ShowSkipTraderVote(KFPRI, 10, true);
+	}
+}
+
 exec function ToggleForceCrosshair()
 {
     KFHudBase(MyHud).bForceDrawCrosshair = !KFHudBase(MyHud).bForceDrawCrosshair;
@@ -893,6 +904,7 @@ simulated exec function MKB()
 simulated exec function Pistols()
 {
     GiveWeapon( "KFGameContent.KFWeap_Pistol_9mm" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_G18C" );
 	GiveWeapon( "KFGameContent.KFWeap_Revolver_Rem1858" );
 	GiveWeapon( "KFGameContent.KFWeap_Pistol_Medic" );
 	GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_HX25" );
@@ -943,6 +955,7 @@ simulated exec function Berserk()
 {
     GiveWeapon( "KFGameContent.KFWeap_Blunt_Crovel" );
 	GiveWeapon( "KFGameContent.KFWeap_Shotgun_Nailgun" );
+	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_HRGTeslauncher" );
 	GiveWeapon( "KFGameContent.KFWeap_Edged_Katana" );
 	GiveWeapon( "KFGameContent.KFWeap_Edged_FireAxe" );
 	GiveWeapon( "KFGameContent.KFWeap_Blunt_ChainBat" );
@@ -1022,6 +1035,8 @@ simulated exec function Demo()
 	GiveWeapon( "KFGameContent.KFWeap_GrenadeLauncher_M32" );
 	GiveWeapon( "KFGameContent.KFWeap_Blunt_Pulverizer" );
 	GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
+	GiveWeapon( "KFGameContent.KFWeap_Shotgun_HRG_Kaboomstick" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_Blunderbuss" );
 }
 
 /**
@@ -1048,6 +1063,7 @@ simulated exec function Dualies()
 {
     GiveWeapon( "KFGameContent.KFWeap_Revolver_DualRem1858" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_DualColt1911" );
+    GiveWeapon( "KFGameContent.KFWeap_Pistol_DualG18" );
 	GiveWeapon( "KFGameContent.KFWeap_Pistol_DualHRGWinterbite" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_DualDeagle" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_ChiappaRhinoDual" );
@@ -2964,6 +2980,7 @@ exec function AIScream()
 		}
 	}
 }
+
 
 /** Toggles debug info rendering for the Zed, if any, player is aiming at */
 exec function ToggleNPCDebug( optional name Category='All' )

@@ -33,6 +33,8 @@ enum ESurvivalistPerkSkills
 	ESurvivalist_IncapMaster
 };
 
+var	const 	int						SecondaryNearKillXPModifier[4];
+
 var private const float 			InjectionPotencyModifier;
 var private const float 			MeleeExpertAttackSpeedModifier;
 var private const GameExplosion		ShrapnelExplosionTemplate;
@@ -465,7 +467,9 @@ function float GetKnockdownPowerModifier( optional class<DamageType> DamageType,
 	if( GetIncapMasterActive() )
 	{
 		`QALog( "LimbShots knockdown, Hit" @ BodyPart @ GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] ), bLogPerk );
-		return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
+		//[FFERRANDO @ SABER3D] INCAP MASTER NOW ONLY MODIFIES STUN POWER
+		return 0;
+		//return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
 	}
 
 	return 0.f;
@@ -480,7 +484,9 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 	if( GetIncapMasterActive() )
 	{
 		`QALog( "CenterMass Stumble, Hit" @ BodyPart @ GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] ), bLogPerk );
-        return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
+		//[FFERRANDO @ SABER3D] INCAP MASTER NOW ONLY MODIFIES STUN POWER
+		return 0;
+        //return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
 	}
 
 	return 0.f;
@@ -494,8 +500,8 @@ function float GetStunPowerModifier( optional class<DamageType> DamageType, opti
 {
 	if( GetIncapMasterActive() )
 	{
-		`QALog( "(ZT Stun)" @ GetSkillValue(PerkSkills[ESharpshooterZTStun]), bLogPerk );
-		return GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] );
+		`QALog( "(ZT Stun)" @ (GetSkillValue(PerkSkills[ESharpshooterZTStun]) * 5), bLogPerk );
+		return (GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] ) );
 	}
 
     return 0.f;
@@ -524,6 +530,17 @@ simulated function class< KFProj_Grenade > GetGrenadeClass()
     }
 
     return GrenadeClass;
+}
+
+/**
+ * @brief Gets the small radius kill xp based on the difficulty
+ *
+ * @param Difficulty game difficulty
+ * @return XP
+ */
+static function int GetSmallRadiusKillXP( byte Difficulty )
+{
+	return default.SecondaryNearKillXPModifier[Difficulty];
 }
 
 /**
@@ -660,8 +677,20 @@ simulated private function bool IsIncapMasterActive()
 }
 
 /*********************************************************************************************
-* @name	 UI
+* @name	 Hud/UI/Stats/Exp
 ********************************************************************************************* */
+
+/**
+ * @brief how much XP is earned by a clot kill depending on the game's difficulty
+ *
+ * @param Difficulty current game difficulty
+ * @return XP earned
+ */
+simulated static function int GetClotKillXP( byte Difficulty )
+{
+	return default.SecondaryXPModifier[Difficulty];
+}
+
 simulated static function GetPassiveStrings( out array<string> PassiveValues, out array<string> Increments, byte Level )
 {
 	PassiveValues[0] = Left( string(GetPassiveValue( default.WeaponDamage, Level ) * 100 ), InStr(string(GetPassiveValue( default.WeaponDamage, Level ) * 100 ), ".") + 2 ) $ "%";
@@ -726,13 +755,23 @@ DefaultProperties
  	PerkSkills(ESurvivalist_TacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_TacticalReload", Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
 	PerkSkills(ESurvivalist_HeavyWeaponsReload)=(Name="HeavyWeaponsReload",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_HeavyWeapons", Increment=0.f,Rank=0,StartingValue=2.5f,MaxValue=2.5f)
 	PerkSkills(ESurvivalist_FieldMedic)=(Name="FieldMedic",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_FieldMedic", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
-	PerkSkills(ESurvivalist_MeleeExpert)=(Name="MeleeExpert",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
+	PerkSkills(ESurvivalist_MeleeExpert)=(Name="MeleeExpert",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_MeleeExpert", Increment=0.f,Rank=0,StartingValue=0.7f,MaxValue=0.75f) //0.5f
 	PerkSkills(ESurvivalist_AmmoVest)=(Name="AmmoVest",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_AmmoVest", Increment=0.f,Rank=0,StartingValue=0.15f,MaxValue=0.15f)
 	PerkSkills(ESurvivalist_BigPockets)=(Name="BigPockets",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_BigPockets", Increment=0.f,Rank=0,StartingValue=5.f,MaxValue=5.f)
 	PerkSkills(ESurvivalist_Shrapnel)=(Name="ZedShrapnel",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel", Increment=0.f,Rank=0,StartingValue=2.f,MaxValue=2.f)
 	PerkSkills(ESurvivalist_MakeThingsGoBoom)=(Name="MakeThingsGoBoom",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom", Increment=0.f,Rank=0,StartingValue=1.4f,MaxValue=1.4f)
 	PerkSkills(ESurvivalist_MadMan)=(Name="MadMan",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
-	PerkSkills(ESurvivalist_IncapMaster)=(Name="IncapMaster",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster", Increment=0.f,Rank=0,StartingValue=99.f,MaxValue=99.f)
+	PerkSkills(ESurvivalist_IncapMaster)=(Name="IncapMaster",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster", Increment=0.f,Rank=0,StartingValue=5000.0f,MaxValue=5000.0f)
+	
+	SecondaryXPModifier(0)=2
+	SecondaryXPModifier(1)=3
+	SecondaryXPModifier(2)=4
+	SecondaryXPModifier(3)=7
+
+	SecondaryNearKillXPModifier(0)=6
+	SecondaryNearKillXPModifier(1)=8
+	SecondaryNearKillXPModifier(2)=10
+	SecondaryNearKillXPModifier(3)=14
 
 	InjectionPotencyModifier=1.3f
 	MeleeExpertAttackSpeedModifier=0.2f
@@ -771,6 +810,7 @@ DefaultProperties
     ZedTimeModifyingStates(5)="WeaponAltFiring"
 	ZedTimeModifyingStates(6)="HuskCannonCharge"
 	ZedTimeModifyingStates(7)="CompoundBowCharge"
+	ZedTimeModifyingStates(8)="BlunderbussDeployAndDetonate"
 
    	PrimaryWeaponPaths(0)=class'KFWeapDef_AR15'
    	PrimaryWeaponPaths(1)=class'KFWeapDef_MB500'

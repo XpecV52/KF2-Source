@@ -15,6 +15,7 @@ enum ELocalMessageType
     LMT_MustLoginToCheat,
     LMT_CheatsEnabled,
     LMT_ServerMaintenance,
+    LMT_OtherVoteInProgress,
     LMT_KickVoteStarted,
     LMT_KickVoteFailed,
     LMT_KickVoteSucceeded,
@@ -29,8 +30,17 @@ enum ELocalMessageType
     LMT_KickVoteMaxKicksReached,
     LMT_KickVoteNotEnoughPlayers,
     LMT_KickVoteNoSpectators,
+    LMT_SkipTraderVoteStarted,
     LMT_SkipTraderTime,
     LMT_SkipTraderTimeSuccess,
+    LMT_SkipTraderVoteFailed,
+    LMT_SkipTraderVoteNoSpectators,
+    LMT_SkipTraderIsNotOpen,
+    LMT_SkipTraderVoteInProgress,
+    LMT_SkipTraderVoteYesReceived,
+    LMT_SkipTraderVoteNoReceived,
+    LMT_SkipTraderNoEnoughTime,
+    LMT_SkipTraderThisUserAlreadyStartedAVote,
     LMT_MAX
 };
 
@@ -41,6 +51,7 @@ var const localized string LoggedOutAsAdminString;
 var const localized string MustLoginToCheatString;
 var const localized string CheatsEnabledString;
 var const localized string ServerMaintenanceString;
+var const localized string OtherVoteInProgressString;
 var const localized string KickVoteStartedString;
 var const localized string KickVoteFailedString;
 var const localized string KickVoteSucceededString;
@@ -58,8 +69,17 @@ var const localized string KickVoteNoSpectatorsString;
 var const localized string KickedFromServerString;
 var const localized string BannedFromServerString;
 var const localized string ServerNoLongerAvailableString;
+var const localized string SkipTraderVoteStartedString;
 var const localized string SkipTraderTimeString;
 var const localized string SkipTraderSuccessString;
+var const localized string SkipTraiderVoteFailedString;
+var const localized string SkipTraderVoteNoSpectatorsString;
+var const localized string SkipTraderIsNotOpenString;
+var const localized string SkipTraderVoteInProgressString;
+var const localized string SkipTraderNoEnoughTimeString;
+var const localized string SkipTraderThisUserAlreadyStartedAVoteString;
+var const localized string SkipTraderVoteYesReceivedString;
+var const localized string SkipTraderVoteNoReceivedString;
 var int MessageArea;
 var int AnnouncementPriority;
 var bool bShowPortrait;
@@ -83,10 +103,10 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
 
     switch(Switch)
     {
-        case 6:
         case 7:
-        case 11:
+        case 8:
         case 12:
+        case 13:
             if(RelatedPRI_1 != none)
             {
                 PlayerName = RelatedPRI_1.PlayerName;                
@@ -109,10 +129,30 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
     }
     switch(Switch)
     {
+        case 5:
+            return default.OtherVoteInProgressString;
         case 20:
+            return RelatedPRI_1.PlayerName @ default.SkipTraderVoteStartedString;
+        case 22:
             return default.SkipTraderSuccessString;
-        case 19:
+        case 23:
+            return default.SkipTraiderVoteFailedString;
+        case 21:
             return default.SkipTraderTimeString;
+        case 24:
+            return default.SkipTraderVoteNoSpectatorsString;
+        case 25:
+            return default.SkipTraderIsNotOpenString;
+        case 26:
+            return default.SkipTraderVoteInProgressString;
+        case 27:
+            return default.SkipTraderVoteYesReceivedString;
+        case 28:
+            return default.SkipTraderVoteNoReceivedString;
+        case 29:
+            return default.SkipTraderNoEnoughTimeString;
+        case 30:
+            return default.SkipTraderThisUserAlreadyStartedAVoteString;
         case 0:
             return RelatedPRI_1.PlayerName @ default.LoggedInAsAdminString;
         case 1:
@@ -123,7 +163,7 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
             return RelatedPRI_1.PlayerName @ default.CheatsEnabledString;
         case 4:
             return default.ServerMaintenanceString;
-        case 5:
+        case 6:
             WI = Class'WorldInfo'.static.GetWorldInfo();
             if(WI != none)
             {
@@ -134,31 +174,31 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
                 }
             }
             return default.KickVoteStartedString @ RelatedPRI_1.PlayerName;
-        case 6:
-            return default.KickVoteFailedString @ PlayerName;
         case 7:
-            return default.KickVoteSucceededString @ PlayerName;
+            return default.KickVoteFailedString @ PlayerName;
         case 8:
-            return default.KickVoteRejectedString;
+            return default.KickVoteSucceededString @ PlayerName;
         case 9:
-            return default.KickVoteInProgressString;
+            return default.KickVoteRejectedString;
         case 10:
-            return default.KickVoteDisabledString;
+            return default.KickVoteInProgressString;
         case 11:
-            return default.KickVoteYesReceivedString @ PlayerName;
+            return default.KickVoteDisabledString;
         case 12:
-            return default.KickVoteNoReceivedString @ PlayerName;
+            return default.KickVoteYesReceivedString @ PlayerName;
         case 13:
-            return default.KickVoteKickAdminString;
+            return default.KickVoteNoReceivedString @ PlayerName;
         case 14:
-            return default.KickVoteActiveTimeString;
+            return default.KickVoteKickAdminString;
         case 15:
-            return default.KickVoteMatchNotStartedString;
+            return default.KickVoteActiveTimeString;
         case 16:
-            return default.KickVoteMaxKicksReachedString;
+            return default.KickVoteMatchNotStartedString;
         case 17:
-            return default.KickVoteNotEnoughPlayersString;
+            return default.KickVoteMaxKicksReachedString;
         case 18:
+            return default.KickVoteNotEnoughPlayersString;
+        case 19:
             return default.KickVoteNoSpectatorsString;
         default:
             return "";
@@ -193,15 +233,15 @@ static function string GetHexColor(int Switch)
         case 0:
         case 1:
         case 4:
-        case 20:
-        case 19:
+        case 22:
+        case 21:
             return default.PriorityColor;
+        case 9:
         case 8:
         case 7:
         case 6:
-        case 5:
-        case 9:
         case 10:
+        case 11:
             return default.EventColor;
         default:
             return default.DefaultColor;
@@ -235,6 +275,7 @@ defaultproperties
     MustLoginToCheatString="You must be logged in to enable cheats"
     CheatsEnabledString=" has enabled cheats. Stats have been disabled for this session"
     ServerMaintenanceString="Server will be shutdown for maintenance at end of game"
+    OtherVoteInProgressString="Can?t start a new vote until the current is resolved"
     KickVoteStartedString="A vote has started to kick:"
     KickVoteFailedString="Vote failed to kick:"
     KickVoteSucceededString="Vote passed to kick:"
@@ -252,8 +293,17 @@ defaultproperties
     KickedFromServerString="You have been removed from the server"
     BannedFromServerString="You have been removed from this server. You cannot rejoin at this time"
     ServerNoLongerAvailableString="The server is no longer available to join"
+    SkipTraderVoteStartedString="initiated a Skip Trader vote"
     SkipTraderTimeString="SKIP TRADER activated. Select 'SKIP TRADER' on the game menu to vote.  All players must agree."
     SkipTraderSuccessString="Skip trader vote successful!"
+    SkipTraiderVoteFailedString="Skip Trader vote failed!"
+    SkipTraderVoteNoSpectatorsString="Spectators may not initiate a skip trader vote"
+    SkipTraderIsNotOpenString="Skip trader not allowed during a wave"
+    SkipTraderVoteInProgressString="Cannot start a skip trader vote, one is already active"
+    SkipTraderNoEnoughTimeString="Not enough time to start a skip trader vote"
+    SkipTraderThisUserAlreadyStartedAVoteString="You can't start a new skip trader vote until the next trader phase"
+    SkipTraderVoteYesReceivedString="You have voted to skip trader"
+    SkipTraderVoteNoReceivedString="You have voted to not skip trader"
     MessageArea=1
     AnnouncementVolume=2
     SayColor="FFFFFF"

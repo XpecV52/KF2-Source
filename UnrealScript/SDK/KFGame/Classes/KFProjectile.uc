@@ -155,6 +155,9 @@ var KFImpactEffectInfo AltExploEffects;
 /** Reference to upgrade damage modifer for any value that doesn't use projectile damage. */
 var float UpgradeDamageMod;
 
+/** Flag used in ReplicatedEvent() in order to check if already has been an explosion for solving 2 explosions at high pings. */
+var bool bHasAlreadyExploded;
+
 /*********************************************************************************************
 * @name Flight Effects
 ********************************************************************************************* */
@@ -446,8 +449,9 @@ simulated event ReplicatedEvent(name VarName)
 {
     local vector ExplosionNormal;
 
-	if (VarName == nameof(bHasExploded))
+	if (VarName == nameof(bHasExploded) && !bHasAlreadyExploded)
 	{
+		bHasAlreadyExploded = true;
         bHasExploded = false;
 
 		ExplosionNormal = vect(0,0,1);

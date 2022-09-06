@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_RocketLauncher_Seeker6"
    ImagePath="WEP_UI_SeekerSix_TEX.UI_WeaponSelect_SeekerSix"
    BuyPrice=1500
-   AmmoPricePerMag=40
+   AmmoPricePerMag=55
    UpgradePrice(0)=1500
    UpgradeSellPrice(0)=1125
    EffectiveRange=100

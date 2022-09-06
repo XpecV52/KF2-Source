@@ -16,6 +16,8 @@ var localized string MustLoginToCheatString;
 var localized string CheatsEnabledString;
 var localized string ServerMaintenanceString;
 
+var localized string OtherVoteInProgressString;
+
 var localized string KickVoteStartedString;
 var localized string KickVoteFailedString;
 var localized string KickVoteSucceededString;
@@ -37,8 +39,18 @@ var localized string KickedFromServerString;
 var localized string BannedFromServerString;
 var localized string ServerNoLongerAvailableString;
 
+var localized string SkipTraderVoteStartedString;
 var localized string SkipTraderTimeString; 
 var localized string SkipTraderSuccessString;
+var localized string SkipTraiderVoteFailedString;
+var localized string SkipTraderVoteNoSpectatorsString;
+var localized string SkipTraderIsNotOpenString;
+var localized string SkipTraderVoteInProgressString;
+var localized string SkipTraderNoEnoughTimeString;
+var localized string SkipTraderThisUserAlreadyStartedAVoteString;
+
+var localized string SkipTraderVoteYesReceivedString;
+var localized string SkipTraderVoteNoReceivedString;
 
 enum ELocalMessageType
 {
@@ -47,6 +59,7 @@ enum ELocalMessageType
     LMT_MustLoginToCheat,
     LMT_CheatsEnabled,
 	LMT_ServerMaintenance,
+	LMT_OtherVoteInProgress,
     LMT_KickVoteStarted,
     LMT_KickVoteFailed,
     LMT_KickVoteSucceeded,
@@ -61,8 +74,17 @@ enum ELocalMessageType
     LMT_KickVoteMaxKicksReached,
     LMT_KickVoteNotEnoughPlayers,
     LMT_KickVoteNoSpectators,
+	LMT_SkipTraderVoteStarted,
 	LMT_SkipTraderTime,
-	LMT_SkipTraderTimeSuccess
+	LMT_SkipTraderTimeSuccess,
+	LMT_SkipTraderVoteFailed,
+	LMT_SkipTraderVoteNoSpectators,
+	LMT_SkipTraderIsNotOpen,
+	LMT_SkipTraderVoteInProgress,
+    LMT_SkipTraderVoteYesReceived,
+    LMT_SkipTraderVoteNoReceived,
+	LMT_SkipTraderNoEnoughTime,
+	LMT_SkipTraderThisUserAlreadyStartedAVote
 };
 
 /** Message area on HUD (index into UTHUD.MessageOffset[]) */
@@ -142,10 +164,42 @@ static function string GetString(
 
     switch (Switch)
     {
-	case LMT_SkipTraderTimeSuccess:
-		return default.SkipTraderSuccessString;
+		case LMT_OtherVoteInProgress:
+			return default.OtherVoteInProgressString;
+
+		case LMT_SkipTraderVoteStarted:
+            return RelatedPRI_1.PlayerName@Default.SkipTraderVoteStartedString;
+
+		case LMT_SkipTraderTimeSuccess:
+			return default.SkipTraderSuccessString;
+
+        case LMT_SkipTraderVoteFailed:
+            return Default.SkipTraiderVoteFailedString;
+
 		case LMT_SkipTraderTime:
 			return default.SkipTraderTimeString;
+
+        case LMT_SkipTraderVoteNoSpectators:
+            return Default.SkipTraderVoteNoSpectatorsString;
+
+        case LMT_SkipTraderIsNotOpen:
+            return Default.SkipTraderIsNotOpenString;
+			
+        case LMT_SkipTraderVoteInProgress:
+            return Default.SkipTraderVoteInProgressString;
+			
+        case LMT_SkipTraderVoteYesReceived:
+            return Default.SkipTraderVoteYesReceivedString;
+			
+        case LMT_SkipTraderVoteNoReceived:
+            return Default.SkipTraderVoteNoReceivedString;
+
+		case LMT_SkipTraderNoEnoughTime:
+            return Default.SkipTraderNoEnoughTimeString;
+
+		case LMT_SkipTraderThisUserAlreadyStartedAVote:
+            return Default.SkipTraderThisUserAlreadyStartedAVoteString;
+
         case LMT_AdminLogin:
             return RelatedPRI_1.PlayerName@Default.LoggedInAsAdminString;
             
@@ -292,6 +346,7 @@ defaultproperties
    MustLoginToCheatString="You must be logged in to enable cheats"
    CheatsEnabledString=" has enabled cheats. Stats have been disabled for this session"
    ServerMaintenanceString="Server will be shutdown for maintenance at end of game"
+   OtherVoteInProgressString="Can’t start a new vote until the current is resolved"
    KickVoteStartedString="A vote has started to kick:"
    KickVoteFailedString="Vote failed to kick:"
    KickVoteSucceededString="Vote passed to kick:"
@@ -309,8 +364,17 @@ defaultproperties
    KickedFromServerString="You have been removed from the server"
    BannedFromServerString="You have been removed from this server. You cannot rejoin at this time"
    ServerNoLongerAvailableString="The server is no longer available to join"
+   SkipTraderVoteStartedString="initiated a Skip Trader vote"
    SkipTraderTimeString="SKIP TRADER activated. Select 'SKIP TRADER' on the game menu to vote.  All players must agree."
    SkipTraderSuccessString="Skip trader vote successful!"
+   SkipTraiderVoteFailedString="Skip Trader vote failed!"
+   SkipTraderVoteNoSpectatorsString="Spectators may not initiate a skip trader vote"
+   SkipTraderIsNotOpenString="Skip trader not allowed during a wave"
+   SkipTraderVoteInProgressString="Cannot start a skip trader vote, one is already active"
+   SkipTraderNoEnoughTimeString="Not enough time to start a skip trader vote"
+   SkipTraderThisUserAlreadyStartedAVoteString="You can't start a new skip trader vote until the next trader phase"
+   SkipTraderVoteYesReceivedString="You have voted to skip trader"
+   SkipTraderVoteNoReceivedString="You have voted to not skip trader"
    MessageArea=1
    AnnouncementVolume=2.000000
    SayColor="FFFFFF"

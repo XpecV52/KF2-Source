@@ -26,6 +26,8 @@ SteampunkOutfitBundleName="스팀펑크 의상 번들"
 CyberpunkOutfitBundleName="사이버펑크 의상 번들"
 CyberpunkOutfitObjectiveBundleName="사이버펑크 의상 목표 번들"
 HalloweenOutfitBundleName="위치 헌터 복장 번들"
+SpacePirateOutfitBundleName="우주 해적 복장 번들"
+SpacePirateFullGearBundleName="우주 해적 완전 장비 번들"
 HeadshotFXBundle1Name="헤드샷 FX 번들 1"
 HeadshotFXBundle2Name="헤드샷 FX 번들 2"
 RhinoRevolverBundleName="라이노 리볼버 번들"
@@ -33,6 +35,8 @@ IonThrusterBundleName="이온 스러스터 번들"
 RiotShieldG18BundleName="진압용 방패 & G18 번들"
 MosinNagantBundleName="모신 나강 번들"
 CompoundBowBundleName="콤파운드 활 번들"
+BlunderbussBundleName="나팔총 번들"
+Glock18cBundleName="글록 18c 번들"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #4 브론즈 번들 팩"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #4 실버 번들 팩"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Horzine 꾸미기 보급상자 | 시리즈 #4 골드 번들 팩"
@@ -165,6 +169,7 @@ HorzineSupplyCosmeticCrateSeries3GoldBundlePackName="Horzine 보급형 꾸미기
 HorzineSupplyWeaponCrateSeries17BronzeBundlePackName="Horzine 무기 보급상자 | 시리즈 #17 브론즈 번들 팩"
 HorzineSupplyWeaponCrateSeries17SilverBundlePackName="Horzine 무기 보급상자 | 시리즈 #17 실버 번들 팩"
 HorzineSupplyWeaponCrateSeries17GoldBundlePackName="Horzine 무기 보급상자 | 시리즈 #17 골드 번들 팩"
+PerilousPlunderWeaponBundleName="위험한 약탈 무기 번들"
 GrimTreatmentsWeaponBundleName="어둠의 치료 무기 번들"
 YuletideHorrorWeaponBundleName="크리스마스 연휴 호러 무기 번들"
 JaegerWeaponSkinDoublePackBundleName="예거 무기 스킨 더블 팩 번들"
@@ -185,6 +190,12 @@ HorzineSupplyCosmeticCrateSeries7GoldBundlePackName="Horzine 꾸미기 보급상
 HorzineSupplyCrateSeriesLocoBronzeBundlePackName="Horzine 보급상자 | 시리즈 로코 브론즈 번들 팩"
 HorzineSupplyCrateSeriesLocoSilverBundlePackName="Horzine 보급상자 | 시리즈 로코 실버 번들 팩"
 HorzineSupplyCrateSeriesLocoGoldBundlePackName="Horzine 보급상자 | 시리즈 로코 골드 번들 팩"
+PremiumSummerSideshowBronzeBundlePackName="프리미엄 여름 사이드쇼 브론즈 티켓 번들"
+PremiumSummerSideshowSilverBundlePackName="프리미엄 여름 사이드쇼 실버 티켓 번들"
+PremiumSummerSideshowGoldBundlePackName="프리미엄 여름 사이드쇼 골드 티켓 번들"
+NeonMKVIWeaponSkinPackName="네온 MKVI 무기 스킨 번들 팩"
+RetroNeonGearCosmeticBundleName="레트로 네온 장비 꾸미기 번들"
+FutureNeonGearCosmeticBundleName="퓨처 네온 장비 꾸미기 번들"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="브라이어의 런던 유니폼(스킨 스타일 5개 포함), 관리인 헬멧 꾸미기 액세서리(스킨 스타일 3개 포함)가 제공됩니다."
@@ -207,6 +218,8 @@ SteampunkOutfitBundleDescription="여성 및 남성 의상 (각각 스킨 6종 �
 CyberpunkOutfitBundleDescription="남성 사이버펑크 의상(각각 스킨 6종 포함)이 지급됩니다. 대부분의 캐릭터가 착용할 수 있습니다."
 CyberpunkOutfitObjectiveBundleDescription="남성 사이버펑크 의상(각각 스킨 1종 포함)이 지급됩니다. 대부분의 캐릭터가 착용할 수 있습니다."
 HalloweenOutfitBundleDescription="위치 헌터 복장(각각 스킨 6종 포함)이 지급됩니다. 대부분의 캐릭터가 착용할 수 있습니다."
+SpacePirateOutfitBundleDescription="우주 해적 복장(각각 스킨 6종 포함)이 지급됩니다. 대부분의 캐릭터가 착용할 수 있습니다."
+SpacePirateFullGearBundleDescription="싱글 번들 하나에 5가지 텍스처로 제공되는 우주 해적 테마 꾸미기 액세서리 6가지가 포함되어 있습니다. 대부분의 캐릭터가 착용할 수 있습니다."
 HeadshotFXBundle1Description="헤드샷 FX 5종이 포함되어 있습니다. 포쉬도쉬, 만화 액션, 파티 타임, 첫 발에 반하다, 유령이 있습니다."
 HeadshotFXBundle2Description="헤드샷 FX가 포함되어 있습니다. 만화, 불꽃놀이, 꽃잎, 글리치, Horzine 서킷."
 RhinoRevolverBundleDescription="Zed를 치즈처럼 갈아버립니다. 라이노 리볼버는 건슬링거 병과 전용입니다. 5개의 고유 무기 스킨이 포함되어 있습니다."
@@ -214,6 +227,8 @@ IonThrusterBundleDescription="바베큐에 좋습니다. 이온 스러스터는 
 RiotShieldG18BundleDescription="군중 제어를 굳히기에 좋습니다. 진압용 방패 & G18은 SWAT 병과 전용이며, 5개의 고유 스킨이 포함되어 있습니다."
 MosinNagantBundleDescription="이 고전 소총으로 Zed를 막고, 찌르고 원거리에서 해치우세요. 모신 나강은 샤프슈터 병과 전용으로 5개의 고유 스킨이 포함되어 있습니다."
 CompoundBowBundleDescription="고전 무기에 현대적 감각을 더했습니다. 명사수 병과에 대해 설계된 콤파운드 활은 5개의 고유 스킨이 마련되어 있습니다."
+BlunderbussBundleDescription="의족과 앵무새는 별도로 판매합니다. 데몰리셔니스트와 서포트 병과를 위해 개발된 나팔총은 5개의 고유한 스킨이 포함되어 있습니다."
+Glock18cBundleDescription="주의:사용 시 자신이 곧 법이라고 선언하고 싶어지는 충동을 통제하지 못할 수 있습니다. 건슬링거를 위해 개발된 싱글 및 듀얼 글록 18C는 5가지 고유 스킨이 제공됩니다."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #4 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #4 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Horzine 꾸미기 보급상자 | 시리즈 #4 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
@@ -345,6 +360,7 @@ JaegerEncryptedUSBGoldBundlePackDescription="예거 암호화 USB 상자 20개�
 PremiumChristmasTicketBronzeBundlePackDescription="5장의 프리미엄 크리스마스 트릿 티켓을 저렴하게 구매할 수 있습니다. 한정 기간 판매합니다!"
 PremiumChristmasTicketSilverBundlePackDescription="10장의 프리미엄 크리스마스 트릿 티켓과 1장의 보너스 할로윈 골든 티켓을 저렴하게 구매할 수 있습니다. 한정 기간 판매합니다!"
 PremiumChristmasTicketGoldBundlePackDescription="20장의 프리미엄 크리스마스 트릿 티켓과 3장의 보너스 할로윈 골든 티켓을 저렴하게 구매할 수 있습니다. 한정 기간 판매합니다!"
+PerilousPlunderWeaponBundleDescription="위험한 약탈 업데이트의 싱글 & 듀얼 글록 18C와 나팔총 무기가 들어 있습니다. 각 무기마다 5개의 고유 스킨이 포함되어 있습니다."
 GrimTreatmentsWeaponBundleDescription="어둠의 치료 업데이트용 라이노 리볼버와 이온 스러스터 무기가 들어 있습니다. 각 무기마다 5개의 고유 스킨이 포함되어 있습니다."
 YuletideHorrorWeaponBundleDescription="크리스마스 연휴 호러 업데이트의 진압용 방패 & G18 및 모신 나강이 들어 있습니다. 각 무기마다 5개의 고유 스킨이 포함되어 있습니다."
 JaegerWeaponSkinDoublePackBundleDescription="데저트 이글과 P90의 예거 테마 다이나믹 및 기본 무기 스킨이 포함되어 있습니다."
@@ -369,7 +385,12 @@ PremiumCyberpunkTicketGoldBundlePackDescription="20장의 프리미엄 사이버
 HorzineSupplyCrateSeriesLocoBronzeBundlePackDescription="Horzine 보급상자 5개 포함 | 시리즈 로코 상자 5개와 함께 해당 키 5개가 포함되어 있습니다."
 HorzineSupplyCrateSeriesLocoSilverBundlePackDescription="Horzine 보급상자 10개 포함 | 시리즈 로코 상자 10개와 함께 해당 키 10개가 포함되어 있습니다."
 HorzineSupplyCrateSeriesLocoGoldBundlePackDescription="Horzine 보급상자 20개 포함 | 시리즈 로코 상자 20개와 함께 해당 키 20개가 포함되어 있습니다."
-
+PremiumSummerSideshowTicketBronzeBundlePackDescription="5장의 프리미엄 여름 사이드쇼 트릿 티켓을 저렴하게 구매할 수 있습니다. 한정 기간 판매합니다!"
+PremiumSummerSideshowTicketSilverBundlePackDescription="10장의 프리미엄 여름 사이드쇼 트릿 티켓과 추가적으로 보너스 여름 사이드쇼 골든 티켓을 저렴하게 구매할 수 있습니다. 한정 기간 판매합니다!"
+PremiumSummerSideshowTicketGoldBundlePackDescription="20장의 프리미엄 여름 사이드쇼 트릿 티켓과 3장의 보너스 여름 사이드쇼 골든 티켓을 저렴하게 구매할 수 있습니다. 한정 기간 판매합니다!"
+NeonMKVIWeaponSkinBundleDescription="10개의 표준 네온과 10개의 RGB 네온으로 구성된 20개의 네온 테마 무기 스킨이 포함되어 있습니다. 해당 세트의 무기는 킬러와트, 씰 스퀼, 윈체스터 1894, 헬리오스 소총, 스핏파이어, VLAD 네일건, L85A2 돌격소총, 분쇄기, M79 유탄 발사기, 헤모클로버입니다."
+RetroNeonCosmeticBundleDescription="싱글 번들 하나에 4가지 텍스처로 제공되는 레트로 네온 테마 꾸미기 액세서리 5가지가 포함되어 있습니다. 대부분의 캐릭터가 착용할 수 있습니다."
+FutureNeonCosmeticBundleDescription="싱글 번들 하나에 4가지 텍스처의 퓨처 네온 테마의 꾸미기 액세서리 5가지가 포함되어 있습니다. 대부분의 캐릭터가 착용할 수 있습니다."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="플레이가 가능한 캐릭터 PC 롭 브라이어의 새로운 고전적인 런던 보비 유니폼을 받아보세요. 브라이어의 런던 유니폼 (5 스킨 스타일 포함), 관리인 헬멧 꾸미기 액세서리(3 스킨 스타일 포함)가 제공됩니다."
@@ -472,6 +493,9 @@ HalloweenHatName="위치 헌터 모자"
 HalloweenOutfitName="위치 헌터 복장"
 SantasHelperHatName="산타의 도우미 모자"
 SantasHelperOutfitName="산타의 도우미 의상"
+SpacePirateOutfitName="우주 해적 복장"
+SpacePirateCaptainsMaskName="해적 가면"
+SpacePirateCaptainsHatName="허세꾼 모자"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="빌 마스터슨 중위 | 사이버펑크 | 그린"
@@ -1556,6 +1580,7 @@ BoomstickHorzineFirstEncounterBattleScarredName="붐스틱 | Horzine 퍼스트 �
 BoomstickPrestigePreciousName="붐스틱 | 프레스티지 | 프레셔스"
 BoomstickDragonKoiPreciousName="붐스틱 | 드래곤 및 코이 | 프레셔스"
 BoomstickFostersFavoritesPreciousName="붐스틱 | 포스터가 좋아하는 | 프레셔스"
+BoomstickStarsName="붐스틱 | 볼트 | 스타"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="외관: 민트급 | 집에서 만든 휴대용 화염방사기. 집에서는 사용하지 마세요."
@@ -1857,10 +1882,12 @@ FlarePistolVaultVoshPreciousName="스핏파이어 | 볼트 | 보쉬 | 프레셔�
 FlarePistolDragonKoiPreciousName="스핏파이어 | 드래곤 및 코이 | 프레셔스"
 FlarePistolSpectreHRGDynamicName="스핏파이어 | 스펙터 HRG | 다이나믹"
 FlarePistolSpectreHRGDynamicChromaName="스핏파이어 | 스펙터 HRG | 다이나믹 크로마"
+FlarePistolNeonMintName="스핏파이어 | 네온 | 민트"
+FlarePistolNeonRGBPreciousName="스핏파이어 | 네온 RGB | 프레셔스"
 
 ;HRG Winterbites Names
-HRGWinterbitesSpectreHRGDynamicName="HRG 윈터바이트 | 스펙터 HRG | 다이나믹"
-HRGWinterbitesSpectreHRGDynamicChromaName="HRG 윈터바이트 | 스펙터 HRG | 다이나믹 크로마"
+HRGWinterbitesSpectreHRGDynamicName="HRG 윈터바이트| 스펙터 HRG | 다이나믹"
+HRGWinterbitesSpectreHRGDynamicChromaName="HRG 윈터바이트| 스펙터 HRG | 다이나믹 크로마"
 
 ;Freeze Thrower Names
 FreezeThrowerPreciousName="던져서 얼리기 | 프레셔스"
@@ -2019,6 +2046,7 @@ HMTech101PistolBeyondHorizonMintName="HMTech-101 권총 | 비욘드 호라이즌
 HMTech101PistolBeyondHorizonFieldTestedName="HMTech-101 권총 | 비욘드 호라이즌 | 현장 테스트"
 HMTech101PistolBeyondHorizonBattleScarredName="HMTech-101 권총 | 비욘드 호라이즌 | 전투 흔적"
 HMTech101PistolBeyondHorizonSpaceEliteName="HMTech-101 권총 | 비욘드 호라이즌 | 스페이스 엘리트"
+HMTech101PistolStarsName="HMTech-101 피스톨 | 볼트 | 스타"
 
 ;HMTech-201 SMG Descriptions
 HMTech201SMGMintDescription="외관: 민트급 | 치료용 다트를 발사하여 팀원을 치료합니다. 권총 성능이 향상됩니다!"
@@ -2343,6 +2371,8 @@ L85A2JunkyardBattleScarredName="L85A2 | 정크야드 | 전투흔적"
 L85A2VaultVoshPreciousName="L85A2 | 볼트 | 보쉬 | 프레셔스"
 L85A2PrestigePreciousName="L85A2 | 프레스티지 | 프레셔스"
 L85A2DragonKoiPreciousName="L85A2 | 드래곤 및 코이 | 프레셔스"
+L85A2NeonMintName="L85A2 | 네온 | 민트"
+L85A2NeonRGBPreciousName="L85A2 | 네온 RGB | 프레셔스"
 
 ;M14EBR Descriptions
 M14EBRMintDescription="외관: 민트 | 해군 특수 부대, 델타 포스 및 기타 공격적인 이들이 선호하는 저격소총."
@@ -2511,6 +2541,8 @@ M79SteampunkBattleScarredName="M79 | 스팀펑크 | 전투 흔적"
 M79SteampunkFieldTestedName="M79 | 스팀펑크 | 현장 테스트"
 M79SteampunkMintName="M79 | 스팀펑크 | 민트"
 M79SteampunkPreciousName="M79 | 스팀펑크 | 프레셔스"
+M79NeonMintName="M79 | 네온 | 민트"
+M79NeonRGBPreciousName="M79 | 네온 RGB | 프레셔스"
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="외관: 민트급 | 강력한 방패 타격을 갖추고 있습니다."
@@ -2537,6 +2569,7 @@ M99BeyondHorizonMintName="M99 | 비욘드 호라이즌 | 민트급"
 M99BeyondHorizonFieldTestedName="M99 | 비욘드 호라이즌 | 현장 테스트"
 M99BeyondHorizonBattleScarredName="M99 | 비욘드 호라이즌 | 전투 흔적"
 M99BeyondHorizonSpaceEliteName="M99 | 비욘드 호라이즌 | 스페이스 엘리트"
+M99StarsName="M99 | 볼트 | 스타"
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="본 크러셔 | 서킷 | 민트급"
@@ -2596,6 +2629,8 @@ MedicBatPreciousDescription="외관: 프레셔스 | 훌륭한 치료에 자신�
 ;Medic Bat Names
 MedicBatPreciousName="헤모클로버 | 프레셔스"
 MedicBatVaultVoshPreciousName="헤모클로버 | 볼트 | 보쉬 | 프레셔스"
+MedicBatNeonMintName="헤모클로버 | 네온 | 민트"
+MedicBatNeonRGBPreciousName="헤모클로버 | 네온 RGB | 프레셔스"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="외관: 민트급 | 현대 기술의 경이로움: 휴대용 제드 요리기."
@@ -2752,6 +2787,8 @@ PulverizerJaegerMintName="분쇄기 | 예거 | 민트급"
 PulverizerJaegerFieldTestedName="분쇄기 | 예거 | 현장 테스트"
 PulverizerJaegerBattleScarredName="분쇄기 | 예거 | 전투흔적"
 PulverizerJaegerDynamicName="분쇄기 | 예거 | 다이나믹"
+PulverizerNeonMintName="분쇄기 | 네온 | 민트급"
+PulverizerNeonRGBPreciousName="분쇄기 | 네온 RGB | 프레셔스"
 
 ;Railgun Descriptions
 RailgunMintDescription="외관: 민트 | 이 무기는 자력을 이용하여 단단한 강철탄을 빠른 속도로 발사해 제드를 휴지조각처럼 찢어버린다."
@@ -3039,6 +3076,8 @@ VLAD1000NailgunBluefireBattleScarredName="VLAD-1000 네일건 | 블루파이어 
 VLAD1000NailgunPrestigePreciousName="VLAD-1000 네일건 | 프레스티지 | 프레셔스"
 VLAD1000NailgunSpectreHRGDynamicName="VLAD-1000 네일건 | 스펙터 HRG | 다이나믹"
 VLAD1000NailgunSpectreHRGDynamicChromaName="VLAD-1000 네일건 | 스펙터 HRG | 다이나믹 크로마"
+VLAD1000NailgunNeonMintName="VLAD-1000 네일건 | 네온 | 민트"
+VLAD1000NailgunNeonRGBPreciousName="VLAD-1000 네일건 | 네온 RGB | 프레셔스"
 
 ;HRG Nailgun Names
 HRGNailgunPDWSpectreHRGDynamicName="HRG 네일건 PDW | 스펙터 HRG | 다이나믹"
@@ -3099,6 +3138,8 @@ Winchester1894SteampunkBattleScarredName="윈체스터 1894 | 스팀펑크 | 전
 Winchester1894SteampunkFieldTestedName="윈체스터 1894 | 스팀펑크 | 현장 테스트"
 Winchester1894SteampunkMintName="윈체스터 1894 | 스팀펑크 | 민트"
 Winchester1894SteampunkPreciousName="윈체스터 1894 | 스팀펑크 | 프레셔스"
+Winchester1894NeonMintName="윈체스터 1894 | 네온 | 민트"
+Winchester1894NeonRGBPreciousName="윈체스터 1894 | 네온 RGB | 프레셔스"
 
 ;Zweihander Descriptions
 ZweihanderMintDescription="외관: 민트 | 검입니다. 완전 큰 중세 시대의 검입니다."
@@ -3176,10 +3217,10 @@ SwatKnifePrestigePreciousName="전술 나이프 | 프레스티지 | 프레셔스
 SwatKnifeVaultVoshPreciousName="전술 나이프 | 볼트 | 보쉬 | 프레셔스"
 
 ;SurvivalistKnife Descriptions
-SurvivalistKnifeMintDescription="외관: 민트급 | 빨리 가야 해요! 진가를 보여주세요."
-SurvivalistKnifeFieldTestedDescription="외관: 현장 테스트 | 빨리 가야 해요! 진가를 보여주세요."
-SurvivalistKnifeBattleScarredDescription="외관: 전투 흔적 | 빨리 가야 해요! 진가를 보여주세요."
-SurvivalistKnifePreciousDescription="외관: 프레셔스 | 빨리 가야 해요! 진가를 보여주세요."
+SurvivalistKnifeMintDescription="외관: 민트급 | 빨리 가야 해요!  진가를 보여주세요."
+SurvivalistKnifeFieldTestedDescription="외관: 현장 테스트 | 빨리 가야 해요!  진가를 보여주세요."
+SurvivalistKnifeBattleScarredDescription="외관: 전투 흔적 | 빨리 가야 해요!  진가를 보여주세요."
+SurvivalistKnifePreciousDescription="외관: 프레셔스 | 빨리 가야 해요!  진가를 보여주세요."
 
 ;SurvivalistKnife Names
 SurvivalistKnifePreciousName="고어 쉬브 | 프레셔스"
@@ -3199,6 +3240,7 @@ MKB42NeonFieldTestedName="MKB42H | 네온 | 현장 테스트"
 MKB42NeonBattleScarredName="MKB42H | 네온 | 전투 흔적"
 MKB42NeonRGBPreciousName="MKB42H | 네온RGB | 프레셔스"
 MKB42VaultVoshPreciousName="MKB42H | 볼트 | 보쉬 | 프레셔스"
+MKB42StarsName="MKB42H | 볼트 | 스타"
 
 ;TommyGun Descriptions
 TommyGunMintDescription="외관: 민트 | 시카고 타자기로 알려지기도 했습니다, 이름을 쓰기에 좋은 총입니다."
@@ -3220,6 +3262,7 @@ TommyGunSteampunkPreciousName="토미건 | 스팀펑크 | 프레셔스"
 TommyGunVaultVoshPreciousName="토미건 | 볼트 | 보쉬 | 프레셔스"
 TommyGunJaegerDynamicName="토미건 | 예거 | 다이나믹"
 TommyGunJaegerDynamicRGBName="토미건 | 예거 | 다이나믹 RGB"
+TommyGunStarsName="토미건 | 볼트 | 스타"
 
 ;Laser Cutter Descriptions
 LaserCutterMintDescription="외관: 민트 | 폭발 모드 - 발사 버튼을 누르는 동안 충전되며 발사 버튼에서 손을 떼면 발사됩니다."
@@ -3239,6 +3282,8 @@ LaserCutterJaegerMintName="킬러와트 | 예거 | 민트급"
 LaserCutterJaegerFieldTestedName="킬러와트 | 예거 | 현장 테스트"
 LaserCutterJaegerBattleScarredName="킬러와트 | 예거 | 전투 흔적"
 LaserCutterJaegerDynamicName="킬러와트 | 예거 | 다이나믹"
+LaserCutterNeonMintName="킬러와트 | 네온 | 민트"
+LaserCutterNeonRGBPreciousName="킬러와트 | 네온 RGB | 프레셔스"
 
 ;FNFAL Descriptions
 FNFALMintDescription="외관: 민트급 | FN FAIL이 아니랍니다. 하하! ...죄송합니다."
@@ -3306,6 +3351,8 @@ SealSquealPreciousDescription="외관: 프레셔스 | 고급스러운 Horzine이
 
 ;SealSqueal Names
 SealSquealVaultVoshPreciousName="씰 스퀼 | 볼트 | 보쉬 | 프레셔스"
+SealSquealNeonMintName="씰 스퀼 | 네온 | 민트"
+SealSquealNeonRGBPreciousName="씰 스퀼 | 네온 RGB | 프레셔스"
 
 ;MIcrowaveAssault Descriptions
 MIcrowaveAssaultMintDescription="외관: 민트급 | 불이 그대와 함께하기를."
@@ -3323,6 +3370,8 @@ MIcrowaveAssaultJaegerMintName="헬리오스 소총 | 예거 | 민트급"
 MIcrowaveAssaultJaegerFieldTestedName="헬리오스 소총 | 예거 | 현장 테스트"
 MIcrowaveAssaultJaegerBattleScarredName="헬리오스 소총 | 예거 | 전투 흔적"
 MIcrowaveAssaultJaegerDynamicName="헬리오스 소총 | 예거 | 다이나믹"
+MicrowaveAssaultNeonMintName="헬리오스 소총 | 네온 | 민트"
+MicrowaveAssaultNeonRGBPreciousName="헬리오스 소총 | 네온 RGB | 프레셔스"
 
 ;Rhino Descriptions
 RhinoMintDescription="외관: 민트급 | 제드를 치즈처럼 갈아버리세요."
@@ -3391,6 +3440,34 @@ CompoundBowGorePreciousName="콤파운드 활 | 고어 | 프레셔스"
 CompoundBowSnowOpsPreciousName="콤파운드 활 | 스노우 옵스 | 프레셔스"
 CompoundBowStickerStrikerPreciousName="콤파운드 활 | 스티커 스트라이커 | 프레셔스"
 CompoundBowStandardPreciousName="콤파운드 활 | 표준 | 프레셔스"
+
+;Blunderbuss Descriptions
+BlunderbussMintDescription="외관: 민트 | 의족과 앵무새는 별도로 판매합니다!"
+BlunderbussFieldTestedDescription="외관: 현장 테스트 | 의족과 앵무새는 별도로 판매합니다!"
+BlunderbussBattleScarredDescription="외관: 전투 흔적 | 의족과 앵무새는 별도로 판매합니다!"
+BlunderbussPreciousDescription="외관: 프레셔스 | 의족과 앵무새는 별도로 판매합니다!"
+
+;Blunderbuss Names
+BlunderbussRottenPreciousName="나팔총 | 로튼 | 프레셔스"
+BlunderbussGoldenboyPreciousName="나팔총 | 골든보이 | 프레셔스"
+BlunderbussInfernoPreciousName="나팔총 | 인페르노 | 프레셔스"
+BlunderbussJequePreciousName="나팔총 | 헤케 | 프레셔스"
+BlunderbussSilverPreciousName="나팔총 | 실버 | 프레셔스"
+BlunderbussStandardPreciousName="나팔총 | 표준 | 프레셔스"
+
+;Glock 18c Descriptions
+Glock18cMintDescription="외관: 민트 | 주의: 사용 시 법과 자아 일치를 선언하고자 하는 통제할 수 없는 충동이 느껴집니다. "
+Glock18cFieldTestedDescription="외관: 현장 테스트 | 주의: 사용 시 법과 자아 일치를 선언하고자 하는 통제할 수 없는 충동이 느껴집니다. "
+Glock18cBattleScarredDescription="외관: 전투 흔적 | 주의: 사용 시 법과 자아 일치를 선언하고자 하는 통제할 수 없는 충동이 느껴집니다. "
+Glock18cPreciousDescription="외관: 프레셔스 | 주의: 사용 시 법과 자아 일치를 선언하고자 하는 통제할 수 없는 충동이 느껴집니다. "
+
+;Glock 18c Names
+Glock18cPeppermintDropsPreciousName="글록 18c | 페퍼민트 드롭스 | 프레셔스"
+Glock18cGoldSwatPreciousName="글록 18c | 골드 SWAT | 프레셔스"
+Glock18cBumblebeePreciousName="글록 18c | 범블비 | 프레셔스"
+Glock18cCamoPreciousName="글록 18c | 카모 | 프레셔스"
+Glock18cGorePreciousName="글록 18c | 고어 | 프레셔스"
+Glock18cStandardPreciousName="글록 18c | 표준 | 프레셔스"
 
 [CosmeticSection]
 
@@ -5147,6 +5224,80 @@ CyberRaveUnicornHatRefractedLightName="사이버 레이브 | 유니콘 모자 | 
 CyberRaveUnicornHatRomanName="사이버 레이브 | 유니콘 모자 | 로망"
 CyberRaveUnicornHatPreciousName="사이버 레이브 | 유니콘 모자 | 프레셔스"
 
+;Neon Gear Cosmetic Names
+NeonGearHeadphonesNeonName="네온 장비 | 헤드폰 | 네온"
+NeonGearHeadphonesRainbowName="네온 장비 | 헤드폰 | 레인보우"
+NeonGearHeadphonesNeonRGBName="네온 장비 | 헤드폰 | 네온 RGB"
+NeonGearHeadphonesRainbowRGBName="네온 장비 | 헤드폰 | 레인보우 RGB"
+NeonGearExitBackpackNeonName="네온 장비 | 비상 배낭 | 네온"
+NeonGearExitBackpackRainbowName="네온 장비 | 비상 배낭 | 무지개"
+NeonGearExitBackpackNeonRGBName="네온 장비 | 비상 배낭 | 네온 RGB"
+NeonGearExitBackpackRainbowRGBName="네온 장비 | 비상 배낭 | 레인보우 RGB"
+NeonGearTVBackpackNeonName="네온 장비 | TV 배낭 | 네온"
+NeonGearTVBackpackRainbowName="네온 장비 | TV 배낭 | 레인보우"
+NeonGearTVBackpackNeonRGBName="네온 장비 | TV 배낭 | 네온 RGB"
+NeonGearTVBackpackRainbowRGBName="네온 장비 | TV 배낭 | 레인보우 RGB"
+NeonGearBoomboxNeonName="네온 장비 | 붐 박스 | 네온"
+NeonGearBoomboxRainbowName="네온 장비 | 붐 박스 | 레인보우"
+NeonGearBoomboxNeonRGBName="네온 장비 | 붐 박스 | 네온 RGB"
+NeonGearBoomboxRainbowRGBName="네온 장비 | 붐 박스 | 레인보우 RGB"
+NeonGearPowerWatchNeonName="네온 장비 | 파워 워치 | 네온"
+NeonGearPowerWatchRainbowName="네온 장비 | 파워 워치 | 레인보우"
+NeonGearPowerWatchNeonRGBName="네온 장비 | 파워 워치 | 네온 RGB"
+NeonGearPowerWatchRainbowRGBName="네온 장비 | 파워 워치 | 레인보우 RGB"
+NeonGearBackpackDisplaySupporterName="네온 장비 | 배낭 디스플레이 | 지원가"
+NeonGearBackpackDisplayDemolitionName="네온 장비 | 배낭 디스플레이 | 폭파"
+NeonGearBackpackDisplayMedicName="네온 장비 | 배낭 디스플레이 | 간호병"
+NeonGearBackpackDisplayFostersSurpriseName="네온 장비 | 배낭 디스플레이 | 부모님의 깜짝 선물"
+NeonGearRugbyHelmetNeonName="네온 장비 | 럭비 헬멧 | 네온"
+NeonGearRugbyHelmetRainbowName="네온 장비 | 럭비 헬멧 | 레인보우"
+NeonGearRugbyHelmetNeonRGBName="네온 장비 | 럭비 헬멧 | 네온 RGB"
+NeonGearRugbyHelmetRainbowRGBName="네온 장비 | 럭비 헬멧 | 레인보우 RGB"
+NeonGearTopHatNeonName="네온 장비 | 신사 모자 | 네온"
+NeonGearTopHatRainbowName="네온 장비 | 신사 모자 | 레인보우"
+NeonGearTopHatNeonRGBName="네온 장비 | 신사 모자 | 네온 RGB"
+NeonGearTopHatRainbowRGBName="네온 장비 | 신사 모자 | 레인보우 RGB"
+NeonGearHorzineArmbandNeonName="네온 장비 | Horzine 완장 | 네온"
+NeonGearHorzineArmbandRainbowName="네온 장비 | Horzine 완장 | 레인보우"
+NeonGearHorzineArmbandNeonRGBName="네온 장비 | Horzine 완장 | 네온 RGB"
+NeonGearHorzineArmbandRainbowRGBName="네온 장비 | Horzine 완장 | 레인보우 RGB"
+NeonGearHorzineCapNeonName="네온 장비 | Horzine 모자 | 네온"
+NeonGearHorzineCapRainbowName="네온 장비 | Horzine 모자 | 레인보우"
+NeonGearHorzineCapNeonRGBName="네온 장비 | Horzine 모자 | 네온 RGB"
+NeonGearHorzineCapRainbowRGBName="네온 장비 | Horzine 모자 | 레인보우 RGB"
+
+;Space Pirate Cosmetic Names
+SpacePirateFeatheredTopHatNavyName="우주 해적 | 깃털 달린 신사 모자 | 네이비"
+SpacePirateFeatheredTopHatBlackName="우주 해적 | 깃털 달린 신사 모자 | 블랙"
+SpacePirateFeatheredTopHatGreenName="우주 해적 | 깃털 달린 신사 모자 | 그린"
+SpacePirateFeatheredTopHatRedName="우주 해적 | 깃털 달린 신사 모자 | 레드"
+SpacePirateFeatheredTopHatPreciousName="우주 해적 | 깃털 달린 신사 모자 | 프레셔스"
+SpacePirateGoggleDreadsNavyName="우주 해적 | 고글 드레드락 | 네이비"
+SpacePirateGoggleDreadsSkullName="우주 해적 | 고글 드레드락 | 스컬"
+SpacePirateGoggleDreadsStripesName="우주 해적 | 고글 드레드락 | 스트라이프"
+SpacePirateGoggleDreadsBrownandGoldName="우주 해적 | 고글 드레드락 | 브라운과 골드"
+SpacePirateGoggleDreadsGoldandSilverName="우주 해적 | 고글 드레드락 | 골드와 실버"
+SpacePirateTricornHatBrownName="우주 해적 | 삼각 모자 | 브라운"
+SpacePirateTricornHatBlackName="우주 해적 | 삼각 모자 | 블랙"
+SpacePirateTricornHatGreenName="우주 해적 | 삼각 모자 | 그린"
+SpacePirateTricornHatRedName="우주 해적 | 삼각 모자 | 레드"
+SpacePirateTricornHatPreciousName="우주 해적 | 삼각 모자 | 프레셔스"
+SpacePirateRumHeadWoodName="우주 해적 | 럼 헤드 | 목재"
+SpacePirateRumHeadDynamiteName="우주 해적 | 럼 헤드 | 다이너마이트"
+SpacePirateRumHeadCharcoalName="우주 해적 | 럼 헤드 | 차콜"
+SpacePirateRumHeadAce&SpadesName="우주 해적 | 럼 헤드 | 에이스 앤 스페이드"
+SpacePirateRumHeadRainbowName="우주 해적 | 럼 헤드 | 레인보우"
+SpacePirateSkullBeardNavyName="우주 해적 | 두개골 수염 | 네이비"
+SpacePirateSkullBeardBlackName="우주 해적 | 두개골 수염 | 블랙"
+SpacePirateSkullBeardGreenName="우주 해적 | 두개골 수염 | 그린"
+SpacePirateSkullBeardElderName="우주 해적 | 두개골 수염 | 엘더"
+SpacePirateSkullBeardPreciousName="우주 해적 | 두개골 수염 | 프레셔스"
+SpacePirateGuyChomperCeruleanName="우주 해적 | 상남자 먹보 | 세루리안"
+SpacePirateGuyChomperAquaName="우주 해적 | 상남자 먹보 | 아쿠아"
+SpacePirateGuyChomperAlbinoName="우주 해적 | 상남자 먹보 | 알비노"
+SpacePirateGuyChomperStripesName="우주 해적 | 상남자 먹보 | 스트라이프"
+SpacePirateGuyChomperMegladonName="우주 해적 | 상남자 먹보 | 메갈라돈"
+SpacePirateSpaceMonkeyBackpackName="우주 해적 | 우주 원숭이 배낭"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="장비 메뉴에서 장착 가능하며, 대부분의 캐릭터와 호환됩니다. 이것은 '여름 사이드쇼' 시즌 이벤트의 특별한 아이템입니다. 사이드쇼 티켓 1장으로 재활용됩니다."
@@ -5159,6 +5310,8 @@ DoshVaultAccessoryDescription="장비 메뉴에서 장착 가능하며, 대부�
 DoshVaultFacePaintDescription="장비 메뉴에서 장착할 수 있습니다."
 SteampunkAccessoryDescription="장비 메뉴에서 장착 가능하며, 대부분의 캐릭터와 호환됩니다."
 SteampunkFacePaintDescription="장비 메뉴에서 장착할 수 있습니다."
+SpacePirateAccessoryDescription="장비 메뉴에서 장착 가능하며, 대부분의 캐릭터와 호환됩니다."
+SpacePirateFacePaintDescription="장비 메뉴에서 장착할 수 있습니다."
 SteampunkMrsFosterMaskDescription="장비 메뉴에서 장착 가능하며, 포스터 부인, 아나 라빈, 레이 히긴스와 호환됩니다."
 DARAccessoryDescription="장비 메뉴에서 장착 가능하며, D.A.R.과 호환됩니다."
 CyberPunkAccessoryDescription="장비 메뉴에서 장착 가능하며, 대부분의 캐릭터와 호환됩니다. 이것은 사이버펑크 시즌 이벤트의 특별한 아이템입니다."

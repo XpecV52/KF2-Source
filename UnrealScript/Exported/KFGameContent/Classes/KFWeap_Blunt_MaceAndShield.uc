@@ -151,9 +151,13 @@ defaultproperties
    ParryStrength=6
    BlockTypes(2)=(dmgType=Class'kfgamecontent.KFDT_Fire_HuskFireball')
    BlockTypes(3)=(dmgType=Class'kfgamecontent.KFDT_Fire_HuskFlamethrower')
-   BlockTypes(4)=(dmgType=Class'kfgamecontent.KFDT_Ballistic_PatMinigun',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal')
-   BlockTypes(5)=(dmgType=Class'kfgamecontent.KFDT_Explosive_PatMissile')
-   BlockTypes(6)=(dmgType=Class'kfgamecontent.KFDT_Ballistic_HansAK12',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal')
+   BlockTypes(4)=(dmgType=Class'kfgamecontent.KFDT_EvilDAR_Rocket',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal')
+   BlockTypes(5)=(dmgType=Class'kfgamecontent.KFDT_EvilDAR_Laser',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal')
+   BlockTypes(6)=(dmgType=Class'kfgamecontent.KFDT_DAR_EMPBlast',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal')
+   BlockTypes(7)=(dmgType=Class'kfgamecontent.KFDT_Ballistic_PatMinigun',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal')
+   BlockTypes(8)=(dmgType=Class'kfgamecontent.KFDT_Explosive_PatMissile')
+   BlockTypes(9)=(dmgType=Class'kfgamecontent.KFDT_Ballistic_HansAK12',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal')
+   BlockTypes(10)=(dmgType=Class'kfgamecontent.KFDT_EMP_MatriarchTeslaBlast',BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Bullet_Impact_Metal')
    BlockDamageMitigation=0.300000
    ParryDamageMitigationPercent=0.300000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'

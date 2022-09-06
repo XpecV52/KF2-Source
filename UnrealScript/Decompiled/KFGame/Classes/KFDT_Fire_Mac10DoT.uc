@@ -13,6 +13,6 @@ defaultproperties
     WeaponDef=Class'KFWeapDef_Mac10'
     DoT_Duration=2
     DoT_Interval=0.5
-    DoT_DamageScale=0.3
-    BurnPower=8.5
+    DoT_DamageScale=0.4
+    BurnPower=4
 }

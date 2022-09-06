@@ -116,7 +116,15 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_31
 End Object
 
 Begin Object Class=InterpData Name=InterpData_31
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_7
          PosTrack=(Points=(,(InVal=3.000000,OutVal=(X=-639.999756,Y=0.000000,Z=0.000000))))
          EulerTrack=(Points=(,(InVal=3.000000)))
@@ -125,20 +133,12 @@ Begin Object Class=InterpData Name=InterpData_31
          Name="InterpTrackMove_7"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         Name="InterpTrackAkEvent_0"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_6.InterpTrackMove_7'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_6.InterpTrackAkEvent_0'
       GroupName="train1"
       GroupColor=(B=213,G=105,R=0,A=255)
       Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_6'
@@ -429,14 +429,37 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_17
 End Object
 
 Begin Object Class=InterpData Name=InterpData_18
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=(,(InVal=3.000000,OutVal=(X=-400.000000,Y=0.000000,Z=-0.000061)),(InVal=8.000000,OutVal=(X=-2320.000000,Y=0.000000,Z=-0.000122)),(InVal=10.000000,OutVal=(X=-2560.000000,Y=0.000000,Z=-0.000214),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-2560.000000,Y=0.000000,Z=-0.000183)),(InVal=13.000000,OutVal=(X=-2720.000000,Y=0.000000,Z=-0.000244)),(InVal=14.000000,OutVal=(X=-2720.000000,Y=0.000000,Z=-0.000305)),(InVal=16.000000,OutVal=(X=-2640.000000,Y=0.000000,Z=-0.000366)),(InVal=20.000000,OutVal=(X=-1120.000000,Y=0.000000,Z=-0.000458),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-1120.000000,Y=0.000000,Z=-0.000427)),(InVal=22.000000,OutVal=(X=-880.000000,Y=0.000000,Z=-0.000488)),(InVal=24.000000,OutVal=(X=-720.000000,Y=0.000000,Z=-0.000549)),(InVal=28.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000610))))
-         EulerTrack=(Points=(,(InVal=3.000000),(InVal=8.000000),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=10.000000),(InVal=13.000000),(InVal=14.000000),(InVal=16.000000),(InVal=20.000000,InterpMode=CIM_CurveAutoClamped),(InVal=20.000000),(InVal=22.000000),(InVal=24.000000),(InVal=28.000000)))
-         LookupTrack=(Points=(,(Time=3.000000),(Time=8.000000),(Time=10.000000),(Time=10.000000),(Time=13.000000),(Time=14.000000),(Time=16.000000),(Time=20.000000),(Time=20.000000),(Time=22.000000),(Time=24.000000),(Time=28.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(1)=(Time=14.003527,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         TrackTitle="AkEvent_(Start)"
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Time=12.980599,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(1)=(Time=28.007053,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         TrackTitle="AkEvent_(Stop)"
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_2
+         AkEvents(0)=(Time=0.040826,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=12.980599,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         TrackTitle="AkEvent_(LP)"
+         Name="InterpTrackAkEvent_2"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_3
+         AkEvents(0)=(Time=14.003527,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=28.007053,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         Name="InterpTrackAkEvent_3"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
       Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_48
          AkEvents(0)=(Time=3.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
@@ -448,32 +471,13 @@ Begin Object Class=InterpData Name=InterpData_18
          Name="InterpTrackAkEvent_48"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_3
-         AkEvents(0)=(Time=14.003527,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=28.007053,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         Name="InterpTrackAkEvent_3"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_2
-         AkEvents(0)=(Time=0.040826,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=12.980599,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         TrackTitle="AkEvent_(LP)"
-         Name="InterpTrackAkEvent_2"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Time=12.980599,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(1)=(Time=28.007053,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         TrackTitle="AkEvent_(Stop)"
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(1)=(Time=14.003527,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         TrackTitle="AkEvent_(Start)"
-         Name="InterpTrackAkEvent_0"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=(,(InVal=3.000000,OutVal=(X=-400.000000,Y=0.000000,Z=-0.000061)),(InVal=8.000000,OutVal=(X=-2320.000000,Y=0.000000,Z=-0.000122)),(InVal=10.000000,OutVal=(X=-2560.000000,Y=0.000000,Z=-0.000214),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=-2560.000000,Y=0.000000,Z=-0.000183)),(InVal=13.000000,OutVal=(X=-2720.000000,Y=0.000000,Z=-0.000244)),(InVal=14.000000,OutVal=(X=-2720.000000,Y=0.000000,Z=-0.000305)),(InVal=16.000000,OutVal=(X=-2640.000000,Y=0.000000,Z=-0.000366)),(InVal=20.000000,OutVal=(X=-1120.000000,Y=0.000000,Z=-0.000458),InterpMode=CIM_CurveAutoClamped),(InVal=20.000000,OutVal=(X=-1120.000000,Y=0.000000,Z=-0.000427)),(InVal=22.000000,OutVal=(X=-880.000000,Y=0.000000,Z=-0.000488)),(InVal=24.000000,OutVal=(X=-720.000000,Y=0.000000,Z=-0.000549)),(InVal=28.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000610))))
+         EulerTrack=(Points=(,(InVal=3.000000),(InVal=8.000000),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped),(InVal=10.000000),(InVal=13.000000),(InVal=14.000000),(InVal=16.000000),(InVal=20.000000,InterpMode=CIM_CurveAutoClamped),(InVal=20.000000),(InVal=22.000000),(InVal=24.000000),(InVal=28.000000)))
+         LookupTrack=(Points=(,(Time=3.000000),(Time=8.000000),(Time=10.000000),(Time=10.000000),(Time=13.000000),(Time=14.000000),(Time=16.000000),(Time=20.000000),(Time=20.000000),(Time=22.000000),(Time=24.000000),(Time=28.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_0.InterpTrackMove_0'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_0.InterpTrackAkEvent_0'
@@ -485,10 +489,6 @@ Begin Object Class=InterpData Name=InterpData_18
       GroupColor=(B=154,G=0,R=184,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=30.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_0'
@@ -1293,7 +1293,15 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_68
 End Object
 
 Begin Object Class=InterpData Name=InterpData_68
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
+      Name="InterpCurveEdSetup_4"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
          PosTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=-0.000122)),(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=1599.999878)),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000305))))
          EulerTrack=(Points=(,(InVal=1.000000),(InVal=2.000000)))
@@ -1302,20 +1310,12 @@ Begin Object Class=InterpData Name=InterpData_68
          Name="InterpTrackMove_4"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         Name="InterpTrackAkEvent_0"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_68.InterpGroup_3.InterpTrackMove_4'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_68.InterpGroup_3.InterpTrackAkEvent_0'
       GroupName="Piston"
       GroupColor=(B=103,G=0,R=214,A=255)
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
-      Name="InterpCurveEdSetup_4"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_68.InterpGroup_3'
@@ -2006,158 +2006,23 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_69
 End Object
 
 Begin Object Class=InterpData Name=InterpData_69
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         PosTrack=(Points=((InVal=3.002779),(InVal=3.102779,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.202779,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.352779,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.006093,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.306092,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.405562,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.507177,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.656507,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.007255,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.309390,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.408113,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.509390,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.659389,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=14.002777,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=19.002781,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=26.002979,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.205175,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.307024,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.405176,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.555174,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=28.003189,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.172297,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.272295,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.372297,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.522295,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=30.000355,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.102781,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.302006,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.507059,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.707060,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=3.002779),(InVal=3.102779),(InVal=3.202779),(InVal=3.352779),(InVal=6.006093),(InVal=6.306092),(InVal=6.405562),(InVal=6.507177),(InVal=6.656507),(InVal=9.007255),(InVal=9.309390),(InVal=9.408113),(InVal=9.509390),(InVal=9.659389),(InVal=14.002777),(InVal=19.002781),(InVal=26.002979),(InVal=26.205175),(InVal=26.307024),(InVal=26.405176),(InVal=26.555174),(InVal=28.003189),(InVal=28.172297),(InVal=28.272295),(InVal=28.372297),(InVal=28.522295),(InVal=30.000355),(InVal=30.102781),(InVal=30.302006),(InVal=30.507059),(InVal=30.707060)))
-         LookupTrack=(Points=((Time=3.002779),(Time=3.102779),(Time=3.202779),(Time=3.352779),(Time=6.006093),(Time=6.306092),(Time=6.405562),(Time=6.507177),(Time=6.656507),(Time=9.007255),(Time=9.309390),(Time=9.408113),(Time=9.509390),(Time=9.659389),(Time=14.002777),(Time=19.002781),(Time=26.002979),(Time=26.205175),(Time=26.307024),(Time=26.405176),(Time=26.555174),(Time=28.003189),(Time=28.172297),(Time=28.272295),(Time=28.372297),(Time=28.522295),(Time=30.000355),(Time=30.102781),(Time=30.302006),(Time=30.507059),(Time=30.707060)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_9
-         AkEvents(0)=(Time=5.991427,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=9.007255,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(2)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(3)=(Time=25.999794,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(4)=(Time=30.218498,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_9"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_8
-         AkEvents(0)=(Time=3.019059,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=9.669606,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(2)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(3)=(Time=26.554216,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_8"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_7
-         AkEvents(0)=(Time=6.649863,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(1)=(Time=28.523727,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         TrackTitle="AkEvent(Thump)"
-         Name="InterpTrackAkEvent_7"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_6
-         AkEvents(0)=(Time=5.991427,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(1)=(Time=9.007255,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(2)=(Time=25.999794,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(3)=(Time=28.007107,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         TrackTitle="AkEvent(Thump)"
-         Name="InterpTrackAkEvent_6"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_3
-         AkEvents(0)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(1)=(Time=30.218498,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_3"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_2
-         AkEvents(0)=(Time=9.669606,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_2"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_10
-         AkEvents(0)=(Time=6.649863,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         Name="InterpTrackAkEvent_10"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Time=3.019059,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(1)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(2)=(Time=26.554216,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackMove_5'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_1'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_2'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_3'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_6'
-      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_7'
-      InterpTracks(6)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_8'
-      InterpTracks(7)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_9'
-      InterpTracks(8)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_10'
-      GroupName="2bit1"
-      GroupColor=(B=204,G=0,R=126,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_29
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InVal=1.998946),(InVal=2.098946,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=2.198946,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=2.348946,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=5.002250,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=5.302250,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=5.401720,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=5.503334,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=5.652664,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=8.003410,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.305549,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.404271,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=8.505548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=8.655548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.998937,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=17.998951,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=24.999149,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.201345,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.303194,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.401346,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.551344,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.999359,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.168467,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.268465,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.368467,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.518465,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=28.996525,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.098951,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.298176,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.503229,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.703230,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=1.998946),(InVal=2.098946),(InVal=2.198946),(InVal=2.348946),(InVal=5.002250),(InVal=5.302250),(InVal=5.401720),(InVal=5.503334),(InVal=5.652664),(InVal=8.003410),(InVal=8.305549),(InVal=8.404271),(InVal=8.505548),(InVal=8.655548),(InVal=12.998937),(InVal=17.998951),(InVal=24.999149),(InVal=25.201345),(InVal=25.303194),(InVal=25.401346),(InVal=25.551344),(InVal=26.999359),(InVal=27.168467),(InVal=27.268465),(InVal=27.368467),(InVal=27.518465),(InVal=28.996525),(InVal=29.098951),(InVal=29.298176),(InVal=29.503229),(InVal=29.703230)))
-         LookupTrack=(Points=((Time=1.998946),(Time=2.098946),(Time=2.198946),(Time=2.348946),(Time=5.002250),(Time=5.302250),(Time=5.401720),(Time=5.503334),(Time=5.652664),(Time=8.003410),(Time=8.305549),(Time=8.404271),(Time=8.505548),(Time=8.655548),(Time=12.998937),(Time=17.998951),(Time=24.999149),(Time=25.201345),(Time=25.303194),(Time=25.401346),(Time=25.551344),(Time=26.999359),(Time=27.168467),(Time=27.268465),(Time=27.368467),(Time=27.518465),(Time=28.996525),(Time=29.098951),(Time=29.298176),(Time=29.503229),(Time=29.703230)))
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=11.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=16.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=11.000000),(InVal=16.000000),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
+         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=11.000000),(Time=16.000000),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
+         Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_29.InterpTrackMove_2'
-      GroupName="5bit1"
-      GroupColor=(B=131,G=200,R=0,A=255)
-      Name="InterpGroup_29"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_22
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InVal=4.003705),(InVal=4.103704,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=4.203704,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=4.353704,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=7.007013,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=7.307014,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=7.406484,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=7.508099,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=7.657428,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=10.008194,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.310330,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.409054,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=10.510330,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=10.660329,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.003726,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=20.003698,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=27.003897,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=27.206093,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=27.307941,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=27.406094,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=27.556091,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=29.004107,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=29.173214,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=29.273212,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=29.373215,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=29.523212,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=31.001272,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=31.103699,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.302923,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.507977,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=31.707977,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=4.003705),(InVal=4.103704),(InVal=4.203704),(InVal=4.353704),(InVal=7.007013),(InVal=7.307014),(InVal=7.406484),(InVal=7.508099),(InVal=7.657428),(InVal=10.008194),(InVal=10.310330),(InVal=10.409054),(InVal=10.510330),(InVal=10.660329),(InVal=15.003726),(InVal=20.003698),(InVal=27.003897),(InVal=27.206093),(InVal=27.307941),(InVal=27.406094),(InVal=27.556091),(InVal=29.004107),(InVal=29.173214),(InVal=29.273212),(InVal=29.373215),(InVal=29.523212),(InVal=31.001272),(InVal=31.103699),(InVal=31.302923),(InVal=31.507977),(InVal=31.707977)))
-         LookupTrack=(Points=((Time=4.003705),(Time=4.103704),(Time=4.203704),(Time=4.353704),(Time=7.007013),(Time=7.307014),(Time=7.406484),(Time=7.508099),(Time=7.657428),(Time=10.008194),(Time=10.310330),(Time=10.409054),(Time=10.510330),(Time=10.660329),(Time=15.003726),(Time=20.003698),(Time=27.003897),(Time=27.206093),(Time=27.307941),(Time=27.406094),(Time=27.556091),(Time=29.004107),(Time=29.173214),(Time=29.273212),(Time=29.373215),(Time=29.523212),(Time=31.001272),(Time=31.103699),(Time=31.302923),(Time=31.507977),(Time=31.707977)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_15
-         AkEvents(0)=(Time=6.992439,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=10.013536,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(2)=(Time=14.994265,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(3)=(Time=26.999514,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(4)=(Time=31.139866,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_15"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_14
-         AkEvents(0)=(Time=4.020418,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=7.654722,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(2)=(Time=10.666746,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(3)=(Time=20.003698,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(4)=(Time=27.552643,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_14"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_13
-         AkEvents(0)=(Time=14.994265,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(1)=(Time=31.139866,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_13"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_11
-         AkEvents(0)=(Time=4.020418,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(1)=(Time=7.654722,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(2)=(Time=10.666746,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(3)=(Time=20.003698,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_11"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_22.InterpTrackMove_3'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_22.InterpTrackAkEvent_11'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_22.InterpTrackAkEvent_13'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_22.InterpTrackAkEvent_14'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_22.InterpTrackAkEvent_15'
-      GroupName="4bit1"
-      GroupColor=(B=180,G=0,R=159,A=255)
-      Name="InterpGroup_22"
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_0.InterpTrackMove_0'
+      GroupName="bit1"
+      GroupColor=(B=184,G=153,R=0,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_15
@@ -2175,24 +2040,159 @@ Begin Object Class=InterpData Name=InterpData_69
       Name="InterpGroup_15"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=11.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=16.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=11.000000),(InVal=16.000000),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
-         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=11.000000),(Time=16.000000),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
+   Begin Object Class=InterpGroup Name=InterpGroup_22
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_11
+         AkEvents(0)=(Time=4.020418,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(1)=(Time=7.654722,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(2)=(Time=10.666746,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(3)=(Time=20.003698,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_11"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_13
+         AkEvents(0)=(Time=14.994265,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(1)=(Time=31.139866,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_13"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_14
+         AkEvents(0)=(Time=4.020418,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=7.654722,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(2)=(Time=10.666746,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(3)=(Time=20.003698,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(4)=(Time=27.552643,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_14"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_15
+         AkEvents(0)=(Time=6.992439,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=10.013536,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(2)=(Time=14.994265,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(3)=(Time=26.999514,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(4)=(Time=31.139866,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_15"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InVal=4.003705),(InVal=4.103704,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=4.203704,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=4.353704,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=7.007013,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=7.307014,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=7.406484,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=7.508099,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=7.657428,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=10.008194,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.310330,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.409054,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=10.510330,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=10.660329,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.003726,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=20.003698,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=27.003897,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=27.206093,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=27.307941,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=27.406094,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=27.556091,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=29.004107,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=29.173214,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=29.273212,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=29.373215,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=29.523212,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=31.001272,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=31.103699,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.302923,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.507977,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=31.707977,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=4.003705),(InVal=4.103704),(InVal=4.203704),(InVal=4.353704),(InVal=7.007013),(InVal=7.307014),(InVal=7.406484),(InVal=7.508099),(InVal=7.657428),(InVal=10.008194),(InVal=10.310330),(InVal=10.409054),(InVal=10.510330),(InVal=10.660329),(InVal=15.003726),(InVal=20.003698),(InVal=27.003897),(InVal=27.206093),(InVal=27.307941),(InVal=27.406094),(InVal=27.556091),(InVal=29.004107),(InVal=29.173214),(InVal=29.273212),(InVal=29.373215),(InVal=29.523212),(InVal=31.001272),(InVal=31.103699),(InVal=31.302923),(InVal=31.507977),(InVal=31.707977)))
+         LookupTrack=(Points=((Time=4.003705),(Time=4.103704),(Time=4.203704),(Time=4.353704),(Time=7.007013),(Time=7.307014),(Time=7.406484),(Time=7.508099),(Time=7.657428),(Time=10.008194),(Time=10.310330),(Time=10.409054),(Time=10.510330),(Time=10.660329),(Time=15.003726),(Time=20.003698),(Time=27.003897),(Time=27.206093),(Time=27.307941),(Time=27.406094),(Time=27.556091),(Time=29.004107),(Time=29.173214),(Time=29.273212),(Time=29.373215),(Time=29.523212),(Time=31.001272),(Time=31.103699),(Time=31.302923),(Time=31.507977),(Time=31.707977)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_0.InterpTrackMove_0'
-      GroupName="bit1"
-      GroupColor=(B=184,G=153,R=0,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_22.InterpTrackMove_3'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_22.InterpTrackAkEvent_11'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_22.InterpTrackAkEvent_13'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_22.InterpTrackAkEvent_14'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_22.InterpTrackAkEvent_15'
+      GroupName="4bit1"
+      GroupColor=(B=180,G=0,R=159,A=255)
+      Name="InterpGroup_22"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_29
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InVal=1.998946),(InVal=2.098946,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=2.198946,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=2.348946,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=5.002250,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=5.302250,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=5.401720,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=5.503334,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=5.652664,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=8.003410,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.305549,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.404271,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=8.505548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=8.655548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.998937,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=17.998951,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=24.999149,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.201345,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.303194,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.401346,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.551344,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.999359,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.168467,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.268465,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.368467,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.518465,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=28.996525,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.098951,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.298176,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.503229,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.703230,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=1.998946),(InVal=2.098946),(InVal=2.198946),(InVal=2.348946),(InVal=5.002250),(InVal=5.302250),(InVal=5.401720),(InVal=5.503334),(InVal=5.652664),(InVal=8.003410),(InVal=8.305549),(InVal=8.404271),(InVal=8.505548),(InVal=8.655548),(InVal=12.998937),(InVal=17.998951),(InVal=24.999149),(InVal=25.201345),(InVal=25.303194),(InVal=25.401346),(InVal=25.551344),(InVal=26.999359),(InVal=27.168467),(InVal=27.268465),(InVal=27.368467),(InVal=27.518465),(InVal=28.996525),(InVal=29.098951),(InVal=29.298176),(InVal=29.503229),(InVal=29.703230)))
+         LookupTrack=(Points=((Time=1.998946),(Time=2.098946),(Time=2.198946),(Time=2.348946),(Time=5.002250),(Time=5.302250),(Time=5.401720),(Time=5.503334),(Time=5.652664),(Time=8.003410),(Time=8.305549),(Time=8.404271),(Time=8.505548),(Time=8.655548),(Time=12.998937),(Time=17.998951),(Time=24.999149),(Time=25.201345),(Time=25.303194),(Time=25.401346),(Time=25.551344),(Time=26.999359),(Time=27.168467),(Time=27.268465),(Time=27.368467),(Time=27.518465),(Time=28.996525),(Time=29.098951),(Time=29.298176),(Time=29.503229),(Time=29.703230)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_29.InterpTrackMove_2'
+      GroupName="5bit1"
+      GroupColor=(B=131,G=200,R=0,A=255)
+      Name="InterpGroup_29"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Time=3.019059,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(1)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(2)=(Time=26.554216,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_10
+         AkEvents(0)=(Time=6.649863,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         Name="InterpTrackAkEvent_10"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_2
+         AkEvents(0)=(Time=9.669606,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_2"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_3
+         AkEvents(0)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(1)=(Time=30.218498,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_3"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_6
+         AkEvents(0)=(Time=5.991427,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(1)=(Time=9.007255,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(2)=(Time=25.999794,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(3)=(Time=28.007107,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         TrackTitle="AkEvent(Thump)"
+         Name="InterpTrackAkEvent_6"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_7
+         AkEvents(0)=(Time=6.649863,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(1)=(Time=28.523727,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         TrackTitle="AkEvent(Thump)"
+         Name="InterpTrackAkEvent_7"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_8
+         AkEvents(0)=(Time=3.019059,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=9.669606,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(2)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(3)=(Time=26.554216,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_8"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_9
+         AkEvents(0)=(Time=5.991427,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=9.007255,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(2)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(3)=(Time=25.999794,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(4)=(Time=30.218498,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_9"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         PosTrack=(Points=((InVal=3.002779),(InVal=3.102779,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.202779,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.352779,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.006093,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.306092,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.405562,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.507177,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.656507,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.007255,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.309390,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.408113,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.509390,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.659389,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=14.002777,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=19.002781,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=26.002979,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.205175,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.307024,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.405176,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.555174,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=28.003189,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.172297,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.272295,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.372297,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.522295,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=30.000355,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.102781,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.302006,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.507059,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.707060,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=3.002779),(InVal=3.102779),(InVal=3.202779),(InVal=3.352779),(InVal=6.006093),(InVal=6.306092),(InVal=6.405562),(InVal=6.507177),(InVal=6.656507),(InVal=9.007255),(InVal=9.309390),(InVal=9.408113),(InVal=9.509390),(InVal=9.659389),(InVal=14.002777),(InVal=19.002781),(InVal=26.002979),(InVal=26.205175),(InVal=26.307024),(InVal=26.405176),(InVal=26.555174),(InVal=28.003189),(InVal=28.172297),(InVal=28.272295),(InVal=28.372297),(InVal=28.522295),(InVal=30.000355),(InVal=30.102781),(InVal=30.302006),(InVal=30.507059),(InVal=30.707060)))
+         LookupTrack=(Points=((Time=3.002779),(Time=3.102779),(Time=3.202779),(Time=3.352779),(Time=6.006093),(Time=6.306092),(Time=6.405562),(Time=6.507177),(Time=6.656507),(Time=9.007255),(Time=9.309390),(Time=9.408113),(Time=9.509390),(Time=9.659389),(Time=14.002777),(Time=19.002781),(Time=26.002979),(Time=26.205175),(Time=26.307024),(Time=26.405176),(Time=26.555174),(Time=28.003189),(Time=28.172297),(Time=28.272295),(Time=28.372297),(Time=28.522295),(Time=30.000355),(Time=30.102781),(Time=30.302006),(Time=30.507059),(Time=30.707060)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackMove_5'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_1'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_2'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_3'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_6'
+      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_7'
+      InterpTracks(6)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_8'
+      InterpTracks(7)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_9'
+      InterpTracks(8)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_8.InterpTrackAkEvent_10'
+      GroupName="2bit1"
+      GroupColor=(B=204,G=0,R=126,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=32.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_69.InterpGroup_0'
@@ -9137,6 +9137,175 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_14
 End Object
 
 Begin Object Class=InterpData Name=InterpData_2
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_10
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_7
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=318.000000,OutVal=(X=-0.001953,Y=0.000000,Z=-0.000008),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=323.000000,OutVal=(X=1362.373047,Y=525.988281,Z=-0.000023),ArriveTangent=(X=0.000000,Y=175.434204,Z=0.000000),LeaveTangent=(X=0.000000,Y=175.434204,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=330.000000,OutVal=(X=1326.257813,Y=2706.605469,Z=8.999966),ArriveTangent=(X=-13.952103,Y=0.000000,Z=0.000000),LeaveTangent=(X=-13.952103,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=335.000000,OutVal=(X=-920.935547,Y=2581.519531,Z=-0.000046),ArriveTangent=(X=0.000000,Y=-60.083702,Z=-0.000009),LeaveTangent=(X=0.000000,Y=-60.083702,Z=-0.000009),InterpMode=CIM_CurveAutoClamped),(InVal=339.000000,OutVal=(X=-816.269531,Y=1297.828125,Z=-0.000061),ArriveTangent=(X=0.000000,Y=-251.227737,Z=-0.000003),LeaveTangent=(X=0.000000,Y=-251.227737,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=345.000000,OutVal=(X=-860.625000,Y=69.242188,Z=-0.000076),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=318.000000,InterpMode=CIM_CurveAutoClamped),(InVal=323.000000,OutVal=(X=0.000000,Y=0.000000,Z=-88.945313),InterpMode=CIM_CurveAutoClamped),(InVal=330.000000,OutVal=(X=0.000000,Y=0.000000,Z=-21.796875),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.072225),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.072225),InterpMode=CIM_CurveAutoClamped),(InVal=335.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2.636719),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.202032),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.202032),InterpMode=CIM_CurveAutoClamped),(InVal=339.000000,OutVal=(X=0.000000,Y=-1.230469,Z=87.187500),InterpMode=CIM_CurveAutoClamped),(InVal=345.000000,OutVal=(X=0.000000,Y=-1.230469,Z=26.191406),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=318.000000),(Time=323.000000),(Time=330.000000),(Time=335.000000),(Time=339.000000),(Time=345.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_7"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_10.InterpTrackMove_7'
+      GroupName="Zone7"
+      GroupColor=(B=64,G=0,R=226,A=255)
+      Name="InterpGroup_10"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_11
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_8
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=347.000000,OutVal=(X=0.003906,Y=0.000000,Z=-0.000008),ArriveTangent=(X=0.000045,Y=0.000000,Z=-0.000000),LeaveTangent=(X=0.000045,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=350.000000,OutVal=(X=848.085938,Y=12.839844,Z=-0.000023),ArriveTangent=(X=311.647949,Y=0.000000,Z=-0.000004),LeaveTangent=(X=311.647949,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=355.000000,OutVal=(X=2493.187500,Y=-295.945313,Z=-0.000038),ArriveTangent=(X=128.909439,Y=0.000000,Z=-0.000003),LeaveTangent=(X=128.909439,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=360.000000,OutVal=(X=2813.531250,Y=-121.207031,Z=-0.000053),ArriveTangent=(X=50.407814,Y=68.403900,Z=-0.000003),LeaveTangent=(X=50.407814,Y=68.403900,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=365.000000,OutVal=(X=2997.265625,Y=668.335938,Z=-0.000069),ArriveTangent=(X=68.071518,Y=123.798828,Z=-0.000003),LeaveTangent=(X=68.071518,Y=123.798828,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=370.000000,OutVal=(X=3663.617188,Y=1116.781250,Z=-0.000084),ArriveTangent=(X=0.000000,Y=160.661621,Z=-0.000008),LeaveTangent=(X=0.000000,Y=160.661621,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=375.000000,OutVal=(X=3484.437500,Y=2564.582031,Z=-156.000183),ArriveTangent=(X=-79.095528,Y=15.371429,Z=0.000000),LeaveTangent=(X=-79.095528,Y=15.371429,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=380.000000,OutVal=(X=1835.566406,Y=2596.113281,Z=-156.000153),ArriveTangent=(X=-90.830360,Y=0.000000,Z=0.000015),LeaveTangent=(X=-90.830360,Y=0.000000,Z=0.000015),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=1625.523438,Y=1546.757813,Z=-12.000187),ArriveTangent=(X=-81.890640,Y=-164.160156,Z=0.000000),LeaveTangent=(X=-81.890640,Y=-164.160156,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=390.000000,OutVal=(X=693.140625,Y=954.511719,Z=-12.000202),ArriveTangent=(X=0.000000,Y=-145.253906,Z=-0.000003),LeaveTangent=(X=0.000000,Y=-145.253906,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=395.000000,OutVal=(X=1242.445313,Y=94.218750,Z=-12.000217),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=347.000000,InterpMode=CIM_CurveAutoClamped),(InVal=350.000000,OutVal=(X=0.000000,Y=0.000000,Z=88.242188),ArriveTangent=(X=0.000000,Y=0.000000,Z=20.698242),LeaveTangent=(X=0.000000,Y=0.000000,Z=20.698242),InterpMode=CIM_CurveAutoClamped),(InVal=355.000000,OutVal=(X=0.000000,Y=0.000000,Z=165.585938),ArriveTangent=(X=0.000000,Y=0.000000,Z=24.371914),LeaveTangent=(X=0.000000,Y=0.000000,Z=24.371914),InterpMode=CIM_CurveAutoClamped),(InVal=360.000000,OutVal=(X=0.000000,Y=0.000000,Z=339.082031),ArriveTangent=(X=0.000000,Y=0.000000,Z=28.283203),LeaveTangent=(X=0.000000,Y=0.000000,Z=28.283203),InterpMode=CIM_CurveAutoClamped),(InVal=365.000000,OutVal=(X=0.000000,Y=0.000000,Z=448.417969),ArriveTangent=(X=0.000000,Y=0.000000,Z=20.337891),LeaveTangent=(X=0.000000,Y=0.000000,Z=20.337891),InterpMode=CIM_CurveAutoClamped),(InVal=370.000000,OutVal=(X=0.000000,Y=-0.703125,Z=542.460938),ArriveTangent=(X=0.000000,Y=-0.193359,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.193359,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=375.000000,OutVal=(X=0.000000,Y=-1.933594,Z=537.539063),InterpMode=CIM_CurveAutoClamped),(InVal=380.000000,OutVal=(X=0.000000,Y=-1.933594,Z=635.449219),ArriveTangent=(X=0.000000,Y=0.000000,Z=23.730469),LeaveTangent=(X=0.000000,Y=0.000000,Z=23.730469),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=0.000000,Y=-1.933594,Z=774.843750),InterpMode=CIM_CurveAutoClamped),(InVal=390.000000,OutVal=(X=0.000000,Y=-1.933594,Z=771.328125),InterpMode=CIM_CurveAutoClamped),(InVal=395.000000,OutVal=(X=0.000000,Y=-1.933594,Z=846.210938),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=347.000000),(Time=350.000000),(Time=355.000000),(Time=360.000000),(Time=365.000000),(Time=370.000000),(Time=375.000000),(Time=380.000000),(Time=385.000000),(Time=390.000000),(Time=395.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_8"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_11.InterpTrackMove_8'
+      GroupName="Zone8"
+      GroupColor=(B=139,G=0,R=195,A=255)
+      Name="InterpGroup_11"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_12
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_9
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=396.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=400.000000,OutVal=(X=233.031250,Y=1560.730469,Z=-0.000183),ArriveTangent=(X=112.557755,Y=319.558594,Z=-0.000027),LeaveTangent=(X=112.557755,Y=319.558594,Z=-0.000027),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=1738.164063,Y=2876.027344,Z=-0.000305),ArriveTangent=(X=245.124222,Y=19.228447,Z=-0.000024),LeaveTangent=(X=245.124222,Y=19.228447,Z=-0.000024),InterpMode=CIM_CurveAutoClamped),(InVal=410.000000,OutVal=(X=2684.273438,Y=2915.867188,Z=-0.000427),ArriveTangent=(X=118.415665,Y=0.000000,Z=-0.000061),LeaveTangent=(X=118.415665,Y=0.000000,Z=-0.000061),InterpMode=CIM_CurveAutoClamped),(InVal=415.000000,OutVal=(X=3034.617188,Y=1564.937500,Z=-324.000763),ArriveTangent=(X=0.000000,Y=-257.280853,Z=-0.000050),LeaveTangent=(X=0.000000,Y=-257.280853,Z=-0.000050),InterpMode=CIM_CurveAutoClamped),(InVal=420.000000,OutVal=(X=2994.062500,Y=343.058594,Z=-324.000854),ArriveTangent=(X=-19.214935,Y=-185.444534,Z=0.000000),LeaveTangent=(X=-19.214935,Y=-185.444534,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=425.000000,OutVal=(X=2115.382813,Y=-289.507813,Z=-168.000916),ArriveTangent=(X=-180.196869,Y=0.000000,Z=32.999985),LeaveTangent=(X=-180.196869,Y=0.000000,Z=32.999985),InterpMode=CIM_CurveAutoClamped),(InVal=430.000000,OutVal=(X=1192.093750,Y=-149.953125,Z=5.998993),ArriveTangent=(X=-148.869141,Y=47.965118,Z=0.000000),LeaveTangent=(X=-148.869141,Y=47.965118,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=437.000000,OutVal=(X=328.953125,Y=497.140625,Z=5.998810),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=396.000000,InterpMode=CIM_CurveAutoClamped),(InVal=400.000000,OutVal=(X=0.000000,Y=0.000000,Z=-9.667969),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.853936),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.853936),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=0.000000,Y=0.000000,Z=-88.945313),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.146484),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.146484),InterpMode=CIM_CurveAutoClamped),(InVal=410.000000,OutVal=(X=0.000000,Y=0.000000,Z=-131.132813),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.369141),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.369141),InterpMode=CIM_CurveAutoClamped),(InVal=415.000000,OutVal=(X=0.000000,Y=0.000000,Z=-182.636719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.514950),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.514950),InterpMode=CIM_CurveAutoClamped),(InVal=420.000000,OutVal=(X=0.000000,Y=0.000000,Z=-183.691406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.519967),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.519967),InterpMode=CIM_CurveAutoClamped),(InVal=425.000000,OutVal=(X=0.000000,Y=0.000000,Z=-269.472656),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.689924),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.689924),InterpMode=CIM_CurveAutoClamped),(InVal=430.000000,OutVal=(X=0.000000,Y=0.000000,Z=-270.878906),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.624144),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.624144),InterpMode=CIM_CurveAutoClamped),(InVal=437.000000,OutVal=(X=0.000000,Y=0.000000,Z=-401.132813),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=396.000000),(Time=400.000000),(Time=405.000000),(Time=410.000000),(Time=415.000000),(Time=420.000000),(Time=425.000000),(Time=430.000000),(Time=437.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_9"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_12.InterpTrackMove_9'
+      GroupName="Zone9"
+      GroupColor=(B=88,G=0,R=220,A=255)
+      Name="InterpGroup_12"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InVal=106.000000,OutVal=(X=0.000000,Y=-0.003906,Z=-0.000046),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=1176.101563,Y=178.882813,Z=-12.000092),ArriveTangent=(X=315.357208,Y=84.798737,Z=0.000000),LeaveTangent=(X=315.357208,Y=84.798737,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=115.000000,OutVal=(X=2838.214844,Y=1225.007813,Z=11.999863),ArriveTangent=(X=0.000000,Y=252.826172,Z=5.624996),LeaveTangent=(X=0.000000,Y=252.826172,Z=5.624996),InterpMode=CIM_CurveAutoClamped),(InVal=118.000000,OutVal=(X=2814.406250,Y=2201.492188,Z=32.999878),ArriveTangent=(X=-16.492630,Y=0.000000,Z=0.000000),LeaveTangent=(X=-16.492630,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=123.000000,OutVal=(X=1347.882813,Y=2106.718750,Z=32.999847),ArriveTangent=(X=-279.276855,Y=0.000000,Z=0.000000),LeaveTangent=(X=-279.276855,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=126.000000,OutVal=(X=580.191406,Y=2671.101563,Z=41.999817),ArriveTangent=(X=-278.848450,Y=0.000000,Z=0.000000),LeaveTangent=(X=-278.848450,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=-46.359375,Y=2566.773438,Z=-294.000244),ArriveTangent=(X=-33.972313,Y=-87.371262,Z=0.000000),LeaveTangent=(X=-33.972313,Y=-87.371262,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=133.000000,OutVal=(X=-105.191406,Y=959.734375,Z=-285.000427),ArriveTangent=(X=0.000000,Y=-10.021454,Z=0.000000),LeaveTangent=(X=0.000000,Y=-10.021454,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=138.000000,OutVal=(X=919.812500,Y=939.398438,Z=-294.000488),ArriveTangent=(X=199.912888,Y=0.000000,Z=0.000000),LeaveTangent=(X=199.912888,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=1893.937500,Y=941.089844,Z=-291.000610),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InVal=106.000000,OutVal=(X=0.000000,Y=0.000000,Z=87.187500),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=0.000000,Y=-9.140625,Z=10.019531),InterpMode=CIM_CurveAutoClamped),(InVal=115.000000,OutVal=(X=0.000000,Y=-1.054688,Z=183.339844),ArriveTangent=(X=0.000000,Y=0.000000,Z=18.981064),LeaveTangent=(X=0.000000,Y=0.000000,Z=18.981064),InterpMode=CIM_CurveAutoClamped),(InVal=118.000000,OutVal=(X=0.000000,Y=-4.218750,Z=218.496094),ArriveTangent=(X=0.000000,Y=0.000000,Z=16.576336),LeaveTangent=(X=0.000000,Y=0.000000,Z=16.576336),InterpMode=CIM_CurveAutoClamped),(InVal=123.000000,OutVal=(X=0.000000,Y=-4.218750,Z=331.699219),InterpMode=CIM_CurveAutoClamped),(InVal=126.000000,OutVal=(X=0.000000,Y=-4.218750,Z=268.417969),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=0.000000,Y=-0.175781,Z=287.402344),ArriveTangent=(X=0.000000,Y=0.000000,Z=11.635426),LeaveTangent=(X=0.000000,Y=0.000000,Z=11.635426),InterpMode=CIM_CurveAutoClamped),(InVal=133.000000,OutVal=(X=0.000000,Y=-0.175781,Z=358.593750),ArriveTangent=(X=0.000000,Y=0.000000,Z=22.488327),LeaveTangent=(X=0.000000,Y=0.000000,Z=22.488327),InterpMode=CIM_CurveAutoClamped),(InVal=138.000000,OutVal=(X=0.000000,Y=-3.339844,Z=519.257813),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.341230),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.341230),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=0.000000,Y=-3.339844,Z=535.781250),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=((Time=106.000000),(Time=110.000000),(Time=115.000000),(Time=118.000000),(Time=123.000000),(Time=126.000000),(Time=128.000000),(Time=133.000000),(Time=138.000000),(Time=143.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2.InterpTrackMove_2'
+      GroupName="Zone2"
+      GroupColor=(B=115,G=209,R=0,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=145.000000,OutVal=(X=-0.000977,Y=0.000000,Z=0.000000),ArriveTangent=(X=-0.000020,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000020,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=150.000000,OutVal=(X=-0.002930,Y=-927.000000,Z=39.000000),ArriveTangent=(X=0.000000,Y=-27.701004,Z=0.000000),LeaveTangent=(X=0.000000,Y=-27.701004,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=154.000000,OutVal=(X=1415.811523,Y=-977.863281,Z=-258.000031),ArriveTangent=(X=294.915344,Y=0.000000,Z=-25.199749),LeaveTangent=(X=294.915344,Y=0.000000,Z=-25.199749),InterpMode=CIM_CurveAutoClamped),(InVal=157.000000,OutVal=(X=2083.940430,Y=-720.832031,Z=-297.000122),ArriveTangent=(X=0.000000,Y=151.733932,Z=0.000000),LeaveTangent=(X=0.000000,Y=151.733932,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=162.000000,OutVal=(X=2050.944336,Y=1195.621094,Z=-295.000183),ArriveTangent=(X=-16.010811,Y=47.146530,Z=0.000000),LeaveTangent=(X=-16.010811,Y=47.146530,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=167.000000,OutVal=(X=768.635742,Y=1295.835938,Z=-303.000244),ArriveTangent=(X=-19.242325,Y=52.438622,Z=-0.000087),LeaveTangent=(X=-19.242325,Y=52.438622,Z=-0.000087),InterpMode=CIM_CurveAutoClamped),(InVal=170.000000,OutVal=(X=740.639648,Y=2350.585938,Z=-303.000366),ArriveTangent=(X=-18.760857,Y=0.000000,Z=0.000000),LeaveTangent=(X=-18.760857,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=175.000000,OutVal=(X=42.333984,Y=1993.140625,Z=-129.000458),ArriveTangent=(X=-79.084000,Y=-129.996643,Z=27.599987),LeaveTangent=(X=-79.084000,Y=-129.996643,Z=27.599987),InterpMode=CIM_CurveAutoClamped),(InVal=180.000000,OutVal=(X=-180.402344,Y=779.179688,Z=-27.000504),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=145.000000,InterpMode=CIM_CurveAutoClamped),(InVal=150.000000,OutVal=(X=0.000000,Y=-0.878906,Z=78.398438),ArriveTangent=(X=0.000000,Y=0.000000,Z=5.648691),LeaveTangent=(X=0.000000,Y=0.000000,Z=5.648691),InterpMode=CIM_CurveAutoClamped),(InVal=154.000000,OutVal=(X=0.000000,Y=-0.878906,Z=90.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.903140),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.903140),InterpMode=CIM_CurveAutoClamped),(InVal=157.000000,OutVal=(X=0.000000,Y=0.175781,Z=182.109375),ArriveTangent=(X=0.000000,Y=0.000000,Z=22.368164),LeaveTangent=(X=0.000000,Y=0.000000,Z=22.368164),InterpMode=CIM_CurveAutoClamped),(InVal=162.000000,OutVal=(X=0.000000,Y=0.175781,Z=268.945313),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.015625),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.015625),InterpMode=CIM_CurveAutoClamped),(InVal=167.000000,OutVal=(X=0.000000,Y=0.175781,Z=352.265625),InterpMode=CIM_CurveAutoClamped),(InVal=170.000000,OutVal=(X=0.000000,Y=0.175781,Z=271.582031),InterpMode=CIM_CurveAutoClamped),(InVal=175.000000,OutVal=(X=0.000000,Y=-4.921875,Z=403.945313),ArriveTangent=(X=0.000000,Y=0.000000,Z=15.407194),LeaveTangent=(X=0.000000,Y=0.000000,Z=15.407194),InterpMode=CIM_CurveAutoClamped),(InVal=180.000000,OutVal=(X=0.000000,Y=-4.921875,Z=447.890625),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=145.000000),(Time=150.000000),(Time=154.000000),(Time=157.000000),(Time=162.000000),(Time=167.000000),(Time=170.000000),(Time=175.000000),(Time=180.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_3.InterpTrackMove_3'
+      GroupName="Zone3"
+      GroupColor=(B=0,G=163,R=176,A=255)
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=182.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000004),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=189.000000,OutVal=(X=1091.977539,Y=650.785156,Z=-0.000011),ArriveTangent=(X=177.925537,Y=0.000000,Z=-0.000002),LeaveTangent=(X=177.925537,Y=0.000000,Z=-0.000002),InterpMode=CIM_CurveAutoClamped),(InVal=198.000000,OutVal=(X=2846.808594,Y=307.468750,Z=-165.000031),ArriveTangent=(X=0.000000,Y=-62.865135,Z=0.000000),LeaveTangent=(X=0.000000,Y=-62.865135,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=207.000000,OutVal=(X=2185.575195,Y=-557.160156,Z=65.999969),ArriveTangent=(X=-56.319283,Y=-89.820526,Z=16.239281),LeaveTangent=(X=-56.319283,Y=-89.820526,Z=16.239281),InterpMode=CIM_CurveAutoClamped),(InVal=216.000000,OutVal=(X=1833.061523,Y=-1309.300781,Z=153.000000),ArriveTangent=(X=-75.278908,Y=0.000000,Z=5.291648),LeaveTangent=(X=-75.278908,Y=0.000000,Z=5.291648),InterpMode=CIM_CurveAutoClamped),(InVal=224.000000,OutVal=(X=600.572266,Y=-1194.398438,Z=177.000046),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=182.000000,InterpMode=CIM_CurveAutoClamped),(InVal=189.000000,OutVal=(X=0.000000,Y=0.000000,Z=-91.054688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.129150),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.129150),InterpMode=CIM_CurveAutoClamped),(InVal=198.000000,OutVal=(X=0.000000,Y=-2.109375,Z=-178.066406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-13.750000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-13.750000),InterpMode=CIM_CurveAutoClamped),(InVal=207.000000,OutVal=(X=0.000000,Y=-2.109375,Z=-338.554688),InterpMode=CIM_CurveAutoClamped),(InVal=216.000000,OutVal=(X=0.000000,Y=-2.109375,Z=-320.625000),ArriveTangent=(X=0.000000,Y=0.000000,Z=3.578537),LeaveTangent=(X=0.000000,Y=0.000000,Z=3.578537),InterpMode=CIM_CurveAutoClamped),(InVal=224.000000,OutVal=(X=0.000000,Y=-1.933594,Z=-270.703125),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=182.000000),(Time=189.000000),(Time=198.000000),(Time=207.000000),(Time=216.000000),(Time=224.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_4"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_4.InterpTrackMove_4'
+      GroupName="Zone4"
+      GroupColor=(B=112,G=210,R=0,A=255)
+      Name="InterpGroup_4"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_5
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=-190.765625,Y=1346.091064,Z=0.000000),ArriveTangent=(X=-8.195303,Y=227.406830,Z=0.000000),LeaveTangent=(X=-8.195303,Y=227.406830,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=235.000000,OutVal=(X=-209.070313,Y=2274.068359,Z=0.000000),ArriveTangent=(X=0.000000,Y=185.679123,Z=0.000000),LeaveTangent=(X=0.000000,Y=185.679123,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=240.000000,OutVal=(X=-154.003906,Y=3202.882324,Z=-144.000031),ArriveTangent=(X=26.157471,Y=0.000000,Z=-0.000031),LeaveTangent=(X=26.157471,Y=0.000000,Z=-0.000031),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=1099.019531,Y=3171.380859,Z=-144.000092),ArriveTangent=(X=231.677338,Y=-11.540290,Z=-0.000012),LeaveTangent=(X=231.677338,Y=-11.540290,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=250.000000,OutVal=(X=2162.769531,Y=3061.646484,Z=-144.000153),ArriveTangent=(X=0.000000,Y=-50.542564,Z=-0.000012),LeaveTangent=(X=0.000000,Y=-50.542564,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=2036.597656,Y=1511.694336,Z=-144.000214),ArriveTangent=(X=0.000000,Y=-266.542664,Z=-0.000012),LeaveTangent=(X=0.000000,Y=-266.542664,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=260.000000,OutVal=(X=2184.367188,Y=396.219971,Z=-144.000275),InterpMode=CIM_CurveAutoClamped),(InVal=265.000000,OutVal=(X=450.929688,Y=435.908936,Z=-7.000320),ArriveTangent=(X=-102.032173,Y=18.937185,Z=2.786160),LeaveTangent=(X=-102.032173,Y=18.937185,Z=2.786160),InterpMode=CIM_CurveAutoClamped),(InVal=269.000000,OutVal=(X=249.023438,Y=817.914551,Z=-2.000320),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=0.000000,Y=0.000000,Z=0.351563),InterpMode=CIM_CurveAutoClamped),(InVal=235.000000,OutVal=(X=0.000000,Y=0.000000,Z=-46.054688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-6.561772),LeaveTangent=(X=0.000000,Y=0.000000,Z=-6.561772),InterpMode=CIM_CurveAutoClamped),(InVal=240.000000,OutVal=(X=0.000000,Y=0.000000,Z=-66.972656),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.412109),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.412109),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=0.000000,Y=0.000000,Z=-90.175781),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.661047),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.661047),InterpMode=CIM_CurveAutoClamped),(InVal=250.000000,OutVal=(X=0.000000,Y=0.000000,Z=-148.886719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.474609),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.474609),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=0.000000,Y=0.000000,Z=-184.921875),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.207031),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.207031),InterpMode=CIM_CurveAutoClamped),(InVal=260.000000,OutVal=(X=0.000000,Y=0.000000,Z=-220.957031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.128304),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.128304),InterpMode=CIM_CurveAutoClamped),(InVal=265.000000,OutVal=(X=0.000000,Y=0.000000,Z=-297.949219),ArriveTangent=(X=0.000000,Y=0.000000,Z=-21.386719),LeaveTangent=(X=0.000000,Y=0.000000,Z=-21.386719),InterpMode=CIM_CurveAutoClamped),(InVal=269.000000,OutVal=(X=0.000000,Y=0.000000,Z=-413.437500),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=225.000000),(Time=230.000000),(Time=235.000000),(Time=240.000000),(Time=245.000000),(Time=250.000000),(Time=255.000000),(Time=260.000000),(Time=265.000000),(Time=269.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_5.InterpTrackMove_5'
+      GroupName="Zone5"
+      GroupColor=(B=156,G=0,R=183,A=255)
+      Name="InterpGroup_5"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.880898,OutVal=(X=1535.398438,Y=-42.699219,Z=0.000015),ArriveTangent=(X=210.612411,Y=0.000000,Z=0.000000),LeaveTangent=(X=210.612411,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=9.918334,OutVal=(X=2185.531250,Y=471.871094,Z=-15.999969),ArriveTangent=(X=0.000000,Y=149.333038,Z=0.000000),LeaveTangent=(X=0.000000,Y=149.333038,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.677317,OutVal=(X=1941.359375,Y=3074.375000,Z=8.000031),ArriveTangent=(X=-52.001205,Y=13.093216,Z=5.340004),LeaveTangent=(X=-52.001205,Y=13.093216,Z=5.340004),InterpMode=CIM_CurveAutoClamped),(InVal=27.642670,OutVal=(X=806.046875,Y=3117.160156,Z=152.000061),ArriveTangent=(X=-16.212227,Y=0.000000,Z=4.553561),LeaveTangent=(X=-16.212227,Y=0.000000,Z=4.553561),InterpMode=CIM_CurveAutoClamped),(InVal=35.789650,OutVal=(X=752.886719,Y=1235.113281,Z=168.000122),ArriveTangent=(X=-17.778419,Y=-17.329056,Z=0.000000),LeaveTangent=(X=-17.778419,Y=-17.329056,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=40.702709,OutVal=(X=-267.542969,Y=1193.890625,Z=-47.999847),ArriveTangent=(X=-20.745567,Y=-20.020607,Z=0.000000),LeaveTangent=(X=-20.745567,Y=-20.020607,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=45.740147,OutVal=(X=-311.136719,Y=-46.269531,Z=-23.999847),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.880898,OutVal=(X=0.000000,Y=-6.679688,Z=56.425781),ArriveTangent=(X=0.000000,Y=-1.169709,Z=9.570345),LeaveTangent=(X=0.000000,Y=-1.169709,Z=9.570345),InterpMode=CIM_CurveAutoClamped),(InVal=9.918334,OutVal=(X=0.000000,Y=-11.601563,Z=94.921875),ArriveTangent=(X=0.000000,Y=-0.092969,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.092969,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.677317,OutVal=(X=0.000000,Y=-11.953125,Z=2.636719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-10.770415),LeaveTangent=(X=0.000000,Y=0.000000,Z=-10.770415),InterpMode=CIM_CurveAutoClamped),(InVal=27.642670,OutVal=(X=0.000000,Y=-11.074219,Z=-95.976563),InterpMode=CIM_CurveAutoClamped),(InVal=35.789650,OutVal=(X=0.000000,Y=-11.601563,Z=80.156250),InterpMode=CIM_CurveAutoClamped),(InVal=40.702709,OutVal=(X=0.000000,Y=-1.054688,Z=2.285156),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.104446),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.104446),InterpMode=CIM_CurveAutoClamped),(InVal=45.740147,OutVal=(X=0.000000,Y=-9.667969,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=4.880898),(Time=9.918334),(Time=20.677317),(Time=27.642670),(Time=35.789650),(Time=40.702709),(Time=45.740147)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_6.InterpTrackMove_0'
+      GroupName="BossCam"
+      GroupColor=(B=64,G=0,R=226,A=255)
+      Name="InterpGroup_6"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_7
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InVal=46.493938,InterpMode=CIM_CurveAutoClamped),(InVal=50.025696,OutVal=(X=-1846.089844,Y=-77.476563,Z=-0.000006),ArriveTangent=(X=-62.401825,Y=-43.219299,Z=0.000000),LeaveTangent=(X=-62.401825,Y=-43.219299,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=55.034286,OutVal=(X=-1967.421875,Y=-856.289063,Z=120.000015),ArriveTangent=(X=-7.955159,Y=-185.802704,Z=19.399399),LeaveTangent=(X=-7.955159,Y=-185.802704,Z=19.399399),InterpMode=CIM_CurveAutoClamped),(InVal=59.922913,OutVal=(X=-1986.093750,Y=-1916.406250,Z=192.000061),ArriveTangent=(X=0.000000,Y=-2.336006,Z=8.447306),LeaveTangent=(X=0.000000,Y=-2.336006,Z=8.447306),InterpMode=CIM_CurveAutoClamped),(InVal=64.961494,OutVal=(X=191.714844,Y=-1921.093750,Z=216.000122),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InVal=46.493938,InterpMode=CIM_CurveAutoClamped),(InVal=50.025696,OutVal=(X=0.000000,Y=0.000000,Z=4.218750),InterpMode=CIM_CurveAutoClamped),(InVal=55.034286,OutVal=(X=0.000000,Y=-1.933594,Z=-2.109375),InterpMode=CIM_CurveAutoClamped),(InVal=59.922913,OutVal=(X=0.000000,Y=0.000000,Z=50.976563),ArriveTangent=(X=0.000000,Y=0.000000,Z=12.571982),LeaveTangent=(X=0.000000,Y=0.000000,Z=12.571982),InterpMode=CIM_CurveAutoClamped),(InVal=64.961494,OutVal=(X=0.000000,Y=-3.515625,Z=122.695313),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=((Time=46.493938),(Time=50.025696),(Time=55.034286),(Time=59.922913),(Time=64.961494)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_7.InterpTrackMove_1'
+      GroupName="Zone0"
+      GroupColor=(B=0,G=183,R=155,A=255)
+      Name="InterpGroup_7"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InVal=65.651306,InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=749.257813,Y=37.183594,Z=6.000000),ArriveTangent=(X=117.943939,Y=19.600151,Z=0.000000),LeaveTangent=(X=117.943939,Y=19.600151,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=1111.707031,Y=1067.328125,Z=6.000000),ArriveTangent=(X=136.589188,Y=27.789230,Z=0.000000),LeaveTangent=(X=136.589188,Y=27.789230,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=80.000000,OutVal=(X=2512.625000,Y=1126.765625,Z=12.000000),ArriveTangent=(X=212.062897,Y=0.000000,Z=0.000000),LeaveTangent=(X=212.062897,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=85.000000,OutVal=(X=3232.335938,Y=242.750000,Z=6.000000),ArriveTangent=(X=22.115036,Y=-215.557816,Z=0.000000),LeaveTangent=(X=22.115036,Y=-215.557816,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=3280.109375,Y=-1028.812500,Z=6.000000),ArriveTangent=(X=0.000000,Y=-198.573044,Z=0.000000),LeaveTangent=(X=0.000000,Y=-198.573044,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=2720.265625,Y=-1742.980469,Z=6.000000),ArriveTangent=(X=-197.003754,Y=0.000000,Z=0.000000),LeaveTangent=(X=-197.003754,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=100.000000,OutVal=(X=1014.472656,Y=-1724.312500,Z=0.000004),ArriveTangent=(X=-148.354172,Y=9.184608,Z=0.000000),LeaveTangent=(X=-148.354172,Y=9.184608,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=105.000000,OutVal=(X=635.070313,Y=-392.472656,Z=15.000004),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InVal=65.651306,InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=0.000000,Y=0.000000,Z=74.882813),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=0.000000,Y=0.000000,Z=-23.203125),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.330078),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.330078),InterpMode=CIM_CurveAutoClamped),(InVal=80.000000,OutVal=(X=0.000000,Y=0.000000,Z=-88.417969),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.177461),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.177461),InterpMode=CIM_CurveAutoClamped),(InVal=85.000000,OutVal=(X=0.000000,Y=2.460938,Z=-90.878906),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.205818),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.205818),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=2.460938,Z=-231.679688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-14.437293),LeaveTangent=(X=0.000000,Y=0.000000,Z=-14.437293),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=0.000000,Y=2.460938,Z=-270.703125),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.196622),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.196622),InterpMode=CIM_CurveAutoClamped),(InVal=100.000000,OutVal=(X=0.000000,Y=0.878906,Z=-275.800781),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.455195),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.455195),InterpMode=CIM_CurveAutoClamped),(InVal=105.000000,OutVal=(X=0.000000,Y=0.878906,Z=-434.707031),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=((Time=65.651306),(Time=70.000000),(Time=75.000000),(Time=80.000000),(Time=85.000000),(Time=90.000000),(Time=95.000000),(Time=100.000000),(Time=105.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_8.InterpTrackMove_2'
+      GroupName="Zone1"
+      GroupColor=(B=0,G=176,R=163,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_9
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=270.000000,OutVal=(X=-0.001953,Y=0.000000,Z=-0.000015),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=772.400391,Y=-1100.660156,Z=-0.000046),ArriveTangent=(X=187.913666,Y=-216.251175,Z=-0.000014),LeaveTangent=(X=187.913666,Y=-216.251175,Z=-0.000014),InterpMode=CIM_CurveAutoClamped),(InVal=280.000000,OutVal=(X=1879.134766,Y=-2162.511719,Z=-135.000092),ArriveTangent=(X=205.964844,Y=0.000000,Z=-1.461760),LeaveTangent=(X=205.964844,Y=0.000000,Z=-1.461760),InterpMode=CIM_CurveAutoClamped),(InVal=285.000000,OutVal=(X=2832.048828,Y=-2033.632813,Z=-138.000153),ArriveTangent=(X=232.951172,Y=58.564171,Z=0.000000),LeaveTangent=(X=232.951172,Y=58.564171,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=290.000000,OutVal=(X=4208.646484,Y=-475.691406,Z=-129.000214),ArriveTangent=(X=67.214012,Y=285.904297,Z=0.000000),LeaveTangent=(X=67.214012,Y=285.904297,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=4361.283203,Y=825.410156,Z=-135.000366),ArriveTangent=(X=0.000000,Y=195.084381,Z=0.000000),LeaveTangent=(X=0.000000,Y=195.084381,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=300.000000,OutVal=(X=3449.810547,Y=1475.152344,Z=128.999588),ArriveTangent=(X=-154.042969,Y=0.000000,Z=0.000000),LeaveTangent=(X=-154.042969,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=305.000000,OutVal=(X=2820.853516,Y=997.246094,Z=128.999588),ArriveTangent=(X=-178.748260,Y=0.000000,Z=0.000000),LeaveTangent=(X=-178.748260,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=309.000000,OutVal=(X=1841.076172,Y=1448.207031,Z=125.999588),ArriveTangent=(X=-172.917404,Y=0.000000,Z=-1.835176),LeaveTangent=(X=-172.917404,Y=0.000000,Z=-1.835176),InterpMode=CIM_CurveAutoClamped),(InVal=313.000000,OutVal=(X=1400.541016,Y=352.109375,Z=-36.000427),ArriveTangent=(X=0.000000,Y=-162.451553,Z=-0.000036),LeaveTangent=(X=0.000000,Y=-162.451553,Z=-0.000036),InterpMode=CIM_CurveAutoClamped),(InVal=317.000000,OutVal=(X=2539.892578,Y=-21.867188,Z=-36.000488),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=270.000000,InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=0.000000,Y=0.000000,Z=42.539063),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.210938),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.210938),InterpMode=CIM_CurveAutoClamped),(InVal=280.000000,OutVal=(X=0.000000,Y=-0.703125,Z=92.109375),ArriveTangent=(X=0.000000,Y=-0.286805,Z=12.445313),LeaveTangent=(X=0.000000,Y=-0.286805,Z=12.445313),InterpMode=CIM_CurveAutoClamped),(InVal=285.000000,OutVal=(X=0.000000,Y=-4.570313,Z=166.992188),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.912109),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.912109),InterpMode=CIM_CurveAutoClamped),(InVal=290.000000,OutVal=(X=0.000000,Y=-4.570313,Z=271.230469),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.971189),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.971189),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=0.000000,Y=-4.570313,Z=290.917969),ArriveTangent=(X=0.000000,Y=0.000000,Z=4.025391),LeaveTangent=(X=0.000000,Y=0.000000,Z=4.025391),InterpMode=CIM_CurveAutoClamped),(InVal=300.000000,OutVal=(X=0.000000,Y=-4.570313,Z=311.484375),InterpMode=CIM_CurveAutoClamped),(InVal=305.000000,OutVal=(X=0.000000,Y=0.000000,Z=225.000000),InterpMode=CIM_CurveAutoClamped),(InVal=309.000000,OutVal=(X=0.000000,Y=0.000000,Z=310.957031),ArriveTangent=(X=0.000000,Y=0.000000,Z=12.900612),LeaveTangent=(X=0.000000,Y=0.000000,Z=12.900612),InterpMode=CIM_CurveAutoClamped),(InVal=313.000000,OutVal=(X=0.000000,Y=0.000000,Z=340.839844),InterpMode=CIM_CurveAutoClamped),(InVal=317.000000,OutVal=(X=0.000000,Y=0.000000,Z=319.570313),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=270.000000),(Time=275.000000),(Time=280.000000),(Time=285.000000),(Time=290.000000),(Time=295.000000),(Time=300.000000),(Time=305.000000),(Time=309.000000),(Time=313.000000),(Time=317.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_6"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_9.InterpTrackMove_6'
+      GroupName="Zone6"
+      GroupColor=(B=224,G=0,R=79,A=255)
+      Name="InterpGroup_9"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
    Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_1
       Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
          CutTrack(0)=(TargetCamGroup="BossCam",ShotNumber=10)
@@ -9157,175 +9326,6 @@ Begin Object Class=InterpData Name=InterpData_2
       GroupColor=(B=0,G=109,R=212,A=255)
       Name="InterpGroupDirector_1"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_9
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=270.000000,OutVal=(X=-0.001953,Y=0.000000,Z=-0.000015),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=772.400391,Y=-1100.660156,Z=-0.000046),ArriveTangent=(X=187.913666,Y=-216.251175,Z=-0.000014),LeaveTangent=(X=187.913666,Y=-216.251175,Z=-0.000014),InterpMode=CIM_CurveAutoClamped),(InVal=280.000000,OutVal=(X=1879.134766,Y=-2162.511719,Z=-135.000092),ArriveTangent=(X=205.964844,Y=0.000000,Z=-1.461760),LeaveTangent=(X=205.964844,Y=0.000000,Z=-1.461760),InterpMode=CIM_CurveAutoClamped),(InVal=285.000000,OutVal=(X=2832.048828,Y=-2033.632813,Z=-138.000153),ArriveTangent=(X=232.951172,Y=58.564171,Z=0.000000),LeaveTangent=(X=232.951172,Y=58.564171,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=290.000000,OutVal=(X=4208.646484,Y=-475.691406,Z=-129.000214),ArriveTangent=(X=67.214012,Y=285.904297,Z=0.000000),LeaveTangent=(X=67.214012,Y=285.904297,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=4361.283203,Y=825.410156,Z=-135.000366),ArriveTangent=(X=0.000000,Y=195.084381,Z=0.000000),LeaveTangent=(X=0.000000,Y=195.084381,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=300.000000,OutVal=(X=3449.810547,Y=1475.152344,Z=128.999588),ArriveTangent=(X=-154.042969,Y=0.000000,Z=0.000000),LeaveTangent=(X=-154.042969,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=305.000000,OutVal=(X=2820.853516,Y=997.246094,Z=128.999588),ArriveTangent=(X=-178.748260,Y=0.000000,Z=0.000000),LeaveTangent=(X=-178.748260,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=309.000000,OutVal=(X=1841.076172,Y=1448.207031,Z=125.999588),ArriveTangent=(X=-172.917404,Y=0.000000,Z=-1.835176),LeaveTangent=(X=-172.917404,Y=0.000000,Z=-1.835176),InterpMode=CIM_CurveAutoClamped),(InVal=313.000000,OutVal=(X=1400.541016,Y=352.109375,Z=-36.000427),ArriveTangent=(X=0.000000,Y=-162.451553,Z=-0.000036),LeaveTangent=(X=0.000000,Y=-162.451553,Z=-0.000036),InterpMode=CIM_CurveAutoClamped),(InVal=317.000000,OutVal=(X=2539.892578,Y=-21.867188,Z=-36.000488),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=270.000000,InterpMode=CIM_CurveAutoClamped),(InVal=275.000000,OutVal=(X=0.000000,Y=0.000000,Z=42.539063),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.210938),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.210938),InterpMode=CIM_CurveAutoClamped),(InVal=280.000000,OutVal=(X=0.000000,Y=-0.703125,Z=92.109375),ArriveTangent=(X=0.000000,Y=-0.286805,Z=12.445313),LeaveTangent=(X=0.000000,Y=-0.286805,Z=12.445313),InterpMode=CIM_CurveAutoClamped),(InVal=285.000000,OutVal=(X=0.000000,Y=-4.570313,Z=166.992188),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.912109),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.912109),InterpMode=CIM_CurveAutoClamped),(InVal=290.000000,OutVal=(X=0.000000,Y=-4.570313,Z=271.230469),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.971189),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.971189),InterpMode=CIM_CurveAutoClamped),(InVal=295.000000,OutVal=(X=0.000000,Y=-4.570313,Z=290.917969),ArriveTangent=(X=0.000000,Y=0.000000,Z=4.025391),LeaveTangent=(X=0.000000,Y=0.000000,Z=4.025391),InterpMode=CIM_CurveAutoClamped),(InVal=300.000000,OutVal=(X=0.000000,Y=-4.570313,Z=311.484375),InterpMode=CIM_CurveAutoClamped),(InVal=305.000000,OutVal=(X=0.000000,Y=0.000000,Z=225.000000),InterpMode=CIM_CurveAutoClamped),(InVal=309.000000,OutVal=(X=0.000000,Y=0.000000,Z=310.957031),ArriveTangent=(X=0.000000,Y=0.000000,Z=12.900612),LeaveTangent=(X=0.000000,Y=0.000000,Z=12.900612),InterpMode=CIM_CurveAutoClamped),(InVal=313.000000,OutVal=(X=0.000000,Y=0.000000,Z=340.839844),InterpMode=CIM_CurveAutoClamped),(InVal=317.000000,OutVal=(X=0.000000,Y=0.000000,Z=319.570313),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=270.000000),(Time=275.000000),(Time=280.000000),(Time=285.000000),(Time=290.000000),(Time=295.000000),(Time=300.000000),(Time=305.000000),(Time=309.000000),(Time=313.000000),(Time=317.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_6"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_9.InterpTrackMove_6'
-      GroupName="Zone6"
-      GroupColor=(B=224,G=0,R=79,A=255)
-      Name="InterpGroup_9"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InVal=65.651306,InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=749.257813,Y=37.183594,Z=6.000000),ArriveTangent=(X=117.943939,Y=19.600151,Z=0.000000),LeaveTangent=(X=117.943939,Y=19.600151,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=1111.707031,Y=1067.328125,Z=6.000000),ArriveTangent=(X=136.589188,Y=27.789230,Z=0.000000),LeaveTangent=(X=136.589188,Y=27.789230,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=80.000000,OutVal=(X=2512.625000,Y=1126.765625,Z=12.000000),ArriveTangent=(X=212.062897,Y=0.000000,Z=0.000000),LeaveTangent=(X=212.062897,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=85.000000,OutVal=(X=3232.335938,Y=242.750000,Z=6.000000),ArriveTangent=(X=22.115036,Y=-215.557816,Z=0.000000),LeaveTangent=(X=22.115036,Y=-215.557816,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=3280.109375,Y=-1028.812500,Z=6.000000),ArriveTangent=(X=0.000000,Y=-198.573044,Z=0.000000),LeaveTangent=(X=0.000000,Y=-198.573044,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=2720.265625,Y=-1742.980469,Z=6.000000),ArriveTangent=(X=-197.003754,Y=0.000000,Z=0.000000),LeaveTangent=(X=-197.003754,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=100.000000,OutVal=(X=1014.472656,Y=-1724.312500,Z=0.000004),ArriveTangent=(X=-148.354172,Y=9.184608,Z=0.000000),LeaveTangent=(X=-148.354172,Y=9.184608,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=105.000000,OutVal=(X=635.070313,Y=-392.472656,Z=15.000004),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InVal=65.651306,InterpMode=CIM_CurveAutoClamped),(InVal=70.000000,OutVal=(X=0.000000,Y=0.000000,Z=74.882813),InterpMode=CIM_CurveAutoClamped),(InVal=75.000000,OutVal=(X=0.000000,Y=0.000000,Z=-23.203125),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.330078),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.330078),InterpMode=CIM_CurveAutoClamped),(InVal=80.000000,OutVal=(X=0.000000,Y=0.000000,Z=-88.417969),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.177461),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.177461),InterpMode=CIM_CurveAutoClamped),(InVal=85.000000,OutVal=(X=0.000000,Y=2.460938,Z=-90.878906),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.205818),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.205818),InterpMode=CIM_CurveAutoClamped),(InVal=90.000000,OutVal=(X=0.000000,Y=2.460938,Z=-231.679688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-14.437293),LeaveTangent=(X=0.000000,Y=0.000000,Z=-14.437293),InterpMode=CIM_CurveAutoClamped),(InVal=95.000000,OutVal=(X=0.000000,Y=2.460938,Z=-270.703125),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.196622),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.196622),InterpMode=CIM_CurveAutoClamped),(InVal=100.000000,OutVal=(X=0.000000,Y=0.878906,Z=-275.800781),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.455195),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.455195),InterpMode=CIM_CurveAutoClamped),(InVal=105.000000,OutVal=(X=0.000000,Y=0.878906,Z=-434.707031),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=((Time=65.651306),(Time=70.000000),(Time=75.000000),(Time=80.000000),(Time=85.000000),(Time=90.000000),(Time=95.000000),(Time=100.000000),(Time=105.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_8.InterpTrackMove_2'
-      GroupName="Zone1"
-      GroupColor=(B=0,G=176,R=163,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_7
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InVal=46.493938,InterpMode=CIM_CurveAutoClamped),(InVal=50.025696,OutVal=(X=-1846.089844,Y=-77.476563,Z=-0.000006),ArriveTangent=(X=-62.401825,Y=-43.219299,Z=0.000000),LeaveTangent=(X=-62.401825,Y=-43.219299,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=55.034286,OutVal=(X=-1967.421875,Y=-856.289063,Z=120.000015),ArriveTangent=(X=-7.955159,Y=-185.802704,Z=19.399399),LeaveTangent=(X=-7.955159,Y=-185.802704,Z=19.399399),InterpMode=CIM_CurveAutoClamped),(InVal=59.922913,OutVal=(X=-1986.093750,Y=-1916.406250,Z=192.000061),ArriveTangent=(X=0.000000,Y=-2.336006,Z=8.447306),LeaveTangent=(X=0.000000,Y=-2.336006,Z=8.447306),InterpMode=CIM_CurveAutoClamped),(InVal=64.961494,OutVal=(X=191.714844,Y=-1921.093750,Z=216.000122),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InVal=46.493938,InterpMode=CIM_CurveAutoClamped),(InVal=50.025696,OutVal=(X=0.000000,Y=0.000000,Z=4.218750),InterpMode=CIM_CurveAutoClamped),(InVal=55.034286,OutVal=(X=0.000000,Y=-1.933594,Z=-2.109375),InterpMode=CIM_CurveAutoClamped),(InVal=59.922913,OutVal=(X=0.000000,Y=0.000000,Z=50.976563),ArriveTangent=(X=0.000000,Y=0.000000,Z=12.571982),LeaveTangent=(X=0.000000,Y=0.000000,Z=12.571982),InterpMode=CIM_CurveAutoClamped),(InVal=64.961494,OutVal=(X=0.000000,Y=-3.515625,Z=122.695313),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=((Time=46.493938),(Time=50.025696),(Time=55.034286),(Time=59.922913),(Time=64.961494)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_7.InterpTrackMove_1'
-      GroupName="Zone0"
-      GroupColor=(B=0,G=183,R=155,A=255)
-      Name="InterpGroup_7"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.880898,OutVal=(X=1535.398438,Y=-42.699219,Z=0.000015),ArriveTangent=(X=210.612411,Y=0.000000,Z=0.000000),LeaveTangent=(X=210.612411,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=9.918334,OutVal=(X=2185.531250,Y=471.871094,Z=-15.999969),ArriveTangent=(X=0.000000,Y=149.333038,Z=0.000000),LeaveTangent=(X=0.000000,Y=149.333038,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.677317,OutVal=(X=1941.359375,Y=3074.375000,Z=8.000031),ArriveTangent=(X=-52.001205,Y=13.093216,Z=5.340004),LeaveTangent=(X=-52.001205,Y=13.093216,Z=5.340004),InterpMode=CIM_CurveAutoClamped),(InVal=27.642670,OutVal=(X=806.046875,Y=3117.160156,Z=152.000061),ArriveTangent=(X=-16.212227,Y=0.000000,Z=4.553561),LeaveTangent=(X=-16.212227,Y=0.000000,Z=4.553561),InterpMode=CIM_CurveAutoClamped),(InVal=35.789650,OutVal=(X=752.886719,Y=1235.113281,Z=168.000122),ArriveTangent=(X=-17.778419,Y=-17.329056,Z=0.000000),LeaveTangent=(X=-17.778419,Y=-17.329056,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=40.702709,OutVal=(X=-267.542969,Y=1193.890625,Z=-47.999847),ArriveTangent=(X=-20.745567,Y=-20.020607,Z=0.000000),LeaveTangent=(X=-20.745567,Y=-20.020607,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=45.740147,OutVal=(X=-311.136719,Y=-46.269531,Z=-23.999847),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=4.880898,OutVal=(X=0.000000,Y=-6.679688,Z=56.425781),ArriveTangent=(X=0.000000,Y=-1.169709,Z=9.570345),LeaveTangent=(X=0.000000,Y=-1.169709,Z=9.570345),InterpMode=CIM_CurveAutoClamped),(InVal=9.918334,OutVal=(X=0.000000,Y=-11.601563,Z=94.921875),ArriveTangent=(X=0.000000,Y=-0.092969,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.092969,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=20.677317,OutVal=(X=0.000000,Y=-11.953125,Z=2.636719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-10.770415),LeaveTangent=(X=0.000000,Y=0.000000,Z=-10.770415),InterpMode=CIM_CurveAutoClamped),(InVal=27.642670,OutVal=(X=0.000000,Y=-11.074219,Z=-95.976563),InterpMode=CIM_CurveAutoClamped),(InVal=35.789650,OutVal=(X=0.000000,Y=-11.601563,Z=80.156250),InterpMode=CIM_CurveAutoClamped),(InVal=40.702709,OutVal=(X=0.000000,Y=-1.054688,Z=2.285156),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.104446),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.104446),InterpMode=CIM_CurveAutoClamped),(InVal=45.740147,OutVal=(X=0.000000,Y=-9.667969,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=4.880898),(Time=9.918334),(Time=20.677317),(Time=27.642670),(Time=35.789650),(Time=40.702709),(Time=45.740147)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_6.InterpTrackMove_0'
-      GroupName="BossCam"
-      GroupColor=(B=64,G=0,R=226,A=255)
-      Name="InterpGroup_6"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=-190.765625,Y=1346.091064,Z=0.000000),ArriveTangent=(X=-8.195303,Y=227.406830,Z=0.000000),LeaveTangent=(X=-8.195303,Y=227.406830,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=235.000000,OutVal=(X=-209.070313,Y=2274.068359,Z=0.000000),ArriveTangent=(X=0.000000,Y=185.679123,Z=0.000000),LeaveTangent=(X=0.000000,Y=185.679123,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=240.000000,OutVal=(X=-154.003906,Y=3202.882324,Z=-144.000031),ArriveTangent=(X=26.157471,Y=0.000000,Z=-0.000031),LeaveTangent=(X=26.157471,Y=0.000000,Z=-0.000031),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=1099.019531,Y=3171.380859,Z=-144.000092),ArriveTangent=(X=231.677338,Y=-11.540290,Z=-0.000012),LeaveTangent=(X=231.677338,Y=-11.540290,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=250.000000,OutVal=(X=2162.769531,Y=3061.646484,Z=-144.000153),ArriveTangent=(X=0.000000,Y=-50.542564,Z=-0.000012),LeaveTangent=(X=0.000000,Y=-50.542564,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=2036.597656,Y=1511.694336,Z=-144.000214),ArriveTangent=(X=0.000000,Y=-266.542664,Z=-0.000012),LeaveTangent=(X=0.000000,Y=-266.542664,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=260.000000,OutVal=(X=2184.367188,Y=396.219971,Z=-144.000275),InterpMode=CIM_CurveAutoClamped),(InVal=265.000000,OutVal=(X=450.929688,Y=435.908936,Z=-7.000320),ArriveTangent=(X=-102.032173,Y=18.937185,Z=2.786160),LeaveTangent=(X=-102.032173,Y=18.937185,Z=2.786160),InterpMode=CIM_CurveAutoClamped),(InVal=269.000000,OutVal=(X=249.023438,Y=817.914551,Z=-2.000320),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=225.000000,InterpMode=CIM_CurveAutoClamped),(InVal=230.000000,OutVal=(X=0.000000,Y=0.000000,Z=0.351563),InterpMode=CIM_CurveAutoClamped),(InVal=235.000000,OutVal=(X=0.000000,Y=0.000000,Z=-46.054688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-6.561772),LeaveTangent=(X=0.000000,Y=0.000000,Z=-6.561772),InterpMode=CIM_CurveAutoClamped),(InVal=240.000000,OutVal=(X=0.000000,Y=0.000000,Z=-66.972656),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.412109),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.412109),InterpMode=CIM_CurveAutoClamped),(InVal=245.000000,OutVal=(X=0.000000,Y=0.000000,Z=-90.175781),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.661047),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.661047),InterpMode=CIM_CurveAutoClamped),(InVal=250.000000,OutVal=(X=0.000000,Y=0.000000,Z=-148.886719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.474609),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.474609),InterpMode=CIM_CurveAutoClamped),(InVal=255.000000,OutVal=(X=0.000000,Y=0.000000,Z=-184.921875),ArriveTangent=(X=0.000000,Y=0.000000,Z=-7.207031),LeaveTangent=(X=0.000000,Y=0.000000,Z=-7.207031),InterpMode=CIM_CurveAutoClamped),(InVal=260.000000,OutVal=(X=0.000000,Y=0.000000,Z=-220.957031),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.128304),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.128304),InterpMode=CIM_CurveAutoClamped),(InVal=265.000000,OutVal=(X=0.000000,Y=0.000000,Z=-297.949219),ArriveTangent=(X=0.000000,Y=0.000000,Z=-21.386719),LeaveTangent=(X=0.000000,Y=0.000000,Z=-21.386719),InterpMode=CIM_CurveAutoClamped),(InVal=269.000000,OutVal=(X=0.000000,Y=0.000000,Z=-413.437500),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=225.000000),(Time=230.000000),(Time=235.000000),(Time=240.000000),(Time=245.000000),(Time=250.000000),(Time=255.000000),(Time=260.000000),(Time=265.000000),(Time=269.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_5.InterpTrackMove_5'
-      GroupName="Zone5"
-      GroupColor=(B=156,G=0,R=183,A=255)
-      Name="InterpGroup_5"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=182.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000004),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=189.000000,OutVal=(X=1091.977539,Y=650.785156,Z=-0.000011),ArriveTangent=(X=177.925537,Y=0.000000,Z=-0.000002),LeaveTangent=(X=177.925537,Y=0.000000,Z=-0.000002),InterpMode=CIM_CurveAutoClamped),(InVal=198.000000,OutVal=(X=2846.808594,Y=307.468750,Z=-165.000031),ArriveTangent=(X=0.000000,Y=-62.865135,Z=0.000000),LeaveTangent=(X=0.000000,Y=-62.865135,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=207.000000,OutVal=(X=2185.575195,Y=-557.160156,Z=65.999969),ArriveTangent=(X=-56.319283,Y=-89.820526,Z=16.239281),LeaveTangent=(X=-56.319283,Y=-89.820526,Z=16.239281),InterpMode=CIM_CurveAutoClamped),(InVal=216.000000,OutVal=(X=1833.061523,Y=-1309.300781,Z=153.000000),ArriveTangent=(X=-75.278908,Y=0.000000,Z=5.291648),LeaveTangent=(X=-75.278908,Y=0.000000,Z=5.291648),InterpMode=CIM_CurveAutoClamped),(InVal=224.000000,OutVal=(X=600.572266,Y=-1194.398438,Z=177.000046),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=182.000000,InterpMode=CIM_CurveAutoClamped),(InVal=189.000000,OutVal=(X=0.000000,Y=0.000000,Z=-91.054688),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.129150),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.129150),InterpMode=CIM_CurveAutoClamped),(InVal=198.000000,OutVal=(X=0.000000,Y=-2.109375,Z=-178.066406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-13.750000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-13.750000),InterpMode=CIM_CurveAutoClamped),(InVal=207.000000,OutVal=(X=0.000000,Y=-2.109375,Z=-338.554688),InterpMode=CIM_CurveAutoClamped),(InVal=216.000000,OutVal=(X=0.000000,Y=-2.109375,Z=-320.625000),ArriveTangent=(X=0.000000,Y=0.000000,Z=3.578537),LeaveTangent=(X=0.000000,Y=0.000000,Z=3.578537),InterpMode=CIM_CurveAutoClamped),(InVal=224.000000,OutVal=(X=0.000000,Y=-1.933594,Z=-270.703125),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=182.000000),(Time=189.000000),(Time=198.000000),(Time=207.000000),(Time=216.000000),(Time=224.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_4"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_4.InterpTrackMove_4'
-      GroupName="Zone4"
-      GroupColor=(B=112,G=210,R=0,A=255)
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=145.000000,OutVal=(X=-0.000977,Y=0.000000,Z=0.000000),ArriveTangent=(X=-0.000020,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000020,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=150.000000,OutVal=(X=-0.002930,Y=-927.000000,Z=39.000000),ArriveTangent=(X=0.000000,Y=-27.701004,Z=0.000000),LeaveTangent=(X=0.000000,Y=-27.701004,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=154.000000,OutVal=(X=1415.811523,Y=-977.863281,Z=-258.000031),ArriveTangent=(X=294.915344,Y=0.000000,Z=-25.199749),LeaveTangent=(X=294.915344,Y=0.000000,Z=-25.199749),InterpMode=CIM_CurveAutoClamped),(InVal=157.000000,OutVal=(X=2083.940430,Y=-720.832031,Z=-297.000122),ArriveTangent=(X=0.000000,Y=151.733932,Z=0.000000),LeaveTangent=(X=0.000000,Y=151.733932,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=162.000000,OutVal=(X=2050.944336,Y=1195.621094,Z=-295.000183),ArriveTangent=(X=-16.010811,Y=47.146530,Z=0.000000),LeaveTangent=(X=-16.010811,Y=47.146530,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=167.000000,OutVal=(X=768.635742,Y=1295.835938,Z=-303.000244),ArriveTangent=(X=-19.242325,Y=52.438622,Z=-0.000087),LeaveTangent=(X=-19.242325,Y=52.438622,Z=-0.000087),InterpMode=CIM_CurveAutoClamped),(InVal=170.000000,OutVal=(X=740.639648,Y=2350.585938,Z=-303.000366),ArriveTangent=(X=-18.760857,Y=0.000000,Z=0.000000),LeaveTangent=(X=-18.760857,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=175.000000,OutVal=(X=42.333984,Y=1993.140625,Z=-129.000458),ArriveTangent=(X=-79.084000,Y=-129.996643,Z=27.599987),LeaveTangent=(X=-79.084000,Y=-129.996643,Z=27.599987),InterpMode=CIM_CurveAutoClamped),(InVal=180.000000,OutVal=(X=-180.402344,Y=779.179688,Z=-27.000504),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=145.000000,InterpMode=CIM_CurveAutoClamped),(InVal=150.000000,OutVal=(X=0.000000,Y=-0.878906,Z=78.398438),ArriveTangent=(X=0.000000,Y=0.000000,Z=5.648691),LeaveTangent=(X=0.000000,Y=0.000000,Z=5.648691),InterpMode=CIM_CurveAutoClamped),(InVal=154.000000,OutVal=(X=0.000000,Y=-0.878906,Z=90.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.903140),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.903140),InterpMode=CIM_CurveAutoClamped),(InVal=157.000000,OutVal=(X=0.000000,Y=0.175781,Z=182.109375),ArriveTangent=(X=0.000000,Y=0.000000,Z=22.368164),LeaveTangent=(X=0.000000,Y=0.000000,Z=22.368164),InterpMode=CIM_CurveAutoClamped),(InVal=162.000000,OutVal=(X=0.000000,Y=0.175781,Z=268.945313),ArriveTangent=(X=0.000000,Y=0.000000,Z=17.015625),LeaveTangent=(X=0.000000,Y=0.000000,Z=17.015625),InterpMode=CIM_CurveAutoClamped),(InVal=167.000000,OutVal=(X=0.000000,Y=0.175781,Z=352.265625),InterpMode=CIM_CurveAutoClamped),(InVal=170.000000,OutVal=(X=0.000000,Y=0.175781,Z=271.582031),InterpMode=CIM_CurveAutoClamped),(InVal=175.000000,OutVal=(X=0.000000,Y=-4.921875,Z=403.945313),ArriveTangent=(X=0.000000,Y=0.000000,Z=15.407194),LeaveTangent=(X=0.000000,Y=0.000000,Z=15.407194),InterpMode=CIM_CurveAutoClamped),(InVal=180.000000,OutVal=(X=0.000000,Y=-4.921875,Z=447.890625),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=145.000000),(Time=150.000000),(Time=154.000000),(Time=157.000000),(Time=162.000000),(Time=167.000000),(Time=170.000000),(Time=175.000000),(Time=180.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_3.InterpTrackMove_3'
-      GroupName="Zone3"
-      GroupColor=(B=0,G=163,R=176,A=255)
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InVal=106.000000,OutVal=(X=0.000000,Y=-0.003906,Z=-0.000046),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=1176.101563,Y=178.882813,Z=-12.000092),ArriveTangent=(X=315.357208,Y=84.798737,Z=0.000000),LeaveTangent=(X=315.357208,Y=84.798737,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=115.000000,OutVal=(X=2838.214844,Y=1225.007813,Z=11.999863),ArriveTangent=(X=0.000000,Y=252.826172,Z=5.624996),LeaveTangent=(X=0.000000,Y=252.826172,Z=5.624996),InterpMode=CIM_CurveAutoClamped),(InVal=118.000000,OutVal=(X=2814.406250,Y=2201.492188,Z=32.999878),ArriveTangent=(X=-16.492630,Y=0.000000,Z=0.000000),LeaveTangent=(X=-16.492630,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=123.000000,OutVal=(X=1347.882813,Y=2106.718750,Z=32.999847),ArriveTangent=(X=-279.276855,Y=0.000000,Z=0.000000),LeaveTangent=(X=-279.276855,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=126.000000,OutVal=(X=580.191406,Y=2671.101563,Z=41.999817),ArriveTangent=(X=-278.848450,Y=0.000000,Z=0.000000),LeaveTangent=(X=-278.848450,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=-46.359375,Y=2566.773438,Z=-294.000244),ArriveTangent=(X=-33.972313,Y=-87.371262,Z=0.000000),LeaveTangent=(X=-33.972313,Y=-87.371262,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=133.000000,OutVal=(X=-105.191406,Y=959.734375,Z=-285.000427),ArriveTangent=(X=0.000000,Y=-10.021454,Z=0.000000),LeaveTangent=(X=0.000000,Y=-10.021454,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=138.000000,OutVal=(X=919.812500,Y=939.398438,Z=-294.000488),ArriveTangent=(X=199.912888,Y=0.000000,Z=0.000000),LeaveTangent=(X=199.912888,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=1893.937500,Y=941.089844,Z=-291.000610),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InVal=106.000000,OutVal=(X=0.000000,Y=0.000000,Z=87.187500),InterpMode=CIM_CurveAutoClamped),(InVal=110.000000,OutVal=(X=0.000000,Y=-9.140625,Z=10.019531),InterpMode=CIM_CurveAutoClamped),(InVal=115.000000,OutVal=(X=0.000000,Y=-1.054688,Z=183.339844),ArriveTangent=(X=0.000000,Y=0.000000,Z=18.981064),LeaveTangent=(X=0.000000,Y=0.000000,Z=18.981064),InterpMode=CIM_CurveAutoClamped),(InVal=118.000000,OutVal=(X=0.000000,Y=-4.218750,Z=218.496094),ArriveTangent=(X=0.000000,Y=0.000000,Z=16.576336),LeaveTangent=(X=0.000000,Y=0.000000,Z=16.576336),InterpMode=CIM_CurveAutoClamped),(InVal=123.000000,OutVal=(X=0.000000,Y=-4.218750,Z=331.699219),InterpMode=CIM_CurveAutoClamped),(InVal=126.000000,OutVal=(X=0.000000,Y=-4.218750,Z=268.417969),InterpMode=CIM_CurveAutoClamped),(InVal=128.000000,OutVal=(X=0.000000,Y=-0.175781,Z=287.402344),ArriveTangent=(X=0.000000,Y=0.000000,Z=11.635426),LeaveTangent=(X=0.000000,Y=0.000000,Z=11.635426),InterpMode=CIM_CurveAutoClamped),(InVal=133.000000,OutVal=(X=0.000000,Y=-0.175781,Z=358.593750),ArriveTangent=(X=0.000000,Y=0.000000,Z=22.488327),LeaveTangent=(X=0.000000,Y=0.000000,Z=22.488327),InterpMode=CIM_CurveAutoClamped),(InVal=138.000000,OutVal=(X=0.000000,Y=-3.339844,Z=519.257813),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.341230),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.341230),InterpMode=CIM_CurveAutoClamped),(InVal=143.000000,OutVal=(X=0.000000,Y=-3.339844,Z=535.781250),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=((Time=106.000000),(Time=110.000000),(Time=115.000000),(Time=118.000000),(Time=123.000000),(Time=126.000000),(Time=128.000000),(Time=133.000000),(Time=138.000000),(Time=143.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2.InterpTrackMove_2'
-      GroupName="Zone2"
-      GroupColor=(B=115,G=209,R=0,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_12
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_9
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=396.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=400.000000,OutVal=(X=233.031250,Y=1560.730469,Z=-0.000183),ArriveTangent=(X=112.557755,Y=319.558594,Z=-0.000027),LeaveTangent=(X=112.557755,Y=319.558594,Z=-0.000027),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=1738.164063,Y=2876.027344,Z=-0.000305),ArriveTangent=(X=245.124222,Y=19.228447,Z=-0.000024),LeaveTangent=(X=245.124222,Y=19.228447,Z=-0.000024),InterpMode=CIM_CurveAutoClamped),(InVal=410.000000,OutVal=(X=2684.273438,Y=2915.867188,Z=-0.000427),ArriveTangent=(X=118.415665,Y=0.000000,Z=-0.000061),LeaveTangent=(X=118.415665,Y=0.000000,Z=-0.000061),InterpMode=CIM_CurveAutoClamped),(InVal=415.000000,OutVal=(X=3034.617188,Y=1564.937500,Z=-324.000763),ArriveTangent=(X=0.000000,Y=-257.280853,Z=-0.000050),LeaveTangent=(X=0.000000,Y=-257.280853,Z=-0.000050),InterpMode=CIM_CurveAutoClamped),(InVal=420.000000,OutVal=(X=2994.062500,Y=343.058594,Z=-324.000854),ArriveTangent=(X=-19.214935,Y=-185.444534,Z=0.000000),LeaveTangent=(X=-19.214935,Y=-185.444534,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=425.000000,OutVal=(X=2115.382813,Y=-289.507813,Z=-168.000916),ArriveTangent=(X=-180.196869,Y=0.000000,Z=32.999985),LeaveTangent=(X=-180.196869,Y=0.000000,Z=32.999985),InterpMode=CIM_CurveAutoClamped),(InVal=430.000000,OutVal=(X=1192.093750,Y=-149.953125,Z=5.998993),ArriveTangent=(X=-148.869141,Y=47.965118,Z=0.000000),LeaveTangent=(X=-148.869141,Y=47.965118,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=437.000000,OutVal=(X=328.953125,Y=497.140625,Z=5.998810),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=396.000000,InterpMode=CIM_CurveAutoClamped),(InVal=400.000000,OutVal=(X=0.000000,Y=0.000000,Z=-9.667969),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.853936),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.853936),InterpMode=CIM_CurveAutoClamped),(InVal=405.000000,OutVal=(X=0.000000,Y=0.000000,Z=-88.945313),ArriveTangent=(X=0.000000,Y=0.000000,Z=-12.146484),LeaveTangent=(X=0.000000,Y=0.000000,Z=-12.146484),InterpMode=CIM_CurveAutoClamped),(InVal=410.000000,OutVal=(X=0.000000,Y=0.000000,Z=-131.132813),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.369141),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.369141),InterpMode=CIM_CurveAutoClamped),(InVal=415.000000,OutVal=(X=0.000000,Y=0.000000,Z=-182.636719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.514950),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.514950),InterpMode=CIM_CurveAutoClamped),(InVal=420.000000,OutVal=(X=0.000000,Y=0.000000,Z=-183.691406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.519967),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.519967),InterpMode=CIM_CurveAutoClamped),(InVal=425.000000,OutVal=(X=0.000000,Y=0.000000,Z=-269.472656),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.689924),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.689924),InterpMode=CIM_CurveAutoClamped),(InVal=430.000000,OutVal=(X=0.000000,Y=0.000000,Z=-270.878906),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.624144),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.624144),InterpMode=CIM_CurveAutoClamped),(InVal=437.000000,OutVal=(X=0.000000,Y=0.000000,Z=-401.132813),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=396.000000),(Time=400.000000),(Time=405.000000),(Time=410.000000),(Time=415.000000),(Time=420.000000),(Time=425.000000),(Time=430.000000),(Time=437.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_9"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_12.InterpTrackMove_9'
-      GroupName="Zone9"
-      GroupColor=(B=88,G=0,R=220,A=255)
-      Name="InterpGroup_12"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_11
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_8
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=347.000000,OutVal=(X=0.003906,Y=0.000000,Z=-0.000008),ArriveTangent=(X=0.000045,Y=0.000000,Z=-0.000000),LeaveTangent=(X=0.000045,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=350.000000,OutVal=(X=848.085938,Y=12.839844,Z=-0.000023),ArriveTangent=(X=311.647949,Y=0.000000,Z=-0.000004),LeaveTangent=(X=311.647949,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=355.000000,OutVal=(X=2493.187500,Y=-295.945313,Z=-0.000038),ArriveTangent=(X=128.909439,Y=0.000000,Z=-0.000003),LeaveTangent=(X=128.909439,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=360.000000,OutVal=(X=2813.531250,Y=-121.207031,Z=-0.000053),ArriveTangent=(X=50.407814,Y=68.403900,Z=-0.000003),LeaveTangent=(X=50.407814,Y=68.403900,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=365.000000,OutVal=(X=2997.265625,Y=668.335938,Z=-0.000069),ArriveTangent=(X=68.071518,Y=123.798828,Z=-0.000003),LeaveTangent=(X=68.071518,Y=123.798828,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=370.000000,OutVal=(X=3663.617188,Y=1116.781250,Z=-0.000084),ArriveTangent=(X=0.000000,Y=160.661621,Z=-0.000008),LeaveTangent=(X=0.000000,Y=160.661621,Z=-0.000008),InterpMode=CIM_CurveAutoClamped),(InVal=375.000000,OutVal=(X=3484.437500,Y=2564.582031,Z=-156.000183),ArriveTangent=(X=-79.095528,Y=15.371429,Z=0.000000),LeaveTangent=(X=-79.095528,Y=15.371429,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=380.000000,OutVal=(X=1835.566406,Y=2596.113281,Z=-156.000153),ArriveTangent=(X=-90.830360,Y=0.000000,Z=0.000015),LeaveTangent=(X=-90.830360,Y=0.000000,Z=0.000015),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=1625.523438,Y=1546.757813,Z=-12.000187),ArriveTangent=(X=-81.890640,Y=-164.160156,Z=0.000000),LeaveTangent=(X=-81.890640,Y=-164.160156,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=390.000000,OutVal=(X=693.140625,Y=954.511719,Z=-12.000202),ArriveTangent=(X=0.000000,Y=-145.253906,Z=-0.000003),LeaveTangent=(X=0.000000,Y=-145.253906,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=395.000000,OutVal=(X=1242.445313,Y=94.218750,Z=-12.000217),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=347.000000,InterpMode=CIM_CurveAutoClamped),(InVal=350.000000,OutVal=(X=0.000000,Y=0.000000,Z=88.242188),ArriveTangent=(X=0.000000,Y=0.000000,Z=20.698242),LeaveTangent=(X=0.000000,Y=0.000000,Z=20.698242),InterpMode=CIM_CurveAutoClamped),(InVal=355.000000,OutVal=(X=0.000000,Y=0.000000,Z=165.585938),ArriveTangent=(X=0.000000,Y=0.000000,Z=24.371914),LeaveTangent=(X=0.000000,Y=0.000000,Z=24.371914),InterpMode=CIM_CurveAutoClamped),(InVal=360.000000,OutVal=(X=0.000000,Y=0.000000,Z=339.082031),ArriveTangent=(X=0.000000,Y=0.000000,Z=28.283203),LeaveTangent=(X=0.000000,Y=0.000000,Z=28.283203),InterpMode=CIM_CurveAutoClamped),(InVal=365.000000,OutVal=(X=0.000000,Y=0.000000,Z=448.417969),ArriveTangent=(X=0.000000,Y=0.000000,Z=20.337891),LeaveTangent=(X=0.000000,Y=0.000000,Z=20.337891),InterpMode=CIM_CurveAutoClamped),(InVal=370.000000,OutVal=(X=0.000000,Y=-0.703125,Z=542.460938),ArriveTangent=(X=0.000000,Y=-0.193359,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.193359,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=375.000000,OutVal=(X=0.000000,Y=-1.933594,Z=537.539063),InterpMode=CIM_CurveAutoClamped),(InVal=380.000000,OutVal=(X=0.000000,Y=-1.933594,Z=635.449219),ArriveTangent=(X=0.000000,Y=0.000000,Z=23.730469),LeaveTangent=(X=0.000000,Y=0.000000,Z=23.730469),InterpMode=CIM_CurveAutoClamped),(InVal=385.000000,OutVal=(X=0.000000,Y=-1.933594,Z=774.843750),InterpMode=CIM_CurveAutoClamped),(InVal=390.000000,OutVal=(X=0.000000,Y=-1.933594,Z=771.328125),InterpMode=CIM_CurveAutoClamped),(InVal=395.000000,OutVal=(X=0.000000,Y=-1.933594,Z=846.210938),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=347.000000),(Time=350.000000),(Time=355.000000),(Time=360.000000),(Time=365.000000),(Time=370.000000),(Time=375.000000),(Time=380.000000),(Time=385.000000),(Time=390.000000),(Time=395.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_8"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_11.InterpTrackMove_8'
-      GroupName="Zone8"
-      GroupColor=(B=139,G=0,R=195,A=255)
-      Name="InterpGroup_11"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_10
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_7
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=318.000000,OutVal=(X=-0.001953,Y=0.000000,Z=-0.000008),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=323.000000,OutVal=(X=1362.373047,Y=525.988281,Z=-0.000023),ArriveTangent=(X=0.000000,Y=175.434204,Z=0.000000),LeaveTangent=(X=0.000000,Y=175.434204,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=330.000000,OutVal=(X=1326.257813,Y=2706.605469,Z=8.999966),ArriveTangent=(X=-13.952103,Y=0.000000,Z=0.000000),LeaveTangent=(X=-13.952103,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=335.000000,OutVal=(X=-920.935547,Y=2581.519531,Z=-0.000046),ArriveTangent=(X=0.000000,Y=-60.083702,Z=-0.000009),LeaveTangent=(X=0.000000,Y=-60.083702,Z=-0.000009),InterpMode=CIM_CurveAutoClamped),(InVal=339.000000,OutVal=(X=-816.269531,Y=1297.828125,Z=-0.000061),ArriveTangent=(X=0.000000,Y=-251.227737,Z=-0.000003),LeaveTangent=(X=0.000000,Y=-251.227737,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=345.000000,OutVal=(X=-860.625000,Y=69.242188,Z=-0.000076),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=318.000000,InterpMode=CIM_CurveAutoClamped),(InVal=323.000000,OutVal=(X=0.000000,Y=0.000000,Z=-88.945313),InterpMode=CIM_CurveAutoClamped),(InVal=330.000000,OutVal=(X=0.000000,Y=0.000000,Z=-21.796875),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.072225),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.072225),InterpMode=CIM_CurveAutoClamped),(InVal=335.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2.636719),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.202032),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.202032),InterpMode=CIM_CurveAutoClamped),(InVal=339.000000,OutVal=(X=0.000000,Y=-1.230469,Z=87.187500),InterpMode=CIM_CurveAutoClamped),(InVal=345.000000,OutVal=(X=0.000000,Y=-1.230469,Z=26.191406),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=318.000000),(Time=323.000000),(Time=330.000000),(Time=335.000000),(Time=339.000000),(Time=345.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_7"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_10.InterpTrackMove_7'
-      GroupName="Zone7"
-      GroupColor=(B=64,G=0,R=226,A=255)
-      Name="InterpGroup_10"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=437.416016
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_6'
@@ -10040,20 +10040,9 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_99
 End Object
 
 Begin Object Class=InterpData Name=InterpData_99
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
-         EulerTrack=(Points=(,(InVal=1.000000)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_99.InterpGroup_1.InterpTrackMove_1'
-      GroupName="bottomgate"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -10070,9 +10059,20 @@ Begin Object Class=InterpData Name=InterpData_99
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_99.InterpGroup_1.InterpTrackMove_1'
+      GroupName="bottomgate"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=1.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_99.InterpGroup_0'
@@ -10546,21 +10546,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1430
 End Object
 
 Begin Object Class=InterpData Name=InterpData_100
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
-         EulerTrack=(Points=(,(InVal=1.000000)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_100.InterpGroup_1.InterpTrackMove_1'
-      GroupName="bottomgate"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=144.000000))))
@@ -10574,6 +10559,21 @@ Begin Object Class=InterpData Name=InterpData_100
       GroupName="topgate"
       GroupColor=(B=0,G=174,R=165,A=255)
       Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_100.InterpGroup_1.InterpTrackMove_1'
+      GroupName="bottomgate"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=1.000000
@@ -10633,21 +10633,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_101
 End Object
 
 Begin Object Class=InterpData Name=InterpData_101
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
-         EulerTrack=(Points=(,(InVal=1.000000)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_101.InterpGroup_1.InterpTrackMove_1'
-      GroupName="bottomgate"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=144.000000))))
@@ -10661,6 +10646,21 @@ Begin Object Class=InterpData Name=InterpData_101
       GroupName="topgate"
       GroupColor=(B=0,G=174,R=165,A=255)
       Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_101.InterpGroup_1.InterpTrackMove_1'
+      GroupName="bottomgate"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=1.000000
@@ -10915,21 +10915,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_102
 End Object
 
 Begin Object Class=InterpData Name=InterpData_102
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
-         EulerTrack=(Points=(,(InVal=1.000000)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_102.InterpGroup_1.InterpTrackMove_1'
-      GroupName="bottomgate"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=144.000000))))
@@ -10943,6 +10928,21 @@ Begin Object Class=InterpData Name=InterpData_102
       GroupName="topgate"
       GroupColor=(B=0,G=174,R=165,A=255)
       Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_102.InterpGroup_1.InterpTrackMove_1'
+      GroupName="bottomgate"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=1.000000
@@ -11197,21 +11197,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_103
 End Object
 
 Begin Object Class=InterpData Name=InterpData_103
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
-         EulerTrack=(Points=(,(InVal=1.000000)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_103.InterpGroup_1.InterpTrackMove_1'
-      GroupName="bottomgate"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=144.000000))))
@@ -11225,6 +11210,21 @@ Begin Object Class=InterpData Name=InterpData_103
       GroupName="topgate"
       GroupColor=(B=0,G=174,R=165,A=255)
       Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_103.InterpGroup_1.InterpTrackMove_1'
+      GroupName="bottomgate"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=1.000000
@@ -11479,21 +11479,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_104
 End Object
 
 Begin Object Class=InterpData Name=InterpData_104
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
-         EulerTrack=(Points=(,(InVal=1.000000)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_104.InterpGroup_1.InterpTrackMove_1'
-      GroupName="bottomgate"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=144.000000))))
@@ -11507,6 +11492,21 @@ Begin Object Class=InterpData Name=InterpData_104
       GroupName="topgate"
       GroupColor=(B=0,G=174,R=165,A=255)
       Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_104.InterpGroup_1.InterpTrackMove_1'
+      GroupName="bottomgate"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=1.000000
@@ -11761,21 +11761,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_105
 End Object
 
 Begin Object Class=InterpData Name=InterpData_105
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
-         EulerTrack=(Points=(,(InVal=1.000000)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_105.InterpGroup_1.InterpTrackMove_1'
-      GroupName="bottomgate"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=144.000000))))
@@ -11789,6 +11774,21 @@ Begin Object Class=InterpData Name=InterpData_105
       GroupName="topgate"
       GroupColor=(B=0,G=174,R=165,A=255)
       Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_105.InterpGroup_1.InterpTrackMove_1'
+      GroupName="bottomgate"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=1.000000
@@ -12043,21 +12043,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_106
 End Object
 
 Begin Object Class=InterpData Name=InterpData_106
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
-         EulerTrack=(Points=(,(InVal=1.000000)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_106.InterpGroup_1.InterpTrackMove_1'
-      GroupName="bottomgate"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=144.000000))))
@@ -12071,6 +12056,21 @@ Begin Object Class=InterpData Name=InterpData_106
       GroupName="topgate"
       GroupColor=(B=0,G=174,R=165,A=255)
       Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_106.InterpGroup_1.InterpTrackMove_1'
+      GroupName="bottomgate"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=1.000000
@@ -12325,21 +12325,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_107
 End Object
 
 Begin Object Class=InterpData Name=InterpData_107
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
-         EulerTrack=(Points=(,(InVal=1.000000)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_107.InterpGroup_1.InterpTrackMove_1'
-      GroupName="bottomgate"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=144.000000))))
@@ -12353,6 +12338,21 @@ Begin Object Class=InterpData Name=InterpData_107
       GroupName="topgate"
       GroupColor=(B=0,G=174,R=165,A=255)
       Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_107.InterpGroup_1.InterpTrackMove_1'
+      GroupName="bottomgate"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=1.000000
@@ -12607,20 +12607,9 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_98
 End Object
 
 Begin Object Class=InterpData Name=InterpData_98
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
-         EulerTrack=(Points=(,(InVal=1.000000)))
-         LookupTrack=(Points=(,(Time=1.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_98.InterpGroup_1.InterpTrackMove_1'
-      GroupName="bottomgate"
-      GroupColor=(B=0,G=149,R=188,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -12637,9 +12626,20 @@ Begin Object Class=InterpData Name=InterpData_98
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=(,(InVal=1.000000,OutVal=(X=0.000000,Y=0.000000,Z=280.000000))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_98.InterpGroup_1.InterpTrackMove_1'
+      GroupName="bottomgate"
+      GroupColor=(B=0,G=149,R=188,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=1.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_98.InterpGroup_0'
@@ -13041,16 +13041,20 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_7
 End Object
 
 Begin Object Class=InterpData Name=InterpData_5
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_1
          AnimSeqs(0)=(AnimSeqName="RotatingAnim",AnimPlayRate=1.000000)
          Name="InterpTrackAnimControl_1"
          ObjectArchetype=InterpTrackAnimControl'Engine.Default__InterpTrackAnimControl'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1.InterpTrackMove_0'
       InterpTracks(1)=InterpTrackAnimControl'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1.InterpTrackAnimControl_1'
@@ -13059,10 +13063,6 @@ Begin Object Class=InterpData Name=InterpData_5
       GroupAnimSets(0)=AnimSet'ENV_BioticsLab_ANIM_ANIM.ENV_BioticsLab_Centrifuge_Rotator_ANIM'
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1'
    CurveEdSetup=InterpCurveEdSetup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpCurveEdSetup_1'
@@ -13498,6 +13498,10 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_610
 End Object
 
 Begin Object Class=InterpData Name=InterpData_4
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=0.500000,OutVal=(X=0.000366,Y=0.000214,Z=0.000000)),(InVal=0.750000,OutVal=(X=0.000488,Y=0.000183,Z=0.000000)),(InVal=1.000000,OutVal=(X=0.000366,Y=0.000214,Z=0.000000)),(InVal=1.250000,OutVal=(X=0.000244,Y=0.000244,Z=0.000000)),(InVal=1.500000,OutVal=(X=0.000122,Y=0.000275,Z=0.000000)),(InVal=1.750000,OutVal=(X=0.000000,Y=0.000305,Z=0.000000)),(InVal=2.000000,OutVal=(X=-0.000122,Y=0.000336,Z=0.000000)),(InVal=2.250000,OutVal=(X=-0.000244,Y=0.000366,Z=0.000000)),(InVal=2.500000,OutVal=(X=-0.000366,Y=0.000397,Z=0.000000)),(InVal=2.750000,OutVal=(X=-0.000488,Y=0.000427,Z=0.000000)),(InVal=3.000000,OutVal=(X=-0.000610,Y=0.000458,Z=0.000000)),(InVal=3.250000,OutVal=(X=-0.000732,Y=0.000488,Z=0.000000)),(InVal=3.500000,OutVal=(X=-0.000854,Y=0.000519,Z=0.000000)),(InVal=3.750000,OutVal=(X=-0.000977,Y=0.000549,Z=0.000000)),(InVal=4.000000,OutVal=(X=-0.001099,Y=0.000580,Z=0.000000)),(InVal=4.250000,OutVal=(X=-0.001221,Y=0.000610,Z=0.000000)),(InVal=4.500000,OutVal=(X=-0.001343,Y=0.000641,Z=0.000000)),(InVal=4.750000,OutVal=(X=-0.001465,Y=0.000671,Z=0.000000)),(InVal=5.000000,OutVal=(X=-0.001465,Y=0.000671,Z=0.000000)),(InVal=5.250000,OutVal=(X=-0.001587,Y=0.000793,Z=0.000000)),(InVal=5.500000,OutVal=(X=-0.001465,Y=0.000763,Z=0.000000)),(InVal=5.750000,OutVal=(X=-0.001343,Y=0.000732,Z=0.000000)),(InVal=6.000000,OutVal=(X=-0.001221,Y=0.000702,Z=0.000000)),(InVal=7.000000,OutVal=(X=-0.001099,Y=0.000671,Z=0.000000))))
@@ -13512,10 +13516,6 @@ Begin Object Class=InterpData Name=InterpData_4
       GroupColor=(B=146,G=0,R=191,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=7.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0'
@@ -15465,196 +15465,41 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_24
 End Object
 
 Begin Object Class=InterpData Name=InterpData_64
-   Begin Object Class=InterpGroup Name=InterpGroup_72
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_67
-         PosTrack=(Points=((InVal=1.999549),(InVal=2.099549,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=2.199548,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=2.349549,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=5.002860,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=5.302860,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=5.402330,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=5.503945,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=5.653275,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=8.004025,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.306165,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.404889,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=8.506166,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=8.656165,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=14.038765,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=18.038977,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=23.997639,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=24.199835,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=24.301683,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=24.399836,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=24.549833,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.030937,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=26.200045,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=26.300043,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=26.400045,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=26.550043,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=28.004469,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=28.106895,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.306120,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.511173,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=28.711174,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=1.999549),(InVal=2.099549),(InVal=2.199548),(InVal=2.349549),(InVal=5.002860),(InVal=5.302860),(InVal=5.402330),(InVal=5.503945),(InVal=5.653275),(InVal=8.004025),(InVal=8.306165),(InVal=8.404889),(InVal=8.506166),(InVal=8.656165),(InVal=14.038765),(InVal=18.038977),(InVal=23.997639),(InVal=24.199835),(InVal=24.301683),(InVal=24.399836),(InVal=24.549833),(InVal=26.030937),(InVal=26.200045),(InVal=26.300043),(InVal=26.400045),(InVal=26.550043),(InVal=28.004469),(InVal=28.106895),(InVal=28.306120),(InVal=28.511173),(InVal=28.711174)))
-         LookupTrack=(Points=((Time=1.999549),(Time=2.099549),(Time=2.199548),(Time=2.349549),(Time=5.002860),(Time=5.302860),(Time=5.402330),(Time=5.503945),(Time=5.653275),(Time=8.004025),(Time=8.306165),(Time=8.404889),(Time=8.506166),(Time=8.656165),(Time=14.038765),(Time=18.038977),(Time=23.997639),(Time=24.199835),(Time=24.301683),(Time=24.399836),(Time=24.549833),(Time=26.030937),(Time=26.200045),(Time=26.300043),(Time=26.400045),(Time=26.550043),(Time=28.004469),(Time=28.106895),(Time=28.306120),(Time=28.511173),(Time=28.711174)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_67"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_24
-         AkEvents(0)=(Time=8.010386,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=14.051548,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(2)=(Time=23.999275,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(3)=(Time=28.111900,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         TrackTitle="AkEvent_(LP)"
-         Name="InterpTrackAkEvent_24"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_21
-         AkEvents(0)=(Time=2.031129,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=8.633645,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(2)=(Time=18.026814,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(3)=(Time=24.548157,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         TrackTitle="AkEvent_(LP)"
-         Name="InterpTrackAkEvent_21"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_18
-         AkEvents(0)=(Time=8.010386,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(1)=(Time=14.051548,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(2)=(Time=23.999275,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(3)=(Time=28.111900,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         TrackTitle="AkEvent_(Stop)"
-         Name="InterpTrackAkEvent_18"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_15
-         AkEvents(0)=(Time=2.031129,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(1)=(Time=8.633645,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(2)=(Time=18.026814,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(3)=(Time=24.548157,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         TrackTitle="AkEvent_(Start)"
-         Name="InterpTrackAkEvent_15"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_72.InterpTrackMove_67'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_72.InterpTrackAkEvent_15'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_72.InterpTrackAkEvent_18'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_72.InterpTrackAkEvent_21'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_72.InterpTrackAkEvent_24'
-      GroupName="5bit1"
-      GroupColor=(B=0,G=183,R=155,A=255)
-      Name="InterpGroup_72"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(ViewStartInput=-17.940605,ViewEndInput=33.899395,ViewStartOutput=-2.691026,ViewEndOutput=3.280942)
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_66
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_66
-         PosTrack=(Points=((InVal=3.303190),(InVal=3.403190,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.503190,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.653190,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.306506,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.606506,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.705976,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.807590,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.956920,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.307670,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.609805,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.708529,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.809805,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.959804,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.342405,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=19.342630,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=25.281685,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.483881,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.585730,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.683882,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.833879,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.314983,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.484091,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.584089,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.684092,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.834089,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.288515,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.390942,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.590166,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.795219,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.995220,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=3.303190),(InVal=3.403190),(InVal=3.503190),(InVal=3.653190),(InVal=6.306506),(InVal=6.606506),(InVal=6.705976),(InVal=6.807590),(InVal=6.956920),(InVal=9.307670),(InVal=9.609805),(InVal=9.708529),(InVal=9.809805),(InVal=9.959804),(InVal=15.342405),(InVal=19.342630),(InVal=25.281685),(InVal=25.483881),(InVal=25.585730),(InVal=25.683882),(InVal=25.833879),(InVal=27.314983),(InVal=27.484091),(InVal=27.584089),(InVal=27.684092),(InVal=27.834089),(InVal=29.288515),(InVal=29.390942),(InVal=29.590166),(InVal=29.795219),(InVal=29.995220)))
-         LookupTrack=(Points=((Time=3.303190),(Time=3.403190),(Time=3.503190),(Time=3.653190),(Time=6.306506),(Time=6.606506),(Time=6.705976),(Time=6.807590),(Time=6.956920),(Time=9.307670),(Time=9.609805),(Time=9.708529),(Time=9.809805),(Time=9.959804),(Time=15.342405),(Time=19.342630),(Time=25.281685),(Time=25.483881),(Time=25.585730),(Time=25.683882),(Time=25.833879),(Time=27.314983),(Time=27.484091),(Time=27.584089),(Time=27.684092),(Time=27.834089),(Time=29.288515),(Time=29.390942),(Time=29.590166),(Time=29.795219),(Time=29.995220)))
+   Begin Object Class=InterpGroup Name=InterpGroup_48
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Time=0.088183,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_MovingCrate_A_01')
+         AkEvents(1)=(Time=16.031746,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_MovingCrate_A_02')
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_52
+         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.000000,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=16.000208,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=21.998064,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=22.200260,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=22.302109,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=22.400261,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=22.550259,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=24.031363,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=24.200470,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=24.300468,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=24.400471,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=24.550468,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.004894,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=26.107321,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=26.306545,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=26.511599,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=26.711599,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=12.000000),(InVal=16.000208),(InVal=21.998064),(InVal=22.200260),(InVal=22.302109),(InVal=22.400261),(InVal=22.550259),(InVal=24.031363),(InVal=24.200470),(InVal=24.300468),(InVal=24.400471),(InVal=24.550468),(InVal=26.004894),(InVal=26.107321),(InVal=26.306545),(InVal=26.511599),(InVal=26.711599)))
+         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=12.000000),(Time=16.000208),(Time=21.998064),(Time=22.200260),(Time=22.302109),(Time=22.400261),(Time=22.550259),(Time=24.031363),(Time=24.200470),(Time=24.300468),(Time=24.400471),(Time=24.550468),(Time=26.004894),(Time=26.107321),(Time=26.306545),(Time=26.511599),(Time=26.711599)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_66"
+         Name="InterpTrackMove_52"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_23
-         AkEvents(0)=(Time=9.327743,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=15.316374,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(2)=(Time=25.330446,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(3)=(Time=29.455536,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         TrackTitle="AkEvent_(LP)"
-         Name="InterpTrackAkEvent_23"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_20
-         AkEvents(0)=(Time=3.336577,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=9.858476,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(2)=(Time=19.349134,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(3)=(Time=25.720274,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         TrackTitle="AkEvent_(LP)"
-         Name="InterpTrackAkEvent_20"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_17
-         AkEvents(0)=(Time=9.327743,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(1)=(Time=15.316374,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(2)=(Time=25.330446,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(3)=(Time=29.455536,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         TrackTitle="AkEvent_(Stop)"
-         Name="InterpTrackAkEvent_17"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_14
-         AkEvents(0)=(Time=3.336577,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(1)=(Time=9.858476,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(2)=(Time=19.349134,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(3)=(Time=25.720274,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         TrackTitle="AkEvent_(Start)"
-         Name="InterpTrackAkEvent_14"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_66.InterpTrackMove_66'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_66.InterpTrackAkEvent_14'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_66.InterpTrackAkEvent_17'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_66.InterpTrackAkEvent_20'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_66.InterpTrackAkEvent_23'
-      GroupName="4bit1"
-      GroupColor=(B=189,G=0,R=149,A=255)
-      Name="InterpGroup_66"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_60
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_65
-         PosTrack=(Points=((InVal=0.999785),(InVal=1.099785,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=1.199786,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=1.349786,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=4.003098,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=4.303098,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=4.402569,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=4.504183,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=4.653514,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=7.004266,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.306402,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.405126,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=7.506402,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=7.656402,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.989988,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=16.990196,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=22.997854,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.200050,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.301899,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.400051,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.550049,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.031153,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.200260,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.300259,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.400261,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.550259,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=27.004684,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.107111,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.306335,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.511389,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.711390,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=0.999785),(InVal=1.099785),(InVal=1.199786),(InVal=1.349786),(InVal=4.003098),(InVal=4.303098),(InVal=4.402569),(InVal=4.504183),(InVal=4.653514),(InVal=7.004266),(InVal=7.306402),(InVal=7.405126),(InVal=7.506402),(InVal=7.656402),(InVal=12.989988),(InVal=16.990196),(InVal=22.997854),(InVal=23.200050),(InVal=23.301899),(InVal=23.400051),(InVal=23.550049),(InVal=25.031153),(InVal=25.200260),(InVal=25.300259),(InVal=25.400261),(InVal=25.550259),(InVal=27.004684),(InVal=27.107111),(InVal=27.306335),(InVal=27.511389),(InVal=27.711390)))
-         LookupTrack=(Points=((Time=0.999785),(Time=1.099785),(Time=1.199786),(Time=1.349786),(Time=4.003098),(Time=4.303098),(Time=4.402569),(Time=4.504183),(Time=4.653514),(Time=7.004266),(Time=7.306402),(Time=7.405126),(Time=7.506402),(Time=7.656402),(Time=12.989988),(Time=16.990196),(Time=22.997854),(Time=23.200050),(Time=23.301899),(Time=23.400051),(Time=23.550049),(Time=25.031153),(Time=25.200260),(Time=25.300259),(Time=25.400261),(Time=25.550259),(Time=27.004684),(Time=27.107111),(Time=27.306335),(Time=27.511389),(Time=27.711390)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_65"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_8
-         AkEvents(0)=(Time=6.954791,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(1)=(Time=13.007198,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(2)=(Time=23.030634,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(3)=(Time=27.700274,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         TrackTitle="AkEvent_(Stop)"
-         Name="InterpTrackAkEvent_8"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_6
-         AkEvents(0)=(Time=1.016139,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(1)=(Time=7.654321,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(2)=(Time=17.008114,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(3)=(Time=23.515640,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         TrackTitle="AkEvent_(Start)"
-         Name="InterpTrackAkEvent_6"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_22
-         AkEvents(0)=(Time=7.660261,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(1)=(Time=17.008114,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(2)=(Time=23.515640,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         TrackTitle="AkEvent_(LP)"
-         Name="InterpTrackAkEvent_22"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_10
-         AkEvents(0)=(Time=1.022381,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=6.990064,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(2)=(Time=13.007198,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(3)=(Time=23.030634,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(4)=(Time=27.700274,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         TrackTitle="AkEvent_(LP)"
-         Name="InterpTrackAkEvent_10"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_60.InterpTrackMove_65'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_60.InterpTrackAkEvent_6'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_60.InterpTrackAkEvent_8'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_60.InterpTrackAkEvent_10'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_60.InterpTrackAkEvent_22'
-      GroupName="3bit1"
-      GroupColor=(B=229,G=0,R=58,A=255)
-      Name="InterpGroup_60"
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_48.InterpTrackMove_52'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_48.InterpTrackAkEvent_0'
+      GroupName="bit1"
+      GroupColor=(B=0,G=74,R=224,A=255)
+      Name="InterpGroup_48"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_54
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_64
-         PosTrack=(Points=((InVal=2.999364),(InVal=3.099364,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.199364,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.349364,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.002678,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.302679,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.402150,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.503765,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.653095,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.003846,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.305983,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.404706,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.505982,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.655982,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.028776,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=19.028984,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=24.997440,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.199636,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.301485,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.399637,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.549635,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.030739,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.199846,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.299845,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.399847,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.549845,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.004271,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.106697,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.305922,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.510975,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.710976,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=2.999364),(InVal=3.099364),(InVal=3.199364),(InVal=3.349364),(InVal=6.002678),(InVal=6.302679),(InVal=6.402150),(InVal=6.503765),(InVal=6.653095),(InVal=9.003846),(InVal=9.305983),(InVal=9.404706),(InVal=9.505982),(InVal=9.655982),(InVal=15.028776),(InVal=19.028984),(InVal=24.997440),(InVal=25.199636),(InVal=25.301485),(InVal=25.399637),(InVal=25.549635),(InVal=27.030739),(InVal=27.199846),(InVal=27.299845),(InVal=27.399847),(InVal=27.549845),(InVal=29.004271),(InVal=29.106697),(InVal=29.305922),(InVal=29.510975),(InVal=29.710976)))
-         LookupTrack=(Points=((Time=2.999364),(Time=3.099364),(Time=3.199364),(Time=3.349364),(Time=6.002678),(Time=6.302679),(Time=6.402150),(Time=6.503765),(Time=6.653095),(Time=9.003846),(Time=9.305983),(Time=9.404706),(Time=9.505982),(Time=9.655982),(Time=15.028776),(Time=19.028984),(Time=24.997440),(Time=25.199636),(Time=25.301485),(Time=25.399637),(Time=25.549635),(Time=27.030739),(Time=27.199846),(Time=27.299845),(Time=27.399847),(Time=27.549845),(Time=29.004271),(Time=29.106697),(Time=29.305922),(Time=29.510975),(Time=29.710976)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_64"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_3
-         AkEvents(0)=(Time=9.611993,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=15.008818,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(2)=(Time=25.010277,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(3)=(Time=29.418221,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         TrackTitle="AkEvent_(LP)"
-         Name="InterpTrackAkEvent_3"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_2
-         AkEvents(0)=(Time=9.012343,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(1)=(Time=15.008818,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(2)=(Time=25.010277,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(3)=(Time=29.409700,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         TrackTitle="AkEvent_(Stop)"
-         Name="InterpTrackAkEvent_2"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Time=3.051146,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(1)=(Time=9.611992,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(2)=(Time=19.012346,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(3)=(Time=25.567028,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         TrackTitle="AkEvent_(Start)"
+         Name="InterpTrackAkEvent_0"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
       Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
@@ -15666,14 +15511,31 @@ Begin Object Class=InterpData Name=InterpData_64
          Name="InterpTrackAkEvent_1"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Time=3.051146,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(1)=(Time=9.611992,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(2)=(Time=19.012346,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(3)=(Time=25.567028,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         TrackTitle="AkEvent_(Start)"
-         Name="InterpTrackAkEvent_0"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_2
+         AkEvents(0)=(Time=9.012343,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(1)=(Time=15.008818,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(2)=(Time=25.010277,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(3)=(Time=29.409700,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         TrackTitle="AkEvent_(Stop)"
+         Name="InterpTrackAkEvent_2"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_3
+         AkEvents(0)=(Time=9.611993,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=15.008818,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(2)=(Time=25.010277,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(3)=(Time=29.418221,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         TrackTitle="AkEvent_(LP)"
+         Name="InterpTrackAkEvent_3"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_64
+         PosTrack=(Points=((InVal=2.999364),(InVal=3.099364,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.199364,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.349364,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.002678,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.302679,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.402150,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.503765,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.653095,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.003846,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.305983,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.404706,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.505982,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.655982,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.028776,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=19.028984,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=24.997440,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.199636,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.301485,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.399637,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.549635,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.030739,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.199846,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.299845,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.399847,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.549845,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.004271,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.106697,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.305922,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.510975,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.710976,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=2.999364),(InVal=3.099364),(InVal=3.199364),(InVal=3.349364),(InVal=6.002678),(InVal=6.302679),(InVal=6.402150),(InVal=6.503765),(InVal=6.653095),(InVal=9.003846),(InVal=9.305983),(InVal=9.404706),(InVal=9.505982),(InVal=9.655982),(InVal=15.028776),(InVal=19.028984),(InVal=24.997440),(InVal=25.199636),(InVal=25.301485),(InVal=25.399637),(InVal=25.549635),(InVal=27.030739),(InVal=27.199846),(InVal=27.299845),(InVal=27.399847),(InVal=27.549845),(InVal=29.004271),(InVal=29.106697),(InVal=29.305922),(InVal=29.510975),(InVal=29.710976)))
+         LookupTrack=(Points=((Time=2.999364),(Time=3.099364),(Time=3.199364),(Time=3.349364),(Time=6.002678),(Time=6.302679),(Time=6.402150),(Time=6.503765),(Time=6.653095),(Time=9.003846),(Time=9.305983),(Time=9.404706),(Time=9.505982),(Time=9.655982),(Time=15.028776),(Time=19.028984),(Time=24.997440),(Time=25.199636),(Time=25.301485),(Time=25.399637),(Time=25.549635),(Time=27.030739),(Time=27.199846),(Time=27.299845),(Time=27.399847),(Time=27.549845),(Time=29.004271),(Time=29.106697),(Time=29.305922),(Time=29.510975),(Time=29.710976)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_64"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_54.InterpTrackMove_64'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_54.InterpTrackAkEvent_0'
@@ -15685,32 +15547,170 @@ Begin Object Class=InterpData Name=InterpData_64
       Name="InterpGroup_54"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_48
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_52
-         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.000000,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=16.000208,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=21.998064,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=22.200260,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=22.302109,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=22.400261,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=22.550259,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=24.031363,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=24.200470,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=24.300468,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=24.400471,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=24.550468,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.004894,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=26.107321,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=26.306545,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=26.511599,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=26.711599,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=12.000000),(InVal=16.000208),(InVal=21.998064),(InVal=22.200260),(InVal=22.302109),(InVal=22.400261),(InVal=22.550259),(InVal=24.031363),(InVal=24.200470),(InVal=24.300468),(InVal=24.400471),(InVal=24.550468),(InVal=26.004894),(InVal=26.107321),(InVal=26.306545),(InVal=26.511599),(InVal=26.711599)))
-         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=12.000000),(Time=16.000208),(Time=21.998064),(Time=22.200260),(Time=22.302109),(Time=22.400261),(Time=22.550259),(Time=24.031363),(Time=24.200470),(Time=24.300468),(Time=24.400471),(Time=24.550468),(Time=26.004894),(Time=26.107321),(Time=26.306545),(Time=26.511599),(Time=26.711599)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_52"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Time=0.088183,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_MovingCrate_A_01')
-         AkEvents(1)=(Time=16.031746,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_MovingCrate_A_02')
-         Name="InterpTrackAkEvent_0"
+   Begin Object Class=InterpGroup Name=InterpGroup_60
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_10
+         AkEvents(0)=(Time=1.022381,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=6.990064,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(2)=(Time=13.007198,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(3)=(Time=23.030634,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(4)=(Time=27.700274,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         TrackTitle="AkEvent_(LP)"
+         Name="InterpTrackAkEvent_10"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_48.InterpTrackMove_52'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_48.InterpTrackAkEvent_0'
-      GroupName="bit1"
-      GroupColor=(B=0,G=74,R=224,A=255)
-      Name="InterpGroup_48"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_22
+         AkEvents(0)=(Time=7.660261,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(1)=(Time=17.008114,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(2)=(Time=23.515640,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         TrackTitle="AkEvent_(LP)"
+         Name="InterpTrackAkEvent_22"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_6
+         AkEvents(0)=(Time=1.016139,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(1)=(Time=7.654321,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(2)=(Time=17.008114,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(3)=(Time=23.515640,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         TrackTitle="AkEvent_(Start)"
+         Name="InterpTrackAkEvent_6"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_8
+         AkEvents(0)=(Time=6.954791,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(1)=(Time=13.007198,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(2)=(Time=23.030634,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(3)=(Time=27.700274,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         TrackTitle="AkEvent_(Stop)"
+         Name="InterpTrackAkEvent_8"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_65
+         PosTrack=(Points=((InVal=0.999785),(InVal=1.099785,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=1.199786,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=1.349786,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=4.003098,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=4.303098,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=4.402569,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=4.504183,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=4.653514,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=7.004266,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.306402,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.405126,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=7.506402,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=7.656402,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.989988,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=16.990196,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=22.997854,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.200050,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.301899,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.400051,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.550049,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.031153,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.200260,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.300259,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.400261,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.550259,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=27.004684,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.107111,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.306335,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.511389,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.711390,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=0.999785),(InVal=1.099785),(InVal=1.199786),(InVal=1.349786),(InVal=4.003098),(InVal=4.303098),(InVal=4.402569),(InVal=4.504183),(InVal=4.653514),(InVal=7.004266),(InVal=7.306402),(InVal=7.405126),(InVal=7.506402),(InVal=7.656402),(InVal=12.989988),(InVal=16.990196),(InVal=22.997854),(InVal=23.200050),(InVal=23.301899),(InVal=23.400051),(InVal=23.550049),(InVal=25.031153),(InVal=25.200260),(InVal=25.300259),(InVal=25.400261),(InVal=25.550259),(InVal=27.004684),(InVal=27.107111),(InVal=27.306335),(InVal=27.511389),(InVal=27.711390)))
+         LookupTrack=(Points=((Time=0.999785),(Time=1.099785),(Time=1.199786),(Time=1.349786),(Time=4.003098),(Time=4.303098),(Time=4.402569),(Time=4.504183),(Time=4.653514),(Time=7.004266),(Time=7.306402),(Time=7.405126),(Time=7.506402),(Time=7.656402),(Time=12.989988),(Time=16.990196),(Time=22.997854),(Time=23.200050),(Time=23.301899),(Time=23.400051),(Time=23.550049),(Time=25.031153),(Time=25.200260),(Time=25.300259),(Time=25.400261),(Time=25.550259),(Time=27.004684),(Time=27.107111),(Time=27.306335),(Time=27.511389),(Time=27.711390)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_65"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_60.InterpTrackMove_65'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_60.InterpTrackAkEvent_6'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_60.InterpTrackAkEvent_8'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_60.InterpTrackAkEvent_10'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_60.InterpTrackAkEvent_22'
+      GroupName="3bit1"
+      GroupColor=(B=229,G=0,R=58,A=255)
+      Name="InterpGroup_60"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(ViewStartInput=-17.940605,ViewEndInput=33.899395,ViewStartOutput=-2.691026,ViewEndOutput=3.280942)
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_66
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_14
+         AkEvents(0)=(Time=3.336577,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(1)=(Time=9.858476,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(2)=(Time=19.349134,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(3)=(Time=25.720274,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         TrackTitle="AkEvent_(Start)"
+         Name="InterpTrackAkEvent_14"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_17
+         AkEvents(0)=(Time=9.327743,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(1)=(Time=15.316374,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(2)=(Time=25.330446,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(3)=(Time=29.455536,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         TrackTitle="AkEvent_(Stop)"
+         Name="InterpTrackAkEvent_17"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_20
+         AkEvents(0)=(Time=3.336577,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=9.858476,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(2)=(Time=19.349134,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(3)=(Time=25.720274,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         TrackTitle="AkEvent_(LP)"
+         Name="InterpTrackAkEvent_20"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_23
+         AkEvents(0)=(Time=9.327743,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=15.316374,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(2)=(Time=25.330446,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(3)=(Time=29.455536,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         TrackTitle="AkEvent_(LP)"
+         Name="InterpTrackAkEvent_23"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_66
+         PosTrack=(Points=((InVal=3.303190),(InVal=3.403190,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.503190,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.653190,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.306506,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.606506,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.705976,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.807590,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.956920,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.307670,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.609805,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.708529,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.809805,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.959804,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.342405,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=19.342630,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=25.281685,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.483881,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.585730,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.683882,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.833879,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.314983,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.484091,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.584089,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.684092,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.834089,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.288515,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.390942,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.590166,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.795219,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.995220,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=3.303190),(InVal=3.403190),(InVal=3.503190),(InVal=3.653190),(InVal=6.306506),(InVal=6.606506),(InVal=6.705976),(InVal=6.807590),(InVal=6.956920),(InVal=9.307670),(InVal=9.609805),(InVal=9.708529),(InVal=9.809805),(InVal=9.959804),(InVal=15.342405),(InVal=19.342630),(InVal=25.281685),(InVal=25.483881),(InVal=25.585730),(InVal=25.683882),(InVal=25.833879),(InVal=27.314983),(InVal=27.484091),(InVal=27.584089),(InVal=27.684092),(InVal=27.834089),(InVal=29.288515),(InVal=29.390942),(InVal=29.590166),(InVal=29.795219),(InVal=29.995220)))
+         LookupTrack=(Points=((Time=3.303190),(Time=3.403190),(Time=3.503190),(Time=3.653190),(Time=6.306506),(Time=6.606506),(Time=6.705976),(Time=6.807590),(Time=6.956920),(Time=9.307670),(Time=9.609805),(Time=9.708529),(Time=9.809805),(Time=9.959804),(Time=15.342405),(Time=19.342630),(Time=25.281685),(Time=25.483881),(Time=25.585730),(Time=25.683882),(Time=25.833879),(Time=27.314983),(Time=27.484091),(Time=27.584089),(Time=27.684092),(Time=27.834089),(Time=29.288515),(Time=29.390942),(Time=29.590166),(Time=29.795219),(Time=29.995220)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_66"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_66.InterpTrackMove_66'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_66.InterpTrackAkEvent_14'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_66.InterpTrackAkEvent_17'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_66.InterpTrackAkEvent_20'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_66.InterpTrackAkEvent_23'
+      GroupName="4bit1"
+      GroupColor=(B=189,G=0,R=149,A=255)
+      Name="InterpGroup_66"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_72
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_15
+         AkEvents(0)=(Time=2.031129,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(1)=(Time=8.633645,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(2)=(Time=18.026814,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(3)=(Time=24.548157,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         TrackTitle="AkEvent_(Start)"
+         Name="InterpTrackAkEvent_15"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_18
+         AkEvents(0)=(Time=8.010386,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(1)=(Time=14.051548,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(2)=(Time=23.999275,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(3)=(Time=28.111900,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         TrackTitle="AkEvent_(Stop)"
+         Name="InterpTrackAkEvent_18"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_21
+         AkEvents(0)=(Time=2.031129,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=8.633645,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(2)=(Time=18.026814,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(3)=(Time=24.548157,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         TrackTitle="AkEvent_(LP)"
+         Name="InterpTrackAkEvent_21"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_24
+         AkEvents(0)=(Time=8.010386,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=14.051548,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(2)=(Time=23.999275,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(3)=(Time=28.111900,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         TrackTitle="AkEvent_(LP)"
+         Name="InterpTrackAkEvent_24"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_67
+         PosTrack=(Points=((InVal=1.999549),(InVal=2.099549,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=2.199548,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=2.349549,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=5.002860,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=5.302860,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=5.402330,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=5.503945,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=5.653275,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=8.004025,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.306165,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.404889,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=8.506166,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=8.656165,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=14.038765,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=18.038977,OutVal=(X=416.010742,Y=-0.026367,Z=479.998657)),(InVal=23.997639,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=24.199835,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=24.301683,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=24.399836,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=24.549833,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.030937,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=26.200045,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=26.300043,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=26.400045,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=26.550043,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=28.004469,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=28.106895,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.306120,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.511173,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=28.711174,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=1.999549),(InVal=2.099549),(InVal=2.199548),(InVal=2.349549),(InVal=5.002860),(InVal=5.302860),(InVal=5.402330),(InVal=5.503945),(InVal=5.653275),(InVal=8.004025),(InVal=8.306165),(InVal=8.404889),(InVal=8.506166),(InVal=8.656165),(InVal=14.038765),(InVal=18.038977),(InVal=23.997639),(InVal=24.199835),(InVal=24.301683),(InVal=24.399836),(InVal=24.549833),(InVal=26.030937),(InVal=26.200045),(InVal=26.300043),(InVal=26.400045),(InVal=26.550043),(InVal=28.004469),(InVal=28.106895),(InVal=28.306120),(InVal=28.511173),(InVal=28.711174)))
+         LookupTrack=(Points=((Time=1.999549),(Time=2.099549),(Time=2.199548),(Time=2.349549),(Time=5.002860),(Time=5.302860),(Time=5.402330),(Time=5.503945),(Time=5.653275),(Time=8.004025),(Time=8.306165),(Time=8.404889),(Time=8.506166),(Time=8.656165),(Time=14.038765),(Time=18.038977),(Time=23.997639),(Time=24.199835),(Time=24.301683),(Time=24.399836),(Time=24.549833),(Time=26.030937),(Time=26.200045),(Time=26.300043),(Time=26.400045),(Time=26.550043),(Time=28.004469),(Time=28.106895),(Time=28.306120),(Time=28.511173),(Time=28.711174)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_67"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_72.InterpTrackMove_67'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_72.InterpTrackAkEvent_15'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_72.InterpTrackAkEvent_18'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_72.InterpTrackAkEvent_21'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_72.InterpTrackAkEvent_24'
+      GroupName="5bit1"
+      GroupColor=(B=0,G=183,R=155,A=255)
+      Name="InterpGroup_72"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=30.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_64.InterpGroup_48'
@@ -15829,27 +15829,16 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_0
 End Object
 
 Begin Object Class=InterpData Name=InterpData_86
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=(,(InVal=3.000000,OutVal=(X=-400.000000,Y=0.000000,Z=-0.000061)),(InVal=8.000000,OutVal=(X=-2320.000000,Y=0.000000,Z=-0.000122)),(InVal=10.000000,OutVal=(X=-2560.000000,Y=0.000000,Z=-0.000183)),(InVal=13.000000,OutVal=(X=-2720.000000,Y=0.000000,Z=-0.000244)),(InVal=14.000000,OutVal=(X=-2720.000000,Y=0.000000,Z=-0.000305)),(InVal=16.000000,OutVal=(X=-2640.000000,Y=0.000000,Z=-0.000366)),(InVal=20.000000,OutVal=(X=-1120.000000,Y=0.000000,Z=-0.000427)),(InVal=22.000000,OutVal=(X=-880.000000,Y=0.000000,Z=-0.000488)),(InVal=24.000000,OutVal=(X=-720.000000,Y=0.000000,Z=-0.000549)),(InVal=28.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000610))))
-         EulerTrack=(Points=(,(InVal=3.000000),(InVal=8.000000),(InVal=10.000000),(InVal=13.000000),(InVal=14.000000),(InVal=16.000000),(InVal=20.000000),(InVal=22.000000),(InVal=24.000000),(InVal=28.000000)))
-         LookupTrack=(Points=(,(Time=3.000000),(Time=8.000000),(Time=10.000000),(Time=13.000000),(Time=14.000000),(Time=16.000000),(Time=20.000000),(Time=22.000000),(Time=24.000000),(Time=28.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_29
-         AkEvents(0)=(Time=12.980599,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=28.005371,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
-         TrackTitle="AkEvent_(LP)"
-         Name="InterpTrackAkEvent_29"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_28
-         AkEvents(0)=(Time=0.052910,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=13.968254,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         TrackTitle="AkEvent_(LP)"
-         Name="InterpTrackAkEvent_28"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_26
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(1)=(Time=13.968254,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         TrackTitle="AkEvent_(Start)"
+         Name="InterpTrackAkEvent_26"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
       Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_27
@@ -15859,12 +15848,27 @@ Begin Object Class=InterpData Name=InterpData_86
          Name="InterpTrackAkEvent_27"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_26
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(1)=(Time=13.968254,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         TrackTitle="AkEvent_(Start)"
-         Name="InterpTrackAkEvent_26"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_28
+         AkEvents(0)=(Time=0.052910,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=13.968254,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         TrackTitle="AkEvent_(LP)"
+         Name="InterpTrackAkEvent_28"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_29
+         AkEvents(0)=(Time=12.980599,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=28.005371,Event=AkEvent'WW_ENV_PowerCore.Stop_PowerCore_Crate_LP')
+         TrackTitle="AkEvent_(LP)"
+         Name="InterpTrackAkEvent_29"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=(,(InVal=3.000000,OutVal=(X=-400.000000,Y=0.000000,Z=-0.000061)),(InVal=8.000000,OutVal=(X=-2320.000000,Y=0.000000,Z=-0.000122)),(InVal=10.000000,OutVal=(X=-2560.000000,Y=0.000000,Z=-0.000183)),(InVal=13.000000,OutVal=(X=-2720.000000,Y=0.000000,Z=-0.000244)),(InVal=14.000000,OutVal=(X=-2720.000000,Y=0.000000,Z=-0.000305)),(InVal=16.000000,OutVal=(X=-2640.000000,Y=0.000000,Z=-0.000366)),(InVal=20.000000,OutVal=(X=-1120.000000,Y=0.000000,Z=-0.000427)),(InVal=22.000000,OutVal=(X=-880.000000,Y=0.000000,Z=-0.000488)),(InVal=24.000000,OutVal=(X=-720.000000,Y=0.000000,Z=-0.000549)),(InVal=28.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000610))))
+         EulerTrack=(Points=(,(InVal=3.000000),(InVal=8.000000),(InVal=10.000000),(InVal=13.000000),(InVal=14.000000),(InVal=16.000000),(InVal=20.000000),(InVal=22.000000),(InVal=24.000000),(InVal=28.000000)))
+         LookupTrack=(Points=(,(Time=3.000000),(Time=8.000000),(Time=10.000000),(Time=13.000000),(Time=14.000000),(Time=16.000000),(Time=20.000000),(Time=22.000000),(Time=24.000000),(Time=28.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_86.InterpGroup_0.InterpTrackMove_0'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_86.InterpGroup_0.InterpTrackAkEvent_26'
@@ -15875,10 +15879,6 @@ Begin Object Class=InterpData Name=InterpData_86
       GroupColor=(B=154,G=0,R=184,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=30.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_86.InterpGroup_0'
@@ -15929,34 +15929,122 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_12
 End Object
 
 Begin Object Class=InterpData Name=InterpData_70
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_23
-         PosTrack=(Points=((InVal=2.998652),(InVal=3.098652,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.198652,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.348652,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.001964,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.301963,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.401434,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.503048,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.652379,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.010386,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.312523,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.411246,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.512523,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.662522,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.007756,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=20.000490,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=25.998842,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.201038,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.302887,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.401039,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.551037,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.999056,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.168163,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.268162,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.368164,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.518162,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.996218,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.098644,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.297869,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.502922,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.702923,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=2.998652),(InVal=3.098652),(InVal=3.198652),(InVal=3.348652),(InVal=6.001964),(InVal=6.301963),(InVal=6.401434),(InVal=6.503048),(InVal=6.652379),(InVal=9.010386),(InVal=9.312523),(InVal=9.411246),(InVal=9.512523),(InVal=9.662522),(InVal=15.007756),(InVal=20.000490),(InVal=25.998842),(InVal=26.201038),(InVal=26.302887),(InVal=26.401039),(InVal=26.551037),(InVal=27.999056),(InVal=28.168163),(InVal=28.268162),(InVal=28.368164),(InVal=28.518162),(InVal=29.996218),(InVal=30.098644),(InVal=30.297869),(InVal=30.502922),(InVal=30.702923)))
-         LookupTrack=(Points=((Time=2.998652),(Time=3.098652),(Time=3.198652),(Time=3.348652),(Time=6.001964),(Time=6.301963),(Time=6.401434),(Time=6.503048),(Time=6.652379),(Time=9.010386),(Time=9.312523),(Time=9.411246),(Time=9.512523),(Time=9.662522),(Time=15.007756),(Time=20.000490),(Time=25.998842),(Time=26.201038),(Time=26.302887),(Time=26.401039),(Time=26.551037),(Time=27.999056),(Time=28.168163),(Time=28.268162),(Time=28.368164),(Time=28.518162),(Time=29.996218),(Time=30.098644),(Time=30.297869),(Time=30.502922),(Time=30.702923)))
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_16
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(1)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_16"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_18
+         AkEvents(0)=(Time=6.004477,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(1)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(2)=(Time=23.000198,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(3)=(Time=27.627373,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_18"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_19
+         AkEvents(0)=(Time=3.000591,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(1)=(Time=3.653727,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(2)=(Time=6.496035,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(3)=(Time=23.551277,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(4)=(Time=25.300735,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(5)=(Time=26.997574,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         Name="InterpTrackAkEvent_19"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_21
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_21"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_23
+         AkEvents(0)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=27.154331,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_23"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.011719,Y=-0.025391,Z=-0.001221),InterpMode=CIM_CurveAutoClamped),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.001847,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=17.001844,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.011719,Y=-0.025391,Z=-0.001343),InterpMode=CIM_CurveAutoClamped),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477,InterpMode=CIM_CurveAutoClamped),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=12.001847),(InVal=17.001844),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395,InterpMode=CIM_CurveAutoClamped),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
+         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=12.001847),(Time=17.001844),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_23"
+         Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_8.InterpTrackMove_23'
-      GroupName="2bit1"
-      GroupColor=(B=204,G=0,R=126,A=255)
-      Name="InterpGroup_8"
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackAkEvent_16'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackAkEvent_18'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackAkEvent_19'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackAkEvent_21'
+      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackAkEvent_23'
+      GroupName="bit1"
+      GroupColor=(B=184,G=153,R=0,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_29
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_29
-         PosTrack=(Points=((InVal=2.012655),(InVal=2.112655,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=2.212655,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=2.362655,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=4.998540,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=5.298540,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=5.398010,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=5.499625,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=5.648954,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=8.008414,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.310551,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.409274,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=8.510550,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=8.660550,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=13.997071,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=19.005781,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=24.995422,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.197618,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.299467,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.397619,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.547617,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.021770,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.190878,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.290876,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.390879,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.540876,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.001511,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.103937,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.303162,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.508215,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.708216,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=2.012655),(InVal=2.112655),(InVal=2.212655),(InVal=2.362655),(InVal=4.998540),(InVal=5.298540),(InVal=5.398010),(InVal=5.499625),(InVal=5.648954),(InVal=8.008414),(InVal=8.310551),(InVal=8.409274),(InVal=8.510550),(InVal=8.660550),(InVal=13.997071),(InVal=19.005781),(InVal=24.995422),(InVal=25.197618),(InVal=25.299467),(InVal=25.397619),(InVal=25.547617),(InVal=27.021770),(InVal=27.190878),(InVal=27.290876),(InVal=27.390879),(InVal=27.540876),(InVal=29.001511),(InVal=29.103937),(InVal=29.303162),(InVal=29.508215),(InVal=29.708216)))
-         LookupTrack=(Points=((Time=2.012655),(Time=2.112655),(Time=2.212655),(Time=2.362655),(Time=4.998540),(Time=5.298540),(Time=5.398010),(Time=5.499625),(Time=5.648954),(Time=8.008414),(Time=8.310551),(Time=8.409274),(Time=8.510550),(Time=8.660550),(Time=13.997071),(Time=19.005781),(Time=24.995422),(Time=25.197618),(Time=25.299467),(Time=25.397619),(Time=25.547617),(Time=27.021770),(Time=27.190878),(Time=27.290876),(Time=27.390879),(Time=27.540876),(Time=29.001511),(Time=29.103937),(Time=29.303162),(Time=29.508215),(Time=29.708216)))
+   Begin Object Class=InterpGroup Name=InterpGroup_15
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_24
+         AkEvents(0)=(Time=1.373310,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(1)=(Time=7.651323,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_24"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_25
+         AkEvents(0)=(Time=28.439447,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_25"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_26
+         AkEvents(0)=(Time=4.355691,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(1)=(Time=23.994558,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(2)=(Time=26.020153,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         Name="InterpTrackAkEvent_26"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_27
+         AkEvents(0)=(Time=7.651323,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=17.996552,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_27"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_28
+         AkEvents(0)=(Time=13.003817,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=28.439447,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_28"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InVal=1.001971),(InVal=1.101971,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=1.201971,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=1.351971,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.998021,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=4.298020,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=4.397491,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=4.499105,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=4.648436,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.999187,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.301323,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.400047,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=7.501323,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=7.651323,OutVal=(X=416.011719,Y=-0.027344,Z=-0.001297)),(InVal=13.003817,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=17.996552,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=23.994905,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=24.197102,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=24.298950,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=24.397102,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=24.547100,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.024158,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=26.193266,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=26.293264,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=26.393267,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=26.543264,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=27.999542,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=28.101969,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.301193,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.506247,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=28.706247,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=1.001971),(InVal=1.101971),(InVal=1.201971),(InVal=1.351971),(InVal=3.998021),(InVal=4.298020),(InVal=4.397491),(InVal=4.499105),(InVal=4.648436),(InVal=6.999187),(InVal=7.301323),(InVal=7.400047),(InVal=7.501323),(InVal=7.651323),(InVal=13.003817),(InVal=17.996552),(InVal=23.994905),(InVal=24.197102),(InVal=24.298950),(InVal=24.397102),(InVal=24.547100),(InVal=26.024158),(InVal=26.193266),(InVal=26.293264),(InVal=26.393267),(InVal=26.543264),(InVal=27.999542),(InVal=28.101969),(InVal=28.301193),(InVal=28.506247),(InVal=28.706247)))
+         LookupTrack=(Points=((Time=1.001971),(Time=1.101971),(Time=1.201971),(Time=1.351971),(Time=3.998021),(Time=4.298020),(Time=4.397491),(Time=4.499105),(Time=4.648436),(Time=6.999187),(Time=7.301323),(Time=7.400047),(Time=7.501323),(Time=7.651323),(Time=13.003817),(Time=17.996552),(Time=23.994905),(Time=24.197102),(Time=24.298950),(Time=24.397102),(Time=24.547100),(Time=26.024158),(Time=26.193266),(Time=26.293264),(Time=26.393267),(Time=26.543264),(Time=27.999542),(Time=28.101969),(Time=28.301193),(Time=28.506247),(Time=28.706247)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_29"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_29.InterpTrackMove_29'
-      GroupName="5bit1"
-      GroupColor=(B=131,G=200,R=0,A=255)
-      Name="InterpGroup_29"
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackAkEvent_24'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackAkEvent_25'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackAkEvent_26'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackAkEvent_27'
+      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackAkEvent_28'
+      GroupName="3bit1"
+      GroupColor=(B=195,G=138,R=0,A=255)
+      Name="InterpGroup_15"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_22
@@ -15974,123 +16062,35 @@ Begin Object Class=InterpData Name=InterpData_70
       Name="InterpGroup_22"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_15
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InVal=1.001971),(InVal=1.101971,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=1.201971,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=1.351971,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.998021,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=4.298020,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=4.397491,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=4.499105,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=4.648436,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.999187,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.301323,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.400047,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=7.501323,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=7.651323,OutVal=(X=416.011719,Y=-0.027344,Z=-0.001297)),(InVal=13.003817,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=17.996552,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=23.994905,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=24.197102,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=24.298950,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=24.397102,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=24.547100,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.024158,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=26.193266,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=26.293264,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=26.393267,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=26.543264,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=27.999542,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=28.101969,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.301193,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.506247,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=28.706247,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=1.001971),(InVal=1.101971),(InVal=1.201971),(InVal=1.351971),(InVal=3.998021),(InVal=4.298020),(InVal=4.397491),(InVal=4.499105),(InVal=4.648436),(InVal=6.999187),(InVal=7.301323),(InVal=7.400047),(InVal=7.501323),(InVal=7.651323),(InVal=13.003817),(InVal=17.996552),(InVal=23.994905),(InVal=24.197102),(InVal=24.298950),(InVal=24.397102),(InVal=24.547100),(InVal=26.024158),(InVal=26.193266),(InVal=26.293264),(InVal=26.393267),(InVal=26.543264),(InVal=27.999542),(InVal=28.101969),(InVal=28.301193),(InVal=28.506247),(InVal=28.706247)))
-         LookupTrack=(Points=((Time=1.001971),(Time=1.101971),(Time=1.201971),(Time=1.351971),(Time=3.998021),(Time=4.298020),(Time=4.397491),(Time=4.499105),(Time=4.648436),(Time=6.999187),(Time=7.301323),(Time=7.400047),(Time=7.501323),(Time=7.651323),(Time=13.003817),(Time=17.996552),(Time=23.994905),(Time=24.197102),(Time=24.298950),(Time=24.397102),(Time=24.547100),(Time=26.024158),(Time=26.193266),(Time=26.293264),(Time=26.393267),(Time=26.543264),(Time=27.999542),(Time=28.101969),(Time=28.301193),(Time=28.506247),(Time=28.706247)))
+   Begin Object Class=InterpGroup Name=InterpGroup_29
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_29
+         PosTrack=(Points=((InVal=2.012655),(InVal=2.112655,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=2.212655,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=2.362655,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=4.998540,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=5.298540,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=5.398010,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=5.499625,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=5.648954,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=8.008414,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.310551,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.409274,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=8.510550,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=8.660550,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=13.997071,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=19.005781,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=24.995422,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.197618,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.299467,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.397619,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.547617,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.021770,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.190878,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.290876,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.390879,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.540876,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.001511,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.103937,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.303162,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.508215,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.708216,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=2.012655),(InVal=2.112655),(InVal=2.212655),(InVal=2.362655),(InVal=4.998540),(InVal=5.298540),(InVal=5.398010),(InVal=5.499625),(InVal=5.648954),(InVal=8.008414),(InVal=8.310551),(InVal=8.409274),(InVal=8.510550),(InVal=8.660550),(InVal=13.997071),(InVal=19.005781),(InVal=24.995422),(InVal=25.197618),(InVal=25.299467),(InVal=25.397619),(InVal=25.547617),(InVal=27.021770),(InVal=27.190878),(InVal=27.290876),(InVal=27.390879),(InVal=27.540876),(InVal=29.001511),(InVal=29.103937),(InVal=29.303162),(InVal=29.508215),(InVal=29.708216)))
+         LookupTrack=(Points=((Time=2.012655),(Time=2.112655),(Time=2.212655),(Time=2.362655),(Time=4.998540),(Time=5.298540),(Time=5.398010),(Time=5.499625),(Time=5.648954),(Time=8.008414),(Time=8.310551),(Time=8.409274),(Time=8.510550),(Time=8.660550),(Time=13.997071),(Time=19.005781),(Time=24.995422),(Time=25.197618),(Time=25.299467),(Time=25.397619),(Time=25.547617),(Time=27.021770),(Time=27.190878),(Time=27.290876),(Time=27.390879),(Time=27.540876),(Time=29.001511),(Time=29.103937),(Time=29.303162),(Time=29.508215),(Time=29.708216)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
+         Name="InterpTrackMove_29"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_28
-         AkEvents(0)=(Time=13.003817,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=28.439447,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_28"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_27
-         AkEvents(0)=(Time=7.651323,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=17.996552,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_27"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_26
-         AkEvents(0)=(Time=4.355691,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(1)=(Time=23.994558,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(2)=(Time=26.020153,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         Name="InterpTrackAkEvent_26"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_25
-         AkEvents(0)=(Time=28.439447,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_25"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_24
-         AkEvents(0)=(Time=1.373310,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(1)=(Time=7.651323,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_24"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackAkEvent_24'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackAkEvent_25'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackAkEvent_26'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackAkEvent_27'
-      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_15.InterpTrackAkEvent_28'
-      GroupName="3bit1"
-      GroupColor=(B=195,G=138,R=0,A=255)
-      Name="InterpGroup_15"
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_29.InterpTrackMove_29'
+      GroupName="5bit1"
+      GroupColor=(B=131,G=200,R=0,A=255)
+      Name="InterpGroup_29"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.011719,Y=-0.025391,Z=-0.001221),InterpMode=CIM_CurveAutoClamped),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.001847,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=17.001844,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.011719,Y=-0.025391,Z=-0.001343),InterpMode=CIM_CurveAutoClamped),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477,InterpMode=CIM_CurveAutoClamped),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=12.001847),(InVal=17.001844),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395,InterpMode=CIM_CurveAutoClamped),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
-         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=12.001847),(Time=17.001844),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_23
+         PosTrack=(Points=((InVal=2.998652),(InVal=3.098652,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.198652,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.348652,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.001964,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.301963,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.401434,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.503048,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.652379,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.010386,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.312523,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.411246,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.512523,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.662522,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.007756,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=20.000490,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=25.998842,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.201038,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.302887,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.401039,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.551037,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.999056,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.168163,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.268162,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.368164,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.518162,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.996218,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.098644,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.297869,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.502922,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.702923,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=2.998652),(InVal=3.098652),(InVal=3.198652),(InVal=3.348652),(InVal=6.001964),(InVal=6.301963),(InVal=6.401434),(InVal=6.503048),(InVal=6.652379),(InVal=9.010386),(InVal=9.312523),(InVal=9.411246),(InVal=9.512523),(InVal=9.662522),(InVal=15.007756),(InVal=20.000490),(InVal=25.998842),(InVal=26.201038),(InVal=26.302887),(InVal=26.401039),(InVal=26.551037),(InVal=27.999056),(InVal=28.168163),(InVal=28.268162),(InVal=28.368164),(InVal=28.518162),(InVal=29.996218),(InVal=30.098644),(InVal=30.297869),(InVal=30.502922),(InVal=30.702923)))
+         LookupTrack=(Points=((Time=2.998652),(Time=3.098652),(Time=3.198652),(Time=3.348652),(Time=6.001964),(Time=6.301963),(Time=6.401434),(Time=6.503048),(Time=6.652379),(Time=9.010386),(Time=9.312523),(Time=9.411246),(Time=9.512523),(Time=9.662522),(Time=15.007756),(Time=20.000490),(Time=25.998842),(Time=26.201038),(Time=26.302887),(Time=26.401039),(Time=26.551037),(Time=27.999056),(Time=28.168163),(Time=28.268162),(Time=28.368164),(Time=28.518162),(Time=29.996218),(Time=30.098644),(Time=30.297869),(Time=30.502922),(Time=30.702923)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_23"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_23
-         AkEvents(0)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=27.154331,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_23"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_21
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_21"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_19
-         AkEvents(0)=(Time=3.000591,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(1)=(Time=3.653727,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(2)=(Time=6.496035,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(3)=(Time=23.551277,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(4)=(Time=25.300735,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(5)=(Time=26.997574,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         Name="InterpTrackAkEvent_19"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_18
-         AkEvents(0)=(Time=6.004477,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(1)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(2)=(Time=23.000198,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(3)=(Time=27.627373,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_18"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_16
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(1)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_16"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackAkEvent_16'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackAkEvent_18'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackAkEvent_19'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackAkEvent_21'
-      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0.InterpTrackAkEvent_23'
-      GroupName="bit1"
-      GroupColor=(B=184,G=153,R=0,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_8.InterpTrackMove_23'
+      GroupName="2bit1"
+      GroupColor=(B=204,G=0,R=126,A=255)
+      Name="InterpGroup_8"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=32.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_70.InterpGroup_0'
@@ -16170,128 +16170,37 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_71
 End Object
 
 Begin Object Class=InterpData Name=InterpData_26
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_23
-         PosTrack=(Points=((InVal=2.998652),(InVal=3.098652,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.198652,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.348652,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.001964,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.301963,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.401434,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.503048,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.652379,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.010386,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.312523,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.411246,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.512523,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.662522,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.007756,OutVal=(X=1557.759766,Y=-0.031250,Z=-0.001343)),(InVal=20.000490,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=25.998842,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.201038,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.302887,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.401039,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.551037,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.999056,OutVal=(X=176.007813,Y=-0.015625,Z=-0.000549),InterpMode=CIM_CurveAutoClamped),(InVal=27.999056,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.168163,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.268162,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.368164,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.518162,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.996218,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.098644,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.297869,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.502922,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.702923,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=2.998652),(InVal=3.098652),(InVal=3.198652),(InVal=3.348652),(InVal=6.001964),(InVal=6.301963),(InVal=6.401434),(InVal=6.503048),(InVal=6.652379),(InVal=9.010386),(InVal=9.312523),(InVal=9.411246),(InVal=9.512523),(InVal=9.662522),(InVal=15.007756),(InVal=20.000490),(InVal=25.998842),(InVal=26.201038),(InVal=26.302887),(InVal=26.401039),(InVal=26.551037),(InVal=27.999056,InterpMode=CIM_CurveAutoClamped),(InVal=27.999056),(InVal=28.168163),(InVal=28.268162),(InVal=28.368164),(InVal=28.518162),(InVal=29.996218),(InVal=30.098644),(InVal=30.297869),(InVal=30.502922),(InVal=30.702923)))
-         LookupTrack=(Points=((Time=2.998652),(Time=3.098652),(Time=3.198652),(Time=3.348652),(Time=6.001964),(Time=6.301963),(Time=6.401434),(Time=6.503048),(Time=6.652379),(Time=9.010386),(Time=9.312523),(Time=9.411246),(Time=9.512523),(Time=9.662522),(Time=15.007756),(Time=20.000490),(Time=25.998842),(Time=26.201038),(Time=26.302887),(Time=26.401039),(Time=26.551037),(Time=27.999056),(Time=27.999056),(Time=28.168163),(Time=28.268162),(Time=28.368164),(Time=28.518162),(Time=29.996218),(Time=30.098644),(Time=30.297869),(Time=30.502922),(Time=30.702923)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_23"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_67
-         AkEvents(0)=(Time=6.001964,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(1)=(Time=8.992362,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(2)=(Time=25.998842,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(3)=(Time=27.999056,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(4)=(Time=29.996218,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         Name="InterpTrackAkEvent_67"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_64
-         AkEvents(0)=(Time=15.007756,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(1)=(Time=30.502922,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_64"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_61
-         AkEvents(0)=(Time=2.991181,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(1)=(Time=20.000490,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_61"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_58
-         AkEvents(0)=(Time=15.007756,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=30.502922,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_58"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_55
-         AkEvents(0)=(Time=2.991181,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=20.000490,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_55"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackMove_23'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackAkEvent_55'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackAkEvent_58'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackAkEvent_61'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackAkEvent_64'
-      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackAkEvent_67'
-      GroupName="2bit1"
-      GroupColor=(B=204,G=0,R=126,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_15
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InVal=1.001971),(InVal=1.101971,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=1.201971,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=1.351971,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.998021,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=4.298020,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=4.397491,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=4.499105,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=4.648436,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.999187,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.301323,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.400047,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=7.501323,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=7.651323,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=13.003817,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=17.996552,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=23.994905,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=24.197102,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=24.298950,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=24.397102,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=24.547100,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.024158,OutVal=(X=176.003906,Y=-0.013672,Z=-0.000549),InterpMode=CIM_CurveAutoClamped),(InVal=26.024158,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=26.193266,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=26.293264,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=26.393267,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=26.543264,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=27.999542,OutVal=(X=20.015625,Y=-0.029297,Z=-0.001404),InterpMode=CIM_CurveAutoClamped),(InVal=27.999542,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=28.101969,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.301193,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.506247,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=28.706247,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=1.001971),(InVal=1.101971),(InVal=1.201971),(InVal=1.351971),(InVal=3.998021),(InVal=4.298020),(InVal=4.397491),(InVal=4.499105),(InVal=4.648436),(InVal=6.999187),(InVal=7.301323),(InVal=7.400047),(InVal=7.501323),(InVal=7.651323),(InVal=13.003817),(InVal=17.996552),(InVal=23.994905),(InVal=24.197102),(InVal=24.298950),(InVal=24.397102),(InVal=24.547100),(InVal=26.024158,InterpMode=CIM_CurveAutoClamped),(InVal=26.024158),(InVal=26.193266),(InVal=26.293264),(InVal=26.393267),(InVal=26.543264),(InVal=27.999542,InterpMode=CIM_CurveAutoClamped),(InVal=27.999542),(InVal=28.101969),(InVal=28.301193),(InVal=28.506247),(InVal=28.706247)))
-         LookupTrack=(Points=((Time=1.001971),(Time=1.101971),(Time=1.201971),(Time=1.351971),(Time=3.998021),(Time=4.298020),(Time=4.397491),(Time=4.499105),(Time=4.648436),(Time=6.999187),(Time=7.301323),(Time=7.400047),(Time=7.501323),(Time=7.651323),(Time=13.003817),(Time=17.996552),(Time=23.994905),(Time=24.197102),(Time=24.298950),(Time=24.397102),(Time=24.547100),(Time=26.024158),(Time=26.024158),(Time=26.193266),(Time=26.293264),(Time=26.393267),(Time=26.543264),(Time=27.999542),(Time=27.999542),(Time=28.101969),(Time=28.301193),(Time=28.506247),(Time=28.706247)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_68
-         AkEvents(0)=(Time=3.998021,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(1)=(Time=6.999187,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(2)=(Time=23.994905,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(3)=(Time=26.024158,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(4)=(Time=27.999542,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         Name="InterpTrackAkEvent_68"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_65
-         AkEvents(0)=(Time=13.003817,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(1)=(Time=28.506247,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_65"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_62
-         AkEvents(0)=(Time=0.997061,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(1)=(Time=17.996552,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_62"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_59
-         AkEvents(0)=(Time=13.003817,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=28.506247,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_59"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_56
-         AkEvents(0)=(Time=0.997061,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=17.996552,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_56"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackAkEvent_56'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackAkEvent_59'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackAkEvent_62'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackAkEvent_65'
-      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackAkEvent_68'
-      GroupName="3bit1"
-      GroupColor=(B=195,G=138,R=0,A=255)
-      Name="InterpGroup_15"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.001847,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=17.001844,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.019531,Y=-0.025391,Z=-0.001404),InterpMode=CIM_CurveAutoClamped),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=12.001847),(InVal=17.001844),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574,InterpMode=CIM_CurveAutoClamped),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
-         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=12.001847),(Time=17.001844),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_49
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_49"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_50
+         AkEvents(0)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=26.997574,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_50"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_51
+         AkEvents(0)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_51"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_52
+         AkEvents(0)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(1)=(Time=27.504278,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_52"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
       Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_53
          AkEvents(0)=(Time=3.003312,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
@@ -16302,32 +16211,13 @@ Begin Object Class=InterpData Name=InterpData_26
          Name="InterpTrackAkEvent_53"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_52
-         AkEvents(0)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(1)=(Time=27.504278,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_52"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_51
-         AkEvents(0)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_51"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_50
-         AkEvents(0)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=26.997574,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_50"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_49
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_49"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.001847,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=17.001844,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.019531,Y=-0.025391,Z=-0.001404),InterpMode=CIM_CurveAutoClamped),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=12.001847),(InVal=17.001844),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574,InterpMode=CIM_CurveAutoClamped),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
+         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=12.001847),(Time=17.001844),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_0.InterpTrackMove_0'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_0.InterpTrackAkEvent_49'
@@ -16340,9 +16230,119 @@ Begin Object Class=InterpData Name=InterpData_26
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_15
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_56
+         AkEvents(0)=(Time=0.997061,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=17.996552,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_56"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_59
+         AkEvents(0)=(Time=13.003817,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=28.506247,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_59"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_62
+         AkEvents(0)=(Time=0.997061,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(1)=(Time=17.996552,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_62"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_65
+         AkEvents(0)=(Time=13.003817,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(1)=(Time=28.506247,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_65"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_68
+         AkEvents(0)=(Time=3.998021,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(1)=(Time=6.999187,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(2)=(Time=23.994905,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(3)=(Time=26.024158,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(4)=(Time=27.999542,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         Name="InterpTrackAkEvent_68"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InVal=1.001971),(InVal=1.101971,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=1.201971,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=1.351971,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.998021,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=4.298020,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=4.397491,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=4.499105,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=4.648436,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.999187,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.301323,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.400047,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=7.501323,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=7.651323,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=13.003817,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=17.996552,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=23.994905,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=24.197102,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=24.298950,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=24.397102,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=24.547100,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.024158,OutVal=(X=176.003906,Y=-0.013672,Z=-0.000549),InterpMode=CIM_CurveAutoClamped),(InVal=26.024158,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=26.193266,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=26.293264,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=26.393267,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=26.543264,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=27.999542,OutVal=(X=20.015625,Y=-0.029297,Z=-0.001404),InterpMode=CIM_CurveAutoClamped),(InVal=27.999542,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=28.101969,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.301193,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.506247,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=28.706247,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=1.001971),(InVal=1.101971),(InVal=1.201971),(InVal=1.351971),(InVal=3.998021),(InVal=4.298020),(InVal=4.397491),(InVal=4.499105),(InVal=4.648436),(InVal=6.999187),(InVal=7.301323),(InVal=7.400047),(InVal=7.501323),(InVal=7.651323),(InVal=13.003817),(InVal=17.996552),(InVal=23.994905),(InVal=24.197102),(InVal=24.298950),(InVal=24.397102),(InVal=24.547100),(InVal=26.024158,InterpMode=CIM_CurveAutoClamped),(InVal=26.024158),(InVal=26.193266),(InVal=26.293264),(InVal=26.393267),(InVal=26.543264),(InVal=27.999542,InterpMode=CIM_CurveAutoClamped),(InVal=27.999542),(InVal=28.101969),(InVal=28.301193),(InVal=28.506247),(InVal=28.706247)))
+         LookupTrack=(Points=((Time=1.001971),(Time=1.101971),(Time=1.201971),(Time=1.351971),(Time=3.998021),(Time=4.298020),(Time=4.397491),(Time=4.499105),(Time=4.648436),(Time=6.999187),(Time=7.301323),(Time=7.400047),(Time=7.501323),(Time=7.651323),(Time=13.003817),(Time=17.996552),(Time=23.994905),(Time=24.197102),(Time=24.298950),(Time=24.397102),(Time=24.547100),(Time=26.024158),(Time=26.024158),(Time=26.193266),(Time=26.293264),(Time=26.393267),(Time=26.543264),(Time=27.999542),(Time=27.999542),(Time=28.101969),(Time=28.301193),(Time=28.506247),(Time=28.706247)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackAkEvent_56'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackAkEvent_59'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackAkEvent_62'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackAkEvent_65'
+      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_15.InterpTrackAkEvent_68'
+      GroupName="3bit1"
+      GroupColor=(B=195,G=138,R=0,A=255)
+      Name="InterpGroup_15"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_55
+         AkEvents(0)=(Time=2.991181,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=20.000490,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_55"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_58
+         AkEvents(0)=(Time=15.007756,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=30.502922,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_58"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_61
+         AkEvents(0)=(Time=2.991181,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(1)=(Time=20.000490,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_61"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_64
+         AkEvents(0)=(Time=15.007756,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(1)=(Time=30.502922,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_64"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_67
+         AkEvents(0)=(Time=6.001964,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(1)=(Time=8.992362,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(2)=(Time=25.998842,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(3)=(Time=27.999056,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(4)=(Time=29.996218,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         Name="InterpTrackAkEvent_67"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_23
+         PosTrack=(Points=((InVal=2.998652),(InVal=3.098652,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.198652,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.348652,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.001964,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.301963,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.401434,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.503048,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.652379,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.010386,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.312523,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.411246,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.512523,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.662522,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.007756,OutVal=(X=1557.759766,Y=-0.031250,Z=-0.001343)),(InVal=20.000490,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=25.998842,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.201038,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.302887,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.401039,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.551037,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.999056,OutVal=(X=176.007813,Y=-0.015625,Z=-0.000549),InterpMode=CIM_CurveAutoClamped),(InVal=27.999056,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.168163,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.268162,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.368164,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.518162,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.996218,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.098644,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.297869,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.502922,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.702923,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=2.998652),(InVal=3.098652),(InVal=3.198652),(InVal=3.348652),(InVal=6.001964),(InVal=6.301963),(InVal=6.401434),(InVal=6.503048),(InVal=6.652379),(InVal=9.010386),(InVal=9.312523),(InVal=9.411246),(InVal=9.512523),(InVal=9.662522),(InVal=15.007756),(InVal=20.000490),(InVal=25.998842),(InVal=26.201038),(InVal=26.302887),(InVal=26.401039),(InVal=26.551037),(InVal=27.999056,InterpMode=CIM_CurveAutoClamped),(InVal=27.999056),(InVal=28.168163),(InVal=28.268162),(InVal=28.368164),(InVal=28.518162),(InVal=29.996218),(InVal=30.098644),(InVal=30.297869),(InVal=30.502922),(InVal=30.702923)))
+         LookupTrack=(Points=((Time=2.998652),(Time=3.098652),(Time=3.198652),(Time=3.348652),(Time=6.001964),(Time=6.301963),(Time=6.401434),(Time=6.503048),(Time=6.652379),(Time=9.010386),(Time=9.312523),(Time=9.411246),(Time=9.512523),(Time=9.662522),(Time=15.007756),(Time=20.000490),(Time=25.998842),(Time=26.201038),(Time=26.302887),(Time=26.401039),(Time=26.551037),(Time=27.999056),(Time=27.999056),(Time=28.168163),(Time=28.268162),(Time=28.368164),(Time=28.518162),(Time=29.996218),(Time=30.098644),(Time=30.297869),(Time=30.502922),(Time=30.702923)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_23"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackMove_23'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackAkEvent_55'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackAkEvent_58'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackAkEvent_61'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackAkEvent_64'
+      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_8.InterpTrackAkEvent_67'
+      GroupName="2bit1"
+      GroupColor=(B=204,G=0,R=126,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=32.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_0'
@@ -16448,34 +16448,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_93
 End Object
 
 Begin Object Class=InterpData Name=InterpData_94
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=(,(InVal=2.500000,OutVal=(X=0.000000,Y=0.000000,Z=-1674.835693)),(InVal=6.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2240.000977)),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2240.001953)),(InVal=12.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2080.002441)),(InVal=16.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.002930))))
-         EulerTrack=(Points=(,(InVal=2.500000),(InVal=6.000000),(InVal=10.000000),(InVal=12.000000),(InVal=16.000000)))
-         LookupTrack=(Points=(,(Time=2.500000),(Time=6.000000),(Time=10.000000),(Time=12.000000),(Time=16.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_47
-         AkEvents(0)=(Time=2.500000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(1)=(Time=12.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         TrackTitle="AkEvent(Thump)"
-         Name="InterpTrackAkEvent_47"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_46
-         AkEvents(0)=(Time=6.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         AkEvents(1)=(Time=16.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_46"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_45
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         AkEvents(1)=(Time=10.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_45"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_43
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         AkEvents(1)=(Time=10.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_43"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
       Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_44
@@ -16485,12 +16467,34 @@ Begin Object Class=InterpData Name=InterpData_94
          Name="InterpTrackAkEvent_44"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_43
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         AkEvents(1)=(Time=10.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_43"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_45
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         AkEvents(1)=(Time=10.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_45"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_46
+         AkEvents(0)=(Time=6.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         AkEvents(1)=(Time=16.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_46"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_47
+         AkEvents(0)=(Time=2.500000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(1)=(Time=12.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         TrackTitle="AkEvent(Thump)"
+         Name="InterpTrackAkEvent_47"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=(,(InVal=2.500000,OutVal=(X=0.000000,Y=0.000000,Z=-1674.835693)),(InVal=6.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2240.000977)),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2240.001953)),(InVal=12.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2080.002441)),(InVal=16.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.002930))))
+         EulerTrack=(Points=(,(InVal=2.500000),(InVal=6.000000),(InVal=10.000000),(InVal=12.000000),(InVal=16.000000)))
+         LookupTrack=(Points=(,(Time=2.500000),(Time=6.000000),(Time=10.000000),(Time=12.000000),(Time=16.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_94.InterpGroup_1.InterpTrackMove_2'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_94.InterpGroup_1.InterpTrackAkEvent_43'
@@ -16502,10 +16506,6 @@ Begin Object Class=InterpData Name=InterpData_94
       GroupColor=(B=0,G=222,R=79,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_94.InterpGroup_1'
@@ -16557,71 +16557,38 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_19
 End Object
 
 Begin Object Class=InterpData Name=InterpData_20
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_23
-         PosTrack=(Points=((InVal=2.998652),(InVal=3.098652,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.198652,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.348652,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.001964,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.301963,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.401434,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.503048,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.652379,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.010386,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.312523,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.411246,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.512523,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.662522,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.007756,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=20.000490,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=25.998842,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.201038,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.302887,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.401039,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.551037,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.999056,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.168163,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.268162,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.368164,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.518162,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.996218,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.098644,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.297869,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.502922,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.702923,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=2.998652),(InVal=3.098652),(InVal=3.198652),(InVal=3.348652),(InVal=6.001964),(InVal=6.301963),(InVal=6.401434),(InVal=6.503048),(InVal=6.652379),(InVal=9.010386),(InVal=9.312523),(InVal=9.411246),(InVal=9.512523),(InVal=9.662522),(InVal=15.007756),(InVal=20.000490),(InVal=25.998842),(InVal=26.201038),(InVal=26.302887),(InVal=26.401039),(InVal=26.551037),(InVal=27.999056),(InVal=28.168163),(InVal=28.268162),(InVal=28.368164),(InVal=28.518162),(InVal=29.996218),(InVal=30.098644),(InVal=30.297869),(InVal=30.502922),(InVal=30.702923)))
-         LookupTrack=(Points=((Time=2.998652),(Time=3.098652),(Time=3.198652),(Time=3.348652),(Time=6.001964),(Time=6.301963),(Time=6.401434),(Time=6.503048),(Time=6.652379),(Time=9.010386),(Time=9.312523),(Time=9.411246),(Time=9.512523),(Time=9.662522),(Time=15.007756),(Time=20.000490),(Time=25.998842),(Time=26.201038),(Time=26.302887),(Time=26.401039),(Time=26.551037),(Time=27.999056),(Time=28.168163),(Time=28.268162),(Time=28.368164),(Time=28.518162),(Time=29.996218),(Time=30.098644),(Time=30.297869),(Time=30.502922),(Time=30.702923)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_23"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_42
-         AkEvents(0)=(Time=6.301963,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         AkEvents(1)=(Time=9.650794,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         AkEvents(2)=(Time=26.186949,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         AkEvents(3)=(Time=28.312763,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         TrackTitle="AkEvent(Thump)"
-         Name="InterpTrackAkEvent_42"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_41
-         AkEvents(0)=(Time=3.098652,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
-         AkEvents(1)=(Time=20.000490,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_41"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_40
-         AkEvents(0)=(Time=3.098652,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
-         AkEvents(1)=(Time=20.000490,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
-         TrackTitle="AkEvent(Unlock)"
-         Name="InterpTrackAkEvent_40"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_39
-         AkEvents(0)=(Time=15.007756,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
-         AkEvents(1)=(Time=30.502922,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
-         TrackTitle="AkEvent(Lock)"
-         Name="InterpTrackAkEvent_39"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_38
-         AkEvents(0)=(Time=15.007756,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
-         AkEvents(1)=(Time=30.502922,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_38"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackMove_23'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackAkEvent_38'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackAkEvent_39'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackAkEvent_40'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackAkEvent_41'
-      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackAkEvent_42'
-      GroupName="2bit1"
-      GroupColor=(B=204,G=0,R=126,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.001847,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=17.001844,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=12.001847),(InVal=17.001844),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
-         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=12.001847),(Time=17.001844),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_32
+         AkEvents(0)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
+         AkEvents(1)=(Time=27.299225,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_32"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_34
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
+         AkEvents(1)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
+         AkEvents(2)=(Time=27.504278,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
+         TrackTitle="AkEvent(Lock)"
+         Name="InterpTrackAkEvent_34"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_35
+         AkEvents(0)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
+         TrackTitle="AkEvent(Unlock)"
+         Name="InterpTrackAkEvent_35"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_36
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
+         AkEvents(1)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_36"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
       Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_37
          AkEvents(0)=(Time=3.003312,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
@@ -16633,33 +16600,13 @@ Begin Object Class=InterpData Name=InterpData_20
          Name="InterpTrackAkEvent_37"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_36
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
-         AkEvents(1)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_36"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_35
-         AkEvents(0)=(Time=17.001844,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
-         TrackTitle="AkEvent(Unlock)"
-         Name="InterpTrackAkEvent_35"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_34
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
-         AkEvents(1)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
-         AkEvents(2)=(Time=27.504278,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
-         TrackTitle="AkEvent(Lock)"
-         Name="InterpTrackAkEvent_34"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_32
-         AkEvents(0)=(Time=12.001847,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
-         AkEvents(1)=(Time=27.299225,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_32"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.001847,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=17.001844,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=12.001847),(InVal=17.001844),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
+         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=12.001847),(Time=17.001844),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_0.InterpTrackMove_0'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_0.InterpTrackAkEvent_32'
@@ -16672,9 +16619,62 @@ Begin Object Class=InterpData Name=InterpData_20
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_38
+         AkEvents(0)=(Time=15.007756,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
+         AkEvents(1)=(Time=30.502922,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_38"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_39
+         AkEvents(0)=(Time=15.007756,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
+         AkEvents(1)=(Time=30.502922,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
+         TrackTitle="AkEvent(Lock)"
+         Name="InterpTrackAkEvent_39"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_40
+         AkEvents(0)=(Time=3.098652,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
+         AkEvents(1)=(Time=20.000490,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
+         TrackTitle="AkEvent(Unlock)"
+         Name="InterpTrackAkEvent_40"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_41
+         AkEvents(0)=(Time=3.098652,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
+         AkEvents(1)=(Time=20.000490,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_41"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_42
+         AkEvents(0)=(Time=6.301963,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         AkEvents(1)=(Time=9.650794,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         AkEvents(2)=(Time=26.186949,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         AkEvents(3)=(Time=28.312763,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         TrackTitle="AkEvent(Thump)"
+         Name="InterpTrackAkEvent_42"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_23
+         PosTrack=(Points=((InVal=2.998652),(InVal=3.098652,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.198652,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.348652,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.001964,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.301963,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.401434,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.503048,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.652379,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.010386,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.312523,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.411246,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.512523,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.662522,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.007756,OutVal=(X=1557.758301,Y=-0.029297,Z=-0.001282)),(InVal=20.000490,OutVal=(X=1557.759277,Y=-0.030273,Z=-0.001404)),(InVal=25.998842,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.201038,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.302887,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.401039,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.551037,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=27.999056,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.168163,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.268162,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.368164,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.518162,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=29.996218,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.098644,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.297869,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.502922,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.702923,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=2.998652),(InVal=3.098652),(InVal=3.198652),(InVal=3.348652),(InVal=6.001964),(InVal=6.301963),(InVal=6.401434),(InVal=6.503048),(InVal=6.652379),(InVal=9.010386),(InVal=9.312523),(InVal=9.411246),(InVal=9.512523),(InVal=9.662522),(InVal=15.007756),(InVal=20.000490),(InVal=25.998842),(InVal=26.201038),(InVal=26.302887),(InVal=26.401039),(InVal=26.551037),(InVal=27.999056),(InVal=28.168163),(InVal=28.268162),(InVal=28.368164),(InVal=28.518162),(InVal=29.996218),(InVal=30.098644),(InVal=30.297869),(InVal=30.502922),(InVal=30.702923)))
+         LookupTrack=(Points=((Time=2.998652),(Time=3.098652),(Time=3.198652),(Time=3.348652),(Time=6.001964),(Time=6.301963),(Time=6.401434),(Time=6.503048),(Time=6.652379),(Time=9.010386),(Time=9.312523),(Time=9.411246),(Time=9.512523),(Time=9.662522),(Time=15.007756),(Time=20.000490),(Time=25.998842),(Time=26.201038),(Time=26.302887),(Time=26.401039),(Time=26.551037),(Time=27.999056),(Time=28.168163),(Time=28.268162),(Time=28.368164),(Time=28.518162),(Time=29.996218),(Time=30.098644),(Time=30.297869),(Time=30.502922),(Time=30.702923)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_23"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackMove_23'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackAkEvent_38'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackAkEvent_39'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackAkEvent_40'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackAkEvent_41'
+      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_8.InterpTrackAkEvent_42'
+      GroupName="2bit1"
+      GroupColor=(B=204,G=0,R=126,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=32.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_0'
@@ -16823,206 +16823,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         PosTrack=(Points=((InVal=3.002779),(InVal=3.102779,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.202779,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.352779,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.006093,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.306092,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.405562,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.507177,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.656507,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.007255,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.309390,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.408113,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.509390,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.659389,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=14.002777,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=19.002781,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=26.002979,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.205175,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.307024,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.405176,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.555174,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=28.003189,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.172297,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.272295,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.372297,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.522295,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=30.000355,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.102781,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.302006,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.507059,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.707060,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=3.002779),(InVal=3.102779),(InVal=3.202779),(InVal=3.352779),(InVal=6.006093),(InVal=6.306092),(InVal=6.405562),(InVal=6.507177),(InVal=6.656507),(InVal=9.007255),(InVal=9.309390),(InVal=9.408113),(InVal=9.509390),(InVal=9.659389),(InVal=14.002777),(InVal=19.002781),(InVal=26.002979),(InVal=26.205175),(InVal=26.307024),(InVal=26.405176),(InVal=26.555174),(InVal=28.003189),(InVal=28.172297),(InVal=28.272295),(InVal=28.372297),(InVal=28.522295),(InVal=30.000355),(InVal=30.102781),(InVal=30.302006),(InVal=30.507059),(InVal=30.707060)))
-         LookupTrack=(Points=((Time=3.002779),(Time=3.102779),(Time=3.202779),(Time=3.352779),(Time=6.006093),(Time=6.306092),(Time=6.405562),(Time=6.507177),(Time=6.656507),(Time=9.007255),(Time=9.309390),(Time=9.408113),(Time=9.509390),(Time=9.659389),(Time=14.002777),(Time=19.002781),(Time=26.002979),(Time=26.205175),(Time=26.307024),(Time=26.405176),(Time=26.555174),(Time=28.003189),(Time=28.172297),(Time=28.272295),(Time=28.372297),(Time=28.522295),(Time=30.000355),(Time=30.102781),(Time=30.302006),(Time=30.507059),(Time=30.707060)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_90
-         AkEvents(0)=(Time=3.002779,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(1)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(2)=(Time=26.307024,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_90"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_85
-         AkEvents(0)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(1)=(Time=30.302006,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_85"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_80
-         AkEvents(0)=(Time=3.002779,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_80"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_116
-         AkEvents(0)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=30.302006,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         Name="InterpTrackAkEvent_116"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_8.InterpTrackMove_5'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_8.InterpTrackAkEvent_80'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_8.InterpTrackAkEvent_85'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_8.InterpTrackAkEvent_90'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_8.InterpTrackAkEvent_116'
-      GroupName="2bit1"
-      GroupColor=(B=204,G=0,R=126,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_29
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InVal=1.998946),(InVal=2.098946,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=2.198946,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=2.348946,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=5.002250,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=5.302250,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=5.401720,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=5.503334,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=5.652664,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=8.003410,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.305549,OutVal=(X=416.010742,Y=-0.023438,Z=-0.001282),InterpMode=CIM_CurveAutoClamped),(InVal=8.305549,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.404271,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=8.505548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=8.655548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.998937,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=17.998951,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=24.999149,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.201345,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.303194,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.401346,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.551344,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.999359,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.168467,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.268465,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.368467,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.518465,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=28.996525,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.098951,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.298176,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.503229,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.703230,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=1.998946),(InVal=2.098946),(InVal=2.198946),(InVal=2.348946),(InVal=5.002250),(InVal=5.302250),(InVal=5.401720),(InVal=5.503334),(InVal=5.652664),(InVal=8.003410),(InVal=8.305549,InterpMode=CIM_CurveAutoClamped),(InVal=8.305549),(InVal=8.404271),(InVal=8.505548),(InVal=8.655548),(InVal=12.998937),(InVal=17.998951),(InVal=24.999149),(InVal=25.201345),(InVal=25.303194),(InVal=25.401346),(InVal=25.551344),(InVal=26.999359),(InVal=27.168467),(InVal=27.268465),(InVal=27.368467),(InVal=27.518465),(InVal=28.996525),(InVal=29.098951),(InVal=29.298176),(InVal=29.503229),(InVal=29.703230)))
-         LookupTrack=(Points=((Time=1.998946),(Time=2.098946),(Time=2.198946),(Time=2.348946),(Time=5.002250),(Time=5.302250),(Time=5.401720),(Time=5.503334),(Time=5.652664),(Time=8.003410),(Time=8.305549),(Time=8.305549),(Time=8.404271),(Time=8.505548),(Time=8.655548),(Time=12.998937),(Time=17.998951),(Time=24.999149),(Time=25.201345),(Time=25.303194),(Time=25.401346),(Time=25.551344),(Time=26.999359),(Time=27.168467),(Time=27.268465),(Time=27.368467),(Time=27.518465),(Time=28.996525),(Time=29.098951),(Time=29.298176),(Time=29.503229),(Time=29.703230)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_93
-         AkEvents(0)=(Time=1.998946,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(1)=(Time=17.998951,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_93"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_88
-         AkEvents(0)=(Time=12.998937,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=29.298176,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_88"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_83
-         AkEvents(0)=(Time=1.998946,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=17.998951,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_83"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_118
-         AkEvents(0)=(Time=5.002250,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(1)=(Time=8.305549,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(2)=(Time=12.998937,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(3)=(Time=24.999149,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
-         AkEvents(4)=(Time=29.298176,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         Name="InterpTrackAkEvent_118"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_29.InterpTrackMove_2'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_29.InterpTrackAkEvent_83'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_29.InterpTrackAkEvent_88'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_29.InterpTrackAkEvent_93'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_29.InterpTrackAkEvent_118'
-      GroupName="5bit1"
-      GroupColor=(B=131,G=200,R=0,A=255)
-      Name="InterpGroup_29"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_22
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InVal=4.003705),(InVal=4.103704,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=4.203704,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=4.353704,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=7.007013,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=7.307014,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=7.406484,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=7.508099,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=7.657428,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=10.008194,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.310330,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.409054,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=10.510330,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=10.660329,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.003726,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=20.003698,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=27.003897,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=27.206093,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=27.307941,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=27.406094,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=27.556091,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=29.004107,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=29.173214,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=29.273212,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=29.373215,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=29.523212,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=31.001272,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=31.103699,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.302923,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.507977,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=31.707977,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=4.003705),(InVal=4.103704),(InVal=4.203704),(InVal=4.353704),(InVal=7.007013),(InVal=7.307014),(InVal=7.406484),(InVal=7.508099),(InVal=7.657428),(InVal=10.008194),(InVal=10.310330),(InVal=10.409054),(InVal=10.510330),(InVal=10.660329),(InVal=15.003726),(InVal=20.003698),(InVal=27.003897),(InVal=27.206093),(InVal=27.307941),(InVal=27.406094),(InVal=27.556091),(InVal=29.004107),(InVal=29.173214),(InVal=29.273212),(InVal=29.373215),(InVal=29.523212),(InVal=31.001272),(InVal=31.103699),(InVal=31.302923),(InVal=31.507977),(InVal=31.707977)))
-         LookupTrack=(Points=((Time=4.003705),(Time=4.103704),(Time=4.203704),(Time=4.353704),(Time=7.007013),(Time=7.307014),(Time=7.406484),(Time=7.508099),(Time=7.657428),(Time=10.008194),(Time=10.310330),(Time=10.409054),(Time=10.510330),(Time=10.660329),(Time=15.003726),(Time=20.003698),(Time=27.003897),(Time=27.206093),(Time=27.307941),(Time=27.406094),(Time=27.556091),(Time=29.004107),(Time=29.173214),(Time=29.273212),(Time=29.373215),(Time=29.523212),(Time=31.001272),(Time=31.103699),(Time=31.302923),(Time=31.507977),(Time=31.707977)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_92
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_92"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_87
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_87"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_82
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_82"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_22.InterpTrackMove_3'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_22.InterpTrackAkEvent_82'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_22.InterpTrackAkEvent_87'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_22.InterpTrackAkEvent_92'
-      GroupName="4bit1"
-      GroupColor=(B=180,G=0,R=159,A=255)
-      Name="InterpGroup_22"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_15
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
-         PosTrack=(Points=((InVal=1.000927),(InVal=1.100927,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=1.200926,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=1.350926,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=4.004237,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=4.304239,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=4.403709,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=4.505324,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=4.654654,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=7.005406,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.307542,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.406265,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=7.507542,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=7.657541,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.000925,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=17.000942,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=24.001141,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=24.203337,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=24.305185,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=24.403337,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=24.553335,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.001350,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=26.170458,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=26.270456,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=26.370459,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=26.520456,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=27.998516,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=28.100943,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.300167,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.505220,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=28.705221,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=1.000927),(InVal=1.100927),(InVal=1.200926),(InVal=1.350926),(InVal=4.004237),(InVal=4.304239),(InVal=4.403709),(InVal=4.505324),(InVal=4.654654),(InVal=7.005406),(InVal=7.307542),(InVal=7.406265),(InVal=7.507542),(InVal=7.657541),(InVal=12.000925),(InVal=17.000942),(InVal=24.001141),(InVal=24.203337),(InVal=24.305185),(InVal=24.403337),(InVal=24.553335),(InVal=26.001350),(InVal=26.170458),(InVal=26.270456),(InVal=26.370459),(InVal=26.520456),(InVal=27.998516),(InVal=28.100943),(InVal=28.300167),(InVal=28.505220),(InVal=28.705221)))
-         LookupTrack=(Points=((Time=1.000927),(Time=1.100927),(Time=1.200926),(Time=1.350926),(Time=4.004237),(Time=4.304239),(Time=4.403709),(Time=4.505324),(Time=4.654654),(Time=7.005406),(Time=7.307542),(Time=7.406265),(Time=7.507542),(Time=7.657541),(Time=12.000925),(Time=17.000942),(Time=24.001141),(Time=24.203337),(Time=24.305185),(Time=24.403337),(Time=24.553335),(Time=26.001350),(Time=26.170458),(Time=26.270456),(Time=26.370459),(Time=26.520456),(Time=27.998516),(Time=28.100943),(Time=28.300167),(Time=28.505220),(Time=28.705221)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_4"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_91
-         AkEvents(0)=(Time=1.000927,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(1)=(Time=17.000942,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_91"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_86
-         AkEvents(0)=(Time=12.000925,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=28.391655,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_86"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_81
-         AkEvents(0)=(Time=17.000942,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_81"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_117
-         AkEvents(0)=(Time=12.000925,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(1)=(Time=28.391655,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         Name="InterpTrackAkEvent_117"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackMove_4'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackAkEvent_81'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackAkEvent_86'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackAkEvent_91'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackAkEvent_117'
-      GroupName="3bit1"
-      GroupColor=(B=195,G=138,R=0,A=255)
-      Name="InterpGroup_15"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=11.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=16.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=11.000000),(InVal=16.000000),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
-         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=11.000000),(Time=16.000000),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_78
-         TrackTitle="AkEvent(Thump)"
-         Name="InterpTrackAkEvent_78"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_77
-         AkEvents(0)=(Time=11.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(1)=(Time=27.100000,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_77"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_76
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         AkEvents(1)=(Time=16.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_76"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_74
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=16.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_74"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
       Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_75
@@ -17032,12 +16842,32 @@ Begin Object Class=InterpData Name=InterpData_0
          Name="InterpTrackAkEvent_75"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_74
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         AkEvents(1)=(Time=16.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_74"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_76
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(1)=(Time=16.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_76"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_77
+         AkEvents(0)=(Time=11.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(1)=(Time=27.100000,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_77"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_78
+         TrackTitle="AkEvent(Thump)"
+         Name="InterpTrackAkEvent_78"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=11.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=16.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=11.000000),(InVal=16.000000),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
+         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=11.000000),(Time=16.000000),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackMove_0'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0.InterpTrackAkEvent_74'
@@ -17050,9 +16880,179 @@ Begin Object Class=InterpData Name=InterpData_0
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_15
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_117
+         AkEvents(0)=(Time=12.000925,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(1)=(Time=28.391655,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         Name="InterpTrackAkEvent_117"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_81
+         AkEvents(0)=(Time=17.000942,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_81"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_86
+         AkEvents(0)=(Time=12.000925,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=28.391655,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_86"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_91
+         AkEvents(0)=(Time=1.000927,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(1)=(Time=17.000942,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_91"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
+         PosTrack=(Points=((InVal=1.000927),(InVal=1.100927,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=1.200926,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=1.350926,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=4.004237,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=4.304239,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=4.403709,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=4.505324,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=4.654654,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=7.005406,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.307542,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=7.406265,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=7.507542,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=7.657541,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.000925,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=17.000942,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=24.001141,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=24.203337,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=24.305185,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=24.403337,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=24.553335,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.001350,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=26.170458,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=26.270456,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=26.370459,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=26.520456,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=27.998516,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=28.100943,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.300167,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=28.505220,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=28.705221,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=1.000927),(InVal=1.100927),(InVal=1.200926),(InVal=1.350926),(InVal=4.004237),(InVal=4.304239),(InVal=4.403709),(InVal=4.505324),(InVal=4.654654),(InVal=7.005406),(InVal=7.307542),(InVal=7.406265),(InVal=7.507542),(InVal=7.657541),(InVal=12.000925),(InVal=17.000942),(InVal=24.001141),(InVal=24.203337),(InVal=24.305185),(InVal=24.403337),(InVal=24.553335),(InVal=26.001350),(InVal=26.170458),(InVal=26.270456),(InVal=26.370459),(InVal=26.520456),(InVal=27.998516),(InVal=28.100943),(InVal=28.300167),(InVal=28.505220),(InVal=28.705221)))
+         LookupTrack=(Points=((Time=1.000927),(Time=1.100927),(Time=1.200926),(Time=1.350926),(Time=4.004237),(Time=4.304239),(Time=4.403709),(Time=4.505324),(Time=4.654654),(Time=7.005406),(Time=7.307542),(Time=7.406265),(Time=7.507542),(Time=7.657541),(Time=12.000925),(Time=17.000942),(Time=24.001141),(Time=24.203337),(Time=24.305185),(Time=24.403337),(Time=24.553335),(Time=26.001350),(Time=26.170458),(Time=26.270456),(Time=26.370459),(Time=26.520456),(Time=27.998516),(Time=28.100943),(Time=28.300167),(Time=28.505220),(Time=28.705221)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_4"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackMove_4'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackAkEvent_81'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackAkEvent_86'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackAkEvent_91'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_15.InterpTrackAkEvent_117'
+      GroupName="3bit1"
+      GroupColor=(B=195,G=138,R=0,A=255)
+      Name="InterpGroup_15"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_22
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_82
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_82"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_87
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_87"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_92
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_92"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InVal=4.003705),(InVal=4.103704,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=4.203704,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=4.353704,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=7.007013,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=7.307014,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=7.406484,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=7.508099,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=7.657428,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=10.008194,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.310330,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.409054,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=10.510330,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=10.660329,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.003726,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=20.003698,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=27.003897,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=27.206093,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=27.307941,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=27.406094,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=27.556091,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=29.004107,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=29.173214,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=29.273212,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=29.373215,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=29.523212,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=31.001272,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=31.103699,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.302923,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.507977,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=31.707977,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=4.003705),(InVal=4.103704),(InVal=4.203704),(InVal=4.353704),(InVal=7.007013),(InVal=7.307014),(InVal=7.406484),(InVal=7.508099),(InVal=7.657428),(InVal=10.008194),(InVal=10.310330),(InVal=10.409054),(InVal=10.510330),(InVal=10.660329),(InVal=15.003726),(InVal=20.003698),(InVal=27.003897),(InVal=27.206093),(InVal=27.307941),(InVal=27.406094),(InVal=27.556091),(InVal=29.004107),(InVal=29.173214),(InVal=29.273212),(InVal=29.373215),(InVal=29.523212),(InVal=31.001272),(InVal=31.103699),(InVal=31.302923),(InVal=31.507977),(InVal=31.707977)))
+         LookupTrack=(Points=((Time=4.003705),(Time=4.103704),(Time=4.203704),(Time=4.353704),(Time=7.007013),(Time=7.307014),(Time=7.406484),(Time=7.508099),(Time=7.657428),(Time=10.008194),(Time=10.310330),(Time=10.409054),(Time=10.510330),(Time=10.660329),(Time=15.003726),(Time=20.003698),(Time=27.003897),(Time=27.206093),(Time=27.307941),(Time=27.406094),(Time=27.556091),(Time=29.004107),(Time=29.173214),(Time=29.273212),(Time=29.373215),(Time=29.523212),(Time=31.001272),(Time=31.103699),(Time=31.302923),(Time=31.507977),(Time=31.707977)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_22.InterpTrackMove_3'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_22.InterpTrackAkEvent_82'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_22.InterpTrackAkEvent_87'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_22.InterpTrackAkEvent_92'
+      GroupName="4bit1"
+      GroupColor=(B=180,G=0,R=159,A=255)
+      Name="InterpGroup_22"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_29
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_118
+         AkEvents(0)=(Time=5.002250,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(1)=(Time=8.305549,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(2)=(Time=12.998937,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(3)=(Time=24.999149,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         AkEvents(4)=(Time=29.298176,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         Name="InterpTrackAkEvent_118"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_83
+         AkEvents(0)=(Time=1.998946,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=17.998951,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_83"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_88
+         AkEvents(0)=(Time=12.998937,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=29.298176,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_88"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_93
+         AkEvents(0)=(Time=1.998946,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(1)=(Time=17.998951,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_93"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InVal=1.998946),(InVal=2.098946,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=2.198946,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=2.348946,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=5.002250,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=5.302250,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=5.401720,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=5.503334,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=5.652664,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=8.003410,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.305549,OutVal=(X=416.010742,Y=-0.023438,Z=-0.001282),InterpMode=CIM_CurveAutoClamped),(InVal=8.305549,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.404271,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=8.505548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=8.655548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.998937,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=17.998951,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=24.999149,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.201345,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.303194,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.401346,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.551344,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.999359,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.168467,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.268465,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.368467,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.518465,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=28.996525,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.098951,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.298176,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.503229,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.703230,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=1.998946),(InVal=2.098946),(InVal=2.198946),(InVal=2.348946),(InVal=5.002250),(InVal=5.302250),(InVal=5.401720),(InVal=5.503334),(InVal=5.652664),(InVal=8.003410),(InVal=8.305549,InterpMode=CIM_CurveAutoClamped),(InVal=8.305549),(InVal=8.404271),(InVal=8.505548),(InVal=8.655548),(InVal=12.998937),(InVal=17.998951),(InVal=24.999149),(InVal=25.201345),(InVal=25.303194),(InVal=25.401346),(InVal=25.551344),(InVal=26.999359),(InVal=27.168467),(InVal=27.268465),(InVal=27.368467),(InVal=27.518465),(InVal=28.996525),(InVal=29.098951),(InVal=29.298176),(InVal=29.503229),(InVal=29.703230)))
+         LookupTrack=(Points=((Time=1.998946),(Time=2.098946),(Time=2.198946),(Time=2.348946),(Time=5.002250),(Time=5.302250),(Time=5.401720),(Time=5.503334),(Time=5.652664),(Time=8.003410),(Time=8.305549),(Time=8.305549),(Time=8.404271),(Time=8.505548),(Time=8.655548),(Time=12.998937),(Time=17.998951),(Time=24.999149),(Time=25.201345),(Time=25.303194),(Time=25.401346),(Time=25.551344),(Time=26.999359),(Time=27.168467),(Time=27.268465),(Time=27.368467),(Time=27.518465),(Time=28.996525),(Time=29.098951),(Time=29.298176),(Time=29.503229),(Time=29.703230)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_29.InterpTrackMove_2'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_29.InterpTrackAkEvent_83'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_29.InterpTrackAkEvent_88'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_29.InterpTrackAkEvent_93'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_29.InterpTrackAkEvent_118'
+      GroupName="5bit1"
+      GroupColor=(B=131,G=200,R=0,A=255)
+      Name="InterpGroup_29"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_116
+         AkEvents(0)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=30.302006,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         Name="InterpTrackAkEvent_116"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_80
+         AkEvents(0)=(Time=3.002779,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         AkEvents(1)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_80"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_85
+         AkEvents(0)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(1)=(Time=30.302006,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_85"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_90
+         AkEvents(0)=(Time=3.002779,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(1)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock')
+         AkEvents(2)=(Time=26.307024,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_90"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         PosTrack=(Points=((InVal=3.002779),(InVal=3.102779,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.202779,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.352779,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.006093,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.306092,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.405562,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.507177,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.656507,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.007255,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.309390,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.408113,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.509390,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.659389,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=14.002777,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=19.002781,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=26.002979,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.205175,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.307024,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.405176,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.555174,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=28.003189,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.172297,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.272295,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.372297,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.522295,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=30.000355,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.102781,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.302006,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.507059,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.707060,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=3.002779),(InVal=3.102779),(InVal=3.202779),(InVal=3.352779),(InVal=6.006093),(InVal=6.306092),(InVal=6.405562),(InVal=6.507177),(InVal=6.656507),(InVal=9.007255),(InVal=9.309390),(InVal=9.408113),(InVal=9.509390),(InVal=9.659389),(InVal=14.002777),(InVal=19.002781),(InVal=26.002979),(InVal=26.205175),(InVal=26.307024),(InVal=26.405176),(InVal=26.555174),(InVal=28.003189),(InVal=28.172297),(InVal=28.272295),(InVal=28.372297),(InVal=28.522295),(InVal=30.000355),(InVal=30.102781),(InVal=30.302006),(InVal=30.507059),(InVal=30.707060)))
+         LookupTrack=(Points=((Time=3.002779),(Time=3.102779),(Time=3.202779),(Time=3.352779),(Time=6.006093),(Time=6.306092),(Time=6.405562),(Time=6.507177),(Time=6.656507),(Time=9.007255),(Time=9.309390),(Time=9.408113),(Time=9.509390),(Time=9.659389),(Time=14.002777),(Time=19.002781),(Time=26.002979),(Time=26.205175),(Time=26.307024),(Time=26.405176),(Time=26.555174),(Time=28.003189),(Time=28.172297),(Time=28.272295),(Time=28.372297),(Time=28.522295),(Time=30.000355),(Time=30.102781),(Time=30.302006),(Time=30.507059),(Time=30.707060)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_8.InterpTrackMove_5'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_8.InterpTrackAkEvent_80'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_8.InterpTrackAkEvent_85'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_8.InterpTrackAkEvent_90'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_8.InterpTrackAkEvent_116'
+      GroupName="2bit1"
+      GroupColor=(B=204,G=0,R=126,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=32.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
@@ -17107,29 +17107,15 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
 End Object
 
 Begin Object Class=InterpData Name=InterpData_25
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=(,(InVal=2.500000,OutVal=(X=0.000000,Y=0.000000,Z=-1674.835693)),(InVal=6.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2240.000977)),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2240.001953)),(InVal=12.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2080.002441)),(InVal=16.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.002930))))
-         EulerTrack=(Points=(,(InVal=2.500000),(InVal=6.000000),(InVal=10.000000),(InVal=12.000000),(InVal=16.000000)))
-         LookupTrack=(Points=(,(Time=2.500000),(Time=6.000000),(Time=10.000000),(Time=12.000000),(Time=16.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_73
-         Name="InterpTrackAkEvent_73"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_72
-         AkEvents(0)=(Time=16.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_72"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_71
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_71"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_69
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
+         TrackTitle="AkEvent(LP_Start"
+         Name="InterpTrackAkEvent_69"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
       Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_70
@@ -17138,11 +17124,29 @@ Begin Object Class=InterpData Name=InterpData_25
          Name="InterpTrackAkEvent_70"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_69
-         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_LP')
-         TrackTitle="AkEvent(LP_Start"
-         Name="InterpTrackAkEvent_69"
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_71
+         AkEvents(0)=(Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Start')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_71"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_72
+         AkEvents(0)=(Time=16.000000,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Crate_Stop')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_72"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_73
+         Name="InterpTrackAkEvent_73"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=(,(InVal=2.500000,OutVal=(X=0.000000,Y=0.000000,Z=-1674.835693)),(InVal=6.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2240.000977)),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2240.001953)),(InVal=12.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2080.002441)),(InVal=16.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.002930))))
+         EulerTrack=(Points=(,(InVal=2.500000),(InVal=6.000000),(InVal=10.000000),(InVal=12.000000),(InVal=16.000000)))
+         LookupTrack=(Points=(,(Time=2.500000),(Time=6.000000),(Time=10.000000),(Time=12.000000),(Time=16.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_1.InterpTrackMove_2'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_1.InterpTrackAkEvent_69'
@@ -17154,10 +17158,6 @@ Begin Object Class=InterpData Name=InterpData_25
       GroupColor=(B=0,G=222,R=79,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_1'
@@ -17230,20 +17230,9 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_27
 End Object
 
 Begin Object Class=InterpData Name=InterpData_27
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         PosTrack=(Points=((InVal=3.002779),(InVal=3.102779,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.202779,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.352779,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.006093,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.306092,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.405562,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.507177,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.656507,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.007255,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.309390,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.408113,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.509390,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.659389,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=14.002777,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=19.002781,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=26.002979,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.205175,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.307024,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.405176,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.555174,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=28.003189,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.172297,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.272295,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.372297,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.522295,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=30.000355,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.102781,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.302006,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.507059,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.707060,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=3.002779),(InVal=3.102779),(InVal=3.202779),(InVal=3.352779),(InVal=6.006093),(InVal=6.306092),(InVal=6.405562),(InVal=6.507177),(InVal=6.656507),(InVal=9.007255),(InVal=9.309390),(InVal=9.408113),(InVal=9.509390),(InVal=9.659389),(InVal=14.002777),(InVal=19.002781),(InVal=26.002979),(InVal=26.205175),(InVal=26.307024),(InVal=26.405176),(InVal=26.555174),(InVal=28.003189),(InVal=28.172297),(InVal=28.272295),(InVal=28.372297),(InVal=28.522295),(InVal=30.000355),(InVal=30.102781),(InVal=30.302006),(InVal=30.507059),(InVal=30.707060)))
-         LookupTrack=(Points=((Time=3.002779),(Time=3.102779),(Time=3.202779),(Time=3.352779),(Time=6.006093),(Time=6.306092),(Time=6.405562),(Time=6.507177),(Time=6.656507),(Time=9.007255),(Time=9.309390),(Time=9.408113),(Time=9.509390),(Time=9.659389),(Time=14.002777),(Time=19.002781),(Time=26.002979),(Time=26.205175),(Time=26.307024),(Time=26.405176),(Time=26.555174),(Time=28.003189),(Time=28.172297),(Time=28.272295),(Time=28.372297),(Time=28.522295),(Time=30.000355),(Time=30.102781),(Time=30.302006),(Time=30.507059),(Time=30.707060)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_8.InterpTrackMove_5'
-      GroupName="2bit1"
-      GroupColor=(B=204,G=0,R=126,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -17260,9 +17249,20 @@ Begin Object Class=InterpData Name=InterpData_27
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         PosTrack=(Points=((InVal=3.002779),(InVal=3.102779,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.202779,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.352779,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.006093,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.306092,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.405562,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.507177,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.656507,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.007255,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.309390,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.408113,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.509390,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.659389,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=14.002777,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=19.002781,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=26.002979,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.205175,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.307024,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.405176,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.555174,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=28.003189,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.172297,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.272295,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.372297,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.522295,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=30.000355,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.102781,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.302006,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.507059,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.707060,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=3.002779),(InVal=3.102779),(InVal=3.202779),(InVal=3.352779),(InVal=6.006093),(InVal=6.306092),(InVal=6.405562),(InVal=6.507177),(InVal=6.656507),(InVal=9.007255),(InVal=9.309390),(InVal=9.408113),(InVal=9.509390),(InVal=9.659389),(InVal=14.002777),(InVal=19.002781),(InVal=26.002979),(InVal=26.205175),(InVal=26.307024),(InVal=26.405176),(InVal=26.555174),(InVal=28.003189),(InVal=28.172297),(InVal=28.272295),(InVal=28.372297),(InVal=28.522295),(InVal=30.000355),(InVal=30.102781),(InVal=30.302006),(InVal=30.507059),(InVal=30.707060)))
+         LookupTrack=(Points=((Time=3.002779),(Time=3.102779),(Time=3.202779),(Time=3.352779),(Time=6.006093),(Time=6.306092),(Time=6.405562),(Time=6.507177),(Time=6.656507),(Time=9.007255),(Time=9.309390),(Time=9.408113),(Time=9.509390),(Time=9.659389),(Time=14.002777),(Time=19.002781),(Time=26.002979),(Time=26.205175),(Time=26.307024),(Time=26.405176),(Time=26.555174),(Time=28.003189),(Time=28.172297),(Time=28.272295),(Time=28.372297),(Time=28.522295),(Time=30.000355),(Time=30.102781),(Time=30.302006),(Time=30.507059),(Time=30.707060)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_8.InterpTrackMove_5'
+      GroupName="2bit1"
+      GroupColor=(B=204,G=0,R=126,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=32.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_0'
@@ -17326,6 +17326,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_28
 End Object
 
 Begin Object Class=InterpData Name=InterpData_28
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
          PosTrack=(Points=(,(InVal=2.500000,OutVal=(X=0.000000,Y=0.000000,Z=-1674.835693)),(InVal=6.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2240.000977)),(InVal=10.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2240.001953)),(InVal=12.000000,OutVal=(X=0.000000,Y=0.000000,Z=-2080.002441)),(InVal=16.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.002930))))
@@ -17340,10 +17344,6 @@ Begin Object Class=InterpData Name=InterpData_28
       GroupColor=(B=0,G=222,R=79,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=20.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_1'
@@ -17406,7 +17406,15 @@ Begin Object Class=SeqVar_Bool Name=SeqVar_Bool_6
 End Object
 
 Begin Object Class=InterpData Name=InterpData_93
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         Name="InterpTrackAkEvent_1"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_7
          PosTrack=(Points=(,(InVal=3.000000,OutVal=(X=-639.999756,Y=0.000000,Z=0.000000))))
          EulerTrack=(Points=(,(InVal=3.000000)))
@@ -17415,20 +17423,12 @@ Begin Object Class=InterpData Name=InterpData_93
          Name="InterpTrackMove_7"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
       InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_93.InterpGroup_6.InterpTrackMove_7'
       InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_93.InterpGroup_6.InterpTrackAkEvent_1'
       GroupName="train1"
       GroupColor=(B=213,G=105,R=0,A=255)
       Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_93.InterpGroup_6'
@@ -17492,132 +17492,23 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_29
 End Object
 
 Begin Object Class=InterpData Name=InterpData_29
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         PosTrack=(Points=((InVal=3.002779),(InVal=3.102779,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.202779,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.352779,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.006093,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.306092,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.405562,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.507177,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.656507,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.007255,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.309390,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.408113,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.509390,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.659389,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=14.002777,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=19.002781,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=26.002979,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.205175,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.307024,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.405176,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.555174,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=28.003189,OutVal=(X=176.007813,Y=-0.011475,Z=-0.000610),InterpMode=CIM_CurveAutoClamped),(InVal=28.003189,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.172297,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.272295,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.372297,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.522295,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=30.000355,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.102781,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.302006,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.507059,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.707060,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=3.002779),(InVal=3.102779),(InVal=3.202779),(InVal=3.352779),(InVal=6.006093),(InVal=6.306092),(InVal=6.405562),(InVal=6.507177),(InVal=6.656507),(InVal=9.007255),(InVal=9.309390),(InVal=9.408113),(InVal=9.509390),(InVal=9.659389),(InVal=14.002777),(InVal=19.002781),(InVal=26.002979),(InVal=26.205175),(InVal=26.307024),(InVal=26.405176),(InVal=26.555174),(InVal=28.003189,InterpMode=CIM_CurveAutoClamped),(InVal=28.003189),(InVal=28.172297),(InVal=28.272295),(InVal=28.372297),(InVal=28.522295),(InVal=30.000355),(InVal=30.102781),(InVal=30.302006),(InVal=30.507059),(InVal=30.707060)))
-         LookupTrack=(Points=((Time=3.002779),(Time=3.102779),(Time=3.202779),(Time=3.352779),(Time=6.006093),(Time=6.306092),(Time=6.405562),(Time=6.507177),(Time=6.656507),(Time=9.007255),(Time=9.309390),(Time=9.408113),(Time=9.509390),(Time=9.659389),(Time=14.002777),(Time=19.002781),(Time=26.002979),(Time=26.205175),(Time=26.307024),(Time=26.405176),(Time=26.555174),(Time=28.003189),(Time=28.003189),(Time=28.172297),(Time=28.272295),(Time=28.372297),(Time=28.522295),(Time=30.000355),(Time=30.102781),(Time=30.302006),(Time=30.507059),(Time=30.707060)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_115
-         AkEvents(0)=(Time=6.006093,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         AkEvents(1)=(Time=9.115726,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         AkEvents(2)=(Time=26.002979,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         AkEvents(3)=(Time=28.003189,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         Name="InterpTrackAkEvent_115"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_114
-         AkEvents(0)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
-         AkEvents(1)=(Time=30.302006,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_114"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_113
-         AkEvents(0)=(Time=3.002779,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
-         AkEvents(1)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_113"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_112
-         AkEvents(0)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
-         AkEvents(1)=(Time=30.302006,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_112"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_111
-         AkEvents(0)=(Time=3.002779,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
-         AkEvents(1)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_111"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackMove_5'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackAkEvent_111'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackAkEvent_112'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackAkEvent_113'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackAkEvent_114'
-      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackAkEvent_115'
-      GroupName="2bit1"
-      GroupColor=(B=204,G=0,R=126,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_29
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InVal=1.998946),(InVal=2.098946,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=2.198946,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=2.348946,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=5.002250,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=5.302250,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=5.401720,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=5.503334,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=5.652664,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=8.003410,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.305549,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.404271,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=8.505548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=8.655548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.998937,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=17.998951,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=24.999149,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.201345,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.303194,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.401346,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.551344,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.999359,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.168467,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.268465,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.368467,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.518465,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=28.996525,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.098951,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.298176,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.503229,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.703230,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=1.998946),(InVal=2.098946),(InVal=2.198946),(InVal=2.348946),(InVal=5.002250),(InVal=5.302250),(InVal=5.401720),(InVal=5.503334),(InVal=5.652664),(InVal=8.003410),(InVal=8.305549),(InVal=8.404271),(InVal=8.505548),(InVal=8.655548),(InVal=12.998937),(InVal=17.998951),(InVal=24.999149),(InVal=25.201345),(InVal=25.303194),(InVal=25.401346),(InVal=25.551344),(InVal=26.999359),(InVal=27.168467),(InVal=27.268465),(InVal=27.368467),(InVal=27.518465),(InVal=28.996525),(InVal=29.098951),(InVal=29.298176),(InVal=29.503229),(InVal=29.703230)))
-         LookupTrack=(Points=((Time=1.998946),(Time=2.098946),(Time=2.198946),(Time=2.348946),(Time=5.002250),(Time=5.302250),(Time=5.401720),(Time=5.503334),(Time=5.652664),(Time=8.003410),(Time=8.305549),(Time=8.404271),(Time=8.505548),(Time=8.655548),(Time=12.998937),(Time=17.998951),(Time=24.999149),(Time=25.201345),(Time=25.303194),(Time=25.401346),(Time=25.551344),(Time=26.999359),(Time=27.168467),(Time=27.268465),(Time=27.368467),(Time=27.518465),(Time=28.996525),(Time=29.098951),(Time=29.298176),(Time=29.503229),(Time=29.703230)))
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=11.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=16.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=11.000000),(InVal=16.000000),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
+         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=11.000000),(Time=16.000000),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
+         Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_29.InterpTrackMove_2'
-      GroupName="5bit1"
-      GroupColor=(B=131,G=200,R=0,A=255)
-      Name="InterpGroup_29"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_22
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InVal=4.003705),(InVal=4.103704,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=4.203704,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=4.353704,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=7.007013,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=7.307014,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=7.406484,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=7.508099,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=7.657428,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=10.008194,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.310330,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.409054,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=10.510330,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=10.660329,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.003726,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=20.003698,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=27.003897,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=27.206093,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=27.307941,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=27.406094,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=27.556091,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=29.004107,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=29.173214,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=29.273212,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=29.373215,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=29.523212,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=31.001272,OutVal=(X=20.015625,Y=-0.028320,Z=-0.001373),InterpMode=CIM_CurveAutoClamped),(InVal=31.001272,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=31.103699,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.302923,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.507977,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=31.707977,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=((InVal=4.003705),(InVal=4.103704),(InVal=4.203704),(InVal=4.353704),(InVal=7.007013),(InVal=7.307014),(InVal=7.406484),(InVal=7.508099),(InVal=7.657428),(InVal=10.008194),(InVal=10.310330),(InVal=10.409054),(InVal=10.510330),(InVal=10.660329),(InVal=15.003726),(InVal=20.003698),(InVal=27.003897),(InVal=27.206093),(InVal=27.307941),(InVal=27.406094),(InVal=27.556091),(InVal=29.004107),(InVal=29.173214),(InVal=29.273212),(InVal=29.373215),(InVal=29.523212),(InVal=31.001272,InterpMode=CIM_CurveAutoClamped),(InVal=31.001272),(InVal=31.103699),(InVal=31.302923),(InVal=31.507977),(InVal=31.707977)))
-         LookupTrack=(Points=((Time=4.003705),(Time=4.103704),(Time=4.203704),(Time=4.353704),(Time=7.007013),(Time=7.307014),(Time=7.406484),(Time=7.508099),(Time=7.657428),(Time=10.008194),(Time=10.310330),(Time=10.409054),(Time=10.510330),(Time=10.660329),(Time=15.003726),(Time=20.003698),(Time=27.003897),(Time=27.206093),(Time=27.307941),(Time=27.406094),(Time=27.556091),(Time=29.004107),(Time=29.173214),(Time=29.273212),(Time=29.373215),(Time=29.523212),(Time=31.001272),(Time=31.001272),(Time=31.103699),(Time=31.302923),(Time=31.507977),(Time=31.707977)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_110
-         AkEvents(0)=(Time=7.216617,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         AkEvents(1)=(Time=10.350148,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         AkEvents(2)=(Time=27.003897,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         AkEvents(3)=(Time=29.004107,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         AkEvents(4)=(Time=31.001272,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
-         Name="InterpTrackAkEvent_110"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_109
-         AkEvents(0)=(Time=15.003726,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
-         AkEvents(1)=(Time=31.507977,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
-         TrackTitle="AkEvent(LP_Stop)"
-         Name="InterpTrackAkEvent_109"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_107
-         AkEvents(0)=(Time=4.003705,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
-         AkEvents(1)=(Time=20.003698,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
-         TrackTitle="AkEvent(LP_Start)"
-         Name="InterpTrackAkEvent_107"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_104
-         AkEvents(0)=(Time=15.003726,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
-         AkEvents(1)=(Time=31.507977,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
-         TrackTitle="AkEvent(Stop)"
-         Name="InterpTrackAkEvent_104"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_100
-         AkEvents(0)=(Time=4.003705,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
-         AkEvents(1)=(Time=20.003698,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
-         TrackTitle="AkEvent(Start)"
-         Name="InterpTrackAkEvent_100"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackMove_3'
-      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackAkEvent_100'
-      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackAkEvent_104'
-      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackAkEvent_107'
-      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackAkEvent_109'
-      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackAkEvent_110'
-      GroupName="4bit1"
-      GroupColor=(B=180,G=0,R=159,A=255)
-      Name="InterpGroup_22"
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_0.InterpTrackMove_0'
+      GroupName="bit1"
+      GroupColor=(B=184,G=153,R=0,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_15
@@ -17635,24 +17526,133 @@ Begin Object Class=InterpData Name=InterpData_29
       Name="InterpGroup_15"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=(,(InVal=0.100000,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=0.200000,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=0.350000,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=3.003312,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=3.303312,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=3.402782,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=3.504397,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=3.653727,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=6.004477,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.306613,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=6.405336,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=6.506613,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=6.656612,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=11.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=16.000000,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=23.000198,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=23.202394,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=23.304243,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=23.402395,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=23.552393,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=25.000408,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=25.169516,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=25.269514,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=25.369516,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=25.519514,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=26.997574,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=27.100000,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.299225,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=27.504278,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=27.704279,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
-         EulerTrack=(Points=(,(InVal=0.100000),(InVal=0.200000),(InVal=0.350000),(InVal=3.003312),(InVal=3.303312),(InVal=3.402782),(InVal=3.504397),(InVal=3.653727),(InVal=6.004477),(InVal=6.306613),(InVal=6.405336),(InVal=6.506613),(InVal=6.656612),(InVal=11.000000),(InVal=16.000000),(InVal=23.000198),(InVal=23.202394),(InVal=23.304243),(InVal=23.402395),(InVal=23.552393),(InVal=25.000408),(InVal=25.169516),(InVal=25.269514),(InVal=25.369516),(InVal=25.519514),(InVal=26.997574),(InVal=27.100000),(InVal=27.299225),(InVal=27.504278),(InVal=27.704279)))
-         LookupTrack=(Points=(,(Time=0.100000),(Time=0.200000),(Time=0.350000),(Time=3.003312),(Time=3.303312),(Time=3.402782),(Time=3.504397),(Time=3.653727),(Time=6.004477),(Time=6.306613),(Time=6.405336),(Time=6.506613),(Time=6.656612),(Time=11.000000),(Time=16.000000),(Time=23.000198),(Time=23.202394),(Time=23.304243),(Time=23.402395),(Time=23.552393),(Time=25.000408),(Time=25.169516),(Time=25.269514),(Time=25.369516),(Time=25.519514),(Time=26.997574),(Time=27.100000),(Time=27.299225),(Time=27.504278),(Time=27.704279)))
+   Begin Object Class=InterpGroup Name=InterpGroup_22
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_100
+         AkEvents(0)=(Time=4.003705,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
+         AkEvents(1)=(Time=20.003698,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_100"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_104
+         AkEvents(0)=(Time=15.003726,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock')
+         AkEvents(1)=(Time=31.507977,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_104"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_107
+         AkEvents(0)=(Time=4.003705,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
+         AkEvents(1)=(Time=20.003698,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_107"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_109
+         AkEvents(0)=(Time=15.003726,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
+         AkEvents(1)=(Time=31.507977,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_109"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_110
+         AkEvents(0)=(Time=7.216617,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         AkEvents(1)=(Time=10.350148,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         AkEvents(2)=(Time=27.003897,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         AkEvents(3)=(Time=29.004107,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         AkEvents(4)=(Time=31.001272,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         Name="InterpTrackAkEvent_110"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InVal=4.003705),(InVal=4.103704,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=4.203704,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=4.353704,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=7.007013,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=7.307014,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=7.406484,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=7.508099,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=7.657428,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=10.008194,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.310330,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=10.409054,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=10.510330,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=10.660329,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=15.003726,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=20.003698,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=27.003897,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=27.206093,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=27.307941,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=27.406094,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=27.556091,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=29.004107,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=29.173214,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=29.273212,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=29.373215,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=29.523212,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=31.001272,OutVal=(X=20.015625,Y=-0.028320,Z=-0.001373),InterpMode=CIM_CurveAutoClamped),(InVal=31.001272,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=31.103699,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.302923,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=31.507977,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=31.707977,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=4.003705),(InVal=4.103704),(InVal=4.203704),(InVal=4.353704),(InVal=7.007013),(InVal=7.307014),(InVal=7.406484),(InVal=7.508099),(InVal=7.657428),(InVal=10.008194),(InVal=10.310330),(InVal=10.409054),(InVal=10.510330),(InVal=10.660329),(InVal=15.003726),(InVal=20.003698),(InVal=27.003897),(InVal=27.206093),(InVal=27.307941),(InVal=27.406094),(InVal=27.556091),(InVal=29.004107),(InVal=29.173214),(InVal=29.273212),(InVal=29.373215),(InVal=29.523212),(InVal=31.001272,InterpMode=CIM_CurveAutoClamped),(InVal=31.001272),(InVal=31.103699),(InVal=31.302923),(InVal=31.507977),(InVal=31.707977)))
+         LookupTrack=(Points=((Time=4.003705),(Time=4.103704),(Time=4.203704),(Time=4.353704),(Time=7.007013),(Time=7.307014),(Time=7.406484),(Time=7.508099),(Time=7.657428),(Time=10.008194),(Time=10.310330),(Time=10.409054),(Time=10.510330),(Time=10.660329),(Time=15.003726),(Time=20.003698),(Time=27.003897),(Time=27.206093),(Time=27.307941),(Time=27.406094),(Time=27.556091),(Time=29.004107),(Time=29.173214),(Time=29.273212),(Time=29.373215),(Time=29.523212),(Time=31.001272),(Time=31.001272),(Time=31.103699),(Time=31.302923),(Time=31.507977),(Time=31.707977)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_0.InterpTrackMove_0'
-      GroupName="bit1"
-      GroupColor=(B=184,G=153,R=0,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackMove_3'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackAkEvent_100'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackAkEvent_104'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackAkEvent_107'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackAkEvent_109'
+      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_22.InterpTrackAkEvent_110'
+      GroupName="4bit1"
+      GroupColor=(B=180,G=0,R=159,A=255)
+      Name="InterpGroup_22"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_29
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InVal=1.998946),(InVal=2.098946,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=2.198946,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=2.348946,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=5.002250,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=5.302250,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=5.401720,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=5.503334,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=5.652664,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=8.003410,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.305549,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=8.404271,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=8.505548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=8.655548,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=12.998937,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=17.998951,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=24.999149,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=25.201345,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=25.303194,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=25.401346,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=25.551344,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=26.999359,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=27.168467,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=27.268465,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=27.368467,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=27.518465,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=28.996525,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=29.098951,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.298176,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=29.503229,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=29.703230,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=1.998946),(InVal=2.098946),(InVal=2.198946),(InVal=2.348946),(InVal=5.002250),(InVal=5.302250),(InVal=5.401720),(InVal=5.503334),(InVal=5.652664),(InVal=8.003410),(InVal=8.305549),(InVal=8.404271),(InVal=8.505548),(InVal=8.655548),(InVal=12.998937),(InVal=17.998951),(InVal=24.999149),(InVal=25.201345),(InVal=25.303194),(InVal=25.401346),(InVal=25.551344),(InVal=26.999359),(InVal=27.168467),(InVal=27.268465),(InVal=27.368467),(InVal=27.518465),(InVal=28.996525),(InVal=29.098951),(InVal=29.298176),(InVal=29.503229),(InVal=29.703230)))
+         LookupTrack=(Points=((Time=1.998946),(Time=2.098946),(Time=2.198946),(Time=2.348946),(Time=5.002250),(Time=5.302250),(Time=5.401720),(Time=5.503334),(Time=5.652664),(Time=8.003410),(Time=8.305549),(Time=8.404271),(Time=8.505548),(Time=8.655548),(Time=12.998937),(Time=17.998951),(Time=24.999149),(Time=25.201345),(Time=25.303194),(Time=25.401346),(Time=25.551344),(Time=26.999359),(Time=27.168467),(Time=27.268465),(Time=27.368467),(Time=27.518465),(Time=28.996525),(Time=29.098951),(Time=29.298176),(Time=29.503229),(Time=29.703230)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_29.InterpTrackMove_2'
+      GroupName="5bit1"
+      GroupColor=(B=131,G=200,R=0,A=255)
+      Name="InterpGroup_29"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_111
+         AkEvents(0)=(Time=3.002779,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
+         AkEvents(1)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Unlock_Distant')
+         TrackTitle="AkEvent(Start)"
+         Name="InterpTrackAkEvent_111"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_112
+         AkEvents(0)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
+         AkEvents(1)=(Time=30.302006,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Lock_Distant')
+         TrackTitle="AkEvent(Stop)"
+         Name="InterpTrackAkEvent_112"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_113
+         AkEvents(0)=(Time=3.002779,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
+         AkEvents(1)=(Time=19.002781,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extenders_Move_LP_Distant')
+         TrackTitle="AkEvent(LP_Start)"
+         Name="InterpTrackAkEvent_113"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_114
+         AkEvents(0)=(Time=14.002777,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
+         AkEvents(1)=(Time=30.302006,Event=AkEvent'WW_ENV_PowerCore.Stop_ENV_PowerCore_Extenders_Move_LP_Distant')
+         TrackTitle="AkEvent(LP_Stop)"
+         Name="InterpTrackAkEvent_114"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_115
+         AkEvents(0)=(Time=6.006093,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         AkEvents(1)=(Time=9.115726,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         AkEvents(2)=(Time=26.002979,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         AkEvents(3)=(Time=28.003189,Event=AkEvent'WW_ENV_PowerCore.Play_ENV_PowerCore_Extender_Thump_Distant')
+         Name="InterpTrackAkEvent_115"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         PosTrack=(Points=((InVal=3.002779),(InVal=3.102779,OutVal=(X=2.000000,Y=-0.001465,Z=-0.000122)),(InVal=3.202779,OutVal=(X=1.000000,Y=-0.002930,Z=-0.000305)),(InVal=3.352779,OutVal=(X=1.500000,Y=-0.003906,Z=-0.000366)),(InVal=6.006093,OutVal=(X=176.005859,Y=-0.009766,Z=-0.000366)),(InVal=6.306092,OutVal=(X=176.006348,Y=-0.011230,Z=-0.000488)),(InVal=6.405562,OutVal=(X=178.006348,Y=-0.012207,Z=-0.000610)),(InVal=6.507177,OutVal=(X=176.000000,Y=-0.012695,Z=-0.000732)),(InVal=6.656507,OutVal=(X=176.000977,Y=-0.014160,Z=-0.000854)),(InVal=9.007255,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.309390,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=9.408113,OutVal=(X=418.011230,Y=-0.026855,Z=-0.001343)),(InVal=9.509390,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=9.659389,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=14.002777,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=19.002781,OutVal=(X=3776.010742,Y=-0.023438,Z=-0.001221)),(InVal=26.002979,OutVal=(X=416.010254,Y=-0.023926,Z=-0.001038)),(InVal=26.205175,OutVal=(X=416.010742,Y=-0.025391,Z=-0.001160)),(InVal=26.307024,OutVal=(X=414.011719,Y=-0.027344,Z=-0.001343)),(InVal=26.405176,OutVal=(X=416.010742,Y=-0.026367,Z=-0.001282)),(InVal=26.555174,OutVal=(X=416.010742,Y=-0.027344,Z=-0.001404)),(InVal=28.003189,OutVal=(X=176.007813,Y=-0.011475,Z=-0.000610),InterpMode=CIM_CurveAutoClamped),(InVal=28.003189,OutVal=(X=176.006836,Y=-0.011230,Z=-0.000488)),(InVal=28.172297,OutVal=(X=176.007324,Y=-0.012207,Z=-0.000610)),(InVal=28.272295,OutVal=(X=174.007813,Y=-0.013672,Z=-0.000732)),(InVal=28.372297,OutVal=(X=176.007813,Y=-0.014648,Z=-0.000854)),(InVal=28.522295,OutVal=(X=176.009766,Y=-0.018555,Z=-0.001221)),(InVal=30.000355,OutVal=(X=20.018555,Y=-0.027832,Z=-0.001343)),(InVal=30.102781,OutVal=(X=20.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.302006,OutVal=(X=16.019531,Y=-0.028809,Z=-0.001465)),(InVal=30.507059,OutVal=(X=16.020508,Y=-0.029785,Z=-0.001587)),(InVal=30.707060,OutVal=(X=0.020508,Y=-0.030273,Z=-0.001587))))
+         EulerTrack=(Points=((InVal=3.002779),(InVal=3.102779),(InVal=3.202779),(InVal=3.352779),(InVal=6.006093),(InVal=6.306092),(InVal=6.405562),(InVal=6.507177),(InVal=6.656507),(InVal=9.007255),(InVal=9.309390),(InVal=9.408113),(InVal=9.509390),(InVal=9.659389),(InVal=14.002777),(InVal=19.002781),(InVal=26.002979),(InVal=26.205175),(InVal=26.307024),(InVal=26.405176),(InVal=26.555174),(InVal=28.003189,InterpMode=CIM_CurveAutoClamped),(InVal=28.003189),(InVal=28.172297),(InVal=28.272295),(InVal=28.372297),(InVal=28.522295),(InVal=30.000355),(InVal=30.102781),(InVal=30.302006),(InVal=30.507059),(InVal=30.707060)))
+         LookupTrack=(Points=((Time=3.002779),(Time=3.102779),(Time=3.202779),(Time=3.352779),(Time=6.006093),(Time=6.306092),(Time=6.405562),(Time=6.507177),(Time=6.656507),(Time=9.007255),(Time=9.309390),(Time=9.408113),(Time=9.509390),(Time=9.659389),(Time=14.002777),(Time=19.002781),(Time=26.002979),(Time=26.205175),(Time=26.307024),(Time=26.405176),(Time=26.555174),(Time=28.003189),(Time=28.003189),(Time=28.172297),(Time=28.272295),(Time=28.372297),(Time=28.522295),(Time=30.000355),(Time=30.102781),(Time=30.302006),(Time=30.507059),(Time=30.707060)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackMove_5'
+      InterpTracks(1)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackAkEvent_111'
+      InterpTracks(2)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackAkEvent_112'
+      InterpTracks(3)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackAkEvent_113'
+      InterpTracks(4)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackAkEvent_114'
+      InterpTracks(5)=InterpTrackAkEvent'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_8.InterpTrackAkEvent_115'
+      GroupName="2bit1"
+      GroupColor=(B=204,G=0,R=126,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    InterpLength=32.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_0'
@@ -21438,6 +21438,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_9
 End Object
 
 Begin Object Class=InterpData Name=InterpData_6
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=0.500000,OutVal=(X=0.000366,Y=0.000214,Z=0.000000)),(InVal=0.750000,OutVal=(X=0.000488,Y=0.000183,Z=0.000000)),(InVal=1.000000,OutVal=(X=0.000366,Y=0.000214,Z=0.000000)),(InVal=1.250000,OutVal=(X=0.000244,Y=0.000244,Z=0.000000)),(InVal=1.500000,OutVal=(X=0.000122,Y=0.000275,Z=0.000000)),(InVal=1.750000,OutVal=(X=0.000000,Y=0.000305,Z=0.000000)),(InVal=2.000000,OutVal=(X=-0.000122,Y=0.000336,Z=0.000000)),(InVal=2.250000,OutVal=(X=-0.000244,Y=0.000366,Z=0.000000)),(InVal=2.500000,OutVal=(X=-0.000366,Y=0.000397,Z=0.000000)),(InVal=2.750000,OutVal=(X=-0.000488,Y=0.000427,Z=0.000000)),(InVal=3.000000,OutVal=(X=-0.000610,Y=0.000458,Z=0.000000)),(InVal=3.250000,OutVal=(X=-0.000732,Y=0.000488,Z=0.000000)),(InVal=3.500000,OutVal=(X=-0.000854,Y=0.000519,Z=0.000000)),(InVal=3.750000,OutVal=(X=-0.000977,Y=0.000549,Z=0.000000)),(InVal=4.000000,OutVal=(X=-0.001099,Y=0.000580,Z=0.000000)),(InVal=4.250000,OutVal=(X=-0.001221,Y=0.000610,Z=0.000000)),(InVal=4.500000,OutVal=(X=-0.001343,Y=0.000641,Z=0.000000)),(InVal=4.750000,OutVal=(X=-0.001465,Y=0.000671,Z=0.000000)),(InVal=5.000000,OutVal=(X=-0.001465,Y=0.000671,Z=0.000000)),(InVal=5.250000,OutVal=(X=-0.001587,Y=0.000793,Z=0.000000)),(InVal=5.500000,OutVal=(X=-0.001465,Y=0.000763,Z=0.000000)),(InVal=5.750000,OutVal=(X=-0.001343,Y=0.000732,Z=0.000000)),(InVal=6.000000,OutVal=(X=-0.001221,Y=0.000702,Z=0.000000)),(InVal=7.000000,OutVal=(X=-0.001099,Y=0.000671,Z=0.000000))))
@@ -21452,10 +21456,6 @@ Begin Object Class=InterpData Name=InterpData_6
       GroupColor=(B=146,G=0,R=191,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=7.000000
    InterpGroups(0)=InterpGroup'KF-POWERCORE_HOLDOUT.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_0'

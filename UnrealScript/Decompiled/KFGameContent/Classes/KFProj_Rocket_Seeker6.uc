@@ -40,14 +40,14 @@ simulated event Tick(float DeltaTime)
 defaultproperties
 {
     SeekStrength=928000
-    ArmDistSquared=110000
+    ArmDistSquared=20000
     ProjDudTemplate=ParticleSystem'WEP_SeekerSix_EMIT.FX_SeekerSix_Projectile_Dud'
     GrenadeBounceEffectInfo=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Projectile_Impacts'
     bWarnAIWhenFired=true
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_SeekerSix_ARCH.FX_SeekerSix_Explosion'
-        Damage=125
-        DamageRadius=250
+        Damage=160
+        DamageRadius=350
         DamageFalloffExponent=2
         MyDamageType=Class'KFDT_Explosive_Seeker6'
         KnockDownStrength=0

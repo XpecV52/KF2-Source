@@ -608,7 +608,7 @@ DefaultProperties
 	PerkSkills(EMedicHealingSpeedBoost)=(Name="HealingSpeedBoost",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AdrenalineShot", Increment=0.f,Rank=0,StartingValue=10.0f,MaxValue=10.0f) //3.0
 	PerkSkills(EMedicCombatant)=(Name="Combatant",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_CombatantDoctor", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
 	PerkSkills(EMedicHealingDamageBoost)=(Name="HealingDamageBoost",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_FocusInjection", Increment=0.f,Rank=0,StartingValue=5.0f,MaxValue=5.0f) //3.0
-	PerkSkills(EMedicAcidicCompound)=(Name="AcidicCompound",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AcidicRounds", Increment=0.f,Rank=0,StartingValue=0.5f,MaxValue=0.5f)
+	PerkSkills(EMedicAcidicCompound)=(Name="AcidicCompound",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AcidicRounds", Increment=0.f,Rank=0,StartingValue=0.65f,MaxValue=0.65f) //0.75 //0.5
 	PerkSkills(EMedicHealingShield)=(Name="HealingShield",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_CoagulantBooster", Increment=0.f,Rank=0,StartingValue=10.f,MaxValue=10.f) //25.0
 	PerkSkills(EMedicEnforcer)=(Name="Enforcer",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_BattleSurgeon", Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)
 	PerkSkills(EMedicAirborneAgent)=(Name="AirborneAgent",IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AirborneAgent", Increment=0.f,Rank=0,StartingValue=0.2f,MaxValue=0.2f)

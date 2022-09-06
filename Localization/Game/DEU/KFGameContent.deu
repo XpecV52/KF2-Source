@@ -689,14 +689,44 @@ SharedUnlockSource="Aufstands-Schild-&-G18-Waffen-Paket, Weihnachtsschrecken-Waf
 [KFWeap_AssaultRifle_HRGIncendiaryRifle]
 ItemName="HRG-Brandgewehr"
 ItemCategory="Sturmgewehr"
-ItemDescription="•Ein ausschließlich vollautomatischer Feuer-Modus.\n•Alt-Feuer zum Abfeuern von Brandgranaten.\n•Für alle diejenigen, die sich nicht zwischen Feuer und mehr Feuer entscheiden können."
+ItemDescription="• Ausschließlich vollautomatischer Feuer-Modus.\n•Alt-Feuer zum Abfeuern von Brandgranaten.\n• Für alle diejenigen, die sich nicht zwischen Feuer und mehr Feuer entscheiden können."
 SecondaryAmmo="M203-Brandgranate"
 
 [KFWeap_Bow_CompoundBow]
 ItemName="Compoundbogen"
 ItemCategory="Bow"
-ItemDescription="•Ausschließlich im Einzelfeuer-Modus.\n•Reichweite und Schaden erhöhen sich, je länger du hältst.\n•Alt-Feuer wechselt zwischen scharfen und Kryo-Pfeilen.\n•Wenn man als Amor etwas mehr Schmackes braucht."
+ItemDescription="• Ausschließlich im Einzelfeuer-Modus.\n• Reichweite und Schaden erhöhen sich, je länger du hältst.\n• Alt-Feuer wechselt zwischen scharfen und Kryo-Pfeilen.\n• Wenn man als Amor etwas mehr Schmackes braucht."
 SharedUnlockSource="Compoundbogen-Waffen-Paket"
+
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="HRG-Kabummstab"
+ItemCategory="Schrotflinte"
+ItemDescription="• Das Primär-Feuer nutzt nur einen einzelnen Lauf.\n• Alt-Feuer schießt aus beiden Läufen gleichzeitig.\n• Enthält explosive Munition, um richtig Dampf zu machen."
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="Donnerbüchse"
+ItemCategory="Sprengstoffe"
+ItemDescription="• Primärfeuer schießt eine Kanonenkugel.\n• Primärfeuer 0,1 Sekunden halten, damit die Kanonenkugel nicht explodiert. Explodiert bei Freigabe.\n• Alt-Feuer schießt Kanonenkugel-Schrapnell.\n• Holzbein und Papagei werden einzeln verkauft!"
+SharedUnlockSource="Donnerbüchse-Waffen-Paket"
+
+[KFWeap_Pistol_G18C]
+ItemName="Glock 18c"
+ItemCategory="Maschinenpistole"
+ItemDescription="• Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n• Achtung: Unkontrollierbarer Drang sich bei Verwendung selbst als das Gesetz anzusehen."
+SharedUnlockSource="Waffen-Paket Einzel- und Doppel-Glock 18C"
+
+[KFWeap_Pistol_DualG18]
+ItemName="Doppel-Glock 18c"
+ItemCategory="Maschinenpistole"
+ItemDescription="• Ausschließlich vollautomatischer Feuer-Modus.\n• Alt-Feuer wechselt die Zielmethode beim Einsatz des Visiers.\n• Achtung: Unkontrollierbarer Drang sich bei Verwendung selbst als das Gesetz anzusehen."
+SharedUnlockSource="Waffen-Paket Einzel- und Doppel-Glock 18C"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="HRG-Teslauncher"
+ItemCategory="Sturmgewehr"
+ItemDescription="• Ausschließlich vollautomatischer Feuer-Modus.\n• Alt-Feuer, um EMP-Granaten abzufeuern.\n• Mit dieser elektrischen, ökologischen Waffe, kannst du hunderte Zeds töten, ohne dem Planeten zu schaden."
+SecondaryAmmo="EMP-Granate"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

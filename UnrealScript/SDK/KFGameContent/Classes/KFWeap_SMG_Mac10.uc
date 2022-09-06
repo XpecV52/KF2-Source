@@ -77,7 +77,7 @@ defaultproperties
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Fire_Mac10'
 	FireInterval(DEFAULT_FIREMODE)=+.067 // 900 RPM
 	Spread(DEFAULT_FIREMODE)=0.01
-	InstantHitDamage(DEFAULT_FIREMODE)=25 //22 //25 //30
+	InstantHitDamage(DEFAULT_FIREMODE)=28 //25 //22 //25 //30
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -87,7 +87,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Bullet_Mac10'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Fire_Mac10'
 	FireInterval(ALTFIRE_FIREMODE)=+.067 // 1000 RPM
-	InstantHitDamage(ALTFIRE_FIREMODE)=25  //22 //25 //30
+	InstantHitDamage(ALTFIRE_FIREMODE)=28 //25  //22 //25 //30
 	Spread(ALTFIRE_FIREMODE)=0.01
 	//BurstAmount=3
 

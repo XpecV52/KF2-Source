@@ -45,6 +45,13 @@ simulated function InitFOV(float SizeX, float SizeY, float DefaultPlayerFOV)
     }
 }
 
+simulated function AltFireMode()
+{
+    super(KFWeapon).AltFireMode();
+    TargetingComp.AdjustLockTarget(0, none);
+    TargetingComp.AdjustLockTarget(1, none);
+}
+
 reliable client simulated function ClientWeaponSet(bool bOptionalSet, optional bool bDoNotActivate)
 {
     super.ClientWeaponSet(bOptionalSet);

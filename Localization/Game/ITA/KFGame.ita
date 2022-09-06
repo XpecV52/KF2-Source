@@ -1015,6 +1015,8 @@ ThrowString="GETTA ARMA"
 
 [KFGFxWidget_KickVote]
 VoteKickString="Cacciare giocatore?"
+VoteSkipTraderString="Vuoi saltare il commerciante?"
+VoteSkipTraderDetailString="vuole saltare il conto alla rovescia"
 
 [KFLocalMessage_PlayerKills]
 KilledString="uccisi"
@@ -1399,6 +1401,7 @@ LoggedOutAsAdminString=" log out da Amministratore Server"
 MustLoginToCheatString="Devi effettuare il login per attivare le cheat"
 CheatsEnabledString=" ha attivato le cheat. Statistiche disabilitate per questa sessione"
 ServerMaintenanceString="Il server sarà chiuso per manutenzione alla fine della partita"
+OtherVoteInProgressString="Non è possibile iniziare una nuova votazione finché questa non è risolta"
 KickVoteStartedString="Votazione iniziata per cacciare:"
 KickVoteSucceededString="Risultato affermativo per cacciare:"
 KickVoteFailedString="Risultato negativo per cacciare:"
@@ -1416,8 +1419,17 @@ KickVoteNoSpectatorsString="Gli spettatori non possono richiedere un kick"
 KickedFromServerString="Sei stato rimosso dal server"
 BannedFromServerString="Sei stato rimosso da questo server Non puoi rientrare in questo momento"
 ServerNoLongerAvailableString="Impossibile raggiungere il server"
-SkipTraderTimeString="SALTA COMMERCIANTE attivo. Scegli SALTA COMMERCIANTE nel menu per votare. Devono accettare tutti."
+SkipTraderVoteStartedString="ha iniziato un voto salta commerciante"
+SkipTraderTimeString="SALTA COMMERCIANTE attivo. Scegli SALTA COMMERCIANTE nel menu per votare.  Devono accettare tutti."
 SkipTraderSuccessString="Voto “Salta commerciante” approvato!"
+SkipTraiderVoteFailedString="Voto salta commerciante fallito!"
+SkipTraderVoteNoSpectatorsString="Gli spettatori non possono iniziare una votazione salta commerciante"
+SkipTraderIsNotOpenString="Salta commerciante non disponibile durante un'ondata"
+SkipTraderVoteInProgressString="Impossibile iniziare una votazione salta commerciante poiché ce n'è una già attiva"
+SkipTraderVoteYesReceivedString="Hai votato per saltare il commerciante"
+SkipTraderVoteNoReceivedString="Hai votato per non saltare il commerciante"
+SkipTraderNoEnoughTimeString="Non c'è tempo per iniziare una votazione salta commerciante"
+SkipTraderThisUserAlreadyStartedAVoteString="Non puoi iniziare una votazione salta commerciante fino alla prossima fase commerciante"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Hai ricevuto munizioni da"
@@ -1526,7 +1538,7 @@ SkillCatagories[2]=""
 SkillCatagories[3]=""
 SkillCatagories[4]=""
 
-LevelString="Livello"
+LevelString="lvl"
 
 SpecialAbilityName="Abilità unica"
 SpecialAbilityDescription=""
@@ -1760,7 +1772,7 @@ Spartan="ZED TIME - Spartano"
 SpartanDescription="Durante gli Zed time, puoi attaccare con armi di classe e muoverti in tempo reale."
 
 Rage="ZED TIME - Furia berserker"
-RageDescription="Quando lo Zed time si attiva o si aggiorna, cura il 50% della Salute e obbliga gli Zed vicini a fuggire."
+RageDescription="Quando lo Zed time si attiva o si aggiorna, cura il 50% della Salute e immobilizza tutti gli Zed vicini."
 
 [KFPerk_Commando]
 PerkName="Commando"
@@ -2033,7 +2045,7 @@ Stun="Shock balistico"
 StunDescription="Aumenta la forza di stordimento delle armi di classe del 100%."
 
 RhythmMethod="Esecuzione di massa"
-RhythmMethodDescription="Ogni colpo alla testa consecutivo con armi di classe aumenta il danno del 10% fino a un massimo del 50%. "
+RhythmMethodDescription="Ogni colpo alla testa consecutivo con armi di classe aumenta il danno del 10% fino a un massimo del 50%.  "
 
 TacticalReload="Ricarica tattica"
 TacticalReloadDescription="Aumenta la velocità di ricarica con armi di classe."
@@ -2094,7 +2106,7 @@ ConcussionRounds="Colpi concussione"
 ConcussionRoundsDescription="Aumenta la forza d'urto delle armi di classe del 150%."
 
 Perforate="ZED TIME - Perforatore"
-PerforateDescription="Durante gli Zed time, annulla la riduzione del danno quando spari attraverso gli Zed per colpirne altri e aumenta la penetrazione con le armi di classe."
+PerforateDescription="Durante gli Zed time, le tue armi di classe non subiscono danni da perforazione e perforano gli Zed."
 
 Barrage="ZED TIME - Raffica"
 BarrageDescription="Durante gli Zed time, le tue armi di classe sparano quasi in tempo reale."
@@ -2172,7 +2184,7 @@ FieldMedic="Addestramento medico"
 FieldMedicDescription="Aumenta l'efficacia di tutte le tue cure del 30% e diminuisce il tempo di raffreddamento della siringa e dei dardi curativi del 50%."
 
 MeleeExpert="Esperto mischia"
-MeleeExpertDescription="Aumenta la velocità degli attacchi da mischia del 20%, infligge il 50% di danni in più e aumenta la velocità del 25% con armi da mischia."
+MeleeExpertDescription="Aumenta la velocità degli attacchi da mischia del 20%, infligge il 75% di danni in più e aumenta la velocità del 25% con armi da mischia."
 
 AmmoVest="Giubbotto munizioni"
 AmmoVestDescription="Trasporta fino al 15% di munizioni in più per tutte le armi, la granata diventa una granata curativa."
@@ -2190,7 +2202,7 @@ Madman="ZED TIME - Follia"
 MadmanDescription="Durante gli Zed time, tutte le tue armi sparano 3 volte più veloci."
 
 IncapMaster="ZED TIME - Debilitazione"
-IncapMasterDescription="Durante lo Zed time, l'abbattimento, la forza d'urto e il tasso di stordimento delle tue armi sono portati al massimo."
+IncapMasterDescription="Durante gli Zed time, tutte le tue armi possono stordire gli Zed."
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2569,7 +2581,7 @@ KFWeap_MKB="Arma di Halloween di Hans"
 Source0="Promo Chivalry"
 
 ;============================================
-; SpecialEvent Localization (Base class)
+; SpecialEvent  Localization (Base class)
 ;============================================
 [KFGFxSpecialEventObjectivesContainer]
 CurrentSpecialEventString="Temp Title"
@@ -2705,6 +2717,20 @@ AllCompleteRewardDescriptionString="Bundle con due Skin dinamiche per AA12"
 
 ChanceDropDescriptionStrings[0]="Biglietto Cyberpunk"
 ChanceDropDescriptionStrings[1]="Biglietto Oro Cyberpunk"
+
+[KFGFxSpecialEventObjectivesContainer_Summer2020]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Corpo di mille balene!",DescriptionString="Uccidi 15 boss in qualsiasi mappa o modalità")
+SpecialEventObjectiveInfoList[1]=(TitleString="Ehi di bordo! settimanale",DescriptionString="Completa il Settimanale in Desolazione")
+SpecialEventObjectiveInfoList[2]=(TitleString="Arr! Dagli fuoco!",DescriptionString="Attiva il generatore in Desolazione")
+SpecialEventObjectiveInfoList[3]=(TitleString="Il pieno di dobloni",DescriptionString="Guadagna 75.000 denari da uccisioni, ricompense e cure in Desolazione")
+SpecialEventObjectiveInfoList[4]=(TitleString="Saccheggio insaziabile",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Desolazione")
+
+AllCompleteRewardDescriptionString="Pirata spaziale | Zaino Scimmia spaziale"
+
+ChanceDropDescriptionStrings[0]="Biglietto Estivo"
+ChanceDropDescriptionStrings[1]="Biglietto Estivo Oro"
 
 ;============================================
 ; Daily Localization
@@ -3300,6 +3326,9 @@ DisplayName="Manicomio"
 
 [KF-Biolapse KFMapSummary]
 DisplayName="Biolapsus"
+
+[KF-Desolation KFMapSummary]
+DisplayName="Desolazione"
 
 [KFMapInfo]
 ; defaults

@@ -689,14 +689,44 @@ SharedUnlockSource="Paquete de armas Escudo antidisturbios y G18, Paquete de arm
 [KFWeap_AssaultRifle_HRGIncendiaryRifle]
 ItemName="Rifle incendiario HRG"
 ItemCategory="Fusil de asalto"
-ItemDescription="•Modo de disparo: solo automático.\n•Alternativo: dispara granadas.\n•Para los que no se deciden entre fuego o más fuego."
+ItemDescription="•Modo de disparo: solo automático.\n•Alternativo: dispara granadas incendiarias.\n•Para los que no se deciden entre fuego o más fuego."
 SecondaryAmmo="Granada inc. M203"
 
 [KFWeap_Bow_CompoundBow]
 ItemName="Arco compuesto"
 ItemCategory="Arco"
-ItemDescription="•Modo de disparo: solo disparo cargado.\n•El alcance y el daño aumentan cuanto más tiempo lo dejes pulsado.\n•El modo de disparo alternativo alterna flechas afiladas y criogénicas\n•Cuando Cupido necesita un poco más de fuerza."
+ItemDescription="•Modo de disparo: solo disparo cargado.\n•El alcance y el daño aumentan cuanto más tiempo lo dejes pulsado.\n•El modo de disparo alternativo alterna flechas afiladas y criogénicas.\n•Cuando Cupido necesita un poco más de fuerza."
 SharedUnlockSource="Paquete de armas Arco compuesto"
+
+[KFWeap_Shotgun_HRG_Kaboomstick]
+ItemName="Explosibuco HRG"
+ItemCategory="Escopeta"
+ItemDescription="•El modo principal usa solo un cañón.\n•El modo alternativo dispara con ambos cañones a la vez.\n•Munición explosiva incluida, para darle chicha."
+
+[KFWeap_Pistol_Blunderbuss]
+ItemName="Trabucón"
+ItemCategory="Explosivos"
+ItemDescription="•El modo principal lanza una bala de cañón.\n•Mantén pulsado el botón principal durante 0,1 segundos para evitar que la bala explote. Suelta para que explote.\n•El modo alternativo dispara metralla de cañón.\n•¡La pata de palo y el loro se venden por separado!"
+SharedUnlockSource="Paquete de armas Trabucón"
+
+[KFWeap_Pistol_G18C]
+ItemName="Glock 18c"
+ItemCategory="Subfusil"
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Advertencia: Deseo incontrolable de declararse identificado con la ley cuando se usa."
+SharedUnlockSource="Paquete de armas Glock 18C y Glock 18C dual"
+
+[KFWeap_Pistol_DualG18]
+ItemName="Glock 18c dual"
+ItemCategory="Subfusil"
+ItemDescription="•Solo dispara en modo automático.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•Advertencia: Deseo incontrolable de declararse identificado con la ley cuando se usa."
+SharedUnlockSource="Paquete de armas Glock 18C y Glock 18C dual"
+
+[KFWeap_AssaultRifle_HRGTeslauncher]
+ItemName="Lanzatesla HRG"
+ItemCategory="Rifle de asalto"
+ItemDescription="•Solo dispara en modo automático.\n•El modo alternativo lanza granadas EM.\n•Con esta arma eléctrica y ecológica podrás eliminar a cientos de zeds mientras cuidas del planeta."
+SecondaryAmmo="Granada EM"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -98,8 +98,8 @@ replication
      if(bNetDirty)
         Armor, HealingDamageBoost, 
         HealingShield, HealingSpeedBoost, 
-        MaxArmor, WeaponSkinItemId, 
-        bObjectivePlayer;
+        HealthToRegen, MaxArmor, 
+        WeaponSkinItemId, bObjectivePlayer;
 
      if(bNetDirty && bNetOwner)
         bDisableTraderDialog;
