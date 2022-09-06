@@ -202,8 +202,6 @@ simulated function DetachWeapon()
 	{
 		CryoProjectilePSC.DeactivateSystem ();
 		MySkelMesh.DetachComponent (CryoProjectilePSC);
-		WeaponPlayFireSound (CryoProjectileSoundEffectOff, CryoProjectileSoundEffectOff);
-
 		CryoProjectilePSC = none;
 	}
 	

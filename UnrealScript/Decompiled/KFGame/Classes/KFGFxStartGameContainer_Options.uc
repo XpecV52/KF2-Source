@@ -240,7 +240,7 @@ function InitializeGameOptions()
 
     if(I >= 0)
     {
-        if((bIsSoloGame && !Class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(I)) || !Class'GameEngine'.static.IsGameFullyInstalled() && I == 4)
+        if(((bIsSoloGame && !Class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(I)) || !Class'GameEngine'.static.IsGameFullyInstalled() && I == 4) || !Class'GameEngine'.static.IsGameFullyInstalled() && I == 1)
         {
             SupportedGameModeStrings.Remove(I, 1;
         }

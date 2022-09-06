@@ -1814,7 +1814,7 @@ function int GetModeIndex(optional bool bAdjustedIndex)
 
     bAdjustedIndex = true;
     SavedModeIndex = CachedProfile.GetProfileInt(148);
-    if(!Class'GameEngine'.static.IsGameFullyInstalled() && SavedModeIndex == 4)
+    if(!Class'GameEngine'.static.IsGameFullyInstalled() && (SavedModeIndex == 4) || SavedModeIndex == 1)
     {
         CachedProfile.SetProfileSettingValueInt(148, 0);
         return 0;

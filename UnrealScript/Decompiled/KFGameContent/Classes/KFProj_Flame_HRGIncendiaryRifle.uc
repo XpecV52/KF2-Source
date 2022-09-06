@@ -8,8 +8,34 @@
 class KFProj_Flame_HRGIncendiaryRifle extends KFProj_MolotovSplash
     hidecategories(Navigation);
 
+protected simulated function PrepareExplosionActor(GameExplosionActor GEA)
+{
+    local KFExplosion_HRGIncendiaryRifleGroundFire KFEM;
+    local Vector ExplosionDir;
+
+    super.PrepareExplosionActor(GEA);
+    GEA.SetLocation(Location + (vector(GEA.Rotation) * float(10)));
+    KFEM = KFExplosion_HRGIncendiaryRifleGroundFire(GEA);
+    if(KFEM != none)
+    {
+        ExplosionDir = vector(KFEM.Rotation);
+        if(ExplosionDir.Z < -0.95)
+        {
+            KFEM.LoopingParticleEffect = KFEM.default.LoopingParticleEffectCeiling;            
+        }
+        else
+        {
+            if(ExplosionDir.Z < 0.05)
+            {
+                KFEM.LoopingParticleEffect = KFEM.default.LoopingParticleEffectWall;
+            }
+        }
+    }
+}
+
 defaultproperties
 {
+    ExplosionActorClass=Class'KFExplosion_HRGIncendiaryRifleGroundFire'
     begin object name=ExploTemplate0 class=KFGameExplosion
         Damage=4
         MyDamageType=Class'KFDT_Fire_Ground_HRGIncendiaryRifle'

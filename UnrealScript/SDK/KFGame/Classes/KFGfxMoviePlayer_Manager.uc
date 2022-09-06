@@ -2050,8 +2050,8 @@ function int GetModeIndex(optional bool bAdjustedIndex = true)
 	local int SavedModeIndex;
 
 	SavedModeIndex = CachedProfile.GetProfileInt(KFID_SavedModeIndex);
-
-	if (!class'GameEngine'.Static.IsGameFullyInstalled() && SavedModeIndex == EGameMode_Objective)
+	
+	if (!class'GameEngine'.Static.IsGameFullyInstalled() && (SavedModeIndex == EGameMode_Objective || SavedModeIndex == EGameMode_Weekly))
 	{
 		CachedProfile.SetProfileSettingValueInt(KFID_SavedModeIndex, EGameMode_Survival);
 		return EGameMode_Survival;

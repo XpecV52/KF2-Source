@@ -8,8 +8,6 @@
 class KFProj_MolotovSplash extends KFProjectile
     hidecategories(Navigation);
 
-var float MaxTimeFlarotov;
-
 simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
     if((StaticMeshComponent(WallComp) != none) && StaticMeshComponent(WallComp).CanBecomeDynamic())
@@ -39,7 +37,6 @@ protected simulated function PrepareExplosionActor(GameExplosionActor GEA)
 {
     local KFExplosion_Molotov KFEM;
     local Vector ExplosionDir;
-    local KFPawn KFPInstigator;
 
     super.PrepareExplosionActor(GEA);
     GEA.SetLocation(Location + (vector(GEA.Rotation) * float(10)));
@@ -56,14 +53,6 @@ protected simulated function PrepareExplosionActor(GameExplosionActor GEA)
             if(ExplosionDir.Z < 0.05)
             {
                 KFEM.LoopingParticleEffect = KFEM.default.LoopingParticleEffectWall;
-            }
-        }
-        KFPInstigator = KFPawn(Instigator);
-        if((KFPInstigator != none) && KFPInstigator.GetPerk() != none)
-        {
-            if(KFPInstigator.GetPerk().IsFlarotovActive())
-            {
-                KFEM.maxTime = MaxTimeFlarotov;
             }
         }
     }
@@ -100,7 +89,6 @@ protected simulated function PrepareExplosionTemplate()
 
 defaultproperties
 {
-    MaxTimeFlarotov=10
     bAlwaysReplicateExplosion=true
     bAutoStartAmbientSound=true
     AlwaysRelevantDistanceSquared=6250000

@@ -11,9 +11,6 @@
 
 class KFProj_MolotovSplash extends KFProjectile;
 
-/** Alternate lifespan for Flarotov */
-var float MaxTimeFlarotov;
-
 /** Blow up on impact */
 simulated event HitWall(vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
@@ -55,7 +52,6 @@ simulated protected function PrepareExplosionActor(GameExplosionActor GEA)
 {
 	local KFExplosion_Molotov KFEM;
 	local vector ExplosionDir;
-	local KFPawn KFPInstigator;
 
 	super.PrepareExplosionActor( GEA );
 
@@ -78,15 +74,6 @@ simulated protected function PrepareExplosionActor(GameExplosionActor GEA)
 			KFEM.LoopingParticleEffect = KFEM.default.LoopingParticleEffectWall;
 		}
 		// else floor
-
-		KFPInstigator = KFPawn(Instigator);
-		if( KFPInstigator != None && KFPInstigator.GetPerk() != None )
-		{
-			if( KFPInstigator.GetPerk().IsFlarotovActive() )
-			{
-			    KFEM.MaxTime = MaxTimeFlarotov;
-			}
-		}
 	}
 }
 
@@ -130,7 +117,6 @@ simulated protected function PrepareExplosionTemplate()
 
 defaultproperties
 {
-   MaxTimeFlarotov=10.000000
    bAlwaysReplicateExplosion=True
    bAutoStartAmbientSound=True
    AlwaysRelevantDistanceSquared=6250000.000000

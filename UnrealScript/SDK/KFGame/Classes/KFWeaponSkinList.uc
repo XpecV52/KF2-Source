@@ -2443,7 +2443,7 @@ defaultproperties
     Skins.Add((Id=7181, Weapondef=class'KFWeapDef_MB500', MIC_1P=("wep_skinset_dragonkoi01_mat.dragonkoi_mb500.DragonKoi_MB500_1P_Mint_MIC"), MIC_3P="wep_skinset_dragonkoi01_mat.dragonkoi_mb500.DragonKoi_MB500_3P_Mint_MIC", MIC_Pickup="wep_skinset_dragonkoi01_mat.dragonkoi_mb500.DragonKoi_MB500_3P_Pickup_MIC"))
 
 //Dragon & Koi MP7
-    Skins.Add((Id=7182, Weapondef=class'KFWeapDef_MP7', MIC_1P=("wep_skinset_dragonkoi01_mat.dragonkoi_mp7.DragonKoi_MP7_1P_Mint_MIC"), MIC_3P="wep_skinset_dragonkoi01_mat.dragonkoi_mp7.DragonKoi_MP7_3P_Mint_MIC", MIC_Pickup="wep_skinset_dragonkoi01_mat.dragonkoi_mp7.DragonKoi_MP7_3P_Pickup_MIC"))
+    Skins.Add((Id=7182, Weapondef=class'KFWeapDef_MP7', MIC_1P=("wep_skinset_dragonkoi01_mat.dragonkoi_mp7.DragonKoi_MP7_1P_Mint_MIC", "wep_skinset_dragonkoi01_mat.dragonkoi_mp7.DragonKoi_MP7_Sight_1P_MIC"), MIC_3P="wep_skinset_dragonkoi01_mat.dragonkoi_mp7.DragonKoi_MP7_3P_Mint_MIC", MIC_Pickup="wep_skinset_dragonkoi01_mat.dragonkoi_mp7.DragonKoi_MP7_3P_Pickup_MIC"))
 
 //Dragon & Koi 9MM
     Skins.Add((Id=7183, Weapondef=class'KFWeapDef_9mm', MIC_1P=("wep_skinset_dragonkoi01_mat.dragonkoi_9mm.DragonKoi_9mm_1P_Mint_MIC"), MIC_3P="wep_skinset_dragonkoi01_mat.dragonkoi_9mm.DragonKoi_9mm_3P_Mint_MIC", MIC_Pickup="wep_skinset_dragonkoi01_mat.dragonkoi_9mm.DragonKoi_9mm_3P_Pickup_MIC"))
@@ -2743,7 +2743,7 @@ defaultproperties
     Skins.Add((Id=7517, Weapondef=class'KFWeapDef_M16M203', MIC_1P=("WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_m16m203.DragonKoi_M16_1P_Mint_MIC", "WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_m16m203.DragonKoi_M203_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_m16m203.DragonKoi_M16M203_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_m16m203.DragonKoi_M16M203_3P_Pickup_MIC"))
 
 //Dragon & Koi AK12
-    Skins.Add((Id=7518, Weapondef=class'KFWeapDef_Ak12', MIC_1P=("WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_ak12.DragonKoi_AK12_1P_Mint_MIC", "WEP_SkinSet_DragonKoi03_MAT.dragonkoi_ak12.DragonKoi_AK12_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_ak12.DragonKoi_AK12_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_ak12.DragonKoi_AK12_3P_Pickup_MIC"))
+    Skins.Add((Id=7518, Weapondef=class'KFWeapDef_Ak12', MIC_1P=("WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_ak12.DragonKoi_AK12_1P_Mint_MIC", "WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_ak12.DragonKoi_AK12_Scope_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_ak12.DragonKoi_AK12_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_ak12.DragonKoi_AK12_3P_Pickup_MIC"))
 
 //Dragon & Koi Pulverizer
     Skins.Add((Id=7519, Weapondef=class'KFWeapDef_Pulverizer', MIC_1P=("WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_pulverizer.DragonKoi_Pulverizer_1P_Mint_MIC"), MIC_3P="WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_pulverizer.DragonKoi_Pulverizer_3P_Mint_MIC", MIC_Pickup="WEP_SkinSet_DragonKoi_03_MAT.dragonkoi_pulverizer.DragonKoi_Pulverizer_3P_Pickup_MIC"))

@@ -11,10 +11,43 @@
 
 class KFProj_Flame_HRGIncendiaryRifle extends KFProj_MolotovSplash;
 
+/** Overridden to adjust particle system for different surface orientations (wall, ceiling)
+  * and nudge location
+  */
+simulated protected function PrepareExplosionActor(GameExplosionActor GEA)
+{
+	local KFExplosion_HRGIncendiaryRifleGroundFire KFEM;
+	local vector ExplosionDir;
+
+	super.PrepareExplosionActor( GEA );
+
+	// KFProjectile::Explode gives GEA a "nudged" location of 32 units, but it's too much, so use a smaller nudge
+	GEA.SetLocation( Location + vector(GEA.Rotation) * 10 );
+
+	KFEM = KFExplosion_HRGIncendiaryRifleGroundFire( GEA );
+	if( KFEM != none )
+	{
+		ExplosionDir = vector( KFEM.Rotation );
+
+		if( ExplosionDir.Z < -0.95 )
+		{
+			// ceiling
+			KFEM.LoopingParticleEffect = KFEM.default.LoopingParticleEffectCeiling;
+		}
+		else if( ExplosionDir.Z < 0.05 )
+		{
+			// wall
+			KFEM.LoopingParticleEffect = KFEM.default.LoopingParticleEffectWall;
+		}
+		// else floor
+	}
+}
+
 	
 
 defaultproperties
 {
+   ExplosionActorClass=Class'kfgamecontent.KFExplosion_HRGIncendiaryRifleGroundFire'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0 Archetype=KFGameExplosion'kfgamecontent.Default__KFProj_MolotovSplash:ExploTemplate0'
       ExplosionEffects=KFImpactEffectInfo'wep_molotov_arch.Molotov_GroundFire'
       bDirectionalExplosion=True

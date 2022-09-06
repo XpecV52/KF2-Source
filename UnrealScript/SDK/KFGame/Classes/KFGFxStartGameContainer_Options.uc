@@ -209,7 +209,8 @@ function InitializeGameOptions()
 	{
 		// If we're in a solo game, filter out MP-only gametypes
 		// If the game isn't fully installed, filter out objective mode since it isn't supported by evacuation point
-		if ((bIsSoloGame && !class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(i)) || (!class'GameEngine'.Static.IsGameFullyInstalled() && i == EGameMode_Objective))
+		// KFII-49468: also filter out Weekly mode
+		if ((bIsSoloGame && !class'KFGameInfo'.static.IsGameModeSoloPlayAllowed(i)) || (!class'GameEngine'.Static.IsGameFullyInstalled() && i == EGameMode_Objective) || (!class'GameEngine'.Static.IsGameFullyInstalled() && i == EGameMode_Weekly))
 		{
 			SupportedGameModeStrings.Remove(i, 1);
 		}
