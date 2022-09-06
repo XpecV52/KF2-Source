@@ -321,7 +321,7 @@ defaultproperties
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_HRGTeslauncher'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Grenade_HRGTeslauncher'
    FireInterval(0)=0.120000
-   FireInterval(1)=0.002500
+   FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()

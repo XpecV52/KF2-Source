@@ -174,7 +174,7 @@ defaultproperties
    WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_BlunderBluss",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8189")
    WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_G18C",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8188")
    WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_PerilousPlunder",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8190")
-   WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_FullGearBundle_SpacePirate",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8122")
+   WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_FullGearBundle_SpacePirate",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8184")
    WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_SpacePirate",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8183")
    WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
    WhatsNewItems(11)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")

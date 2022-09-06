@@ -347,7 +347,7 @@ defaultproperties
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Grenade_HRGTeslauncher'
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Ballistic_HRGTeslauncherGrenadeImpact'
 	PenetrationPower(ALTFIRE_FIREMODE)=0
-	FireInterval(ALTFIRE_FIREMODE)=+0.0025f
+	FireInterval(ALTFIRE_FIREMODE)=+0.25f
 	InstantHitDamage(ALTFIRE_FIREMODE)=50.0 //150 //225
 	Spread(ALTFIRE_FIREMODE)=0.0085
 

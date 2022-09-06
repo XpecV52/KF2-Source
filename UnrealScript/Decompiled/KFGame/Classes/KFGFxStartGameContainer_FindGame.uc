@@ -177,7 +177,7 @@ defaultproperties
     WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_BlunderBluss",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8189",PSNProductId="")
     WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_G18C",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8188",PSNProductId="")
     WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_PerilousPlunder",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8190",PSNProductId="")
-    WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_FullGearBundle_SpacePirate",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8122",PSNProductId="")
+    WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_FullGearBundle_SpacePirate",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8184",PSNProductId="")
     WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_SpacePirate",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8183",PSNProductId="")
     WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
     WhatsNewItems(11)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/",PSNProductId="")

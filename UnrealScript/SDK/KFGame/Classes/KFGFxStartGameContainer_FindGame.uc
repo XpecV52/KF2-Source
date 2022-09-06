@@ -183,7 +183,7 @@ DefaultProperties
 // Featured Weapon Bundle
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_PerilousPlunder", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8190"))
 // Featured Cosmetic Bundle
-    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_FullGearBundle_SpacePirate", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8122"))
+    WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_FullGearBundle_SpacePirate", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8184"))
 // Featured Outfit Bundle
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_SpacePirate", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8183"))
 
