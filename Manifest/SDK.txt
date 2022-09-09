@@ -1,10 +1,10 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 3433357823728486464 / 6/29/2020 1:20:13 AM
+Manifest ID / date     : 6186634352773952808 / 6/30/2020 11:35:08 AM
 Total number of files  : 4654
 Total number of chunks : 4722
-Total bytes on disk    : 98506248
-Total bytes compressed : 28103968
+Total bytes on disk    : 98483265
+Total bytes compressed : 28101248
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
@@ -12,12 +12,12 @@ Total bytes compressed : 28103968
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
         546816      1 8A2B0597A4CC9BED598D6BB7EB771F113849AFB3     0 Binaries\SDKFrontend.exe
          75264      1 1B891EE290FAFF7D6B51E41CDACEDE5D166CF2DF     0 Binaries\UnrealControls.dll
-       1592832      2 780E1BEBC9DD137FC52CDADCF479B5D8715568F7     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 5CA55BCD0295DA02681D382372FEFE929D6DE8B1     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      67701760     65 51F2748538DA45E3E79BE067A0B87C0C5CF06223     0 Binaries\Win64\KFEditor.exe
+      67678720     65 55F57E41918DEA15789BD215CBF366139D30B95D     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -2860,10 +2860,10 @@ Total bytes compressed : 28103968
          21472      1 D1B2E50BBA71C3D18645446DC78753E06D97AC32     0 Development\Src\KFGame\Classes\KFGFxMenu_Gear.uc
          13828      1 8385AB46278E632D6482592F196617404510388B     0 Development\Src\KFGame\Classes\KFGFxMenu_IIS.uc
          36719      1 9D74701337D9810B0034AD977862664DE1D8207C     0 Development\Src\KFGame\Classes\KFGFxMenu_Inventory.uc
-         13330      1 5F8BB67D5DDD100795F5989FE572225B1C72C12B     0 Development\Src\KFGame\Classes\KFGFxMenu_Perks.uc
+         13340      1 A94788D8F9C9514C1C9B576AE86732A2C1F68C04     0 Development\Src\KFGame\Classes\KFGFxMenu_Perks.uc
          15037      1 7E8C4C09D67A06C458AA369C02F1D188D54FA14D     0 Development\Src\KFGame\Classes\KFGFxMenu_PostGameReport.uc
          12242      1 444C59AE3D677694F0DAD9B72D19563E6AAA767D     0 Development\Src\KFGame\Classes\KFGFxMenu_ServerBrowser.uc
-          7976      1 602AE19D1FBA06227BD2BBD443A04BC2DD5EBC4C     0 Development\Src\KFGame\Classes\KFGFxMenu_Store.uc
+          8023      1 6CE06E4CD9492DC492E5B516A01DB8B2D38BCDBD     0 Development\Src\KFGame\Classes\KFGFxMenu_Store.uc
           4622      1 BFC9B674F4B677F4BC697D67BFBA1E203088E0CB     0 Development\Src\KFGame\Classes\KFGFxMissionObjectivesContainer.uc
          41962      1 758B1A875F6C6FC6A29201E6B6D2545C140CED2F     0 Development\Src\KFGame\Classes\KFGFxMoviePlayer_HUD.uc
           1497      1 8942EAA94661DCB30D0B005604435C10D8427E9B     0 Development\Src\KFGame\Classes\KFGFxMoviePlayer_Manager_Versus.uc

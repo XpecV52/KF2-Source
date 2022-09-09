@@ -226,7 +226,7 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
     SetObject("storeItemDetails", CreateStoreItem(StoreItemDetails));
     if(Class'WorldInfo'.static.IsEOSBuild())
     {
-        AddCartButton.SetVisible(StoreItemDetails.Price != "  ");
+        AddCartButton.SetVisible((StoreItemDetails.Price != "  ") && StoreItemDetails.Price != "");
     }
     if(Class'WorldInfo'.static.IsConsoleBuild())
     {

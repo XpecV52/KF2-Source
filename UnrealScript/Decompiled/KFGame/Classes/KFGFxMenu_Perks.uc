@@ -220,7 +220,7 @@ function CheckTiersForPopup()
             ++ I;
             goto J0x16E;
         }
-        KFPC.MyGFxManager.DelayedOpenPopup(2, 0, TierUnlockedText, SecondaryPopupText, Class'KFCommon_LocalizedStrings'.default.OKString,, Outer.,, Outer.,,, Outer.,, PerkLevelupSound);
+        KFPC.MyGFxManager.DelayedOpenPopup(2, 5, TierUnlockedText, SecondaryPopupText, Class'KFCommon_LocalizedStrings'.default.OKString,, Outer.,, Outer.,,, Outer.,, PerkLevelupSound);
     }
 }
 

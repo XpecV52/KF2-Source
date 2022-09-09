@@ -224,8 +224,8 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
 	//@SABER_EGS_BEGIN
 	if ( class'WorldInfo'.static.IsEOSBuild())
 	{
-		// Ownded durable items marked with special price "double space"		
-		AddCartButton.SetVisible(StoreItemDetails.Price != "  ");
+		// Ownded durable items marked with special price "double space" or empty price		
+		AddCartButton.SetVisible(StoreItemDetails.Price != "  " && StoreItemDetails.Price != "");
 	}
 	//@SABER_EGS_END
 

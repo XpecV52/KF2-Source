@@ -557,6 +557,10 @@ package tripwire.containers
             switch(param1.currentTarget)
             {
                 case this.backButton:
+                    if(this.myStartMenu.menuState == StartMenu.MENU_STATE_CREATE_GAME && this._bSearchingForGame)
+                    {
+                        ExternalInterface.call("Callback_CancelSearch");
+                    }
                     this.attemptLeaveMenu();
                     break;
                 case this.modeButton:
@@ -595,7 +599,14 @@ package tripwire.containers
                     }
                     else if(this.myStartMenu.menuState == StartMenu.MENU_STATE_CREATE_GAME)
                     {
-                        ExternalInterface.call("Callback_CreateOnlineGame");
+                        if(this._bSearchingForGame)
+                        {
+                            ExternalInterface.call("Callback_CancelSearch");
+                        }
+                        else
+                        {
+                            ExternalInterface.call("Callback_CreateOnlineGame");
+                        }
                     }
             }
         }
