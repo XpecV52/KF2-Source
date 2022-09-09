@@ -14,6 +14,7 @@ var delegate<RightButtonPress> __RightButtonPress__Delegate;
 
 function Callback_ClosedPopup()
 {
+    LogInternal(("KFGfxObject_Popup::" $ string(GetFuncName())) @ "invoke ClosePopUp()");
     ClosePopUp();
 }
 

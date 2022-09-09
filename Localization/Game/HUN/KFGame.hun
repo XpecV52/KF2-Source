@@ -43,6 +43,23 @@ AllString="ALL"
 UnableToSwitchTeamString="Unable to Switch Teams"
 NoSwitchReasonString="Switching teams would upset team balance"
 
+MicrophonePopupTitleString="Configure your microphone"
+MicrophonePopupSelectDeviceString="Select device"
+MicrophonePopupVolumeString="Mic volume"
+MicrophonePopupCheckString="Check mic"
+MicrophonePopupStopString="Stop"
+MicrophonePopupRefreshString="refresh"
+
+FriendsListPopupTitleString="Choose Friends to invite"
+FriendsListPopupFriendString="Friend"
+FriendsListPopupFriendsString="Friends"
+FriendsListPopupOtherFriendsString="Friends from other platforms"
+FriendsListPopupLinkButonString="Link Account"
+ReturnString="RETURN"
+
+InvitePopupTitleString="Lobby Invitation"
+InvitePopupTextString=" has invited you to a lobby"
+
 
 
 [KFGFxMoviePlayer_Manager]

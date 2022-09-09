@@ -206,12 +206,13 @@ defaultproperties
    WidgetBindings(13)=(WidgetName="KickVoteWidget",WidgetClass=Class'KFGame.KFGFxWidget_KickVote')
    WidgetBindings(14)=(WidgetName="MusicNotification",WidgetClass=Class'KFGame.KFGFxWidget_MusicNotification')
    WidgetBindings(15)=(WidgetName="NonCriticalMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
-   WidgetBindings(16)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
-   WidgetBindings(17)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
-   WidgetBindings(18)=(WidgetName="teamRoster",WidgetClass=Class'KFGame.KFGFxHud_PlayerRosterWidget')
-   WidgetBindings(19)=(WidgetName="MoveListContainer",WidgetClass=Class'KFGame.KFGFxHUD_PlayerMoveList')
-   WidgetBindings(20)=(WidgetName="PlayerStatWidgetMC",WidgetClass=Class'kfgamecontent.KFGFxHUD_PlayerStatusVersus')
-   WidgetBindings(21)=(WidgetName="SpectatorInfoWidget",WidgetClass=Class'KFGame.KFGFxHUD_SpectatorInfo_Versus')
+   WidgetBindings(16)=(WidgetName="InviteMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
+   WidgetBindings(17)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
+   WidgetBindings(18)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
+   WidgetBindings(19)=(WidgetName="teamRoster",WidgetClass=Class'KFGame.KFGFxHud_PlayerRosterWidget')
+   WidgetBindings(20)=(WidgetName="MoveListContainer",WidgetClass=Class'KFGame.KFGFxHUD_PlayerMoveList')
+   WidgetBindings(21)=(WidgetName="PlayerStatWidgetMC",WidgetClass=Class'kfgamecontent.KFGFxHUD_PlayerStatusVersus')
+   WidgetBindings(22)=(WidgetName="SpectatorInfoWidget",WidgetClass=Class'KFGame.KFGFxHUD_SpectatorInfo_Versus')
    Name="Default__KFGFxMoviePlayer_HUD_Versus"
    ObjectArchetype=KFGFxMoviePlayer_HUD'KFGame.Default__KFGFxMoviePlayer_HUD'
 }

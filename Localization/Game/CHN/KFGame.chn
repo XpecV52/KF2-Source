@@ -46,6 +46,23 @@ YesString="是"
 NoString="否"
 TeamSwappedString="你的队伍已被交换"
 
+MicrophonePopupTitleString="麦克风设置"
+MicrophonePopupSelectDeviceString="选择"
+MicrophonePopupVolumeString="麦克风音量"
+MicrophonePopupCheckString="检查麦克风"
+MicrophonePopupStopString="接受"
+MicrophonePopupRefreshString="刷新"
+
+FriendsListPopupTitleString="选择要邀请的好友"
+FriendsListPopupFriendString="搜索"
+FriendsListPopupFriendsString="好友"
+FriendsListPopupOtherFriendsString="来自其他平台的好友"
+FriendsListPopupLinkButonString="关联帐号"
+ReturnString="返回"
+
+InvitePopupTitleString="大厅邀请"
+InvitePopupTextString="邀请你加入大厅"
+
 CancelConnectionString="取消加载"
 
 DisbandPartyString="解散小队"

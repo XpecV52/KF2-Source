@@ -35,7 +35,7 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     super.InitializeMenu(InManager);
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
     {
         Class'GameEngine'.static.GetPlayfabInterface().AddOnCloudScriptExecutionCompleteDelegate(OnProcessEndGameRewardsComplete);
         KFGRI.SendPlayfabGameTimeUpdate(true);
@@ -319,7 +319,7 @@ function string FormatTime(int TimeInSeconds)
 
 function OnOpen()
 {
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
     {
         if(Outer.GetPC().WorldInfo.NetMode == NM_Client)
         {
@@ -337,7 +337,7 @@ function OnOpen()
 
 function OnClose()
 {
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
     {
         Class'GameEngine'.static.GetPlayfabInterface().ClearOnCloudScriptExecutionCompleteDelegate(OnProcessEndGameRewardsComplete);
         Class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate(SearchPlayfabInventoryForNewItem);        

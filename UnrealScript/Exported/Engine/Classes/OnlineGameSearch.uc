@@ -183,6 +183,10 @@ var int NumPingProbes;
 /** The max amount of data to use when pinging */
 var int MaxPingBytes;
 
+//@SABER_BEGIN - The max ping of the crossplay server
+var int MaxPing;
+//@SABER_END
+
 /**
  * Sets the information needed to do a manual specification of the skill to use when searching
  *
@@ -288,6 +292,7 @@ defaultproperties
    MaxSearchResults=25
    GameSettingsClass=Class'Engine.OnlineGameSettings'
    PingBucketSize=50
+   MaxPing=-1
    Name="Default__OnlineGameSearch"
    ObjectArchetype=Settings'Engine.Default__Settings'
 }

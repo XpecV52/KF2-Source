@@ -396,6 +396,8 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
 const KFID_ClassicPlayerInfo=173;
+const KFID_VOIPMicVolumeMultiplier = 174;
+
 #linenumber 22;
 
 /** The time at which this PRI left the game */
@@ -1381,7 +1383,8 @@ simulated event SelectCharacter( optional int CharIndex=INDEX_None, optional boo
 		}
 		else
 		{
-			if (class'WorldInfo'.static.IsConsoleBuild())
+			//@SABER_EGS IsEosBuild() case added
+			if (class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEosBuild())
 			{
 				if (class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
 				{

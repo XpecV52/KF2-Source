@@ -143,6 +143,7 @@ var string AdditionalSearchCriteria;
 var int PingBucketSize;
 var int NumPingProbes;
 var int MaxPingBytes;
+var int MaxPing;
 
 function SetSkillOverride(int LeaderboardId, const out array<UniqueNetId> Players)
 {
@@ -224,4 +225,5 @@ defaultproperties
     MaxSearchResults=25
     GameSettingsClass=Class'OnlineGameSettings'
     PingBucketSize=50
+    MaxPing=-1
 }

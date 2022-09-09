@@ -95,6 +95,7 @@ var config int MaxPlayers;
 var int MaxPlayersAllowed;
 var int NumPlayers;
 var int NumBots;
+var int NumEosPlayers;
 var int NumTravellingPlayers;
 var int CurrentID;
 var const localized string DefaultPlayerName;
@@ -191,7 +192,7 @@ event PostBeginPlay()
         MaxIdleTime = FMax(MaxIdleTime, 20);
     }
     PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
-    if(WorldInfo.IsConsoleDedicatedServer())
+    if(WorldInfo.IsConsoleDedicatedServer() || WorldInfo.IsEOSDedicatedServer())
     {
         if(PlayfabInter != none)
         {
@@ -1389,6 +1390,10 @@ event PostLogin(PlayerController NewPlayer)
             ++ NumTravellingPlayers;
         }
     }
+    if((WorldInfo.IsEOSDedicatedServer() && NewPlayer.bIsEosPlayer) && !NewPlayer.PlayerReplicationInfo.bOnlySpectator)
+    {
+        ++ NumEosPlayers;
+    }
     UpdateGameSettingsCounts();
     Address = NewPlayer.GetPlayerNetworkAddress();
     pos = InStr(Address, ":");
@@ -1439,13 +1444,13 @@ event PostLogin(PlayerController NewPlayer)
     {
         GameSeq.FindSeqObjectsByClass(Class'SeqAct_Interp', true, AllInterpActions);
         I = 0;
-        J0x4E8:
+        J0x574:
 
         if(I < AllInterpActions.Length)
         {
             SeqAct_Interp(AllInterpActions[I]).AddPlayerToDirectorTracks(NewPlayer);
             ++ I;
-            goto J0x4E8;
+            goto J0x574;
         }
     }
     if(ShouldStartInCinematicMode(HidePlayer, HideHUD, DisableMovement, DisableTurning, DisableInput))
@@ -1529,6 +1534,10 @@ function Logout(Controller Exiting)
             else
             {
                 -- NumTravellingPlayers;
+            }
+            if(WorldInfo.IsEOSDedicatedServer() && PC.bIsEosPlayer)
+            {
+                -- NumEosPlayers;
             }
             UpdateGameSettingsCounts();
         }

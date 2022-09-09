@@ -728,7 +728,8 @@ function UpdateGameSettings()
 				}
 
 				// Set the map name
-				if( WorldInfo.IsConsoleDedicatedServer() )
+				//@SABER_EGS IsEOSDedicatedServer() case added
+				if( WorldInfo.IsConsoleDedicatedServer() || WorldInfo.IsEOSDedicatedServer() )
 				{
 					KFGameSettings.MapName = WorldInfo.GetMapName(true);
 					if( GameReplicationInfo != none )
@@ -754,6 +755,11 @@ function UpdateGameSettings()
 				if( PlayfabInter != none && PlayfabInter.IsRegisteredWithPlayfab() )
 				{
 					PlayfabInter.ServerUpdateOnlineGame();
+					//@SABER_EGS_BEGIN Crossplay support
+					if (WorldInfo.IsEOSDedicatedServer()) {
+						GameInterface.UpdateOnlineGame(SessionName, KFGameSettings, true);
+					}
+					//@SABER_EGS_END
 				}
 				else
 				{

@@ -46,6 +46,23 @@ YesString="Tak"
 NoString="Nie"
 TeamSwappedString="Przeniesiono do drugiej drużyny"
 
+MicrophonePopupTitleString="Ustawienia mikrofonu"
+MicrophonePopupSelectDeviceString="WYBIERZ"
+MicrophonePopupVolumeString="Głośność mikrofonu"
+MicrophonePopupCheckString="Sprawdź mikrofon"
+MicrophonePopupStopString="Akceptuj"
+MicrophonePopupRefreshString="ODŚWIEŻ"
+
+FriendsListPopupTitleString="Wybierz znajomych do zaproszenia"
+FriendsListPopupFriendString="WYSZUKAJ"
+FriendsListPopupFriendsString="Znajomi"
+FriendsListPopupOtherFriendsString="Przyjaciele z innych platform"
+FriendsListPopupLinkButonString="Połącz konto"
+ReturnString="POWRÓT"
+
+InvitePopupTitleString="Zaproszenie do lobby"
+InvitePopupTextString=" zaprasza cię do lobby"
+
 CancelConnectionString="Anuluj wczytywanie"
 
 DisbandPartyString="ROZWIĄŻ IMPREZĘ"

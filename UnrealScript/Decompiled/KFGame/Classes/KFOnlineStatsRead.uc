@@ -161,7 +161,7 @@ event OnReadComplete()
     {
         LogInternal(((("KFOnlineStatsRead: OnReadComplete called, Rows[0].Columns.Length=" $ string(Rows[0].Columns.Length)) @ "self:'") $ string(self)) $ "'", 'DevOnline');
     }
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
     {
         if(Class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
         {

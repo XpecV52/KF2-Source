@@ -410,13 +410,13 @@ function UpdateGameSettings()
                 {
                     MyKFGRI.bCustom = bIsCustomGame;
                 }
-                if(WorldInfo.IsConsoleDedicatedServer())
+                if(WorldInfo.IsConsoleDedicatedServer() || WorldInfo.IsEOSDedicatedServer())
                 {
                     KFGameSettings.MapName = WorldInfo.GetMapName(true);
                     if(GameReplicationInfo != none)
                     {
                         I = 0;
-                        J0x644:
+                        J0x668:
 
                         if(I < GameReplicationInfo.PRIArray.Length)
                         {
@@ -425,7 +425,7 @@ function UpdateGameSettings()
                                 ++ NumHumanPlayers;
                             }
                             ++ I;
-                            goto J0x644;
+                            goto J0x668;
                         }
                     }
                     KFGameSettings.NumOpenPublicConnections = KFGameSettings.NumPublicConnections - NumHumanPlayers;
@@ -437,7 +437,11 @@ function UpdateGameSettings()
                 }
                 if((PlayfabInter != none) && PlayfabInter.IsRegisteredWithPlayfab())
                 {
-                    PlayfabInter.ServerUpdateOnlineGame();                    
+                    PlayfabInter.ServerUpdateOnlineGame();
+                    if(WorldInfo.IsEOSDedicatedServer())
+                    {
+                        GameInterface.UpdateOnlineGame(SessionName, KFGameSettings, true);
+                    }                    
                 }
                 else
                 {

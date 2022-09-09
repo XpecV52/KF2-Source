@@ -71,6 +71,7 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
+const KFID_VOIPMicVolumeMultiplier = 174;
 
 enum EUIIndex
 {
@@ -92,6 +93,8 @@ enum EUIIndex
     UI_Trader,
     UI_ServerBrowserMenu,
     UI_IIS,
+    UI_FiendsList,
+    UI_OptionMic,
     UI_MAX
 };
 
@@ -130,6 +133,9 @@ enum EPopUpType
     ENotification,
     EPopUpMax,
     EInputPrompt,
+    EFriendsList,
+    EOptionMic,
+    EConfirmInvite,
     EPopUpType_MAX
 };
 
@@ -761,7 +767,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         case 'GearMenu':
             if((MenuBarWidget != none) && !MenuBarWidget.CanUseGearButton(GetPC(), self))
             {
-                goto J0xB85;
+                goto J0xBA9;
             }
             if(GearMenu == none)
             {
@@ -895,13 +901,16 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         case 'ConnectionErrorPopup':
         case 'ConfirmationPopup':
         case 'InputPromptPopup':
+        case 'FriendsListPopup':
+        case 'OptionMicPopup':
+        case 'FriendsConfirmInvitePopup':
             InitializePopup(WidgetPath, KFGFxObject_Popup(Widget));
             break;
         default:
             bHandled = false;
             break;
     }
-    J0xB85:
+    J0xBA9:
 
     return bHandled;
 }
@@ -1941,6 +1950,9 @@ defaultproperties
     PopupData(2)=(SWFPath="../UI_PopUps/ConnectionErrorPopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")
     PopupData(3)=(SWFPath="",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")
     PopupData(4)=(SWFPath="../UI_PopUps/InputPromptPopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")
+    PopupData(5)=(SWFPath="../UI_PopUps/FriendsListPopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")
+    PopupData(6)=(SWFPath="../UI_PopUps/OptionMicPopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")
+    PopupData(7)=(SWFPath="../UI_PopUps/FriendsConfirmInvitePopup_SWF.swf",TitleStrings=none,DescriptionStrings=none,LeftButtonString="",RightButtonString="")
     FailedSearchTitleString="FAILED TO FIND MATCH"
     FailedSearchString="Matchmaking failed to find a match with the options provided. Please broaden your search or consider using the server browser to find a match."
     BrowseServersString="BROWSE SERVERS"

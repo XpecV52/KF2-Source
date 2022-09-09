@@ -14,6 +14,9 @@ var KFGFxMoviePlayer_Manager Manager;
 
 function Callback_ClosedPopup()
 {
+//@SABER_EGS_BEGIN 
+    `log("KFGfxObject_Popup::"$GetFuncName()@"invoke ClosePopUp()");
+//@SABER_EGS_END
    ClosePopUp();
 }
 

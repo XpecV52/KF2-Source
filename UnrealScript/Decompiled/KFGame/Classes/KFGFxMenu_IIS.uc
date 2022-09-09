@@ -165,7 +165,7 @@ function OnConfirmPlayOffline()
     ProfileSettings.SetToDefaults();
     ProfileSettings.ExpandExtraFromProfileSettings();
     OnlineSub.SetCachedProfile(ProfileSettings);
-    KFPlayerController(Outer.GetPC()).NativeFunctionToken(ArgumentOutOfRangeException);
+    KFPlayerController(Outer.GetPC()).ConditionalToken(ArgumentOutOfRangeException);
 }
 
 function OnLoginStatusChanged(Engine.OnlineSubsystem.ELoginStatus NewStatus, UniqueNetId NewId)

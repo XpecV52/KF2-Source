@@ -35,6 +35,8 @@ var bool bDebug;
 /** Current lobby visibility */
 var ELobbyVisibility LobbyVisibility;
 
+var UniqueNetId InviteLobbyId;
+
 cpptext
 {
 	UBOOL GetServerAddr(DWORD& ip, INT& port);
@@ -177,7 +179,7 @@ event bool InviteFriendToLobby(string Nickname)
 	FriendId = GetFriendUniqueId(Nickname);
 	if (FriendId != ZeroUniqueId)
 	{
-		Success == InviteToLobby(CurrentLobbyId, FriendId);
+		Success = InviteToLobby(CurrentLobbyId, FriendId);
 	}
 
 	if (Success)
@@ -187,6 +189,34 @@ event bool InviteFriendToLobby(string Nickname)
 	else
 	{
 		`log("Failed to invite Friend" @ nickname @ "to party" @ UniqueNetIdToString(CurrentLobbyId), bDebug, 'DevLobby');
+	}
+
+	return Success;
+}
+
+event bool InviteFriendToLobbyByUid(QWORD Uid)
+{
+	local bool Success;
+	local UniqueNetId FriendId;
+
+	if ( !IsInLobby() )
+	{
+		return false;
+	}
+
+	FriendId.Uid = Uid;
+	if (FriendId != ZeroUniqueId)
+	{
+		Success = InviteToLobby(CurrentLobbyId, FriendId);
+	}
+
+	if (Success)
+	{
+		`log("Friend with id" @ UniqueNetIdToString(FriendId) @ "invited to party" @ UniqueNetIdToString(CurrentLobbyId), bDebug, 'DevLobby');
+	}
+	else
+	{
+		`log("Failed to invite Friend to party" @ UniqueNetIdToString(CurrentLobbyId), bDebug, 'DevLobby');
 	}
 
 	return Success;
@@ -257,6 +287,15 @@ function OnLobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted
 
 	if (!bAccepted)
 	{
+		if (LobbyId != CurrentLobbyId)
+		{
+			InviteLobbyId = LobbyId;
+			
+			if(GetPC() != none)
+			{
+				GetPC().showInvitePopup(GetFriendNickName(FriendId, false), LobbyId, FriendId);
+			}
+		}
 		return; //for now don't do anything upon receiving the invite
 	}
 
@@ -273,6 +312,19 @@ function OnLobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted
 
 	AddJoinLobbyCompleteDelegate(OnJoinLobbyComplete);
 	JoinLobby(LobbyId);
+}
+
+function acceptInviteFromFriend()
+{
+    `log(getFuncName());
+    if( GetPC() != none )
+ 	{
+		`log(GetFuncName()@"Accepting lobby invite; disconnecting from current server.", bDebug, 'DevLobby');
+ 		GetPC().ConsoleCommand( "disconnect" );
+ 	}
+    AddJoinLobbyCompleteDelegate(OnJoinLobbyComplete);
+    `log(GetFuncName()@"LobbyId="$UniqueNetIdToString(InviteLobbyId));
+	JoinLobby(InviteLobbyId);
 }
 
 /** JoinLobby() finished */
@@ -296,7 +348,8 @@ function OnJoinLobbyComplete(bool bWasSuccessful, const out array<ActiveLobbyInf
 		AddLobbyMemberStatusUpdateDelegate(OnLobbyMemberStatusUpdate);
 		ServerIPAddress = GetLobbyServerIP(CurrentLobbyId);
 		`log(GetFuncName()@"ServerIPAddress="$ServerIPAddress, bDebug, 'DevLobby');
-		if ( ServerIPAddress != "" )
+		if ((class'WorldInfo'.static.IsEOSBuild() && ServerIPAddress != "" && ServerIPAddress != "NULL") ||  
+	        (!class'WorldInfo'.static.IsEOSBuild() && ServerIPAddress != "")) 
 		{
 			`log(GetFuncName()@"JoinServer called", bDebug, 'DevLobby');
 			JoinServer(ServerIPAddress, ZeroUniqueId);
@@ -348,6 +401,7 @@ native function bool GetServerConnected();
 native function string GetLobbyServerIP(const out UniqueNetId LobbyId);
 native function string GetConnectedServerIP();
 native function string AppendPasswordToURL(string URL, string Password);
+native function RejectInvite(UniqueNetId LobbyId, UniqueNetId FriendId);
 
 /** Called on lobby owner when new listen server game is started */
 function bool LobbyJoinGame(optional string ServerIP)

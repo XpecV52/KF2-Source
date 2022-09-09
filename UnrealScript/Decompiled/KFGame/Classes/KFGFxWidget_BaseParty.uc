@@ -203,18 +203,6 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
     bConsoleBuild = PC.WorldInfo.IsConsoleBuild();
     if(PlayerID != PC.PlayerReplicationInfo.UniqueId)
     {
-        if(!bConsoleBuild)
-        {
-            if(!IsPlayerAFriend(PlayerID))
-            {
-                AddStringOptionToList(AddFriendKey, OptionIndex, AddFriendString, DataProvider);                
-            }
-            else
-            {
-                AddStringOptionToList(AddFriendKey, OptionIndex, RemoveFriendString, DataProvider);
-            }
-            ++ OptionIndex;
-        }
         if(!PC.WorldInfo.IsMenuLevel())
         {
             AddStringOptionToList(MuteKey, OptionIndex, ((PC.IsPlayerMuted(PlayerID)) ? UnmuteString : MuteString), DataProvider);
@@ -246,7 +234,10 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
     }
     if(ProfileString != "")
     {
-        AddStringOptionToList(ViewProfileKey, OptionIndex, ProfileString, DataProvider);
+        if(!Class'WorldInfo'.static.IsEOSBuild())
+        {
+            AddStringOptionToList(ViewProfileKey, OptionIndex, ProfileString, DataProvider);
+        }
     }
     ++ OptionIndex;
     SetObject("listOptions", DataProvider);

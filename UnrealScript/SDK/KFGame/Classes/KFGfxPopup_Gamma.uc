@@ -92,7 +92,9 @@ function Callback_ClosedPopup()
 {
 	Manager.bSetGamma = true;
 	Manager.CachedProfile.Save( GetLP().ControllerId );
-    Super.Callback_Closedpopup();
+//@SABER_EGS_BEGIN 
+	ClosePopUp();
+//@SABER_EGS_END
 }
 
 function Callback_GammaChanged( float NewGamma )

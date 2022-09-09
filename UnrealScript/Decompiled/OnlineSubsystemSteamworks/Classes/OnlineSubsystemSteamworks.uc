@@ -368,6 +368,7 @@ var array< delegate<OnWriteUserFileComplete> > WriteUserFileCompleteDelegates;
 var array< delegate<OnDeleteUserFileComplete> > DeleteUserFileCompleteDelegates;
 var array< delegate<OnReadSharedFileComplete> > SharedFileReadCompleteDelegates;
 var array< delegate<OnWriteSharedFileComplete> > SharedFileWriteCompleteDelegates;
+var array< delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> > LoginOnOtherPlatformDoneAndFriendsReadyDelegates;
 var LocalTalkerSteam CurrentLocalTalker;
 var const float LastLocalTalkerElapsedTime;
 var float LastLocalPlayerTalkTime;
@@ -435,6 +436,7 @@ var delegate<OnReadPlayerStorageComplete> __OnReadPlayerStorageComplete__Delegat
 var delegate<OnReadPlayerStorageForNetIdComplete> __OnReadPlayerStorageForNetIdComplete__Delegate;
 var delegate<OnWritePlayerStorageComplete> __OnWritePlayerStorageComplete__Delegate;
 var delegate<OnReadFriendsComplete> __OnReadFriendsComplete__Delegate;
+var delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> __OnLoginOnOtherPlatformDoneAndFriendsReady__Delegate;
 var delegate<OnRegisterLocalTalkerComplete> __OnRegisterLocalTalkerComplete__Delegate;
 var delegate<OnUnregisterLocalTalkerComplete> __OnUnregisterLocalTalkerComplete__Delegate;
 var delegate<OnUnregisterRemoteTalkerComplete> __OnUnregisterRemoteTalkerComplete__Delegate;
@@ -1000,6 +1002,23 @@ function ClearReadFriendsCompleteDelegate(byte LocalUserNum, delegate<OnReadFrie
 
 // Export UOnlineSubsystemSteamworks::execGetFriendsList(FFrame&, void* const)
 native function Engine.OnlineSubsystem.EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum, out array<OnlineFriend> Friends, optional int Count, optional int StartingAt);
+
+// Export UOnlineSubsystemSteamworks::execLoginOnOtherPlatform(FFrame&, void* const)
+native function LoginOnOtherPlatform();
+
+// Export UOnlineSubsystemSteamworks::execTriggerRefreshFriendsList(FFrame&, void* const)
+native function TriggerRefreshFriendsList();
+
+// Export UOnlineSubsystemSteamworks::execIsLoggedInOnOtherPlatform(FFrame&, void* const)
+native function bool IsLoggedInOnOtherPlatform();
+
+delegate OnLoginOnOtherPlatformDoneAndFriendsReady();
+
+// Export UOnlineSubsystemSteamworks::execCheckLoginOnOtherPlatformAndFriends(FFrame&, void* const)
+native function CheckLoginOnOtherPlatformAndFriends();
+
+// Export UOnlineSubsystemSteamworks::execGetFriendsListFromOtherPlatform(FFrame&, void* const)
+native function Engine.OnlineSubsystem.EOnlineEnumerationReadState GetFriendsListFromOtherPlatform(byte LocalUserNum, out array<OnlineFriend> Friends, optional int Count, optional int StartingAt);
 
 // Export UOnlineSubsystemSteamworks::execRegisterLocalTalker(FFrame&, void* const)
 native function bool RegisterLocalTalker(byte LocalUserNum, optional byte ChannelIndex);
@@ -2200,6 +2219,25 @@ function ClearWriteSharedFileCompleteDelegate(delegate<OnWriteSharedFileComplete
     }
 }
 
+function AddLoginOnOtherPlatformDoneAndFriendsReadyDelegate(delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> LoginOnOtherPlatformDoneAndFriendsReadyDelegate)
+{
+    if(LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Find(LoginOnOtherPlatformDoneAndFriendsReadyDelegate == -1)
+    {
+        LoginOnOtherPlatformDoneAndFriendsReadyDelegates[SharedFileWriteCompleteDelegates.Length] = LoginOnOtherPlatformDoneAndFriendsReadyDelegate;
+    }
+}
+
+function ClearLoginOnOtherPlatformDoneAndFriendsReadyDelegate(delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> LoginOnOtherPlatformDoneAndFriendsReadyDelegate)
+{
+    local int RemoveIndex;
+
+    RemoveIndex = LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Find(LoginOnOtherPlatformDoneAndFriendsReadyDelegate;
+    if(RemoveIndex != -1)
+    {
+        LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Remove(RemoveIndex, 1;
+    }
+}
+
 function ClearAllDelegates()
 {
     EnumerateUserFilesCompleteDelegates.Length = 0;
@@ -2208,8 +2246,23 @@ function ClearAllDelegates()
     DeleteUserFileCompleteDelegates.Length = 0;
 }
 
+// Export UOnlineSubsystemSteamworks::execGetVivoxAudioDevices(FFrame&, void* const)
+native function array<string> GetVivoxAudioDevices();
+
+// Export UOnlineSubsystemSteamworks::execSetVivoxMicDevice(FFrame&, void* const)
+native function SetVivoxMicDevice(int deviceIndex);
+
+// Export UOnlineSubsystemSteamworks::execVivoxEchoTestStart(FFrame&, void* const)
+native function VivoxEchoTestStart();
+
+// Export UOnlineSubsystemSteamworks::execVivoxEchoTestStop(FFrame&, void* const)
+native function VivoxEchoTestStop();
+
 // Export UOnlineSubsystemSteamworks::execSetVoIPVolume(FFrame&, void* const)
 native function SetVoIPVolume(float Volume);
+
+// Export UOnlineSubsystemSteamworks::execSetVoIPMicVolume(FFrame&, void* const)
+native function SetVoIPMicVolume(float Volume);
 
 // Export UOnlineSubsystemSteamworks::execGetVoIPVolume(FFrame&, void* const)
 native function float GetVoIPVolume();

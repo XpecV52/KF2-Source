@@ -88,6 +88,10 @@ function ConfirmLeaveParty()
     {
         Outer.ConsoleCommand("Disconnect");
     }
+    if(Class'WorldInfo'.static.IsEOSBuild() && Manager != none)
+    {
+        Manager.OnLobbyStatusChanged(false);
+    }
 }
 
 function CancelLeaveParty();
@@ -252,8 +256,13 @@ function ConfirmCreateParty()
         {
             OnlineLobby.MakeLobby(6, 1);
         }
-        OnlineLobby.ShowLobbyInviteInterface(((Class'WorldInfo'.static.IsConsoleBuild()) ? Localize("Notifications", "InviteMessage", "KFGameConsole") : ""));
+        showFriendsListPopup();
     }
+}
+
+function showFriendsListPopup()
+{
+    Manager.DelayedOpenPopup(5, 5, Class'KFCommon_LocalizedStrings'.default.FriendsListPopupTitleString, "", Class'KFCommon_LocalizedStrings'.default.ReturnString);
 }
 
 function Callback_PerkChanged(int PerkIndex)
@@ -298,6 +307,10 @@ function Callback_CreateParty()
     }
     else
     {
+        if(Class'WorldInfo'.static.IsEOSBuild() && Manager != none)
+        {
+            Manager.OnLobbyStatusChanged(true);
+        }
         ConfirmCreateParty();
     }
 }
@@ -344,7 +357,7 @@ function Callback_InviteFriend()
         if(OnlineLobby != none)
         {
             OnlineLobby.MakeLobby(6, 1);
-            OnlineLobby.ShowLobbyInviteInterface("");
+            showFriendsListPopup();
         }
     }
 }

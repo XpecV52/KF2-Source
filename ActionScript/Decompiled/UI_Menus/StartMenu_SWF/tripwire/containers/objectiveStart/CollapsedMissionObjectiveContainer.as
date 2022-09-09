@@ -37,9 +37,14 @@ package tripwire.containers.objectiveStart
         
         public function set objectives(param1:Array) : void
         {
+            if(param1 == null || param1.length == 0)
+            {
+                return;
+            }
             this.dataArray = param1;
             this.objectiveRenderer.bIsContracted = true;
-            this.objectiveRenderer.data = this.dataArray[this.currentObjectiveIndex];
+            this.currentObjectiveIndex %= this.dataArray.length;
+            this.objective = this.dataArray[this.currentObjectiveIndex];
             if(this.dataArray.length > 1)
             {
                 if(this.myTimer == null)
@@ -54,9 +59,15 @@ package tripwire.containers.objectiveStart
         public function updateObjective(param1:TimerEvent) : void
         {
             ++this.currentObjectiveIndex;
-            if(this.dataArray[this.currentObjectiveIndex % this.dataArray.length])
+            this.currentObjectiveIndex %= this.dataArray.length;
+            this.objective = this.dataArray[this.currentObjectiveIndex];
+        }
+        
+        public function set objective(param1:Object) : *
+        {
+            if(param1)
             {
-                this.objectiveRenderer.data = this.dataArray[this.currentObjectiveIndex % this.dataArray.length];
+                this.objectiveRenderer.data = param1;
             }
         }
     }

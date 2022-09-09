@@ -46,6 +46,23 @@ YesString="はい"
 NoString="いいえ"
 TeamSwappedString="チームスワップが行われました"
 
+MicrophonePopupTitleString="マイク設定"
+MicrophonePopupSelectDeviceString="選択"
+MicrophonePopupVolumeString="マイク音量"
+MicrophonePopupCheckString="マイクを確認する"
+MicrophonePopupStopString="承認"
+MicrophonePopupRefreshString="リフレッシュ"
+
+FriendsListPopupTitleString="招待するフレンドを選択"
+FriendsListPopupFriendString="検索"
+FriendsListPopupFriendsString="フレンド"
+FriendsListPopupOtherFriendsString="他のプラットフォームのフレンド"
+FriendsListPopupLinkButonString="アカウントリンク"
+ReturnString="戻る"
+
+InvitePopupTitleString="ロビー招待"
+InvitePopupTextString="があなたをロビーに招待しました。"
+
 CancelConnectionString="読み込みをキャンセル"
 
 DisbandPartyString="パーティー解散"

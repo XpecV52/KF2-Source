@@ -118,7 +118,7 @@ function EndOfMatch(bool bVictory)
     super.EndOfMatch(bVictory);
     if(bVictory)
     {
-        if(WorldInfo.IsConsoleBuild())
+        if(WorldInfo.IsConsoleBuild() || WorldInfo.IsEOSBuild())
         {
             PlayfabInter.AddOnCloudScriptExecutionCompleteDelegate(OnTutorialRewardsComplete);
             PlayfabInter.ExecuteCloudScript("ClaimTutorialRewards", none);

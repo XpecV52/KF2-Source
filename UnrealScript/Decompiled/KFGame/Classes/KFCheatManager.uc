@@ -72,6 +72,7 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
+const KFID_VOIPMicVolumeMultiplier = 174;
 
 var bool bDebugSceneEnabled;
 var transient bool bUsingSplatterGun;
@@ -6310,10 +6311,10 @@ exec function TestLogin(string InName)
     Class'GameEngine'.static.GetPlayfabInterface().Login(InName);
 }
 
-function OnLoginComplete(bool bWasSuccessful, string SessionTicket, string PlayfabId)
+function OnLoginComplete(bool bWasSuccessful, string SessionTicket, string PlayFabId)
 {
     Class'GameEngine'.static.GetPlayfabInterface().ClearOnLoginCompleteDelegate(OnLoginComplete);
-    LogInternal((((("Login complete with success" @ string(bWasSuccessful)) @ "and playfab ID") @ PlayfabId) @ "and session ticket") @ SessionTicket);
+    LogInternal((((("Login complete with success" @ string(bWasSuccessful)) @ "and playfab ID") @ PlayFabId) @ "and session ticket") @ SessionTicket);
 }
 
 exec function TestPlayfabGameSearch()

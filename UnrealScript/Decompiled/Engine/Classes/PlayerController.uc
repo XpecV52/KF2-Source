@@ -172,6 +172,7 @@ var transient bool bCameraCut;
 var bool bClientSimulatingViewTarget;
 var bool bHasVoiceHandshakeCompleted;
 var bool bCanPlayOnline;
+var bool bIsEosPlayer;
 var bool bCanShareUserCreatedContent;
 var bool bCanCommunicateVoice;
 var bool bPrivilegesInitialized;
@@ -343,6 +344,8 @@ simulated event FellOutOfWorld(class<DamageType> dmgType);
 unreliable client simulated function EnableActorHeadTracking(Actor TargetActor, name TrackControllerName[10], Class ActorClassesToLookAt[10], bool bLookAtPawns, float MinLookAtTime, float MaxLookAtTime, float MaxInterestTime, float LookAtActorRadius, name TargetBoneNames[10]);
 
 unreliable client simulated function DisableActorHeadTracking(Actor TargetActor);
+
+function showInvitePopup(string FriendName, UniqueNetId LobbyId, UniqueNetId FriendId);
 
 function ForceClearUnpauseDelegates()
 {

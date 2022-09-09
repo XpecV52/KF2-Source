@@ -61,7 +61,8 @@ event OnReadComplete()
 	// Grant perk prestige rewards for all perks at their current prestige level, just in case a
 	// reward was missed due to network/infrastructure issues. We need to wait for the user's
 	// stats AND inventory to be loaded, though, so set a callback for the inventory if necessary.
-	if (class'WorldInfo'.static.IsConsoleBuild())
+	//@SABER_EGS IsEosBuild() case added
+	if (class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEosBuild())
 	{
 		if (class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
 		{

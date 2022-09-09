@@ -131,6 +131,9 @@ var array<delegate<OnReadSharedFileComplete> > SharedFileReadCompleteDelegates;
 /** The array of delegates for notifying when a shared write has completed */
 var array<delegate<OnWriteSharedFileComplete> > SharedFileWriteCompleteDelegates;
 
+/** The array of delegates for notifying when a login on second pratform done and friends recieved */
+var array<delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> > LoginOnOtherPlatformDoneAndFriendsReadyDelegates;
+
 /** The types of global muting we support */
 enum EMuteType
 {
@@ -1752,6 +1755,44 @@ function ClearReadFriendsCompleteDelegate(byte LocalUserNum,delegate<OnReadFrien
  * @return OERS_Done if the read has completed, otherwise one of the other states
  */
 native function EOnlineEnumerationReadState GetFriendsList(byte LocalUserNum,out array<OnlineFriend> Friends,optional int Count,optional int StartingAt);
+
+/**
+* Performs login on Secondary Platform.
+*/
+native function LoginOnOtherPlatform();
+
+/**
+* Performs referesh Friends List
+*/
+native function TriggerRefreshFriendsList();
+
+/**
+* Determines if Player Performs login on Secondary Platform.
+*/
+native function bool IsLoggedInOnOtherPlatform();
+
+/** Delegate called when a login on second pratform done and friends recieved */
+delegate OnLoginOnOtherPlatformDoneAndFriendsReady();
+
+/** 
+* Called by native code to trigger check login on second platform status 
+* and recieved friends status. 
+* When all ready delegate will be called.
+*/
+native function CheckLoginOnOtherPlatformAndFriends();
+
+/**
+ * Copies the list of friends for the player previously retrieved from the secondary 
+ * online service. The list can be retrieved in whole or in part.
+ *
+ * @param LocalUserNum the user to read the friends list of
+ * @param Friends the out array that receives the copied data
+ * @param Count the number of friends to read or zero for all
+ * @param StartingAt the index of the friends list to start at (for pulling partial lists)
+ *
+ * @return OERS_Done if the read has completed, otherwise one of the other states
+ */
+native function EOnlineEnumerationReadState GetFriendsListFromOtherPlatform(byte LocalUserNum,out array<OnlineFriend> Friends,optional int Count,optional int StartingAt);
 
 /**
  * Registers the user as a talker
@@ -4499,6 +4540,36 @@ function ClearWriteSharedFileCompleteDelegate(delegate<OnWriteSharedFileComplete
 	}
 }
 
+/**
+ * Adds the delegate to the list to be notified when a login on second pratform done and friends recieved
+ *
+ * @param WriteSharedFileCompleteDelegate the delegate to add
+ */
+function AddLoginOnOtherPlatformDoneAndFriendsReadyDelegate(delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> LoginOnOtherPlatformDoneAndFriendsReadyDelegate)
+{
+	// Add this delegate to the array if not already present
+	if (LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Find(LoginOnOtherPlatformDoneAndFriendsReadyDelegate) == INDEX_NONE)
+	{
+		LoginOnOtherPlatformDoneAndFriendsReadyDelegates[SharedFileWriteCompleteDelegates.Length] = LoginOnOtherPlatformDoneAndFriendsReadyDelegate;
+	}
+}
+
+/**
+ * Removes the delegate from the notify list
+ *
+ * @param WriteSharedFileCompleteDelegate the delegate to remove
+ */
+function ClearLoginOnOtherPlatformDoneAndFriendsReadyDelegate(delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> LoginOnOtherPlatformDoneAndFriendsReadyDelegate)
+{
+	local int RemoveIndex;
+
+	RemoveIndex = LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Find(LoginOnOtherPlatformDoneAndFriendsReadyDelegate);
+	if (RemoveIndex != INDEX_NONE)
+	{
+		LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Remove(RemoveIndex,1);
+	}
+}
+
 /** clears all delegates for e.g. end of level cleanup */
 function ClearAllDelegates()
 {
@@ -4510,8 +4581,15 @@ function ClearAllDelegates()
 
 
 
+//Audio Devices
+native function array<string> GetVivoxAudioDevices();
+native function SetVivoxMicDevice(int deviceIndex);
+native function VivoxEchoTestStart();
+native function VivoxEchoTestStop();
+
 // VoIP
 native function SetVoIPVolume(float Volume);
+native function SetVoIPMicVolume(float Volume);
 native function float GetVoIPVolume();
 native function float GetCurrentVOIPLevel();
 native function ShowVoIPConfigUI();

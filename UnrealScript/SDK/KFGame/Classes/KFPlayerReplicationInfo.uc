@@ -1004,7 +1004,8 @@ simulated event SelectCharacter( optional int CharIndex=INDEX_None, optional boo
 		}
 		else
 		{
-			if (class'WorldInfo'.static.IsConsoleBuild())
+			//@SABER_EGS IsEosBuild() case added
+			if (class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEosBuild())
 			{
 				if (class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
 				{

@@ -189,7 +189,22 @@ function Callback_ConfigureMicPress()
 
 		if( SubSystem != none )
 		{
-			SubSystem.ShowVOIPConfigUI();	
+			//@SABER_EGS_BEGIN
+			if (class'WorldInfo'.static.isEOSBuild())
+			{
+				// In-game popup winwow with Mic configuration
+				Manager.DelayedOpenPopup(EOptionMic, EDPPID_ExitToMainMenu, 
+				Class'KFCommon_LocalizedStrings'.default.MicrophonePopupTitleString, 
+				"", 
+				Class'KFCommon_LocalizedStrings'.default.OKString,
+				Class'KFCommon_LocalizedStrings'.default.CancelString);
+			}
+			else 
+			{
+				// Overlay window with Mic configuration
+				SubSystem.ShowVOIPConfigUI();
+			}
+			//@SABER_EGS_END
 		}
 	}
 }

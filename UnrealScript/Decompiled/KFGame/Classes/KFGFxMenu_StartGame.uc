@@ -72,6 +72,7 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
+const KFID_VOIPMicVolumeMultiplier = 174;
 
 var string WhatsNewPS;
 var string WhatsNewMS;
@@ -172,6 +173,29 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
             Manager.DelayedOpenPopup(2, 0, Localize("Notifications", "PlayGoBusyTitle", "KFGameConsole"), Localize("Notifications", "PlayGoBusyMessage", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
         }
     }
+    setVivoxWordmarkVisibility();
+}
+
+function setVivoxWordmarkVisibility()
+{
+    if((isPC()) && IsMultiplayerGame())
+    {
+        GetObject("wordmarkVivox").SetVisible(true);        
+    }
+    else
+    {
+        GetObject("wordmarkVivox").SetVisible(false);
+    }
+}
+
+function bool isPC()
+{
+    return !Class'WorldInfo'.static.IsConsoleBuild();
+}
+
+function bool IsMultiplayerGame()
+{
+    return Outer.GetPC().WorldInfo.NetMode != NM_Standalone;
 }
 
 function SetSeasonalEventClass()
@@ -1210,7 +1234,14 @@ function ConnectToPlayfabServer(string ServerIP)
         OpenCommand $= (BuildJoinFiltersRequestURL());
     }
     KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
-    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(float(((bAttemptingServerCreate) ? 8 : ServerConnectTimeout)), false, 'ServerConnectGiveUp', self);    
+    if(Class'WorldInfo'.static.IsEOSBuild())
+    {
+        SetServerConnectGiveUpTimer(bAttemptingServerCreate);        
+    }
+    else
+    {
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(float(((bAttemptingServerCreate) ? 8 : ServerConnectTimeout)), false, 'ServerConnectGiveUp', self);
+    }    
     OpenCommand $= ("?PlayfabPlayerId=" $ Class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId);
     LogInternal("Going to connect with URL:" @ OpenCommand);
     Outer.ConsoleCommand(OpenCommand);
@@ -1223,7 +1254,7 @@ event SetServerConnectGiveUpTimer(bool ServerTakover)
 
 event AddJoinGameCompleteDelegate(OnlineGameSearch LatestGameSearch)
 {
-    if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
+    if((Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build()) || Class'WorldInfo'.static.IsEOSBuild())
     {
         if(LatestGameSearch.Results[CurrentSearchIndex].GameSettings.JoinString == "")
         {
@@ -1324,7 +1355,7 @@ event OnClose()
         GameInterface.ClearJoinOnlineGameCompleteDelegate(OnJoinGameComplete);
     }
     Manager.CachedProfile.Save(byte(Outer.GetLP().ControllerId));
-    if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
+    if((Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild()) && !Class'WorldInfo'.static.IsE3Build())
     {
         Class'GameEngine'.static.GetPlayfabInterface().ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
     }
@@ -1487,7 +1518,7 @@ event StartOnlineGame()
     }
     BuildServerFilters(GameInterface, OptionsComponent, SearchDataStore.GetCurrentGameSearch());
     SearchDataStore.GetCurrentGameSearch().MaxSearchResults = MaxResultsToTry;
-    if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
+    if((Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build()) || Class'WorldInfo'.static.IsEOSBuild())
     {
         AttemptingJoin = false;
         Class'GameEngine'.static.GetPlayfabInterface().AddFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);        
@@ -1499,7 +1530,7 @@ event StartOnlineGame()
     if(!SearchDataStore.SubmitGameSearch(byte(Class'UIInteraction'.static.GetPlayerControllerId(0)), false))
     {
         GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
-        if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
+        if((Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build()) || Class'WorldInfo'.static.IsEOSBuild())
         {
         }        
     }
@@ -1625,7 +1656,7 @@ event CancelGameSearch()
     ActiveGameSearch = KFOnlineGameSearch(SearchDataStore.GetActiveGameSearch());
     if(ActiveGameSearch != none)
     {
-        if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
+        if((Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild()) && !Class'WorldInfo'.static.IsE3Build())
         {
             Class'GameEngine'.static.GetPlayfabInterface().CancelGameSearch();
             OnCancelSearchComplete(true);            

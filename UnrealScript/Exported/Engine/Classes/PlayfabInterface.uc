@@ -17,6 +17,9 @@ class PlayfabInterface extends Object
 /** The current pending game search */
 var OnlineGameSearch PendingGameSearch;
 
+/** Game search for get player data */
+var OnlineGameSearch TempGameSearch;
+
 /** The playfab ID with successful login */
 var const init string CachedPlayfabId;
 /** The session ticket with successful login */
@@ -67,6 +70,12 @@ var const config array<RegionDefinition> KnownRegions;
 
 /** The list of available region names */
 // var const config array<string> RegionNames;
+
+/** The list of favourite servers */
+var array<string> FavouriteServers;
+
+/** Server history */
+var array<string> ServerHistory;
 
 /** The current region index for the player */
 var init string CurrRegionName;
@@ -135,6 +144,7 @@ var array<delegate<OnInventoryRead> > InventoryReadDelegates;
 var array<delegate<OnTitleDataRead> > TitleDataReadDelegates;
 var array<delegate<OnStoreDataRead> > StoreDataReadDelegates;
 var array<delegate<OnCloudScriptExecutionComplete> > CloudScriptExecutionCompleteDelegates;
+var array<delegate<OnGetPlayerListComplete> > GetPlayerListCompleteDelegates;
 
 // Client API calls
 /////////////////////////////////////////////////////////////////////////
@@ -145,9 +155,33 @@ delegate OnLoginComplete(bool bWasSuccessful, string SessionTicket, string Playf
 function AddOnLoginCompleteDelegate( delegate<OnLoginComplete> InDelegate) { if (LoginCompleteDelegates.Find(InDelegate) == INDEX_NONE){LoginCompleteDelegates[LoginCompleteDelegates.Length] = InDelegate;}; }
 function ClearOnLoginCompleteDelegate( delegate<OnLoginComplete> InDelegate) { local int RemoveIndex;RemoveIndex = LoginCompleteDelegates.Find(InDelegate);if (RemoveIndex != INDEX_NONE){LoginCompleteDelegates.Remove(RemoveIndex,1);}; }
 
+delegate OnGetPlayerListComplete(OnlineGameSettings PlayerListSettings, bool Success);
+function AddGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> InDelegate) { if (GetPlayerListCompleteDelegates.Find(InDelegate) == INDEX_NONE){GetPlayerListCompleteDelegates[GetPlayerListCompleteDelegates.Length] = InDelegate;}; }
+function ClearGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> InDelegate) { local int RemoveIndex;RemoveIndex = GetPlayerListCompleteDelegates.Find(InDelegate);if (RemoveIndex != INDEX_NONE){GetPlayerListCompleteDelegates.Remove(RemoveIndex,1);}; }
+
+/**
+ * For determining if a server that we got in our search results is in our favorite list
+ *
+ * @return true if the search result at the specified index is a favorite, false if not
+ */
+native function bool IsSearchResultInFavoritesList(OnlineGameSearch LatestGameSearch, int Index);
+
+native function bool AddSearchResultToFavorites(OnlineGameSearch LatestGameSearch, int Index);
+native function bool RemoveSearchResultFromFavorites(OnlineGameSearch LatestGameSearch, int Index);
+
+native function bool AddSearchResultToHistory(string JoinString);
+
 function native int GetRegionIndex(const out string RegionName);
 function native SetDefaultRegion(const out string RegionName);
 
+native function UpdateUserTitleDisplayName( string DisplayName );
+native function UpdateUserName( string DisplayName );
+native function UpdateUserData( string Key, string Data, string Permission );
+
+native function GetUserName( string PlayfabId, int SelectedServerIndex, int PlayerIndex );
+native function GetPlayerList( OnlineGameSearch SearchSettings, INT SelectedServerIndex );
+native function CheckPlayerDisplayName( string PlayfabId );
+native function GetUserData( array<string> Keys, bool CheckData );
 
 // Logout of playfab services when we get disconnected
 native function bool Logout();
@@ -302,6 +336,7 @@ native function ServerNotifyPlayerLeft( const string PlayfabId );
 native function ServerUpdateOnlineGame();
 native function ServerRegisterGame();
 native function ServerSetOpenStatus( const bool bOpen );
+native function ServerSetSteamServerUID(const qword UID);
 
 native function ServerUpdateInternalUserData( const string ForPlayerId, array<string> InKeys, array<string> InValues );
 native function ServerRetrieveInternalUserData( const string ForPlayerId, array<string> InKeys );

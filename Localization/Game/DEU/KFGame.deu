@@ -46,6 +46,23 @@ YesString="Ja"
 NoString="Nein"
 TeamSwappedString="Du wurdest einem anderen Team zugeteilt"
 
+MicrophonePopupTitleString="Mikro-Einstellungen"
+MicrophonePopupSelectDeviceString="AUSWÄHLEN"
+MicrophonePopupVolumeString="Mikro-Lautstärke"
+MicrophonePopupCheckString="Mikrofon prüfen"
+MicrophonePopupStopString="Annehmen"
+MicrophonePopupRefreshString="AKTUALISIEREN"
+
+FriendsListPopupTitleString="Wähle Freunde zum Einladen"
+FriendsListPopupFriendString="SUCHE"
+FriendsListPopupFriendsString="Freunde"
+FriendsListPopupOtherFriendsString="Freunde von anderen Plattformen"
+FriendsListPopupLinkButonString="Konto verknüpfen"
+ReturnString="ZURÜCK"
+
+InvitePopupTitleString="Lobby-Einladung"
+InvitePopupTextString=" hat dich in eine Lobby eingeladen"
+
 CancelConnectionString="Ladevorgang abbrechen"
 
 DisbandPartyString="GRUPPE AUFLÖSEN"

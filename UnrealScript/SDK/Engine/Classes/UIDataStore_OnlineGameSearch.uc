@@ -81,8 +81,11 @@ event Init()
 		GameInterface = OnlineSub.GameInterface;
 
 //@HSL_BEGIN - BWJ - 4-12-16 - Playfab support
-		if( class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build() )
+		//@SABER_EGS IsEosBuild() case added
+		if( (class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEosBuild()) && !class'WorldInfo'.static.IsE3Build()  )
 		{
+			// ToDo delete
+			`Log("AddFindOnlineGamesCompleteDelegate(OnSearchComplete)");
 			class'GameEngine'.static.GetPlayfabInterface().AddFindOnlineGamesCompleteDelegate(OnSearchComplete);
 		}
 		else if (GameInterface != None)
@@ -152,6 +155,8 @@ event bool SubmitGameSearch(byte ControllerIndex, optional bool bInvalidateExist
 //@HSL_BEGIN - BWJ - 4-12-16 - Playfab support
 			if( class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build() )
 			{
+				// ToDo delete
+				`Log("GetPlayfabInterface().FindOnlineGames( GameSearchCfgList[ActiveSearchIndex].Search )");
 				return class'GameEngine'.static.GetPlayfabInterface().FindOnlineGames( GameSearchCfgList[ActiveSearchIndex].Search );
 			}
 			else

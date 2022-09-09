@@ -13,12 +13,16 @@ struct native PlayerResult
     var string PlayerName;
     var int Score;
     var float TimePlayed;
+    var string PlayFabId;
+    var bool NameIsSet;
 
     structdefaultproperties
     {
         PlayerName=""
         Score=0
         TimePlayed=0
+        PlayFabId=""
+        NameIsSet=false
     }
 };
 
@@ -57,6 +61,8 @@ var databinding float MatchQuality;
 var databinding const OnlineSubsystem.EOnlineGameState GameState;
 var const int BuildUniqueId;
 var string LobbyId;
+var databinding int BotPlayers;
+var databinding string SteamServerUID;
 var int GfxID;
 var int ElementIdx;
 var databinding int SecondsDeallocated;

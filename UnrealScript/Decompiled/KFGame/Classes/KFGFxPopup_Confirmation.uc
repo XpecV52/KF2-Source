@@ -56,5 +56,5 @@ function Callback_ClickedRightOption()
     {
         RightButtonPress();
     }
-    Callback_ClosedPopup();
+    ClosePopUp();
 }

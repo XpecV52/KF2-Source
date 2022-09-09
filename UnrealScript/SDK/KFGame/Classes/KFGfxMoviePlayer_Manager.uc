@@ -42,6 +42,8 @@ enum EUIIndex
 	UI_Trader,
 	UI_ServerBrowserMenu,
 	UI_IIS,
+	UI_FiendsList,
+	UI_OptionMic,
 };
 
 // Anything not with a Misc priority will be only displayed once, even if attempted to be queued multiple times.
@@ -131,6 +133,9 @@ enum EPopUpType
 	ENotification,
 	EPopUpMax,
 	EInputPrompt,
+	EFriendsList,
+	EOptionMic,
+	EConfirmInvite,
 };
 
 struct DelayedPopup
@@ -977,6 +982,9 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         case  'ConnectionErrorPopup':
         case  'ConfirmationPopup':
         case  'InputPromptPopup':
+		case  'FriendsListPopup':
+		case  'OptionMicPopup':
+ 		case  'FriendsConfirmInvitePopup':
             InitializePopup( WidgetPath, KFGFxObject_Popup( Widget ) );
         break;
 		default:
@@ -2221,12 +2229,18 @@ defaultproperties
 	PopupData(EGamma)=(SWFPath="../UI_PopUps/GammaPopup_SWF.swf")
 	PopupData(ENotification)=(SWFPath="../UI_PopUps/ConnectionErrorPopup_SWF.swf")
 	PopupData(EInputPrompt)=(SWFPath="../UI_PopUps/InputPromptPopup_SWF.swf")
+	PopupData(EFriendsList)=(SWFPath="../UI_PopUps/FriendsListPopup_SWF.swf")
+	PopupData(EOptionMic)=(SWFPath="../UI_PopUps/OptionMicPopup_SWF.swf")
+	PopupData(EConfirmInvite)=(SWFPath="../UI_PopUps/FriendsConfirmInvitePopup_SWF.swf")
 
     // Popup Bindings
 	WidgetBindings.Add((WidgetName="GammaPopup",WidgetClass=class'KFGFxPopup_Gamma'))
 	WidgetBindings.Add((WidgetName="ConnectionErrorPopup",WidgetClass=class'KFGFxPopup_ConnectionError'))
 	WidgetBindings.Add((WidgetName="ConfirmationPopup",WidgetClass=class'KFGFxPopup_Confirmation'))
 	WidgetBindings.Add((WidgetName="InputPromptPopup",WidgetClass=class'KFGFxPopup_InputPrompt'))
+	WidgetBindings.Add((WidgetName="FriendsListPopup",WidgetClass=class'KFGFxPopup_FriendsList'))
+	WidgetBindings.Add((WidgetName="OptionMicPopup",WidgetClass=class'KFGFxPopup_OptionMic'))
+	WidgetBindings.Add((WidgetName="FriendsConfirmInvitePopup",WidgetClass=class'KFGFxPopup_FriendsConfirm'))
 
 	// Widgets
 	WidgetBindings.Add((WidgetName="doshVaultMenu",WidgetClass=class'KFGFxMenu_DoshVault'))

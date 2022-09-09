@@ -149,7 +149,8 @@ function EndOfMatch(bool bVictory)
     if ( bVictory )
     {
 		// Console builds try to claim tutorial rewards now
-		if( WorldInfo.IsConsoleBuild() )
+        //@SABER_EGS IsEosBuild() case added
+		if( WorldInfo.IsConsoleBuild() || WorldInfo.IsEosBuild())
 		{
 			PlayfabInter.AddOnCloudScriptExecutionCompleteDelegate( OnTutorialRewardsComplete );
 			PlayfabInter.ExecuteCloudScript( "ClaimTutorialRewards", none );

@@ -71,6 +71,7 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
+const KFID_VOIPMicVolumeMultiplier = 174;
 
 var name SoundThemeName;
 var bool bUsingGamepad;

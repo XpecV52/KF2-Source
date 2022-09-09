@@ -53,7 +53,7 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 	LocalizeText();
 	OnlineSub =  Class'GameEngine'.static.GetOnlineSubsystem();
 
-	if( class'WorldInfo'.static.IsConsoleBuild() )
+	if( class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEOSBuild() )
 	{
 		class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( OnReadPlayfabInventoryComplete );
 	}
@@ -70,7 +70,7 @@ function OnOpen()
 		CheckForEmptyStore();
 	}
 
-	if( class'WorldInfo'.static.IsConsoleBuild() )
+	if( class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEOSBuild() )
 	{
 		class'GameEngine'.static.GetPlayfabInterface().AddInventoryReadCompleteDelegate( OnReadPlayfabInventoryComplete );
 	}
@@ -86,7 +86,7 @@ function OnOpen()
 
 function OnClose()
 {
-	if( class'WorldInfo'.static.IsConsoleBuild() )
+	if( class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEOSBuild() )
 	{
 		class'GameEngine'.static.GetPlayfabInterface().ClearInventoryReadCompleteDelegate( OnReadPlayfabInventoryComplete );
 	}
@@ -217,9 +217,17 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
 	}
 	else
 	{
-		AddCartButton.SetString("label", class'KFGFxStoreContainer_Details'.default.AddToCartString$":"$StoreItemDetails.Price );
+		AddCartButton.SetString("label", class'KFGFxStoreContainer_Details'.default.AddToCartString@StoreItemDetails.Price );
 	}
 	SetObject("storeItemDetails", CreateStoreItem(StoreItemDetails));
+
+	//@SABER_EGS_BEGIN
+	if ( class'WorldInfo'.static.IsEOSBuild())
+	{
+		// Ownded durable items marked with special price "double space"		
+		AddCartButton.SetVisible(StoreItemDetails.Price != "  ");
+	}
+	//@SABER_EGS_END
 
 	if( class'WorldInfo'.static.IsConsoleBuild() )
 	{

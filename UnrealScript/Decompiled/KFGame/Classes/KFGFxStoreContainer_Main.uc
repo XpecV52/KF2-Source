@@ -50,6 +50,7 @@ function Initialize(KFGFxObject_Menu NewParentMenu)
     super.Initialize(NewParentMenu);
     StoreMenu = KFGFxMenu_Store(NewParentMenu);
     LocalizeText();
+    TweakFiltersVisibility();
 }
 
 function LocalizeText()
@@ -72,6 +73,23 @@ function LocalizeText()
     LocalizedObject.SetString("marketSFX", MarketSFXString);
     LocalizedObject.SetString("thankYouString", ThankYouString);
     SetObject("localizedText", LocalizedObject);
+}
+
+function TweakFiltersVisibility()
+{
+    if(Class'WorldInfo'.static.IsEOSBuild())
+    {
+        GetObject("weaponSkinsButton").SetVisible(false);
+        GetObject("cosmeticsButton").SetVisible(false);
+        GetObject("emotesButton").SetVisible(false);
+        GetObject("consumablesButton").SetVisible(false);
+        GetObject("sfxButton").SetVisible(false);
+        GetObject("marketWeaponSkinsButton").SetVisible(false);
+        GetObject("marketCosmeticsButton").SetVisible(false);
+        GetObject("marketConsumableButton").SetVisible(false);
+        GetObject("marketEmotesButton").SetVisible(false);
+        GetObject("marketSFXButton").SetVisible(false);
+    }
 }
 
 function UpdateFilter(int NewFilterIndex)
@@ -225,7 +243,7 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
             I = 0;
             J0x556:
 
-            if(I < MaxFeaturedItems)
+            if(I < Min(MaxFeaturedItems, FilteredItemsArray.Length))
             {
                 DataProvider.SetElementObject(ItemCount, CreateStoreItem(FilteredItemsArray[I]));
                 ++ ItemCount;
@@ -236,14 +254,14 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
         else
         {
             I = 0;
-            J0x5D9:
+            J0x5E5:
 
             if(I < FilteredItemsArray.Length)
             {
                 DataProvider.SetElementObject(ItemCount, CreateStoreItem(FilteredItemsArray[I]));
                 ++ ItemCount;
                 ++ I;
-                goto J0x5D9;
+                goto J0x5E5;
             }
         }
     }

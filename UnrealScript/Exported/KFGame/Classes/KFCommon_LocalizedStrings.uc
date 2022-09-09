@@ -100,6 +100,23 @@ var localized string NetworkCheckFreeTrialFailedString;
 
 var localized string SpecialEffectsString;
 
+var localized string MicrophonePopupTitleString;
+var localized string MicrophonePopupSelectDeviceString;
+var localized string MicrophonePopupVolumeString;
+var localized string MicrophonePopupCheckString;
+var localized string MicrophonePopupStopString;
+var localized string MicrophonePopupRefreshString;
+
+var localized string FriendsListPopupTitleString;
+var localized string FriendsListPopupFriendString;
+var localized string FriendsListPopupFriendsString;
+var localized string FriendsListPopupOtherFriendsString;
+var localized string FriendsListPopupLinkButonString;
+var localized string ReturnString;
+
+var localized string InvitePopupTitleString;
+var localized string InvitePopupTextString;
+
 static function array<string> GetDifficultyStringsArray()
 {
 	return default.DifficultyStrings;
@@ -302,6 +319,20 @@ defaultproperties
    NotAvailableInFreeTrialString="Feature Not Available for Free Trial"
    NetworkCheckFreeTrialFailedString="Network Error: Free Event Status Unable to be Verified. Check Network Connection Status"
    SpecialEffectsString="Special Effects"
+   MicrophonePopupTitleString="Configure your microphone"
+   MicrophonePopupSelectDeviceString="Select device"
+   MicrophonePopupVolumeString="Mic volume"
+   MicrophonePopupCheckString="Check mic"
+   MicrophonePopupStopString="Stop"
+   MicrophonePopupRefreshString="Refresh"
+   FriendsListPopupTitleString="Choose Friends to invite"
+   FriendsListPopupFriendString="Search"
+   FriendsListPopupFriendsString="Friends"
+   FriendsListPopupOtherFriendsString="Friends from other platforms"
+   FriendsListPopupLinkButonString="Link Account"
+   ReturnString="RETURN"
+   InvitePopupTitleString="Lobby Invitation"
+   InvitePopupTextString=" has invited you to a lobby"
    Name="Default__KFCommon_LocalizedStrings"
    ObjectArchetype=Object'Core.Default__Object'
 }

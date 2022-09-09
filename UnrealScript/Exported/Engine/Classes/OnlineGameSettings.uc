@@ -108,6 +108,13 @@ var const bool bShouldShrinkArbitratedSessions;
 var string LobbyId;
 //@HSL_END
 
+//@SABER_EGS_BEGIN Crossplay support
+var databinding int BotPlayers;
+
+// Steam Server UID
+var databinding string SteamServerUID;
+//@SABER_EGS_END
+
 
 
 //used to keep track of the gfx objects in the serverbrowser's list
@@ -134,12 +141,16 @@ struct native PlayerResult
 	var string PlayerName;
 	var int Score;
 	var float TimePlayed;
+	var string PlayFabId;
+	var bool NameIsSet;
 
 	structdefaultproperties
 	{
 		PlayerName=""
 		Score=0
 		TimePlayed=0
+		PlayFabId=""
+		NameIsSet=false
 	}
 };
 

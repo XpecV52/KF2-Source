@@ -77,6 +77,20 @@ var const localized string ProceedToTutorialDescriptionString;
 var const localized string NotAvailableInFreeTrialString;
 var const localized string NetworkCheckFreeTrialFailedString;
 var const localized string SpecialEffectsString;
+var const localized string MicrophonePopupTitleString;
+var const localized string MicrophonePopupSelectDeviceString;
+var const localized string MicrophonePopupVolumeString;
+var const localized string MicrophonePopupCheckString;
+var const localized string MicrophonePopupStopString;
+var const localized string MicrophonePopupRefreshString;
+var const localized string FriendsListPopupTitleString;
+var const localized string FriendsListPopupFriendString;
+var const localized string FriendsListPopupFriendsString;
+var const localized string FriendsListPopupOtherFriendsString;
+var const localized string FriendsListPopupLinkButonString;
+var const localized string ReturnString;
+var const localized string InvitePopupTitleString;
+var const localized string InvitePopupTextString;
 
 static function array<string> GetDifficultyStringsArray()
 {
@@ -275,4 +289,18 @@ Would you like to continue?"
     NotAvailableInFreeTrialString="Feature Not Available for Free Trial"
     NetworkCheckFreeTrialFailedString="Network Error: Free Event Status Unable to be Verified. Check Network Connection Status"
     SpecialEffectsString="Special Effects"
+    MicrophonePopupTitleString="Configure your microphone"
+    MicrophonePopupSelectDeviceString="Select device"
+    MicrophonePopupVolumeString="Mic volume"
+    MicrophonePopupCheckString="Check mic"
+    MicrophonePopupStopString="Stop"
+    MicrophonePopupRefreshString="Refresh"
+    FriendsListPopupTitleString="Choose Friends to invite"
+    FriendsListPopupFriendString="Search"
+    FriendsListPopupFriendsString="Friends"
+    FriendsListPopupOtherFriendsString="Friends from other platforms"
+    FriendsListPopupLinkButonString="Link Account"
+    ReturnString="RETURN"
+    InvitePopupTitleString="Lobby Invitation"
+    InvitePopupTextString=" has invited you to a lobby"
 }

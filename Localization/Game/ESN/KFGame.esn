@@ -46,6 +46,23 @@ YesString="Sí"
 NoString="No"
 TeamSwappedString="Se te ha cambiado de equipo"
 
+MicrophonePopupTitleString="Ajustes de micro"
+MicrophonePopupSelectDeviceString="SELECCIONAR"
+MicrophonePopupVolumeString="Volumen de micro"
+MicrophonePopupCheckString="Comprobar micro"
+MicrophonePopupStopString="Aceptar"
+MicrophonePopupRefreshString="ACTUALIZAR"
+
+FriendsListPopupTitleString="Invita a tus amigos"
+FriendsListPopupFriendString="BUSCAR"
+FriendsListPopupFriendsString="Amigos"
+FriendsListPopupOtherFriendsString="Amigos de otras plataformas"
+FriendsListPopupLinkButonString="Vincular cuenta"
+ReturnString="VOLVER"
+
+InvitePopupTitleString="Invitación a sala"
+InvitePopupTextString=" te ha invitado a una sala"
+
 CancelConnectionString="Cancelar carga"
 
 DisbandPartyString="DISOLVER GRUPO"

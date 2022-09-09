@@ -181,20 +181,6 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 
 	if(PlayerID != PC.PlayerReplicationInfo.UniqueId)
 	{
-		if ( !bConsoleBuild )
-		{
-			//Are they your friend?
-			if(!IsPlayerAFriend(PlayerID))
-			{
-				AddStringOptionToList(AddFriendKey, OptionIndex, AddFriendString, DataProvider); 
-			}
-			else
-			{
-				AddStringOptionToList(AddFriendKey, OptionIndex, RemoveFriendString, DataProvider); 
-			}
-			OptionIndex++;
-		}
-		
 		if( !PC.WorldInfo.IsMenuLevel() ) //temp for now since voip and such does not work in the main menu
 		{
 			AddStringOptionToList(MuteKey, OptionIndex, PC.IsPlayerMuted(PlayerID) ? UnmuteString : MuteString, DataProvider); 
@@ -230,7 +216,11 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 	if( ProfileString != "" )
 	{
 		//View profile option Added at the end if we are on PC but first on console.
-		AddStringOptionToList(ViewProfileKey, OptionIndex, ProfileString, DataProvider);
+		if (!class'WorldInfo'.static.IsEOSBuild())
+		{
+			AddStringOptionToList(ViewProfileKey, OptionIndex, ProfileString, DataProvider);
+		}
+		
 	}
 
 	OptionIndex++;

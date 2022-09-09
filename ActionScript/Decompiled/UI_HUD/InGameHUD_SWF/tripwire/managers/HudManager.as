@@ -22,6 +22,7 @@ package tripwire.managers
     import tripwire.widgets.BossHealthBarWidget;
     import tripwire.widgets.BossNameplateWidget;
     import tripwire.widgets.ControllerWeaponSelectWidget;
+    import tripwire.widgets.InviteTextMessageWidget;
     import tripwire.widgets.NonCriticalGameMessageWidget;
     import tripwire.widgets.PlayerChatWidget;
     import tripwire.widgets.PlayerStatWidget;
@@ -89,6 +90,8 @@ package tripwire.managers
         public var BossNamePlate:BossNameplateWidget;
         
         public var NonCriticalMessageWidget:NonCriticalGameMessageWidget;
+        
+        public var InviteMessageWidget:InviteTextMessageWidget;
         
         public var MusicNotification:MusicNotificationWidget;
         
@@ -496,6 +499,7 @@ package tripwire.managers
             this.SpectatorInfoWidget.visible = false;
             this.KickVoteWidget.visible = false;
             this.NonCriticalMessageWidget.visible = false;
+            this.InviteMessageWidget.visible = false;
             this.MusicNotification.visible = false;
             this.BossNamePlate.setText(!!param1.bossName ? param1.bossName : "",!!param1.subString ? param1.subString : "");
         }
@@ -528,6 +532,7 @@ package tripwire.managers
             this.MusicNotification.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_TOP,-32,32,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.barkNode.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_BOTTOM,-32,0,"",this.MusicNotification.name,this.SecondaryLayoutIndex,this.layoutID);
             this.NonCriticalMessageWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-32,"","",this.PrimaryLayoutIndex,this.layoutID);
+            this.InviteMessageWidget.layoutData = new LayoutData(LayoutMode.ALIGN_RIGHT,LayoutMode.ALIGN_CENTER,-48,this.KickVoteWidget.height / 2 + 32,"","",this.PrimaryLayoutIndex,this.layoutID);
             this.interactionMsgWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-176,"","",this.SecondaryLayoutIndex,this.layoutID);
             this.SpectatorInfoWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-60,"","",this.ThirdLayoutIndex,this.layoutID);
             if(this.bossHealthBar)
@@ -723,6 +728,7 @@ package tripwire.managers
             this.apply3d(this.PriorityMsgWidget,0,0,288,"center","center");
             this.apply3d(this.VoiceCommsWidget,0,0,288,"center","center");
             this.apply3d(this.NonCriticalMessageWidget,0,0,0,"center","center");
+            this.apply3d(this.InviteMessageWidget,0,24,0,"bottom","right");
             this.apply3d(this.MusicNotification,0,24,0,"top","right");
             this.apply3d(this.RhythmCounter,0,0,288,"top","center");
         }

@@ -45,8 +45,9 @@ event Init()
     if(OnlineSub != none)
     {
         GameInterface = OnlineSub.GameInterface;
-        if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
+        if((Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild()) && !Class'WorldInfo'.static.IsE3Build())
         {
+            LogInternal("AddFindOnlineGamesCompleteDelegate(OnSearchComplete)");
             Class'GameEngine'.static.GetPlayfabInterface().AddFindOnlineGamesCompleteDelegate(OnSearchComplete);            
         }
         else
@@ -98,6 +99,7 @@ event bool SubmitGameSearch(byte ControllerIndex, optional bool bInvalidateExist
             InvalidateCurrentSearchResults();
             if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
             {
+                LogInternal("GetPlayfabInterface().FindOnlineGames( GameSearchCfgList[ActiveSearchIndex].Search )");
                 return Class'GameEngine'.static.GetPlayfabInterface().FindOnlineGames(GameSearchCfgList[ActiveSearchIndex].Search);                
             }
             else

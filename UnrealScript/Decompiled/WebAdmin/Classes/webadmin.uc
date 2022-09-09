@@ -353,7 +353,7 @@ function Query(WebRequest Request, WebResponse Response)
     {
         return;
     }
-    Response.Subst("admin.name", currentQuery.User.getUsername());
+    Response.Subst("admin.name", currentQuery.User.GetUserName());
     wamenu = WebAdminMenu(currentQuery.Session.GetObject("WebAdminMenu"));
     if(wamenu == none)
     {

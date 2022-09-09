@@ -58,6 +58,8 @@ var KFGFxWidget_MusicNotification MusicNotification;
 var KFGFxWidget_KickVote KickVoteWidget;
 // Widget that shows unimportant messages such as receiving ammo
 var KFGFxWidget_NonCriticalGameMessage NonCriticalGameMessageWidget;
+// Widget that shows invite message
+var KFGFxWidget_NonCriticalGameMessage InviteGameMessageWidget;
 // Widget that shows headshots for gunslinger
 var KFGFxWidget_RhythmCounter RhythmCounterWidget;
 // Widget that displays health bar
@@ -303,6 +305,12 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         if(NonCriticalGameMessageWidget == none)
         {
             NonCriticalGameMessageWidget=KFGFxWidget_NonCriticalGameMessage(Widget);
+        }
+        break;
+    case 'InviteMessageWidget':
+        if(InviteGameMessageWidget == none)
+        {
+            InviteGameMessageWidget=KFGFxWidget_NonCriticalGameMessage(Widget);
         }
         break;
     case 'RhythmCounter':
@@ -996,6 +1004,21 @@ function ShowNonCriticalMessage(string LocalizedMessage)
     }
 }
 
+/** Show invite text message */
+function ShowInviteMessage(string FriendName)
+{
+    if (InviteGameMessageWidget != none)
+    {
+        if (FriendName == "")
+        {
+            InviteGameMessageWidget.ShowMessage(FriendName);
+        }
+        else
+        {
+            InviteGameMessageWidget.ShowMessage(FriendName$Class'KFCommon_LocalizedStrings'.default.InvitePopupTextString);
+        }
+    }
+}
 
 function UpdateRhythmCounterWidget(int value, int max)
 {
@@ -1339,8 +1362,9 @@ defaultproperties
    WidgetBindings(15)=(WidgetName="KickVoteWidget",WidgetClass=Class'KFGame.KFGFxWidget_KickVote')
    WidgetBindings(16)=(WidgetName="MusicNotification",WidgetClass=Class'KFGame.KFGFxWidget_MusicNotification')
    WidgetBindings(17)=(WidgetName="NonCriticalMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
-   WidgetBindings(18)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
-   WidgetBindings(19)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
+   WidgetBindings(18)=(WidgetName="InviteMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
+   WidgetBindings(19)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
+   WidgetBindings(20)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
    Name="Default__KFGFxMoviePlayer_HUD"
    ObjectArchetype=GFxMoviePlayer'GFxUI.Default__GFxMoviePlayer'
 }

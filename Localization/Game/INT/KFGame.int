@@ -46,6 +46,25 @@ YesString="YES"
 NoString="NO"
 TeamSwappedString="You have been team swapped"
 
+
+MicrophonePopupTitleString="Configure your microphone"
+MicrophonePopupSelectDeviceString="Select device"
+MicrophonePopupVolumeString="Mic volume"
+MicrophonePopupCheckString="Check mic"
+MicrophonePopupStopString="Stop"
+MicrophonePopupRefreshString="Refresh"
+
+FriendsListPopupTitleString="Choose Friends to invite"
+FriendsListPopupFriendString="Search"
+FriendsListPopupFriendsString="Friends"
+FriendsListPopupOtherFriendsString="Friends from other platforms"
+FriendsListPopupLinkButonString="Link Account"
+ReturnString="RETURN"
+
+InvitePopupTitleString="Lobby Invitation"
+InvitePopupTextString=" has invited you to a lobby"
+
+
 CancelConnectionString="Cancel Loading"
 
 DisbandPartyString="DISBAND PARTY"

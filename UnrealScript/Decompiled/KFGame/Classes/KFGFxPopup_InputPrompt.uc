@@ -43,5 +43,5 @@ function Callback_ClosedPopup()
     {
         RightButtonPress();
     }
-    super.Callback_ClosedPopup();
+    ClosePopUp();
 }

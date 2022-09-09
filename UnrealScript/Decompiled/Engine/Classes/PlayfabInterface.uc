@@ -27,6 +27,7 @@ struct native RegionDefinition
 
 var private native const noexport Pointer VfTable_FTickableObject;
 var OnlineGameSearch PendingGameSearch;
+var OnlineGameSearch TempGameSearch;
 var init const string CachedPlayfabId;
 var init const string CachedSessionTicket;
 var init const string CachedAuthCode;
@@ -43,6 +44,8 @@ var int LoginAttempts;
 var private const int MaxRetryLoginAttempts;
 var init private const config string CatalogName;
 var const config array<config RegionDefinition> KnownRegions;
+var array<string> FavouriteServers;
+var array<string> ServerHistory;
 var init string CurrRegionName;
 var const int PlayfabNPServiceLabel;
 var native Map_Mirror TitleData;
@@ -67,7 +70,9 @@ var array< delegate<OnInventoryRead> > InventoryReadDelegates;
 var array< delegate<OnTitleDataRead> > TitleDataReadDelegates;
 var array< delegate<OnStoreDataRead> > StoreDataReadDelegates;
 var array< delegate<OnCloudScriptExecutionComplete> > CloudScriptExecutionCompleteDelegates;
+var array< delegate<OnGetPlayerListComplete> > GetPlayerListCompleteDelegates;
 var delegate<OnLoginComplete> __OnLoginComplete__Delegate;
+var delegate<OnGetPlayerListComplete> __OnGetPlayerListComplete__Delegate;
 var delegate<OnStoreDataRead> __OnStoreDataRead__Delegate;
 var delegate<OnInventoryRead> __OnInventoryRead__Delegate;
 var delegate<OnTitleDataRead> __OnTitleDataRead__Delegate;
@@ -80,7 +85,7 @@ var delegate<OnCloudScriptExecutionComplete> __OnCloudScriptExecutionComplete__D
 // Export UPlayfabInterface::execLogin(FFrame&, void* const)
 native function bool Login(string UserName);
 
-delegate OnLoginComplete(bool bWasSuccessful, string SessionTicket, string PlayfabId);
+delegate OnLoginComplete(bool bWasSuccessful, string SessionTicket, string PlayFabId);
 
 function AddOnLoginCompleteDelegate(delegate<OnLoginComplete> InDelegate)
 {
@@ -101,11 +106,65 @@ function ClearOnLoginCompleteDelegate(delegate<OnLoginComplete> InDelegate)
     }
 }
 
+delegate OnGetPlayerListComplete(OnlineGameSettings PlayerListSettings, bool Success);
+
+function AddGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> InDelegate)
+{
+    if(GetPlayerListCompleteDelegates.Find(InDelegate == -1)
+    {
+        GetPlayerListCompleteDelegates[GetPlayerListCompleteDelegates.Length] = InDelegate;
+    }
+}
+
+function ClearGetPlayerListCompleteDelegate(delegate<OnGetPlayerListComplete> InDelegate)
+{
+    local int RemoveIndex;
+
+    RemoveIndex = GetPlayerListCompleteDelegates.Find(InDelegate;
+    if(RemoveIndex != -1)
+    {
+        GetPlayerListCompleteDelegates.Remove(RemoveIndex, 1;
+    }
+}
+
+// Export UPlayfabInterface::execIsSearchResultInFavoritesList(FFrame&, void* const)
+native function bool IsSearchResultInFavoritesList(OnlineGameSearch LatestGameSearch, int Index);
+
+// Export UPlayfabInterface::execAddSearchResultToFavorites(FFrame&, void* const)
+native function bool AddSearchResultToFavorites(OnlineGameSearch LatestGameSearch, int Index);
+
+// Export UPlayfabInterface::execRemoveSearchResultFromFavorites(FFrame&, void* const)
+native function bool RemoveSearchResultFromFavorites(OnlineGameSearch LatestGameSearch, int Index);
+
+// Export UPlayfabInterface::execAddSearchResultToHistory(FFrame&, void* const)
+native function bool AddSearchResultToHistory(string JoinString);
+
 // Export UPlayfabInterface::execGetRegionIndex(FFrame&, void* const)
 native function int GetRegionIndex(const out string RegionName);
 
 // Export UPlayfabInterface::execSetDefaultRegion(FFrame&, void* const)
 native function SetDefaultRegion(const out string RegionName);
+
+// Export UPlayfabInterface::execUpdateUserTitleDisplayName(FFrame&, void* const)
+native function UpdateUserTitleDisplayName(string DisplayName);
+
+// Export UPlayfabInterface::execUpdateUserName(FFrame&, void* const)
+native function UpdateUserName(string DisplayName);
+
+// Export UPlayfabInterface::execUpdateUserData(FFrame&, void* const)
+native function UpdateUserData(string Key, string Data, string Permission);
+
+// Export UPlayfabInterface::execGetUserName(FFrame&, void* const)
+native function GetUserName(string PlayFabId, int SelectedServerIndex, int PlayerIndex);
+
+// Export UPlayfabInterface::execGetPlayerList(FFrame&, void* const)
+native function GetPlayerList(OnlineGameSearch SearchSettings, int SelectedServerIndex);
+
+// Export UPlayfabInterface::execCheckPlayerDisplayName(FFrame&, void* const)
+native function CheckPlayerDisplayName(string PlayFabId);
+
+// Export UPlayfabInterface::execGetUserData(FFrame&, void* const)
+native function GetUserData(array<string> Keys, bool CheckData);
 
 // Export UPlayfabInterface::execLogout(FFrame&, void* const)
 native function bool Logout();
@@ -406,10 +465,10 @@ event OnlineProfileSettings GetProfileSettings(byte LocalUserNum)
 native function ServerValidatePlayer(const string ClientAuthTicket);
 
 // Export UPlayfabInterface::execServerNotifyPlayerJoined(FFrame&, void* const)
-native function ServerNotifyPlayerJoined(const string PlayfabId);
+native function ServerNotifyPlayerJoined(const string PlayFabId);
 
 // Export UPlayfabInterface::execServerNotifyPlayerLeft(FFrame&, void* const)
-native function ServerNotifyPlayerLeft(const string PlayfabId);
+native function ServerNotifyPlayerLeft(const string PlayFabId);
 
 // Export UPlayfabInterface::execServerUpdateOnlineGame(FFrame&, void* const)
 native function ServerUpdateOnlineGame();
@@ -419,6 +478,9 @@ native function ServerRegisterGame();
 
 // Export UPlayfabInterface::execServerSetOpenStatus(FFrame&, void* const)
 native function ServerSetOpenStatus(const bool bOpen);
+
+// Export UPlayfabInterface::execServerSetSteamServerUID(FFrame&, void* const)
+native function ServerSetSteamServerUID(const QWord Uid);
 
 // Export UPlayfabInterface::execServerUpdateInternalUserData(FFrame&, void* const)
 native function ServerUpdateInternalUserData(const string ForPlayerId, array<string> InKeys, array<string> InValues);

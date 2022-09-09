@@ -70,6 +70,7 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
+const KFID_VOIPMicVolumeMultiplier = 174;
 
 var const localized string SectionNameString;
 var const localized string OptionsString;
@@ -224,7 +225,14 @@ function Callback_ConfigureMicPress()
         Subsystem = Class'GameEngine'.static.GetOnlineSubsystem();
         if(Subsystem != none)
         {
-            Subsystem.ShowVoIPConfigUI();
+            if(Class'WorldInfo'.static.IsEOSBuild())
+            {
+                Manager.DelayedOpenPopup(6, 5, Class'KFCommon_LocalizedStrings'.default.MicrophonePopupTitleString, "", Class'KFCommon_LocalizedStrings'.default.OKString, Class'KFCommon_LocalizedStrings'.default.CancelString);                
+            }
+            else
+            {
+                Subsystem.ShowVoIPConfigUI();
+            }
         }
     }
 }

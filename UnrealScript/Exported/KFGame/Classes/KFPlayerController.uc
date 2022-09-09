@@ -237,6 +237,8 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
 const KFID_ClassicPlayerInfo=173;
+const KFID_VOIPMicVolumeMultiplier = 174;
+
 #linenumber 16
 
 
@@ -547,6 +549,13 @@ const KFID_ClassicPlayerInfo=173;
 
 #linenumber 18;
 
+struct native MenuInfo
+{
+	var byte CurrentMenuIndex;
+	var bool bMenusOpen;	// true if we're using menus, otherwise we're using the HUD
+	var bool bIsStartMenu;  // true if UI_Start menu open
+};
+
 /*********************************************************************************************
  * @name Perks
 ********************************************************************************************* */
@@ -725,6 +734,9 @@ var transient KFPawn_Customization LocalCustomizationPawn;
 var bool bDownloadingContent;
 
 var string DefaultAvatarPath;
+
+var UniqueNetId LobbyUId;
+var UniqueNetId FriendUId;
 
 /*********************************************************************************************
  * @name Mixer
@@ -2074,6 +2086,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 		if(KFEngine != none)
 		{
 			KFEngine.VOIPVolumeMultiplier = Profile.GetProfileFloat(KFID_VOIPVolumeMultiplier);
+			KFEngine.VOIPMicVolumeMultiplier = Profile.GetProfileFloat(KFID_VOIPMicVolumeMultiplier);
 			KFEngine.MusicVolumeMultiplier = Profile.GetProfileFloat(KFID_MusicVolumeMultiplier);
 			KFEngine.SFxVolumeMultiplier = Profile.GetProfileFloat(KFID_SFXVolumeMultiplier);
 			KFEngine.DialogVolumeMultiplier = Profile.GetProfileFloat(KFID_DialogVolumeMultiplier);
@@ -2541,6 +2554,50 @@ event PreClientTravel( string PendingURL, ETravelType TravelType, bool bIsSeamle
 	}
 
 	DestroyOnlineGame();
+}
+
+
+/*********************************************************************************************
+ * @name Show InGame Invite Popup
+********************************************************************************************* */
+function showInvitePopup(string FriendName, UniqueNetId LobbyId, UniqueNetId FriendId)
+{	
+    local string AvatarPath;
+
+	LobbyUId = LobbyId;
+	FriendUId = FriendId;
+	AvatarPath = GetSteamAvatar(FriendId);
+	LogInternal(getFuncName()@"friendName="@FriendName@"avatar="@AvatarPath);
+	
+	MyGFxManager.DelayedOpenPopup(EConfirmInvite, EDPPID_Misc, 
+		Class'KFCommon_LocalizedStrings'.default.InvitePopupTitleString, 
+		FriendName$":"$Class'KFCommon_LocalizedStrings'.default.InvitePopupTextString, 
+		Class'KFCommon_LocalizedStrings'.default.AcceptString, 
+		Class'KFCommon_LocalizedStrings'.default.DeclineString, 
+		acceptInviteFromFriend, rejectInviteFromFriend, "img://"$AvatarPath);
+}
+
+function acceptInviteFromFriend()
+{
+	LogInternal(getFuncName());
+	KFOnlineLobbySteamworks(OnlineSub.GetLobbyInterface()).acceptInviteFromFriend();
+}
+
+function rejectInviteFromFriend()
+{
+	local KFOnlineLobbySteamworks SteamworksLobby;
+
+	LogInternal(getFuncName());
+	if (OnlineSub != none)
+	{
+		SteamworksLobby = KFOnlineLobbySteamworks(OnlineSub.GetLobbyInterface());
+	}
+
+	if (SteamworksLobby != none)
+	{
+		SteamworksLobby.RejectInvite(LobbyUId, FriendUId);
+	}
+
 }
 
 /*********************************************************************************************
@@ -10397,6 +10454,12 @@ function OnAttemptPassword()
 
 	URL = "Open" @Viewport.LastConnectionAttemptAddress $"?Password=" $Password;
 
+	//@SABER_EGS_BEGIN
+	if (class'WorldInfo'.static.IsEosBuild()) {
+		URL $= "?PlayfabPlayerId="$class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId;
+	}
+	//@SABER_EGS_END
+
 	ConsoleCommand(URL);
 }
 
@@ -11694,6 +11757,21 @@ simulated function CreateDiscordGamePresence()
 			Discord.CreateGamePresence(PresenceString, DetailsString, WorldInfo.GetMapName(), GRI.GetNumPlayers(), WorldInfo.NetMode != NM_Standalone ? GRI.MaxHumanCount : 1);
 		}
 	}
+}
+
+event MenuInfo GetMenuInfo()
+{
+	local MenuInfo Info;
+	Info.CurrentMenuIndex = MyGFxManager.CurrentMenuIndex;
+	Info.bMenusOpen = MyGFxManager.bMenusOpen;
+	Info.bIsStartMenu = MyGFxManager.CurrentMenuIndex == UI_Start;
+	return Info;
+}
+
+event ShowInviteMessage(string Name)
+{
+	LogInternal("KFPlayerController: ShowInviteMessage");
+	MyGFxHUD.ShowInviteMessage(Name);
 }
 
 defaultproperties

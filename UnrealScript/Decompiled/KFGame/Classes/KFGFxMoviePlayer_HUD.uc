@@ -38,6 +38,7 @@ var KFGFxWidget_VoiceComms VoiceCommsWidget;
 var KFGFxWidget_MusicNotification MusicNotification;
 var KFGFxWidget_KickVote KickVoteWidget;
 var KFGFxWidget_NonCriticalGameMessage NonCriticalGameMessageWidget;
+var KFGFxWidget_NonCriticalGameMessage InviteGameMessageWidget;
 var KFGFxWidget_RhythmCounter RhythmCounterWidget;
 var KFGFxWidget_BossHealthBar bossHealthBar;
 var KFPlayerController KFPC;
@@ -259,6 +260,12 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             if(NonCriticalGameMessageWidget == none)
             {
                 NonCriticalGameMessageWidget = KFGFxWidget_NonCriticalGameMessage(Widget);
+            }
+            break;
+        case 'InviteMessageWidget':
+            if(InviteGameMessageWidget == none)
+            {
+                InviteGameMessageWidget = KFGFxWidget_NonCriticalGameMessage(Widget);
             }
             break;
         case 'RhythmCounter':
@@ -869,6 +876,21 @@ function ShowNonCriticalMessage(string LocalizedMessage)
     if(NonCriticalGameMessageWidget != none)
     {
         NonCriticalGameMessageWidget.ShowMessage(LocalizedMessage);
+    }
+}
+
+function ShowInviteMessage(string FriendName)
+{
+    if(InviteGameMessageWidget != none)
+    {
+        if(FriendName == "")
+        {
+            InviteGameMessageWidget.ShowMessage(FriendName);            
+        }
+        else
+        {
+            InviteGameMessageWidget.ShowMessage(FriendName $ Class'KFCommon_LocalizedStrings'.default.InvitePopupTextString);
+        }
     }
 }
 

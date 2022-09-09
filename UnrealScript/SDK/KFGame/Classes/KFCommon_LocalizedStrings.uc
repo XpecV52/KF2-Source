@@ -100,6 +100,23 @@ var localized string NetworkCheckFreeTrialFailedString;
 
 var localized string SpecialEffectsString;
 
+var localized string MicrophonePopupTitleString;
+var localized string MicrophonePopupSelectDeviceString;
+var localized string MicrophonePopupVolumeString;
+var localized string MicrophonePopupCheckString;
+var localized string MicrophonePopupStopString;
+var localized string MicrophonePopupRefreshString;
+
+var localized string FriendsListPopupTitleString;
+var localized string FriendsListPopupFriendString;
+var localized string FriendsListPopupFriendsString;
+var localized string FriendsListPopupOtherFriendsString;
+var localized string FriendsListPopupLinkButonString;
+var localized string ReturnString;
+
+var localized string InvitePopupTitleString;
+var localized string InvitePopupTextString;
+
 static function array<string> GetDifficultyStringsArray()
 {
 	return default.DifficultyStrings;

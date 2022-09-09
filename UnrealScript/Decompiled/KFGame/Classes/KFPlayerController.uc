@@ -182,6 +182,7 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
+const KFID_VOIPMicVolumeMultiplier = 174;
 const MapObjectiveIndex = 4;
 const MAX_AIM_CORRECTION_SIZE = 35.f;
 
@@ -251,6 +252,20 @@ enum EGameConductorDebugMode
     EGCDM_GameplayAdjustments,
     EGCDM_Status,
     EGCDM_MAX
+};
+
+struct native MenuInfo
+{
+    var byte CurrentMenuIndex;
+    var bool bMenusOpen;
+    var bool bIsStartMenu;
+
+    structdefaultproperties
+    {
+        CurrentMenuIndex=0
+        bMenusOpen=false
+        bIsStartMenu=false
+    }
 };
 
 struct native PlayerStats
@@ -464,6 +479,8 @@ var KFAutoPurchaseHelper PurchaseHelper;
 var float NextSpectatorDelay;
 var transient KFPawn_Customization LocalCustomizationPawn;
 var string DefaultAvatarPath;
+var UniqueNetId LobbyUID;
+var UniqueNetId FriendUID;
 var name MixerRallyBoneNames[2];
 var string MixerCurrentDefaultScene;
 var class<KFLEDEffectsManager> LEDEffectsManagerClass;
@@ -1292,6 +1309,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
         if(KFEngine != none)
         {
             KFEngine.VOIPVolumeMultiplier = Profile.GetProfileFloat(164);
+            KFEngine.VoipMicVolumeMultiplier = Profile.GetProfileFloat(174);
             KFEngine.MusicVolumeMultiplier = Profile.GetProfileFloat(114);
             KFEngine.SFxVolumeMultiplier = Profile.GetProfileFloat(115);
             KFEngine.DialogVolumeMultiplier = Profile.GetProfileFloat(113);
@@ -1670,6 +1688,38 @@ event PreClientTravel(string PendingURL, Engine.Actor.ETravelType TravelType, bo
         ShowPreClientTravelMovie(PendingURL);
     }
     DestroyOnlineGame();
+}
+
+function showInvitePopup(string FriendName, UniqueNetId LobbyId, UniqueNetId FriendId)
+{
+    local string AvatarPath;
+
+    LobbyUID = LobbyId;
+    FriendUID = FriendId;
+    AvatarPath = GetSteamAvatar(FriendId);
+    LogInternal((((string(GetFuncName()) @ "friendName=") @ FriendName) @ "avatar=") @ AvatarPath);
+    MyGFxManager.DelayedOpenPopup(7, 0, Class'KFCommon_LocalizedStrings'.default.InvitePopupTitleString, (FriendName $ ":") $ Class'KFCommon_LocalizedStrings'.default.InvitePopupTextString, Class'KFCommon_LocalizedStrings'.default.AcceptString, Class'KFCommon_LocalizedStrings'.default.DeclineString, acceptInviteFromFriend, rejectInviteFromFriend, "img://" $ AvatarPath);
+}
+
+function acceptInviteFromFriend()
+{
+    LogInternal(string(GetFuncName()));
+    KFOnlineLobbySteamworks(OnlineSub.GetLobbyInterface()).acceptInviteFromFriend();
+}
+
+function rejectInviteFromFriend()
+{
+    local KFOnlineLobbySteamworks SteamworksLobby;
+
+    LogInternal(string(GetFuncName()));
+    if(OnlineSub != none)
+    {
+        SteamworksLobby = KFOnlineLobbySteamworks(OnlineSub.GetLobbyInterface());
+    }
+    if(SteamworksLobby != none)
+    {
+        SteamworksLobby.RejectInvite(LobbyUID, FriendUID);
+    }
 }
 
 function OnGameInviteAccepted(const out OnlineGameSearchResult InviteResult, Engine.OnlineSubsystem.OnGameInviteAcceptedResult ResultReason)
@@ -6953,7 +7003,11 @@ function OnAttemptPassword()
 
     Password = KFGFxPopup_InputPrompt(MyGFxManager.CurrentPopup).PlayerInputString;
     Viewport = KFGameViewportClient(LocalPlayer(Player).ViewportClient);
-    URL = (("Open" @ Viewport.LastConnectionAttemptAddress) $ "?Password=") $ Password;    
+    URL = (("Open" @ Viewport.LastConnectionAttemptAddress) $ "?Password=") $ Password;
+    if(Class'WorldInfo'.static.IsEOSBuild())
+    {        
+        URL $= ("?PlayfabPlayerId=" $ Class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId);
+    }    
     ConsoleCommand(URL);
 }
 
@@ -7328,10 +7382,10 @@ function OnCanPlayOnlineCheckForMatchmakingComplete(byte LocalUserNum, Engine.On
     }
 }
 
-function OnPlayfabLoginComplete(bool bWasSuccessful, string SessionTicket, string PlayfabId)
+function OnPlayfabLoginComplete(bool bWasSuccessful, string SessionTicket, string PlayFabId)
 {
     PlayfabInter.ClearOnLoginCompleteDelegate(OnPlayfabLoginComplete);
-    PlayerReplicationInfo.PlayfabPlayerId = PlayfabId;
+    PlayerReplicationInfo.PlayfabPlayerId = PlayFabId;
     KFGameEngine(Class'Engine'.static.GetEngine()).ReadPFStoreData();
     PlayfabInter.AddTitleDataReadCompleteDelegate(OnClientTitleDataRead);
     PlayfabInter.ReadTitleData();
@@ -8113,6 +8167,22 @@ simulated function CreateDiscordGamePresence()
             Discord.CreateGamePresence(PresenceString, DetailsString, WorldInfo.GetMapName(), GRI.GetNumPlayers(), ((WorldInfo.NetMode != NM_Standalone) ? GRI.MaxHumanCount : 1));
         }
     }
+}
+
+event MenuInfo GetMenuInfo()
+{
+    local MenuInfo Info;
+
+    Info.CurrentMenuIndex = MyGFxManager.CurrentMenuIndex;
+    Info.bMenusOpen = MyGFxManager.bMenusOpen;
+    Info.bIsStartMenu = MyGFxManager.CurrentMenuIndex == 0;
+    return Info;
+}
+
+event ShowInviteMessage(string Name)
+{
+    LogInternal("KFPlayerController: ShowInviteMessage");
+    myGfxHUD.ShowInviteMessage(Name);
 }
 
 state PlayerWalking

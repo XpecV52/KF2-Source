@@ -32,7 +32,7 @@ struct MessageEntry
     }
 };
 
-function string getUsername();
+function string GetUserName();
 
 function string getUserid();
 

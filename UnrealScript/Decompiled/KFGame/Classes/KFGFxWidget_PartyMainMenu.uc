@@ -12,8 +12,18 @@ var int prevMemberCount;
 
 function OneSecondLoop()
 {
+    local bool IsInLobby;
+
     RefreshParty();
-    if((OnlineLobby != none) && OnlineLobby.IsInLobby())
+    if(Class'WorldInfo'.static.IsEOSBuild())
+    {
+        IsInLobby = bIsInParty;        
+    }
+    else
+    {
+        IsInLobby = (OnlineLobby != none) && OnlineLobby.IsInLobby();
+    }
+    if(IsInLobby)
     {
         SendMyOptions();
         SendSearching();

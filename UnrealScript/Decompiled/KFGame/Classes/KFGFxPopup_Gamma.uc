@@ -70,6 +70,7 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
+const KFID_VOIPMicVolumeMultiplier = 174;
 
 var GFxObject GammaSlider;
 var string GammaImagePath;
@@ -138,7 +139,7 @@ function Callback_ClosedPopup()
 {
     Manager.bSetGamma = true;
     Manager.CachedProfile.Save(byte(Outer.GetLP().ControllerId));
-    super.Callback_ClosedPopup();
+    ClosePopUp();
 }
 
 function Callback_GammaChanged(float NewGamma)

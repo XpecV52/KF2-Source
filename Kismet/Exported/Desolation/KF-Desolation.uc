@@ -128,10 +128,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.260000,OutVal=(X=0.000488,Y=-19.000015,Z=-0.000061),InterpMode=CIM_CurveAutoClamped),(InVal=0.400000,InterpMode=CIM_CurveAutoClamped),(InVal=0.850000,InterpMode=CIM_CurveAutoClamped),(InVal=1.030000,OutVal=(X=0.000488,Y=-19.000015,Z=-0.000061),InterpMode=CIM_CurveAutoClamped),(InVal=1.160000,InterpMode=CIM_CurveAutoClamped),(InVal=2.400000,InterpMode=CIM_CurveAutoClamped),(InVal=2.580000,OutVal=(X=0.000488,Y=-19.000015,Z=-0.000061),InterpMode=CIM_CurveAutoClamped),(InVal=2.710000,InterpMode=CIM_CurveAutoClamped)))
@@ -146,6 +142,10 @@ Begin Object Class=InterpData Name=InterpData_0
       GroupColor=(B=0,G=203,R=126,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.820000
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
@@ -211,10 +211,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
 End Object
 
 Begin Object Class=InterpData Name=InterpData_2
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=(,(InVal=0.250000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000046)),(InVal=0.350000,OutVal=(X=0.000000,Y=0.000000,Z=-16.000069)),(InVal=0.530000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000046)),(InVal=1.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000046)),(InVal=1.900000,OutVal=(X=0.000000,Y=0.000000,Z=-16.000069)),(InVal=2.210000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000046)),(InVal=2.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000046)),(InVal=2.900000,OutVal=(X=0.000000,Y=0.000000,Z=-16.000069)),(InVal=3.140000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000046)),(InVal=5.290000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000046)),(InVal=5.400000,OutVal=(X=0.000000,Y=0.000000,Z=-16.000122)),(InVal=5.670000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000046))))
@@ -229,6 +225,10 @@ Begin Object Class=InterpData Name=InterpData_2
       GroupColor=(B=64,G=226,R=0,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=6.500000
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_1'
@@ -1188,19 +1188,7 @@ Begin Object Class=SeqVar_Float Name=SeqVar_Float_2
 End Object
 
 Begin Object Class=InterpData Name=InterpData_32
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(Curves=((CurveObject=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_1.InterpTrackFloatProp_2',CurveColor=(B=0,G=74,R=224,A=255),CurveName="TargetLight_Brightness",bHideCurve=1),(CurveObject=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_1.InterpTrackColorProp_1',CurveColor=(B=0,G=74,R=224,A=255),CurveName="TargetLight_LightColor",bColorCurve=1,bFloatingPointColorCurve=1)),ViewStartInput=-0.060421,ViewEndInput=1.109818,ViewStartOutput=-0.773789,ViewEndOutput=1.801839)
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
-         PropertyName="LightColor"
-         VectorTrack=(Points=((OutVal=(X=0.781751,Y=0.212044,Z=0.018913)),(InVal=0.010000,OutVal=(X=0.781751,Y=0.212044,Z=0.018913))))
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_1"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
       Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_2
          PropertyName="Brightness"
          FloatTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.010000,OutVal=0.400000,InterpMode=CIM_Constant)))
@@ -1208,12 +1196,24 @@ Begin Object Class=InterpData Name=InterpData_32
          Name="InterpTrackFloatProp_2"
          ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
+         PropertyName="LightColor"
+         VectorTrack=(Points=((OutVal=(X=0.781751,Y=0.212044,Z=0.018913)),(InVal=0.010000,OutVal=(X=0.781751,Y=0.212044,Z=0.018913))))
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_1"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_1.InterpTrackFloatProp_2'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_1.InterpTrackColorProp_1'
       GroupName="TargetLight"
       GroupColor=(B=0,G=74,R=224,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(Curves=((CurveObject=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_1.InterpTrackFloatProp_2',CurveColor=(B=0,G=74,R=224,A=255),CurveName="TargetLight_Brightness",bHideCurve=1),(CurveObject=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_1.InterpTrackColorProp_1',CurveColor=(B=0,G=74,R=224,A=255),CurveName="TargetLight_LightColor",bColorCurve=1,bFloatingPointColorCurve=1)),ViewStartInput=-0.060421,ViewEndInput=1.109818,ViewStartOutput=-0.773789,ViewEndOutput=1.801839)
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.010000
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_1'
@@ -1286,11 +1286,13 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_11
 End Object
 
 Begin Object Class=InterpData Name=InterpData_34
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
@@ -1298,18 +1300,16 @@ Begin Object Class=InterpData Name=InterpData_34
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_34.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_34.InterpGroup_2.InterpTrackColorProp_2'
       GroupName="LightColor"
       GroupColor=(B=218,G=92,R=0,A=255)
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.010000
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_34.InterpGroup_2'
@@ -2548,18 +2548,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_12
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackColorProp_2'
@@ -2777,18 +2777,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_13
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_13.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_13.InterpGroup_2.InterpTrackColorProp_2'
@@ -3006,18 +3006,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_14
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_14.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_14.InterpGroup_2.InterpTrackColorProp_2'
@@ -3235,18 +3235,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_15
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_15.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_15.InterpGroup_2.InterpTrackColorProp_2'
@@ -3463,12 +3463,13 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_86
 End Object
 
 Begin Object Class=InterpData Name=InterpData_16
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Tabs(0)=(Curves=((CurveObject=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_2.InterpTrackColorProp_2',CurveColor=(B=218,G=92,R=0,A=255),CurveName="LightColor_LightColor",bColorCurve=1,bFloatingPointColorCurve=1)))
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
@@ -3476,18 +3477,17 @@ Begin Object Class=InterpData Name=InterpData_16
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_2.InterpTrackColorProp_2'
       GroupName="LightColor"
       GroupColor=(B=218,G=92,R=0,A=255)
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Tabs(0)=(Curves=((CurveObject=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_2.InterpTrackColorProp_2',CurveColor=(B=218,G=92,R=0,A=255),CurveName="LightColor_LightColor",bColorCurve=1,bFloatingPointColorCurve=1)))
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.010000
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_2'
@@ -3699,18 +3699,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_17
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_2.InterpTrackColorProp_2'
@@ -4097,18 +4097,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_35
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_2.InterpTrackColorProp_2'
@@ -4325,11 +4325,13 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_10
 End Object
 
 Begin Object Class=InterpData Name=InterpData_10
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
@@ -4337,18 +4339,16 @@ Begin Object Class=InterpData Name=InterpData_10
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_2.InterpTrackColorProp_2'
       GroupName="LightColor"
       GroupColor=(B=218,G=92,R=0,A=255)
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.010000
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_10.InterpGroup_2'
@@ -4560,18 +4560,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_9
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_2.InterpTrackColorProp_2'
@@ -4789,18 +4789,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_8
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_2.InterpTrackColorProp_2'
@@ -5018,18 +5018,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_7
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_2.InterpTrackColorProp_2'
@@ -5247,18 +5247,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_1
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2.InterpTrackColorProp_2'
@@ -5307,18 +5307,18 @@ End Object
 
 Begin Object Class=InterpData Name=InterpData_27
    Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
+         PropertyName="Brightness"
+         TrackTitle="Brightness"
+         Name="InterpTrackFloatProp_4"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="LightColor"
          VectorTrack=(Points=((OutVal=(X=0.000000,Y=0.781751,Z=0.113921)),(InVal=0.010000,OutVal=(X=0.000000,Y=0.781751,Z=0.113921))))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_2"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_4
-         PropertyName="Brightness"
-         TrackTitle="Brightness"
-         Name="InterpTrackFloatProp_4"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
       End Object
       InterpTracks(0)=InterpTrackFloatProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_2.InterpTrackFloatProp_4'
       InterpTracks(1)=InterpTrackColorProp'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_27.InterpGroup_2.InterpTrackColorProp_2'
@@ -6789,10 +6789,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_129
 End Object
 
 Begin Object Class=InterpData Name=InterpData_20
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=(,,(InVal=1.000000,OutVal=(X=1936.000000,Y=0.000000,Z=-0.000122))))
@@ -6807,6 +6803,10 @@ Begin Object Class=InterpData Name=InterpData_20
       GroupColor=(B=148,G=0,R=189,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.000000
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_1'
@@ -12778,41 +12778,14 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_19
 End Object
 
 Begin Object Class=InterpData Name=InterpData_19
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_0
-            LookupTrack=(Points=(,(Time=25.000000),(Time=50.000000)))
-            FloatTrack=(Points=(,(InVal=25.000000,OutVal=0.000122),(InVal=50.000000)))
-            TrackTitle="X"
-            Name="InterpTrackMoveAxis_0"
-            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
-         End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_1
-            MoveAxis=AXIS_TranslationY
-            LookupTrack=(Points=(,(Time=25.000000),(Time=50.000000)))
-            FloatTrack=(Points=(,(InVal=25.000000),(InVal=50.000000)))
-            TrackTitle="Y"
-            Name="InterpTrackMoveAxis_1"
-            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
-         End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_2
-            MoveAxis=AXIS_TranslationZ
-            LookupTrack=(Points=(,(Time=25.000000),(Time=50.000000)))
-            FloatTrack=(Points=(,(InVal=25.000000,OutVal=-8.000122),(InVal=50.000000)))
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_5
+            MoveAxis=AXIS_RotationZ
+            LookupTrack=(Points=(,,(Time=25.000000),(Time=50.000000)))
+            FloatTrack=(Points=(,,(InVal=25.000000,OutVal=180.000000),(InVal=50.000000,OutVal=360.000000)))
             TrackTitle="Z"
-            Name="InterpTrackMoveAxis_2"
-            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
-         End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_3
-            MoveAxis=AXIS_RotationX
-            LookupTrack=(Points=(,,(Time=25.000000)))
-            FloatTrack=(Points=(,,(InVal=25.000000)))
-            TrackTitle="X"
-            Name="InterpTrackMoveAxis_3"
+            Name="InterpTrackMoveAxis_5"
             ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
          End Object
          Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_4
@@ -12823,12 +12796,35 @@ Begin Object Class=InterpData Name=InterpData_19
             Name="InterpTrackMoveAxis_4"
             ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
          End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_5
-            MoveAxis=AXIS_RotationZ
-            LookupTrack=(Points=(,,(Time=25.000000),(Time=50.000000)))
-            FloatTrack=(Points=(,,(InVal=25.000000,OutVal=180.000000),(InVal=50.000000,OutVal=360.000000)))
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_3
+            MoveAxis=AXIS_RotationX
+            LookupTrack=(Points=(,,(Time=25.000000)))
+            FloatTrack=(Points=(,,(InVal=25.000000)))
+            TrackTitle="X"
+            Name="InterpTrackMoveAxis_3"
+            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
+         End Object
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_2
+            MoveAxis=AXIS_TranslationZ
+            LookupTrack=(Points=(,(Time=25.000000),(Time=50.000000)))
+            FloatTrack=(Points=(,(InVal=25.000000,OutVal=-8.000122),(InVal=50.000000)))
             TrackTitle="Z"
-            Name="InterpTrackMoveAxis_5"
+            Name="InterpTrackMoveAxis_2"
+            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
+         End Object
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_1
+            MoveAxis=AXIS_TranslationY
+            LookupTrack=(Points=(,(Time=25.000000),(Time=50.000000)))
+            FloatTrack=(Points=(,(InVal=25.000000),(InVal=50.000000)))
+            TrackTitle="Y"
+            Name="InterpTrackMoveAxis_1"
+            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
+         End Object
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_0
+            LookupTrack=(Points=(,(Time=25.000000),(Time=50.000000)))
+            FloatTrack=(Points=(,(InVal=25.000000,OutVal=0.000122),(InVal=50.000000)))
+            TrackTitle="X"
+            Name="InterpTrackMoveAxis_0"
             ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
          End Object
          MoveFrame=IMF_RelativeToInitial
@@ -12848,6 +12844,10 @@ Begin Object Class=InterpData Name=InterpData_19
       GroupColor=(B=207,G=118,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=50.000000
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_19.InterpGroup_0'
@@ -12913,35 +12913,14 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_41
 End Object
 
 Begin Object Class=InterpData Name=InterpData_33
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_0
-            TrackTitle="X"
-            Name="InterpTrackMoveAxis_0"
-            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
-         End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_1
-            MoveAxis=AXIS_TranslationY
-            TrackTitle="Y"
-            Name="InterpTrackMoveAxis_1"
-            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
-         End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_2
-            MoveAxis=AXIS_TranslationZ
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_5
+            MoveAxis=AXIS_RotationZ
+            LookupTrack=(Points=(,,(Time=0.200000),(Time=0.400000)))
+            FloatTrack=(Points=(,,(InVal=0.200000,OutVal=180.000000),(InVal=0.400000,OutVal=360.000000)))
             TrackTitle="Z"
-            Name="InterpTrackMoveAxis_2"
-            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
-         End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_3
-            MoveAxis=AXIS_RotationX
-            LookupTrack=(Points=(,,(Time=0.200000)))
-            FloatTrack=(Points=(,,(InVal=0.200000)))
-            TrackTitle="X"
-            Name="InterpTrackMoveAxis_3"
+            Name="InterpTrackMoveAxis_5"
             ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
          End Object
          Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_4
@@ -12952,12 +12931,29 @@ Begin Object Class=InterpData Name=InterpData_33
             Name="InterpTrackMoveAxis_4"
             ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
          End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_5
-            MoveAxis=AXIS_RotationZ
-            LookupTrack=(Points=(,,(Time=0.200000),(Time=0.400000)))
-            FloatTrack=(Points=(,,(InVal=0.200000,OutVal=180.000000),(InVal=0.400000,OutVal=360.000000)))
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_3
+            MoveAxis=AXIS_RotationX
+            LookupTrack=(Points=(,,(Time=0.200000)))
+            FloatTrack=(Points=(,,(InVal=0.200000)))
+            TrackTitle="X"
+            Name="InterpTrackMoveAxis_3"
+            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
+         End Object
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_2
+            MoveAxis=AXIS_TranslationZ
             TrackTitle="Z"
-            Name="InterpTrackMoveAxis_5"
+            Name="InterpTrackMoveAxis_2"
+            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
+         End Object
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_1
+            MoveAxis=AXIS_TranslationY
+            TrackTitle="Y"
+            Name="InterpTrackMoveAxis_1"
+            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
+         End Object
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_0
+            TrackTitle="X"
+            Name="InterpTrackMoveAxis_0"
             ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
          End Object
          MoveFrame=IMF_RelativeToInitial
@@ -12977,6 +12973,10 @@ Begin Object Class=InterpData Name=InterpData_33
       GroupColor=(B=207,G=118,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.400000
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_0'
@@ -13899,9 +13899,15 @@ Begin Object Class=SeqAct_ToggleHidden Name=SeqAct_ToggleHidden_5
 End Object
 
 Begin Object Class=InterpData Name=InterpData_3
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_2
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_2
+         Name="InterpTrackDirector_2"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroupDirector_2.InterpTrackDirector_2'
+      GroupColor=(B=0,G=79,R=222,A=255)
+      Name="InterpGroupDirector_2"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
@@ -13917,15 +13923,9 @@ Begin Object Class=InterpData Name=InterpData_3
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_2
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_2
-         Name="InterpTrackDirector_2"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroupDirector_2.InterpTrackDirector_2'
-      GroupColor=(B=0,G=79,R=222,A=255)
-      Name="InterpGroupDirector_2"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=300.000000
    InterpGroups(0)=InterpGroupDirector'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroupDirector_2'
@@ -15955,10 +15955,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_29
 End Object
 
 Begin Object Class=InterpData Name=InterpData_28
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
          PropertyName="LightColor"
@@ -15972,6 +15968,10 @@ Begin Object Class=InterpData Name=InterpData_28
       GroupColor=(B=201,G=0,R=131,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.008749
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_0'
@@ -20099,10 +20099,21 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_37
 End Object
 
 Begin Object Class=InterpData Name=InterpData_30
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_0.InterpTrackMove_0',CurveColor=(B=0,G=42,R=230,A=255),CurveName="Satellite_Movement")),ViewStartInput=-0.050444,ViewEndInput=0.140444,ViewStartOutput=-0.253192,ViewEndOutput=0.314131)
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,InterpMode=CIM_Constant)))
+         EulerTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,OutVal=(X=0.000000,Y=0.000000,Z=-45.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-900.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-900.000000),InterpMode=CIM_Constant)))
+         LookupTrack=(Points=(,(Time=0.050000)))
+         bHide3DTrack=True
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_1.InterpTrackMove_1'
+      GroupName="frame"
+      GroupColor=(B=0,G=140,R=194,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -20119,21 +20130,10 @@ Begin Object Class=InterpData Name=InterpData_30
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,InterpMode=CIM_Constant)))
-         EulerTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,OutVal=(X=0.000000,Y=0.000000,Z=-45.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-900.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-900.000000),InterpMode=CIM_Constant)))
-         LookupTrack=(Points=(,(Time=0.050000)))
-         bHide3DTrack=True
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_1.InterpTrackMove_1'
-      GroupName="frame"
-      GroupColor=(B=0,G=140,R=194,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_0.InterpTrackMove_0',CurveColor=(B=0,G=42,R=230,A=255),CurveName="Satellite_Movement")),ViewStartInput=-0.050444,ViewEndInput=0.140444,ViewStartOutput=-0.253192,ViewEndOutput=0.314131)
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_1'
@@ -20217,9 +20217,21 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_38
 End Object
 
 Begin Object Class=InterpData Name=InterpData_31
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,InterpMode=CIM_Constant),(InVal=0.050000,InterpMode=CIM_Constant)))
+         EulerTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),InterpMode=CIM_Constant),(InVal=0.050000,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-900.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-900.000000),InterpMode=CIM_Constant)))
+         LookupTrack=(Points=(,(Time=0.050000),(Time=0.050000)))
+         bHide3DTrack=True
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_1.InterpTrackMove_1'
+      GroupName="frame"
+      GroupColor=(B=0,G=140,R=194,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -20236,21 +20248,9 @@ Begin Object Class=InterpData Name=InterpData_31
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,InterpMode=CIM_Constant),(InVal=0.050000,InterpMode=CIM_Constant)))
-         EulerTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),InterpMode=CIM_Constant),(InVal=0.050000,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),ArriveTangent=(X=0.000000,Y=0.000000,Z=-900.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-900.000000),InterpMode=CIM_Constant)))
-         LookupTrack=(Points=(,(Time=0.050000),(Time=0.050000)))
-         bHide3DTrack=True
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_1.InterpTrackMove_1'
-      GroupName="frame"
-      GroupColor=(B=0,G=140,R=194,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_1'
@@ -20268,9 +20268,21 @@ Begin Object Class=InterpData Name=InterpData_31
 End Object
 
 Begin Object Class=InterpData Name=InterpData_29
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
-      Name="InterpCurveEdSetup_4"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,InterpMode=CIM_Constant)))
+         EulerTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,OutVal=(X=0.000000,Y=0.000000,Z=-135.000000),InterpMode=CIM_Constant)))
+         LookupTrack=(Points=(,(Time=0.050000)))
+         bHide3DTrack=True
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_1.InterpTrackMove_1'
+      GroupName="frame"
+      GroupColor=(B=0,G=140,R=194,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -20287,21 +20299,9 @@ Begin Object Class=InterpData Name=InterpData_29
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,InterpMode=CIM_Constant)))
-         EulerTrack=(Points=((InterpMode=CIM_Constant),(InVal=0.050000,OutVal=(X=0.000000,Y=0.000000,Z=-135.000000),InterpMode=CIM_Constant)))
-         LookupTrack=(Points=(,(Time=0.050000)))
-         bHide3DTrack=True
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_1.InterpTrackMove_1'
-      GroupName="frame"
-      GroupColor=(B=0,G=140,R=194,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
+      Name="InterpCurveEdSetup_4"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_1'
@@ -20509,10 +20509,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_282
 End Object
 
 Begin Object Class=InterpData Name=InterpData_4
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
-      Name="InterpCurveEdSetup_4"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_4
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
          PosTrack=(Points=((OutVal=(X=0.001465,Y=0.001709,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=0.001099,Y=0.001221,Z=0.000977),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.001831,Y=0.002197,Z=0.000977),ArriveTangent=(X=0.000488,Y=0.000732,Z=0.000000),LeaveTangent=(X=0.000488,Y=0.000732,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=0.002563,Y=0.003418,Z=0.001221),ArriveTangent=(X=0.001465,Y=0.002442,Z=0.000488),LeaveTangent=(X=0.001465,Y=0.002442,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.003296,Y=0.004639,Z=0.001465),ArriveTangent=(X=0.001221,Y=0.001953,Z=0.000325),LeaveTangent=(X=0.001221,Y=0.001953,Z=0.000325),InterpMode=CIM_CurveAutoClamped),(InVal=6.000000,OutVal=(X=0.004395,Y=0.006348,Z=0.001709),ArriveTangent=(X=0.000732,Y=0.001172,Z=0.000195),LeaveTangent=(X=0.000732,Y=0.001172,Z=0.000195),InterpMode=CIM_CurveAutoClamped),(InVal=7.500000,OutVal=(X=0.005127,Y=0.007568,Z=0.001953),ArriveTangent=(X=0.000418,Y=0.000558,Z=0.000000),LeaveTangent=(X=0.000418,Y=0.000558,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=0.005859,Y=0.008301,Z=0.001709),ArriveTangent=(X=0.000488,Y=0.000407,Z=-0.000244),LeaveTangent=(X=0.000488,Y=0.000407,Z=-0.000244),InterpMode=CIM_CurveAutoClamped),(InVal=10.500000,OutVal=(X=0.006592,Y=0.008789,Z=0.001221),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000656),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000656),InterpMode=CIM_CurveAutoClamped),(InVal=12.000000,OutVal=(X=0.001465,Y=0.001709,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.001384),InterpMode=CIM_CurveAutoClamped)))
@@ -20527,6 +20523,10 @@ Begin Object Class=InterpData Name=InterpData_4
       GroupColor=(B=0,G=176,R=163,A=255)
       Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
+      Name="InterpCurveEdSetup_4"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=13.000000
    InterpGroups(0)=InterpGroup'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_4'
@@ -20647,9 +20647,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_6
 End Object
 
 Begin Object Class=InterpData Name=InterpData_6
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         CutTrack(0)=(TargetCamGroup="NewCameraGroup",ShotNumber=10)
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=0,G=203,R=126,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -20667,16 +20674,9 @@ Begin Object Class=InterpData Name=InterpData_6
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
-         CutTrack(0)=(TargetCamGroup="NewCameraGroup",ShotNumber=10)
-         Name="InterpTrackDirector_0"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroupDirector_0.InterpTrackDirector_0'
-      GroupColor=(B=0,G=203,R=126,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=610.000000
    InterpGroups(0)=InterpGroupDirector'KF-DESOLATION.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroupDirector_0'

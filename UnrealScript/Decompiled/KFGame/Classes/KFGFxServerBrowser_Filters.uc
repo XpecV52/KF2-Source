@@ -135,6 +135,9 @@ native exec function int GetSelectedDifficulty();
 // Export UKFGFxServerBrowser_Filters::execGetSelectedGameLength(FFrame&, void* const)
 native exec function int GetSelectedGameLength();
 
+// Export UKFGFxServerBrowser_Filters::execGetMaxPing(FFrame&, void* const)
+native function int GetMaxPing();
+
 function InitFiltersArray()
 {
     FilterStrings[0] = NoPasswordString;

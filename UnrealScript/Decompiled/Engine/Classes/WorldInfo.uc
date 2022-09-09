@@ -825,6 +825,12 @@ native static final function bool IsConsoleDedicatedServer();
 // Export UWorldInfo::execIsE3Build(FFrame&, void* const)
 native static final simulated function bool IsE3Build();
 
+// Export UWorldInfo::execIsEOSBuild(FFrame&, void* const)
+native static final simulated function bool IsEOSBuild();
+
+// Export UWorldInfo::execIsEOSDedicatedServer(FFrame&, void* const)
+native static final simulated function bool IsEOSDedicatedServer();
+
 // Export UWorldInfo::execIsNeoCheckerboardRendering(FFrame&, void* const)
 native static final function bool IsNeoCheckerboardRendering();
 

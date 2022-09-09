@@ -65,7 +65,7 @@ var init array<Object> CachedRootPackages;
 // @todo Find a way to reset a options section
 var float DefaultGammaMult;
 //@HSL_MOD_BEGIN - amiller 5/11/2016 - Adding support to save extra data into profile settings - Removing config flag
-var float MusicVolumeMultiplier, SFxVolumeMultiplier, DialogVolumeMultiplier, MasterVolumeMultiplier, PadVolumeMultiplier, VoipVolumeMultiplier;
+var float MusicVolumeMultiplier, SFxVolumeMultiplier, DialogVolumeMultiplier, MasterVolumeMultiplier, PadVolumeMultiplier, VoipVolumeMultiplier, VoipMicVolumeMultiplier;
 var float GammaMultiplier;	// a value between 0-1 that scales the gamma to a value between .5 and 3
 
 var bool  bMusicVocalsEnabled;
@@ -481,6 +481,7 @@ native static function SetWWiseVoiceVolume( float Volume );
 native static function SetWWiseMasterVolume( float Volume );
 native static function SetWWisePADVolume( float Volume );
 native static function SetVoIPRecieveVolume( float Volume );
+native static function SetVoIPMicRecieveVolume( float Volume );
 native static function GetVoIPVolumeRange(out float MinVol, out float MaxVol, out float CurrentVol);
 native static function PlayFullScreenMovie(string MovieName);
 native static function bool IsFullScreenMoviePlaying();

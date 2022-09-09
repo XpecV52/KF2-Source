@@ -46,6 +46,23 @@ YesString="예"
 NoString="아니오"
 TeamSwappedString="팀 교환을 하였습니다."
 
+MicrophonePopupTitleString="마이크 설정"
+MicrophonePopupSelectDeviceString="선택"
+MicrophonePopupVolumeString="마이크 볼륨"
+MicrophonePopupCheckString="마이크 확인"
+MicrophonePopupStopString="승인"
+MicrophonePopupRefreshString="새로 고침"
+
+FriendsListPopupTitleString="초대할 친구를 선택하십시오"
+FriendsListPopupFriendString="검색"
+FriendsListPopupFriendsString="친구"
+FriendsListPopupOtherFriendsString="다른 플랫폼의 친구"
+FriendsListPopupLinkButonString="계정 연결"
+ReturnString="돌아가기"
+
+InvitePopupTitleString="로비 초대"
+InvitePopupTextString=" 님이 로비로 초대했습니다"
+
 CancelConnectionString="로딩 취소"
 
 DisbandPartyString="부대 해산"

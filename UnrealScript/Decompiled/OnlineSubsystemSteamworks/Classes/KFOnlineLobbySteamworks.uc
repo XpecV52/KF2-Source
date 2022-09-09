@@ -17,6 +17,7 @@ var bool bWaitingForServer;
 var bool bDebug;
 var string PendingServerIP;
 var Engine.TWOnlineLobby.ELobbyVisibility LobbyVisibility;
+var UniqueNetId InviteLobbyId;
 
 function UniqueNetId GetCurrentLobbyId()
 {
@@ -143,7 +144,7 @@ event bool InviteFriendToLobby(string NickName)
     FriendId = GetFriendUniqueId(NickName);
     if(FriendId != ZeroUniqueId)
     {
-        Success == (InviteToLobby(CurrentLobbyId, FriendId));
+        Success = InviteToLobby(CurrentLobbyId, FriendId);
     }
     if(Success)
     {
@@ -157,6 +158,37 @@ event bool InviteFriendToLobby(string NickName)
         if(bDebug)
         {
             LogInternal((("Failed to invite Friend" @ NickName) @ "to party") @ Outer.UniqueNetIdToString(CurrentLobbyId), 'DevLobby');
+        }
+    }
+    return Success;
+}
+
+event bool InviteFriendToLobbyByUid(QWord Uid)
+{
+    local bool Success;
+    local UniqueNetId FriendId;
+
+    if(!IsInLobby())
+    {
+        return false;
+    }
+    FriendId.Uid = Uid;
+    if(FriendId != ZeroUniqueId)
+    {
+        Success = InviteToLobby(CurrentLobbyId, FriendId);
+    }
+    if(Success)
+    {
+        if(bDebug)
+        {
+            LogInternal((("Friend with id" @ Outer.UniqueNetIdToString(FriendId)) @ "invited to party") @ Outer.UniqueNetIdToString(CurrentLobbyId), 'DevLobby');
+        }        
+    }
+    else
+    {
+        if(bDebug)
+        {
+            LogInternal("Failed to invite Friend to party" @ Outer.UniqueNetIdToString(CurrentLobbyId), 'DevLobby');
         }
     }
     return Success;
@@ -233,6 +265,14 @@ function OnLobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted
     }
     if(!bAccepted)
     {
+        if(LobbyId != CurrentLobbyId)
+        {
+            InviteLobbyId = LobbyId;
+            if((GetPC()) != none)
+            {
+                GetPC().showInvitePopup(GetFriendNickname(FriendId, false), LobbyId, FriendId);
+            }
+        }
         return;
     }
     if(LobbyId == CurrentLobbyId)
@@ -253,6 +293,22 @@ function OnLobbyInvite(UniqueNetId LobbyId, UniqueNetId FriendId, bool bAccepted
     }
     AddJoinLobbyCompleteDelegate(OnJoinLobbyComplete);
     JoinLobby(LobbyId);
+}
+
+function acceptInviteFromFriend()
+{
+    LogInternal(string(GetFuncName()));
+    if((GetPC()) != none)
+    {
+        if(bDebug)
+        {
+            LogInternal(string(GetFuncName()) @ "Accepting lobby invite; disconnecting from current server.", 'DevLobby');
+        }        
+        GetPC().ConsoleCommand("disconnect");
+    }
+    AddJoinLobbyCompleteDelegate(OnJoinLobbyComplete);
+    LogInternal((string(GetFuncName()) @ "LobbyId=") $ Outer.UniqueNetIdToString(InviteLobbyId));
+    JoinLobby(InviteLobbyId);
 }
 
 function OnJoinLobbyComplete(bool bWasSuccessful, const out array<ActiveLobbyInfo> LobbyList, int LobbyIndex, UniqueNetId LobbyUID, string Error)
@@ -277,7 +333,7 @@ function OnJoinLobbyComplete(bool bWasSuccessful, const out array<ActiveLobbyInf
         {
             LogInternal((string(GetFuncName()) @ "ServerIPAddress=") $ ServerIPAddress, 'DevLobby');
         }
-        if(ServerIPAddress != "")
+        if(((Class'WorldInfo'.static.IsEOSBuild() && ServerIPAddress != "") && ServerIPAddress != "NULL") || !Class'WorldInfo'.static.IsEOSBuild() && ServerIPAddress != "")
         {
             if(bDebug)
             {
@@ -336,6 +392,9 @@ native function string GetConnectedServerIP();
 
 // Export UKFOnlineLobbySteamworks::execAppendPasswordToURL(FFrame&, void* const)
 native function string AppendPasswordToURL(string URL, string Password);
+
+// Export UKFOnlineLobbySteamworks::execRejectInvite(FFrame&, void* const)
+native function RejectInvite(UniqueNetId LobbyId, UniqueNetId FriendId);
 
 function bool LobbyJoinGame(optional string ServerIP)
 {

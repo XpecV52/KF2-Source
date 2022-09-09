@@ -97,6 +97,10 @@ exec native function int GetSelectedDifficulty() const;
 
 exec native function int GetSelectedGameLength() const;
 
+//@SABER_BEGIN - Getting current value for ping filtering
+native function int GetMaxPing() const;
+//@SABER_END
+
 function InitFiltersArray()
 {
 	FilterStrings[NO_PASSWORD] 			= NoPasswordString;

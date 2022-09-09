@@ -58,6 +58,8 @@ var KFGFxWidget_MusicNotification MusicNotification;
 var KFGFxWidget_KickVote KickVoteWidget;
 // Widget that shows unimportant messages such as receiving ammo
 var KFGFxWidget_NonCriticalGameMessage NonCriticalGameMessageWidget;
+// Widget that shows invite message
+var KFGFxWidget_NonCriticalGameMessage InviteGameMessageWidget;
 // Widget that shows headshots for gunslinger
 var KFGFxWidget_RhythmCounter RhythmCounterWidget;
 // Widget that displays health bar
@@ -303,6 +305,12 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         if(NonCriticalGameMessageWidget == none)
         {
             NonCriticalGameMessageWidget=KFGFxWidget_NonCriticalGameMessage(Widget);
+        }
+        break;
+    case 'InviteMessageWidget':
+        if(InviteGameMessageWidget == none)
+        {
+            InviteGameMessageWidget=KFGFxWidget_NonCriticalGameMessage(Widget);
         }
         break;
     case 'RhythmCounter':
@@ -996,6 +1004,21 @@ function ShowNonCriticalMessage(string LocalizedMessage)
     }
 }
 
+/** Show invite text message */
+function ShowInviteMessage(string FriendName)
+{
+    if (InviteGameMessageWidget != none)
+    {
+        if (FriendName == "")
+        {
+            InviteGameMessageWidget.ShowMessage(FriendName);
+        }
+        else
+        {
+            InviteGameMessageWidget.ShowMessage(FriendName$Class'KFCommon_LocalizedStrings'.default.InvitePopupTextString);
+        }
+    }
+}
 
 function UpdateRhythmCounterWidget(int value, int max)
 {
@@ -1322,6 +1345,7 @@ DefaultProperties
     WidgetBindings.Add((WidgetName="KickVoteWidget", WidgetClass=class'KFGFxWidget_KickVote'))
     WidgetBindings.Add((WidgetName="MusicNotification", WidgetClass=class'KFGFxWidget_MusicNotification'))
     WidgetBindings.Add((WidgetName="NonCriticalMessageWidget", WidgetClass=class'KFGFxWidget_NonCriticalGameMessage'))
+    WidgetBindings.Add((WidgetName="InviteMessageWidget", WidgetClass=class'KFGFxWidget_NonCriticalGameMessage'))
     WidgetBindings.Add((WidgetName="RhythmCounter", WidgetClass=class'KFGFxWidget_RhythmCounter'))
     WidgetBindings.Add((WidgetName="bossHealthBar", WidgetClass=class'KFGFxWidget_BossHealthBar'))
 

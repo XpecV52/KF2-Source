@@ -112,7 +112,7 @@ protected function linkPlayerController(string UserName)
     PC.AddReceiver(ReceiveMessage);
 }
 
-function string getUsername()
+function string GetUserName()
 {
     if((PC == none) || PC.PlayerReplicationInfo == none)
     {
@@ -123,7 +123,7 @@ function string getUsername()
 
 function string getUserid()
 {
-    return getUsername();
+    return GetUserName();
 }
 
 function PlayerController GetPC()

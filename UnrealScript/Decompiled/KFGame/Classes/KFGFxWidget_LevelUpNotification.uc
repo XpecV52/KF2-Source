@@ -13,7 +13,7 @@ var const localized string ObjectiveCompleteString;
 
 function InitializeHUD();
 
-function SetLocalizedText()
+function setLocalizedText()
 {
     local GFxObject TempObj;
 

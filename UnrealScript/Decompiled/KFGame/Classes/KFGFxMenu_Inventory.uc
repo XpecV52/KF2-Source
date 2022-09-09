@@ -136,7 +136,7 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     LocalizeText();
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
     {
         PlayfabInter.AddInventoryReadCompleteDelegate(OnReadPlayfabInventoryComplete);        
     }
@@ -171,7 +171,7 @@ function UpdateCraftButtons()
 
 function OnOpen()
 {
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
     {
         PlayfabInter.AddInventoryReadCompleteDelegate(OnReadPlayfabInventoryComplete);        
     }
@@ -193,7 +193,7 @@ function OnOpen()
 function OnClose()
 {
     ClearMatinee();
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
     {
         PlayfabInter.ClearInventoryReadCompleteDelegate(OnReadPlayfabInventoryComplete);        
     }
@@ -694,7 +694,7 @@ function int GetCountOfItem(int ItemDefinition)
 function PerformExchange(ExchangeRuleSets ForRuleset, optional bool AllButOne)
 {
     AllButOne = false;
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
     {
         PlayfabInter.PerformRuleExchange(ForRuleset, AllButOne);        
     }

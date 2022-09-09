@@ -82,6 +82,8 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
 const KFID_ClassicPlayerInfo=173;
+const KFID_VOIPMicVolumeMultiplier = 174;
+
 #linenumber 14
 //@HSL_MOD_END
 var localized string SectionNameString;
@@ -260,7 +262,22 @@ function Callback_ConfigureMicPress()
 
 		if( SubSystem != none )
 		{
-			SubSystem.ShowVOIPConfigUI();	
+			//@SABER_EGS_BEGIN
+			if (class'WorldInfo'.static.isEOSBuild())
+			{
+				// In-game popup winwow with Mic configuration
+				Manager.DelayedOpenPopup(EOptionMic, EDPPID_ExitToMainMenu, 
+				Class'KFCommon_LocalizedStrings'.default.MicrophonePopupTitleString, 
+				"", 
+				Class'KFCommon_LocalizedStrings'.default.OKString,
+				Class'KFCommon_LocalizedStrings'.default.CancelString);
+			}
+			else 
+			{
+				// Overlay window with Mic configuration
+				SubSystem.ShowVOIPConfigUI();
+			}
+			//@SABER_EGS_END
 		}
 	}
 }

@@ -110,7 +110,9 @@ var   config int		      MaxPlayers;				// Maximum number of players allowed by t
 var	  int					  MaxPlayersAllowed;		// Maximum number of players ever allowed (MaxPlayers is clamped to this in initgame()
 var   int					  NumPlayers;				// number of human players
 var	  int					  NumBots;					// number of non-human players (AI controlled but participating as a player)
-
+//@SABER_EGS_BEGIN Crossplay support
+var	  int					  NumEosPlayers;			// number of players, using epic online system
+//@SABER_EGS_END
 /** number of players that are still travelling from a previous map */
 var int NumTravellingPlayers;
 var   int					  CurrentID;				// used to assign unique PlayerIDs to each PlayerReplicationInfo
@@ -375,7 +377,8 @@ event PostBeginPlay()
 
 //@HSL_BEGIN - BWJ - 6-16-16 - Playfab support
 	PlayfabInter = class'GameEngine'.static.GetPlayfabInterface();
-	if( WorldInfo.IsConsoleDedicatedServer() )
+	//@SABER_EGS IsEOSDedicatedServer() case added
+	if( WorldInfo.IsConsoleDedicatedServer() || WorldInfo.IsEOSDedicatedServer() )
 	{
 		if( PlayfabInter != none )
 		{
@@ -1954,7 +1957,12 @@ event PostLogin( PlayerController NewPlayer )
 	{
 		NumTravellingPlayers++;
 	}
-
+	//@SABER_EGS_BEGIN Crossplay support
+	if (WorldInfo.IsEOSDedicatedServer() && NewPlayer.bIsEosPlayer && !NewPlayer.PlayerReplicationInfo.bOnlySpectator)
+	{
+		NumEosPlayers++;
+	}
+	//@SABER_EGS_END
 	// Tell the online subsystem the number of players in the game
 	UpdateGameSettingsCounts();
 
@@ -2127,6 +2135,12 @@ function Logout( Controller Exiting )
 			{
 				NumTravellingPlayers--;
 			}
+			//@SABER_EGS_BEGIN Crossplay support
+			if (WorldInfo.IsEOSDedicatedServer() && PC.bIsEosPlayer)
+			{
+				NumEosPlayers--;
+			}
+			//@SABER_EGS_END
 			// Tell the online subsystem the number of players in the game
 			UpdateGameSettingsCounts();
 		}

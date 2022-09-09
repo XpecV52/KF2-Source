@@ -73,6 +73,7 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
+const KFID_VOIPMicVolumeMultiplier = 174;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -897,7 +898,7 @@ simulated event SelectCharacter(optional int CharIndex, optional bool bWaitForIn
         }
         else
         {
-            if(Class'WorldInfo'.static.IsConsoleBuild())
+            if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
             {
                 if(Class'GameEngine'.static.GetOnlineSubsystem().CurrentInventory.Length == 0)
                 {

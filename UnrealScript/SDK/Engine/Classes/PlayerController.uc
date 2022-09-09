@@ -195,6 +195,10 @@ var UIDataStore_OnlinePlayerData OnlinePlayerData;
 /** Cached result for CanPlayOnline */
 var bool bCanPlayOnline;
 
+//@SABER_EGS_BEGIN Crossplay support
+var bool bIsEosPlayer;
+//@SABER_EGS_END
+
 /** Cached result for CanShareUserCreatedContent */
 var bool bCanShareUserCreatedContent;
 
@@ -574,6 +578,9 @@ simulated event FellOutOfWorld(class<DamageType> dmgType);
 /** Head Tracking Kismet action replication helper function **/
 unreliable client function EnableActorHeadTracking(Actor TargetActor, name TrackControllerName[10], class ActorClassesToLookAt[10], bool bLookAtPawns, float MinLookAtTime, float MaxLookAtTime, float MaxInterestTime, float LookAtActorRadius, name TargetBoneNames[10] );
 unreliable client function DisableActorHeadTracking(Actor TargetActor);
+
+/**Show InGame Invite Popup */
+function showInvitePopup(string FriendName, UniqueNetId LobbyId, UniqueNetId FriendId);
 
 /**
  * Tells the game info to forcibly remove this player's CanUnpause delegates from its list of Pausers.
@@ -9668,4 +9675,7 @@ defaultproperties
 	bIsUsingStreamingVolumes=TRUE
 	SpectatorCameraSpeed=600.0
 	MinRespawnDelay=1.0
+//@SABER_EGS_BEGIN Crossplay support
+	bIsEosPlayer=false
+//@SABER_EGS_END
 }

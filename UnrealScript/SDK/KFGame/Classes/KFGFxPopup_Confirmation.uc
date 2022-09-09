@@ -58,7 +58,9 @@ function Callback_ClickedRightOption()
 	{
 		RightButtonPress();
 	}
-	super.Callback_ClosedPopup();
+//@SABER_EGS_BEGIN 
+	ClosePopUp();
+//@SABER_EGS_END
 }
 
 defaultproperties

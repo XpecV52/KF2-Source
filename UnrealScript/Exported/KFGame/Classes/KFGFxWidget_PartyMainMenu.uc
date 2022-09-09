@@ -15,8 +15,19 @@ var int prevMemberCount;
 
 function OneSecondLoop()
 {
+	local bool IsInLobby;
 	RefreshParty(); //@HSL - JRO - Moving this here so the +people icons properly go away when leaving parties
-	if ( OnlineLobby != none && OnlineLobby.IsInLobby())
+	//@SABER_EGS_BEGIN EOS
+	if (class'WorldInfo'.static.isEOSBuild())
+	{
+		IsInLobby = bIsInParty;
+	} 
+	else 
+	{
+		IsInLobby = OnlineLobby != none && OnlineLobby.IsInLobby();
+	}
+	//@SABER_EGS_END
+	if (IsInLobby)
 	{
 	    SendMyOptions();
 	    SendSearching();

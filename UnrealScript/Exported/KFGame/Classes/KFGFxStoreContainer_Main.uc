@@ -55,6 +55,7 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
 	super.Initialize( NewParentMenu );
 	StoreMenu = KFGFxMenu_Store(NewParentMenu);
 	LocalizeText();
+	TweakFiltersVisibility(); //@SABER_EGS Hide Epic unrelated filters
 }
 
 function LocalizeText()
@@ -81,6 +82,27 @@ function LocalizeText()
 	
 	SetObject("localizedText", LocalizedObject);
 }
+
+//@SABER_EGS_BEGIN
+function TweakFiltersVisibility()
+{
+	if (class'WorldInfo'.static.isEOSBuild())
+	{
+		// Hide Epic unrelated filters
+		// Filter button names declared in StoreMainContainer.as
+		GetObject("weaponSkinsButton").SetVisible(false);
+		GetObject("cosmeticsButton").SetVisible(false);
+		GetObject("emotesButton").SetVisible(false);
+		GetObject("consumablesButton").SetVisible(false);
+		GetObject("sfxButton").SetVisible(false);
+		GetObject("marketWeaponSkinsButton").SetVisible(false);
+		GetObject("marketCosmeticsButton").SetVisible(false);
+		GetObject("marketConsumableButton").SetVisible(false);
+		GetObject("marketEmotesButton").SetVisible(false);
+		GetObject("marketSFXButton").SetVisible(false);
+	}
+}
+//@SABER_EGS_END
 
 function UpdateFilter(int NewFilterIndex)
 {
@@ -218,7 +240,8 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 		if (CurrentStoreFilter == EStore_Featured)
 		{
 			ShuffleFeaturedItems(FilteredItemsArray);
-			for (i = 0; i < MaxFeaturedItems; i++)
+			//@SABER_EGS FilteredItemsArray.Length sometimes lesser MaxFeaturedItems. min prevent "array out of range" crash
+			for (i = 0; i < min(MaxFeaturedItems, FilteredItemsArray.Length); i++)
 			{
 				DataProvider.SetElementObject(ItemCount, CreateStoreItem(FilteredItemsArray[i]));
 				ItemCount++;

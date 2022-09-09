@@ -206,7 +206,10 @@ function BuildServerFilters(KFGFxServerBrowser_Filters Filters, OnlineGameSearch
     if(!Class'WorldInfo'.static.IsConsoleBuild())
     {
         Search.TestAddServerFilter(Filters.bDedicated, "dedicated");
-        Search.TestAddServerFilter(Filters.bVAC_Secure, "secure");
+        if(!Class'WorldInfo'.static.IsEOSBuild())
+        {
+            Search.TestAddServerFilter(Filters.bVAC_Secure, "secure");
+        }
     }
     MapName = Filters.GetSelectedMap();
     if(MapName != "")
@@ -255,12 +258,17 @@ function BuildServerFilters(KFGFxServerBrowser_Filters Filters, OnlineGameSearch
     {
         Search.AddServerFilter("and", string(Search.MasterServerSearchKeys.Length), 0);
     }
+    if(Class'WorldInfo'.static.IsEOSBuild())
+    {
+        Search.MaxPing = Filters.GetMaxPing();
+    }
 }
 
 function SubmitServerListQuery(int PlayerIndex)
 {
+    LogInternal("SubmitServerListQuery called!");
     BuildServerFilters(ServerMenu.FiltersContainer, SearchDataStore.GetCurrentGameSearch());
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
     {
         Class'GameEngine'.static.GetPlayfabInterface().AddFindOnlineGamesCompleteDelegate(OnFindOnlineGamesCompleteDelegate);        
     }
@@ -270,7 +278,7 @@ function SubmitServerListQuery(int PlayerIndex)
     }
     if(!SearchDataStore.SubmitGameSearch(byte(Class'UIInteraction'.static.GetPlayerControllerId(PlayerIndex)), false))
     {
-        if(Class'WorldInfo'.static.IsConsoleBuild())
+        if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
         {
             Class'GameEngine'.static.GetPlayfabInterface().ClearFindOnlineGamesCompleteDelegate(OnFindOnlineGamesCompleteDelegate);            
         }
@@ -296,6 +304,7 @@ function OnFindOnlineGamesCompleteDelegate(bool bWasSuccessful)
     local bool bSearchCompleted;
     local OnlineGameSearch Search;
 
+    LogInternal("OnFindOnlineGamesCompleteDelegate called!, bWasSuccessful is" @ string(bWasSuccessful));
     Search = SearchDataStore.GetActiveGameSearch();
     bSearchCompleted = (Search == none) || Search.Results.Length == lastServerCount;
     if(!bSearchCompleted)
@@ -309,7 +318,14 @@ function OnFindOnlineGamesCompleteDelegate(bool bWasSuccessful)
     else
     {
         LogInternal("OnFindOnlineGamesCompleteDelegate complete!");
-        GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindOnlineGamesCompleteDelegate);
+        if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
+        {
+            Class'GameEngine'.static.GetPlayfabInterface().ClearFindOnlineGamesCompleteDelegate(OnFindOnlineGamesCompleteDelegate);            
+        }
+        else
+        {
+            GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindOnlineGamesCompleteDelegate);
+        }
         OnFindOnlineGamesComplete(bWasSuccessful);
         lastServerCount = -1;
     }
@@ -321,10 +337,14 @@ function OnClose()
     CancelQuery(2);
     ChangeSearchType(2, true);
     KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = None;
-    if(Class'WorldInfo'.static.IsConsoleBuild())
+    if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
     {
         Class'GameEngine'.static.GetPlayfabInterface().ClearFindOnlineGamesCompleteDelegate(OnFindOnlineGamesCompleteDelegate);
-        Class'GameEngine'.static.GetPlayfabInterface().ClearQueryServerInfoCompleteDelegate(OnQueryAdditionalServerInfoComplete);        
+        Class'GameEngine'.static.GetPlayfabInterface().ClearQueryServerInfoCompleteDelegate(OnQueryAdditionalServerInfoComplete);
+        if(Class'WorldInfo'.static.IsEOSBuild())
+        {
+            Class'GameEngine'.static.GetPlayfabInterface().ClearGetPlayerListCompleteDelegate(OnGetPlayerListComplete);
+        }        
     }
     else
     {
@@ -344,19 +364,26 @@ function OnGetPlayerListComplete(OnlineGameSettings Settings, bool Success)
         LogInternal("KFGFxServerBrowser_ServerList.OnGetPlayerListComplete got player list for unselected server", 'DevOnline');
         return;
     }
-    GameInterface.ClearGetPlayerListCompleteDelegate(OnGetPlayerListComplete);
+    if(Class'WorldInfo'.static.IsEOSBuild())
+    {
+        Class'GameEngine'.static.GetPlayfabInterface().ClearGetPlayerListCompleteDelegate(OnGetPlayerListComplete);        
+    }
+    else
+    {
+        GameInterface.ClearGetPlayerListCompleteDelegate(OnGetPlayerListComplete);
+    }
     if(Success)
     {
         ServerMenu.ServerDetailsContainer.UpdatePlayerList(Settings);
         LogInternal("***Server Browser got player list:");
         I = 0;
-        J0x176:
+        J0x1E1:
 
         if(I < Settings.PlayersInGame.Length)
         {
             LogInternal((string(I + 1) $ ":") @ Settings.PlayersInGame[I].PlayerName);
             ++ I;
-            goto J0x176;
+            goto J0x1E1;
         }
         LogInternal("***End of player list");        
     }
@@ -368,6 +395,7 @@ function OnGetPlayerListComplete(OnlineGameSettings Settings, bool Success)
 
 function OnFindOnlineGamesComplete(bool bWasSuccessful)
 {
+    LogInternal("OnFindOnlineGamesComplete called!");
     SetRefreshingIndicator(false);
     if(QueryCompletionAction != 0)
     {
@@ -378,12 +406,13 @@ function OnFindOnlineGamesComplete(bool bWasSuccessful)
 function CancelQuery(optional KFGFxServerBrowser_ServerList.EQueryCompletionAction DesiredCancelAction)
 {
     DesiredCancelAction = 1;
+    LogInternal("CancelQuery called!");
     if(QueryCompletionAction == 0)
     {
         QueryCompletionAction = DesiredCancelAction;
         if(SearchDataStore.GetActiveGameSearch() != none)
         {
-            if(Class'WorldInfo'.static.IsConsoleBuild())
+            if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
             {
                 Class'GameEngine'.static.GetPlayfabInterface().CancelGameSearch();
                 OnCancelSearchComplete(true);                
@@ -472,12 +501,18 @@ function JoinServer(optional int SearchResultIndex, optional string WithPassword
 
 private final function ProcessJoin(OnlineGameSearchResult SearchResult)
 {
+    LogInternal("ProcessJoin called!");
     if(NotEqual_InterfaceInterface(GameInterface, (none)))
     {
         if(SearchResult.GameSettings != none)
         {
-            if(Class'WorldInfo'.static.IsConsoleBuild() && !Class'WorldInfo'.static.IsE3Build())
+            if((Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild()) && !Class'WorldInfo'.static.IsE3Build())
             {
+                if((GameInterface.GetGameSettings('Game') == none) && Class'WorldInfo'.static.IsEOSBuild())
+                {
+                    GameInterface.JoinOnlineGame(0, 'Game', SearchResult);
+                }
+                Class'GameEngine'.static.GetPlayfabInterface().AddSearchResultToHistory(SearchResult.GameSettings.JoinString);
                 Class'GameEngine'.static.GetPlayfabInterface().AddQueryServerInfoCompleteDelegate(OnQueryAdditionalServerInfoComplete);
                 Class'GameEngine'.static.GetPlayfabInterface().QueryServerInfo(SearchResult.GameSettings.LobbyId);                
             }
@@ -549,6 +584,10 @@ function OnQueryAdditionalServerInfoComplete(bool bWasSuccessful, string LobbyId
         if(bJoinAsSpectator)
         {            
             OpenCommand $= "?SpectatorOnly=1";
+        }
+        if(Class'WorldInfo'.static.IsEOSBuild() && ServerPassword != "")
+        {            
+            OpenCommand $= ("?Password=" $ ServerPassword);
         }
         KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
         LogInternal("Going to connect with URL:" @ OpenCommand);
@@ -665,15 +704,30 @@ function SetRefreshingIndicator(bool bRefreshing)
 function OnServerSelected(int ServerIndex)
 {
     local bool Success;
+    local PlayfabInterface PlayfabInter;
 
     SelectedServerIndex = ServerIndex;
     LogInternal("***Attempting to get player list for server" @ string(SelectedServerIndex));
-    GameInterface.AddGetPlayerListCompleteDelegate(OnGetPlayerListComplete);
-    Success = SearchDataStore.FindServerPlayerList(SelectedServerIndex);
-    if(!Success)
+    PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
+    if(Class'WorldInfo'.static.IsEOSBuild() && PlayfabInter != none)
     {
-        LogInternal("***Failed to get player list for server" @ string(SelectedServerIndex));
-        GameInterface.ClearGetPlayerListCompleteDelegate(OnGetPlayerListComplete);
+        PlayfabInter.AddGetPlayerListCompleteDelegate(OnGetPlayerListComplete);
+        Success = SearchDataStore.FindServerPlayerList(SelectedServerIndex);
+        if(!Success)
+        {
+            LogInternal("***Failed to get player list for server" @ string(SelectedServerIndex));
+            PlayfabInter.ClearGetPlayerListCompleteDelegate(OnGetPlayerListComplete);
+        }        
+    }
+    else
+    {
+        GameInterface.AddGetPlayerListCompleteDelegate(OnGetPlayerListComplete);
+        Success = SearchDataStore.FindServerPlayerList(SelectedServerIndex);
+        if(!Success)
+        {
+            LogInternal("***Failed to get player list for server" @ string(SelectedServerIndex));
+            GameInterface.ClearGetPlayerListCompleteDelegate(OnGetPlayerListComplete);
+        }
     }
 }
 
@@ -698,9 +752,14 @@ function UpdateListDataProvider()
                 if(NewServerCount > 10)
                 {
                     Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
-                    goto J0x973;
+                    goto J0xA15;
                 }
                 TempOnlineGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[I].GameSettings);
+                if(Class'WorldInfo'.static.IsEOSBuild() && TempOnlineGamesSettings.PingInMs == -1)
+                {
+                    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'UpdateListDataProvider', self);
+                    goto J0xA15;
+                }
                 TempObj = Outer.CreateObject("Object");
                 TempObj.SetString("serverName", TempOnlineGamesSettings.OwningPlayerName);
                 TempObj.SetFloat("playerCount", float((TempOnlineGamesSettings.NumPublicConnections - TempOnlineGamesSettings.NumOpenPublicConnections) - TempOnlineGamesSettings.NumSpectators));
@@ -732,7 +791,7 @@ function UpdateListDataProvider()
             ++ I;
             goto J0x5D;
         }
-        J0x973:
+        J0xA15:
 
         SetObject("dataProvider", DataProvider);
     }
@@ -745,18 +804,50 @@ function bool IsEndlessModeIndex(int ModeIndex)
 
 function bool IsSelectedServerFavorited(int ServerSearchIndex)
 {
-    return GameInterface.IsSearchResultInFavoritesList(ServerSearchIndex);
+    local PlayfabInterface PlayfabInter;
+    local OnlineGameSearch LatestGameSearch;
+
+    PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
+    if(Class'WorldInfo'.static.IsEOSBuild() && PlayfabInter != none)
+    {
+        LatestGameSearch = SearchDataStore.GetActiveGameSearch();
+        return PlayfabInter.IsSearchResultInFavoritesList(LatestGameSearch, ServerSearchIndex);        
+    }
+    else
+    {
+        return GameInterface.IsSearchResultInFavoritesList(ServerSearchIndex);
+    }
 }
 
 function bool SetSelectedServerFavorited(bool bFavorited)
 {
+    local PlayfabInterface PlayfabInter;
+    local OnlineGameSearch LatestGameSearch;
+
+    PlayfabInter = Class'GameEngine'.static.GetPlayfabInterface();
     if(bFavorited)
     {
-        return GameInterface.AddSearchResultToFavorites(SelectedServerIndex);        
+        if(Class'WorldInfo'.static.IsEOSBuild() && PlayfabInter != none)
+        {
+            LatestGameSearch = SearchDataStore.GetActiveGameSearch();
+            return PlayfabInter.AddSearchResultToFavorites(LatestGameSearch, SelectedServerIndex);            
+        }
+        else
+        {
+            return GameInterface.AddSearchResultToFavorites(SelectedServerIndex);
+        }        
     }
     else
     {
-        return GameInterface.RemoveSearchResultFromFavorites(SelectedServerIndex);
+        if(Class'WorldInfo'.static.IsEOSBuild() && PlayfabInter != none)
+        {
+            LatestGameSearch = SearchDataStore.GetActiveGameSearch();
+            return PlayfabInter.RemoveSearchResultFromFavorites(LatestGameSearch, SelectedServerIndex);            
+        }
+        else
+        {
+            return GameInterface.RemoveSearchResultFromFavorites(SelectedServerIndex);
+        }
     }
 }
 

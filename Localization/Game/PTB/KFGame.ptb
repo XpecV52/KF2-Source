@@ -46,6 +46,23 @@ YesString="Sim"
 NoString="Não"
 TeamSwappedString="Sua equipe foi substituída"
 
+MicrophonePopupTitleString="Configurações de microfone"
+MicrophonePopupSelectDeviceString="SELECIONAR"
+MicrophonePopupVolumeString="Volume do microfone"
+MicrophonePopupCheckString="Verifique o microfone"
+MicrophonePopupStopString="Aceitar"
+MicrophonePopupRefreshString="ATUALIZAR"
+
+FriendsListPopupTitleString="Selecione amigos para convidar"
+FriendsListPopupFriendString="BUSCA"
+FriendsListPopupFriendsString="Amigos"
+FriendsListPopupOtherFriendsString="Amigos de outras plataformas"
+FriendsListPopupLinkButonString="Vincular conta"
+ReturnString="VOLTAR"
+
+InvitePopupTitleString="Convite para sala de espera"
+InvitePopupTextString=" convidou você para a sala de espera"
+
 CancelConnectionString="Cancelar carregamento"
 
 DisbandPartyString="DESFAZER GRUPO"

@@ -46,6 +46,25 @@ YesString="Да"
 NoString="Нет"
 TeamSwappedString="Вам сменили команду"
 
+
+MicrophonePopupTitleString="Настройки микрофона"
+MicrophonePopupSelectDeviceString="Устройства"
+MicrophonePopupVolumeString="Громкость"
+MicrophonePopupCheckString="Проверка"
+MicrophonePopupStopString="Остановить"
+MicrophonePopupRefreshString="обновить"
+
+FriendsListPopupTitleString="Выбор друзей для приглашения"
+FriendsListPopupFriendString="Поиск"
+FriendsListPopupFriendsString="Друзья"
+FriendsListPopupOtherFriendsString="Друзья с других платформ"
+FriendsListPopupLinkButonString="Привязать аккаунт"
+ReturnString="ВЕРНУТЬСЯ"
+
+InvitePopupTitleString="Приглашение в Лобби"
+InvitePopupTextString=" пригласил Вас в Лобби"
+
+
 CancelConnectionString="Отменить загрузку"
 
 DisbandPartyString="РАСПУСТИТЬ ГРУППУ"
@@ -201,7 +220,7 @@ MultiplayerString="Найти матч"
 ConsoleMultiplayerString="Игра по сети"
 CreateGameString="Создать матч"
 SoloString="Играть соло автономно"
-TutorialString="Начальный обучения"
+TutorialString="Начальное обучение"
 
 [StartMenuHelperText]
 modeList0="Сражайтесь с ограниченным количеством волн мутантов под управлением ИИ"

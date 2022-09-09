@@ -237,6 +237,7 @@ defaultproperties
 	ProfileMappings.Add((Id=KFID_InvertMouse, Name="invertedValue", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_EnableMouseSmoothing, Name="mouseSmoothingLabel", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_VOIPVolumeMultiplier, Name="VOIPVolumeMultiplier", MappingType=PVMT_RawValue))
+	ProfileMappings.Add((Id=KFID_VOIPMicVolumeMultiplier, Name="VOIPMicVolumeMultiplier", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_SavedSoloModeIndex, Name="SavedSoloModeIndex", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_SavedSoloMapString, Name="SavedSoloMapString", MappingType=PVMT_RawValue))
 	ProfileMappings.Add((Id=KFID_SavedSoloDifficultyIndex, Name="SavedSoloDifficultyIndex", MappingType=PVMT_RawValue))
@@ -317,6 +318,7 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_InvertMouse,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_EnableMouseSmoothing,Data=(Type=SDT_Int32,Value1=1))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_VOIPVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x3fc00000)))) // 1.50f
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_VOIPMicVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x42480000)))) // 50.0f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedSoloModeIndex,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedSoloMapString,Data=(Type=SDT_String,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SavedSoloDifficultyIndex,Data=(Type=SDT_Int32,Value1=0))))

@@ -61,6 +61,7 @@ var float DialogVolumeMultiplier;
 var float MasterVolumeMultiplier;
 var float PadVolumeMultiplier;
 var float VOIPVolumeMultiplier;
+var float VoipMicVolumeMultiplier;
 var float GammaMultiplier;
 var config float FOVOptionsPercentageValue;
 var array<OnlineStatsRow> CachedStatRows;
@@ -374,6 +375,9 @@ native static function SetWWisePADVolume(float Volume);
 
 // Export UKFGameEngine::execSetVoIPRecieveVolume(FFrame&, void* const)
 native static function SetVoIPRecieveVolume(float Volume);
+
+// Export UKFGameEngine::execSetVoIPMicRecieveVolume(FFrame&, void* const)
+native static function SetVoIPMicRecieveVolume(float Volume);
 
 // Export UKFGameEngine::execGetVoIPVolumeRange(FFrame&, void* const)
 native static function GetVoIPVolumeRange(out float MinVol, out float MaxVol, out float CurrentVol);

@@ -46,6 +46,23 @@ YesString="Oui"
 NoString="Non"
 TeamSwappedString="On vous a changé d'équipe"
 
+MicrophonePopupTitleString="Paramètres du micro"
+MicrophonePopupSelectDeviceString="SÉLÉCTIONNER"
+MicrophonePopupVolumeString="Volume du micro"
+MicrophonePopupCheckString="Tester le micro"
+MicrophonePopupStopString="Accepter"
+MicrophonePopupRefreshString="ACTUALISER"
+
+FriendsListPopupTitleString="Choisir les amis à inviter"
+FriendsListPopupFriendString="RECHERCHE"
+FriendsListPopupFriendsString="Amis"
+FriendsListPopupOtherFriendsString="Amis provenant d'autres plateformes"
+FriendsListPopupLinkButonString="Lier le compte"
+ReturnString="RETOUR"
+
+InvitePopupTitleString="Invitation dans un lobby"
+InvitePopupTextString=" vous invite à rejoindre un lobby"
+
 CancelConnectionString="Annuler le chargement"
 
 DisbandPartyString="DISSOUDRE GROUPE"

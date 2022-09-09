@@ -160,7 +160,32 @@ function InitializeMenu( KFGFxMoviePlayer_Manager InManager )
 			Manager.DelayedOpenPopup(ENotification,EDPPID_Misc, Localize("Notifications", "PlayGoBusyTitle", "KFGameConsole"),  Localize("Notifications", "PlayGoBusyMessage", "KFGameConsole"), class'KFCommon_LocalizedStrings'.default.OKString);
 		}
 	}
+	setVivoxWordmarkVisibility();
 }
+
+//@SABER_EGS_BEGIN show vivox wordmark
+function setVivoxWordmarkVisibility()
+{
+	if (isPC() && isMultiplayerGame())
+	{
+		GetObject("wordmarkVivox").setVisible(true);
+	}
+	else
+	{
+		GetObject("wordmarkVivox").setVisible(false);
+	}
+}
+
+function bool isPC()
+{
+	return !class'WorldInfo'.static.IsConsoleBuild();
+}
+
+function bool IsMultiplayerGame()
+{
+	return GetPC().WorldInfo.NetMode != NM_Standalone;
+}
+//@SABER_EGS_END
 
 function SetSeasonalEventClass()
 {
@@ -1274,7 +1299,16 @@ function ConnectToPlayfabServer(string ServerIp)
 
 	KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
 	// Give a longer timeout for servers that need to spin up
-	`TimerHelper.SetTimer( bAttemptingServerCreate ? 8 : ServerConnectTimeout, false, nameof(ServerConnectGiveUp), self);
+	//@SABER_EGS_BEGIN fix connecting timeout via takeOver
+	if (class'WorldInfo'.static.IsEosBuild())
+	{
+		SetServerConnectGiveUpTimer(bAttemptingServerCreate);
+	}
+	else
+	{
+		`TimerHelper.SetTimer( bAttemptingServerCreate ? 8 : ServerConnectTimeout, false, nameof(ServerConnectGiveUp), self);
+	}
+	//@SABER_EGS_END
 
 	// Attach playfab ID
 	OpenCommand $= "?PlayfabPlayerId="$class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId;
@@ -1292,7 +1326,7 @@ event SetServerConnectGiveUpTimer(bool ServerTakover)
 
 event AddJoinGameCompleteDelegate(OnlineGameSearch LatestGameSearch)
 {
-	if( class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build() )
+	if( (class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build()) || class'WorldInfo'.static.IsEOSBuild() )
 	{
 		if( LatestGameSearch.Results[CurrentSearchIndex].GameSettings.JoinString == "" )
 		{
@@ -1387,7 +1421,7 @@ event OnClose()
 
 	Manager.CachedProfile.Save( GetLP().ControllerId );
 
-	if( class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build() )
+	if( (class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEOSBuild()) && !class'WorldInfo'.static.IsE3Build() )
 	{
 		class'GameEngine'.static.GetPlayfabInterface().ClearFindOnlineGamesCompleteDelegate( OnFindGameServerComplete );
 	}
@@ -1593,7 +1627,7 @@ event StartOnlineGame()
 	BuildServerFilters(GameInterface, OptionsComponent, SearchDataStore.GetCurrentGameSearch());
 	SearchDataStore.GetCurrentGameSearch().MaxSearchResults = MaxResultsToTry;
 
-	if( class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build() )
+	if( (class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build()) || class'WorldInfo'.static.IsEOSBuild() )
 	{
 		AttemptingJoin = false;
 		class'GameEngine'.static.GetPlayfabInterface().AddFindOnlineGamesCompleteDelegate( OnFindGameServerComplete );
@@ -1609,7 +1643,7 @@ event StartOnlineGame()
 	{
 		GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
 
-		if( class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build() )
+		if( (class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build()) || class'WorldInfo'.static.IsEOSBuild() )
 		{
 			// BWJ - Not clearing this delegate because sometimes you can run into instances where the search fails because one is already in progress.
 			// We do not want to clear the delegate when this happens. Players can end up in an "infinite search" because they never get the callback.
@@ -1752,12 +1786,11 @@ function UnpauseTryingServers()
 event CancelGameSearch()
 {
 	local KFOnlineGameSearch ActiveGameSearch;
-
 	ActiveGameSearch = KFOnlineGameSearch(SearchDataStore.GetActiveGameSearch());
 
 	if(ActiveGameSearch != none)
 	{
-		if( class'WorldInfo'.static.IsConsoleBuild() && !class'WorldInfo'.static.IsE3Build() )
+		if( (class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEOSBuild()) && !class'WorldInfo'.static.IsE3Build() )
 		{
 			class'GameEngine'.static.GetPlayfabInterface().CancelGameSearch();
 			OnCancelSearchComplete(true);

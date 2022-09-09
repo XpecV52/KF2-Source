@@ -19,11 +19,11 @@ var private float DeselectTime;
 
 function InitializeHUD()
 {
-    SetLocalizedText();
+    setLocalizedText();
     PC = Outer.GetPC();
 }
 
-function SetLocalizedText()
+function setLocalizedText()
 {
     local GFxObject DataProvider, TempObj;
     local byte I;

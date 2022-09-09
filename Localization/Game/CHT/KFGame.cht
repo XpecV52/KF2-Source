@@ -46,6 +46,23 @@ YesString="是"
 NoString="否"
 TeamSwappedString="你已經被換隊了"
 
+MicrophonePopupTitleString="麥克風設定"
+MicrophonePopupSelectDeviceString="選擇"
+MicrophonePopupVolumeString="麥克風音量"
+MicrophonePopupCheckString="檢查麥克風"
+MicrophonePopupStopString="接受"
+MicrophonePopupRefreshString="重新整理"
+
+FriendsListPopupTitleString="選擇要邀請的好友"
+FriendsListPopupFriendString="搜尋"
+FriendsListPopupFriendsString="好友"
+FriendsListPopupOtherFriendsString="其他平台的好友"
+FriendsListPopupLinkButonString="連結帳號"
+ReturnString="返回"
+
+InvitePopupTitleString="大廳邀請"
+InvitePopupTextString="邀請你加入大廳。"
+
 CancelConnectionString="取消載入"
 
 DisbandPartyString="解散隊伍"

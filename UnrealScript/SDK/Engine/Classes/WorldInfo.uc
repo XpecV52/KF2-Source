@@ -1326,6 +1326,14 @@ native static final function bool IsConsoleDedicatedServer() const;
 native simulated static final function bool IsE3Build() const;
 //@HSL_END
 
+//@SABER_EGS_BEGIN
+// return TRUE if this is EOS build
+native simulated static final function bool IsEOSBuild() const;
+
+// return TRUE if this is EOS Server build
+native simulated static final function bool IsEOSDedicatedServer() const;
+//@SABER_EGS_END
+
 native static final function bool IsNeoCheckerboardRendering() const;
 
 /**

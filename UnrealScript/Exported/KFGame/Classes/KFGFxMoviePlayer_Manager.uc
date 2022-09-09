@@ -90,6 +90,8 @@ const KFID_HideRemoteHeadshotEffects = 170;
 const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
 const KFID_ClassicPlayerInfo=173;
+const KFID_VOIPMicVolumeMultiplier = 174;
+
 #linenumber 22
 
 /** Connects a menu ID with its path */
@@ -113,6 +115,8 @@ enum EUIIndex
 	UI_Trader,
 	UI_ServerBrowserMenu,
 	UI_IIS,
+	UI_FiendsList,
+	UI_OptionMic,
 };
 
 // Anything not with a Misc priority will be only displayed once, even if attempted to be queued multiple times.
@@ -202,6 +206,9 @@ enum EPopUpType
 	ENotification,
 	EPopUpMax,
 	EInputPrompt,
+	EFriendsList,
+	EOptionMic,
+	EConfirmInvite,
 };
 
 struct DelayedPopup
@@ -1048,6 +1055,9 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         case  'ConnectionErrorPopup':
         case  'ConfirmationPopup':
         case  'InputPromptPopup':
+		case  'FriendsListPopup':
+		case  'OptionMicPopup':
+ 		case  'FriendsConfirmInvitePopup':
             InitializePopup( WidgetPath, KFGFxObject_Popup( Widget ) );
         break;
 		default:
@@ -2270,6 +2280,9 @@ defaultproperties
    PopupData(2)=(SWFPath="../UI_PopUps/ConnectionErrorPopup_SWF.swf")
    PopupData(3)=()
    PopupData(4)=(SWFPath="../UI_PopUps/InputPromptPopup_SWF.swf")
+   PopupData(5)=(SWFPath="../UI_PopUps/FriendsListPopup_SWF.swf")
+   PopupData(6)=(SWFPath="../UI_PopUps/OptionMicPopup_SWF.swf")
+   PopupData(7)=(SWFPath="../UI_PopUps/FriendsConfirmInvitePopup_SWF.swf")
    FailedSearchTitleString="FAILED TO FIND MATCH"
    FailedSearchString="Matchmaking failed to find a match with the options provided. Please broaden your search or consider using the server browser to find a match."
    BrowseServersString="BROWSE SERVERS"
@@ -2300,25 +2313,28 @@ defaultproperties
    WidgetBindings(1)=(WidgetName="ConnectionErrorPopup",WidgetClass=Class'KFGame.KFGFxPopup_ConnectionError')
    WidgetBindings(2)=(WidgetName="ConfirmationPopup",WidgetClass=Class'KFGame.KFGFxPopup_Confirmation')
    WidgetBindings(3)=(WidgetName="InputPromptPopup",WidgetClass=Class'KFGame.KFGFxPopup_InputPrompt')
-   WidgetBindings(4)=(WidgetName="DoshVaultMenu",WidgetClass=Class'KFGame.KFGFxMenu_DoshVault')
-   WidgetBindings(5)=(WidgetName="ServerBrowserMenu",WidgetClass=Class'KFGame.KFGFxMenu_ServerBrowser')
-   WidgetBindings(6)=(WidgetName="root1",WidgetClass=Class'GFxUI.GFxObject')
-   WidgetBindings(7)=(WidgetName="StartMenu",WidgetClass=Class'KFGame.KFGFxMenu_StartGame')
-   WidgetBindings(8)=(WidgetName="ExitMenu",WidgetClass=Class'KFGame.KFGFxMenu_Exit')
-   WidgetBindings(9)=(WidgetName="PerksMenu",WidgetClass=Class'KFGame.KFGFxMenu_Perks')
-   WidgetBindings(10)=(WidgetName="GearMenu",WidgetClass=Class'KFGame.KFGFxMenu_Gear')
-   WidgetBindings(11)=(WidgetName="InventoryMenu",WidgetClass=Class'KFGame.KFGFxMenu_Inventory')
-   WidgetBindings(12)=(WidgetName="StoreMenu",WidgetClass=Class'KFGame.KFGFxMenu_Store')
-   WidgetBindings(13)=(WidgetName="OptionsSelectionMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Selection')
-   WidgetBindings(14)=(WidgetName="OptionsControlsMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Controls')
-   WidgetBindings(15)=(WidgetName="OptionsAudioMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Audio')
-   WidgetBindings(16)=(WidgetName="OptionsGameSettingsMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_GameSettings')
-   WidgetBindings(17)=(WidgetName="PostGameMenu",WidgetClass=Class'KFGame.KFGFxMenu_PostGameReport')
-   WidgetBindings(18)=(WidgetName="TraderMenu",WidgetClass=Class'KFGame.KFGFxMenu_Trader')
-   WidgetBindings(19)=(WidgetName="ChatBoxWidget",WidgetClass=Class'KFGame.KFGFxHUD_ChatBoxWidget')
-   WidgetBindings(20)=(WidgetName="IISMenu",WidgetClass=Class'KFGame.KFGFxMenu_IIS')
-   WidgetBindings(21)=(WidgetName="MenuBarWidget",WidgetClass=Class'KFGame.KFGFxWidget_MenuBar')
-   WidgetBindings(22)=(WidgetName="ButtonPromptWidgetContainer",WidgetClass=Class'KFGame.KFGFxWidget_ButtonPrompt')
+   WidgetBindings(4)=(WidgetName="FriendsListPopup",WidgetClass=Class'KFGame.KFGFxPopup_FriendsList')
+   WidgetBindings(5)=(WidgetName="OptionMicPopup",WidgetClass=Class'KFGame.KFGFxPopup_OptionMic')
+   WidgetBindings(6)=(WidgetName="FriendsConfirmInvitePopup",WidgetClass=Class'KFGame.KFGFxPopup_FriendsConfirm')
+   WidgetBindings(7)=(WidgetName="DoshVaultMenu",WidgetClass=Class'KFGame.KFGFxMenu_DoshVault')
+   WidgetBindings(8)=(WidgetName="ServerBrowserMenu",WidgetClass=Class'KFGame.KFGFxMenu_ServerBrowser')
+   WidgetBindings(9)=(WidgetName="root1",WidgetClass=Class'GFxUI.GFxObject')
+   WidgetBindings(10)=(WidgetName="StartMenu",WidgetClass=Class'KFGame.KFGFxMenu_StartGame')
+   WidgetBindings(11)=(WidgetName="ExitMenu",WidgetClass=Class'KFGame.KFGFxMenu_Exit')
+   WidgetBindings(12)=(WidgetName="PerksMenu",WidgetClass=Class'KFGame.KFGFxMenu_Perks')
+   WidgetBindings(13)=(WidgetName="GearMenu",WidgetClass=Class'KFGame.KFGFxMenu_Gear')
+   WidgetBindings(14)=(WidgetName="InventoryMenu",WidgetClass=Class'KFGame.KFGFxMenu_Inventory')
+   WidgetBindings(15)=(WidgetName="StoreMenu",WidgetClass=Class'KFGame.KFGFxMenu_Store')
+   WidgetBindings(16)=(WidgetName="OptionsSelectionMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Selection')
+   WidgetBindings(17)=(WidgetName="OptionsControlsMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Controls')
+   WidgetBindings(18)=(WidgetName="OptionsAudioMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_Audio')
+   WidgetBindings(19)=(WidgetName="OptionsGameSettingsMenu",WidgetClass=Class'KFGame.KFGFxOptionsMenu_GameSettings')
+   WidgetBindings(20)=(WidgetName="PostGameMenu",WidgetClass=Class'KFGame.KFGFxMenu_PostGameReport')
+   WidgetBindings(21)=(WidgetName="TraderMenu",WidgetClass=Class'KFGame.KFGFxMenu_Trader')
+   WidgetBindings(22)=(WidgetName="ChatBoxWidget",WidgetClass=Class'KFGame.KFGFxHUD_ChatBoxWidget')
+   WidgetBindings(23)=(WidgetName="IISMenu",WidgetClass=Class'KFGame.KFGFxMenu_IIS')
+   WidgetBindings(24)=(WidgetName="MenuBarWidget",WidgetClass=Class'KFGame.KFGFxWidget_MenuBar')
+   WidgetBindings(25)=(WidgetName="ButtonPromptWidgetContainer",WidgetClass=Class'KFGame.KFGFxWidget_ButtonPrompt')
    Name="Default__KFGFxMoviePlayer_Manager"
    ObjectArchetype=GFxMoviePlayer'GFxUI.Default__GFxMoviePlayer'
 }
