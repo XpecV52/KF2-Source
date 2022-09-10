@@ -4540,36 +4540,6 @@ function ClearWriteSharedFileCompleteDelegate(delegate<OnWriteSharedFileComplete
 	}
 }
 
-/**
- * Adds the delegate to the list to be notified when a login on second pratform done and friends recieved
- *
- * @param WriteSharedFileCompleteDelegate the delegate to add
- */
-function AddLoginOnOtherPlatformDoneAndFriendsReadyDelegate(delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> LoginOnOtherPlatformDoneAndFriendsReadyDelegate)
-{
-	// Add this delegate to the array if not already present
-	if (LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Find(LoginOnOtherPlatformDoneAndFriendsReadyDelegate) == INDEX_NONE)
-	{
-		LoginOnOtherPlatformDoneAndFriendsReadyDelegates[SharedFileWriteCompleteDelegates.Length] = LoginOnOtherPlatformDoneAndFriendsReadyDelegate;
-	}
-}
-
-/**
- * Removes the delegate from the notify list
- *
- * @param WriteSharedFileCompleteDelegate the delegate to remove
- */
-function ClearLoginOnOtherPlatformDoneAndFriendsReadyDelegate(delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> LoginOnOtherPlatformDoneAndFriendsReadyDelegate)
-{
-	local int RemoveIndex;
-
-	RemoveIndex = LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Find(LoginOnOtherPlatformDoneAndFriendsReadyDelegate);
-	if (RemoveIndex != INDEX_NONE)
-	{
-		LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Remove(RemoveIndex,1);
-	}
-}
-
 /** clears all delegates for e.g. end of level cleanup */
 function ClearAllDelegates()
 {

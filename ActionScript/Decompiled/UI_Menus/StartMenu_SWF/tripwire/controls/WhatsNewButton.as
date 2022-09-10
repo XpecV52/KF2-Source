@@ -80,6 +80,11 @@ package tripwire.controls
             return this._itemIndex;
         }
         
+        public function get itemURL() : String
+        {
+            return this._dataArray[this._itemIndex].redirectURL;
+        }
+        
         public function makeNewItemTimeline(param1:int) : void
         {
             this.newItemTimeline.call(this.changeIndex,[param1],"item" + String(param1));

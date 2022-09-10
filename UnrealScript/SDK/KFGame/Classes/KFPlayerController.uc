@@ -11242,6 +11242,41 @@ event ShowInviteMessage(string Name)
 	MyGFxHUD.ShowInviteMessage(Name);
 }
 
+event OnLoginOnOtherPlatformDoneAndFriendsReady()
+{
+	if (MyGFxManager != none)
+	{
+		MyGFxManager.OnLoginOnOtherPlatformDoneAndFriendsReady();
+	}
+}
+
+event OnFriendsChange()
+{
+	if (MyGFxManager != none)
+	{
+		MyGFxManager.OnFriendsChange();
+	}
+}
+
+event bool FriendListPopUpIsShown()
+{
+	local bool Result;
+	Result = false;
+	if (MyGFxManager != none)
+	{
+		Result = MyGFxManager.FriendListPopUpIsShown();
+	}
+	return Result;
+}
+
+event ShowSpeakingIcon(UniqueNetId PlayerId, bool isShowIcon)
+{
+	if (MyGFxManager != none)
+	{
+		MyGFxManager.UpdateSpeakingIcon(PlayerId, isShowIcon);
+	}
+}
+
 defaultproperties
 {
 	EarnedDosh=0

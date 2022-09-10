@@ -226,7 +226,7 @@ package tripwire.containers
         
         public function whatsNewClicked(param1:Event = null) : void
         {
-            ExternalInterface.call("Callback_OnWhatsNewClicked",this.whatsNewButton.itemIndex);
+            ExternalInterface.call("Callback_OnWhatsNewClicked",this.whatsNewButton.itemIndex,this.whatsNewButton.itemURL);
         }
         
         override protected function onInputChange(param1:Event) : *

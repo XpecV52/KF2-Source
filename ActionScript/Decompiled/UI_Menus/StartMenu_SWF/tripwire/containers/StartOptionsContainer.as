@@ -557,7 +557,7 @@ package tripwire.containers
             switch(param1.currentTarget)
             {
                 case this.backButton:
-                    if(this.myStartMenu.menuState == StartMenu.MENU_STATE_CREATE_GAME && this._bSearchingForGame)
+                    if((this.myStartMenu.menuState == StartMenu.MENU_STATE_CREATE_GAME || this.myStartMenu.menuState == StartMenu.MENU_STATE_FIND_GAME) && this._bSearchingForGame)
                     {
                         ExternalInterface.call("Callback_CancelSearch");
                     }

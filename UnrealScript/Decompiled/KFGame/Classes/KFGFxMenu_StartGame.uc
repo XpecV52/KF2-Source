@@ -698,7 +698,7 @@ function PostPartyDisbandTutorial()
     Manager.DelayedOpenPopup(0, 0, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialString, Class'KFCommon_LocalizedStrings'.default.ProceedToTutorialDescriptionString, Class'KFCommon_LocalizedStrings'.default.ConfirmString, Class'KFCommon_LocalizedStrings'.default.CancelString, ProceedToTutorial);
 }
 
-function Callback_OnWhatsNewClicked(int Index)
+function Callback_OnWhatsNewClicked(int Index, string URL)
 {
     local OnlineSubsystem OnlineSub;
     local int I;
@@ -755,7 +755,7 @@ function Callback_OnWhatsNewClicked(int Index)
         }
         else
         {
-            OnlineSub.OpenURL(Class'KFGFxStartGameContainer_FindGame'.default.WhatsNewItems[Index].RedirectURL);
+            OnlineSub.OpenURL(URL);
         }
     }
 }

@@ -2219,25 +2219,6 @@ function ClearWriteSharedFileCompleteDelegate(delegate<OnWriteSharedFileComplete
     }
 }
 
-function AddLoginOnOtherPlatformDoneAndFriendsReadyDelegate(delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> LoginOnOtherPlatformDoneAndFriendsReadyDelegate)
-{
-    if(LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Find(LoginOnOtherPlatformDoneAndFriendsReadyDelegate == -1)
-    {
-        LoginOnOtherPlatformDoneAndFriendsReadyDelegates[SharedFileWriteCompleteDelegates.Length] = LoginOnOtherPlatformDoneAndFriendsReadyDelegate;
-    }
-}
-
-function ClearLoginOnOtherPlatformDoneAndFriendsReadyDelegate(delegate<OnLoginOnOtherPlatformDoneAndFriendsReady> LoginOnOtherPlatformDoneAndFriendsReadyDelegate)
-{
-    local int RemoveIndex;
-
-    RemoveIndex = LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Find(LoginOnOtherPlatformDoneAndFriendsReadyDelegate;
-    if(RemoveIndex != -1)
-    {
-        LoginOnOtherPlatformDoneAndFriendsReadyDelegates.Remove(RemoveIndex, 1;
-    }
-}
-
 function ClearAllDelegates()
 {
     EnumerateUserFilesCompleteDelegates.Length = 0;

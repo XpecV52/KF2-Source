@@ -74,7 +74,7 @@ function CheckNewsState()
 function SetWhatsNewItems()
 {
     local GFxObject DataObject, DataArray, WhatsNewButton;
-    local int I;
+    local int I, Index;
     local bool bLoggedIn;
 
     WhatsNewButton = GetObject("whatsNewButton");
@@ -135,18 +135,25 @@ function SetWhatsNewItems()
     }
     else
     {
+        Index = 0;
         I = 0;
-        J0x5D6:
+        J0x5E1:
 
         if(I < WhatsNewItems.Length)
         {
-            DataObject = Outer.CreateObject("Object");
-            DataObject.SetString("label", Localize("WhatsNewMessages", WhatsNewItems[I].TextField, "KFGame"));
-            DataObject.SetString("imageURL", WhatsNewItems[I].ImageURL);
-            DataObject.SetString("redirectURL", WhatsNewItems[I].RedirectURL);
-            DataArray.SetElementObject(I, DataObject);
+            if(Class'WorldInfo'.static.IsEOSBuild() && WhatsNewItems[I].TextField == "Jaegorhorn")
+            {                
+            }
+            else
+            {
+                DataObject = Outer.CreateObject("Object");
+                DataObject.SetString("label", Localize("WhatsNewMessages", WhatsNewItems[I].TextField, "KFGame"));
+                DataObject.SetString("imageURL", WhatsNewItems[I].ImageURL);
+                DataObject.SetString("redirectURL", WhatsNewItems[I].RedirectURL);
+                DataArray.SetElementObject(++ Index, DataObject);
+            }
             ++ I;
-            goto J0x5D6;
+            goto J0x5E1;
         }
     }
     SetObject("whatsNew", DataArray);

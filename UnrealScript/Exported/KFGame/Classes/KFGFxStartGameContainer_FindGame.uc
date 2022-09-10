@@ -77,7 +77,7 @@ function SetWhatsNewItems()
     local GFxObject DataObject;
     local GFxObject DataArray;
 	local GFxObject WhatsNewButton;
-    local int i;
+    local int i, index;
 	local bool bLoggedIn;
 
 	WhatsNewButton = GetObject( "whatsNewButton" );
@@ -135,13 +135,15 @@ function SetWhatsNewItems()
     }
     else
     {
+        index = 0;
         for (i = 0; i < WhatsNewItems.length; i++)
         {
+            if (class'WorldInfo'.static.isEosBuild() && WhatsNewItems[i].TextField == "Jaegorhorn") continue; 
             DataObject = CreateObject("Object");
             DataObject.SetString("label", Localize("WhatsNewMessages",WhatsNewItems[i].TextField,"KFGame"));
             DataObject.SetString("imageURL",WhatsNewItems[i].ImageURL);
             DataObject.SetString("redirectURL",WhatsNewItems[i].RedirectURL);
-            DataArray.SetElementObject(i, DataObject);
+            DataArray.SetElementObject(index++, DataObject);
         }
     }
     

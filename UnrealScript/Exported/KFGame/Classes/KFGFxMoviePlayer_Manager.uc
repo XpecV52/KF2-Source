@@ -2038,7 +2038,7 @@ function bool IsFocusIgnoreKey(string GBA_Command)
 
 function UpdateVOIP( PlayerReplicationInfo PRI, bool bIsTalking)
 {
-	if( PartyWidget != none )
+	if(class'WorldInfo'.static.isConsoleBuild() && PartyWidget != none )
 	{
 		PartyWidget.UpdateVOIP(PRI, bIsTalking);
 	}
@@ -2062,6 +2062,14 @@ function NotifySpectateStateChanged( bool bIsSpectating )
 	if( MenuBarWidget != none )
 	{
 		MenuBarWidget.UpdateInventoryButtonState();
+	}
+}
+
+function UpdateSpeakingIcon(UniqueNetId PlayerId, bool isShowIcon)
+{
+	if (PartyWidget != none)
+	{
+		PartyWidget.UpdateSpeakingIcon(PlayerId, isShowIcon);
 	}
 }
 
@@ -2251,6 +2259,39 @@ function int GetModeIndex(optional bool bAdjustedIndex = true)
 	}
 
 	return SavedModeIndex;
+}
+
+function OnLoginOnOtherPlatformDoneAndFriendsReady()
+{
+	local KFGFxPopup_FriendsList FriendsList;
+
+	if (CurrentPopUpType == EFriendsList)
+	{
+		FriendsList = KFGFxPopup_FriendsList(CurrentPopup);
+		if (FriendsList != none)
+		{
+			FriendsList.OnLoginOnOtherPlatformDoneAndFriendsReady();
+		}
+	}
+}
+
+function OnFriendsChange()
+{
+	local KFGFxPopup_FriendsList FriendsList;
+
+	if (CurrentPopUpType == EFriendsList)
+	{
+		FriendsList = KFGFxPopup_FriendsList(CurrentPopup);
+		if (FriendsList != none)
+		{
+			FriendsList.OnFriendsChange();
+		}
+	}
+}
+
+function bool FriendListPopUpIsShown()
+{
+	return CurrentPopUpType == EFriendsList;
 }
 
 defaultproperties

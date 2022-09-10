@@ -366,6 +366,8 @@ function KickPlayer(int SlotIndex);
 
 function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking);
 
+function UpdateSpeakingIcon(UniqueNetId PlayerID, bool isShowIcon);
+
 function RefreshParty()
 {
     OccupiedSlots = 0;

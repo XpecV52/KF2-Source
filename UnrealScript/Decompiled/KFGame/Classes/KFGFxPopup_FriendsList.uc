@@ -19,8 +19,6 @@ function InitializePopup(KFGFxMoviePlayer_Manager InManager)
     setOtherFirendsTitleVisibility();
     fillFriendsListPopup();
     SetupLinkVisibility();
-    OnlineSub.AddLoginOnOtherPlatformDoneAndFriendsReadyDelegate(OnLoginOnOtherPlatformDoneAndFriendsReady);
-    OnlineSub.AddFriendsChangeDelegate(0, OnFriendsChange);
     OnlineSub.TriggerRefreshFriendsList();
 }
 
@@ -169,8 +167,6 @@ function OnLoginOnOtherPlatformDoneAndFriendsReady()
 
 function Callback_BtnBackClick()
 {
-    OnlineSub.ClearLoginOnOtherPlatformDoneAndFriendsReadyDelegate(OnLoginOnOtherPlatformDoneAndFriendsReady);
-    OnlineSub.ClearFriendsChangeDelegate(0, OnFriendsChange);
     ClosePopUp();
 }
 

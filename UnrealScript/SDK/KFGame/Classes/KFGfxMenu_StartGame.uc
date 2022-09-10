@@ -748,7 +748,7 @@ function PostPartyDisbandTutorial()
 // ActionScript Callbacks
 //==============================================================
 
-function Callback_OnWhatsNewClicked(int Index)
+function Callback_OnWhatsNewClicked(int Index, string URL)
 {
 	local OnlineSubsystem				OnlineSub;
 	local int i;
@@ -797,7 +797,7 @@ function Callback_OnWhatsNewClicked(int Index)
     	}
     	else
     	{
-    		OnlineSub.OpenURL(class'KFGFxStartGameContainer_FindGame'.default.WhatsNewItems[Index].RedirectURL);
+    		OnlineSub.OpenURL(URL);
     	}
 
 	}

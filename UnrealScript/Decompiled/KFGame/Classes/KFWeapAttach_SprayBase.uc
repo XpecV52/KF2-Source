@@ -391,4 +391,5 @@ defaultproperties
     object end
     // Reference: SkeletalMeshComponent'Default__KFWeapAttach_SprayBase.SkeletalMeshComponent0'
     WeapMesh=SkeletalMeshComponent0
+    CollisionType=ECollisionType.COLLIDE_CustomDefault
 }
