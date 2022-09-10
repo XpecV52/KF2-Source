@@ -1030,7 +1030,7 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
 		}
 		else
 		{
-			EquipButton.SetString("label", PurchaseKeyString @ (class'WorldInfo'.static.IsConsoleBuild() ? "" : (":"@NeededItem.Price)));
+			EquipButton.SetString("label", PurchaseKeyString @ ((class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.isEosBuild()) ? "" : (":"@NeededItem.Price)));
 		}
 	}
 }

@@ -139,6 +139,7 @@ function SetWhatsNewItems()
         for (i = 0; i < WhatsNewItems.length; i++)
         {
             if (class'WorldInfo'.static.isEosBuild() && WhatsNewItems[i].TextField == "Jaegorhorn") continue; 
+			if (!class'WorldInfo'.static.isEosBuild() && WhatsNewItems[i].TextField == "PS4Key") continue;
             DataObject = CreateObject("Object");
             DataObject.SetString("label", Localize("WhatsNewMessages",WhatsNewItems[i].TextField,"KFGame"));
             DataObject.SetString("imageURL",WhatsNewItems[i].ImageURL);
@@ -188,6 +189,8 @@ DefaultProperties
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_FullGearBundle_SpacePirate", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8184"))
 // Featured Outfit Bundle
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_SpacePirate", Textfield="FeaturedItemBundle", RedirectURL="https://store.steampowered.com/buyitem/232090/8183"))
+// Epic Horzine key
+	WhatsNewItems.Add((ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_PS4Key", Textfield="PS4Key", RedirectURL="https://store.steampowered.com/buyitem/232090/4303"))
 
 // Misc Community Links
     WhatsNewItems.Add((ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub", Textfield="Jaegorhorn", RedirectURL="https://steamcommunity.com/app/232090"))    

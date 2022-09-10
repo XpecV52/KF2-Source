@@ -38,6 +38,18 @@ struct ServerAuthRetry
     }
 };
 
+struct TimeoutClientInfo
+{
+    var UniqueNetId ClientUID;
+    var int LastControlTime;
+
+    structdefaultproperties
+    {
+        ClientUID=(Uid=none)
+        LastControlTime=0
+    }
+};
+
 var globalconfig array<config string> IPPolicies;
 var globalconfig array<config UniqueNetId> BannedIDs;
 var const localized string IPBanned;
@@ -66,11 +78,13 @@ var array<PendingClientAuth> ClientsPendingAuth;
 var array<ServerAuthRetry> ServerAuthRetries;
 var int ListenAuthTicketUID;
 var int ListenAuthRetryCount;
+var array<TimeoutClientInfo> ClientsTimeoutInfo;
 
 function PostBeginPlay()
 {
     OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
     InitAuthHooks();
+    SetTimer(1, true, 'TimeoutTick');
 }
 
 function Destroyed()
@@ -586,7 +600,25 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
                                 break;
                             }                            
                         }                        
+                        if(!Class'WorldInfo'.static.IsConsoleBuild())
+                        {
+                            I = 0;
+                            J0xAD7:
+
+                            if(I < ClientsTimeoutInfo.Length)
+                            {
+                                if(ClientsTimeoutInfo[I].ClientUID == UniqueId)
+                                {
+                                    bFound = true;
+                                    goto J0xB47;
+                                }
+                                ++ I;
+                                goto J0xAD7;
+                            }
+                        }
                     }
+                    J0xB47:
+
                     if((((WorldInfo.NetMode == NM_ListenServer) && NotEqual_InterfaceInterface(OnlineSub.PlayerInterface, (none))) && OnlineSub.PlayerInterface.GetUniquePlayerId(0, HostUID)) && UniqueId == HostUID)
                     {
                         bFound = true;
@@ -1298,6 +1330,81 @@ function bool IsPendingAuth(UniqueNetId PlayerUID)
         goto J0x0B;
     }
     return false;
+}
+
+function AddID(const UniqueNetId UniqueId)
+{
+    local int I;
+    local bool bFound;
+    local TimeoutClientInfo NewClient;
+
+    I = 0;
+    J0x0B:
+
+    if(I < ClientsTimeoutInfo.Length)
+    {
+        if(ClientsTimeoutInfo[I].ClientUID == UniqueId)
+        {
+            bFound = true;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    if(!bFound)
+    {
+        NewClient.ClientUID = UniqueId;
+        NewClient.LastControlTime = 15;
+        ClientsTimeoutInfo.AddItem(NewClient;
+    }
+}
+
+function TimeoutTick()
+{
+    local int I, CurPort;
+    local UniqueNetId CurrentClientUID, TestClientUID;
+    local IpAddr CurIP;
+    local Player CurConn;
+
+    if(ClientsTimeoutInfo.Length <= 0)
+    {
+        return;
+    }
+    foreach WorldInfo.AllClientConnections(CurConn, CurIP, CurPort)
+    {
+        if((CurConn.Actor != none) && CurConn.Actor.PlayerReplicationInfo != none)
+        {
+            CurrentClientUID = CurConn.Actor.PlayerReplicationInfo.UniqueId;
+            I = 0;
+            J0x10B:
+
+            if(I < ClientsTimeoutInfo.Length)
+            {
+                TestClientUID = ClientsTimeoutInfo[I].ClientUID;
+                if(CurrentClientUID == TestClientUID)
+                {
+                    ClientsTimeoutInfo[I].LastControlTime = 15;
+                    continue;
+                }
+                ++ I;
+                goto J0x10B;
+            }
+        }        
+    }    
+    I = ClientsTimeoutInfo.Length - 1;
+    J0x1C4:
+
+    if(I >= 0)
+    {
+        -- ClientsTimeoutInfo[I].LastControlTime;
+        if(ClientsTimeoutInfo[I].LastControlTime <= 0)
+        {
+            TestClientUID = ClientsTimeoutInfo[I].ClientUID;
+            LogInternal("Removed Connection with UID:" @ Class'OnlineSubsystem'.static.UniqueNetIdToString(TestClientUID));
+            ClientsTimeoutInfo.Remove(I, 1;
+        }
+        -- I;
+        goto J0x1C4;
+    }
 }
 
 defaultproperties

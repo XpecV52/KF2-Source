@@ -1229,12 +1229,12 @@ function OnFindGameServerComplete(bool bWasSuccessful)
 	if (bWasSuccessful && !bPauseTryingServers)
 	{
 		// If doing takeover, randomize the list to reduce risk of clients trying to take over the same server. Order is irrelevant for console when (no ping)
-		if( bAttemptingServerCreate && class'WorldInfo'.static.IsConsoleBuild() )
+		if( bAttemptingServerCreate && (class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEosBuild()) )
 		{
 			RandomizeSearchResults(SearchDataStore.GetActiveGameSearch());
 		}
 		// Regular join, sort normally
-		else if( class'WorldInfo'.static.IsConsoleBuild() )
+		else if( class'WorldInfo'.static.IsConsoleBuild() || class'WorldInfo'.static.IsEosBuild() )
 		{
 			// Sort all entries for console
 			SortServers(SearchDataStore.GetActiveGameSearch());
@@ -1373,14 +1373,14 @@ function ConnectToPlayfabServer(string ServerIp)
 	KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
 	// Give a longer timeout for servers that need to spin up
 	//@SABER_EGS_BEGIN fix connecting timeout via takeOver
-	if (class'WorldInfo'.static.IsEosBuild())
-	{
-		SetServerConnectGiveUpTimer(bAttemptingServerCreate);
-	}
-	else
-	{
+	//if (class'WorldInfo'.static.IsEosBuild())
+	//{
+	//	SetServerConnectGiveUpTimer(bAttemptingServerCreate);
+	//}
+	//else
+	//{
 		class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer( bAttemptingServerCreate ? 8 : ServerConnectTimeout, false, nameof(ServerConnectGiveUp), self);
-	}
+	//}
 	//@SABER_EGS_END
 
 	// Attach playfab ID
@@ -1436,6 +1436,14 @@ function OnOpen()
 	}
 }
 
+function OnServerTakeoverResponseRecieved()
+{
+	LogInternal(GetFuncName());
+	if( class'WorldInfo'.static.IsEosBuild() )
+	{
+		class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer(nameof(ServerConnectGiveUp), self);
+	}
+}
 
 function bool OnHandshakeComplete(bool bSuccess, string Description, out int SuppressPasswordRetry)
 {

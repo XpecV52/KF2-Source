@@ -117,24 +117,6 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking)
     }
 }
 
-function UpdateSpeakingIcon(UniqueNetId PlayerID, bool isShowIcon)
-{
-    local int I;
-
-    I = 0;
-    J0x0B:
-
-    if(I < PlayerSlots)
-    {
-        if(PlayerID == MemberSlots[I].PlayerUID)
-        {
-            MemberSlots[I].MemberSlotObject.SetBool("isTalking", isShowIcon);
-        }
-        ++ I;
-        goto J0x0B;
-    }
-}
-
 function GetKFPRIArray(out array<KFPlayerReplicationInfo> KFPRIArray)
 {
     local PlayerController PC;

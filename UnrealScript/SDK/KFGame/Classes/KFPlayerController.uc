@@ -11269,11 +11269,28 @@ event bool FriendListPopUpIsShown()
 	return Result;
 }
 
-event ShowSpeakingIcon(UniqueNetId PlayerId, bool isShowIcon)
+event ShowSpeakingIcon(PlayerReplicationInfo TalkerId, bool isShowIcon)
 {
+	local KFGFxHudWrapper MyGFxHUDW;
+	MyGFxHUDW = KFGFxHudWrapper(myHUD);
+
+	if(MyGFxHUDW != none && MyGFxHUDW.HudMovie != none)
+	{
+		MyGFxHUDW.HudMovie.VOIPWidget.VOIPEventTriggered(TalkerId, isShowIcon);
+	}
+
 	if (MyGFxManager != none)
 	{
-		MyGFxManager.UpdateSpeakingIcon(PlayerId, isShowIcon);
+		MyGFxManager.UpdateVOIP(TalkerId, isShowIcon);
+	}
+}
+
+event OnServerTakeoverResponseRecieved()
+{
+	`log(GetFuncName());
+	if (MyGFxManager != none)
+	{
+		MyGFxManager.OnServerTakeoverResponseRecieved();
 	}
 }
 

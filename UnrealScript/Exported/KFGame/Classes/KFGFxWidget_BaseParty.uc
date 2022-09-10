@@ -372,8 +372,6 @@ function KickPlayer(int SlotIndex)
 
 function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking);
 
-function UpdateSpeakingIcon(UniqueNetId PlayerId, bool isShowIcon);
-
 /****************************************************************************
 *	Refresh
 ****************************************************************************/

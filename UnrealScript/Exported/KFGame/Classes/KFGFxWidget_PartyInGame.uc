@@ -131,18 +131,6 @@ function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking)
 	}
 }
 
-function UpdateSpeakingIcon(UniqueNetId PlayerId, bool isShowIcon)
-{
-	local int i;
-	for (i = 0; i < PlayerSlots; i++)
-	{
-		if(PlayerId == MemberSlots[i].PlayerUID)
-		{
-			MemberSlots[i].MemberSlotObject.SetBool("isTalking", isShowIcon);
-		}
-	}
-}
-
 //==============================================================
 // Refreshing
 //==============================================================

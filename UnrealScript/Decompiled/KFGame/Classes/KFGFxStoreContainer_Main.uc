@@ -159,8 +159,7 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
     if(I < StoreItemArray.Length)
     {
         if(((StoreItemArray[I].ProductID != "") && StoreItemArray[I].SignedOfferId == "") && CurrentStoreFilter != 14)
-        {
-            LogInternal(("Skipping console store item" @ string(StoreItemArray[I].Definition)) @ "since it has no store offer ID");            
+        {            
         }
         else
         {
@@ -180,7 +179,7 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
                     if(Class'WorldInfo'.static.IsConsoleBuild())
                     {
                         J = 0;
-                        J0x257:
+                        J0x1EB:
 
                         if(J < ConsoleFeaturedItemIDs.Length)
                         {
@@ -191,13 +190,13 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
                                 ++ ItemCount;
                             }
                             ++ J;
-                            goto J0x257;
+                            goto J0x1EB;
                         }                        
                     }
                     else
                     {
                         J = 0;
-                        J0x30E:
+                        J0x2A2:
 
                         if(J < FeaturedItemIDs.Length)
                         {
@@ -208,7 +207,7 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
                                 ++ ItemCount;
                             }
                             ++ J;
-                            goto J0x30E;
+                            goto J0x2A2;
                         }
                     }                    
                 }
@@ -241,27 +240,27 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
         {
             ShuffleFeaturedItems(FilteredItemsArray);
             I = 0;
-            J0x556:
+            J0x4EA:
 
             if(I < Min(MaxFeaturedItems, FilteredItemsArray.Length))
             {
                 DataProvider.SetElementObject(ItemCount, CreateStoreItem(FilteredItemsArray[I]));
                 ++ ItemCount;
                 ++ I;
-                goto J0x556;
+                goto J0x4EA;
             }            
         }
         else
         {
             I = 0;
-            J0x5E5:
+            J0x579:
 
             if(I < FilteredItemsArray.Length)
             {
                 DataProvider.SetElementObject(ItemCount, CreateStoreItem(FilteredItemsArray[I]));
                 ++ ItemCount;
                 ++ I;
-                goto J0x5E5;
+                goto J0x579;
             }
         }
     }

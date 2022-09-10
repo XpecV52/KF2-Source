@@ -139,6 +139,7 @@ function SetWhatsNewItems()
         for (i = 0; i < WhatsNewItems.length; i++)
         {
             if (class'WorldInfo'.static.isEosBuild() && WhatsNewItems[i].TextField == "Jaegorhorn") continue; 
+			if (!class'WorldInfo'.static.isEosBuild() && WhatsNewItems[i].TextField == "PS4Key") continue;
             DataObject = CreateObject("Object");
             DataObject.SetString("label", Localize("WhatsNewMessages",WhatsNewItems[i].TextField,"KFGame"));
             DataObject.SetString("imageURL",WhatsNewItems[i].ImageURL);
@@ -178,12 +179,13 @@ defaultproperties
    WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_PerilousPlunder",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8190")
    WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_FullGearBundle_SpacePirate",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8184")
    WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_SpacePirate",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8183")
-   WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
-   WhatsNewItems(11)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")
-   WhatsNewItems(12)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/")
-   WhatsNewItems(13)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap")
-   WhatsNewItems(14)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="http://www.tripwireinteractive.com/redirect/shop/")
-   WhatsNewItems(15)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/")
+   WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_PS4Key",TextField="PS4Key",RedirectURL="https://store.steampowered.com/buyitem/232090/4303")
+   WhatsNewItems(11)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
+   WhatsNewItems(12)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")
+   WhatsNewItems(13)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/")
+   WhatsNewItems(14)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap")
+   WhatsNewItems(15)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="http://www.tripwireinteractive.com/redirect/shop/")
+   WhatsNewItems(16)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/")
    MultiplayerString="Find A Match"
    CreateGameString="Create A Match"
    SoloString="Play Solo Offline"

@@ -146,11 +146,17 @@ function SetWhatsNewItems()
             }
             else
             {
-                DataObject = Outer.CreateObject("Object");
-                DataObject.SetString("label", Localize("WhatsNewMessages", WhatsNewItems[I].TextField, "KFGame"));
-                DataObject.SetString("imageURL", WhatsNewItems[I].ImageURL);
-                DataObject.SetString("redirectURL", WhatsNewItems[I].RedirectURL);
-                DataArray.SetElementObject(++ Index, DataObject);
+                if(!Class'WorldInfo'.static.IsEOSBuild() && WhatsNewItems[I].TextField == "PS4Key")
+                {                    
+                }
+                else
+                {
+                    DataObject = Outer.CreateObject("Object");
+                    DataObject.SetString("label", Localize("WhatsNewMessages", WhatsNewItems[I].TextField, "KFGame"));
+                    DataObject.SetString("imageURL", WhatsNewItems[I].ImageURL);
+                    DataObject.SetString("redirectURL", WhatsNewItems[I].RedirectURL);
+                    DataArray.SetElementObject(++ Index, DataObject);
+                }
             }
             ++ I;
             goto J0x5E1;
@@ -186,12 +192,13 @@ defaultproperties
     WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_PerilousPlunder",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8190",PSNProductId="")
     WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_FullGearBundle_SpacePirate",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8184",PSNProductId="")
     WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Summer_SpacePirate",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8183",PSNProductId="")
-    WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
-    WhatsNewItems(11)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/",PSNProductId="")
-    WhatsNewItems(12)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/",PSNProductId="")
-    WhatsNewItems(13)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap",PSNProductId="")
-    WhatsNewItems(14)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="http://www.tripwireinteractive.com/redirect/shop/",PSNProductId="")
-    WhatsNewItems(15)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/",PSNProductId="")
+    WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_PS4Key",TextField="PS4Key",RedirectURL="https://store.steampowered.com/buyitem/232090/4303",PSNProductId="")
+    WhatsNewItems(11)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090",PSNProductId="")
+    WhatsNewItems(12)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/",PSNProductId="")
+    WhatsNewItems(13)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/",PSNProductId="")
+    WhatsNewItems(14)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap",PSNProductId="")
+    WhatsNewItems(15)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="http://www.tripwireinteractive.com/redirect/shop/",PSNProductId="")
+    WhatsNewItems(16)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/",PSNProductId="")
     MultiplayerString="Find A Match"
     CreateGameString="Create A Match"
     SoloString="Play Solo Offline"

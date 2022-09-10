@@ -1085,13 +1085,13 @@ function OnFindGameServerComplete(bool bWasSuccessful)
 {
     if(bWasSuccessful && !bPauseTryingServers)
     {
-        if(bAttemptingServerCreate && Class'WorldInfo'.static.IsConsoleBuild())
+        if(bAttemptingServerCreate && Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
         {
             RandomizeSearchResults(SearchDataStore.GetActiveGameSearch());            
         }
         else
         {
-            if(Class'WorldInfo'.static.IsConsoleBuild())
+            if(Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild())
             {
                 SortServers(SearchDataStore.GetActiveGameSearch());                
             }
@@ -1234,14 +1234,7 @@ function ConnectToPlayfabServer(string ServerIP)
         OpenCommand $= (BuildJoinFiltersRequestURL());
     }
     KFGameEngine(Class'Engine'.static.GetEngine()).OnHandshakeComplete = OnHandshakeComplete;
-    if(Class'WorldInfo'.static.IsEOSBuild())
-    {
-        SetServerConnectGiveUpTimer(bAttemptingServerCreate);        
-    }
-    else
-    {
-        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(float(((bAttemptingServerCreate) ? 8 : ServerConnectTimeout)), false, 'ServerConnectGiveUp', self);
-    }    
+    Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(float(((bAttemptingServerCreate) ? 8 : ServerConnectTimeout)), false, 'ServerConnectGiveUp', self);    
     OpenCommand $= ("?PlayfabPlayerId=" $ Class'GameEngine'.static.GetPlayfabInterface().CachedPlayfabId);
     LogInternal("Going to connect with URL:" @ OpenCommand);
     Outer.ConsoleCommand(OpenCommand);
@@ -1291,6 +1284,15 @@ function OnOpen()
     if(MissionObjectiveContainer != none)
     {
         MissionObjectiveContainer.Refresh(true);
+    }
+}
+
+function OnServerTakeoverResponseRecieved()
+{
+    LogInternal(string(GetFuncName()));
+    if(Class'WorldInfo'.static.IsEOSBuild())
+    {
+        Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('ServerConnectGiveUp', self);
     }
 }
 

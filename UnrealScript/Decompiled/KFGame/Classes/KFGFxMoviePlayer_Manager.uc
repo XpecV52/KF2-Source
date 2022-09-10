@@ -1578,6 +1578,14 @@ function ChangeOverviewState(bool bLeaderIsOnServerBrowser)
     }
 }
 
+function OnServerTakeoverResponseRecieved()
+{
+    if(StartMenu != none)
+    {
+        StartMenu.OnServerTakeoverResponseRecieved();
+    }
+}
+
 event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInputEvent InputEvent)
 {
     local KFPlayerReplicationInfo KFPRI;
@@ -1738,7 +1746,7 @@ function bool IsFocusIgnoreKey(string GBA_Command)
 
 function UpdateVOIP(PlayerReplicationInfo PRI, bool bIsTalking)
 {
-    if(Class'WorldInfo'.static.IsConsoleBuild() && PartyWidget != none)
+    if(PartyWidget != none)
     {
         PartyWidget.UpdateVOIP(PRI, bIsTalking);
     }
@@ -1759,14 +1767,6 @@ function NotifySpectateStateChanged(bool bIsSpectating)
     if(MenuBarWidget != none)
     {
         MenuBarWidget.UpdateInventoryButtonState();
-    }
-}
-
-function UpdateSpeakingIcon(UniqueNetId PlayerID, bool isShowIcon)
-{
-    if(PartyWidget != none)
-    {
-        PartyWidget.UpdateSpeakingIcon(PlayerID, isShowIcon);
     }
 }
 

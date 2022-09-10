@@ -8213,11 +8213,27 @@ event bool FriendListPopUpIsShown()
     return Result;
 }
 
-event ShowSpeakingIcon(UniqueNetId PlayerID, bool isShowIcon)
+event ShowSpeakingIcon(PlayerReplicationInfo TalkerId, bool isShowIcon)
 {
+    local KFGFxHudWrapper MyGFxHUDW;
+
+    MyGFxHUDW = KFGFxHudWrapper(myHUD);
+    if((MyGFxHUDW != none) && MyGFxHUDW.HudMovie != none)
+    {
+        MyGFxHUDW.HudMovie.VOIPWidget.VOIPEventTriggered(TalkerId, isShowIcon);
+    }
     if(MyGFxManager != none)
     {
-        MyGFxManager.UpdateSpeakingIcon(PlayerID, isShowIcon);
+        MyGFxManager.UpdateVOIP(TalkerId, isShowIcon);
+    }
+}
+
+event OnServerTakeoverResponseRecieved()
+{
+    LogInternal(string(GetFuncName()));
+    if(MyGFxManager != none)
+    {
+        MyGFxManager.OnServerTakeoverResponseRecieved();
     }
 }
 

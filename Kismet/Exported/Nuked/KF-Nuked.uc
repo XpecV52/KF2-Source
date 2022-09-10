@@ -25345,3 +25345,70 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_160
    Name="SeqVar_Object_160"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
+
+Begin Object Class=CameraShake Name=CameraShake_1 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+   OscillationDuration=30.000000
+   OscillationBlendInTime=3.000000
+   OscillationBlendOutTime=20.000000
+   RotOscillation=(Pitch=(Amplitude=75.000000,Frequency=50.000000),Yaw=(Amplitude=25.000000,Frequency=40.000000),Roll=(Amplitude=1.500000,Frequency=60.000000))
+   Name="CameraShake_1"
+   ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+End Object
+
+Begin Object Class=CameraShake Name=CameraShake_1 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+   OscillationDuration=30.000000
+   OscillationBlendInTime=5.000000
+   OscillationBlendOutTime=10.000000
+   RotOscillation=(Pitch=(Amplitude=75.000000,Frequency=50.000000),Yaw=(Amplitude=25.000000,Frequency=40.000000),Roll=(Amplitude=1.500000,Frequency=60.000000))
+   Name="CameraShake_1"
+   ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+End Object
+
+Begin Object Class=ActorFactoryAI Name=ActorFactoryAI_1
+   ControllerClass=Class'kfgamecontent.KFAIController_ZedClot_Cyst'
+   PawnClass=Class'kfgamecontent.KFPawn_ZedClot_Cyst'
+   Name="ActorFactoryAI_1"
+   ObjectArchetype=ActorFactoryAI'Engine.Default__ActorFactoryAI'
+End Object
+
+Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+   OscillationDuration=20.000000
+   RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+   Name="CameraShake_0"
+   ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+End Object
+
+Begin Object Class=ActorFactoryAI Name=ActorFactoryAI_0
+   ControllerClass=Class'kfgamecontent.KFAIController_ZedGorefast'
+   PawnClass=Class'kfgamecontent.KFPawn_ZedGorefast'
+   Name="ActorFactoryAI_0"
+   ObjectArchetype=ActorFactoryAI'Engine.Default__ActorFactoryAI'
+End Object
+
+Begin Object Class=ActorFactoryAI Name=ActorFactoryAI_0
+   ControllerClass=Class'KFGame.KFAIController_ZedCrawler'
+   PawnClass=Class'kfgamecontent.KFPawn_ZedCrawler'
+   Name="ActorFactoryAI_0"
+   ObjectArchetype=ActorFactoryAI'Engine.Default__ActorFactoryAI'
+End Object
+
+Begin Object Class=ActorFactoryAI Name=ActorFactoryAI_0
+   ControllerClass=Class'kfgamecontent.KFAIController_ZedBloat'
+   PawnClass=Class'kfgamecontent.KFPawn_ZedBloat'
+   Name="ActorFactoryAI_0"
+   ObjectArchetype=ActorFactoryAI'Engine.Default__ActorFactoryAI'
+End Object
+
+Begin Object Class=ActorFactoryAI Name=ActorFactoryAI_1
+   ControllerClass=Class'kfgamecontent.KFAIController_ZedHusk'
+   PawnClass=Class'kfgamecontent.KFPawn_ZedHusk'
+   Name="ActorFactoryAI_1"
+   ObjectArchetype=ActorFactoryAI'Engine.Default__ActorFactoryAI'
+End Object
+
+Begin Object Class=ActorFactoryAI Name=ActorFactoryAI_1
+   ControllerClass=Class'kfgamecontent.KFAIController_ZedClot_Cyst'
+   PawnClass=Class'kfgamecontent.KFPawn_ZedClot_Cyst'
+   Name="ActorFactoryAI_1"
+   ObjectArchetype=ActorFactoryAI'Engine.Default__ActorFactoryAI'
+End Object

@@ -976,7 +976,7 @@ function CallBack_ItemDetailsClicked(int ItemDefinition)
         }
         else
         {
-            EquipButton.SetString("label", PurchaseKeyString @ ((Class'WorldInfo'.static.IsConsoleBuild()) ? "" : ":" @ NeededItem.Price));
+            EquipButton.SetString("label", PurchaseKeyString @ ((Class'WorldInfo'.static.IsConsoleBuild() || Class'WorldInfo'.static.IsEOSBuild()) ? "" : ":" @ NeededItem.Price));
         }
     }
 }

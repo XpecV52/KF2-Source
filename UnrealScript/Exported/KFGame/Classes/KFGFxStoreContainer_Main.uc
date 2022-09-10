@@ -170,7 +170,6 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 		// Hide console items
 		if(StoreItemArray[i].ProductId != "" && StoreItemArray[i].SignedOfferId == "" && CurrentStoreFilter != EStore_Featured)
 		{
-			LogInternal("Skipping console store item"@StoreItemArray[i].Definition@"since it has no store offer ID");
 			continue;
 		}
 
