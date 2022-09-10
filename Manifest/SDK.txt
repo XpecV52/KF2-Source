@@ -1,10 +1,10 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 4249056593390467341 / 7/8/2020 2:52:09 PM
+Manifest ID / date     : 4290582664310584210 / 7/11/2020 11:43:46 PM
 Total number of files  : 4654
 Total number of chunks : 4722
-Total bytes on disk    : 98486122
-Total bytes compressed : 28103872
+Total bytes on disk    : 98490336
+Total bytes compressed : 28095904
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
@@ -12,12 +12,12 @@ Total bytes compressed : 28103872
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
         546816      1 8A2B0597A4CC9BED598D6BB7EB771F113849AFB3     0 Binaries\SDKFrontend.exe
          75264      1 1B891EE290FAFF7D6B51E41CDACEDE5D166CF2DF     0 Binaries\UnrealControls.dll
-       1592320      2 223D144EDA18847B8F6E1A1019ACB56DB6ACB375     0 Binaries\UnrealEdCSharp.dll
+       1592320      2 8FB11FA4528C75845C7325B69EDA2680BE977F9E     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      67681792     65 3A0567BFF4C01E589D507FAAE3E3279A56FE1AFD     0 Binaries\Win64\KFEditor.exe
+      67685888     65 BDE1C161520E3F5EAE4EC81E8AF02C1282081790     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -2902,7 +2902,7 @@ Total bytes compressed : 28103872
           2174      1 80D3AB820AE6EE53BD9AAC90AB7F6E2EA892833C     0 Development\Src\KFGame\Classes\KFGFxScreenSizeContainer.uc
          14546      1 321B9867A997EFA2738D0C2F50FD67A86F12F0D9     0 Development\Src\KFGame\Classes\KFGFxServerBrowser_Filters.uc
           5523      1 2EE975930F525BA953829D67FC4A36B8E92A1729     0 Development\Src\KFGame\Classes\KFGFxServerBrowser_ServerDetails.uc
-         33247      1 EA696F1C0E2AA94232EC8D896E16248C4848F4A9     0 Development\Src\KFGame\Classes\KFGFxServerBrowser_ServerList.uc
+         33365      1 42625A74C4F6F3D4033FAD2CB3E7DB51F948371B     0 Development\Src\KFGame\Classes\KFGFxServerBrowser_ServerList.uc
           1463      1 83C0DB1AF15E3AE8B75B297B96700A0E00277368     0 Development\Src\KFGame\Classes\KFGFxSpecialEventObjectivesContainer_Summer2020.uc
           1325      1 58B521768FED13B33F0F6D7A90CFDCFAE0EAD993     0 Development\Src\KFGame\Classes\KFGFxSpecialEventObjectivesContainer_Xmas2019.uc
           7511      1 252612AAFDD98C3061504C8D7B4031417A56D126     0 Development\Src\KFGame\Classes\KFGFxSpecialeventObjectivesContainer.uc

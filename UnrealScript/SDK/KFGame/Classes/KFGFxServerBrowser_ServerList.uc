@@ -939,6 +939,11 @@ function UpdateListDataProvider()
 				}
 				TempOnlineGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[i].GameSettings);
 
+				if (class'WorldInfo'.static.IsEOSBuild() && i >= LatestGameSearch.MaxSearchResults)
+				{
+					break;
+				}
+
 				//@SABER_EGS_BEGIN - Add to the list only servers with measured ping
 				if (class'WorldInfo'.static.IsEOSBuild() && TempOnlineGamesSettings.PingInMs == -1) {
 					`TimerHelper.SetTimer( 0.1, false, nameof(UpdateListDataProvider), self );

@@ -752,13 +752,17 @@ function UpdateListDataProvider()
                 if(NewServerCount > 10)
                 {
                     Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
-                    goto J0xA15;
+                    goto J0xA68;
                 }
                 TempOnlineGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[I].GameSettings);
+                if(Class'WorldInfo'.static.IsEOSBuild() && I >= LatestGameSearch.MaxSearchResults)
+                {
+                    goto J0xA68;
+                }
                 if(Class'WorldInfo'.static.IsEOSBuild() && TempOnlineGamesSettings.PingInMs == -1)
                 {
                     Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'UpdateListDataProvider', self);
-                    goto J0xA15;
+                    goto J0xA68;
                 }
                 TempObj = Outer.CreateObject("Object");
                 TempObj.SetString("serverName", TempOnlineGamesSettings.OwningPlayerName);
@@ -791,7 +795,7 @@ function UpdateListDataProvider()
             ++ I;
             goto J0x5D;
         }
-        J0xA15:
+        J0xA68:
 
         SetObject("dataProvider", DataProvider);
     }
