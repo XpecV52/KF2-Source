@@ -1,3 +1,3 @@
-All credit belongs to Tripwire Interactive, Saber Interactive, Epic Games, and other respective authors.
+All credit and rights belong to Tripwire Interactive, Saber Interactive, Epic Games, and other respective authors.
 
-This repository is for mod development and research purposes.
+This repository is for research and mod development purposes.
