@@ -35,9 +35,20 @@ function InitializeWidget()
 
 function UpdateReadyButtonText()
 {
+	Local bool bIsConsole;
+
 	if (ReadyButton != none)
 	{
-		ReadyButton.SetString("label", bShowingSkipTrader ? default.SkipTraderString : default.ReadyString);
+		bIsConsole = GetPC().WorldInfo.IsConsoleBuild();
+
+		if(bIsConsole && bShowingSkipTrader)
+		{
+			ReadyButton.SetString("label", ("  "@default.SkipTraderString));
+		}
+		else
+		{
+			ReadyButton.SetString("label", bShowingSkipTrader ? default.SkipTraderString : default.ReadyString);
+		}
 	}
 }
 
