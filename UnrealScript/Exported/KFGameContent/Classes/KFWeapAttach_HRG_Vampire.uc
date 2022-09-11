@@ -42,6 +42,7 @@ var transient float UpdateDestinationBloodParticlesTime;
 var class<KFProj_BloodSplash> BloodSplashClass;
 
 var bool bHasToStopDoingFireAnim;
+var bool bHasToStopDoingFireAnimB;
 
 /** Blood Particles */
 var(BloodParticles) float SpeedBloodParticles;
@@ -247,7 +248,11 @@ simulated function bool ThirdPersonFireEffects(vector HitLocation, KFPawn P, byt
 	// Character shoot anims
 	if ( !P.IsDoingSpecialMove() || AnimType == EAS_Additive )
 	{
-		PlayPawnFireAnim( P, AnimType );
+		if(!bHasToStopDoingFireAnimB)
+		{
+			bHasToStopDoingFireAnimB = true;
+			PlayPawnFireAnim( P, AnimType );
+		}
 
 		// interrupt other weapon action anims (e.g. Reload)
 		if( !P.IsDoingSpecialMove() )
@@ -289,6 +294,7 @@ simulated function StopThirdPersonFireEffects(optional bool bForce)
 		ChargedPSC.SetActive(false);
 	}
 	bHasToStopDoingFireAnim = false;
+	bHasToStopDoingFireAnimB = false;
 }
 
 simulated function CauseMuzzleFlash(byte FiringMode)

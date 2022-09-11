@@ -19,6 +19,7 @@ var bool bIsChargeEffectsActive;
 var bool bIsBloodParticlesEffectActive;
 var bool bIsDisabledSprayVisualAndMesh;
 var bool bHasToStopDoingFireAnim;
+var bool bHasToStopDoingFireAnimB;
 var repnotify float StartFireTime;
 var int ChargeLevel;
 var float FXScalingFactorByCharge;
@@ -218,7 +219,11 @@ simulated function bool ThirdPersonFireEffects(Vector HitLocation, KFPawn P, byt
     }
     if(!P.IsDoingSpecialMove() || AnimType == 3)
     {
-        PlayPawnFireAnim(P, AnimType);
+        if(!bHasToStopDoingFireAnimB)
+        {
+            bHasToStopDoingFireAnimB = true;
+            PlayPawnFireAnim(P, AnimType);
+        }
         if(!P.IsDoingSpecialMove())
         {
             P.StopBodyAnim(((P.bIsCrouched) ? 4 : 1), 0.1);
@@ -253,6 +258,7 @@ simulated function StopThirdPersonFireEffects(optional bool bForce)
         ChargedPSC.SetActive(false);
     }
     bHasToStopDoingFireAnim = false;
+    bHasToStopDoingFireAnimB = false;
 }
 
 simulated function CauseMuzzleFlash(byte FiringMode)

@@ -1,10 +1,10 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 3259360954076105160 / 11/15/2020 1:31:02 AM
+Manifest ID / date     : 3530464501011821788 / 11/28/2020 2:10:04 AM
 Total number of files  : 4737
 Total number of chunks : 4805
-Total bytes on disk    : 99089344
-Total bytes compressed : 28260240
+Total bytes on disk    : 99090455
+Total bytes compressed : 28260208
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
@@ -12,12 +12,12 @@ Total bytes compressed : 28260240
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
         546816      1 8A2B0597A4CC9BED598D6BB7EB771F113849AFB3     0 Binaries\SDKFrontend.exe
          75264      1 1B891EE290FAFF7D6B51E41CDACEDE5D166CF2DF     0 Binaries\UnrealControls.dll
-       1592832      2 D2D054778C19F9104FE9D1090C4B33D4AD8F17E3     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 C0203DA22DC5C2D17FE4297E7EC47BF3FBB74FA2     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      67768832     65 CCC5B760FDCEC7CB1EBA017694EB5DC301861FFE     0 Binaries\Win64\KFEditor.exe
+      67768832     65 0BB734479EC957987C5B3FD3606A2B783D2B1A66     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -2330,7 +2330,7 @@ Total bytes compressed : 28260240
           2639      1 876D47F2597B3F113389EF517F358E3954812FF9     0 Development\Src\KFGameContent\Classes\KFProj_EvilDAR_Laser.uc
           2527      1 FD173CC98A20A83B68B601BD4542C1BCD7470F01     0 Development\Src\KFGameContent\Classes\KFProj_EvilDAR_Rocket.uc
           3382      1 3F75F0B5104B7AED071E779BC18A480256A7E939     0 Development\Src\KFGameContent\Classes\KFProj_Explosive_HRGWinterbite.uc
-          5147      1 B53137B7E6D070BCE823E81B1D53B1A7C666EF70     0 Development\Src\KFGameContent\Classes\KFProj_Explosive_HRG_Kaboomstick.uc
+          5165      1 FCDE1BDD3D22D0124D595CEC36F6718818BC0418     0 Development\Src\KFGameContent\Classes\KFProj_Explosive_HRG_Kaboomstick.uc
           2799      1 D5EE2B89E39243C96A26E5B4D0FB3BAE0DF2BC8D     0 Development\Src\KFGameContent\Classes\KFProj_Explosive_HX25.uc
           1510      1 4969D51E42DA7533C495D369CBC95993261E193A     0 Development\Src\KFGameContent\Classes\KFProj_FlameThrower_GroundFire.uc
           1842      1 6F20AFB99D11F6EF2ECBE5C4BEE744C9E3B60BB3     0 Development\Src\KFGameContent\Classes\KFProj_Flame_HRGIncendiaryRifle.uc
@@ -2521,7 +2521,7 @@ Total bytes compressed : 28260240
           1632      1 B341E2006CE2A2723BC70384A0261388A3772212     0 Development\Src\KFGameContent\Classes\KFWeapAttach_Eviscerator.uc
           5124      1 E1AB35F0D96EE9F177A1313A9E9362D5806A8073     0 Development\Src\KFGameContent\Classes\KFWeapAttach_Flamethrower.uc
            663      1 6D379187AD113F075989165D80DB4F2CA98C9B1C     0 Development\Src\KFGameContent\Classes\KFWeapAttach_G18.uc
-         14158      1 719024C22298E579AF30FE2E3C64F54AB8F7F90A     0 Development\Src\KFGameContent\Classes\KFWeapAttach_HRG_Vampire.uc
+         14311      1 8B3562F03806C8E90A2A9680A1E7DB8257F8ACDC     0 Development\Src\KFGameContent\Classes\KFWeapAttach_HRG_Vampire.uc
           4082      1 CABE527DD6DA8610C23201BB52EB7299876FE441     0 Development\Src\KFGameContent\Classes\KFWeapAttach_HuskCannon.uc
           1301      1 62E36179EB923AC907C6F59125170DBFB8005A16     0 Development\Src\KFGameContent\Classes\KFWeapAttach_IonThruster.uc
          11542      1 EABE7243FDF741AF425511E7D145B185F34556C8     0 Development\Src\KFGameContent\Classes\KFWeapAttach_LazerCutter.uc
@@ -2576,7 +2576,7 @@ Total bytes compressed : 28260240
           6586      1 13487013E8B0C1550D2E41DAF819FABDF812AE5F     0 Development\Src\KFGameContent\Classes\KFWeap_HRG_Nailgun.uc
           4346      1 9783AC2BECBB02044AB915F956F2A68723653A84     0 Development\Src\KFGameContent\Classes\KFWeap_HRG_Revolver_Buckshot.uc
           6367      1 084960EC5AD737CB0AFC21FAF10EA6193CCAFBFE     0 Development\Src\KFGameContent\Classes\KFWeap_HRG_Revolver_DualBuckshot.uc
-         40024      1 0E8E01AFA39F612397DCCB419FAA67EB1335178C     0 Development\Src\KFGameContent\Classes\KFWeap_HRG_Vampire.uc
+         40852      1 9A190AFCC75F6463DC0767B01732E4E7D0D753BA     0 Development\Src\KFGameContent\Classes\KFWeap_HRG_Vampire.uc
           1961      1 F15E556A327FA921613D8715AC90F0D5AC83326C     0 Development\Src\KFGameContent\Classes\KFWeap_Healer_Syringe.uc
          14763      1 5EC9391FA4CF1C5FCB4636781A44BE5CDDD50DF6     0 Development\Src\KFGameContent\Classes\KFWeap_HuskCannon.uc
           8669      1 E5822311DE7B52212455F3867C28054E1927BD31     0 Development\Src\KFGameContent\Classes\KFWeap_Ice_FreezeThrower.uc
@@ -2986,7 +2986,7 @@ Total bytes compressed : 28260240
          10056      1 A561C2CF44EBF01A5F3D7BB4C029C25CFC5E769A     0 Development\Src\KFGame\Classes\KFGFxTraderContainer_Store.uc
           5804      1 1E90E25FE036E2B34FCECA703DBE1C8D118606E4     0 Development\Src\KFGame\Classes\KFGFxWeeklyObjectivesContainer.uc
           2403      1 894EC1D988A0586C7F4CEE20ECFA1A4C31CF8AE7     0 Development\Src\KFGame\Classes\KFGFxWidget_BackendStatusIndicatorWidget.uc
-         13369      1 7624982C60E67D1E36A1DF4E2A458D2B40F5474E     0 Development\Src\KFGame\Classes\KFGFxWidget_BaseParty.uc
+         13481      1 E61E3857068EFBD98D6FE7E28AB4C2EBD9EF3A6D     0 Development\Src\KFGame\Classes\KFGFxWidget_BaseParty.uc
           5566      1 4D8FC408384BEBB029BA338C97078AAB5774AEB2     0 Development\Src\KFGame\Classes\KFGFxWidget_BossHealthBar.uc
           1337      1 0C6B6F89FD2BFDA2E29472863D7136238B5D2CE8     0 Development\Src\KFGame\Classes\KFGFxWidget_ButtonPrompt.uc
           4412      1 7585DE92F4613BC5755B0DA3EBC6B9BD44222F89     0 Development\Src\KFGame\Classes\KFGFxWidget_KickVote.uc

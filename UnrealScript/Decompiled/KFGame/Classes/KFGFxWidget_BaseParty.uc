@@ -232,7 +232,7 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
     }
     if(ProfileString != "")
     {
-        if(isPlayerFromSteam(PlayerID))
+        if(((isPlayerFromSteam(PlayerID)) || Class'WorldInfo'.static.IsConsoleBuild(8)) || Class'WorldInfo'.static.IsConsoleBuild(9))
         {
             AddStringOptionToList(ViewProfileKey, OptionIndex, ProfileString, DataProvider);
         }

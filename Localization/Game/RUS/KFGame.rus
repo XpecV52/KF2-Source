@@ -960,7 +960,7 @@ ThankYouString="Спасибо за покупку! Благодаря вам м
 WeaponBundlesString="Наборы оружия"
 CharacterBundlesString="Наборы персонажей"
 OutfitBundlesString="Наборы костюмов"
-TicketCratesUSBBundlesString="Наб билетов / Ящиков / Флешек"
+TicketCratesUSBBundlesString="Билеты/Ящики/Флешки"
 CosmeticBundlesString="Наборы аксессуаров"
 WeaponSkinBundlesString="Наб. скинов оружия"
 HeadshotFxBundlesString="Наб. эффектов «Хэдшот»"
@@ -2802,7 +2802,7 @@ SpecialEventObjectiveInfoList[0]=(TitleString="Ледяные розы",Descript
 SpecialEventObjectiveInfoList[1]=(TitleString="Четыре разных сказки",DescriptionString="Соберите 4 фолианта в режиме «Элизиум»")
 SpecialEventObjectiveInfoList[2]=(TitleString="Под омелой",DescriptionString="Расправьтесь с одной волной на арене «Ботаника» в режиме «Элизиум»")
 SpecialEventObjectiveInfoList[3]=(TitleString="Рождественская песнь",DescriptionString="Расправьтесь с одной волной на арене «Святилище мастера» в режиме «Элизиум»")
-SpecialEventObjectiveInfoList[4]=(TitleString="Вечная зима",DescriptionString="Расправьтесь с волной 15 в бесконечном режиме на уровне «Сложно» или выше в режиме «Элизиум»")
+SpecialEventObjectiveInfoList[4]=(TitleString="Вечная зима",DescriptionString="Одолейте 15 волну в бесконечном режиме на «Сложно» или выше на карте «Элизиум»")
 
 AllCompleteRewardDescriptionString="Рождество | Тактический рюкзак эльфа"
 

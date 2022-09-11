@@ -1139,6 +1139,39 @@ simulated state Active
 	}
 }
 
+
+simulated function PerformReload(optional byte FireModeNum)
+{
+	super.PerformReload(FireModeNum);
+
+	//Ammo is count on server. If reload finishes in client before ammo value comes from server, it will not fire if it is pending fire. This is a fix.
+	if(role != role_authority && WorldInfo.NetMode != NM_ListenServer && WorldInfo.NetMode != NM_StandAlone)
+	{
+		SetTimer(0.09f, true, nameOf(Timer_CheckPendingFire));
+		SetTimer(0.5f, false, nameOf(Timer_EndCheckPendingFire));
+	}
+
+}
+
+simulated function Timer_CheckPendingFire()
+{
+	local int i;
+	for( i=0; i<GetPendingFireLength(); i++ )
+	{
+		if( PendingFire(i) )
+		{
+			BeginFire(i);
+			ClearTimer(nameOf(Timer_CheckPendingFire));
+			break;
+		}
+	}
+}
+
+simulated function Timer_EndCheckPendingFire()
+{
+	ClearTimer(nameOf(Timer_CheckPendingFire));
+}
+
 defaultproperties
 {
 	BloodBallProjClass=class'KFProj_BloodBall_HRG_Vampire'

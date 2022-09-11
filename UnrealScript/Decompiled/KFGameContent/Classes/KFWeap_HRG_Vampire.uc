@@ -592,6 +592,43 @@ simulated function Timer_CreateBloodParticle()
     }
 }
 
+simulated function PerformReload(optional byte FireModeNum)
+{
+    super(KFWeapon).PerformReload(FireModeNum);
+    if(((Role != ROLE_Authority) && WorldInfo.NetMode != NM_ListenServer) && WorldInfo.NetMode != NM_Standalone)
+    {
+        SetTimer(0.09, true, 'Timer_CheckPendingFire');
+        SetTimer(0.5, false, 'Timer_EndCheckPendingFire');
+    }
+}
+
+simulated function Timer_CheckPendingFire()
+{
+    local int I;
+
+    I = 0;
+    J0x0B:
+
+    if(I < GetPendingFireLength())
+    {
+        if(PendingFire(I))
+        {
+            BeginFire(byte(I));
+            ClearTimer('Timer_CheckPendingFire');
+            goto J0x73;
+        }
+        ++ I;
+        goto J0x0B;
+    }
+    J0x73:
+
+}
+
+simulated function Timer_EndCheckPendingFire()
+{
+    ClearTimer('Timer_CheckPendingFire');
+}
+
 simulated state FiringSuctioning extends SprayingFire
 {
     simulated event BeginState(name PreviousStateName)

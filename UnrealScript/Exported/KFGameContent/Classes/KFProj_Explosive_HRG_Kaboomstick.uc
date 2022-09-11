@@ -104,7 +104,7 @@ defaultproperties
       MyDamageType=Class'kfgamecontent.KFDT_Explosive_HRG_Kaboomstick'
       KnockDownStrength=0.000000
       MomentumTransferScale=22500.000000
-      ExplosionSound=AkEvent'WW_WEP_SA_HX25.Play_WEP_SA_HX25_Explosion'
+      ExplosionSound=AkEvent'ww_wep_hrg_kaboomstick.WEP_HRG_Kaboomstick_Projectile_Explo'
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_Explosive_HRG_Kaboomstick:ExplosionPointLight'
       ExploLightFadeOutTime=0.300000
       CamShake=KFCameraShake'FX_CameraShake_Arch.Misc_Explosions.Light_Explosion_Rumble'
