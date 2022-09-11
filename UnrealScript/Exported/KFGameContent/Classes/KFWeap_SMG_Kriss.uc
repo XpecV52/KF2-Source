@@ -25,11 +25,11 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
    InventorySize=6
-   MagazineCapacity(0)=33
    MeshIronSightFOV=45.000000
    IronSightPosition=(X=15.000000,Y=0.000000,Z=0.000000)
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_KRISS_TEX.UI_WeaponSelect_KRISS'
+   MagazineCapacity(0)=33
    SpareAmmoCapacity(0)=495
    InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True

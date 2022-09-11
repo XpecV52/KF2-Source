@@ -174,9 +174,9 @@ defaultproperties
    bNoMagazine=True
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    InventorySize=8
-   MagazineCapacity(1)=100
    WeaponSelectTexture=Texture2D'WEP_UI_HRG_Incision_Item_TEX.UI_WeaponSelect_HRG_Incision'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+   MagazineCapacity(1)=100
    AmmoCost(1)=50
    SpareAmmoCapacity(0)=39
    InitialSpareMags(0)=12

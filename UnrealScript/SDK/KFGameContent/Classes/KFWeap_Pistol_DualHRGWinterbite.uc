@@ -73,9 +73,9 @@ defaultproperties
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Explosive_HRGWinterbite'
 	FireInterval(DEFAULT_FIREMODE)=+0.11 // about twice as fast as single
-	InstantHitDamage(DEFAULT_FIREMODE)=40.0
+	InstantHitDamage(DEFAULT_FIREMODE)=49 //40.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Freeze_HRGWinterbiteImpact'
-	Spread(DEFAULT_FIREMODE)=0.015
+	Spread(DEFAULT_FIREMODE)=0.009 //0.015
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
 
 	// ALTFIRE_FIREMODE
@@ -83,9 +83,9 @@ defaultproperties
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(ALTFIRE_FIREMODE)=class'KFProj_Explosive_HRGWinterbite'
 	FireInterval(ALTFIRE_FIREMODE)=+0.11 // about twice as fast as single
-	InstantHitDamage(ALTFIRE_FIREMODE)=40.0
+	InstantHitDamage(ALTFIRE_FIREMODE)=49 //40.0
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Freeze_HRGWinterbiteImpact'
-	Spread(ALTFIRE_FIREMODE)=0.015
+	Spread(ALTFIRE_FIREMODE)=0.009 //0.015
 	FireModeIconPaths(ALTFIRE_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
 
 	// BASH_FIREMODE

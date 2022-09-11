@@ -130,8 +130,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedFleshPound_Versus.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedFleshPound_Versus.PowerUpAkSoundComponent'
     GroundSpeed=275
     Health=2281
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
@@ -168,9 +170,11 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.HeadshotAkComponent0'
-    Components(10)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.RageAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.HeadshotAkComponent0'
+    Components(12)=AkComponent'Default__KFPawn_ZedFleshPound_Versus.RageAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

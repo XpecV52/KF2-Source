@@ -268,6 +268,7 @@ var localized string JoinGameString;
 var KFGFxWidget_MenuBar MenuBarWidget;
 var KFGFxWidget_BaseParty PartyWidget;
 var KFGFxWidget_ButtonPrompt ButtonPromptWidget;
+var KFGFxWidget_BackendStatusIndicatorWidget BackendStatusIndicatorWidget;
 
 var array<string> WidgetPaths;
 
@@ -866,7 +867,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 
 	bHandled = true;
 
-	LogInternal("WidgetInitialized - Menu: " @WidgetName,'DevGFxUI');
+	LogInternal("KFGfxMoviePlayer_Manager - WidgetInitialized - WidgetName: " @WidgetName);
 	switch ( WidgetName )
 	{
 		case ( 'root1' ):
@@ -1049,6 +1050,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 					PartyWidget.PartyChatWidget = KFGFxHUD_ChatBoxWidget(Widget);
 					PartyWidget.PartyChatWidget.Init();
 				}
+			}
+		break;
+		case ( 'BackendStatusIndicatorWidget' ):
+			if(BackendStatusIndicatorWidget == none)
+			{
+				BackendStatusIndicatorWidget = KFGFxWidget_BackendStatusIndicatorWidget(Widget);
+				BackendStatusIndicatorWidget.Init();
 			}
 		break;
         case  'GammaPopup':
@@ -2332,6 +2340,7 @@ defaultproperties
    WidgetPaths(0)="../UI_Widgets/MenuBarWidget_SWF.swf"
    WidgetPaths(1)="../UI_Widgets/PartyWidget_SWF.swf"
    WidgetPaths(2)="../UI_Widgets/ButtonPromptWidget_SWF.swf"
+   WidgetPaths(3)="../UI_Widgets/BackendStatusIndicatorWidget_SWF.swf"
    BackgroundMovies(0)=TextureMovie'UI_Managers.MenuBG'
    BackgroundMovies(1)=TextureMovie'UI_Managers.MenuBG_Cyberpunk'
    BackgroundMovies(2)=TextureMovie'UI_Managers.SummerSideShowBGMovie'
@@ -2376,6 +2385,7 @@ defaultproperties
    WidgetBindings(23)=(WidgetName="IISMenu",WidgetClass=Class'KFGame.KFGFxMenu_IIS')
    WidgetBindings(24)=(WidgetName="MenuBarWidget",WidgetClass=Class'KFGame.KFGFxWidget_MenuBar')
    WidgetBindings(25)=(WidgetName="ButtonPromptWidgetContainer",WidgetClass=Class'KFGame.KFGFxWidget_ButtonPrompt')
+   WidgetBindings(26)=(WidgetName="BackendStatusIndicatorWidget",WidgetClass=Class'KFGame.KFGFxWidget_BackendStatusIndicatorWidget')
    Name="Default__KFGFxMoviePlayer_Manager"
    ObjectArchetype=GFxMoviePlayer'GFxUI.Default__GFxMoviePlayer'
 }

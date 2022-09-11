@@ -108,7 +108,7 @@ simulated function UpdateAmmoBeltBullets( optional int ForcedBulletCount=INDEX_N
 	bAmmoBeltInitialized = true;
 
 	// Don't do anything if ammo hasn't changed
-	NumAmmo = ForcedBulletCount != INDEX_NONE ? ForcedBulletCount : int(AmmoCount[GetAmmoType(0)]);
+	NumAmmo = ForcedBulletCount != INDEX_NONE ? ForcedBulletCount : AmmoCount[GetAmmoType(0)];
 	if( !bShowAll && (LastAmmoCount == NumAmmo || (LastAmmoCount >= NumAmmoBeltBullets && NumAmmo >= NumAmmoBeltBullets)) )
 	{
 		return;
@@ -196,7 +196,6 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    SingleFireSoundIndex=1
    InventorySize=9
-   MagazineCapacity(0)=75
    MeshFOV=75.000000
    MeshIronSightFOV=35.000000
    PlayerIronSightFOV=70.000000
@@ -205,6 +204,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'wep_ui_stoner63a_tex.UI_WeaponSelect_Stoner'
+   MagazineCapacity(0)=75
    SpareAmmoCapacity(0)=500
    InitialSpareMags(0)=1
    bLoopingFireAnim(0)=True

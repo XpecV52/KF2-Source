@@ -26,7 +26,6 @@ defaultproperties
     bCanBeReloaded=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=5
-    MagazineCapacity=6
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=52
@@ -36,6 +35,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
+    MagazineCapacity=6
     SpareAmmoCapacity=60
     InitialSpareMags=4
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'

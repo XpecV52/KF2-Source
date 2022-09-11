@@ -163,7 +163,7 @@ simulated function bool IgnoresPenetrationDmgReduction()
     return IsPerforateActive();
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
@@ -176,7 +176,7 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacit
             TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[0])));
         }
     }
-    MagazineCapacity = byte(Round(TempCapacity));
+    MagazineCapacity = Round(TempCapacity);
 }
 
 simulated function ModifySpareAmmoAmount(KFWeapon KFW, out int PrimarySpareAmmo, const optional out STraderItem TraderItem, optional bool bSecondary)
@@ -557,6 +557,7 @@ defaultproperties
     HighCapMagExemptList(0)=KFWeap_Shotgun_DoubleBarrel
     HighCapMagExemptList(1)=KFWeap_HRG_Revolver_Buckshot
     HighCapMagExemptList(2)=KFWeap_HRG_Revolver_DualBuckshot
+    HighCapMagExemptList(3)=KFWeap_Shotgun_ElephantGun
     AdditionalOnPerkDTNames(0)=KFDT_Ballistic_Shotgun_Medic
     AdditionalOnPerkDTNames(1)=KFDT_Ballistic_DragonsBreath
     AdditionalOnPerkDTNames(2)=KFDT_Ballistic_NailShotgun

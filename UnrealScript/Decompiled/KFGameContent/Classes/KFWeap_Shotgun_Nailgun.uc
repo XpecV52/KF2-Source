@@ -25,7 +25,7 @@ simulated function ConsumeAmmo(byte FireModeNum)
         if((MagazineCapacity[GetAmmoType(FireModeNum)] > 0) && AmmoCount[GetAmmoType(FireModeNum)] > 0)
         {
             AmountToConsume = Min(NumPellets[CurrentFireMode], AmmoCount[GetAmmoType(FireModeNum)]);
-            AmmoCount[GetAmmoType(FireModeNum)] -= byte(AmountToConsume);
+            AmmoCount[GetAmmoType(FireModeNum)] -= AmountToConsume;
         }
     }
 }
@@ -88,13 +88,13 @@ defaultproperties
     bHasFireLastAnims=false
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=5
-    MagazineCapacity=42
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
     IronSightPosition=(X=12,Y=0,Z=0)
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
+    MagazineCapacity=42
     SpareAmmoCapacity=336
     InitialSpareMags=3
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'

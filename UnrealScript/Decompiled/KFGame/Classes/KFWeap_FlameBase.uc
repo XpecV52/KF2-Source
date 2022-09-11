@@ -65,7 +65,7 @@ simulated function SetFlameDebugFX(bool bDebugShowSeeds, bool bDebugShowBones, b
 
 simulated event Tick(float DeltaTime)
 {
-    local int I, Idx;
+    local int Idx;
     local float FlameHeat;
 
     super.Tick(DeltaTime);
@@ -73,7 +73,7 @@ simulated event Tick(float DeltaTime)
     {
         if(bFireSpraying && ActiveFlameSpray != none)
         {
-            FlameHeat = GetRangeValueByPct(ActiveFlameSpray.MaterialHeatRange, FMin(ActiveFlameSpray.CurrentAge / ActiveFlameSpray.MaterialHeatRampTime, 1)) * 3.5;
+            FlameHeat = FlameHeatCalc();
             if(BarrelHeat < FlameHeat)
             {
                 BarrelHeat += (DeltaTime * 2);                
@@ -94,25 +94,11 @@ simulated event Tick(float DeltaTime)
                 }
             }
         }
-        if(BarrelHeat != LastBarrelHeat)
-        {
-            I = 0;
-            J0x1FD:
-
-            if(I < WeaponMICs.Length)
-            {
-                if(WeaponMICs[I] != none)
-                {
-                    WeaponMICs[I].SetScalarParameterValue('Glow_Intensity', BarrelHeat);
-                }
-                ++ I;
-                goto J0x1FD;
-            }
-        }
+        ChangeMaterial();
         LastBarrelHeat = BarrelHeat;
     }
     Idx = 0;
-    J0x295:
+    J0x199:
 
     if(Idx < PilotLights.Length)
     {
@@ -122,7 +108,33 @@ simulated event Tick(float DeltaTime)
             PilotLights[Idx].Light.SetLightProperties(PilotLights[Idx].LastLightBrightness, PilotLights[Idx].Light.LightColor, PilotLights[Idx].Light.Function);
         }
         ++ Idx;
-        goto J0x295;
+        goto J0x199;
+    }
+}
+
+simulated function float FlameHeatCalc()
+{
+    return GetRangeValueByPct(ActiveFlameSpray.MaterialHeatRange, FMin(ActiveFlameSpray.CurrentAge / ActiveFlameSpray.MaterialHeatRampTime, 1)) * 3.5;
+}
+
+simulated function ChangeMaterial()
+{
+    local int I;
+
+    if(BarrelHeat != LastBarrelHeat)
+    {
+        I = 0;
+        J0x22:
+
+        if(I < WeaponMICs.Length)
+        {
+            if(WeaponMICs[I] != none)
+            {
+                WeaponMICs[I].SetScalarParameterValue('Glow_Intensity', BarrelHeat);
+            }
+            ++ I;
+            goto J0x22;
+        }
     }
 }
 

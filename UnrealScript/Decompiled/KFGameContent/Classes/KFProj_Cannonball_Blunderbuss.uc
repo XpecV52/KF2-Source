@@ -15,6 +15,7 @@ var(Projectilve) float RollingFactor;
 var transient bool bIsRolling;
 var transient bool bReadyToDetonate;
 var bool IndicatorActive;
+var bool bHasAlreadyBounced;
 var transient float CurrentRoll;
 var export editinline ParticleSystemComponent ProjIndicatorEffects;
 /** This is the effect indicator that is played for the current user */
@@ -30,6 +31,7 @@ function Init(Vector Direction)
 simulated function PreBeginPlay()
 {
     super.PreBeginPlay();
+    bHasAlreadyBounced = false;
 }
 
 simulated function TryActivateIndicator()
@@ -76,11 +78,15 @@ function Timer_Detonate()
 
 function Detonate()
 {
-    local Vector ExplosionNormal;
+    local Vector ExplosionNormal, vExplosionOffset;
 
     if((bIsRolling && !bHasExploded) && !bHasDisintegrated)
     {
         ExplosionNormal = vect(0, 0, 1) >> Rotation;
+        vExplosionOffset.X = 0;
+        vExplosionOffset.Y = 0;
+        vExplosionOffset.Z = 10;
+        SetLocation(Location + vExplosionOffset);
         CallExplode(Location, ExplosionNormal);        
     }
     else
@@ -141,8 +147,65 @@ simulated event Tick(float DeltaTime)
 
 simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
+    local Vector VNorm;
+    local Rotator NewRotation;
+    local Vector Offset;
+    local bool bWantsClientSideDudHit;
+    local TraceHitInfo HitInfo;
+    local float TraveledDistance;
+
     bIsRolling = true;
-    super.HitWall(HitNormal, Wall, WallComp);
+    if((Instigator != none) && Instigator.Role < ROLE_Authority)
+    {
+        bWantsClientSideDudHit = true;
+    }
+    TraveledDistance = (WorldInfo.TimeSeconds - CreationTime) * Speed;
+    TraveledDistance *= TraveledDistance;
+    if(bDud || ((TraveledDistance < ArmDistSquared) || bIsTimedExplosive) || (OriginalLocation == vect(0, 0, 0)) && ArmDistSquared > float(0))
+    {
+        VNorm = (Velocity Dot HitNormal) * HitNormal;
+        Velocity = (-VNorm * WallHitDampenFactor) + ((Velocity - VNorm) * WallHitDampenFactorParallel);
+        Speed = VSize(Velocity);
+        if(!bDud || bWantsClientSideDudHit && !bClientDudHit)
+        {
+            SetIsDud(bWantsClientSideDudHit, HitNormal);
+        }
+        if(((WorldInfo.NetMode != NM_DedicatedServer) && Pawn(Wall) == none) && bHasAlreadyBounced == false)
+        {
+            bHasAlreadyBounced = true;
+            KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(Location, Instigator, HitNormal, GrenadeBounceEffectInfo, true);
+        }
+        if(Speed < MinSpeedBeforeStop)
+        {
+            ImpactedActor = Wall;
+            SetPhysics(0);
+            if(ProjEffects != none)
+            {
+                ProjEffects.SetTranslation(LandedTranslationOffset);
+            }
+            RotationRate.Yaw = 0;
+            RotationRate.Pitch = 0;
+            RotationRate.Roll = 0;
+            NewRotation = Rotation;
+            NewRotation.Pitch = 0;
+            if(ResetRotationOnStop)
+            {
+                SetRotation(NewRotation);
+            }
+            Offset.Z = LandedTranslationOffset.X;
+            SetLocation(Location + Offset);
+        }
+        if(((!Wall.bStatic && Wall.bCanBeDamaged) && (DamageRadius == float(0)) || bDamageDestructiblesOnTouch) && !CheckRepeatingTouch(Wall))
+        {
+            HitInfo.HitComponent = WallComp;
+            HitInfo.Item = -1;
+            Wall.TakeDamage(int(Damage), InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
+        }
+    }
+    if(!bDud && !bIsTimedExplosive)
+    {
+        super.HitWall(HitNormal, Wall, WallComp);
+    }
 }
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)

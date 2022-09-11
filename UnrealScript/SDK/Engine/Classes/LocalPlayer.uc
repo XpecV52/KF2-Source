@@ -463,7 +463,7 @@ function ProcessClientAuthRequest(UniqueNetId ServerUID, IpAddr ServerIP, int Se
 	{
 		if (CachedAuthInt.CreateClientAuthSession(ServerUID, ServerIP, ServerPort, bSecure, AuthTicketUID))
 		{
-			if (!CachedAuthInt.SendClientAuthResponse(AuthTicketUID))
+			if (!class'WorldInfo'.static.isEOSBuild() && !CachedAuthInt.SendClientAuthResponse(AuthTicketUID))
 			{
 				`log("LocalPlayer::ProcessClientAuthRequest: WARNING!!! Failed to send auth ticket to server");
 			}

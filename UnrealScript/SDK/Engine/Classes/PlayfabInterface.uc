@@ -194,6 +194,7 @@ native function GetUserName( string PlayfabId, int SelectedServerIndex, int Play
 native function GetPlayerList( OnlineGameSearch SearchSettings, INT SelectedServerIndex );
 native function CheckPlayerDisplayName( string PlayfabId );
 native function GetUserData( array<string> Keys, bool CheckData );
+native function QueryPlayfabClientTicket( string LobbyId );
 
 // Logout of playfab services when we get disconnected
 native function bool Logout();

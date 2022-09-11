@@ -38,7 +38,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=3
-   MagazineCapacity(0)=16
    PenetrationPower(0)=1.500000
    PenetrationPower(1)=()
    MeshIronSightFOV=77.000000
@@ -49,6 +48,7 @@ defaultproperties
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_AF2001_TEX.UI_WeaponSelect_AF2011'
    DualClass=Class'kfgamecontent.KFWeap_Pistol_DualAF2011'
+   MagazineCapacity(0)=16
    AmmoCost(0)=2
    AmmoCost(1)=()
    SpareAmmoCapacity(0)=288

@@ -99,19 +99,10 @@ var int ListenAuthTicketUID;
 /** The number of times listen host auth has been retried */
 var int ListenAuthRetryCount;
 
-struct TimeoutClientInfo
-{
-	var UniqueNetId	ClientUID;
-	var int	LastControlTime;
-};
-
-var array<TimeoutClientInfo> ClientsTimeoutInfo;
-
 function PostBeginPlay()
 {
 	OnlineSub = Class'GameEngine'.static.GetOnlineSubsystem();
 	InitAuthHooks();
-	SetTimer(1.0f , true, nameof(TimeoutTick));
 }
 
 function Destroyed()
@@ -731,19 +722,6 @@ event PreLogin(string Options, string Address, const UniqueNetId UniqueId, bool 
 							{
 								bFound = True;
 								break;
-							}
-						}
-						
-						if (!class'WorldInfo'.static.IsConsoleBuild())
-						{
-							// Look for the UID in the recent connections
-							for(i=0 ; i< ClientsTimeoutInfo.length; i++)
-							{
-								if(ClientsTimeoutInfo[i].ClientUID == UniqueID)
-								{
-									bFound = true;		
-									break;
-								}
 							}
 						}
 					}
@@ -1701,68 +1679,6 @@ function bool IsPendingAuth(UniqueNetId PlayerUID)
 	return False;
 }
 
-function AddID(const UniqueNetID UniqueID)
-{
-	local int i;
-	local bool bFound;
-	local TimeoutClientInfo NewClient;
-
-	for( i=0 ; i< ClientsTimeoutInfo.length; i++)
-	{
-		if(ClientsTimeoutInfo[i].ClientUID == UniqueID)
-		{
-			bFound = true;
-		}
-	}
-
-	if(!bFound)
-	{
-		NewClient.ClientUID = UniqueID;
-		NewClient.LastControlTime = 15;
-		ClientsTimeoutInfo.AddItem(NewClient);
-	}
-}
-
-function TimeoutTick()
-{
-	local int i, CurPort;
-	local UniqueNetId CurrentClientUID, TestClientUID;
-	local IpAddr CurIP;
-	local Player CurConn;
-
-	if(ClientsTimeoutInfo.length <= 0)
-	{
-		return;
-	}
-
-	foreach WorldInfo.AllClientConnections(CurConn, CurIP, CurPort)
-	{
-		if(CurConn.Actor != none && CurConn.Actor.PlayerReplicationInfo != none)
-		{
-			CurrentClientUID = CurConn.Actor.PlayerReplicationInfo.UniqueId;
-			for( i=0 ; i < ClientsTimeoutInfo.length ; i++)
-			{
-				TestClientUID = ClientsTimeoutInfo[i].ClientUID;
-				if(CurrentClientUID == TestClientUID)
-				{
-					ClientsTimeoutInfo[i].LastControlTime = 15;
-					break;
-				}
-			}
-		}
-	}
-	
-	for( i=ClientsTimeoutInfo.length-1 ; i >= 0 ; i--)
-	{
-		ClientsTimeoutInfo[i].LastControlTime--;
-		if(ClientsTimeoutInfo[i].LastControlTime <= 0)
-		{
-			TestClientUID = ClientsTimeoutInfo[i].ClientUID;
-			`log("Removed Connection with UID:"@Class'OnlineSubsystem'.static.UniqueNetIdToString(TestClientUID));
-			ClientsTimeoutInfo.Remove(i, 1);
-		}
-	}
-}
 
 defaultproperties
 {

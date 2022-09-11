@@ -54,7 +54,6 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
-    MagazineCapacity=1
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=70
     MeshIronSightFOV=52
@@ -67,6 +66,7 @@ defaultproperties
     AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_Crossbow_TEX.UI_WeaponSelect_Crossbow'
+    MagazineCapacity=1
     SpareAmmoCapacity=34
     InitialSpareMags=13
     AmmoPickupScale=3

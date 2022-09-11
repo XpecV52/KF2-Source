@@ -22,7 +22,6 @@ defaultproperties
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     InventorySize=2
-    MagazineCapacity=8
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=60
@@ -33,6 +32,7 @@ defaultproperties
     GroupPriority=20
     WeaponSelectTexture=Texture2D'WEP_UI_M1911_TEX.UI_WeaponSelect_M1911Colt'
     DualClass=Class'KFWeap_Pistol_DualColt1911'
+    MagazineCapacity=8
     SpareAmmoCapacity=136
     InitialSpareMags=7
     AmmoPickupScale=2

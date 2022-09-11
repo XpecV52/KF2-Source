@@ -215,8 +215,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedCrawler.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedCrawler.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedCrawler.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedCrawler.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedCrawler.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedCrawler.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedCrawler.PowerUpAkSoundComponent'
     DamageRecoveryTimeHeavy=0.75
     Mass=50
     GroundSpeed=400
@@ -265,8 +267,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedCrawler.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedCrawler.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedCrawler.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedCrawler.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedCrawler.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedCrawler.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedCrawler.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedCrawler.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedCrawler.HeadshotAkComponent0'
     bBlocksNavigation=true
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=40

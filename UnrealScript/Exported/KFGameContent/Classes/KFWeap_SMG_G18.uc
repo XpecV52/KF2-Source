@@ -318,12 +318,12 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
    InventorySize=8
-   MagazineCapacity(0)=33
    MeshFOV=96.000000
    PlayerIronSightFOV=64.000000
    QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_RiotShield_TEX.UI_WeaponSelect_RiotShield'
+   MagazineCapacity(0)=33
    SpareAmmoCapacity(0)=462
    InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True

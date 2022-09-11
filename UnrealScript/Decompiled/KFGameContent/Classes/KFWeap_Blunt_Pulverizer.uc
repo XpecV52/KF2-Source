@@ -352,9 +352,9 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
-    MagazineCapacity=5
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Pulverizer'
+    MagazineCapacity=5
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=15
     WeaponFireSnd=/* Array type was not detected. */

@@ -381,7 +381,6 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 function ModifyHealth( out int InHealth )
 {
 	local float TempHealth;
-
 	TempHealth = InHealth;
 
 	if( IsFortitudeActive() )
@@ -536,18 +535,31 @@ simulated function float GetSirenScreamStrength()
 
 function NotifyZedTimeStarted()
 {
-	local Pawn P;
+	local Pawn OtherPawn;
+	local KFPlayerController KFPC;
+	local KFPowerUp PowerUp;
 	local KFAIController KFAIC;
 	local bool bScaredAI;
+	local bool bCannotBeHealed;
 
 	if( IsRageActive() && OwnerPawn != none )
 	{
-		OwnerPawn.Health += OwnerPawn.HealthMax * GetSkillValue( PerkSkills[EBerserkerRage] );
-		OwnerPawn.Health = Min( OwnerPawn.Health, OwnerPawn.HealthMax );
-
-		foreach WorldInfo.AllPawns( class'Pawn', P, OwnerPawn.Location, static.GetRageRadius() )
+		KFPC = KFPlayerController(OwnerPawn.Controller);
+		if( KFPC != none )
 		{
-			KFAIC = KFAIController(P.Controller);
+			PowerUp = KFPC.GetPowerUp();
+			bCannotBeHealed = PowerUp != none && !PowerUp.CanBeHealedWhilePowerUpIsActive;
+		}
+		
+		if( bCannotBeHealed == false )
+		{
+			OwnerPawn.Health += OwnerPawn.HealthMax * GetSkillValue( PerkSkills[EBerserkerRage] );
+			OwnerPawn.Health = Min( OwnerPawn.Health, OwnerPawn.HealthMax );
+		}
+
+		foreach WorldInfo.AllPawns( class'Pawn', OtherPawn, OwnerPawn.Location, static.GetRageRadius() )
+		{
+			KFAIC = KFAIController(OtherPawn.Controller);
 			if( KFAIC != none )
 			{
 				KFAIC.DoPauseAI( static.GetRageFleeDuration(), true, false, true);

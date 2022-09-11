@@ -25,12 +25,12 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
    InventorySize=6
-   MagazineCapacity(0)=1
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=73.000000
    FastZoomOutTime=0.200000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
+   MagazineCapacity(0)=1
    SpareAmmoCapacity(0)=26
    InitialSpareMags(0)=9
    AmmoPickupScale(0)=2.000000

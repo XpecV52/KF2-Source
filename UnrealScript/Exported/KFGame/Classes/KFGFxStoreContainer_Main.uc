@@ -19,6 +19,23 @@ var localized string LookUpOnMarketString;
 var localized string ThankYouString;
 var localized string FeaturedString;
 var localized string MarketSFXString;
+var localized string WeaponBundlesString;
+var localized string CharacterBundlesString;
+var localized string OutfitBundlesString;
+var localized string TicketCratesUSBBundlesString;
+var localized string CosmeticBundlesString;
+var localized string WeaponSkinBundlesString;
+var localized string HeadshotFxBundlesString;
+var localized string SelectWeaponSkinsString;
+var localized string SelectCosmeticsString;
+var localized string SelectEmotesString;
+var localized string SelectKeysAndTicketsString;
+
+var array<int> FilterIndexConversion;
+var array<int> ItemTypeIndexConversion;
+var array<int> MarketItemTypeIndexConversion;
+
+var array<string> XboxFilterExceptions;
 
 var array<int> FeaturedItemIDs;
 var array<int> ConsoleFeaturedItemIDs;
@@ -29,20 +46,21 @@ var KFGFxMenu_Store StoreMenu;
 
 enum EStore_Filter
 {
-    EStore_WeaponSkins,
-	EStore_Cosmetics,
-	EStore_Consumables,
-	EStore_Items,
-	EStore_CraftingMats,
-	EStore_Emotes,
-	EStore_SFX,
-	EStore_Market_WeaponSkins,
-	EStore_Market_Cosmetics,
-	EStore_Market_Items,
-	EStore_Market_CraftingMats,
-	EStore_Market_Consumables,
-	EStore_Market_Emotes,
-	EStore_Market_SFX,
+	EStore_WeaponBundles,			//EStore_WeaponSkins,
+	EStore_CharactersBundles,		//EStore_Cosmetics,
+	EStore_OutfitBundles,			//EStore_Consumables,
+	EStore_TicketCratesUSBBundles,	//EStore_Items,
+	EStore_CosmeticBundles,			//EStore_CraftingMats,
+	EStore_WeaponSkinBundles,		//EStore_Emotes,
+	EStore_HeadshotFXBundles,		//EStore_SFX,
+	EStore_SelectWeaponSkins,		//EStore_Market_WeaponSkins,
+	EStore_SelectCosmetics,			//EStore_Market_Cosmetics,
+	EStore_SelectEmotes,			//EStore_Market_Items,
+	EStore_SelectKeysAndTickets,	//EStore_Market_CraftingMats,
+	EStore_MarketWeaponSkins,		//EStore_Market_Consumables,
+	EStore_MarketCosmetics,			//EStore_Market_Emotes,
+	EStore_MarketEmotes,			//EStore_Market_SFX,
+	EStore_MarketCratesAndUSB,
 	EStore_Featured,
 	EStore_All,
 	EStore_Max
@@ -67,16 +85,23 @@ function LocalizeText()
 	LocalizedObject.SetString("back", 				Class'KFCommon_LocalizedStrings'.default.BackString); 
 	LocalizedObject.SetString("featured",			FeaturedString);
 	LocalizedObject.SetString("all",				class'KFGFxMenu_Inventory'.default.AllString);
-	LocalizedObject.SetString("weaponSkin",			WeaponSkinsRotationString);
-	LocalizedObject.SetString("cosmetics",			class'KFGFxMenu_Inventory'.default.CosmeticString);
-	LocalizedObject.SetString("emotes",				Class'KFGFxMenu_Inventory'.default.EmotesString);
-	LocalizedObject.SetString("items",				class'KFGFxMenu_Inventory'.default.ItemString);
-	LocalizedObject.SetString("marketWeaponSkins",	WeaponSkinsString);
-	LocalizedObject.SetString("marketCosmetics",	MarketCosmeticsString);
-	LocalizedObject.SetString("marketEmotes",		MarketEmotesString);
-	LocalizedObject.SetString("marketConsumables",	MarketConsumablesString);
-	LocalizedObject.SetString("sfx",				Class'KFCommon_LocalizedStrings'.default.SpecialEffectsString);
-	LocalizedObject.SetString("marketSFX",			MarketSFXString);
+
+	LocalizedObject.SetString("weaponBundles",				WeaponBundlesString);
+	LocalizedObject.SetString("characterBundles",			CharacterBundlesString);
+	LocalizedObject.SetString("outfitBundles",				OutfitBundlesString);
+	LocalizedObject.SetString("ticketCratesUSBBundles",		TicketCratesUSBBundlesString);
+	LocalizedObject.SetString("cosmeticBundles",			CosmeticBundlesString);
+	LocalizedObject.SetString("weaponSkinBundles",			WeaponSkinBundlesString);
+	LocalizedObject.SetString("headshotFxBundles",			HeadshotFxBundlesString);
+	LocalizedObject.SetString("selectWeaponSkins",			SelectWeaponSkinsString);
+	LocalizedObject.SetString("selectCosmetics",			SelectCosmeticsString);
+	LocalizedObject.SetString("selectEmotes",				SelectEmotesString);
+	LocalizedObject.SetString("selectKeysAndTickets",		SelectKeysAndTicketsString);
+	LocalizedObject.SetString("marketWeaponSkins",			WeaponSkinsString);
+	LocalizedObject.SetString("marketCosmetics",			MarketCosmeticsString);
+	LocalizedObject.SetString("marketEmotes",				MarketEmotesString);
+	LocalizedObject.SetString("marketCratesAndUSBSs",		MarketConsumablesString);
+
 	
 	LocalizedObject.SetString("thankYouString",		ThankYouString);
 	
@@ -90,16 +115,26 @@ function TweakFiltersVisibility()
 	{
 		// Hide Epic unrelated filters
 		// Filter button names declared in StoreMainContainer.as
-		GetObject("weaponSkinsButton").SetVisible(false);
-		GetObject("cosmeticsButton").SetVisible(false);
-		GetObject("emotesButton").SetVisible(false);
-		GetObject("consumablesButton").SetVisible(false);
-		GetObject("sfxButton").SetVisible(false);
+
+		//GetObject("featuredButton").SetVisible(true);
+		//GetObject("allButton").SetVisible(true);
+
+		//GetObject("weaponBundlesButton").SetVisible(true);
+		//GetObject("characterBundlesButton").SetVisible(true);
+		//GetObject("outfitBundlesButton").SetVisible(true);
+		//GetObject("ticketCratesUSBBundlesButton").SetVisible(true);
+		//GetObject("cosmeticBundlesButton").SetVisible(true);
+		//GetObject("weaponSkinBundlesButton").SetVisible(true);
+		//GetObject("headshotFxBundlesButton").SetVisible(true);
+
+		GetObject("selectWeaponSkinsButton").SetVisible(false);
+		GetObject("selectCosmeticsButton").SetVisible(false);
+		GetObject("selectEmotesButton").SetVisible(false);
+		GetObject("selectKeysAndTicketsButton").SetVisible(false);
 		GetObject("marketWeaponSkinsButton").SetVisible(false);
 		GetObject("marketCosmeticsButton").SetVisible(false);
-		GetObject("marketConsumableButton").SetVisible(false);
 		GetObject("marketEmotesButton").SetVisible(false);
-		GetObject("marketSFXButton").SetVisible(false);
+		GetObject("marketCratesAndUSBsButton").SetVisible(false);
 	}
 }
 //@SABER_EGS_END
@@ -110,42 +145,23 @@ function UpdateFilter(int NewFilterIndex)
 
 	switch (NewFilterIndex)
 	{
-		case 0:
-			NewFilter = EStore_Featured;
-			break;
-		case 1:
-			NewFilter = EStore_All;
-			break;
-		case 2:
-			NewFilter = EStore_WeaponSkins;
-			break;
-		case 3:
-			NewFilter = EStore_Cosmetics;
-			break;
-		case 4:
-			NewFilter = EStore_Consumables;
-			break;
-		case 5:
-			NewFilter = EStore_Emotes;
-			break;
-		case 6:
-			NewFilter = EStore_SFX;
-			break;
-		case 7:
-			NewFilter = EStore_Market_WeaponSkins;
-			break;	
-		case 8:
-			NewFilter = EStore_Market_Cosmetics;
-			break;
-		case 9:
-			NewFilter = EStore_Market_Consumables;
-			break;
-		case 10:
-			NewFilter = EStore_Market_Emotes;
-			break;
-		case 11:
-			NewFilter = EStore_Market_SFX;
-			break;
+		case 0:			NewFilter = EStore_Featured;				break;
+		case 1:			NewFilter = EStore_All;						break;
+		case 2:			NewFilter = EStore_WeaponBundles;			break;
+		case 3:			NewFilter = EStore_CharactersBundles;		break;
+		case 4:			NewFilter = EStore_OutfitBundles;			break;
+		case 5:			NewFilter = EStore_TicketCratesUSBBundles;	break;
+		case 6:			NewFilter = EStore_CosmeticBundles;			break;
+		case 7:			NewFilter = EStore_WeaponSkinBundles;		break;	
+		case 8:			NewFilter = EStore_HeadshotFXBundles;		break;
+		case 9:			NewFilter = EStore_SelectWeaponSkins;		break;
+		case 10:		NewFilter = EStore_SelectCosmetics;			break;
+		case 11:		NewFilter = EStore_SelectEmotes;			break;
+		case 12:		NewFilter = EStore_SelectKeysAndTickets;	break;
+		case 13:		NewFilter = EStore_MarketWeaponSkins;		break;
+		case 14:		NewFilter = EStore_MarketCosmetics;			break;
+		case 15:		NewFilter = EStore_MarketEmotes;			break;
+		case 16:		NewFilter = EStore_MarketCratesAndUSB;		break;
 	}
 
 	if(CurrentStoreFilter != NewFilter)
@@ -161,6 +177,7 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 	local GFxObject DataProvider;
 	local Array<ItemProperties> FilteredItemsArray;
 	local ItemProperties TempItemProps; //since we can't push elements of an array
+	local bool AlreadyFiltered;
 
 	ItemCount = 0;
 	DataProvider = CreateArray();
@@ -173,9 +190,15 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 			continue;
 		}
 
-		if(CurrentStoreFilter < EStore_Market_WeaponSkins || CurrentStoreFilter == EStore_All)
+		// Skip exceptions
+		if(!IsItemValidForThisPlatform(StoreItemArray[i].Name))
 		{
-			if(StoreItemArray[i].Price != "" && IsFilterSame(StoreItemArray[i].Type, CurrentStoreFilter))
+			continue;
+		}
+
+		if((CurrentStoreFilter > EStore_HeadshotFXBundles && CurrentStoreFilter < EStore_MarketWeaponSkins) || CurrentStoreFilter == EStore_All)
+		{
+			if(StoreItemArray[i].Price != "" && IsItemTypeIndexSame(StoreItemArray[i].Type, CurrentStoreFilter))
 			{
 				TempItemProps = StoreItemArray[i];
 				FilteredItemsArray[ItemCount]=TempItemProps;
@@ -211,7 +234,16 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 		}
 		else
 		{
-			if(StoreItemArray[i].Price == "" && IsFilterSame(StoreItemArray[i].Type, CurrentStoreFilter) && StoreItemArray[i].Marketable)
+			AlreadyFiltered = false;
+			if(StoreItemArray[i].FilterIdIndex > 0 && IsFilterIndexSame(StoreItemArray[i].FilterIdIndex, CurrentStoreFilter))
+			{
+				TempItemProps = StoreItemArray[i];
+				FilteredItemsArray[ItemCount] = TempItemProps;
+				ItemCount++;
+				AlreadyFiltered = true;
+			}
+
+			if(!AlreadyFiltered && StoreItemArray[i].Price == "" && IsMarketItemTypeIndexSame(StoreItemArray[i].Type, CurrentStoreFilter) && StoreItemArray[i].Marketable)
 			{
 				TempItemProps = StoreItemArray[i];
 				FilteredItemsArray[ItemCount] = TempItemProps;
@@ -254,7 +286,6 @@ function SendItems(const out Array<ItemProperties> StoreItemArray)
 				ItemCount++;
 			}
 		}
-		
 	}
 
 	if (CurrentStoreFilter == EStore_Featured)
@@ -316,22 +347,54 @@ function GFxObject CreateStoreItem(ItemProperties StoreItem)
 	return DataObject;
 }
 
-function bool IsFilterSame(ItemType FirstType, EStore_Filter SecondType)
+function bool IsItemTypeIndexSame(ItemType FirstType, EStore_Filter SecondType)
 {	
 	if (SecondType == EStore_All)
 	{
 		return true;
 	}
 
-	if(SecondType < EStore_Market_WeaponSkins)
+	return ItemTypeIndexConversion[int(FirstType)] == int(SecondType);
+}
+
+function bool IsMarketItemTypeIndexSame(ItemType FirstType, EStore_Filter SecondType)
+{	
+	if (SecondType == EStore_All)
 	{
-		return int(FirstType) == int(SecondType);
+		return true;
 	}
-	else
+	
+	return MarketItemTypeIndexConversion[int(FirstType)] == int(SecondType);
+}
+
+function bool IsFilterIndexSame(int FilterIndexId, EStore_Filter SecondType)
+{	
+	if (SecondType == EStore_All)
 	{
-		return int(FirstType) == ( SecondType - EStore_Market_WeaponSkins );	
+		return true;
 	}
-	return false;
+
+	return FilterIndexConversion[FilterIndexId] == int(SecondType);
+}
+
+function bool IsItemValidForThisPlatform(string ItemName)
+{
+	local int index;
+
+	// Check only if the build runs in the Xbox
+	if( class'WorldInfo'.static.IsConsoleBuild(CONSOLE_Durango) )
+	{
+		for(index = 0 ; index<XboxFilterExceptions.length ; index++)
+		{
+			// This item is not valid for Xbox
+			if(XboxFilterExceptions[index] == ItemName)
+			{
+				return false;
+			}
+		}
+	}
+
+	return true;
 }
 
 defaultproperties
@@ -344,24 +407,60 @@ defaultproperties
    ThankYouString="Thank you for your purchase! It will help us in developing new items, maps, weapons, zeds, and game modes for future updates."
    FeaturedString="Featured"
    MarketSFXString="Market SFX"
-   FeaturedItemIDs(0)=8178
-   FeaturedItemIDs(1)=8183
-   FeaturedItemIDs(2)=8184
-   FeaturedItemIDs(3)=8185
-   FeaturedItemIDs(4)=8186
-   FeaturedItemIDs(5)=8187
-   FeaturedItemIDs(6)=8188
-   FeaturedItemIDs(7)=8189
-   FeaturedItemIDs(8)=8190
-   ConsoleFeaturedItemIDs(0)=8181
-   ConsoleFeaturedItemIDs(1)=8183
-   ConsoleFeaturedItemIDs(2)=8184
-   ConsoleFeaturedItemIDs(3)=8185
-   ConsoleFeaturedItemIDs(4)=8186
-   ConsoleFeaturedItemIDs(5)=8187
-   ConsoleFeaturedItemIDs(6)=8188
-   ConsoleFeaturedItemIDs(7)=8189
-   ConsoleFeaturedItemIDs(8)=8190
+   WeaponBundlesString="Weapon Bundles"
+   CharacterBundlesString="Character Bundles"
+   OutfitBundlesString="Outfit Bundles"
+   TicketCratesUSBBundlesString="Ticket/Crates/USB Bundles"
+   CosmeticBundlesString="Cosmetic Bundles"
+   WeaponSkinBundlesString="Weapon Skin Bundles"
+   HeadshotFxBundlesString="Headshot FX Bundles"
+   SelectWeaponSkinsString="Select Weapon Skins"
+   SelectCosmeticsString="Select Cosmetics"
+   SelectEmotesString="Select Emotes"
+   SelectKeysAndTicketsString="Select Keys and Tickets"
+   FilterIndexConversion(0)=-1
+   FilterIndexConversion(1)=0
+   FilterIndexConversion(2)=1
+   FilterIndexConversion(3)=2
+   FilterIndexConversion(4)=3
+   FilterIndexConversion(5)=5
+   FilterIndexConversion(6)=6
+   FilterIndexConversion(7)=4
+   ItemTypeIndexConversion(0)=7
+   ItemTypeIndexConversion(1)=8
+   ItemTypeIndexConversion(2)=10
+   ItemTypeIndexConversion(3)=-1
+   ItemTypeIndexConversion(4)=-1
+   ItemTypeIndexConversion(5)=9
+   ItemTypeIndexConversion(6)=-1
+   ItemTypeIndexConversion(7)=-1
+   MarketItemTypeIndexConversion(0)=11
+   MarketItemTypeIndexConversion(1)=12
+   MarketItemTypeIndexConversion(2)=-1
+   MarketItemTypeIndexConversion(3)=-1
+   MarketItemTypeIndexConversion(4)=14
+   MarketItemTypeIndexConversion(5)=13
+   MarketItemTypeIndexConversion(6)=-1
+   MarketItemTypeIndexConversion(7)=-1
+   XboxFilterExceptions(0)="Wasteland Bundle"
+   FeaturedItemIDs(0)=8462
+   FeaturedItemIDs(1)=8463
+   FeaturedItemIDs(2)=8464
+   FeaturedItemIDs(3)=8465
+   FeaturedItemIDs(4)=8466
+   FeaturedItemIDs(5)=8468
+   FeaturedItemIDs(6)=8467
+   FeaturedItemIDs(7)=8469
+   FeaturedItemIDs(8)=7619
+   ConsoleFeaturedItemIDs(0)=8462
+   ConsoleFeaturedItemIDs(1)=8463
+   ConsoleFeaturedItemIDs(2)=8464
+   ConsoleFeaturedItemIDs(3)=8465
+   ConsoleFeaturedItemIDs(4)=8466
+   ConsoleFeaturedItemIDs(5)=8468
+   ConsoleFeaturedItemIDs(6)=8467
+   ConsoleFeaturedItemIDs(7)=8469
+   ConsoleFeaturedItemIDs(8)=7783
    MaxFeaturedItems=5
    CurrentStoreFilter=EStore_Featured
    Name="Default__KFGFxStoreContainer_Main"

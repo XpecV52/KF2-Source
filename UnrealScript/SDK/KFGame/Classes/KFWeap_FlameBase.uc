@@ -123,7 +123,7 @@ simulated function SetFlameDebugFX(bool bDebugShowSeeds, bool bDebugShowBones, b
  */
 simulated event Tick(float DeltaTime)
 {
-	local int i, Idx;
+	local int Idx;
 	local float FlameHeat;
 
 	super.Tick(DeltaTime);
@@ -133,7 +133,7 @@ simulated event Tick(float DeltaTime)
 	{
         if( bFireSpraying && ActiveFlameSpray != None)
     	{
-        	FlameHeat = GetRangeValueByPct(ActiveFlameSpray.MaterialHeatRange, FMin(ActiveFlameSpray.CurrentAge / ActiveFlameSpray.MaterialHeatRampTime, 1.f)) * 3.5;
+        	FlameHeat = FlameHeatCalc();
 
             // Blend the heat in
             if( BarrelHeat < FlameHeat )
@@ -157,18 +157,7 @@ simulated event Tick(float DeltaTime)
                 }
             }
         }
-
-        if( BarrelHeat != LastBarrelHeat )
-        {
-        	for( i = 0; i < WeaponMICs.Length; ++i )
-        	{
-        		if( WeaponMICs[i] != none )
-        		{
-					WeaponMICs[i].SetScalarParameterValue('Glow_Intensity', BarrelHeat);
-				}
-			}
-        }
-
+		ChangeMaterial();
         LastBarrelHeat = BarrelHeat;
 	}
 
@@ -181,6 +170,28 @@ simulated event Tick(float DeltaTime)
  			PilotLights[Idx].Light.SetLightProperties( PilotLights[Idx].LastLightBrightness, PilotLights[Idx].Light.LightColor, PilotLights[Idx].Light.Function );
  		}
  	}
+}
+
+
+simulated function float FlameHeatCalc()
+{
+	return GetRangeValueByPct(ActiveFlameSpray.MaterialHeatRange, FMin(ActiveFlameSpray.CurrentAge / ActiveFlameSpray.MaterialHeatRampTime, 1.f)) * 3.5;
+}
+
+simulated function ChangeMaterial()
+{
+	local int i;
+
+    if( BarrelHeat != LastBarrelHeat )
+    {
+    	for( i = 0; i < WeaponMICs.Length; ++i )
+    	{
+    		if( WeaponMICs[i] != none )
+    		{
+				WeaponMICs[i].SetScalarParameterValue('Glow_Intensity', BarrelHeat);
+			}
+		}
+    }
 }
 
 /** Overridden to clean up spray actors */

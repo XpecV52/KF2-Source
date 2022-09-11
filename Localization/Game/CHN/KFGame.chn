@@ -46,11 +46,12 @@ YesString="是"
 NoString="否"
 TeamSwappedString="你的队伍已被交换"
 
-MicrophonePopupTitleString="麦克风设置"
-MicrophonePopupSelectDeviceString="选择"
+
+MicrophonePopupTitleString="配置麦克风"
+MicrophonePopupSelectDeviceString="选择设备"
 MicrophonePopupVolumeString="麦克风音量"
 MicrophonePopupCheckString="检查麦克风"
-MicrophonePopupStopString="接受"
+MicrophonePopupStopString="停止"
 MicrophonePopupRefreshString="刷新"
 
 FriendsListPopupTitleString="选择要邀请的好友"
@@ -61,7 +62,8 @@ FriendsListPopupLinkButonString="关联帐号"
 ReturnString="返回"
 
 InvitePopupTitleString="大厅邀请"
-InvitePopupTextString="邀请你加入大厅"
+InvitePopupTextString=" 邀请你加入大厅"
+
 
 CancelConnectionString="取消加载"
 
@@ -169,6 +171,9 @@ FailedSearchString="比赛匹配无法找到与提供之选项匹配的比赛。
 BrowseServersString="浏览服务器"
 HasInvitedToGameString=" 邀请你加入游戏"
 JoinGameString="加入游戏？"
+
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="物品服务器连接"
 
 [KFGFxObject_Menu]
 LeavePartyTitleString="离开小队"
@@ -949,6 +954,17 @@ MarketCosmeticsString="市场装饰品"
 MarketEmotesString="市场表情"
 MarketSFXString="商店SFX"
 ThankYouString="感谢你的购买！这会帮我们开发新的物品，地图，武器，丧尸和未来更新的新游戏模式。"
+WeaponBundlesString="武器包"
+CharacterBundlesString="角色包"
+OutfitBundlesString="服装包"
+TicketCratesUSBBundlesString="奖券/供应箱/USB物品包"
+CosmeticBundlesString="装饰品包"
+WeaponSkinBundlesString="武器皮肤包"
+HeadshotFxBundlesString="爆头特效包"
+SelectWeaponSkinsString="选择武器皮肤"
+SelectCosmeticsString="选择装饰品"
+SelectEmotesString="选择表情"
+SelectKeysAndTicketsString="选择钥匙和奖券"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="在市场中寻找"
@@ -1468,6 +1484,7 @@ FailedDropInventoryMessage="你不能把它丢在这里"
 ReceivedGrenadesFromMessage="你收到了来自此人的手榴弹："
 GaveGrenadesToMessage="你把手榴弹给了："
 SharingContentString="正在分享内容"
+PowerUpHellishRageActivatedMessage="地狱狂怒：+伤害，+速度，燃烧效果，免疫治愈"
 HeadShotAddedString="%x 爆头 - %y% 额外伤害！"
 HeadShotMaxString="爆头！%x% 额外伤害！"
 HeadShotResetString="打偏的爆头。普通伤害！"
@@ -1538,6 +1555,7 @@ PlayerClotGrabWarningMessage="杀死丧尸，冲出重围！"
 
 UseMinigameMessage="激活"
 UseMinigameGeneratorMessage="激活发生器"
+UsePowerUpMessage="牺牲生命"
 DoshActivateMessage="行动消耗"
 EMPGrabWarningMessage="*** ！无法动弹！***"
 [KFLocalMessage_ServerNotification]
@@ -1933,7 +1951,7 @@ AirborneAgent="丧尸时间 - 悬浮剂"
 AirborneAgentDescription="你在丧尸时间释放治愈气体，治愈附近的队员。"
 
 Sedative="丧尸时间 - 丧尸狂"
-SedativeDescription="在丧尸时间中，使用神射武器攻击丧尸可以使其速度下降 30%，并且造成大量中毒伤害。"
+SedativeDescription="丧尸时间期间，你的神射武器伤害提高30%，你的击杀会产生剧毒爆炸，可以伤害丧尸并治愈玩家。"
 
 
 EXPAction1="造成医疗兵武器伤害"
@@ -2220,6 +2238,9 @@ MadmanDescription="在丧尸时间中，你的所有武器射击速度提升 3 �
 
 IncapMaster="丧尸时间 - 禁闭"
 IncapMasterDescription="在丧尸时间中，你的所有武器可眩晕丧尸。"
+
+[KFPowerUp_HellishRage]
+PowerUpName="地狱狂怒"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2748,6 +2769,20 @@ AllCompleteRewardDescriptionString="太空海盗 | 太空猴子背包"
 
 ChanceDropDescriptionStrings[0]="夏季奖劵"
 ChanceDropDescriptionStrings[1]="夏季金奖券"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="炼狱军团",DescriptionString="在任意地图或模式击杀 2000 个丧尸")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周入侵",DescriptionString="完成每周地狱标记站")
+SpecialEventObjectiveInfoList[2]=(TitleString="不惜代价",DescriptionString="从地狱标记站的方尖碑上获得地狱狂怒10次")
+SpecialEventObjectiveInfoList[3]=(TitleString="恶魔杀手",DescriptionString="在地狱标记站消灭 600 个丧尸")
+SpecialEventObjectiveInfoList[4]=(TitleString="无穷混乱",DescriptionString="在困难无尽或以上难度的地狱标记站中成功抵御 15 波丧尸")
+
+AllCompleteRewardDescriptionString="万圣节 | 巫毒背包"
+
+ChanceDropDescriptionStrings[0]="万圣节奖券"
+ChanceDropDescriptionStrings[1]="万圣节金奖券"
 
 ;============================================
 ; Daily Localization
@@ -3346,6 +3381,9 @@ DisplayName="生化实验室"
 
 [KF-Desolation KFMapSummary]
 DisplayName="废墟"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="地狱标记站"
 
 [KFMapInfo]
 ; defaults

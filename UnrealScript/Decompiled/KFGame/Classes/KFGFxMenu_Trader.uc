@@ -106,7 +106,7 @@ struct native SItemInformation
     var int MaxSecondaryAmmo;
     var int SellPrice;
     var int SecondaryAmmoCount;
-    var byte MagazineCapacity;
+    var int MagazineCapacity;
     var int AutoFillDosh;
     var int AmmoPricePerMagazine;
     var STraderItem DefaultItem;

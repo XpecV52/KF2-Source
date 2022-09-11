@@ -38,6 +38,24 @@ simulated function AltFireMode()
     StartFire(1);
 }
 
+simulated function BeginFire(byte FireModeNum)
+{
+    local bool bStoredAutoReload;
+
+    if((FireModeNum == 2) && !CanReload())
+    {
+        bStoredAutoReload = bCanceledAltAutoReload;
+        bCanceledAltAutoReload = false;
+        if(CanAltAutoReload())
+        {
+            TryToAltReload();
+            return;
+        }
+        bCanceledAltAutoReload = bStoredAutoReload;
+    }
+    super(KFWeapon).BeginFire(FireModeNum);
+}
+
 function DropFrom(Vector StartLocation, Vector StartVelocity)
 {
     local DroppedPickup P;
@@ -239,7 +257,7 @@ reliable server function ServerSendToAltReload()
 
 reliable server function ServerSetAltAmmoCount(byte Amount)
 {
-    AmmoCount[1] = byte(Min(Amount, MagazineCapacity[1]));
+    AmmoCount[1] = Min(Amount, MagazineCapacity[1]);
 }
 
 simulated function bool CanOverrideMagReload(byte FireModeNum)
@@ -375,7 +393,7 @@ simulated state AltReloading extends Reloading
         global.PerformReload(1);
         if(Instigator.IsLocallyControlled() && Role < ROLE_Authority)
         {
-            ServerSetAltAmmoCount(AmmoCount[1]);
+            ServerSetAltAmmoCount(byte(AmmoCount[1]));
         }
         bCanceledAltAutoReload = false;
     }
@@ -412,8 +430,6 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=2
     InventorySize=6
-    MagazineCapacity[0]=30
-    MagazineCapacity[1]=1
     MeshFOV=65
     MeshIronSightFOV=45
     PlayerIronSightFOV=70
@@ -422,6 +438,8 @@ defaultproperties
     GroupPriority=50
     WeaponSelectTexture=Texture2D'wep_ui_m16_m203_tex.UI_WeaponSelect_M16M203'
     SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
+    MagazineCapacity[0]=30
+    MagazineCapacity[1]=1
     SpareAmmoCapacity[0]=270
     SpareAmmoCapacity[1]=13
     InitialSpareMags[0]=3

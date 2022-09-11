@@ -53,7 +53,7 @@ simulated event Tick(float DeltaTime)
         if(bUpdateServerTargets && Role < ROLE_Authority)
         {
             I = 0;
-            J0x160:
+            J0x15E:
 
             if(I < 6)
             {
@@ -66,7 +66,7 @@ simulated event Tick(float DeltaTime)
                     StaticLockedTargets[I] = none;
                 }
                 ++ I;
-                goto J0x160;
+                goto J0x15E;
             }
             ServerSyncLockedTargets(StaticLockedTargets);
         }
@@ -435,13 +435,13 @@ defaultproperties
     bHasFireLastAnims=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=8
-    MagazineCapacity=6
     MeshIronSightFOV=65
     PlayerIronSightFOV=70
     FastZoomOutTime=0.2
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_SeekerSix_TEX.UI_WeaponSelect_SeekerSix'
+    MagazineCapacity=6
     SpareAmmoCapacity=84
     InitialSpareMags=3
     AmmoPickupScale=2

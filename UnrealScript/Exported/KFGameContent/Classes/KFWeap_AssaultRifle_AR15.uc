@@ -25,13 +25,13 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    BurstAmount=3
    InventorySize=4
-   MagazineCapacity(0)=20
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=70.000000
    IronSightPosition=(X=7.000000,Y=0.000000,Z=0.000000)
    DOF_FG_FocalRadius=75.000000
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=25.000000
+   MagazineCapacity(0)=20
    SpareAmmoCapacity(0)=240
    InitialSpareMags(0)=6
    FireSightedAnims(1)="Shoot_Iron2"

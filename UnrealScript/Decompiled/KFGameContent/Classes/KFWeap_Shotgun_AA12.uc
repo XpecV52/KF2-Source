@@ -23,7 +23,6 @@ defaultproperties
     bHasFireLastAnims=false
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=10
-    MagazineCapacity=20
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
@@ -32,6 +31,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AA12'
+    MagazineCapacity=20
     SpareAmmoCapacity=120
     InitialSpareMags=1
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'

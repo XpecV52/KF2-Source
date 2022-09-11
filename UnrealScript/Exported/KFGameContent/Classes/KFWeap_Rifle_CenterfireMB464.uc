@@ -21,7 +21,6 @@ defaultproperties
    bCanBeReloaded=True
    bHasFireLastAnims=True
    InventorySize=5
-   MagazineCapacity(0)=10
    PenetrationPower(0)=1.500000
    PenetrationPower(1)=()
    MeshFOV=75.000000
@@ -32,6 +31,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Centerfire_TEX.UI_WeaponSelect_Centerfire'
+   MagazineCapacity(0)=10
    SpareAmmoCapacity(0)=70
    InitialSpareMags(0)=2
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'

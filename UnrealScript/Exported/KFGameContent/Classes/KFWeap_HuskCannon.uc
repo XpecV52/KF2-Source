@@ -429,7 +429,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=()
    InventorySize=8
-   MagazineCapacity(0)=30
    MeshFOV=80.000000
    MeshIronSightFOV=65.000000
    PlayerIronSightFOV=50.000000
@@ -437,6 +436,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HuskCannon_TEX.UI_WeaponSelect_HuskCannon'
+   MagazineCapacity(0)=30
    SpareAmmoCapacity(0)=150
    InitialSpareMags(0)=1
    AmmoPickupScale(0)=0.750000

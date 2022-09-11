@@ -154,7 +154,6 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Primary
     InventorySize=7
-    MagazineCapacity=5
     PenetrationPower=/* Array type was not detected. */
     AimCorrectionSize=40
     MeshFOV=65
@@ -164,6 +163,7 @@ defaultproperties
     AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=75
     WeaponSelectTexture=Texture2D'wep_ui_mosin_tex.UI_WeaponSelect_MosinNagant'
+    MagazineCapacity=5
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=60
     InitialSpareMags=5

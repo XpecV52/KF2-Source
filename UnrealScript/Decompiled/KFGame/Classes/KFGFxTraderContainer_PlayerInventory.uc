@@ -105,7 +105,7 @@ function RefreshPlayerInventory()
             TextureLocation = ItemInfo.DefaultItem.WeaponDef.static.GetImagePath();
             AmmoCount = ItemInfo.SpareAmmoCount;
             MaxAmmoCount = ItemInfo.MaxSpareAmmo;
-            MagSize = ItemInfo.MagazineCapacity;
+            MagSize = byte(ItemInfo.MagazineCapacity);
             PricePerMag = ItemInfo.AmmoPricePerMagazine;
             PricePerRound = ((MagSize > 0) ? float(PricePerMag) / float(MagSize) : 0);
             BlocksRequired = MyTraderMenu.GetDisplayedBlocksRequiredFor(ItemInfo.DefaultItem, ItemInfo.ItemUpgradeLevel);

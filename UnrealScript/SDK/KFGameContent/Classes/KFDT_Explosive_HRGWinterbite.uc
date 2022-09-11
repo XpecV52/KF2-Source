@@ -19,7 +19,7 @@ defaultproperties
 	KDeathVel=300
 
 	StumblePower=25
-	FreezePower=25
+	FreezePower=20 //25
 
 	//Prevent self-inflicted damage.
 	bNoInstigatorDamage=true

@@ -15,6 +15,7 @@ var() InterpCurveFloat MicroWaveCharCurve;
 var protected ParticleSystem SteamingTemplate;
 var protected export editinline ParticleSystemComponent SteamingEffect;
 var protected bool bSteamEffectActive;
+var bool bHasToSpawnFire;
 var protected AkEvent OnSteamSound;
 var protected AkEvent OnSteamEndSound;
 
@@ -96,7 +97,9 @@ protected function UpdateMicrowaveMatParam(float DeltaTime)
     {
         UsedMicrowavedAmount = MicrowavedAmount;
     }
-    MonsterOwner.RepInflateMatParam = FloatToByte(UsedMicrowavedAmount);
+    MonsterOwner.RepInflateMatParams.RepInflateMatParam = FloatToByte(UsedMicrowavedAmount);
+    MonsterOwner.RepInflateMatParams.bHasToIgniteFlames = bHasToSpawnFire;
+    MonsterOwner.RepInflateMatParams.Count += 1;
     if(MonsterOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
         SetMaterialParameter(MonsterOwner.GetCurrentInflation());
@@ -141,15 +144,26 @@ function SetMaterialParameter(float ParamValue)
         {
             if(!bSteamEffectActive)
             {
-                SetMicrowaveSteamEffects(true);
+                if(bHasToSpawnFire == false)
+                {
+                    SetMicrowaveSteamEffects(false);                    
+                }
+                else
+                {
+                    SetMicrowaveSteamEffects(true);
+                }
             }            
         }
         else
         {
-            if(bSteamEffectActive)
+            if(bSteamEffectActive || bHasToSpawnFire == false)
             {
                 SetMicrowaveSteamEffects(false);
             }
+        }
+        if(bHasToSpawnFire == false)
+        {
+            SetMicrowaveSteamEffects(false);
         }
         if(MonsterOwner != none)
         {
@@ -213,5 +227,6 @@ defaultproperties
 {
     MicroWaveCharCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)
     SteamingTemplate=ParticleSystem'FX_Impacts_EMIT.FX_Microwave_steam_01'
+    bHasToSpawnFire=true
     bNeedsTick=true
 }

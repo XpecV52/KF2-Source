@@ -28,12 +28,12 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=4
-    MagazineCapacity=32
     MeshFOV=75
     MeshIronSightFOV=60
     IronSightPosition=(X=15,Y=0,Z=0)
     GroupPriority=60
     WeaponSelectTexture=Texture2D'WEP_UI_MAC10_TEX.UI_WeaponSelect_Mac10'
+    MagazineCapacity=32
     SpareAmmoCapacity=384
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */

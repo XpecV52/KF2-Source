@@ -23,7 +23,6 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=6
-    MagazineCapacity=20
     MeshFOV=70
     MeshIronSightFOV=20
     PlayerIronSightFOV=70
@@ -31,6 +30,7 @@ defaultproperties
     DOF_FG_FocalRadius=150
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SCAR'
+    MagazineCapacity=20
     SpareAmmoCapacity=340
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */

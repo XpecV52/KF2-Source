@@ -36,7 +36,6 @@ defaultproperties
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     InventorySize=3
-    MagazineCapacity=16
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=77
     PlayerIronSightFOV=77
@@ -46,6 +45,7 @@ defaultproperties
     GroupPriority=25
     WeaponSelectTexture=Texture2D'WEP_UI_AF2001_TEX.UI_WeaponSelect_AF2011'
     DualClass=Class'KFWeap_Pistol_DualAF2011'
+    MagazineCapacity=16
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=288
     InitialSpareMags=4

@@ -265,12 +265,12 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=8
-    MagazineCapacity=33
     MeshFOV=96
     PlayerIronSightFOV=64
     QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=0)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_RiotShield_TEX.UI_WeaponSelect_RiotShield'
+    MagazineCapacity=33
     SpareAmmoCapacity=462
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */

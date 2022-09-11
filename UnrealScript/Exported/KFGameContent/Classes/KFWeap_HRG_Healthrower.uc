@@ -950,7 +950,7 @@ defaultproperties
       ObjectArchetype=KFParticleSystemComponent'KFGame.Default__KFWeap_FlameBase:FlameEndSpray0'
    End Object
    PSC_EndSpray=FlameEndSpray0
-   MinAmmoConsumed=4
+   MinAmmoConsumed=3
    PackageKey="Healthrower"
    FirstPersonMeshName="WEP_1P_HRG_Healthrower_MESH.Wep_1stP_HRG_Healthrower_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_HRG_Healthrower_ANIM.Wep_1stP_HRG_Healthrower_Anim"
@@ -964,8 +964,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    FireModeIconPaths(1)=()
    InventorySize=7
-   MagazineCapacity(0)=100
-   MagazineCapacity(1)=100
    AimCorrectionSize=40.000000
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=80.000000
@@ -976,6 +974,8 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'Wep_UI_HRG_Healthrower_TEX.UI_WeaponSelect_HRG_Healthrower'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+   MagazineCapacity(0)=100
+   MagazineCapacity(1)=100
    AmmoCost(1)=40
    SpareAmmoCapacity(0)=500
    InitialSpareMags(0)=1
@@ -1029,7 +1029,7 @@ defaultproperties
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=None
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_HealingDart_MedicBase'
-   FireInterval(0)=0.070000
+   FireInterval(0)=0.100000
    FireInterval(1)=0.175000
    FireInterval(2)=()
    FireInterval(3)=()

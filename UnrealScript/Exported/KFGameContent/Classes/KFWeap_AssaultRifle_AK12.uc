@@ -199,12 +199,12 @@ defaultproperties
    SingleFireSoundIndex=1
    BurstAmount=3
    InventorySize=6
-   MagazineCapacity(0)=30
    MeshFOV=75.000000
    MeshIronSightFOV=33.000000
    PlayerIronSightFOV=70.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
+   MagazineCapacity(0)=30
    SpareAmmoCapacity(0)=300
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True

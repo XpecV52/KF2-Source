@@ -120,7 +120,7 @@ function SetHelpText(string TextValue)
 	SetString("helpText", TextValue);
 }
 
-function SetModeMenus(GFxObject TextObject, int ModeIndex)
+function SetModeMenus(GFxObject TextObject, int ModeIndex, int LengthIndex)
 {
 	local int DifficultyLevels, Lengths;
 	local byte NewDifficultyIndex, NewLengthIndex;
@@ -130,7 +130,7 @@ function SetModeMenus(GFxObject TextObject, int ModeIndex)
 	NewDifficultyIndex = Clamp(NewDifficultyIndex, 0, DifficultyLevels);
 	NewLengthIndex = Clamp(NewLengthIndex, 0, Lengths);
 	TextObject.SetObject("difficultyList",	CreateList(class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), GetDifficultyIndex(), false, false, byte(DifficultyLevels)));
-	TextObject.SetObject("lengthList", 		CreateList(class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), 	GetLengthIndex(), 	bShowLengthNoPref, false, byte(Lengths)));
+	TextObject.SetObject("lengthList", 		CreateList(class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), LengthIndex, bShowLengthNoPref, false, byte(Lengths)));
 }
 
 // convert the solo game mode index back into an index that matches the game mode enum
@@ -195,6 +195,7 @@ function InitializeGameOptions()
 	local int i, InitialMapIndex;
 	local KFProfileSettings Profile;
 	local array<string> PlayfabRegionList;
+	local int StoredLengthIndex;
 
 	Profile = GetCachedProfile();
 	bIsSoloGame = GetBool("bIsSoloGame");
@@ -220,6 +221,8 @@ function InitializeGameOptions()
 	}
 
 	TextObject = CreateObject("Object");
+	
+	StoredLengthIndex = GetLengthIndex();
 
 	// Localize static text
 	TextObject.SetString("soloGameString",SoloGameString);
@@ -239,8 +242,8 @@ function InitializeGameOptions()
 	// Since the Mode list can include "ANY" we need to just accept that the selected index could be the length of the supported modes.  Otherwise when "ANY" is selected we push the index to 1.
 	// Also don't include the "ANY" option on Console since PlayGo doesn't support searching multiple game types.  HSL_BB
 	TextObject.SetObject("modeList", 		CreateList(SupportedGameModeStrings, Min(ParentMenu.Manager.GetModeIndex() , SupportedGameModeStrings.Length), false));
-	SetModeMenus(TextObject, Min(ParentMenu.Manager.GetModeIndex(), SupportedGameModeStrings.Length));
-    TextObject.SetObject("lengthList", 		CreateList(class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), GetLengthIndex(), bShowLengthNoPref));
+	SetModeMenus(TextObject, Min(ParentMenu.Manager.GetModeIndex(), SupportedGameModeStrings.Length), StoredLengthIndex);
+    TextObject.SetObject("lengthList", 		CreateList(class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), StoredLengthIndex, bShowLengthNoPref));
 	TextObject.SetObject("mapList",			CreateList(StartMenu.MapStringList, bIsSoloGame ? InitialMapIndex : InitialMapIndex+1, true, true));
 	TextObject.SetObject("difficultyList",	CreateList(class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), GetDifficultyIndex(), false));
 	TextObject.SetObject("privacyList",		CreateList(class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(class'WorldInfo'.static.IsConsoleBuild()), Profile.GetProfileInt(KFID_SavedPrivacyIndex), false));
@@ -509,24 +512,17 @@ function int GetLengthIndex()
 
 	if (!bShowLengthNoPref)
 	{
-		SavedLengthIndex = Clamp(SavedLengthIndex, GL_Short, GL_Long);
+		SavedLengthIndex = Clamp(SavedLengthIndex, GL_Short, GL_Long);	
+		LengthIndexOffset = 0;
+		if (SavedLengthIndex >= class'KFGameInfo'.default.GameModes[ParentMenu.Manager.GetModeIndex()].Lengths + LengthIndexOffset)
+		{
+			SavedLengthIndex = 1;
+		}
 	}
 	else
-	{
-		if (SavedLengthIndex == 0)
-		{
-			SavedLengthIndex = 127; // ANY
-		}
-		else
-		{
-			return SavedLengthIndex - 1;
-		}
-	}
-
-	LengthIndexOffset = bShowLengthNoPref ? 1 : 0;
-	if (SavedLengthIndex >= class'KFGameInfo'.default.GameModes[ParentMenu.Manager.GetModeIndex()].Lengths + LengthIndexOffset)
-	{
-		SavedLengthIndex = 1;
+	{		
+		SavedLengthIndex = Clamp(SavedLengthIndex, GL_Short, GL_Long + 1);
+		return SavedLengthIndex;
 	}
 
 	return SavedLengthIndex;

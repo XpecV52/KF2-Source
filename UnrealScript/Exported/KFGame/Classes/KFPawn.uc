@@ -1066,8 +1066,22 @@ var repnotify AkEvent WeaponAmbientSound;
 var protected AkComponent WeaponAkComponent;
 var instanced KFWeaponAmbientEchoHandler WeaponAmbientEchoHandler;
 
+var repnotify AkEvent SecondaryWeaponAmbientSound;
+var protected AkComponent SecondaryWeaponAkComponent;
+
 var protected AkComponent FootstepAkComponent;
 var protected AkComponent DialogAkComponent;
+
+struct native PowerUpAmbientSoundInfo
+{
+	var AkEvent FirstPersonPowerUpAmbientSound;
+	var AkEvent ThirdPersonPowerUpAmbientSound;
+	var AkEvent FirstPersonStopPowerUpAmbientSound;
+	var AkEvent ThirdPersonStopPowerUpAmbientSound;
+	var byte Count;
+};
+var repnotify PowerUpAmbientSoundInfo PowerUpAmbientSound;
+var protected AkComponent PowerUpAkComponent;
 
 /** Whether foostep sounds are allowed. Always allow sounds for local player */
 var globalconfig bool bAllowFootstepSounds;
@@ -1171,7 +1185,7 @@ replication
 		AmbientSound, WeaponClassForAttachmentTemplate, bIsSprinting, InjuredHitZones,
 		KnockdownImpulse, ReplicatedSpecialMove, bEmpDisrupted, bEmpPanicked, bFirePanicked,
         RepFireBurnedAmount, bUnaffectedByZedTime, bMovesFastInZedTime, IntendedBodyScale,
-		IntendedHeadScale, AttackSpeedModifier, bHasStartedFire;
+		IntendedHeadScale, AttackSpeedModifier, bHasStartedFire, PowerUpAmbientSound;
 	if ( bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout )
 		HitFxInfo, HitFxRadialInfo, HitFxInstigator, HitFxAddedRelativeLocs, HitFxAddedHitCount;
 	if ( Physics == PHYS_RigidBody && !bTearOff )
@@ -1189,7 +1203,7 @@ replication
 
 	// Replicated to all but the owning client
 	if ( bNetDirty && (!bNetOwner || bDemoRecording) )
-		WeaponAmbientSound;
+		WeaponAmbientSound, SecondaryWeaponAmbientSound;
 	if ( bEnableAimOffset && (!bNetOwner || bDemoRecording) )
 		ReplicatedAimOffsetPct;
     if ( bNetDirty && bCanCloak )
@@ -1396,6 +1410,14 @@ simulated event ReplicatedEvent(name VarName)
 
 	case nameof(WeaponAmbientSound):
 		SetWeaponAmbientSound(WeaponAmbientSound);
+		break;
+
+	case nameof(PowerUpAmbientSound):
+		SetReplicatedPowerUpAmbientSound(PowerUpAmbientSound);
+		break;
+
+	case nameof(SecondaryWeaponAmbientSound):
+		SetSecondaryWeaponAmbientSound(SecondaryWeaponAmbientSound);
 		break;
 
 	case nameof(HitFxInfo):
@@ -2183,7 +2205,9 @@ simulated function WeaponFired(Weapon InWeapon, bool bViaReplication, optional v
 	local KFWeapon KFW;
 	local class< KFProjectile > KFProj;
 	local KFImpactEffectInfo ImpactFX;
-
+	//local Vector vPlayerDir;
+	local Vector HitNormal;
+	HitNormal = Normal(Location - HitLocation);
 	// skip replication for owning client.  This is done clientside for immediate
 	// player feedback (see 'InstantFireClient')
 	if ( Role == ROLE_AutonomousProxy && bViaReplication )
@@ -2229,6 +2253,7 @@ simulated function WeaponFired(Weapon InWeapon, bool bViaReplication, optional v
 			if (KFProj != none)
 			{
 				ImpactFX = KFProj.default.ImpactEffects;
+				KFProj.static.PlayAddedImpactEffect(HitLocation, HitNormal);
 			}
 
 			// no custom impact info, use ImpactEffectManager default
@@ -2548,7 +2573,7 @@ function bool DoJump( bool bUpdating )
 	if ( Super.DoJump(bUpdating) && !IsDoingSpecialMove() )
 	{
 		// cancel ironsights
-		if ( MyKFWeapon != None && MyKFWeapon.bUsingSights )
+		if ( MyKFWeapon != None && MyKFWeapon.bUsingSights && !MyKFWeapon.bKeepIronSightsOnJump )
 		{
 			MyKFWeapon.PerformZoom(false);
 		}
@@ -2937,7 +2962,9 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	local class<KFDamageType> KFDT;
 	local KFGameInfo KFGI;
 	local KFPlayerController KFPC;
+	local KFPawn_Monster PawnMonster;
 	local bool bAllowHeadshot;
+	local KFPowerUp KFPowerUp;
 
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 
@@ -2976,6 +3003,17 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 		}
 	}
 
+	// Apply secondary damages from power ups
+	KFPC = KFPlayerController(InstigatedBy);
+	if( KFPC != none )
+	{
+		KFPowerUp = KFPC.GetPowerUp();
+		if( KFPowerUp != none && KFPowerUp.default.SecondaryDamageType != DamageType )
+		{
+			KFPowerUp.ApplySecondaryDamage(self, Damage, InstigatedBy);
+		}
+	}
+
 	if( bAllowHeadshot && HitFxInfo.HitBoneIndex == HZI_HEAD && OldHealth > 0 && WorldInfo.Game != None )
 	{
 		KFPC = KFPlayerController(InstigatedBy);
@@ -2992,6 +3030,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 		if ( bPlayedDeath )
 		{
 			KFGameInfo(WorldInfo.Game).NotifyHeadshotKill(InstigatedBy, self);
+			PawnMonster = KFPawn_Monster(self);
+			if(PawnMonster != none && KFPC != none && KFGI != none)
+			{
+				KFPC.AddZedHeadshotKill( PawnMonster.class, KFGI.GetModifiedGameDifficulty(), DamageType );
+			}
 		}
 	}
 }
@@ -3001,6 +3044,7 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 {
 	local int HitZoneIdx;
     local KFPawn_Monster InstigatorMonster;
+	local class<KFDamageType> KFDT;
 
 	if (bLogTakeDamage) LogInternal(self@GetFuncName()@"Starting Damage="$InDamage@"Momentum="$Momentum@"Zone="$HitInfo.BoneName@"DamageType="$DamageType);
 
@@ -3030,6 +3074,13 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	}
 
     InDamage *= VolumeDamageScale;
+
+	// Check non lethal damage
+	KFDT = class<KFDamageType>(DamageType);
+	if ( InDamage >= Health && KFDT != none && KFDT.default.bNonLethalDamage )
+	{
+		InDamage = Health - 1;
+	}
 
     if (bLogTakeDamage) LogInternal(self @ GetFuncName() @ " After KFPawn adjustment Damage=" $ InDamage @ "Momentum=" $ Momentum @ "Zone=" $ HitInfo.BoneName @ "DamageType=" $ DamageType);
 }
@@ -3623,9 +3674,11 @@ simulated function TerminateEffectsOnDeath()
 
 	// stop dialog and looping sounds
 	SetWeaponAmbientSound(None);
+	SetSecondaryWeaponAmbientSound(None);
 	SetPawnAmbientSound(None);
 	WeaponAmbientEchoHandler.StopAllEchoes(bPendingDelete); // force if called from Destroy
 	DialogAkComponent.StopEvents();
+	SetPowerUpAmbientSound(None, None, None, None);
 
 	AfflictionHandler.Shutdown();
 
@@ -4697,6 +4750,136 @@ simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEve
 	}
 }
 
+/** starts playing the given sound via the SecondaryWeaponAmbientSound AudioComponent and sets SecondaryWeaponAmbientSoundCue for replicating to clients
+ *  @param NewAmbientSound the new sound to play, or None to stop any ambient that was playing
+ */
+simulated function SetSecondaryWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEvent FirstPersonAmbientSound)
+{
+	if ( NewAmbientSound == None )
+    {
+    	SecondaryWeaponAkComponent.StopEvents();
+    	SecondaryWeaponAmbientSound = None;
+    }
+    else if( !bPlayedDeath && !bPendingDelete && !bDeleteMe )
+	{
+	    SecondaryWeaponAmbientSound = NewAmbientSound;
+        SecondaryWeaponAkComponent.StopEvents();
+
+	    // Replicate 3rd person, but play 1st person
+		if ( FirstPersonAmbientSound != None && IsFirstPerson() )
+		{
+			// don't check occlusion for first person sound
+			SecondaryWeaponAkComponent.OcclusionUpdateInterval = 0.f;
+		    SecondaryWeaponAkComponent.PlayEvent( FirstPersonAmbientSound );
+		}
+		else if (NewAmbientSound != None)
+		{
+			// check occlusion for third person sound
+			SecondaryWeaponAkComponent.OcclusionUpdateInterval = 0.2f;
+		    SecondaryWeaponAkComponent.PlayEvent( NewAmbientSound, false );
+		}
+	}
+}
+
+/** starts playing the given sound via the PowerUpAmbientSound AudioComponent and sets PowerUpAmbientSoundCue for replicating to clients
+ *  @param NewAmbientSound the new sound to play, or None to stop any ambient that was playing
+ */
+simulated function SetPowerUpAmbientSound(AkEvent NewAmbientSound, 
+											optional AkEvent FirstPersonAmbientSound, 
+											optional AkEvent StopAmbientSound, 
+											optional AkEvent FirstPersonStopAmbientSound)
+{
+	if ( NewAmbientSound == None && FirstPersonAmbientSound == None && 
+		StopAmbientSound == None && FirstPersonStopAmbientSound == None)
+    {
+		PowerUpAmbientSound.FirstPersonPowerUpAmbientSound = None;
+    	PowerUpAmbientSound.ThirdPersonPowerUpAmbientSound = None;
+		PowerUpAmbientSound.FirstPersonStopPowerUpAmbientSound = None;
+		PowerUpAmbientSound.ThirdPersonStopPowerUpAmbientSound = None;
+		PowerUpAmbientSound.Count++;
+    	PowerUpAkComponent.StopEvents();
+    }
+    else if( !bPlayedDeath && !bPendingDelete && !bDeleteMe )
+	{
+		PowerUpAmbientSound.FirstPersonPowerUpAmbientSound = FirstPersonAmbientSound;
+		PowerUpAmbientSound.ThirdPersonPowerUpAmbientSound = NewAmbientSound;
+		PowerUpAmbientSound.FirstPersonStopPowerUpAmbientSound = StopAmbientSound;
+		PowerUpAmbientSound.ThirdPersonStopPowerUpAmbientSound = FirstPersonStopAmbientSound;
+		PowerUpAmbientSound.Count++;
+
+	    // Replicate 3rd person, but play 1st person
+		if ( FirstPersonAmbientSound != None && IsFirstPerson() )
+		{
+			PowerUpAkComponent.StopEvents();
+
+			// don't check occlusion for first person sound
+			PowerUpAkComponent.OcclusionUpdateInterval = 0.f;
+		    PowerUpAkComponent.PlayEvent( FirstPersonAmbientSound );
+		}
+		else if (NewAmbientSound != None)
+		{
+			PowerUpAkComponent.StopEvents();
+
+			// check occlusion for third person sound
+			PowerUpAkComponent.OcclusionUpdateInterval = 0.2f;
+		    PowerUpAkComponent.PlayEvent( NewAmbientSound, false );
+		}
+		else
+		{
+			if ( FirstPersonStopAmbientSound != None )
+			{
+				PowerUpAkComponent.PlayEvent( FirstPersonStopAmbientSound, IsFirstPerson() );
+			}
+			if( StopAmbientSound != None )
+			{
+				PowerUpAkComponent.PlayEvent( StopAmbientSound, IsFirstPerson() );
+			}
+		}
+	}
+}
+
+simulated function SetReplicatedPowerUpAmbientSound(PowerUpAmbientSoundInfo PowerUpReplicatedAmbientSound)
+{
+	if ( PowerUpReplicatedAmbientSound.FirstPersonPowerUpAmbientSound == None && 
+		PowerUpReplicatedAmbientSound.ThirdPersonPowerUpAmbientSound == None && 
+		PowerUpReplicatedAmbientSound.FirstPersonStopPowerUpAmbientSound == None && 
+		PowerUpReplicatedAmbientSound.ThirdPersonStopPowerUpAmbientSound == None)
+    {
+    	PowerUpAkComponent.StopEvents();
+    }
+    else if( !bPlayedDeath && !bPendingDelete && !bDeleteMe )
+	{
+	    // Replicate 3rd person, but play 1st person
+		if ( PowerUpReplicatedAmbientSound.FirstPersonPowerUpAmbientSound != None && IsFirstPerson() )
+		{
+			PowerUpAkComponent.StopEvents();
+
+			// don't check occlusion for first person sound
+			PowerUpAkComponent.OcclusionUpdateInterval = 0.f;
+		    PowerUpAkComponent.PlayEvent( PowerUpReplicatedAmbientSound.FirstPersonPowerUpAmbientSound );
+		}
+		else if ( PowerUpReplicatedAmbientSound.ThirdPersonPowerUpAmbientSound != None )
+		{
+			PowerUpAkComponent.StopEvents();
+
+			// check occlusion for third person sound
+			PowerUpAkComponent.OcclusionUpdateInterval = 0.2f;
+		    PowerUpAkComponent.PlayEvent( PowerUpReplicatedAmbientSound.ThirdPersonPowerUpAmbientSound, false );
+		}
+		else
+		{
+			if ( PowerUpReplicatedAmbientSound.FirstPersonStopPowerUpAmbientSound != None )
+			{
+				PowerUpAkComponent.PlayEvent( PowerUpReplicatedAmbientSound.FirstPersonStopPowerUpAmbientSound, IsFirstPerson() );
+			}
+			if ( PowerUpReplicatedAmbientSound.ThirdPersonStopPowerUpAmbientSound != None )
+			{
+				PowerUpAkComponent.PlayEvent( PowerUpReplicatedAmbientSound.ThirdPersonStopPowerUpAmbientSound, IsFirstPerson() );
+			}
+		}
+	}
+}
+
 /**
  * Set an RTPC value on the WeaponAKComponent
  */
@@ -4710,6 +4893,28 @@ function SetWeaponComponentRTPCValue( String InRTPC, float targetvalue )
 simulated function PlayWeaponSoundEvent(AkEvent NewSoundEvent)
 {
 	WeaponAkComponent.PlayEvent(NewSoundEvent, true, true);
+}
+
+/**
+ * Set an RTPC value on the SecondaryWeaponAKComponent
+ */
+simulated function SetSecondaryWeaponComponentRTPCValue( String InRTPC, float targetvalue )
+{
+    SecondaryWeaponAkComponent.SetRTPCValue( InRTPC, targetvalue);
+}
+
+/** starts playing the given sound event on the secondary weapon audio component
+ */
+simulated function PlaySecondaryWeaponSoundEvent(AkEvent NewSoundEvent)
+{
+	SecondaryWeaponAkComponent.PlayEvent(NewSoundEvent, true, true);
+}
+
+/** starts playing the given sound event on the powerup audio component
+ */
+simulated function PlayPowerUpSoundEvent(AkEvent NewSoundEvent)
+{
+	PowerUpAkComponent.PlayEvent(NewSoundEvent, true, true);
 }
 
 simulated event Tick( float DeltaTime )
@@ -5546,6 +5751,14 @@ defaultproperties
       ObjectArchetype=KFWeaponAmbientEchoHandler'KFGame.Default__KFWeaponAmbientEchoHandler'
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn:WeaponAmbientEchoHandler_0'
+   Begin Object Class=AkComponent Name=SecondaryWeaponAkSoundComponent
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="SecondaryWeaponAkSoundComponent"
+      ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
+   End Object
+   SecondaryWeaponAkComponent=SecondaryWeaponAkSoundComponent
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -5561,6 +5774,14 @@ defaultproperties
       ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
+   Begin Object Class=AkComponent Name=PowerUpAkSoundComponent
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="PowerUpAkSoundComponent"
+      ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
+   End Object
+   PowerUpAkComponent=PowerUpAkSoundComponent
    DamageRecoveryTimeHeavy=1.000000
    DamageRecoveryTimeMedium=1.000000
    bRespondToExplosions=True
@@ -5649,6 +5870,8 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
+   Components(8)=PowerUpAkSoundComponent
+   Components(9)=SecondaryWeaponAkSoundComponent
    bIgnoreRigidBodyPawns=True
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn"

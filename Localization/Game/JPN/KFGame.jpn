@@ -46,22 +46,24 @@ YesString="はい"
 NoString="いいえ"
 TeamSwappedString="チームスワップが行われました"
 
-MicrophonePopupTitleString="マイク設定"
-MicrophonePopupSelectDeviceString="選択"
+
+MicrophonePopupTitleString="マイク設定を調整する"
+MicrophonePopupSelectDeviceString="デバイスを選択する"
 MicrophonePopupVolumeString="マイク音量"
-MicrophonePopupCheckString="マイクを確認する"
-MicrophonePopupStopString="承認"
-MicrophonePopupRefreshString="リフレッシュ"
+MicrophonePopupCheckString="マイクの確認"
+MicrophonePopupStopString="停止"
+MicrophonePopupRefreshString="更新"
 
 FriendsListPopupTitleString="招待するフレンドを選択"
 FriendsListPopupFriendString="検索"
 FriendsListPopupFriendsString="フレンド"
 FriendsListPopupOtherFriendsString="他のプラットフォームのフレンド"
-FriendsListPopupLinkButonString="アカウントリンク"
+FriendsListPopupLinkButonString="アカウント接続"
 ReturnString="戻る"
 
 InvitePopupTitleString="ロビー招待"
-InvitePopupTextString="があなたをロビーに招待しました。"
+InvitePopupTextString=" があなたをロビーに招待しました"
+
 
 CancelConnectionString="読み込みをキャンセル"
 
@@ -169,6 +171,9 @@ FailedSearchString="提供したオプションでは、マッチメイキング
 BrowseServersString="サーバーを閲覧する"
 HasInvitedToGameString=" があなたをゲームに招待しました"
 JoinGameString="ゲームに参加しますか？"
+
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="アイテムサーバー接続"
 
 [KFGFxObject_Menu]
 LeavePartyTitleString="パーティーから離れる"
@@ -949,6 +954,17 @@ MarketCosmeticsString="市場の服飾"
 MarketEmotesString="マーケット顔文字"
 MarketSFXString="市場SFX"
 ThankYouString="ご購入ありがとうございます！新しいアイテムやマップ、武器、Zed、ゲームモードのアップデート開発に役立たせて頂きます。"
+WeaponBundlesString="武器バンドル"
+CharacterBundlesString="キャラクターバンドル"
+OutfitBundlesString="服バンドル"
+TicketCratesUSBBundlesString="チケット/箱/USBバンドル"
+CosmeticBundlesString="装飾バンドル"
+WeaponSkinBundlesString="武器スキンバンドル"
+HeadshotFxBundlesString="ヘッドショットFXバンドル"
+SelectWeaponSkinsString="武器スキンを選択"
+SelectCosmeticsString="装飾を選択"
+SelectEmotesString="絵文字を選択"
+SelectKeysAndTicketsString="鍵とチケットを選択"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="市場で探す"
@@ -1468,6 +1484,7 @@ FailedDropInventoryMessage="ここにはドロップできません"
 ReceivedGrenadesFromMessage="手榴弾を受け取りました："
 GaveGrenadesToMessage="手榴弾を譲りました："
 SharingContentString="がコンテンツを共有しています"
+PowerUpHellishRageActivatedMessage="地獄的な怒り： +ダメージ、 +スピード、燃焼効果、回復無効化"
 HeadShotAddedString="%xヘッドショット―%y%追加ダメージ！"
 HeadShotMaxString="ヘッドショット！%x%追加ダメージ！"
 HeadShotResetString="ヘッドショット失敗。通常ダメージ！"
@@ -1538,6 +1555,7 @@ PlayerClotGrabWarningMessage="zedをキルして逃げる！"
 
 UseMinigameMessage="起動"
 UseMinigameGeneratorMessage="ジェネレータ起動"
+UsePowerUpMessage="ヘルスを犠牲にする"
 DoshActivateMessage="アクティベーションコスト"
 EMPGrabWarningMessage="*** ! 行動不能！***"
 [KFLocalMessage_ServerNotification]
@@ -1933,7 +1951,7 @@ AirborneAgent="Zed-Time―空中化学物質"
 AirborneAgentDescription="Zed-Time中、回復ガスを放出し、近くにいるチームメイトを回復する。"
 
 Sedative="Zed-Time―鎮静剤"
-SedativeDescription="Zed-Time中、Perk武器でzedにダメージを与えるとzedの速度が30%減少し、大量の毒ダメージを与える。"
+SedativeDescription="Zed Timeの間、あなたのPerk武器ダメージが30%増加し、あなたが決めるキルがZedにダメージを与える猛毒爆破を起こし、プレイヤーを回復させる。"
 
 
 EXPAction1="メディック武器でダメージを与える"
@@ -2220,6 +2238,9 @@ MadmanDescription="Zed-Time中、全武器の発射速度が3倍になる。"
 
 IncapMaster="Zed-Time―ロックダウン"
 IncapMasterDescription="Zed-Time中、全武器がいずれかのZedをスタンさせることができる。"
+
+[KFPowerUp_HellishRage]
+PowerUpName="地獄的な怒り"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2748,6 +2769,20 @@ AllCompleteRewardDescriptionString="スペースパイレーツ | スペース�
 
 ChanceDropDescriptionStrings[0]="サマーチケット"
 ChanceDropDescriptionStrings[1]="サマー・ゴールデン・チケット"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="地獄の軍団",DescriptionString="マップやモードを問わず、Zedを2000体殺す")
+SpecialEventObjectiveInfoList[1]=(TitleString="ウィークリー侵略",DescriptionString="Hellmark Stationでウィークリーを完了する")
+SpecialEventObjectiveInfoList[2]=(TitleString="何が何でも",DescriptionString="Hellmark Station オベリスクから地獄的な怒りを10回獲得する")
+SpecialEventObjectiveInfoList[3]=(TitleString="デーモンスレイヤー",DescriptionString="Hellmark Stationで600体のZedの首を切る")
+SpecialEventObjectiveInfoList[4]=(TitleString="尽きることのないカオス",DescriptionString="エンドレスHardかそれ以上の難易度で、Hellmark Stationのウェーブ15をクリアする")
+
+AllCompleteRewardDescriptionString="ハロウィーン | ブードゥー・リュック"
+
+ChanceDropDescriptionStrings[0]="ハロウィーンチケット"
+ChanceDropDescriptionStrings[1]="ハロウィーンゴールデンチケット"
 
 ;============================================
 ; Daily Localization
@@ -3346,6 +3381,9 @@ DisplayName="Biolapse"
 
 [KF-Desolation KFMapSummary]
 DisplayName="Desolation"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="Hellmark Station"
 
 [KFMapInfo]
 ; defaults

@@ -22,7 +22,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=2
-   MagazineCapacity(0)=6
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshIronSightFOV=77.000000
@@ -33,6 +32,7 @@ defaultproperties
    GroupPriority=22.000000
    WeaponSelectTexture=Texture2D'wep_ui_chiapparhino_tex.UI_WeaponSelect_ChiappaRhinos'
    DualClass=Class'kfgamecontent.KFWeap_Pistol_ChiappaRhinoDual'
+   MagazineCapacity(0)=6
    SpareAmmoCapacity(0)=114
    InitialSpareMags(0)=7
    AmmoPickupScale(0)=2.000000

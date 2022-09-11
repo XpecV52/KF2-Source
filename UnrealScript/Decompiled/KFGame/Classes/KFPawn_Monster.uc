@@ -62,6 +62,20 @@ struct native SpecialMoveCooldownInfo
     }
 };
 
+struct native RepInflateParams
+{
+    var byte RepInflateMatParam;
+    var bool bHasToIgniteFlames;
+    var int Count;
+
+    structdefaultproperties
+    {
+        RepInflateMatParam=0
+        bHasToIgniteFlames=false
+        Count=0
+    }
+};
+
 struct native sBlockInfo
 {
     var float Chance;
@@ -120,6 +134,7 @@ struct native AttachedGoreChunkInfo
 
 var bool bLargeZed;
 var bool bVersusZed;
+var transient bool bArchLoaded;
 var(Combat) bool bCanGrabAttack;
 var(Combat) bool bCanMeleeAttack;
 var(Combat) bool bHasExtraSprintJumpVelocity;
@@ -154,6 +169,7 @@ var bool bPlayingSprintLoop;
 var bool bSprintOverride;
 var transient bool bPlayedExplosionEffect;
 var bool bCouldTurnIntoShrapnel;
+var bool bCouldTurnIntoToxicExplosion;
 var bool bDisableHeadless;
 var bool bDebug_DrawOverheadInfo;
 var bool bDebug_DrawSprintingOverheadInfo;
@@ -206,6 +222,7 @@ var class<KFMonsterDifficultyInfo> DifficultySettings;
 var array<KFPawn.ESpecialMove> MoveListGamepadScheme;
 var array<SpecialMoveCooldownInfo> SpecialMoveCooldowns;
 var transient float LastAttackHumanWarningTime;
+var repnotify RepInflateParams RepInflateMatParams;
 var transient int OldHealth;
 var float ZeroHealthInflation;
 var float DamageInflationRate;
@@ -278,10 +295,11 @@ replication
         InflateDeathGravity, InflationExplosionTimer, 
         MaxHeadChunkGoreWhileAlive, RepBleedInflateMatParam, 
         RepDamageInflateParam, RepInflateMatParam, 
-        bDisableGoreMeshWhileAlive, bDisableHeadless, 
-        bIsHeadless, bIsPoisoned, 
-        bPlayPanicked, bPlayShambling, 
-        bUseDamageInflation, bUseExplosiveDeath;
+        RepInflateMatParams, bDisableGoreMeshWhileAlive, 
+        bDisableHeadless, bIsHeadless, 
+        bIsPoisoned, bPlayPanicked, 
+        bPlayShambling, bUseDamageInflation, 
+        bUseExplosiveDeath;
 
      if(bNetDirty && bCanCloak)
         bIsCloakingSpottedByTeam;
@@ -318,7 +336,8 @@ simulated event ReplicatedEvent(name VarName)
         case 'bIsPoisoned':
             AfflictionHandler.ToggleEffects(6, bIsPoisoned);
             break;
-        case 'RepInflateMatParam':
+        case 'RepInflateMatParams':
+            KFAffliction_Microwave(AfflictionHandler.Afflictions[10]).bHasToSpawnFire = RepInflateMatParams.bHasToIgniteFlames;
             AfflictionHandler.UpdateMaterialParameter(10, GetCurrentInflation());
             break;
         case 'RepBleedInflateMatParam':
@@ -388,9 +407,32 @@ private native final function LastChanceLoad();
 
 simulated event PreBeginPlay()
 {
+    local KFPawn_Monster KFPM;
+    local bool bArchAlreadyLoaded;
+
     CheckShouldAlwaysBeRelevant();
     DefaultCollisionRadius = CylinderComponent.default.CollisionRadius;
     super.PreBeginPlay();
+    if((WorldInfo.NetMode != NM_DedicatedServer) && (WorldInfo.GRI == none) || WorldInfo.GRI.GameClass == none)
+    {
+        LogInternal("Preload global data not initialized");
+        bArchAlreadyLoaded = false;
+        foreach WorldInfo.AllPawns(Class'KFPawn_Monster', KFPM)
+        {
+            if(((KFPM != self) && KFPM.Class == Class) && KFPM.bArchLoaded)
+            {
+                LogInternal("Archetype already loaded for class" @ string(Class));
+                bArchAlreadyLoaded = true;
+                bArchLoaded = true;
+            }            
+        }        
+        if(!bArchAlreadyLoaded)
+        {
+            LogInternal("Initializing first archetype for class" @ string(Class));
+            LastChanceLoad();
+            bArchLoaded = true;
+        }
+    }
     if(CharacterArch == none)
     {
         if(CharacterMonsterArch == none)
@@ -946,7 +988,7 @@ function CrushedBy(Pawn OtherPawn)
     super.CrushedBy(OtherPawn);
     if(((((bKnockdownWhenJumpedOn && Health > 0) && !IsDoingSpecialMove(11)) && (OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderComponent.CollisionHeight)) && !IsHumanControlled()) && GetTeamNum() != OtherPawn.GetTeamNum())
     {
-        Knockdown(,, vect(1, 1, 1), OtherPawn.Location, 1000, 100);
+        HandleAfflictionsOnHit(OtherPawn.Controller, vect(1, 1, 1), Class'KFDT_Knockdown', OtherPawn);
     }
 }
 
@@ -1386,6 +1428,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     if(((Damage > 0) && InstigatorPerk != none) && KFDT != none)
     {
         bCouldTurnIntoShrapnel = InstigatorPerk.CouldBeZedShrapnel(KFDT);
+        bCouldTurnIntoToxicExplosion = InstigatorPerk.CouldBeZedToxicCloud(KFDT);
     }
     super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
     if((InstigatedBy != none) && InstigatedBy.Pawn != none)
@@ -1472,6 +1515,7 @@ function AdjustDamageForInstigator(out int InDamage, Controller InstigatedBy, cl
     local KFPlayerController KFPC;
     local KFPawn_Human KFPH;
     local KFPerk InstigatorPerk;
+    local KFPowerUp InstigatorPowerUp;
     local float TempDamage;
 
     KFPC = KFPlayerController(InstigatedBy);
@@ -1481,6 +1525,11 @@ function AdjustDamageForInstigator(out int InDamage, Controller InstigatedBy, cl
         if(InstigatorPerk != none)
         {
             InstigatorPerk.ModifyDamageGiven(InDamage, DamageCauser, self, KFPC, class<KFDamageType>(DamageType), HitZoneIdx);
+        }
+        InstigatorPowerUp = KFPC.GetPowerUp();
+        if(InstigatorPowerUp != none)
+        {
+            InstigatorPowerUp.ModifyDamageGiven(InDamage, DamageCauser, self, KFPC, class<KFDamageType>(DamageType), HitZoneIdx);
         }
         if(KFPC.Pawn != none)
         {
@@ -1850,6 +1899,21 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
                     if((InstigatorPerk != none) && InstigatorPerk.ShouldShrapnel())
                     {
                         ShrapnelExplode(Killer, InstigatorPerk);
+                    }
+                }
+            }
+        }
+        if(bCouldTurnIntoToxicExplosion)
+        {
+            if(Killer != none)
+            {
+                KFPC = KFPlayerController(Killer);
+                if(KFPC != none)
+                {
+                    InstigatorPerk = KFPC.GetPerk();
+                    if((InstigatorPerk != none) && InstigatorPerk.IsZedativeActive())
+                    {
+                        InstigatorPerk.ToxicCloudExplode(Killer, self);
                     }
                 }
             }
@@ -3119,7 +3183,7 @@ simulated function float GetCurrentInflation()
 {
     local float CurrentInflation;
 
-    CurrentInflation = FClamp((ByteToFloat(RepInflateMatParam) + ByteToFloat(RepDamageInflateParam)) - ByteToFloat(RepBleedInflateMatParam), -1, 1);
+    CurrentInflation = FClamp((ByteToFloat(RepInflateMatParams.RepInflateMatParam) + ByteToFloat(RepInflateMatParams.RepInflateMatParam)) - ByteToFloat(RepBleedInflateMatParam), -1, 1);
     return CurrentInflation;
 }
 
@@ -3855,8 +3919,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_Monster.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_Monster.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_Monster.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_Monster.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_Monster.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_Monster.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_Monster.PowerUpAkSoundComponent'
     MaxTurningRadius=64
     AccelConvergeFalloffDistance=400
     HiddenGroundSpeed=600
@@ -3907,6 +3973,8 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_Monster.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_Monster.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_Monster.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_Monster.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_Monster.SecondaryWeaponAkSoundComponent'
     begin object name=SprintAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -3914,8 +3982,8 @@ defaultproperties
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_Monster.SprintAkComponent0'
-    Components(8)=SprintAkComponent0
-    Components(9)=AkComponent'Default__KFPawn_Monster.HeadshotAkComponent0'
+    Components(10)=SprintAkComponent0
+    Components(11)=AkComponent'Default__KFPawn_Monster.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

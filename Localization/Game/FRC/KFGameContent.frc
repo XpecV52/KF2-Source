@@ -706,7 +706,7 @@ ItemDescription="• Le tir principal utilise uniquement un canon.\n• Alt-Feu 
 [KFWeap_Pistol_Blunderbuss]
 ItemName="Tromblon"
 ItemCategory="Explosifs"
-ItemDescription="• Le tir principal lance un boulet de canon.\n• Maintenez le tir principal pour empêcher le boulet de canon d'exploser. Explose quand vous relâchez.\n• Le tir alternatif tire du shrapnel de boulet de canon."
+ItemDescription="• Le tir principal lance un boulet de canon.\n• Maintenez le tir principal pour empêcher le boulet de canon d'exploser. Explose quand vous relâchez.\n• Le tir alternatif tire du shrapnel de boulet de canon.\n• Jambe de bois et perroquet vendus séparément!"
 SharedUnlockSource="Pack d'arme Tromblon"
 
 [KFWeap_Pistol_G18C]
@@ -726,6 +726,28 @@ ItemName="Fusil d'assaut Tesla GRH"
 ItemCategory="Fusil d'assaut"
 ItemDescription="• Mode de tir automatique seulement.\n• Tir alternatif pour lancer des grenades IEM.\n• Avec cette arme électrique écologique, vous pouvez massacrer des centaines de Zeds sans nuire à la planète."
 SecondaryAmmo="Grenade IEM"
+
+[KFWeap_Minigun]
+ItemName="Minigun"
+ItemCategory="Spécial"
+ItemDescription="• Le tir principal est automatique. Le barillet tourne pendant 1,5 seconde pour initier le tir.\n• Viser fait tourner les barillets en prévision du tir.\n• Le bonheur se mesure en cartouches par minute."
+SharedUnlockSource="Pack d'arme Minigun"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="Générateur d'arc GRH"
+ItemCategory="Spécial"
+ItemDescription="• Le tir principal émet un rayon électriques qui atteint les ennemis proches.\n• Le tir alternatif envoie un orbe électrique en ligne droite.\n• Idéal pour quiconque cherche un pouvoir illimité!"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="Calcineur GRH"
+ItemCategory="Incendiaire"
+ItemDescription="• Le tir principal envoie une fusée adhésive qui brûle une cible et illumine les alentours.\n• Le tir alternatif lance une fusée endommagée qui enflamme le sol en ligne droite.\n• Pour illuminer votre voie vers la destruction."
+
+[KFWeap_Mine_Reconstructor]
+ItemName="Reconstructeur de mine"
+ItemCategory="Explosifs"
+ItemDescription="• Tire des mines biologiques qui explosent au contact pour infliger des dégâts aux Zeds et soigner les alliés.\n• Le tir alternatif déclenche l'explosion de toutes les mines posées.\n• L'origine du matériau de base est tenue secrète afin de respecter le code sanitaire."
+SharedUnlockSource="Pack d'arme Reconstructeur de mine"
 
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max

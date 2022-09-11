@@ -131,7 +131,7 @@ DefaultProperties
 	DialogEvents[`DAMP_SpotTeamDeathMResp]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_TeammateDeath',TraderTimeAudioCue=none)
 	DialogEvents[`DAMP_SpotTeamDeathF]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_TeammateDeath',TraderTimeAudioCue=none)
 	DialogEvents[`DAMP_SpotTeamDeathFResp]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_TeammateDeath',TraderTimeAudioCue=none)
-	DialogEvents[`DAMP_SpotTeamDeathLast]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_TeammateDeath',TraderTimeAudioCue=none)
+	DialogEvents[`DAMP_SpotTeamDeathLast]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_KillZed_LastPLayer',TraderTimeAudioCue=none)
 	DialogEvents[`DAMP_Grunt]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_Grunt',TraderTimeAudioCue=none)
 	//DialogEvents[`DAMP_Scream]=(DefaultAudioCue=AkEvent'ww_vox_chr_Masterson.Play_Masterson_PLAD_DamageScream_Base',TraderTimeAudioCue=none)
 	DialogEvents[`DAMP_Fire]=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_Grunt',TraderTimeAudioCue=none)

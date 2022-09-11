@@ -29,7 +29,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=2
-   MagazineCapacity(0)=6
    MeshFOV=60.000000
    MeshIronSightFOV=55.000000
    PlayerIronSightFOV=77.000000
@@ -39,6 +38,7 @@ defaultproperties
    GroupPriority=15.000000
    WeaponSelectTexture=Texture2D'wep_ui_flaregun_tex.UI_WeaponSelect_Flaregun'
    DualClass=Class'kfgamecontent.KFWeap_Pistol_DualFlare'
+   MagazineCapacity(0)=6
    SpareAmmoCapacity(0)=186
    InitialSpareMags(0)=15
    AmmoPickupScale(0)=2.000000

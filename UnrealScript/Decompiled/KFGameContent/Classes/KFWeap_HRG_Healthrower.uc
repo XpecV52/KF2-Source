@@ -158,7 +158,7 @@ simulated function ConsumeAmmo(byte FireModeNum)
     {
         if((MagazineCapacity[1] > 0) && AmmoCount[1] > 0)
         {
-            AmmoCount[1] = byte(Max(AmmoCount[1] - AmmoCost[1], 0));
+            AmmoCount[1] = Max(AmmoCount[1] - AmmoCost[1], 0);
         }
     }
 }
@@ -296,7 +296,7 @@ function HealAmmoRegeneration(float DeltaTime)
             HealingIncrement -= 1;
             if(bAllowClientAmmoTracking)
             {
-                HealingDartAmmo = AmmoCount[1];
+                HealingDartAmmo = byte(AmmoCount[1]);
             }
         }
     }
@@ -581,12 +581,12 @@ simulated function UpdateOpticsUI(optional bool bForceUpdate)
     {
         if((AmmoCount[0] != StoredPrimaryAmmo) || bForceUpdate)
         {
-            StoredPrimaryAmmo = AmmoCount[0];
+            StoredPrimaryAmmo = byte(AmmoCount[0]);
             OpticsUI.SetPrimaryAmmo(StoredPrimaryAmmo);
         }
         if((AmmoCount[1] != StoredSecondaryAmmo) || bForceUpdate)
         {
-            StoredSecondaryAmmo = AmmoCount[1];
+            StoredSecondaryAmmo = byte(AmmoCount[1]);
             OpticsUI.SetHealerCharge(StoredSecondaryAmmo);
         }
         if(OpticsUI.MinPercentPerShot != float(AmmoCost[1]))
@@ -696,7 +696,7 @@ defaultproperties
     object end
     // Reference: KFParticleSystemComponent'Default__KFWeap_HRG_Healthrower.FlameEndSpray0'
     PSC_EndSpray=FlameEndSpray0
-    MinAmmoConsumed=4
+    MinAmmoConsumed=3
     PackageKey="Healthrower"
     FirstPersonMeshName="WEP_1P_HRG_Healthrower_MESH.Wep_1stP_HRG_Healthrower_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -709,8 +709,6 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=7
-    MagazineCapacity[0]=100
-    MagazineCapacity[1]=100
     AimCorrectionSize=40
     MeshIronSightFOV=52
     PlayerIronSightFOV=80
@@ -721,6 +719,8 @@ defaultproperties
     GroupPriority=75
     WeaponSelectTexture=Texture2D'Wep_UI_HRG_Healthrower_TEX.UI_WeaponSelect_HRG_Healthrower'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+    MagazineCapacity[0]=100
+    MagazineCapacity[1]=100
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=500
     InitialSpareMags=1

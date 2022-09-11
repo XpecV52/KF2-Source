@@ -14,13 +14,14 @@ defaultproperties
 {
 
 	//DoT
-	DoT_Duration=2
+	DoT_Duration=4 //2
 	DoT_Interval=0.5
-	DoT_DamageScale=0.8
+	DoT_DamageScale=1.0 //0.8
 
 	//Afflictions
-	PoisonPower=15
-	StumblePower=40
+	PoisonPower=10 //15
+	StumblePower=60 //40
+	GunHitPower=5
 
 	bNoInstigatorDamage=true
 

@@ -46,11 +46,12 @@ YesString="예"
 NoString="아니오"
 TeamSwappedString="팀 교환을 하였습니다."
 
-MicrophonePopupTitleString="마이크 설정"
-MicrophonePopupSelectDeviceString="선택"
+
+MicrophonePopupTitleString="마이크를 설정합니다"
+MicrophonePopupSelectDeviceString="장치를 선택하십시오"
 MicrophonePopupVolumeString="마이크 볼륨"
 MicrophonePopupCheckString="마이크 확인"
-MicrophonePopupStopString="승인"
+MicrophonePopupStopString="정지"
 MicrophonePopupRefreshString="새로 고침"
 
 FriendsListPopupTitleString="초대할 친구를 선택하십시오"
@@ -62,6 +63,7 @@ ReturnString="돌아가기"
 
 InvitePopupTitleString="로비 초대"
 InvitePopupTextString=" 님이 로비로 초대했습니다"
+
 
 CancelConnectionString="로딩 취소"
 
@@ -169,6 +171,9 @@ FailedSearchString="대전상대 찾기에서 제공된 옵션으로 대전상�
 BrowseServersString="서버 검색"
 HasInvitedToGameString=" 님이 당신을 게임에 초대했습니다."
 JoinGameString="게임에 참여하시겠습니까?"
+
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="아이템 서버 연결"
 
 [KFGFxObject_Menu]
 LeavePartyTitleString="부대에서 나가기"
@@ -949,6 +954,17 @@ MarketCosmeticsString="꾸미기 거래"
 MarketEmotesString="시장 Emote"
 MarketSFXString="마켓 SFX"
 ThankYouString="구매해주셔서 감사합니다! 새 아이템, 지도, 무기, 제드 및 게임 모드를 개발하여 이후 업데이트로 제공하는 데 많은 도움이 됩니다."
+WeaponBundlesString="무기 번들"
+CharacterBundlesString="캐릭터 번들"
+OutfitBundlesString="복장 번들"
+TicketCratesUSBBundlesString="티켓/상자/USB 번들"
+CosmeticBundlesString="꾸미기 번들"
+WeaponSkinBundlesString="무기 스킨 번들"
+HeadshotFxBundlesString="헤드샷 FX 번들"
+SelectWeaponSkinsString="무기 스킨을 선택하십시오."
+SelectCosmeticsString="꾸미기를 선택하십시오."
+SelectEmotesString="Emote를 선택하십시오."
+SelectKeysAndTicketsString="키와 티켓을 선택하십시오."
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="시장에서 찾기"
@@ -1468,6 +1484,7 @@ FailedDropInventoryMessage="그곳에 버릴 수 없습니다."
 ReceivedGrenadesFromMessage="다음 플레이어에게 수류탄을 받았습니다."
 GaveGrenadesToMessage="다음 플레이어에게 수류탄을 주었습니다."
 SharingContentString="공유 콘텐츠입니다"
+PowerUpHellishRageActivatedMessage="지옥의 분노: +데미지, +스피드, 연소 효과, 치료 불가"
 HeadShotAddedString="%x 헤드샷 - %y% 추가 데미지!"
 HeadShotMaxString="헤드샷! %x% 추가 데미지!"
 HeadShotResetString="헤드샷 빗나감. 보통 데미지!"
@@ -1538,6 +1555,7 @@ PlayerClotGrabWarningMessage="제드를 죽이고 빠져나가십시오!"
 
 UseMinigameMessage="활성화"
 UseMinigameGeneratorMessage="미니게임 생성기 활성화"
+UsePowerUpMessage="체력 희생"
 DoshActivateMessage="활성화 비용"
 EMPGrabWarningMessage="*** ! 이동 불가 ! ***"
 [KFLocalMessage_ServerNotification]
@@ -1933,7 +1951,7 @@ AirborneAgent="제드 타임 - 공중 약품 살포"
 AirborneAgentDescription="제드 타임 동안 치료 가스를 살포하여 가까이 있는 팀원을 치료."
 
 Sedative="제드 타임 - 제더티브"
-SedativeDescription="제드 타임 동안 병과 무기로 제드에게 데미지를 가하면 30% 속도를 늦추고 대규모 독성 데미지를 가함."
+SedativeDescription="제드 타임 동안 병과 무기 데미지가 30% 증가하며, 적을 처치할 때마다 제드에게 데미지를 가하고 플레이어를 치료하는 독성 폭발을 일으킵니다."
 
 
 EXPAction1="필드 메딕 무기 데미지"
@@ -2220,6 +2238,9 @@ MadmanDescription="제드 타임 동안 모든 무기가 3배 빠르게 발사"
 
 IncapMaster="제드 타임 - 감금"
 IncapMasterDescription="제드 타임 동안 모든 무기가 Zed를 기절시킬 수 있습니다."
+
+[KFPowerUp_HellishRage]
+PowerUpName="지옥의 분노"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2741,13 +2762,27 @@ CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특
 SpecialEventObjectiveInfoList[0]=(TitleString="빌어먹을!",DescriptionString="아무 지도 혹은 모드에서 보스 15마리를 처치하십시오")
 SpecialEventObjectiveInfoList[1]=(TitleString="주간 어이",DescriptionString="황폐화에서 주간 게임 모드를 완료하십시오")
 SpecialEventObjectiveInfoList[2]=(TitleString="이봐! 불을 밝혀라!",DescriptionString="황폐화에서 발전기를 활성화하십시오")
-SpecialEventObjectiveInfoList[3]=(TitleString="도블론 벼락",DescriptionString="황폐화에서 적 처치, 보상과 치유를 통해 75,000 도쉬를 획득하십시오")
+SpecialEventObjectiveInfoList[3]=(TitleString="동전 한가득",DescriptionString="황폐화에서 적 처치, 보상과 치유를 통해 75,000 도쉬를 획득하십시오")
 SpecialEventObjectiveInfoList[4]=(TitleString="끝없는 약탈",DescriptionString="황폐화에서 끝없는 도전 어려움 또는 그 이상 난이도에서 15 웨이브를 완료하십시오")
 
 AllCompleteRewardDescriptionString="우주 해적 | 우주 원숭이 배낭"
 
 ChanceDropDescriptionStrings[0]="여름 티켓"
 ChanceDropDescriptionStrings[1]="여름 골든 티켓"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특별 이벤트입니다"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="지옥의 군단",DescriptionString="아무 지도나 모드에서 제드 2000마리를 처치하십시오")
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 침략",DescriptionString="헬마크 스테이션에서 주간 미션을 완료하십시오")
+SpecialEventObjectiveInfoList[2]=(TitleString="무슨 짓을 해서라도",DescriptionString="헬마크 스테이션 오벨리스크에서 지옥의 분노를 10회 달성하십시오")
+SpecialEventObjectiveInfoList[3]=(TitleString="악마 학살자",DescriptionString="헬마크 스테이션에서 제드 600마리의 목을 베어버리십시오")
+SpecialEventObjectiveInfoList[4]=(TitleString="끝없는 혼돈",DescriptionString="헬마크 스테이션에서 끝없는 도전 어려움 또는 그 이상 난이도에서 15 웨이브를 완료하십시오")
+
+AllCompleteRewardDescriptionString="할로윈 | 부두교 가방"
+
+ChanceDropDescriptionStrings[0]="할로윈 티켓"
+ChanceDropDescriptionStrings[1]="할로윈 골든 티켓"
 
 ;============================================
 ; Daily Localization
@@ -3346,6 +3381,9 @@ DisplayName="바이오랩스"
 
 [KF-Desolation KFMapSummary]
 DisplayName="황폐화"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="헬마크 스테이션"
 
 [KFMapInfo]
 ; defaults

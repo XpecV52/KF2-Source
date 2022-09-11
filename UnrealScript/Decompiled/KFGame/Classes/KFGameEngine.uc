@@ -128,6 +128,9 @@ native static function RefreshOnlineGameData();
 // Export UKFGameEngine::execApplyTweaks(FFrame&, void* const)
 native static function ApplyTweaks(string MapName);
 
+// Export UKFGameEngine::execIsLastRefreshTweakParamsSuccessful(FFrame&, void* const)
+native static function bool IsLastRefreshTweakParamsSuccessful();
+
 // Export UKFGameEngine::execIsSoloPlayDisabled(FFrame&, void* const)
 native static function bool IsSoloPlayDisabled();
 
@@ -467,7 +470,6 @@ function UnlockServer()
 
     if(Class'WorldInfo'.static.GetWorldInfo().NetMode == NM_DedicatedServer)
     {
-        LogInternal(("(TW TAKEOVER LOG)" @ "KFGameEngine.UnlockServer - bUsedForTakeover: ") $ string(bUsedForTakeover));
     }
     if(bUsedForTakeover)
     {
@@ -519,9 +521,9 @@ defaultproperties
     WeeklyEventIndex=-1
     DefaultGammaMult=0.68
     MusicVolumeMultiplier=50
-    SFxVolumeMultiplier=100
-    DialogVolumeMultiplier=100
-    MasterVolumeMultiplier=100
+    SFxVolumeMultiplier=50
+    DialogVolumeMultiplier=50
+    MasterVolumeMultiplier=50
     FOVOptionsPercentageValue=1
     LocalLoginStatus=ELoginStatus.LS_LoggedIn
     bDisableAILogging=true

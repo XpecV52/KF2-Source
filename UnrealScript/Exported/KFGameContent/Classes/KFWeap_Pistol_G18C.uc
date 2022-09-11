@@ -122,19 +122,18 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
    InventorySize=4
-   MagazineCapacity(0)=33
    PenetrationPower(2)=0.000000
    PenetrationPower(3)=0.000000
    PenetrationDamageReductionCurve(3)=(Points=(,(InVal=1.000000,OutVal=1.000000)))
    MeshFOV=96.000000
    MeshIronSightFOV=55.000000
    PlayerIronSightFOV=77.000000
-   IronSightPosition=(X=-3.000000,Y=0.000000,Z=0.000000)
    DOF_FG_FocalRadius=40.000000
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'wep_ui_g18c_tex.UI_WeaponSelect_G18C'
    DualClass=Class'kfgamecontent.KFWeap_Pistol_DualG18'
+   MagazineCapacity(0)=33
    SpareAmmoCapacity(0)=462
    InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True

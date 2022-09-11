@@ -121,7 +121,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=5
-   MagazineCapacity(0)=16
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshFOV=75.000000
@@ -132,6 +131,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=55.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HZ12_TEX.UI_WeaponSelect_HZ12'
+   MagazineCapacity(0)=16
    SpareAmmoCapacity(0)=80
    InitialSpareMags(0)=1
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'

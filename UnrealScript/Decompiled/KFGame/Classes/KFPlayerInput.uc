@@ -14,6 +14,7 @@ class KFPlayerInput extends MobilePlayerInput within KFPlayerController
 var config bool bRequiresPushToTalk;
 var bool bQuickWeaponSelect;
 var transient bool bIronsightsHeld;
+var transient bool bIronsightsActive;
 var bool bGamePadWeaponSelectOpen;
 var bool bShowGamepadWeaponSelectHint;
 var bool bInvertController;
@@ -635,12 +636,13 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
         Outer.bRun = 0;
         bExtendedSprinting = false;
     }
+    bIronsightsActive = true;
     if(Outer.Pawn != none)
     {
         KFW = KFWeapon(Outer.Pawn.Weapon);
         if(KFW != none)
         {
-            KFW.SetIronSights(((bHoldButtonMode) ? true : !KFW.bUsingSights));
+            KFW.SetIronSights(((bHoldButtonMode) ? true : !KFW.IsUsingSights()));
         }
     }
 }
@@ -657,6 +659,7 @@ simulated exec function IronSightsRelease(optional bool bHoldButtonMode)
     {
         bIronsightsHeld = false;
     }
+    bIronsightsActive = false;
     if(Outer.Pawn != none)
     {
         KFW = KFWeapon(Outer.Pawn.Weapon);
@@ -920,7 +923,7 @@ exec function ReleaseGamepadWeaponSelect()
                 Class'WorldInfo'.static.GetWorldInfo().TimerHelper.ClearTimer('GamepadWeaponMenuTimer', self);
                 if(bShowGamepadWeaponSelectHint)
                 {
-                    Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 11);
+                    Outer.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 12);
                 }
                 if(bUseGamepadLastWeapon)
                 {

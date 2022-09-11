@@ -12,7 +12,7 @@ DefaultProperties
 	WeaponClassPath="KFGameContent.KFWeap_Pistol_DualHRGWinterbite"
 
 	BuyPrice=650
-	AmmoPricePerMag=24
+	AmmoPricePerMag=26 //24
 	ImagePath="WEP_UI_Dual_Winterbite_Item_TEX.UI_WeaponSelect_HRG_DualWinterbite"
 
 	EffectiveRange=50

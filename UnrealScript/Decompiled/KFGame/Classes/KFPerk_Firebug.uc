@@ -161,17 +161,24 @@ function bool InHeatRange(KFPawn KFP)
     return VSizeSq(OwnerPawn.Location - KFP.Location) <= float(HeatWaveRadiusSQ);
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if((IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && IsHighCapFuelTankActive())
+    if(WeaponClassName == 'KFWeap_Pistol_HRGScorcher')
     {
-        TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[1])));
+        TempCapacity = TempCapacity;        
     }
-    MagazineCapacity = byte(Round(TempCapacity));
+    else
+    {
+        if(((IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && IsHighCapFuelTankActive()) && (KFW == none) || !KFW.bNoMagazine)
+        {
+            TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[1])));
+        }
+    }
+    MagazineCapacity = Round(TempCapacity);
 }
 
 function bool CanSpreadNapalm()

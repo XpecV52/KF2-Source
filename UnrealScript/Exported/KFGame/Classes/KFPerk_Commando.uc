@@ -244,12 +244,12 @@ simulated function bool GetUsingTactialReload( KFWeapon KFW )
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out int MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
 	TempCapacity = MagazineCapacity;
-
+	
 	if( !bSecondary && IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && (KFW == none || !KFW.bNoMagazine) )
 	{
 		if( IsLargeMagActive() )
@@ -262,7 +262,7 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapaci
        		TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[ECommandoEatLead] );
 		}
 	}
-
+	
 	MagazineCapacity = Round(TempCapacity);
 }
 
@@ -316,6 +316,21 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	}
 
 	if( CouldRapidFireActive() && (Is9mm(W) || IsWeaponOnPerk( W,, self.class )) && ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
+	{
+		return RapidFireFiringRate;
+	}
+
+	return 0.f;
+}
+
+/**
+ * @brief Specific modifier for the Minigun Windup rotation
+ *
+ * @return time dilation modifier
+ */
+simulated function float GetZedTimeModifierForWindUp()
+{
+	if( CouldRapidFireActive() )
 	{
 		return RapidFireFiringRate;
 	}
@@ -706,6 +721,7 @@ defaultproperties
    ZedTimeModifyingStates(0)="WeaponFiring"
    ZedTimeModifyingStates(1)="WeaponBurstFiring"
    ZedTimeModifyingStates(2)="WeaponSingleFiring"
+   ZedTimeModifyingStates(3)="WeaponWindingUp"
    bCanSeeCloakedZeds=True
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_AR15'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'

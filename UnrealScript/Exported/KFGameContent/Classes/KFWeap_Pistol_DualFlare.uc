@@ -33,7 +33,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=4
-   MagazineCapacity(0)=12
    MeshFOV=60.000000
    MeshIronSightFOV=55.000000
    PlayerIronSightFOV=77.000000
@@ -43,6 +42,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=35.000000
    WeaponSelectTexture=Texture2D'wep_ui_dual_flaregun_tex.UI_WeaponSelect_DualFlaregun'
+   MagazineCapacity(0)=12
    SpareAmmoCapacity(0)=180
    InitialSpareMags(0)=7
    BonesToLockOnEmpty(0)="RW_Hammer"

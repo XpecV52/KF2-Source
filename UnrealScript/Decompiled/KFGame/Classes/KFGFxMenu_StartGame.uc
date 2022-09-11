@@ -216,7 +216,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 2:
             return Class'KFGFxSpecialEventObjectivesContainer_Summer2020';
         case 3:
-            return Class'KFGFxFall2019ObjectivesContainer';
+            return Class'KFGFXSpecialEventObjectivesContainer_Fall2020';
         case 4:
             return Class'KFGFxSpecialEventObjectivesContainer_Xmas2019';
         default:
@@ -1536,6 +1536,10 @@ event StartOnlineGame()
     {
         GameInterface.AddFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
     }
+    if(Class'WorldInfo'.static.IsEOSBuild())
+    {
+        SearchFinished = false;
+    }
     if(!SearchDataStore.SubmitGameSearch(byte(Class'UIInteraction'.static.GetPlayerControllerId(0)), false))
     {
         GameInterface.ClearFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
@@ -1809,5 +1813,6 @@ defaultproperties
     StockMaps(28)="kf-steamfortress"
     StockMaps(29)="kf-ashwoodasylum"
     StockMaps(30)="kf-desolation"
+    StockMaps(31)="kf-hellmarkstation"
     SubWidgetBindings=/* Array type was not detected. */
 }

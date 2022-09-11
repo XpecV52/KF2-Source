@@ -172,6 +172,9 @@ BrowseServersString="BROWSE SERVERS"
 HasInvitedToGameString=" has invited you to a game"
 JoinGameString="Join Game?"
 
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="ITEM SERVER CONNECTION"
+
 [KFGFxObject_Menu]
 LeavePartyTitleString="LEAVING PARTY"
 LeavePartyDescriptionString="Are you sure you want to leave this online party?"
@@ -951,6 +954,17 @@ MarketCosmeticsString="Market Cosmetics"
 MarketEmotesString="Market Emotes"
 MarketSFXString="Market SFX"
 ThankYouString="Thank you for your purchase! It will help us in developing new items, maps, weapons, zeds, and game modes for future updates."
+WeaponBundlesString="Weapon Bundles"
+CharacterBundlesString="Character Bundles"
+OutfitBundlesString="Outfit Bundles"
+TicketCratesUSBBundlesString="Ticket/Crates/USB Bundles"
+CosmeticBundlesString="Cosmetic Bundles"
+WeaponSkinBundlesString="Weapon Skin Bundles"
+HeadshotFxBundlesString="Headshot FX Bundles"
+SelectWeaponSkinsString="Select Weapon Skins"
+SelectCosmeticsString="Select Cosmetics"
+SelectEmotesString="Select Emotes"
+SelectKeysAndTicketsString="Select Keys and Tickets"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="FIND IN MARKET"
@@ -1470,6 +1484,7 @@ FailedDropInventoryMessage="You can't drop that here"
 ReceivedGrenadesFromMessage="You received grenades from"
 GaveGrenadesToMessage="You gave grenades to"
 SharingContentString="is sharing content"
+PowerUpHellishRageActivatedMessage="HELLISH RAGE: +Damage, +Speed, Burn effect, Healing Disabled"
 HeadShotAddedString="%x Headshot(s) - %y% Extra Damage!"
 HeadShotMaxString="Headshot! %x% Extra Damage!"
 HeadShotResetString="Missed Headshot. Normal Damage!"
@@ -1540,6 +1555,7 @@ PlayerClotGrabWarningMessage="KILL ZED TO BREAK FREE!"
 
 UseMinigameMessage="ACTIVATE"
 UseMinigameGeneratorMessage="ACTIVATE GENERATOR"
+UsePowerUpMessage="SACRIFICE HEALTH"
 DoshActivateMessage="ACTIVATION COST"
 EMPGrabWarningMessage="*** ! IMMOBILIZED ! ***"
 [KFLocalMessage_ServerNotification]
@@ -1935,7 +1951,7 @@ AirborneAgent="ZED TIME - Airborne Agent"
 AirborneAgentDescription="You release a healing gas during Zed time, healing teammates close by."
 
 Sedative="ZED TIME - Zedative"
-SedativeDescription="During Zed time, damaging Zeds with perk weapons will slow them 30% and do massive amounts of poison damage."
+SedativeDescription="During Zed time your perk weapons damage is increased 30%, and your kills generates a toxic explosion that damage Zeds and heal players."
 
 
 EXPAction1="Dealing Field Medic weapon damage"
@@ -2222,6 +2238,9 @@ MadmanDescription="During Zed time, all your weapons shoot 3x faster."
 
 IncapMaster="ZED TIME - Lockdown"
 IncapMasterDescription="During Zed time, all your weapons can stun any Zed."
+
+[KFPowerUp_HellishRage]
+PowerUpName="Hellish Rage"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2750,6 +2769,20 @@ AllCompleteRewardDescriptionString="Space Pirate | Space Monkey Backpack"
 
 ChanceDropDescriptionStrings[0]="Summer Ticket"
 ChanceDropDescriptionStrings[1]="Summer Golden Ticket"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="A time-limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="An Infernal Legion",DescriptionString="Kill 2000 Zeds on any map or mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Weekly Invasion",DescriptionString="Complete Weekly on Hellmark Station")
+SpecialEventObjectiveInfoList[2]=(TitleString="At Any Cost",DescriptionString="Get the Hellish Rage from a Hellmark Station Obelisk 10 times")
+SpecialEventObjectiveInfoList[3]=(TitleString="Demon Slayer",DescriptionString="Decapitate 600 Zeds on Hellmark Station")
+SpecialEventObjectiveInfoList[4]=(TitleString="Inexhaustible Chaos",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Hellmark Station")
+
+AllCompleteRewardDescriptionString="Halloween | Voodoo Backpack"
+
+ChanceDropDescriptionStrings[0]="Halloween Ticket"
+ChanceDropDescriptionStrings[1]="Halloween Golden Ticket"
 
 ;============================================
 ; Daily Localization
@@ -3348,6 +3381,9 @@ DisplayName="Biolapse"
 
 [KF-Desolation KFMapSummary]
 DisplayName="Desolation"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="Hellmark Station"
 
 [KFMapInfo]
 ; defaults

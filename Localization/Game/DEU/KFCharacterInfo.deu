@@ -43,6 +43,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
+BodyMesh13="Sensenmann-Outfit"
 HeadMesh0="Gasmaske"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -148,6 +149,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_MrsFoster_archetype.BodyMesh13]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Weiß"
 HeadSkin1="Grün"
@@ -232,6 +241,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
+BodyMesh13="Sensenmann-Outfit"
 HeadMesh0="Bart-Power!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -343,6 +353,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_Jagerhorn_archetype.BodyMesh13]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Blonder Schwede"
 HeadSkin1="Das schwarze Album"
@@ -415,7 +433,7 @@ AttachmentSkin1="Blau"
 AttachmentSkin2="Braun"
 AttachmentSkin3="Camo1"
 AttachmentSkin4="Camo2"
-AttachmentSkin5="Marineblau"
+AttachmentSkin5="Navy"
 AttachmentSkin6="Oliv"
 AttachmentSkin7="Rot"
 
@@ -441,7 +459,8 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
-BodyMesh12="Weltraumpirat-Outfit"
+BodyMesh12="Weltraumpirat"
+BodyMesh13="Sensenmann-Outfit"
 HeadMesh0="Schädel-Maske"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -552,6 +571,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_DJSkully_archetype.BodyMesh13]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Schwärzestes Schwarz"
 HeadSkin1="Xtra-Rot"
@@ -598,6 +625,7 @@ BodyMesh10="Cyberpunk"
 BodyMesh11="Hexenjäger"
 BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
+BodyMesh14="Sensenmann-Outfit"
 HeadMesh0="Haar"
 
 [chr_briar_archetype.BodyMesh0]
@@ -714,6 +742,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_briar_archetype.BodyMesh14]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Strähnchen"
@@ -753,7 +789,8 @@ BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Hexenjäger"
 BodyMesh12="Santa-Anzug"
-BodyMesh13="Piraten-Outfit"
+BodyMesh13="Weltraumpirat-Outfit"
+BodyMesh14="Sensenmann-Outfit"
 HeadMesh0="Gasmaske"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -874,6 +911,14 @@ BodySkin2="Blutrot"
 BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
+
+[CHR_MrFoster_archetype.BodyMesh14]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Original-Weiß"
@@ -1035,6 +1080,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
+BodyMesh13="Sensenmann-Outfit"
 HeadMesh0="Gesicht"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1143,6 +1189,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_Coleman_archetype.BodyMesh13]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tattoo"
@@ -1182,6 +1236,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
+BodyMesh13="Sensenmann-Outfit"
 HeadMesh0="Haar"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1291,6 +1346,14 @@ BodySkin2="Blutrot"
 BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
+
+[CHR_Alberts_archetype.BodyMesh13]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grau"
@@ -1836,7 +1899,7 @@ AttachmentSkin1="Wald-Tarnung"
 AttachmentSkin2="Hinterwald-Tarnung"
 AttachmentSkin3="Wüsten-Tarnung"
 AttachmentSkin4="Sierra-Tarnung"
-AttachmentSkin5="Oliv Tarnung"
+AttachmentSkin5="Olive Tarnung"
 
 [Cosmetic_TacticalHat_Alberts_ARCH]
 Attachment="Taktische Mütze"
@@ -1844,7 +1907,7 @@ AttachmentSkin0="Schwarz"
 AttachmentSkin1="Braun"
 AttachmentSkin2="Tarnung"
 AttachmentSkin3="Grau"
-AttachmentSkin4="Marineblau"
+AttachmentSkin4="Navy"
 AttachmentSkin5="Oliv"
 AttachmentSkin6="Rot"
 
@@ -1854,7 +1917,7 @@ AttachmentSkin0="Schwarz"
 AttachmentSkin1="Braun"
 AttachmentSkin2="Tarnung"
 AttachmentSkin3="Grau"
-AttachmentSkin4="Marineblau"
+AttachmentSkin4="Navy"
 AttachmentSkin5="Oliv"
 AttachmentSkin6="Rot"
 
@@ -1864,7 +1927,7 @@ AttachmentSkin0="Schwarz"
 AttachmentSkin1="Braun"
 AttachmentSkin2="Grün"
 AttachmentSkin3="Grau"
-AttachmentSkin4="Marineblau"
+AttachmentSkin4="Navy"
 AttachmentSkin5="Oliv"
 AttachmentSkin6="Rot"
 
@@ -1874,7 +1937,7 @@ AttachmentSkin0="Schwarz"
 AttachmentSkin1="Braun"
 AttachmentSkin2="Grün"
 AttachmentSkin3="Grau"
-AttachmentSkin4="Marineblau"
+AttachmentSkin4="Navy"
 AttachmentSkin5="Oliv"
 AttachmentSkin6="Rot"
 
@@ -2015,7 +2078,7 @@ AttachmentSkin1="Blau"
 AttachmentSkin2="Braun"
 AttachmentSkin3="Camo1"
 AttachmentSkin4="Camo2"
-AttachmentSkin5="Marineblau"
+AttachmentSkin5="Navy"
 AttachmentSkin6="Oliv"
 AttachmentSkin7="Rot"
 
@@ -2191,6 +2254,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
+BodyMesh13="Sensenmann-Outfit"
 HeadMesh0="Gesicht"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2310,6 +2374,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_Masterson_archetype.BodyMesh13]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka ist ein zerrissenes Individuum mit einem ernsthaften Todeswunsch-Problem. Geboren in Okinawa, wuchs er zwischen amerikanischen Militärs auf. Als er mit seiner Familie aufs japanische Festland zog, konnte sich der amerikanisierte Tanaka nicht in die Gesellschaft einfügen und nahm Schauspielunterricht. Nach dem College zog er nach LA und spielte klischeehafte Kleinrollen in schlechten Filmen, bevor er nach Europa zog, in einem Versuch ‚ seriösere‘ Arbeit zu finden. Alles, war er dort bekam, waren Bösewicht-Rollen in französischen Gangsterfilmen und ein paar Tattoos. Jetzt, inmitten der Apokalypse, scheint er seine eigene Realität mit einigen der Filmrollen, die er gespielt hat, zu verwechseln. Dies scheint Vorstellungen von den Yakuza, Dämonen und eine Hollywood-Interpretation von Bushido zu beinhalten."
@@ -2327,6 +2399,7 @@ BodyMesh10="Cyberpunk"
 BodyMesh11="Hexenjäger"
 BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
+BodyMesh14="Sensenmann-Outfit"
 HeadMesh0="Haar"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2453,6 +2526,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_Tanaka_archetype.BodyMesh14]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Helm"
 AttachmentSkin0="Aufgehende Sonne"
@@ -2496,6 +2577,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
+BodyMesh13="Sensenmann-Outfit"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2615,6 +2697,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_Ana_archetype.BodyMesh13]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D-Brille"
 AttachmentSkin0="Anaglyph 3D"
@@ -2644,6 +2734,7 @@ BodyMesh10="Cyberpunk"
 BodyMesh11="Hexenjäger"
 BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
+BodyMesh14="Sensenmann-Outfit"
 HeadMesh0="Haar"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2760,6 +2851,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_mark_archetype.BodyMesh14]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Das einzig Wahre"
 HeadSkin1="Blutige Teezeit"
@@ -2786,6 +2885,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
+BodyMesh13="Sensenmann-Outfit"
 HeadMesh0="Gesicht"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2897,6 +2997,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_alan_archetype.BodyMesh13]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Das einzig Wahre"
 HeadSkin1="Fuchsrot? Wirklich?"
@@ -2930,6 +3038,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
+BodyMesh13="Sensenmann-Outfit"
 HeadMesh0="Haar"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3038,6 +3147,14 @@ BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
 
+[CHR_strasser_archetype.BodyMesh13]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
+
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Dunkler Stahl"
 HeadSkin1="Heller Stahl"
@@ -3131,7 +3248,7 @@ AttachmentSkin0="Schwarz"
 AttachmentSkin1="Braun"
 AttachmentSkin2="Tarnung"
 AttachmentSkin3="Grau"
-AttachmentSkin4="Marineblau"
+AttachmentSkin4="Navy"
 AttachmentSkin5="Oliv"
 AttachmentSkin6="Rot"
 
@@ -3141,7 +3258,7 @@ AttachmentSkin0="Schwarz"
 AttachmentSkin1="Braun"
 AttachmentSkin2="Tarnung"
 AttachmentSkin3="Grau"
-AttachmentSkin4="Marineblau"
+AttachmentSkin4="Navy"
 AttachmentSkin5="Oliv"
 AttachmentSkin6="Rot"
 
@@ -3151,7 +3268,7 @@ AttachmentSkin0="Schwarz"
 AttachmentSkin1="Braun"
 AttachmentSkin2="Grün"
 AttachmentSkin3="Grau"
-AttachmentSkin4="Marineblau"
+AttachmentSkin4="Navy"
 AttachmentSkin5="Oliv"
 AttachmentSkin6="Rot"
 
@@ -3161,7 +3278,7 @@ AttachmentSkin0="Schwarz"
 AttachmentSkin1="Braun"
 AttachmentSkin2="Grün"
 AttachmentSkin3="Grau"
-AttachmentSkin4="Marineblau"
+AttachmentSkin4="Navy"
 AttachmentSkin5="Oliv"
 AttachmentSkin6="Rot"
 
@@ -3213,6 +3330,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
+BodyMesh13="Sensenmann-Outfit"
 HeadMesh0="Standard-Kopf"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3324,6 +3442,14 @@ BodySkin2="Blutrot"
 BodySkin3="Limettengrün"
 BodySkin4="Lavendelfarben"
 BodySkin5="Orange"
+
+[CHR_rockabilly_archetype.BodyMesh13]
+BodySkin0="Tod"
+BodySkin1="Eroberung"
+BodySkin2="Hunger"
+BodySkin3="Pestilenz"
+BodySkin4="Krieg"
+BodySkin5="Anarchie"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Schwarz"
@@ -3483,7 +3609,7 @@ AttachmentSkin0="Schwarz"
 AttachmentSkin1="Braun"
 AttachmentSkin2="Tarnung"
 AttachmentSkin3="Grau"
-AttachmentSkin4="Marineblau"
+AttachmentSkin4="Navy"
 AttachmentSkin5="Oliv"
 AttachmentSkin6="Rot"
 
@@ -4478,7 +4604,7 @@ AttachmentSkin0="Klassisch"
 AttachmentSkin1="Edel"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
-Attachment="Bärenrucksack für Weihnachten"
+Attachment="Bärenrucksack"
 AttachmentSkin0="Blau"
 AttachmentSkin1="Braun"
 AttachmentSkin2="Dunkel"
@@ -4854,7 +4980,7 @@ AttachmentSkin0="Himmlisch"
 AttachmentSkin1="Edel"
 
 [Cosmetic_Halloween_Cauldron_ARCH]
-Attachment="Halloween-Kesselrucksack"
+Attachment="Kesselrucksack"
 AttachmentSkin0="Süßigkeiten"
 AttachmentSkin1="Edel"
 
@@ -5873,7 +5999,7 @@ AttachmentSkin2="Neon-RGB"
 AttachmentSkin3="Regenbogen-RGB"
 
 [Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
-Attachment="Weltraumpirat-Feder-Zylinder"
+Attachment="Federzylinder"
 AttachmentSkin0="Marineblau"
 AttachmentSkin1="Schwarz"
 AttachmentSkin2="Grün"
@@ -5971,7 +6097,7 @@ AttachmentSkin4="Lavendelfarben"
 AttachmentSkin5="Orange"
 
 [Cosmetic_SpacePirate_MaleCaptainMask_ARCH]
-Attachment="Crossbones Mask"
+Attachment="Totenkopfmaske"
 AttachmentSkin0="Oliv"
 AttachmentSkin1="Marineblau"
 AttachmentSkin2="Blutrot"
@@ -5980,10 +6106,202 @@ AttachmentSkin4="Lavendelfarben"
 AttachmentSkin5="Orange"
 
 [Cosmetic_SpacePirate_FemaleCaptainMask_ARCH]
-Attachment="Crossbones Mask"
+Attachment="Totenkopfmaske"
 AttachmentSkin0="Oliv"
 AttachmentSkin1="Marineblau"
 AttachmentSkin2="Blutrot"
 AttachmentSkin3="Limettengrün"
 AttachmentSkin4="Lavendelfarben"
 AttachmentSkin5="Orange"
+
+[Cosmetic_Apocalypse_Helmet_ARCH]
+Attachment="Apokalypse-Helm"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Marineblau"
+AttachmentSkin2="Rot"
+AttachmentSkin3="Nacht"
+AttachmentSkin4="Wald"
+AttachmentSkin5="Schnee"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Apocalypse_Goggles_ARCH]
+Attachment="Apokalypse-Brille"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Marineblau"
+AttachmentSkin2="Rot"
+AttachmentSkin3="Nacht"
+AttachmentSkin4="Wald"
+AttachmentSkin5="Schnee"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Apocalypse_Mask_ARCH]
+Attachment="Apokalypse-Maske"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Marineblau"
+AttachmentSkin2="Rot"
+AttachmentSkin3="Nacht"
+AttachmentSkin4="Wald"
+AttachmentSkin5="Schnee"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Apocalypse_Hood_ARCH]
+Attachment="Apokalypse-Kapuze"
+AttachmentSkin0="Wüste"
+AttachmentSkin1="Marineblau"
+AttachmentSkin2="Rot"
+AttachmentSkin3="Nacht"
+AttachmentSkin4="Wald"
+AttachmentSkin5="Schnee"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Apocalypse_GasMask_ARCH]
+Attachment="Apokalypse-Gasmaske"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Marineblau"
+AttachmentSkin2="Rot"
+AttachmentSkin3="Nacht"
+AttachmentSkin4="Wald"
+AttachmentSkin5="Schnee"
+AttachmentSkin6="Edel"
+
+[Cosmetic_WW1Pilot_Helmet_ARCH]
+Attachment="WW1-Pilot-Helm"
+AttachmentSkin0="Braun"
+AttachmentSkin1="Oliv"
+AttachmentSkin2="Marineblau"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Nacht"
+AttachmentSkin5="Wald"
+AttachmentSkin6="Schnee"
+AttachmentSkin7="Edel"
+
+[Cosmetic_WW1Pilot_HelmetGoggles_ARCH]
+Attachment="WW1-Pilot-Helm-&-Brille"
+AttachmentSkin0="Braun"
+AttachmentSkin1="Oliv"
+AttachmentSkin2="Marineblau"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Nacht"
+AttachmentSkin5="Wald"
+AttachmentSkin6="Schnee"
+AttachmentSkin7="Edel"
+
+[Cosmetic_WW1Pilot_Mask_ARCH]
+Attachment="WW1-Pilot-Atemgerät"
+AttachmentSkin0="Grau"
+AttachmentSkin1="Oliv"
+AttachmentSkin2="Marineblau"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Nacht"
+AttachmentSkin5="Wald"
+AttachmentSkin6="Schnee"
+AttachmentSkin7="Edel"
+
+[Cosmetic_WW1Pilot_Parachute_ARCH]
+Attachment="WW1-Pilot-Fallschirmrucksack"
+AttachmentSkin0="Grau"
+AttachmentSkin1="Oliv"
+AttachmentSkin2="Marineblau"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Nacht"
+AttachmentSkin5="Wald"
+AttachmentSkin6="Schnee"
+AttachmentSkin7="Edel"
+
+[Cosmetic_Halloween_PumpkinMask_ARCH]
+Attachment="Kürbismaske"
+AttachmentSkin0="Orange"
+AttachmentSkin1="Limettengrün"
+AttachmentSkin2="Lila"
+AttachmentSkin3="Braun"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Halloween_StrawmanMask_ARCH]
+Attachment="Vogelscheuchenmaske"
+AttachmentSkin0="Hellbraun"
+AttachmentSkin1="Blau"
+AttachmentSkin2="Weiß"
+AttachmentSkin3="Schalk"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Halloween_ClownMouth_ARCH]
+Attachment="Clownmund"
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Weiß"
+AttachmentSkin2="Limettengrün"
+AttachmentSkin3="Maulkorb"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Halloween_FingerTophat_ARCH]
+Attachment="Finger-Zylinder"
+AttachmentSkin0="Kürbis"
+AttachmentSkin1="Party"
+AttachmentSkin2="Leiter"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Halloween_SorceressHat_ARCH]
+Attachment="Zauberinnenhut"
+AttachmentSkin0="Lila"
+AttachmentSkin1="Weiß"
+AttachmentSkin2="Streifen"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Halloween_BoarHead_ARCH]
+Attachment="Wildschweinkopf"
+AttachmentSkin0="Weiß"
+AttachmentSkin1="Rosa"
+AttachmentSkin2="Blau"
+AttachmentSkin3="Gepunktet"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Halloween_VoodooBackpack_ARCH]
+Attachment="Voodoo-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Halloween_VoodooBackpack_Alberts_ARCH]
+Attachment="Voodoo-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Halloween_VoodooBackpack_Coleman_ARCH]
+Attachment="Voodoo-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Halloween_VoodooBackpack_JagerHorn_ARCH]
+Attachment="Voodoo-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Halloween_VoodooBackpack_Knight_ARCH]
+Attachment="Voodoo-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Halloween_VoodooBackpack_MrFoster_ARCH]
+Attachment="Voodoo-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Halloween_VoodooBackpack_MrsFoster_ARCH]
+Attachment="Voodoo-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Halloween_VoodooBackpack_RockabillyGirl_ARCH]
+Attachment="Voodoo-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Reaper_MaleSkullMask_ARCH]
+Attachment="Sensenmannschädelmaske"
+AttachmentSkin0="Tod"
+AttachmentSkin1="Eroberung"
+AttachmentSkin2="Hunger"
+AttachmentSkin3="Pestilenz"
+AttachmentSkin4="Krieg"
+AttachmentSkin5="Anarchie"
+
+[Cosmetic_Reaper_FemaleSkullMask_ARCH]
+Attachment="Sensenmannschädelmaske"
+AttachmentSkin0="Tod"
+AttachmentSkin1="Eroberung"
+AttachmentSkin2="Hunger"
+AttachmentSkin3="Pestilenz"
+AttachmentSkin4="Krieg"
+AttachmentSkin5="Anarchie"

@@ -276,13 +276,13 @@ simulated function RebuildLockedBonesForReload()
     BonesToLockOnEmpty.Length = 0;
     NumOfShotsToReload = MagazineCapacity[0] - AmmoCount[0];
     I = NumOfShotsToReload;
-    J0x7D:
+    J0x79:
 
     if(I < ShellBoneNames.Length)
     {
         BonesToLockOnEmpty.AddItem(ShellBoneNames[I];
         ++ I;
-        goto J0x7D;
+        goto J0x79;
     }
     if((EmptyMagBlendNode != none) && BonesToLockOnEmpty.Length > 0)
     {
@@ -370,12 +370,12 @@ defaultproperties
     FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
     FireModeIconPaths(1)=none
     InventorySize=6
-    MagazineCapacity=6
     MeshIronSightFOV=52
     PlayerIronSightFOV=73
     FastZoomOutTime=0.2
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
+    MagazineCapacity=6
     SpareAmmoCapacity=36
     InitialSpareMags=9
     AmmoPickupScale=2

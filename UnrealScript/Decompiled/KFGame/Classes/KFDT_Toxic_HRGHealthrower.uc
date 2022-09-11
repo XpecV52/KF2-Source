@@ -12,10 +12,11 @@ defaultproperties
 {
     WeaponDef=Class'KFWeapDef_Healthrower_HRG'
     bNoInstigatorDamage=true
-    DoT_Duration=2
+    DoT_Duration=4
     DoT_Interval=0.5
-    DoT_DamageScale=0.8
-    StumblePower=40
-    PoisonPower=15
+    DoT_DamageScale=1
+    StumblePower=60
+    GunHitPower=5
+    PoisonPower=10
     ModifierPerkList(0)=class'KFPerk_FieldMedic'
 }

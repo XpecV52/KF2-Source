@@ -207,7 +207,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
    FireModeIconPaths(1)=()
    InventorySize=9
-   MagazineCapacity(0)=100
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=80.000000
    IronSightPosition=(X=3.000000,Y=0.000000,Z=0.000000)
@@ -216,6 +215,7 @@ defaultproperties
    MaxAIWarningDistSQ=2250000.000000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
+   MagazineCapacity(0)=100
    AmmoCost(1)=10
    SpareAmmoCapacity(0)=500
    AmmoPickupScale(0)=0.500000

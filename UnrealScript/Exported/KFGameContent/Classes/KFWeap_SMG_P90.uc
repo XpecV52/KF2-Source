@@ -25,11 +25,11 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
    InventorySize=5
-   MagazineCapacity(0)=50
    MeshFOV=75.000000
    MeshIronSightFOV=55.000000
    GroupPriority=80.000000
    WeaponSelectTexture=Texture2D'WEP_UI_P90_TEX.UI_WeaponSelect_FNP90'
+   MagazineCapacity(0)=50
    SpareAmmoCapacity(0)=350
    InitialSpareMags(0)=2
    bLoopingFireAnim(0)=True

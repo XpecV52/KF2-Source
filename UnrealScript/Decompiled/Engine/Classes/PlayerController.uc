@@ -6047,6 +6047,21 @@ unreliable client simulated event ClientSpawnCameraLensEffect(class<EmitterCamer
     }
 }
 
+unreliable client simulated event ClientRemoveCameraLensEffect(class<EmitterCameraLensEffectBase> LensEffectEmitterClass)
+{
+    local EmitterCameraLensEffectBase EmitterLensEffect;
+
+    if(PlayerCamera != none)
+    {
+        EmitterLensEffect = PlayerCamera.FindCameraLensEffect(LensEffectEmitterClass);
+        if(EmitterLensEffect != none)
+        {
+            PlayerCamera.RemoveCameraLensEffect(EmitterLensEffect);
+            EmitterLensEffect.Destroy();
+        }
+    }
+}
+
 function OnSetSoundMode(SeqAct_SetSoundMode Action)
 {
     local AudioDevice Audio;

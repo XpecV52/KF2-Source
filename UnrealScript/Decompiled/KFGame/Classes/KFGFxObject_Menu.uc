@@ -250,13 +250,14 @@ function ConfirmCreateParty()
         }
         if(Class'WorldInfo'.static.IsConsoleBuild())
         {
-            OnlineLobby.MakeLobby(6, 2);            
+            OnlineLobby.MakeLobby(6, 2);
+            OnlineLobby.ShowLobbyInviteInterface(Localize("Notifications", "InviteMessage", "KFGameConsole"));            
         }
         else
         {
             OnlineLobby.MakeLobby(6, 1);
+            showFriendsListPopup();
         }
-        showFriendsListPopup();
     }
 }
 

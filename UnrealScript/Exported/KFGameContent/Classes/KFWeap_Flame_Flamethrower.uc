@@ -198,7 +198,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
    FireModeIconPaths(1)=()
    InventorySize=7
-   MagazineCapacity(0)=100
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=80.000000
    IronSightPosition=(X=3.000000,Y=6.000000,Z=-1.000000)
@@ -206,6 +205,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
+   MagazineCapacity(0)=100
    SpareAmmoCapacity(0)=500
    InitialSpareMags(0)=1
    AmmoPickupScale(0)=0.400000

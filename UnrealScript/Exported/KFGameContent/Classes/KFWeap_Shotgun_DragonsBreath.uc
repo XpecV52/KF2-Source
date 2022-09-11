@@ -27,7 +27,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=5
-   MagazineCapacity(0)=6
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshFOV=75.000000
@@ -38,6 +37,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_DragonsBreath.UI_WeaponSelect_DragonsBreath'
+   MagazineCapacity(0)=6
    SpareAmmoCapacity(0)=60
    InitialSpareMags(0)=4
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'

@@ -1763,7 +1763,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '0_452' was not found.
+System.ArgumentException: Requested value '0_475' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1879,8 +1879,10 @@ Parameter name: index
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedPatriarch.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.PowerUpAkSoundComponent'
     DamageRecoveryTimeHeavy=0.65
     DamageRecoveryTimeMedium=0.85
     Mass=400
@@ -1923,8 +1925,10 @@ Parameter name: index
     Components(5)=AkComponent'Default__KFPawn_ZedPatriarch.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedPatriarch.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedPatriarch.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedPatriarch.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedPatriarch.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedPatriarch.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedPatriarch.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedPatriarch.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedPatriarch.HeadshotAkComponent0'
     begin object name=CloakedAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -1932,7 +1936,7 @@ Parameter name: index
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_ZedPatriarch.CloakedAkComponent0'
-    Components(10)=CloakedAkComponent0
+    Components(12)=CloakedAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

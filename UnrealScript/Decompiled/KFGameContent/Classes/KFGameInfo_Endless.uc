@@ -628,7 +628,7 @@ function SetMonsterDefaults(KFPawn_Monster P)
 
 defaultproperties
 {
-    SpecialWaveTypes(0)=211
+    SpecialWaveTypes(0)=234
     SpecialWaveTypes(1)=1
     SpecialWaveTypes(2)=0
     SpecialWaveTypes(3)=0
@@ -636,7 +636,7 @@ defaultproperties
     SpecialWaveTypes(5)=0
     SpecialWaveTypes(6)=0
     SpecialWaveTypes(7)=0
-    SpecialWaveTypes(8)=218
+    SpecialWaveTypes(8)=241
     SpecialWaveTypes(9)=1
     SpecialWaveTypes(10)=0
     SpecialWaveStart=6

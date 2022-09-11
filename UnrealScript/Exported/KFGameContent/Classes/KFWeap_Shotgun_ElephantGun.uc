@@ -161,7 +161,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunAuto'
    InventorySize=10
-   MagazineCapacity(0)=4
    PenetrationPower(0)=4.000000
    PenetrationPower(1)=4.000000
    MeshFOV=60.000000
@@ -171,6 +170,7 @@ defaultproperties
    DOF_FG_FocalRadius=65.000000
    GroupPriority=110.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Quad_Barrel_TEX.UI_WeaponSelect_QuadBarrel'
+   MagazineCapacity(0)=4
    AmmoCost(1)=4
    SpareAmmoCapacity(0)=48
    InitialSpareMags(0)=3

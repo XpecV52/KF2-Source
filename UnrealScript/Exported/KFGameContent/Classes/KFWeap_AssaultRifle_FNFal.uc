@@ -42,7 +42,6 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
    InventorySize=8
-   MagazineCapacity(0)=20
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=2.000000
    MeshFOV=55.000000
@@ -54,6 +53,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_FNFAL_TEX.UI_WeaponSelect_FNFAL'
+   MagazineCapacity(0)=20
    SpareAmmoCapacity(0)=160
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True

@@ -473,7 +473,7 @@ ItemCategory="Pistola de mão"
 ItemDescription="•Apenas disparo único.\n•Atirar a esmo nunca foi tão divertido."
 
 [KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="Duas Chumbo Grosso HRG"
+ItemName="Chumbo Grosso HRG Duplo"
 ItemCategory="Pistola de mão"
 ItemDescription="•Apenas disparo semiautomático.\n•Tiro alt. alterna estilos de mira ao usar a mira metálica.\n•Atirar a esmo nunca foi tão divertido, de verdade."
 
@@ -706,7 +706,7 @@ ItemDescription="•O tiro principal usa um cano.\n•Tiro alt. atira com os doi
 [KFWeap_Pistol_Blunderbuss]
 ItemName="Bacamarte"
 ItemCategory="Explosivos"
-ItemDescription="•O tiro principal dispara uma bala de canhão.\n•Segure o tiro principal para impedir que a bala de canhão exploda. Explode ao soltar.\n•Tiro alt. dispara estilhaços de bala de canhão.\n•Perna de pau e papagaio vendidos separadamente!"
+ItemDescription="•O tiro principal lança uma bala de canhão.\n•Segure o tiro principal para impedir que a bala de canhão exploda. Explode ao soltar.\n•O tiro alt. dispara estilhaços de bala de canhão.\n•Perna de pau e papagaio vendidos separadamente!"
 SharedUnlockSource="Conjunto de Armas de Bacamarte"
 
 [KFWeap_Pistol_G18C]
@@ -726,6 +726,28 @@ ItemName="Lançador Tesla HRG"
 ItemCategory="Fuzil de assalto"
 ItemDescription="•Modo de tiro somente automático.\n•Tiro alt. para disparar granadas de IEM.\n•Com esta arma elétrica e ecológica, é possível abater centenas de Zeds sem prejudicar o meio ambiente."
 SecondaryAmmo="Granada de IEM"
+
+[KFWeap_Minigun]
+ItemName="Minigun"
+ItemCategory="Especial"
+ItemDescription="•Tiro principal automático. Os canos giram por 1,5 segundo para começar a disparar.\n•Ao mirar, os canos giram para preparar fogo.\n•A felicidade é medida em projéteis por minuto."
+SharedUnlockSource="Conjunto de Armas Minigun"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="Gerador de Arco HRG"
+ItemCategory="Especial"
+ItemDescription="•O tiro primário solta um raio de eletricidade que se propaga para inimigos próximos.\n•O tiro alternativo lança um orbe de eletricidade em linha reta.\n•Para os que buscam poder ilimitado!"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="Queimador HRG"
+ItemCategory="Chamas"
+ItemDescription="•O tiro primário dispara um sinalizador adesivo que queima o alvo e ilumina tudo ao seu redor.\n•O tiro alternativo lança um sinalizador quebrado que solta chamas no chão em linha reta.\n•Uma arma de luz para iluminar o seu caminho."
+
+[KFWeap_Mine_Reconstructor]
+ItemName="Reconstrutora de Minas"
+ItemCategory="Explosivos"
+ItemDescription="•Dispara minas biológicas que explodem ao contato, ferindo Zeds e curando aliados.\n•O tiro alternativo detona todas as minas colocadas.\n•A fonte de seu material base é informação confidencial por questões do Código de Saúde."
+SharedUnlockSource="Conjunto de Armas Reconstrutora de Minas"
 
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max

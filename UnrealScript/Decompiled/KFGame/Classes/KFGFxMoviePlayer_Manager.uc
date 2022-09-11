@@ -255,6 +255,7 @@ var const localized string JoinGameString;
 var KFGFxWidget_MenuBar MenuBarWidget;
 var KFGFxWidget_BaseParty PartyWidget;
 var KFGFxWidget_ButtonPrompt ButtonPromptWidget;
+var KFGFxWidget_BackendStatusIndicatorWidget BackendStatusIndicatorWidget;
 var array<string> WidgetPaths;
 var PlayerReplicationInfo KickVotePRI;
 var PlayerReplicationInfo SkipTraderVotePRI;
@@ -714,7 +715,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
     local bool bHandled;
 
     bHandled = true;
-    LogInternal("WidgetInitialized - Menu: " @ string(WidgetName), 'DevGFxUI');
+    LogInternal("KFGfxMoviePlayer_Manager - WidgetInitialized - WidgetName: " @ string(WidgetName));
     switch(WidgetName)
     {
         case 'root1':
@@ -767,7 +768,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         case 'GearMenu':
             if((MenuBarWidget != none) && !MenuBarWidget.CanUseGearButton(GetPC(), self))
             {
-                goto J0xBA9;
+                goto J0xC1B;
             }
             if(GearMenu == none)
             {
@@ -897,6 +898,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 }
             }
             break;
+        case 'BackendStatusIndicatorWidget':
+            if(BackendStatusIndicatorWidget == none)
+            {
+                BackendStatusIndicatorWidget = KFGFxWidget_BackendStatusIndicatorWidget(Widget);
+                BackendStatusIndicatorWidget.Init();
+            }
+            break;
         case 'GammaPopup':
         case 'ConnectionErrorPopup':
         case 'ConfirmationPopup':
@@ -910,7 +918,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             bHandled = false;
             break;
     }
-    J0xBA9:
+    J0xC1B:
 
     return bHandled;
 }
@@ -2002,6 +2010,7 @@ defaultproperties
     WidgetPaths(0)="../UI_Widgets/MenuBarWidget_SWF.swf"
     WidgetPaths(1)="../UI_Widgets/PartyWidget_SWF.swf"
     WidgetPaths(2)="../UI_Widgets/ButtonPromptWidget_SWF.swf"
+    WidgetPaths(3)="../UI_Widgets/BackendStatusIndicatorWidget_SWF.swf"
     BackgroundMovies(0)=TextureMovie'UI_Managers.MenuBG'
     BackgroundMovies(1)=TextureMovie'UI_Managers.MenuBG_Cyberpunk'
     BackgroundMovies(2)=TextureMovie'UI_Managers.SummerSideShowBGMovie'

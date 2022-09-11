@@ -215,6 +215,12 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(1.0))) //0.88
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Bleeding', 	                DamageScale=(1.0)))
 
+	//special case
+	DamageTypeModifiers.Add((DamageType=class'KFDT_EMP_ArcGenerator_Beam',       				DamageScale=(3.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_EMP_ArcGeneratorSphereImpact',       		DamageScale=(1.2)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_EMP_ArcGenerator_DefaultFiremodeZapDamage', 	DamageScale=(3.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',		DamageScale=(3.5)))
+
 	ArmorInfoClass=class'KFZedArmorInfo_ClotKing'
 	RepArmorPct[0] = 255
 	RepArmorPct[1] = 255

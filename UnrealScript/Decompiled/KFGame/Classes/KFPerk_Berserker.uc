@@ -364,17 +364,28 @@ simulated function float GetSirenScreamStrength()
 
 function NotifyZedTimeStarted()
 {
-    local Pawn P;
+    local Pawn OtherPawn;
+    local KFPlayerController KFPC;
+    local KFPowerUp PowerUp;
     local KFAIController KFAIC;
-    local bool bScaredAI;
+    local bool bScaredAI, bCannotBeHealed;
 
     if(IsRageActive() && OwnerPawn != none)
     {
-        OwnerPawn.Health += int(float(OwnerPawn.HealthMax) * (GetSkillValue(PerkSkills[8])));
-        OwnerPawn.Health = Min(OwnerPawn.Health, OwnerPawn.HealthMax);
-        foreach WorldInfo.AllPawns(Class'Pawn', P, OwnerPawn.Location, float(GetRageRadius()))
+        KFPC = KFPlayerController(OwnerPawn.Controller);
+        if(KFPC != none)
         {
-            KFAIC = KFAIController(P.Controller);
+            PowerUp = KFPC.GetPowerUp();
+            bCannotBeHealed = (PowerUp != none) && !PowerUp.CanBeHealedWhilePowerUpIsActive;
+        }
+        if(bCannotBeHealed == false)
+        {
+            OwnerPawn.Health += int(float(OwnerPawn.HealthMax) * (GetSkillValue(PerkSkills[8])));
+            OwnerPawn.Health = Min(OwnerPawn.Health, OwnerPawn.HealthMax);
+        }
+        foreach WorldInfo.AllPawns(Class'Pawn', OtherPawn, OwnerPawn.Location, float(GetRageRadius()))
+        {
+            KFAIC = KFAIController(OtherPawn.Controller);
             if(KFAIC != none)
             {
                 KFAIC.DoPauseAI(GetRageFleeDuration(), true, false, true);

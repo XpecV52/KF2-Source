@@ -198,10 +198,10 @@ defaultproperties
    SingleFireSoundIndex=1
    BurstAmount=3
    InventorySize=5
-   MagazineCapacity(0)=30
    MeshIronSightFOV=50.000000
    GroupPriority=90.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HK_UMP_TEX.UI_WeaponSelect_UMP'
+   MagazineCapacity(0)=30
    SpareAmmoCapacity(0)=290
    InitialSpareMags(0)=2
    bLoopingFireAnim(0)=True

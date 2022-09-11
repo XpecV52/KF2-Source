@@ -136,7 +136,6 @@ defaultproperties
     bHasFireLastAnims=false
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=5
-    MagazineCapacity=2
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=52
@@ -145,6 +144,7 @@ defaultproperties
     DOF_FG_FocalRadius=65
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_DBShotgun'
+    MagazineCapacity=2
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=46
     InitialSpareMags=11

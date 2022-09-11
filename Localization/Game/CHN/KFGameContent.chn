@@ -706,7 +706,7 @@ ItemDescription="•主要攻击只射击一发。\n•备用射击可以一次�
 [KFWeap_Pistol_Blunderbuss]
 ItemName="雷筒"
 ItemCategory="炸弹"
-ItemDescription="•主要射击发射一枚炮弹。\n•长按主要射击 可令炮弹不致爆炸。炮弹在松开时爆炸。\n•备用射击可发射炮弹榴霰弹。\n•木腿和鹦鹉单独销售！"
+ItemDescription="•主要射击发射一枚炮弹。\n•长按主要射击可令炮弹不致爆炸。炮弹在松开时爆炸。\n•备用射击可发射炮弹榴霰弹。\n•木腿和鹦鹉单独销售！"
 SharedUnlockSource="雷筒武器包"
 
 [KFWeap_Pistol_G18C]
@@ -726,6 +726,28 @@ ItemName="HRG 特斯拉发射器"
 ItemCategory="突击步枪"
 ItemDescription="•射击模式只有全自动。\n•备用射击发射 EMP 榴弹。\n•借助这把电力驱动的生态友好型武器，您可以屠戮成百上千的丧尸，而不会对星球造成丝毫的损害。"
 SecondaryAmmo="EMP 手榴弹"
+
+[KFWeap_Minigun]
+ItemName="急射小机枪"
+ItemCategory="特别任务"
+ItemDescription="•主要射击为全自动；枪管盘卷1.5秒可开火。\n•瞄准可盘卷枪管，为武器开火做好准备。\n•快乐源自弹药回转数。"
+SharedUnlockSource="急射小机枪武器包"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="HRG 电弧发生器"
+ItemCategory="特别任务"
+ItemDescription="•主要射击向附近敌人发射弧形电子光束。\n•备用射击向直线方向发射一颗电球。\n•面向无限火力的追求者！"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="HRG 燃烧器"
+ItemCategory="火焰"
+ItemDescription="•主要射击发射一颗粘性信号弹，燃烧目标并照亮周围的一切。\n•备用射击发射损坏的信号弹，向直线方向上的地面投掷火焰。\n•一种可以照亮前路的轻型武器。"
+
+[KFWeap_Mine_Reconstructor]
+ItemName="地雷重制者"
+ItemCategory="炸弹"
+ItemDescription="•发射碰撞后爆炸的生物地雷，伤害丧尸并治愈盟友。\n•备用射击触发所有已布置的地雷。\n•出于卫生条例的规定，其基础材料来源为保密信息。"
+SharedUnlockSource="地雷重制者武器包"
 
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max

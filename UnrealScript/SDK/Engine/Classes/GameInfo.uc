@@ -1418,7 +1418,6 @@ event PlayerController Login(string Portal, string Options, const UniqueNetID Un
 	if (AccessControl == none || !AccessControl.IsPendingAuth(UniqueId))
 	{
 		NewPlayer.PlayerReplicationInfo.SetUniqueId(UniqueId);
-		AccessControl.AddID(UniqueID);
 	}
 
 	if (OnlineSub != None &&

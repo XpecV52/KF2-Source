@@ -195,6 +195,7 @@ var localized string JoinGameString;
 var KFGFxWidget_MenuBar MenuBarWidget;
 var KFGFxWidget_BaseParty PartyWidget;
 var KFGFxWidget_ButtonPrompt ButtonPromptWidget;
+var KFGFxWidget_BackendStatusIndicatorWidget BackendStatusIndicatorWidget;
 
 var array<string> WidgetPaths;
 
@@ -793,7 +794,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 
 	bHandled = true;
 
-	`log("WidgetInitialized - Menu: " @WidgetName,,'DevGFxUI');
+	`log("KFGfxMoviePlayer_Manager - WidgetInitialized - WidgetName: " @WidgetName);
 	switch ( WidgetName )
 	{
 		case ( 'root1' ):
@@ -976,6 +977,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
 					PartyWidget.PartyChatWidget = KFGFxHUD_ChatBoxWidget(Widget);
 					PartyWidget.PartyChatWidget.Init();
 				}
+			}
+		break;
+		case ( 'BackendStatusIndicatorWidget' ):
+			if(BackendStatusIndicatorWidget == none)
+			{
+				BackendStatusIndicatorWidget = KFGFxWidget_BackendStatusIndicatorWidget(Widget);
+				BackendStatusIndicatorWidget.Init();
 			}
 		break;
         case  'GammaPopup':
@@ -2305,9 +2313,11 @@ defaultproperties
 	WidgetPaths.Add("../UI_Widgets/MenuBarWidget_SWF.swf")
 	WidgetPaths.Add("../UI_Widgets/PartyWidget_SWF.swf")
 	WidgetPaths.Add("../UI_Widgets/ButtonPromptWidget_SWF.swf")
+	WidgetPaths.Add("../UI_Widgets/BackendStatusIndicatorWidget_SWF.swf")
 
 	WidgetBindings.Add((WidgetName="MenuBarWidget",WidgetClass=class'KFGFxWidget_MenuBar'))
 	WidgetBindings.Add((WidgetName="ButtonPromptWidgetContainer", WidgetClass=class'KFGFxWidget_ButtonPrompt'))
+	WidgetBindings.Add((WidgetName="BackendStatusIndicatorWidget", WidgetClass=class'KFGFxWidget_BackendStatusIndicatorWidget'))
 
 	SelectIDOnOpen=-1
 }

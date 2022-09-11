@@ -194,7 +194,6 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=7
-    MagazineCapacity=100
     MeshIronSightFOV=52
     PlayerIronSightFOV=80
     IronSightPosition=(X=3,Y=6,Z=-1)
@@ -202,6 +201,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Flamethrower'
+    MagazineCapacity=100
     SpareAmmoCapacity=500
     InitialSpareMags=1
     AmmoPickupScale=0.4

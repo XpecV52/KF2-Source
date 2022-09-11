@@ -36,6 +36,7 @@ enum EGameMessageType
     GMT_FoundCollectible,
     GMT_FoundAllCollectibles,
     GMT_UserSharingContent,
+    GMT_PowerUpHellishRageActivated,
     KMT_Killed,
     KMT_Suicide,
     EGameMessageType_MAX
@@ -82,6 +83,7 @@ var const localized string FoundAMapCollectibleMessage;
 var const localized string FoundAllMapCollectiblesMessage;
 var const localized string MapCollectibleName;
 var const localized string SharingContentString;
+var const localized string PowerUpHellishRageActivatedMessage;
 var const localized string HeadShotAddedString;
 var const localized string HeadShotMaxString;
 var const localized string HeadShotResetString;
@@ -111,6 +113,7 @@ static function string GetHexColor(int Switch)
         case 20:
         case 22:
         case 23:
+        case 27:
             return default.GameColor;
         default:
             return "00FF00";
@@ -173,8 +176,10 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
         case 26:
             return RelatedPRI_1.PlayerName @ default.SharingContentString;
         case 27:
-            return RelatedPRI_2.PlayerName $ (GetKilledByZedMessage(OptionalObject));
+            return default.PowerUpHellishRageActivatedMessage;
         case 28:
+            return RelatedPRI_2.PlayerName $ (GetKilledByZedMessage(OptionalObject));
+        case 29:
             return RelatedPRI_2.PlayerName @ default.SuicideMessage;
         default:
             return "";
@@ -264,8 +269,8 @@ static function float GetPos(int Switch, HUD myHUD)
 {
     switch(Switch)
     {
-        case 27:
         case 28:
+        case 29:
             return 0.1;
         default:
             return 0.8;
@@ -316,6 +321,7 @@ defaultproperties
     FoundAllMapCollectiblesMessage="Every %x% has been found!"
     MapCollectibleName="piece of dosh bling"
     SharingContentString="is sharing content"
+    PowerUpHellishRageActivatedMessage="HELLISH RAGE: +Damage, +Speed, Burn effect, Healing Disabled"
     HeadShotAddedString="%x Headshot(s) - %y% Extra Damage!"
     HeadShotMaxString="Headshot! %x% Extra Damage!"
     HeadShotResetString="Missed Headshot. Normal Damage!"

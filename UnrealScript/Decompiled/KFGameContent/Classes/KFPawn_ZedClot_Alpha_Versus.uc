@@ -52,8 +52,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedClot_Alpha_Versus.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.PowerUpAkSoundComponent'
     GroundSpeed=325
     Health=350
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
@@ -90,8 +92,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedClot_Alpha_Versus.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

@@ -64,6 +64,31 @@ var transient float DeathMaterialEffectDuration;
 var transient float DeathMaterialEffectTimeRemaining;
 var transient name DeathMaterialEffectParamName;
 
+struct native KFPowerUpFxInfo
+{
+	/** the power up type the player has */
+	var class<KFPowerUp>	PowerUpType;
+
+	var byte Count;
+};
+
+struct native KFPowerUpCurrentFxInfo
+{
+	/** the power up type the player has */
+	var class<KFPowerUp>	PowerUpType;
+
+	/** the particle component associated with the effect */
+	var ParticleSystemComponent	ParticleEffect;
+};
+
+/** replicated information on a powerup effect */
+var repnotify KFPowerUpFxInfo 	PowerUpFxInfo;
+
+/** replicated information on a powerup effect */
+var repnotify KFPowerUpFxInfo 	PowerUpFxStopInfo;
+
+var KFPowerUpCurrentFxInfo CurrentPowerUpEffect;
+
 /*********************************************************************************************
 * @name Flashlight (aka Torch)
 ********************************************************************************************* */
@@ -185,7 +210,7 @@ replication
 	// Replicated to ALL
 	if(bNetDirty)
 		Armor, MaxArmor, bObjectivePlayer, WeaponSkinItemId, HealingSpeedBoost,
-		HealingDamageBoost, HealingShield, HealthToRegen;
+		HealingDamageBoost, HealingShield, HealthToRegen, PowerUpFxInfo, PowerUpFxStopInfo;
 
     // Replicated to owning client
     if (bNetDirty && bNetOwner)
@@ -327,6 +352,12 @@ simulated event ReplicatedEvent(name VarName)
 		break;
 	case nameof(bUsingAltFireMode):
 		SetUsingAltFireMode (bUsingAltFireMode, false);
+		break;
+	case nameof(PowerUpFxInfo):
+		PlayPowerUpEffect(PowerUpFxInfo);
+		break;
+	case nameof(PowerUpFxStopInfo):
+		StopPowerUpEffect(PowerUpFxStopInfo);
 		break;
 	}
 
@@ -496,6 +527,7 @@ function UpdateGroundSpeed()
 	local float WeightMod, HealthMod, WeaponMod;
     local KFGameInfo KFGI;
 	local KFWeapon CurrentWeapon;
+	local KFPlayerController KFPC;
 
 	if ( Role < ROLE_Authority )
 		return;
@@ -529,6 +561,15 @@ function UpdateGroundSpeed()
 		GetPerk().ModifySpeed( GroundSpeed );
 		GetPerk().ModifySprintSpeed( SprintSpeed );
         GetPerk().FinalizeSpeedVariables();
+	}
+
+	// Ask the current power up to set new ground speed
+	KFPC = KFPlayerController(Controller);
+	if( KFPC != none && KFPC.GetPowerUp() != none )
+	{
+		KFPC.GetPowerUp().ModifySpeed( GroundSpeed );
+		KFPC.GetPowerUp().ModifySprintSpeed( SprintSpeed );
+        KFPC.GetPowerUp().FinalizeSpeedVariables();
 	}
 
 	if (CurrentWeapon != None)
@@ -639,12 +680,24 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
 	local KFPlayerReplicationInfo InstigatorPRI;
 	local KFPlayerController InstigatorPC, KFPC;
 	local KFPerk InstigatorPerk;
+	local KFPowerUp KFPowerUp;
 	local class<KFDamageType> KFDT;
     local int i;
     local bool bRepairedArmor;
     local int OldHealth;
 
     OldHealth = Health;
+
+	KFPC = KFPlayerController(Controller);
+	if ( KFPC != none )
+	{
+		KFPowerUp = KFPC.GetPowerUp();
+		if( KFPowerUp != none && !KFPowerUp.CanBeHealed())
+		{
+			return false;
+		}
+	}
+
 	InstigatorPC = KFPlayerController(Healer);
 	InstigatorPerk = InstigatorPC != None ? InstigatorPC.GetPerk() : None;
 	if( InstigatorPerk != None )
@@ -1007,6 +1060,61 @@ simulated function TerminateEffectsOnDeath()
 	if ( Flashlight != None )
 	{
 		Flashlight.OwnerDied();
+	}
+}
+
+function PlayPowerUp( class<KFPowerUp> PowerUpType )
+{
+	PowerUpFxInfo.PowerUpType = PowerUpType;
+	PowerUpFxInfo.Count++;
+	
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		PlayPowerUpEffect(PowerUpFxInfo);
+	}
+}
+
+simulated function PlayPowerUpEffect( KFPowerUpFxInfo PUpFxInfo )
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Controller);
+	if( KFPC != none && PUpFxInfo.PowerUpType != none )
+	{
+		KFPC.PlayPowerUpEffect(PUpFxInfo.PowerUpType);
+	}
+
+	if ( PUpFxInfo.PowerUpType != None )
+	{
+		PUpFxInfo.PowerUpType.static.PlayEffects(self);
+	}
+}
+
+function StopPowerUp( class<KFPowerUp> PowerUpType )
+{
+	PowerUpFxStopInfo.PowerUpType = PowerUpType;
+	PowerUpFxStopInfo.Count++;
+
+	if( WorldInfo.NetMode != NM_DedicatedServer )
+	{
+		StopPowerUpEffect(PowerUpFxStopInfo);
+	}
+}
+
+simulated function StopPowerUpEffect( KFPowerUpFxInfo PUpFxInfo )
+{
+	local KFPlayerController KFPC;
+
+	KFPC = KFPlayerController(Controller);
+	if( KFPC != none )
+	{
+		KFPC.StopPowerUpEffect(PUpFxInfo.PowerUpType);
+	}
+
+	if ( PUpFxInfo.PowerUpType != None && PUpFxInfo.PowerUpType == CurrentPowerUpEffect.PowerUpType && CurrentPowerUpEffect.ParticleEffect != none )
+	{
+		CurrentPowerUpEffect.ParticleEffect.DeactivateSystem();
+		CurrentPowerUpEffect.ParticleEffect = none;
 	}
 }
 

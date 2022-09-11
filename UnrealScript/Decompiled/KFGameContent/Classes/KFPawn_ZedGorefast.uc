@@ -63,8 +63,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedGorefast.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedGorefast.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedGorefast.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedGorefast.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedGorefast.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedGorefast.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedGorefast.PowerUpAkSoundComponent'
     DamageRecoveryTimeHeavy=0.85
     GroundSpeed=240
     MaxFallSpeed=6000
@@ -106,8 +108,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedGorefast.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedGorefast.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedGorefast.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedGorefast.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedGorefast.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedGorefast.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedGorefast.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedGorefast.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedGorefast.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=48
         ReplacementPrimitive=none

@@ -37,6 +37,9 @@ var transient float FireHoldTime;
 /** Amount of time we should pass with the fire button on hold to trigger a timed explosion, used in BlunderbussDeployAndDetonate **/
 var transient float TimedDetonationThresholdTime;
 
+/** The server can block client shots in some cases **/
+var transient bool bWaitingForServer;
+
 var(Animations) const editconst	name		FireLoopStartLastSightedAnim;
 var(Animations) const editconst	name		FireLoopStartLastAnim;
 var(Animations) const editconst	name		FireLoopLastSightedAnim;
@@ -64,7 +67,7 @@ simulated function Projectile ProjectileFire()
 {
 	local Projectile P;
 	local KFProj_Cannonball_Blunderbuss Cannonball;
-
+	
 	P = super.ProjectileFire();
 	Cannonball = KFProj_Cannonball_Blunderbuss(P);
 
@@ -97,6 +100,15 @@ function RemoveDeployedCannonball(optional int CannonballIndex = INDEX_NONE, opt
 	}
 }
 
+simulated function StartFire(byte FireModeNum)
+{
+	if(bWaitingForServer && FireModeNum <= 1)
+	{
+		return;
+	}
+	super.StartFire(FireModeNum);
+}
+
 simulated function EndFire(byte FireModeNum)
 {
 	//if(PendingFire(DEFAULT_FIREMODE)) return;
@@ -113,6 +125,45 @@ simulated function ResetFireState()
 }
 
 /*********************************************************************************************
+ * State WeaponSingleFiring (Alt Fire)
+ * Fire must be released between every shot.
+ *********************************************************************************************/
+
+simulated state WeaponSingleFiring
+{
+	simulated function FireAmmunition()
+	{
+		Super.FireAmmunition();
+		if(Role != Role_Authority)
+		{
+			bWaitingForServer = true;
+		}
+	}
+
+	simulated function bool ShouldRefire()
+	{
+		return Super.ShouldRefire() && !bWaitingForServer;
+	}
+}
+
+/*********************************************************************************************
+ * State Reloading
+ * State the weapon is in when it is being reloaded
+*********************************************************************************************/
+simulated state Active
+{
+	simulated function BeginState( name PreviousStateName )
+	{
+		super.BeginState( PreviousStateName );
+		
+		if (Role == ROLE_Authority)
+		{
+			ClientResetFire();
+		}
+	}
+}
+
+/*********************************************************************************************
  * State BlunderbussDeployAndDetonate
  * The weapon is in this state while holding fire button for the CannonBall fire
 *********************************************************************************************/
@@ -120,7 +171,7 @@ simulated function ResetFireState()
 simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
 {
     simulated event BeginState(Name PreviousStateName)
-    {
+    { 
 		if( !IsTimerActive('TryDetonateCannonBall') )
 		{
 			SetTimer( 0.05f, true, nameof(TryDetonateCannonBall) );
@@ -133,7 +184,7 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
     simulated event EndState(Name NextStateName)
     {
 		local int iNumOfCannonballs, i;
-
+		
 		if (Role == ROLE_Authority)
 		{
 			iNumOfCannonballs = DeployedCannonballs.Length;
@@ -142,7 +193,9 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
 				DeployedCannonballs[0].Detonate();
 			}
 		}
+		
 		bDeployedCannonball = false;
+
 		ClearTimer( nameof(TryDetonateCannonBall) );
 		Super.EndState(NextStateName);
 	}
@@ -161,7 +214,12 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
 			}
 		}
 
-		bDeployedCannonball = false;
+		if(Role == ROLE_Authority)
+		{
+			ClientResetFire();
+			bDeployedCannonball = false;
+		}
+
 		global.PutDownWeapon();
 	}
 	
@@ -214,9 +272,14 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
     }
 	
     simulated function FireAmmunition()
-    { 
+    {
 		if (!bDeployedCannonball)
 		{
+			if(Role != Role_Authority)
+			{
+				bWaitingForServer = true;
+			}
+
 			super.FireAmmunition();
 			ResetFireState();
 			bNetDirty=true;
@@ -247,7 +310,7 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
 				{
 					Cannonball.Detonate();
 					bCannonballWasDetonated = true;
-
+					
 					ClientResetFireInterval();
 					if( IsTimerActive('RefireCheckTimer') )
 					{
@@ -276,6 +339,11 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
 
 		super.HandleFinishedFiring();
 	}
+}
+
+reliable client function ClientResetFire()
+{
+	bWaitingForServer = false;
 }
 
 reliable client function ClientResetFireInterval()

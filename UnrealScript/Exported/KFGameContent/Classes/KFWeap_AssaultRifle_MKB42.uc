@@ -190,13 +190,13 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
    InventorySize=7
-   MagazineCapacity(0)=30
    MeshFOV=75.000000
    MeshIronSightFOV=33.000000
    PlayerIronSightFOV=70.000000
    IronSightPosition=(X=15.000000,Y=0.000000,Z=0.000000)
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_MKB42_TEX.UI_WeaponSelect_MKB42'
+   MagazineCapacity(0)=30
    SpareAmmoCapacity(0)=270
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True

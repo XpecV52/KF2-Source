@@ -21,7 +21,6 @@ defaultproperties
     bCanBeReloaded=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
-    MagazineCapacity=8
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=75
     MeshIronSightFOV=52
@@ -30,6 +29,7 @@ defaultproperties
     DOF_FG_FocalRadius=25
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
+    MagazineCapacity=8
     SpareAmmoCapacity=64
     InitialSpareMags=3
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'

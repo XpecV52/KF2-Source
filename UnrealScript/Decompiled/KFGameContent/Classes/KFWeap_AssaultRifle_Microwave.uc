@@ -79,7 +79,6 @@ defaultproperties
     SingleFireSoundIndex=1
     BurstAmount=3
     InventorySize=8
-    MagazineCapacity=40
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=70
     MeshIronSightFOV=52
@@ -89,6 +88,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=125
     WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Assault_TEX.UI_WeaponSelect_Microwave_Assault'
+    MagazineCapacity=40
     SpareAmmoCapacity=320
     InitialSpareMags=2
     bLoopingFireAnim=/* Array type was not detected. */

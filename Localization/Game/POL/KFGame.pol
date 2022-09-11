@@ -46,22 +46,24 @@ YesString="Tak"
 NoString="Nie"
 TeamSwappedString="Przeniesiono do drugiej drużyny"
 
-MicrophonePopupTitleString="Ustawienia mikrofonu"
-MicrophonePopupSelectDeviceString="WYBIERZ"
+
+MicrophonePopupTitleString="Skonfiguruj swój mikrofon"
+MicrophonePopupSelectDeviceString="Wybierz urządzenie"
 MicrophonePopupVolumeString="Głośność mikrofonu"
 MicrophonePopupCheckString="Sprawdź mikrofon"
-MicrophonePopupStopString="Akceptuj"
-MicrophonePopupRefreshString="ODŚWIEŻ"
+MicrophonePopupStopString="Zatrzymaj"
+MicrophonePopupRefreshString="Odśwież"
 
 FriendsListPopupTitleString="Wybierz znajomych do zaproszenia"
-FriendsListPopupFriendString="WYSZUKAJ"
+FriendsListPopupFriendString="Szukaj"
 FriendsListPopupFriendsString="Znajomi"
-FriendsListPopupOtherFriendsString="Przyjaciele z innych platform"
+FriendsListPopupOtherFriendsString="Znajomi z innych platform"
 FriendsListPopupLinkButonString="Połącz konto"
 ReturnString="POWRÓT"
 
 InvitePopupTitleString="Zaproszenie do lobby"
 InvitePopupTextString=" zaprasza cię do lobby"
+
 
 CancelConnectionString="Anuluj wczytywanie"
 
@@ -170,6 +172,9 @@ BrowseServersString="PRZEGLĄDAJ SERWERY"
 HasInvitedToGameString=" zaprasza cię do gry"
 JoinGameString="Dołączyć do gry?"
 
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="POŁĄCZENIE ELEMENTU Z SERWEREM"
+
 [KFGFxObject_Menu]
 LeavePartyTitleString="OPUSZCZANIE IMPREZY"
 LeavePartyDescriptionString="Czy na pewno chcesz opuścić tę imprezę online?"
@@ -274,14 +279,14 @@ BackString="WSTECZ"
 FindGameString="ZNAJDŹ GRĘ"
 
 [KFGFxStartContainer_InGameOverview]
-OverviewString="PRZEGLĄD MECZU"
+OverviewString="PRZEGLĄD ROZGRYWKI"
 ChangeString="ZMIEŃ"
 SharedByString="Udostępnione przez:"
 SharedContentString="UDOSTĘPNIONA ZAWARTOŚĆ"
 AuthorString="Autor "
 
 [KFGFxStartContainer_ServerBrowserOverview]
-OverviewString="PRZEGLĄD MECZU"
+OverviewString="PRZEGLĄD ROZGRYWKI"
 DescriptionString="szuka gry w przeglądarce serwerów…"
 
 [KFGFxTraderContainer_GameInfo]
@@ -949,6 +954,17 @@ MarketCosmeticsString="Rynkowe ozdoby"
 MarketEmotesString="Rynkowe emocje"
 MarketSFXString="Efektu rynku"
 ThankYouString="Dziękujemy za zakup! Pomoże nam w tworzeniu nowych przedmiotów, map, broni, zetów i trybów gry do kolejnych aktualizacji."
+WeaponBundlesString="Zestawy broni"
+CharacterBundlesString="Zestawy postaci"
+OutfitBundlesString="Zestawy strojów"
+TicketCratesUSBBundlesString="Kupon/skrzynie/zestawy USB"
+CosmeticBundlesString="Zestawy ozdób"
+WeaponSkinBundlesString="Zestawy skórek broni"
+HeadshotFxBundlesString="Zestawy efektów strzału w głowę"
+SelectWeaponSkinsString="Wybierz skórki broni"
+SelectCosmeticsString="Wybierz ozdoby"
+SelectEmotesString="Wybierz emocje"
+SelectKeysAndTicketsString="Wybierz klucze i kupony"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="ZNAJDŹ NA RYNKU"
@@ -974,7 +990,7 @@ ServerBrowserString="SERWERY"
 MatchmakingString="MATCHMAKING"
 CreateGameString="STWÓRZ GRĘ"
 SoloString="SOLO"
-OverviewString="PRZEGLĄD MECZU"
+OverviewString="PRZEGLĄD ROZGRYWKI"
 
 TitleStrings[0]="Opuszczasz walkę tak szybko?"
 TitleStrings[1]="Tak szybko rezygnujesz?"
@@ -1468,6 +1484,7 @@ FailedDropInventoryMessage="Nie możesz tego tutaj wyrzucić"
 ReceivedGrenadesFromMessage="Otrzymujesz granaty od gracza"
 GaveGrenadesToMessage="Przekazujesz granaty graczowi"
 SharingContentString="udostępnia zawartość"
+PowerUpHellishRageActivatedMessage="PIEKIELNY SZAŁ: +obrażenia, +szybkość, efekt podpalenia, leczenie uniemożliwione"
 HeadShotAddedString="Strzały w głowę: %x. %y% dodatkowych obrażeń!"
 HeadShotMaxString="Strzał w głowę! Dodatkowe obrażenia: %x%!"
 HeadShotResetString="Niecelny strzał w głowę. Zwykłe obrażenia!"
@@ -1538,6 +1555,7 @@ PlayerClotGrabWarningMessage="ZABIJ ZETA, ŻEBY SIĘ UWOLNIĆ!"
 
 UseMinigameMessage="AKTYWUJ"
 UseMinigameGeneratorMessage="AKTYWUJ GENERATOR"
+UsePowerUpMessage="POŚWIĘĆ ZDROWIE"
 DoshActivateMessage="KOSZT AKTYWACJI"
 EMPGrabWarningMessage="***! UNIERUCHOMIONO! ***"
 [KFLocalMessage_ServerNotification]
@@ -1555,7 +1573,7 @@ SkillCatagories[2]=""
 SkillCatagories[3]=""
 SkillCatagories[4]=""
 
-LevelString="Poz."
+LevelString="Poziom"
 
 SpecialAbilityName="Popisowa zdolność"
 SpecialAbilityDescription=""
@@ -1933,7 +1951,7 @@ AirborneAgent="CZAS ZET – Lotny środek"
 AirborneAgentDescription="W czasie zet rozpylasz gaz, który leczy pobliskich sojuszników."
 
 Sedative="CZAS ZET – Zetacja"
-SedativeDescription="W czasie zet zadawanie zetom obrażeń bronią specjalizacji spowolni ich o 30%, wywołując znaczne obrażenia od trucizny."
+SedativeDescription="W czasie zetów obrażenia twoich broni specjalizacji są zwiększone o 30%, a twoje zabójstwa tworzą toksyczną eksplozję, która zadaje obrażenia zetom i leczy graczy."
 
 
 EXPAction1="Zadawanie obrażeń bronią sanitariusza"
@@ -2220,6 +2238,9 @@ MadmanDescription="W czasie zet każda twoja broń strzela 3 razy szybciej."
 
 IncapMaster="CZAS ZET – Kwarantanna"
 IncapMasterDescription="Podczas czasu zetów wszystkie twoje bronie mogą ogłuszyć każdego zeta."
+
+[KFPowerUp_HellishRage]
+PowerUpName="Piekielny szał"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2748,6 +2769,20 @@ AllCompleteRewardDescriptionString="Kosmiczny pirat | Plecak kosmicznej małpy"
 
 ChanceDropDescriptionStrings[0]="Kupon letni"
 ChanceDropDescriptionStrings[1]="Złoty kupon letni"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Piekielny legion",DescriptionString="Zabij 2000 zetów – dowolna mapa/tryb")
+SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowa inwazja",DescriptionString="Ukończ tygodniowy incydent na Stacji Hellmark")
+SpecialEventObjectiveInfoList[2]=(TitleString="Za wszelką cenę",DescriptionString="Zdobądź 10 razy piekielny szał z obelisku na Stacji Hellmark")
+SpecialEventObjectiveInfoList[3]=(TitleString="Pogromca demonów",DescriptionString="Zetnij głowę 600 zetom na Stacji Hellmark")
+SpecialEventObjectiveInfoList[4]=(TitleString="Niewyczerpany chaos",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności na mapie Stacja Hellmark")
+
+AllCompleteRewardDescriptionString="Halloween | Plecak voodoo"
+
+ChanceDropDescriptionStrings[0]="Kupon halloweenowy"
+ChanceDropDescriptionStrings[1]="Złoty kupon halloweenowy"
 
 ;============================================
 ; Daily Localization
@@ -3346,6 +3381,9 @@ DisplayName="Biopomyłka"
 
 [KF-Desolation KFMapSummary]
 DisplayName="Dewastacja"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="Stacja Hellmark"
 
 [KFMapInfo]
 ; defaults

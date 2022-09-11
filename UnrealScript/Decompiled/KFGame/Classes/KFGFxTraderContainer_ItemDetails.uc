@@ -202,8 +202,7 @@ function float GetStatMax(KFGFxObject_TraderItems.TraderWeaponStat Stat)
 function SetGenericItemDetails(const out STraderItem TraderItem, out GFxObject ItemData, optional int UpgradeLevel)
 {
     local KFPerk CurrentPerk;
-    local int FinalMaxSpareAmmoCount;
-    local byte FinalMagazineCapacity;
+    local int FinalMaxSpareAmmoCount, FinalMagazineCapacity;
     local float DamageValue, NextDamageValue;
 
     UpgradeLevel = -1;

@@ -128,9 +128,9 @@ defaultproperties
     bNoMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=8
-    MagazineCapacity[1]=100
     WeaponSelectTexture=Texture2D'WEP_UI_HRG_Incision_Item_TEX.UI_WeaponSelect_HRG_Incision'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+    MagazineCapacity[1]=100
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=39
     InitialSpareMags=12

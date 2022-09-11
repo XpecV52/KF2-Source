@@ -93,13 +93,13 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=5
-    MagazineCapacity=50
     PlayerIronSightFOV=80
     IronSightPosition=(X=-3,Y=7,Z=-2)
     DOF_FG_FocalRadius=150
     DOF_FG_MaxNearBlurSize=2
     GroupPriority=25
     WeaponSelectTexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
+    MagazineCapacity=50
     SpareAmmoCapacity=500
     InitialSpareMags=5
     AmmoPickupScale=0.5

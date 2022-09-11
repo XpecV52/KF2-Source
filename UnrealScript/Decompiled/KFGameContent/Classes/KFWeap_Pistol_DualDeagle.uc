@@ -25,7 +25,6 @@ defaultproperties
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     InventorySize=4
-    MagazineCapacity=14
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=77
     PlayerIronSightFOV=77
@@ -35,6 +34,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=45
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_Deagle_TEX.UI_WeaponSelect_DualDeagle'
+    MagazineCapacity=14
     SpareAmmoCapacity=98
     InitialSpareMags=2
     BonesToLockOnEmpty=/* Array type was not detected. */

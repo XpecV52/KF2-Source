@@ -23,13 +23,13 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     BurstAmount=3
     InventorySize=4
-    MagazineCapacity=20
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
     IronSightPosition=(X=7,Y=0,Z=0)
     DOF_FG_FocalRadius=75
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=25
+    MagazineCapacity=20
     SpareAmmoCapacity=240
     InitialSpareMags=6
     FireSightedAnims=/* Array type was not detected. */

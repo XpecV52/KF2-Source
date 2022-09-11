@@ -119,6 +119,7 @@ const STATID_ACHIEVE_SanitariumCollectibles = 4052;
 const STATID_ACHIEVE_DefeatMatriarch = 4053;
 const STATID_ACHIEVE_BiolapseCollectibles = 4054;
 const STATID_ACHIEVE_DesolationCollectibles = 4055;
+const STATID_ACHIEVE_HellmarkStationCollectibles = 4056;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -1013,7 +1014,7 @@ function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, option
 
 function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy);
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     bSecondary = false;    
 }
@@ -1129,6 +1130,11 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     return 0;
 }
 
+simulated function float GetZedTimeModifierForWindUp()
+{
+    return 0;
+}
+
 simulated function ModifySpread(out float InSpread);
 
 function ModifyMeleeAttackSpeed(out float InDuration, KFWeapon KFW);
@@ -1228,10 +1234,17 @@ simulated function bool GetHealingShieldActive()
     return false;
 }
 
-simulated function bool IsSlugActive()
+simulated function bool IsZedativeActive()
 {
     return false;
 }
+
+function bool CouldBeZedToxicCloud(class<KFDamageType> KFDT)
+{
+    return false;
+}
+
+function ToxicCloudExplode(Controller Killer, Pawn ZedKilled);
 
 simulated function bool IsFlarotovActive()
 {
@@ -1492,12 +1505,25 @@ function TickRegen(float DeltaTime)
 {
     local int OldHealth;
     local KFPlayerReplicationInfo KFPRI;
+    local KFPlayerController KFPC;
+    local KFPowerUp PowerUp;
+    local bool bCannotBeHealed;
 
     TimeUntilNextRegen -= DeltaTime;
     if(TimeUntilNextRegen <= 0)
     {
         if(CheckOwnerPawn() && OwnerPawn.Health < OwnerPawn.HealthMax)
         {
+            KFPC = KFPlayerController(OwnerPawn.Controller);
+            if(KFPC != none)
+            {
+                PowerUp = KFPC.GetPowerUp();
+                bCannotBeHealed = (PowerUp != none) && !PowerUp.CanBeHealedWhilePowerUpIsActive;
+            }
+            if(bCannotBeHealed)
+            {
+                return;
+            }
             OldHealth = OwnerPawn.Health;
             OwnerPawn.Health = Min(OwnerPawn.Health + RegenerationAmount, OwnerPawn.HealthMax);
             KFPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);

@@ -129,12 +129,12 @@ Parameter name: index
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Secondary
     InventorySize=4
-    MagazineCapacity=1
     MeshIronSightFOV=52
     PlayerIronSightFOV=73
     FastZoomOutTime=0.2
     GroupPriority=25
     WeaponSelectTexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
+    MagazineCapacity=1
     SpareAmmoCapacity=29
     InitialSpareMags=17
     AmmoPickupScale=3

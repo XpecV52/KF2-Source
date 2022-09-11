@@ -56,7 +56,6 @@ defaultproperties
     bCanBeReloaded=true
     bReloadFromMagazine=true
     InventorySize=7
-    MagazineCapacity=7
     MeshFOV=70
     MeshIronSightFOV=27
     PlayerIronSightFOV=70
@@ -68,6 +67,7 @@ defaultproperties
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_Bleeder_TEX.UI_WeaponSelect_Bleeder'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+    MagazineCapacity=7
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=98
     InitialSpareMags=4

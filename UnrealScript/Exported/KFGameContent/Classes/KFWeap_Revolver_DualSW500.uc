@@ -141,7 +141,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=6
-   MagazineCapacity(0)=10
    PenetrationPower(0)=3.000000
    PenetrationPower(1)=3.000000
    MeshFOV=60.000000
@@ -153,6 +152,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_SW_500_TEX.UI_WeaponSelect_DualSW500'
+   MagazineCapacity(0)=10
    SpareAmmoCapacity(0)=95
    InitialSpareMags(0)=2
    BonesToLockOnEmpty(0)="RW_Hammer"

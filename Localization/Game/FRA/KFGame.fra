@@ -28,7 +28,7 @@ ConsolePermissionStrings[0]="Public"
 ConsolePermissionStrings[1]="Invitation uniquement"
 
 ModeStrings[0]="Survie"
-ModeStrings[1]="Hebdo"
+ModeStrings[1]="Hebdomadaire"
 ModeStrings[2]="Survie VS"
 ModeStrings[3]="Infini"
 ModeStrings[4]="Objectif"
@@ -46,22 +46,24 @@ YesString="Oui"
 NoString="Non"
 TeamSwappedString="On vous a changé d'équipe"
 
-MicrophonePopupTitleString="Paramètres du micro"
-MicrophonePopupSelectDeviceString="SÉLÉCTIONNER"
+
+MicrophonePopupTitleString="Configurer votre micro"
+MicrophonePopupSelectDeviceString="Choisir un appareil"
 MicrophonePopupVolumeString="Volume du micro"
 MicrophonePopupCheckString="Tester le micro"
-MicrophonePopupStopString="Accepter"
-MicrophonePopupRefreshString="ACTUALISER"
+MicrophonePopupStopString="Couper"
+MicrophonePopupRefreshString="Actualiser"
 
 FriendsListPopupTitleString="Choisir les amis à inviter"
-FriendsListPopupFriendString="RECHERCHE"
+FriendsListPopupFriendString="Recherche"
 FriendsListPopupFriendsString="Amis"
 FriendsListPopupOtherFriendsString="Amis provenant d'autres plateformes"
 FriendsListPopupLinkButonString="Lier le compte"
 ReturnString="RETOUR"
 
 InvitePopupTitleString="Invitation dans un lobby"
-InvitePopupTextString=" vous invite à rejoindre un lobby"
+InvitePopupTextString=" vous invite à rejoindre un lobby."
+
 
 CancelConnectionString="Annuler le chargement"
 
@@ -169,6 +171,9 @@ FailedSearchString="Le matchmaking n'a pas trouvé de match correspondant aux op
 BrowseServersString="PARCOURIR SERVEURS"
 HasInvitedToGameString=" vous a invité à rejoindre une partie"
 JoinGameString="Rejoindre la partie ?"
+
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="CONNEXION AU SERVEUR D'ÉLÉMENTS"
 
 [KFGFxObject_Menu]
 LeavePartyTitleString="QUITTER LE GROUPE"
@@ -300,7 +305,7 @@ CannotCarryString="Impossible de porter l'objet. Libérez de la place."
 
 [KFGFxTraderContainer_PlayerInfo]
 PlayerHeaderString="INVENTAIRE"
-SelectPerkString="CHOISIR LA CLASSE"
+SelectPerkString="SELECTIONNER LA CLASSE"
 
 [KFGFxMenu_ServerBrowser]
 FavoriteString="FAVORI"
@@ -916,10 +921,10 @@ ConfigureSkillsString="CONFIGURER LES COMPÉTENCES"
 BackButtonString="<< RETOUR"
 
 [KFGFxPerksContainer_Selection]
-HeaderTitle="CHOISIR LA CLASSE"
-EndOfWaveString="Les échanger de classe se produiront à la fin de la vague!"
-ChangesAppliedOnCloseString="Les échanger de classes seront appliqués à la fermeture."
-OncePerWaveString="Échanges de classe autorisés une fois par vague!"
+HeaderTitle="SELECTIONNER LA CLASSE"
+EndOfWaveString="Les changements de classes seront appliqués à la fin de la vague !"
+ChangesAppliedOnCloseString="Les changements de classes seront appliqués à la fermeture de ce menu."
+OncePerWaveString="Les changements de classes ne sont possible qu'une fois par vague !"
 
 [KFGFxPerksContainer_Prestige]
 AtMaxPrestigeLevelString="Niveau de prestige de classe max atteint !"
@@ -949,6 +954,17 @@ MarketCosmeticsString="Cosmétiques du marché"
 MarketEmotesString="Emotes du marché"
 MarketSFXString="Effets du marché"
 ThankYouString="Merci pour votre achat ! Il nous aidera à développer de nouveaux objets, cartes, armes, Zeds et modes de jeu lors de futures mises à jour."
+WeaponBundlesString="Packs d'arme"
+CharacterBundlesString="Packs de personnage"
+OutfitBundlesString="Packs de tenue"
+TicketCratesUSBBundlesString="Packs de ticket/caisse/clé USB"
+CosmeticBundlesString="Packs cosmétiques"
+WeaponSkinBundlesString="Packs de modèle d'arme"
+HeadshotFxBundlesString="Pack d'effets tir en pleine tête"
+SelectWeaponSkinsString="Choisir des modèles d'arme"
+SelectCosmeticsString="Choisir des éléments cosmétiques"
+SelectEmotesString="Choisir des emotes"
+SelectKeysAndTicketsString="Choisir des clés et des tickets"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="TROUVER DANS LE MARCHÉ"
@@ -1468,6 +1484,7 @@ FailedDropInventoryMessage="Vous ne pouvez pas lâcher ça ici."
 ReceivedGrenadesFromMessage="Vous avez reçu des grenades de"
 GaveGrenadesToMessage="Vous avez donné des grenades à"
 SharingContentString="partage du contenu"
+PowerUpHellishRageActivatedMessage="RAGE INFERNALE : dégâts augmentés, vitesse augmentée, effet de brûlure, soins impossibles"
 HeadShotAddedString="%x Tir(s) en pleine tête - %y% Dégâts supplémentaires !"
 HeadShotMaxString="Tir en pleine tête ! %x% Dégâts supplémentaires !"
 HeadShotResetString="Tir en pleine tête manqué. Dégâts normaux !"
@@ -1538,6 +1555,7 @@ PlayerClotGrabWarningMessage="TUEZ LE ZED POUR VOUS ÉCHAPPER !"
 
 UseMinigameMessage="ACTIVER"
 UseMinigameGeneratorMessage="ACTIVER GÉNÉRATEUR"
+UsePowerUpMessage="SACRIFIER DE LA SANTÉ"
 DoshActivateMessage="COÛT D'ACTIVATION"
 EMPGrabWarningMessage="***! IMMOBILISATION ! ***"
 [KFLocalMessage_ServerNotification]
@@ -1555,7 +1573,7 @@ SkillCatagories[2]=""
 SkillCatagories[3]=""
 SkillCatagories[4]=""
 
-LevelString="Niv."
+LevelString="Niveau"
 
 SpecialAbilityName="Capacité symbolique"
 SpecialAbilityDescription=""
@@ -1933,7 +1951,7 @@ AirborneAgent="ZED TIME - Agent aéroporté"
 AirborneAgentDescription="Vous libérez un gaz soignant pendant le Zed time qui soigne vos équipiers à proximité."
 
 Sedative="ZED TIME - Zédatif"
-SedativeDescription="Pendant le Zed time, les dégâts causés aux Zeds par les armes de classe les ralentissent de 30 % et infligent d'importants dégâts de poison."
+SedativeDescription="Pendant le Zed time, les dégâts des armes de votre classe sont augmentés de 30 % et les tués génèrent une explosion toxique qui inflige des dégâts aux Zeds et soigne les joueurs."
 
 
 EXPAction1="Infliger des dégâts d'arme de Médecin"
@@ -2220,6 +2238,9 @@ MadmanDescription="Pendant le Zed time, toutes vos armes tirent 3x plus vite."
 
 IncapMaster="ZED TIME - État d'urgence"
 IncapMasterDescription="Pendant le Zed time, toutes vos armes peuvent étourdir tous les Zeds."
+
+[KFPowerUp_HellishRage]
+PowerUpName="Rage infernale"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2741,13 +2762,27 @@ CurrentSpecialEventString="Un événement spécial temporaire avec des objets ex
 SpecialEventObjectiveInfoList[0]=(TitleString="Mille millions de mille sabords !",DescriptionString="Tuer 15 boss sur n'importe quelle carte ou dans n'importe quel mode")
 SpecialEventObjectiveInfoList[1]=(TitleString="Ohé hebdomadaire",DescriptionString="Terminer l'hebdomadaire de Désolation")
 SpecialEventObjectiveInfoList[2]=(TitleString="Yarr ! Feu !",DescriptionString="Activer le générateur électrique sur Désolation")
-SpecialEventObjectiveInfoList[3]=(TitleString="Plein de doublons",DescriptionString="Gagner du fric (75 000 balles) par éliminations, des récompenses et du soin sur Désolation.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Plein de doublons",DescriptionString="Gagner du fric (75 000 balles) grâce à des éliminations, des récompenses et du soin sur Désolation.")
 SpecialEventObjectiveInfoList[4]=(TitleString="Butin infini",DescriptionString="Terminer 15 vagues en Infini en mode difficile ou supérieur sur Désolation")
 
 AllCompleteRewardDescriptionString="Pirate de l'espace | Sac à dos Singe de l'espace"
 
 ChanceDropDescriptionStrings[0]="Ticket estival"
 ChanceDropDescriptionStrings[1]="Ticket doré estival"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Légion infernale",DescriptionString="Tuer 2 000 Zeds sur n'importe quelle carte ou dans n'importe quel mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Invasion hebdomadaire",DescriptionString="Terminer l'hebdomadaire au Poste infernal")
+SpecialEventObjectiveInfoList[2]=(TitleString="À tout prix",DescriptionString="Obtenir la Rage infernale de l'obélisque du Poste infernal 10 fois")
+SpecialEventObjectiveInfoList[3]=(TitleString="Tueur de démons",DescriptionString="Décapiter 600 Zeds au Poste infernal")
+SpecialEventObjectiveInfoList[4]=(TitleString="Chaos inépuisable",DescriptionString="Terminer 15 vagues en Infini en mode difficile ou supérieur au Poste infernal")
+
+AllCompleteRewardDescriptionString="Halloween | Sac à dos vaudou"
+
+ChanceDropDescriptionStrings[0]="Ticket d'Halloween"
+ChanceDropDescriptionStrings[1]="Ticket doré d'Halloween"
 
 ;============================================
 ; Daily Localization
@@ -3346,6 +3381,9 @@ DisplayName="Biolapse"
 
 [KF-Desolation KFMapSummary]
 DisplayName="Désolation"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="Poste infernal"
 
 [KFMapInfo]
 ; defaults

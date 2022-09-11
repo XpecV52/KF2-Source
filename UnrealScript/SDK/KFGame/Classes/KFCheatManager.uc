@@ -155,6 +155,43 @@ exec function DisplayFreeTrialOverPopUp()
 	class'KFGFxMoviePlayer_Manager'.static.DisplayFreeTrialOverPopUp();
 }
 
+exec function TestItemServerStatusIndicatorStart()
+{
+	local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+
+    if(P == none || KFPC == None)
+    {
+        return;
+    }
+
+    if(KFPC.MyGFxManager != none && KFPC.MyGFxManager.BackendStatusIndicatorWidget != none)
+    {
+        KFPC.MyGFxManager.BackendStatusIndicatorWidget.StartFlickeringConnectionLost();
+    }
+}
+
+exec function TestItemServerStatusIndicatorStop()
+{
+	local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+
+    if(P == none || KFPC == None)
+    {
+        return;
+    }
+
+    if(KFPC.MyGFxManager != none && KFPC.MyGFxManager.BackendStatusIndicatorWidget != none)
+    {
+        KFPC.MyGFxManager.BackendStatusIndicatorWidget.StopFlickeringConnectionLost();
+    }
+}
 
 exec function OpenScreenSizeMovie()
 {
@@ -563,6 +600,17 @@ exec function LogAllWaves()
 	}
 }
 
+exec function PowerUpHellishRage()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController( Outer );
+    if( KFPC != none )
+    {
+        KFPC.ReceivePowerUp(class'KFPowerUp_HellishRage');
+    }
+}
+
 // Enter the name of a weapons skeletal mesh to spawn it without animations
 exec function SpawnGunModel( string GunMeshString )
 {
@@ -828,6 +876,14 @@ simulated exec function MKB()
 }
 
 /**
+ * Give the player the Minigun
+ */
+simulated exec function Minigun()
+{
+    GiveWeapon( "KFGameContent.KFWeap_Minigun" );
+}
+
+/**
  * Give the player all pistol weapons
  */
 simulated exec function Pistols()
@@ -914,6 +970,7 @@ simulated exec function Assault()
 	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Medic" );
 	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_FNFal" );
 	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MedicRifleGrenadeLauncher" );
+	GiveWeapon( "KFGameContent.KFWeap_Minigun" );
 }
 
 /**
@@ -933,11 +990,17 @@ simulated exec function Shotty()
 	GiveWeapon( "KFGameContent.KFWeap_Shotgun_Medic" );
 }
 
+simulated exec function MineRec()
+{
+    GiveWeapon( "KFGameContent.KFWeap_Mine_Reconstructor" );
+}
+
 /**
  * Give the player all Medic weapons
  */
 simulated exec function Medic()
 {
+    GiveWeapon( "KFGameContent.KFWeap_Mine_Reconstructor" );
     GiveWeapon( "KFGameContent.KFWeap_Pistol_Medic" );
     GiveWeapon( "KFGameContent.KFWeap_SMG_Medic" );
 	GiveWeapon( "KFGameContent.KFWeap_HRG_Healthrower" );
@@ -983,6 +1046,7 @@ simulated exec function Firebug()
     GiveWeapon( "KFGameContent.KFWeap_HuskCannon" );
 	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_Microwave" );
 	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_HRGIncendiaryRifle" );
+	GiveWeapon( "KFGameContent.KFWeap_Pistol_HRGScorcher" );
 }
 
 /**
@@ -1058,6 +1122,7 @@ simulated exec function SWAT()
 /** Give the player all survivalist weapons */
 exec function Surv()
 {
+    GiveWeapon( "KFGameContent.KFWeap_HRG_EMP_ArcGenerator" );
     GiveWeapon( "KFGameContent.KFWeap_Ice_FreezeThrower" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_LazerCutter" );
 }

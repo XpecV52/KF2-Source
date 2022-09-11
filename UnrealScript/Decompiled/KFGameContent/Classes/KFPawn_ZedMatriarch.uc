@@ -1253,7 +1253,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '0_4271' was not found.
+System.ArgumentException: Requested value '0_4408' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1267,7 +1267,7 @@ System.ArgumentException: Requested value '0_1067030937' was not found.
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,Cooldown=15,ChildAfflictionCooldown=0,Vulnerability=/* Array type was not detected. */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '0_3784' was not found.
+System.ArgumentException: Requested value '0_3905' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1547,8 +1547,10 @@ System.ArgumentException: Requested value '__Delegate_OnHealDamage__Delegate' wa
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedMatriarch.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedMatriarch.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedMatriarch.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedMatriarch.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedMatriarch.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedMatriarch.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedMatriarch.PowerUpAkSoundComponent'
     DamageRecoveryTimeHeavy=0.65
     DamageRecoveryTimeMedium=0.85
     Mass=200
@@ -1595,8 +1597,10 @@ System.ArgumentException: Requested value '__Delegate_OnHealDamage__Delegate' wa
     Components(5)=AkComponent'Default__KFPawn_ZedMatriarch.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedMatriarch.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedMatriarch.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedMatriarch.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedMatriarch.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedMatriarch.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedMatriarch.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedMatriarch.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedMatriarch.HeadshotAkComponent0'
     begin object name=CloakedAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -1604,12 +1608,12 @@ System.ArgumentException: Requested value '__Delegate_OnHealDamage__Delegate' wa
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_ZedMatriarch.CloakedAkComponent0'
-    Components(10)=CloakedAkComponent0
+    Components(12)=CloakedAkComponent0
     begin object name=BeamHitAC0 class=AkComponent
         bStopWhenOwnerDestroyed=true
     object end
     // Reference: AkComponent'Default__KFPawn_ZedMatriarch.BeamHitAC0'
-    Components(11)=BeamHitAC0
+    Components(13)=BeamHitAC0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

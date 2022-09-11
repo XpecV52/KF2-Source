@@ -62,7 +62,7 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
         if(ScreenUI != none)
         {
             ScreenUI.SetPause(false);
-            ScreenUI.SetCharge(AmmoCount[0]);
+            ScreenUI.SetCharge(byte(AmmoCount[0]));
             ScreenUI.SetIntegrity(255);
         }
     }
@@ -103,7 +103,7 @@ simulated function UpdateScreenUI()
         {
             if(ScreenUI.CurrentCharge != AmmoCount[0])
             {
-                ScreenUI.SetCharge(AmmoCount[0]);
+                ScreenUI.SetCharge(byte(AmmoCount[0]));
             }
             if(WeldTarget != none)
             {
@@ -201,25 +201,31 @@ simulated function CustomFire()
     local float CurrentFastenRate, CurrentUnfastenRate;
 
     WeldTarget = TraceWeldables();
-    if((Role == ROLE_Authority) && WeldTarget != none)
+    if(Role == ROLE_Authority)
     {
-        CurrentFastenRate = FastenRate;
-        CurrentUnfastenRate = UnfastenRate;
-        GetPerk().ModifyWeldingRate(CurrentFastenRate, CurrentUnfastenRate);
-        SetTimer(AmmoRechargeRate, true, 'RechargeAmmo');
-        if(WeldTarget.bIsDestroyed && !WeldTarget.Owner.IsA('KFRepairableActor'))
+        if(!IsTimerActive('RechargeAmmo'))
         {
-            WeldTarget.Repair(RepairRate, KFPawn(Instigator));            
+            SetTimer(AmmoRechargeRate, true, 'RechargeAmmo');
         }
-        else
+        if(WeldTarget != none)
         {
-            if(CurrentFireMode == 0)
+            CurrentFastenRate = FastenRate;
+            CurrentUnfastenRate = UnfastenRate;
+            GetPerk().ModifyWeldingRate(CurrentFastenRate, CurrentUnfastenRate);
+            if(WeldTarget.bIsDestroyed && !WeldTarget.Owner.IsA('KFRepairableActor'))
             {
-                WeldTarget.Weld(int(CurrentFastenRate), KFPawn(Instigator));                
+                WeldTarget.Repair(RepairRate, KFPawn(Instigator));                
             }
             else
             {
-                WeldTarget.Weld(int(CurrentUnfastenRate), KFPawn(Instigator));
+                if(CurrentFireMode == 0)
+                {
+                    WeldTarget.Weld(int(CurrentFastenRate), KFPawn(Instigator));                    
+                }
+                else
+                {
+                    WeldTarget.Weld(int(CurrentUnfastenRate), KFPawn(Instigator));
+                }
             }
         }
     }
@@ -596,9 +602,9 @@ defaultproperties
     bStorePreviouslyEquipped=false
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_None
-    MagazineCapacity=100
     GroupPriority=5
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Welder'
+    MagazineCapacity=100
     AmmoCost=/* Array type was not detected. */
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

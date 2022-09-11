@@ -658,11 +658,11 @@ defaultproperties
    FireModeIconPaths(5)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BluntMelee'
    FireModeIconPaths(6)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=4
-   MagazineCapacity(0)=3
-   MagazineCapacity(1)=100
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Medic_Bat_TEX.UI_WeaponSelect_MedicBat'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+   MagazineCapacity(0)=3
+   MagazineCapacity(1)=100
    AmmoCost(0)=40
    AmmoCost(1)=()
    AmmoCost(2)=()

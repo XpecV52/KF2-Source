@@ -340,6 +340,11 @@ defaultproperties
    DamageTypeModifiers(10)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.850000))
    DamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
    DamageTypeModifiers(12)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(1.200000))
+   DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_Beam',DamageScale=(3.500000))
+   DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGeneratorSphereImpact',DamageScale=(2.000000))
+   DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_DefaultFiremodeZapDamage',DamageScale=(3.500000))
+   DamageTypeModifiers(16)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',DamageScale=(3.500000))
+   DamageTypeModifiers(17)=(DamageType=Class'kfgamecontent.KFDT_Toxic_MineReconstructorExplosion',DamageScale=(1.800000))
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -481,6 +486,14 @@ defaultproperties
       ObjectArchetype=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_Monster:WeaponAmbientEchoHandler_0'
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedDAR:WeaponAmbientEchoHandler_0'
+   Begin Object Class=AkComponent Name=SecondaryWeaponAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SecondaryWeaponAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="SecondaryWeaponAkSoundComponent"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SecondaryWeaponAkSoundComponent'
+   End Object
+   SecondaryWeaponAkComponent=SecondaryWeaponAkSoundComponent
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -496,6 +509,14 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
+   Begin Object Class=AkComponent Name=PowerUpAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:PowerUpAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="PowerUpAkSoundComponent"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:PowerUpAkSoundComponent'
+   End Object
+   PowerUpAkComponent=PowerUpAkSoundComponent
    Mass=85.000000
    GroundSpeed=170.000000
    Health=775
@@ -564,8 +585,10 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=SprintAkComponent0
-   Components(9)=HeadshotAkComponent0
+   Components(8)=PowerUpAkSoundComponent
+   Components(9)=SecondaryWeaponAkSoundComponent
+   Components(10)=SprintAkComponent0
+   Components(11)=HeadshotAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=66000,Roll=50000)
    Name="Default__KFPawn_ZedDAR"

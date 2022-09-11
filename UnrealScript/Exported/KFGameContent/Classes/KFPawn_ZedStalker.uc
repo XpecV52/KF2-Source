@@ -593,6 +593,14 @@ defaultproperties
       ObjectArchetype=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_Monster:WeaponAmbientEchoHandler_0'
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedStalker:WeaponAmbientEchoHandler_0'
+   Begin Object Class=AkComponent Name=SecondaryWeaponAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SecondaryWeaponAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="SecondaryWeaponAkSoundComponent"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:SecondaryWeaponAkSoundComponent'
+   End Object
+   SecondaryWeaponAkComponent=SecondaryWeaponAkSoundComponent
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:FootstepAkSoundComponent'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -608,6 +616,14 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
+   Begin Object Class=AkComponent Name=PowerUpAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn_Monster:PowerUpAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="PowerUpAkSoundComponent"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:PowerUpAkSoundComponent'
+   End Object
+   PowerUpAkComponent=PowerUpAkSoundComponent
    DamageRecoveryTimeHeavy=0.650000
    Mass=50.000000
    GroundSpeed=400.000000
@@ -676,9 +692,11 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=SprintAkComponent0
-   Components(9)=HeadshotAkComponent0
-   Components(10)=CloakedAkComponent0
+   Components(8)=PowerUpAkSoundComponent
+   Components(9)=SecondaryWeaponAkSoundComponent
+   Components(10)=SprintAkComponent0
+   Components(11)=HeadshotAkComponent0
+   Components(12)=CloakedAkComponent0
    CollisionComponent=CollisionCylinder
    RotationRate=(Pitch=50000,Yaw=45000,Roll=50000)
    Name="Default__KFPawn_ZedStalker"

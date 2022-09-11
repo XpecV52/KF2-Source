@@ -162,7 +162,7 @@ function SetHelpText(string TextValue)
     SetString("helpText", TextValue);
 }
 
-function SetModeMenus(GFxObject TextObject, int ModeIndex)
+function SetModeMenus(GFxObject TextObject, int ModeIndex, int LengthIndex)
 {
     local int DifficultyLevels, Lengths;
     local byte NewDifficultyIndex, NewLengthIndex;
@@ -172,7 +172,7 @@ function SetModeMenus(GFxObject TextObject, int ModeIndex)
     NewDifficultyIndex = byte(Clamp(NewDifficultyIndex, 0, DifficultyLevels));
     NewLengthIndex = byte(Clamp(NewLengthIndex, 0, Lengths));
     TextObject.SetObject("difficultyList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), byte(GetDifficultyIndex()), false, false, byte(DifficultyLevels)));
-    TextObject.SetObject("lengthList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), byte(GetLengthIndex()), bShowLengthNoPref, false, byte(Lengths)));
+    TextObject.SetObject("lengthList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), byte(LengthIndex), bShowLengthNoPref, false, byte(Lengths)));
 }
 
 event int GetNormalizedGameModeIndex(int ModeIndex)
@@ -229,6 +229,7 @@ function InitializeGameOptions()
     local int I, InitialMapIndex;
     local KFProfileSettings Profile;
     local array<string> PlayfabRegionList;
+    local int StoredLengthIndex;
 
     Profile = GetCachedProfile();
     bIsSoloGame = GetBool("bIsSoloGame");
@@ -249,6 +250,7 @@ function InitializeGameOptions()
         goto J0x12A;
     }
     TextObject = Outer.CreateObject("Object");
+    StoredLengthIndex = GetLengthIndex();
     TextObject.SetString("soloGameString", SoloGameString);
     TextObject.SetString("matchMakingString", StartMenu.MatchmakingString);
     TextObject.SetString("createGameString", StartMenu.CreateMatchString);
@@ -264,8 +266,8 @@ function InitializeGameOptions()
     TextObject.SetString("privacy", StartMenu.PermissionsTitle);
     TextObject.SetString("inProgress", InProgressString);
     TextObject.SetObject("modeList", CreateList(SupportedGameModeStrings, byte(Min(ParentMenu.Manager.GetModeIndex(), SupportedGameModeStrings.Length)), false));
-    SetModeMenus(TextObject, Min(ParentMenu.Manager.GetModeIndex(), SupportedGameModeStrings.Length));
-    TextObject.SetObject("lengthList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), byte(GetLengthIndex()), bShowLengthNoPref));
+    SetModeMenus(TextObject, Min(ParentMenu.Manager.GetModeIndex(), SupportedGameModeStrings.Length), StoredLengthIndex);
+    TextObject.SetObject("lengthList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetLengthStringsArray(), byte(StoredLengthIndex), bShowLengthNoPref));
     TextObject.SetObject("mapList", CreateList(StartMenu.MapStringList, byte(((bIsSoloGame) ? InitialMapIndex : InitialMapIndex + 1)), true, true));
     TextObject.SetObject("difficultyList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetDifficultyStringsArray(), byte(GetDifficultyIndex()), false));
     TextObject.SetObject("privacyList", CreateList(Class'KFCommon_LocalizedStrings'.static.GetPermissionStringsArray(Class'WorldInfo'.static.IsConsoleBuild()), byte(Profile.GetProfileInt(152)), false));
@@ -505,23 +507,17 @@ function int GetLengthIndex()
     SavedLengthIndex = GetCachedProfile().GetProfileInt(151);
     if(!bShowLengthNoPref)
     {
-        SavedLengthIndex = Clamp(SavedLengthIndex, 0, 2);        
+        SavedLengthIndex = Clamp(SavedLengthIndex, 0, 2);
+        LengthIndexOffset = 0;
+        if(SavedLengthIndex >= (Class'KFGameInfo'.default.GameModes[ParentMenu.Manager.GetModeIndex()].Lengths + LengthIndexOffset))
+        {
+            SavedLengthIndex = 1;
+        }        
     }
     else
     {
-        if(SavedLengthIndex == 0)
-        {
-            SavedLengthIndex = 127;            
-        }
-        else
-        {
-            return SavedLengthIndex - 1;
-        }
-    }
-    LengthIndexOffset = ((bShowLengthNoPref) ? 1 : 0);
-    if(SavedLengthIndex >= (Class'KFGameInfo'.default.GameModes[ParentMenu.Manager.GetModeIndex()].Lengths + LengthIndexOffset))
-    {
-        SavedLengthIndex = 1;
+        SavedLengthIndex = Clamp(SavedLengthIndex, 0, 2 + 1);
+        return SavedLengthIndex;
     }
     return SavedLengthIndex;
 }

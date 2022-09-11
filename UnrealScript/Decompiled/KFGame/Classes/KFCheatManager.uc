@@ -193,6 +193,40 @@ exec function DisplayFreeTrialOverPopUp()
     Class'KFGFxMoviePlayer_Manager'.static.DisplayFreeTrialOverPopUp();
 }
 
+exec function TestItemServerStatusIndicatorStart()
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+    if((P == none) || KFPC == none)
+    {
+        return;
+    }
+    if((KFPC.MyGFxManager != none) && KFPC.MyGFxManager.BackendStatusIndicatorWidget != none)
+    {
+        KFPC.MyGFxManager.BackendStatusIndicatorWidget.StartFlickeringConnectionLost();
+    }
+}
+
+exec function TestItemServerStatusIndicatorStop()
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+    if((P == none) || KFPC == none)
+    {
+        return;
+    }
+    if((KFPC.MyGFxManager != none) && KFPC.MyGFxManager.BackendStatusIndicatorWidget != none)
+    {
+        KFPC.MyGFxManager.BackendStatusIndicatorWidget.StopFlickeringConnectionLost();
+    }
+}
+
 exec function OpenScreenSizeMovie()
 {
     KFPlayerController(Outer).MyGFxManager.OpenScreenSizeMovie();
@@ -628,6 +662,17 @@ exec function LogAllWaves()
     }
 }
 
+exec function PowerUpHellishRage()
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Outer);
+    if(KFPC != none)
+    {
+        KFPC.ReceivePowerUp(Class'KFPowerUp_HellishRage');
+    }
+}
+
 exec function SpawnGunModel(string GunMeshString)
 {
     local SkeletalMesh GunMesh;
@@ -857,6 +902,11 @@ simulated exec function MKB()
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_DualMKb42_Hans");
 }
 
+simulated exec function Minigun()
+{
+    GiveWeapon("KFGameContent.KFWeap_Minigun");
+}
+
 simulated exec function Pistols()
 {
     GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
@@ -926,6 +976,7 @@ simulated exec function Assault()
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Medic");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_FNFal");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_MedicRifleGrenadeLauncher");
+    GiveWeapon("KFGameContent.KFWeap_Minigun");
 }
 
 simulated exec function Shotty()
@@ -942,8 +993,14 @@ simulated exec function Shotty()
     GiveWeapon("KFGameContent.KFWeap_Shotgun_Medic");
 }
 
+simulated exec function MineRec()
+{
+    GiveWeapon("KFGameContent.KFWeap_Mine_Reconstructor");
+}
+
 simulated exec function Medic()
 {
+    GiveWeapon("KFGameContent.KFWeap_Mine_Reconstructor");
     GiveWeapon("KFGameContent.KFWeap_Pistol_Medic");
     GiveWeapon("KFGameContent.KFWeap_SMG_Medic");
     GiveWeapon("KFGameContent.KFWeap_HRG_Healthrower");
@@ -983,6 +1040,7 @@ simulated exec function Firebug()
     GiveWeapon("KFGameContent.KFWeap_HuskCannon");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_Microwave");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_HRGIncendiaryRifle");
+    GiveWeapon("KFGameContent.KFWeap_Pistol_HRGScorcher");
 }
 
 simulated exec function Dualies()
@@ -1048,6 +1106,7 @@ simulated exec function SWAT()
 
 exec function Surv()
 {
+    GiveWeapon("KFGameContent.KFWeap_HRG_EMP_ArcGenerator");
     GiveWeapon("KFGameContent.KFWeap_Ice_FreezeThrower");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_LazerCutter");
 }

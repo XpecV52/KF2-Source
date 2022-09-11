@@ -23,7 +23,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    bIsBackupWeapon=True
-   MagazineCapacity(0)=15
    MeshFOV=96.000000
    MeshIronSightFOV=77.000000
    PlayerIronSightFOV=77.000000
@@ -33,6 +32,7 @@ defaultproperties
    GroupPriority=10.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_9mm'
    DualClass=Class'kfgamecontent.KFWeap_Pistol_Dual9mm'
+   MagazineCapacity(0)=15
    SpareAmmoCapacity(0)=75
    InitialSpareMags(0)=4
    IdleFidgetAnims(3)="Guncheck_v4"

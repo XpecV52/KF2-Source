@@ -27,7 +27,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=4
-   MagazineCapacity(0)=14
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=2.000000
    MeshIronSightFOV=77.000000
@@ -38,6 +37,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=45.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_Deagle_TEX.UI_WeaponSelect_DualDeagle'
+   MagazineCapacity(0)=14
    SpareAmmoCapacity(0)=98
    InitialSpareMags(0)=2
    BonesToLockOnEmpty(0)="RW_Slide"

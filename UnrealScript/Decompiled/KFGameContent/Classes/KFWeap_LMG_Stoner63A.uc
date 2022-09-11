@@ -89,7 +89,7 @@ simulated function UpdateAmmoBeltBullets(optional int ForcedBulletCount, optiona
         return;
     }
     I = 0;
-    J0x13F:
+    J0x13D:
 
     if(I < NumAmmoBeltBullets)
     {
@@ -110,7 +110,7 @@ simulated function UpdateAmmoBeltBullets(optional int ForcedBulletCount, optiona
             }
         }
         ++ I;
-        goto J0x13F;
+        goto J0x13D;
     }
     LastAmmoCount = NumAmmo;
 }
@@ -162,7 +162,6 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=9
-    MagazineCapacity=75
     MeshFOV=75
     MeshIronSightFOV=35
     PlayerIronSightFOV=70
@@ -171,6 +170,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'wep_ui_stoner63a_tex.UI_WeaponSelect_Stoner'
+    MagazineCapacity=75
     SpareAmmoCapacity=500
     InitialSpareMags=1
     bLoopingFireAnim=/* Array type was not detected. */

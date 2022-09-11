@@ -166,6 +166,9 @@ native function CheckPlayerDisplayName(string PlayFabId);
 // Export UPlayfabInterface::execGetUserData(FFrame&, void* const)
 native function GetUserData(array<string> Keys, bool CheckData);
 
+// Export UPlayfabInterface::execQueryPlayfabClientTicket(FFrame&, void* const)
+native function QueryPlayfabClientTicket(string LobbyId);
+
 // Export UPlayfabInterface::execLogout(FFrame&, void* const)
 native function bool Logout();
 

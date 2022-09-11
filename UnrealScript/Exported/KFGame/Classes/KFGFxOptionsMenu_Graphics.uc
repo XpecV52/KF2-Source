@@ -1352,6 +1352,8 @@ native function bool IsAspectRatioAvailable(SupportedAspectRatio InAspectRatio);
  */
 native function RefreshSupportedResolutions(SupportedAspectRatio InAspectRatio);
 
+native function string GetMonitorResolution();
+
 /** Returns whether Nvidia FleX is supported or not */
 native function bool IsFleXSupported();
 
@@ -2761,6 +2763,55 @@ function GetModifiedGFXSettings(out GFXSettings NewSettings)
 		NewSettings.LensFlares = LensFlarePresets[LensFlareSettingIndex];
 	}
 
+	AdjustModifiedGFXSettings(NewSettings);
+}
+
+function AdjustModifiedGFXSettings(out GFXSettings NewSettings)
+{
+	local string MonitorResolution;
+	local array<string> ResolutionStringArr;
+	local array<string> MonitorResolutionStringArr;
+	local GFxObject OptionsObj;
+	local int ResolutionIndex;
+	local int i;
+	local bool NewSettingIsBorderless;
+	local bool OldSettingIsNotBorderless;
+
+	NewSettingIsBorderless = NewSettings.Display.BorderlessWindow && !NewSettings.Display.Fullscreen;
+	OldSettingIsNotBorderless = !(CurrentGFXSettings.Display.BorderlessWindow && !CurrentGFXSettings.Display.Fullscreen);
+	
+	// Adjust resolution in case we are in changing to borderless mode
+	if(NewSettingIsBorderless && OldSettingIsNotBorderless)
+	{
+		// Get current monitor resolution
+		MonitorResolution = GetMonitorResolution();
+		if(MonitorResolution != "")
+		{
+			// Put the biggest resolution just in case
+			ResolutionIndex = SupportedResolutionList.length - 1;
+
+			// Search for the correct resolution among all the possible that the game support
+			for( i=0 ; i<SupportedResolutionList.length ; i++ )
+			{
+				ResolutionStringArr = SplitString( SupportedResolutionList[i], "x", true );
+				MonitorResolutionStringArr = SplitString( MonitorResolution, "x", true );
+				if(ResolutionStringArr[0] == MonitorResolutionStringArr[0] && ResolutionStringArr[1] == MonitorResolutionStringArr[1])
+				{
+					ResolutionIndex = i;
+				}
+			}
+			
+			// Set the new resolution
+			ResolutionStringArr = SplitString( SupportedResolutionList[ResolutionIndex], "x", true );
+			NewSettings.Resolution.ResX  = int(ResolutionStringArr[0]);
+			NewSettings.Resolution.ResY = int(ResolutionStringArr[1]);
+
+			// Update selected resolution display
+			OptionsObj = GetObject("options");
+			OptionsObj.SetInt("resolution", ResolutionIndex);
+			SetObject("options", OptionsObj);
+		}
+	}
 }
 
 function InitializeResolution()

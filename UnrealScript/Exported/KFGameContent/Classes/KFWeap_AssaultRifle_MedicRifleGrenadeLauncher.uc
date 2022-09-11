@@ -56,6 +56,29 @@ simulated function AltFireMode()
 	StartFire(ALTFIRE_FIREMODE);
 }
 
+simulated function BeginFire( Byte FireModeNum )
+{
+	local bool bStoredAutoReload;
+
+	// We are trying to reload the weapon but the primary ammo in already at full capacity
+	if ( FireModeNum == RELOAD_FIREMODE && !CanReload() )
+	{
+		// Store the cuurent state of bCanceledAltAutoReload in case its not possible to do the reload
+		bStoredAutoReload = bCanceledAltAutoReload;
+		bCanceledAltAutoReload = false;
+
+		if(CanAltAutoReload())
+		{
+			TryToAltReload();
+			return;
+		}
+
+		bCanceledAltAutoReload = bStoredAutoReload;
+	}
+
+	super.BeginFire( FireModeNum );
+}
+
 /**
  * Initializes ammo counts, when weapon is spawned.
  */
@@ -491,8 +514,6 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=2
    InventorySize=8
-   MagazineCapacity(0)=30
-   MagazineCapacity(1)=1
    MeshFOV=65.000000
    MeshIronSightFOV=45.000000
    PlayerIronSightFOV=70.000000
@@ -501,6 +522,8 @@ defaultproperties
    GroupPriority=125.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Medic_GrenadeLauncher_TEX.UI_WeaponSelect_MedicGrenadeLauncher'
    SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
+   MagazineCapacity(0)=30
+   MagazineCapacity(1)=1
    AmmoCost(1)=1
    SpareAmmoCapacity(0)=210
    SpareAmmoCapacity(1)=9

@@ -266,6 +266,7 @@ var(SprayDamage) float MomentumScale;
 var float DamageModifier;
 var array<DamagedActorInfo> RecentlyDamagedActors;
 var private transient SprayMeshContact HighestSprayMeshContactThisTick;
+var private transient Actor CurrentSprayedActor;
 var transient float bSprayMeshCollisionDuration;
 var(SprayCollision) int MaxSprayMeshesCollided;
 var transient AnimNodeBlendList AnimBlendNode;
@@ -782,6 +783,8 @@ event float GetModifiedDamage()
 {
     return SplashDamage * DamageModifier;
 }
+
+event SprayMeshExitCollision();
 
 event SprayMeshHit(Actor TouchActor)
 {

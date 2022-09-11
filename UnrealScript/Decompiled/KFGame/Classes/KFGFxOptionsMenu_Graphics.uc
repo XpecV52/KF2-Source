@@ -646,6 +646,9 @@ native function bool IsAspectRatioAvailable(KFGFxOptionsMenu_Graphics.SupportedA
 // Export UKFGFxOptionsMenu_Graphics::execRefreshSupportedResolutions(FFrame&, void* const)
 native function RefreshSupportedResolutions(KFGFxOptionsMenu_Graphics.SupportedAspectRatio InAspectRatio);
 
+// Export UKFGFxOptionsMenu_Graphics::execGetMonitorResolution(FFrame&, void* const)
+native function string GetMonitorResolution();
+
 // Export UKFGFxOptionsMenu_Graphics::execIsFleXSupported(FFrame&, void* const)
 native function bool IsFleXSupported();
 
@@ -1895,6 +1898,47 @@ function GetModifiedGFXSettings(out GFXSettings NewSettings)
     if((LensFlareSettingIndex >= 0) && LensFlareSettingIndex < LensFlarePresets.Length)
     {
         NewSettings.LensFlares = LensFlarePresets[LensFlareSettingIndex];
+    }
+    AdjustModifiedGFXSettings(NewSettings);
+}
+
+function AdjustModifiedGFXSettings(out GFXSettings NewSettings)
+{
+    local string MonitorResolution;
+    local array<string> ResolutionStringArr, MonitorResolutionStringArr;
+    local GFxObject OptionsObj;
+    local int ResolutionIndex, I;
+    local bool NewSettingIsBorderless, OldSettingIsNotBorderless;
+
+    NewSettingIsBorderless = NewSettings.Display.BorderlessWindow && !NewSettings.Display.Fullscreen;
+    OldSettingIsNotBorderless = !CurrentGFXSettings.Display.BorderlessWindow && !CurrentGFXSettings.Display.Fullscreen;
+    if(NewSettingIsBorderless && OldSettingIsNotBorderless)
+    {
+        MonitorResolution = GetMonitorResolution();
+        if(MonitorResolution != "")
+        {
+            ResolutionIndex = SupportedResolutionList.Length - 1;
+            I = 0;
+            J0x148:
+
+            if(I < SupportedResolutionList.Length)
+            {
+                ResolutionStringArr = SplitString(SupportedResolutionList[I], "x", true);
+                MonitorResolutionStringArr = SplitString(MonitorResolution, "x", true);
+                if((ResolutionStringArr[0] == MonitorResolutionStringArr[0]) && ResolutionStringArr[1] == MonitorResolutionStringArr[1])
+                {
+                    ResolutionIndex = I;
+                }
+                ++ I;
+                goto J0x148;
+            }
+            ResolutionStringArr = SplitString(SupportedResolutionList[ResolutionIndex], "x", true);
+            NewSettings.Resolution.ResX = int(ResolutionStringArr[0]);
+            NewSettings.Resolution.ResY = int(ResolutionStringArr[1]);
+            OptionsObj = GetObject("options");
+            OptionsObj.SetInt("resolution", ResolutionIndex);
+            SetObject("options", OptionsObj);
+        }
     }
 }
 

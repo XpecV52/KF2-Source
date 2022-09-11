@@ -15,7 +15,7 @@ defaultproperties
    bNoInstigatorDamage=True
    bShouldSpawnPersistentBlood=True
    StumblePower=25.000000
-   FreezePower=25.000000
+   FreezePower=20.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Gunslinger'
    GibImpulseScale=0.150000
    KDeathVel=300.000000

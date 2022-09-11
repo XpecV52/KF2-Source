@@ -119,6 +119,7 @@ const STATID_ACHIEVE_SanitariumCollectibles = 4052;
 const STATID_ACHIEVE_DefeatMatriarch = 4053;
 const STATID_ACHIEVE_BiolapseCollectibles = 4054;
 const STATID_ACHIEVE_DesolationCollectibles = 4055;
+const STATID_ACHIEVE_HellmarkStationCollectibles = 4056;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -461,6 +462,8 @@ var const name MusicMessageType;
 var const int EarnedDosh;
 var transient sPlayerZedSpawnInfo PlayerZedSpawnInfo;
 var KFPawn_Human UsablePawn;
+var KFPowerUp CurrentPowerUp;
+var class<KFPowerUp> CurrentPowerUpClass;
 var protected float UnmodifiedFOV;
 var protected transient int BenefactorDosh;
 var private const int BenefactorDoshReq;
@@ -515,6 +518,7 @@ var name EffectBloatsPukeParamName;
 var name EffectHealParamName;
 var name EffectPerkParamName;
 var name EffectFlashBangParamName;
+var name EffectPowerUpHellishRageParamName;
 var transient float PainEffectDuration;
 var transient float PainEffectTimeRemaining;
 var transient float HealEffectDuration;
@@ -525,6 +529,8 @@ var transient float BloatPukeEffectDuration;
 var transient float BloatPukeEffectTimeRemaining;
 var transient float FlashBangEffectDuration;
 var transient float FlashBangEffectTimeRemaining;
+var transient float HellishRagePowerUpEffectDuration;
+var transient float HellishRagePowerUpEffectTimeRemaining;
 var const int LowHealthThreshold;
 var transient float TargetZEDTimeEffectIntensity;
 var transient float CurrentZEDTimeEffectIntensity;
@@ -2506,6 +2512,47 @@ function RecievedNewPerkClass()
     }
 }
 
+function ReceivePowerUp(class<KFPowerUp> PowerUpClass)
+{
+    CurrentPowerUpClass = PowerUpClass;
+    if(CurrentPowerUp == none)
+    {
+        CurrentPowerUp = Spawn(PowerUpClass, Pawn,, vect(0, 0, 0));
+        CurrentPowerUp.OwnerPC = self;
+        CurrentPowerUp.OwnerPawn = KFPawn_Human(Pawn);
+        CurrentPowerUp.ActivatePowerUp();
+        bForceNetUpdate = true;        
+    }
+    else
+    {
+        if(CurrentPowerUp.Class == PowerUpClass)
+        {
+            CurrentPowerUp.ReactivatePowerUp();            
+        }
+        else
+        {
+            CurrentPowerUp.DeactivatePowerUp();
+            ReceivePowerUp(PowerUpClass);
+        }
+    }
+    ClientUpdatePowerUp(CurrentPowerUpClass);
+}
+
+reliable client simulated function ClientUpdatePowerUp(class<KFPowerUp> PowerUpClass)
+{
+    CurrentPowerUpClass = PowerUpClass;
+}
+
+simulated function KFPowerUp GetPowerUp()
+{
+    return CurrentPowerUp;
+}
+
+simulated function class<KFPowerUp> GetPowerUpClass()
+{
+    return CurrentPowerUpClass;
+}
+
 // Export UKFPlayerController::execSetViewTarget(FFrame&, void* const)
 native function SetViewTarget(Actor NewViewTarget, optional ViewTargetTransitionParams TransitionParams);
 
@@ -3703,9 +3750,9 @@ reliable client simulated event ReceiveLocalizedMessage(class<LocalMessage> Mess
         if(TempMessage != "")
         {
             myGfxHUD.ShowNonCriticalMessage(TempMessage);
-            if((Switch == 27) || Switch == 28)
+            if((Switch == 28) || Switch == 29)
             {
-                if(Switch == 28)
+                if(Switch == 29)
                 {
                     if((RelatedPRI_2.GetTeamNum() == 255) && RelatedPRI_2.UniqueId == PlayerReplicationInfo.UniqueId)
                     {
@@ -3725,7 +3772,7 @@ reliable client simulated event ReceiveLocalizedMessage(class<LocalMessage> Mess
                 }
                 else
                 {
-                    if(Switch == 27)
+                    if(Switch == 28)
                     {
                         if((RelatedPRI_2.GetTeamNum() == Class'KFTeamInfo_Human'.default.TeamIndex) && RelatedPRI_2.GetTeamNum() == PlayerReplicationInfo.GetTeamNum())
                         {
@@ -3938,6 +3985,75 @@ simulated function PlayScreenMaterialEffects(class<KFDamageType> KFDT, bool bSho
     }
 }
 
+simulated function PlayPowerUpEffect(class<KFPowerUp> KFPowerUp)
+{
+    PlayScreenPowerUpEffects(KFPowerUp);
+    PlayScreenMaterialPowerUpEffect(KFPowerUp);
+}
+
+simulated function PlayScreenPowerUpEffects(class<KFPowerUp> KFPowerUp)
+{
+    local class<EmitterCameraLensEffectBase> LensEffectTemplate;
+
+    if((Pawn != none) && Pawn.IsFirstPerson())
+    {
+        if((GetEffectPowerUpTimeRemaining(KFPowerUp)) <= float(0))
+        {
+            LensEffectTemplate = KFPowerUp.default.CameraLensEffectTemplate;
+            if(LensEffectTemplate != none)
+            {
+                ClientSpawnCameraLensEffect(LensEffectTemplate);
+            }
+        }
+    }
+}
+
+simulated function PlayScreenMaterialPowerUpEffect(class<KFPowerUp> KFPowerUp)
+{
+    switch(KFPowerUp.default.ScreenMaterialName)
+    {
+        case EffectPowerUpHellishRageParamName:
+            HellishRagePowerUpEffectDuration = KFPowerUp.default.PowerUpDuration;
+            HellishRagePowerUpEffectTimeRemaining = HellishRagePowerUpEffectDuration;
+            break;
+        default:
+            break;
+    }
+}
+
+simulated function StopScreenPowerUpEffects(class<KFPowerUp> KFPowerUp)
+{
+    local class<EmitterCameraLensEffectBase> LensEffectTemplate;
+
+    if((Pawn != none) && Pawn.IsFirstPerson())
+    {
+        LensEffectTemplate = KFPowerUp.default.CameraLensEffectTemplate;
+        if(LensEffectTemplate != none)
+        {
+            ClientRemoveCameraLensEffect(LensEffectTemplate);
+        }
+    }
+}
+
+simulated function StopPowerUpEffect(class<KFPowerUp> KFPowerUp)
+{
+    StopScreenPowerUpEffects(KFPowerUp);
+    StopScreenMaterialPowerUpEffect(KFPowerUp);
+}
+
+simulated function StopScreenMaterialPowerUpEffect(class<KFPowerUp> KFPowerUp)
+{
+    switch(KFPowerUp.default.ScreenMaterialName)
+    {
+        case EffectPowerUpHellishRageParamName:
+            HellishRagePowerUpEffectDuration = KFPowerUp.default.PowerUpDuration;
+            HellishRagePowerUpEffectTimeRemaining = 0.2;
+            break;
+        default:
+            break;
+    }
+}
+
 simulated function CheckForReducedSirenScreamEffect()
 {
     local KFPerk MyPerk;
@@ -3952,6 +4068,25 @@ simulated function CheckForReducedSirenScreamEffect()
 simulated function float GetEffectTimeRemaining(class<KFDamageType> KFDT)
 {
     switch(KFDT.default.ScreenMaterialName)
+    {
+        case EffectSirenScreamParamName:
+            return SirenScreamEffectTimeRemaining;
+            break;
+        case EffectBloatsPukeParamName:
+            return BloatPukeEffectTimeRemaining;
+            break;
+        case EffectFlashBangParamName:
+            return FlashBangEffectTimeRemaining;
+            break;
+        default:
+            break;
+    }
+    return 0;
+}
+
+simulated function float GetEffectPowerUpTimeRemaining(class<KFPowerUp> KFPowerUp)
+{
+    switch(KFPowerUp.default.ScreenMaterialName)
     {
         case EffectSirenScreamParamName:
             return SirenScreamEffectTimeRemaining;
@@ -4001,6 +4136,10 @@ event PlayerTick(float DeltaTime)
         {
             UpdateScreenEffect(DeltaTime, EffectFlashBangParamName, FlashBangEffectTimeRemaining, default.FlashBangEffectDuration);
         }
+        if(HellishRagePowerUpEffectTimeRemaining > float(0))
+        {
+            UpdatePowerUpScreenEffect(DeltaTime, EffectPowerUpHellishRageParamName, HellishRagePowerUpEffectTimeRemaining, HellishRagePowerUpEffectDuration);
+        }
         if(GameplayPostProcessEffects != none)
         {
             GameplayPostProcessEffects.bShowInGame = ShouldDisplayGameplayPostProcessFX();
@@ -4019,11 +4158,11 @@ function SetGrabEffect(bool bValue, optional bool bPlayerZed, optional bool bSki
     {
         if(bPlayerZed)
         {
-            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 14);            
+            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 15);            
         }
         else
         {
-            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 13);
+            ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 14);
         }        
     }
     else
@@ -4054,7 +4193,7 @@ function SetGrabEffectEMP(bool bActive, optional bool bPlayerZed, optional bool 
         {
             ClientSpawnCameraLensEffect(LensEffectTemplate);
         }
-        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 15);        
+        ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 16);        
     }
     else
     {
@@ -4116,6 +4255,7 @@ function ResetGameplayPostProcessFX()
         GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectBloatsPukeParamName, 0);
         GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectHealParamName, 0);
         GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectPerkParamName, 0);
+        GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectPowerUpHellishRageParamName, 0);
     }
     if(GameplayPostProcessEffects != none)
     {
@@ -4128,7 +4268,7 @@ function ResetGameplayPostProcessFX()
 
 function bool ShouldDisplayGameplayPostProcessFX()
 {
-    return ((((((((bPerkEffectIsActive || bGrabEffectIsActive) || PainEffectTimeRemaining > 0) || (Pawn != none) && Pawn.Health <= default.LowHealthThreshold) || HealEffectTimeRemaining > 0) || CurrentZEDTimeEffectIntensity > 0) || bNightVisionActive) || SirenScreamEffectTimeRemaining > 0) || BloatPukeEffectTimeRemaining > 0) || FlashBangEffectTimeRemaining > 0;
+    return (((((((((bPerkEffectIsActive || bGrabEffectIsActive) || PainEffectTimeRemaining > 0) || (Pawn != none) && Pawn.Health <= default.LowHealthThreshold) || HealEffectTimeRemaining > 0) || CurrentZEDTimeEffectIntensity > 0) || bNightVisionActive) || SirenScreamEffectTimeRemaining > 0) || BloatPukeEffectTimeRemaining > 0) || FlashBangEffectTimeRemaining > 0) || HellishRagePowerUpEffectTimeRemaining > 0;
 }
 
 function UpdateScreenEffect(float DeltaTime, name EffectName, out float TimeRemaining, float Duration)
@@ -4141,6 +4281,36 @@ function UpdateScreenEffect(float DeltaTime, name EffectName, out float TimeRema
         {
             TimeRemaining -= DeltaTime;
             Intensity = FClamp(TimeRemaining / Duration, 0, 1);            
+        }
+        else
+        {
+            TimeRemaining = 0;
+            Intensity = 0;
+        }
+        if(GameplayPostProcessEffectMIC != none)
+        {
+            GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectName, Intensity);
+        }
+    }
+}
+
+function UpdatePowerUpScreenEffect(float DeltaTime, name EffectName, out float TimeRemaining, float Duration)
+{
+    local float Intensity;
+
+    if(TimeRemaining > 0)
+    {
+        if(TimeRemaining > DeltaTime)
+        {
+            TimeRemaining -= DeltaTime;
+            if(TimeRemaining >= float(1))
+            {
+                Intensity = 1;                
+            }
+            else
+            {
+                Intensity = TimeRemaining;
+            }            
         }
         else
         {
@@ -5906,6 +6076,14 @@ function AddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<D
 
 // Export UKFPlayerController::execClientAddZedKill(FFrame&, void* const)
 private reliable client native final simulated function ClientAddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT, bool bKiller);
+
+function AddZedHeadshotKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT)
+{
+    ClientAddZedHeadshotKill(MonsterClass, Difficulty, DT);
+}
+
+// Export UKFPlayerController::execClientAddZedHeadshotKill(FFrame&, void* const)
+private reliable client native final simulated function ClientAddZedHeadshotKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT);
 
 function AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
 {
@@ -8179,10 +8357,10 @@ event MenuInfo GetMenuInfo()
     return Info;
 }
 
-event ShowInviteMessage(string Name)
+event ShowInviteMessage(string InviteMessageName)
 {
     LogInternal("KFPlayerController: ShowInviteMessage");
-    myGfxHUD.ShowInviteMessage(Name);
+    myGfxHUD.ShowInviteMessage(InviteMessageName);
 }
 
 event OnLoginOnOtherPlatformDoneAndFriendsReady()
@@ -8294,6 +8472,10 @@ state Dead
         if(CurrentPerk != none)
         {
             CurrentPerk.PlayerDied();
+        }
+        if(CurrentPowerUp != none)
+        {
+            CurrentPowerUp.PlayerDied();
         }
         KFPI = KFPlayerInput(PlayerInput);
         if(KFPI != none)
@@ -8563,11 +8745,13 @@ defaultproperties
     EffectHealParamName=Effect_Heal
     EffectPerkParamName=Effect_PerkSkill
     EffectFlashBangParamName=Effect_FlashBang
+    EffectPowerUpHellishRageParamName=Effect_PowerUp_HellishRage
     PainEffectDuration=0.5
     HealEffectDuration=1
     SonicScreamEffectDuration=6
     BloatPukeEffectDuration=2
     FlashBangEffectDuration=3
+    HellishRagePowerUpEffectDuration=1
     LowHealthThreshold=50
     CurrentZEDTimeEffectIntensity=-1
     PartialZEDTimeEffectIntensity=0.35

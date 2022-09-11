@@ -46,7 +46,6 @@ defaultproperties
    FireModeIconPaths(1)=()
    SingleFireSoundIndex=1
    InventorySize=7
-   MagazineCapacity(0)=40
    MeshFOV=75.000000
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=70.000000
@@ -56,6 +55,7 @@ defaultproperties
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicAssault'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+   MagazineCapacity(0)=40
    AmmoCost(1)=30
    SpareAmmoCapacity(0)=400
    InitialSpareMags(0)=2

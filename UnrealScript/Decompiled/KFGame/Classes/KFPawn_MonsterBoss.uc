@@ -382,8 +382,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_MonsterBoss.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_MonsterBoss.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_MonsterBoss.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_MonsterBoss.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_MonsterBoss.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_MonsterBoss.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_MonsterBoss.PowerUpAkSoundComponent'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         bUpdateKinematicBonesFromAnimation=true
         ReplacementPrimitive=none
@@ -420,8 +422,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_MonsterBoss.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_MonsterBoss.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_MonsterBoss.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_MonsterBoss.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_MonsterBoss.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_MonsterBoss.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_MonsterBoss.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_MonsterBoss.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_MonsterBoss.HeadshotAkComponent0'
     bAlwaysRelevant=true
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

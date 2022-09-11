@@ -89,7 +89,7 @@ simulated function AttachWeaponTo(SkeletalMeshComponent MeshCpnt, optional name 
         if(ScreenUI != none)
         {
             ScreenUI.SetPause(false);
-            ScreenUI.SetCharge(MagazineCapacity[0]);
+            ScreenUI.SetCharge(byte(MagazineCapacity[0]));
         }
     }
 }
@@ -338,7 +338,7 @@ simulated function UpdateInteractionMessage()
         if((Instigator.Health <= InstigatorKFPC.LowHealthThreshold) && AmmoCount[0] >= AmmoCost[1])
         {
             bIsQuickHealMessageShowing = true;
-            InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 12);
+            InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 13);
         }
     }
 }
@@ -349,7 +349,7 @@ simulated function UpdateScreenUI()
     {
         if((ScreenUI != none) && ScreenUI.CurrentCharge != AmmoCount[0])
         {
-            ScreenUI.SetCharge(AmmoCount[0]);
+            ScreenUI.SetCharge(byte(AmmoCount[0]));
         }
     }
 }
@@ -591,8 +591,8 @@ defaultproperties
     bInfiniteSpareAmmo=true
     bAllowClientAmmoTracking=false
     InventoryGroup=EInventoryGroup.IG_Equipment
-    MagazineCapacity=100
     GroupPriority=6
+    MagazineCapacity=100
     AmmoCost(0)=100
     AmmoCost(1)=100
     FireTweenTime=0.3

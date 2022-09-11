@@ -21,7 +21,6 @@ defaultproperties
     bCanBeReloaded=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=5
-    MagazineCapacity=8
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
@@ -30,6 +29,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=25
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Mossberg'
+    MagazineCapacity=8
     SpareAmmoCapacity=56
     InitialSpareMags=3
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'

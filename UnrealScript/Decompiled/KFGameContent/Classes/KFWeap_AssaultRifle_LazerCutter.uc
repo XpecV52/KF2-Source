@@ -500,22 +500,22 @@ simulated state LazerCharge extends WeaponFiring
         }
         if(ConsumeTime > float(0))
         {
-            J0xDA:
+            J0xD5:
 
             if(CurrentChargeTime >= ConsumeTime)
             {
                 CurrentChargeTime -= ConsumeTime;
                 ConsumeAmmo(1);
-                goto J0xDA;
+                goto J0xD5;
             }
         }
-        J0x114:
+        J0x10F:
 
         if(FlashTime >= FlashInterval)
         {
             FlashTime -= FlashInterval;
             IncrementFlashCount();
-            goto J0x114;
+            goto J0x10F;
         }
         EndChargeLevel = GetChargeLevel();
         if(EndChargeLevel != StartChargeLevel)
@@ -940,13 +940,13 @@ defaultproperties
     bHasFireLastAnims=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=8
-    MagazineCapacity=50
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
     DOF_FG_FocalRadius=85
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=125
     WeaponSelectTexture=Texture2D'WEP_UI_Laser_Cutter_TEX.UI_WeaponSelect_Laser_Cutter'
+    MagazineCapacity=50
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=300
     InitialSpareMags=1

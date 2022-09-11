@@ -764,7 +764,7 @@ defaultproperties
    DialogEvents(110)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_TeammateDeath')
    DialogEvents(111)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_TeammateDeath')
    DialogEvents(112)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_TeammateDeath')
-   DialogEvents(113)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_TeammateDeath')
+   DialogEvents(113)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_KillZed_LastPLayer')
    DialogEvents(114)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_Grunt')
    DialogEvents(115)=()
    DialogEvents(116)=(DefaultAudioCue=AkEvent'WW_VOX_CHR_DAR.Play_DAR_NEGATIVE_Grunt')

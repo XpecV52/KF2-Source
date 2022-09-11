@@ -41,7 +41,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasLaserSight=True
    InventorySize=7
-   MagazineCapacity(0)=20
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshFOV=70.000000
@@ -53,6 +52,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M14EBR_TEX.UI_WeaponSelect_SM14-EBR'
+   MagazineCapacity(0)=20
    SpareAmmoCapacity(0)=120
    InitialSpareMags(0)=2
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'

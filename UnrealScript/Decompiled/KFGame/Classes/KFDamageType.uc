@@ -37,9 +37,11 @@ enum EGoreDamageGroup
 var class<KFWeaponDefinition> WeaponDef;
 var bool bNoInstigatorDamage;
 var bool bNoFriendlyFire;
+var bool bNonLethalDamage;
 var bool bConsideredIndirectOrAoE;
 var bool bAllowAIDoorDestruction;
 var bool bStackDoT;
+var bool bHasToSpawnMicrowaveFire;
 var bool bAnyPerk;
 var bool bShouldSpawnBloodSplat;
 var bool bShouldSpawnPersistentBlood;
@@ -226,6 +228,7 @@ static function ApplyKillResults(KFPawn KilledPawn);
 
 defaultproperties
 {
+    bHasToSpawnMicrowaveFire=true
     HeadDestructionDamageScale=1
     HeadDestructionImpulseForceScale=1
     EffectGroup=EEffectDamageGroup.None

@@ -23,11 +23,11 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=5
-    MagazineCapacity=50
     MeshFOV=75
     MeshIronSightFOV=55
     GroupPriority=80
     WeaponSelectTexture=Texture2D'WEP_UI_P90_TEX.UI_WeaponSelect_FNP90'
+    MagazineCapacity=50
     SpareAmmoCapacity=350
     InitialSpareMags=2
     bLoopingFireAnim=/* Array type was not detected. */

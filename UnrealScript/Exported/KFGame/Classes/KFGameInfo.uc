@@ -3690,7 +3690,7 @@ auto State PendingMatch
 	{
 		if (WorldInfo.NetMode == NM_DedicatedServer)
 		{
-			LogInternal("(TW ZOMBIE SERVER LOG)"@"KFGameInfo:PendingMatch.BeginState - PreviousStateName: "$PreviousStateName);
+			//`REMOVEMESOON_ZombieServerLog("KFGameInfo:PendingMatch.BeginState - PreviousStateName: "$PreviousStateName);
 		}
 	}
 	// END REMOVEMESOON
@@ -3844,7 +3844,7 @@ private function CheckServerUnlock()
 
 	if (WorldInfo.NetMode == NM_DedicatedServer)
 	{
-		LogInternal("(TW TAKEOVER LOG)"@"KFGameInfo.CheckServerUnlock 1 - GetNumPlayers(): "$GetNumPlayers());
+		//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 1 - GetNumPlayers(): "$GetNumPlayers());
 	}
 
 	if ( GetNumPlayers() == 0 )
@@ -3854,7 +3854,7 @@ private function CheckServerUnlock()
 
 		if (WorldInfo.NetMode == NM_DedicatedServer)
 		{
-			LogInternal("(TW TAKEOVER LOG)"@"KFGameInfo.CheckServerUnlock 2 - Playfab: "$Playfab);
+			//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 2 - Playfab: "$Playfab);
 		}
 
         if( Playfab != none )
@@ -3864,7 +3864,7 @@ private function CheckServerUnlock()
 
 		if (WorldInfo.NetMode == NM_DedicatedServer)
 		{
-			LogInternal("(TW TAKEOVER LOG)"@"KFGameInfo.CheckServerUnlock 3 - IsLockedServer(): "$KFEngine.IsLockedServer()$" (bUsedForTakeover: "$KFEngine.bUsedForTakeover$", bAvailableForTakeover: "$KFEngine.bAvailableForTakeover$")");
+			//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 3 - IsLockedServer(): "$KFEngine.IsLockedServer()$" (bUsedForTakeover: "$KFEngine.bUsedForTakeover$", bAvailableForTakeover: "$KFEngine.bAvailableForTakeover$")");
 		}
 
 		// Won't unlock a server that's not lockable
@@ -3875,7 +3875,7 @@ private function CheckServerUnlock()
 
 			if (WorldInfo.NetMode == NM_DedicatedServer)
 			{
-				LogInternal("(TW TAKEOVER LOG)"@"KFGameInfo.CheckServerUnlock 4 - bWasAvailableForTakeover: "$bWasAvailableForTakeover$"; bAvailableForTakeover: "$KFEngine.bAvailableForTakeover);
+				//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 4 - bWasAvailableForTakeover: "$bWasAvailableForTakeover$"; bAvailableForTakeover: "$KFEngine.bAvailableForTakeover);
 			}
 
             if (!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
@@ -4106,7 +4106,7 @@ defaultproperties
    BossIndex=-1
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-EvacuationPoint","KF-Farmhouse","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

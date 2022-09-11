@@ -46,15 +46,16 @@ YesString="Ja"
 NoString="Nein"
 TeamSwappedString="Du wurdest einem anderen Team zugeteilt"
 
-MicrophonePopupTitleString="Mikro-Einstellungen"
-MicrophonePopupSelectDeviceString="AUSWÄHLEN"
+
+MicrophonePopupTitleString="Mikrofon konfigurieren"
+MicrophonePopupSelectDeviceString="Gerät auswählen"
 MicrophonePopupVolumeString="Mikro-Lautstärke"
 MicrophonePopupCheckString="Mikrofon prüfen"
-MicrophonePopupStopString="Annehmen"
-MicrophonePopupRefreshString="AKTUALISIEREN"
+MicrophonePopupStopString="Anhalten"
+MicrophonePopupRefreshString="Aktualisieren"
 
 FriendsListPopupTitleString="Wähle Freunde zum Einladen"
-FriendsListPopupFriendString="SUCHE"
+FriendsListPopupFriendString="Suche"
 FriendsListPopupFriendsString="Freunde"
 FriendsListPopupOtherFriendsString="Freunde von anderen Plattformen"
 FriendsListPopupLinkButonString="Konto verknüpfen"
@@ -62,6 +63,7 @@ ReturnString="ZURÜCK"
 
 InvitePopupTitleString="Lobby-Einladung"
 InvitePopupTextString=" hat dich in eine Lobby eingeladen"
+
 
 CancelConnectionString="Ladevorgang abbrechen"
 
@@ -169,6 +171,9 @@ FailedSearchString="Die Spielsuche konnte kein Spiel mit den vorgegebenen Option
 BrowseServersString="SERVER BROWSEN"
 HasInvitedToGameString=" hat dich zu einem Spiel eingeladen"
 JoinGameString="Spiel beitreten?"
+
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="GEGENSTANDSSERVERVERBINDUNG"
 
 [KFGFxObject_Menu]
 LeavePartyTitleString="GRUPPE WIRD VERLASSEN"
@@ -949,6 +954,17 @@ MarketCosmeticsString="Markt: Kosmetisches"
 MarketEmotesString="Markt: Emotes"
 MarketSFXString="Markt: SFX"
 ThankYouString="Danke für deinen Kauf! Er wird uns dabei helfen, neue Gegenstände, Karten, Waffen, Zeds und Spielmodi für zukünftige Updates zu entwickeln."
+WeaponBundlesString="Waffenpakete"
+CharacterBundlesString="Charakterpakete"
+OutfitBundlesString="Outfitpakete"
+TicketCratesUSBBundlesString="Schein-/Kisten-/USB-Pakete"
+CosmeticBundlesString="Kosmetik-Pakete"
+WeaponSkinBundlesString="Waffen-Skin-Pakete"
+HeadshotFxBundlesString="Kopfschuss-FX-Pakete"
+SelectWeaponSkinsString="Waffen-Skins auswählen"
+SelectCosmeticsString="Kosmetische Gegenstände auswählen"
+SelectEmotesString="Emotes auswählen"
+SelectKeysAndTicketsString="Schlüssel und Scheine auswählen"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="IM MARKT FINDEN"
@@ -1468,6 +1484,7 @@ FailedDropInventoryMessage="Du kannst das nicht hier fallen lassen"
 ReceivedGrenadesFromMessage="Du hast Granaten erhalten von"
 GaveGrenadesToMessage="Du hast Granaten gegeben an"
 SharingContentString="teilt Inhalte"
+PowerUpHellishRageActivatedMessage="HÖLLENWUT: +Schaden, +Geschwindigkeit, Brenn-Effekt, Heilung wird verhindert"
 HeadShotAddedString="%x Kopfschuss(-üsse) - %y% Extra-Schaden!"
 HeadShotMaxString="Kopfschuss! %x% Extra-Schaden!"
 HeadShotResetString="Verpasster Kopfschuss. Normaler Schaden!"
@@ -1538,6 +1555,7 @@ PlayerClotGrabWarningMessage="TÖTE ZED UM DICH ZU BEFREIEN!"
 
 UseMinigameMessage="AKTIVIEREN"
 UseMinigameGeneratorMessage="GENERATOR AKTIVIEREN"
+UsePowerUpMessage="LEBENSPUNKTE OPFERN"
 DoshActivateMessage="AKTIVIERUNGSKOSTEN"
 EMPGrabWarningMessage="*** ! IMMOBILISIERT ! ***"
 [KFLocalMessage_ServerNotification]
@@ -1933,7 +1951,7 @@ AirborneAgent="ZED-ZEIT – Aerogener Wirkstoff"
 AirborneAgentDescription="Während der Zed-Zeit setzt du ein heilendes Gas frei, das nahe Teamkollegen heilt."
 
 Sedative="ZED-ZEIT – Zedative"
-SedativeDescription="Wenn du während der Zed-Zeit mit Vorteils-Waffen Zeds Schaden zufügst, werden diese um 30% verlangsamt und erhalten massiven Giftschaden."
+SedativeDescription="Während der Zed-Zeit wird der Schaden deiner Vorteilwaffen um 30 % erhöht und deine Kills generieren eine giftige Explosion, die den Zeds schaden zufügt und Spieler heilt."
 
 
 EXPAction1="Sanitäter-Waffenschaden verursachen"
@@ -2220,6 +2238,9 @@ MadmanDescription="Während der Zed-Zeit schießen alle deine Waffen 3x schnelle
 
 IncapMaster="ZED-ZEIT – Ausschalten"
 IncapMasterDescription="Während der Zed-Zeit können all deine Waffen jeden Zed betäuben."
+
+[KFPowerUp_HellishRage]
+PowerUpName="Höllenwut"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2748,6 +2769,20 @@ AllCompleteRewardDescriptionString="Weltraumpirat | Weltraumaffen-Rucksack"
 
 ChanceDropDescriptionStrings[0]="Summer-Schein"
 ChanceDropDescriptionStrings[1]="Summer-Goldschein"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="Ein zeitlich begrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Eine Infernale Legion",DescriptionString="Töte 2000 Zeds auf einer beliebigen Karte oder in einem beliebigen Modus")
+SpecialEventObjectiveInfoList[1]=(TitleString="Wöchentliche Invasion",DescriptionString="Schließe Wöchentlich in Hellmark Station ab")
+SpecialEventObjectiveInfoList[2]=(TitleString="Um jeden Preis",DescriptionString="Erhalte 10-mal die Höllenwut von einem Obelisken in Hellmark Station")
+SpecialEventObjectiveInfoList[3]=(TitleString="Dämonenkiller",DescriptionString="Köpfe 600 Zeds in Hellmark Station")
+SpecialEventObjectiveInfoList[4]=(TitleString="Unerschöpfliches Chaos",DescriptionString="Schließe Welle 15 bei Hellmark Station auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="Halloween | Voodoo-Rucksack"
+
+ChanceDropDescriptionStrings[0]="Halloween-Schein"
+ChanceDropDescriptionStrings[1]="Goldener Halloween-Schein"
 
 ;============================================
 ; Daily Localization
@@ -3346,6 +3381,9 @@ DisplayName="Bioverfall"
 
 [KF-Desolation KFMapSummary]
 DisplayName="Verwüstung"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="Hellmark Station"
 
 [KFMapInfo]
 ; defaults

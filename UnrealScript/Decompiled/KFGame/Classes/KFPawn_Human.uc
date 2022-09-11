@@ -11,6 +11,30 @@ class KFPawn_Human extends KFPawn
     config(Game)
     hidecategories(Navigation);
 
+struct native KFPowerUpFxInfo
+{
+    var class<KFPowerUp> PowerUpType;
+    var byte Count;
+
+    structdefaultproperties
+    {
+        PowerUpType=none
+        Count=0
+    }
+};
+
+struct native KFPowerUpCurrentFxInfo
+{
+    var class<KFPowerUp> PowerUpType;
+    var export editinline ParticleSystemComponent ParticleEffect;
+
+    structdefaultproperties
+    {
+        PowerUpType=none
+        ParticleEffect=none
+    }
+};
+
 struct native DialogResponseInfo
 {
     var KFPawn Speaker;
@@ -54,6 +78,9 @@ var const float DefaultDeathMaterialEffectDuration;
 var transient float DeathMaterialEffectDuration;
 var transient float DeathMaterialEffectTimeRemaining;
 var transient name DeathMaterialEffectParamName;
+var repnotify KFPowerUpFxInfo PowerUpFxInfo;
+var repnotify KFPowerUpFxInfo PowerUpFxStopInfo;
+var KFPowerUpCurrentFxInfo CurrentPowerUpEffect;
 var transient KFFlashlightAttachment FlashLight;
 var const KFFlashlightAttachment FlashLightTemplate;
 var repnotify bool bFlashlightOn;
@@ -99,6 +126,7 @@ replication
         Armor, HealingDamageBoost, 
         HealingShield, HealingSpeedBoost, 
         HealthToRegen, MaxArmor, 
+        PowerUpFxInfo, PowerUpFxStopInfo, 
         WeaponSkinItemId, bObjectivePlayer;
 
      if(bNetDirty && bNetOwner)
@@ -207,6 +235,12 @@ simulated event ReplicatedEvent(name VarName)
             break;
         case 'bUsingAltFireMode':
             SetUsingAltFireMode(bUsingAltFireMode, false);
+            break;
+        case 'PowerUpFxInfo':
+            PlayPowerUpEffect(PowerUpFxInfo);
+            break;
+        case 'PowerUpFxStopInfo':
+            StopPowerUpEffect(PowerUpFxStopInfo);
             break;
         default:
             break;
@@ -329,6 +363,7 @@ function UpdateGroundSpeed()
     local float WeightMod, HealthMod, WeaponMod;
     local KFGameInfo KFGI;
     local KFWeapon CurrentWeapon;
+    local KFPlayerController KFPC;
 
     if(Role < ROLE_Authority)
     {
@@ -354,6 +389,13 @@ function UpdateGroundSpeed()
         GetPerk().ModifySpeed(GroundSpeed);
         GetPerk().ModifySprintSpeed(SprintSpeed);
         GetPerk().FinalizeSpeedVariables();
+    }
+    KFPC = KFPlayerController(Controller);
+    if((KFPC != none) && KFPC.GetPowerUp() != none)
+    {
+        KFPC.GetPowerUp().ModifySpeed(GroundSpeed);
+        KFPC.GetPowerUp().ModifySprintSpeed(SprintSpeed);
+        KFPC.GetPowerUp().FinalizeSpeedVariables();
     }
     if(CurrentWeapon != none)
     {
@@ -437,6 +479,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
     local KFPlayerReplicationInfo InstigatorPRI;
     local KFPlayerController InstigatorPC, KFPC;
     local KFPerk InstigatorPerk;
+    local KFPowerUp KFPowerUp;
     local class<KFDamageType> KFDT;
     local int I;
     local bool bRepairedArmor;
@@ -445,6 +488,15 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
     bCanRepairArmor = true;
     bMessageHealer = true;
     OldHealth = Health;
+    KFPC = KFPlayerController(Controller);
+    if(KFPC != none)
+    {
+        KFPowerUp = KFPC.GetPowerUp();
+        if((KFPowerUp != none) && !KFPowerUp.CanBeHealed())
+        {
+            return false;
+        }
+    }
     InstigatorPC = KFPlayerController(Healer);
     InstigatorPerk = ((InstigatorPC != none) ? InstigatorPC.GetPerk() : none);
     if(InstigatorPerk != none)
@@ -542,7 +594,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 }
             }
             I = 0;
-            J0x875:
+            J0x900:
 
             if(I < DamageOverTimeArray.Length)
             {
@@ -550,12 +602,12 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 {
                     DamageOverTimeArray[I].Duration *= 0.5;
                     DamageOverTimeArray[I].Damage *= 0.5;
-                    goto J0x926;
+                    goto J0x9B1;
                 }
                 ++ I;
-                goto J0x875;
+                goto J0x900;
             }
-            J0x926:
+            J0x9B1:
 
             if((Health - OldHealth) > 0)
             {
@@ -762,6 +814,57 @@ simulated function TerminateEffectsOnDeath()
     if(FlashLight != none)
     {
         FlashLight.OwnerDied();
+    }
+}
+
+function PlayPowerUp(class<KFPowerUp> PowerUpType)
+{
+    PowerUpFxInfo.PowerUpType = PowerUpType;
+    ++ PowerUpFxInfo.Count;
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        PlayPowerUpEffect(PowerUpFxInfo);
+    }
+}
+
+simulated function PlayPowerUpEffect(KFPowerUpFxInfo PUpFxInfo)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Controller);
+    if((KFPC != none) && PUpFxInfo.PowerUpType != none)
+    {
+        KFPC.PlayPowerUpEffect(PUpFxInfo.PowerUpType);
+    }
+    if(PUpFxInfo.PowerUpType != none)
+    {
+        PUpFxInfo.PowerUpType.static.PlayEffects(self);
+    }
+}
+
+function StopPowerUp(class<KFPowerUp> PowerUpType)
+{
+    PowerUpFxStopInfo.PowerUpType = PowerUpType;
+    ++ PowerUpFxStopInfo.Count;
+    if(WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        StopPowerUpEffect(PowerUpFxStopInfo);
+    }
+}
+
+simulated function StopPowerUpEffect(KFPowerUpFxInfo PUpFxInfo)
+{
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Controller);
+    if(KFPC != none)
+    {
+        KFPC.StopPowerUpEffect(PUpFxInfo.PowerUpType);
+    }
+    if(((PUpFxInfo.PowerUpType != none) && PUpFxInfo.PowerUpType == CurrentPowerUpEffect.PowerUpType) && CurrentPowerUpEffect.ParticleEffect != none)
+    {
+        CurrentPowerUpEffect.ParticleEffect.DeactivateSystem();
+        CurrentPowerUpEffect.ParticleEffect = none;
     }
 }
 
@@ -1597,8 +1700,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_Human.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_Human.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_Human.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_Human.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_Human.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_Human.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_Human.PowerUpAkSoundComponent'
     bCanPickupInventory=true
     CrouchRadius=40
     GroundSpeed=383
@@ -1640,12 +1745,14 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_Human.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_Human.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_Human.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_Human.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_Human.SecondaryWeaponAkSoundComponent'
     begin object name=TraderDialogAkSoundComponent class=AkComponent
         BoneName=Root
         bForceOcclusionUpdateInterval=true
     object end
     // Reference: AkComponent'Default__KFPawn_Human.TraderDialogAkSoundComponent'
-    Components(8)=TraderDialogAkSoundComponent
+    Components(10)=TraderDialogAkSoundComponent
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=40
         ReplacementPrimitive=none

@@ -109,7 +109,7 @@ defaultproperties
 	InventorySize=2
 	GroupPriority=20
 	WeaponSelectTexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
-	bIsBackupWeapon=true
+	bIsBackupWeapon=false
 
 	BonesToLockOnEmpty=(RW_Bolt, RW_Bullets1)
     BonesToLockOnEmpty_L=(LW_Bolt, LW_Bullets1)

@@ -46,8 +46,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedHuskFriendlyTest.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.PowerUpAkSoundComponent'
     Health=5000
     ControllerClass=Class'KFAIController_HuskFriendlyTest'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
@@ -84,8 +86,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedHuskFriendlyTest.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

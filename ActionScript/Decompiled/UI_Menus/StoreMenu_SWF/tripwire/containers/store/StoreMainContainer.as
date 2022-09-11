@@ -39,15 +39,27 @@ package tripwire.containers.store
         
         public var allButton:Button;
         
-        public var weaponSkinsButton:Button;
+        public var weaponBundlesButton:Button;
         
-        public var cosmeticsButton:Button;
+        public var characterBundlesButton:Button;
         
-        public var emotesButton:Button;
+        public var outfitBundlesButton:Button;
         
-        public var consumablesButton:Button;
+        public var ticketCratesUSBBundlesButton:Button;
         
-        public var sfxButton:Button;
+        public var cosmeticBundlesButton:Button;
+        
+        public var weaponSkinBundlesButton:Button;
+        
+        public var headshotFxBundlesButton:Button;
+        
+        public var selectWeaponSkinsButton:Button;
+        
+        public var selectCosmeticsButton:Button;
+        
+        public var selectEmotesButton:Button;
+        
+        public var selectKeysAndTicketsButton:Button;
         
         public var marketWeaponSkinsButton:Button;
         
@@ -55,9 +67,7 @@ package tripwire.containers.store
         
         public var marketEmotesButton:Button;
         
-        public var marketConsumableButton:Button;
-        
-        public var marketSFXButton:Button;
+        public var marketCratesAndUSBsButton:Button;
         
         public var scrollbar:ScrollBar;
         
@@ -100,19 +110,24 @@ package tripwire.containers.store
         
         public function set localizedText(param1:Object) : void
         {
-            this.featuredButton.label = !!param1.featured ? param1.featured : "feaured swag";
-            this.allButton.label = !!param1.all ? param1.all : "new stuff";
-            this.weaponSkinsButton.label = !!param1.weaponSkin ? param1.weaponSkin : "no string";
-            this.cosmeticsButton.label = !!param1.cosmetics ? param1.cosmetics : "dudes";
-            this.emotesButton.label = !!param1.emotes ? param1.emotes : "lols";
-            this.consumablesButton.label = !!param1.items ? param1.items : "shiny things";
-            this.sfxButton.label = !!param1.sfx ? param1.sfx : "sfx stuff";
-            this.marketWeaponSkinsButton.label = !!param1.marketWeaponSkins ? param1.marketWeaponSkins : "w skins";
-            this.marketCosmeticsButton.label = !!param1.marketCosmetics ? param1.marketCosmetics : "w skins";
-            this.marketEmotesButton.label = !!param1.marketEmotes ? param1.marketEmotes : "m lols";
-            this.marketConsumableButton.label = !!param1.marketConsumables ? param1.marketConsumables : "w skins";
-            this.marketSFXButton.label = !!param1.marketSFX ? param1.marketSFX : "m sfx";
-            this.thankYouTextfield.text = !!param1.thankYouString ? param1.thankYouString : "wdsadasd";
+            this.featuredButton.label = !!param1.featured ? param1.featured : "featured";
+            this.allButton.label = !!param1.all ? param1.all : "all";
+            this.weaponBundlesButton.label = !!param1.weaponBundles ? param1.weaponBundles : "weaponBundles";
+            this.characterBundlesButton.label = !!param1.characterBundles ? param1.characterBundles : "characterBundles";
+            this.outfitBundlesButton.label = !!param1.outfitBundles ? param1.outfitBundles : "outfitBundles";
+            this.ticketCratesUSBBundlesButton.label = !!param1.ticketCratesUSBBundles ? param1.ticketCratesUSBBundles : "ticketCratesUSBBundles";
+            this.cosmeticBundlesButton.label = !!param1.cosmeticBundles ? param1.cosmeticBundles : "cosmeticBundles";
+            this.weaponSkinBundlesButton.label = !!param1.weaponSkinBundles ? param1.weaponSkinBundles : "weaponSkinBundles";
+            this.headshotFxBundlesButton.label = !!param1.headshotFxBundles ? param1.headshotFxBundles : "headshotFxBundles";
+            this.selectWeaponSkinsButton.label = !!param1.selectWeaponSkins ? param1.selectWeaponSkins : "selectWeaponSkins";
+            this.selectCosmeticsButton.label = !!param1.selectCosmetics ? param1.selectCosmetics : "selectCosmetics";
+            this.selectEmotesButton.label = !!param1.selectEmotes ? param1.selectEmotes : "selectEmotes";
+            this.selectKeysAndTicketsButton.label = !!param1.selectKeysAndTickets ? param1.selectKeysAndTickets : "selectKeysAndTickets";
+            this.marketWeaponSkinsButton.label = !!param1.marketWeaponSkins ? param1.marketWeaponSkins : "marketWeaponSkins";
+            this.marketCosmeticsButton.label = !!param1.marketCosmetics ? param1.marketCosmetics : "marketCosmetics";
+            this.marketEmotesButton.label = !!param1.marketEmotes ? param1.marketEmotes : "marketEmotes";
+            this.marketCratesAndUSBsButton.label = !!param1.marketCratesAndUSBSs ? param1.marketCratesAndUSBSs : "marketCratesAndUSBs";
+            this.thankYouTextfield.text = !!param1.thankYouString ? param1.thankYouString : "thanks";
             this.pageHeaderText.text = this.featuredButton.label;
         }
         
@@ -167,11 +182,11 @@ package tripwire.containers.store
                         }
                         break;
                     case NavigationCode.DOWN:
-                        if(this.leftSideFocused && this.marketSFXButton.focused == 1)
+                        if(this.leftSideFocused && this.marketCratesAndUSBsButton.focused == 1)
                         {
                             param1.handled = true;
                         }
-                        else if(bManagerConsoleBuild && this.leftSideFocused && this.sfxButton.focused == 1)
+                        else if(bManagerConsoleBuild && this.leftSideFocused && this.headshotFxBundlesButton.focused == 1)
                         {
                             param1.handled = true;
                         }
@@ -219,7 +234,7 @@ package tripwire.containers.store
                 this.featuredItemRenderers.push(this["featuredItem_" + _loc2_]);
                 _loc2_++;
             }
-            this.buttonList.push(this.featuredButton,this.allButton,this.weaponSkinsButton,this.cosmeticsButton,this.emotesButton,this.consumablesButton,this.sfxButton,this.marketWeaponSkinsButton,this.marketCosmeticsButton,this.marketEmotesButton,this.marketConsumableButton,this.marketSFXButton);
+            this.buttonList.push(this.featuredButton,this.allButton,this.weaponBundlesButton,this.characterBundlesButton,this.outfitBundlesButton,this.ticketCratesUSBBundlesButton,this.cosmeticBundlesButton,this.weaponSkinBundlesButton,this.headshotFxBundlesButton,this.selectWeaponSkinsButton,this.selectCosmeticsButton,this.selectEmotesButton,this.selectKeysAndTicketsButton,this.marketWeaponSkinsButton,this.marketCosmeticsButton,this.marketEmotesButton,this.marketCratesAndUSBsButton);
             this.currentSelectedScrollingList = this.storeItemFeaturedScrollingList;
             var _loc3_:int = 0;
             while(_loc3_ < this.buttonList.length)
@@ -250,16 +265,14 @@ package tripwire.containers.store
             this.selectContainer();
             if(bManagerConsoleBuild)
             {
-                this.weaponSkinsButton.visible = false;
-                this.cosmeticsButton.visible = false;
-                this.consumablesButton.visible = false;
-                this.sfxButton.visible = false;
-                this.emotesButton.visible = false;
+                this.selectWeaponSkinsButton.visible = false;
+                this.selectCosmeticsButton.visible = false;
+                this.selectEmotesButton.visible = false;
+                this.selectKeysAndTicketsButton.visible = false;
                 this.marketWeaponSkinsButton.visible = false;
                 this.marketCosmeticsButton.visible = false;
-                this.marketConsumableButton.visible = false;
                 this.marketEmotesButton.visible = false;
-                this.marketSFXButton.visible = false;
+                this.marketCratesAndUSBsButton.visible = false;
             }
             this.ShowFeaturedItems();
             this.makeFakeItems();
@@ -287,7 +300,7 @@ package tripwire.containers.store
         protected function setTabIndex() : *
         {
             var _loc1_:int = 0;
-            this.storeItemScrollingList.tabIndex = _loc1_ = (this.marketSFXButton.tabIndex = int((this.marketConsumableButton.tabIndex = int((this.marketEmotesButton.tabIndex = int((this.marketCosmeticsButton.tabIndex = int((this.marketWeaponSkinsButton.tabIndex = int((this.sfxButton.tabIndex = int((this.consumablesButton.tabIndex = int((this.emotesButton.tabIndex = int((this.cosmeticsButton.tabIndex = int((this.weaponSkinsButton.tabIndex = int((this.allButton.tabIndex = int((this.featuredButton.tabIndex = int(_loc1_ + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1;
+            this.storeItemScrollingList.tabIndex = _loc1_ = (this.marketCratesAndUSBsButton.tabIndex = int((this.marketEmotesButton.tabIndex = int((this.marketCosmeticsButton.tabIndex = int((this.marketWeaponSkinsButton.tabIndex = int((this.selectKeysAndTicketsButton.tabIndex = int((this.selectEmotesButton.tabIndex = int((this.selectCosmeticsButton.tabIndex = int((this.selectWeaponSkinsButton.tabIndex = int((this.headshotFxBundlesButton.tabIndex = int((this.weaponSkinBundlesButton.tabIndex = int((this.cosmeticBundlesButton.tabIndex = int((this.ticketCratesUSBBundlesButton.tabIndex = int((this.outfitBundlesButton.tabIndex = int((this.characterBundlesButton.tabIndex = int((this.weaponBundlesButton.tabIndex = int((this.allButton.tabIndex = int((this.featuredButton.tabIndex = int(_loc1_ + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1;
         }
         
         public function sectionButtonClicked(param1:ButtonEvent = null) : *
@@ -306,35 +319,50 @@ package tripwire.containers.store
                 case this.allButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",1);
                     break;
-                case this.weaponSkinsButton:
+                case this.weaponBundlesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",2);
                     break;
-                case this.cosmeticsButton:
+                case this.characterBundlesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",3);
                     break;
-                case this.consumablesButton:
+                case this.outfitBundlesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",4);
                     break;
-                case this.emotesButton:
+                case this.ticketCratesUSBBundlesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",5);
                     break;
-                case this.sfxButton:
+                case this.cosmeticBundlesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",6);
                     break;
-                case this.marketWeaponSkinsButton:
+                case this.weaponSkinBundlesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",7);
                     break;
-                case this.marketCosmeticsButton:
+                case this.headshotFxBundlesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",8);
                     break;
-                case this.marketConsumableButton:
+                case this.selectWeaponSkinsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",9);
                     break;
-                case this.marketEmotesButton:
+                case this.selectCosmeticsButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",10);
                     break;
-                case this.marketSFXButton:
+                case this.selectEmotesButton:
                     ExternalInterface.call("Callback_StoreSectionChanged",11);
+                    break;
+                case this.selectKeysAndTicketsButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",12);
+                    break;
+                case this.marketWeaponSkinsButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",13);
+                    break;
+                case this.marketCosmeticsButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",14);
+                    break;
+                case this.marketEmotesButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",15);
+                    break;
+                case this.marketCratesAndUSBsButton:
+                    ExternalInterface.call("Callback_StoreSectionChanged",16);
             }
             this.deselectButtons();
             this.currentSelectedScrollingList.focusable = true;
@@ -386,15 +414,21 @@ package tripwire.containers.store
         {
             this.featuredButton.selected = false;
             this.allButton.selected = false;
-            this.weaponSkinsButton.selected = false;
-            this.cosmeticsButton.selected = false;
-            this.consumablesButton.selected = false;
-            this.sfxButton.selected = false;
+            this.weaponBundlesButton.selected = false;
+            this.characterBundlesButton.selected = false;
+            this.outfitBundlesButton.selected = false;
+            this.ticketCratesUSBBundlesButton.selected = false;
+            this.cosmeticBundlesButton.selected = false;
+            this.weaponSkinBundlesButton.selected = false;
+            this.headshotFxBundlesButton.selected = false;
+            this.selectWeaponSkinsButton.selected = false;
+            this.selectCosmeticsButton.selected = false;
+            this.selectEmotesButton.selected = false;
+            this.selectKeysAndTicketsButton.selected = false;
             this.marketWeaponSkinsButton.selected = false;
             this.marketCosmeticsButton.selected = false;
-            this.marketConsumableButton.selected = false;
             this.marketEmotesButton.selected = false;
-            this.marketSFXButton.selected = false;
+            this.marketCratesAndUSBsButton.selected = false;
         }
         
         public function onStoreListFocusChange(param1:FocusHandlerEvent) : void

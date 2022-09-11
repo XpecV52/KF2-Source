@@ -40,8 +40,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedGorefastDualBlade.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedGorefastDualBlade.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedGorefastDualBlade.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedGorefastDualBlade.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedGorefastDualBlade.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedGorefastDualBlade.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedGorefastDualBlade.PowerUpAkSoundComponent'
     Mass=100
     Health=400
     ControllerClass=Class'KFAIController_ZedGorefastDualBlade'
@@ -79,8 +81,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedGorefastDualBlade.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

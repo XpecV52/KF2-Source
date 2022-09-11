@@ -151,6 +151,14 @@ defaultproperties
       ObjectArchetype=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedFleshpoundMini:WeaponAmbientEchoHandler_0'
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedFleshpoundMini_Mixer:WeaponAmbientEchoHandler_0'
+   Begin Object Class=AkComponent Name=SecondaryWeaponAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpoundMini:SecondaryWeaponAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="SecondaryWeaponAkSoundComponent"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpoundMini:SecondaryWeaponAkSoundComponent'
+   End Object
+   SecondaryWeaponAkComponent=SecondaryWeaponAkSoundComponent
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpoundMini:FootstepAkSoundComponent'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -166,6 +174,14 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpoundMini:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
+   Begin Object Class=AkComponent Name=PowerUpAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpoundMini:PowerUpAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="PowerUpAkSoundComponent"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpoundMini:PowerUpAkSoundComponent'
+   End Object
+   PowerUpAkComponent=PowerUpAkSoundComponent
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpoundMini:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)
       MinDistFactorForKinematicUpdate=0.200000
@@ -230,9 +246,11 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=SprintAkComponent0
-   Components(9)=HeadshotAkComponent0
-   Components(10)=RageAkComponent0
+   Components(8)=PowerUpAkSoundComponent
+   Components(9)=SecondaryWeaponAkSoundComponent
+   Components(10)=SprintAkComponent0
+   Components(11)=HeadshotAkComponent0
+   Components(12)=RageAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedFleshpoundMini_Mixer"
    ObjectArchetype=KFPawn_ZedFleshpoundMini'kfgamecontent.Default__KFPawn_ZedFleshpoundMini'

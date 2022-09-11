@@ -114,7 +114,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_NailsBurst'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Nail'
    InventorySize=5
-   MagazineCapacity(0)=42
    PenetrationPower(0)=3.000000
    PenetrationPower(1)=3.000000
    MeshIronSightFOV=52.000000
@@ -122,6 +121,7 @@ defaultproperties
    IronSightPosition=(X=12.000000,Y=0.000000,Z=0.000000)
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
+   MagazineCapacity(0)=42
    SpareAmmoCapacity(0)=336
    InitialSpareMags(0)=3
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'

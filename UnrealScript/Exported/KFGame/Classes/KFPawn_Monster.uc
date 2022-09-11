@@ -342,6 +342,8 @@ var const string MonsterArchPath;
  */
 var private const KFCharacterInfo_Monster CharacterMonsterArch;
 
+var transient bool bArchLoaded;
+
 /** List of variants that this pawn can be spawned as */
 var const array<class<KFPawn_Monster> > ElitePawnClass;
 
@@ -497,6 +499,17 @@ var byte ParryResistance;
 var repnotify bool 	bIsPoisoned;
 /** Is microwave panic active? (server only) */
 var bool 			bMicrowavePanicked;
+
+struct native RepInflateParams
+{
+	var byte RepInflateMatParam;
+	var bool bHasToIgniteFlames;
+	var int Count;
+};
+
+var repnotify RepInflateParams RepInflateMatParams;
+
+
 /** Replicated material parameter */
 var repnotify byte	RepInflateMatParam;
 
@@ -759,6 +772,9 @@ var transient protected float LastNapalmInfectCheckTime;
 /** Is there a chanced that we explode when we die? Set by the firebug's Zed shrapnel skill */
 var bool bCouldTurnIntoShrapnel;
 
+/** We explode into a toxic cloud when we die? Set by the field medic's Zed zedative skill */
+var bool bCouldTurnIntoToxicExplosion;
+
 /** Gameplay-facing disable of head destruction */
 var bool bDisableHeadless;
 
@@ -836,7 +852,7 @@ replication
 	// Replicated to ALL
 	if (bNetDirty)
 		bIsHeadless, bIsPoisoned, bPlayPanicked, bPlayShambling, MaxHeadChunkGoreWhileAlive,
-		RepInflateMatParam, RepDamageInflateParam, RepBleedInflateMatParam, bDisableGoreMeshWhileAlive,
+		RepInflateMatParams, RepInflateMatParam, RepDamageInflateParam, RepBleedInflateMatParam, bDisableGoreMeshWhileAlive,
         bDisableHeadless, InflateDeathGravity, InflationExplosionTimer, bUseDamageInflation, bUseExplosiveDeath;
 	if ( bNetDirty && bCanCloak )
 		bIsCloakingSpottedByTeam;
@@ -893,7 +909,8 @@ simulated event ReplicatedEvent(name VarName)
 		AfflictionHandler.ToggleEffects(AF_Poison, bIsPoisoned);
 		break;
 
-	case nameof(RepInflateMatParam):
+	case nameof(RepInflateMatParams):
+		KFAffliction_Microwave(AfflictionHandler.Afflictions[AF_Microwave]).bHasToSpawnFire = RepInflateMatParams.bHasToIgniteFlames;
 		AfflictionHandler.UpdateMaterialParameter(AF_Microwave, GetCurrentInflation());
 		break;
 
@@ -982,11 +999,37 @@ native private function LastChanceLoad();
 /** Called immediately before gameplay begins */
 simulated event PreBeginPlay()
 {
+	local KFPawn_Monster KFPM;
+	local bool bArchAlreadyLoaded;
+
 	CheckShouldAlwaysBeRelevant(); //these guys could be alive already so this is unreliable
 
 	DefaultCollisionRadius = CylinderComponent.default.CollisionRadius;
 
 	Super.PreBeginPlay();
+
+	// Check if the global data was initialized
+	if( WorldInfo.NetMode != NM_DedicatedServer && ( WorldInfo.GRI == none || WorldInfo.GRI.GameClass == none ) )
+	{
+		LogInternal("Preload global data not initialized");
+		bArchAlreadyLoaded = false;
+		foreach WorldInfo.AllPawns( class'KFPawn_Monster', KFPM )
+		{
+			if( KFPM != self && KFPM.class == class && KFPM.bArchLoaded )
+			{
+				LogInternal("Archetype already loaded for class"@class);
+				bArchAlreadyLoaded = true;
+				bArchLoaded = true;
+			}
+		}
+
+		if( !bArchAlreadyLoaded )
+		{
+			LogInternal("Initializing first archetype for class"@class);
+			LastChanceLoad();
+			bArchLoaded = true;
+		}
+	}
 
 	// If we don't have an archetype select one
 	if ( CharacterArch == None )
@@ -1662,7 +1705,7 @@ function CrushedBy(Pawn OtherPawn)
 		&& GetTeamNum() != OtherPawn.GetTeamNum()
 		)
 	{
-		Knockdown(, vect(1,1,1), OtherPawn.Location, 1000, 100 );
+		HandleAfflictionsOnHit(OtherPawn.Controller, vect(1,1,1), class'KFDT_Knockdown', OtherPawn);
 	}
 }
 
@@ -2238,6 +2281,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	if( Damage > 0 && InstigatorPerk != none && KFDT != none )
 	{
 		bCouldTurnIntoShrapnel = InstigatorPerk.CouldBeZedShrapnel( KFDT );
+		bCouldTurnIntoToxicExplosion = InstigatorPerk.CouldBeZedToxicCloud( KFDT );
 	}
 
 	super.TakeDamage( Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser );
@@ -2341,6 +2385,7 @@ function AdjustDamageForInstigator(out int InDamage, Controller InstigatedBy, cl
 	local KFPlayerController KFPC;
 	local KFPawn_Human KFPH;
 	local KFPerk InstigatorPerk;
+	local KFPowerUp InstigatorPowerUp;
 	local float TempDamage;
 
 	// Let the instigator's perk adjust the damage
@@ -2351,6 +2396,12 @@ function AdjustDamageForInstigator(out int InDamage, Controller InstigatedBy, cl
 		if (InstigatorPerk != none)
 		{
 			InstigatorPerk.ModifyDamageGiven(InDamage, DamageCauser, self, KFPC, class<KFDamageType>(DamageType), HitZoneIdx);
+		}
+		
+		InstigatorPowerUp = KFPC.GetPowerUp();
+		if(InstigatorPowerUp != none)
+		{
+			InstigatorPowerUp.ModifyDamageGiven(InDamage, DamageCauser, self, KFPC, class<KFDamageType>(DamageType), HitZoneIdx);
 		}
 
 		if( KFPC.Pawn != none )
@@ -2774,6 +2825,22 @@ function bool Died(Controller Killer, class<DamageType> DamageType, vector HitLo
 					if( InstigatorPerk != none && InstigatorPerk.ShouldShrapnel() )
 					{
 						ShrapnelExplode( Killer, InstigatorPerk );
+					}
+				}
+			}
+		}
+
+		if( bCouldTurnIntoToxicExplosion )
+		{
+			if( Killer != none )
+			{
+				KFPC = KFPlayerController(Killer);
+				if( KFPC != none )
+				{
+					InstigatorPerk = KFPC.GetPerk();
+					if( InstigatorPerk != none && InstigatorPerk.IsZedativeActive() )
+					{
+						InstigatorPerk.ToxicCloudExplode( Killer, self );
 					}
 				}
 			}
@@ -4338,7 +4405,7 @@ event SetDamageInflation(float NewInflation)
 simulated function float GetCurrentInflation()
 {
 	local float CurrentInflation;
-	CurrentInflation = FClamp(ByteToFloat(RepInflateMatParam) + ByteToFloat(RepDamageInflateParam) - ByteToFloat(RepBleedInflateMatParam), -1.0, 1.0);
+	CurrentInflation = FClamp(ByteToFloat(RepInflateMatParams.RepInflateMatParam) + ByteToFloat(RepInflateMatParams.RepInflateMatParam) - ByteToFloat(RepBleedInflateMatParam), -1.0, 1.0);
 	//`log("*** Inflation" @ CurrentInflation);
     //RepInflateMatParam - From microwave affliction
     //RepDamageInflateParam - From modes where gametype modifies size (Shrinky Dinky, Beefcake, etc)
@@ -5075,6 +5142,14 @@ defaultproperties
       ObjectArchetype=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn:WeaponAmbientEchoHandler_0'
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'KFGame.Default__KFPawn_Monster:WeaponAmbientEchoHandler_0'
+   Begin Object Class=AkComponent Name=SecondaryWeaponAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn:SecondaryWeaponAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="SecondaryWeaponAkSoundComponent"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn:SecondaryWeaponAkSoundComponent'
+   End Object
+   SecondaryWeaponAkComponent=SecondaryWeaponAkSoundComponent
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn:FootstepAkSoundComponent'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -5090,6 +5165,14 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
+   Begin Object Class=AkComponent Name=PowerUpAkSoundComponent Archetype=AkComponent'KFGame.Default__KFPawn:PowerUpAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="PowerUpAkSoundComponent"
+      ObjectArchetype=AkComponent'KFGame.Default__KFPawn:PowerUpAkSoundComponent'
+   End Object
+   PowerUpAkComponent=PowerUpAkSoundComponent
    MaxTurningRadius=64.000000
    AccelConvergeFalloffDistance=400.000000
    HiddenGroundSpeed=600.000000
@@ -5169,8 +5252,10 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=SprintAkComponent0
-   Components(9)=HeadshotAkComponent0
+   Components(8)=PowerUpAkSoundComponent
+   Components(9)=SecondaryWeaponAkSoundComponent
+   Components(10)=SprintAkComponent0
+   Components(11)=HeadshotAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_Monster"
    ObjectArchetype=KFPawn'KFGame.Default__KFPawn'

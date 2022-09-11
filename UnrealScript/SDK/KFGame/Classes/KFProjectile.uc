@@ -1008,6 +1008,9 @@ simulated function Disintegrate( rotator InDisintegrateEffectRotation )
 
 }
 
+/** Added effects for the impact */
+simulated static function PlayAddedImpactEffect(Vector HitLocation, Vector HitNormal);
+
 /**
  * Explode this Projectile
  */

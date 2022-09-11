@@ -413,7 +413,13 @@ defaultproperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic', 	                    DamageScale=(0.05))) //0.25
 
 	//special case
-	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_HRGHealthrower',       DamageScale=(1.2)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_HRGHealthrower',       				DamageScale=(1.2)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_EMP_ArcGenerator_Beam',       				DamageScale=(3.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_EMP_ArcGeneratorSphereImpact',       		DamageScale=(2)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_EMP_ArcGenerator_DefaultFiremodeZapDamage', 	DamageScale=(3.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',		DamageScale=(3.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Toxic_MineReconstructorExplosion',       	DamageScale=(1.8)))
+
 
 	// Custom Hit Zones (HeadHealth, SkinTypes, etc...)
     HitZones[HZI_HEAD]=(ZoneName=head, BoneName=Head, Limb=BP_Head, GoreHealth=350, DmgScale=1.001, SkinID=1)  // KF1=200     //154

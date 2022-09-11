@@ -1073,7 +1073,7 @@ simulated function bool ShouldSkipCycleWeapon(Weapon CandidateWeapon, bool bGame
 				return true;
 			}
 
-			if (KFW.InventoryGroup == IG_Melee && KFW.bIsBackupWeapon)
+			if (KFW.bIsBackupWeapon)
 			{
 				return true;
 			}
@@ -1375,6 +1375,7 @@ simulated function AttemptQuickHeal()
 {
 	local KFWeap_HealerBase W;
 	local KFPlayerController KFPC;
+	local class<KFPowerUp> KFPowerUpClass;
 
 	// Do not heal if we have full health
 	if ( Instigator.Health >= Instigator.HealthMax )
@@ -1385,6 +1386,17 @@ simulated function AttemptQuickHeal()
 			KFPC.MyGFxHUD.ShowNonCriticalMessage(FullHealthMsg);
 		}
 	 	return;
+	}
+	
+	// Do not heal if the player is affected by a power up that negates healing
+	KFPC = KFPlayerController(Instigator.Owner);
+	if( KFPC != none )
+	{
+		KFPowerUpClass = KFPC.GetPowerUpClass();
+		if( KFPowerUpClass != none && !KFPowerUpClass.default.CanBeHealedWhilePowerUpIsActive )
+		{
+			return;
+		}
 	}
 
 	// if the healer is equipped already just fire it
@@ -2000,7 +2012,7 @@ reliable server final private function ServerBuyAmmo(int AmountPurchased, byte C
 {
 	local STraderItem WeaponItem;
 	local KFWeapon KFW;
-	local byte ClientMaxMagCapacity;
+	local int ClientMaxMagCapacity;
 
 	if( Role == ROLE_Authority && bServerTraderMenuOpen )
 	{

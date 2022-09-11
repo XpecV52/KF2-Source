@@ -1115,7 +1115,7 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
     if(bAddingDual)
     {
         OwnedSingleIdx = 0;
-        J0x368:
+        J0x366:
 
         if(OwnedSingleIdx < OwnedItemList.Length)
         {
@@ -1132,13 +1132,13 @@ function int AddWeaponToOwnedItemList(STraderItem DefaultItem, optional bool bDo
                     WeaponInfo.SpareAmmoCount = Min(OwnedItemList[OwnedSingleIdx].SpareAmmoCount, WeaponInfo.MaxSpareAmmo);
                 }
                 WeaponInfo.ItemUpgradeLevel = OwnedItemList[OwnedSingleIdx].ItemUpgradeLevel;
-                goto J0x580;
+                goto J0x57E;
             }
             ++ OwnedSingleIdx;
-            goto J0x368;
+            goto J0x366;
         }
     }
-    J0x580:
+    J0x57E:
 
     Outer.CurrentPerk.MaximizeSpareAmmoAmount(DefaultItem.AssociatedPerkClasses, WeaponInfo.SpareAmmoCount, DefaultItem.MaxSpareAmmo + DefaultItem.MagazineCapacity);
     WeaponInfo.SecondaryAmmoCount = DefaultItem.InitialSecondaryAmmo;

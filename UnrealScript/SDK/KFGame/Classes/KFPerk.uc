@@ -1077,7 +1077,7 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW )
 function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx );
 function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy );
 /** Ammunition capacity and mag count increased */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname );
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out int MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname );
 /** Update our weapons spare ammo count, *Use WeaponPerkClass for the trader when no weapon actually exists */
 simulated function ModifySpareAmmoAmount( KFWeapon KFW, out int PrimarySpareAmmo, optional const out STraderItem TraderItem, optional bool bSecondary=false );
 /** Set our weapon's spare ammo to maximum (needed another function besides ModifySpareAmmoAmount because we need to be able to specify maximum somehow) */
@@ -1113,6 +1113,7 @@ simulated function bool IsShootAndMoveActive(){ return false; }
 simulated function bool HasNightVision(){ return false; }
 simulated protected function bool IsRapidFireActive(){ return false; }
 simulated function float GetZedTimeModifier( KFWeapon W ){ return 0.f; }
+simulated function float GetZedTimeModifierForWindUp(){ return 0.f; }
 simulated function ModifySpread( out float InSpread );
 
 /** Berserker functions */
@@ -1145,7 +1146,9 @@ simulated function float GetSelfHealingSurgePct(){ return 0.f; }
 simulated function bool GetHealingSpeedBoostActive(){ return false; }
 simulated function bool GetHealingDamageBoostActive(){ return false; }
 simulated function bool GetHealingShieldActive(){ return false; }
-simulated function bool IsSlugActive(){ return false; }
+simulated function bool IsZedativeActive(){ return false; }
+function bool CouldBeZedToxicCloud( class<KFDamageType> KFDT ){ return false; }
+function ToxicCloudExplode( Controller Killer, Pawn ZedKilled );
 
 
 /** Firebug functions */
@@ -1298,12 +1301,28 @@ function TickRegen( float DeltaTime )
 {
 	local int OldHealth;
 	local KFPlayerReplicationInfo KFPRI;
+	local KFPlayerController KFPC;
+	local KFPowerUp PowerUp;
+	local bool bCannotBeHealed;
 
 	TimeUntilNextRegen -= DeltaTime;
 	if( TimeUntilNextRegen <= 0.f )
 	{
 		if( CheckOwnerPawn() && OwnerPawn.Health < OwnerPawn.HealthMax )
 		{
+			KFPC = KFPlayerController(OwnerPawn.Controller);
+			if( KFPC != none )
+			{
+				PowerUp = KFPC.GetPowerUp();
+				bCannotBeHealed = PowerUp != none && !PowerUp.CanBeHealedWhilePowerUpIsActive;
+			}
+			
+			// If the Pawn cannot be healed return...
+			if( bCannotBeHealed )
+			{
+				return;
+			}
+			
 			OldHealth = OwnerPawn.Health;
 			`QALog( "Regeneration" @ GetPercentage(OwnerPawn.Health, Min(OwnerPawn.Health + RegenerationAmount, OwnerPawn.HealthMax)), bLogPerk );
 			OwnerPawn.Health = Min(OwnerPawn.Health + RegenerationAmount, OwnerPawn.HealthMax);

@@ -116,13 +116,13 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Flamethrower'
    FireModeIconPaths(1)=()
    InventorySize=5
-   MagazineCapacity(0)=50
    PlayerIronSightFOV=80.000000
    IronSightPosition=(X=-3.000000,Y=7.000000,Z=-2.000000)
    DOF_FG_FocalRadius=150.000000
    DOF_FG_MaxNearBlurSize=2.000000
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_CaulkBurn_TEX.UI_WeaponSelect_CaulkNBurn'
+   MagazineCapacity(0)=50
    SpareAmmoCapacity(0)=500
    InitialSpareMags(0)=5
    AmmoPickupScale(0)=0.500000

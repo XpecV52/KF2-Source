@@ -46,9 +46,11 @@ defaultproperties
 {
    InGamePartyWidgetClass=Class'KFGame.KFGFxWidget_PartyInGame_Versus'
    WidgetPaths(1)="../UI_Widgets/ButtonPromptWidget_SWF.swf"
-   WidgetPaths(2)="../UI_Widgets/VersusLobbyWidget_SWF.swf"
+   WidgetPaths(2)="../UI_Widgets/BackendStatusIndicatorWidget_SWF.swf"
+   WidgetPaths(3)="../UI_Widgets/VersusLobbyWidget_SWF.swf"
    WidgetBindings(24)=(WidgetName="ButtonPromptWidgetContainer",WidgetClass=Class'KFGame.KFGFxWidget_ButtonPrompt')
-   WidgetBindings(25)=(WidgetName="MenuBarWidget",WidgetClass=Class'KFGame.KFGFxWidget_MenuBarVersus')
+   WidgetBindings(25)=(WidgetName="BackendStatusIndicatorWidget",WidgetClass=Class'KFGame.KFGFxWidget_BackendStatusIndicatorWidget')
+   WidgetBindings(26)=(WidgetName="MenuBarWidget",WidgetClass=Class'KFGame.KFGFxWidget_MenuBarVersus')
    Name="Default__KFGFxMoviePlayer_Manager_Versus"
    ObjectArchetype=KFGFxMoviePlayer_Manager'KFGame.Default__KFGFxMoviePlayer_Manager'
 }

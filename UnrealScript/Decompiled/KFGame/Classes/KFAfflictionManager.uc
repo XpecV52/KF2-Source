@@ -309,7 +309,7 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
         }
         if(MicrowavePower > float(0))
         {
-            AccrueAffliction(10, MicrowavePower);
+            AccrueAfflictionMicrowave(10, MicrowavePower, DamageType.default.bHasToSpawnMicrowaveFire);
         }
         if(BleedPower > float(0))
         {
@@ -347,6 +347,40 @@ function AccrueAffliction(KFAfflictionManager.EAfflictionType Type, float InPowe
     Outer.AdjustAffliction(InPower);
     if(InPower > float(0))
     {
+        Afflictions[Type].Accrue(InPower);
+    }
+}
+
+function AccrueAfflictionMicrowave(KFAfflictionManager.EAfflictionType Type, float InPower, bool bHasToSpawnFire, optional KFAfflictionManager.EHitZoneBodyPart BodyPart, optional KFPerk InstigatorPerk)
+{
+    if((InPower <= float(0)) || Type >= Outer.IncapSettings.Length)
+    {
+        return;
+    }
+    if(!VerifyAfflictionInstance(Type, InstigatorPerk))
+    {
+        return;
+    }
+    if(Outer.HitFxInfo.bRadialDamage && Outer.HitFxRadialInfo.RadiusDamageScale != 255)
+    {
+        InPower *= ByteToFloat(Outer.HitFxRadialInfo.RadiusDamageScale);
+        if(bDebugLog)
+        {
+            LogInternal((string(Type) @ "Applied damage falloff modifier of") @ string(ByteToFloat(Outer.HitFxRadialInfo.RadiusDamageScale)));
+        }
+    }
+    if(Outer.IncapSettings[Type].Vulnerability.Length > 0)
+    {
+        InPower *= (GetAfflictionVulnerability(Type, BodyPart));
+        if(bDebugLog)
+        {
+            LogInternal((((string(Type) @ "Applied hit zone vulnerability modifier of") @ string(GetAfflictionVulnerability(Type, BodyPart))) @ "for") @ string(BodyPart));
+        }
+    }
+    Outer.AdjustAffliction(InPower);
+    if(InPower > float(0))
+    {
+        KFAffliction_Microwave(Afflictions[Type]).bHasToSpawnFire = bHasToSpawnFire;
         Afflictions[Type].Accrue(InPower);
     }
 }
@@ -577,6 +611,10 @@ function UpdateMaterialParameter(KFAfflictionManager.EAfflictionType Type, float
     if(Outer.WorldInfo.NetMode == NM_DedicatedServer)
     {
         return;
+    }
+    if(Type == 10)
+    {
+        WarnInternal(string(Type));
     }
     if((Type >= Afflictions.Length) || Afflictions[Type] == none)
     {

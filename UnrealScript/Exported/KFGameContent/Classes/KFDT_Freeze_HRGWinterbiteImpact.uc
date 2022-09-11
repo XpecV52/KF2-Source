@@ -13,8 +13,8 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_HRGWinterbite'
    StumblePower=50.000000
-   GunHitPower=100.000000
-   FreezePower=0.000000
+   GunHitPower=150.000000
+   FreezePower=5.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Gunslinger'
    KDamageImpulse=1000.000000
    KDeathVel=350.000000

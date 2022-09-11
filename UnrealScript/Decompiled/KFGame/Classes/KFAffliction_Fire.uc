@@ -76,6 +76,7 @@ function SetMaterialParameter(float BurnedAmount)
 
 function ToggleEffects(bool bEnabled, optional bool bDummy)
 {
+    WarnInternal("FIRE");
     if(PawnOwner.WorldInfo.NetMode == NM_DedicatedServer)
     {
         return;

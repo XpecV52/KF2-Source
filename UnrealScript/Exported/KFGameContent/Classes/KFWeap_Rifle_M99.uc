@@ -40,7 +40,6 @@ defaultproperties
    bCanBeReloaded=True
    bReloadFromMagazine=True
    InventorySize=12
-   MagazineCapacity(0)=1
    PenetrationPower(0)=5.000000
    PenetrationPower(1)=()
    MeshFOV=60.000000
@@ -52,6 +51,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=125.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M99_TEX.UI_WeaponSelect_M99'
+   MagazineCapacity(0)=1
    SpareAmmoCapacity(0)=20
    InitialSpareMags(0)=6
    AmmoPickupScale(0)=2.000000

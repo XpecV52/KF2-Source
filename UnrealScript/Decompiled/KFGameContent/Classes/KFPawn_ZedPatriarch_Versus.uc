@@ -401,15 +401,15 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '0_452' was not found.
+System.ArgumentException: Requested value '0_475' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BattlePhases(1)=0_7[7914]=/* Unknown default property type! */,
+    BattlePhases(1)=0_7[8164]=/* Unknown default property type! */,
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '0_1379' was not found.
+System.ArgumentException: Requested value '0_1431' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -417,7 +417,7 @@ System.ArgumentException: Requested value '0_1379' was not found.
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(2)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '0_3854848' was not found.
+System.ArgumentException: Requested value '0_3942400' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -471,8 +471,10 @@ System.ArgumentException: Requested value '0_1023' was not found.
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedPatriarch_Versus.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedPatriarch_Versus.PowerUpAkSoundComponent'
     Health=1680
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
@@ -508,9 +510,11 @@ System.ArgumentException: Requested value '0_1023' was not found.
     Components(5)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.HeadshotAkComponent0'
-    Components(10)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.CloakedAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.HeadshotAkComponent0'
+    Components(12)=AkComponent'Default__KFPawn_ZedPatriarch_Versus.CloakedAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

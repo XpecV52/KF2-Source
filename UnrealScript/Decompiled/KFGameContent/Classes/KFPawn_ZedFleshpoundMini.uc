@@ -50,8 +50,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedFleshpoundMini.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.PowerUpAkSoundComponent'
     Mass=100
     GroundSpeed=450
     Health=750
@@ -89,9 +91,11 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedFleshpoundMini.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpoundMini.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpoundMini.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedFleshpoundMini.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedFleshpoundMini.HeadshotAkComponent0'
-    Components(10)=AkComponent'Default__KFPawn_ZedFleshpoundMini.RageAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedFleshpoundMini.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshpoundMini.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedFleshpoundMini.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedFleshpoundMini.HeadshotAkComponent0'
+    Components(12)=AkComponent'Default__KFPawn_ZedFleshpoundMini.RageAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

@@ -24,18 +24,17 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=4
-    MagazineCapacity=33
     PenetrationPower=/* Array type was not detected. */
     PenetrationDamageReductionCurve=/* Array type was not detected. */
     MeshFOV=96
     MeshIronSightFOV=55
     PlayerIronSightFOV=77
-    IronSightPosition=(X=-3,Y=0,Z=0)
     DOF_FG_FocalRadius=40
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'wep_ui_g18c_tex.UI_WeaponSelect_G18C'
     DualClass=Class'KFWeap_Pistol_DualG18'
+    MagazineCapacity=33
     SpareAmmoCapacity=462
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */

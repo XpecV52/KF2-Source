@@ -689,6 +689,8 @@ simulated function Disintegrate(Rotator InDisintegrateEffectRotation)
     DeferredDestroy(0.1);
 }
 
+static simulated function PlayAddedImpactEffect(Vector HitLocation, Vector HitNormal);
+
 simulated function TriggerExplosion(Vector HitLocation, Vector HitNormal, Actor HitActor)
 {
     local Vector NudgedHitLocation, ExplosionDirection;

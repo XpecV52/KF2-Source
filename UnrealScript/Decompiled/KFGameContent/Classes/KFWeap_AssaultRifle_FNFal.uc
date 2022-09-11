@@ -32,7 +32,6 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=8
-    MagazineCapacity=20
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=55
     MeshIronSightFOV=20
@@ -43,6 +42,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_FNFAL_TEX.UI_WeaponSelect_FNFAL'
+    MagazineCapacity=20
     SpareAmmoCapacity=160
     InitialSpareMags=3
     bLoopingFireAnim=/* Array type was not detected. */

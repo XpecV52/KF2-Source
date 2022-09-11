@@ -206,7 +206,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 		case SEI_Summer:
 			return class'KFGFxSpecialEventObjectivesContainer_Summer2020';
 		case SEI_Fall:
-			return class'KFGFxFall2019ObjectivesContainer';
+			return class'KFGFxSpecialEventObjectivesContainer_Fall2020';
 		case SEI_Winter:
 			return class'KFGFxSpecialEventObjectivesContainer_Xmas2019';
 	}
@@ -1651,6 +1651,11 @@ event StartOnlineGame()
 	{
 		// Add a delegate for when the search completes.  We will use this callback to do any post searching work.
 		GameInterface.AddFindOnlineGamesCompleteDelegate(OnFindGameServerComplete);
+	}
+
+	if (class'WorldInfo'.static.IsEOSBuild())
+	{
+		SearchFinished = false;
 	}
 
 	// Start a search

@@ -835,9 +835,9 @@ function DisplayInteractionMessage(string MessageString, int MessageIndex, optio
 
 function int GetInteractionMessagePriority(int MessageIndex)
 {
-    if(MessageIndex < 11)
+    if(MessageIndex < 12)
     {
-        return 11 - 1;
+        return 12 - 1;
     }
     return MessageIndex;
 }

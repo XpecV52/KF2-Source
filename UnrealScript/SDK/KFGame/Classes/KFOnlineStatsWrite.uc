@@ -417,6 +417,10 @@ const KFACHID_DesolationHard					=	271;
 const KFACHID_DesolationHellOnEarth				=	272;
 const KFACHID_DesolationCollectibles			=	273;
 
+const KFACHID_HellmarkStationHard				=	274;
+const KFACHID_HellmarkStationHellOnEarth		=	275;
+const KFACHID_HellmarkStationCollectibles		=	276;
+
 /* __TW_ANALYTICS_ */
 var int PerRoundWeldXP;
 var int PerRoundHealXP;
@@ -1120,6 +1124,12 @@ private event AddToKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, c
     AddToKillObjectives(MonsterClass);
 }
 
+private event AddToHeadshotKills( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT )
+{
+	// seasonal event hook
+	SeasonalEventStats_OnZedKilledByHeadshot(MonsterClass, Difficulty, DT);
+}
+
 private event AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
 {
     if (MyKFPC != none && MyKFPC.Pawn != none && (KilledClass.Name == 'KFPawn_Human_Versus' || KilledClass.Name == 'KFPawn_Human'))
@@ -1783,6 +1793,14 @@ final simulated function SeasonalEventStats_OnZedKilled(class<KFPawn_Monster> Mo
 	}
 }
 
+final simulated function SeasonalEventStats_OnZedKilledByHeadshot(class<KFPawn_Monster> MonsterClass, int Difficulty, class<DamageType> DT)
+{
+	if (SeasonalEventIsValid())
+	{
+		SeasonalEvent.OnZedKilledByHeadshot(MonsterClass, Difficulty, DT);
+	}
+}
+
 final simulated function SeasonalEventStats_OnBossDied()
 {
 	if (SeasonalEventIsValid())
@@ -2006,6 +2024,7 @@ defaultproperties
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_SMG_Mac10, KFDT_Bludgeon_Mac10,KFDT_Fire_Mac10,KFDT_Fire_Mac10DoT),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Flame_Flamethrower, KFDT_Bludgeon_Flamethrower,KFDT_Fire_FlameThrower,KFDT_Fire_Ground_FlameThrower),CompletionAmount=9000)) //7000
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_HRGIncendiaryRifle, KFDT_Bludgeon_HRGIncendiaryRifle,KFDT_Ballistic_HRGIncendiaryRifle,KFDT_Explosive_HRGIncendiaryRifle,KFDT_Ballistic_HRGIncendiaryRifleGrenadeImpact,KFDT_Fire_HRGIncendiaryRifleBulletDoT,KFDT_Fire_HRGIncendiaryRifleGrenadeDoT,KFDT_Fire_Ground_HRGIncendiaryRifle),CompletionAmount=9000))
+	DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Pistol_HRGScorcher, KFDT_Bludgeon_HRGScorcher,KFDT_Ballistic_HRGScorcherLightingImpact,KFDT_Fire_HRGScorcherDoT,KFDT_Ballistic_HRGScorcherBrokenImpact,KFDT_Fire_Ground_HRGScorcher),CompletionAmount=9000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Beam_Microwave, KFDT_Bludgeon_MicrowaveGun,KFDT_Fire_Ground_MicrowaveGun,KFDT_Microwave,KFDT_Microwave_Beam,KFDT_Microwave_Blast),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_HuskCannon, KFDT_Bludgeon_HuskCannon, KFDT_Explosive_HuskCannon, KFDT_HuskCannonDot, KFDT_Explosive_HuskCannonImpact),CompletionAmount=10000))
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_Microwave, KFDT_Ballistic_MicrowaveRifle, KFDT_Fire_MicrowaveRifleDoT, KFDT_Bludgeon_MicrowaveRifle),CompletionAmount=10000))
@@ -2042,7 +2061,8 @@ defaultproperties
 
     //Survivalist Weapons
     DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_Ice_FreezeThrower, KFDT_Bludgeon_Freezethrower, KFDT_Freeze_FreezeThrower, KFDT_Freeze_FreezeThrower_IceShards, KFDT_Freeze_Ground_FreezeThrower),CompletionAmount=7000))
-    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_LazerCutter, KFDT_Ballistic_LazerCutter, KFDT_LazerCutter_Beam, KFDT_Bludgeon_LazerCutter),CompletionAmount=10000))
+    DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_HRG_EMP_ArcGenerator, KFDT_Bludgeon_ArcGenerator, KFDT_EMP_ArcGenerator_Beam, KFDT_EMP_ArcGeneratorSphereImpact, KFDT_EMP_ArcGenerator_DefaultFiremodeZapDamage, KFDT_EMP_ArcGenerator_AltFiremodeZapDamage),CompletionAmount=9000))
+	DailyEvents.Add((ObjectiveType=DOT_WeaponDamage,ObjectiveClasses=(KFWeap_AssaultRifle_LazerCutter, KFDT_Ballistic_LazerCutter, KFDT_LazerCutter_Beam, KFDT_Bludgeon_LazerCutter),CompletionAmount=10000))
 
     //Kills
     DailyEvents.Add((ObjectiveType=DOT_PerkXP,SecondaryType=DOST_KillZeds,ObjectiveClasses=(KFPawn_ZedClot_Alpha),CompletionAmount=20))
@@ -2169,6 +2189,9 @@ defaultproperties
 	DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-DESOLATION),CompletionAmount=1))
 	DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-DESOLATION),CompletionAmount=2))
 	DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-DESOLATION),CompletionAmount=3))
+	DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-HELLMARKSTATION),CompletionAmount=1))
+	DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-HELLMARKSTATION),CompletionAmount=2))
+	DailyEvents.Add((ObjectiveType=DOT_Maps,SecondaryType=DOST_MapCompletion,ObjectiveClasses=(KF-HELLMARKSTATION),CompletionAmount=3))
 
     //Versus Damage
     //    Per design doc that I have right now, these are x class damage y players, not damage y amount

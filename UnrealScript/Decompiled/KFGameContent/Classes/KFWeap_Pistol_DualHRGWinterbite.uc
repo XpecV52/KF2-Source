@@ -33,7 +33,6 @@ defaultproperties
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     InventorySize=4
-    MagazineCapacity=12
     MeshFOV=60
     MeshIronSightFOV=55
     PlayerIronSightFOV=77
@@ -43,6 +42,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=35
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_Winterbite_Item_TEX.UI_WeaponSelect_HRG_DualWinterbite'
+    MagazineCapacity=12
     SpareAmmoCapacity=144
     InitialSpareMags=4
     BonesToLockOnEmpty=/* Array type was not detected. */

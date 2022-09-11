@@ -554,13 +554,13 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Rocket'
    FireModeIconPaths(1)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_AutoTarget'
    InventorySize=8
-   MagazineCapacity(0)=6
    MeshIronSightFOV=65.000000
    PlayerIronSightFOV=70.000000
    FastZoomOutTime=0.200000
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_SeekerSix_TEX.UI_WeaponSelect_SeekerSix'
+   MagazineCapacity(0)=6
    SpareAmmoCapacity(0)=84
    InitialSpareMags(0)=3
    AmmoPickupScale(0)=2.000000

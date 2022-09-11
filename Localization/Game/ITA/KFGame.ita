@@ -46,15 +46,16 @@ YesString="Sì"
 NoString="No"
 TeamSwappedString="Sei stato cambiato di squadra"
 
-MicrophonePopupTitleString="Impostazioni microfono"
-MicrophonePopupSelectDeviceString="SELEZIONA"
+
+MicrophonePopupTitleString="Configura microfono"
+MicrophonePopupSelectDeviceString="Seleziona il dispositivo"
 MicrophonePopupVolumeString="Volume microfono"
 MicrophonePopupCheckString="Verifica microfono"
-MicrophonePopupStopString="Accetta"
-MicrophonePopupRefreshString="AGGIORNA"
+MicrophonePopupStopString="Termina"
+MicrophonePopupRefreshString="Aggiorna"
 
 FriendsListPopupTitleString="Scegli gli amici da invitare"
-FriendsListPopupFriendString="RICERCA"
+FriendsListPopupFriendString="Ricerca"
 FriendsListPopupFriendsString="Amici"
 FriendsListPopupOtherFriendsString="Amici di altre piattaforme"
 FriendsListPopupLinkButonString="Collega account"
@@ -62,6 +63,7 @@ ReturnString="INDIETRO"
 
 InvitePopupTitleString="Invito nella lobby"
 InvitePopupTextString=" ti ha invitato a entrare in una lobby"
+
 
 CancelConnectionString="Annulla caricamento"
 
@@ -169,6 +171,9 @@ FailedSearchString="Impossibile trovare un incontro con le opzioni fornite. Este
 BrowseServersString="CERCA SERVER"
 HasInvitedToGameString=" ti ha invitato a unirti a una partita"
 JoinGameString="Accetti l'invito?"
+
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="CONNESSIONE INVENTARIO DEL SERVER"
 
 [KFGFxObject_Menu]
 LeavePartyTitleString="ABBANDONO PARTY"
@@ -949,6 +954,17 @@ MarketCosmeticsString="Estetica in vendita"
 MarketEmotesString="Vendita Emote"
 MarketSFXString="Vendita effetti sonori"
 ThankYouString="Grazie per l'acquisto! Ci aiuterà a sviluppare nuovi oggetti, mappe, armi, Zed e modalità di gioco che inseriremo nei prossimi aggiornamenti."
+WeaponBundlesString="Bundle armi"
+CharacterBundlesString="Bundle personaggio"
+OutfitBundlesString="Bundle vestito"
+TicketCratesUSBBundlesString="Bundle Biglietto/Casse/USB"
+CosmeticBundlesString="Bundle estetici"
+WeaponSkinBundlesString="Bundle skin per armi"
+HeadshotFxBundlesString="Bundle Effetto Colpo alla testa"
+SelectWeaponSkinsString="Seleziona skin per armi"
+SelectCosmeticsString="Seleziona elementi estetici"
+SelectEmotesString="Seleziona emote"
+SelectKeysAndTicketsString="Seleziona chiavi e biglietti"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="TROVA IN VENDITA"
@@ -1468,6 +1484,7 @@ FailedDropInventoryMessage="Non puoi gettarlo in questo punto"
 ReceivedGrenadesFromMessage="Hai ricevuto granate da"
 GaveGrenadesToMessage="Hai dato granate a"
 SharingContentString="sta effettuando una condivisione"
+PowerUpHellishRageActivatedMessage="Furia infernale: +Danni, +Velocità, Effetto incendiario, Guarigione disabilitata"
 HeadShotAddedString="%x Colpo/i alla testa - %y% danno extra!"
 HeadShotMaxString="Colpo alla testa! %x% danno extra!"
 HeadShotResetString="Colpo alla testa mancato. Danno normale!"
@@ -1538,6 +1555,7 @@ PlayerClotGrabWarningMessage="UCCIDI GLI ZED PER LA LIBERTÀ!"
 
 UseMinigameMessage="ATTIVA"
 UseMinigameGeneratorMessage="ATTIVA IL GENERATORE"
+UsePowerUpMessage="SACRIFICA SALUTE"
 DoshActivateMessage="COSTO DI ATTIVAZIONE"
 EMPGrabWarningMessage="*** ! IMMOBILIZZATO ! ***"
 [KFLocalMessage_ServerNotification]
@@ -1555,7 +1573,7 @@ SkillCatagories[2]=""
 SkillCatagories[3]=""
 SkillCatagories[4]=""
 
-LevelString="lvl"
+LevelString="Livello"
 
 SpecialAbilityName="Abilità unica"
 SpecialAbilityDescription=""
@@ -1933,7 +1951,7 @@ AirborneAgent="ZED TIME - Agente aereo"
 AirborneAgentDescription="Durante gli Zed time rilasci un gas curativo, guarendo i compagni di squadra vicini."
 
 Sedative="ZED TIME - Zedativo"
-SedativeDescription="Durante gli Zed time, i danni da armi di classe rallentano gli Zed del 30% e infliggono molto danno da veleno."
+SedativeDescription="Durante gli Zed time, i danni delle tue armi di classe aumentano del 30% e le tue uccisioni generano un'esplosione tossica che danneggia gli Zed e guarisce i giocatori."
 
 
 EXPAction1="Arrecare danni con arma da Medico"
@@ -2220,6 +2238,9 @@ MadmanDescription="Durante gli Zed time, tutte le tue armi sparano 3 volte più 
 
 IncapMaster="ZED TIME - Debilitazione"
 IncapMasterDescription="Durante gli Zed time, tutte le tue armi possono stordire gli Zed."
+
+[KFPowerUp_HellishRage]
+PowerUpName="Furia infernale"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2748,6 +2769,20 @@ AllCompleteRewardDescriptionString="Pirata spaziale | Zaino Scimmia spaziale"
 
 ChanceDropDescriptionStrings[0]="Biglietto Estivo"
 ChanceDropDescriptionStrings[1]="Biglietto Estivo Oro"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Una legione infernale",DescriptionString="Uccidi 2000 Zed in qualsiasi mappa o modalità")
+SpecialEventObjectiveInfoList[1]=(TitleString="Invasione settimanale",DescriptionString="Completa il Settimanale in Stazione del Marchio infernale")
+SpecialEventObjectiveInfoList[2]=(TitleString="A ogni costo",DescriptionString="Ottieni Furia infernale da un Obelisco della Stazione del Marchio infernale 10 volte")
+SpecialEventObjectiveInfoList[3]=(TitleString="Sterminatore di demoni",DescriptionString="Decapita 600 Zed in Stazione del Marchio infernale")
+SpecialEventObjectiveInfoList[4]=(TitleString="Caos inesauribile",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Stazione del Marchio infernale")
+
+AllCompleteRewardDescriptionString="Halloween | Zaino Voodoo"
+
+ChanceDropDescriptionStrings[0]="Biglietto Halloween"
+ChanceDropDescriptionStrings[1]="Biglietto Oro Halloween"
 
 ;============================================
 ; Daily Localization
@@ -3346,6 +3381,9 @@ DisplayName="Biolapsus"
 
 [KF-Desolation KFMapSummary]
 DisplayName="Desolazione"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="Stazione del Marchio infernale"
 
 [KFMapInfo]
 ; defaults

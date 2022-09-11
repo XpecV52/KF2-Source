@@ -28,7 +28,6 @@ defaultproperties
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     InventorySize=3
-    MagazineCapacity=5
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=60
     MeshIronSightFOV=60
@@ -39,6 +38,7 @@ defaultproperties
     GroupPriority=30
     WeaponSelectTexture=Texture2D'WEP_UI_SW_500_TEX.UI_WeaponSelect_SW500'
     DualClass=Class'KFWeap_Revolver_DualSW500'
+    MagazineCapacity=5
     SpareAmmoCapacity=100
     InitialSpareMags=5
     AmmoPickupScale=2

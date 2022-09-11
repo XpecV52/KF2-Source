@@ -46,6 +46,29 @@ simulated function AltFireMode()
 	StartFire(ALTFIRE_FIREMODE);
 }
 
+simulated function BeginFire( Byte FireModeNum )
+{
+	local bool bStoredAutoReload;
+
+	// We are trying to reload the weapon but the primary ammo in already at full capacity
+	if ( FireModeNum == RELOAD_FIREMODE && !CanReload() )
+	{
+		// Store the cuurent state of bCanceledAltAutoReload in case its not possible to do the reload
+		bStoredAutoReload = bCanceledAltAutoReload;
+		bCanceledAltAutoReload = false;
+
+		if(CanAltAutoReload())
+		{
+			TryToAltReload();
+			return;
+		}
+
+		bCanceledAltAutoReload = bStoredAutoReload;
+	}
+
+	super.BeginFire( FireModeNum );
+}
+
 /**
  * Drop this item out in to the world
  */
@@ -483,18 +506,18 @@ simulated function bool CanAltAutoReload()
 	{
 		return false;
 	}
-
+	
 	// If the weapon wants to fire its primary weapon, and it can fire, do not allow weapon to automatically alt reload
 	if(PendingFire(DEFAULT_FIREMODE) && HasAmmo(DEFAULT_FIREMODE))
 	{
 		return false;
 	}
-
+	
 	if(!CanReload(ALTFIRE_FIREMODE))
 	{
 		return false;
 	}
-
+	
 	if (bCanceledAltAutoReload)
 	{
 		return false;
@@ -527,8 +550,6 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=2
    InventorySize=6
-   MagazineCapacity(0)=30
-   MagazineCapacity(1)=1
    MeshFOV=65.000000
    MeshIronSightFOV=45.000000
    PlayerIronSightFOV=70.000000
@@ -537,6 +558,8 @@ defaultproperties
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'wep_ui_m16_m203_tex.UI_WeaponSelect_M16M203'
    SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
+   MagazineCapacity(0)=30
+   MagazineCapacity(1)=1
    SpareAmmoCapacity(0)=270
    SpareAmmoCapacity(1)=13
    InitialSpareMags(0)=3

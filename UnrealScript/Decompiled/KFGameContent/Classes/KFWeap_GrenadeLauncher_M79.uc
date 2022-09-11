@@ -23,12 +23,12 @@ defaultproperties
     bHasFireLastAnims=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=6
-    MagazineCapacity=1
     MeshIronSightFOV=52
     PlayerIronSightFOV=73
     FastZoomOutTime=0.2
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'
+    MagazineCapacity=1
     SpareAmmoCapacity=26
     InitialSpareMags=9
     AmmoPickupScale=2

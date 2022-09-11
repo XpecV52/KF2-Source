@@ -260,25 +260,32 @@ simulated function CustomFire()
 	local float CurrentFastenRate, CurrentUnfastenRate;
 	WeldTarget = TraceWeldables();
 	// Fasten/Unfasten the door
-	if ( Role == ROLE_Authority && WeldTarget != None )
+	if ( Role == ROLE_Authority )
 	{
-		CurrentFastenRate = FastenRate;
-		CurrentUnfastenRate = UnFastenRate;
-
-		GetPerk().ModifyWeldingRate(CurrentFastenRate, CurrentUnfastenRate);
-		SetTimer(AmmoRechargeRate, true, nameof(RechargeAmmo));
-
-		if ( WeldTarget.bIsDestroyed && !WeldTarget.Owner.IsA('KFRepairableActor') )
+		if( !IsTimerActive(nameof(RechargeAmmo)) )
 		{
-			WeldTarget.Repair(RepairRate, KFPawn(Instigator));
+			SetTimer(AmmoRechargeRate, true, nameof(RechargeAmmo));
 		}
-		else if ( CurrentFireMode == DEFAULT_FIREMODE )
+
+		if(WeldTarget != None)
 		{
-			WeldTarget.Weld(CurrentFastenRate, KFPawn(Instigator));
-		}
-		else
-		{
-			WeldTarget.Weld(CurrentUnfastenRate, KFPawn(Instigator));
+			CurrentFastenRate = FastenRate;
+			CurrentUnfastenRate = UnFastenRate;
+
+			GetPerk().ModifyWeldingRate(CurrentFastenRate, CurrentUnfastenRate);
+
+			if ( WeldTarget.bIsDestroyed && !WeldTarget.Owner.IsA('KFRepairableActor') )
+			{
+				WeldTarget.Repair(RepairRate, KFPawn(Instigator));
+			}
+			else if ( CurrentFireMode == DEFAULT_FIREMODE )
+			{
+				WeldTarget.Weld(CurrentFastenRate, KFPawn(Instigator));
+			}
+			else
+			{
+				WeldTarget.Weld(CurrentUnfastenRate, KFPawn(Instigator));
+			}
 		}
 	}
 
@@ -519,7 +526,7 @@ simulated function KFDoorActor FindRepairableDoor()
 reliable server private function ServerSetWeldTarget(KFWeldableComponent NewTarget, bool bDelayedStart)
 {
 	WeldTarget = NewTarget;
-
+	
 	if ( bDelayedStart )
 	{
 		CheckDelayedStartFire();
@@ -583,7 +590,7 @@ simulated state Active
 	{
 		// Caution - Super will skip our global, but global will skip super's state function!
 		Global.Tick(DeltaTime);
-
+		
 		if ( Instigator != none && Instigator.IsLocallyControlled() )
 		{
 			// local player - find nearbydoors

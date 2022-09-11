@@ -15,9 +15,9 @@ defaultproperties
 	KDeathUpKick=700
 	KDeathVel=350
 
-	FreezePower=0
+	FreezePower=5 //0
 	StumblePower=50
-	GunHitPower=100
+	GunHitPower=150 //100
 
 	WeaponDef=class'KFWeapDef_HRGWinterbite'
 

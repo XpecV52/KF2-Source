@@ -265,13 +265,18 @@ function bool InHeatRange( KFPawn KFP )
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out int MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname )
 {
 	local float TempCapacity;
 
 	TempCapacity = MagazineCapacity;
 
-	if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && IsHighCapFuelTankActive() )
+	// Fix this function on the trader because KFW is None and the check cannot look for bNoMagazine = true
+	if(WeaponClassname == 'KFWeap_Pistol_HRGScorcher')
+	{
+		TempCapacity = TempCapacity;
+	}
+	else if( IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && IsHighCapFuelTankActive() && (KFW == none || !KFW.bNoMagazine) )
 	{
 		TempCapacity += MagazineCapacity * GetSkillValue( PerkSkills[EFirebugHighCapFuelTank] );
 	}

@@ -169,7 +169,7 @@ simulated function bool GetUsingTactialReload(KFWeapon KFW)
     return IsTacticalReloadActive() && (IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW);
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
@@ -186,7 +186,7 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacit
             TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[7])));
         }
     }
-    MagazineCapacity = byte(Round(TempCapacity));
+    MagazineCapacity = Round(TempCapacity);
 }
 
 simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, const optional out STraderItem TraderItem, optional bool bSecondary)
@@ -227,6 +227,15 @@ simulated function float GetZedTimeModifier(KFWeapon W)
         }
     }
     if(((CouldRapidFireActive()) && Is9mm(W) || IsWeaponOnPerk(W,, self.Class)) && ZedTimeModifyingStates.Find(StateName != -1)
+    {
+        return RapidFireFiringRate;
+    }
+    return 0;
+}
+
+simulated function float GetZedTimeModifierForWindUp()
+{
+    if(CouldRapidFireActive())
     {
         return RapidFireFiringRate;
     }
@@ -480,6 +489,7 @@ defaultproperties
     ZedTimeModifyingStates(0)=WeaponFiring
     ZedTimeModifyingStates(1)=WeaponBurstFiring
     ZedTimeModifyingStates(2)=WeaponSingleFiring
+    ZedTimeModifyingStates(3)=WeaponWindingUp
     bCanSeeCloakedZeds=true
     PrimaryWeaponDef=Class'KFWeapDef_AR15'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Commando'

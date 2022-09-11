@@ -15,6 +15,7 @@ var bool bDeployedCannonball;
 var bool bCannonballWasDetonated;
 var bool bCannonballConvertedToTimeBomb;
 var bool bForceStandardCannonbal;
+var transient bool bWaitingForServer;
 var bool bLastAnim;
 var float SelfDamageReductionValue;
 var transient float FireHoldTime;
@@ -73,6 +74,15 @@ function RemoveDeployedCannonball(optional int CannonballIndex, optional Actor C
     }
 }
 
+simulated function StartFire(byte FireModeNum)
+{
+    if(bWaitingForServer && FireModeNum <= 1)
+    {
+        return;
+    }
+    super(KFWeapon).StartFire(FireModeNum);
+}
+
 simulated function EndFire(byte FireModeNum)
 {
     bForceStandardCannonbal = true;
@@ -85,6 +95,11 @@ simulated function ResetFireState()
     bForceStandardCannonbal = false;
     bCannonballWasDetonated = false;
     bCannonballConvertedToTimeBomb = false;
+}
+
+reliable client simulated function ClientResetFire()
+{
+    bWaitingForServer = false;
 }
 
 reliable client simulated function ClientResetFireInterval()
@@ -174,6 +189,37 @@ simulated function name GetLoopingFireAnim(byte FireModeNum)
     return FireLoopAnim;
 }
 
+simulated state WeaponSingleFiring
+{
+    simulated function FireAmmunition()
+    {
+        super.FireAmmunition();
+        if(Role != ROLE_Authority)
+        {
+            bWaitingForServer = true;
+        }
+    }
+
+    simulated function bool ShouldRefire()
+    {
+        return super(Weapon).ShouldRefire() && !bWaitingForServer;
+    }
+    stop;    
+}
+
+simulated state Active
+{
+    simulated function BeginState(name PreviousStateName)
+    {
+        super.BeginState(PreviousStateName);
+        if(Role == ROLE_Authority)
+        {
+            ClientResetFire();
+        }
+    }
+    stop;    
+}
+
 simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
 {
     simulated event BeginState(name PreviousStateName)
@@ -221,7 +267,11 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
                 bCannonballWasDetonated = true;
             }
         }
-        bDeployedCannonball = false;
+        if(Role == ROLE_Authority)
+        {
+            ClientResetFire();
+            bDeployedCannonball = false;
+        }
         global.PutDownWeapon();
     }
 
@@ -268,6 +318,10 @@ simulated state BlunderbussDeployAndDetonate extends WeaponSingleFiring
     {
         if(!bDeployedCannonball)
         {
+            if(Role != ROLE_Authority)
+            {
+                bWaitingForServer = true;
+            }
             super.FireAmmunition();
             ResetFireState();
             bNetDirty = true;
@@ -346,11 +400,11 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Primary
     InventorySize=7
-    MagazineCapacity=3
     PenetrationPower=/* Array type was not detected. */
     IronSightPosition=(X=-3,Y=0,Z=0)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_Blunderbuss_TEX.UI_WeaponSelect_BlunderBluss'
+    MagazineCapacity=3
     SpareAmmoCapacity=39
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */

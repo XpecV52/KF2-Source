@@ -18,7 +18,7 @@ static simulated event EFilterTypeUI GetAltTraderFilter()
 	return FT_Flame;
 }
 
-simulated function ModifyMagSizeAndNumber(out byte InMagazineCapacity, optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE, optional KFPerk CurrentPerk)
+simulated function ModifyMagSizeAndNumber(out int InMagazineCapacity, optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE, optional KFPerk CurrentPerk)
 {
 	local KFPerk_Firebug FirebugPerk;
 

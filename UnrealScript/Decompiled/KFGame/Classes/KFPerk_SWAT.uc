@@ -103,7 +103,7 @@ function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageTy
     InDamage = Round(TempDamage);
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
@@ -113,7 +113,7 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacit
     {
         TempCapacity += (float(MagazineCapacity) * (GetPassiveValue(MagSize, CurrentLevel)));
     }
-    MagazineCapacity = byte(Round(TempCapacity));
+    MagazineCapacity = Round(TempCapacity);
 }
 
 simulated function ModifyWeaponSwitchTime(out float ModifiedSwitchTime)

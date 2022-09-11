@@ -118,7 +118,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Rocket'
    FireModeIconPaths(1)=()
    InventorySize=9
-   MagazineCapacity(0)=1
    MeshFOV=75.000000
    MeshIronSightFOV=65.000000
    PlayerIronSightFOV=70.000000
@@ -126,6 +125,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
+   MagazineCapacity(0)=1
    SpareAmmoCapacity(0)=15
    InitialSpareMags(0)=4
    AmmoPickupScale(0)=2.000000

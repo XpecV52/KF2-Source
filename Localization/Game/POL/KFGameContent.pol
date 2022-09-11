@@ -468,12 +468,12 @@ ItemCategory="Broń krótka"
 ItemDescription="•Tryb strzelania: tylko ogień pojedynczy.\n•Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n•Para rewolwerów Magnum .500 – „Kolekcjoner kości”."
 
 [KFWeap_HRG_Revolver_Buckshot]
-ItemName="Rewolwer śrut HRG"
+ItemName="Rewolwer śrutowy HRG"
 ItemCategory="Broń krótka"
 ItemDescription="• Wyłącznie tryb pojedynczego strzału.\n• Broń, która wymaga sporo szczęścia."
 
 [KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="Dwa rewolwery śrut HRG"
+ItemName="Dwa rewolwery śrutowe HRG"
 ItemCategory="Broń krótka"
 ItemDescription="• Tryb strzelania: tylko ogień pojedynczy.\n• Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n• Broń, która wymaga sporo szczęścia."
 
@@ -635,7 +635,7 @@ ItemCategory="Materiały wybuchowe"
 ItemDescription="•Wystrzeliwuje granaty.\n•Granaty eksplodują po trafieniu w cel.\n•Broń dla tych, którzy sklejenie sześciu granatników M79 taśmą uważają za nieeleganckie."
 
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
-ItemName="Karabin HMTech-501"
+ItemName="Karabin HMTech-501 z granatnikiem"
 ItemCategory="Karabin szturmowy"
 ItemDescription="•Strzela wyłącznie ogniem ciągłym.\n•Alt. — wystrzeliwuje granaty medyczne.\n•Jeśli lubisz ciskać granatami w swoich, to broń dla ciebie!"
 SecondaryAmmo="Granat medyczny"
@@ -681,7 +681,7 @@ ItemCategory="Karabin wyborowy"
 ItemDescription="•Tryb ataku strzela szybkimi pociskami elektrycznymi.\n•Tryb alternatywny strzela strzałkami leczniczymi, które leczą sojuszników."
 
 [KFWeap_SMG_G18]
-ItemName="Tarcza policyjna z G18"
+ItemName="Tarcza policyjna z Glockiem 18"
 ItemCategory="Pistolet maszynowy"
 ItemDescription="•Wybór ostrzału automatycznego i półautomatycznego.\n•Tryb alternatywny przełącza tryby ostrzału.\n•Używanie celownika mechanicznego unosi tarczę redukującą większość ataków od przodu."
 SharedUnlockSource="Zestaw broni tarcza policyjna z G18, zestaw broni Świąteczny Horror"
@@ -706,7 +706,7 @@ ItemDescription="•Podstawowy tryb ognia to strzał z jednej lufy.\n•Tryb alt
 [KFWeap_Pistol_Blunderbuss]
 ItemName="Garłacz"
 ItemCategory="Materiały wybuchowe"
-ItemDescription="•Podstawowy atak wystrzeliwuje kulę armatnią.\n•Przytrzymaj podstawowy atak, aby kula armatnia nie wybuchła. Wybuchnie po puszczeniu.\n• Dodatkowy atak strzela odłamkami kul armatnich.\n•Drewniana noga i papuga sprzedawane osobno!"
+ItemDescription="•Podstawowy atak wystrzeliwuje kulę armatnią.\nPrzytrzymaj podstawowy atak, aby kula armatnia nie wybuchła. Wybuchnie po puszczeniu.\n• Dodatkowy atak strzela odłamkami kul armatnich.\n•Drewniana noga i papuga sprzedawane osobno!"
 SharedUnlockSource="Zestaw broni garłacza"
 
 [KFWeap_Pistol_G18C]
@@ -726,6 +726,28 @@ ItemName="Miotacz Tesli HRG"
 ItemCategory="Karabin szturmowy"
 ItemDescription="•Tryb strzelania: tylko ogień ciągły.\n• Atak alternatywny wystrzeliwuje granaty EMP.\n• Za pomocą tej ekologicznej broni elektrycznej możesz zabić setki zetów bez szkody dla planety."
 SecondaryAmmo="Granat EMP"
+
+[KFWeap_Minigun]
+ItemName="Minigun"
+ItemCategory="Specjalne"
+ItemDescription="•Atak podstawowy to ogień ciągły. Przed atakiem lufy rozkręcają się prze 1,5 sekundy.\n•Celowanie rozkręca lufy, przygotowując broń do ostrzału.\n•Szczęście mierzy się w strzałach na minutę."
+SharedUnlockSource="Zestaw broni Minigun"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="Generator łuku HRG"
+ItemCategory="Specjalne"
+ItemDescription="•Atak podstawowy wyzwala wiązkę elektryczności, która przeskakuje na pobliskich wrogów.\n•Atak alternatywny wystrzeliwuje do przodu kulę elektryczności.\n•Dla tych, którzy pragną nieograniczonej mocy!"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="Wypalacz HRG"
+ItemCategory="Ogień"
+ItemDescription="•Atak podstawowy wystrzeliwuje przylepiającą się flarę, która pali cel i oświetla wszystko wokoło.\n•Atak alternatywny wystrzeliwuje uszkodzoną flarę, która tworzy na ziemi płomienie w linii prostej.\n• Rozjaśnia drogę i wyjaśnia wrogom sprawę."
+
+[KFWeap_Mine_Reconstructor]
+ItemName="Rekonstruktor minowy"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="•Wystrzeliwuje biominy, które wybuchają przy kontakcie, raniąc zety i uzdrawiając sojuszników.\n•Tryb alternatywny detonuje umieszczone miny.\n•Substancja uzdrawiająca nie została ujawniona ze względu na możliwe naruszenia z przepisów zdrowotnych."
+SharedUnlockSource="Zestaw broni rekonstruktora minowego"
 
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max

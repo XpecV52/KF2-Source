@@ -336,14 +336,11 @@ simulated event Tick(float DeltaTime)
                 }
             }
         }
-        if(BarrelHeat != LastBarrelHeat)
-        {
-            WeaponMIC.SetScalarParameterValue('Glow_Intensity', BarrelHeat);
-        }
+        ChangeMaterial();
         LastBarrelHeat = BarrelHeat;
     }
     Idx = 0;
-    J0x1E6:
+    J0x1A8:
 
     if(Idx < PilotLights.Length)
     {
@@ -353,7 +350,15 @@ simulated event Tick(float DeltaTime)
             PilotLights[Idx].Light.SetLightProperties(PilotLights[Idx].LastLightBrightness, PilotLights[Idx].Light.LightColor, PilotLights[Idx].Light.Function);
         }
         ++ Idx;
-        goto J0x1E6;
+        goto J0x1A8;
+    }
+}
+
+simulated function ChangeMaterial()
+{
+    if(BarrelHeat != LastBarrelHeat)
+    {
+        WeaponMIC.SetScalarParameterValue('Glow_Intensity', BarrelHeat);
     }
 }
 

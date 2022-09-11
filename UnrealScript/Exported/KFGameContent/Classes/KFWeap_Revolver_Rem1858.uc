@@ -93,7 +93,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=2
-   MagazineCapacity(0)=6
    MeshFOV=60.000000
    MeshIronSightFOV=55.000000
    PlayerIronSightFOV=77.000000
@@ -103,6 +102,7 @@ defaultproperties
    GroupPriority=15.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Remington_1858_TEX.UI_WeaponSelect_Remington'
    DualClass=Class'kfgamecontent.KFWeap_Revolver_DualRem1858'
+   MagazineCapacity(0)=6
    SpareAmmoCapacity(0)=144
    InitialSpareMags(0)=12
    AmmoPickupScale(0)=2.000000

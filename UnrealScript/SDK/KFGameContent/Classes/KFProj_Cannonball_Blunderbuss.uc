@@ -26,7 +26,7 @@ var transient float CurrentRoll;
 
 var ParticleSystemComponent	ProjIndicatorEffects;
 var bool IndicatorActive;
-
+var bool bHasAlreadyBounced;
 /** This is the effect indicator that is played for the current user **/
 var(Projectile) ParticleSystem ProjIndicatorTemplate;
 
@@ -44,6 +44,7 @@ function Init(vector Direction)
 simulated function PreBeginPlay()
 {
 	Super.PreBeginPlay();
+	bHasAlreadyBounced = false;
 }
 
 simulated function TryActivateIndicator()
@@ -92,12 +93,16 @@ function Timer_Detonate()
 
 function Detonate()
 {
-	local vector ExplosionNormal;
+	local vector ExplosionNormal, vExplosionOffset;
 
 	// Check if the bomb should explode right now
 	if (bIsRolling && !bHasExploded && !bHasDisintegrated)
 	{
 		ExplosionNormal =  vect(0,0,1) >> Rotation;
+		vExplosionOffset.x = 0;
+		vExplosionOffset.y = 0;
+		vExplosionOffset.z = 10;
+		SetLocation(Location + vExplosionOffset);
 		CallExplode(Location, ExplosionNormal);
 	}
 	// If not, mark the bomb to explode as soon as it hits something
@@ -166,8 +171,80 @@ simulated event Tick(float DeltaTime)
 
 simulated event HitWall(vector HitNormal, actor Wall, PrimitiveComponent WallComp)
 {
+	local Vector VNorm;
+    local rotator NewRotation;
+    local Vector Offset;
+    local bool bWantsClientSideDudHit;
+	local TraceHitInfo HitInfo;
+	local float TraveledDistance;
+
 	bIsRolling = true;
-	Super.HitWall(HitNormal, Wall, WallComp);
+
+    // Need to do client side dud hits if this is a client
+    if( Instigator != none && Instigator.Role < ROLE_Authority )
+	{
+        bWantsClientSideDudHit = true;
+    }
+
+	TraveledDistance = (`TimeSince(CreationTime) * Speed);
+	TraveledDistance *= TraveledDistance;
+
+    // Bounce off the wall and cause the shell to dud if we hit too close
+    if( bDud || ((TraveledDistance < ArmDistSquared) || bIsTimedExplosive || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0)))
+    {
+		// Reflect off Wall w/damping
+		VNorm = (Velocity dot HitNormal) * HitNormal;
+		Velocity = -VNorm * WallHitDampenFactor + (Velocity - VNorm) * WallHitDampenFactorParallel;
+		Speed = VSize(Velocity);
+
+        if( (!bDud || ( bWantsClientSideDudHit && !bClientDudHit)) )
+        {
+			SetIsDud(bWantsClientSideDudHit, HitNormal);
+        }
+
+    	if ( WorldInfo.NetMode != NM_DedicatedServer && Pawn(Wall) == none && bHasAlreadyBounced == false )
+    	{
+            // do the impact effects
+			bHasAlreadyBounced = true;
+    		`ImpactEffectManager.PlayImpactEffects(Location, Instigator, HitNormal, GrenadeBounceEffectInfo, true );
+    	}
+
+		// if we hit a pawn or we are moving too slowly stop moving and lay down flat
+		if ( Speed < MinSpeedBeforeStop  )
+		{
+			ImpactedActor = Wall;
+			SetPhysics(PHYS_None);
+			if( ProjEffects != none )
+			{
+                ProjEffects.SetTranslation(LandedTranslationOffset);
+            }
+
+        	// Position the shell on the ground
+            RotationRate.Yaw = 0;
+        	RotationRate.Pitch = 0;
+        	RotationRate.Roll = 0;
+        	NewRotation = Rotation;
+        	NewRotation.Pitch = 0;
+			if(ResetRotationOnStop)
+			{
+				SetRotation(NewRotation);
+			}
+			Offset.Z = LandedTranslationOffset.X;
+			SetLocation(Location + Offset);
+		}
+
+		if( !Wall.bStatic && Wall.bCanBeDamaged && (DamageRadius == 0 || bDamageDestructiblesOnTouch) && !CheckRepeatingTouch(Wall) )
+		{
+			HitInfo.HitComponent = WallComp;
+			HitInfo.Item = INDEX_None;
+			Wall.TakeDamage( Damage, InstigatorController, Location, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
+		}
+    }
+
+    if( !bDud && !bIsTimedExplosive )
+    {
+        Super.HitWall(HitNormal, Wall, WallComp);
+    }
 }
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
@@ -273,6 +350,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
     	StopSimulating();
 	}
+	
 }
 
 simulated protected function StopSimulating()

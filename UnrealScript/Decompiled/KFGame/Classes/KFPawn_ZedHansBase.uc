@@ -574,8 +574,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedHansBase.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedHansBase.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedHansBase.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedHansBase.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedHansBase.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedHansBase.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedHansBase.PowerUpAkSoundComponent'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -610,8 +612,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedHansBase.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedHansBase.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedHansBase.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedHansBase.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedHansBase.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedHansBase.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedHansBase.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedHansBase.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedHansBase.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

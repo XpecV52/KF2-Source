@@ -125,11 +125,11 @@ defaultproperties
     bUseAnimLenEquipTime=false
     SingleFireSoundIndex=1
     InventorySize=6
-    MagazineCapacity=60
     MeshFOV=75
     MeshIronSightFOV=33
     PlayerIronSightFOV=70
     GroupPriority=50
+    MagazineCapacity=60
     SpareAmmoCapacity=270
     InitialSpareMags=3
     bLoopingFireAnim=/* Array type was not detected. */

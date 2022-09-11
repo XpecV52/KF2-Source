@@ -38,8 +38,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedFleshpound_Mixer.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.PowerUpAkSoundComponent'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -74,9 +76,11 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.HeadshotAkComponent0'
-    Components(10)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.RageAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.HeadshotAkComponent0'
+    Components(12)=AkComponent'Default__KFPawn_ZedFleshpound_Mixer.RageAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

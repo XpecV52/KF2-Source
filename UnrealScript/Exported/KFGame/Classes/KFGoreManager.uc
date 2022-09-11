@@ -1246,7 +1246,6 @@ defaultproperties
    MaxBodyWoundDecals=5
    MaxBloodSplatterDecals=20
    MaxBloodPoolDecals=20
-   bAllowBloodSplatterDecals=True
    MaxBloodEffects=25
    MaxGoreEffects=10
    MaxDeadBodies=12

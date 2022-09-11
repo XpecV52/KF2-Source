@@ -33,8 +33,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedBloatKing_SantasWorkshop.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.PowerUpAkSoundComponent'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -69,8 +71,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedBloatKing_SantasWorkshop.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

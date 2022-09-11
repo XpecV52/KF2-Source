@@ -25,30 +25,30 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperAI'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing_Versus:MeleeHelper_0'
    DoshValue=20
    XPValues(0)=32.000000
-   DamageTypeModifiers(28)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.800000))
-   DamageTypeModifiers(29)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.700000))
-   DamageTypeModifiers(30)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.500000))
-   DamageTypeModifiers(31)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.400000))
-   DamageTypeModifiers(32)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.500000))
-   DamageTypeModifiers(33)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.800000))
-   DamageTypeModifiers(34)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.800000))
-   DamageTypeModifiers(35)=(DamageType=Class'KFGame.KFDT_Fire')
-   DamageTypeModifiers(36)=(DamageType=Class'KFGame.KFDT_Microwave',DamageScale=(0.350000))
-   DamageTypeModifiers(37)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.350000))
-   DamageTypeModifiers(38)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.400000))
-   DamageTypeModifiers(39)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.500000))
-   DamageTypeModifiers(40)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AR15')
-   DamageTypeModifiers(41)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MB500')
-   DamageTypeModifiers(42)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858',DamageScale=(0.750000))
-   DamageTypeModifiers(43)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Colt1911',DamageScale=(0.650000))
-   DamageTypeModifiers(44)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm',DamageScale=(1.600000))
-   DamageTypeModifiers(45)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Pistol_Medic',DamageScale=(1.500000))
-   DamageTypeModifiers(46)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Winchester',DamageScale=(0.600000))
-   DamageTypeModifiers(47)=(DamageType=Class'kfgamecontent.KFDT_Fire_CaulkBurn',DamageScale=(2.000000))
-   DamageTypeModifiers(48)=(DamageType=Class'KFGame.KFDT_ExplosiveSubmunition_HX25',DamageScale=(0.600000))
-   DamageTypeModifiers(49)=(DamageType=Class'kfgamecontent.KFDT_Slashing_EvisceratorProj',DamageScale=(0.300000))
-   DamageTypeModifiers(50)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Eviscerator',DamageScale=(0.300000))
-   DamageTypeModifiers(51)=(DamageType=Class'kfgamecontent.KFDT_Bludgeon_Crovel',DamageScale=(1.200000))
+   DamageTypeModifiers(32)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.800000))
+   DamageTypeModifiers(33)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.700000))
+   DamageTypeModifiers(34)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.500000))
+   DamageTypeModifiers(35)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Handgun',DamageScale=(0.400000))
+   DamageTypeModifiers(36)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rifle',DamageScale=(0.500000))
+   DamageTypeModifiers(37)=(DamageType=Class'KFGame.KFDT_Slashing',DamageScale=(0.800000))
+   DamageTypeModifiers(38)=(DamageType=Class'KFGame.KFDT_Bludgeon',DamageScale=(0.800000))
+   DamageTypeModifiers(39)=(DamageType=Class'KFGame.KFDT_Fire')
+   DamageTypeModifiers(40)=(DamageType=Class'KFGame.KFDT_Microwave',DamageScale=(0.350000))
+   DamageTypeModifiers(41)=(DamageType=Class'KFGame.KFDT_Explosive',DamageScale=(0.350000))
+   DamageTypeModifiers(42)=(DamageType=Class'KFGame.KFDT_Piercing',DamageScale=(0.400000))
+   DamageTypeModifiers(43)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.500000))
+   DamageTypeModifiers(44)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AR15')
+   DamageTypeModifiers(45)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MB500')
+   DamageTypeModifiers(46)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Rem1858',DamageScale=(0.750000))
+   DamageTypeModifiers(47)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Colt1911',DamageScale=(0.650000))
+   DamageTypeModifiers(48)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_9mm',DamageScale=(1.600000))
+   DamageTypeModifiers(49)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Pistol_Medic',DamageScale=(1.500000))
+   DamageTypeModifiers(50)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Winchester',DamageScale=(0.600000))
+   DamageTypeModifiers(51)=(DamageType=Class'kfgamecontent.KFDT_Fire_CaulkBurn',DamageScale=(2.000000))
+   DamageTypeModifiers(52)=(DamageType=Class'KFGame.KFDT_ExplosiveSubmunition_HX25',DamageScale=(0.600000))
+   DamageTypeModifiers(53)=(DamageType=Class'kfgamecontent.KFDT_Slashing_EvisceratorProj',DamageScale=(0.300000))
+   DamageTypeModifiers(54)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Eviscerator',DamageScale=(0.300000))
+   DamageTypeModifiers(55)=(DamageType=Class'kfgamecontent.KFDT_Bludgeon_Crovel',DamageScale=(1.200000))
    MoveListGamepadScheme(0)=SM_None
    MoveListGamepadScheme(1)=SM_None
    MoveListGamepadScheme(2)=SM_PlayerZedMove_LMB
@@ -199,6 +199,14 @@ defaultproperties
       ObjectArchetype=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing:WeaponAmbientEchoHandler_0'
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing_Versus:WeaponAmbientEchoHandler_0'
+   Begin Object Class=AkComponent Name=SecondaryWeaponAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing:SecondaryWeaponAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="SecondaryWeaponAkSoundComponent"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing:SecondaryWeaponAkSoundComponent'
+   End Object
+   SecondaryWeaponAkComponent=SecondaryWeaponAkSoundComponent
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing:FootstepAkSoundComponent'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -214,6 +222,14 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
+   Begin Object Class=AkComponent Name=PowerUpAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing:PowerUpAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="PowerUpAkSoundComponent"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing:PowerUpAkSoundComponent'
+   End Object
+   PowerUpAkComponent=PowerUpAkSoundComponent
    GroundSpeed=325.000000
    Health=350
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing:KFPawnSkeletalMeshComponent'
@@ -280,8 +296,10 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=SprintAkComponent0
-   Components(9)=HeadshotAkComponent0
+   Components(8)=PowerUpAkSoundComponent
+   Components(9)=SecondaryWeaponAkSoundComponent
+   Components(10)=SprintAkComponent0
+   Components(11)=HeadshotAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedClot_AlphaKing_Versus"
    ObjectArchetype=KFPawn_ZedClot_AlphaKing'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing'

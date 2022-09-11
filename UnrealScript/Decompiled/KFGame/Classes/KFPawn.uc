@@ -294,6 +294,24 @@ struct native KFSpecialMoveStruct
     }
 };
 
+struct native PowerUpAmbientSoundInfo
+{
+    var AkEvent FirstPersonPowerUpAmbientSound;
+    var AkEvent ThirdPersonPowerUpAmbientSound;
+    var AkEvent FirstPersonStopPowerUpAmbientSound;
+    var AkEvent ThirdPersonStopPowerUpAmbientSound;
+    var byte Count;
+
+    structdefaultproperties
+    {
+        FirstPersonPowerUpAmbientSound=none
+        ThirdPersonPowerUpAmbientSound=none
+        FirstPersonStopPowerUpAmbientSound=none
+        ThirdPersonStopPowerUpAmbientSound=none
+        Count=0
+    }
+};
+
 struct native ExtraVFXInfo
 {
     /**  
@@ -562,8 +580,12 @@ var protected export editinline AkComponent AmbientAkComponent;
 var repnotify AkEvent WeaponAmbientSound;
 var protected export editinline AkComponent WeaponAkComponent;
 var export editinline KFWeaponAmbientEchoHandler WeaponAmbientEchoHandler;
+var repnotify AkEvent SecondaryWeaponAmbientSound;
+var protected export editinline AkComponent SecondaryWeaponAkComponent;
 var protected export editinline AkComponent FootstepAkComponent;
 var protected export editinline AkComponent DialogAkComponent;
+var repnotify PowerUpAmbientSoundInfo PowerUpAmbientSound;
+var protected export editinline AkComponent PowerUpAkComponent;
 var float LastReplicateTime;
 var KFAIController MyKFAIC;
 var const float ExtraCostForPath;
@@ -586,11 +608,12 @@ replication
         AmbientSound, AttackSpeedModifier, 
         InjuredHitZones, IntendedBodyScale, 
         IntendedHeadScale, KnockdownImpulse, 
-        RepFireBurnedAmount, ReplicatedSpecialMove, 
-        WeaponClassForAttachmentTemplate, bEmpDisrupted, 
-        bEmpPanicked, bFirePanicked, 
-        bHasStartedFire, bIsSprinting, 
-        bMovesFastInZedTime, bUnaffectedByZedTime;
+        PowerUpAmbientSound, RepFireBurnedAmount, 
+        ReplicatedSpecialMove, WeaponClassForAttachmentTemplate, 
+        bEmpDisrupted, bEmpPanicked, 
+        bFirePanicked, bHasStartedFire, 
+        bIsSprinting, bMovesFastInZedTime, 
+        bUnaffectedByZedTime;
 
      if(bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout)
         HitFxAddedHitCount, HitFxAddedRelativeLocs, 
@@ -615,7 +638,7 @@ replication
         bIgnoreTeamCollision;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
-        WeaponAmbientSound;
+        SecondaryWeaponAmbientSound, WeaponAmbientSound;
 
      if(bEnableAimOffset && !bNetOwner || bDemoRecording)
         ReplicatedAimOffsetPct;
@@ -720,6 +743,12 @@ simulated event ReplicatedEvent(name VarName)
             break;
         case 'WeaponAmbientSound':
             SetWeaponAmbientSound(WeaponAmbientSound);
+            break;
+        case 'PowerUpAmbientSound':
+            SetReplicatedPowerUpAmbientSound(PowerUpAmbientSound);
+            break;
+        case 'SecondaryWeaponAmbientSound':
+            SetSecondaryWeaponAmbientSound(SecondaryWeaponAmbientSound);
             break;
         case 'HitFxInfo':
             bNeedsProcessHitFx = true;
@@ -1319,7 +1348,9 @@ simulated function WeaponFired(Weapon InWeapon, bool bViaReplication, optional V
     local KFWeapon KFW;
     local class<KFProjectile> KFProj;
     local KFImpactEffectInfo ImpactFX;
+    local Vector HitNormal;
 
+    HitNormal = Normal(Location - HitLocation);
     if((Role == ROLE_AutonomousProxy) && bViaReplication)
     {
         return;
@@ -1355,6 +1386,7 @@ simulated function WeaponFired(Weapon InWeapon, bool bViaReplication, optional V
             if(KFProj != none)
             {
                 ImpactFX = KFProj.default.ImpactEffects;
+                KFProj.static.PlayAddedImpactEffect(HitLocation, HitNormal);
             }
             KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(HitLocation, self,, ImpactFX);
         }
@@ -1617,7 +1649,7 @@ function bool DoJump(bool bUpdating)
 {
     if(super(Pawn).DoJump(bUpdating) && !IsDoingSpecialMove())
     {
-        if((MyKFWeapon != none) && MyKFWeapon.bUsingSights)
+        if(((MyKFWeapon != none) && MyKFWeapon.bUsingSights) && !MyKFWeapon.bKeepIronSightsOnJump)
         {
             MyKFWeapon.PerformZoom(false);
         }
@@ -1954,7 +1986,9 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     local class<KFDamageType> KFDT;
     local KFGameInfo KFGI;
     local KFPlayerController KFPC;
+    local KFPawn_Monster PawnMonster;
     local bool bAllowHeadshot;
+    local KFPowerUp KFPowerUp;
 
     bAllowHeadshot = CanCountHeadshots();
     OldHealth = Health;
@@ -1977,6 +2011,15 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
             }
         }
     }
+    KFPC = KFPlayerController(InstigatedBy);
+    if(KFPC != none)
+    {
+        KFPowerUp = KFPC.GetPowerUp();
+        if((KFPowerUp != none) && KFPowerUp.default.SecondaryDamageType != DamageType)
+        {
+            KFPowerUp.ApplySecondaryDamage(self, Damage, InstigatedBy);
+        }
+    }
     if(((bAllowHeadshot && HitFxInfo.HitBoneIndex == 0) && OldHealth > 0) && WorldInfo.Game != none)
     {
         KFPC = KFPlayerController(InstigatedBy);
@@ -1993,6 +2036,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
         if(bPlayedDeath)
         {
             KFGameInfo(WorldInfo.Game).NotifyHeadshotKill(InstigatedBy, self);
+            PawnMonster = KFPawn_Monster(self);
+            if(((PawnMonster != none) && KFPC != none) && KFGI != none)
+            {
+                KFPC.AddZedHeadshotKill(PawnMonster.Class, KFGI.GetModifiedGameDifficulty(), DamageType);
+            }
         }
     }
 }
@@ -2001,6 +2049,7 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
 {
     local int HitZoneIdx;
     local KFPawn_Monster InstigatorMonster;
+    local class<KFDamageType> KFDT;
 
     if(bLogTakeDamage)
     {
@@ -2030,6 +2079,11 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
         InDamage *= HitZones[HitZoneIdx].DmgScale;
     }
     InDamage *= VolumeDamageScale;
+    KFDT = class<KFDamageType>(DamageType);
+    if(((InDamage >= Health) && KFDT != none) && KFDT.default.bNonLethalDamage)
+    {
+        InDamage = Health - 1;
+    }
     if(bLogTakeDamage)
     {
         LogInternal(((((((((string(self) @ string(GetFuncName())) @ " After KFPawn adjustment Damage=") $ string(InDamage)) @ "Momentum=") $ string(Momentum)) @ "Zone=") $ string(HitInfo.BoneName)) @ "DamageType=") $ string(DamageType));
@@ -2485,9 +2539,11 @@ simulated function TerminateEffectsOnDeath()
         WeaponAttachment.Destroy();
     }
     SetWeaponAmbientSound(none);
+    SetSecondaryWeaponAmbientSound(none);
     SetPawnAmbientSound(none);
     WeaponAmbientEchoHandler.StopAllEchoes(bPendingDelete);
     DialogAkComponent.StopEvents();
+    SetPowerUpAmbientSound(none, none, none, none);
     AfflictionHandler.ShutDown();
     if(SoundGroupArch.OnDeathStopEvent != none)
     {
@@ -3338,6 +3394,126 @@ simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEve
     }
 }
 
+simulated function SetSecondaryWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEvent FirstPersonAmbientSound)
+{
+    if(NewAmbientSound == none)
+    {
+        SecondaryWeaponAkComponent.StopEvents();
+        SecondaryWeaponAmbientSound = none;        
+    }
+    else
+    {
+        if((!bPlayedDeath && !bPendingDelete) && !bDeleteMe)
+        {
+            SecondaryWeaponAmbientSound = NewAmbientSound;
+            SecondaryWeaponAkComponent.StopEvents();
+            if((FirstPersonAmbientSound != none) && IsFirstPerson())
+            {
+                SecondaryWeaponAkComponent.OcclusionUpdateInterval = 0;
+                SecondaryWeaponAkComponent.PlayEvent(FirstPersonAmbientSound);                
+            }
+            else
+            {
+                if(NewAmbientSound != none)
+                {
+                    SecondaryWeaponAkComponent.OcclusionUpdateInterval = 0.2;
+                    SecondaryWeaponAkComponent.PlayEvent(NewAmbientSound, false);
+                }
+            }
+        }
+    }
+}
+
+simulated function SetPowerUpAmbientSound(AkEvent NewAmbientSound, optional AkEvent FirstPersonAmbientSound, optional AkEvent StopAmbientSound, optional AkEvent FirstPersonStopAmbientSound)
+{
+    if((((NewAmbientSound == none) && FirstPersonAmbientSound == none) && StopAmbientSound == none) && FirstPersonStopAmbientSound == none)
+    {
+        PowerUpAmbientSound.FirstPersonPowerUpAmbientSound = none;
+        PowerUpAmbientSound.ThirdPersonPowerUpAmbientSound = none;
+        PowerUpAmbientSound.FirstPersonStopPowerUpAmbientSound = none;
+        PowerUpAmbientSound.ThirdPersonStopPowerUpAmbientSound = none;
+        ++ PowerUpAmbientSound.Count;
+        PowerUpAkComponent.StopEvents();        
+    }
+    else
+    {
+        if((!bPlayedDeath && !bPendingDelete) && !bDeleteMe)
+        {
+            PowerUpAmbientSound.FirstPersonPowerUpAmbientSound = FirstPersonAmbientSound;
+            PowerUpAmbientSound.ThirdPersonPowerUpAmbientSound = NewAmbientSound;
+            PowerUpAmbientSound.FirstPersonStopPowerUpAmbientSound = StopAmbientSound;
+            PowerUpAmbientSound.ThirdPersonStopPowerUpAmbientSound = FirstPersonStopAmbientSound;
+            ++ PowerUpAmbientSound.Count;
+            if((FirstPersonAmbientSound != none) && IsFirstPerson())
+            {
+                PowerUpAkComponent.StopEvents();
+                PowerUpAkComponent.OcclusionUpdateInterval = 0;
+                PowerUpAkComponent.PlayEvent(FirstPersonAmbientSound);                
+            }
+            else
+            {
+                if(NewAmbientSound != none)
+                {
+                    PowerUpAkComponent.StopEvents();
+                    PowerUpAkComponent.OcclusionUpdateInterval = 0.2;
+                    PowerUpAkComponent.PlayEvent(NewAmbientSound, false);                    
+                }
+                else
+                {
+                    if(FirstPersonStopAmbientSound != none)
+                    {
+                        PowerUpAkComponent.PlayEvent(FirstPersonStopAmbientSound, IsFirstPerson());
+                    }
+                    if(StopAmbientSound != none)
+                    {
+                        PowerUpAkComponent.PlayEvent(StopAmbientSound, IsFirstPerson());
+                    }
+                }
+            }
+        }
+    }
+}
+
+simulated function SetReplicatedPowerUpAmbientSound(PowerUpAmbientSoundInfo PowerUpReplicatedAmbientSound)
+{
+    if((((PowerUpReplicatedAmbientSound.FirstPersonPowerUpAmbientSound == none) && PowerUpReplicatedAmbientSound.ThirdPersonPowerUpAmbientSound == none) && PowerUpReplicatedAmbientSound.FirstPersonStopPowerUpAmbientSound == none) && PowerUpReplicatedAmbientSound.ThirdPersonStopPowerUpAmbientSound == none)
+    {
+        PowerUpAkComponent.StopEvents();        
+    }
+    else
+    {
+        if((!bPlayedDeath && !bPendingDelete) && !bDeleteMe)
+        {
+            if((PowerUpReplicatedAmbientSound.FirstPersonPowerUpAmbientSound != none) && IsFirstPerson())
+            {
+                PowerUpAkComponent.StopEvents();
+                PowerUpAkComponent.OcclusionUpdateInterval = 0;
+                PowerUpAkComponent.PlayEvent(PowerUpReplicatedAmbientSound.FirstPersonPowerUpAmbientSound);                
+            }
+            else
+            {
+                if(PowerUpReplicatedAmbientSound.ThirdPersonPowerUpAmbientSound != none)
+                {
+                    PowerUpAkComponent.StopEvents();
+                    PowerUpAkComponent.OcclusionUpdateInterval = 0.2;
+                    PowerUpAkComponent.PlayEvent(PowerUpReplicatedAmbientSound.ThirdPersonPowerUpAmbientSound, false);                    
+                }
+                else
+                {
+                    if(PowerUpReplicatedAmbientSound.FirstPersonStopPowerUpAmbientSound != none)
+                    {
+                        PowerUpAkComponent.PlayEvent(PowerUpReplicatedAmbientSound.FirstPersonStopPowerUpAmbientSound, IsFirstPerson());
+                    }
+                    if(PowerUpReplicatedAmbientSound.ThirdPersonStopPowerUpAmbientSound != none)
+                    {
+                        PowerUpAkComponent.PlayEvent(PowerUpReplicatedAmbientSound.ThirdPersonStopPowerUpAmbientSound, IsFirstPerson());
+                    }
+                }
+            }
+        }
+    }
+}
+
 function SetWeaponComponentRTPCValue(string InRTPC, float targetvalue)
 {
     WeaponAkComponent.SetRTPCValue(InRTPC, targetvalue);
@@ -3346,6 +3522,21 @@ function SetWeaponComponentRTPCValue(string InRTPC, float targetvalue)
 simulated function PlayWeaponSoundEvent(AkEvent NewSoundEvent)
 {
     WeaponAkComponent.PlayEvent(NewSoundEvent, true, true);
+}
+
+simulated function SetSecondaryWeaponComponentRTPCValue(string InRTPC, float targetvalue)
+{
+    SecondaryWeaponAkComponent.SetRTPCValue(InRTPC, targetvalue);
+}
+
+simulated function PlaySecondaryWeaponSoundEvent(AkEvent NewSoundEvent)
+{
+    SecondaryWeaponAkComponent.PlayEvent(NewSoundEvent, true, true);
+}
+
+simulated function PlayPowerUpSoundEvent(AkEvent NewSoundEvent)
+{
+    PowerUpAkComponent.PlayEvent(NewSoundEvent, true, true);
 }
 
 simulated event Tick(float DeltaTime)
@@ -3984,6 +4175,13 @@ defaultproperties
     // Reference: AkComponent'Default__KFPawn.AmbientAkSoundComponent'
     WeaponAkComponent=AmbientAkSoundComponent
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn.WeaponAmbientEchoHandler'
+    begin object name=SecondaryWeaponAkSoundComponent class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+    object end
+    // Reference: AkComponent'Default__KFPawn.SecondaryWeaponAkSoundComponent'
+    SecondaryWeaponAkComponent=SecondaryWeaponAkSoundComponent
     begin object name=FootstepAkSoundComponent class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -3997,6 +4195,13 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFPawn.DialogAkSoundComponent'
     DialogAkComponent=DialogAkSoundComponent
+    begin object name=PowerUpAkSoundComponent class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+    object end
+    // Reference: AkComponent'Default__KFPawn.PowerUpAkSoundComponent'
+    PowerUpAkComponent=PowerUpAkSoundComponent
     DamageRecoveryTimeHeavy=1
     DamageRecoveryTimeMedium=1
     CurrDialogEventID=-1
@@ -4128,6 +4333,20 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFPawn.DialogAkSoundComponent'
     Components(7)=DialogAkSoundComponent
+    begin object name=PowerUpAkSoundComponent class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+    object end
+    // Reference: AkComponent'Default__KFPawn.PowerUpAkSoundComponent'
+    Components(8)=PowerUpAkSoundComponent
+    begin object name=SecondaryWeaponAkSoundComponent class=AkComponent
+        BoneName=Dummy
+        bStopWhenOwnerDestroyed=true
+        bForceOcclusionUpdateInterval=true
+    object end
+    // Reference: AkComponent'Default__KFPawn.SecondaryWeaponAkSoundComponent'
+    Components(9)=SecondaryWeaponAkSoundComponent
     bIgnoreRigidBodyPawns=true
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=86

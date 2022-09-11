@@ -1515,6 +1515,7 @@ struct native ItemProperties
 	var int  PerkId; //index bassed off our array
 	var int  AltPerkId; //index bassed off our array
 	var int  WeaponType;
+	var int  FilterIdIndex;
 
 	structcpptext
 	{

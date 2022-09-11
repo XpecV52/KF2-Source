@@ -25,11 +25,11 @@ simulated protected function SetExplosionActorClass()
 defaultproperties
 {
 	Physics=PHYS_Falling
-	Speed=7500
-	MaxSpeed=7500
-	TerminalVelocity=7500
+	Speed= 9000//7500
+	MaxSpeed= 9000//7500
+	TerminalVelocity= 9000//7500
 	TossZ=150
-	GravityScale=0.25
+	GravityScale=0.15 //0.25
     MomentumTransfer=50000.0
     ArmDistSquared=0 // set to 0 to keep from dudding
 	LifeSpan = +10.0f
@@ -67,6 +67,9 @@ defaultproperties
 		DamageFalloffExponent=0
 		DamageDelay=0.f
 
+		//Impulse applied to Zeds
+		MomentumTransferScale=1
+		
 		// Damage Effects
 		MyDamageType=class'KFDT_Explosive_HRGWinterbite'
 		KnockDownStrength=0

@@ -362,7 +362,6 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=8
-    MagazineCapacity=30
     MeshFOV=80
     MeshIronSightFOV=65
     PlayerIronSightFOV=50
@@ -370,6 +369,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_HuskCannon_TEX.UI_WeaponSelect_HuskCannon'
+    MagazineCapacity=30
     SpareAmmoCapacity=150
     InitialSpareMags=1
     AmmoPickupScale=0.75

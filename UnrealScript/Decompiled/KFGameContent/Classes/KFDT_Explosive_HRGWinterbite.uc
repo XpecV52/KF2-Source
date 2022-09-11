@@ -14,7 +14,7 @@ defaultproperties
     bNoInstigatorDamage=true
     bShouldSpawnPersistentBlood=true
     StumblePower=25
-    FreezePower=25
+    FreezePower=20
     ModifierPerkList=/* Array type was not detected. */
     GibImpulseScale=0.15
     KDeathVel=300

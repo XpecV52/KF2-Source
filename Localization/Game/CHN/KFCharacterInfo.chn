@@ -43,6 +43,7 @@ BodyMesh9="赛博朋克"
 BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
+BodyMesh13="死神服装"
 HeadMesh0="防毒面具"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -148,6 +149,14 @@ BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
 
+[CHR_MrsFoster_archetype.BodyMesh13]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="白色"
 HeadSkin1="绿色"
@@ -232,6 +241,7 @@ BodyMesh9="赛博朋克"
 BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
+BodyMesh13="死神服装"
 HeadMesh0="胡子的力量！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -343,6 +353,14 @@ BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
 
+[CHR_Jagerhorn_archetype.BodyMesh13]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="瑞典金发"
 HeadSkin1="黑唱片"
@@ -442,6 +460,7 @@ BodyMesh9="赛博朋克"
 BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗"
+BodyMesh13="死神服装"
 HeadMesh0="斯库利面具"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -552,6 +571,14 @@ BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
 
+[CHR_DJSkully_archetype.BodyMesh13]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="乌黑"
 HeadSkin1="超红"
@@ -598,6 +625,7 @@ BodyMesh10="赛博朋克"
 BodyMesh11="巫师猎人"
 BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
+BodyMesh14="死神服装"
 HeadMesh0="头发"
 
 [chr_briar_archetype.BodyMesh0]
@@ -714,6 +742,14 @@ BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
 
+[CHR_briar_archetype.BodyMesh14]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
 HeadSkin1="亮点"
@@ -753,7 +789,8 @@ BodyMesh9="蒸汽朋克"
 BodyMesh10="赛博朋克"
 BodyMesh11="巫师猎人"
 BodyMesh12="圣诞衣"
-BodyMesh13="海盗服装"
+BodyMesh13="太空海盗服装"
+BodyMesh14="死神服装"
 HeadMesh0="防毒面具"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -874,6 +911,14 @@ BodySkin2="绯红色"
 BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
+
+[CHR_MrFoster_archetype.BodyMesh14]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
@@ -1035,6 +1080,7 @@ BodyMesh9="赛博朋克"
 BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
+BodyMesh13="死神服装"
 HeadMesh0="面部"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1143,7 +1189,15 @@ BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
 
-[[CHR_Coleman_archetype.HeadMesh0]
+[CHR_Coleman_archetype.BodyMesh13]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
+
+[CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="多诺万"
 HeadSkin1="梭织"
 HeadSkin2="眩光"
@@ -1182,6 +1236,7 @@ BodyMesh9="赛博朋克"
 BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
+BodyMesh13="死神服装"
 HeadMesh0="头发"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1291,6 +1346,14 @@ BodySkin2="绯红色"
 BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
+
+[CHR_Alberts_archetype.BodyMesh13]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰色"
@@ -2191,6 +2254,7 @@ BodyMesh9="赛博朋克"
 BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
+BodyMesh13="死神服装"
 HeadMesh0="面部"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2310,6 +2374,14 @@ BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
 
+[CHR_Masterson_archetype.BodyMesh13]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
+
 [CHR_Tanaka_Archetype]
 CharacterName="田中勇人"
 Description="田中是一个矛盾的个体，因为他有着严重的自杀倾向。他在日本冲绳县出生，在美国军队中长大。和家人搬到日本大陆后，习惯美国文化的田中无法融入社会，于是参加了戏剧班。大学毕业后，他搬到了洛杉矶，在三流电影中演一些小角色，后来搬到欧洲尝试寻找更加“正式”的工作。他总是在法国匪徒电影中演坏人和流氓。现在，在灾难中，他似乎把实际和所扮演的角色搞混了。他觉得自己是在好莱坞电影中扮演一个有着武士道精神的黑帮、恶棍。"
@@ -2327,6 +2399,7 @@ BodyMesh10="赛博朋克"
 BodyMesh11="巫师猎人"
 BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
+BodyMesh14="死神服装"
 HeadMesh0="头发"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2453,6 +2526,14 @@ BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
 
+[CHR_Tanaka_archetype.BodyMesh14]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="头盔"
 AttachmentSkin0="升起的太阳"
@@ -2496,6 +2577,7 @@ BodyMesh9="赛博朋克"
 BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
+BodyMesh13="死神服装"
 HeadMesh0="莫霍克族"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2615,6 +2697,14 @@ BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
 
+[CHR_Ana_archetype.BodyMesh13]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 眼镜"
 AttachmentSkin0="3D 浮雕装饰"
@@ -2644,6 +2734,7 @@ BodyMesh10="赛博朋克"
 BodyMesh11="巫师猎人"
 BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
+BodyMesh14="死神服装"
 HeadMesh0="头发"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2760,6 +2851,14 @@ BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
 
+[CHR_mark_archetype.BodyMesh14]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="如假包换"
 HeadSkin1="血腥 5 点钟"
@@ -2786,6 +2885,7 @@ BodyMesh9="赛博朋克"
 BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
+BodyMesh13="死神服装"
 HeadMesh0="面部"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2897,6 +2997,14 @@ BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
 
+[CHR_alan_archetype.BodyMesh13]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="如假包换"
 HeadSkin1="姜！真的吗？"
@@ -2930,6 +3038,7 @@ BodyMesh9="赛博朋克"
 BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
+BodyMesh13="死神服装"
 HeadMesh0="头发"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3037,6 +3146,14 @@ BodySkin2="绯红色"
 BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
+
+[CHR_strasser_archetype.BodyMesh13]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑钢"
@@ -3213,6 +3330,7 @@ BodyMesh9="赛博朋克"
 BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
+BodyMesh13="死神服装"
 HeadMesh0="默认头部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3324,6 +3442,14 @@ BodySkin2="绯红色"
 BodySkin3="青柠色"
 BodySkin4="薰衣草色"
 BodySkin5="红橘色"
+
+[CHR_rockabilly_archetype.BodyMesh13]
+BodySkin0="死亡"
+BodySkin1="征服"
+BodySkin2="饥荒"
+BodySkin3="瘟疫"
+BodySkin4="战争"
+BodySkin5="混乱"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑色"
@@ -4478,7 +4604,7 @@ AttachmentSkin0="经典"
 AttachmentSkin1="宝物"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
-Attachment="圣诞节泰迪熊背包"
+Attachment="泰迪熊背包"
 AttachmentSkin0="蓝色"
 AttachmentSkin1="棕色"
 AttachmentSkin2="黑暗"
@@ -4854,7 +4980,7 @@ AttachmentSkin0="仙子"
 AttachmentSkin1="宝物"
 
 [Cosmetic_Halloween_Cauldron_ARCH]
-Attachment="万圣节坩埚背包"
+Attachment="坩埚背包"
 AttachmentSkin0="蜜饯"
 AttachmentSkin1="宝物"
 
@@ -5873,7 +5999,7 @@ AttachmentSkin2="霓虹灯 RGB"
 AttachmentSkin3="彩虹 RGB"
 
 [Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
-Attachment="太空海盗羽毛礼帽"
+Attachment="羽毛大礼帽"
 AttachmentSkin0="海军色"
 AttachmentSkin1="黑色"
 AttachmentSkin2="绿色"
@@ -5987,3 +6113,195 @@ AttachmentSkin2="绯红色"
 AttachmentSkin3="青柠色"
 AttachmentSkin4="薰衣草色"
 AttachmentSkin5="红橘色"
+
+[Cosmetic_Apocalypse_Helmet_ARCH]
+Attachment="天启头盔"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="海军色"
+AttachmentSkin2="红色"
+AttachmentSkin3="夜间"
+AttachmentSkin4="森林"
+AttachmentSkin5="雪花"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Apocalypse_Goggles_ARCH]
+Attachment="天启目镜"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="海军色"
+AttachmentSkin2="红色"
+AttachmentSkin3="夜间"
+AttachmentSkin4="森林"
+AttachmentSkin5="雪花"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Apocalypse_Mask_ARCH]
+Attachment="天启面具"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="海军色"
+AttachmentSkin2="红色"
+AttachmentSkin3="夜间"
+AttachmentSkin4="森林"
+AttachmentSkin5="雪花"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Apocalypse_Hood_ARCH]
+Attachment="天启兜帽"
+AttachmentSkin0="沙漠"
+AttachmentSkin1="海军色"
+AttachmentSkin2="红色"
+AttachmentSkin3="夜间"
+AttachmentSkin4="森林"
+AttachmentSkin5="雪花"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Apocalypse_GasMask_ARCH]
+Attachment="天启防毒面具"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="海军色"
+AttachmentSkin2="红色"
+AttachmentSkin3="夜间"
+AttachmentSkin4="森林"
+AttachmentSkin5="雪花"
+AttachmentSkin6="宝物"
+
+[Cosmetic_WW1Pilot_Helmet_ARCH]
+Attachment="一战飞行员头盔"
+AttachmentSkin0="棕色"
+AttachmentSkin1="橄榄色"
+AttachmentSkin2="海军色"
+AttachmentSkin3="红色"
+AttachmentSkin4="夜间"
+AttachmentSkin5="森林"
+AttachmentSkin6="雪花"
+AttachmentSkin7="宝物"
+
+[Cosmetic_WW1Pilot_HelmetGoggles_ARCH]
+Attachment="一战飞行员头盔与目镜"
+AttachmentSkin0="棕色"
+AttachmentSkin1="橄榄色"
+AttachmentSkin2="海军色"
+AttachmentSkin3="红色"
+AttachmentSkin4="夜间"
+AttachmentSkin5="森林"
+AttachmentSkin6="雪花"
+AttachmentSkin7="宝物"
+
+[Cosmetic_WW1Pilot_Mask_ARCH]
+Attachment="一战飞行员呼吸器"
+AttachmentSkin0="灰色"
+AttachmentSkin1="橄榄色"
+AttachmentSkin2="海军色"
+AttachmentSkin3="红色"
+AttachmentSkin4="夜间"
+AttachmentSkin5="森林"
+AttachmentSkin6="雪花"
+AttachmentSkin7="宝物"
+
+[Cosmetic_WW1Pilot_Parachute_ARCH]
+Attachment="一战飞行员降落伞包"
+AttachmentSkin0="灰色"
+AttachmentSkin1="橄榄色"
+AttachmentSkin2="海军色"
+AttachmentSkin3="红色"
+AttachmentSkin4="夜间"
+AttachmentSkin5="森林"
+AttachmentSkin6="雪花"
+AttachmentSkin7="宝物"
+
+[Cosmetic_Halloween_PumpkinMask_ARCH]
+Attachment="南瓜面具"
+AttachmentSkin0="橙色"
+AttachmentSkin1="青柠色"
+AttachmentSkin2="紫色"
+AttachmentSkin3="棕色"
+AttachmentSkin4="宝物"
+
+[Cosmetic_Halloween_StrawmanMask_ARCH]
+Attachment="稻草人面具"
+AttachmentSkin0="黄褐色"
+AttachmentSkin1="蓝色"
+AttachmentSkin2="白色"
+AttachmentSkin3="小丑"
+AttachmentSkin4="宝物"
+
+[Cosmetic_Halloween_ClownMouth_ARCH]
+Attachment="小丑嘴"
+AttachmentSkin0="黑色"
+AttachmentSkin1="白色"
+AttachmentSkin2="青柠色"
+AttachmentSkin3="口套"
+AttachmentSkin4="宝物"
+
+[Cosmetic_Halloween_FingerTophat_ARCH]
+Attachment="手指礼帽"
+AttachmentSkin0="南瓜"
+AttachmentSkin1="派对"
+AttachmentSkin2="指挥"
+AttachmentSkin3="蓝色"
+AttachmentSkin4="宝物"
+
+[Cosmetic_Halloween_SorceressHat_ARCH]
+Attachment="女巫帽"
+AttachmentSkin0="紫色"
+AttachmentSkin1="白色"
+AttachmentSkin2="条纹"
+AttachmentSkin3="蓝色"
+AttachmentSkin4="宝物"
+
+[Cosmetic_Halloween_BoarHead_ARCH]
+Attachment="野猪头"
+AttachmentSkin0="白色"
+AttachmentSkin1="粉红"
+AttachmentSkin2="蓝色"
+AttachmentSkin3="斑点"
+AttachmentSkin4="宝物"
+
+[Cosmetic_Halloween_VoodooBackpack_ARCH]
+Attachment="巫毒背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_Halloween_VoodooBackpack_Alberts_ARCH]
+Attachment="巫毒背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_Halloween_VoodooBackpack_Coleman_ARCH]
+Attachment="巫毒背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_Halloween_VoodooBackpack_JagerHorn_ARCH]
+Attachment="巫毒背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_Halloween_VoodooBackpack_Knight_ARCH]
+Attachment="巫毒背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_Halloween_VoodooBackpack_MrFoster_ARCH]
+Attachment="巫毒背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_Halloween_VoodooBackpack_MrsFoster_ARCH]
+Attachment="巫毒背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_Halloween_VoodooBackpack_RockabillyGirl_ARCH]
+Attachment="巫毒背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_Reaper_MaleSkullMask_ARCH]
+Attachment="死神骷髅面具"
+AttachmentSkin0="死亡"
+AttachmentSkin1="征服"
+AttachmentSkin2="饥荒"
+AttachmentSkin3="瘟疫"
+AttachmentSkin4="战争"
+AttachmentSkin5="混乱"
+
+[Cosmetic_Reaper_FemaleSkullMask_ARCH]
+Attachment="死神骷髅面具"
+AttachmentSkin0="死亡"
+AttachmentSkin1="征服"
+AttachmentSkin2="饥荒"
+AttachmentSkin3="瘟疫"
+AttachmentSkin4="战争"
+AttachmentSkin5="混乱"

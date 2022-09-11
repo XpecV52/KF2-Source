@@ -48,6 +48,24 @@ simulated function AltFireMode()
     StartFire(1);
 }
 
+simulated function BeginFire(byte FireModeNum)
+{
+    local bool bStoredAutoReload;
+
+    if((FireModeNum == 2) && !CanReload())
+    {
+        bStoredAutoReload = bCanceledAltAutoReload;
+        bCanceledAltAutoReload = false;
+        if(CanAltAutoReload())
+        {
+            TryToAltReload();
+            return;
+        }
+        bCanceledAltAutoReload = bStoredAutoReload;
+    }
+    super(KFWeapon).BeginFire(FireModeNum);
+}
+
 function InitializeAmmo()
 {
     super(KFWeapon).InitializeAmmo();
@@ -192,7 +210,7 @@ reliable server function ServerSendToAltReload()
 
 reliable server function ServerSetAltAmmoCount(byte Amount)
 {
-    AmmoCount[1] = byte(Min(Amount, MagazineCapacity[1]));
+    AmmoCount[1] = Min(Amount, MagazineCapacity[1]);
 }
 
 simulated function bool CanOverrideMagReload(byte FireModeNum)
@@ -243,12 +261,12 @@ simulated function UpdateOpticsUI(optional bool bForceUpdate)
     {
         if((AmmoCount[0] != StoredPrimaryAmmo) || bForceUpdate)
         {
-            StoredPrimaryAmmo = AmmoCount[0];
+            StoredPrimaryAmmo = byte(AmmoCount[0]);
             OpticsUI.SetPrimaryAmmo(StoredPrimaryAmmo);
         }
         if((AmmoCount[1] != StoredSecondaryAmmo) || bForceUpdate)
         {
-            StoredSecondaryAmmo = AmmoCount[1];
+            StoredSecondaryAmmo = byte(AmmoCount[1]);
             OpticsUI.SetHealerCharge(byte(StoredSecondaryAmmo * 100));
         }
         if(OpticsUI.MinPercentPerShot != float(AmmoCost[1]))
@@ -349,7 +367,7 @@ simulated state AltReloading extends Reloading
         global.PerformReload(1);
         if(Instigator.IsLocallyControlled() && Role < ROLE_Authority)
         {
-            ServerSetAltAmmoCount(AmmoCount[1]);
+            ServerSetAltAmmoCount(byte(AmmoCount[1]));
         }
         bCanceledAltAutoReload = false;
     }
@@ -397,8 +415,6 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=2
     InventorySize=8
-    MagazineCapacity[0]=30
-    MagazineCapacity[1]=1
     MeshFOV=65
     MeshIronSightFOV=45
     PlayerIronSightFOV=70
@@ -407,6 +423,8 @@ defaultproperties
     GroupPriority=125
     WeaponSelectTexture=Texture2D'WEP_UI_Medic_GrenadeLauncher_TEX.UI_WeaponSelect_MedicGrenadeLauncher'
     SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
+    MagazineCapacity[0]=30
+    MagazineCapacity[1]=1
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity[0]=210
     SpareAmmoCapacity[1]=9

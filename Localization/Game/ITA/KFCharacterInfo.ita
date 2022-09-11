@@ -43,6 +43,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Cacciatore di streghe"
 BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
+BodyMesh13="Vestito Mietitore"
 HeadMesh0="Maschera antigas"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -142,11 +143,19 @@ BodySkin5="Gialla"
 
 [CHR_MrsFoster_archetype.BodyMesh12]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_MrsFoster_archetype.BodyMesh13]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Bianca"
@@ -232,6 +241,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Cacciatore di streghe"
 BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
+BodyMesh13="Vestito Mietitore"
 HeadMesh0="Potenza della barba!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -337,11 +347,19 @@ BodySkin5="Gialla"
 
 [CHR_Jagerhorn_archetype.BodyMesh12]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_Jagerhorn_archetype.BodyMesh13]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Bionda Svedese"
@@ -441,7 +459,8 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Cacciatore di streghe"
 BodyMesh11="Vestito di Babbo Natale"
-BodyMesh12="Space Pirate"
+BodyMesh12="Pirata spaziale"
+BodyMesh13="Vestito Mietitore"
 HeadMesh0="Maschera di Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -546,11 +565,19 @@ BodySkin5="Gialla"
 
 [CHR_DJSkully_archetype.BodyMesh12]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_DJSkully_archetype.BodyMesh13]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Nero totale"
@@ -598,6 +625,7 @@ BodyMesh10="Cyberpunk"
 BodyMesh11="Cacciatore di streghe"
 BodyMesh12="Vestito di Babbo Natale"
 BodyMesh13="Vestito Pirata spaziale"
+BodyMesh14="Vestito Mietitore"
 HeadMesh0="Capelli"
 
 [chr_briar_archetype.BodyMesh0]
@@ -708,11 +736,19 @@ BodySkin5="Gialla"
 
 [CHR_briar_archetype.BodyMesh13]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_briar_archetype.BodyMesh14]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Originale"
@@ -753,7 +789,8 @@ BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Cacciatore di streghe"
 BodyMesh12="Vestito di Babbo Natale"
-BodyMesh13="Vestito Pirata"
+BodyMesh13="Vestito Pirata spaziale"
+BodyMesh14="Vestito Mietitore"
 HeadMesh0="Maschera antigas"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -869,11 +906,19 @@ BodySkin5="Gialla"
 
 [CHR_MrFoster_archetype.BodyMesh13]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_MrFoster_archetype.BodyMesh14]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Vero bianco"
@@ -1035,6 +1080,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Cacciatore di streghe"
 BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
+BodyMesh13="Vestito Mietitore"
 HeadMesh0="Viso"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1137,11 +1183,19 @@ BodySkin5="Gialla"
 
 [CHR_Coleman_archetype.BodyMesh12]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_Coleman_archetype.BodyMesh13]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
@@ -1182,6 +1236,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Cacciatore di streghe"
 BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
+BodyMesh13="Vestito Mietitore"
 HeadMesh0="Capelli"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1286,11 +1341,19 @@ BodySkin5="Gialla"
 
 [CHR_Alberts_archetype.BodyMesh12]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_Alberts_archetype.BodyMesh13]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grigio"
@@ -2191,6 +2254,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Cacciatore di streghe"
 BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
+BodyMesh13="Vestito Mietitore"
 HeadMesh0="Viso"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2304,11 +2368,19 @@ BodySkin5="Gialla"
 
 [CHR_Masterson_archetype.BodyMesh12]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_Masterson_archetype.BodyMesh13]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
@@ -2327,6 +2399,7 @@ BodyMesh10="Cyberpunk"
 BodyMesh11="Cacciatore di streghe"
 BodyMesh12="Vestito di Babbo Natale"
 BodyMesh13="Vestito Pirata spaziale"
+BodyMesh14="Vestito Mietitore"
 HeadMesh0="Capelli"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2447,11 +2520,19 @@ BodySkin5="Gialla"
 
 [CHR_Tanaka_archetype.BodyMesh13]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_Tanaka_archetype.BodyMesh14]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Elmetto"
@@ -2496,6 +2577,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Cacciatore di streghe"
 BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
+BodyMesh13="Vestito Mietitore"
 HeadMesh0="Moicano"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2609,11 +2691,19 @@ BodySkin5="Gialla"
 
 [CHR_Ana_archetype.BodyMesh12]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_Ana_archetype.BodyMesh13]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Occhiali 3D"
@@ -2644,6 +2734,7 @@ BodyMesh10="Cyberpunk"
 BodyMesh11="Cacciatore di streghe"
 BodyMesh12="Vestito di Babbo Natale"
 BodyMesh13="Vestito Pirata spaziale"
+BodyMesh14="Vestito Mietitore"
 HeadMesh0="Capelli"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2754,11 +2845,19 @@ BodySkin5="Gialla"
 
 [CHR_mark_archetype.BodyMesh13]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_mark_archetype.BodyMesh14]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Vero duro"
@@ -2786,6 +2885,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Cacciatore di streghe"
 BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
+BodyMesh13="Vestito Mietitore"
 HeadMesh0="Viso"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2891,11 +2991,19 @@ BodySkin5="Gialla"
 
 [CHR_alan_archetype.BodyMesh12]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_alan_archetype.BodyMesh13]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Vero duro"
@@ -2930,6 +3038,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Cacciatore di streghe"
 BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
+BodyMesh13="Vestito Mietitore"
 HeadMesh0="Capelli"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3032,11 +3141,19 @@ BodySkin5="Gialla"
 
 [CHR_strasser_archetype.BodyMesh12]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_strasser_archetype.BodyMesh13]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acciaio scuro"
@@ -3213,6 +3330,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Cacciatore di streghe"
 BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
+BodyMesh13="Vestito Mietitore"
 HeadMesh0="Testa predefinita"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3319,11 +3437,19 @@ BodySkin5="Gialla"
 
 [CHR_rockabilly_archetype.BodyMesh12]
 BodySkin0="Oliva"
-BodySkin1="Blu marino"
+BodySkin1="Blu marina"
 BodySkin2="Cremisi"
-BodySkin3="Lime"
+BodySkin3="Verdognolo"
 BodySkin4="Lavanda"
 BodySkin5="Clementina"
+
+[CHR_rockabilly_archetype.BodyMesh13]
+BodySkin0="Morte"
+BodySkin1="Conquista"
+BodySkin2="Carestia"
+BodySkin3="Pestilenza"
+BodySkin4="Guerra"
+BodySkin5="Anarchia"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Nera"
@@ -4478,7 +4604,7 @@ AttachmentSkin0="Classico"
 AttachmentSkin1="Prezioso"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
-Attachment="Zaino Orsetto di Natale"
+Attachment="Zaino Orsetto"
 AttachmentSkin0="Blu"
 AttachmentSkin1="Marrone"
 AttachmentSkin2="Scuro"
@@ -4854,7 +4980,7 @@ AttachmentSkin0="Celestiale"
 AttachmentSkin1="Prezioso"
 
 [Cosmetic_Halloween_Cauldron_ARCH]
-Attachment="Zaino Calderone di Halloween"
+Attachment="Zaino Calderone"
 AttachmentSkin0="Dolcetti"
 AttachmentSkin1="Prezioso"
 
@@ -5873,7 +5999,7 @@ AttachmentSkin2="Neon RGB"
 AttachmentSkin3="Arcobaleno RGB"
 
 [Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
-Attachment="Cilindro con piuma Pirata spaziale"
+Attachment="Cappello a cilindro piumato"
 AttachmentSkin0="Blu marina"
 AttachmentSkin1="Nero"
 AttachmentSkin2="Verde"
@@ -5930,11 +6056,11 @@ AttachmentSkin0="Scimmia spaziale"
 
 [Cosmetic_SpacePirate_SpaceMonkeyBackpack_Coleman_ARCH]
 Attachment="Zaino Pirata spaziale"
-AttachmentSkin0="Scimmia spaziale
+AttachmentSkin0="Scimmia spaziale"
 
 [Cosmetic_SpacePirate_SpaceMonkeyBackpack_JagerHorn_ARCH]
 Attachment="Zaino Pirata spaziale"
-AttachmentSkin0="Scimmia spaziale
+AttachmentSkin0="Scimmia spaziale"
 
 [Cosmetic_SpacePirate_SpaceMonkeyBackpack_Knight_ARCH]
 Attachment="Zaino Pirata spaziale"
@@ -5942,48 +6068,240 @@ AttachmentSkin0="Scimmia spaziale"
 
 [Cosmetic_SpacePirate_SpaceMonkeyBackpack_MrFoster_ARCH]
 Attachment="Zaino Pirata spaziale"
-AttachmentSkin0="Scimmia spaziale
+AttachmentSkin0="Scimmia spaziale"
 
 [Cosmetic_SpacePirate_SpaceMonkeyBackpack_MrsFoster_ARCH]
 Attachment="Zaino Pirata spaziale"
-AttachmentSkin0="Scimmia spaziale
+AttachmentSkin0="Scimmia spaziale"
 
 [Cosmetic_SpacePirate_SpaceMonkeyBackpack_RockabillyGirl_ARCH]
 Attachment="Zaino Pirata spaziale"
-AttachmentSkin0="Scimmia spaziale
+AttachmentSkin0="Scimmia spaziale"
 
 [Cosmetic_SpacePirate_MaleCaptainHat_ARCH]
 Attachment="Cappello Moschettiere"
 AttachmentSkin0="Oliva"
-AttachmentSkin1="Blu marino"
+AttachmentSkin1="Blu marina"
 AttachmentSkin2="Cremisi"
-AttachmentSkin3="Lime"
+AttachmentSkin3="Verdognolo"
 AttachmentSkin4="Lavanda"
 AttachmentSkin5="Clementina"
 
 [Cosmetic_SpacePirate_FemaleCaptainHat_ARCH]
 Attachment="Cappello Moschettiere"
 AttachmentSkin0="Oliva"
-AttachmentSkin1="Blu marino"
+AttachmentSkin1="Blu marina"
 AttachmentSkin2="Cremisi"
-AttachmentSkin3="Lime"
+AttachmentSkin3="Verdognolo"
 AttachmentSkin4="Lavanda"
 AttachmentSkin5="Clementina"
 
 [Cosmetic_SpacePirate_MaleCaptainMask_ARCH]
 Attachment="Maschera Ossa incrociate"
 AttachmentSkin0="Oliva"
-AttachmentSkin1="Blu marino"
+AttachmentSkin1="Blu marina"
 AttachmentSkin2="Cremisi"
-AttachmentSkin3="Lime"
+AttachmentSkin3="Verdognola"
 AttachmentSkin4="Lavanda"
 AttachmentSkin5="Clementina"
 
 [Cosmetic_SpacePirate_FemaleCaptainMask_ARCH]
 Attachment="Maschera Ossa incrociate"
 AttachmentSkin0="Oliva"
-AttachmentSkin1="Blu marino"
+AttachmentSkin1="Blu marina"
 AttachmentSkin2="Cremisi"
-AttachmentSkin3="Lime"
+AttachmentSkin3="Verdognola"
 AttachmentSkin4="Lavanda"
 AttachmentSkin5="Clementina"
+
+[Cosmetic_Apocalypse_Helmet_ARCH]
+Attachment="Elmetto Apocalisse"
+AttachmentSkin0="Oliva"
+AttachmentSkin1="Blu marina"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Notte"
+AttachmentSkin4="Foresta"
+AttachmentSkin5="Neve"
+AttachmentSkin6="Prezioso"
+
+[Cosmetic_Apocalypse_Goggles_ARCH]
+Attachment="Occhiali Apocalisse"
+AttachmentSkin0="Oliva"
+AttachmentSkin1="Blu marina"
+AttachmentSkin2="Rossi"
+AttachmentSkin3="Notte"
+AttachmentSkin4="Foresta"
+AttachmentSkin5="Neve"
+AttachmentSkin6="Preziosi"
+
+[Cosmetic_Apocalypse_Mask_ARCH]
+Attachment="Maschera Apocalisse"
+AttachmentSkin0="Oliva"
+AttachmentSkin1="Blu marina"
+AttachmentSkin2="Rossa"
+AttachmentSkin3="Notte"
+AttachmentSkin4="Foresta"
+AttachmentSkin5="Neve"
+AttachmentSkin6="Preziosa"
+
+[Cosmetic_Apocalypse_Hood_ARCH]
+Attachment="Cappuccio Apocalisse"
+AttachmentSkin0="Deserto"
+AttachmentSkin1="Blu marina"
+AttachmentSkin2="Rosso"
+AttachmentSkin3="Notte"
+AttachmentSkin4="Foresta"
+AttachmentSkin5="Neve"
+AttachmentSkin6="Prezioso"
+
+[Cosmetic_Apocalypse_GasMask_ARCH]
+Attachment="Maschera antigas Apocalisse"
+AttachmentSkin0="Oliva"
+AttachmentSkin1="Blu marina"
+AttachmentSkin2="Rossa"
+AttachmentSkin3="Notte"
+AttachmentSkin4="Foresta"
+AttachmentSkin5="Neve"
+AttachmentSkin6="Preziosa"
+
+[Cosmetic_WW1Pilot_Helmet_ARCH]
+Attachment="Elmetto Pilota della Prima Guerra Mondiale"
+AttachmentSkin0="Marrone"
+AttachmentSkin1="Oliva"
+AttachmentSkin2="Blu marina"
+AttachmentSkin3="Rosso"
+AttachmentSkin4="Notte"
+AttachmentSkin5="Foresta"
+AttachmentSkin6="Neve"
+AttachmentSkin7="Prezioso"
+
+[Cosmetic_WW1Pilot_HelmetGoggles_ARCH]
+Attachment="Elmetto e occhiali Pilota della Prima Guerra Mondiale"
+AttachmentSkin0="Marroni"
+AttachmentSkin1="Oliva"
+AttachmentSkin2="Blu marina"
+AttachmentSkin3="Rossi"
+AttachmentSkin4="Notte"
+AttachmentSkin5="Foresta"
+AttachmentSkin6="Neve"
+AttachmentSkin7="Preziosi"
+
+[Cosmetic_WW1Pilot_Mask_ARCH]
+Attachment="Maschera antigas Pilota della Prima Guerra Mondiale"
+AttachmentSkin0="Grigia"
+AttachmentSkin1="Oliva"
+AttachmentSkin2="Blu marina"
+AttachmentSkin3="Rossa"
+AttachmentSkin4="Notte"
+AttachmentSkin5="Foresta"
+AttachmentSkin6="Neve"
+AttachmentSkin7="Preziosa"
+
+[Cosmetic_WW1Pilot_Parachute_ARCH]
+Attachment="Paracadute Pilota della Prima Guerra Mondiale"
+AttachmentSkin0="Grigio"
+AttachmentSkin1="Oliva"
+AttachmentSkin2="Blu marina"
+AttachmentSkin3="Rosso"
+AttachmentSkin4="Notte"
+AttachmentSkin5="Foresta"
+AttachmentSkin6="Neve"
+AttachmentSkin7="Prezioso"
+
+[Cosmetic_Halloween_PumpkinMask_ARCH]
+Attachment="Maschera Zucca"
+AttachmentSkin0="Arancione"
+AttachmentSkin1="Verdognola"
+AttachmentSkin2="Viola"
+AttachmentSkin3="Marrone"
+AttachmentSkin4="Preziosa"
+
+[Cosmetic_Halloween_StrawmanMask_ARCH]
+Attachment="Maschera Fantoccio"
+AttachmentSkin0="Marrone chiaro"
+AttachmentSkin1="Blu"
+AttachmentSkin2="Bianca"
+AttachmentSkin3="Giullare"
+AttachmentSkin4="Preziosa"
+
+[Cosmetic_Halloween_ClownMouth_ARCH]
+Attachment="Bocca da clown"
+AttachmentSkin0="Nera"
+AttachmentSkin1="Bianca"
+AttachmentSkin2="Verdognola"
+AttachmentSkin3="Mascherina"
+AttachmentSkin4="Preziosa"
+
+[Cosmetic_Halloween_FingerTophat_ARCH]
+Attachment="Cappello a cilindro con dita"
+AttachmentSkin0="Zucca"
+AttachmentSkin1="Festa"
+AttachmentSkin2="Direttore d'orchestra"
+AttachmentSkin3="Blu"
+AttachmentSkin4="Prezioso"
+
+[Cosmetic_Halloween_SorceressHat_ARCH]
+Attachment="Cappello da strega"
+AttachmentSkin0="Viola"
+AttachmentSkin1="Bianco"
+AttachmentSkin2="Strisce"
+AttachmentSkin3="Blu"
+AttachmentSkin4="Prezioso"
+
+[Cosmetic_Halloween_BoarHead_ARCH]
+Attachment="Testa di cinghiale"
+AttachmentSkin0="Bianca"
+AttachmentSkin1="Rosa"
+AttachmentSkin2="Blu"
+AttachmentSkin3="Macchie"
+AttachmentSkin4="Preziosa"
+
+[Cosmetic_Halloween_VoodooBackpack_ARCH]
+Attachment="Zaino Voodoo"
+AttachmentSkin0="Prezioso"
+
+[Cosmetic_Halloween_VoodooBackpack_Alberts_ARCH]
+Attachment="Zaino Voodoo"
+AttachmentSkin0="Prezioso"
+
+[Cosmetic_Halloween_VoodooBackpack_Coleman_ARCH]
+Attachment="Zaino Voodoo"
+AttachmentSkin0="Prezioso"
+
+[Cosmetic_Halloween_VoodooBackpack_JagerHorn_ARCH]
+Attachment="Zaino Voodoo"
+AttachmentSkin0="Prezioso"
+
+[Cosmetic_Halloween_VoodooBackpack_Knight_ARCH]
+Attachment="Zaino Voodoo"
+AttachmentSkin0="Prezioso"
+
+[Cosmetic_Halloween_VoodooBackpack_MrFoster_ARCH]
+Attachment="Zaino Voodoo"
+AttachmentSkin0="Prezioso"
+
+[Cosmetic_Halloween_VoodooBackpack_MrsFoster_ARCH]
+Attachment="Zaino Voodoo"
+AttachmentSkin0="Prezioso"
+
+[Cosmetic_Halloween_VoodooBackpack_RockabillyGirl_ARCH]
+Attachment="Zaino Voodoo"
+AttachmentSkin0="Prezioso"
+
+[Cosmetic_Reaper_MaleSkullMask_ARCH]
+Attachment="Maschera Teschio del mietitore"
+AttachmentSkin0="Morte"
+AttachmentSkin1="Conquista"
+AttachmentSkin2="Carestia"
+AttachmentSkin3="Pestilenza"
+AttachmentSkin4="Guerra"
+AttachmentSkin5="Anarchia"
+
+[Cosmetic_Reaper_FemaleSkullMask_ARCH]
+Attachment="Maschera Teschio del mietitore"
+AttachmentSkin0="Morte"
+AttachmentSkin1="Conquista"
+AttachmentSkin2="Carestia"
+AttachmentSkin3="Pestilenza"
+AttachmentSkin4="Guerra"
+AttachmentSkin5="Anarchia"

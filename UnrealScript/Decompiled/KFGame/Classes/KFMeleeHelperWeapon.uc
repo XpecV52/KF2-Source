@@ -632,25 +632,25 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
 
 defaultproperties
 {
-    ChainSequence_F(0)=144
+    ChainSequence_F(0)=222
     ChainSequence_F(1)=29
     ChainSequence_F(2)=0
     ChainSequence_F(3)=0
     ChainSequence_F(4)=0
-    ChainSequence_B(0)=140
+    ChainSequence_B(0)=218
     ChainSequence_B(1)=29
     ChainSequence_B(2)=0
     ChainSequence_B(3)=0
     ChainSequence_B(4)=0
     ChainSequence_B(5)=0
     ChainSequence_B(6)=0
-    ChainSequence_L(0)=147
+    ChainSequence_L(0)=225
     ChainSequence_L(1)=29
     ChainSequence_L(2)=0
     ChainSequence_L(3)=0
     ChainSequence_L(4)=0
     ChainSequence_L(5)=0
-    ChainSequence_R(0)=144
+    ChainSequence_R(0)=222
     ChainSequence_R(1)=29
     ChainSequence_R(2)=0
     ChainSequence_R(3)=0

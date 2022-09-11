@@ -43,6 +43,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
+BodyMesh13="Strój Reaper"
 HeadMesh0="Maska gazowa"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -148,6 +149,14 @@ BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
 
+[CHR_MrsFoster_archetype.BodyMesh13]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Biel"
 HeadSkin1="Zielona"
@@ -232,6 +241,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
+BodyMesh13="Strój Reaper"
 HeadMesh0="Moc brody!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -343,6 +353,14 @@ BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
 
+[CHR_Jagerhorn_archetype.BodyMesh13]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Szwedzki blondyn"
 HeadSkin1="Czarny album"
@@ -441,7 +459,8 @@ BodyMesh8="Steampunk"
 BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
-BodyMesh12="Space Pirate"
+BodyMesh12="Kosmiczny pirat"
+BodyMesh13="Strój Reaper"
 HeadMesh0="Maska Scully'ego"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -552,6 +571,14 @@ BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
 
+[CHR_DJSkully_archetype.BodyMesh13]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Najczarniejsza czerń"
 HeadSkin1="Ekstra czerwień"
@@ -598,6 +625,7 @@ BodyMesh10="Cyberpunk"
 BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
+BodyMesh14="Strój Reaper"
 HeadMesh0="Włosy"
 
 [chr_briar_archetype.BodyMesh0]
@@ -714,6 +742,14 @@ BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
 
+[CHR_briar_archetype.BodyMesh14]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Oryginalny"
 HeadSkin1="Pasemka"
@@ -753,7 +789,8 @@ BodyMesh9="Steampunk"
 BodyMesh10="Cyberpunk"
 BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
-BodyMesh13="Strój pirata"
+BodyMesh13="Strój kosmicznego pirata"
+BodyMesh14="Strój Reaper"
 HeadMesh0="Maska gazowa"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -874,6 +911,14 @@ BodySkin2="Karmazyn"
 BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
+
+[CHR_MrFoster_archetype.BodyMesh14]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Oryginalny Biały"
@@ -1035,6 +1080,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
+BodyMesh13="Strój Reaper"
 HeadMesh0="Twarz"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1143,6 +1189,14 @@ BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
 
+[CHR_Coleman_archetype.BodyMesh13]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Dziara"
@@ -1182,6 +1236,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
+BodyMesh13="Strój Reaper"
 HeadMesh0="Włosy"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1291,6 +1346,14 @@ BodySkin2="Karmazyn"
 BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
+
+[CHR_Alberts_archetype.BodyMesh13]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Szary"
@@ -2191,6 +2254,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
+BodyMesh13="Strój Reaper"
 HeadMesh0="Twarz"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2310,6 +2374,14 @@ BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
 
+[CHR_Masterson_archetype.BodyMesh13]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka to pełen wewnętrznych sprzeczności osobnik, który najwyraźniej szuka okazji, by umrzeć. Urodził się na Okinawie i dorastał pośród amerykańskich żołnierzy. Po przeprowadzce wraz z rodziną do Japonii właściwej zamerykanizowany Tanaka nie mógł się odnaleźć w nowym otoczeniu i zapisał się do szkoły aktorskiej. Po ukończeniu koledżu przeniósł się do LA i grał oklepane rólki w nędznych filmach, po czym udał się do Europy w poszukiwaniu „poważniejszej” pracy. Angażowano go jednak tylko do ról przestępców we francuskich filmach gangsterskich i drugorzędnych produkcjach. Teraz, gdy nastała apokalipsa, otaczająca go rzeczywistość nierzadko myli mu się z zagranymi niegdyś rolami. Wizje te obejmują yakuzę, demony i bushido w wydaniu hollywoodzkim."
@@ -2327,6 +2399,7 @@ BodyMesh10="Cyberpunk"
 BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
+BodyMesh14="Strój Reaper"
 HeadMesh0="Włosy"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2453,6 +2526,14 @@ BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
 
+[CHR_Tanaka_archetype.BodyMesh14]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Hełm"
 AttachmentSkin0="Wschodzące słońce"
@@ -2496,6 +2577,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
+BodyMesh13="Strój Reaper"
 HeadMesh0="Irokez"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2615,6 +2697,14 @@ BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
 
+[CHR_Ana_archetype.BodyMesh13]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Okulary 3D"
 AttachmentSkin0="Anaglif 3D"
@@ -2644,6 +2734,7 @@ BodyMesh10="Cyberpunk"
 BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
+BodyMesh14="Strój Reaper"
 HeadMesh0="Włosy"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2760,6 +2851,14 @@ BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
 
+[CHR_mark_archetype.BodyMesh14]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
 HeadSkin1="Krwisty"
@@ -2786,6 +2885,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
+BodyMesh13="Strój Reaper"
 HeadMesh0="Twarz"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2897,6 +2997,14 @@ BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
 
+[CHR_alan_archetype.BodyMesh13]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
 HeadSkin1="Rudy! Serio?"
@@ -2930,6 +3038,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
+BodyMesh13="Strój Reaper"
 HeadMesh0="Włosy"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3037,6 +3146,14 @@ BodySkin2="Karmazyn"
 BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
+
+[CHR_strasser_archetype.BodyMesh13]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Ciemny stalowy"
@@ -3213,6 +3330,7 @@ BodyMesh9="Cyberpunk"
 BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
+BodyMesh13="Strój Reaper"
 HeadMesh0="Domyślna głowa"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3324,6 +3442,14 @@ BodySkin2="Karmazyn"
 BodySkin3="Limonka"
 BodySkin4="Lawenda"
 BodySkin5="Klementynka"
+
+[CHR_rockabilly_archetype.BodyMesh13]
+BodySkin0="Śmierć"
+BodySkin1="Podbój"
+BodySkin2="Głód"
+BodySkin3="Zaraza"
+BodySkin4="Wojna"
+BodySkin5="Anarchia"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Czerń"
@@ -4478,7 +4604,7 @@ AttachmentSkin0="Klasyczny"
 AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
-Attachment="Świąteczny plecak z pluszakiem"
+Attachment="Plecak pluszak"
 AttachmentSkin0="Niebieski"
 AttachmentSkin1="Brązowy"
 AttachmentSkin2="Ciemny"
@@ -4854,7 +4980,7 @@ AttachmentSkin0="Niebiański"
 AttachmentSkin1="Cenny egzemplarz"
 
 [Cosmetic_Halloween_Cauldron_ARCH]
-Attachment="Halloweenowy plecak– kocioł"
+Attachment="Plecak kocioł"
 AttachmentSkin0="Słodycze"
 AttachmentSkin1="Cenny egzemplarz"
 
@@ -5873,7 +5999,7 @@ AttachmentSkin2="Neon RGB"
 AttachmentSkin3="Tęcza RGB"
 
 [Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
-Attachment="Cylinder z piórami kosmicznego pirata"
+Attachment="Cylinder z piórami"
 AttachmentSkin0="Granat"
 AttachmentSkin1="Czerń"
 AttachmentSkin2="Zieleń"
@@ -5987,3 +6113,195 @@ AttachmentSkin2="Karmazyn"
 AttachmentSkin3="Limonka"
 AttachmentSkin4="Lawenda"
 AttachmentSkin5="Klementynka"
+
+[Cosmetic_Apocalypse_Helmet_ARCH]
+Attachment="Hełm Apokalipsy"
+AttachmentSkin0="Oliwka"
+AttachmentSkin1="Granat"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Nocne"
+AttachmentSkin4="Las"
+AttachmentSkin5="Śnieg"
+AttachmentSkin6="Cenny egzemplarz"
+
+[Cosmetic_Apocalypse_Goggles_ARCH]
+Attachment="Gogle Apokalipsy"
+AttachmentSkin0="Oliwka"
+AttachmentSkin1="Granat"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Nocne"
+AttachmentSkin4="Las"
+AttachmentSkin5="Śnieg"
+AttachmentSkin6="Cenny egzemplarz"
+
+[Cosmetic_Apocalypse_Mask_ARCH]
+Attachment="Maska Apokalipsy"
+AttachmentSkin0="Oliwka"
+AttachmentSkin1="Granat"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Nocne"
+AttachmentSkin4="Las"
+AttachmentSkin5="Śnieg"
+AttachmentSkin6="Cenny egzemplarz"
+
+[Cosmetic_Apocalypse_Hood_ARCH]
+Attachment="Kaptur Apokalipsy"
+AttachmentSkin0="Pustynne"
+AttachmentSkin1="Granat"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Nocne"
+AttachmentSkin4="Las"
+AttachmentSkin5="Śnieg"
+AttachmentSkin6="Cenny egzemplarz"
+
+[Cosmetic_Apocalypse_GasMask_ARCH]
+Attachment="Maska gazowa Apokalipsy"
+AttachmentSkin0="Oliwka"
+AttachmentSkin1="Granat"
+AttachmentSkin2="Czerwień"
+AttachmentSkin3="Nocne"
+AttachmentSkin4="Las"
+AttachmentSkin5="Śnieg"
+AttachmentSkin6="Cenny egzemplarz"
+
+[Cosmetic_WW1Pilot_Helmet_ARCH]
+Attachment="Hełm pilota z I wś"
+AttachmentSkin0="Brąz"
+AttachmentSkin1="Oliwka"
+AttachmentSkin2="Granat"
+AttachmentSkin3="Czerwień"
+AttachmentSkin4="Nocne"
+AttachmentSkin5="Las"
+AttachmentSkin6="Śnieg"
+AttachmentSkin7="Cenny egzemplarz"
+
+[Cosmetic_WW1Pilot_HelmetGoggles_ARCH]
+Attachment="Hełm i gogle pilota z I wś"
+AttachmentSkin0="Brąz"
+AttachmentSkin1="Oliwka"
+AttachmentSkin2="Granat"
+AttachmentSkin3="Czerwień"
+AttachmentSkin4="Nocne"
+AttachmentSkin5="Las"
+AttachmentSkin6="Śnieg"
+AttachmentSkin7="Cenny egzemplarz"
+
+[Cosmetic_WW1Pilot_Mask_ARCH]
+Attachment="Respirator pilota z I wś"
+AttachmentSkin0="Szare"
+AttachmentSkin1="Oliwka"
+AttachmentSkin2="Granat"
+AttachmentSkin3="Czerwień"
+AttachmentSkin4="Nocne"
+AttachmentSkin5="Las"
+AttachmentSkin6="Śnieg"
+AttachmentSkin7="Cenny egzemplarz"
+
+[Cosmetic_WW1Pilot_Parachute_ARCH]
+Attachment="Spadochron pilota z I wś"
+AttachmentSkin0="Szare"
+AttachmentSkin1="Oliwka"
+AttachmentSkin2="Granat"
+AttachmentSkin3="Czerwień"
+AttachmentSkin4="Nocne"
+AttachmentSkin5="Las"
+AttachmentSkin6="Śnieg"
+AttachmentSkin7="Cenny egzemplarz"
+
+[Cosmetic_Halloween_PumpkinMask_ARCH]
+Attachment="Maska dyniowa"
+AttachmentSkin0="Pomarańcz"
+AttachmentSkin1="Limonka"
+AttachmentSkin2="Fiolet"
+AttachmentSkin3="Brąz"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Halloween_StrawmanMask_ARCH]
+Attachment="Maska stracha"
+AttachmentSkin0="Jasnobrązowe"
+AttachmentSkin1="Niebieskie"
+AttachmentSkin2="Białe"
+AttachmentSkin3="Joker"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Halloween_ClownMouth_ARCH]
+Attachment="Usta klauna"
+AttachmentSkin0="Czerń"
+AttachmentSkin1="Białe"
+AttachmentSkin2="Limonka"
+AttachmentSkin3="Kaganiec"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Halloween_FingerTophat_ARCH]
+Attachment="Cylinder z palcami"
+AttachmentSkin0="Dynia"
+AttachmentSkin1="Impreza"
+AttachmentSkin2="Dyrygent"
+AttachmentSkin3="Niebieskie"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Halloween_SorceressHat_ARCH]
+Attachment="Kapelusz czarodziejki"
+AttachmentSkin0="Fiolet"
+AttachmentSkin1="Białe"
+AttachmentSkin2="Paski"
+AttachmentSkin3="Niebieskie"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Halloween_BoarHead_ARCH]
+Attachment="Głowa dzika"
+AttachmentSkin0="Białe"
+AttachmentSkin1="Różowe"
+AttachmentSkin2="Niebieskie"
+AttachmentSkin3="Plamy"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Halloween_VoodooBackpack_ARCH]
+Attachment="Plecak voodoo"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Halloween_VoodooBackpack_Alberts_ARCH]
+Attachment="Plecak voodoo"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Halloween_VoodooBackpack_Coleman_ARCH]
+Attachment="Plecak voodoo"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Halloween_VoodooBackpack_JagerHorn_ARCH]
+Attachment="Plecak voodoo"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Halloween_VoodooBackpack_Knight_ARCH]
+Attachment="Plecak voodoo"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Halloween_VoodooBackpack_MrFoster_ARCH]
+Attachment="Plecak voodoo"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Halloween_VoodooBackpack_MrsFoster_ARCH]
+Attachment="Plecak voodoo"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Halloween_VoodooBackpack_RockabillyGirl_ARCH]
+Attachment="Plecak voodoo"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Reaper_MaleSkullMask_ARCH]
+Attachment="Kościana maska Reaper"
+AttachmentSkin0="Śmierć"
+AttachmentSkin1="Podbój"
+AttachmentSkin2="Głód"
+AttachmentSkin3="Zaraza"
+AttachmentSkin4="Wojna"
+AttachmentSkin5="Anarchia"
+
+[Cosmetic_Reaper_FemaleSkullMask_ARCH]
+Attachment="Kościana maska Reaper"
+AttachmentSkin0="Śmierć"
+AttachmentSkin1="Podbój"
+AttachmentSkin2="Głód"
+AttachmentSkin3="Zaraza"
+AttachmentSkin4="Wojna"
+AttachmentSkin5="Anarchia"

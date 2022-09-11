@@ -240,7 +240,7 @@ simulated function bool IgnoresPenetrationDmgReduction()
  * @param MagazineCapacity modified mag capacity
  * @param WeaponPerkClass the weapon's associated perk class (optional)
  */
-simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out byte MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out int MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassName)
 {
 	local float TempCapacity;
 
@@ -808,6 +808,7 @@ defaultproperties
    HighCapMagExemptList(0)="KFWeap_Shotgun_DoubleBarrel"
    HighCapMagExemptList(1)="KFWeap_HRG_Revolver_Buckshot"
    HighCapMagExemptList(2)="KFWeap_HRG_Revolver_DualBuckshot"
+   HighCapMagExemptList(3)="KFWeap_Shotgun_ElephantGun"
    AdditionalOnPerkDTNames(0)="KFDT_Ballistic_Shotgun_Medic"
    AdditionalOnPerkDTNames(1)="KFDT_Ballistic_DragonsBreath"
    AdditionalOnPerkDTNames(2)="KFDT_Ballistic_NailShotgun"

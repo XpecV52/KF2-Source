@@ -22,7 +22,8 @@ function Tick(float DeltaTime)
         OwnerMonster = KFPawn_Monster(KFPOwner);
         if(OwnerMonster != none)
         {
-            OwnerMonster.RepInflateMatParam = byte(Max(OwnerMonster.RepInflateMatParam, FloatToByte(AnimTicked / AnimLength)));
+            OwnerMonster.RepInflateMatParams.RepInflateMatParam = byte(Max(OwnerMonster.RepInflateMatParams.RepInflateMatParam, FloatToByte(AnimTicked / AnimLength)));
+            OwnerMonster.RepInflateMatParams.Count += 1;
             OwnerMonster.HandleDamageInflation();
         }
     }

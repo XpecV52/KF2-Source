@@ -52,12 +52,12 @@ defaultproperties
    bUseAnimLenEquipTime=False
    SingleFireSoundIndex=1
    InventorySize=6
-   MagazineCapacity(0)=60
    MeshFOV=75.000000
    MeshIronSightFOV=33.000000
    PlayerIronSightFOV=70.000000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_AK12'
+   MagazineCapacity(0)=60
    SpareAmmoCapacity(0)=270
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True

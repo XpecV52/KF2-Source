@@ -776,8 +776,8 @@ defaultproperties
    bInfiniteSpareAmmo=True
    bAllowClientAmmoTracking=False
    InventoryGroup=IG_Equipment
-   MagazineCapacity(0)=100
    GroupPriority=6.000000
+   MagazineCapacity(0)=100
    AmmoCost(0)=100
    AmmoCost(1)=100
    FireTweenTime=0.300000

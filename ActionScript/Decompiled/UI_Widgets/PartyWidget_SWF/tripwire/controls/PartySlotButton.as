@@ -149,7 +149,6 @@ package tripwire.controls
         {
             this._activeList = param1;
             this.optionsList = TripScrollingList(param1);
-            this.optionsList.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack);
         }
         
         public function get activeList() : MovieClip
@@ -375,6 +374,7 @@ package tripwire.controls
         {
             if((this._activeList as TripScrollingList).dataProvider.length > 0)
             {
+                this.optionsList.addEventListener(IndexEvent.INDEX_CHANGE,this.onBack);
                 mouseEnabled = false;
                 mouseChildren = true;
                 this._activeList.bOpen = true;

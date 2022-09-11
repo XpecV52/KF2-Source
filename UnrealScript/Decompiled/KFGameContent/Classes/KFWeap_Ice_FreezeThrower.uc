@@ -154,7 +154,6 @@ defaultproperties
     bHasFireLastAnims=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=7
-    MagazineCapacity=100
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=52
     PlayerIronSightFOV=80
@@ -164,6 +163,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=75
     WeaponSelectTexture=Texture2D'wep_ui_cryogun_tex.UI_WeaponSelect_Cryogun'
+    MagazineCapacity=100
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=500
     InitialSpareMags=1

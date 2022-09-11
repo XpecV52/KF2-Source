@@ -262,6 +262,7 @@ struct native SprayMeshContact
 
 /** This is the highest (i.e. in the bone hierarchy) contact of the Spray mesh. */
 var private transient SprayMeshContact		HighestSprayMeshContactThisTick;
+var private transient Actor		CurrentSprayedActor;
 var private transient bool					bSprayMeshCollidedThisTick;
 var private transient bool					bSprayMeshCollidedLastTick;
 /** How long the Spray mesh has been touching something */
@@ -928,6 +929,10 @@ function SpawnImpactProjectile(vector SpawnLocation, vector SpawnRotation)
 event float GetModifiedDamage()
 {
 	return SplashDamage * DamageModifier;
+}
+
+event SprayMeshExitCollision()
+{
 }
 
 event SprayMeshHit(Actor TouchActor)

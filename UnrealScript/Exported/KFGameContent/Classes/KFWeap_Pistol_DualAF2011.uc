@@ -103,7 +103,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=6
-   MagazineCapacity(0)=32
    PenetrationPower(0)=1.500000
    PenetrationPower(1)=1.500000
    MeshIronSightFOV=77.000000
@@ -114,6 +113,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=45.000000
    WeaponSelectTexture=Texture2D'WEP_UI_AF2001_TEX.UI_WeaponSelect_DualAF2011'
+   MagazineCapacity(0)=32
    AmmoCost(0)=2
    AmmoCost(1)=2
    SpareAmmoCapacity(0)=272

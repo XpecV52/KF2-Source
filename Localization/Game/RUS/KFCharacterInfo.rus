@@ -43,6 +43,7 @@ BodyMesh9="Киберпанк"
 BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
+BodyMesh13="Костюм смерти"
 HeadMesh0="Противогаз"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -141,12 +142,20 @@ BodySkin4="Белый цвет"
 BodySkin5="Желтый"
 
 [CHR_MrsFoster_archetype.BodyMesh12]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_MrsFoster_archetype.BodyMesh13]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Белый"
@@ -232,6 +241,7 @@ BodyMesh9="Киберпанк"
 BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
+BodyMesh13="Костюм смерти"
 HeadMesh0="Сила бороды!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -336,12 +346,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_Jagerhorn_archetype.BodyMesh12]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_Jagerhorn_archetype.BodyMesh13]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Швед-блондин"
@@ -442,6 +460,7 @@ BodyMesh9="Киберпанк"
 BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Космический пират"
+BodyMesh13="Костюм смерти"
 HeadMesh0="Маска Скалли"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -545,12 +564,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_DJSkully_archetype.BodyMesh12]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_DJSkully_archetype.BodyMesh13]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Черный-черный"
@@ -598,6 +625,7 @@ BodyMesh10="Киберпанк"
 BodyMesh11="Охотник на ведьм"
 BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
+BodyMesh14="Костюм смерти"
 HeadMesh0="Волосы"
 
 [chr_briar_archetype.BodyMesh0]
@@ -707,12 +735,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_briar_archetype.BodyMesh13]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_briar_archetype.BodyMesh14]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Оригинальный"
@@ -753,7 +789,8 @@ BodyMesh9="Стимпанк"
 BodyMesh10="Киберпанк"
 BodyMesh11="Охотник на ведьм"
 BodyMesh12="Костюм Санты"
-BodyMesh13="Костюм пирата"
+BodyMesh13="Костюм космического пирата"
+BodyMesh14="Костюм смерти"
 HeadMesh0="Противогаз"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -868,12 +905,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_MrFoster_archetype.BodyMesh13]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_MrFoster_archetype.BodyMesh14]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Оригинальный белый"
@@ -1035,6 +1080,7 @@ BodyMesh9="Киберпанк"
 BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
+BodyMesh13="Костюм смерти"
 HeadMesh0="Лицо"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1136,12 +1182,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_Coleman_archetype.BodyMesh12]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_Coleman_archetype.BodyMesh13]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Донован"
@@ -1182,6 +1236,7 @@ BodyMesh9="Киберпанк"
 BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
+BodyMesh13="Костюм смерти"
 HeadMesh0="Волосы"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1285,12 +1340,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_Alberts_archetype.BodyMesh12]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_Alberts_archetype.BodyMesh13]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Серый"
@@ -2191,6 +2254,7 @@ BodyMesh9="Киберпанк"
 BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
+BodyMesh13="Костюм смерти"
 HeadMesh0="Лицо"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2303,12 +2367,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_Masterson_archetype.BodyMesh12]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_Masterson_archetype.BodyMesh13]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [CHR_Tanaka_Archetype]
 CharacterName="Хаято Танака"
@@ -2327,6 +2399,7 @@ BodyMesh10="Киберпанк"
 BodyMesh11="Охотник на ведьм"
 BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
+BodyMesh14="Костюм смерти"
 HeadMesh0="Волосы"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2446,12 +2519,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_Tanaka_archetype.BodyMesh13]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_Tanaka_archetype.BodyMesh14]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Шлем"
@@ -2496,6 +2577,7 @@ BodyMesh9="Киберпанк"
 BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
+BodyMesh13="Костюм смерти"
 HeadMesh0="Ирокез"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2608,12 +2690,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_Ana_archetype.BodyMesh12]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_Ana_archetype.BodyMesh13]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D-очки"
@@ -2644,6 +2734,7 @@ BodyMesh10="Киберпанк"
 BodyMesh11="Охотник на ведьм"
 BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
+BodyMesh14="Костюм смерти"
 HeadMesh0="Волосы"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2753,12 +2844,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_mark_archetype.BodyMesh13]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_mark_archetype.BodyMesh14]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
@@ -2786,6 +2885,7 @@ BodyMesh9="Киберпанк"
 BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
+BodyMesh13="Костюм смерти"
 HeadMesh0="Лицо"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2890,12 +2990,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_alan_archetype.BodyMesh12]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_alan_archetype.BodyMesh13]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
@@ -2930,6 +3038,7 @@ BodyMesh9="Киберпанк"
 BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
+BodyMesh13="Костюм смерти"
 HeadMesh0="Волосы"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3031,12 +3140,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_strasser_archetype.BodyMesh12]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_strasser_archetype.BodyMesh13]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Темная сталь"
@@ -3213,6 +3330,7 @@ BodyMesh9="Киберпанк"
 BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
+BodyMesh13="Костюм смерти"
 HeadMesh0="Обычная голова"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3318,12 +3436,20 @@ BodySkin4="Белый"
 BodySkin5="Желтый"
 
 [CHR_rockabilly_archetype.BodyMesh12]
-BodySkin0="Оливковый"
-BodySkin1="Флотский"
+BodySkin0="Оливковый цвет"
+BodySkin1="Цвет морской волны"
 BodySkin2="Алый цвет"
 BodySkin3="Лаймовый цвет"
 BodySkin4="Лавандовый цвет"
 BodySkin5="Клементин"
+
+[CHR_rockabilly_archetype.BodyMesh13]
+BodySkin0="Смерть"
+BodySkin1="Завоевание"
+BodySkin2="Голод"
+BodySkin3="Чума"
+BodySkin4="Война"
+BodySkin5="Анархия"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Черный"
@@ -4478,7 +4604,7 @@ AttachmentSkin0="Классика"
 AttachmentSkin1="Дор. вещь"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
-Attachment="Рюкзак «Рождественский мишка»"
+Attachment="Рюкзак «Мишка»"
 AttachmentSkin0="Синий цвет"
 AttachmentSkin1="Коричневый цвет"
 AttachmentSkin2="Темный цвет"
@@ -4854,7 +4980,7 @@ AttachmentSkin0="Небесный"
 AttachmentSkin1="Дор. вещь"
 
 [Cosmetic_Halloween_Cauldron_ARCH]
-Attachment="Рюкзак в виде хелл. котла"
+Attachment="Рюкзак «Котел»"
 AttachmentSkin0="Сладости"
 AttachmentSkin1="Дор. вещь"
 
@@ -5873,7 +5999,7 @@ AttachmentSkin2="Красно-сине-зеленый неон"
 AttachmentSkin3="Красно-сине-зеленая радуга"
 
 [Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
-Attachment="Цилиндр космического пирата с перьями"
+Attachment="Цилиндр с перьями"
 AttachmentSkin0="Флотский"
 AttachmentSkin1="Черный цвет"
 AttachmentSkin2="Зеленый цвет"
@@ -5954,8 +6080,8 @@ AttachmentSkin0="Космическая мартышка"
 
 [Cosmetic_SpacePirate_MaleCaptainHat_ARCH]
 Attachment="Шляпа головореза"
-AttachmentSkin0="Оливковый"
-AttachmentSkin1="Флотский"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Цвет морской волны"
 AttachmentSkin2="Алый цвет"
 AttachmentSkin3="Лаймовый цвет"
 AttachmentSkin4="Лавандовый цвет"
@@ -5963,8 +6089,8 @@ AttachmentSkin5="Клементин"
 
 [Cosmetic_SpacePirate_FemaleCaptainHat_ARCH]
 Attachment="Шляпа головореза"
-AttachmentSkin0="Оливковый"
-AttachmentSkin1="Флотский"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Цвет морской волны"
 AttachmentSkin2="Алый цвет"
 AttachmentSkin3="Лаймовый цвет"
 AttachmentSkin4="Лавандовый цвет"
@@ -5972,8 +6098,8 @@ AttachmentSkin5="Клементин"
 
 [Cosmetic_SpacePirate_MaleCaptainMask_ARCH]
 Attachment="Маска с черепом"
-AttachmentSkin0="Оливковый"
-AttachmentSkin1="Флотский"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Цвет морской волны"
 AttachmentSkin2="Алый цвет"
 AttachmentSkin3="Лаймовый цвет"
 AttachmentSkin4="Лавандовый цвет"
@@ -5981,9 +6107,201 @@ AttachmentSkin5="Клементин"
 
 [Cosmetic_SpacePirate_FemaleCaptainMask_ARCH]
 Attachment="Маска с черепом"
-AttachmentSkin0="Оливковый"
-AttachmentSkin1="Флотский"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Цвет морской волны"
 AttachmentSkin2="Алый цвет"
 AttachmentSkin3="Лаймовый цвет"
 AttachmentSkin4="Лавандовый цвет"
 AttachmentSkin5="Клементин"
+
+[Cosmetic_Apocalypse_Helmet_ARCH]
+Attachment="Шлем «Апокалипсис»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Цвет морской волны"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Ночь"
+AttachmentSkin4="Лес"
+AttachmentSkin5="Снег"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Apocalypse_Goggles_ARCH]
+Attachment="Защитные очки «Апокалипсис»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Цвет морской волны"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Ночь"
+AttachmentSkin4="Лес"
+AttachmentSkin5="Снег"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Apocalypse_Mask_ARCH]
+Attachment="Маска «Апокалипсис»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Цвет морской волны"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Ночь"
+AttachmentSkin4="Лес"
+AttachmentSkin5="Снег"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Apocalypse_Hood_ARCH]
+Attachment="Капюшон «Апокалипсис»"
+AttachmentSkin0="Пустыня"
+AttachmentSkin1="Цвет морской волны"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Ночь"
+AttachmentSkin4="Лес"
+AttachmentSkin5="Снег"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Apocalypse_GasMask_ARCH]
+Attachment="Противогаз «Апокалипсис»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Цвет морской волны"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Ночь"
+AttachmentSkin4="Лес"
+AttachmentSkin5="Снег"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_WW1Pilot_Helmet_ARCH]
+Attachment="Шлем «Пилот Первой мировой»"
+AttachmentSkin0="Коричневый цвет"
+AttachmentSkin1="Оливковый цвет"
+AttachmentSkin2="Цвет морской волны"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Ночь"
+AttachmentSkin5="Лес"
+AttachmentSkin6="Снег"
+AttachmentSkin7="Дорогая вещь"
+
+[Cosmetic_WW1Pilot_HelmetGoggles_ARCH]
+Attachment="Шлем и очки «Пилот Первой мировой»"
+AttachmentSkin0="Коричневый цвет"
+AttachmentSkin1="Оливковый цвет"
+AttachmentSkin2="Цвет морской волны"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Ночь"
+AttachmentSkin5="Лес"
+AttachmentSkin6="Снег"
+AttachmentSkin7="Дорогая вещь"
+
+[Cosmetic_WW1Pilot_Mask_ARCH]
+Attachment="Респиратор «Пилот Первой мировой»"
+AttachmentSkin0="Серый цвет"
+AttachmentSkin1="Оливковый цвет"
+AttachmentSkin2="Цвет морской волны"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Ночь"
+AttachmentSkin5="Лес"
+AttachmentSkin6="Снег"
+AttachmentSkin7="Дорогая вещь"
+
+[Cosmetic_WW1Pilot_Parachute_ARCH]
+Attachment="Парашют «Пилот Первой мировой»"
+AttachmentSkin0="Серый цвет"
+AttachmentSkin1="Оливковый цвет"
+AttachmentSkin2="Цвет морской волны"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Ночь"
+AttachmentSkin5="Лес"
+AttachmentSkin6="Снег"
+AttachmentSkin7="Дорогая вещь"
+
+[Cosmetic_Halloween_PumpkinMask_ARCH]
+Attachment="Маска тыквы"
+AttachmentSkin0="Оранжевый цвет"
+AttachmentSkin1="Лаймовый цвет"
+AttachmentSkin2="Фиолетовый цвет"
+AttachmentSkin3="Коричневый цвет"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Halloween_StrawmanMask_ARCH]
+Attachment="Маска пугала"
+AttachmentSkin0="Желто-коричневый цвет"
+AttachmentSkin1="Синий цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Джокер"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Halloween_ClownMouth_ARCH]
+Attachment="Рот клоуна"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Белый цвет"
+AttachmentSkin2="Лаймовый цвет"
+AttachmentSkin3="Маска"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Halloween_FingerTophat_ARCH]
+Attachment="Цилиндр с пальцами"
+AttachmentSkin0="Тыква"
+AttachmentSkin1="Вечеринка"
+AttachmentSkin2="Дирижер"
+AttachmentSkin3="Синий цвет"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Halloween_SorceressHat_ARCH]
+Attachment="Шляпа ведьмы"
+AttachmentSkin0="Фиолетовый цвет"
+AttachmentSkin1="Белый цвет"
+AttachmentSkin2="Полоски"
+AttachmentSkin3="Синий цвет"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Halloween_BoarHead_ARCH]
+Attachment="Голова вепря"
+AttachmentSkin0="Белый цвет"
+AttachmentSkin1="Розовый цвет"
+AttachmentSkin2="Синий цвет"
+AttachmentSkin3="Пятнышки"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Halloween_VoodooBackpack_ARCH]
+Attachment="Рюкзак «Вуду»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Halloween_VoodooBackpack_Alberts_ARCH]
+Attachment="Рюкзак «Вуду»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Halloween_VoodooBackpack_Coleman_ARCH]
+Attachment="Рюкзак «Вуду»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Halloween_VoodooBackpack_JagerHorn_ARCH]
+Attachment="Рюкзак «Вуду»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Halloween_VoodooBackpack_Knight_ARCH]
+Attachment="Рюкзак «Вуду»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Halloween_VoodooBackpack_MrFoster_ARCH]
+Attachment="Рюкзак «Вуду»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Halloween_VoodooBackpack_MrsFoster_ARCH]
+Attachment="Рюкзак «Вуду»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Halloween_VoodooBackpack_RockabillyGirl_ARCH]
+Attachment="Рюкзак «Вуду»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Reaper_MaleSkullMask_ARCH]
+Attachment="Маска «Череп смерти»"
+AttachmentSkin0="Смерть"
+AttachmentSkin1="Завоевание"
+AttachmentSkin2="Голод"
+AttachmentSkin3="Чума"
+AttachmentSkin4="Война"
+AttachmentSkin5="Анархия"
+
+[Cosmetic_Reaper_FemaleSkullMask_ARCH]
+Attachment="Маска «Череп смерти»"
+AttachmentSkin0="Смерть"
+AttachmentSkin1="Завоевание"
+AttachmentSkin2="Голод"
+AttachmentSkin3="Чума"
+AttachmentSkin4="Война"
+AttachmentSkin5="Анархия"

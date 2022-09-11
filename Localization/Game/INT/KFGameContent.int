@@ -727,6 +727,28 @@ ItemCategory="Assault Rifle"
 ItemDescription="•Fire mode is full-auto only.\n•Alt-fire to fire EMP grenades.\n•With this electric, eco-friendly weapon you can slay hundreds of Zeds without harming the planet."
 SecondaryAmmo="EMP Grenade"
 
+[KFWeap_Minigun]
+ItemName="Minigun"
+ItemCategory="Special"
+ItemDescription="•Primary fire is full-auto; Barrel winds up for 1.5 seconds to initiate fire.\n•Aiming winds the barrels to prepare weapon for fire.\n•Happiness is measured in rounds per minute."
+SharedUnlockSource="Minigun Weapon Bundle"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="HRG Arc Generator"
+ItemCategory="Special"
+ItemDescription="•Primary fire releases a beam of electricity that arcs to nearby enemies.\n•Alt-fire launches an electricity orb in a straight direction.\n•For those who seek unlimited power!"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="HRG Scorcher"
+ItemCategory="Flames"
+ItemDescription="•Primary fire shoots a sticky flare that burns a target and lights everything around it.\n•Alt-fire launches a broken flare that drops flames onto the ground in a straight line.\n•A light weapon to light your way."
+
+[KFWeap_Mine_Reconstructor]
+ItemName="Mine Reconstructor"
+ItemCategory="Explosives"
+ItemDescription="•Fires bio-mines that explode on contact to hurt Zeds and heal allies.\n•Alt-fire detonates all placed mines.\n•The source of its base material is classified information due to Health Code concerns."
+SharedUnlockSource="Mine Reconstructor Weapon Bundle"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

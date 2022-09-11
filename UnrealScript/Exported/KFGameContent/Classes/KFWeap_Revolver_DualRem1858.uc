@@ -163,7 +163,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=4
-   MagazineCapacity(0)=12
    MeshFOV=60.000000
    MeshIronSightFOV=55.000000
    PlayerIronSightFOV=77.000000
@@ -173,6 +172,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=35.000000
    WeaponSelectTexture=Texture2D'WEP_UI_DualRemington1858_TEX.UI_WeaponSelect_DualRemington'
+   MagazineCapacity(0)=12
    SpareAmmoCapacity(0)=144
    InitialSpareMags(0)=7
    IdleFidgetAnims(3)="Guncheck_v4"

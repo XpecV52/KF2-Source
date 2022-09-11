@@ -71,7 +71,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletArrow'
    FireModeIconPaths(1)=()
    InventorySize=6
-   MagazineCapacity(0)=1
    PenetrationPower(0)=4.000000
    PenetrationPower(1)=()
    MeshFOV=70.000000
@@ -85,6 +84,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Crossbow_TEX.UI_WeaponSelect_Crossbow'
+   MagazineCapacity(0)=1
    SpareAmmoCapacity(0)=34
    InitialSpareMags(0)=13
    AmmoPickupScale(0)=3.000000

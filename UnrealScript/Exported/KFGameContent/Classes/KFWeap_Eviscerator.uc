@@ -411,13 +411,13 @@ defaultproperties
    FireModeIconPaths(5)=()
    InventoryGroup=IG_Primary
    InventorySize=9
-   MagazineCapacity(0)=5
-   MagazineCapacity(1)=250
    PenetrationPower(0)=4.000000
    PenetrationPower(1)=()
    QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
+   MagazineCapacity(0)=5
+   MagazineCapacity(1)=250
    AmmoCost(0)=1
    AmmoCost(1)=()
    AmmoCost(2)=()

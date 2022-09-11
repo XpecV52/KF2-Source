@@ -23,6 +23,8 @@ var protected ParticleSystemComponent       SteamingEffect;
 /** The microwave steam effect is active */
 var protected bool      bSteamEffectActive;
 
+var bool bHasToSpawnFire;
+
 /** Sound to play when this pawn is on fire */
 var protected AkEvent OnSteamSound;
 /** Sound to play when this pawn stops being on fire */
@@ -117,8 +119,9 @@ protected function UpdateMicrowaveMatParam( float DeltaTime )
     }
 
 	// Set the replicated inflate value
-    MonsterOwner.RepInflateMatParam = FloatToByte(UsedMicrowavedAmount);
-
+	MonsterOwner.RepInflateMatParams.RepInflateMatParam = FloatToByte(UsedMicrowavedAmount);
+	MonsterOwner.RepInflateMatParams.bHasToIgniteFlames = bHasToSpawnFire;
+	MonsterOwner.RepInflateMatParams.Count += 1;
     if( MonsterOwner.WorldInfo.NetMode != NM_DedicatedServer )
     {
         SetMaterialParameter(MonsterOwner.GetCurrentInflation());
@@ -175,15 +178,27 @@ function SetMaterialParameter(float ParamValue)
         {
             if( !bSteamEffectActive )
             {
-                SetMicrowaveSteamEffects(true);
+                if(bHasToSpawnFire == false)
+                {
+                    SetMicrowaveSteamEffects(false);
+                }
+                else
+                {
+                    SetMicrowaveSteamEffects(true);
+                }
             }
         }
         else
         {
-            if( bSteamEffectActive )
+            if( bSteamEffectActive || bHasToSpawnFire == false)
             {
                 SetMicrowaveSteamEffects(false);
             }
+        }
+
+        if(bHasToSpawnFire == false)
+        {
+            SetMicrowaveSteamEffects(false);
         }
 
 		if (MonsterOwner != none)
@@ -269,4 +284,6 @@ defaultproperties
 
     // Microwave
     MicroWaveCharCurve=(Points=((InVal=0.f,OutVal=0.f),(InVal=0.75f, OutVal=0.2f),(InVal=1.0f, OutVal=0.75f)))//(Points=((InVal=0.f,OutVal=0.f),(InVal=0.75f, OutVal=0.2f),(InVal=1.0f, OutVal=1.f)))
+
+    bHasToSpawnFire=true;
 }

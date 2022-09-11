@@ -64,6 +64,7 @@ defaultproperties
 	ColumnIds.Add(STATID_ACHIEVE_DefeatMatriarch)
 	ColumnIds.Add(STATID_ACHIEVE_BiolapseCollectibles)
 	ColumnIds.Add(STATID_ACHIEVE_DesolationCollectibles)
+	ColumnIds.Add(STATID_ACHIEVE_HellmarkStationCollectibles)
 
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky5, Name="AchievementMrPerky5"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_MrPerky10, Name = "AchievementMrPerky10"))
@@ -116,4 +117,5 @@ defaultproperties
 	ColumnMappings.Add((Id=STATID_ACHIEVE_DefeatMatriarch,Name="AchievementDefeatMatriarch"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_BiolapseCollectibles,Name="AchievementCollectBiolapse"))
 	ColumnMappings.Add((Id=STATID_ACHIEVE_DesolationCollectibles,Name="AchievementCollectDesolation"))
+	ColumnMappings.Add((Id=STATID_ACHIEVE_HellmarkStationCollectibles,Name="AchievementCollectHellmarkStation"))
 }

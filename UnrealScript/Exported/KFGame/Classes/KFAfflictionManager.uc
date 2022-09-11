@@ -127,12 +127,12 @@ var float     FireCharPercentThreshhold;
 function NotifyTakeHit(Controller DamageInstigator, vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
 {
 	local KFPerk InstigatorPerk;
-
+	
 	if( DamageType == none )
 	{
 		return;
 	}
-
+	
 	// Allow damage instigator perk to modify reaction
 	if ( DamageInstigator != None && DamageInstigator.bIsPlayer )
 	{
@@ -401,7 +401,7 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
 		}
 		if (MicrowavePower > 0)
 		{
-			AccrueAffliction(AF_Microwave, MicrowavePower);
+			AccrueAfflictionMicrowave(AF_Microwave, MicrowavePower, DamageType.default.bHasToSpawnMicrowaveFire);
 		}
         if (BleedPower > 0)
         {
@@ -449,6 +449,47 @@ function AccrueAffliction(EAfflictionType Type, float InPower, optional EHitZone
 
 	if ( InPower > 0 )
 	{
+		Afflictions[Type].Accrue(InPower);
+	}
+}
+
+
+/**
+ * Adds StackedPower
+ * @return true if the affliction effect should be applied
+ */
+function AccrueAfflictionMicrowave(EAfflictionType Type, float InPower, bool bHasToSpawnFire, optional EHitZoneBodyPart BodyPart, optional KFPerk InstigatorPerk)
+{
+	if ( InPower <= 0 || Type >= IncapSettings.Length )
+	{
+		return; // immune
+	}
+
+	if ( !VerifyAfflictionInstance(Type, InstigatorPerk) )
+	{
+		return; // cannot create instance
+	}
+
+	// for radius damage apply falloff using most recent HitFxInfo
+	if ( HitFxInfo.bRadialDamage && HitFxRadialInfo.RadiusDamageScale != 255 )
+	{
+		InPower *= ByteToFloat(HitFxRadialInfo.RadiusDamageScale);
+		if (bDebugLog) LogInternal(Type@"Applied damage falloff modifier of"@ByteToFloat(HitFxRadialInfo.RadiusDamageScale));
+	}
+
+	// scale by character vulnerability
+	if ( IncapSettings[Type].Vulnerability.Length > 0 )
+	{
+		InPower *= GetAfflictionVulnerability(Type, BodyPart);
+		if (bDebugLog) LogInternal(Type@"Applied hit zone vulnerability modifier of"@GetAfflictionVulnerability(Type, BodyPart)@"for"@BodyPart);
+	}
+
+	// allow owning pawn final adjustment
+	AdjustAffliction(InPower);
+
+	if ( InPower > 0 )
+	{
+		KFAffliction_Microwave(Afflictions[Type]).bHasToSpawnFire = bHasToSpawnFire;
 		Afflictions[Type].Accrue(InPower);
 	}
 }
@@ -655,7 +696,6 @@ function ToggleEffects(EAfflictionType Type, bool bPrimary, optional bool bSecon
 	{
 		return;
 	}
-
 	// If the value is zero no need to create an instance
 	if( Type >= Afflictions.Length || Afflictions[Type] == None )
 	{
@@ -674,7 +714,8 @@ function UpdateMaterialParameter(EAfflictionType Type, float Value)
 	{
 		return;
 	}
-
+	if(Type == AF_Microwave)
+		WarnInternal(Type);
 	// If the value is zero no need to create an instance
 	if( Type >= Afflictions.Length || Afflictions[Type] == None )
 	{

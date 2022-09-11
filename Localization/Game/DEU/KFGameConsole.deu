@@ -32,6 +32,7 @@ KF-AshwoodAsylum="Spielt Ashwood-Anstalt"
 KF-Sanitarium="Spielt Sanatorium"
 KF-Biolapse="Spielt Bioverfall"
 KF-Desolation="Spielt Verwüstung"
+KF-HellmarkStation="Spielt Hellmark Station"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

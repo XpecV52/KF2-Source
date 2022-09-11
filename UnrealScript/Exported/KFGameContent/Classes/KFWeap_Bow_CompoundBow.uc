@@ -715,7 +715,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletArrow'
    FireModeIconPaths(1)=Texture2D'wep_ui_cryogun_tex.UI_FireModeSelect_Cryogun'
    InventorySize=8
-   MagazineCapacity(0)=1
    PenetrationPower(0)=5.000000
    PenetrationPower(1)=()
    MeshIronSightFOV=52.000000
@@ -724,6 +723,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=125.000000
    WeaponSelectTexture=Texture2D'WEP_UI_CompoundBow_TEX.UI_WeaponSelect_Compound_Bow'
+   MagazineCapacity(0)=1
    SpareAmmoCapacity(0)=30
    InitialSpareMags(0)=10
    AmmoPickupScale(0)=3.000000

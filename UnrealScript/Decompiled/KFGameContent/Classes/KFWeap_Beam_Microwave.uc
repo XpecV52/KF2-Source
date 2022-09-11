@@ -179,7 +179,6 @@ defaultproperties
     bHasFireLastAnims=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=9
-    MagazineCapacity=100
     MeshIronSightFOV=52
     PlayerIronSightFOV=80
     IronSightPosition=(X=3,Y=0,Z=0)
@@ -188,6 +187,7 @@ defaultproperties
     MaxAIWarningDistSQ=2250000
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_Microwave_Gun_TEX.UI_WeaponSelect_MicrowaveGun'
+    MagazineCapacity=100
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=500
     AmmoPickupScale=0.5

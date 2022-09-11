@@ -745,8 +745,10 @@ Parameter name: index
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedBloatKing.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedBloatKing.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedBloatKing.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedBloatKing.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedBloatKing.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedBloatKing.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedBloatKing.PowerUpAkSoundComponent'
     Mass=400
     GroundSpeed=450
     Health=9000
@@ -785,8 +787,10 @@ Parameter name: index
     Components(5)=AkComponent'Default__KFPawn_ZedBloatKing.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedBloatKing.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedBloatKing.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedBloatKing.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedBloatKing.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedBloatKing.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedBloatKing.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedBloatKing.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedBloatKing.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

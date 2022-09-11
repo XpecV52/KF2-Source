@@ -1697,20 +1697,20 @@ function BroadcastDeathMessage(Controller Killer, Controller Other, class<Damage
     {
         if(Other.GetTeamNum() != 255)
         {
-            BroadcastLocalized(self, Class'KFLocalMessage_Game', 27, none, Other.PlayerReplicationInfo, DamageType);
+            BroadcastLocalized(self, Class'KFLocalMessage_Game', 28, none, Other.PlayerReplicationInfo, DamageType);
         }        
     }
     else
     {
         if(Killer == Other)
         {
-            BroadcastLocalized(self, Class'KFLocalMessage_Game', 28, none, Other.PlayerReplicationInfo);            
+            BroadcastLocalized(self, Class'KFLocalMessage_Game', 29, none, Other.PlayerReplicationInfo);            
         }
         else
         {
             if(((Killer.Pawn != none) && !Killer.Pawn.IsHumanControlled()) || KFAIController(Killer) != none)
             {
-                BroadcastLocalized(self, Class'KFLocalMessage_Game', 27, none, Other.PlayerReplicationInfo, ((Killer.Pawn != none) ? Killer.Pawn.Class : Class'KFPawn_Human'));                
+                BroadcastLocalized(self, Class'KFLocalMessage_Game', 28, none, Other.PlayerReplicationInfo, ((Killer.Pawn != none) ? Killer.Pawn.Class : Class'KFPawn_Human'));                
             }
             else
             {
@@ -2953,7 +2953,6 @@ private final function CheckServerUnlock()
 
     if(WorldInfo.NetMode == NM_DedicatedServer)
     {
-        LogInternal(("(TW TAKEOVER LOG)" @ "KFGameInfo.CheckServerUnlock 1 - GetNumPlayers(): ") $ string(GetNumPlayers()));
     }
     if((GetNumPlayers()) == 0)
     {
@@ -2961,7 +2960,6 @@ private final function CheckServerUnlock()
         Playfab = KFEngine.GetPlayfabInterface();
         if(WorldInfo.NetMode == NM_DedicatedServer)
         {
-            LogInternal(("(TW TAKEOVER LOG)" @ "KFGameInfo.CheckServerUnlock 2 - Playfab: ") $ string(Playfab));
         }
         if(Playfab != none)
         {
@@ -2969,7 +2967,6 @@ private final function CheckServerUnlock()
         }
         if(WorldInfo.NetMode == NM_DedicatedServer)
         {
-            LogInternal((((((("(TW TAKEOVER LOG)" @ "KFGameInfo.CheckServerUnlock 3 - IsLockedServer(): ") $ string(KFEngine.IsLockedServer())) $ " (bUsedForTakeover: ") $ string(KFEngine.bUsedForTakeover)) $ ", bAvailableForTakeover: ") $ string(KFEngine.bAvailableForTakeover)) $ ")");
         }
         if(KFEngine.IsLockedServer())
         {
@@ -2977,7 +2974,6 @@ private final function CheckServerUnlock()
             KFEngine.UnlockServer();
             if(WorldInfo.NetMode == NM_DedicatedServer)
             {
-                LogInternal(((("(TW TAKEOVER LOG)" @ "KFGameInfo.CheckServerUnlock 4 - bWasAvailableForTakeover: ") $ string(bWasAvailableForTakeover)) $ "; bAvailableForTakeover: ") $ string(KFEngine.bAvailableForTakeover));
             }
             if(!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)
             {
@@ -3142,7 +3138,6 @@ auto state PendingMatch
     {
         if(WorldInfo.NetMode == NM_DedicatedServer)
         {
-            LogInternal(("(TW ZOMBIE SERVER LOG)" @ "KFGameInfo:PendingMatch.BeginState - PreviousStateName: ") $ string(PreviousStateName));
         }
     }
 
@@ -3275,7 +3270,7 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-EvacuationPoint","KF-Farmhouse","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

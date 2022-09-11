@@ -671,7 +671,7 @@ ItemCategory="Criogénica"
 ItemDescription="•Modo de disparo: lanza carámbanos de hielo explosivos.\n•La mejor manera de romper el hielo."
 
 [KFWeap_Pistol_DualHRGWinterbite]
-ItemName="2 Mordisco invernal HRG"
+ItemName="Mordisco invernal HRG dual"
 ItemCategory="Criogénica"
 ItemDescription="•Modo de disparo: lanza carámbanos de hielo explosivos.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•El doble de hielo."
 
@@ -726,6 +726,28 @@ ItemName="Lanzatesla HRG"
 ItemCategory="Rifle de asalto"
 ItemDescription="•Solo dispara en modo automático.\n•El modo alternativo lanza granadas EM.\n•Con esta arma eléctrica y ecológica podrás eliminar a cientos de zeds mientras cuidas del planeta."
 SecondaryAmmo="Granada EM"
+
+[KFWeap_Minigun]
+ItemName="Minigun"
+ItemCategory="Especial"
+ItemDescription="•El modo principal es totalmente automático: el tambor gira durante 1,5 segundos antes de disparar.\n•Al apuntar comenzará a girar el tambor y se preparará para disparar.\n•La felicidad se mide en balas por minuto."
+SharedUnlockSource="Paquete de armas Minigun"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="Generador de arcos HRG"
+ItemCategory="Especial"
+ItemDescription="•El modo principal libera un rayo eléctrico que traza arcos hasta los enemigos cercanos.\n•El modo alternativo lanza un orbe eléctrico en una dirección concreta.\n•¡Perfecto para quien quiera poder ilimitado!"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="Calcinador HRG"
+ItemCategory="Llamaradas"
+ItemDescription="•El modo principal dispara una bengala adherente que quema al objetivo e ilumina todo a su alrededor.\n•El modo alternativo lanza una bengala fragmentada que incendia el suelo en una línea recta.\n•¡Una arma brillante que iluminará tu camino!"
+
+[KFWeap_Mine_Reconstructor]
+ItemName="Reconstructor de minas"
+ItemCategory="Explosivos"
+ItemDescription="•Lanza biominas que explotan al impactar, y dañan a los Zeds y curan a tus aliados.\n•El modo alternativo detona todas las minas colocadas.\n•El origen de sus materiales es un dato confidencial debido a asuntos del código sanitario."
+SharedUnlockSource="Paquete de armas Reconstructor de minas"
 
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max

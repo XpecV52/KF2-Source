@@ -93,7 +93,6 @@ defaultproperties
     bHasFireLastAnims=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=9
-    MagazineCapacity=1
     MeshFOV=75
     MeshIronSightFOV=65
     PlayerIronSightFOV=70
@@ -101,6 +100,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_RPG7_TEX.UI_WeaponSelect_RPG7'
+    MagazineCapacity=1
     SpareAmmoCapacity=15
     InitialSpareMags=4
     AmmoPickupScale=2

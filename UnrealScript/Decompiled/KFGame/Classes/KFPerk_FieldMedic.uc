@@ -21,7 +21,7 @@ enum EMedicPerkSkills
     EMedicHealingShield,
     EMedicEnforcer,
     EMedicAirborneAgent,
-    EMedicSlug,
+    EMedicZedative,
     EMedicPerkSkills_MAX
 };
 
@@ -44,6 +44,14 @@ var private const float SnarePower;
 var private const float SnareSpeedModifier;
 var private KFGameExplosion AAExplosionTemplate;
 var private const class<KFDamageType> AAExplosionDamageType;
+var private KFGameExplosion TCExplosionTemplate;
+var class<KFExplosionActor> ZedativeCloudExplosionActorClass;
+var float ZedativeExplosionDelay;
+var int ZedativeHealth;
+var int ZedativeDamage;
+var class<KFDamageType> ZedativeDamageType;
+var class<KFDamageType> ZedativeHealingType;
+var int ZedativeEffectRadius;
 
 simulated function ModifyHealerRechargeTime(out float RechargeRate)
 {
@@ -128,7 +136,7 @@ simulated function float GetSelfHealingSurgePct()
     return default.SelfHealingSurgePct;
 }
 
-simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
+simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
 {
     local float TempCapacity;
 
@@ -141,7 +149,7 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out byte MagazineCapacit
             TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[3])));
         }
     }
-    MagazineCapacity = byte(Round(TempCapacity));
+    MagazineCapacity = Round(TempCapacity);
 }
 
 simulated function bool GetHealingSpeedBoostActive()
@@ -207,7 +215,7 @@ static simulated function float GetHealingShieldDuration()
 simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon KFW;
-    local float TempDamage, SlugSkillValue;
+    local float TempDamage;
 
     TempDamage = float(InDamage);
     if(DamageCauser != none)
@@ -220,15 +228,10 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[7])));
         }
-    }
-    if(((IsSlugActive()) && DamageType != none) && ClassIsChildOf(DamageType, Class'KFDT_Toxic'))
-    {
-        SlugSkillValue = GetSkillValue(PerkSkills[9]);
-        if(InDamage > 0)
+        if((IsZedativeActive()) && IsWeaponOnPerk(KFW,, self.Class))
         {
-            SlugSkillValue *= float(InDamage);
+            TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[9])));
         }
-        TempDamage += SlugSkillValue;
     }
     InDamage = Round(TempDamage);
 }
@@ -271,12 +274,12 @@ static simulated function ParticleSystem GetAAEffect()
 
 simulated function float GetSnareSpeedModifier()
 {
-    return ((IsSlugActive()) ? SnareSpeedModifier : 1);
+    return ((IsZedativeActive()) ? SnareSpeedModifier : 1);
 }
 
 simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
-    if(((IsSlugActive()) && DamageType != none) && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
+    if(((IsZedativeActive()) && DamageType != none) && IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
     {
         return default.SnarePower;
     }
@@ -333,9 +336,71 @@ simulated function bool IsSurvivalistActive()
     return PerkSkills[1].bActive && IsPerkLevelAllowed(1);
 }
 
-simulated function bool IsSlugActive()
+simulated function bool IsZedativeActive()
 {
     return (PerkSkills[9].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(9);
+}
+
+function ToxicCloudExplode(Controller Killer, Pawn ZedKilled)
+{
+    local KFExplosion_ZedativeCloud ExploActor;
+    local Actor InstigatorActor;
+
+    if(Role < ROLE_Authority)
+    {
+        return;
+    }
+    InstigatorActor = ZedKilled;
+    ExploActor = Spawn(Class'KFExplosion_ZedativeCloud', InstigatorActor,, ZedKilled.Location,,, true);
+    if(ExploActor != none)
+    {
+        ExploActor.InstigatorController = Killer;
+        if(Killer.Pawn != none)
+        {
+            ExploActor.Instigator = Killer.Pawn;
+        }
+        ExploActor.Explode(GetExplosionTemplate());
+    }
+}
+
+function GameExplosion GetExplosionTemplate()
+{
+    return default.TCExplosionTemplate;
+}
+
+function bool CouldBeZedToxicCloud(class<KFDamageType> KFDT)
+{
+    return (IsZedativeActive()) && IsDamageTypeOnPerk(KFDT);
+}
+
+static function float GetZedativeExplosionDelay()
+{
+    return default.ZedativeExplosionDelay;
+}
+
+static function int GetZedativeHealth()
+{
+    return default.ZedativeHealth;
+}
+
+static function int GetZedativeDamage()
+{
+    return default.ZedativeDamage;
+}
+
+static function class<KFDamageType> GetZedativeDamageType()
+{
+    return default.ZedativeDamageType;
+}
+
+static function class<KFDamageType> GetZedativeHealingType()
+{
+    return default.ZedativeHealingType;
+}
+
+static function float GetZedativeEffectRadius()
+{
+    return float(default.ZedativeEffectRadius);
 }
 
 simulated function class<EmitterCameraLensEffectBase> GetPerkLensEffect(class<KFDamageType> dmgType)
@@ -412,6 +477,29 @@ defaultproperties
     // Reference: KFGameExplosion'Default__KFPerk_FieldMedic.ExploTemplate0'
     AAExplosionTemplate=ExploTemplate0
     AAExplosionDamageType=Class'KFDT_Toxic_MedicGrenade'
+    begin object name=ExploTemplate1 class=KFGameExplosion
+        ExplosionEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Explosions.Medic_Perk_ZedativeCloud'
+        DamageDelay=0.15
+        Damage=0
+        DamageRadius=400
+        KnockDownStrength=0
+        MomentumTransferScale=0
+        ExplosionSound=AkEvent'WW_WEP_EXP_Grenade_Medic.Play_WEP_EXP_Grenade_Medic_Explosion'
+        FractureMeshRadius=0
+        FracturePartVel=0
+        CamShake=none
+        CamShakeInnerRadius=0
+        CamShakeOuterRadius=0
+    object end
+    // Reference: KFGameExplosion'Default__KFPerk_FieldMedic.ExploTemplate1'
+    TCExplosionTemplate=ExploTemplate1
+    ZedativeCloudExplosionActorClass=Class'KFExplosion_ZedativeCloud'
+    ZedativeExplosionDelay=0.15
+    ZedativeHealth=15
+    ZedativeDamage=150
+    ZedativeDamageType=Class'KFDT_Toxic_ZedativeCloud'
+    ZedativeHealingType=Class'KFDT_Healing'
+    ZedativeEffectRadius=400
     ProgressStatID=40
     PerkBuildStatID=41
     SecondaryXPModifier[0]=4
@@ -441,7 +529,7 @@ defaultproperties
     PerkSkills(6)=(Name="HealingShield",Increment=0,Rank=0,StartingValue=10,MaxValue=10,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_CoagulantBooster",bActive=false)
     PerkSkills(7)=(Name="Enforcer",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_BattleSurgeon",bActive=false)
     PerkSkills(8)=(Name="AirborneAgent",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_AirborneAgent",bActive=false)
-    PerkSkills(9)=(Name="Sedative",Increment=0,Rank=0,StartingValue=10,MaxValue=10,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Zedative",bActive=false)
+    PerkSkills(9)=(Name="Sedative",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="ui_perktalent_tex.Medic.UI_Talents_Medic_Zedative",bActive=false)
     VaccinationDuration=10
     ToxicDmgTypeClass=Class'KFDT_Toxic_AcidicRounds'
     PrimaryWeaponDef=Class'KFWeapDef_MedicPistol'

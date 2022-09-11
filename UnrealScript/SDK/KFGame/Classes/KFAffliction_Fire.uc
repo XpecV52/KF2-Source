@@ -96,6 +96,7 @@ function SetMaterialParameter(float BurnedAmount)
 /** Set whether or not this pawn is doing the burning effects */
 function ToggleEffects(bool bEnabled, optional bool bDummy)
 {
+     `warn("FIRE");
 	// Don't do the effects on a dedicated server
     if ( PawnOwner.WorldInfo.NetMode == NM_DedicatedServer )
 	{

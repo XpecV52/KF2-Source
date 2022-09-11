@@ -75,7 +75,7 @@ simulated function ConsumeAmmoDarts(int AmmoDartCost)
     {
         if((MagazineCapacity[1] > 0) && AmmoCount[1] > 0)
         {
-            AmmoCount[1] = byte(Max(AmmoCount[1] - AmmoDartCost, 0));
+            AmmoCount[1] = Max(AmmoCount[1] - AmmoDartCost, 0);
         }
     }
 }
@@ -125,7 +125,7 @@ function HealAmmoRegeneration(float DeltaTime)
             HealingIncrement -= 1;
             if(bAllowClientAmmoTracking)
             {
-                HealingDartAmmo = AmmoCount[1];
+                HealingDartAmmo = byte(AmmoCount[1]);
             }
         }
     }
@@ -213,12 +213,12 @@ simulated function UpdateOpticsUI(optional bool bForceUpdate)
     {
         if((AmmoCount[0] != StoredPrimaryAmmo) || bForceUpdate)
         {
-            StoredPrimaryAmmo = AmmoCount[0];
+            StoredPrimaryAmmo = byte(AmmoCount[0]);
             OpticsUI.SetPrimaryAmmo(StoredPrimaryAmmo);
         }
         if((AmmoCount[1] != StoredSecondaryAmmo) || bForceUpdate)
         {
-            StoredSecondaryAmmo = AmmoCount[1];
+            StoredSecondaryAmmo = byte(AmmoCount[1]);
             OpticsUI.SetHealerCharge(StoredSecondaryAmmo);
         }
         if(OpticsUI.MinPercentPerShot != float(AmmoCost[1]))
@@ -547,11 +547,11 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=4
-    MagazineCapacity[0]=3
-    MagazineCapacity[1]=100
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_Medic_Bat_TEX.UI_WeaponSelect_MedicBat'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+    MagazineCapacity[0]=3
+    MagazineCapacity[1]=100
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=12
     InitialSpareMags=1

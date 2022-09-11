@@ -262,6 +262,7 @@ struct native SprayMeshContact
 
 /** This is the highest (i.e. in the bone hierarchy) contact of the Spray mesh. */
 var private transient SprayMeshContact		HighestSprayMeshContactThisTick;
+var private transient Actor		CurrentSprayedActor;
 var private transient bool					bSprayMeshCollidedThisTick;
 var private transient bool					bSprayMeshCollidedLastTick;
 /** How long the Spray mesh has been touching something */
@@ -930,6 +931,10 @@ event float GetModifiedDamage()
 	return SplashDamage * DamageModifier;
 }
 
+event SprayMeshExitCollision()
+{
+}
+
 event SprayMeshHit(Actor TouchActor)
 {
 	local float Dmg, DistToHitActor;
@@ -1052,7 +1057,6 @@ event SplashHit(Actor SplashTouchActor)
 
 defaultproperties
 {
-   bAllowSprayLights=True
    MaxDecalEffectDistance=5000.000000
    ImpactProjectileInterval=0.200000
    DamageInterval=0.070000

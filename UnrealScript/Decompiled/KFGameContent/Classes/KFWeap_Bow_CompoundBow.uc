@@ -583,7 +583,6 @@ defaultproperties
     bHasFireLastAnims=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=8
-    MagazineCapacity=1
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
@@ -591,6 +590,7 @@ defaultproperties
     AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=125
     WeaponSelectTexture=Texture2D'WEP_UI_CompoundBow_TEX.UI_WeaponSelect_Compound_Bow'
+    MagazineCapacity=1
     SpareAmmoCapacity=30
     InitialSpareMags=10
     AmmoPickupScale=3

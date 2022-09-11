@@ -43,6 +43,7 @@ BodyMesh9="Ciberpunk"
 BodyMesh10="Cazador de brujas"
 BodyMesh11="Traje de Santa"
 BodyMesh12="Atuendo Pirata espacial"
+BodyMesh13="Atuendo de Parca"
 HeadMesh0="Máscara de gas"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -143,10 +144,18 @@ BodySkin5="Amarillo"
 [CHR_MrsFoster_archetype.BodyMesh12]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_MrsFoster_archetype.BodyMesh13]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Blanco"
@@ -232,6 +241,7 @@ BodyMesh9="Ciberpunk"
 BodyMesh10="Cazador de brujas"
 BodyMesh11="Traje de Santa"
 BodyMesh12="Atuendo Pirata espacial"
+BodyMesh13="Atuendo de Parca"
 HeadMesh0="¡Barbudos al poder!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -338,10 +348,18 @@ BodySkin5="Amarillo"
 [CHR_Jagerhorn_archetype.BodyMesh12]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_Jagerhorn_archetype.BodyMesh13]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Rubio sueco"
@@ -441,7 +459,8 @@ BodyMesh8="Steampunk"
 BodyMesh9="Ciberpunk"
 BodyMesh10="Cazador de brujas"
 BodyMesh11="Traje de Santa"
-BodyMesh12="Space Pirate"
+BodyMesh12="Pirata espacial"
+BodyMesh13="Atuendo de Parca"
 HeadMesh0="Máscara de Calavera"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -547,10 +566,18 @@ BodySkin5="Amarillo"
 [CHR_DJSkully_archetype.BodyMesh12]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_DJSkully_archetype.BodyMesh13]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="El negro más negro"
@@ -598,6 +625,7 @@ BodyMesh10="Ciberpunk"
 BodyMesh11="Cazador de brujas"
 BodyMesh12="Traje de Santa"
 BodyMesh13="Atuendo Pirata espacial"
+BodyMesh14="Atuendo de Parca"
 HeadMesh0="Pelo"
 
 [chr_briar_archetype.BodyMesh0]
@@ -709,10 +737,18 @@ BodySkin5="Amarillo"
 [CHR_briar_archetype.BodyMesh13]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_briar_archetype.BodyMesh14]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
@@ -753,7 +789,8 @@ BodyMesh9="Steampunk"
 BodyMesh10="Ciberpunk"
 BodyMesh11="Cazador de brujas"
 BodyMesh12="Traje de Santa"
-BodyMesh13="Atuendo Pirata"
+BodyMesh13="Atuendo Pirata espacial"
+BodyMesh14="Atuendo de Parca"
 HeadMesh0="Máscara de gas"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -870,10 +907,18 @@ BodySkin5="Amarillo"
 [CHR_MrFoster_archetype.BodyMesh13]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_MrFoster_archetype.BodyMesh14]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Blanco original"
@@ -1035,6 +1080,7 @@ BodyMesh9="Ciberpunk"
 BodyMesh10="Cazador de brujas"
 BodyMesh11="Traje de Santa"
 BodyMesh12="Atuendo Pirata espacial"
+BodyMesh13="Atuendo de Parca"
 HeadMesh0="Cara"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1138,10 +1184,18 @@ BodySkin5="Amarillo"
 [CHR_Coleman_archetype.BodyMesh12]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_Coleman_archetype.BodyMesh13]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
@@ -1182,6 +1236,7 @@ BodyMesh9="Ciberpunk"
 BodyMesh10="Cazador de brujas"
 BodyMesh11="Traje de Santa"
 BodyMesh12="Atuendo Pirata espacial"
+BodyMesh13="Atuendo de Parca"
 HeadMesh0="Pelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1287,10 +1342,18 @@ BodySkin5="Amarillo"
 [CHR_Alberts_archetype.BodyMesh12]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_Alberts_archetype.BodyMesh13]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Gris"
@@ -2191,6 +2254,7 @@ BodyMesh9="Ciberpunk"
 BodyMesh10="Cazador de brujas"
 BodyMesh11="Traje de Santa"
 BodyMesh12="Atuendo Pirata espacial"
+BodyMesh13="Atuendo de Parca"
 HeadMesh0="Cara"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2305,10 +2369,18 @@ BodySkin5="Amarillo"
 [CHR_Masterson_archetype.BodyMesh12]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_Masterson_archetype.BodyMesh13]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
@@ -2327,6 +2399,7 @@ BodyMesh10="Ciberpunk"
 BodyMesh11="Cazador de brujas"
 BodyMesh12="Traje de Santa"
 BodyMesh13="Atuendo Pirata espacial"
+BodyMesh14="Atuendo de Parca"
 HeadMesh0="Pelo"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2448,10 +2521,18 @@ BodySkin5="Amarillo"
 [CHR_Tanaka_archetype.BodyMesh13]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_Tanaka_archetype.BodyMesh14]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Casco"
@@ -2496,6 +2577,7 @@ BodyMesh9="Ciberpunk"
 BodyMesh10="Cazador de brujas"
 BodyMesh11="Traje de Santa"
 BodyMesh12="Atuendo Pirata espacial"
+BodyMesh13="Atuendo de Parca"
 HeadMesh0="Cresta"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2610,10 +2692,18 @@ BodySkin5="Amarillo"
 [CHR_Ana_archetype.BodyMesh12]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_Ana_archetype.BodyMesh13]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Gafas 3D"
@@ -2644,6 +2734,7 @@ BodyMesh10="Ciberpunk"
 BodyMesh11="Cazador de brujas"
 BodyMesh12="Traje de Santa"
 BodyMesh13="Atuendo Pirata espacial"
+BodyMesh14="Atuendo de Parca"
 HeadMesh0="Pelo"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2755,10 +2846,18 @@ BodySkin5="Amarillo"
 [CHR_mark_archetype.BodyMesh13]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_mark_archetype.BodyMesh14]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Trato hecho"
@@ -2786,6 +2885,7 @@ BodyMesh9="Ciberpunk"
 BodyMesh10="Cazador de brujas"
 BodyMesh11="Traje de Santa"
 BodyMesh12="Atuendo Pirata espacial"
+BodyMesh13="Atuendo de Parca"
 HeadMesh0="Cara"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2892,10 +2992,18 @@ BodySkin5="Amarillo"
 [CHR_alan_archetype.BodyMesh12]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_alan_archetype.BodyMesh13]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Trato hecho"
@@ -2930,6 +3038,7 @@ BodyMesh9="Ciberpunk"
 BodyMesh10="Cazador de brujas"
 BodyMesh11="Traje de Santa"
 BodyMesh12="Atuendo Pirata espacial"
+BodyMesh13="Atuendo de Parca"
 HeadMesh0="Pelo"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3033,10 +3142,18 @@ BodySkin5="Amarillo"
 [CHR_strasser_archetype.BodyMesh12]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_strasser_archetype.BodyMesh13]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acero oscuro"
@@ -3213,6 +3330,7 @@ BodyMesh9="Ciberpunk"
 BodyMesh10="Cazador de brujas"
 BodyMesh11="Traje de Santa"
 BodyMesh12="Atuendo Pirata espacial"
+BodyMesh13="Atuendo de Parca"
 HeadMesh0="Cabeza por defecto"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3320,10 +3438,18 @@ BodySkin5="Amarillo"
 [CHR_rockabilly_archetype.BodyMesh12]
 BodySkin0="Verde oliva"
 BodySkin1="Azul marino"
-BodySkin2="Púrpura"
+BodySkin2="Carmín"
 BodySkin3="Verde lima"
 BodySkin4="Lavanda"
 BodySkin5="Mandarina"
+
+[CHR_rockabilly_archetype.BodyMesh13]
+BodySkin0="Muerte"
+BodySkin1="Conquista"
+BodySkin2="Hambruna"
+BodySkin3="Pestilencia"
+BodySkin4="Guerra"
+BodySkin5="Anarquía"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Negro"
@@ -4478,7 +4604,7 @@ AttachmentSkin0="Classic"
 AttachmentSkin1="Precioso"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
-Attachment="Mochila osito navideño"
+Attachment="Mochila de osito"
 AttachmentSkin0="Azul"
 AttachmentSkin1="Marrón"
 AttachmentSkin2="Oscuro"
@@ -4854,7 +4980,7 @@ AttachmentSkin0="Celestial"
 AttachmentSkin1="Precioso"
 
 [Cosmetic_Halloween_Cauldron_ARCH]
-Attachment="Mochila caldero de Halloween"
+Attachment="Mochila caldero"
 AttachmentSkin0="Golosina"
 AttachmentSkin1="Precioso"
 
@@ -5873,7 +5999,7 @@ AttachmentSkin2="Neón RVA"
 AttachmentSkin3="Arcoíris RVA"
 
 [Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
-Attachment="Galera con plumas Pirata espacial"
+Attachment="Galera con plumas"
 AttachmentSkin0="Azul marino"
 AttachmentSkin1="Negro"
 AttachmentSkin2="Verde"
@@ -5956,7 +6082,7 @@ AttachmentSkin0="Mono espacial"
 Attachment="Sombrero de Espadachín"
 AttachmentSkin0="Verde oliva"
 AttachmentSkin1="Azul marino"
-AttachmentSkin2="Púrpura"
+AttachmentSkin2="Carmín"
 AttachmentSkin3="Verde lima"
 AttachmentSkin4="Lavanda"
 AttachmentSkin5="Mandarina"
@@ -5965,7 +6091,7 @@ AttachmentSkin5="Mandarina"
 Attachment="Sombrero de Espadachín"
 AttachmentSkin0="Verde oliva"
 AttachmentSkin1="Azul marino"
-AttachmentSkin2="Púrpura"
+AttachmentSkin2="Carmín"
 AttachmentSkin3="Verde lima"
 AttachmentSkin4="Lavanda"
 AttachmentSkin5="Mandarina"
@@ -5974,7 +6100,7 @@ AttachmentSkin5="Mandarina"
 Attachment="Máscara de huesos"
 AttachmentSkin0="Verde oliva"
 AttachmentSkin1="Azul marino"
-AttachmentSkin2="Púrpura"
+AttachmentSkin2="Carmín"
 AttachmentSkin3="Verde lima"
 AttachmentSkin4="Lavanda"
 AttachmentSkin5="Mandarina"
@@ -5983,7 +6109,199 @@ AttachmentSkin5="Mandarina"
 Attachment="Máscara de huesos"
 AttachmentSkin0="Verde oliva"
 AttachmentSkin1="Azul marino"
-AttachmentSkin2="Púrpura"
+AttachmentSkin2="Carmín"
 AttachmentSkin3="Verde lima"
 AttachmentSkin4="Lavanda"
 AttachmentSkin5="Mandarina"
+
+[Cosmetic_Apocalypse_Helmet_ARCH]
+Attachment="Casco Apocalipsis"
+AttachmentSkin0="Verde oliva"
+AttachmentSkin1="Azul marino"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Nocturno"
+AttachmentSkin4="Bosque"
+AttachmentSkin5="Nieve"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Apocalypse_Goggles_ARCH]
+Attachment="Gafas Apocalipsis"
+AttachmentSkin0="Verde oliva"
+AttachmentSkin1="Azul marino"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Nocturno"
+AttachmentSkin4="Bosque"
+AttachmentSkin5="Nieve"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Apocalypse_Mask_ARCH]
+Attachment="Máscara Apocalipsis"
+AttachmentSkin0="Verde oliva"
+AttachmentSkin1="Azul marino"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Nocturno"
+AttachmentSkin4="Bosque"
+AttachmentSkin5="Nieve"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Apocalypse_Hood_ARCH]
+Attachment="Capucha Apocalipsis"
+AttachmentSkin0="Desierto"
+AttachmentSkin1="Azul marino"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Nocturno"
+AttachmentSkin4="Bosque"
+AttachmentSkin5="Nieve"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Apocalypse_GasMask_ARCH]
+Attachment="Máscara de gas Apocalipsis"
+AttachmentSkin0="Verde oliva"
+AttachmentSkin1="Azul marino"
+AttachmentSkin2="Rojo"
+AttachmentSkin3="Nocturno"
+AttachmentSkin4="Bosque"
+AttachmentSkin5="Nieve"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_WW1Pilot_Helmet_ARCH]
+Attachment="Casco de Piloto de la I Guerra Mundial"
+AttachmentSkin0="Marrón"
+AttachmentSkin1="Verde oliva"
+AttachmentSkin2="Azul marino"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Nocturno"
+AttachmentSkin5="Bosque"
+AttachmentSkin6="Nieve"
+AttachmentSkin7="Precioso"
+
+[Cosmetic_WW1Pilot_HelmetGoggles_ARCH]
+Attachment="Casco y gafas de Piloto de la I Guerra Mundial"
+AttachmentSkin0="Marrón"
+AttachmentSkin1="Verde oliva"
+AttachmentSkin2="Azul marino"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Nocturno"
+AttachmentSkin5="Bosque"
+AttachmentSkin6="Nieve"
+AttachmentSkin7="Precioso"
+
+[Cosmetic_WW1Pilot_Mask_ARCH]
+Attachment="Máscara de gas de Piloto de la I Guerra Mundial"
+AttachmentSkin0="Gris"
+AttachmentSkin1="Verde oliva"
+AttachmentSkin2="Azul marino"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Nocturno"
+AttachmentSkin5="Bosque"
+AttachmentSkin6="Nieve"
+AttachmentSkin7="Precioso"
+
+[Cosmetic_WW1Pilot_Parachute_ARCH]
+Attachment="Mochila paracaídas de Piloto de la I Guerra Mundial"
+AttachmentSkin0="Gris"
+AttachmentSkin1="Verde oliva"
+AttachmentSkin2="Azul marino"
+AttachmentSkin3="Rojo"
+AttachmentSkin4="Nocturno"
+AttachmentSkin5="Bosque"
+AttachmentSkin6="Nieve"
+AttachmentSkin7="Precioso"
+
+[Cosmetic_Halloween_PumpkinMask_ARCH]
+Attachment="Máscara de calabaza"
+AttachmentSkin0="Naranja"
+AttachmentSkin1="Verde lima"
+AttachmentSkin2="Morado"
+AttachmentSkin3="Marrón"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Halloween_StrawmanMask_ARCH]
+Attachment="Máscara de espantapájaros"
+AttachmentSkin0="Beis"
+AttachmentSkin1="Azul"
+AttachmentSkin2="Blanco"
+AttachmentSkin3="Payaso"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Halloween_ClownMouth_ARCH]
+Attachment="Boca de Payaso"
+AttachmentSkin0="Negro"
+AttachmentSkin1="Blanco"
+AttachmentSkin2="Verde lima"
+AttachmentSkin3="Mordaza"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Halloween_FingerTophat_ARCH]
+Attachment="Galera de dedos"
+AttachmentSkin0="Calabaza"
+AttachmentSkin1="Fiesta"
+AttachmentSkin2="Director de orquesta"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Halloween_SorceressHat_ARCH]
+Attachment="Sombrero de hechicera"
+AttachmentSkin0="Morado"
+AttachmentSkin1="Blanco"
+AttachmentSkin2="Rayas"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Halloween_BoarHead_ARCH]
+Attachment="Cabeza de jabalí"
+AttachmentSkin0="Blanco"
+AttachmentSkin1="Rosa"
+AttachmentSkin2="Azul"
+AttachmentSkin3="Manchas"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Halloween_VoodooBackpack_ARCH]
+Attachment="Mochila vudú"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Halloween_VoodooBackpack_Alberts_ARCH]
+Attachment="Mochila vudú"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Halloween_VoodooBackpack_Coleman_ARCH]
+Attachment="Mochila vudú"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Halloween_VoodooBackpack_JagerHorn_ARCH]
+Attachment="Mochila vudú"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Halloween_VoodooBackpack_Knight_ARCH]
+Attachment="Mochila vudú"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Halloween_VoodooBackpack_MrFoster_ARCH]
+Attachment="Mochila vudú"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Halloween_VoodooBackpack_MrsFoster_ARCH]
+Attachment="Mochila vudú"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Halloween_VoodooBackpack_RockabillyGirl_ARCH]
+Attachment="Mochila vudú"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Reaper_MaleSkullMask_ARCH]
+Attachment="Máscara de calavera de Parca"
+AttachmentSkin0="Muerte"
+AttachmentSkin1="Conquista"
+AttachmentSkin2="Hambruna"
+AttachmentSkin3="Pestilencia"
+AttachmentSkin4="Guerra"
+AttachmentSkin5="Anarquía"
+
+[Cosmetic_Reaper_FemaleSkullMask_ARCH]
+Attachment="Máscara de calavera de Parca"
+AttachmentSkin0="Muerte"
+AttachmentSkin1="Conquista"
+AttachmentSkin2="Hambruna"
+AttachmentSkin3="Pestilencia"
+AttachmentSkin4="Guerra"
+AttachmentSkin5="Anarquía"

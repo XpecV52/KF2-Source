@@ -195,9 +195,12 @@ defaultproperties
 	// Zooming/Position 
 	IronSightPosition=(X=-3,Y=0,Z=0)
 	PlayerViewOffset=(X=-15,Y=0,Z=0)
+	
+	// Controls the rotation when Hans(the bastard) grabs you
+	QuickWeaponDownRotation=(Pitch=-14192,Yaw=-6000,Roll=16384)
 
-	FireOffset=(X=17,Y=4.0,Z=-2.25)
-	LeftFireOffset=(X=17,Y=-4,Z=-2.25)
+	FireOffset=(X=17,Y=4.0,Z=-3)
+	LeftFireOffset=(X=17,Y=-4,Z=-3)
 
 	// Content 
 	PackageKey="Dual_G18C"

@@ -445,14 +445,29 @@ simulated function float GetAoERadiusModifier()
 simulated function float GetZedTimeModifier( KFWeapon W )
 {
 	local name StateName;
-
 	if( GetMadManActive() && !W.IsMeleeWeapon() )
 	{
 		StateName = W.GetStateName();
+		`Warn(StateName);
 		if( ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
 		{
 			return GetSkillValue( PerkSkills[ESurvivalist_MadMan] );
 		}
+	}
+
+	return 0.f;
+}
+
+/**
+ * @brief Specific modifier for the Minigun Windup rotation
+ *
+ * @return time dilation modifier
+ */
+simulated function float GetZedTimeModifierForWindUp()
+{
+	if( GetMadManActive() )
+	{
+		return GetSkillValue( PerkSkills[ESurvivalist_MadMan] );
 	}
 
 	return 0.f;
@@ -811,6 +826,8 @@ DefaultProperties
 	ZedTimeModifyingStates(6)="HuskCannonCharge"
 	ZedTimeModifyingStates(7)="CompoundBowCharge"
 	ZedTimeModifyingStates(8)="BlunderbussDeployAndDetonate"
+	ZedTimeModifyingStates(9)="WeaponWindingUp"
+	ZedTimeModifyingStates(10)="MineReconstructorCharge"
 
    	PrimaryWeaponPaths(0)=class'KFWeapDef_AR15'
    	PrimaryWeaponPaths(1)=class'KFWeapDef_MB500'

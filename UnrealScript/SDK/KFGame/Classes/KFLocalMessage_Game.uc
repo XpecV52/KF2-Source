@@ -41,6 +41,8 @@ enum EGameMessageType
     GMT_FoundAllCollectibles,
     GMT_UserSharingContent,
 
+	GMT_PowerUpHellishRageActivated,
+
 	KMT_Killed,
 	KMT_Suicide
 
@@ -91,6 +93,7 @@ var localized string 			FoundAMapCollectibleMessage;
 var localized string			FoundAllMapCollectiblesMessage;
 var localized string 			MapCollectibleName;
 var localized string 			SharingContentString;
+var localized string 			PowerUpHellishRageActivatedMessage;
 
 var localized string 			HeadShotAddedString;
 var localized string 			HeadShotMaxString;
@@ -122,6 +125,7 @@ static function string GetHexColor(int Switch)
 		case GMT_PendingPerkChangesApplied:
 		case GMT_ReceivedGrenadesFrom:
 		case GMT_GaveGrenadesTo:
+		case GMT_PowerUpHellishRageActivated:
              return default.GameColor;
 	}
 
@@ -188,6 +192,8 @@ static function string GetString(
 			return default.FoundAllMapCollectiblesMessage;
 		case GMT_UserSharingContent:
             return RelatedPRI_1.PlayerName @Default.SharingContentString;
+		case GMT_PowerUpHellishRageActivated:
+            return default.PowerUpHellishRageActivatedMessage;
 		case KMT_Killed:
 			return	RelatedPRI_2.PlayerName$GetKilledByZedMessage( OptionalObject );
 		case KMT_Suicide:

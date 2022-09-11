@@ -111,7 +111,7 @@ function HealAmmoRegeneration(float DeltaTime)
             HealingIncrement -= 1;
             if(KFW.bAllowClientAmmoTracking)
             {
-                HealingDartAmmo = KFW.AmmoCount[1];
+                HealingDartAmmo = byte(KFW.AmmoCount[1]);
             }
         }
     }

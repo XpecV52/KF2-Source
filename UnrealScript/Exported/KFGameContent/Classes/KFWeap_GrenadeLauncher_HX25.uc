@@ -101,12 +101,12 @@ defaultproperties
    FireModeIconPaths(1)=()
    InventoryGroup=IG_Secondary
    InventorySize=4
-   MagazineCapacity(0)=1
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=73.000000
    FastZoomOutTime=0.200000
    GroupPriority=25.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HX25_Pistol_TEX.UI_WeaponSelect_HX25'
+   MagazineCapacity(0)=1
    SpareAmmoCapacity(0)=29
    InitialSpareMags(0)=17
    AmmoPickupScale(0)=3.000000

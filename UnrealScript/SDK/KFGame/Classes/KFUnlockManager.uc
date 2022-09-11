@@ -24,6 +24,8 @@ enum ESharedContentUnlock
 	SCU_CompoundBow,
 	SCU_G18C,
 	SCU_Blunderbuss,
+	SCU_Minigun,
+	SCU_MineReconstructor,
 };
 
 
@@ -310,4 +312,12 @@ defaultproperties
 		Name=KFWeap_Pistol_Blunderbuss,
 		IconPath="WEP_UI_Blunderbuss_TEX.UI_WeaponSelect_BlunderBluss",
 		ID=8299)}
+	SharedContentList(SCU_Minigun)={(
+		Name=KFWeap_Minigun,
+		IconPath="WEP_UI_Minigun_TEX.UI_WeaponSelect_Minigun",
+		ID=8478)}
+	SharedContentList(SCU_MineReconstructor)={(
+		Name=KFWeap_Mine_Reconstructor,
+		IconPath="WEP_UI_Mine_Reconstructor_TEX.UI_WeaponSelect_HMTechMineReconstructor",
+		ID=8472)}
 }

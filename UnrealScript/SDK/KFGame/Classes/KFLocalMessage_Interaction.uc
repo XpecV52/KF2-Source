@@ -25,6 +25,7 @@ enum EInteractionMessageType
     IMT_UseMinigame,
     IMT_UseMinigameGenerator,
 	IMT_DoshActivate,
+    IMT_UsePowerUp,
 
 	// conditional messaging
 	IMT_GamepadWeaponSelectHint,
@@ -51,6 +52,7 @@ var localized string 			PlayerClotGrabWarningMessage;
 var localized string            UseMinigameMessage;
 var localized string            UseMinigameGeneratorMessage;
 var localized string            DoshActivateMessage;
+var localized string			UsePowerUpMessage;
 var localized string			EMPGrabWarningMessage;
 
 var const string USE_COMMAND;
@@ -125,6 +127,7 @@ static function string GetKeyBind( PlayerController P, optional int Switch )
         case IMT_UseMinigame:
         case IMT_UseMinigameGenerator:
 		case IMT_DoshActivate:
+		case IMT_UsePowerUp:
 			KFInput.GetKeyBindFromCommand(BoundKey, default.USE_COMMAND, false);
 			KeyString = KFInput.GetBindDisplayName(BoundKey);
 			break;
@@ -221,6 +224,8 @@ static function string GetString(
             return default.UseMinigameMessage;
         case IMT_UseMinigameGenerator:
             return default.UseMinigameGeneratorMessage;
+		case IMT_UsePowerUp:
+            return default.UsePowerUpMessage;
 		case IMT_EMPGrabWarning:
 			return default.EMPGrabWarningMessage;
 		default:

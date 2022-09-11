@@ -48,8 +48,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedClot_Slasher.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.PowerUpAkSoundComponent'
     DamageRecoveryTimeHeavy=0.65
     GroundSpeed=300
     ControllerClass=Class'KFAIController_ZedClot_Slasher'
@@ -87,8 +89,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedClot_Slasher.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedClot_Slasher.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedClot_Slasher.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedClot_Slasher.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedClot_Slasher.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedClot_Slasher.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedClot_Slasher.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedClot_Slasher.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedClot_Slasher.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

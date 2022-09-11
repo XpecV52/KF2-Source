@@ -56,6 +56,29 @@ simulated function AltFireMode()
 	StartFire(ALTFIRE_FIREMODE);
 }
 
+simulated function BeginFire( Byte FireModeNum )
+{
+	local bool bStoredAutoReload;
+
+	// We are trying to reload the weapon but the primary ammo in already at full capacity
+	if ( FireModeNum == RELOAD_FIREMODE && !CanReload() )
+	{
+		// Store the cuurent state of bCanceledAltAutoReload in case its not possible to do the reload
+		bStoredAutoReload = bCanceledAltAutoReload;
+		bCanceledAltAutoReload = false;
+
+		if(CanAltAutoReload())
+		{
+			TryToAltReload();
+			return;
+		}
+
+		bCanceledAltAutoReload = bStoredAutoReload;
+	}
+
+	super.BeginFire( FireModeNum );
+}
+
 /**
  * Initializes ammo counts, when weapon is spawned.
  */

@@ -1149,6 +1149,7 @@ struct native ItemProperties
     var int PerkId;
     var int AltPerkId;
     var int WeaponType;
+    var int FilterIdIndex;
 
     structdefaultproperties
     {
@@ -1175,6 +1176,7 @@ struct native ItemProperties
         PerkId=0
         AltPerkId=0
         WeaponType=0
+        FilterIdIndex=0
     }
 };
 

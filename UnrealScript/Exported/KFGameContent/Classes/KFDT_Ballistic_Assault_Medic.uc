@@ -51,7 +51,7 @@ static function class<KFDamageType> GetMedicToxicDmgType( out int out_Damage, op
 	local KFPerk InstigatorPerk;
 
 	InstigatorPerk = KFPlayerController(InstigatedBy).GetPerk();
-	if( InstigatorPerk == none || (!InstigatorPerk.IsToxicDmgActive() && !InstigatorPerk.IsSlugActive()) )
+	if( InstigatorPerk == none || (!InstigatorPerk.IsToxicDmgActive() && !InstigatorPerk.IsZedativeActive()) )
 	{
 		return None;
 	}	

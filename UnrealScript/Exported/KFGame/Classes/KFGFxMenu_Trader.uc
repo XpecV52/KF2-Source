@@ -107,7 +107,7 @@ struct native SItemInformation
 	var bool bIsSecondaryAmmo;
     /** Holds the final values for the owned item */
 	var int SpareAmmoCount, MaxSpareAmmo, MaxSecondaryAmmo, SellPrice, SecondaryAmmoCount;
-	var byte MagazineCapacity;
+	var int MagazineCapacity;
 	/** The dosh built up during an autofill for this item */
 	var int AutoFillDosh, AmmoPricePerMagazine;
 	/** Holds trader and default weapon information such as prices and stats */

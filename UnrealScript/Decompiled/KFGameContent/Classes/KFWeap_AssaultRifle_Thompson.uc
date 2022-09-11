@@ -24,7 +24,6 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=6
-    MagazineCapacity=50
     MeshFOV=75
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
@@ -33,6 +32,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_TommyGun_TEX.UI_WeaponSelect_TommyGun'
+    MagazineCapacity=50
     SpareAmmoCapacity=250
     InitialSpareMags=3
     bLoopingFireAnim=/* Array type was not detected. */

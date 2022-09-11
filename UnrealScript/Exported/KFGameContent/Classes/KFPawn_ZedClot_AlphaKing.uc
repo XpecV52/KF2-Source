@@ -184,6 +184,10 @@ defaultproperties
    DamageTypeModifiers(25)=(DamageType=Class'KFGame.KFDT_Piercing')
    DamageTypeModifiers(26)=(DamageType=Class'KFGame.KFDT_Toxic')
    DamageTypeModifiers(27)=(DamageType=Class'KFGame.KFDT_Bleeding')
+   DamageTypeModifiers(28)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_Beam',DamageScale=(3.500000))
+   DamageTypeModifiers(29)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGeneratorSphereImpact',DamageScale=(1.200000))
+   DamageTypeModifiers(30)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_DefaultFiremodeZapDamage',DamageScale=(3.500000))
+   DamageTypeModifiers(31)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',DamageScale=(3.500000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_ClotAlphaKing'
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Alpha:SprintAkComponent0'
       BoneName="Dummy"
@@ -311,6 +315,14 @@ defaultproperties
       ObjectArchetype=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedClot_Alpha:WeaponAmbientEchoHandler_0'
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedClot_AlphaKing:WeaponAmbientEchoHandler_0'
+   Begin Object Class=AkComponent Name=SecondaryWeaponAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Alpha:SecondaryWeaponAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="SecondaryWeaponAkSoundComponent"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Alpha:SecondaryWeaponAkSoundComponent'
+   End Object
+   SecondaryWeaponAkComponent=SecondaryWeaponAkSoundComponent
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Alpha:FootstepAkSoundComponent'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -326,6 +338,14 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Alpha:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
+   Begin Object Class=AkComponent Name=PowerUpAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Alpha:PowerUpAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="PowerUpAkSoundComponent"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot_Alpha:PowerUpAkSoundComponent'
+   End Object
+   PowerUpAkComponent=PowerUpAkSoundComponent
    GroundSpeed=180.000000
    Health=300
    ControllerClass=Class'kfgamecontent.KFAIController_ZedClot_AlphaKing'
@@ -393,8 +413,10 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=SprintAkComponent0
-   Components(9)=HeadshotAkComponent0
+   Components(8)=PowerUpAkSoundComponent
+   Components(9)=SecondaryWeaponAkSoundComponent
+   Components(10)=SprintAkComponent0
+   Components(11)=HeadshotAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedClot_AlphaKing"
    ObjectArchetype=KFPawn_ZedClot_Alpha'kfgamecontent.Default__KFPawn_ZedClot_Alpha'

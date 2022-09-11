@@ -294,12 +294,12 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Primary
     InventorySize=9
-    MagazineCapacity[0]=5
-    MagazineCapacity[1]=250
     PenetrationPower=/* Array type was not detected. */
     QuickWeaponDownRotation=(Pitch=-8192,Yaw=0,Roll=8192)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_SawbladeShooter'
+    MagazineCapacity[0]=5
+    MagazineCapacity[1]=250
     AmmoCost=/* Array type was not detected. */
     SpareAmmoCapacity=25
     AmmoPickupScale[1]=0.2

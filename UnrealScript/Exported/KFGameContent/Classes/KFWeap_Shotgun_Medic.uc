@@ -74,7 +74,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    InventorySize=6
-   MagazineCapacity(0)=10
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshIronSightFOV=52.000000
@@ -85,6 +84,7 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicShotgun'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
+   MagazineCapacity(0)=10
    AmmoCost(1)=40
    SpareAmmoCapacity(0)=90
    InitialSpareMags(0)=3

@@ -178,7 +178,7 @@ simulated event vector GetMuzzleLoc()
 
 defaultproperties
 {
-   LeftFireOffset=(X=17.000000,Y=-4.000000,Z=-2.250000)
+   LeftFireOffset=(X=17.000000,Y=-4.000000,Z=-3.000000)
    SingleClass=Class'kfgamecontent.KFWeap_Pistol_G18C'
    PackageKey="Dual_G18C"
    FirstPersonMeshName="WEP_1P_Dual_G18C_MESH.Wep_1stP_Dual_G18C_Rig"
@@ -194,7 +194,6 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'
    SingleFireSoundIndex=2
    InventorySize=8
-   MagazineCapacity(0)=66
    PenetrationPower(2)=0.000000
    PenetrationPower(3)=0.000000
    PenetrationDamageReductionCurve(3)=(Points=(,(InVal=1.000000,OutVal=1.000000)))
@@ -202,10 +201,12 @@ defaultproperties
    MeshIronSightFOV=77.000000
    PlayerIronSightFOV=77.000000
    IronSightPosition=(X=-3.000000,Y=0.000000,Z=0.000000)
+   QuickWeaponDownRotation=(Pitch=-14192,Yaw=-6000,Roll=16384)
    DOF_FG_FocalRadius=40.000000
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_G18C_TEX.UI_WeaponSelect_Dual_G18C'
+   MagazineCapacity(0)=66
    SpareAmmoCapacity(0)=462
    InitialSpareMags(0)=2
    bLoopingFireAnim(0)=False
@@ -262,7 +263,7 @@ defaultproperties
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Ballistic_G18C'
    InstantHitDamageTypes(2)=None
    InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Bludgeon_G18C'
-   FireOffset=(X=17.000000,Y=4.000000,Z=-2.250000)
+   FireOffset=(X=17.000000,Y=4.000000,Z=-3.000000)
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_DualBase:FirstPersonMesh'
       AnimTreeTemplate=AnimTree'CHR_1P_Arms_ARCH.WEP_1stP_Dual_Animtree_Master'
       bOverrideAttachmentOwnerVisibility=True

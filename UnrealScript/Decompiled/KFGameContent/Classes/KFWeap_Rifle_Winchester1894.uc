@@ -22,7 +22,6 @@ defaultproperties
     bCanBeReloaded=true
     bHasFireLastAnims=true
     InventorySize=4
-    MagazineCapacity=12
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=65
     MeshIronSightFOV=45
@@ -31,6 +30,7 @@ defaultproperties
     AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=25
     WeaponSelectTexture=Texture2D'wep_ui_winchester_tex.UI_WeaponSelect_Winchester'
+    MagazineCapacity=12
     SpareAmmoCapacity=84
     InitialSpareMags=4
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'

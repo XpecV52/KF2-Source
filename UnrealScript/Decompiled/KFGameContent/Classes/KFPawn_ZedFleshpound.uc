@@ -437,8 +437,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedFleshpound.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedFleshpound.PowerUpAkSoundComponent'
     DamageRecoveryTimeHeavy=0.85
     DamageRecoveryTimeMedium=0.85
     Mass=200
@@ -483,8 +485,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedFleshpound.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpound.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpound.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedFleshpound.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedFleshpound.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedFleshpound.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshpound.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedFleshpound.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedFleshpound.HeadshotAkComponent0'
     begin object name=RageAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -492,7 +496,7 @@ defaultproperties
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_ZedFleshpound.RageAkComponent0'
-    Components(10)=RageAkComponent0
+    Components(12)=RageAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

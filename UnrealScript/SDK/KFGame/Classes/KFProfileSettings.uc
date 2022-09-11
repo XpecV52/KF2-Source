@@ -292,10 +292,10 @@ defaultproperties
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_AllowBloodSplatterDecals,Data=(Type=SDT_Int32,Value1=1))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_GoreLevel,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_StoredCharIndex,Data=(Type=SDT_Int32,Value1=0))))
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_MasterVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x42c80000)))) //100.0f
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_DialogVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x42c80000)))) //100.0f
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_MasterVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x42480000)))) //50.0f
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_DialogVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x42480000)))) //50.0f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_MusicVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x42480000)))) //50.0f
-	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SFXVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x42c80000)))) //100.0f
+	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_SFXVolumeMultiplier,Data=(Type=SDT_Float,Value1=0x42480000)))) //50.0f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_GammaMultiplier,Data=(Type=SDT_Float,Value1=0x3f666666)))) // 0.9f
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_MusicVocalsEnabled,Data=(Type=SDT_Int32,Value1=0))))
 	DefaultSettings.Add((Owner=OPPO_Game,ProfileSetting=(PropertyId=KFID_MinimalChatter,Data=(Type=SDT_Int32,Value1=0))))

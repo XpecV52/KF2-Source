@@ -81,7 +81,7 @@ simulated state WeaponFiring
 
 defaultproperties
 {
-    LeftFireOffset=(X=17,Y=-4,Z=-2.25)
+    LeftFireOffset=(X=17,Y=-4,Z=-3)
     SingleClass=Class'KFWeap_Pistol_G18C'
     PackageKey="Dual_G18C"
     FirstPersonMeshName="WEP_1P_Dual_G18C_MESH.Wep_1stP_Dual_G18C_Rig"
@@ -96,17 +96,18 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=2
     InventorySize=8
-    MagazineCapacity=66
     PenetrationPower=/* Array type was not detected. */
     PenetrationDamageReductionCurve=/* Array type was not detected. */
     MeshFOV=96
     MeshIronSightFOV=77
     PlayerIronSightFOV=77
     IronSightPosition=(X=-3,Y=0,Z=0)
+    QuickWeaponDownRotation=(Pitch=-14192,Yaw=-6000,Roll=16384)
     DOF_FG_FocalRadius=40
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_G18C_TEX.UI_WeaponSelect_Dual_G18C'
+    MagazineCapacity=66
     SpareAmmoCapacity=462
     InitialSpareMags=2
     bLoopingFireAnim=/* Array type was not detected. */
@@ -140,7 +141,7 @@ defaultproperties
     Spread=/* Array type was not detected. */
     InstantHitDamage=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
-    FireOffset=(X=17,Y=4,Z=-2.25)
+    FireOffset=(X=17,Y=4,Z=-3)
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

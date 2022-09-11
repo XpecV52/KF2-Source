@@ -108,7 +108,7 @@ simulated function UpdateAmmoBeltBullets( optional int ForcedBulletCount=INDEX_N
 	bAmmoBeltInitialized = true;
 
 	// Don't do anything if ammo hasn't changed
-	NumAmmo = ForcedBulletCount != INDEX_NONE ? ForcedBulletCount : int(AmmoCount[GetAmmoType(0)]);
+	NumAmmo = ForcedBulletCount != INDEX_NONE ? ForcedBulletCount : AmmoCount[GetAmmoType(0)];
 	if( !bShowAll && (LastAmmoCount == NumAmmo || (LastAmmoCount >= NumAmmoBeltBullets && NumAmmo >= NumAmmoBeltBullets)) )
 	{
 		return;

@@ -13,7 +13,6 @@ var class<KFGFxWorld_MedicOptics> OpticsUIClass;
 var KFGFxWorld_MedicOptics OpticsUI;
 var byte StoredPrimaryAmmo;
 var byte StoredSecondaryAmmo;
-var Vector SecondaryFireOffset;
 
 simulated event Tick(float DeltaTime)
 {
@@ -97,12 +96,12 @@ simulated function UpdateOpticsUI(optional bool bForceUpdate)
     {
         if((AmmoCount[0] != StoredPrimaryAmmo) || bForceUpdate)
         {
-            StoredPrimaryAmmo = AmmoCount[0];
+            StoredPrimaryAmmo = byte(AmmoCount[0]);
             OpticsUI.SetPrimaryAmmo(StoredPrimaryAmmo);
         }
         if((AmmoCount[1] != StoredSecondaryAmmo) || bForceUpdate)
         {
-            StoredSecondaryAmmo = AmmoCount[1];
+            StoredSecondaryAmmo = byte(AmmoCount[1]);
             OpticsUI.SetHealerCharge(byte(StoredSecondaryAmmo * 100));
         }
         if(OpticsUI.MinPercentPerShot != float(AmmoCost[1]))
@@ -161,7 +160,6 @@ simulated state FiringSecondaryState
 defaultproperties
 {
     OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
-    SecondaryFireOffset=(X=20,Y=4.5,Z=-7)
     PackageKey="HRG_Teslauncher"
     FirstPersonMeshName="WEP_1P_HRG_Teslauncher_MESH.WEP_1stP_HRG_Teslauncher_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */

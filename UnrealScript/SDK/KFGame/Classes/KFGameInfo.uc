@@ -3384,7 +3384,7 @@ auto State PendingMatch
 	{
 		if (WorldInfo.NetMode == NM_DedicatedServer)
 		{
-			`REMOVEMESOON_ZombieServerLog("KFGameInfo:PendingMatch.BeginState - PreviousStateName: "$PreviousStateName);
+			//`REMOVEMESOON_ZombieServerLog("KFGameInfo:PendingMatch.BeginState - PreviousStateName: "$PreviousStateName);
 		}
 	}
 	// END REMOVEMESOON
@@ -3538,7 +3538,7 @@ private function CheckServerUnlock()
 
 	if (WorldInfo.NetMode == NM_DedicatedServer)
 	{
-		`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 1 - GetNumPlayers(): "$GetNumPlayers());
+		//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 1 - GetNumPlayers(): "$GetNumPlayers());
 	}
 
 	if ( GetNumPlayers() == 0 )
@@ -3548,7 +3548,7 @@ private function CheckServerUnlock()
 
 		if (WorldInfo.NetMode == NM_DedicatedServer)
 		{
-			`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 2 - Playfab: "$Playfab);
+			//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 2 - Playfab: "$Playfab);
 		}
 
         if( Playfab != none )
@@ -3558,7 +3558,7 @@ private function CheckServerUnlock()
 
 		if (WorldInfo.NetMode == NM_DedicatedServer)
 		{
-			`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 3 - IsLockedServer(): "$KFEngine.IsLockedServer()$" (bUsedForTakeover: "$KFEngine.bUsedForTakeover$", bAvailableForTakeover: "$KFEngine.bAvailableForTakeover$")");
+			//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 3 - IsLockedServer(): "$KFEngine.IsLockedServer()$" (bUsedForTakeover: "$KFEngine.bUsedForTakeover$", bAvailableForTakeover: "$KFEngine.bAvailableForTakeover$")");
 		}
 
 		// Won't unlock a server that's not lockable
@@ -3569,7 +3569,7 @@ private function CheckServerUnlock()
 
 			if (WorldInfo.NetMode == NM_DedicatedServer)
 			{
-				`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 4 - bWasAvailableForTakeover: "$bWasAvailableForTakeover$"; bAvailableForTakeover: "$KFEngine.bAvailableForTakeover);
+				//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo.CheckServerUnlock 4 - bWasAvailableForTakeover: "$bWasAvailableForTakeover$"; bAvailableForTakeover: "$KFEngine.bAvailableForTakeover);
 			}
 
             if (!bWasAvailableForTakeover && KFEngine.bAvailableForTakeover)

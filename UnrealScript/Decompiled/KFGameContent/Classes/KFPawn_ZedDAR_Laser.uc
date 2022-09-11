@@ -52,8 +52,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedDAR_Laser.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedDAR_Laser.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedDAR_Laser.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedDAR_Laser.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedDAR_Laser.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedDAR_Laser.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedDAR_Laser.PowerUpAkSoundComponent'
     ControllerClass=Class'KFAIController_ZedDAR_Laser'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
@@ -89,8 +91,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedDAR_Laser.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedDAR_Laser.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedDAR_Laser.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedDAR_Laser.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedDAR_Laser.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedDAR_Laser.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedDAR_Laser.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedDAR_Laser.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedDAR_Laser.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

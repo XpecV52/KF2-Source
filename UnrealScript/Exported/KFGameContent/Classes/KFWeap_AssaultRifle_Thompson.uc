@@ -25,7 +25,6 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
    InventorySize=6
-   MagazineCapacity(0)=50
    MeshFOV=75.000000
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=70.000000
@@ -34,6 +33,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'WEP_UI_TommyGun_TEX.UI_WeaponSelect_TommyGun'
+   MagazineCapacity(0)=50
    SpareAmmoCapacity(0)=250
    InitialSpareMags(0)=3
    bLoopingFireAnim(0)=True

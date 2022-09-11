@@ -28,7 +28,7 @@ defaultproperties
 
 	// Zooming/Position
 	PlayerViewOffset=(X=4.0,Y=7.0,Z=-5.0)
-	IronSightPosition=(X=3,Y=0,Z=0)
+	IronSightPosition=(X=7,Y=0,Z=0)
 
 	// Content
 	PackageKey="HRG_Kaboomstick"

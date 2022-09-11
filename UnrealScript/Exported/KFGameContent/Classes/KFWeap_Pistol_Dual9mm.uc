@@ -25,10 +25,8 @@ defaultproperties
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
-   bIsBackupWeapon=True
    InventoryGroup=IG_Secondary
    InventorySize=2
-   MagazineCapacity(0)=30
    MeshFOV=96.000000
    MeshIronSightFOV=77.000000
    PlayerIronSightFOV=77.000000
@@ -38,6 +36,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=20.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_9MM_TEX.UI_WeaponSelect_Dual9mm'
+   MagazineCapacity(0)=30
    SpareAmmoCapacity(0)=60
    InitialSpareMags(0)=2
    BonesToLockOnEmpty(1)="RW_Bullets1"

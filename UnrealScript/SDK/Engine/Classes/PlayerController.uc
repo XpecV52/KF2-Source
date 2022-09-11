@@ -9160,6 +9160,22 @@ unreliable client event ClientSpawnCameraLensEffect( class<EmitterCameraLensEffe
 	}
 }
 
+/** Remove a camera lens effect (e.g. blood).*/
+unreliable client event ClientRemoveCameraLensEffect( class<EmitterCameraLensEffectBase> LensEffectEmitterClass )
+{
+	Local EmitterCameraLensEffectBase EmitterLensEffect;
+
+	if (PlayerCamera != None)
+	{
+		EmitterLensEffect = PlayerCamera.FindCameraLensEffect(LensEffectEmitterClass);
+		if( EmitterLensEffect != none )
+		{
+			PlayerCamera.RemoveCameraLensEffect(EmitterLensEffect);
+			EmitterLensEffect.Destroy();
+		}
+	}
+}
+
 /** A trivial way to handle the SetSoundMode kismet action */
 function OnSetSoundMode(SeqAct_SetSoundMode Action)
 {

@@ -285,8 +285,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedScrake.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedScrake.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedScrake.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedScrake.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedScrake.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedScrake.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedScrake.PowerUpAkSoundComponent'
     DamageRecoveryTimeHeavy=0.85
     DamageRecoveryTimeMedium=0.75
     Mass=130
@@ -331,8 +333,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedScrake.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedScrake.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedScrake.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedScrake.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedScrake.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedScrake.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedScrake.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedScrake.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedScrake.HeadshotAkComponent0'
     begin object name=ChainsawAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -340,7 +344,7 @@ defaultproperties
         OcclusionUpdateInterval=0.2
     object end
     // Reference: AkComponent'Default__KFPawn_ZedScrake.ChainsawAkComponent0'
-    Components(10)=ChainsawAkComponent0
+    Components(12)=ChainsawAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

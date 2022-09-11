@@ -76,8 +76,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedCrawler_Versus.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedCrawler_Versus.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedCrawler_Versus.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedCrawler_Versus.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedCrawler_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedCrawler_Versus.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedCrawler_Versus.PowerUpAkSoundComponent'
     GroundSpeed=600
     JumpZ=1000
     Health=250
@@ -115,8 +117,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedCrawler_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedCrawler_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedCrawler_Versus.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedCrawler_Versus.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedCrawler_Versus.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedCrawler_Versus.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedCrawler_Versus.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedCrawler_Versus.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedCrawler_Versus.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

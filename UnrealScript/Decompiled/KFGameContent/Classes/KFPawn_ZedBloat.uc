@@ -243,7 +243,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     DeathPukeMineRotations(2)=
 /* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentException: Requested value '0_1086' was not found.
+System.ArgumentException: Requested value '0_1132' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -303,8 +303,10 @@ System.ArgumentException: Requested value '0_1086' was not found.
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedBloat.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedBloat.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedBloat.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedBloat.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedBloat.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedBloat.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedBloat.PowerUpAkSoundComponent'
     DamageRecoveryTimeHeavy=0.85
     Mass=130
     GroundSpeed=150
@@ -350,8 +352,10 @@ System.ArgumentException: Requested value '0_1086' was not found.
     Components(5)=AkComponent'Default__KFPawn_ZedBloat.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedBloat.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedBloat.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedBloat.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedBloat.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedBloat.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedBloat.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedBloat.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedBloat.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionRadius=55
         ReplacementPrimitive=none

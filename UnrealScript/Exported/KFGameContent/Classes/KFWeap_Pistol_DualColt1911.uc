@@ -26,7 +26,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=4
-   MagazineCapacity(0)=16
    PenetrationPower(0)=1.000000
    PenetrationPower(1)=1.000000
    MeshFOV=75.000000
@@ -38,6 +37,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=40.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_M1911_TEX.UI_WeaponSelect_DualM1911'
+   MagazineCapacity(0)=16
    SpareAmmoCapacity(0)=128
    InitialSpareMags(0)=3
    BonesToLockOnEmpty(1)="RW_Bullets1"

@@ -245,7 +245,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=8
-   MagazineCapacity(0)=5
    MeshFOV=75.000000
    MeshIronSightFOV=40.000000
    PlayerIronSightFOV=65.000000
@@ -254,6 +253,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Seal_Squeal_TEX.UI_WeaponSelect_SealSqueal'
+   MagazineCapacity(0)=5
    AmmoCost(1)=0
    SpareAmmoCapacity(0)=25
    InitialSpareMags(0)=1

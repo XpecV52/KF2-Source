@@ -29,7 +29,6 @@ defaultproperties
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     InventorySize=2
-    MagazineCapacity=6
     MeshFOV=60
     MeshIronSightFOV=55
     PlayerIronSightFOV=77
@@ -39,6 +38,7 @@ defaultproperties
     GroupPriority=15
     WeaponSelectTexture=Texture2D'WEP_UI_HRG_Winterbite_Item_TEX.UI_WeaponSelect_HRG_Winterbite'
     DualClass=Class'KFWeap_Pistol_DualHRGWinterbite'
+    MagazineCapacity=6
     SpareAmmoCapacity=150
     InitialSpareMags=9
     AmmoPickupScale=2

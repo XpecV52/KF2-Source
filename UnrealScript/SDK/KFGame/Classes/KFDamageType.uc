@@ -22,6 +22,9 @@ var bool bNoInstigatorDamage;
 /** Won't do damage to teammates */
 var bool bNoFriendlyFire;
 
+/** This Damge won't kill the pawn when applied */
+var bool bNonLethalDamage;
+
 /** Scale up damage to the zed when the head is blown off by this amount. Used for weapons with multiple projectiles like shotguns so you get the effect of all pellets hitting the head */
 var float HeadDestructionDamageScale;
 
@@ -64,6 +67,8 @@ var float DoT_DamageScale;
 /** Whether or not to create a new DoT instance each time this damage type is applied */
 var bool bStackDoT;
 
+
+var bool bHasToSpawnMicrowaveFire;
 /*********************************************************************************************
 Status Effects
  ********************************************************************************************* */
@@ -436,4 +441,6 @@ Defaultproperties
 
 	bAnyPerk=false;
 	bCanObliterate=false;
+
+	bHasToSpawnMicrowaveFire=true
 }

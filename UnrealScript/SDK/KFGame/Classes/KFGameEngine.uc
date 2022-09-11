@@ -220,6 +220,7 @@ native static function RefreshEventContent();
 // make sure our current tweak values are up-to-date with global
 native static function RefreshOnlineGameData();
 native static function ApplyTweaks(string MapName);
+native static function bool IsLastRefreshTweakParamsSuccessful();
 
 /** returns true if solo play should be disabled for this build */
 native static function bool IsSoloPlayDisabled();
@@ -572,7 +573,7 @@ function UnlockServer()
 
 	if (class'WorldInfo'.static.GetWorldInfo().NetMode == NM_DedicatedServer)
 	{
-		`REMOVEMESOON_ServerTakeoverLog("KFGameEngine.UnlockServer - bUsedForTakeover: "$bUsedForTakeover);
+		//`REMOVEMESOON_ServerTakeoverLog("KFGameEngine.UnlockServer - bUsedForTakeover: "$bUsedForTakeover);
 	}
 
 	if (bUsedForTakeover)
@@ -649,10 +650,10 @@ DefaultProperties
 	LocalLoginStatus=LS_LoggedIn
 	SafeFrameScale=1.0
 
-	MasterVolumeMultiplier=100.0
-	DialogVolumeMultiplier=100.0
+	MasterVolumeMultiplier=50.0
+	DialogVolumeMultiplier=50.0
 	MusicVolumeMultiplier=50.0
-	SFxVolumeMultiplier=100.0
+	SFxVolumeMultiplier=50.0
 
 	// By default disable AILogging (see `define AILog)
 	// by command line: '-enableailogging'

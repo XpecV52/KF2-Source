@@ -24,6 +24,8 @@ enum ESharedContentUnlock
 	SCU_CompoundBow,
 	SCU_G18C,
 	SCU_Blunderbuss,
+	SCU_Minigun,
+	SCU_MineReconstructor,
 };
 
 
@@ -283,6 +285,8 @@ defaultproperties
    SharedContentList(7)=(Name="KFWeap_Bow_CompoundBow",IconPath="WEP_UI_CompoundBow_TEX.UI_WeaponSelect_Compound_Bow",Id=8169)
    SharedContentList(8)=(Name="KFWeap_Pistol_G18C",IconPath="wep_ui_g18c_tex.UI_WeaponSelect_G18C",Id=8293)
    SharedContentList(9)=(Name="KFWeap_Pistol_Blunderbuss",IconPath="WEP_UI_Blunderbuss_TEX.UI_WeaponSelect_BlunderBluss",Id=8299)
+   SharedContentList(10)=(Name="KFWeap_Minigun",IconPath="WEP_UI_Minigun_TEX.UI_WeaponSelect_Minigun",Id=8478)
+   SharedContentList(11)=(Name="KFWeap_Mine_Reconstructor",IconPath="WEP_UI_Mine_Reconstructor_TEX.UI_WeaponSelect_HMTechMineReconstructor",Id=8472)
    Name="Default__KFUnlockManager"
    ObjectArchetype=Object'Core.Default__Object'
 }

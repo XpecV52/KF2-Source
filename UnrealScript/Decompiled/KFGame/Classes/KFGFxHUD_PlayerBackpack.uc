@@ -10,8 +10,7 @@ class KFGFxHUD_PlayerBackpack extends GFxObject within GFxMoviePlayer;
 var KFPlayerController MyKFPC;
 var int LastDosh;
 var int LastSpareAmmo;
-var byte LastMagazineAmmo;
-var byte LastSecondaryAmmo;
+var int LastMagazineAmmo;
 var bool bUsesAmmo;
 var bool bWasUsingAltFireMode;
 var bool bUsesSecondaryAmmo;
@@ -21,6 +20,7 @@ var int LastGrenades;
 var int LastSavedBuild;
 var int LastMaxWeight;
 var int LastWeight;
+var byte LastSecondaryAmmo;
 var class<KFPerk> LastPerkClass;
 var KFWeapon LastWeapon;
 var KFInventoryManager MyKFInvManager;
@@ -103,8 +103,8 @@ function UpdateGrenades()
 
 function UpdateWeapon()
 {
-    local int CurrentSpareAmmo;
-    local byte CurrentMagazineAmmo, CurrentSecondaryAmmo;
+    local int CurrentSpareAmmo, CurrentMagazineAmmo;
+    local byte CurrentSecondaryAmmo;
     local string CurrentSpecialAmmo;
     local KFWeapon CurrentWeapon;
 

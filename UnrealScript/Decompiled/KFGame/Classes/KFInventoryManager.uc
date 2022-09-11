@@ -717,7 +717,7 @@ simulated function bool ShouldSkipCycleWeapon(Weapon CandidateWeapon, bool bGame
             {
                 return true;
             }
-            if((KFW.InventoryGroup == 2) && KFW.bIsBackupWeapon)
+            if(KFW.bIsBackupWeapon)
             {
                 return true;
             }
@@ -965,6 +965,7 @@ simulated function AttemptQuickHeal()
 {
     local KFWeap_HealerBase W;
     local KFPlayerController KFPC;
+    local class<KFPowerUp> KFPowerUpClass;
 
     if(Instigator.Health >= Instigator.HealthMax)
     {
@@ -974,6 +975,15 @@ simulated function AttemptQuickHeal()
             KFPC.myGfxHUD.ShowNonCriticalMessage(FullHealthMsg);
         }
         return;
+    }
+    KFPC = KFPlayerController(Instigator.Owner);
+    if(KFPC != none)
+    {
+        KFPowerUpClass = KFPC.GetPowerUpClass();
+        if((KFPowerUpClass != none) && !KFPowerUpClass.default.CanBeHealedWhilePowerUpIsActive)
+        {
+            return;
+        }
     }
     if((KFWeap_HealerBase(Instigator.Weapon) != none) && !Instigator.Weapon.IsFiring())
     {
@@ -1376,12 +1386,12 @@ function KFWeapon CombineWeaponsOnPickup(KFWeapon AddedWeapon)
                 AddedDual.SetWeaponUpgradeLevel(CurrentUpgrade);
                 AddedDual.AmmoCount[0] += InvWeap.AmmoCount[0];
                 ExtraAmmo = Max(AddedDual.AmmoCount[0] - AddedDual.default.MagazineCapacity[0], 0);
-                AddedDual.AmmoCount[0] -= byte(ExtraAmmo);
+                AddedDual.AmmoCount[0] -= ExtraAmmo;
                 AddedDual.AmmoCount[1] += InvWeap.AmmoCount[1];
                 AddedDual.SpareAmmoCount[0] += (InvWeap.SpareAmmoCount[0] + ExtraAmmo);
                 AddedDual.SpareAmmoCount[0] = Min(AddedDual.SpareAmmoCount[0], AddedDual.default.SpareAmmoCapacity[0]);
-                AddedDual.ClientForceAmmoUpdate(AddedDual.AmmoCount[0], AddedDual.SpareAmmoCount[0]);
-                AddedDual.ClientForceSecondaryAmmoUpdate(AddedDual.AmmoCount[1]);
+                AddedDual.ClientForceAmmoUpdate(byte(AddedDual.AmmoCount[0]), AddedDual.SpareAmmoCount[0]);
+                AddedDual.ClientForceSecondaryAmmoUpdate(byte(AddedDual.AmmoCount[1]));
                 AddedDual.bGivenAtStart = AddedWeapon.bGivenAtStart;
                 break;
             }            
@@ -1401,14 +1411,14 @@ function KFWeapon CombineWeaponsOnPickup(KFWeapon AddedWeapon)
                     NewDual = KFWeap_DualBase(CreateInventory(AddedWeapon.DualClass, true));
                     if(NewDual != none)
                     {
-                        NewDual.AmmoCount[0] = byte(InvWeap.AmmoCount[0] + AddedWeapon.AmmoCount[0]);
+                        NewDual.AmmoCount[0] = InvWeap.AmmoCount[0] + AddedWeapon.AmmoCount[0];
                         ExtraAmmo = Max(NewDual.AmmoCount[0] - NewDual.default.MagazineCapacity[0], 0);
-                        NewDual.AmmoCount[0] -= byte(ExtraAmmo);
-                        NewDual.AmmoCount[1] = byte(InvWeap.AmmoCount[1] + AddedWeapon.AmmoCount[1]);
+                        NewDual.AmmoCount[0] -= ExtraAmmo;
+                        NewDual.AmmoCount[1] = InvWeap.AmmoCount[1] + AddedWeapon.AmmoCount[1];
                         NewDual.SpareAmmoCount[0] = Min((InvWeap.SpareAmmoCount[0] + AddedWeapon.SpareAmmoCount[0]) + ExtraAmmo, NewDual.SpareAmmoCapacity[0]);
                         NewDual.bGivenAtStart = AddedWeapon.bGivenAtStart;
-                        NewDual.ClientForceAmmoUpdate(NewDual.AmmoCount[0], NewDual.SpareAmmoCount[0]);
-                        NewDual.ClientForceSecondaryAmmoUpdate(NewDual.AmmoCount[1]);
+                        NewDual.ClientForceAmmoUpdate(byte(NewDual.AmmoCount[0]), NewDual.SpareAmmoCount[0]);
+                        NewDual.ClientForceSecondaryAmmoUpdate(byte(NewDual.AmmoCount[1]));
                         NewDualUpgradeIndex = Max(InvWeap.CurrentWeaponUpgradeIndex, AddedWeapon.CurrentWeaponUpgradeIndex);
                         NewDual.SetWeaponUpgradeLevel(NewDualUpgradeIndex);
                         if(NewDual.CurrentWeaponUpgradeIndex > 0)
@@ -1483,7 +1493,7 @@ final simulated function BuyAmmo(float AmountPurchased, KFGFxMenu_Trader.EItemTy
         {
             if(GetWeaponFromClass(KFW, WeaponItem.ClassName))
             {
-                MagAmmoCount = ((bSecondaryAmmo) ? KFW.AmmoCount[1] : KFW.AmmoCount[0]);
+                MagAmmoCount = byte(((bSecondaryAmmo) ? KFW.AmmoCount[1] : KFW.AmmoCount[0]));
             }
         }
         ServerBuyAmmo(int(AmountPurchased), MagAmmoCount, ItemIndex, bSecondaryAmmo);        
@@ -1508,7 +1518,7 @@ private reliable server final function ServerBuyAmmo(int AmountPurchased, byte C
 {
     local STraderItem WeaponItem;
     local KFWeapon KFW;
-    local byte ClientMaxMagCapacity;
+    local int ClientMaxMagCapacity;
 
     if((Role == ROLE_Authority) && bServerTraderMenuOpen)
     {
@@ -1541,7 +1551,7 @@ private reliable server final function ServerBuyAmmo(int AmountPurchased, byte C
                         {
                             KFW.GetPerk().ModifyMagSizeAndNumber(KFW, ClientMaxMagCapacity);
                         }
-                        KFW.AmmoCount[0] = byte(Clamp(ClientAmmoCount, 0, ClientMaxMagCapacity));
+                        KFW.AmmoCount[0] = Clamp(ClientAmmoCount, 0, ClientMaxMagCapacity);
                     }
                     KFW.AddAmmo(AmountPurchased);
                     if(Class'KFGameInfo'.static.AllowBalanceLogging())

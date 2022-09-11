@@ -165,8 +165,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedBloatKingSubspawn.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.PowerUpAkSoundComponent'
     DamageRecoveryTimeHeavy=0.75
     Mass=50
     GroundSpeed=450
@@ -215,8 +217,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedBloatKingSubspawn.HeadshotAkComponent0'
     bBlocksNavigation=true
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=40

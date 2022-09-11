@@ -46,22 +46,24 @@ YesString="Sim"
 NoString="Não"
 TeamSwappedString="Sua equipe foi substituída"
 
-MicrophonePopupTitleString="Configurações de microfone"
-MicrophonePopupSelectDeviceString="SELECIONAR"
-MicrophonePopupVolumeString="Volume do microfone"
-MicrophonePopupCheckString="Verifique o microfone"
-MicrophonePopupStopString="Aceitar"
-MicrophonePopupRefreshString="ATUALIZAR"
 
-FriendsListPopupTitleString="Selecione amigos para convidar"
-FriendsListPopupFriendString="BUSCA"
+MicrophonePopupTitleString="Configure seu microfone"
+MicrophonePopupSelectDeviceString="Dispositivo"
+MicrophonePopupVolumeString="Volume do mic."
+MicrophonePopupCheckString="Verificar mic."
+MicrophonePopupStopString="Parar"
+MicrophonePopupRefreshString="Atualizar"
+
+FriendsListPopupTitleString="Escolha amigos para convidar"
+FriendsListPopupFriendString="Buscar"
 FriendsListPopupFriendsString="Amigos"
 FriendsListPopupOtherFriendsString="Amigos de outras plataformas"
 FriendsListPopupLinkButonString="Vincular conta"
 ReturnString="VOLTAR"
 
 InvitePopupTitleString="Convite para sala de espera"
-InvitePopupTextString=" convidou você para a sala de espera"
+InvitePopupTextString=" convidou você para uma sala de espera"
+
 
 CancelConnectionString="Cancelar carregamento"
 
@@ -169,6 +171,9 @@ FailedSearchString="Falha ao localizar uma partida com as opções fornecidas. A
 BrowseServersString="PROCURAR SERVIDOR"
 HasInvitedToGameString=" convidou você para jogar"
 JoinGameString="Entrar no jogo?"
+
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="CONEXÃO AO SERVIDOR DE ITENS"
 
 [KFGFxObject_Menu]
 LeavePartyTitleString="SAINDO DO GRUPO"
@@ -308,7 +313,7 @@ MultiplayerMenuString="CRIADOR DE PARTIDA"
 LeaveMenuString="Se você sair deste menu, o grupo será desfeito. Ir para o criador de partidas"
 NameString="NOME"
 RefreshString="ATUALIZAR"
-GamesFoundString="JOGOS ACHADO:"
+GamesFoundString="JOGOS ENCONTRADOS:"
 
 ServerBrowserString="SERVIDOR LISTA"
 
@@ -949,6 +954,17 @@ MarketCosmeticsString="Cosméticos do mercado"
 MarketEmotesString="Emotes do mercado"
 MarketSFXString="Efeito Son. de Mercado"
 ThankYouString="Obrigado pela compra! Ela nos ajudará a desenvolver novos itens, mapas, armas, zeds e modos de jogo para atualizações futuras."
+WeaponBundlesString="Conjuntos de armas"
+CharacterBundlesString="Conjuntos de personagem"
+OutfitBundlesString="Conjuntos de traje"
+TicketCratesUSBBundlesString="Conjuntos de Bilhetes/Caixotes/USB"
+CosmeticBundlesString="Conjuntos de cosméticos"
+WeaponSkinBundlesString="Conjuntos de aparências de arma"
+HeadshotFxBundlesString="Conjuntos de efeitos de tiro na cabeça"
+SelectWeaponSkinsString="Selecione aparências de arma"
+SelectCosmeticsString="Selecione cosméticos"
+SelectEmotesString="Selecione emotes"
+SelectKeysAndTicketsString="Selecione chaves e bilhetes"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="LOCALIZAR NO MERCADO"
@@ -1468,6 +1484,7 @@ FailedDropInventoryMessage="Não é possível soltá-la aqui"
 ReceivedGrenadesFromMessage="Você recebeu granadas de"
 GaveGrenadesToMessage="Você enviou granadas para"
 SharingContentString="está compartilhando conteúdo"
+PowerUpHellishRageActivatedMessage="FÚRIA INFERNAL: +Dano, +Velocidade, Efeito de incendiar, Cura desativada"
 HeadShotAddedString="%x tiro(s) na cabeça - %y% dano extra!"
 HeadShotMaxString="Tiro na cabeça! %x% de dano extra!"
 HeadShotResetString="Tiro na cabeça perdido. Dano normal!"
@@ -1538,6 +1555,7 @@ PlayerClotGrabWarningMessage="ABATA ZEDS PARA LIBERTAR-SE!"
 
 UseMinigameMessage="ATIVAR"
 UseMinigameGeneratorMessage="ATIVAR GERADOR"
+UsePowerUpMessage="SACRIFICAR VIDA"
 DoshActivateMessage="CUSTO DE ATIVAÇÃO"
 EMPGrabWarningMessage="*** ! IMOBILIZADO ! ***"
 [KFLocalMessage_ServerNotification]
@@ -1933,7 +1951,7 @@ AirborneAgent="HORA DOS ZEDS - Agente aéreo"
 AirborneAgentDescription="Lança um gás de cura durante a hora dos Zeds que cura todos os aliados próximos."
 
 Sedative="HORA DOS ZEDS - Zedativo"
-SedativeDescription="Durante a hora dos Zeds, o dano causado aos Zeds com armas de classe concederão 30% de lentidão e alto dano de veneno."
+SedativeDescription="Durante a hora dos Zeds, o dano das suas armas de classe aumenta em 30% e seus abates geram uma explosão tóxica que causa dano aos Zeds e cura os jogadores."
 
 
 EXPAction1="Causando dano de arma médica"
@@ -2093,7 +2111,7 @@ Passives[1]=(Title="Dano de espingarda",Description="Aumenta em %x% o dano de ar
 Passives[2]=(Title="Penetração de espingarda",Description="Aumenta em %x% a penetração de arma de classe por nível");
 Passives[3]=(Title="Munição",Description="Aumenta em 15% a munição mais %x% por nível");
 Passives[4]=(Title="Maior capacidade de peso",Description="Cap. peso aumentada em 1 a cada 5 níveis");
-Passives[5]=(Title="Mochila munição + reparo porta",Description="Uma vez por rodada, todos os jogadores podem pegar munição da mochila e consertar portas destruídas");
+Passives[5]=(Title="Mochila munição + conserto de porta",Description="Uma vez por rodada, todos os jogadores podem pegar munição da mochila e consertar portas destruídas");
 
 EXPAction1="Causando dano de arma de apoio"
 EXPAction2="Solda de portas"
@@ -2220,6 +2238,9 @@ MadmanDescription="Durante a hora dos Zeds, todas as armas atiram 3x mais rápid
 
 IncapMaster="HORA DOS ZEDS - Confinamento"
 IncapMasterDescription="Durante a hora dos Zeds, todas as armas podem atordoar qualquer Zed."
+
+[KFPowerUp_HellishRage]
+PowerUpName="Fúria Infernal"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2748,6 +2769,20 @@ AllCompleteRewardDescriptionString="Pirata Espacial | Mochila do Macaco Espacial
 
 ChanceDropDescriptionStrings[0]="Bilhete de Verão"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado de Verão"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Uma legião infernal",DescriptionString="Mate 2.000 Zeds em qualquer mapa ou modo.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Invasão semanal",DescriptionString="Conclua Semanal na Zona da Marca do Inferno.")
+SpecialEventObjectiveInfoList[2]=(TitleString="A qualquer custo",DescriptionString="Obtenha 10 vezes a Fúria Infernal de um Obelisco da Zona da Marca do Inferno.")
+SpecialEventObjectiveInfoList[3]=(TitleString="Matador de demônios",DescriptionString="Decapite 600 Zeds na Zona da Marca do Inferno.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Caos inesgotável",DescriptionString="Conclua a 15ª leva na Zona da Marca do Inferno em Infinito na dificuldade Difícil ou maior.")
+
+AllCompleteRewardDescriptionString="Halloween | Mochila de Vudu"
+
+ChanceDropDescriptionStrings[0]="Bilhete de Halloween"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado de Halloween"
 
 ;============================================
 ; Daily Localization
@@ -3346,6 +3381,9 @@ DisplayName="Biolapso"
 
 [KF-Desolation KFMapSummary]
 DisplayName="Desolação"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="Zona da Marca do Inferno"
 
 [KFMapInfo]
 ; defaults

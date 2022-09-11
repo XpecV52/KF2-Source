@@ -182,7 +182,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'wep_ui_cryogun_tex.UI_FireModeSelect_Cryogun'
    FireModeIconPaths(1)=Texture2D'wep_ui_cryogun_tex.UI_FireModeSelect_2nd_Cryogun'
    InventorySize=7
-   MagazineCapacity(0)=100
    PenetrationPower(1)=4.000000
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=80.000000
@@ -192,6 +191,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'wep_ui_cryogun_tex.UI_WeaponSelect_Cryogun'
+   MagazineCapacity(0)=100
    AmmoCost(1)=10
    SpareAmmoCapacity(0)=500
    InitialSpareMags(0)=1

@@ -159,7 +159,7 @@ simulated function ConsumeAmmo(byte FireModeNum)
     {
         if((MagazineCapacity[1] > 0) && AmmoCount[1] > 0)
         {
-            AmmoCount[1] = byte(Max(AmmoCount[1] - AmmoCost[1], 0));
+            AmmoCount[1] = Max(AmmoCount[1] - AmmoCost[1], 0);
         }
     }
 }
@@ -297,7 +297,7 @@ function HealAmmoRegeneration(float DeltaTime)
             HealingIncrement -= 1;
             if(bAllowClientAmmoTracking)
             {
-                HealingDartAmmo = AmmoCount[1];
+                HealingDartAmmo = byte(AmmoCount[1]);
             }
         }
     }
@@ -590,12 +590,12 @@ simulated function UpdateOpticsUI(optional bool bForceUpdate)
     {
         if((AmmoCount[0] != StoredPrimaryAmmo) || bForceUpdate)
         {
-            StoredPrimaryAmmo = AmmoCount[0];
+            StoredPrimaryAmmo = byte(AmmoCount[0]);
             OpticsUI.SetPrimaryAmmo(StoredPrimaryAmmo);
         }
         if((AmmoCount[1] != StoredSecondaryAmmo) || bForceUpdate)
         {
-            StoredSecondaryAmmo = AmmoCount[1];
+            StoredSecondaryAmmo = byte(AmmoCount[1]);
             OpticsUI.SetHealerCharge(StoredSecondaryAmmo);
         }
         if(OpticsUI.MinPercentPerShot != float(AmmoCost[1]))
@@ -684,8 +684,8 @@ defaultproperties
     bRechargeHealAmmo=true
     LockAim=0.98
     bCanRefillSecondaryAmmo=false
-    MagazineCapacity[1]=100
     AimCorrectionSize=40
+    MagazineCapacity[1]=100
     AmmoCost(0)=1
     AmmoCost(1)=50
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_MedicBase.MeleeHelper'

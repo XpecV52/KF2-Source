@@ -23,7 +23,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=6
-   MagazineCapacity(0)=8
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshFOV=75.000000
@@ -33,6 +32,7 @@ defaultproperties
    DOF_FG_FocalRadius=25.000000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'
+   MagazineCapacity(0)=8
    SpareAmmoCapacity(0)=64
    InitialSpareMags(0)=3
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'

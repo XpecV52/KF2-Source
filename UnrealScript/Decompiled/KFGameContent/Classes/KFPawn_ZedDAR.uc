@@ -311,8 +311,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedDAR.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedDAR.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedDAR.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedDAR.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedDAR.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedDAR.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedDAR.PowerUpAkSoundComponent'
     Mass=85
     GroundSpeed=170
     Health=775
@@ -350,8 +352,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedDAR.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedDAR.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedDAR.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedDAR.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedDAR.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedDAR.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedDAR.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedDAR.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedDAR.HeadshotAkComponent0'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

@@ -1014,10 +1014,10 @@ defaultproperties
 	FireModeIconPaths(DEFAULT_FIREMODE)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
 	FiringStatesArray(DEFAULT_FIREMODE)=SprayingFire
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Custom
-	FireInterval(DEFAULT_FIREMODE)=+0.07 // 857 RPM
+	FireInterval(DEFAULT_FIREMODE)=+0.1 //+0.07 // 857 RPM
 	FireOffset=(X=30,Y=4.5,Z=-5)
 	//MinFireDuration=0.25
-	MinAmmoConsumed=4
+	MinAmmoConsumed=3 //4
 
 	// BASH_FIREMODE
 	InstantHitDamageTypes(BASH_FIREMODE)=class'KFDT_Bludgeon_HRGHealthrower'

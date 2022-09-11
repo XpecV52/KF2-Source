@@ -1054,13 +1054,13 @@ defaultproperties
    FireModeIconPaths(5)=None
    FireModeIconPaths(6)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
    InventorySize=8
-   MagazineCapacity(0)=50
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=70.000000
    DOF_FG_FocalRadius=85.000000
    DOF_FG_MaxNearBlurSize=2.500000
    GroupPriority=125.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Laser_Cutter_TEX.UI_WeaponSelect_Laser_Cutter'
+   MagazineCapacity(0)=50
    AmmoCost(2)=0
    AmmoCost(3)=0
    AmmoCost(4)=0

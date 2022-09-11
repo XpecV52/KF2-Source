@@ -238,6 +238,7 @@ var() bool bTargetAdhesionEnabled;
 var bool bUsingSights;
 /** This weapon has sights to aim */
 var(IronSight) bool bHasIronSights;
+var bool bKeepIronSightsOnJump;
 var bool bIronSightOnBringUp;
 var bool bForceHidden;
 var bool bZoomingIn;
@@ -303,12 +304,7 @@ var(Weapon) byte BurstAmount;
 var(Inventory) KFWeapon.EInventoryGroup InventoryGroup;
 /** Inventory (In blocks) cost */
 var(Inventory) byte InventorySize;
-var byte AmmoCount[2];
-/** Size of the weapon magazine, i.e. how many rounds it can hold */
-var(Inventory) byte MagazineCapacity[2];
 var KFWeapon.EReloadStatus ReloadStatus;
-var byte ReloadAmountLeft;
-var byte InitialReloadAmount;
 var float MinFiringPutDownPct;
 /** How much penetration power does this fire mode have */
 var(Weapon) array<float> PenetrationPower;
@@ -412,6 +408,9 @@ var(Inventory) Texture2D WeaponSelectTexture;
 var(Inventory) Texture2D SecondaryAmmoTexture;
 var float EquipAbortTime;
 var class<KFWeap_DualBase> DualClass;
+var int AmmoCount[2];
+/** Size of the weapon magazine, i.e. how many rounds it can hold */
+var(Inventory) int MagazineCapacity[2];
 /** How much ammo does it take to fire this firemode? */
 var(Inventory) protected array<byte> AmmoCost;
 var repnotify int SpareAmmoCount[2];
@@ -420,6 +419,8 @@ var(Inventory) int SpareAmmoCapacity[2];
 var int InitialSpareMags[2];
 /** What percentage of a full single magazine capacity to give when resupplying this weapon from an ammo pickup */
 var(Inventory) float AmmoPickupScale[2];
+var int ReloadAmountLeft;
+var int InitialReloadAmount;
 var int InitialReloadSpareAmmo;
 var transient float LastReloadAbortTime;
 /** How long to wait after firing to force reload */
@@ -817,7 +818,7 @@ simulated function Timer_UpdateWeaponSkin()
             ShotsFiredPct = float(MagazineCapacity[AmmoType] - AmmoCount[AmmoType]) / float(MagazineCapacity[AmmoType]);
             ShotsHitPct = float(ShotsHit) / float(MagazineCapacity[AmmoType]);
             I = 0;
-            J0xFF:
+            J0xFB:
 
             if(I < WeaponMICs.Length)
             {
@@ -828,7 +829,7 @@ simulated function Timer_UpdateWeaponSkin()
                     WeaponMICs[I].SetScalarParameterValue('ShotsHit', ShotsHitPct);
                 }
                 ++ I;
-                goto J0xFF;
+                goto J0xFB;
             }
         }
     }
@@ -1257,19 +1258,19 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
         {
             if(KFWInv.Class == DualClass)
             {
-                KFWInv.AmmoCount[0] -= byte(default.MagazineCapacity[0] - AmmoCount[0]);
-                KFWInv.AmmoCount[1] -= byte(default.MagazineCapacity[1] - AmmoCount[1]);
+                KFWInv.AmmoCount[0] -= (default.MagazineCapacity[0] - AmmoCount[0]);
+                KFWInv.AmmoCount[1] -= (default.MagazineCapacity[1] - AmmoCount[1]);
                 KFWInv.SpareAmmoCount[0] -= ((default.InitialSpareMags[0] * default.MagazineCapacity[0]) - SpareAmmoCount[0]);
                 KFWInv.SpareAmmoCount[0] = Min(KFWInv.SpareAmmoCount[0], KFWInv.SpareAmmoCapacity[0]);
-                KFWInv.ClientForceAmmoUpdate(KFWInv.AmmoCount[0], KFWInv.SpareAmmoCount[0]);
-                KFWInv.ClientForceSecondaryAmmoUpdate(KFWInv.AmmoCount[1]);
+                KFWInv.ClientForceAmmoUpdate(byte(KFWInv.AmmoCount[0]), KFWInv.SpareAmmoCount[0]);
+                KFWInv.ClientForceSecondaryAmmoUpdate(byte(KFWInv.AmmoCount[1]));
                 KFWInv.bGivenAtStart = PickedUpWeapon.bGivenAtStart;                
                 return;
             }            
         }        
     }
-    ClientForceAmmoUpdate(AmmoCount[0], SpareAmmoCount[0]);
-    ClientForceSecondaryAmmoUpdate(AmmoCount[1]);
+    ClientForceAmmoUpdate(byte(AmmoCount[0]), SpareAmmoCount[0]);
+    ClientForceSecondaryAmmoUpdate(byte(AmmoCount[1]));
     bGivenAtStart = PickedUpWeapon.bGivenAtStart;
 }
 
@@ -1428,6 +1429,11 @@ simulated function bool AllowIronSights()
         return false;
     }
     return true;
+}
+
+simulated function bool IsUsingSights()
+{
+    return bUsingSights;
 }
 
 simulated function EnableIronSightsDoF(bool bEnableDOF)
@@ -3139,6 +3145,18 @@ simulated function HandleProjectileImpact(byte ProjectileFireMode, ImpactInfo Im
     }
 }
 
+simulated function HandleProjectileImpactSpecial(byte ProjectileFireMode, ImpactInfo Impact, Pawn OldInstigator, optional float PenetrationValue)
+{
+    if(OldInstigator != none)
+    {
+        if(Instigator.Role < ROLE_Authority)
+        {
+            SendClientProjectileImpact(ProjectileFireMode, Impact, PenetrationValue);
+        }
+        ProcessInstantHitEx(ProjectileFireMode, Impact,, PenetrationValue, 0);
+    }
+}
+
 event RecieveClientFragmentImpact(const out ImpactInfo Impact, class<KFProjectile> Fragment)
 {
     ProcessGrenadeProjectileImpact(Impact, Fragment);
@@ -3374,7 +3392,7 @@ simulated function ConsumeAmmo(byte FireModeNum)
     {
         if((MagazineCapacity[AmmoType] > 0) && AmmoCount[AmmoType] > 0)
         {
-            AmmoCount[AmmoType] = byte(Max(AmmoCount[AmmoType] - AmmoCost[FireModeNum], 0));
+            AmmoCount[AmmoType] = Max(AmmoCount[AmmoType] - AmmoCost[FireModeNum], 0);
         }
     }
 }
@@ -3430,8 +3448,8 @@ function AddTransactionAmmo(int TransactionPrimaryAmmo, int TransactionSecondary
         SpareAmmoToAdd = Max(-SpareAmmoCount[0], TransactionPrimaryAmmo);
         ExtraTransactionAmmo = TransactionPrimaryAmmo - SpareAmmoToAdd;
         AddAmmo(SpareAmmoToAdd);
-        AmmoCount[0] = byte(Max(0, AmmoCount[0] + ExtraTransactionAmmo));
-        ClientForceAmmoUpdate(AmmoCount[0], SpareAmmoCount[0]);
+        AmmoCount[0] = Max(0, AmmoCount[0] + ExtraTransactionAmmo);
+        ClientForceAmmoUpdate(byte(AmmoCount[0]), SpareAmmoCount[0]);
     }
     AddSecondaryAmmo(TransactionSecondaryAmmo);
 }
@@ -3445,11 +3463,11 @@ function int AddSecondaryAmmo(int Amount)
         return 0;
     }
     OldAmmo = AmmoCount[1];
-    AmmoCount[1] = byte(Min(AmmoCount[1] + Amount, MagazineCapacity[1]));
+    AmmoCount[1] = Min(AmmoCount[1] + Amount, MagazineCapacity[1]);
     bForceNetUpdate = true;
     if(bAllowClientAmmoTracking)
     {
-        ClientForceSecondaryAmmoUpdate(AmmoCount[1]);
+        ClientForceSecondaryAmmoUpdate(byte(AmmoCount[1]));
     }
     return AmmoCount[1] - OldAmmo;
 }
@@ -3472,7 +3490,7 @@ reliable client simulated function ClientForceAmmoUpdate(byte NewAmmoCount, int 
             {
                 LogInternal(((((string(self) @ string(GetFuncName())) @ "Primary SpareAmmo mismatch Server:") $ string(NewSpareAmmoCount)) @ "Client:") $ string(SpareAmmoCount[0]));
             }
-            AmmoCount[0] = byte(Min(NewAmmoCount, AmmoCount[0]));
+            AmmoCount[0] = Min(NewAmmoCount, AmmoCount[0]);
             SpareAmmoCount[0] = Min(NewSpareAmmoCount, SpareAmmoCount[0]);            
         }
         else
@@ -4139,7 +4157,7 @@ simulated function int GetUpgradedMagCapacity(optional int FireMode, optional in
     return int(GetUpgradedStatValue(float(default.MagazineCapacity[FireMode]), byte(8 + UpgradeFireModes[FireMode]), UpgradeIndex));
 }
 
-simulated function ModifyMagSizeAndNumber(out byte InMagazineCapacity, optional int FireMode, optional int UpgradeIndex, optional KFPerk CurrentPerk)
+simulated function ModifyMagSizeAndNumber(out int InMagazineCapacity, optional int FireMode, optional int UpgradeIndex, optional KFPerk CurrentPerk)
 {
     FireMode = 0;
     UpgradeIndex = -1;    
@@ -4147,7 +4165,7 @@ simulated function ModifyMagSizeAndNumber(out byte InMagazineCapacity, optional 
     {
         return;
     }
-    InMagazineCapacity = byte(GetUpgradedMagCapacity(FireMode, UpgradeIndex));
+    InMagazineCapacity = GetUpgradedMagCapacity(FireMode, UpgradeIndex);
     if(CurrentPerk == none)
     {
         CurrentPerk = GetPerk();
@@ -4292,7 +4310,7 @@ reliable server function ServerSyncReload(int ClientSpareAmmoCount)
     {
         ClientReloadAmount = Min(InitialReloadSpareAmmo - ClientSpareAmmoCount, InitialReloadSpareAmmo);
         SpareAmmoCount[0] -= ClientReloadAmount;
-        AmmoCount[0] = byte(Min(AmmoCount[0] + ClientReloadAmount, MagazineCapacity[0]));
+        AmmoCount[0] = Min(AmmoCount[0] + ClientReloadAmount, MagazineCapacity[0]);
     }
 }
 
@@ -4527,12 +4545,12 @@ simulated function AbortReload();
 
 simulated function InitializeReload()
 {
-    ReloadAmountLeft = byte(Min(MagazineCapacity[0] - AmmoCount[0], SpareAmmoCount[0]));
+    ReloadAmountLeft = Min(MagazineCapacity[0] - AmmoCount[0], SpareAmmoCount[0]);
     InitialReloadAmount = ReloadAmountLeft;
     InitialReloadSpareAmmo = SpareAmmoCount[0];
     if(Role < ROLE_Authority)
     {
-        ServerSendToReload(ReloadAmountLeft);
+        ServerSendToReload(byte(ReloadAmountLeft));
     }
 }
 
@@ -4703,7 +4721,7 @@ simulated function PerformReload(optional byte FireModeNum)
             {
                 ReloadAmount = 1;
             }
-            AmmoCount[AmmoType] = byte(Min(AmmoCount[AmmoType] + ReloadAmount, MagazineCapacity[AmmoType]));
+            AmmoCount[AmmoType] = Min(AmmoCount[AmmoType] + ReloadAmount, MagazineCapacity[AmmoType]);
             SpareAmmoCount[AmmoType] -= ReloadAmount;
         }
     }
@@ -4955,8 +4973,8 @@ auto state Inactive
         ClearPendingFire(2);
         if((bAllowClientAmmoTracking && Role == ROLE_Authority) && WorldInfo.TimeSeconds > CreationTime)
         {
-            ClientForceAmmoUpdate(AmmoCount[0], SpareAmmoCount[0], true);
-            ClientForceSecondaryAmmoUpdate(AmmoCount[1]);
+            ClientForceAmmoUpdate(byte(AmmoCount[0]), SpareAmmoCount[0], true);
+            ClientForceSecondaryAmmoUpdate(byte(AmmoCount[1]));
         }
         bPendingAutoSwitchOnDryFire = false;
         super.BeginState(PreviousStateName);

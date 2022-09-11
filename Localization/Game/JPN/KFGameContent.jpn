@@ -268,7 +268,7 @@ ItemCategory="ショットガン"
 ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•AA-12は自動ショットガンです。近距離から中距離で壊滅的な火力を発揮しますが、フルオートでは弾薬が食われます！"
 
 [KFWeap_Shotgun_MB500]
-ItemName="SG 500ポンプショットガン"
+ItemName="SG 500ポンプアクションショットガン"
 ItemCategory="ショットガン"
 ItemDescription="•ファイアモードはポンプアクションのみ。\n•ピストルグリップを持つポンプアクションモスバーグSG 500は、素晴らしい接近戦用zedキラーです。シンプルで効果的です。"
 
@@ -726,6 +726,28 @@ ItemName="HRG テスランチャー"
 ItemCategory="アサルトライフル"
 ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアでEMP手榴弾を発射。\n•この電撃的でエコフレンドリーな武器があれば、惑星を傷付けることなく何百ものZedを倒すことができます。"
 SecondaryAmmo="EMP手榴弾"
+
+[KFWeap_Minigun]
+ItemName="ミニガン"
+ItemCategory="特殊"
+ItemDescription="•プライマリファイアはフルオート；バレルが1.5秒間巻き上げられて発射を開始する。\n•照準を合わせるとバレルが巻き上げられて武器の発射準備をする。\n•幸福は1分当たりの回転数で計ることができます。"
+SharedUnlockSource="ミニガンの武器バンドル"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="HRG アークジェネレーター"
+ItemCategory="特殊"
+ItemDescription="•プライマリファイアが付近の敵に弧を描く電流ビームを発射する。\n•オルトファイアは一直線上に電流オーブを発射する。\n•究極のパワーを求める人へ！"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="HRG スコーチャー"
+ItemCategory="火炎"
+ItemDescription="•プライマリファイアがターゲットを燃焼させるベタベタ火炎を放ち、その周辺に火を点ける。\n•オルトファイアが一直線上に地面に炎を落とす壊れた火炎を発射する。\n•ライター武器で道を照らそう。"
+
+[KFWeap_Mine_Reconstructor]
+ItemName="地雷再建機"
+ItemCategory="爆発物"
+ItemDescription="•接触時に爆発してZedを傷つけ味方を回復させるバイオ地雷を発射する。\n•オルトファイアが設置されたすべての地雷を起爆させる。\n•その基盤素材は衛生条例の懸念があるため極秘情報となっています。"
+SharedUnlockSource="地雷再建機武器バンドル"
 
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max

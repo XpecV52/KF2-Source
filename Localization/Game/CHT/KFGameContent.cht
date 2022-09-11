@@ -727,6 +727,28 @@ ItemCategory="突擊步槍"
 ItemDescription="•射擊模式只有全自動。\n•次要射擊會發射電磁脈衝手榴彈。\n•這把環保的電力武器可以讓你屠殺上百個Zed，完全不會對星球造成破壞。"
 SecondaryAmmo="電磁脈衝手榴彈"
 
+[KFWeap_Minigun]
+ItemName="小槍"
+ItemCategory="特別"
+ItemDescription="•主要攻擊為全自動；槍管旋轉1.5秒以開始發射。\n•瞄準可令槍管旋轉，準備開火。\n•歡樂要用每分鐘發射的子彈數來衡量。"
+SharedUnlockSource="小槍武器同捆包"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="HRG 電弧發生器"
+ItemCategory="特別"
+ItemDescription="•主要攻擊放出一道電流，在附近的敵人身上產生電弧彈射。\n•次要攻擊向直線方向發出一個電球。\n•專為尋求無限能量之人所設！"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="HRG 熾焰者"
+ItemCategory="火焰"
+ItemDescription="•主要攻擊射出一个粘性的信號彈，燃燒一個目標並照亮附近的一切。\n•次要攻擊發出一個破碎的信號彈，直線飛出，在地面上落下朵朵火焰。\n•照亮前路的光明武器。"
+
+[KFWeap_Mine_Reconstructor]
+ItemName="地雷重構器"
+ItemCategory="炸藥"
+ItemDescription="•發射生化地雷，即觸即爆，對Zed造成傷害，替友軍療傷。\n•次要攻擊引爆放置的所有地雷。\n•由於衛生守則方面的問題，其基本素材的來源屬於保密資訊。"
+SharedUnlockSource="地雷重構器武器同捆包"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

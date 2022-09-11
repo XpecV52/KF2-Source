@@ -9,96 +9,10 @@
 //=============================================================================
 class KFWeap_AssaultRifle_HRGTeslauncher extends KFWeap_AssaultRifle_M16M203;
 
-/* 
-	TODO LIST [LO FOR TAG (WHATS BEFORE THE : IN THE INDICATED FILE)]  = DONE ||  = NOT DONE
-		BASE DAMAGE 
-			DEFAULT MODE DAMAGE : KFWeap_AssaultRifle_HRGTeslauncher.uc 
-			DEFAULT MODE DAMAGE DOT : KFDT_Ballistic_HRGTeslauncher/KFDT_Fire_HRGTeslauncherDoT
-			BASH MODE DAMAGE : KFWeap_AssaultRifle_HRGTeslauncher.uc
-			ALT MODE DAMAGE : KFDT_Ballistic_HRGTeslauncher/KFProj_Grenade_HRGTeslauncher.uc 
-
-		DAMAGE TYPES
-			DEFAULT MODE TYPE DAMAGE :  KFDT_Ballistic_HRGTeslauncher/KFDT_Fire_HRGTeslauncherDoT
-			BASH MODE TYPE DAMAGE : KFDT_Bludgeon_HRGTeslauncher
-			ALT MODE TYPE DAMAGE : KFProj_Grenade_HRGTeslauncher
-
-		FIRE RATE
-			Default Firemode (Automatic) firerate :  KFWeap_AssaultRifle_HRGTeslauncher
-			Altfire Firemode (Single Fire) firerate :  MISSING/DONT KNOW HOW TO CALCULATE
-
-		RANGE
-			Default Firemode (Automatic) range :   KFWeap_AssaultRifle_HRGTeslauncher
-			Altfire Firemode (Grenade Launcher) range :  CANT FIND
-
-		PENETRATION
-			Default Firemode (Automatic) penetration : KFWeap_AssaultRifle_HRGTeslauncher
-			Altfire Firemode (Grenade Launcher) penetration : KFWeap_AssaultRifle_HRGTeslauncher
-
-		DUAL-WIELDABLE
-			Dual-wieldable NO : KFWeap_AssaultRifle_HRGTeslauncher
-
-		MAGAZINE SIZE
-			Default Magazine ammount : KFWeap_AssaultRifle_HRGTeslauncher
-			Alt Magazine ammount : KFWeap_AssaultRifle_HRGTeslauncher
-
-		SPARE AMMO CAPACITY
-			Default spare ammo Ammount : KFWeap_AssaultRifle_HRGTeslauncher
-			Alt spare ammo Ammount : KFWeap_AssaultRifle_HRGTeslauncher
-
-		STARTING SPARE MAGAZINES
-			Default starting spare magazines Ammount : KFWeap_AssaultRifle_HRGTeslauncher 
-			Alt starting spare magazines Ammount :  KFWeap_AssaultRifle_HRGTeslauncher
-
-		AMMO BOX PICKUP SCALE
-			Default Ammount : KFWeap_AssaultRifle_HRGTeslauncher
-			Alt Ammount : KFWeap_AssaultRifle_HRGTeslauncher
-		
-		RELOAD SPEED
-	
-			Default Reload : KFWeap_AssaultRifle_HRGTeslauncher
-			Alt Reload : KFWeap_AssaultRifle_HRGTeslauncher
-
-		WEIGHT
-
-			Weight Ammount :  
-
-		WEAPON TRADER PRICE
-			Weapon Price : KFWeapDef_HRGTeslauncher
-
-		AMMO TRADER PRICE
-			Bullets Ammo Price :  KFWeapDef_HRGTeslauncher
-			Grenade Ammo Price :  KFWeapDef_HRGTeslauncher
-
-		WEAPON TIER
-			Tier : 
-
-		AFFLICTIONS
-			afflictions Default Firemode : KFDT_Ballistic_HRGTeslauncher
-			afflictions Bash Firemode : KFDT_Bludgeon_HRGTeslauncher (Parent)
-			afflictions Alt Firemode : KFDT_EMP_EMPGrenade
-
-		PERKS
-		Main Perk : KFWeap_AssaultRifle_HRGTeslauncher
-
-		WEAPON UPGRADE
-			Upgrades:
-
-		ADD TO CHEATMANAGER (https://www.notion.so/C-mo-a-adir-un-Weapon-be997fefdede49858315a4e48e15a8ab)
-			Added to cheat : KFCheatManager.uc
-		
-		ADD TO SKINS
-		 Added to Skins :
-
-		ADD TO DAILY EVENTS
-		 Added to daily events : 
-
- */
-
 var class<KFGFxWorld_MedicOptics> OpticsUIClass;
 var KFGFxWorld_MedicOptics OpticsUI;
 var byte StoredPrimaryAmmo;
 var byte StoredSecondaryAmmo;
-var vector SecondaryFireOffset;
 
 simulated event Tick( FLOAT DeltaTime )
 {
@@ -279,7 +193,6 @@ simulated state FiringSecondaryState
 defaultproperties
 {
    OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
-   SecondaryFireOffset=(X=20.000000,Y=4.500000,Z=-7.000000)
    PackageKey="HRG_Teslauncher"
    FirstPersonMeshName="WEP_1P_HRG_Teslauncher_MESH.WEP_1stP_HRG_Teslauncher_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_HRG_Teslauncher_ANIM.Wep_1stP_HRG_Teslauncher_Anim"

@@ -56,6 +56,8 @@ simulated function OnMapObjectiveDeactivated(Actor ObjectiveInterfaceActor);
 
 simulated function OnZedKilled(class<KFPawn_Monster> MonsterClass, int Difficulty, class<DamageType> DT);
 
+simulated function OnZedKilledByHeadshot(class<KFPawn_Monster> MonsterClass, int Difficulty, class<DamageType> DT);
+
 simulated function OnMapCollectibleFound(PlayerReplicationInfo FinderPRI, int CollectibleID);
 
 simulated event OnGameWon(class<GameInfo> GameClass, int Difficulty, int GameLength, bool bCoop);

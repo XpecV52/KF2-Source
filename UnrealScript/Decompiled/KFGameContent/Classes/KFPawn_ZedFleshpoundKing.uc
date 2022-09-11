@@ -673,12 +673,14 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedFleshpoundKing.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.SecondaryWeaponAkSoundComponent'
     begin object name=BeamHitAC0 class=AkComponent
         bStopWhenOwnerDestroyed=true
     object end
     // Reference: AkComponent'Default__KFPawn_ZedFleshpoundKing.BeamHitAC0'
     FootstepAkComponent=BeamHitAC0
     DialogAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.PowerUpAkSoundComponent'
     GroundSpeed=300
     Health=8750
     ControllerClass=Class'KFAIController_ZedFleshpoundKing'
@@ -716,14 +718,16 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedFleshpoundKing.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedFleshpoundKing.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedFleshpoundKing.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedFleshpoundKing.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedFleshpoundKing.HeadshotAkComponent0'
-    Components(10)=AkComponent'Default__KFPawn_ZedFleshpoundKing.RageAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedFleshpoundKing.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedFleshpoundKing.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedFleshpoundKing.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedFleshpoundKing.HeadshotAkComponent0'
+    Components(12)=AkComponent'Default__KFPawn_ZedFleshpoundKing.RageAkComponent0'
     begin object name=BeamHitAC0 class=AkComponent
         bStopWhenOwnerDestroyed=true
     object end
     // Reference: AkComponent'Default__KFPawn_ZedFleshpoundKing.BeamHitAC0'
-    Components(11)=BeamHitAC0
+    Components(13)=BeamHitAC0
     bAlwaysRelevant=true
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

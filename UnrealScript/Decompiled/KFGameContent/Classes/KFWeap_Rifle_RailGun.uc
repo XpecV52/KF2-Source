@@ -336,7 +336,6 @@ defaultproperties
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=9
-    MagazineCapacity=1
     PenetrationPower=/* Array type was not detected. */
     MeshIronSightFOV=27
     PlayerIronSightFOV=70
@@ -347,6 +346,7 @@ defaultproperties
     AimWarningDelay=(X=0.4,Y=0.8)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun'
+    MagazineCapacity=1
     SpareAmmoCapacity=32
     InitialSpareMags=6
     AmmoPickupScale=3

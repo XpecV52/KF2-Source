@@ -24,6 +24,9 @@ var transient float PressedJumpTime;
  This concept is useful for Ironsights(HOLD), which is accomplished by this bool. */
 var transient bool bIronsightsHeld;
 
+/** Useful to automatically put some weapons in sight mode if the button was holded before the equip */
+var transient bool bIronsightsActive;
+
 /*********************************************************************************************
  * @name Gamepad Specific Controls
 ********************************************************************************************* */
@@ -907,12 +910,14 @@ simulated exec function IronSights(optional bool bHoldButtonMode)
 		bExtendedSprinting = false;
 	}
 
+	bIronsightsActive = true;
+
 	if( Pawn != none )
 	{
 		KFW = KFWeapon(Pawn.Weapon);
 		if ( KFW != None )
 		{
-			KFW.SetIronSights((bHoldButtonMode) ? true : !KFW.bUsingSights);
+			KFW.SetIronSights((bHoldButtonMode) ? true : !KFW.IsUsingSights());
 		}
 	}
 }
@@ -933,6 +938,8 @@ simulated exec function IronSightsRelease(optional bool bHoldButtonMode)
 	{
 		bIronsightsHeld = false;
 	}
+	
+	bIronsightsActive = false;
 
 	if( Pawn != none )
 	{

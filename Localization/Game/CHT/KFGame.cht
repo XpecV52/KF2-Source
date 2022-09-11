@@ -34,7 +34,7 @@ ModeStrings[3]="無盡"
 ModeStrings[4]="目標"
 
 NoPreferenceString="任何"
-OKString="OK"
+OKString="確定"
 ConfirmString="確定"
 CancelString="取消"
 BackString="返回"
@@ -46,11 +46,12 @@ YesString="是"
 NoString="否"
 TeamSwappedString="你已經被換隊了"
 
-MicrophonePopupTitleString="麥克風設定"
-MicrophonePopupSelectDeviceString="選擇"
+
+MicrophonePopupTitleString="配置麥克風"
+MicrophonePopupSelectDeviceString="選擇裝置"
 MicrophonePopupVolumeString="麥克風音量"
 MicrophonePopupCheckString="檢查麥克風"
-MicrophonePopupStopString="接受"
+MicrophonePopupStopString="停止"
 MicrophonePopupRefreshString="重新整理"
 
 FriendsListPopupTitleString="選擇要邀請的好友"
@@ -61,7 +62,8 @@ FriendsListPopupLinkButonString="連結帳號"
 ReturnString="返回"
 
 InvitePopupTitleString="大廳邀請"
-InvitePopupTextString="邀請你加入大廳。"
+InvitePopupTextString=" 邀請你加入大廳"
+
 
 CancelConnectionString="取消載入"
 
@@ -169,6 +171,9 @@ FailedSearchString="無法在提供的選項中為你找到對手。請放寬搜
 BrowseServersString="瀏覽伺服器"
 HasInvitedToGameString=" 邀請你參加遊戲。"
 JoinGameString="是否參加遊戲？"
+
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="物品伺服器連線"
 
 [KFGFxObject_Menu]
 LeavePartyTitleString="正在離開隊伍"
@@ -949,6 +954,17 @@ MarketCosmeticsString="妝容市場"
 MarketEmotesString="市場Emotes"
 MarketSFXString="市場特效"
 ThankYouString="感謝你的購買！這會幫我們開發新的物品，地圖，武器，喪屍和未來更新的新遊戲模式。"
+WeaponBundlesString="武器同捆包"
+CharacterBundlesString="角色同捆包"
+OutfitBundlesString="服裝同捆包"
+TicketCratesUSBBundlesString="票券/箱子/USB同捆包"
+CosmeticBundlesString="妝容同捆包"
+WeaponSkinBundlesString="武器飾品同捆包"
+HeadshotFxBundlesString="爆頭 FX 同捆包"
+SelectWeaponSkinsString="選擇武器飾品"
+SelectCosmeticsString="選擇妝容"
+SelectEmotesString="選擇表情動作指令"
+SelectKeysAndTicketsString="選擇鑰匙和票券"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="在市場尋找"
@@ -1089,7 +1105,7 @@ DoubleWarningString="某些選擇的設定可能會 %x% 且 %x%"
 PerformanceDescString[0]="對遊戲效能有不利影響"
 PerformanceDescString[1]="對遊戲效能有嚴重影響"
 RestartDescString="需要重新啟動"
-OKString="OK"
+OKString="確定"
 CancelString="取消"
 UnsavedChangesString="你有未儲存的變更"
 SaveChangesString="你要儲存嗎？"
@@ -1468,6 +1484,7 @@ FailedDropInventoryMessage="你不能在此丟棄"
 ReceivedGrenadesFromMessage="你收到的手榴彈來自"
 GaveGrenadesToMessage="你將手榴彈給予"
 SharingContentString="正在分享內容"
+PowerUpHellishRageActivatedMessage="地獄暴走：+傷害，+速度，燃燒效果，療傷停用"
 HeadShotAddedString="%x 爆頭 - 增加 %y% 傷害！"
 HeadShotMaxString="爆頭！增加 %x% 傷害！"
 HeadShotResetString="爆頭未擊中。普通傷害！"
@@ -1538,6 +1555,7 @@ PlayerClotGrabWarningMessage="殺死 ZED 以重獲自由！"
 
 UseMinigameMessage="開啟"
 UseMinigameGeneratorMessage="啟動產生器"
+UsePowerUpMessage="犧牲生命"
 DoshActivateMessage="行動消耗"
 EMPGrabWarningMessage="*** ！動憚不得！***"
 [KFLocalMessage_ServerNotification]
@@ -1933,7 +1951,7 @@ AirborneAgent="ZED 時間 - 空中飛人"
 AirborneAgentDescription="Zed 時間發動時，你會施放治療瓦斯，用來治療附近的隊友。"
 
 Sedative="ZED 時間 - Zed 動作"
-SedativeDescription="Zed 時間發動時，以職業武器對 Zed 造成傷害會使他們動作減緩 30% 且造成大量毒傷害。"
+SedativeDescription="在Zed時間中，您的職業武器傷害提升30%，每次擊殺產生毒素爆炸，傷害Zed並治療玩家。"
 
 
 EXPAction1="造成醫學武器傷害"
@@ -2220,6 +2238,9 @@ MadmanDescription="Zed 時間發動時，你的所有武器射速變為 3 倍。
 
 IncapMaster="ZED 時間 - 鎖定"
 IncapMasterDescription="Zed時間發動時，你的所有武器可以暈眩任何Zed。"
+
+[KFPowerUp_HellishRage]
+PowerUpName="地獄暴走"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2748,6 +2769,20 @@ AllCompleteRewardDescriptionString="太空海盜 | 太空猴子背包"
 
 ChanceDropDescriptionStrings[0]="夏日票券"
 ChanceDropDescriptionStrings[1]="夏日金色票券"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="附有專屬道具的限時活動"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="地獄軍團",DescriptionString="在任何地圖或模式擊殺2000個Zed")
+SpecialEventObjectiveInfoList[1]=(TitleString="每週入侵",DescriptionString="在地獄印記站點完成每週任務")
+SpecialEventObjectiveInfoList[2]=(TitleString="不惜一切",DescriptionString="從地獄印記站點方尖塔獲得10次地獄暴走")
+SpecialEventObjectiveInfoList[3]=(TitleString="屠魔者",DescriptionString="在地獄印記站點斬首600個Zed")
+SpecialEventObjectiveInfoList[4]=(TitleString="無盡的混沌",DescriptionString="在無盡困難以上難度的地獄印記站點完成第15波攻勢")
+
+AllCompleteRewardDescriptionString="萬聖節 | 巫毒背包"
+
+ChanceDropDescriptionStrings[0]="萬聖節票券"
+ChanceDropDescriptionStrings[1]="萬聖節金色票券"
 
 ;============================================
 ; Daily Localization
@@ -3346,6 +3381,9 @@ DisplayName="生化事故區"
 
 [KF-Desolation KFMapSummary]
 DisplayName="廢墟"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="地獄印記站點"
 
 [KFMapInfo]
 ; defaults

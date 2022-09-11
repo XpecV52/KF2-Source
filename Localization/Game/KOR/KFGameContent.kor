@@ -706,7 +706,7 @@ ItemDescription="•기본 사격은 단발 전용입니다.\n•대체 사격 �
 [KFWeap_Pistol_Blunderbuss]
 ItemName="나팔총"
 ItemCategory="폭발물"
-ItemDescription="•기본 사격은 캐논볼을 발사합니다.\n•베이스 샷을 누르면 대포가 폭발하는 것을 막을 수 있습니다. 캐논볼은 발사 시 폭발합니다.\n•대체 사격 시 캐논볼 파편을 발사합니다.\n•의족과 앵무새는 별도로 판매합니다!"
+ItemDescription="•기본 사격은 캐논볼을 발사합니다. \n•기본 사격을 누르고 있으면 캐논볼이 폭발하지 않습니다. 버튼을 놓으면 폭발합니다. \n•대체 사격 시 캐논볼 파편을 발사합니다. \n•의족과 앵무새는 별도로 판매합니다!"
 SharedUnlockSource="나팔총 무기 번들"
 
 [KFWeap_Pistol_G18C]
@@ -726,6 +726,28 @@ ItemName="HRG 테스론처"
 ItemCategory="돌격소총"
 ItemDescription="•발사 모드는 완전 자동 전용입니다.\n•대체 사격 시 EMP 수류탄을 발사합니다.\n•이 전기를 이용해 수백 명의 제드를 학살하면서도 환경에는 전혀 영향을 주지 않을 수 있습니다."
 SecondaryAmmo="EMP 수류탄"
+
+[KFWeap_Minigun]
+ItemName="미니건"
+ItemCategory="특수"
+ItemDescription="•기본 사격은 완전 자동입니다. 1.5초간 배럴을 감아 사격을 시작합니다. \n•조준 시 배럴을 감아 무기 발사를 준비합니다. \n•행복은 분당 라운드로 측정할 수 있죠."
+SharedUnlockSource="미니건 무기 번들"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="HRG 아크 발생 장치"
+ItemCategory="특수"
+ItemDescription="•기본 사격은 근처 적에게 호 모양의 전기 빔을 발사합니다. \n•대체 사격은 직선 방향으로 전기 구체를 발사합니다. \n•한계 없는 힘을 원하는 분들을 위한 무기입니다!"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="HRG 스코처"
+ItemCategory="화염"
+ItemDescription="•기본 사격은 주변 모든 것을 밝히고 대상을 태우는 달라붙는 불꽃을 발사합니다. \n•대체 사격 시 일직선으로 땅 위에 화염을 떨어뜨리는 끊어지는 불꽃을 발사합니다.\n•당신의 길을 밝혀줄 빛나는 무기입니다."
+
+[KFWeap_Mine_Reconstructor]
+ItemName="지뢰 재건 장치"
+ItemCategory="폭발물"
+ItemDescription="•접촉 시 제드에게 데미지를 가하고 아군을 치료하는 생체 지뢰를 발사합니다. \n•대체 사격 시 배치한 모든 지뢰를 폭발시킵니다. \n•기본 자재 획득처는 보건법상 기밀입니다."
+SharedUnlockSource="지뢰 재건 장치 무기 번들"
 
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max

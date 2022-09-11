@@ -33,7 +33,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=4
-   MagazineCapacity(0)=12
    MeshFOV=60.000000
    MeshIronSightFOV=55.000000
    PlayerIronSightFOV=77.000000
@@ -43,6 +42,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=35.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_Winterbite_Item_TEX.UI_WeaponSelect_HRG_DualWinterbite'
+   MagazineCapacity(0)=12
    SpareAmmoCapacity(0)=144
    InitialSpareMags(0)=4
    BonesToLockOnEmpty(0)="RW_Hammer"
@@ -93,10 +93,10 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   Spread(0)=0.015000
-   Spread(1)=0.015000
-   InstantHitDamage(0)=40.000000
-   InstantHitDamage(1)=40.000000
+   Spread(0)=0.009000
+   Spread(1)=0.009000
+   InstantHitDamage(0)=49.000000
+   InstantHitDamage(1)=49.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Freeze_HRGWinterbiteImpact'

@@ -333,13 +333,13 @@ function SetupDroppedPickup(out DroppedPickup P, Vector StartVelocity)
     }
     if(NewSingle != none)
     {
-        NewSingle.AmmoCount[0] = byte((((AmmoCount[0] & 1) == 0) ? AmmoCount[0] / 2 : (AmmoCount[0] / 2) + 1));
-        AmmoCount[0] /= 2;
+        NewSingle.AmmoCount[0] = (((AmmoCount[0] & 1) == 0) ? AmmoCount[0] / 2 : (AmmoCount[0] / 2) + 1);
+        AmmoCount[0] /= float(2);
         SingleSpareAmmoCount = Min(SpareAmmoCount[0], NewSingle.SpareAmmoCapacity[0]);
         NewSingle.SpareAmmoCount[0] = SingleSpareAmmoCount;
         SpareAmmoCount[0] -= SingleSpareAmmoCount;
-        NewSingle.ClientForceAmmoUpdate(NewSingle.AmmoCount[0], NewSingle.SpareAmmoCount[0]);
-        NewSingle.ClientForceSecondaryAmmoUpdate(NewSingle.AmmoCount[1]);
+        NewSingle.ClientForceAmmoUpdate(byte(NewSingle.AmmoCount[0]), NewSingle.SpareAmmoCount[0]);
+        NewSingle.ClientForceSecondaryAmmoUpdate(byte(NewSingle.AmmoCount[1]));
         NewSingle.SetWeaponUpgradeLevel(NewSingleUpgradeIndex);
         if(NewSingleUpgradeIndex > 0)
         {

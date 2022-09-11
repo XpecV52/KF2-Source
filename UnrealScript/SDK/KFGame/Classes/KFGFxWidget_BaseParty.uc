@@ -152,7 +152,7 @@ function bool isUserYourFriend(UniqueNetId PlayerID)
 function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 {
 	local PlayerController PC;
-	local bool bConsoleBuild;
+	//local bool bConsoleBuild;
 	local GFxObject DataProvider;
 	local int OptionIndex;
 	local string ProfileString;
@@ -177,7 +177,7 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 	DataProvider.SetInt("index", SlotIndex);
 	PC = GetPC();
 	//Clear the profile options
-	bConsoleBuild = PC.WorldInfo.IsConsoleBuild();
+	//bConsoleBuild = PC.WorldInfo.IsConsoleBuild();
 
 	if(PlayerID != PC.PlayerReplicationInfo.UniqueId)
 	{
@@ -216,7 +216,7 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 	if( ProfileString != "" )
 	{
 		//View profile option Added at the end if we are on PC but first on console.
-		if (!class'WorldInfo'.static.IsEOSBuild())
+		if (isPlayerFromSteam(PlayerID))
 		{
 			AddStringOptionToList(ViewProfileKey, OptionIndex, ProfileString, DataProvider);
 		}
@@ -226,6 +226,13 @@ function CreatePlayerOptions(UniqueNetId PlayerID, int SlotIndex)
 	OptionIndex++;
 
 	SetObject("listOptions", DataProvider);
+}
+
+function bool isPlayerFromSteam(UniqueNetId PlayerID)
+{
+	local PlayerReplicationInfo CurrentPRI;
+	CurrentPRI = KFPC.GetPRIFromNetId(PlayerID);
+	return !class'WorldInfo'.static.IsEOSBuild() && CurrentPRI.PlayfabPlayerId == "";
 }
 
 function AddStringOptionToList(string OptionKey, int ItemIndex, string Option, out GFxObject DataProvider)

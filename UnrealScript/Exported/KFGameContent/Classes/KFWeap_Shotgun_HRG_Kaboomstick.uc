@@ -21,6 +21,7 @@ defaultproperties
    InventorySize=6
    PenetrationPower(0)=0.000000
    PenetrationPower(1)=0.000000
+   IronSightPosition=(X=7.000000,Y=0.000000,Z=0.000000)
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HRG_Kaboomstick_TEX.UI_WeaponSelect_HRG_Kaboomstick'
    InitialSpareMags(0)=9

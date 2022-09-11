@@ -727,6 +727,28 @@ ItemCategory="Fucile d'assalto"
 ItemDescription="•Solo automatico.\n•Usa il fuoco alternativo per lanciare granate EMP.\n•Con quest'arma elettrica ed ecologica puoi uccidere centinaia di Zed senza danneggiare il pianeta."
 SecondaryAmmo="Granata EMP"
 
+[KFWeap_Minigun]
+ItemName="Minigun"
+ItemCategory="Speciale"
+ItemDescription="•Fuoco primario automatico; le canne rotanti impiegano 1,5 secondi per sparare.\n•Prendere la mira fa ruotare le canne per prepararsi a sparare.\n•La felicità si misura in base ai colpi al minuto."
+SharedUnlockSource="Bundle armi Minigun"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="Generatore d'archi HRG"
+ItemCategory="Speciale"
+ItemDescription="•Il fuoco primario rilascia un raggio d'elettricità che si inarca verso i nemici vicini.\n•La modalità Fuoco alternativo lancia una sfera elettrica in linea retta.\n•Per chi è alla ricerca di potere illimitato!"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="Bruciatore HRG"
+ItemCategory="Fiamme"
+ItemDescription="•Il fuoco primario spara un razzo appiccicoso che brucia un bersaglio e illumina tutto ciò che ha vicino.\n•La modalità Fuoco alternativo lancia un razzo crepato che fa cadere fiamme per terra in linea retta.\n•Un'arma leggera per illuminare la via."
+
+[KFWeap_Mine_Reconstructor]
+ItemName="Ricostruttore di mine"
+ItemCategory="Esplosivi"
+ItemDescription="•Spara bio-mine che esplodono al contatto, ferendo gli Zed e guarendo gli alleati.\n•La modalità Fuoco alternativo detona tutte le mine posizionate.\n•La fonte dei suoi materiali di costruzione è considerata un'informazione riservata poiché non rispetta il codice sanitario."
+SharedUnlockSource="Bundle armi Ricostruttore di mine"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

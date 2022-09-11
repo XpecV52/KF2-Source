@@ -76,8 +76,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_Human_Versus.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_Human_Versus.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_Human_Versus.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_Human_Versus.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_Human_Versus.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_Human_Versus.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_Human_Versus.PowerUpAkSoundComponent'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -112,7 +114,9 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_Human_Versus.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_Human_Versus.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_Human_Versus.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_Human_Versus.TraderDialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_Human_Versus.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_Human_Versus.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_Human_Versus.TraderDialogAkSoundComponent'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

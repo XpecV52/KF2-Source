@@ -168,6 +168,8 @@ var float OverrideSprintSpeed;
 var				bool	bUsingSights;
 /** This weapon has sights to aim*/
 var(IronSight)	bool	bHasIronSights;
+/** This weapon maintain iron sights on jump*/
+var             bool    bKeepIronSightsOnJump;
 
 /** The weapon wants to go to ironsights when the bring up happens (because someone was already in ironsights when they switched)*/
 var         	bool	bIronSightOnBringUp;
@@ -342,9 +344,9 @@ const SECONDARY_AMMO	= 1;
 // Magazine - Primary and Secondary/alt
 
 /** Ammo from current magazine */
-var				byte	AmmoCount[2];
+var				int	AmmoCount[2];
 /** Size of the weapon magazine, i.e. how many rounds it can hold */
-var(Inventory)	byte	MagazineCapacity[2];
+var(Inventory)	int	MagazineCapacity[2];
 /** How much ammo does it take to fire this firemode? */
 var(Inventory) protected Array<byte> AmmoCost;
 /** Is this a no magazine/clip weapon e.g. the hunting shotgun? */
@@ -377,9 +379,9 @@ var(Inventory) bool		bCanBeReloaded;
 var(Inventory) bool		bReloadFromMagazine;
 
 /** Number of rounds left to reload during the reload state */
-var byte ReloadAmountLeft;
+var int ReloadAmountLeft;
 /** Number of rounds to reload during the reload state */
-var byte InitialReloadAmount;
+var int InitialReloadAmount;
 
 /**
 *	Initial Spare ammo when starting a reload. Used to keep track of how much ammo should be loaded into the gun
@@ -1923,6 +1925,15 @@ simulated function bool AllowIronSights()
 	}
 
 	return true;
+}
+
+/**
+ * Return true if the weapon is currently using iron sight. Overriden in
+ * states where we want to change how the iron input works
+ */
+simulated function bool IsUsingSights()
+{
+	return bUsingSights;
 }
 
 /**
@@ -4128,6 +4139,27 @@ simulated function HandleProjectileImpact(byte ProjectileFireMode, ImpactInfo Im
 	}
 }
 
+
+/**
+ * Handle a bullet this weapon has fired for client side hit detection impacting a Pawn
+ * see 'InstantFireClient'
+
+ SHOULD BE ONLY USED IN KFPROJ_ARCGENERATORSPHEREBLAST 
+ */
+simulated function HandleProjectileImpactSpecial(byte ProjectileFireMode, ImpactInfo Impact, Pawn OldInstigator, optional float PenetrationValue)
+{
+	// local player only for clientside hit detection
+	if ( OldInstigator != None )
+	{
+		if ( Instigator.Role < ROLE_Authority )
+		{
+			SendClientProjectileImpact(ProjectileFireMode, Impact, PenetrationValue);
+		}
+
+		ProcessInstantHitEx(ProjectileFireMode, Impact,, PenetrationValue, 0);
+	}
+}
+
 /** process local player fragment impact for clientside hit detection */
 event RecieveClientFragmentImpact(const out ImpactInfo Impact, class<KFProjectile> Fragment)
 {
@@ -5344,13 +5376,13 @@ simulated function int GetUpgradedMagCapacity(optional int FireMode = DEFAULT_FI
 	return int(GetUpgradedStatValue(default.MagazineCapacity[FireMode], EWeaponUpgradeStat(EWUS_MagCapacity0 + UpgradeFireModes[FireMode]), UpgradeIndex));
 }
 
-simulated function ModifyMagSizeAndNumber(out byte InMagazineCapacity, optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE, optional KFPerk CurrentPerk)
+simulated function ModifyMagSizeAndNumber(out int InMagazineCapacity, optional int FireMode = DEFAULT_FIREMODE, optional int UpgradeIndex = INDEX_NONE, optional KFPerk CurrentPerk)
 {
 	if (FireMode == BASH_FIREMODE)
 	{
 		return;
 	}
-
+	
 	InMagazineCapacity = GetUpgradedMagCapacity(FireMode, UpgradeIndex);
 
 	if (CurrentPerk == none)
@@ -7934,5 +7966,7 @@ defaultproperties
 	NumPellets(BASH_FIREMODE)=1
 	NumPellets(GRENADE_FIREMODE)=1
 	NumPellets(CUSTOM_FIREMODE)=1
+
+	bKeepIronSightsOnJump=false
 }
 

@@ -296,16 +296,18 @@ function ConfirmCreateParty()
 			}
 		}
 
+		//@SABER_EGS_BEGIN Friends list
 		if (Class'WorldInfo'.Static.IsConsoleBuild())
 		{
 			OnlineLobby.MakeLobby(6, LV_Private);	// returns false if we're already in a lobby
+			OnlineLobby.ShowLobbyInviteInterface(Localize("Notifications", "InviteMessage", "KFGameConsole"));
 		}
 		else
 		{
 			OnlineLobby.MakeLobby(6, LV_Friends);	// returns false if we're already in a lobby
+			showFriendsListPopup();
 		}
-
-		showFriendsListPopup();
+		//@SABER_EGS_END
 	}
 }
 

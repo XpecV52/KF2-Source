@@ -1103,8 +1103,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_Scripted.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_Scripted.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_Scripted.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_Scripted.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_Scripted.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_Scripted.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_Scripted.PowerUpAkSoundComponent'
     AccelRate=0
     ControllerClass=Class'KFAIController_ScriptedPawn'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
@@ -1143,6 +1145,8 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_Scripted.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_Scripted.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_Scripted.DialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_Scripted.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_Scripted.SecondaryWeaponAkSoundComponent'
     bAlwaysRelevant=true
     bCanBeAdheredTo=false
     bCanBeFrictionedTo=false

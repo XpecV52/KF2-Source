@@ -24,11 +24,11 @@ defaultproperties
     SingleFireSoundIndex=1
     BurstAmount=3
     InventorySize=4
-    MagazineCapacity=40
     MeshIronSightFOV=50
     IronSightPosition=(X=10,Y=0,Z=0)
     GroupPriority=60
     WeaponSelectTexture=Texture2D'WEP_UI_MP5RAS_TEX.UI_WeaponSelect_MP5RAS'
+    MagazineCapacity=40
     SpareAmmoCapacity=320
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */

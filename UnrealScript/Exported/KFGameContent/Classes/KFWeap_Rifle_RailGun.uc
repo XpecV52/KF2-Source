@@ -504,7 +504,6 @@ defaultproperties
    FireModeIconPaths(0)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_AutoTarget'
    FireModeIconPaths(1)=Texture2D'UI_SecondaryAmmo_TEX.UI_FireModeSelect_ManualTarget'
    InventorySize=9
-   MagazineCapacity(0)=1
    PenetrationPower(0)=10.000000
    PenetrationPower(1)=10.000000
    MeshIronSightFOV=27.000000
@@ -516,6 +515,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_RailGun_TEX.UI_WeaponSelect_Railgun'
+   MagazineCapacity(0)=1
    SpareAmmoCapacity(0)=32
    InitialSpareMags(0)=6
    AmmoPickupScale(0)=3.000000

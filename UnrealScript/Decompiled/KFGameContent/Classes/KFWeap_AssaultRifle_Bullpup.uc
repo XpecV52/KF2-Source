@@ -23,13 +23,13 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=6
-    MagazineCapacity=30
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
     DOF_FG_FocalRadius=85
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Bullpup'
+    MagazineCapacity=30
     SpareAmmoCapacity=270
     InitialSpareMags=4
     bLoopingFireAnim=/* Array type was not detected. */

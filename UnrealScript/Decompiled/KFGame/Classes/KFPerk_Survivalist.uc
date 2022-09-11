@@ -301,10 +301,20 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     if((GetMadManActive()) && !W.IsMeleeWeapon())
     {
         StateName = W.GetStateName();
+        WarnInternal(string(StateName));
         if(ZedTimeModifyingStates.Find(StateName != -1)
         {
             return GetSkillValue(PerkSkills[8]);
         }
+    }
+    return 0;
+}
+
+simulated function float GetZedTimeModifierForWindUp()
+{
+    if(GetMadManActive())
+    {
+        return GetSkillValue(PerkSkills[8]);
     }
     return 0;
 }
@@ -559,6 +569,8 @@ defaultproperties
     ZedTimeModifyingStates(6)=HuskCannonCharge
     ZedTimeModifyingStates(7)=CompoundBowCharge
     ZedTimeModifyingStates(8)=BlunderbussDeployAndDetonate
+    ZedTimeModifyingStates(9)=WeaponWindingUp
+    ZedTimeModifyingStates(10)=MineReconstructorCharge
     PrimaryWeaponDef=Class'KFWeapDef_Random'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Survivalist'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Commando'

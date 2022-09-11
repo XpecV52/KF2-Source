@@ -25,7 +25,6 @@ defaultproperties
    bReloadFromMagazine=True
    bHasFireLastAnims=True
    InventorySize=4
-   MagazineCapacity(0)=12
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=2.000000
    MeshIronSightFOV=77.000000
@@ -36,6 +35,7 @@ defaultproperties
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=42.000000
    WeaponSelectTexture=Texture2D'wep_ui_chiapparhino_tex.UI_WeaponSelect_DualChiappaRhinos'
+   MagazineCapacity(0)=12
    SpareAmmoCapacity(0)=108
    InitialSpareMags(0)=3
    BonesToLockOnEmpty(0)="RW_Hammer"

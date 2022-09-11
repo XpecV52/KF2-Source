@@ -363,7 +363,7 @@ function UpdateGameSettings()
 
 	if (WorldInfo.NetMode == NM_DedicatedServer || WorldInfo.NetMode == NM_ListenServer)
 	{
-		`REMOVEMESOON_ServerTakeoverLog("KFGameInfo_Survival.UpdateGameSettings 1 - GameInterface: "$GameInterface);
+		//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo_Survival.UpdateGameSettings 1 - GameInterface: "$GameInterface);
 		if (GameInterface != None)
 		{
 			KFEngine = KFGameEngine(class'Engine'.static.GetEngine());
@@ -381,11 +381,11 @@ function UpdateGameSettings()
 			}
 			//Ensure bug-for-bug compatibility with KF1
 
-			`REMOVEMESOON_ServerTakeoverLog("KFGameInfo_Survival.UpdateGameSettings 2 - KFGameSettings: "$KFGameSettings);
+			//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo_Survival.UpdateGameSettings 2 - KFGameSettings: "$KFGameSettings);
 
 			if (KFGameSettings != None)
 			{
-				`REMOVEMESOON_ServerTakeoverLog("KFGameInfo_Survival.UpdateGameSettings 3 - KFGameSettings.bAvailableForTakeover: "$KFGameSettings.bAvailableForTakeover);
+				//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo_Survival.UpdateGameSettings 3 - KFGameSettings.bAvailableForTakeover: "$KFGameSettings.bAvailableForTakeover);
 
 				KFGameSettings.Mode = GetGameModeNum();
 				KFGameSettings.Difficulty = GameDifficulty;
@@ -440,10 +440,10 @@ function UpdateGameSettings()
 					KFGameSettings.NumOpenPublicConnections = KFGameSettings.NumPublicConnections - NumHumanPlayers;
 				}
 
-				`REMOVEMESOON_ServerTakeoverLog("KFGameInfo_Survival.UpdateGameSettings 4 - PlayfabInter: "$PlayfabInter);
+				//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo_Survival.UpdateGameSettings 4 - PlayfabInter: "$PlayfabInter);
 				if (PlayfabInter != none)
 				{
-					`REMOVEMESOON_ServerTakeoverLog("KFGameInfo_Survival.UpdateGameSettings 4.1 - IsRegisteredWithPlayfab: "$PlayfabInter.IsRegisteredWithPlayfab());
+					//`REMOVEMESOON_ServerTakeoverLog("KFGameInfo_Survival.UpdateGameSettings 4.1 - IsRegisteredWithPlayfab: "$PlayfabInter.IsRegisteredWithPlayfab());
 				}
 
 				if( PlayfabInter != none && PlayfabInter.IsRegisteredWithPlayfab() )
@@ -1078,7 +1078,7 @@ function CheckWaveEnd( optional bool bForceWaveEnd = false )
 {
 	if (WorldInfo.NetMode == NM_DedicatedServer)
 	{
-		`REMOVEMESOON_ZombieServerLog("KFGameInfo_Survival.CheckWaveEnd - bForceWaveEnd: "$bForceWaveEnd$"; bMatchHasBegun: "$MyKFGRI.bMatchHasBegun$"; GetLivingPlayerCount(): "$GetLivingPlayerCount()$"; AIAliveCount: "$AIAliveCount$"; IsWaveActive(): "$IsWaveActive()$"; IsFinishedSpawning(): "$SpawnManager.IsFinishedSpawning());
+		//`REMOVEMESOON_ZombieServerLog("KFGameInfo_Survival.CheckWaveEnd - bForceWaveEnd: "$bForceWaveEnd$"; bMatchHasBegun: "$MyKFGRI.bMatchHasBegun$"; GetLivingPlayerCount(): "$GetLivingPlayerCount()$"; AIAliveCount: "$AIAliveCount$"; IsWaveActive(): "$IsWaveActive()$"; IsFinishedSpawning(): "$SpawnManager.IsFinishedSpawning());
 	}
 
     if( !MyKFGRI.bMatchHasBegun )
@@ -1114,7 +1114,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 	if (WorldInfo.NetMode == NM_DedicatedServer)
 	{
 		scripttrace();
-		`REMOVEMESOON_ZombieServerLog("KFGameInfo_Survival.WaveEnded - WinCondition: "$WinCondition$"; WaveNum: "$WaveNum$"; WaveMax: "$WaveMax);
+		//`REMOVEMESOON_ZombieServerLog("KFGameInfo_Survival.WaveEnded - WinCondition: "$WinCondition$"; WaveNum: "$WaveNum$"; WaveMax: "$WaveMax);
 	}
 
 	// Get the gameplay sequence.
@@ -1570,7 +1570,7 @@ final function ForceChangeLevel()
 	{
 		if (WorldInfo.NetMode == NM_DedicatedServer)
 		{
-			`REMOVEMESOON_ZombieServerLog("KFGameInfo_Survival:MatchEnded.BeginState - PreviousStateName: "$PreviousStateName);
+			//`REMOVEMESOON_ZombieServerLog("KFGameInfo_Survival:MatchEnded.BeginState - PreviousStateName: "$PreviousStateName);
 		}
 
 		`log("KFGameInfo_Survival - MatchEnded.BeginState - AARDisplayDelay:" @ AARDisplayDelay);
@@ -1592,7 +1592,7 @@ final function ForceChangeLevel()
 	{
 		if (WorldInfo.NetMode == NM_DedicatedServer)
 		{
-			`REMOVEMESOON_ZombieServerLog("KFGameInfo_Survival:MatchEnded.Timer - NumPlayers: "$NumPlayers);
+			//`REMOVEMESOON_ZombieServerLog("KFGameInfo_Survival:MatchEnded.Timer - NumPlayers: "$NumPlayers);
 		}
 
 		global.Timer();
@@ -1609,7 +1609,7 @@ function EndOfMatch(bool bVictory)
 
 	if (WorldInfo.NetMode == NM_DedicatedServer)
 	{
-		`REMOVEMESOON_ZombieServerLog("KFGameInfo_Survival.EndOfMatch - bVictory: "$bVictory);
+		//`REMOVEMESOON_ZombieServerLog("KFGameInfo_Survival.EndOfMatch - bVictory: "$bVictory);
 	}
 
 	`AnalyticsLog(("match_end", None, "#"$WaveNum, "#"$(bVictory ? "1" : "0"), "#"$GameConductor.ZedVisibleAverageLifespan));

@@ -43,6 +43,7 @@ BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
+BodyMesh13="リーパー服"
 HeadMesh0="ガスマスク"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -148,6 +149,14 @@ BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
 
+[CHR_MrsFoster_archetype.BodyMesh13]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="ホワイト"
 HeadSkin1="グリーン"
@@ -232,6 +241,7 @@ BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
+BodyMesh13="リーパー服"
 HeadMesh0="髭パワー！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -343,6 +353,14 @@ BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
 
+[CHR_Jagerhorn_archetype.BodyMesh13]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="スウェーデンのブロンド"
 HeadSkin1="ブラックアルバム"
@@ -441,7 +459,8 @@ BodyMesh8="スチームパンク"
 BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
-BodyMesh12="Space Pirate"
+BodyMesh12="スペースパイレーツ"
+BodyMesh13="リーパー服"
 HeadMesh0="スカリーマスク"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -552,6 +571,14 @@ BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
 
+[CHR_DJSkully_archetype.BodyMesh13]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="ブラッケストブラック"
 HeadSkin1="エクストラレッド"
@@ -598,6 +625,7 @@ BodyMesh10="サイバーパンク"
 BodyMesh11="ウィッチハンター"
 BodyMesh12="サンタスーツ"
 BodyMesh13="スペースパイレーツ衣装"
+BodyMesh14="リーパー服"
 HeadMesh0="髪"
 
 [chr_briar_archetype.BodyMesh0]
@@ -714,6 +742,14 @@ BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
 
+[CHR_briar_archetype.BodyMesh14]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="オリジナル"
 HeadSkin1="ハイライト"
@@ -753,7 +789,8 @@ BodyMesh9="スチームパンク"
 BodyMesh10="サイバーパンク"
 BodyMesh11="ウィッチハンター"
 BodyMesh12="サンタスーツ"
-BodyMesh13="パイレーツ衣装"
+BodyMesh13="スペースパイレーツ衣装"
+BodyMesh14="リーパー服"
 HeadMesh0="ガスマスク"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -874,6 +911,14 @@ BodySkin2="クリムゾン"
 BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
+
+[CHR_MrFoster_archetype.BodyMesh14]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="オリジナルホワイト"
@@ -1035,6 +1080,7 @@ BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
+BodyMesh13="リーパー服"
 HeadMesh0="顔"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1143,6 +1189,14 @@ BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
 
+[CHR_Coleman_archetype.BodyMesh13]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="ドノヴァン"
 HeadSkin1="タトゥー"
@@ -1182,6 +1236,7 @@ BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
+BodyMesh13="リーパー服"
 HeadMesh0="髪"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1291,6 +1346,14 @@ BodySkin2="クリムゾン"
 BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
+
+[CHR_Alberts_archetype.BodyMesh13]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="グレー"
@@ -2191,6 +2254,7 @@ BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
+BodyMesh13="リーパー服"
 HeadMesh0="顔"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2310,6 +2374,14 @@ BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
 
+[CHR_Masterson_archetype.BodyMesh13]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
+
 [CHR_Tanaka_Archetype]
 CharacterName="ハヤト・タナカ"
 Description="タナカは、強い希死念慮を抱えた、葛藤する一人の人間だ。沖縄で生まれ、軍隊のアメリカ人が周りにいる中、育てられた。家族と共に本州に引っ越し、アメリカナイズされたタナカは周囲に馴染めず、演技のクラスに参加した。大学卒業後LAに引っ越し、いくつかの三流映画でありふれた端役をやり、その後ヨーロッパに渡ってもっと「本物の」仕事を探した。そこで得たものは、フランスのギャングスター映画での悪役と、いくつかの刺青だけだった。今、黙示録の最中において、自身の現実と、過去に演じた役とを混同しているようだ。これには、ヤクザに関する幻、悪魔、そしてハリウッドによる武士道についての見解が関わっているようだ。"
@@ -2327,6 +2399,7 @@ BodyMesh10="サイバーパンク"
 BodyMesh11="ウィッチハンター"
 BodyMesh12="サンタスーツ"
 BodyMesh13="スペースパイレーツ衣装"
+BodyMesh14="リーパー服"
 HeadMesh0="髪"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2453,6 +2526,14 @@ BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
 
+[CHR_Tanaka_archetype.BodyMesh14]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="ヘルメット"
 AttachmentSkin0="ライジングサン"
@@ -2496,6 +2577,7 @@ BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
+BodyMesh13="リーパー服"
 HeadMesh0="モヒカン"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2615,6 +2697,14 @@ BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
 
+[CHR_Ana_archetype.BodyMesh13]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3Dメガネ"
 AttachmentSkin0="アナグリフ3D"
@@ -2644,6 +2734,7 @@ BodyMesh10="サイバーパンク"
 BodyMesh11="ウィッチハンター"
 BodyMesh12="サンタスーツ"
 BodyMesh13="スペースパイレーツ衣装"
+BodyMesh14="リーパー服"
 HeadMesh0="髪"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2760,6 +2851,14 @@ BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
 
+[CHR_mark_archetype.BodyMesh14]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="ホンモノ"
 HeadSkin1="クソ5時"
@@ -2786,6 +2885,7 @@ BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
+BodyMesh13="リーパー服"
 HeadMesh0="顔"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -2897,6 +2997,14 @@ BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
 
+[CHR_alan_archetype.BodyMesh13]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="ホンモノ"
 HeadSkin1="ジンジャー！本当に？"
@@ -2930,6 +3038,7 @@ BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
+BodyMesh13="リーパー服"
 HeadMesh0="髪"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3037,6 +3146,14 @@ BodySkin2="クリムゾン"
 BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
+
+[CHR_strasser_archetype.BodyMesh13]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="ダークスチール"
@@ -3213,6 +3330,7 @@ BodyMesh9="サイバーパンク"
 BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
+BodyMesh13="リーパー服"
 HeadMesh0="デフォルト頭部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3324,6 +3442,14 @@ BodySkin2="クリムゾン"
 BodySkin3="ライム"
 BodySkin4="ラベンダー"
 BodySkin5="クレメンタイン"
+
+[CHR_rockabilly_archetype.BodyMesh13]
+BodySkin0="デス"
+BodySkin1="征服"
+BodySkin2="飢餓"
+BodySkin3="悪疫"
+BodySkin4="戦争"
+BodySkin5="無秩序"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="ブラック"
@@ -4478,7 +4604,7 @@ AttachmentSkin0="クラシック"
 AttachmentSkin1="希少"
 
 [Cosmetic_Christmas_TeddyBackpack_ARCH]
-Attachment="Xmasテディベア・リュック"
+Attachment="テディベア・リュック"
 AttachmentSkin0="青"
 AttachmentSkin1="ブラウン"
 AttachmentSkin2="ダーク"
@@ -4854,7 +4980,7 @@ AttachmentSkin0="極上"
 AttachmentSkin1="希少"
 
 [Cosmetic_Halloween_Cauldron_ARCH]
-Attachment="ハロウィーンの釜バックパック"
+Attachment="大釜のリュック"
 AttachmentSkin0="スウィートミート"
 AttachmentSkin1="希少"
 
@@ -5873,7 +5999,7 @@ AttachmentSkin2="ネオンRGB"
 AttachmentSkin3="レインボーRGB"
 
 [Cosmetic_SpacePirate_FeatheredTopHat_ARCH]
-Attachment="スペースパイレーツ 羽根付きシルクハット"
+Attachment="羽根つき シルクハット"
 AttachmentSkin0="ネイビー"
 AttachmentSkin1="ブラック"
 AttachmentSkin2="グリーン"
@@ -5987,3 +6113,195 @@ AttachmentSkin2="クリムゾン"
 AttachmentSkin3="ライム"
 AttachmentSkin4="ラベンダー"
 AttachmentSkin5="クレメンタイン"
+
+[Cosmetic_Apocalypse_Helmet_ARCH]
+Attachment="黙示録ヘルメット"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="ネイビー"
+AttachmentSkin2="レッド"
+AttachmentSkin3="夜"
+AttachmentSkin4="森"
+AttachmentSkin5="雪"
+AttachmentSkin6="希少"
+
+[Cosmetic_Apocalypse_Goggles_ARCH]
+Attachment="黙示録ゴーグル"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="ネイビー"
+AttachmentSkin2="レッド"
+AttachmentSkin3="夜"
+AttachmentSkin4="森"
+AttachmentSkin5="雪"
+AttachmentSkin6="希少"
+
+[Cosmetic_Apocalypse_Mask_ARCH]
+Attachment="黙示録マスク"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="ネイビー"
+AttachmentSkin2="レッド"
+AttachmentSkin3="夜"
+AttachmentSkin4="森"
+AttachmentSkin5="雪"
+AttachmentSkin6="希少"
+
+[Cosmetic_Apocalypse_Hood_ARCH]
+Attachment="黙示録フード"
+AttachmentSkin0="砂漠"
+AttachmentSkin1="ネイビー"
+AttachmentSkin2="レッド"
+AttachmentSkin3="夜"
+AttachmentSkin4="森"
+AttachmentSkin5="雪"
+AttachmentSkin6="希少"
+
+[Cosmetic_Apocalypse_GasMask_ARCH]
+Attachment="黙示録ガスマスク"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="ネイビー"
+AttachmentSkin2="レッド"
+AttachmentSkin3="夜"
+AttachmentSkin4="森"
+AttachmentSkin5="雪"
+AttachmentSkin6="希少"
+
+[Cosmetic_WW1Pilot_Helmet_ARCH]
+Attachment="第一次世界大戦パイロットヘルメット"
+AttachmentSkin0="ブラウン"
+AttachmentSkin1="オリーブ"
+AttachmentSkin2="ネイビー"
+AttachmentSkin3="レッド"
+AttachmentSkin4="夜"
+AttachmentSkin5="森"
+AttachmentSkin6="雪"
+AttachmentSkin7="希少"
+
+[Cosmetic_WW1Pilot_HelmetGoggles_ARCH]
+Attachment="第一次世界大戦パイロットヘルメット&ゴーグル"
+AttachmentSkin0="ブラウン"
+AttachmentSkin1="オリーブ"
+AttachmentSkin2="ネイビー"
+AttachmentSkin3="レッド"
+AttachmentSkin4="夜"
+AttachmentSkin5="森"
+AttachmentSkin6="雪"
+AttachmentSkin7="希少"
+
+[Cosmetic_WW1Pilot_Mask_ARCH]
+Attachment="第一次世界大戦パイロットガスマスク"
+AttachmentSkin0="グレー"
+AttachmentSkin1="オリーブ"
+AttachmentSkin2="ネイビー"
+AttachmentSkin3="レッド"
+AttachmentSkin4="夜"
+AttachmentSkin5="森"
+AttachmentSkin6="雪"
+AttachmentSkin7="希少"
+
+[Cosmetic_WW1Pilot_Parachute_ARCH]
+Attachment="第一次世界大戦パイロットパラシュートパック"
+AttachmentSkin0="グレー"
+AttachmentSkin1="オリーブ"
+AttachmentSkin2="ネイビー"
+AttachmentSkin3="レッド"
+AttachmentSkin4="夜"
+AttachmentSkin5="森"
+AttachmentSkin6="雪"
+AttachmentSkin7="希少"
+
+[Cosmetic_Halloween_PumpkinMask_ARCH]
+Attachment="カボチャのマスク"
+AttachmentSkin0="オレンジ"
+AttachmentSkin1="ライム"
+AttachmentSkin2="パープル"
+AttachmentSkin3="ブラウン"
+AttachmentSkin4="希少"
+
+[Cosmetic_Halloween_StrawmanMask_ARCH]
+Attachment="藁人形のマスク"
+AttachmentSkin0="タン"
+AttachmentSkin1="ブルー"
+AttachmentSkin2="ホワイト"
+AttachmentSkin3="ジョーカー"
+AttachmentSkin4="希少"
+
+[Cosmetic_Halloween_ClownMouth_ARCH]
+Attachment="道化師の口"
+AttachmentSkin0="ブラック"
+AttachmentSkin1="ホワイト"
+AttachmentSkin2="ライム"
+AttachmentSkin3="マスク"
+AttachmentSkin4="希少"
+
+[Cosmetic_Halloween_FingerTophat_ARCH]
+Attachment="指サイズのシルクハット"
+AttachmentSkin0="カボチャ"
+AttachmentSkin1="パーティー"
+AttachmentSkin2="コンダクター"
+AttachmentSkin3="ブルー"
+AttachmentSkin4="希少"
+
+[Cosmetic_Halloween_SorceressHat_ARCH]
+Attachment="魔女の帽子"
+AttachmentSkin0="パープル"
+AttachmentSkin1="ホワイト"
+AttachmentSkin2="ストライプ"
+AttachmentSkin3="ブルー"
+AttachmentSkin4="希少"
+
+[Cosmetic_Halloween_BoarHead_ARCH]
+Attachment="イノシシの頭"
+AttachmentSkin0="ホワイト"
+AttachmentSkin1="ピンク"
+AttachmentSkin2="ブルー"
+AttachmentSkin3="斑模様"
+AttachmentSkin4="希少"
+
+[Cosmetic_Halloween_VoodooBackpack_ARCH]
+Attachment="ブードゥー・リュック"
+AttachmentSkin0="希少"
+
+[Cosmetic_Halloween_VoodooBackpack_Alberts_ARCH]
+Attachment="ブードゥー・リュック"
+AttachmentSkin0="希少"
+
+[Cosmetic_Halloween_VoodooBackpack_Coleman_ARCH]
+Attachment="ブードゥー・リュック"
+AttachmentSkin0="希少"
+
+[Cosmetic_Halloween_VoodooBackpack_JagerHorn_ARCH]
+Attachment="ブードゥー・リュック"
+AttachmentSkin0="希少"
+
+[Cosmetic_Halloween_VoodooBackpack_Knight_ARCH]
+Attachment="ブードゥー・リュック"
+AttachmentSkin0="希少"
+
+[Cosmetic_Halloween_VoodooBackpack_MrFoster_ARCH]
+Attachment="ブードゥー・リュック"
+AttachmentSkin0="希少"
+
+[Cosmetic_Halloween_VoodooBackpack_MrsFoster_ARCH]
+Attachment="ブードゥー・リュック"
+AttachmentSkin0="希少"
+
+[Cosmetic_Halloween_VoodooBackpack_RockabillyGirl_ARCH]
+Attachment="ブードゥー・リュック"
+AttachmentSkin0="希少"
+
+[Cosmetic_Reaper_MaleSkullMask_ARCH]
+Attachment="リーパー頭蓋骨マスク"
+AttachmentSkin0="デス"
+AttachmentSkin1="征服"
+AttachmentSkin2="飢餓"
+AttachmentSkin3="悪疫"
+AttachmentSkin4="戦争"
+AttachmentSkin5="無秩序"
+
+[Cosmetic_Reaper_FemaleSkullMask_ARCH]
+Attachment="リーパー頭蓋骨マスク"
+AttachmentSkin0="デス"
+AttachmentSkin1="征服"
+AttachmentSkin2="飢餓"
+AttachmentSkin3="悪疫"
+AttachmentSkin4="戦争"
+AttachmentSkin5="無秩序"

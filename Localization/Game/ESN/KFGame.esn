@@ -46,15 +46,16 @@ YesString="Sí"
 NoString="No"
 TeamSwappedString="Se te ha cambiado de equipo"
 
-MicrophonePopupTitleString="Ajustes de micro"
-MicrophonePopupSelectDeviceString="SELECCIONAR"
+
+MicrophonePopupTitleString="Configura tu micrófono"
+MicrophonePopupSelectDeviceString="Elige un dispositivo"
 MicrophonePopupVolumeString="Volumen de micro"
 MicrophonePopupCheckString="Comprobar micro"
-MicrophonePopupStopString="Aceptar"
-MicrophonePopupRefreshString="ACTUALIZAR"
+MicrophonePopupStopString="Parar"
+MicrophonePopupRefreshString="Actualizar"
 
 FriendsListPopupTitleString="Invita a tus amigos"
-FriendsListPopupFriendString="BUSCAR"
+FriendsListPopupFriendString="Buscar"
 FriendsListPopupFriendsString="Amigos"
 FriendsListPopupOtherFriendsString="Amigos de otras plataformas"
 FriendsListPopupLinkButonString="Vincular cuenta"
@@ -62,6 +63,7 @@ ReturnString="VOLVER"
 
 InvitePopupTitleString="Invitación a sala"
 InvitePopupTextString=" te ha invitado a una sala"
+
 
 CancelConnectionString="Cancelar carga"
 
@@ -169,6 +171,9 @@ FailedSearchString="El sistema de emparejamiento no ha encontrado partidas. Aume
 BrowseServersString="EXPLORAR SERVID."
 HasInvitedToGameString=" te ha invitado a una partida"
 JoinGameString="¿Unirse?"
+
+[KFGFxWidget_BackendStatusIndicatorWidget]
+BackendStatusIndicatorString="CONEXIÓN AL SERVIDOR DE OBJETOS"
 
 [KFGFxObject_Menu]
 LeavePartyTitleString="SALIENDO DEL GRUPO"
@@ -310,7 +315,7 @@ NameString="NOMBRE"
 RefreshString="ACTUALIZAR"
 GamesFoundString="PARTIDAS:"
 
-ServerBrowserString="EXPLORAR SERVID."
+ServerBrowserString="EXPLORAR SERVIDORES"
 
 JoinString="UNIRSE"
 PasswordPromptString="ESCRIBE LA CONTRASEÑA"
@@ -949,6 +954,17 @@ MarketCosmeticsString="Cosméticos de mercado"
 MarketEmotesString="Emo. mercado"
 MarketSFXString="Efectos de mercado"
 ThankYouString="¡Gracias por tu compra! Esto nos ayudará a desarrollar nuevos objetos, mapas, armas, zeds y modos de juego para futuras actualizaciones."
+WeaponBundlesString="Paquetes de armas"
+CharacterBundlesString="Paquetes de personajes"
+OutfitBundlesString="Paquetes de atuendos"
+TicketCratesUSBBundlesString="Paquetes de boletos/cajas/USB"
+CosmeticBundlesString="Paquetes de cosméticos"
+WeaponSkinBundlesString="Paquetes de apariencias de arma"
+HeadshotFxBundlesString="Paquetes de efectos de disparo en la cabeza"
+SelectWeaponSkinsString="Seleccionar apariencias de arma"
+SelectCosmeticsString="Seleccionar cosméticos"
+SelectEmotesString="Seleccionar emotes"
+SelectKeysAndTicketsString="Seleccionar llaves y boletos"
 
 [KFGFxStoreContainer_Details]
 LookUpOnMarketString="BUSCAR EN MERCADO"
@@ -970,7 +986,7 @@ MenuStrings[5]="TIENDA"
 MenuStrings[6]="OPCIONES"
 MenuStrings[7]="SALIR"
 
-ServerBrowserString="EXPLORAR SERVID."
+ServerBrowserString="EXPLORAR SERVIDORES"
 MatchmakingString="EMPAREJAMIENTO"
 CreateGameString="CREAR PARTIDA"
 SoloString="UN JUGADOR"
@@ -1468,6 +1484,7 @@ FailedDropInventoryMessage="No puedes soltar eso aquí"
 ReceivedGrenadesFromMessage="Has recibido granadas de"
 GaveGrenadesToMessage="Le has dado granadas a"
 SharingContentString="está compartiendo contenido"
+PowerUpHellishRageActivatedMessage="FURIA INFERNAL: +Daño, +Velocidad, efecto ardiente, curación desactivada"
 HeadShotAddedString="%x disparo(s) a la cabeza (¡%y% de daño extra!)"
 HeadShotMaxString="¡En la cabeza! ¡%x% de daño extra!"
 HeadShotResetString="Disparo a la cabeza fallido. Daño normal."
@@ -1538,6 +1555,7 @@ PlayerClotGrabWarningMessage="¡MATA AL ZED PARA SOLTARTE!"
 
 UseMinigameMessage="ACTIVAR"
 UseMinigameGeneratorMessage="ACTIVAR GENERADOR"
+UsePowerUpMessage="SACRIFICAR SALUD"
 DoshActivateMessage="COSTE DE ACTIVACIÓN"
 EMPGrabWarningMessage="¡***! ¡INMOVILIZADO! ***"
 [KFLocalMessage_ServerNotification]
@@ -1933,7 +1951,7 @@ AirborneAgent="MOMENTO ZED - Agente aéreo"
 AirborneAgentDescription="Durante el momento zed, sueltas un gas beneficioso que cura a los compañeros cercanos."
 
 Sedative="MOMENTO ZED - Zedante"
-SedativeDescription="Durante el momento zed, al atacar con armas de especialización a los zeds, los ralentizas un 30 % y provocas gran cantidad de daño venenoso."
+SedativeDescription="El daño de tus armas de especialización aumenta un 30 % durante el Momento Zed, y tus eliminaciones provocan una explosión tóxica que inflige daño a los Zeds y cura a los jugadores."
 
 
 EXPAction1="Infligir daño con armas médicas"
@@ -2220,6 +2238,9 @@ MadmanDescription="En el momento zed, todas tus armas disparan 3 veces más ráp
 
 IncapMaster="MOMENTO ZED - Bloqueo"
 IncapMasterDescription="En el momento zed, todas tus armas aturden a cualquier zed."
+
+[KFPowerUp_HellishRage]
+PowerUpName="Furia infernal"
 
 [Fonts]
 Bicubik="Bicubik"
@@ -2748,6 +2769,20 @@ AllCompleteRewardDescriptionString="Pirata espacial | Mochila de mono espacial"
 
 ChanceDropDescriptionStrings[0]="Boleto Verano"
 ChanceDropDescriptionStrings[1]="Boleto Verano dorado"
+
+[KFGFxSpecialEventObjectivesContainer_Fall2020]
+CurrentSpecialEventString="Un evento especial por tiempo limitado con objetos exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Legión infernal",DescriptionString="Mata a 2000 Zeds en cualquiera de los mapas y modos")
+SpecialEventObjectiveInfoList[1]=(TitleString="Invasión semanal",DescriptionString="Completa Semanal en Puesto Hellmark")
+SpecialEventObjectiveInfoList[2]=(TitleString="Cueste lo que cueste",DescriptionString="Obtén la Furia infernal de un obelisco de Puesto Hellmark 10 veces")
+SpecialEventObjectiveInfoList[3]=(TitleString="Matademonios",DescriptionString="Decapita a 600 Zeds en Puesto Hellmark")
+SpecialEventObjectiveInfoList[4]=(TitleString="Caos inagotable",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior en Puesto Hellmark")
+
+AllCompleteRewardDescriptionString="Halloween | Mochila vudú"
+
+ChanceDropDescriptionStrings[0]="Boleto de Halloween"
+ChanceDropDescriptionStrings[1]="Boleto dorado de Halloween"
 
 ;============================================
 ; Daily Localization
@@ -3346,6 +3381,9 @@ DisplayName="Biolapso"
 
 [KF-Desolation KFMapSummary]
 DisplayName="Desolación"
+
+[KF-HellmarkStation KFMapSummary]
+DisplayName="Puesto Hellmark"
 
 [KFMapInfo]
 ; defaults

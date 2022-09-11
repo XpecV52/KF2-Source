@@ -727,6 +727,28 @@ ItemCategory="Sturmgewehr"
 ItemDescription="• Ausschließlich vollautomatischer Feuer-Modus.\n• Alt-Feuer, um EMP-Granaten abzufeuern.\n• Mit dieser elektrischen, ökologischen Waffe, kannst du hunderte Zeds töten, ohne dem Planeten zu schaden."
 SecondaryAmmo="EMP-Granate"
 
+[KFWeap_Minigun]
+ItemName="Minigun"
+ItemCategory="Spezial"
+ItemDescription="• Primärfeuer ist vollautomatisch; der Lauf wird 1,5 Sekunden lang aufgezogen, um das Feuer zu eröffnen.\n• Zielen zieht den Lauf auf, um die Waffe schussbereit zu machen.\n• Glückseligkeit misst man in Kugeln pro Minute."
+SharedUnlockSource="Minigun-Waffen-Paket"
+
+[KFWeap_HRG_EMP_ArcGenerator]
+ItemName="HRG-Arc-Generator"
+ItemCategory="Spezial"
+ItemDescription="• Primärfeuer setzt einen Strahl Elektrizität frei, der sich zu nahegelegenen Feinden hin biegt.\n• Alt-Feuer schießt eine Elektrizitätskugel in gerader Richtung ab.\n• Für all jene, die nach unbegrenzter Macht streben!"
+
+[KFWeap_Pistol_HRGScorcher]
+ItemName="HRG-Senger"
+ItemCategory="Flammen"
+ItemDescription="• Primärfeuer schießt eine klebrige Fackel ab, die ein Ziel verbrennt und alles drumherum entzündet.\n• Alt-Feuer schießt eine zerbrochene Fackel ab, die den Boden in einer geraden Linie Feuer fangen lässt.\n• Eine Waffe, die dir den Weg leuchtet."
+
+[KFWeap_Mine_Reconstructor]
+ItemName="Minenrekonstruktor"
+ItemCategory="Sprengstoffe"
+ItemDescription="• Feuert Biominen, die bei Aufprall explodieren und Zeds Schaden zufügen und Verbündete heilen.\n• Alt-Feuer lässt alle platzierten Minen explodieren.\n• Die Quelle des Ausgangsmaterials ist aufgrund von Bedenken im Zusammenhang mit dem Gesundheitsgesetz eine Geheiminformation."
+SharedUnlockSource="Minenrekonstruktor-Waffen-Paket"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

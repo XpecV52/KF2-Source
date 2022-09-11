@@ -55,6 +55,7 @@ defaultproperties
     InGamePartyWidgetClass=Class'KFGFxWidget_PartyInGame_Versus'
     WidgetPaths(0)="../UI_Widgets/MenuBarWidget_SWF.swf"
     WidgetPaths(1)="../UI_Widgets/ButtonPromptWidget_SWF.swf"
-    WidgetPaths(2)="../UI_Widgets/VersusLobbyWidget_SWF.swf"
+    WidgetPaths(2)="../UI_Widgets/BackendStatusIndicatorWidget_SWF.swf"
+    WidgetPaths(3)="../UI_Widgets/VersusLobbyWidget_SWF.swf"
     WidgetBindings=/* Array type was not detected. */
 }

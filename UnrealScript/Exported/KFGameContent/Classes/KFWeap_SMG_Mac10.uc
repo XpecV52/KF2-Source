@@ -29,12 +29,12 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletSingle'
    SingleFireSoundIndex=1
    InventorySize=4
-   MagazineCapacity(0)=32
    MeshFOV=75.000000
    MeshIronSightFOV=60.000000
    IronSightPosition=(X=15.000000,Y=0.000000,Z=0.000000)
    GroupPriority=60.000000
    WeaponSelectTexture=Texture2D'WEP_UI_MAC10_TEX.UI_WeaponSelect_Mac10'
+   MagazineCapacity(0)=32
    SpareAmmoCapacity(0)=384
    InitialSpareMags(0)=4
    bLoopingFireAnim(0)=True

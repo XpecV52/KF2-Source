@@ -32,7 +32,6 @@ defaultproperties
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     InventorySize=6
-    MagazineCapacity=10
     PenetrationPower=/* Array type was not detected. */
     MeshFOV=60
     MeshIronSightFOV=60
@@ -43,6 +42,7 @@ defaultproperties
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=50
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_SW_500_TEX.UI_WeaponSelect_DualSW500'
+    MagazineCapacity=10
     SpareAmmoCapacity=95
     InitialSpareMags=2
     BonesToLockOnEmpty=/* Array type was not detected. */

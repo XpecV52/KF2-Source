@@ -27,8 +27,8 @@ defaultproperties
    ProjDudTemplate=ParticleSystem'WEP_HRG_Winterbite_EMIT.FX_WinterBite_Projectile_Dud'
    GrenadeBounceEffectInfo=KFImpactEffectInfo'WEP_HRG_Winterbite_ARCH.FX_WinterBite_Projectile_Impacts'
    TossZ=150.000000
-   GravityScale=0.250000
-   TerminalVelocity=7500.000000
+   GravityScale=0.150000
+   TerminalVelocity=9000.000000
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_HRG_Winterbite_ARCH.FX_WinterBite_Projectile_Explosion'
       Damage=20.000000
@@ -36,6 +36,7 @@ defaultproperties
       DamageFalloffExponent=0.000000
       MyDamageType=Class'kfgamecontent.KFDT_Explosive_HRGWinterbite'
       KnockDownStrength=0.000000
+      MomentumTransferScale=1.000000
       ExplosionSound=AkEvent'WW_WEP_Flare_Gun.Play_WEP_Flare_Gun_Explode_Ice'
       ExploLight=PointLightComponent'kfgamecontent.Default__KFProj_Explosive_HRGWinterbite:ExplosionPointLight'
       ExploLightFadeOutTime=0.300000
@@ -61,8 +62,8 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFProj_BallisticExplosive:AmbientAkSoundComponent'
    End Object
    AmbientComponent=AmbientAkSoundComponent
-   Speed=7500.000000
-   MaxSpeed=7500.000000
+   Speed=9000.000000
+   MaxSpeed=9000.000000
    MomentumTransfer=50000.000000
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_BallisticExplosive:CollisionCylinder'
       CollisionHeight=0.000000

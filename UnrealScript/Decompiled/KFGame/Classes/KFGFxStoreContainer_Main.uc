@@ -9,20 +9,21 @@ class KFGFxStoreContainer_Main extends KFGFxObject_Container within GFxMoviePlay
 
 enum EStore_Filter
 {
-    EStore_WeaponSkins,
-    EStore_Cosmetics,
-    EStore_Consumables,
-    EStore_Items,
-    EStore_CraftingMats,
-    EStore_Emotes,
-    EStore_SFX,
-    EStore_Market_WeaponSkins,
-    EStore_Market_Cosmetics,
-    EStore_Market_Items,
-    EStore_Market_CraftingMats,
-    EStore_Market_Consumables,
-    EStore_Market_Emotes,
-    EStore_Market_SFX,
+    EStore_WeaponBundles,
+    EStore_CharactersBundles,
+    EStore_OutfitBundles,
+    EStore_TicketCratesUSBBundles,
+    EStore_CosmeticBundles,
+    EStore_WeaponSkinBundles,
+    EStore_HeadshotFXBundles,
+    EStore_SelectWeaponSkins,
+    EStore_SelectCosmetics,
+    EStore_SelectEmotes,
+    EStore_SelectKeysAndTickets,
+    EStore_MarketWeaponSkins,
+    EStore_MarketCosmetics,
+    EStore_MarketEmotes,
+    EStore_MarketCratesAndUSB,
     EStore_Featured,
     EStore_All,
     EStore_Max
@@ -37,6 +38,21 @@ var const localized string LookUpOnMarketString;
 var const localized string ThankYouString;
 var const localized string FeaturedString;
 var const localized string MarketSFXString;
+var const localized string WeaponBundlesString;
+var const localized string CharacterBundlesString;
+var const localized string OutfitBundlesString;
+var const localized string TicketCratesUSBBundlesString;
+var const localized string CosmeticBundlesString;
+var const localized string WeaponSkinBundlesString;
+var const localized string HeadshotFxBundlesString;
+var const localized string SelectWeaponSkinsString;
+var const localized string SelectCosmeticsString;
+var const localized string SelectEmotesString;
+var const localized string SelectKeysAndTicketsString;
+var array<int> FilterIndexConversion;
+var array<int> ItemTypeIndexConversion;
+var array<int> MarketItemTypeIndexConversion;
+var array<string> XboxFilterExceptions;
 var array<int> FeaturedItemIDs;
 var array<int> ConsoleFeaturedItemIDs;
 var int MaxFeaturedItems;
@@ -61,16 +77,21 @@ function LocalizeText()
     LocalizedObject.SetString("back", Class'KFCommon_LocalizedStrings'.default.BackString);
     LocalizedObject.SetString("featured", FeaturedString);
     LocalizedObject.SetString("all", Class'KFGFxMenu_Inventory'.default.AllString);
-    LocalizedObject.SetString("weaponSkin", WeaponSkinsRotationString);
-    LocalizedObject.SetString("cosmetics", Class'KFGFxMenu_Inventory'.default.CosmeticString);
-    LocalizedObject.SetString("emotes", Class'KFGFxMenu_Inventory'.default.EmotesString);
-    LocalizedObject.SetString("items", Class'KFGFxMenu_Inventory'.default.ItemString);
+    LocalizedObject.SetString("weaponBundles", WeaponBundlesString);
+    LocalizedObject.SetString("characterBundles", CharacterBundlesString);
+    LocalizedObject.SetString("outfitBundles", OutfitBundlesString);
+    LocalizedObject.SetString("ticketCratesUSBBundles", TicketCratesUSBBundlesString);
+    LocalizedObject.SetString("cosmeticBundles", CosmeticBundlesString);
+    LocalizedObject.SetString("weaponSkinBundles", WeaponSkinBundlesString);
+    LocalizedObject.SetString("headshotFxBundles", HeadshotFxBundlesString);
+    LocalizedObject.SetString("selectWeaponSkins", SelectWeaponSkinsString);
+    LocalizedObject.SetString("selectCosmetics", SelectCosmeticsString);
+    LocalizedObject.SetString("selectEmotes", SelectEmotesString);
+    LocalizedObject.SetString("selectKeysAndTickets", SelectKeysAndTicketsString);
     LocalizedObject.SetString("marketWeaponSkins", WeaponSkinsString);
     LocalizedObject.SetString("marketCosmetics", MarketCosmeticsString);
     LocalizedObject.SetString("marketEmotes", MarketEmotesString);
-    LocalizedObject.SetString("marketConsumables", MarketConsumablesString);
-    LocalizedObject.SetString("sfx", Class'KFCommon_LocalizedStrings'.default.SpecialEffectsString);
-    LocalizedObject.SetString("marketSFX", MarketSFXString);
+    LocalizedObject.SetString("marketCratesAndUSBSs", MarketConsumablesString);
     LocalizedObject.SetString("thankYouString", ThankYouString);
     SetObject("localizedText", LocalizedObject);
 }
@@ -79,16 +100,14 @@ function TweakFiltersVisibility()
 {
     if(Class'WorldInfo'.static.IsEOSBuild())
     {
-        GetObject("weaponSkinsButton").SetVisible(false);
-        GetObject("cosmeticsButton").SetVisible(false);
-        GetObject("emotesButton").SetVisible(false);
-        GetObject("consumablesButton").SetVisible(false);
-        GetObject("sfxButton").SetVisible(false);
+        GetObject("selectWeaponSkinsButton").SetVisible(false);
+        GetObject("selectCosmeticsButton").SetVisible(false);
+        GetObject("selectEmotesButton").SetVisible(false);
+        GetObject("selectKeysAndTicketsButton").SetVisible(false);
         GetObject("marketWeaponSkinsButton").SetVisible(false);
         GetObject("marketCosmeticsButton").SetVisible(false);
-        GetObject("marketConsumableButton").SetVisible(false);
         GetObject("marketEmotesButton").SetVisible(false);
-        GetObject("marketSFXButton").SetVisible(false);
+        GetObject("marketCratesAndUSBsButton").SetVisible(false);
     }
 }
 
@@ -99,10 +118,10 @@ function UpdateFilter(int NewFilterIndex)
     switch(NewFilterIndex)
     {
         case 0:
-            NewFilter = 14;
+            NewFilter = 15;
             break;
         case 1:
-            NewFilter = 15;
+            NewFilter = 16;
             break;
         case 2:
             NewFilter = 0;
@@ -114,25 +133,40 @@ function UpdateFilter(int NewFilterIndex)
             NewFilter = 2;
             break;
         case 5:
-            NewFilter = 5;
+            NewFilter = 3;
             break;
         case 6:
-            NewFilter = 6;
+            NewFilter = 4;
             break;
         case 7:
-            NewFilter = 7;
+            NewFilter = 5;
             break;
         case 8:
-            NewFilter = 8;
+            NewFilter = 6;
             break;
         case 9:
-            NewFilter = 11;
+            NewFilter = 7;
             break;
         case 10:
-            NewFilter = 12;
+            NewFilter = 8;
             break;
         case 11:
+            NewFilter = 9;
+            break;
+        case 12:
+            NewFilter = 10;
+            break;
+        case 13:
+            NewFilter = 11;
+            break;
+        case 14:
+            NewFilter = 12;
+            break;
+        case 15:
             NewFilter = 13;
+            break;
+        case 16:
+            NewFilter = 14;
             break;
         default:
             break;
@@ -150,6 +184,7 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
     local GFxObject DataProvider;
     local array<ItemProperties> FilteredItemsArray;
     local ItemProperties TempItemProps;
+    local bool AlreadyFiltered;
 
     ItemCount = 0;
     DataProvider = Outer.CreateArray();
@@ -158,66 +193,80 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
 
     if(I < StoreItemArray.Length)
     {
-        if(((StoreItemArray[I].ProductID != "") && StoreItemArray[I].SignedOfferId == "") && CurrentStoreFilter != 14)
+        if(((StoreItemArray[I].ProductID != "") && StoreItemArray[I].SignedOfferId == "") && CurrentStoreFilter != 15)
         {            
         }
         else
         {
-            if((CurrentStoreFilter < 7) || CurrentStoreFilter == 15)
-            {
-                if((StoreItemArray[I].Price != "") && IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter))
-                {
-                    TempItemProps = StoreItemArray[I];
-                    FilteredItemsArray[ItemCount] = TempItemProps;
-                    ++ ItemCount;
-                }                
+            if(!IsItemValidForThisPlatform(StoreItemArray[I].Name))
+            {                
             }
             else
             {
-                if(CurrentStoreFilter == 14)
+                if(((CurrentStoreFilter > 6) && CurrentStoreFilter < 11) || CurrentStoreFilter == 16)
                 {
-                    if(Class'WorldInfo'.static.IsConsoleBuild())
-                    {
-                        J = 0;
-                        J0x1EB:
-
-                        if(J < ConsoleFeaturedItemIDs.Length)
-                        {
-                            if(StoreItemArray[I].Definition == ConsoleFeaturedItemIDs[J])
-                            {
-                                TempItemProps = StoreItemArray[I];
-                                FilteredItemsArray[ItemCount] = TempItemProps;
-                                ++ ItemCount;
-                            }
-                            ++ J;
-                            goto J0x1EB;
-                        }                        
-                    }
-                    else
-                    {
-                        J = 0;
-                        J0x2A2:
-
-                        if(J < FeaturedItemIDs.Length)
-                        {
-                            if(StoreItemArray[I].Definition == FeaturedItemIDs[J])
-                            {
-                                TempItemProps = StoreItemArray[I];
-                                FilteredItemsArray[ItemCount] = TempItemProps;
-                                ++ ItemCount;
-                            }
-                            ++ J;
-                            goto J0x2A2;
-                        }
-                    }                    
-                }
-                else
-                {
-                    if(((StoreItemArray[I].Price == "") && IsFilterSame(StoreItemArray[I].Type, CurrentStoreFilter)) && StoreItemArray[I].Marketable)
+                    if((StoreItemArray[I].Price != "") && IsItemTypeIndexSame(StoreItemArray[I].Type, CurrentStoreFilter))
                     {
                         TempItemProps = StoreItemArray[I];
                         FilteredItemsArray[ItemCount] = TempItemProps;
                         ++ ItemCount;
+                    }                    
+                }
+                else
+                {
+                    if(CurrentStoreFilter == 15)
+                    {
+                        if(Class'WorldInfo'.static.IsConsoleBuild())
+                        {
+                            J = 0;
+                            J0x239:
+
+                            if(J < ConsoleFeaturedItemIDs.Length)
+                            {
+                                if(StoreItemArray[I].Definition == ConsoleFeaturedItemIDs[J])
+                                {
+                                    TempItemProps = StoreItemArray[I];
+                                    FilteredItemsArray[ItemCount] = TempItemProps;
+                                    ++ ItemCount;
+                                }
+                                ++ J;
+                                goto J0x239;
+                            }                            
+                        }
+                        else
+                        {
+                            J = 0;
+                            J0x2F0:
+
+                            if(J < FeaturedItemIDs.Length)
+                            {
+                                if(StoreItemArray[I].Definition == FeaturedItemIDs[J])
+                                {
+                                    TempItemProps = StoreItemArray[I];
+                                    FilteredItemsArray[ItemCount] = TempItemProps;
+                                    ++ ItemCount;
+                                }
+                                ++ J;
+                                goto J0x2F0;
+                            }
+                        }                        
+                    }
+                    else
+                    {
+                        AlreadyFiltered = false;
+                        if((StoreItemArray[I].FilterIdIndex > 0) && IsFilterIndexSame(StoreItemArray[I].FilterIdIndex, CurrentStoreFilter))
+                        {
+                            TempItemProps = StoreItemArray[I];
+                            FilteredItemsArray[ItemCount] = TempItemProps;
+                            ++ ItemCount;
+                            AlreadyFiltered = true;
+                        }
+                        if(((!AlreadyFiltered && StoreItemArray[I].Price == "") && IsMarketItemTypeIndexSame(StoreItemArray[I].Type, CurrentStoreFilter)) && StoreItemArray[I].Marketable)
+                        {
+                            TempItemProps = StoreItemArray[I];
+                            FilteredItemsArray[ItemCount] = TempItemProps;
+                            ++ ItemCount;
+                        }
                     }
                 }
             }
@@ -228,7 +277,7 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
     ItemCount = 0;
     if(FilteredItemsArray.Length > 0)
     {
-        if(CurrentStoreFilter == 15)
+        if(CurrentStoreFilter == 16)
         {            
             FilteredItemsArray.Sort(SortItemsByType;            
         }
@@ -236,35 +285,35 @@ function SendItems(const out array<ItemProperties> StoreItemArray)
         {            
             FilteredItemsArray.Sort(SortItemsByPrice;
         }
-        if(CurrentStoreFilter == 14)
+        if(CurrentStoreFilter == 15)
         {
             ShuffleFeaturedItems(FilteredItemsArray);
             I = 0;
-            J0x4EA:
+            J0x610:
 
             if(I < Min(MaxFeaturedItems, FilteredItemsArray.Length))
             {
                 DataProvider.SetElementObject(ItemCount, CreateStoreItem(FilteredItemsArray[I]));
                 ++ ItemCount;
                 ++ I;
-                goto J0x4EA;
+                goto J0x610;
             }            
         }
         else
         {
             I = 0;
-            J0x579:
+            J0x69F:
 
             if(I < FilteredItemsArray.Length)
             {
                 DataProvider.SetElementObject(ItemCount, CreateStoreItem(FilteredItemsArray[I]));
                 ++ ItemCount;
                 ++ I;
-                goto J0x579;
+                goto J0x69F;
             }
         }
     }
-    if(CurrentStoreFilter == 14)
+    if(CurrentStoreFilter == 15)
     {
         SetObject("storeItemFeaturedData", DataProvider);        
     }
@@ -321,21 +370,53 @@ function GFxObject CreateStoreItem(ItemProperties StoreItem)
     return DataObject;
 }
 
-function bool IsFilterSame(Engine.OnlineSubsystem.ItemType FirstType, KFGFxStoreContainer_Main.EStore_Filter SecondType)
+function bool IsItemTypeIndexSame(Engine.OnlineSubsystem.ItemType FirstType, KFGFxStoreContainer_Main.EStore_Filter SecondType)
 {
-    if(SecondType == 15)
+    if(SecondType == 16)
     {
         return true;
     }
-    if(SecondType < 7)
+    return ItemTypeIndexConversion[FirstType] == SecondType;
+}
+
+function bool IsMarketItemTypeIndexSame(Engine.OnlineSubsystem.ItemType FirstType, KFGFxStoreContainer_Main.EStore_Filter SecondType)
+{
+    if(SecondType == 16)
     {
-        return FirstType == SecondType;        
+        return true;
     }
-    else
+    return MarketItemTypeIndexConversion[FirstType] == SecondType;
+}
+
+function bool IsFilterIndexSame(int FilterIndexId, KFGFxStoreContainer_Main.EStore_Filter SecondType)
+{
+    if(SecondType == 16)
     {
-        return FirstType == (SecondType - 7);
+        return true;
     }
-    return false;
+    return FilterIndexConversion[FilterIndexId] == SecondType;
+}
+
+function bool IsItemValidForThisPlatform(string ItemName)
+{
+    local int Index;
+
+    if(Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        Index = 0;
+        J0x2F:
+
+        if(Index < XboxFilterExceptions.Length)
+        {
+            if(XboxFilterExceptions[Index] == ItemName)
+            {
+                return false;
+            }
+            ++ Index;
+            goto J0x2F;
+        }
+    }
+    return true;
 }
 
 defaultproperties
@@ -348,24 +429,60 @@ defaultproperties
     ThankYouString="Thank you for your purchase! It will help us in developing new items, maps, weapons, zeds, and game modes for future updates."
     FeaturedString="Featured"
     MarketSFXString="Market SFX"
-    FeaturedItemIDs(0)=8178
-    FeaturedItemIDs(1)=8183
-    FeaturedItemIDs(2)=8184
-    FeaturedItemIDs(3)=8185
-    FeaturedItemIDs(4)=8186
-    FeaturedItemIDs(5)=8187
-    FeaturedItemIDs(6)=8188
-    FeaturedItemIDs(7)=8189
-    FeaturedItemIDs(8)=8190
-    ConsoleFeaturedItemIDs(0)=8181
-    ConsoleFeaturedItemIDs(1)=8183
-    ConsoleFeaturedItemIDs(2)=8184
-    ConsoleFeaturedItemIDs(3)=8185
-    ConsoleFeaturedItemIDs(4)=8186
-    ConsoleFeaturedItemIDs(5)=8187
-    ConsoleFeaturedItemIDs(6)=8188
-    ConsoleFeaturedItemIDs(7)=8189
-    ConsoleFeaturedItemIDs(8)=8190
+    WeaponBundlesString="Weapon Bundles"
+    CharacterBundlesString="Character Bundles"
+    OutfitBundlesString="Outfit Bundles"
+    TicketCratesUSBBundlesString="Ticket/Crates/USB Bundles"
+    CosmeticBundlesString="Cosmetic Bundles"
+    WeaponSkinBundlesString="Weapon Skin Bundles"
+    HeadshotFxBundlesString="Headshot FX Bundles"
+    SelectWeaponSkinsString="Select Weapon Skins"
+    SelectCosmeticsString="Select Cosmetics"
+    SelectEmotesString="Select Emotes"
+    SelectKeysAndTicketsString="Select Keys and Tickets"
+    FilterIndexConversion(0)=-1
+    FilterIndexConversion(1)=0
+    FilterIndexConversion(2)=1
+    FilterIndexConversion(3)=2
+    FilterIndexConversion(4)=3
+    FilterIndexConversion(5)=5
+    FilterIndexConversion(6)=6
+    FilterIndexConversion(7)=4
+    ItemTypeIndexConversion(0)=7
+    ItemTypeIndexConversion(1)=8
+    ItemTypeIndexConversion(2)=10
+    ItemTypeIndexConversion(3)=-1
+    ItemTypeIndexConversion(4)=-1
+    ItemTypeIndexConversion(5)=9
+    ItemTypeIndexConversion(6)=-1
+    ItemTypeIndexConversion(7)=-1
+    MarketItemTypeIndexConversion(0)=11
+    MarketItemTypeIndexConversion(1)=12
+    MarketItemTypeIndexConversion(2)=-1
+    MarketItemTypeIndexConversion(3)=-1
+    MarketItemTypeIndexConversion(4)=14
+    MarketItemTypeIndexConversion(5)=13
+    MarketItemTypeIndexConversion(6)=-1
+    MarketItemTypeIndexConversion(7)=-1
+    XboxFilterExceptions(0)="Wasteland Bundle"
+    FeaturedItemIDs(0)=8462
+    FeaturedItemIDs(1)=8463
+    FeaturedItemIDs(2)=8464
+    FeaturedItemIDs(3)=8465
+    FeaturedItemIDs(4)=8466
+    FeaturedItemIDs(5)=8468
+    FeaturedItemIDs(6)=8467
+    FeaturedItemIDs(7)=8469
+    FeaturedItemIDs(8)=7619
+    ConsoleFeaturedItemIDs(0)=8462
+    ConsoleFeaturedItemIDs(1)=8463
+    ConsoleFeaturedItemIDs(2)=8464
+    ConsoleFeaturedItemIDs(3)=8465
+    ConsoleFeaturedItemIDs(4)=8466
+    ConsoleFeaturedItemIDs(5)=8468
+    ConsoleFeaturedItemIDs(6)=8467
+    ConsoleFeaturedItemIDs(7)=8469
+    ConsoleFeaturedItemIDs(8)=7783
     MaxFeaturedItems=5
     CurrentStoreFilter=EStore_Filter.EStore_Featured
 }

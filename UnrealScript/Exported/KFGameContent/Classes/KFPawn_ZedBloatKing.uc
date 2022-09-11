@@ -662,6 +662,14 @@ defaultproperties
    DamageTypeModifiers(30)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower')
    DamageTypeModifiers(31)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MicrowaveRifle',DamageScale=(0.700000))
    DamageTypeModifiers(32)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGTeslauncher',DamageScale=(0.600000))
+   DamageTypeModifiers(33)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Minigun',DamageScale=(0.600000))
+   DamageTypeModifiers(34)=(DamageType=Class'kfgamecontent.KFDT_Toxic_MineReconstructorExplosion',DamageScale=(1.200000))
+   DamageTypeModifiers(35)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_Beam',DamageScale=(1.500000))
+   DamageTypeModifiers(36)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGeneratorSphereImpact',DamageScale=(2.000000))
+   DamageTypeModifiers(37)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_DefaultFiremodeZapDamage',DamageScale=(1.500000))
+   DamageTypeModifiers(38)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',DamageScale=(1.500000))
+   DamageTypeModifiers(39)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGScorcherLightingImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(40)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGScorcherDoT',DamageScale=(0.400000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_BloatKing'
    FootstepCameraShakeInnerRadius=200.000000
    FootstepCameraShakeOuterRadius=900.000000
@@ -815,6 +823,14 @@ defaultproperties
       ObjectArchetype=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedBloat:WeaponAmbientEchoHandler_0'
    End Object
    WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'kfgamecontent.Default__KFPawn_ZedBloatKing:WeaponAmbientEchoHandler_0'
+   Begin Object Class=AkComponent Name=SecondaryWeaponAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:SecondaryWeaponAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="SecondaryWeaponAkSoundComponent"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:SecondaryWeaponAkSoundComponent'
+   End Object
+   SecondaryWeaponAkComponent=SecondaryWeaponAkSoundComponent
    Begin Object Class=AkComponent Name=FootstepAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:FootstepAkSoundComponent'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True
@@ -830,6 +846,14 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:DialogAkSoundComponent'
    End Object
    DialogAkComponent=DialogAkSoundComponent
+   Begin Object Class=AkComponent Name=PowerUpAkSoundComponent Archetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:PowerUpAkSoundComponent'
+      BoneName="Dummy"
+      bStopWhenOwnerDestroyed=True
+      bForceOcclusionUpdateInterval=True
+      Name="PowerUpAkSoundComponent"
+      ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedBloat:PowerUpAkSoundComponent'
+   End Object
+   PowerUpAkComponent=PowerUpAkSoundComponent
    Mass=400.000000
    GroundSpeed=450.000000
    Health=9000
@@ -897,8 +921,10 @@ defaultproperties
    Components(5)=AmbientAkSoundComponent_1
    Components(6)=FootstepAkSoundComponent
    Components(7)=DialogAkSoundComponent
-   Components(8)=SprintAkComponent0
-   Components(9)=HeadshotAkComponent0
+   Components(8)=PowerUpAkSoundComponent
+   Components(9)=SecondaryWeaponAkSoundComponent
+   Components(10)=SprintAkComponent0
+   Components(11)=HeadshotAkComponent0
    CollisionComponent=CollisionCylinder
    Name="Default__KFPawn_ZedBloatKing"
    ObjectArchetype=KFPawn_ZedBloat'kfgamecontent.Default__KFPawn_ZedBloat'

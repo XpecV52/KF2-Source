@@ -154,13 +154,13 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     SingleFireSoundIndex=1
     InventorySize=7
-    MagazineCapacity=30
     MeshFOV=75
     MeshIronSightFOV=33
     PlayerIronSightFOV=70
     IronSightPosition=(X=15,Y=0,Z=0)
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_MKB42_TEX.UI_WeaponSelect_MKB42'
+    MagazineCapacity=30
     SpareAmmoCapacity=270
     InitialSpareMags=3
     bLoopingFireAnim=/* Array type was not detected. */

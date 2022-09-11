@@ -285,8 +285,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_Customization.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_Customization.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_Customization.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_Customization.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_Customization.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_Customization.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_Customization.PowerUpAkSoundComponent'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
         Translation=(X=0,Y=0,Z=-89)
@@ -323,7 +325,9 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_Customization.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_Customization.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_Customization.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_Customization.TraderDialogAkSoundComponent'
+    Components(8)=AkComponent'Default__KFPawn_Customization.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_Customization.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_Customization.TraderDialogAkSoundComponent'
     Physics=EPhysics.PHYS_Walking
     bReplicateMovement=false
     bSkipActorPropertyReplication=true

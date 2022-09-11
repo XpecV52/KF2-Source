@@ -922,8 +922,8 @@ defaultproperties
    bRechargeHealAmmo=True
    LockAim=0.980000
    bCanRefillSecondaryAmmo=False
-   MagazineCapacity(1)=100
    AimCorrectionSize=40.000000
+   MagazineCapacity(1)=100
    AmmoCost(1)=50
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000

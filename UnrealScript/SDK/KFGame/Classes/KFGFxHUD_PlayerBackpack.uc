@@ -16,7 +16,7 @@ var KFPlayerController 				MyKFPC;
 var int								LastDosh;
 // Number of bullets in the  current magazine
 var int 							LastSpareAmmo;
-var byte                            LastMagazineAmmo;
+var int                             LastMagazineAmmo;
 var bool                            bUsesAmmo;
 // string used for alternate display in ammo section
 var string							LastSpecialAmmo;
@@ -128,7 +128,7 @@ function UpdateGrenades()
 function UpdateWeapon()
 {
 	local int CurrentSpareAmmo;
-	local byte CurrentMagazineAmmo;
+	local int CurrentMagazineAmmo;
     local byte CurrentSecondaryAmmo;
 	local string CurrentSpecialAmmo;
     local KFWeapon CurrentWeapon;

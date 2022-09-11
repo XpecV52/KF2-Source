@@ -19,7 +19,7 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetAltTrader
     return 4;
 }
 
-simulated function ModifyMagSizeAndNumber(out byte InMagazineCapacity, optional int FireMode, optional int UpgradeIndex, optional KFPerk CurrentPerk)
+simulated function ModifyMagSizeAndNumber(out int InMagazineCapacity, optional int FireMode, optional int UpgradeIndex, optional KFPerk CurrentPerk)
 {
     local KFPerk_Firebug FirebugPerk;
 

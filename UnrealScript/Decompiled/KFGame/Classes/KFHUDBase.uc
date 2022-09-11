@@ -617,7 +617,8 @@ simulated function DrawPerkIcons(KFPawn_Human KFPH, float PerkIconSize, float Pe
 
 simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
 {
-    local float Percentage, PercentageHealth, BarHeight, BarLength;
+    local float Percentage, PercentageHealth, PercentageHealthMissing, PercentageHealthToRegen, BarHeight, BarLength;
+
     local Vector ScreenPos, TargetLocation;
     local KFPlayerReplicationInfo KFPRI;
     local FontRenderInfo MyFontRenderInfo;
@@ -655,9 +656,11 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     PercentageHealth = FMin(float(KFPH.Health) / float(KFPH.HealthMax), 100);
     CurrentHealthColor = ((ClassicPlayerInfo) ? ClassicHealthColor : HealthColor);
     DrawKFBar(PercentageHealth, BarLength, BarHeight, ScreenPos.X - (BarLength * 0.5), (ScreenPos.Y + (BarHeight * float(2))) + ((float(36) * FontScale) * ResModifier), CurrentHealthColor);
-    Percentage = FMin(float(KFPH.HealthToRegen) / float(KFPH.HealthMax), 100);
+    PercentageHealthToRegen = FMin(float(KFPH.HealthToRegen) / float(KFPH.HealthMax), 100);
+    PercentageHealthMissing = FMin((float(KFPH.HealthMax) - float(KFPH.Health)) / float(KFPH.HealthMax), 100);
+    PercentageHealthToRegen = FMin(PercentageHealthToRegen, PercentageHealthMissing);
     CurrentHealthColor = HealthBeingRegeneratedColor;
-    DrawKFBar(1, Percentage * BarLength, BarHeight, ScreenPos.X + (BarLength * (PercentageHealth - 0.5)), (ScreenPos.Y + (BarHeight * float(2))) + ((float(36) * FontScale) * ResModifier), HealthBeingRegeneratedColor);
+    DrawKFBar(1, PercentageHealthToRegen * BarLength, BarHeight, ScreenPos.X + (BarLength * (PercentageHealth - 0.5)), (ScreenPos.Y + (BarHeight * float(2))) + ((float(36) * FontScale) * ResModifier), HealthBeingRegeneratedColor);
     if(KFPRI.CurrentPerkClass == none)
     {
         return false;

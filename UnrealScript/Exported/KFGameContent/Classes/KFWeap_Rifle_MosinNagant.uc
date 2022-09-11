@@ -183,7 +183,6 @@ defaultproperties
    FireModeIconPaths(5)=()
    InventoryGroup=IG_Primary
    InventorySize=7
-   MagazineCapacity(0)=5
    PenetrationPower(0)=3.000000
    PenetrationPower(1)=()
    AimCorrectionSize=40.000000
@@ -194,6 +193,7 @@ defaultproperties
    AimWarningDelay=(X=0.400000,Y=0.800000)
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'wep_ui_mosin_tex.UI_WeaponSelect_MosinNagant'
+   MagazineCapacity(0)=5
    AmmoCost(0)=1
    AmmoCost(1)=()
    AmmoCost(2)=()

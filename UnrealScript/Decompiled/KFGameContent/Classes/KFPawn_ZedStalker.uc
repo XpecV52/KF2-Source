@@ -401,8 +401,10 @@ defaultproperties
     AmbientAkComponent=AkComponent'Default__KFPawn_ZedStalker.AmbientAkSoundComponent_1'
     WeaponAkComponent=AkComponent'Default__KFPawn_ZedStalker.AmbientAkSoundComponent'
     WeaponAmbientEchoHandler=KFWeaponAmbientEchoHandler'Default__KFPawn_ZedStalker.WeaponAmbientEchoHandler'
+    SecondaryWeaponAkComponent=AkComponent'Default__KFPawn_ZedStalker.SecondaryWeaponAkSoundComponent'
     FootstepAkComponent=AkComponent'Default__KFPawn_ZedStalker.FootstepAkSoundComponent'
     DialogAkComponent=AkComponent'Default__KFPawn_ZedStalker.DialogAkSoundComponent'
+    PowerUpAkComponent=AkComponent'Default__KFPawn_ZedStalker.PowerUpAkSoundComponent'
     DamageRecoveryTimeHeavy=0.65
     Mass=50
     GroundSpeed=400
@@ -446,8 +448,10 @@ defaultproperties
     Components(5)=AkComponent'Default__KFPawn_ZedStalker.AmbientAkSoundComponent_1'
     Components(6)=AkComponent'Default__KFPawn_ZedStalker.FootstepAkSoundComponent'
     Components(7)=AkComponent'Default__KFPawn_ZedStalker.DialogAkSoundComponent'
-    Components(8)=AkComponent'Default__KFPawn_ZedStalker.SprintAkComponent0'
-    Components(9)=AkComponent'Default__KFPawn_ZedStalker.HeadshotAkComponent0'
+    Components(8)=AkComponent'Default__KFPawn_ZedStalker.PowerUpAkSoundComponent'
+    Components(9)=AkComponent'Default__KFPawn_ZedStalker.SecondaryWeaponAkSoundComponent'
+    Components(10)=AkComponent'Default__KFPawn_ZedStalker.SprintAkComponent0'
+    Components(11)=AkComponent'Default__KFPawn_ZedStalker.HeadshotAkComponent0'
     begin object name=CloakedAkComponent0 class=AkComponent
         BoneName=Dummy
         bStopWhenOwnerDestroyed=true
@@ -455,7 +459,7 @@ defaultproperties
         OcclusionUpdateInterval=0.4
     object end
     // Reference: AkComponent'Default__KFPawn_ZedStalker.CloakedAkComponent0'
-    Components(10)=CloakedAkComponent0
+    Components(12)=CloakedAkComponent0
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end
