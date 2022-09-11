@@ -80,7 +80,7 @@ Begin Object Class=KFSeqAct_MovePawnsNotInVolume Name=KFSeqAct_MovePawnsNotInVol
    ObjectArchetype=KFSeqAct_MovePawnsNotInVolume'KFGame.Default__KFSeqAct_MovePawnsNotInVolume'
 End Object
 
-Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_16
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_3
    LinkCount=8
    IncrementAmount=0
    bLooping=True
@@ -102,7 +102,7 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_16
    ObjPosY=-8352
    DrawWidth=89
    DrawHeight=245
-   Name="SeqAct_RandomSwitch_16"
+   Name="SeqAct_RandomSwitch_3"
    ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
 End Object
 
@@ -427,7 +427,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_41
    InputLinks(0)=(DrawY=-9747,OverrideDelta=14)
    InputLinks(1)=(DrawY=-9726,OverrideDelta=35)
    InputLinks(2)=(DrawY=-9705,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_12')),DrawY=-9742,OverrideDelta=19)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_1')),DrawY=-9742,OverrideDelta=19)
    OutputLinks(1)=(DrawY=-9710,OverrideDelta=51)
    VariableLinks(0)=(DrawX=-2396,OverrideDelta=25)
    ObjInstanceVersion=1
@@ -963,7 +963,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_901
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_76
    ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_96'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -971,7 +971,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
    ObjPosY=-7232
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_27"
+   Name="SeqVar_Object_76"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -1064,7 +1064,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_70
    EventName="EnableSpawns_Center"
    MaxWidth=263
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_7')),ActivateDelay=3.000000,DrawY=-7598,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_7'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_5')),ActivateDelay=3.000000,DrawY=-7598,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-3813,OverrideDelta=99)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -1097,7 +1097,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_14
    InputLinks(1)=(DrawY=-6126,OverrideDelta=35)
    InputLinks(2)=(DrawY=-6105,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-6126,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_860',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1397',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_911',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_910',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_906',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_901',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_27',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_895',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1044',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_965',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_952',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_940',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_830',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_800',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_918',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_885',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_892',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_887',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_883',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_921',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_805',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_878',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_869',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_856',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_845',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1042',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_804',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_826',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1188',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1164',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1052',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1053',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_747',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_837',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_829',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_814',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_811',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_775',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_769',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_741',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1432',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1202',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1043',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1055',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1054',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1068',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1047',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1045',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1096',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1050',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1109',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1051',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1121',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1083',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1130',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_740',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_755',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1420',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1410',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_815',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1429',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1007',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_729',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_817',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_715',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_871',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1384',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_993',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1004',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_732',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_739',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_723',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1161',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1155',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1156',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_827',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1057',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1112',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1111',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1110',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1074',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_21',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1396',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1067',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1066',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1065',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1064',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1063',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1062',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1061',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1201',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1029',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1123',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1039',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1038',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1036',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1020',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_903',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_955',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_954',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_953',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_951',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_950',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_948',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_947',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_946',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1141',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_842',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_880',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_873',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_868',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_865',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_840',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_824',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_823',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_822',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_821',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_810',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_780',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_798',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_795',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1389',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_790',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_803',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_789',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_787',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_785',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_909',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_916',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_933',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_968',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_944',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_975',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1008',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_956',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_917',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_853',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_984',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1222',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1213',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1212',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_716',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_782',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_937',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_750',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1159',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1270',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1381',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1401',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1412',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_717',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_728',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_849',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_731',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1048',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_793',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1204',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1326',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1182',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1293',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1393',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1402',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1359',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1428',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1430',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1433',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1119',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1431',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1056',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_26',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1073',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_23',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_24',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_25'),DrawX=-3562,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_860',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1397',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_911',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_910',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_906',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_901',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_76',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_895',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1044',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_965',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_952',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_940',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_830',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_800',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_918',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_885',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_892',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_887',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_883',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_921',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_805',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_878',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_869',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_856',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_845',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1042',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_804',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_826',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1188',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1164',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1052',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1053',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_747',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_837',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_829',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_814',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_811',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_775',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_769',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_741',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1432',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1202',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1043',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1055',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1054',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1068',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1047',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1045',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1096',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1050',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1109',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1051',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1121',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1083',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1130',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_740',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_755',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1420',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1410',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_815',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1429',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1007',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_729',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_817',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_715',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_871',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1384',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_993',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1004',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_732',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_739',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_723',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1161',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1155',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1156',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_827',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1057',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1112',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1111',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1110',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1074',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_21',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1396',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1067',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1066',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1065',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1064',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1063',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1062',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1061',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1201',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1029',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1123',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1039',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1038',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1036',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1020',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_903',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_955',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_954',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_953',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_951',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_950',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_948',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_947',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_946',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1141',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_842',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_880',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_873',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_868',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_865',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_840',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_824',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_823',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_822',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_821',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_810',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_780',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1389',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_790',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_803',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_789',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_785',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_909',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_916',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_933',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_968',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_944',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_975',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1008',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_956',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_917',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_853',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_984',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1222',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1213',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1212',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_716',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_782',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_937',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_750',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1159',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1270',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1381',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1401',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1412',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_717',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_728',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_849',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_731',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1048',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_793',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1204',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1326',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1182',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1293',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_61',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1402',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1359',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1428',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1430',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1433',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1119',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1431',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1056',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_26',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1073',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_23',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_24',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_25',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_62',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_63',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1393',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_65',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_66',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_67',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_70',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_69',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_73',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_72',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_64',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_27'),DrawX=-3562,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3511,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3462,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -2257,10 +2257,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_13
 End Object
 
 Begin Object Class=InterpData Name=InterpData_13
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000488,Z=3472.000488),InterpMode=CIM_CurveAutoClamped)))
@@ -2275,6 +2271,10 @@ Begin Object Class=InterpData Name=InterpData_13
       GroupColor=(B=0,G=210,R=112,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_13.InterpGroup_0'
    CurveEdSetup=InterpCurveEdSetup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_13.InterpCurveEdSetup_0'
@@ -2340,7 +2340,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_39
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1198
-   ObjValue=DynamicBlockingVolume'KF-ELYSIUM.TheWorld:PersistentLevel.DynamicBlockingVolume_33'
+   ObjValue=DynamicBlockingVolume'KF-ELYSIUM.TheWorld:PersistentLevel.DynamicBlockingVolume_32'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-8976
@@ -2397,10 +2397,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_14
 End Object
 
 Begin Object Class=InterpData Name=InterpData_14
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=744.000183),InterpMode=CIM_CurveAutoClamped)))
@@ -2415,6 +2411,10 @@ Begin Object Class=InterpData Name=InterpData_14
       GroupColor=(B=0,G=216,R=99,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_14.InterpGroup_1'
    CurveEdSetup=InterpCurveEdSetup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_14.InterpCurveEdSetup_1'
@@ -2478,7 +2478,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    InputLinks(1)=(DrawY=-4694,OverrideDelta=35)
    InputLinks(2)=(DrawY=-4673,OverrideDelta=56)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Interp_15'),(LinkedOp=SeqAct_Delay'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Delay_60')),DrawY=-4694,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_725',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_0',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1199'),DrawX=-7842,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_28',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_0',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1199',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_725'),DrawX=-7842,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-7791,OverrideDelta=76)
    EventLinks(0)=(DrawX=-7742,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -2491,7 +2491,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_725
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
    ObjValue=DynamicBlockingVolume'KF-ELYSIUM.TheWorld:PersistentLevel.DynamicBlockingVolume_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -2499,7 +2499,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_725
    ObjPosY=-4592
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_725"
+   Name="SeqVar_Object_28"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -2549,10 +2549,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_15
 End Object
 
 Begin Object Class=InterpData Name=InterpData_15
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-0.000488,Z=1520.000122),InterpMode=CIM_CurveAutoClamped)))
@@ -2567,6 +2563,10 @@ Begin Object Class=InterpData Name=InterpData_15
       GroupColor=(B=50,G=229,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_15.InterpGroup_0'
    CurveEdSetup=InterpCurveEdSetup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_15.InterpCurveEdSetup_0'
@@ -3123,7 +3123,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1131
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1129
-   ObjValue=KFPathnode'KF-ELYSIUM.TheWorld:PersistentLevel.KFPathnode_1197'
+   ObjValue=KFPathnode'KF-ELYSIUM.TheWorld:PersistentLevel.KFPathnode_395'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-7320
@@ -3283,10 +3283,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_8
 End Object
 
 Begin Object Class=InterpData Name=InterpData_8
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=1720.000488),InterpMode=CIM_CurveAutoClamped)))
@@ -3301,6 +3297,10 @@ Begin Object Class=InterpData Name=InterpData_8
       GroupColor=(B=120,G=206,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_8.InterpGroup_0'
    CurveEdSetup=InterpCurveEdSetup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_8.InterpCurveEdSetup_0'
@@ -3761,7 +3761,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_45
    EventName="SendToSide"
    MaxWidth=195
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_16')),DrawY=-8302,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_3')),DrawY=-8302,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-8439,OverrideDelta=65)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -4811,11 +4811,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1206
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1029
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_115'
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_98'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-4024
-   ObjPosY=-5384
+   ObjPosY=-5352
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_1029"
@@ -4823,7 +4823,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1029
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1123
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_130'
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-4256
@@ -4847,7 +4847,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1039
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1038
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_116'
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_9'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-3768
@@ -4859,7 +4859,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1038
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1036
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_117'
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-3624
@@ -4875,7 +4875,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_26
    InputLinks(1)=(DrawY=-5014,OverrideDelta=35)
    InputLinks(2)=(DrawY=-4993,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-5014,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1029',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1036',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1038',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1039',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1123',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1393',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1402',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1359'),DrawX=-4042,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1029',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1036',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1038',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1039',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1123',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_61',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1402',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1359',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_62',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_63',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1393',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_65',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_66',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_67',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_70',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_69',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_73',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_72',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_64'),DrawX=-4042,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3991,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3942,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -5100,8 +5100,8 @@ End Object
 Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_2
    MaxTriggerCount=0
    MaxWidth=248
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_5',InputLinkIdx=1)),DrawY=-1308,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Delay'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Delay_47'),(LinkedOp=SeqAct_Interp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Interp_11'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_5')),DrawY=-1288,OverrideDelta=33)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_18',InputLinkIdx=1)),DrawY=-1308,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Delay'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Delay_47'),(LinkedOp=SeqAct_Interp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Interp_11'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_18')),DrawY=-1288,OverrideDelta=33)
    VariableLinks(0)=(DrawX=-9797,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-9736,OverrideDelta=86)
    VariableLinks(2)=(DrawX=-9655,OverrideDelta=139)
@@ -5119,7 +5119,7 @@ Begin Object Class=KFSeqEvent_WaveEnd Name=KFSeqEvent_WaveEnd_4
    MaxTriggerCount=0
    MaxWidth=248
    OutputLinks(0)=(DrawY=-1116,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Interp_11',InputLinkIdx=1),(LinkedOp=KFSeqAct_BloodRain'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_BloodRain_0',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_0',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_5',InputLinkIdx=1)),DrawY=-1096,OverrideDelta=33)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Interp_11',InputLinkIdx=1),(LinkedOp=KFSeqAct_BloodRain'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_BloodRain_0',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_0',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_18',InputLinkIdx=1)),DrawY=-1096,OverrideDelta=33)
    VariableLinks(0)=(DrawX=-9797,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-9736,OverrideDelta=86)
    VariableLinks(2)=(DrawX=-9655,OverrideDelta=139)
@@ -5155,10 +5155,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_12
 End Object
 
 Begin Object Class=InterpData Name=InterpData_12
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2700.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped)))
@@ -5173,6 +5169,10 @@ Begin Object Class=InterpData Name=InterpData_12
       GroupColor=(B=129,G=0,R=202,A=255)
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2700.000000
    InterpGroups(0)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_12.InterpGroup_3'
@@ -5722,7 +5722,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_44
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_FirePile_Start'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_FirePile_Start_01'
    InputLinks(0)=(DrawY=-2260,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkPostEvent_56')),DrawY=-2260,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1113'),DrawX=-9088,OverrideDelta=26)
@@ -6000,7 +6000,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_979
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_12
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_1
    LinkCount=20
    IncrementAmount=0
    bLooping=True
@@ -6034,7 +6034,7 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_12
    ObjComment="Pick destination"
    DrawWidth=97
    DrawHeight=533
-   Name="SeqAct_RandomSwitch_12"
+   Name="SeqAct_RandomSwitch_1"
    ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
 End Object
 
@@ -6188,7 +6188,7 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
    InputLinks(2)=(DrawY=-2478,OverrideDelta=59)
    InputLinks(3)=(DrawY=-2456,OverrideDelta=81)
    InputLinks(4)=(DrawY=-2434,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_41')),DrawY=-2506,OverrideDelta=31)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_4')),DrawY=-2506,OverrideDelta=31)
    OutputLinks(1)=(DrawY=-2450,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_7'),DrawX=-7849,OverrideDelta=16)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_748'),LinkDesc="BurningSouls",MinVars=0,DrawX=-7793,OverrideDelta=63)
@@ -6205,23 +6205,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
 End Object
 
 Begin Object Class=InterpData Name=InterpData_7
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=76.355469,Y=246.523193,Z=-262.335693),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-23.887756,Y=336.526978,Z=-199.607117),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=5.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_4"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_7.InterpGroup_0.InterpTrackMove_0'
-      GroupName="BurningSouls"
-      GroupColor=(B=197,G=0,R=138,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_7.InterpGroup_2.InterpTrackMove_4'
+      GroupName="BurningSoul3"
+      GroupColor=(B=0,G=224,R=74,A=255)
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
@@ -6239,20 +6235,24 @@ Begin Object Class=InterpData Name=InterpData_7
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-23.887756,Y=336.526978,Z=-199.607117),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=76.355469,Y=246.523193,Z=-262.335693),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=5.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_4"
+         Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_7.InterpGroup_2.InterpTrackMove_4'
-      GroupName="BurningSoul3"
-      GroupColor=(B=0,G=224,R=74,A=255)
-      Name="InterpGroup_2"
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_7.InterpGroup_0.InterpTrackMove_0'
+      GroupName="BurningSouls"
+      GroupColor=(B=197,G=0,R=138,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_7.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_7.InterpGroup_1'
@@ -6516,7 +6516,7 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_19
    ReTriggerDelay=3.000000
    bPlayerOnly=False
    MaxWidth=247
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_43')),DrawY=-1443,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_10')),DrawY=-1443,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-1422,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-1401,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-4261,OverrideDelta=91)
@@ -6532,11 +6532,11 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_19
    ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_43
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_10
    InputLinks(0)=(DrawY=-1443,OverrideDelta=14)
    InputLinks(1)=(DrawY=-1422,OverrideDelta=35)
    InputLinks(2)=(DrawY=-1401,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkPostEvent_51')),DrawY=-1422,OverrideDelta=35)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkPostEvent_51'),(LinkedOp=SeqAct_Delay'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Delay_1')),DrawY=-1422,OverrideDelta=35)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1013'),DrawX=-4066,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-4015,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3966,OverrideDelta=119)
@@ -6546,7 +6546,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_43
    ObjPosY=-1480
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_43"
+   Name="SeqAct_Toggle_10"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
@@ -6673,7 +6673,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_44
    InputLinks(0)=(DrawY=-1235,OverrideDelta=14)
    InputLinks(1)=(DrawY=-1214,OverrideDelta=35)
    InputLinks(2)=(DrawY=-1193,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkPostEvent_47')),DrawY=-1214,OverrideDelta=35)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkPostEvent_47'),(LinkedOp=SeqAct_Delay'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Delay_2')),DrawY=-1214,OverrideDelta=35)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_961'),DrawX=-4058,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-4007,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3958,OverrideDelta=119)
@@ -6773,14 +6773,14 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_51
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_VortexIce_Impact'
-   InputLinks(0)=(DrawY=-1438,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-1438,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1013'),DrawX=-3800,OverrideDelta=26)
+   Event=AkEvent'WW_ENV_Elysium_2.Play_VortexIce_Impact_01'
+   InputLinks(0)=(DrawY=-1486,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-1486,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1013'),DrawX=-3792,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3848
-   ObjPosY=-1472
+   ObjPosX=-3840
+   ObjPosY=-1520
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_51"
@@ -6789,14 +6789,14 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_47
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_VortexIce_Impact'
-   InputLinks(0)=(DrawY=-1214,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-1214,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_961'),DrawX=-3816,OverrideDelta=26)
+   Event=AkEvent'WW_ENV_Elysium_2.Play_VortexIce_Impact_01'
+   InputLinks(0)=(DrawY=-1262,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-1262,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_961'),DrawX=-3808,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3864
-   ObjPosY=-1248
+   ObjPosX=-3856
+   ObjPosY=-1296
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_47"
@@ -6895,14 +6895,14 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_61
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_VortexIce_Impact'
-   InputLinks(0)=(DrawY=-982,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-982,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1136'),DrawX=-3824,OverrideDelta=26)
+   Event=AkEvent'WW_ENV_Elysium_2.Play_VortexIce_Impact_01'
+   InputLinks(0)=(DrawY=-1054,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-1054,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1136'),DrawX=-3816,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3872
-   ObjPosY=-1016
+   ObjPosX=-3864
+   ObjPosY=-1088
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_61"
@@ -6913,7 +6913,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_45
    InputLinks(0)=(DrawY=-1003,OverrideDelta=14)
    InputLinks(1)=(DrawY=-982,OverrideDelta=35)
    InputLinks(2)=(DrawY=-961,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkPostEvent_61')),DrawY=-982,OverrideDelta=35)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkPostEvent_61'),(LinkedOp=SeqAct_Delay'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Delay_0')),DrawY=-982,OverrideDelta=35)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1136'),DrawX=-4066,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-4015,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3966,OverrideDelta=119)
@@ -6940,8 +6940,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1136
 End Object
 
 Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_77
-   SizeX=694
-   SizeY=701
+   SizeX=1275
+   SizeY=738
    bTileFill=True
    FillColor=(B=177,G=62,R=125,A=255)
    ObjInstanceVersion=1
@@ -6956,8 +6956,8 @@ End Object
 Begin Object Class=SequenceFrame Name=SequenceFrame_48
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-4408
-   ObjPosY=-1544
+   ObjPosX=-8824
+   ObjPosY=-1416
    ObjComment="Void trap damage triggers"
    DrawWidth=128
    DrawHeight=64
@@ -7964,10 +7964,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_16
 End Object
 
 Begin Object Class=InterpData Name=InterpData_16
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.500000,OutVal=(X=-0.001465,Y=-0.000977,Z=-447.999939),InterpMode=CIM_CurveAutoClamped)))
@@ -7982,6 +7978,10 @@ Begin Object Class=InterpData Name=InterpData_16
       GroupColor=(B=225,G=0,R=74,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=5.500000
    InterpGroups(0)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_16.InterpGroup_0'
@@ -8029,7 +8029,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_49
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_OpenGate'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_OpenGate_01'
    InputLinks(0)=(DrawY=3426,OverrideDelta=11)
    OutputLinks(0)=(DrawY=3426,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_746'),DrawX=-8248,OverrideDelta=26)
@@ -8109,10 +8109,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_10
 End Object
 
 Begin Object Class=InterpData Name=InterpData_10
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.000977,Y=0.000977,Z=-0.000244),InterpMode=CIM_CurveAutoClamped)))
@@ -8127,6 +8123,10 @@ Begin Object Class=InterpData Name=InterpData_10
       GroupColor=(B=0,G=126,R=203,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_10.InterpGroup_1'
@@ -8497,7 +8497,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_52
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_OpenGate'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_OpenGate_01'
    InputLinks(0)=(DrawY=3922,OverrideDelta=11)
    OutputLinks(0)=(DrawY=3922,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Player_30'),DrawX=-8240,OverrideDelta=26)
@@ -8987,7 +8987,7 @@ End Object
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_15
    InputLinks(0)=(DrawY=-8026,OverrideDelta=23)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_ActivateRemoteEvent_27')),DrawY=-8036,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_16')),DrawY=-8016,OverrideDelta=33)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_3')),DrawY=-8016,OverrideDelta=33)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Named_36'),DrawX=-8475,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-8425,OverrideDelta=59)
    ObjInstanceVersion=2
@@ -9127,7 +9127,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_29
    InputLinks(1)=(DrawY=-5006,OverrideDelta=35)
    InputLinks(2)=(DrawY=-4985,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-5006,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_810',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_780',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_798',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_795',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1389',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_790',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_803',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_789',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_787',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_785'),DrawX=-2042,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_810',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_780',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1389',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_790',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_803',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_789',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_785'),DrawX=-2042,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-1991,OverrideDelta=76)
    EventLinks(0)=(DrawX=-1942,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -9167,30 +9167,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_810
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_798
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_11'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-2144
-   ObjPosY=-5424
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_798"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_795
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_6'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-2048
-   ObjPosY=-5424
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_795"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1389
    ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_157'
    ObjInstanceVersion=1
@@ -9216,7 +9192,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_790
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_803
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_9'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-1744
@@ -9236,18 +9211,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_789
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_789"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_787
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_202'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-1544
-   ObjPosY=-5424
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_787"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -9358,7 +9321,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_48
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PickUp_Interactives'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PickUp_Interactives_01'
    InputLinks(0)=(DrawY=2218,OverrideDelta=11)
    OutputLinks(0)=(DrawY=2218,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_721'),DrawX=-1960,OverrideDelta=26)
@@ -10013,7 +9976,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_58
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PickUp_Interactives'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PickUp_Interactives_01'
    InputLinks(0)=(DrawY=2242,OverrideDelta=11)
    OutputLinks(0)=(DrawY=2242,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_753'),DrawX=-512,OverrideDelta=26)
@@ -10273,7 +10236,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_69
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PickUp_Interactives'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PickUp_Interactives_01'
    InputLinks(0)=(DrawY=3170,OverrideDelta=11)
    OutputLinks(0)=(DrawY=3170,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_889'),DrawX=880,OverrideDelta=26)
@@ -10844,7 +10807,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_57
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PlaceFlower'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PlaceFlower_01'
    InputLinks(0)=(DrawY=978,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AddInt'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AddInt_11')),DrawY=978,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1392'),DrawX=744,OverrideDelta=26)
@@ -10962,7 +10925,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_59
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PlaceFlower'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PlaceFlower_01'
    InputLinks(0)=(DrawY=746,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AddInt'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AddInt_12')),DrawY=746,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_857'),DrawX=744,OverrideDelta=26)
@@ -11062,7 +11025,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_60
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PlaceFlower'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PlaceFlower_01'
    InputLinks(0)=(DrawY=514,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AddInt'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AddInt_13')),DrawY=514,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_862'),DrawX=744,OverrideDelta=26)
@@ -12705,7 +12668,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_50
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PickUp_Interactives'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PickUp_Interactives_01'
    InputLinks(0)=(DrawY=2658,OverrideDelta=11)
    OutputLinks(0)=(DrawY=2658,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_802'),DrawX=-4840,OverrideDelta=26)
@@ -12882,7 +12845,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_83
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PickUp_Interactives'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PickUp_Interactives_01'
    InputLinks(0)=(DrawY=1026,OverrideDelta=11)
    OutputLinks(0)=(DrawY=1026,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_767'),DrawX=-4848,OverrideDelta=26)
@@ -13059,7 +13022,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_68
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PickUp_Interactives'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PickUp_Interactives_01'
    InputLinks(0)=(DrawY=2650,OverrideDelta=11)
    OutputLinks(0)=(DrawY=2650,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_737'),DrawX=-6456,OverrideDelta=26)
@@ -13319,7 +13282,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_86
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PickUp_Interactives'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PickUp_Interactives_01'
    InputLinks(0)=(DrawY=1026,OverrideDelta=11)
    OutputLinks(0)=(DrawY=1026,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_783'),DrawX=-6456,OverrideDelta=26)
@@ -13463,7 +13426,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_65
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PlaceBook'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PlaceBook_01'
    InputLinks(0)=(DrawY=3066,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AddInt'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AddInt_7')),DrawY=3066,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_934'),DrawX=-8072,OverrideDelta=26)
@@ -13593,7 +13556,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_64
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PlaceBook'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PlaceBook_01'
    InputLinks(0)=(DrawY=2834,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AddInt'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AddInt_6')),DrawY=2834,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_930'),DrawX=-8072,OverrideDelta=26)
@@ -13723,7 +13686,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_63
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PlaceBook'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PlaceBook_01'
    InputLinks(0)=(DrawY=2602,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AddInt'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AddInt_0')),DrawY=2602,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_927'),DrawX=-8072,OverrideDelta=26)
@@ -13823,7 +13786,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_62
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_PlaceBook'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_PlaceBook_01'
    InputLinks(0)=(DrawY=2370,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_AddInt'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AddInt_14')),DrawY=2370,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_925'),DrawX=-8072,OverrideDelta=26)
@@ -14407,209 +14370,6 @@ Begin Object Class=SeqVar_Player Name=SeqVar_Player_7
 End Object
 
 Begin Object Class=InterpData Name=InterpData_9
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_0"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((OutVal=(X=0.000488,Y=-0.000488,Z=-0.000061),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=1409.238037,Y=-181.928223,Z=72.270844),ArriveTangent=(X=428.074249,Y=-89.379700,Z=0.000000),LeaveTangent=(X=428.074249,Y=-89.379700,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.800000,OutVal=(X=3338.979736,Y=-1166.025757,Z=17.900116),ArriveTangent=(X=1208.969604,Y=-195.545639,Z=-5.182724),LeaveTangent=(X=1208.969604,Y=-195.545639,Z=-5.182724),InterpMode=CIM_CurveAutoClamped),(InVal=9.839215,OutVal=(X=7302.224609,Y=-1403.011963,Z=12.614075),ArriveTangent=(X=656.528198,Y=0.000000,Z=-1.947001),LeaveTangent=(X=656.528198,Y=0.000000,Z=-1.947001),InterpMode=CIM_CurveAutoClamped),(InVal=14.469993,OutVal=(X=8598.931641,Y=-816.182861,Z=4.913635),ArriveTangent=(X=51.523331,Y=241.120697,Z=0.000000),LeaveTangent=(X=51.523331,Y=241.120697,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=19.679615,OutVal=(X=8713.328125,Y=2049.332764,Z=65.325256),ArriveTangent=(X=0.000000,Y=750.526550,Z=7.686038),LeaveTangent=(X=0.000000,Y=750.526550,Z=7.686038),InterpMode=CIM_CurveAutoClamped),(InVal=24.475777,OutVal=(X=8676.920898,Y=6693.423828,Z=88.129425),ArriveTangent=(X=-18.587097,Y=9.109772,Z=8.790682),LeaveTangent=(X=-18.587097,Y=9.109772,Z=8.790682),InterpMode=CIM_CurveAutoClamped),(InVal=29.437325,OutVal=(X=4730.970703,Y=6711.392578,Z=174.510498),ArriveTangent=(X=-747.424622,Y=0.000000,Z=0.000000),LeaveTangent=(X=-747.424622,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=35.225796,OutVal=(X=642.091797,Y=6208.406250,Z=5.005615),ArriveTangent=(X=-292.268494,Y=-207.548294,Z=0.000000),LeaveTangent=(X=-292.268494,Y=-207.548294,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=39.608494,OutVal=(X=-46.067871,Y=1998.791260,Z=49.046112),ArriveTangent=(X=0.000000,Y=-812.619385,Z=14.150238),LeaveTangent=(X=0.000000,Y=-812.619385,Z=14.150238),InterpMode=CIM_CurveAutoClamped),(InVal=44.983505,OutVal=(X=745.204834,Y=-1720.897461,Z=145.605011),ArriveTangent=(X=296.808838,Y=-243.714890,Z=0.000000),LeaveTangent=(X=296.808838,Y=-243.714890,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=4377.874512,Y=-2322.717285,Z=131.027374),ArriveTangent=(X=798.628113,Y=0.000000,Z=0.000000),LeaveTangent=(X=798.628113,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=54.900002,OutVal=(X=8664.797852,Y=-1700.499023,Z=148.942535),LeaveTangent=(X=0.000015,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-6.152344,Z=0.791016),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.457361),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.457361),InterpMode=CIM_CurveAutoClamped),(InVal=7.800000,OutVal=(X=0.000000,Y=1.164551,Z=69.807129),ArriveTangent=(X=0.000000,Y=0.000000,Z=22.416653),LeaveTangent=(X=0.000000,Y=0.000000,Z=22.416653),InterpMode=CIM_CurveAutoClamped),(InVal=9.839215,OutVal=(X=0.000000,Y=0.395508,Z=109.270020),ArriveTangent=(X=0.000000,Y=0.000000,Z=11.437654),LeaveTangent=(X=0.000000,Y=0.000000,Z=11.437654),InterpMode=CIM_CurveAutoClamped),(InVal=14.469993,OutVal=(X=0.000000,Y=0.791016,Z=146.096191),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.301252),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.301252),InterpMode=CIM_CurveAutoClamped),(InVal=19.679615,OutVal=(X=0.000000,Y=-0.131836,Z=171.276855),ArriveTangent=(X=0.000000,Y=-0.371975,Z=6.970089),LeaveTangent=(X=0.000000,Y=-0.371975,Z=6.970089),InterpMode=CIM_CurveAutoClamped),(InVal=24.475777,OutVal=(X=0.000000,Y=-5.185547,Z=215.837402),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.966768),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.966768),InterpMode=CIM_CurveAutoClamped),(InVal=29.437325,OutVal=(X=0.000000,Y=-0.395508,Z=258.771973),ArriveTangent=(X=0.000000,Y=0.619090,Z=8.470188),LeaveTangent=(X=0.000000,Y=0.619090,Z=8.470188),InterpMode=CIM_CurveAutoClamped),(InVal=35.225796,OutVal=(X=0.000000,Y=1.713867,Z=306.892090),ArriveTangent=(X=0.000000,Y=0.429897,Z=9.822830),LeaveTangent=(X=0.000000,Y=0.429897,Z=9.822830),InterpMode=CIM_CurveAutoClamped),(InVal=39.608494,OutVal=(X=0.000000,Y=3.977051,Z=358.681641),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.923984),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.923984),InterpMode=CIM_CurveAutoClamped),(InVal=44.983505,OutVal=(X=0.000000,Y=0.065918,Z=393.969727),ArriveTangent=(X=0.000000,Y=-0.589941,Z=8.142872),LeaveTangent=(X=0.000000,Y=-0.589941,Z=8.142872),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=-2.153320,Z=443.298340),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.279637),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.279637),InterpMode=CIM_CurveAutoClamped),(InVal=54.900002,OutVal=(X=0.000000,Y=-1.340332,Z=485.991211),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000),(Time=7.800000),(Time=9.839215),(Time=14.469993),(Time=19.679615),(Time=24.475777),(Time=29.437325),(Time=35.225796),(Time=39.608494),(Time=44.983505),(Time=50.000000),(Time=54.900002)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_0.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_0.InterpTrackFloatProp_0'
-      GroupName="MainArea"
-      GroupColor=(B=51,G=0,R=229,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_10
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),InterpMode=CIM_CurveAutoClamped),(InVal=1264.949829,OutVal=(X=-111.058594,Y=59.695313,Z=5.847168),ArriveTangent=(X=0.113715,Y=0.000000,Z=0.261317),LeaveTangent=(X=0.113715,Y=0.000000,Z=0.261317),InterpMode=CIM_CurveAutoClamped),(InVal=1270.371460,OutVal=(X=1255.734375,Y=-126.664063,Z=97.250732),ArriveTangent=(X=227.178177,Y=-11.495886,Z=0.000000),LeaveTangent=(X=227.178177,Y=-11.495886,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1274.937378,OutVal=(X=2157.894531,Y=-152.875000,Z=-192.970947),ArriveTangent=(X=186.690140,Y=-10.314817,Z=0.000000),LeaveTangent=(X=186.690140,Y=-10.314817,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1280.717041,OutVal=(X=3187.152344,Y=-275.593750,Z=-143.480957),ArriveTangent=(X=122.772629,Y=-17.398947,Z=15.189129),LeaveTangent=(X=122.772629,Y=-17.398947,Z=15.189129),InterpMode=CIM_CurveAutoClamped),(InVal=1289.972412,OutVal=(X=4003.785156,Y=-414.468750,Z=197.576904),ArriveTangent=(X=140.542068,Y=-21.067902,Z=15.961456),LeaveTangent=(X=140.542068,Y=-21.067902,Z=15.961456),InterpMode=CIM_CurveAutoClamped),(InVal=1295.325684,OutVal=(X=5240.281250,Y=-583.367188,Z=247.303711),ArriveTangent=(X=77.216911,Y=-73.146675,Z=5.302628),LeaveTangent=(X=77.216911,Y=-73.146675,Z=5.302628),InterpMode=CIM_CurveAutoClamped),(InVal=1299.979370,OutVal=(X=5418.296875,Y=-2175.148438,Z=261.601563),InterpMode=CIM_CurveAutoClamped),(InVal=1299.979370,OutVal=(X=5418.296875,Y=-2175.148438,Z=261.601563),InterpMode=CIM_CurveAutoClamped),(InVal=1305.079346,OutVal=(X=5440.195313,Y=-3129.406250,Z=70.887451),ArriveTangent=(X=0.000000,Y=-179.512238,Z=-25.750374),LeaveTangent=(X=0.000000,Y=-179.512238,Z=-25.750374),InterpMode=CIM_CurveAutoClamped),(InVal=1310.072998,OutVal=(X=5234.820313,Y=-3987.078125,Z=-9.864014),ArriveTangent=(X=-57.312687,Y=-162.162491,Z=0.000000),LeaveTangent=(X=-57.312687,Y=-162.162491,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1315.066772,OutVal=(X=4867.789063,Y=-4748.992188,Z=188.390137),ArriveTangent=(X=-71.449173,Y=-211.222580,Z=0.000000),LeaveTangent=(X=-71.449173,Y=-211.222580,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1319.935669,OutVal=(X=4530.140625,Y=-6070.296875,Z=160.854980),ArriveTangent=(X=-128.301117,Y=-36.676826,Z=-9.922739),LeaveTangent=(X=-128.301117,Y=-36.676826,Z=-9.922739),InterpMode=CIM_CurveAutoClamped),(InVal=1325.054321,OutVal=(X=3215.984375,Y=-6149.539063,Z=71.824219),ArriveTangent=(X=-211.779312,Y=0.000000,Z=-33.058758),LeaveTangent=(X=-211.779312,Y=0.000000,Z=-33.058758),InterpMode=CIM_CurveAutoClamped),(InVal=1329.923218,OutVal=(X=2414.984375,Y=-6123.984375,Z=-257.941895),ArriveTangent=(X=-184.963562,Y=10.524324,Z=-24.189442),LeaveTangent=(X=-184.963562,Y=10.524324,Z=-24.189442),InterpMode=CIM_CurveAutoClamped),(InVal=1334.667236,OutVal=(X=1437.945313,Y=-6000.765625,Z=-314.046875),ArriveTangent=(X=-175.196838,Y=40.847492,Z=0.000000),LeaveTangent=(X=-175.196838,Y=40.847492,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1339.910645,OutVal=(X=665.218750,Y=-5690.578125,Z=-47.303223),ArriveTangent=(X=-197.606384,Y=55.634899,Z=0.000000),LeaveTangent=(X=-197.606384,Y=55.634899,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1345.029297,OutVal=(X=-609.664063,Y=-5424.273438,Z=-123.463867),ArriveTangent=(X=-92.779404,Y=91.286133,Z=0.000000),LeaveTangent=(X=-92.779404,Y=91.286133,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1350.147827,OutVal=(X=-842.765625,Y=-4619.875000,Z=-119.266113),ArriveTangent=(X=0.000000,Y=142.063614,Z=1.434609),LeaveTangent=(X=0.000000,Y=142.063614,Z=1.434609),InterpMode=CIM_CurveAutoClamped),(InVal=1354.891846,OutVal=(X=-792.625000,Y=-4023.164063,Z=-107.886230),ArriveTangent=(X=17.535240,Y=142.539368,Z=0.000000),LeaveTangent=(X=17.535240,Y=142.539368,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1360.135254,OutVal=(X=-646.539063,Y=-3196.273438,Z=-435.426514),ArriveTangent=(X=23.945150,Y=173.188141,Z=0.000000),LeaveTangent=(X=23.945150,Y=173.188141,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1365.253906,OutVal=(X=-544.503906,Y=-2228.578125,Z=-405.885254),ArriveTangent=(X=37.798885,Y=249.712875,Z=13.469021),LeaveTangent=(X=37.798885,Y=249.712875,Z=13.469021),InterpMode=CIM_CurveAutoClamped),(InVal=1369.997925,OutVal=(X=-183.914063,Y=-733.437500,Z=-40.695313),ArriveTangent=(X=63.139759,Y=196.514496,Z=3.186153),LeaveTangent=(X=63.139759,Y=196.514496,Z=3.186153),InterpMode=CIM_CurveAutoClamped),(InVal=1374.617188,OutVal=(X=46.691406,Y=-195.234375,Z=-34.645020),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.003965),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.003965),InterpMode=CIM_CurveAutoClamped),(InVal=1264.949829,OutVal=(X=-0.175781,Y=2.241211,Z=-12.233276),ArriveTangent=(X=0.000000,Y=0.006365,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.006365,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1270.371460,OutVal=(X=0.000000,Y=3.339844,Z=-9.124146),ArriveTangent=(X=0.000000,Y=0.353728,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.353728,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1274.937378,OutVal=(X=-0.010986,Y=5.971069,Z=-9.354858),ArriveTangent=(X=-0.005563,Y=0.000000,Z=-0.117127),LeaveTangent=(X=-0.005563,Y=0.000000,Z=-0.117127),InterpMode=CIM_CurveAutoClamped),(InVal=1280.717041,OutVal=(X=-2.504883,Y=-1.829224,Z=-103.485718),ArriveTangent=(X=0.000000,Y=-0.817305,Z=-3.815299),LeaveTangent=(X=0.000000,Y=-0.817305,Z=-3.815299),InterpMode=CIM_CurveAutoClamped),(InVal=1289.972412,OutVal=(X=-2.169800,Y=-6.317139,Z=-117.899780),ArriveTangent=(X=0.081650,Y=0.000000,Z=-2.992880),LeaveTangent=(X=0.081650,Y=0.000000,Z=-2.992880),InterpMode=CIM_CurveAutoClamped),(InVal=1295.325684,OutVal=(X=-0.950317,Y=0.186768,Z=-147.617798),ArriveTangent=(X=0.292582,Y=0.000000,Z=-6.116228),LeaveTangent=(X=0.292582,Y=0.000000,Z=-6.116228),InterpMode=CIM_CurveAutoClamped),(InVal=1299.979370,OutVal=(X=0.758057,Y=-1.527100,Z=-179.104614),InterpMode=CIM_CurveAutoClamped),(InVal=1299.979370,OutVal=(X=0.758057,Y=-1.527100,Z=-179.104614),InterpMode=CIM_CurveAutoClamped),(InVal=1305.079346,OutVal=(X=0.774536,Y=-8.756104,Z=-179.675903),ArriveTangent=(X=0.007953,Y=0.000000,Z=-0.270077),LeaveTangent=(X=0.007953,Y=0.000000,Z=-0.270077),InterpMode=CIM_CurveAutoClamped),(InVal=1310.072998,OutVal=(X=1.642456,Y=-5.641479,Z=-195.243530),ArriveTangent=(X=0.263323,Y=0.806312,Z=-5.184403),LeaveTangent=(X=0.263323,Y=0.806312,Z=-5.184403),InterpMode=CIM_CurveAutoClamped),(InVal=1315.066772,OutVal=(X=3.416748,Y=-0.703125,Z=-235.431519),ArriveTangent=(X=0.099186,Y=0.000000,Z=-3.691738),LeaveTangent=(X=0.099186,Y=0.000000,Z=-3.691738),InterpMode=CIM_CurveAutoClamped),(InVal=1319.935669,OutVal=(X=3.641968,Y=-1.444702,Z=-244.824829),ArriveTangent=(X=0.025337,Y=0.000000,Z=-1.415153),LeaveTangent=(X=0.025337,Y=0.000000,Z=-1.415153),InterpMode=CIM_CurveAutoClamped),(InVal=1325.054321,OutVal=(X=3.713379,Y=2.312622,Z=-249.565430),ArriveTangent=(X=0.014300,Y=0.000000,Z=-1.963393),LeaveTangent=(X=0.014300,Y=0.000000,Z=-1.963393),InterpMode=CIM_CurveAutoClamped),(InVal=1329.923218,OutVal=(X=3.784790,Y=2.224731,Z=-278.794556),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.378773),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.378773),InterpMode=CIM_CurveAutoClamped),(InVal=1334.667236,OutVal=(X=3.504639,Y=2.246704,Z=-292.379150),ArriveTangent=(X=-0.110281,Y=0.000000,Z=-4.352517),LeaveTangent=(X=-0.110281,Y=0.000000,Z=-4.352517),InterpMode=CIM_CurveAutoClamped),(InVal=1339.910645,OutVal=(X=2.279663,Y=0.422974,Z=-323.800049),ArriveTangent=(X=-0.070426,Y=0.000000,Z=-1.312461),LeaveTangent=(X=-0.070426,Y=0.000000,Z=-1.312461),InterpMode=CIM_CurveAutoClamped),(InVal=1345.029297,OutVal=(X=2.109375,Y=5.943604,Z=-326.826782),ArriveTangent=(X=-0.074962,Y=0.487343,Z=-1.332341),LeaveTangent=(X=-0.074962,Y=0.487343,Z=-1.332341),InterpMode=CIM_CurveAutoClamped),(InVal=1350.147827,OutVal=(X=0.219727,Y=7.234497,Z=-360.401001),InterpMode=CIM_CurveAutoClamped),(InVal=1354.891846,OutVal=(X=1.455688,Y=2.839966,Z=-338.933716),InterpMode=CIM_CurveAutoClamped),(InVal=1360.135254,OutVal=(X=0.186768,Y=4.026489,Z=-360.609741),ArriveTangent=(X=-0.233254,Y=0.000000,Z=-4.014090),LeaveTangent=(X=-0.233254,Y=0.000000,Z=-4.014090),InterpMode=CIM_CurveAutoClamped),(InVal=1365.253906,OutVal=(X=-0.961304,Y=3.548584,Z=-380.527954),ArriveTangent=(X=-0.250634,Y=-0.213175,Z=-4.911876),LeaveTangent=(X=-0.250634,Y=-0.213175,Z=-4.911876),InterpMode=CIM_CurveAutoClamped),(InVal=1369.997925,OutVal=(X=-2.285156,Y=-1.186523,Z=-409.053955),ArriveTangent=(X=-0.191529,Y=0.000000,Z=-5.293531),LeaveTangent=(X=-0.191529,Y=0.000000,Z=-5.293531),InterpMode=CIM_CurveAutoClamped),(InVal=1374.617188,OutVal=(X=-2.839966,Y=0.362549,Z=-430.092773),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=1264.949829),(Time=1270.371460),(Time=1274.937378),(Time=1280.717041),(Time=1289.972412),(Time=1295.325684),(Time=1299.979370),(Time=1299.979370),(Time=1305.079346),(Time=1310.072998),(Time=1315.066772),(Time=1319.935669),(Time=1325.054321),(Time=1329.923218),(Time=1334.667236),(Time=1339.910645),(Time=1345.029297),(Time=1350.147827),(Time=1354.891846),(Time=1360.135254),(Time=1365.253906),(Time=1369.997925),(Time=1374.617188)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_10.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_10.InterpTrackFloatProp_1'
-      GroupName="library"
-      GroupColor=(B=0,G=222,R=79,A=255)
-      Name="InterpGroup_10"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_11
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),InterpMode=CIM_CurveAutoClamped),(InVal=1378.155151,OutVal=(X=-117.733398,Y=62.265625,Z=-5.773438),InterpMode=CIM_CurveAutoClamped),(InVal=1378.155151,OutVal=(X=-117.733398,Y=62.265625,Z=-5.773438),InterpMode=CIM_CurveAutoClamped),(InVal=1399.722534,OutVal=(X=289.060059,Y=4.695313,Z=7.495605),ArriveTangent=(X=0.000000,Y=-5.828220,Z=0.000000),LeaveTangent=(X=0.000000,Y=-5.828220,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1422.160767,OutVal=(X=272.707031,Y=-537.234375,Z=0.741211),ArriveTangent=(X=-1.996966,Y=-13.988614,Z=-0.465114),LeaveTangent=(X=-1.996966,Y=-13.988614,Z=-0.465114),InterpMode=CIM_CurveAutoClamped),(InVal=1435.891602,OutVal=(X=-110.491699,Y=-657.757813,Z=-9.327148),ArriveTangent=(X=-15.515855,Y=-11.750126,Z=-0.363748),LeaveTangent=(X=-15.515855,Y=-11.750126,Z=-0.363748),InterpMode=CIM_CurveAutoClamped),(InVal=1450.292114,OutVal=(X=-234.375977,Y=-867.781250,Z=-12.100586),ArriveTangent=(X=0.000000,Y=-26.763887,Z=0.000000),LeaveTangent=(X=0.000000,Y=-26.763887,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1461.008911,OutVal=(X=-2.473145,Y=-1369.117188,Z=10.319336),ArriveTangent=(X=31.763712,Y=-52.640652,Z=2.699299),LeaveTangent=(X=31.763712,Y=-52.640652,Z=2.699299),InterpMode=CIM_CurveAutoClamped),(InVal=1473.400146,OutVal=(X=518.639160,Y=-2084.203125,Z=50.274902),ArriveTangent=(X=29.202515,Y=-36.288940,Z=0.842811),LeaveTangent=(X=29.202515,Y=-36.288940,Z=0.842811),InterpMode=CIM_CurveAutoClamped),(InVal=1489.810059,OutVal=(X=838.592773,Y=-2426.765625,Z=56.232910),ArriveTangent=(X=28.171869,Y=-34.825081,Z=0.821345),LeaveTangent=(X=28.171869,Y=-34.825081,Z=0.821345),InterpMode=CIM_CurveAutoClamped),(InVal=1501.196655,OutVal=(X=1301.718750,Y=-3052.218750,Z=85.312500),ArriveTangent=(X=52.936432,Y=-23.875139,Z=3.313436),LeaveTangent=(X=52.936432,Y=-23.875139,Z=3.313436),InterpMode=CIM_CurveAutoClamped),(InVal=1515.597290,OutVal=(X=2203.676758,Y=-3220.804688,Z=141.677246),ArriveTangent=(X=9.386396,Y=0.000000,Z=0.716470),LeaveTangent=(X=9.386396,Y=0.000000,Z=0.716470),InterpMode=CIM_CurveAutoClamped),(InVal=1529.662964,OutVal=(X=2260.967773,Y=-2776.304688,Z=146.128418),ArriveTangent=(X=9.281605,Y=0.000000,Z=0.714262),LeaveTangent=(X=9.281605,Y=0.000000,Z=0.714262),InterpMode=CIM_CurveAutoClamped),(InVal=1545.403198,OutVal=(X=3446.854492,Y=-2869.742188,Z=225.178223),ArriveTangent=(X=61.258823,Y=0.000000,Z=3.076379),LeaveTangent=(X=61.258823,Y=0.000000,Z=3.076379),InterpMode=CIM_CurveAutoClamped),(InVal=1559.803711,OutVal=(X=4107.354492,Y=-2589.953125,Z=251.463867),ArriveTangent=(X=52.726501,Y=30.796032,Z=1.867549),LeaveTangent=(X=52.726501,Y=30.796032,Z=1.867549),InterpMode=CIM_CurveAutoClamped),(InVal=1571.190308,OutVal=(X=4806.518555,Y=-2075.601563,Z=273.336914),ArriveTangent=(X=40.377502,Y=34.019867,Z=1.808053),LeaveTangent=(X=40.377502,Y=34.019867,Z=1.808053),InterpMode=CIM_CurveAutoClamped),(InVal=1585.255981,OutVal=(X=5144.314453,Y=-1724.070313,Z=297.482910),ArriveTangent=(X=3.597178,Y=27.000246,Z=1.585633),LeaveTangent=(X=3.597178,Y=27.000246,Z=1.585633),InterpMode=CIM_CurveAutoClamped),(InVal=1595.972778,OutVal=(X=5162.269531,Y=-1406.468750,Z=312.632813),ArriveTangent=(X=4.446140,Y=9.562256,Z=2.370517),LeaveTangent=(X=4.446140,Y=9.562256,Z=2.370517),InterpMode=CIM_CurveAutoClamped),(InVal=1603.675415,OutVal=(X=5721.279297,Y=-1368.390625,Z=341.146484),ArriveTangent=(X=7.138708,Y=10.836620,Z=0.000000),LeaveTangent=(X=7.138708,Y=10.836620,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1613.052490,OutVal=(X=5747.926758,Y=-701.539063,Z=336.438965),ArriveTangent=(X=6.634605,Y=28.683437,Z=0.000000),LeaveTangent=(X=6.634605,Y=28.683437,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1623.340454,OutVal=(X=6543.921875,Y=-556.500000,Z=349.946777),InterpMode=CIM_CurveAutoClamped),(InVal=1631.043091,OutVal=(X=6488.348633,Y=-1530.835938,Z=19.584961),ArriveTangent=(X=-15.610796,Y=0.000000,Z=-31.157183),LeaveTangent=(X=-15.610796,Y=0.000000,Z=-31.157183),InterpMode=CIM_CurveAutoClamped),(InVal=1639.750366,OutVal=(X=5865.159180,Y=-1488.382813,Z=-161.339844),ArriveTangent=(X=-12.386990,Y=11.234287,Z=-19.483435),LeaveTangent=(X=-12.386990,Y=11.234287,Z=-19.483435),InterpMode=CIM_CurveAutoClamped),(InVal=1649.127563,OutVal=(X=5815.416992,Y=-631.078125,Z=-332.762695),ArriveTangent=(X=-12.711216,Y=44.140816,Z=-14.700453),LeaveTangent=(X=-12.711216,Y=44.140816,Z=-14.700453),InterpMode=CIM_CurveAutoClamped),(InVal=1658.504639,OutVal=(X=4445.826172,Y=-412.148438,Z=-437.036133),ArriveTangent=(X=0.000000,Y=32.582588,Z=0.000000),LeaveTangent=(X=0.000000,Y=32.582588,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1670.895874,OutVal=(X=4511.033203,Y=101.015625,Z=-433.348145),ArriveTangent=(X=0.000000,Y=62.691269,Z=0.249000),LeaveTangent=(X=0.000000,Y=62.691269,Z=0.249000),InterpMode=CIM_CurveAutoClamped),(InVal=1681.612671,OutVal=(X=4138.683594,Y=1036.523438,Z=-431.282227),ArriveTangent=(X=-63.733429,Y=6.975613,Z=0.000000),LeaveTangent=(X=-63.733429,Y=6.975613,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1689.985107,OutVal=(X=3197.945313,Y=1062.648438,Z=-521.443359),ArriveTangent=(X=-19.513042,Y=7.175663,Z=-5.205790),LeaveTangent=(X=-19.513042,Y=7.175663,Z=-5.205790),InterpMode=CIM_CurveAutoClamped),(InVal=1699.027344,OutVal=(X=3122.416016,Y=1580.875000,Z=-546.007813),ArriveTangent=(X=0.000000,Y=66.823074,Z=0.000000),LeaveTangent=(X=0.000000,Y=66.823074,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1710.078979,OutVal=(X=3204.611328,Y=2405.382813,Z=-540.260742),ArriveTangent=(X=0.000000,Y=4.328674,Z=1.249472),LeaveTangent=(X=0.000000,Y=4.328674,Z=1.249472),InterpMode=CIM_CurveAutoClamped),(InVal=1719.790771,OutVal=(X=2456.517578,Y=2423.343750,Z=-457.798340),ArriveTangent=(X=0.000000,Y=4.543930,Z=12.746248),LeaveTangent=(X=0.000000,Y=4.543930,Z=12.746248),InterpMode=CIM_CurveAutoClamped),(InVal=1729.167969,OutVal=(X=2545.721680,Y=3166.781250,Z=-296.947754),ArriveTangent=(X=18.538097,Y=0.000000,Z=18.169313),LeaveTangent=(X=18.538097,Y=0.000000,Z=18.169313),InterpMode=CIM_CurveAutoClamped),(InVal=1740.889404,OutVal=(X=3150.625977,Y=3051.140625,Z=-74.450684),ArriveTangent=(X=36.705158,Y=0.000000,Z=17.106842),LeaveTangent=(X=36.705158,Y=0.000000,Z=17.106842),InterpMode=CIM_CurveAutoClamped),(InVal=1751.606079,OutVal=(X=3405.302734,Y=3657.585938,Z=86.897461),ArriveTangent=(X=13.009783,Y=0.000000,Z=10.621445),LeaveTangent=(X=13.009783,Y=0.000000,Z=10.621445),InterpMode=CIM_CurveAutoClamped),(InVal=1760.983276,OutVal=(X=3474.676758,Y=2668.406250,Z=151.424805),ArriveTangent=(X=0.000000,Y=-15.839127,Z=0.000000),LeaveTangent=(X=0.000000,Y=-15.839127,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1772.034912,OutVal=(X=2658.453125,Y=2596.070313,Z=113.522949),ArriveTangent=(X=-27.711563,Y=-13.414461,Z=-0.510569),LeaveTangent=(X=-27.711563,Y=-13.414461,Z=-0.510569),InterpMode=CIM_CurveAutoClamped),(InVal=1781.746948,OutVal=(X=2522.181641,Y=2272.648438,Z=111.308105),ArriveTangent=(X=-31.498821,Y=-37.413914,Z=-0.585876),LeaveTangent=(X=-31.498821,Y=-37.413914,Z=-0.585876),InterpMode=CIM_CurveAutoClamped),(InVal=1789.114746,OutVal=(X=1773.973633,Y=1957.046875,Z=65.511719),ArriveTangent=(X=0.000000,Y=-27.638288,Z=-3.259652),LeaveTangent=(X=0.000000,Y=-27.638288,Z=-3.259652),InterpMode=CIM_CurveAutoClamped),(InVal=1800.836182,OutVal=(X=1873.439453,Y=1745.054688,Z=45.830078),ArriveTangent=(X=13.464717,Y=-15.567747,Z=-3.917852),LeaveTangent=(X=13.464717,Y=-15.567747,Z=-3.917852),InterpMode=CIM_CurveAutoClamped),(InVal=1813.844360,OutVal=(X=2130.992188,Y=1572.062500,Z=-590.539551),ArriveTangent=(X=0.000000,Y=-24.963617,Z=-2.515171),LeaveTangent=(X=0.000000,Y=-24.963617,Z=-2.515171),InterpMode=CIM_CurveAutoClamped),(InVal=1824.226196,OutVal=(X=1476.805664,Y=1089.914063,Z=-601.993164),ArriveTangent=(X=0.000000,Y=-66.574913,Z=0.000000),LeaveTangent=(X=0.000000,Y=-66.574913,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1833.268555,OutVal=(X=1505.331055,Y=278.898438,Z=-583.305664),ArriveTangent=(X=0.000000,Y=-54.960468,Z=0.000000),LeaveTangent=(X=0.000000,Y=-54.960468,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1841.306030,OutVal=(X=1396.082031,Y=15.468750,Z=-584.163086),ArriveTangent=(X=-28.718342,Y=0.000000,Z=-0.246358),LeaveTangent=(X=-28.718342,Y=0.000000,Z=-0.246358),InterpMode=CIM_CurveAutoClamped),(InVal=1851.353027,OutVal=(X=26.461914,Y=261.070313,Z=-685.105957),ArriveTangent=(X=-23.863396,Y=0.000000,Z=0.000000),LeaveTangent=(X=-23.863396,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1859.390503,OutVal=(X=-62.702148,Y=-114.601563,Z=-669.467285),ArriveTangent=(X=-5.349145,Y=-46.033298,Z=3.506948),LeaveTangent=(X=-5.349145,Y=-46.033298,Z=3.506948),InterpMode=CIM_CurveAutoClamped),(InVal=1872.116699,OutVal=(X=-96.476563,Y=-694.750000,Z=-554.671387),ArriveTangent=(X=-7.445835,Y=0.000000,Z=17.263786),LeaveTangent=(X=-7.445835,Y=0.000000,Z=17.263786),InterpMode=CIM_CurveAutoClamped),(InVal=1879.149536,OutVal=(X=-851.675781,Y=-628.710938,Z=-328.351563),ArriveTangent=(X=-22.455330,Y=20.271591,Z=29.555859),LeaveTangent=(X=-22.455330,Y=20.271591,Z=29.555859),InterpMode=CIM_CurveAutoClamped),(InVal=1887.187012,OutVal=(X=-929.427734,Y=122.773438,Z=-109.255371),ArriveTangent=(X=0.000000,Y=40.620079,Z=9.769390),LeaveTangent=(X=0.000000,Y=40.620079,Z=9.769390),InterpMode=CIM_CurveAutoClamped),(InVal=1896.899170,OutVal=(X=-440.844238,Y=317.601563,Z=-64.859863),ArriveTangent=(X=52.695332,Y=0.000000,Z=3.999470),LeaveTangent=(X=52.695332,Y=0.000000,Z=3.999470),InterpMode=CIM_CurveAutoClamped),(InVal=1905.606445,OutVal=(X=41.190430,Y=274.382813,Z=-35.587402),ArriveTangent=(X=26.260662,Y=0.000000,Z=0.000000),LeaveTangent=(X=26.260662,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1912.639282,OutVal=(X=142.701172,Y=916.648438,Z=-38.710449),ArriveTangent=(X=29.429146,Y=48.233646,Z=0.000000),LeaveTangent=(X=29.429146,Y=48.233646,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1920.342041,OutVal=(X=814.226074,Y=1116.796875,Z=0.523438),ArriveTangent=(X=59.065536,Y=9.067118,Z=0.000000),LeaveTangent=(X=59.065536,Y=9.067118,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1928.044678,OutVal=(X=1096.216797,Y=1150.570313,Z=-6.760254),ArriveTangent=(X=38.608551,Y=0.000000,Z=-2.430927),LeaveTangent=(X=38.608551,Y=0.000000,Z=-2.430927),InterpMode=CIM_CurveAutoClamped),(InVal=1934.742554,OutVal=(X=1370.208984,Y=877.078125,Z=-615.367188),ArriveTangent=(X=28.243275,Y=-62.672291,Z=0.000000),LeaveTangent=(X=28.243275,Y=-62.672291,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1944.119751,OutVal=(X=1550.229492,Y=4.117188,Z=-601.842773),ArriveTangent=(X=41.539360,Y=-36.126953,Z=2.543458),LeaveTangent=(X=41.539360,Y=-36.126953,Z=2.543458),InterpMode=CIM_CurveAutoClamped),(InVal=1952.492188,OutVal=(X=2649.048828,Y=-149.679688,Z=-566.017578),ArriveTangent=(X=4.780807,Y=-42.959763,Z=0.571677),LeaveTangent=(X=4.780807,Y=-42.959763,Z=0.571677),InterpMode=CIM_CurveAutoClamped),(InVal=1959.859985,OutVal=(X=2663.939453,Y=-1781.296875,Z=-564.151367),ArriveTangent=(X=4.843948,Y=-23.094055,Z=0.601484),LeaveTangent=(X=4.843948,Y=-23.094055,Z=0.601484),InterpMode=CIM_CurveAutoClamped),(InVal=1967.562622,OutVal=(X=3275.486328,Y=-1855.273438,Z=-506.068359),ArriveTangent=(X=94.877708,Y=0.000000,Z=7.281853),LeaveTangent=(X=94.877708,Y=0.000000,Z=7.281853),InterpMode=CIM_CurveAutoClamped),(InVal=1975.600098,OutVal=(X=4157.325195,Y=-1845.000000,Z=-449.534180),ArriveTangent=(X=70.344559,Y=3.548706,Z=5.518665),LeaveTangent=(X=70.344559,Y=3.548706,Z=5.518665),InterpMode=CIM_CurveAutoClamped),(InVal=1980.958496,OutVal=(X=4400.022461,Y=-642.515625,Z=-427.990234),ArriveTangent=(X=0.000000,Y=92.314850,Z=0.000000),LeaveTangent=(X=0.000000,Y=92.314850,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1986.316895,OutVal=(X=3850.105469,Y=-393.476563,Z=-468.782227),ArriveTangent=(X=-124.423546,Y=0.000000,Z=-6.548355),LeaveTangent=(X=-124.423546,Y=0.000000,Z=-6.548355),InterpMode=CIM_CurveAutoClamped),(InVal=1992.345093,OutVal=(X=2983.261719,Y=-505.570313,Z=-502.553711),ArriveTangent=(X=-101.653130,Y=0.000000,Z=-5.527067),LeaveTangent=(X=-101.653130,Y=0.000000,Z=-5.527067),InterpMode=CIM_CurveAutoClamped),(InVal=1998.038330,OutVal=(X=2611.708008,Y=-441.179688,Z=-533.567383),ArriveTangent=(X=0.000000,Y=21.916059,Z=0.000000),LeaveTangent=(X=0.000000,Y=21.916059,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2005.406128,OutVal=(X=2786.141602,Y=15.296875,Z=-530.288574),ArriveTangent=(X=22.357630,Y=85.993126,Z=0.545841),LeaveTangent=(X=22.357630,Y=85.993126,Z=0.545841),InterpMode=CIM_CurveAutoClamped),(InVal=2011.434204,OutVal=(X=2911.208008,Y=710.773438,Z=-526.255371),ArriveTangent=(X=36.839973,Y=69.025925,Z=1.452369),LeaveTangent=(X=36.839973,Y=69.025925,Z=1.452369),InterpMode=CIM_CurveAutoClamped),(InVal=2016.457764,OutVal=(X=3221.677734,Y=917.578125,Z=-504.367188),InterpMode=CIM_CurveAutoClamped),(InVal=2021.146240,OutVal=(X=3119.663086,Y=452.171875,Z=-520.886719),ArriveTangent=(X=0.000000,Y=-115.336342,Z=0.000000),LeaveTangent=(X=0.000000,Y=-115.336342,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2025.500000,OutVal=(X=3187.882813,Y=-125.320313,Z=-520.028320),ArriveTangent=(X=25.206593,Y=-92.400719,Z=0.424677),LeaveTangent=(X=25.206593,Y=-92.400719,Z=0.424677),InterpMode=CIM_CurveAutoClamped),(InVal=2031.528076,OutVal=(X=3434.512695,Y=-507.117188,Z=-496.431152),ArriveTangent=(X=0.000000,Y=-23.180830,Z=0.000000),LeaveTangent=(X=0.000000,Y=-23.180830,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2036.216675,OutVal=(X=2797.693359,Y=-563.507813,Z=-543.437988),ArriveTangent=(X=-76.135033,Y=0.000000,Z=-5.873581),LeaveTangent=(X=-76.135033,Y=0.000000,Z=-5.873581),InterpMode=CIM_CurveAutoClamped),(InVal=2042.579834,OutVal=(X=2536.663086,Y=-4.210938,Z=-564.043457),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.009993),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.009993),InterpMode=CIM_CurveAutoClamped),(InVal=1378.155151,OutVal=(X=-0.659180,Y=-1.999512,Z=-20.989380),InterpMode=CIM_CurveAutoClamped),(InVal=1378.155151,OutVal=(X=-0.659180,Y=-1.999512,Z=-20.989380),InterpMode=CIM_CurveAutoClamped),(InVal=1399.722534,OutVal=(X=-2.631226,Y=-0.692139,Z=-92.807007),ArriveTangent=(X=0.000000,Y=0.119707,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.119707,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1422.160767,OutVal=(X=-0.604248,Y=5.899658,Z=-18.797607),InterpMode=CIM_CurveAutoClamped),(InVal=1435.891602,OutVal=(X=-2.724609,Y=-4.180298,Z=-85.100098),InterpMode=CIM_CurveAutoClamped),(InVal=1450.292114,OutVal=(X=-2.642212,Y=5.158081,Z=-72.103271),ArriveTangent=(X=0.015258,Y=0.000000,Z=2.134483),LeaveTangent=(X=0.015258,Y=0.000000,Z=2.134483),InterpMode=CIM_CurveAutoClamped),(InVal=1461.008911,OutVal=(X=1.768799,Y=3.526611,Z=24.318237),ArriveTangent=(X=0.139045,Y=-0.160696,Z=2.834968),LeaveTangent=(X=0.139045,Y=-0.160696,Z=2.834968),InterpMode=CIM_CurveAutoClamped),(InVal=1473.400146,OutVal=(X=2.570801,Y=1.444702,Z=40.429688),ArriveTangent=(X=0.000000,Y=-0.072907,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.072907,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1489.810059,OutVal=(X=1.576538,Y=0.862427,Z=21.231079),ArriveTangent=(X=0.000000,Y=-0.071875,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.071875,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1501.196655,OutVal=(X=3.076172,Y=-0.895386,Z=52.750854),ArriveTangent=(X=0.066343,Y=0.000000,Z=1.871796),LeaveTangent=(X=0.066343,Y=0.000000,Z=1.871796),InterpMode=CIM_CurveAutoClamped),(InVal=1515.597290,OutVal=(X=3.570557,Y=0.346069,Z=69.499512),ArriveTangent=(X=0.000000,Y=0.150460,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.150460,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1529.662964,OutVal=(X=2.197266,Y=3.922119,Z=34.590454),InterpMode=CIM_CurveAutoClamped),(InVal=1545.403198,OutVal=(X=3.817749,Y=-6.844482,Z=95.245972),ArriveTangent=(X=0.000000,Y=0.000000,Z=3.239866),LeaveTangent=(X=0.000000,Y=0.000000,Z=3.239866),InterpMode=CIM_CurveAutoClamped),(InVal=1559.803711,OutVal=(X=3.026733,Y=-3.581543,Z=132.242432),ArriveTangent=(X=0.000000,Y=0.253920,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.253920,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1571.190308,OutVal=(X=3.713379,Y=-0.296631,Z=84.825439),InterpMode=CIM_CurveAutoClamped),(InVal=1585.255981,OutVal=(X=2.499390,Y=-2.526855,Z=144.003296),ArriveTangent=(X=-0.132328,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.132328,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1595.972778,OutVal=(X=0.433960,Y=2.691650,Z=5.163574),InterpMode=CIM_CurveAutoClamped),(InVal=1603.675415,OutVal=(X=3.641968,Y=-1.757813,Z=93.630981),InterpMode=CIM_CurveAutoClamped),(InVal=1613.052490,OutVal=(X=-0.390015,Y=3.268433,Z=-7.558594),ArriveTangent=(X=-0.344981,Y=0.000000,Z=-9.772589),LeaveTangent=(X=-0.344981,Y=0.000000,Z=-9.772589),InterpMode=CIM_CurveAutoClamped),(InVal=1623.340454,OutVal=(X=-3.142090,Y=-13.260498,Z=-98.547363),ArriveTangent=(X=0.000000,Y=-1.159243,Z=-10.463227),LeaveTangent=(X=0.000000,Y=-1.159243,Z=-10.463227),InterpMode=CIM_CurveAutoClamped),(InVal=1631.043091,OutVal=(X=1.362305,Y=-19.275513,Z=-195.798340),ArriveTangent=(X=0.411738,Y=-0.036734,Z=-11.278286),LeaveTangent=(X=0.411738,Y=-0.036734,Z=-11.278286),InterpMode=CIM_CurveAutoClamped),(InVal=1639.750366,OutVal=(X=3.614502,Y=-19.401855,Z=-283.623047),InterpMode=CIM_CurveAutoClamped),(InVal=1649.127563,OutVal=(X=0.851440,Y=-9.234009,Z=-188.530884),ArriveTangent=(X=0.000000,Y=1.044489,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.044489,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1658.504639,OutVal=(X=3.455200,Y=0.186768,Z=-270.197754),InterpMode=CIM_CurveAutoClamped),(InVal=1670.895874,OutVal=(X=0.884399,Y=-3.477173,Z=-190.420532),ArriveTangent=(X=-0.080946,Y=0.000000,Z=1.474077),LeaveTangent=(X=-0.080946,Y=0.000000,Z=1.474077),InterpMode=CIM_CurveAutoClamped),(InVal=1681.612671,OutVal=(X=0.439453,Y=-0.609741,Z=-183.032227),InterpMode=CIM_CurveAutoClamped),(InVal=1689.985107,OutVal=(X=3.427734,Y=-4.669189,Z=-267.357788),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.357401),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.357401),InterpMode=CIM_CurveAutoClamped),(InVal=1699.027344,OutVal=(X=3.394775,Y=1.175537,Z=-268.643188),ArriveTangent=(X=-0.008429,Y=0.102643,Z=0.000000),LeaveTangent=(X=-0.008429,Y=0.102643,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1710.078979,OutVal=(X=0.884399,Y=1.642456,Z=-191.865234),ArriveTangent=(X=0.000000,Y=0.104873,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.104873,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1719.790771,OutVal=(X=3.164063,Y=13.249512,Z=-287.034302),ArriveTangent=(X=0.000000,Y=0.760389,Z=-9.541173),LeaveTangent=(X=0.000000,Y=0.760389,Z=-9.541173),InterpMode=CIM_CurveAutoClamped),(InVal=1729.167969,OutVal=(X=-1.098633,Y=17.528687,Z=-373.996582),InterpMode=CIM_CurveAutoClamped),(InVal=1740.889404,OutVal=(X=3.180542,Y=12.095947,Z=-283.255005),ArriveTangent=(X=0.000000,Y=-0.385582,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.385582,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1751.606079,OutVal=(X=-3.499146,Y=8.876953,Z=-454.822998),ArriveTangent=(X=0.000000,Y=-0.583624,Z=-11.463454),LeaveTangent=(X=0.000000,Y=-0.583624,Z=-11.463454),InterpMode=CIM_CurveAutoClamped),(InVal=1760.983276,OutVal=(X=-0.840454,Y=-2.581787,Z=-525.162964),InterpMode=CIM_CurveAutoClamped),(InVal=1772.034912,OutVal=(X=-2.307129,Y=-0.010986,Z=-497.664185),InterpMode=CIM_CurveAutoClamped),(InVal=1781.746948,OutVal=(X=-1.510620,Y=-3.356323,Z=-513.967896),InterpMode=CIM_CurveAutoClamped),(InVal=1789.114746,OutVal=(X=-3.449707,Y=-2.477417,Z=-429.334717),ArriveTangent=(X=-0.061888,Y=0.000000,Z=4.093309),LeaveTangent=(X=-0.061888,Y=0.000000,Z=4.093309),InterpMode=CIM_CurveAutoClamped),(InVal=1800.836182,OutVal=(X=-3.746338,Y=-39.940796,Z=-407.883911),InterpMode=CIM_CurveAutoClamped),(InVal=1813.844360,OutVal=(X=-2.966309,Y=-3.191528,Z=-482.354736),ArriveTangent=(X=0.000000,Y=0.845327,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.845327,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1824.226196,OutVal=(X=-3.614502,Y=1.164551,Z=-444.396973),ArriveTangent=(X=0.000000,Y=0.363398,Z=5.121510),LeaveTangent=(X=0.000000,Y=0.363398,Z=5.121510),InterpMode=CIM_CurveAutoClamped),(InVal=1833.268555,OutVal=(X=-1.790771,Y=3.867188,Z=-382.873535),ArriveTangent=(X=0.216127,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.216127,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1841.306030,OutVal=(X=0.076904,Y=-8.646240,Z=-543.900146),InterpMode=CIM_CurveAutoClamped),(InVal=1851.353027,OutVal=(X=-3.674927,Y=2.191772,Z=-458.959351),ArriveTangent=(X=-0.030744,Y=1.358675,Z=0.000000),LeaveTangent=(X=-0.030744,Y=1.358675,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1859.390503,OutVal=(X=-3.784790,Y=15.924683,Z=-464.375610),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.336259),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.336259),InterpMode=CIM_CurveAutoClamped),(InVal=1872.116699,OutVal=(X=0.291138,Y=12.046509,Z=-549.574585),ArriveTangent=(X=0.357796,Y=0.000000,Z=-8.454494),LeaveTangent=(X=0.357796,Y=0.000000,Z=-8.454494),InterpMode=CIM_CurveAutoClamped),(InVal=1879.149536,OutVal=(X=3.284912,Y=29.141235,Z=-631.428223),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.811334),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.811334),InterpMode=CIM_CurveAutoClamped),(InVal=1887.187012,OutVal=(X=-1.208496,Y=6.740112,Z=-727.575073),ArriveTangent=(X=-0.076338,Y=-1.113521,Z=-1.262712),LeaveTangent=(X=-0.076338,Y=-1.113521,Z=-1.262712),InterpMode=CIM_CurveAutoClamped),(InVal=1896.899170,OutVal=(X=-1.510620,Y=1.532593,Z=-732.485962),ArriveTangent=(X=0.000000,Y=-0.628960,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.628960,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1905.606445,OutVal=(X=2.416992,Y=-4.844971,Z=-652.664795),InterpMode=CIM_CurveAutoClamped),(InVal=1912.639282,OutVal=(X=-1.587524,Y=0.730591,Z=-733.084717),ArriveTangent=(X=0.000000,Y=0.706422,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.706422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1920.342041,OutVal=(X=-0.928345,Y=5.564575,Z=-720.834961),InterpMode=CIM_CurveAutoClamped),(InVal=1928.044678,OutVal=(X=-4.097900,Y=-34.409180,Z=-771.410522),ArriveTangent=(X=0.000000,Y=0.000000,Z=-5.129517),LeaveTangent=(X=0.000000,Y=0.000000,Z=-5.129517),InterpMode=CIM_CurveAutoClamped),(InVal=1934.742554,OutVal=(X=-4.015503,Y=-1.746826,Z=-795.448608),ArriveTangent=(X=0.026046,Y=1.055005,Z=0.000000),LeaveTangent=(X=0.026046,Y=1.055005,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1944.119751,OutVal=(X=-2.252197,Y=2.345581,Z=-742.901001),InterpMode=CIM_CurveAutoClamped),(InVal=1952.492188,OutVal=(X=-4.119873,Y=-2.213745,Z=-799.711304),InterpMode=CIM_CurveAutoClamped),(InVal=1959.859985,OutVal=(X=-1.109619,Y=3.515625,Z=-721.329346),ArriveTangent=(X=0.170763,Y=0.542392,Z=3.238675),LeaveTangent=(X=0.170763,Y=0.542392,Z=3.238675),InterpMode=CIM_CurveAutoClamped),(InVal=1967.562622,OutVal=(X=-0.450439,Y=6.141357,Z=-709.711304),ArriveTangent=(X=0.163230,Y=0.000000,Z=3.215645),LeaveTangent=(X=0.163230,Y=0.000000,Z=3.215645),InterpMode=CIM_CurveAutoClamped),(InVal=1975.600098,OutVal=(X=2.411499,Y=0.351563,Z=-617.991943),ArriveTangent=(X=0.000000,Y=-0.754107,Z=11.668367),LeaveTangent=(X=0.000000,Y=-0.754107,Z=11.668367),InterpMode=CIM_CurveAutoClamped),(InVal=1980.958496,OutVal=(X=0.043945,Y=-3.960571,Z=-553.403320),ArriveTangent=(X=-0.347526,Y=0.000000,Z=7.362902),LeaveTangent=(X=-0.347526,Y=0.000000,Z=7.362902),InterpMode=CIM_CurveAutoClamped),(InVal=1986.316895,OutVal=(X=-1.312866,Y=0.796509,Z=-530.354004),InterpMode=CIM_CurveAutoClamped),(InVal=1992.345093,OutVal=(X=0.000000,Y=-4.048462,Z=-553.403320),ArriveTangent=(X=0.286341,Y=0.000000,Z=-7.549288),LeaveTangent=(X=0.286341,Y=0.000000,Z=-7.549288),InterpMode=CIM_CurveAutoClamped),(InVal=1998.038330,OutVal=(X=2.043457,Y=1.422729,Z=-651.785889),ArriveTangent=(X=0.037887,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.037887,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2005.406128,OutVal=(X=2.153320,Y=0.428467,Z=-647.127686),ArriveTangent=(X=0.013122,Y=0.000000,Z=0.610585),LeaveTangent=(X=0.013122,Y=0.000000,Z=0.610585),InterpMode=CIM_CurveAutoClamped),(InVal=2011.434204,OutVal=(X=2.219238,Y=0.889893,Z=-643.606567),InterpMode=CIM_CurveAutoClamped),(InVal=2016.457764,OutVal=(X=-4.196777,Y=-1.812744,Z=-823.595581),ArriveTangent=(X=-0.072632,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.072632,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2021.146240,OutVal=(X=-4.339600,Y=-1.290894,Z=-813.630981),ArriveTangent=(X=0.000000,Y=0.251711,Z=4.715199),LeaveTangent=(X=0.000000,Y=0.251711,Z=4.715199),InterpMode=CIM_CurveAutoClamped),(InVal=2025.500000,OutVal=(X=-2.120361,Y=3.488159,Z=-735.199585),ArriveTangent=(X=0.358209,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.358209,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2031.528076,OutVal=(X=-0.620728,Y=-0.922852,Z=-904.812012),ArriveTangent=(X=0.372646,Y=-1.050279,Z=-18.409046),LeaveTangent=(X=0.372646,Y=-1.050279,Z=-18.409046),InterpMode=CIM_CurveAutoClamped),(InVal=2036.216675,OutVal=(X=1.873169,Y=-7.767334,Z=-959.320679),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.228813),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.228813),InterpMode=CIM_CurveAutoClamped),(InVal=2042.579834,OutVal=(X=-1.988525,Y=6.322632,Z=-1091.233521),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=1378.155151),(Time=1378.155151),(Time=1399.722534),(Time=1422.160767),(Time=1435.891602),(Time=1450.292114),(Time=1461.008911),(Time=1473.400146),(Time=1489.810059),(Time=1501.196655),(Time=1515.597290),(Time=1529.662964),(Time=1545.403198),(Time=1559.803711),(Time=1571.190308),(Time=1585.255981),(Time=1595.972778),(Time=1603.675415),(Time=1613.052490),(Time=1623.340454),(Time=1631.043091),(Time=1639.750366),(Time=1649.127563),(Time=1658.504639),(Time=1670.895874),(Time=1681.612671),(Time=1689.985107),(Time=1699.027344),(Time=1710.078979),(Time=1719.790771),(Time=1729.167969),(Time=1740.889404),(Time=1751.606079),(Time=1760.983276),(Time=1772.034912),(Time=1781.746948),(Time=1789.114746),(Time=1800.836182),(Time=1813.844360),(Time=1824.226196),(Time=1833.268555),(Time=1841.306030),(Time=1851.353027),(Time=1859.390503),(Time=1872.116699),(Time=1879.149536),(Time=1887.187012),(Time=1896.899170),(Time=1905.606445),(Time=1912.639282),(Time=1920.342041),(Time=1928.044678),(Time=1934.742554),(Time=1944.119751),(Time=1952.492188),(Time=1959.859985),(Time=1967.562622),(Time=1975.600098),(Time=1980.958496),(Time=1986.316895),(Time=1992.345093),(Time=1998.038330),(Time=2005.406128),(Time=2011.434204),(Time=2016.457764),(Time=2021.146240),(Time=2025.500000),(Time=2031.528076),(Time=2036.216675),(Time=2042.579834)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_11.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_11.InterpTrackFloatProp_1'
-      GroupName="garden"
-      GroupColor=(B=173,G=0,R=167,A=255)
-      Name="InterpGroup_11"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=58.136620,OutVal=(X=153.800659,Y=90.710938,Z=-84.442932),ArriveTangent=(X=7.696613,Y=1.874067,Z=-1.466223),LeaveTangent=(X=7.696613,Y=1.874067,Z=-1.466223),InterpMode=CIM_CurveAutoClamped),(InVal=61.306545,OutVal=(X=492.176453,Y=114.892578,Z=-89.889099),ArriveTangent=(X=53.575512,Y=0.000000,Z=-4.471321),LeaveTangent=(X=53.575512,Y=0.000000,Z=-4.471321),InterpMode=CIM_CurveAutoClamped),(InVal=63.830070,OutVal=(X=568.101196,Y=-655.076172,Z=-319.920807),ArriveTangent=(X=70.049316,Y=-117.382698,Z=0.000000),LeaveTangent=(X=70.049316,Y=-117.382698,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=66.260132,OutVal=(X=1623.201050,Y=-797.358398,Z=-306.780457),ArriveTangent=(X=548.257324,Y=0.000000,Z=0.000000),LeaveTangent=(X=548.257324,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=68.503265,OutVal=(X=3130.214355,Y=-491.780273,Z=-340.214142),ArriveTangent=(X=302.779358,Y=160.936401,Z=0.000000),LeaveTangent=(X=302.779358,Y=160.936401,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=70.559464,OutVal=(X=3457.910645,Y=-105.439453,Z=-159.261536),ArriveTangent=(X=0.000000,Y=212.635818,Z=75.317589),LeaveTangent=(X=0.000000,Y=212.635818,Z=75.317589),InterpMode=CIM_CurveAutoClamped),(InVal=72.615669,OutVal=(X=3420.966797,Y=382.664063,Z=-30.477814),ArriveTangent=(X=0.000000,Y=197.741486,Z=0.000000),LeaveTangent=(X=0.000000,Y=197.741486,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=74.952263,OutVal=(X=3613.387695,Y=763.199219,Z=-94.661926),ArriveTangent=(X=0.000000,Y=190.874588,Z=-50.732620),LeaveTangent=(X=0.000000,Y=190.874588,Z=-50.732620),InterpMode=CIM_CurveAutoClamped),(InVal=77.288864,OutVal=(X=3595.252441,Y=1274.658203,Z=-324.924561),ArriveTangent=(X=0.000000,Y=335.647156,Z=-6.179779),LeaveTangent=(X=0.000000,Y=335.647156,Z=-6.179779),InterpMode=CIM_CurveAutoClamped),(InVal=79.158142,OutVal=(X=3943.276855,Y=2174.890625,Z=-330.014038),ArriveTangent=(X=150.834854,Y=400.498291,Z=0.000000),LeaveTangent=(X=150.834854,Y=400.498291,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=81.307808,OutVal=(X=4201.449219,Y=2884.238281,Z=-323.249512),ArriveTangent=(X=51.006504,Y=354.918884,Z=3.894488),LeaveTangent=(X=51.006504,Y=354.918884,Z=3.894488),InterpMode=CIM_CurveAutoClamped),(InVal=83.737869,OutVal=(X=4262.938477,Y=3800.322266,Z=-312.178345),ArriveTangent=(X=0.000000,Y=375.502960,Z=0.000000),LeaveTangent=(X=0.000000,Y=375.502960,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=85.887535,OutVal=(X=3768.969238,Y=4603.939453,Z=-315.583893),ArriveTangent=(X=-314.220215,Y=294.712921,Z=-1.385534),LeaveTangent=(X=-314.220215,Y=294.712921,Z=-1.385534),InterpMode=CIM_CurveAutoClamped),(InVal=87.850273,OutVal=(X=2970.738037,Y=5012.300781,Z=-317.876221),ArriveTangent=(X=-472.466644,Y=248.041412,Z=0.000000),LeaveTangent=(X=-472.466644,Y=248.041412,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=89.532623,OutVal=(X=2046.786621,Y=5508.072266,Z=-306.683350),ArriveTangent=(X=-594.694214,Y=0.000000,Z=0.000000),LeaveTangent=(X=-594.694214,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=91.028046,OutVal=(X=1080.935059,Y=4901.371094,Z=-308.698120),ArriveTangent=(X=-560.406006,Y=0.000000,Z=0.000000),LeaveTangent=(X=-560.406006,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=92.616928,OutVal=(X=318.323608,Y=4936.382813,Z=-298.202698),ArriveTangent=(X=-438.670776,Y=0.000000,Z=14.051708),LeaveTangent=(X=-438.670776,Y=0.000000,Z=14.051708),InterpMode=CIM_CurveAutoClamped),(InVal=94.018890,OutVal=(X=-231.061157,Y=4462.177734,Z=-241.363876),ArriveTangent=(X=0.000000,Y=-261.299622,Z=59.960690),LeaveTangent=(X=0.000000,Y=-261.299622,Z=59.960690),InterpMode=CIM_CurveAutoClamped),(InVal=95.701241,OutVal=(X=69.608276,Y=4130.453125,Z=-105.561890),ArriveTangent=(X=331.657227,Y=-269.297546,Z=0.000000),LeaveTangent=(X=331.657227,Y=-269.297546,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=97.103195,OutVal=(X=923.164246,Y=3631.582031,Z=-128.323761),ArriveTangent=(X=700.144104,Y=-306.365936,Z=0.000000),LeaveTangent=(X=700.144104,Y=-306.365936,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=97.944374,OutVal=(X=1640.125000,Y=3424.753906,Z=-106.508331),ArriveTangent=(X=538.341187,Y=-77.679550,Z=15.399939),LeaveTangent=(X=538.341187,Y=-77.679550,Z=15.399939),InterpMode=CIM_CurveAutoClamped),(InVal=99.439789,OutVal=(X=2181.048828,Y=3375.128906,Z=-92.340363),ArriveTangent=(X=316.410309,Y=-55.101791,Z=18.172194),LeaveTangent=(X=316.410309,Y=-55.101791,Z=18.172194),InterpMode=CIM_CurveAutoClamped),(InVal=101.785934,OutVal=(X=2855.634277,Y=3131.707031,Z=63.046417),ArriveTangent=(X=167.062057,Y=-194.467468,Z=17.436575),LeaveTangent=(X=167.062057,Y=-194.467468,Z=17.436575),InterpMode=CIM_CurveAutoClamped),(InVal=104.317245,OutVal=(X=3093.933594,Y=2093.095703,Z=82.950378),ArriveTangent=(X=0.000000,Y=-388.127472,Z=0.000000),LeaveTangent=(X=0.000000,Y=-388.127472,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=106.199493,OutVal=(X=2694.238281,Y=1418.683594,Z=-273.384094),ArriveTangent=(X=-290.807098,Y=0.000000,Z=0.000000),LeaveTangent=(X=-290.807098,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=107.692322,OutVal=(X=2112.437500,Y=2031.943359,Z=-69.251953),ArriveTangent=(X=-400.163116,Y=241.278046,Z=0.000000),LeaveTangent=(X=-400.163116,Y=241.278046,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=108.795715,OutVal=(X=1655.326050,Y=2193.185547,Z=-96.816803),ArriveTangent=(X=-311.863495,Y=0.000000,Z=0.000000),LeaveTangent=(X=-311.863495,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=110.353455,OutVal=(X=1282.527344,Y=1229.101563,Z=-81.855347),ArriveTangent=(X=-126.911705,Y=-569.637390,Z=7.805512),LeaveTangent=(X=-126.911705,Y=-569.637390,Z=7.805512),InterpMode=CIM_CurveAutoClamped),(InVal=112.040985,OutVal=(X=1166.760010,Y=344.558594,Z=-71.485809),ArriveTangent=(X=-138.293304,Y=-267.784302,Z=0.000000),LeaveTangent=(X=-138.293304,Y=-267.784302,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=113.533813,OutVal=(X=680.572083,Y=123.628906,Z=-78.020355),ArriveTangent=(X=-248.240753,Y=0.000000,Z=-5.706821),LeaveTangent=(X=-248.240753,Y=0.000000,Z=-5.706821),InterpMode=CIM_CurveAutoClamped),(InVal=114.572296,OutVal=(X=498.036560,Y=268.167969,Z=-85.931549),ArriveTangent=(X=0.000000,Y=329.945221,Z=-20.969322),LeaveTangent=(X=0.000000,Y=329.945221,Z=-20.969322),InterpMode=CIM_CurveAutoClamped),(InVal=115.221359,OutVal=(X=541.052734,Y=1032.822266,Z=-327.053467),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=58.136620,OutVal=(X=0.000000,Y=-0.175781,Z=-2.285156),ArriveTangent=(X=0.000000,Y=-0.011156,Z=-0.148313),LeaveTangent=(X=0.000000,Y=-0.011156,Z=-0.148313),InterpMode=CIM_CurveAutoClamped),(InVal=61.306545,OutVal=(X=0.000000,Y=-3.339844,Z=-92.109375),ArriveTangent=(X=0.000000,Y=-0.895354,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.895354,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=63.830070,OutVal=(X=0.000000,Y=-5.273438,Z=-5.449219),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.587247),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.587247),InterpMode=CIM_CurveAutoClamped),(InVal=66.260132,OutVal=(X=0.000000,Y=1.230469,Z=5.449219),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.288902),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.288902),InterpMode=CIM_CurveAutoClamped),(InVal=68.503265,OutVal=(X=0.000000,Y=0.000000,Z=40.429688),ArriveTangent=(X=0.000000,Y=0.000000,Z=18.725658),LeaveTangent=(X=0.000000,Y=0.000000,Z=18.725658),InterpMode=CIM_CurveAutoClamped),(InVal=70.559464,OutVal=(X=0.000000,Y=13.886719,Z=85.957031),InterpMode=CIM_CurveAutoClamped),(InVal=72.615669,OutVal=(X=0.000000,Y=1.582031,Z=63.632813),ArriveTangent=(X=0.000000,Y=-7.963138,Z=0.000000),LeaveTangent=(X=0.000000,Y=-7.963138,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=74.952263,OutVal=(X=0.000000,Y=-21.093750,Z=84.550781),InterpMode=CIM_CurveAutoClamped),(InVal=77.288864,OutVal=(X=0.000000,Y=3.867188,Z=80.683594),InterpMode=CIM_CurveAutoClamped),(InVal=79.158142,OutVal=(X=0.000000,Y=2.812500,Z=154.687500),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.499624),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.499624),InterpMode=CIM_CurveAutoClamped),(InVal=81.307808,OutVal=(X=0.000000,Y=2.988281,Z=161.542969),InterpMode=CIM_CurveAutoClamped),(InVal=83.737869,OutVal=(X=0.000000,Y=0.175781,Z=117.773438),InterpMode=CIM_CurveAutoClamped),(InVal=85.887535,OutVal=(X=0.000000,Y=1.230469,Z=159.082031),ArriveTangent=(X=0.000000,Y=0.641162,Z=28.937796),LeaveTangent=(X=0.000000,Y=0.641162,Z=28.937796),InterpMode=CIM_CurveAutoClamped),(InVal=87.850273,OutVal=(X=0.000000,Y=2.812500,Z=236.777344),InterpMode=CIM_CurveAutoClamped),(InVal=89.532623,OutVal=(X=0.000000,Y=2.109375,Z=198.281250),ArriveTangent=(X=0.000000,Y=0.000000,Z=-14.265078),LeaveTangent=(X=0.000000,Y=0.000000,Z=-14.265078),InterpMode=CIM_CurveAutoClamped),(InVal=91.028046,OutVal=(X=0.000000,Y=2.988281,Z=185.449219),InterpMode=CIM_CurveAutoClamped),(InVal=92.616928,OutVal=(X=0.000000,Y=1.582031,Z=221.132813),ArriveTangent=(X=0.000000,Y=0.000000,Z=23.803110),LeaveTangent=(X=0.000000,Y=0.000000,Z=23.803110),InterpMode=CIM_CurveAutoClamped),(InVal=94.018890,OutVal=(X=0.000000,Y=4.394531,Z=256.640625),ArriveTangent=(X=0.000000,Y=0.000000,Z=31.060661),LeaveTangent=(X=0.000000,Y=0.000000,Z=31.060661),InterpMode=CIM_CurveAutoClamped),(InVal=95.701241,OutVal=(X=0.000000,Y=4.218750,Z=316.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=21.728453),LeaveTangent=(X=0.000000,Y=0.000000,Z=21.728453),InterpMode=CIM_CurveAutoClamped),(InVal=97.103195,OutVal=(X=0.000000,Y=6.503906,Z=335.214844),InterpMode=CIM_CurveAutoClamped),(InVal=97.944374,OutVal=(X=0.000000,Y=3.691406,Z=247.851563),InterpMode=CIM_CurveAutoClamped),(InVal=99.439789,OutVal=(X=0.000000,Y=4.570313,Z=262.968750),InterpMode=CIM_CurveAutoClamped),(InVal=101.785934,OutVal=(X=0.000000,Y=0.703125,Z=211.113281),ArriveTangent=(X=0.000000,Y=-1.441581,Z=-7.493506),LeaveTangent=(X=0.000000,Y=-1.441581,Z=-7.493506),InterpMode=CIM_CurveAutoClamped),(InVal=104.317245,OutVal=(X=0.000000,Y=-2.460938,Z=202.148438),ArriveTangent=(X=0.000000,Y=0.000000,Z=-5.217409),LeaveTangent=(X=0.000000,Y=0.000000,Z=-5.217409),InterpMode=CIM_CurveAutoClamped),(InVal=106.199493,OutVal=(X=0.000000,Y=-1.757813,Z=188.085938),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.062295),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.062295),InterpMode=CIM_CurveAutoClamped),(InVal=107.692322,OutVal=(X=0.000000,Y=-2.636719,Z=171.562500),InterpMode=CIM_CurveAutoClamped),(InVal=108.795715,OutVal=(X=0.000000,Y=0.878906,Z=225.000000),InterpMode=CIM_CurveAutoClamped),(InVal=110.353455,OutVal=(X=0.000000,Y=-2.812500,Z=149.062500),ArriveTangent=(X=0.000000,Y=-2.274946,Z=-14.684356),LeaveTangent=(X=0.000000,Y=-2.274946,Z=-14.684356),InterpMode=CIM_CurveAutoClamped),(InVal=112.040985,OutVal=(X=0.000000,Y=-6.503906,Z=137.636719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.838218),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.838218),InterpMode=CIM_CurveAutoClamped),(InVal=113.533813,OutVal=(X=0.000000,Y=0.703125,Z=117.773438),ArriveTangent=(X=0.000000,Y=0.000000,Z=-20.971716),LeaveTangent=(X=0.000000,Y=0.000000,Z=-20.971716),InterpMode=CIM_CurveAutoClamped),(InVal=114.572296,OutVal=(X=0.000000,Y=-4.218750,Z=84.550781),InterpMode=CIM_CurveAutoClamped),(InVal=115.221359,OutVal=(X=0.000000,Y=-2.636719,Z=162.597656),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=58.136620),(Time=61.306545),(Time=63.830070),(Time=66.260132),(Time=68.503265),(Time=70.559464),(Time=72.615669),(Time=74.952263),(Time=77.288864),(Time=79.158142),(Time=81.307808),(Time=83.737869),(Time=85.887535),(Time=87.850273),(Time=89.532623),(Time=91.028046),(Time=92.616928),(Time=94.018890),(Time=95.701241),(Time=97.103195),(Time=97.944374),(Time=99.439789),(Time=101.785934),(Time=104.317245),(Time=106.199493),(Time=107.692322),(Time=108.795715),(Time=110.353455),(Time=112.040985),(Time=113.533813),(Time=114.572296),(Time=115.221359)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_2.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_2.InterpTrackFloatProp_1'
-      GroupName="Swamp"
-      GroupColor=(B=192,G=0,R=145,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_0"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=435.070160,OutVal=(X=65.168213,Y=-61.948242,Z=-27.039734),ArriveTangent=(X=0.566758,Y=0.000000,Z=-0.234602),LeaveTangent=(X=0.566758,Y=0.000000,Z=-0.234602),InterpMode=CIM_CurveAutoClamped),(InVal=437.011963,OutVal=(X=950.364502,Y=-0.736328,Z=-377.839905),ArriveTangent=(X=0.000000,Y=68.029587,Z=0.000000),LeaveTangent=(X=0.000000,Y=68.029587,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=438.990021,OutVal=(X=919.500732,Y=495.864258,Z=-364.313660),ArriveTangent=(X=-36.856567,Y=62.849480,Z=5.282343),LeaveTangent=(X=-36.856567,Y=62.849480,Z=5.282343),InterpMode=CIM_CurveAutoClamped),(InVal=440.989777,OutVal=(X=243.800049,Y=552.997070,Z=-356.827728),ArriveTangent=(X=-300.268188,Y=66.051163,Z=0.000000),LeaveTangent=(X=-300.268188,Y=66.051163,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=443.011292,OutVal=(X=-287.958984,Y=1441.352539,Z=-360.622223),ArriveTangent=(X=-58.052795,Y=439.248566,Z=0.000000),LeaveTangent=(X=-58.052795,Y=439.248566,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=445.032806,OutVal=(X=-340.555908,Y=2328.892090,Z=-350.360107),ArriveTangent=(X=0.000000,Y=431.502380,Z=5.289798),LeaveTangent=(X=0.000000,Y=431.502380,Z=5.289798),InterpMode=CIM_CurveAutoClamped),(InVal=446.989136,OutVal=(X=375.958496,Y=3157.801758,Z=-339.580231),ArriveTangent=(X=355.407990,Y=0.000000,Z=11.557486),LeaveTangent=(X=355.407990,Y=0.000000,Z=11.557486),InterpMode=CIM_CurveAutoClamped),(InVal=448.907349,OutVal=(X=1036.487305,Y=2938.458984,Z=-273.067322),ArriveTangent=(X=355.614563,Y=-93.491531,Z=60.514278),LeaveTangent=(X=355.614563,Y=-93.491531,Z=60.514278),InterpMode=CIM_CurveAutoClamped),(InVal=450.972321,OutVal=(X=1792.437012,Y=2785.407715,Z=-54.632385),ArriveTangent=(X=316.262543,Y=-143.947662,Z=46.057037),LeaveTangent=(X=316.262543,Y=-143.947662,Z=46.057037),InterpMode=CIM_CurveAutoClamped),(InVal=452.972107,OutVal=(X=2322.018066,Y=2150.687500,Z=-7.195801),ArriveTangent=(X=186.044144,Y=-285.291290,Z=0.000000),LeaveTangent=(X=186.044144,Y=-285.291290,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=454.910522,OutVal=(X=2551.812012,Y=1661.873047,Z=-63.096375),ArriveTangent=(X=205.498138,Y=0.000000,Z=-48.827835),LeaveTangent=(X=205.498138,Y=0.000000,Z=-48.827835),InterpMode=CIM_CurveAutoClamped),(InVal=457.074280,OutVal=(X=3328.612305,Y=1708.478516,Z=-238.465637),ArriveTangent=(X=0.000000,Y=0.000000,Z=-68.103386),LeaveTangent=(X=0.000000,Y=0.000000,Z=-68.103386),InterpMode=CIM_CurveAutoClamped),(InVal=458.906219,OutVal=(X=3192.593506,Y=1258.022461,Z=-335.216858),ArriveTangent=(X=-142.563843,Y=-202.599503,Z=-91.701439),LeaveTangent=(X=-142.563843,Y=-202.599503,Z=-91.701439),InterpMode=CIM_CurveAutoClamped),(InVal=460.927734,OutVal=(X=2523.824219,Y=927.770508,Z=-658.746948),ArriveTangent=(X=0.000000,Y=-223.873749,Z=-21.200539),LeaveTangent=(X=0.000000,Y=-223.873749,Z=-21.200539),InterpMode=CIM_CurveAutoClamped),(InVal=462.201172,OutVal=(X=2670.151367,Y=520.369141,Z=-671.963257),ArriveTangent=(X=180.380402,Y=0.000000,Z=-8.409266),LeaveTangent=(X=180.380402,Y=0.000000,Z=-8.409266),InterpMode=CIM_CurveAutoClamped),(InVal=464.014343,OutVal=(X=3180.506836,Y=575.046875,Z=-684.703064),ArriveTangent=(X=194.832123,Y=67.236832,Z=-6.750473),LeaveTangent=(X=194.832123,Y=67.236832,Z=-6.750473),InterpMode=CIM_CurveAutoClamped),(InVal=465.992401,OutVal=(X=3420.378418,Y=1315.303711,Z=-697.555847),ArriveTangent=(X=206.319687,Y=100.787979,Z=0.000000),LeaveTangent=(X=206.319687,Y=100.787979,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=467.535675,OutVal=(X=3911.428711,Y=1391.735352,Z=-690.162781),ArriveTangent=(X=308.660797,Y=109.035797,Z=4.731243),LeaveTangent=(X=308.660797,Y=109.035797,Z=4.731243),InterpMode=CIM_CurveAutoClamped),(InVal=469.057251,OutVal=(X=4366.377441,Y=2054.443848,Z=-683.055298),ArriveTangent=(X=385.278229,Y=200.362717,Z=0.110317),LeaveTangent=(X=385.278229,Y=200.362717,Z=0.110317),InterpMode=CIM_CurveAutoClamped),(InVal=470.426666,OutVal=(X=5025.264648,Y=2200.340820,Z=-682.992249),ArriveTangent=(X=534.298523,Y=0.000000,Z=0.124335),LeaveTangent=(X=534.298523,Y=0.000000,Z=0.124335),InterpMode=CIM_CurveAutoClamped),(InVal=471.404816,OutVal=(X=5620.677734,Y=2018.568359,Z=-679.359924),ArriveTangent=(X=459.938293,Y=-314.801025,Z=0.000000),LeaveTangent=(X=459.938293,Y=-314.801025,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=472.513367,OutVal=(X=5985.018066,Y=1435.473633,Z=-680.732422),ArriveTangent=(X=244.342758,Y=-500.325470,Z=-0.127729),LeaveTangent=(X=244.342758,Y=-500.325470,Z=-0.127729),InterpMode=CIM_CurveAutoClamped),(InVal=473.947998,OutVal=(X=6242.085938,Y=746.149414,Z=-680.804443),ArriveTangent=(X=0.000000,Y=-561.551147,Z=0.000000),LeaveTangent=(X=0.000000,Y=-561.551147,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=474.969635,OutVal=(X=6198.801758,Y=56.153320,Z=-675.778259),ArriveTangent=(X=-93.400726,Y=-640.863831,Z=4.313331),LeaveTangent=(X=-93.400726,Y=-640.863831,Z=4.313331),InterpMode=CIM_CurveAutoClamped),(InVal=476.056458,OutVal=(X=5723.281250,Y=-605.085938,Z=-671.709961),ArriveTangent=(X=-683.314758,Y=-263.278992,Z=9.444748),LeaveTangent=(X=-683.314758,Y=-263.278992,Z=9.444748),InterpMode=CIM_CurveAutoClamped),(InVal=477.056366,OutVal=(X=4772.907715,Y=-741.903320,Z=-377.284149),ArriveTangent=(X=-991.670288,Y=-111.006119,Z=66.077194),LeaveTangent=(X=-991.670288,Y=-111.006119,Z=66.077194),InterpMode=CIM_CurveAutoClamped),(InVal=478.012756,OutVal=(X=3783.277832,Y=-822.247070,Z=-348.575897),ArriveTangent=(X=-915.732666,Y=-2.673531,Z=3.777338),LeaveTangent=(X=-915.732666,Y=-2.673531,Z=3.777338),InterpMode=CIM_CurveAutoClamped),(InVal=479.012665,OutVal=(X=2981.460938,Y=-823.318359,Z=-346.987213),ArriveTangent=(X=-870.727600,Y=0.000000,Z=3.636335),LeaveTangent=(X=-870.727600,Y=0.000000,Z=3.636335),InterpMode=CIM_CurveAutoClamped),(InVal=479.903870,OutVal=(X=2136.633301,Y=-783.113281,Z=-332.626465),ArriveTangent=(X=-256.882141,Y=98.731079,Z=13.462062),LeaveTangent=(X=-256.882141,Y=98.731079,Z=13.462062),InterpMode=CIM_CurveAutoClamped),(InVal=480.947235,OutVal=(X=2017.419556,Y=-203.787109,Z=-320.943909),ArriveTangent=(X=-121.294876,Y=495.669983,Z=14.838260),LeaveTangent=(X=-121.294876,Y=495.669983,Z=14.838260),InterpMode=CIM_CurveAutoClamped),(InVal=481.947113,OutVal=(X=1888.798340,Y=229.661133,Z=-302.308289),ArriveTangent=(X=0.000000,Y=354.417664,Z=0.000000),LeaveTangent=(X=0.000000,Y=354.417664,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=483.033936,OutVal=(X=1936.776489,Y=535.776367,Z=-702.185791),ArriveTangent=(X=0.000000,Y=137.200439,Z=0.000000),LeaveTangent=(X=0.000000,Y=137.200439,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=483.855988,OutVal=(X=1495.109131,Y=599.221680,Z=-689.188721),ArriveTangent=(X=-223.346405,Y=165.753387,Z=20.005405),LeaveTangent=(X=-223.346405,Y=165.753387,Z=20.005405),InterpMode=CIM_CurveAutoClamped),(InVal=484.772888,OutVal=(X=1393.909424,Y=1236.341797,Z=-667.397339),ArriveTangent=(X=-81.891556,Y=760.642395,Z=0.000000),LeaveTangent=(X=-81.891556,Y=760.642395,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=485.908569,OutVal=(X=1327.020020,Y=2160.502441,Z=-677.266785),ArriveTangent=(X=-54.716530,Y=702.213196,Z=-2.745092),LeaveTangent=(X=-54.716530,Y=702.213196,Z=-2.745092),InterpMode=CIM_CurveAutoClamped),(InVal=487.386688,OutVal=(X=1250.891357,Y=3071.786621,Z=-679.085571),ArriveTangent=(X=-44.208370,Y=569.013916,Z=-2.917887),LeaveTangent=(X=-44.208370,Y=569.013916,Z=-2.917887),InterpMode=CIM_CurveAutoClamped),(InVal=488.473511,OutVal=(X=1213.399658,Y=3619.989746,Z=-692.471802),ArriveTangent=(X=0.000000,Y=111.457489,Z=-27.100220),LeaveTangent=(X=0.000000,Y=111.457489,Z=-27.100220),InterpMode=CIM_CurveAutoClamped),(InVal=489.842926,OutVal=(X=2233.164551,Y=3684.746582,Z=-991.927124),ArriveTangent=(X=73.874176,Y=0.000000,Z=0.000000),LeaveTangent=(X=73.874176,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=490.908020,OutVal=(X=2268.725586,Y=2933.817383,Z=-961.967590),ArriveTangent=(X=29.486532,Y=-886.825806,Z=3.638341),LeaveTangent=(X=29.486532,Y=-886.825806,Z=3.638341),InterpMode=CIM_CurveAutoClamped),(InVal=491.734009,OutVal=(X=2288.926025,Y=2007.685547,Z=-960.588745),ArriveTangent=(X=73.190674,Y=0.000000,Z=5.045685),LeaveTangent=(X=73.190674,Y=0.000000,Z=5.045685),InterpMode=CIM_CurveAutoClamped),(InVal=492.125275,OutVal=(X=3616.882080,Y=2091.633789,Z=-688.715515),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=435.070160,OutVal=(X=0.000000,Y=-20.390625,Z=-6.328125),InterpMode=CIM_CurveAutoClamped),(InVal=437.011963,OutVal=(X=0.000000,Y=4.218750,Z=83.144531),ArriveTangent=(X=0.000000,Y=0.000000,Z=36.547653),LeaveTangent=(X=0.000000,Y=0.000000,Z=36.547653),InterpMode=CIM_CurveAutoClamped),(InVal=438.990021,OutVal=(X=0.000000,Y=4.218750,Z=136.933594),InterpMode=CIM_CurveAutoClamped),(InVal=440.989777,OutVal=(X=0.000000,Y=1.230469,Z=89.824219),ArriveTangent=(X=0.000000,Y=0.000000,Z=-26.402569),LeaveTangent=(X=0.000000,Y=0.000000,Z=-26.402569),InterpMode=CIM_CurveAutoClamped),(InVal=443.011292,OutVal=(X=0.000000,Y=3.339844,Z=30.761719),InterpMode=CIM_CurveAutoClamped),(InVal=445.032806,OutVal=(X=0.000000,Y=2.812500,Z=33.046875),InterpMode=CIM_CurveAutoClamped),(InVal=446.989136,OutVal=(X=0.000000,Y=2.812500,Z=-51.503906),InterpMode=CIM_CurveAutoClamped),(InVal=448.907349,OutVal=(X=0.000000,Y=17.226563,Z=-21.796875),InterpMode=CIM_CurveAutoClamped),(InVal=450.972321,OutVal=(X=0.000000,Y=2.988281,Z=-123.222656),ArriveTangent=(X=0.000000,Y=-4.834240,Z=0.000000),LeaveTangent=(X=0.000000,Y=-4.834240,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=452.972107,OutVal=(X=0.000000,Y=-3.164063,Z=-60.468750),ArriveTangent=(X=0.000000,Y=-3.302983,Z=29.682209),LeaveTangent=(X=0.000000,Y=-3.302983,Z=29.682209),InterpMode=CIM_CurveAutoClamped),(InVal=454.910522,OutVal=(X=0.000000,Y=-10.019531,Z=-6.328125),InterpMode=CIM_CurveAutoClamped),(InVal=457.074280,OutVal=(X=0.000000,Y=-9.316406,Z=-97.558594),ArriveTangent=(X=0.000000,Y=0.170434,Z=-44.608536),LeaveTangent=(X=0.000000,Y=0.170434,Z=-44.608536),InterpMode=CIM_CurveAutoClamped),(InVal=458.906219,OutVal=(X=0.000000,Y=-9.140625,Z=-184.570313),ArriveTangent=(X=0.000000,Y=0.227399,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.227399,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=460.927734,OutVal=(X=0.000000,Y=-0.175781,Z=-88.066406),ArriveTangent=(X=0.000000,Y=0.000000,Z=55.535942),LeaveTangent=(X=0.000000,Y=0.000000,Z=55.535942),InterpMode=CIM_CurveAutoClamped),(InVal=462.201172,OutVal=(X=0.000000,Y=-3.691406,Z=-1.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=48.578037),LeaveTangent=(X=0.000000,Y=0.000000,Z=48.578037),InterpMode=CIM_CurveAutoClamped),(InVal=464.014343,OutVal=(X=0.000000,Y=1.054688,Z=61.875000),InterpMode=CIM_CurveAutoClamped),(InVal=465.992401,OutVal=(X=0.000000,Y=0.175781,Z=1.582031),InterpMode=CIM_CurveAutoClamped),(InVal=467.535675,OutVal=(X=0.000000,Y=2.812500,Z=22.500000),ArriveTangent=(X=0.000000,Y=1.491203,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.491203,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=469.057251,OutVal=(X=0.000000,Y=4.746094,Z=-26.367188),ArriveTangent=(X=0.000000,Y=0.000000,Z=-27.726217),LeaveTangent=(X=0.000000,Y=0.000000,Z=-27.726217),InterpMode=CIM_CurveAutoClamped),(InVal=470.426666,OutVal=(X=0.000000,Y=4.394531,Z=-57.656250),ArriveTangent=(X=0.000000,Y=-0.658259,Z=-21.415144),LeaveTangent=(X=0.000000,Y=-0.658259,Z=-21.415144),InterpMode=CIM_CurveAutoClamped),(InVal=471.404816,OutVal=(X=0.000000,Y=-0.878906,Z=-76.640625),ArriveTangent=(X=0.000000,Y=0.000000,Z=-17.942875),LeaveTangent=(X=0.000000,Y=0.000000,Z=-17.942875),InterpMode=CIM_CurveAutoClamped),(InVal=472.513367,OutVal=(X=0.000000,Y=3.339844,Z=-95.097656),ArriveTangent=(X=0.000000,Y=0.000000,Z=-15.067859),LeaveTangent=(X=0.000000,Y=0.000000,Z=-15.067859),InterpMode=CIM_CurveAutoClamped),(InVal=473.947998,OutVal=(X=0.000000,Y=1.406250,Z=-114.960938),ArriveTangent=(X=0.000000,Y=-0.828740,Z=-21.898691),LeaveTangent=(X=0.000000,Y=-0.828740,Z=-21.898691),InterpMode=CIM_CurveAutoClamped),(InVal=474.969635,OutVal=(X=0.000000,Y=0.878906,Z=-148.886719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-33.431175),LeaveTangent=(X=0.000000,Y=0.000000,Z=-33.431175),InterpMode=CIM_CurveAutoClamped),(InVal=476.056458,OutVal=(X=0.000000,Y=4.218750,Z=-185.449219),ArriveTangent=(X=0.000000,Y=2.442891,Z=-52.690804),LeaveTangent=(X=0.000000,Y=2.442891,Z=-52.690804),InterpMode=CIM_CurveAutoClamped),(InVal=477.056366,OutVal=(X=0.000000,Y=5.976563,Z=-258.925781),InterpMode=CIM_CurveAutoClamped),(InVal=478.012756,OutVal=(X=0.000000,Y=-2.988281,Z=-216.738281),InterpMode=CIM_CurveAutoClamped),(InVal=479.012665,OutVal=(X=0.000000,Y=3.691406,Z=-226.757813),ArriveTangent=(X=0.000000,Y=0.000000,Z=-19.912727),LeaveTangent=(X=0.000000,Y=0.000000,Z=-19.912727),InterpMode=CIM_CurveAutoClamped),(InVal=479.903870,OutVal=(X=0.000000,Y=1.757813,Z=-266.835938),InterpMode=CIM_CurveAutoClamped),(InVal=480.947235,OutVal=(X=0.000000,Y=2.460938,Z=-218.320313),InterpMode=CIM_CurveAutoClamped),(InVal=481.947113,OutVal=(X=0.000000,Y=-30.234375,Z=-271.757813),InterpMode=CIM_CurveAutoClamped),(InVal=483.033936,OutVal=(X=0.000000,Y=3.515625,Z=-220.605469),InterpMode=CIM_CurveAutoClamped),(InVal=483.855988,OutVal=(X=0.000000,Y=3.164063,Z=-269.648438),ArriveTangent=(X=0.000000,Y=-0.837198,Z=-3.833778),LeaveTangent=(X=0.000000,Y=-0.837198,Z=-3.833778),InterpMode=CIM_CurveAutoClamped),(InVal=484.772888,OutVal=(X=0.000000,Y=1.230469,Z=-271.054688),ArriveTangent=(X=0.000000,Y=-2.569173,Z=-2.895895),LeaveTangent=(X=0.000000,Y=-2.569173,Z=-2.895895),InterpMode=CIM_CurveAutoClamped),(InVal=485.908569,OutVal=(X=0.000000,Y=-2.109375,Z=-278.964844),ArriveTangent=(X=0.000000,Y=0.000000,Z=-6.119861),LeaveTangent=(X=0.000000,Y=0.000000,Z=-6.119861),InterpMode=CIM_CurveAutoClamped),(InVal=487.386688,OutVal=(X=0.000000,Y=-1.582031,Z=-287.050781),ArriveTangent=(X=0.000000,Y=0.000000,Z=-13.243006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-13.243006),InterpMode=CIM_CurveAutoClamped),(InVal=488.473511,OutVal=(X=0.000000,Y=-3.867188,Z=-357.363281),ArriveTangent=(X=0.000000,Y=0.000000,Z=-67.915413),LeaveTangent=(X=0.000000,Y=0.000000,Z=-67.915413),InterpMode=CIM_CurveAutoClamped),(InVal=489.842926,OutVal=(X=0.000000,Y=-0.527344,Z=-453.867188),ArriveTangent=(X=0.000000,Y=0.669332,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.669332,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=490.908020,OutVal=(X=0.000000,Y=-0.175781,Z=-440.156250),ArriveTangent=(X=0.000000,Y=0.831710,Z=28.710073),LeaveTangent=(X=0.000000,Y=0.831710,Z=28.710073),InterpMode=CIM_CurveAutoClamped),(InVal=491.734009,OutVal=(X=0.000000,Y=5.625000,Z=-364.570313),ArriveTangent=(X=0.000000,Y=6.521350,Z=0.000000),LeaveTangent=(X=0.000000,Y=6.521350,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=492.125275,OutVal=(X=0.000000,Y=7.910156,Z=-364.746094),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=435.070160),(Time=437.011963),(Time=438.990021),(Time=440.989777),(Time=443.011292),(Time=445.032806),(Time=446.989136),(Time=448.907349),(Time=450.972321),(Time=452.972107),(Time=454.910522),(Time=457.074280),(Time=458.906219),(Time=460.927734),(Time=462.201172),(Time=464.014343),(Time=465.992401),(Time=467.535675),(Time=469.057251),(Time=470.426666),(Time=471.404816),(Time=472.513367),(Time=473.947998),(Time=474.969635),(Time=476.056458),(Time=477.056366),(Time=478.012756),(Time=479.012665),(Time=479.903870),(Time=480.947235),(Time=481.947113),(Time=483.033936),(Time=483.855988),(Time=484.772888),(Time=485.908569),(Time=487.386688),(Time=488.473511),(Time=489.842926),(Time=490.908020),(Time=491.734009),(Time=492.125275)))
-         MoveFrame=IMF_RelativeToInitial
-         RotMode=IMR_LookAtGroup
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_3.InterpTrackMove_0'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_3.InterpTrackFloatProp_0'
-      GroupName="Castle"
-      GroupColor=(B=162,G=0,R=178,A=255)
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),ArriveTangent=(X=0.000000,Y=-0.082667,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.082667,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=492.381226,OutVal=(X=208.558594,Y=-40.703949,Z=10.246399),ArriveTangent=(X=2.396381,Y=-0.276866,Z=0.515280),LeaveTangent=(X=2.396381,Y=-0.276866,Z=0.515280),InterpMode=CIM_CurveAutoClamped),(InVal=493.984863,OutVal=(X=1420.342773,Y=-239.355438,Z=19.821716),ArriveTangent=(X=699.124084,Y=0.000000,Z=9.948514),LeaveTangent=(X=699.124084,Y=0.000000,Z=9.948514),InterpMode=CIM_CurveAutoClamped),(InVal=495.529053,OutVal=(X=2409.280273,Y=370.920654,Z=43.538147),ArriveTangent=(X=565.884705,Y=0.000000,Z=24.373621),LeaveTangent=(X=565.884705,Y=0.000000,Z=24.373621),InterpMode=CIM_CurveAutoClamped),(InVal=497.506653,OutVal=(X=3413.269531,Y=-9.840851,Z=117.418945),ArriveTangent=(X=579.267334,Y=-130.775070,Z=55.716057),LeaveTangent=(X=579.267334,Y=-130.775070,Z=55.716057),InterpMode=CIM_CurveAutoClamped),(InVal=499.037964,OutVal=(X=4441.877930,Y=-139.076111,Z=239.040833),ArriveTangent=(X=698.009644,Y=-68.216606,Z=47.094913),LeaveTangent=(X=698.009644,Y=-68.216606,Z=47.094913),InterpMode=CIM_CurveAutoClamped),(InVal=500.962738,OutVal=(X=5825.650391,Y=-245.603241,Z=289.697449),ArriveTangent=(X=750.377075,Y=0.000000,Z=30.267887),LeaveTangent=(X=750.377075,Y=0.000000,Z=30.267887),InterpMode=CIM_CurveAutoClamped),(InVal=502.494049,OutVal=(X=7035.245117,Y=283.396271,Z=343.649231),ArriveTangent=(X=243.968826,Y=465.209137,Z=15.706448),LeaveTangent=(X=243.968826,Y=465.209137,Z=15.706448),InterpMode=CIM_CurveAutoClamped),(InVal=504.637909,OutVal=(X=7265.501953,Y=1510.541382,Z=360.065247),ArriveTangent=(X=58.399200,Y=508.116150,Z=4.898424),LeaveTangent=(X=58.399200,Y=508.116150,Z=4.898424),InterpMode=CIM_CurveAutoClamped),(InVal=506.492981,OutVal=(X=7327.074219,Y=2315.318115,Z=365.630676),ArriveTangent=(X=0.000000,Y=153.076599,Z=0.000000),LeaveTangent=(X=0.000000,Y=153.076599,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=507.975769,OutVal=(X=6505.076172,Y=2431.390381,Z=325.616760),ArriveTangent=(X=-655.006104,Y=84.789116,Z=-32.027340),LeaveTangent=(X=-655.006104,Y=84.789116,Z=-32.027340),InterpMode=CIM_CurveAutoClamped),(InVal=509.515839,OutVal=(X=5347.083984,Y=2571.623535,Z=268.816589),ArriveTangent=(X=-255.555603,Y=0.000000,Z=-23.480757),LeaveTangent=(X=-255.555603,Y=0.000000,Z=-23.480757),InterpMode=CIM_CurveAutoClamped),(InVal=511.702454,OutVal=(X=5096.187500,Y=1870.130371,Z=238.111389),ArriveTangent=(X=-208.225616,Y=-160.559082,Z=-22.923485),LeaveTangent=(X=-208.225616,Y=-160.559082,Z=-22.923485),InterpMode=CIM_CurveAutoClamped),(InVal=514.065979,OutVal=(X=4148.084961,Y=1669.580811,Z=155.073669),ArriveTangent=(X=-297.076111,Y=-34.673058,Z=-19.163715),LeaveTangent=(X=-297.076111,Y=-34.673058,Z=-19.163715),InterpMode=CIM_CurveAutoClamped),(InVal=517.049805,OutVal=(X=3507.617188,Y=1619.806885,Z=124.434631),ArriveTangent=(X=-1.279526,Y=0.000000,Z=-14.130754),LeaveTangent=(X=-1.279526,Y=0.000000,Z=-14.130754),InterpMode=CIM_CurveAutoClamped),(InVal=519.394897,OutVal=(X=3506.321289,Y=2841.223633,Z=79.772034),ArriveTangent=(X=0.000000,Y=459.006256,Z=-6.144273),LeaveTangent=(X=0.000000,Y=459.006256,Z=-6.144273),InterpMode=CIM_CurveAutoClamped),(InVal=521.437805,OutVal=(X=3609.746094,Y=3633.926514,Z=73.599182),ArriveTangent=(X=64.191185,Y=639.547180,Z=0.000000),LeaveTangent=(X=64.191185,Y=639.547180,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=523.082825,OutVal=(X=3743.053711,Y=5199.827148,Z=74.929382),InterpMode=CIM_CurveAutoClamped),(InVal=525.034180,OutVal=(X=2911.028320,Y=4972.024414,Z=13.323608),ArriveTangent=(X=-411.703491,Y=-87.706482,Z=-26.677372),LeaveTangent=(X=-411.703491,Y=-87.706482,Z=-26.677372),InterpMode=CIM_CurveAutoClamped),(InVal=527.020447,OutVal=(X=2121.920898,Y=4854.472168,Z=-30.116028),ArriveTangent=(X=-136.966095,Y=-129.681396,Z=-11.799911),LeaveTangent=(X=-136.966095,Y=-129.681396,Z=-11.799911),InterpMode=CIM_CurveAutoClamped),(InVal=528.980225,OutVal=(X=1992.064453,Y=3870.139160,Z=-42.903137),ArriveTangent=(X=0.000000,Y=-520.571838,Z=0.000000),LeaveTangent=(X=0.000000,Y=-520.571838,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=530.511536,OutVal=(X=2139.580078,Y=3037.109619,Z=-19.293396),ArriveTangent=(X=0.000000,Y=-397.581818,Z=0.000000),LeaveTangent=(X=0.000000,Y=-397.581818,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=532.540100,OutVal=(X=1919.781250,Y=2454.797363,Z=-23.293640),ArriveTangent=(X=-216.540802,Y=-340.922974,Z=-4.732093),LeaveTangent=(X=-216.540802,Y=-340.922974,Z=-4.732093),InterpMode=CIM_CurveAutoClamped),(InVal=533.985413,OutVal=(X=1265.452148,Y=1852.785156,Z=-53.236694),ArriveTangent=(X=-448.328094,Y=0.000000,Z=-21.121246),LeaveTangent=(X=-448.328094,Y=0.000000,Z=-21.121246),InterpMode=CIM_CurveAutoClamped),(InVal=536.457031,OutVal=(X=163.710938,Y=2021.977173,Z=-106.024109),ArriveTangent=(X=0.000000,Y=114.137123,Z=0.000000),LeaveTangent=(X=0.000000,Y=114.137123,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=539.111267,OutVal=(X=258.457031,Y=2503.631592,Z=-101.111755),ArriveTangent=(X=47.782169,Y=371.656250,Z=0.000000),LeaveTangent=(X=47.782169,Y=371.656250,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=540.998413,OutVal=(X=380.708008,Y=4067.677002,Z=-114.623352),ArriveTangent=(X=18.503990,Y=480.640991,Z=0.000000),LeaveTangent=(X=18.503990,Y=480.640991,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=543.492249,OutVal=(X=400.916992,Y=4726.485840,Z=-100.945984),ArriveTangent=(X=22.146070,Y=465.044403,Z=13.494829),LeaveTangent=(X=22.146070,Y=465.044403,Z=13.494829),InterpMode=CIM_CurveAutoClamped),(InVal=544.533142,OutVal=(X=538.005859,Y=5711.482910,Z=-52.215149),ArriveTangent=(X=128.601974,Y=921.495789,Z=0.000000),LeaveTangent=(X=128.601974,Y=921.495789,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=545.740723,OutVal=(X=690.075195,Y=6798.445313,Z=-55.551697),ArriveTangent=(X=152.974976,Y=766.450073,Z=0.000000),LeaveTangent=(X=152.974976,Y=766.450073,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=548.015808,OutVal=(X=1090.541016,Y=8380.772461,Z=-12.336975),ArriveTangent=(X=376.495422,Y=0.000000,Z=32.084446),LeaveTangent=(X=376.495422,Y=0.000000,Z=32.084446),InterpMode=CIM_CurveAutoClamped),(InVal=549.512085,OutVal=(X=2477.894531,Y=8046.169922,Z=65.450378),ArriveTangent=(X=130.241882,Y=-383.264679,Z=0.000000),LeaveTangent=(X=130.241882,Y=-383.264679,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=551.246704,OutVal=(X=2571.127930,Y=6896.233887,Z=57.285828),ArriveTangent=(X=118.165268,Y=0.000000,Z=0.000000),LeaveTangent=(X=118.165268,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=552.968201,OutVal=(X=3384.792969,Y=7001.731445,Z=100.836121),ArriveTangent=(X=589.802795,Y=115.000763,Z=38.758442),LeaveTangent=(X=589.802795,Y=115.000763,Z=38.758442),InterpMode=CIM_CurveAutoClamped),(InVal=554.517029,OutVal=(X=4499.974609,Y=7346.113281,Z=184.038513),ArriveTangent=(X=275.278656,Y=0.000000,Z=18.329674),LeaveTangent=(X=275.278656,Y=0.000000,Z=18.329674),InterpMode=CIM_CurveAutoClamped),(InVal=556.633850,OutVal=(X=4771.488281,Y=6753.295898,Z=201.586487),ArriveTangent=(X=0.000000,Y=-300.974609,Z=0.000000),LeaveTangent=(X=0.000000,Y=-300.974609,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=558.480896,OutVal=(X=4266.528320,Y=6153.089844,Z=145.329529),ArriveTangent=(X=0.000000,Y=-359.377350,Z=0.000000),LeaveTangent=(X=0.000000,Y=-359.377350,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=560.475586,OutVal=(X=4503.446289,Y=5372.663086,Z=147.594421),ArriveTangent=(X=233.896423,Y=-95.394737,Z=2.777493),LeaveTangent=(X=233.896423,Y=-95.394737,Z=2.777493),InterpMode=CIM_CurveAutoClamped),(InVal=562.470642,OutVal=(X=5603.584961,Y=5286.243652,Z=268.481506),ArriveTangent=(X=0.000000,Y=-80.693375,Z=3.326155),LeaveTangent=(X=0.000000,Y=-80.693375,Z=3.326155),InterpMode=CIM_CurveAutoClamped),(InVal=566.438721,OutVal=(X=5101.152344,Y=3542.937012,Z=273.050110),ArriveTangent=(X=0.000000,Y=-92.511765,Z=2.901699),LeaveTangent=(X=0.000000,Y=-92.511765,Z=2.901699),InterpMode=CIM_CurveAutoClamped),(InVal=570.053223,OutVal=(X=6025.734375,Y=3390.223145,Z=536.258484),ArriveTangent=(X=166.183212,Y=-28.815557,Z=13.965523),LeaveTangent=(X=166.183212,Y=-28.815557,Z=13.965523),InterpMode=CIM_CurveAutoClamped),(InVal=574.975098,OutVal=(X=6519.754883,Y=3296.956543,Z=564.414612),ArriveTangent=(X=210.345856,Y=-34.397003,Z=15.330276),LeaveTangent=(X=210.345856,Y=-34.397003,Z=15.330276),InterpMode=CIM_CurveAutoClamped),(InVal=577.820496,OutVal=(X=7863.501953,Y=3123.052246,Z=915.291077),ArriveTangent=(X=310.056030,Y=-53.678341,Z=31.748035),LeaveTangent=(X=310.056030,Y=-53.678341,Z=31.748035),InterpMode=CIM_CurveAutoClamped),(InVal=580.589050,OutVal=(X=8387.365234,Y=2995.608887,Z=955.792786),ArriveTangent=(X=167.904755,Y=-27.626949,Z=10.313902),LeaveTangent=(X=167.904755,Y=-27.626949,Z=10.313902),InterpMode=CIM_CurveAutoClamped),(InVal=583.357605,OutVal=(X=8793.208984,Y=2951.321777,Z=973.963196),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.235640),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.235640),InterpMode=CIM_CurveAutoClamped),(InVal=586.126099,OutVal=(X=8782.255859,Y=3832.665283,Z=1006.930969),ArriveTangent=(X=-8.775543,Y=249.963043,Z=0.000000),LeaveTangent=(X=-8.775543,Y=249.963043,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=589.894409,OutVal=(X=8181.283203,Y=4585.281250,Z=950.127014),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),InterpMode=CIM_CurveAutoClamped),(InVal=492.381226,OutVal=(X=-0.554810,Y=-1.889648,Z=-7.305908),ArriveTangent=(X=0.000000,Y=0.011465,Z=0.015961),LeaveTangent=(X=0.000000,Y=0.011465,Z=0.015961),InterpMode=CIM_CurveAutoClamped),(InVal=493.984863,OutVal=(X=2.894897,Y=0.917358,Z=62.248535),ArriveTangent=(X=0.000000,Y=1.975414,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.975414,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=495.529053,OutVal=(X=0.873413,Y=4.328613,Z=18.847046),InterpMode=CIM_CurveAutoClamped),(InVal=497.506653,OutVal=(X=1.230469,Y=4.180298,Z=25.675049),ArriveTangent=(X=0.358897,Y=0.000000,Z=7.021221),LeaveTangent=(X=0.358897,Y=0.000000,Z=7.021221),InterpMode=CIM_CurveAutoClamped),(InVal=499.037964,OutVal=(X=2.395020,Y=4.416504,Z=49.965820),ArriveTangent=(X=0.112408,Y=0.000000,Z=2.946814),LeaveTangent=(X=0.112408,Y=0.000000,Z=2.946814),InterpMode=CIM_CurveAutoClamped),(InVal=500.962738,OutVal=(X=2.482910,Y=2.356567,Z=52.322388),ArriveTangent=(X=0.106900,Y=0.000000,Z=2.977966),LeaveTangent=(X=0.106900,Y=0.000000,Z=2.977966),InterpMode=CIM_CurveAutoClamped),(InVal=502.494049,OutVal=(X=3.191528,Y=2.856445,Z=79.436646),ArriveTangent=(X=0.000000,Y=0.000000,Z=27.626392),LeaveTangent=(X=0.000000,Y=0.000000,Z=27.626392),InterpMode=CIM_CurveAutoClamped),(InVal=504.637909,OutVal=(X=0.653687,Y=-1.417236,Z=170.156250),ArriveTangent=(X=-0.171925,Y=-0.941919,Z=2.172987),LeaveTangent=(X=-0.171925,Y=-0.941919,Z=2.172987),InterpMode=CIM_CurveAutoClamped),(InVal=506.492981,OutVal=(X=0.510864,Y=-2.362061,Z=171.881104),ArriveTangent=(X=-0.196885,Y=0.000000,Z=2.419069),LeaveTangent=(X=-0.196885,Y=0.000000,Z=2.419069),InterpMode=CIM_CurveAutoClamped),(InVal=507.975769,OutVal=(X=-3.186035,Y=1.159058,Z=247.153931),ArriveTangent=(X=-0.026929,Y=1.898983,Z=0.000000),LeaveTangent=(X=-0.026929,Y=1.898983,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=509.515839,OutVal=(X=-3.202515,Y=3.378296,Z=246.665039),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.698853),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.698853),InterpMode=CIM_CurveAutoClamped),(InVal=511.702454,OutVal=(X=-1.746826,Y=-3.438721,Z=210.014648),ArriveTangent=(X=0.261246,Y=-1.081683,Z=-5.412539),LeaveTangent=(X=0.261246,Y=-1.081683,Z=-5.412539),InterpMode=CIM_CurveAutoClamped),(InVal=514.065979,OutVal=(X=-1.444702,Y=-4.652710,Z=204.032593),ArriveTangent=(X=0.273173,Y=0.000000,Z=-5.476542),LeaveTangent=(X=0.273173,Y=0.000000,Z=-5.476542),InterpMode=CIM_CurveAutoClamped),(InVal=517.049805,OutVal=(X=3.021240,Y=1.933594,Z=100.162354),ArriveTangent=(X=0.000000,Y=0.000000,Z=-13.446154),LeaveTangent=(X=0.000000,Y=0.000000,Z=-13.446154),InterpMode=CIM_CurveAutoClamped),(InVal=519.394897,OutVal=(X=2.960815,Y=-3.109131,Z=83.649902),ArriveTangent=(X=-0.065546,Y=-1.763871,Z=0.000000),LeaveTangent=(X=-0.065546,Y=-1.763871,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=521.437805,OutVal=(X=0.049438,Y=-5.806274,Z=175.720825),ArriveTangent=(X=-0.607306,Y=0.000000,Z=10.694168),LeaveTangent=(X=-0.607306,Y=0.000000,Z=10.694168),InterpMode=CIM_CurveAutoClamped),(InVal=523.082825,OutVal=(X=-0.483398,Y=-3.240967,Z=184.147339),ArriveTangent=(X=-0.223003,Y=0.706315,Z=3.609287),LeaveTangent=(X=-0.223003,Y=0.706315,Z=3.609287),InterpMode=CIM_CurveAutoClamped),(InVal=525.034180,OutVal=(X=-0.752563,Y=-2.548828,Z=188.701172),ArriveTangent=(X=-0.309886,Y=0.759762,Z=5.427531),LeaveTangent=(X=-0.309886,Y=0.759762,Z=5.427531),InterpMode=CIM_CurveAutoClamped),(InVal=527.020447,OutVal=(X=-3.828735,Y=2.763062,Z=268.330078),ArriveTangent=(X=0.000000,Y=1.976285,Z=43.109570),LeaveTangent=(X=0.000000,Y=1.976285,Z=43.109570),InterpMode=CIM_CurveAutoClamped),(InVal=528.980225,OutVal=(X=-0.769043,Y=5.317383,Z=358.813477),InterpMode=CIM_CurveAutoClamped),(InVal=530.511536,OutVal=(X=-1.647949,Y=0.208740,Z=203.208618),ArriveTangent=(X=0.000000,Y=-1.199296,Z=-24.299049),LeaveTangent=(X=0.000000,Y=-1.199296,Z=-24.299049),InterpMode=CIM_CurveAutoClamped),(InVal=532.540100,OutVal=(X=-0.488892,Y=-0.911865,Z=182.279663),InterpMode=CIM_CurveAutoClamped),(InVal=533.985413,OutVal=(X=-3.751831,Y=2.477417,Z=293.071289),ArriveTangent=(X=0.000000,Y=0.000000,Z=56.416363),LeaveTangent=(X=0.000000,Y=0.000000,Z=56.416363),InterpMode=CIM_CurveAutoClamped),(InVal=536.457031,OutVal=(X=1.543579,Y=-1.735840,Z=403.258667),ArriveTangent=(X=0.820453,Y=0.000000,Z=24.252375),LeaveTangent=(X=0.820453,Y=0.000000,Z=24.252375),InterpMode=CIM_CurveAutoClamped),(InVal=539.111267,OutVal=(X=2.603760,Y=0.049438,Z=438.480835),ArriveTangent=(X=0.000000,Y=1.322023,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.322023,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=540.998413,OutVal=(X=-1.505127,Y=5.053711,Z=349.112549),InterpMode=CIM_CurveAutoClamped),(InVal=543.492249,OutVal=(X=0.708618,Y=3.955078,Z=388.729248),InterpMode=CIM_CurveAutoClamped),(InVal=544.533142,OutVal=(X=-0.247192,Y=5.971069,Z=372.315674),InterpMode=CIM_CurveAutoClamped),(InVal=545.740723,OutVal=(X=2.213745,Y=-2.416992,Z=427.615356),InterpMode=CIM_CurveAutoClamped),(InVal=548.015808,OutVal=(X=-2.109375,Y=6.245728,Z=340.993652),ArriveTangent=(X=-1.695068,Y=0.000000,Z=-39.974915),LeaveTangent=(X=-1.695068,Y=0.000000,Z=-39.974915),InterpMode=CIM_CurveAutoClamped),(InVal=549.512085,OutVal=(X=-4.202271,Y=1.549072,Z=276.855469),InterpMode=CIM_CurveAutoClamped),(InVal=551.246704,OutVal=(X=-0.796509,Y=1.658936,Z=364.806519),ArriveTangent=(X=0.362440,Y=0.000000,Z=7.297436),LeaveTangent=(X=0.362440,Y=0.000000,Z=7.297436),InterpMode=CIM_CurveAutoClamped),(InVal=552.968201,OutVal=(X=-0.521851,Y=-0.692139,Z=370.217285),InterpMode=CIM_CurveAutoClamped),(InVal=554.517029,OutVal=(X=-4.163818,Y=2.933350,Z=290.978394),ArriveTangent=(X=0.000000,Y=0.000000,Z=-38.604183),LeaveTangent=(X=0.000000,Y=0.000000,Z=-38.604183),InterpMode=CIM_CurveAutoClamped),(InVal=556.633850,OutVal=(X=-3.394775,Y=-2.246704,Z=228.707886),ArriveTangent=(X=0.194941,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.194941,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=558.480896,OutVal=(X=-3.191528,Y=1.417236,Z=323.712158),ArriveTangent=(X=0.242100,Y=1.827368,Z=35.103733),LeaveTangent=(X=0.242100,Y=1.827368,Z=35.103733),InterpMode=CIM_CurveAutoClamped),(InVal=560.475586,OutVal=(X=-0.889893,Y=4.773560,Z=366.926880),ArriveTangent=(X=0.000000,Y=1.305226,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.305226,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=562.470642,OutVal=(X=-4.416504,Y=6.624756,Z=260.474854),ArriveTangent=(X=0.000000,Y=1.225231,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.225231,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=566.438721,OutVal=(X=-1.878662,Y=12.897949,Z=350.864868),InterpMode=CIM_CurveAutoClamped),(InVal=570.053223,OutVal=(X=-1.988525,Y=10.398560,Z=349.612427),InterpMode=CIM_CurveAutoClamped),(InVal=574.975098,OutVal=(X=-1.928101,Y=14.776611,Z=351.644897),InterpMode=CIM_CurveAutoClamped),(InVal=577.820496,OutVal=(X=-2.076416,Y=8.377075,Z=349.552002),ArriveTangent=(X=-0.122711,Y=-2.805314,Z=-1.804628),LeaveTangent=(X=-0.122711,Y=-2.805314,Z=-1.804628),InterpMode=CIM_CurveAutoClamped),(InVal=580.589050,OutVal=(X=-4.581299,Y=-0.972290,Z=259.985962),InterpMode=CIM_CurveAutoClamped),(InVal=583.357605,OutVal=(X=1.944580,Y=1.389771,Z=464.990845),ArriveTangent=(X=0.000000,Y=0.000000,Z=30.137875),LeaveTangent=(X=0.000000,Y=0.000000,Z=30.137875),InterpMode=CIM_CurveAutoClamped),(InVal=586.126099,OutVal=(X=0.609741,Y=-0.851440,Z=506.876221),ArriveTangent=(X=0.000000,Y=-1.229895,Z=0.000000),LeaveTangent=(X=0.000000,Y=-1.229895,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=589.894409,OutVal=(X=1.186523,Y=-7.553101,Z=492.989502),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=492.381226),(Time=493.984863),(Time=495.529053),(Time=497.506653),(Time=499.037964),(Time=500.962738),(Time=502.494049),(Time=504.637909),(Time=506.492981),(Time=507.975769),(Time=509.515839),(Time=511.702454),(Time=514.065979),(Time=517.049805),(Time=519.394897),(Time=521.437805),(Time=523.082825),(Time=525.034180),(Time=527.020447),(Time=528.980225),(Time=530.511536),(Time=532.540100),(Time=533.985413),(Time=536.457031),(Time=539.111267),(Time=540.998413),(Time=543.492249),(Time=544.533142),(Time=545.740723),(Time=548.015808),(Time=549.512085),(Time=551.246704),(Time=552.968201),(Time=554.517029),(Time=556.633850),(Time=558.480896),(Time=560.475586),(Time=562.470642),(Time=566.438721),(Time=570.053223),(Time=574.975098),(Time=577.820496),(Time=580.589050),(Time=583.357605),(Time=586.126099),(Time=589.894409)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_6.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_6.InterpTrackFloatProp_1'
-      GroupName="Desert"
-      GroupColor=(B=220,G=88,R=0,A=255)
-      Name="InterpGroup_6"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_7
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),ArriveTangent=(X=0.000000,Y=-0.068238,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.068238,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=596.479553,OutVal=(X=208.557129,Y=-40.703125,Z=10.246094),ArriveTangent=(X=1.844385,Y=-0.075542,Z=0.549793),LeaveTangent=(X=1.844385,Y=-0.075542,Z=0.549793),InterpMode=CIM_CurveAutoClamped),(InVal=610.575073,OutVal=(X=1116.053711,Y=-47.890625,Z=100.971191),ArriveTangent=(X=59.455585,Y=-1.067898,Z=5.855650),LeaveTangent=(X=59.455585,Y=-1.067898,Z=5.855650),InterpMode=CIM_CurveAutoClamped),(InVal=630.571228,OutVal=(X=2235.497559,Y=-187.187500,Z=209.875000),ArriveTangent=(X=64.789612,Y=-14.977945,Z=5.468053),LeaveTangent=(X=64.789612,Y=-14.977945,Z=5.468053),InterpMode=CIM_CurveAutoClamped),(InVal=650.179138,OutVal=(X=3681.985840,Y=-1190.414063,Z=317.528320),ArriveTangent=(X=1.068932,Y=-42.122608,Z=0.725092),LeaveTangent=(X=1.068932,Y=-42.122608,Z=0.725092),InterpMode=CIM_CurveAutoClamped),(InVal=670.175293,OutVal=(X=3690.540527,Y=-1855.414063,Z=323.688477),ArriveTangent=(X=0.000000,Y=-27.407808,Z=0.000000),LeaveTangent=(X=0.000000,Y=-27.407808,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=690.171448,OutVal=(X=3620.347168,Y=-2286.515625,Z=311.522949),ArriveTangent=(X=0.000000,Y=-19.915359,Z=0.000000),LeaveTangent=(X=0.000000,Y=-19.915359,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=710.390015,OutVal=(X=4061.456543,Y=-2656.304688,Z=339.488281),ArriveTangent=(X=0.000000,Y=-35.313026,Z=0.000000),LeaveTangent=(X=0.000000,Y=-35.313026,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=730.192017,OutVal=(X=4020.050293,Y=-4180.375000,Z=336.158203),ArriveTangent=(X=-4.650836,Y=-14.210449,Z=-0.353649),LeaveTangent=(X=-4.650836,Y=-14.210449,Z=-0.353649),InterpMode=CIM_CurveAutoClamped),(InVal=751.158875,OutVal=(X=3530.979004,Y=-4309.351563,Z=311.370605),ArriveTangent=(X=-20.642519,Y=-13.923866,Z=-1.342671),LeaveTangent=(X=-20.642519,Y=-13.923866,Z=-1.342671),InterpMode=CIM_CurveAutoClamped),(InVal=770.960938,OutVal=(X=3178.477051,Y=-5559.265625,Z=281.418945),ArriveTangent=(X=-32.416645,Y=-8.282436,Z=-2.216982),LeaveTangent=(X=-32.416645,Y=-8.282436,Z=-2.216982),InterpMode=CIM_CurveAutoClamped),(InVal=790.176758,OutVal=(X=2025.266113,Y=-5627.781250,Z=224.868652),ArriveTangent=(X=-16.919830,Y=0.000000,Z=-1.075660),LeaveTangent=(X=-16.919830,Y=0.000000,Z=-1.075660),InterpMode=CIM_CurveAutoClamped),(InVal=809.784668,OutVal=(X=1871.979980,Y=-4865.671875,Z=214.607422),ArriveTangent=(X=-15.251878,Y=18.623924,Z=-0.975734),LeaveTangent=(X=-15.251878,Y=18.623924,Z=-0.975734),InterpMode=CIM_CurveAutoClamped),(InVal=829.780884,OutVal=(X=1166.148926,Y=-4669.929688,Z=175.349609),ArriveTangent=(X=-36.709057,Y=0.000000,Z=-2.370720),LeaveTangent=(X=-36.709057,Y=0.000000,Z=-2.370720),InterpMode=CIM_CurveAutoClamped),(InVal=850.359436,OutVal=(X=382.518555,Y=-5096.273438,Z=118.416016),ArriveTangent=(X=-58.819706,Y=0.000000,Z=-4.119321),LeaveTangent=(X=-58.819706,Y=0.000000,Z=-4.119321),InterpMode=CIM_CurveAutoClamped),(InVal=869.835083,OutVal=(X=-1191.317871,Y=-4442.117188,Z=10.353516),ArriveTangent=(X=-10.035442,Y=56.724602,Z=0.000000),LeaveTangent=(X=-10.035442,Y=56.724602,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=880.534973,OutVal=(X=-1245.990723,Y=-3384.578125,Z=15.372559),ArriveTangent=(X=0.000000,Y=41.041855,Z=1.102980),LeaveTangent=(X=0.000000,Y=41.041855,Z=1.102980),InterpMode=CIM_CurveAutoClamped),(InVal=889.972229,OutVal=(X=-505.138672,Y=-3183.679688,Z=72.061523),ArriveTangent=(X=26.185366,Y=42.407043,Z=3.893639),LeaveTangent=(X=26.185366,Y=42.407043,Z=3.893639),InterpMode=CIM_CurveAutoClamped),(InVal=900.353149,OutVal=(X=-377.644531,Y=-2006.945313,Z=96.161133),ArriveTangent=(X=24.412313,Y=0.000000,Z=1.421464),LeaveTangent=(X=24.412313,Y=0.000000,Z=1.421464),InterpMode=CIM_CurveAutoClamped),(InVal=910.060059,OutVal=(X=173.502441,Y=-2039.789063,Z=104.316895),ArriveTangent=(X=36.156250,Y=0.000000,Z=1.537208),LeaveTangent=(X=36.156250,Y=0.000000,Z=1.537208),InterpMode=CIM_CurveAutoClamped),(InVal=920.575806,OutVal=(X=398.254395,Y=-1418.890625,Z=136.188477),ArriveTangent=(X=44.064835,Y=0.000000,Z=5.081021),LeaveTangent=(X=44.064835,Y=0.000000,Z=5.081021),InterpMode=CIM_CurveAutoClamped),(InVal=929.743408,OutVal=(X=1417.325684,Y=-1453.593750,Z=207.463867),ArriveTangent=(X=86.982025,Y=-8.535875,Z=6.105673),LeaveTangent=(X=86.982025,Y=-8.535875,Z=6.105673),InterpMode=CIM_CurveAutoClamped),(InVal=939.989502,OutVal=(X=2086.896973,Y=-2057.664063,Z=254.722168),ArriveTangent=(X=0.000000,Y=-59.795250,Z=0.000000),LeaveTangent=(X=0.000000,Y=-59.795250,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=949.966064,OutVal=(X=1421.335449,Y=-2662.812500,Z=227.390137),ArriveTangent=(X=-67.990540,Y=-56.919308,Z=-2.220505),LeaveTangent=(X=-67.990540,Y=-56.919308,Z=-2.220505),InterpMode=CIM_CurveAutoClamped),(InVal=961.021057,OutVal=(X=656.950195,Y=-3254.765625,Z=208.021484),ArriveTangent=(X=-60.273705,Y=-35.751644,Z=-2.183084),LeaveTangent=(X=-60.273705,Y=-35.751644,Z=-2.183084),InterpMode=CIM_CurveAutoClamped),(InVal=970.139160,OutVal=(X=205.428223,Y=-3460.843750,Z=183.350586),ArriveTangent=(X=-31.719324,Y=-44.021763,Z=-2.180550),LeaveTangent=(X=-31.719324,Y=-44.021763,Z=-2.180550),InterpMode=CIM_CurveAutoClamped),(InVal=980.058777,OutVal=(X=18.895508,Y=-4516.429688,Z=166.508789),ArriveTangent=(X=0.000000,Y=-17.513763,Z=0.000000),LeaveTangent=(X=0.000000,Y=-17.513763,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=989.083130,OutVal=(X=1824.344238,Y=-4586.906250,Z=302.576172),ArriveTangent=(X=190.268982,Y=0.000000,Z=12.363053),LeaveTangent=(X=190.268982,Y=0.000000,Z=12.363053),InterpMode=CIM_CurveAutoClamped),(InVal=992.956543,OutVal=(X=2509.380371,Y=-3763.992188,Z=341.304199),ArriveTangent=(X=151.216095,Y=327.294464,Z=9.425988),LeaveTangent=(X=151.216095,Y=327.294464,Z=9.425988),InterpMode=CIM_CurveAutoClamped),(InVal=995.597595,OutVal=(X=2822.516113,Y=-2454.757813,Z=363.981445),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),InterpMode=CIM_CurveAutoClamped),(InVal=596.479553,OutVal=(X=-0.576782,Y=-1.889648,Z=-7.327881),ArriveTangent=(X=-0.003299,Y=0.008655,Z=0.000000),LeaveTangent=(X=-0.003299,Y=0.008655,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=610.575073,OutVal=(X=-3.317871,Y=0.538330,Z=-81.611938),ArriveTangent=(X=0.000000,Y=0.169991,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.169991,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=630.571228,OutVal=(X=-3.180542,Y=3.905640,Z=-68.109741),InterpMode=CIM_CurveAutoClamped),(InVal=650.179138,OutVal=(X=-3.208008,Y=2.460938,Z=-105.023804),ArriveTangent=(X=0.000000,Y=-0.102085,Z=-1.750697),LeaveTangent=(X=0.000000,Y=-0.102085,Z=-1.750697),InterpMode=CIM_CurveAutoClamped),(InVal=670.175293,OutVal=(X=-2.142334,Y=-0.137329,Z=-137.444458),InterpMode=CIM_CurveAutoClamped),(InVal=690.171448,OutVal=(X=-2.609253,Y=0.203247,Z=-46.505127),ArriveTangent=(X=-0.028958,Y=0.037231,Z=0.000000),LeaveTangent=(X=-0.028958,Y=0.037231,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=710.390015,OutVal=(X=-3.306885,Y=3.191528,Z=-103.392334),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.899861),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.899861),InterpMode=CIM_CurveAutoClamped),(InVal=730.192017,OutVal=(X=-0.922852,Y=-6.152344,Z=-162.559204),InterpMode=CIM_CurveAutoClamped),(InVal=751.158875,OutVal=(X=-2.625732,Y=-1.625977,Z=-128.545532),InterpMode=CIM_CurveAutoClamped),(InVal=770.960938,OutVal=(X=0.818481,Y=-10.156860,Z=-193.419800),ArriveTangent=(X=0.147966,Y=0.000000,Z=-3.457981),LeaveTangent=(X=0.147966,Y=0.000000,Z=-3.457981),InterpMode=CIM_CurveAutoClamped),(InVal=790.176758,OutVal=(X=3.147583,Y=-0.318604,Z=-263.468628),InterpMode=CIM_CurveAutoClamped),(InVal=809.784668,OutVal=(X=0.818481,Y=-2.653198,Z=-195.117188),ArriveTangent=(X=-0.067099,Y=-0.065436,Z=1.308764),LeaveTangent=(X=-0.067099,Y=-0.065436,Z=1.308764),InterpMode=CIM_CurveAutoClamped),(InVal=829.780884,OutVal=(X=0.065918,Y=-3.378296,Z=-182.301636),InterpMode=CIM_CurveAutoClamped),(InVal=850.359436,OutVal=(X=2.861938,Y=-1.241455,Z=-246.527710),ArriveTangent=(X=0.000692,Y=0.110812,Z=-2.545928),LeaveTangent=(X=0.000692,Y=0.110812,Z=-2.545928),InterpMode=CIM_CurveAutoClamped),(InVal=869.835083,OutVal=(X=2.867432,Y=1.060181,Z=-284.276733),ArriveTangent=(X=0.000000,Y=0.173848,Z=-3.243958),LeaveTangent=(X=0.000000,Y=0.173848,Z=-3.243958),InterpMode=CIM_CurveAutoClamped),(InVal=880.534973,OutVal=(X=0.357056,Y=4.004517,Z=-344.415894),InterpMode=CIM_CurveAutoClamped),(InVal=889.972229,OutVal=(X=2.730103,Y=2.427979,Z=-287.968140),InterpMode=CIM_CurveAutoClamped),(InVal=900.353149,OutVal=(X=-0.697632,Y=2.576294,Z=-361.065674),ArriveTangent=(X=0.000000,Y=0.032839,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.032839,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=910.060059,OutVal=(X=2.059937,Y=4.185791,Z=-307.331543),ArriveTangent=(X=0.000000,Y=0.109162,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.109162,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=920.575806,OutVal=(X=-1.351318,Y=4.877930,Z=-370.816040),ArriveTangent=(X=-0.303915,Y=0.000000,Z=-6.958777),LeaveTangent=(X=-0.303915,Y=0.000000,Z=-6.958777),InterpMode=CIM_CurveAutoClamped),(InVal=929.743408,OutVal=(X=-3.922119,Y=0.686646,Z=-444.303589),ArriveTangent=(X=0.000000,Y=0.000000,Z=-6.931783),LeaveTangent=(X=0.000000,Y=0.000000,Z=-6.931783),InterpMode=CIM_CurveAutoClamped),(InVal=939.989502,OutVal=(X=-2.356567,Y=1.153564,Z=-505.387573),ArriveTangent=(X=0.019255,Y=0.000000,Z=-0.567274),LeaveTangent=(X=0.019255,Y=0.000000,Z=-0.567274),InterpMode=CIM_CurveAutoClamped),(InVal=949.966064,OutVal=(X=-2.274170,Y=-2.828979,Z=-507.777100),ArriveTangent=(X=0.007574,Y=0.000000,Z=-0.208427),LeaveTangent=(X=0.007574,Y=0.000000,Z=-0.208427),InterpMode=CIM_CurveAutoClamped),(InVal=961.021057,OutVal=(X=-2.197266,Y=-2.202759,Z=-509.771118),ArriveTangent=(X=0.000000,Y=0.130628,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.130628,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=970.139160,OutVal=(X=-3.999023,Y=2.708130,Z=-455.668945),ArriveTangent=(X=0.000000,Y=0.202740,Z=7.549677),LeaveTangent=(X=0.000000,Y=0.202740,Z=7.549677),InterpMode=CIM_CurveAutoClamped),(InVal=980.058777,OutVal=(X=-1.230469,Y=3.680420,Z=-366.042480),ArriveTangent=(X=0.344483,Y=0.000000,Z=9.079800),LeaveTangent=(X=0.344483,Y=0.000000,Z=9.079800),InterpMode=CIM_CurveAutoClamped),(InVal=989.083130,OutVal=(X=2.526855,Y=2.213745,Z=-283.661499),ArriveTangent=(X=0.000000,Y=-0.241911,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.241911,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=992.956543,OutVal=(X=2.208252,Y=0.560303,Z=-296.295776),ArriveTangent=(X=-0.191121,Y=-0.645068,Z=0.000000),LeaveTangent=(X=-0.191121,Y=-0.645068,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=995.597595,OutVal=(X=0.455933,Y=-1.988525,Z=-197.720947),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=596.479553),(Time=610.575073),(Time=630.571228),(Time=650.179138),(Time=670.175293),(Time=690.171448),(Time=710.390015),(Time=730.192017),(Time=751.158875),(Time=770.960938),(Time=790.176758),(Time=809.784668),(Time=829.780884),(Time=850.359436),(Time=869.835083),(Time=880.534973),(Time=889.972229),(Time=900.353149),(Time=910.060059),(Time=920.575806),(Time=929.743408),(Time=939.989502),(Time=949.966064),(Time=961.021057),(Time=970.139160),(Time=980.058777),(Time=989.083130),(Time=992.956543),(Time=995.597595)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_7.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_7.InterpTrackFloatProp_1'
-      GroupName="computer"
-      GroupColor=(B=0,G=120,R=206,A=255)
-      Name="InterpGroup_7"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),InterpMode=CIM_CurveAutoClamped),(InVal=999.994385,OutVal=(X=76.767578,Y=72.203125,Z=72.010254),ArriveTangent=(X=0.766104,Y=0.000000,Z=0.358940),LeaveTangent=(X=0.766104,Y=0.000000,Z=0.358940),InterpMode=CIM_CurveAutoClamped),(InVal=1009.727905,OutVal=(X=1049.931641,Y=5.984375,Z=127.713379),ArriveTangent=(X=108.418808,Y=-13.969585,Z=5.984223),LeaveTangent=(X=108.418808,Y=-13.969585,Z=5.984223),InterpMode=CIM_CurveAutoClamped),(InVal=1019.971802,OutVal=(X=2242.695313,Y=-413.109375,Z=191.559570),ArriveTangent=(X=118.326279,Y=-44.104401,Z=7.547116),LeaveTangent=(X=118.326279,Y=-44.104401,Z=7.547116),InterpMode=CIM_CurveAutoClamped),(InVal=1029.894897,OutVal=(X=3436.216797,Y=-883.468750,Z=279.916016),ArriveTangent=(X=178.375549,Y=-60.270557,Z=9.906096),LeaveTangent=(X=178.375549,Y=-60.270557,Z=9.906096),InterpMode=CIM_CurveAutoClamped),(InVal=1040.211914,OutVal=(X=5865.826172,Y=-1632.992188,Z=392.060059),ArriveTangent=(X=0.000000,Y=-70.428772,Z=0.000000),LeaveTangent=(X=0.000000,Y=-70.428772,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1050.016846,OutVal=(X=5756.417969,Y=-2300.632813,Z=380.280762),ArriveTangent=(X=-10.484057,Y=-66.613556,Z=0.000000),LeaveTangent=(X=-10.484057,Y=-66.613556,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1060.407104,OutVal=(X=5654.098633,Y=-2978.265625,Z=406.050293),ArriveTangent=(X=-8.736958,Y=-80.897636,Z=0.674400),LeaveTangent=(X=-8.736958,Y=-80.897636,Z=0.674400),InterpMode=CIM_CurveAutoClamped),(InVal=1070.504639,OutVal=(X=5577.416992,Y=-3958.046875,Z=409.215332),ArriveTangent=(X=-16.265041,Y=-105.197037,Z=0.000000),LeaveTangent=(X=-16.265041,Y=-105.197037,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1079.934448,OutVal=(X=5093.876953,Y=-5032.484375,Z=372.281738),ArriveTangent=(X=-50.509491,Y=-89.174232,Z=-3.860171),LeaveTangent=(X=-50.509491,Y=-89.174232,Z=-3.860171),InterpMode=CIM_CurveAutoClamped),(InVal=1090.105225,OutVal=(X=4587.401367,Y=-5705.914063,Z=333.553711),ArriveTangent=(X=-77.393623,Y=-38.820572,Z=-4.235236),LeaveTangent=(X=-77.393623,Y=-38.820572,Z=-4.235236),InterpMode=CIM_CurveAutoClamped),(InVal=1100.056396,OutVal=(X=3515.656250,Y=-5927.828125,Z=287.060547),ArriveTangent=(X=-89.157219,Y=0.000000,Z=-3.684729),LeaveTangent=(X=-89.157219,Y=0.000000,Z=-3.684729),InterpMode=CIM_CurveAutoClamped),(InVal=1109.568604,OutVal=(X=2852.100586,Y=-5860.632813,Z=261.836426),ArriveTangent=(X=-101.833321,Y=7.403728,Z=-4.369495),LeaveTangent=(X=-101.833321,Y=7.403728,Z=-4.369495),InterpMode=CIM_CurveAutoClamped),(InVal=1119.519775,OutVal=(X=1533.635742,Y=-5783.726563,Z=194.669922),ArriveTangent=(X=-118.164963,Y=15.766738,Z=-6.352567),LeaveTangent=(X=-118.164963,Y=15.766738,Z=-6.352567),InterpMode=CIM_CurveAutoClamped),(InVal=1130.041382,OutVal=(X=432.935547,Y=-5310.164063,Z=131.781738),ArriveTangent=(X=-74.359489,Y=73.708572,Z=-3.617232),LeaveTangent=(X=-74.359489,Y=73.708572,Z=-3.617232),InterpMode=CIM_CurveAutoClamped),(InVal=1140.065552,OutVal=(X=-46.882813,Y=-4203.953125,Z=110.538574),ArriveTangent=(X=-29.548019,Y=107.913643,Z=-0.467309),LeaveTangent=(X=-29.548019,Y=107.913643,Z=-0.467309),InterpMode=CIM_CurveAutoClamped),(InVal=1150.016846,OutVal=(X=-219.796875,Y=-3154.539063,Z=108.450684),ArriveTangent=(X=0.000000,Y=85.965714,Z=0.000000),LeaveTangent=(X=0.000000,Y=85.965714,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1159.968018,OutVal=(X=226.261719,Y=-2493.023438,Z=164.814453),ArriveTangent=(X=50.710487,Y=0.000000,Z=4.919221),LeaveTangent=(X=50.710487,Y=0.000000,Z=4.919221),InterpMode=CIM_CurveAutoClamped),(InVal=1170.065552,OutVal=(X=796.882813,Y=-3018.500000,Z=207.074707),ArriveTangent=(X=0.000000,Y=-74.030273,Z=8.481642),LeaveTangent=(X=0.000000,Y=-74.030273,Z=8.481642),InterpMode=CIM_CurveAutoClamped),(InVal=1180.096924,OutVal=(X=743.154297,Y=-3983.171875,Z=429.282715),ArriveTangent=(X=-5.380384,Y=-65.881050,Z=15.094047),LeaveTangent=(X=-5.380384,Y=-65.881050,Z=15.094047),InterpMode=CIM_CurveAutoClamped),(InVal=1189.755493,OutVal=(X=690.943359,Y=-4382.320313,Z=520.419922),ArriveTangent=(X=0.000000,Y=-14.005732,Z=0.000000),LeaveTangent=(X=0.000000,Y=-14.005732,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1200.218872,OutVal=(X=1338.833008,Y=-4451.515625,Z=187.104492),ArriveTangent=(X=85.721680,Y=0.000000,Z=0.000000),LeaveTangent=(X=85.721680,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1209.731079,OutVal=(X=2403.284180,Y=-4430.695313,Z=230.942871),ArriveTangent=(X=93.885323,Y=5.040678,Z=5.880753),LeaveTangent=(X=93.885323,Y=5.040678,Z=5.880753),InterpMode=CIM_CurveAutoClamped),(InVal=1220.413940,OutVal=(X=3234.853516,Y=-3890.875000,Z=305.866699),ArriveTangent=(X=47.342922,Y=81.979797,Z=5.238694),LeaveTangent=(X=47.342922,Y=81.979797,Z=5.238694),InterpMode=CIM_CurveAutoClamped),(InVal=1230.024658,OutVal=(X=3504.628906,Y=-2739.382813,Z=339.705566),ArriveTangent=(X=0.000000,Y=92.532288,Z=0.000000),LeaveTangent=(X=0.000000,Y=92.532288,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1239.683228,OutVal=(X=2442.602539,Y=-2107.843750,Z=294.479980),ArriveTangent=(X=-44.813656,Y=0.000000,Z=-1.782165),LeaveTangent=(X=-44.813656,Y=0.000000,Z=-1.782165),InterpMode=CIM_CurveAutoClamped),(InVal=1250.000366,OutVal=(X=2213.507813,Y=-3381.054688,Z=285.532715),ArriveTangent=(X=-18.298529,Y=-138.521133,Z=-1.939568),LeaveTangent=(X=-18.298529,Y=-138.521133,Z=-1.939568),InterpMode=CIM_CurveAutoClamped),(InVal=1260.171021,OutVal=(X=2067.706055,Y=-4945.835938,Z=197.027832),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.003604),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.003604),InterpMode=CIM_CurveAutoClamped),(InVal=999.994385,OutVal=(X=-0.093384,Y=1.911621,Z=-10.821533),ArriveTangent=(X=-0.000361,Y=0.000000,Z=-0.005904),LeaveTangent=(X=-0.000361,Y=0.000000,Z=-0.005904),InterpMode=CIM_CurveAutoClamped),(InVal=1009.727905,OutVal=(X=-2.592773,Y=-1.455688,Z=-97.278442),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.465431),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.465431),InterpMode=CIM_CurveAutoClamped),(InVal=1019.971802,OutVal=(X=-2.532349,Y=2.713623,Z=-103.716431),ArriveTangent=(X=0.003713,Y=0.000000,Z=-0.466598),LeaveTangent=(X=0.003713,Y=0.000000,Z=-0.466598),InterpMode=CIM_CurveAutoClamped),(InVal=1029.894897,OutVal=(X=-2.510376,Y=0.560303,Z=-106.787109),ArriveTangent=(X=0.004736,Y=-0.141440,Z=-0.531048),LeaveTangent=(X=0.004736,Y=-0.141440,Z=-0.531048),InterpMode=CIM_CurveAutoClamped),(InVal=1040.211914,OutVal=(X=-2.334595,Y=-0.318604,Z=-115.911255),ArriveTangent=(X=0.040757,Y=-0.084628,Z=-1.936895),LeaveTangent=(X=0.040757,Y=-0.084628,Z=-1.936895),InterpMode=CIM_CurveAutoClamped),(InVal=1050.016846,OutVal=(X=1.065674,Y=-1.142578,Z=-185.163574),InterpMode=CIM_CurveAutoClamped),(InVal=1060.407104,OutVal=(X=-1.664429,Y=1.021729,Z=-135.884399),InterpMode=CIM_CurveAutoClamped),(InVal=1070.504639,OutVal=(X=0.192261,Y=-1.560059,Z=-171.699829),ArriveTangent=(X=0.222513,Y=0.000000,Z=-4.211436),LeaveTangent=(X=0.222513,Y=0.000000,Z=-4.211436),InterpMode=CIM_CurveAutoClamped),(InVal=1079.934448,OutVal=(X=2.680664,Y=-1.104126,Z=-218.122559),ArriveTangent=(X=0.000000,Y=0.085186,Z=-0.078137),LeaveTangent=(X=0.000000,Y=0.085186,Z=-0.078137),InterpMode=CIM_CurveAutoClamped),(InVal=1090.105225,OutVal=(X=2.675171,Y=0.444946,Z=-218.435669),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.076633),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.076633),InterpMode=CIM_CurveAutoClamped),(InVal=1100.056396,OutVal=(X=3.647461,Y=-2.048950,Z=-250.977173),ArriveTangent=(X=0.000000,Y=-0.002835,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.002835,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1109.568604,OutVal=(X=2.471924,Y=-2.059937,Z=-214.925537),InterpMode=CIM_CurveAutoClamped),(InVal=1119.519775,OutVal=(X=3.680420,Y=0.933838,Z=-273.609009),ArriveTangent=(X=0.000000,Y=0.306685,Z=-5.089409),LeaveTangent=(X=0.000000,Y=0.306685,Z=-5.089409),InterpMode=CIM_CurveAutoClamped),(InVal=1130.041382,OutVal=(X=2.373047,Y=4.218750,Z=-319.119873),InterpMode=CIM_CurveAutoClamped),(InVal=1140.065552,OutVal=(X=3.010254,Y=1.444702,Z=-303.601685),InterpMode=CIM_CurveAutoClamped),(InVal=1150.016846,OutVal=(X=0.340576,Y=3.966064,Z=-356.050415),ArriveTangent=(X=-0.271588,Y=0.279040,Z=-5.317773),LeaveTangent=(X=-0.271588,Y=0.279040,Z=-5.317773),InterpMode=CIM_CurveAutoClamped),(InVal=1159.968018,OutVal=(X=-2.395020,Y=6.998291,Z=-409.438477),InterpMode=CIM_CurveAutoClamped),(InVal=1170.065552,OutVal=(X=-2.263184,Y=1.329346,Z=-405.499878),ArriveTangent=(X=0.030175,Y=0.000000,Z=0.867808),LeaveTangent=(X=0.030175,Y=0.000000,Z=0.867808),InterpMode=CIM_CurveAutoClamped),(InVal=1180.096924,OutVal=(X=-0.368042,Y=8.371582,Z=-367.437744),ArriveTangent=(X=0.185245,Y=0.000000,Z=3.492591),LeaveTangent=(X=0.185245,Y=0.000000,Z=3.492591),InterpMode=CIM_CurveAutoClamped),(InVal=1189.755493,OutVal=(X=1.384277,Y=5.042725,Z=-336.730957),ArriveTangent=(X=0.000000,Y=-0.491389,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.491389,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1200.218872,OutVal=(X=0.840454,Y=-1.516113,Z=-345.997925),InterpMode=CIM_CurveAutoClamped),(InVal=1209.731079,OutVal=(X=3.422241,Y=2.515869,Z=-281.200562),ArriveTangent=(X=0.000000,Y=0.000000,Z=4.397669),LeaveTangent=(X=0.000000,Y=0.000000,Z=4.397669),InterpMode=CIM_CurveAutoClamped),(InVal=1220.413940,OutVal=(X=3.394775,Y=0.878906,Z=-253.322754),ArriveTangent=(X=-0.006552,Y=-0.204638,Z=4.340504),LeaveTangent=(X=-0.006552,Y=-0.204638,Z=4.340504),InterpMode=CIM_CurveAutoClamped),(InVal=1230.024658,OutVal=(X=0.884399,Y=-1.636963,Z=-189.959106),ArriveTangent=(X=-0.337812,Y=0.000000,Z=7.677031),LeaveTangent=(X=-0.337812,Y=0.000000,Z=7.677031),InterpMode=CIM_CurveAutoClamped),(InVal=1239.683228,OutVal=(X=-3.114624,Y=1.560059,Z=-105.391846),ArriveTangent=(X=-0.041309,Y=0.000000,Z=2.047139),LeaveTangent=(X=-0.041309,Y=0.000000,Z=2.047139),InterpMode=CIM_CurveAutoClamped),(InVal=1250.000366,OutVal=(X=-3.290405,Y=-3.186035,Z=-96.009521),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.995416),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.995416),InterpMode=CIM_CurveAutoClamped),(InVal=1260.171021,OutVal=(X=-1.175537,Y=2.598267,Z=-16.792603),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=999.994385),(Time=1009.727905),(Time=1019.971802),(Time=1029.894897),(Time=1040.211914),(Time=1050.016846),(Time=1060.407104),(Time=1070.504639),(Time=1079.934448),(Time=1090.105225),(Time=1100.056396),(Time=1109.568604),(Time=1119.519775),(Time=1130.041382),(Time=1140.065552),(Time=1150.016846),(Time=1159.968018),(Time=1170.065552),(Time=1180.096924),(Time=1189.755493),(Time=1200.218872),(Time=1209.731079),(Time=1220.413940),(Time=1230.024658),(Time=1239.683228),(Time=1250.000366),(Time=1260.171021)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_8.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_8.InterpTrackFloatProp_1'
-      GroupName="Space"
-      GroupColor=(B=0,G=233,R=0,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_9
-      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
-         PropertyName="FOVAngle"
-         TrackTitle="FOVAngle"
-         Name="InterpTrackFloatProp_1"
-         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),InterpMode=CIM_CurveAutoClamped),(InVal=117.250160,OutVal=(X=450.662109,Y=26.914551,Z=-26.105713),ArriveTangent=(X=9.926598,Y=0.305487,Z=2.243237),LeaveTangent=(X=9.926598,Y=0.305487,Z=2.243237),InterpMode=CIM_CurveAutoClamped),(InVal=124.930298,OutVal=(X=1092.299805,Y=36.397949,Z=45.529663),ArriveTangent=(X=77.586830,Y=0.000000,Z=1.977528),LeaveTangent=(X=77.586830,Y=0.000000,Z=1.977528),InterpMode=CIM_CurveAutoClamped),(InVal=131.611816,OutVal=(X=1564.937500,Y=-653.756836,Z=51.644104),ArriveTangent=(X=127.634895,Y=0.000000,Z=1.996410),LeaveTangent=(X=127.634895,Y=0.000000,Z=1.996410),InterpMode=CIM_CurveAutoClamped),(InVal=138.607849,OutVal=(X=3234.224609,Y=-517.143555,Z=109.864197),ArriveTangent=(X=304.754211,Y=0.000000,Z=14.888535),LeaveTangent=(X=304.754211,Y=0.000000,Z=14.888535),InterpMode=CIM_CurveAutoClamped),(InVal=143.546204,OutVal=(X=5201.992188,Y=-1010.552734,Z=231.645355),ArriveTangent=(X=237.364563,Y=-76.312019,Z=10.361844),LeaveTangent=(X=237.364563,Y=-76.312019,Z=10.361844),InterpMode=CIM_CurveAutoClamped),(InVal=149.101837,OutVal=(X=5950.166992,Y=-1317.960938,Z=260.137329),ArriveTangent=(X=0.000000,Y=-117.267174,Z=2.918103),LeaveTangent=(X=0.000000,Y=-117.267174,Z=2.918103),InterpMode=CIM_CurveAutoClamped),(InVal=153.834442,OutVal=(X=5622.102539,Y=-2848.370117,Z=268.158722),ArriveTangent=(X=-125.723778,Y=-30.412750,Z=0.000000),LeaveTangent=(X=-125.723778,Y=-30.412750,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=157.949738,OutVal=(X=4707.178711,Y=-2902.944336,Z=225.194855),ArriveTangent=(X=-65.526398,Y=-30.279022,Z=-4.626047),LeaveTangent=(X=-65.526398,Y=-30.279022,Z=-4.626047),InterpMode=CIM_CurveAutoClamped),(InVal=162.682343,OutVal=(X=4566.625977,Y=-4292.522949,Z=214.222809),ArriveTangent=(X=0.000000,Y=-248.531982,Z=0.000000),LeaveTangent=(X=0.000000,Y=-248.531982,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=168.649536,OutVal=(X=5447.798828,Y=-5562.186523,Z=244.159058),ArriveTangent=(X=52.320446,Y=-182.479721,Z=0.649765),LeaveTangent=(X=52.320446,Y=-182.479721,Z=0.649765),InterpMode=CIM_CurveAutoClamped),(InVal=174.616730,OutVal=(X=5599.283203,Y=-6470.306641,Z=245.812988),ArriveTangent=(X=0.000000,Y=-296.391357,Z=0.000000),LeaveTangent=(X=0.000000,Y=-296.391357,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=179.760834,OutVal=(X=3549.281250,Y=-9662.076172,Z=104.594604),ArriveTangent=(X=-341.135986,Y=0.000000,Z=-22.544201),LeaveTangent=(X=-341.135986,Y=0.000000,Z=-22.544201),InterpMode=CIM_CurveAutoClamped),(InVal=184.287689,OutVal=(X=2300.170898,Y=-9492.574219,Z=27.788940),ArriveTangent=(X=0.000000,Y=83.395050,Z=0.000000),LeaveTangent=(X=0.000000,Y=83.395050,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=189.020264,OutVal=(X=2518.424805,Y=-7549.339844,Z=903.282959),ArriveTangent=(X=0.000000,Y=10.986206,Z=0.000000),LeaveTangent=(X=0.000000,Y=10.986206,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=192.929810,OutVal=(X=2284.866211,Y=-7530.908203,Z=47.551880),ArriveTangent=(X=-105.782784,Y=9.765820,Z=-8.769005),LeaveTangent=(X=-105.782784,Y=9.765820,Z=-8.769005),InterpMode=CIM_CurveAutoClamped),(InVal=198.897003,OutVal=(X=840.439453,Y=-7077.292969,Z=28.516968),ArriveTangent=(X=-258.124115,Y=73.560707,Z=0.000000),LeaveTangent=(X=-258.124115,Y=73.560707,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=203.629578,OutVal=(X=-477.001953,Y=-6743.825684,Z=167.378082),ArriveTangent=(X=0.000000,Y=78.684586,Z=50.950260),LeaveTangent=(X=0.000000,Y=78.684586,Z=50.950260),InterpMode=CIM_CurveAutoClamped),(InVal=207.744904,OutVal=(X=732.088867,Y=-6381.099609,Z=507.940247),ArriveTangent=(X=232.859695,Y=135.552734,Z=0.000000),LeaveTangent=(X=232.859695,Y=135.552734,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=213.506317,OutVal=(X=1822.892578,Y=-5216.822266,Z=367.373871),ArriveTangent=(X=193.199738,Y=0.000000,Z=-41.985058),LeaveTangent=(X=193.199738,Y=0.000000,Z=-41.985058),InterpMode=CIM_CurveAutoClamped),(InVal=216.592865,OutVal=(X=2441.512695,Y=-5285.136230,Z=136.458069),ArriveTangent=(X=0.000000,Y=-35.256062,Z=-18.110413),LeaveTangent=(X=0.000000,Y=-35.256062,Z=-18.110413),InterpMode=CIM_CurveAutoClamped),(InVal=224.823486,OutVal=(X=2349.810547,Y=-6124.228027,Z=78.765442),ArriveTangent=(X=0.000000,Y=-103.620544,Z=0.000000),LeaveTangent=(X=0.000000,Y=-103.620544,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=228.733032,OutVal=(X=3691.974609,Y=-6543.106934,Z=183.486572),ArriveTangent=(X=233.312927,Y=-88.420097,Z=14.443716),LeaveTangent=(X=233.312927,Y=-88.420097,Z=14.443716),InterpMode=CIM_CurveAutoClamped),(InVal=234.082916,OutVal=(X=4510.155273,Y=-6942.947754,Z=224.312500),ArriveTangent=(X=0.000000,Y=-59.249073,Z=0.000000),LeaveTangent=(X=0.000000,Y=-59.249073,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=240.050110,OutVal=(X=3027.366211,Y=-7213.633301,Z=116.726501),ArriveTangent=(X=-205.801041,Y=0.000000,Z=-12.221529),LeaveTangent=(X=-205.801041,Y=0.000000,Z=-12.221529),InterpMode=CIM_CurveAutoClamped),(InVal=245.399994,OutVal=(X=2181.088867,Y=-6591.644043,Z=75.570740),ArriveTangent=(X=-19.065994,Y=142.859818,Z=-2.359401),LeaveTangent=(X=-19.065994,Y=142.859818,Z=-2.359401),InterpMode=CIM_CurveAutoClamped),(InVal=249.926819,OutVal=(X=2142.660156,Y=-5802.648438,Z=70.327515),ArriveTangent=(X=-20.524887,Y=49.853874,Z=-2.249007),LeaveTangent=(X=-20.524887,Y=49.853874,Z=-2.249007),InterpMode=CIM_CurveAutoClamped),(InVal=254.042114,OutVal=(X=1437.579102,Y=-5704.904297,Z=50.628845),ArriveTangent=(X=-177.517609,Y=0.000000,Z=-8.132931),LeaveTangent=(X=-177.517609,Y=0.000000,Z=-8.132931),InterpMode=CIM_CurveAutoClamped),(InVal=259.186249,OutVal=(X=498.948242,Y=-6219.321289,Z=-22.742859),InterpMode=CIM_CurveAutoClamped),(InVal=263.095795,OutVal=(X=605.507813,Y=-4555.432129,Z=-4.698181),InterpMode=CIM_CurveAutoClamped),(InVal=268.239929,OutVal=(X=-852.430664,Y=-5116.034180,Z=-103.583374),ArriveTangent=(X=-243.622177,Y=-71.759521,Z=-14.635765),LeaveTangent=(X=-243.622177,Y=-71.759521,Z=-14.635765),InterpMode=CIM_CurveAutoClamped),(InVal=272.149445,OutVal=(X=-1600.162109,Y=-5294.566895,Z=-143.515320),ArriveTangent=(X=-140.431519,Y=-104.707809,Z=-10.088140),LeaveTangent=(X=-140.431519,Y=-104.707809,Z=-10.088140),InterpMode=CIM_CurveAutoClamped),(InVal=275.647461,OutVal=(X=-1926.352539,Y=-6952.006348,Z=-178.311584),ArriveTangent=(X=0.000000,Y=-53.755890,Z=0.000000),LeaveTangent=(X=0.000000,Y=-53.755890,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=279.762756,OutVal=(X=-1087.046875,Y=-7041.597168,Z=-116.483704),ArriveTangent=(X=91.590187,Y=-42.870338,Z=2.745455),LeaveTangent=(X=91.590187,Y=-42.870338,Z=2.745455),InterpMode=CIM_CurveAutoClamped),(InVal=283.878082,OutVal=(X=-892.364258,Y=-7457.461914,Z=-111.525085),InterpMode=CIM_CurveAutoClamped),(InVal=289.845245,OutVal=(X=-2860.203125,Y=-7237.351563,Z=-236.233398),ArriveTangent=(X=-167.514755,Y=77.846878,Z=-6.858957),LeaveTangent=(X=-167.514755,Y=77.846878,Z=-6.858957),InterpMode=CIM_CurveAutoClamped),(InVal=294.372101,OutVal=(X=-3292.373047,Y=-6350.577148,Z=-252.104187),ArriveTangent=(X=0.000000,Y=176.298996,Z=0.000000),LeaveTangent=(X=0.000000,Y=176.298996,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=299.721985,OutVal=(X=-2462.937500,Y=-5496.092285,Z=-192.867126),ArriveTangent=(X=148.485611,Y=206.354645,Z=10.387137),LeaveTangent=(X=148.485611,Y=206.354645,Z=10.387137),InterpMode=CIM_CurveAutoClamped),(InVal=302.808472,OutVal=(X=-2039.693359,Y=-4609.692871,Z=-164.261292),ArriveTangent=(X=148.214005,Y=53.819805,Z=10.314590),LeaveTangent=(X=148.214005,Y=53.819805,Z=10.314590),InterpMode=CIM_CurveAutoClamped),(InVal=310.421783,OutVal=(X=-844.668945,Y=-4457.789063,Z=-78.836792),ArriveTangent=(X=169.036072,Y=42.427498,Z=11.267918),LeaveTangent=(X=169.036072,Y=42.427498,Z=11.267918),InterpMode=CIM_CurveAutoClamped),(InVal=314.537079,OutVal=(X=-57.135742,Y=-4055.339844,Z=-32.104309),ArriveTangent=(X=0.000000,Y=147.839890,Z=0.000000),LeaveTangent=(X=0.000000,Y=147.839890,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=318.652374,OutVal=(X=-422.723633,Y=-3236.711914,Z=-50.154968),ArriveTangent=(X=-158.596558,Y=221.839676,Z=-6.384827),LeaveTangent=(X=-158.596558,Y=221.839676,Z=-6.384827),InterpMode=CIM_CurveAutoClamped),(InVal=322.150391,OutVal=(X=-1367.271484,Y=-2366.405273,Z=-80.713989),ArriveTangent=(X=-233.161484,Y=231.296143,Z=-9.955895),LeaveTangent=(X=-233.161484,Y=231.296143,Z=-9.955895),InterpMode=CIM_CurveAutoClamped),(InVal=325.683868,OutVal=(X=-2062.197266,Y=-1610.354492,Z=-120.159790),ArriveTangent=(X=-129.685410,Y=117.636002,Z=-6.764596),LeaveTangent=(X=-129.685410,Y=117.636002,Z=-6.764596),InterpMode=CIM_CurveAutoClamped),(InVal=331.856842,OutVal=(X=-2626.056641,Y=-1224.577148,Z=-146.374207),ArriveTangent=(X=0.000000,Y=115.914452,Z=-3.070601),LeaveTangent=(X=0.000000,Y=115.914452,Z=-3.070601),InterpMode=CIM_CurveAutoClamped),(InVal=336.795197,OutVal=(X=-2197.416016,Y=-186.353516,Z=-156.495728),ArriveTangent=(X=151.541565,Y=0.000000,Z=0.000000),LeaveTangent=(X=151.541565,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=342.350861,OutVal=(X=-696.990234,Y=-747.451172,Z=-51.099670),ArriveTangent=(X=253.725281,Y=0.000000,Z=15.853907),LeaveTangent=(X=253.725281,Y=0.000000,Z=15.853907),InterpMode=CIM_CurveAutoClamped),(InVal=348.729584,OutVal=(X=830.639648,Y=-303.416992,Z=32.710938),ArriveTangent=(X=52.448265,Y=0.000000,Z=8.646357),LeaveTangent=(X=52.448265,Y=0.000000,Z=8.646357),InterpMode=CIM_CurveAutoClamped),(InVal=353.667969,OutVal=(X=954.893555,Y=-916.057617,Z=59.783447),ArriveTangent=(X=0.000000,Y=-227.017548,Z=0.000000),LeaveTangent=(X=0.000000,Y=-227.017548,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=357.165985,OutVal=(X=650.614258,Y=-2286.112305,Z=39.467285),ArriveTangent=(X=-153.665253,Y=-222.168076,Z=-10.228606),LeaveTangent=(X=-153.665253,Y=-222.168076,Z=-10.228606),InterpMode=CIM_CurveAutoClamped),(InVal=361.281281,OutVal=(X=-535.207031,Y=-2789.468750,Z=-38.840027),ArriveTangent=(X=-255.571793,Y=-120.497772,Z=-14.763859),LeaveTangent=(X=-255.571793,Y=-120.497772,Z=-14.763859),InterpMode=CIM_CurveAutoClamped),(InVal=367.248474,OutVal=(X=-1926.185547,Y=-3501.029785,Z=-109.389160),ArriveTangent=(X=-274.048187,Y=-139.233902,Z=-18.580254),LeaveTangent=(X=-274.048187,Y=-139.233902,Z=-18.580254),InterpMode=CIM_CurveAutoClamped),(InVal=371.363770,OutVal=(X=-3298.294922,Y=-4193.292969,Z=-226.175232),ArriveTangent=(X=-201.423111,Y=-258.491913,Z=-12.341852),LeaveTangent=(X=-201.423111,Y=-258.491913,Z=-12.341852),InterpMode=CIM_CurveAutoClamped),(InVal=376.302155,OutVal=(X=-3862.515625,Y=-6010.708496,Z=-256.319397),ArriveTangent=(X=-103.705513,Y=-486.118134,Z=-6.691829),LeaveTangent=(X=-103.705513,Y=-486.118134,Z=-6.691829),InterpMode=CIM_CurveAutoClamped),(InVal=380.623199,OutVal=(X=-4258.548828,Y=-8694.469727,Z=-288.137756),ArriveTangent=(X=0.000000,Y=-272.392426,Z=0.000000),LeaveTangent=(X=0.000000,Y=-272.392426,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=384.326996,OutVal=(X=-565.551758,Y=-9229.068359,Z=31.334900),ArriveTangent=(X=851.342041,Y=-112.402512,Z=12.534073),LeaveTangent=(X=851.342041,Y=-112.402512,Z=12.534073),InterpMode=CIM_CurveAutoClamped),(InVal=387.619232,OutVal=(X=1697.467773,Y=-9486.625000,Z=49.673767),InterpMode=CIM_CurveAutoClamped),(InVal=399.879486,OutVal=(X=1539.939453,Y=-8564.601563,Z=11.836670),ArriveTangent=(X=0.000000,Y=162.548584,Z=0.000000),LeaveTangent=(X=0.000000,Y=162.548584,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=408.583649,OutVal=(X=2506.164063,Y=-4831.285156,Z=100.211243),ArriveTangent=(X=0.000000,Y=163.438446,Z=0.000000),LeaveTangent=(X=0.000000,Y=163.438446,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=416.263794,OutVal=(X=-225.986328,Y=-4194.052246,Z=-53.446411),ArriveTangent=(X=-61.555054,Y=0.000000,Z=-10.379374),LeaveTangent=(X=-61.555054,Y=0.000000,Z=-10.379374),InterpMode=CIM_CurveAutoClamped),(InVal=425.991974,OutVal=(X=-472.447266,Y=-6953.550781,Z=-106.333374),ArriveTangent=(X=0.000000,Y=-219.088058,Z=0.000000),LeaveTangent=(X=0.000000,Y=-219.088058,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=432.648102,OutVal=(X=-417.799805,Y=-7999.023438,Z=-91.739380),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),ArriveTangent=(X=0.015882,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.015882,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=117.250160,OutVal=(X=1.263428,Y=6.064453,Z=5.745850),InterpMode=CIM_CurveAutoClamped),(InVal=124.930298,OutVal=(X=0.401001,Y=4.273682,Z=-4.185791),ArriveTangent=(X=-0.060887,Y=-0.198894,Z=-0.793406),LeaveTangent=(X=-0.060887,Y=-0.198894,Z=-0.793406),InterpMode=CIM_CurveAutoClamped),(InVal=131.611816,OutVal=(X=0.170288,Y=3.208008,Z=-7.360840),ArriveTangent=(X=-0.077223,Y=-0.266706,Z=-1.116044),LeaveTangent=(X=-0.077223,Y=-0.266706,Z=-1.116044),InterpMode=CIM_CurveAutoClamped),(InVal=138.607849,OutVal=(X=-2.603760,Y=0.247192,Z=-84.721069),ArriveTangent=(X=0.000000,Y=-0.235914,Z=-6.596871),LeaveTangent=(X=0.000000,Y=-0.235914,Z=-6.596871),InterpMode=CIM_CurveAutoClamped),(InVal=143.546204,OutVal=(X=-2.460938,Y=-0.450439,Z=-104.776611),ArriveTangent=(X=0.043535,Y=0.000000,Z=-3.059090),LeaveTangent=(X=0.043535,Y=0.000000,Z=-3.059090),InterpMode=CIM_CurveAutoClamped),(InVal=149.101837,OutVal=(X=-2.131348,Y=1.153564,Z=-116.823120),ArriveTangent=(X=0.134932,Y=0.000000,Z=-4.484375),LeaveTangent=(X=0.134932,Y=0.000000,Z=-4.484375),InterpMode=CIM_CurveAutoClamped),(InVal=153.834442,OutVal=(X=0.390015,Y=-1.944580,Z=-170.134277),InterpMode=CIM_CurveAutoClamped),(InVal=157.949738,OutVal=(X=-1.483154,Y=0.241699,Z=-135.543823),ArriveTangent=(X=-0.317872,Y=0.505988,Z=11.330400),LeaveTangent=(X=-0.317872,Y=0.505988,Z=11.330400),InterpMode=CIM_CurveAutoClamped),(InVal=162.682343,OutVal=(X=-2.422485,Y=2.532349,Z=-69.884033),InterpMode=CIM_CurveAutoClamped),(InVal=168.649536,OutVal=(X=-0.230713,Y=-0.598755,Z=-160.136719),ArriveTangent=(X=0.272076,Y=0.000000,Z=-6.177631),LeaveTangent=(X=0.272076,Y=0.000000,Z=-6.177631),InterpMode=CIM_CurveAutoClamped),(InVal=174.616730,OutVal=(X=0.840454,Y=-0.582275,Z=-178.659668),ArriveTangent=(X=0.259548,Y=0.007158,Z=-4.720801),LeaveTangent=(X=0.259548,Y=0.007158,Z=-4.720801),InterpMode=CIM_CurveAutoClamped),(InVal=179.760834,OutVal=(X=2.653198,Y=1.790771,Z=-212.590942),ArriveTangent=(X=0.304451,Y=0.946521,Z=-11.068894),LeaveTangent=(X=0.304451,Y=0.946521,Z=-11.068894),InterpMode=CIM_CurveAutoClamped),(InVal=184.287689,OutVal=(X=3.784790,Y=12.480469,Z=-289.506226),InterpMode=CIM_CurveAutoClamped),(InVal=189.020264,OutVal=(X=3.175049,Y=-9.865723,Z=-225.900879),ArriveTangent=(X=-0.175433,Y=0.000000,Z=8.777944),LeaveTangent=(X=-0.175433,Y=0.000000,Z=8.777944),InterpMode=CIM_CurveAutoClamped),(InVal=192.929810,OutVal=(X=2.268677,Y=-0.615234,Z=-204.477539),ArriveTangent=(X=-0.169076,Y=0.501679,Z=3.855383),LeaveTangent=(X=-0.169076,Y=0.501679,Z=3.855383),InterpMode=CIM_CurveAutoClamped),(InVal=198.897003,OutVal=(X=1.505127,Y=0.598755,Z=-187.822266),ArriveTangent=(X=0.000000,Y=0.478042,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.478042,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=203.629578,OutVal=(X=2.098389,Y=10.601807,Z=-337.796631),ArriveTangent=(X=0.246522,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.246522,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=207.744904,OutVal=(X=4.290161,Y=6.745605,Z=-276.267700),ArriveTangent=(X=0.000000,Y=-1.596021,Z=0.000000),LeaveTangent=(X=0.000000,Y=-1.596021,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=213.506317,OutVal=(X=3.510132,Y=-10.530396,Z=-306.199951),ArriveTangent=(X=-0.352535,Y=0.000000,Z=-12.906224),LeaveTangent=(X=-0.352535,Y=0.000000,Z=-12.906224),InterpMode=CIM_CurveAutoClamped),(InVal=216.592865,OutVal=(X=-2.373047,Y=-3.125610,Z=-467.023315),ArriveTangent=(X=0.000000,Y=1.412465,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.412465,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=224.823486,OutVal=(X=-0.384521,Y=5.454712,Z=-376.759644),ArriveTangent=(X=0.373747,Y=0.000000,Z=11.868509),LeaveTangent=(X=0.373747,Y=0.000000,Z=11.868509),InterpMode=CIM_CurveAutoClamped),(InVal=228.733032,OutVal=(X=2.164307,Y=3.383789,Z=-322.937622),ArriveTangent=(X=0.000000,Y=-0.920982,Z=20.112997),LeaveTangent=(X=0.000000,Y=-0.920982,Z=20.112997),InterpMode=CIM_CurveAutoClamped),(InVal=234.082916,OutVal=(X=-0.142822,Y=-6.295166,Z=-176.467896),ArriveTangent=(X=-0.365982,Y=0.000000,Z=13.764536),LeaveTangent=(X=-0.365982,Y=0.000000,Z=13.764536),InterpMode=CIM_CurveAutoClamped),(InVal=240.050110,OutVal=(X=-1.977539,Y=-0.499878,Z=-133.209229),ArriveTangent=(X=0.000000,Y=0.735653,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.735653,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=245.399994,OutVal=(X=3.790283,Y=2.175293,Z=-273.339844),InterpMode=CIM_CurveAutoClamped),(InVal=249.926819,OutVal=(X=1.120605,Y=-2.427979,Z=-188.360596),ArriveTangent=(X=-0.666137,Y=0.000000,Z=17.078024),LeaveTangent=(X=-0.666137,Y=0.000000,Z=17.078024),InterpMode=CIM_CurveAutoClamped),(InVal=254.042114,OutVal=(X=-1.966553,Y=-0.203247,Z=-125.749512),ArriveTangent=(X=0.000000,Y=0.515535,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.515535,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=259.186249,OutVal=(X=3.938599,Y=2.345581,Z=-284.468994),InterpMode=CIM_CurveAutoClamped),(InVal=263.095795,OutVal=(X=0.087891,Y=-4.982300,Z=-165.706787),InterpMode=CIM_CurveAutoClamped),(InVal=268.239929,OutVal=(X=1.071167,Y=-2.340088,Z=-175.808716),ArriveTangent=(X=0.000000,Y=0.531500,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.531500,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=272.149445,OutVal=(X=-2.103882,Y=-0.170288,Z=-105.249023),ArriveTangent=(X=0.000000,Y=0.881413,Z=22.753429),LeaveTangent=(X=0.000000,Y=0.881413,Z=22.753429),InterpMode=CIM_CurveAutoClamped),(InVal=275.647461,OutVal=(X=0.499878,Y=4.196777,Z=-7.261963),ArriveTangent=(X=0.000000,Y=0.147906,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.147906,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=279.762756,OutVal=(X=0.247192,Y=4.443970,Z=-10.195313),InterpMode=CIM_CurveAutoClamped),(InVal=283.878082,OutVal=(X=1.790771,Y=-3.867188,Z=169.085083),ArriveTangent=(X=0.393362,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.393362,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=289.845245,OutVal=(X=4.213257,Y=-1.170044,Z=86.973267),ArriveTangent=(X=0.000000,Y=0.878684,Z=-4.112995),LeaveTangent=(X=0.000000,Y=0.878684,Z=-4.112995),InterpMode=CIM_CurveAutoClamped),(InVal=294.372101,OutVal=(X=4.119873,Y=6.740112,Z=77.607422),ArriveTangent=(X=-0.043299,Y=0.000000,Z=-3.349101),LeaveTangent=(X=-0.043299,Y=0.000000,Z=-3.349101),InterpMode=CIM_CurveAutoClamped),(InVal=299.721985,OutVal=(X=3.202515,Y=5.784302,Z=49.850464),ArriveTangent=(X=-0.383661,Y=0.000000,Z=-10.090573),LeaveTangent=(X=-0.383661,Y=0.000000,Z=-10.090573),InterpMode=CIM_CurveAutoClamped),(InVal=302.808472,OutVal=(X=-0.010986,Y=5.822754,Z=-9.266968),ArriveTangent=(X=-0.458970,Y=0.000000,Z=-8.595167),LeaveTangent=(X=-0.458970,Y=0.000000,Z=-8.595167),InterpMode=CIM_CurveAutoClamped),(InVal=310.421783,OutVal=(X=-1.708374,Y=4.641724,Z=-42.116089),ArriveTangent=(X=0.000000,Y=-0.380475,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.380475,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=314.537079,OutVal=(X=3.938599,Y=-1.318359,Z=103.496704),ArriveTangent=(X=0.000000,Y=0.000000,Z=3.018870),LeaveTangent=(X=0.000000,Y=0.000000,Z=3.018870),InterpMode=CIM_CurveAutoClamped),(InVal=318.652374,OutVal=(X=3.806763,Y=-1.131592,Z=108.676758),ArriveTangent=(X=-0.038962,Y=0.113180,Z=0.552901),LeaveTangent=(X=-0.038962,Y=0.113180,Z=0.552901),InterpMode=CIM_CurveAutoClamped),(InVal=322.150391,OutVal=(X=3.641968,Y=3.015747,Z=109.703979),ArriveTangent=(X=-0.107552,Y=0.801961,Z=0.000000),LeaveTangent=(X=-0.107552,Y=0.801961,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=325.683868,OutVal=(X=1.461182,Y=4.768066,Z=23.856812),InterpMode=CIM_CurveAutoClamped),(InVal=331.856842,OutVal=(X=3.251953,Y=2.532349,Z=65.588379),ArriveTangent=(X=0.000000,Y=-0.352984,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.352984,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=336.795197,OutVal=(X=-2.092896,Y=0.845947,Z=-40.836182),InterpMode=CIM_CurveAutoClamped),(InVal=342.350861,OutVal=(X=0.351563,Y=6.031494,Z=5.191040),InterpMode=CIM_CurveAutoClamped),(InVal=348.729584,OutVal=(X=-3.087158,Y=-2.340088,Z=-98.503418),ArriveTangent=(X=-0.025174,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.025174,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=353.667969,OutVal=(X=-3.142090,Y=0.499878,Z=-81.875610),InterpMode=CIM_CurveAutoClamped),(InVal=357.165985,OutVal=(X=-0.373535,Y=-1.922607,Z=-167.255859),ArriveTangent=(X=0.125332,Y=-0.293004,Z=-1.766309),LeaveTangent=(X=0.125332,Y=-0.293004,Z=-1.766309),InterpMode=CIM_CurveAutoClamped),(InVal=361.281281,OutVal=(X=-0.159302,Y=-2.515869,Z=-170.134277),ArriveTangent=(X=0.000000,Y=-0.021096,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.021096,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=367.248474,OutVal=(X=-1.955566,Y=-2.565308,Z=-134.203491),ArriveTangent=(X=-0.248617,Y=0.000000,Z=7.307701),LeaveTangent=(X=-0.248617,Y=0.000000,Z=7.307701),InterpMode=CIM_CurveAutoClamped),(InVal=371.363770,OutVal=(X=-2.730103,Y=-0.109863,Z=-96.454468),ArriveTangent=(X=0.000000,Y=0.447162,Z=9.694982),LeaveTangent=(X=0.000000,Y=0.447162,Z=9.694982),InterpMode=CIM_CurveAutoClamped),(InVal=376.302155,OutVal=(X=-1.944580,Y=1.483154,Z=-46.428223),ArriveTangent=(X=0.277210,Y=0.242191,Z=9.793977),LeaveTangent=(X=0.277210,Y=0.242191,Z=9.793977),InterpMode=CIM_CurveAutoClamped),(InVal=380.623199,OutVal=(X=0.016479,Y=2.191772,Z=-5.767822),ArriveTangent=(X=0.683151,Y=0.309752,Z=14.470752),LeaveTangent=(X=0.683151,Y=0.309752,Z=14.470752),InterpMode=CIM_CurveAutoClamped),(InVal=384.326996,OutVal=(X=3.537598,Y=4.405518,Z=69.697266),InterpMode=CIM_CurveAutoClamped),(InVal=387.619232,OutVal=(X=3.328857,Y=2.246704,Z=66.033325),ArriveTangent=(X=0.000000,Y=-0.334482,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.334482,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=399.879486,OutVal=(X=3.658447,Y=-0.796509,Z=91.175537),ArriveTangent=(X=0.000000,Y=-0.222458,Z=4.130861),LeaveTangent=(X=0.000000,Y=-0.222458,Z=4.130861),InterpMode=CIM_CurveAutoClamped),(InVal=408.583649,OutVal=(X=1.159058,Y=-2.416992,Z=167.810669),ArriveTangent=(X=-0.405006,Y=0.000000,Z=10.039990),LeaveTangent=(X=-0.405006,Y=0.000000,Z=10.039990),InterpMode=CIM_CurveAutoClamped),(InVal=416.263794,OutVal=(X=-2.977295,Y=-0.225220,Z=255.673828),ArriveTangent=(X=-0.043419,Y=0.136862,Z=2.980090),LeaveTangent=(X=-0.043419,Y=0.136862,Z=2.980090),InterpMode=CIM_CurveAutoClamped),(InVal=425.991974,OutVal=(X=-3.142090,Y=0.450439,Z=268.269653),ArriveTangent=(X=0.000000,Y=0.158578,Z=3.176451),LeaveTangent=(X=0.000000,Y=0.158578,Z=3.176451),InterpMode=CIM_CurveAutoClamped),(InVal=432.648102,OutVal=(X=0.565796,Y=3.834229,Z=370.382080),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=117.250160),(Time=124.930298),(Time=131.611816),(Time=138.607849),(Time=143.546204),(Time=149.101837),(Time=153.834442),(Time=157.949738),(Time=162.682343),(Time=168.649536),(Time=174.616730),(Time=179.760834),(Time=184.287689),(Time=189.020264),(Time=192.929810),(Time=198.897003),(Time=203.629578),(Time=207.744904),(Time=213.506317),(Time=216.592865),(Time=224.823486),(Time=228.733032),(Time=234.082916),(Time=240.050110),(Time=245.399994),(Time=249.926819),(Time=254.042114),(Time=259.186249),(Time=263.095795),(Time=268.239929),(Time=272.149445),(Time=275.647461),(Time=279.762756),(Time=283.878082),(Time=289.845245),(Time=294.372101),(Time=299.721985),(Time=302.808472),(Time=310.421783),(Time=314.537079),(Time=318.652374),(Time=322.150391),(Time=325.683868),(Time=331.856842),(Time=336.795197),(Time=342.350861),(Time=348.729584),(Time=353.667969),(Time=357.165985),(Time=361.281281),(Time=367.248474),(Time=371.363770),(Time=376.302155),(Time=380.623199),(Time=384.326996),(Time=387.619232),(Time=399.879486),(Time=408.583649),(Time=416.263794),(Time=425.991974),(Time=432.648102)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_9.InterpTrackMove_1'
-      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_9.InterpTrackFloatProp_1'
-      GroupName="forest"
-      GroupColor=(B=0,G=92,R=218,A=255)
-      Name="InterpGroup_9"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
       Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
          CutTrack(0)=(TargetCamGroup="MainArea",ShotNumber=10)
@@ -14629,6 +14389,209 @@ Begin Object Class=InterpData Name=InterpData_9
       GroupColor=(B=0,G=203,R=126,A=255)
       Name="InterpGroupDirector_0"
       ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_9
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),InterpMode=CIM_CurveAutoClamped),(InVal=117.250160,OutVal=(X=450.662109,Y=26.914551,Z=-26.105713),ArriveTangent=(X=9.926598,Y=0.305487,Z=2.243237),LeaveTangent=(X=9.926598,Y=0.305487,Z=2.243237),InterpMode=CIM_CurveAutoClamped),(InVal=124.930298,OutVal=(X=1092.299805,Y=36.397949,Z=45.529663),ArriveTangent=(X=77.586830,Y=0.000000,Z=1.977528),LeaveTangent=(X=77.586830,Y=0.000000,Z=1.977528),InterpMode=CIM_CurveAutoClamped),(InVal=131.611816,OutVal=(X=1564.937500,Y=-653.756836,Z=51.644104),ArriveTangent=(X=127.634895,Y=0.000000,Z=1.996410),LeaveTangent=(X=127.634895,Y=0.000000,Z=1.996410),InterpMode=CIM_CurveAutoClamped),(InVal=138.607849,OutVal=(X=3234.224609,Y=-517.143555,Z=109.864197),ArriveTangent=(X=304.754211,Y=0.000000,Z=14.888535),LeaveTangent=(X=304.754211,Y=0.000000,Z=14.888535),InterpMode=CIM_CurveAutoClamped),(InVal=143.546204,OutVal=(X=5201.992188,Y=-1010.552734,Z=231.645355),ArriveTangent=(X=237.364563,Y=-76.312019,Z=10.361844),LeaveTangent=(X=237.364563,Y=-76.312019,Z=10.361844),InterpMode=CIM_CurveAutoClamped),(InVal=149.101837,OutVal=(X=5950.166992,Y=-1317.960938,Z=260.137329),ArriveTangent=(X=0.000000,Y=-117.267174,Z=2.918103),LeaveTangent=(X=0.000000,Y=-117.267174,Z=2.918103),InterpMode=CIM_CurveAutoClamped),(InVal=153.834442,OutVal=(X=5622.102539,Y=-2848.370117,Z=268.158722),ArriveTangent=(X=-125.723778,Y=-30.412750,Z=0.000000),LeaveTangent=(X=-125.723778,Y=-30.412750,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=157.949738,OutVal=(X=4707.178711,Y=-2902.944336,Z=225.194855),ArriveTangent=(X=-65.526398,Y=-30.279022,Z=-4.626047),LeaveTangent=(X=-65.526398,Y=-30.279022,Z=-4.626047),InterpMode=CIM_CurveAutoClamped),(InVal=162.682343,OutVal=(X=4566.625977,Y=-4292.522949,Z=214.222809),ArriveTangent=(X=0.000000,Y=-248.531982,Z=0.000000),LeaveTangent=(X=0.000000,Y=-248.531982,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=168.649536,OutVal=(X=5447.798828,Y=-5562.186523,Z=244.159058),ArriveTangent=(X=52.320446,Y=-182.479721,Z=0.649765),LeaveTangent=(X=52.320446,Y=-182.479721,Z=0.649765),InterpMode=CIM_CurveAutoClamped),(InVal=174.616730,OutVal=(X=5599.283203,Y=-6470.306641,Z=245.812988),ArriveTangent=(X=0.000000,Y=-296.391357,Z=0.000000),LeaveTangent=(X=0.000000,Y=-296.391357,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=179.760834,OutVal=(X=3549.281250,Y=-9662.076172,Z=104.594604),ArriveTangent=(X=-341.135986,Y=0.000000,Z=-22.544201),LeaveTangent=(X=-341.135986,Y=0.000000,Z=-22.544201),InterpMode=CIM_CurveAutoClamped),(InVal=184.287689,OutVal=(X=2300.170898,Y=-9492.574219,Z=27.788940),ArriveTangent=(X=0.000000,Y=83.395050,Z=0.000000),LeaveTangent=(X=0.000000,Y=83.395050,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=189.020264,OutVal=(X=2518.424805,Y=-7549.339844,Z=903.282959),ArriveTangent=(X=0.000000,Y=10.986206,Z=0.000000),LeaveTangent=(X=0.000000,Y=10.986206,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=192.929810,OutVal=(X=2284.866211,Y=-7530.908203,Z=47.551880),ArriveTangent=(X=-105.782784,Y=9.765820,Z=-8.769005),LeaveTangent=(X=-105.782784,Y=9.765820,Z=-8.769005),InterpMode=CIM_CurveAutoClamped),(InVal=198.897003,OutVal=(X=840.439453,Y=-7077.292969,Z=28.516968),ArriveTangent=(X=-258.124115,Y=73.560707,Z=0.000000),LeaveTangent=(X=-258.124115,Y=73.560707,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=203.629578,OutVal=(X=-477.001953,Y=-6743.825684,Z=167.378082),ArriveTangent=(X=0.000000,Y=78.684586,Z=50.950260),LeaveTangent=(X=0.000000,Y=78.684586,Z=50.950260),InterpMode=CIM_CurveAutoClamped),(InVal=207.744904,OutVal=(X=732.088867,Y=-6381.099609,Z=507.940247),ArriveTangent=(X=232.859695,Y=135.552734,Z=0.000000),LeaveTangent=(X=232.859695,Y=135.552734,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=213.506317,OutVal=(X=1822.892578,Y=-5216.822266,Z=367.373871),ArriveTangent=(X=193.199738,Y=0.000000,Z=-41.985058),LeaveTangent=(X=193.199738,Y=0.000000,Z=-41.985058),InterpMode=CIM_CurveAutoClamped),(InVal=216.592865,OutVal=(X=2441.512695,Y=-5285.136230,Z=136.458069),ArriveTangent=(X=0.000000,Y=-35.256062,Z=-18.110413),LeaveTangent=(X=0.000000,Y=-35.256062,Z=-18.110413),InterpMode=CIM_CurveAutoClamped),(InVal=224.823486,OutVal=(X=2349.810547,Y=-6124.228027,Z=78.765442),ArriveTangent=(X=0.000000,Y=-103.620544,Z=0.000000),LeaveTangent=(X=0.000000,Y=-103.620544,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=228.733032,OutVal=(X=3691.974609,Y=-6543.106934,Z=183.486572),ArriveTangent=(X=233.312927,Y=-88.420097,Z=14.443716),LeaveTangent=(X=233.312927,Y=-88.420097,Z=14.443716),InterpMode=CIM_CurveAutoClamped),(InVal=234.082916,OutVal=(X=4510.155273,Y=-6942.947754,Z=224.312500),ArriveTangent=(X=0.000000,Y=-59.249073,Z=0.000000),LeaveTangent=(X=0.000000,Y=-59.249073,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=240.050110,OutVal=(X=3027.366211,Y=-7213.633301,Z=116.726501),ArriveTangent=(X=-205.801041,Y=0.000000,Z=-12.221529),LeaveTangent=(X=-205.801041,Y=0.000000,Z=-12.221529),InterpMode=CIM_CurveAutoClamped),(InVal=245.399994,OutVal=(X=2181.088867,Y=-6591.644043,Z=75.570740),ArriveTangent=(X=-19.065994,Y=142.859818,Z=-2.359401),LeaveTangent=(X=-19.065994,Y=142.859818,Z=-2.359401),InterpMode=CIM_CurveAutoClamped),(InVal=249.926819,OutVal=(X=2142.660156,Y=-5802.648438,Z=70.327515),ArriveTangent=(X=-20.524887,Y=49.853874,Z=-2.249007),LeaveTangent=(X=-20.524887,Y=49.853874,Z=-2.249007),InterpMode=CIM_CurveAutoClamped),(InVal=254.042114,OutVal=(X=1437.579102,Y=-5704.904297,Z=50.628845),ArriveTangent=(X=-177.517609,Y=0.000000,Z=-8.132931),LeaveTangent=(X=-177.517609,Y=0.000000,Z=-8.132931),InterpMode=CIM_CurveAutoClamped),(InVal=259.186249,OutVal=(X=498.948242,Y=-6219.321289,Z=-22.742859),InterpMode=CIM_CurveAutoClamped),(InVal=263.095795,OutVal=(X=605.507813,Y=-4555.432129,Z=-4.698181),InterpMode=CIM_CurveAutoClamped),(InVal=268.239929,OutVal=(X=-852.430664,Y=-5116.034180,Z=-103.583374),ArriveTangent=(X=-243.622177,Y=-71.759521,Z=-14.635765),LeaveTangent=(X=-243.622177,Y=-71.759521,Z=-14.635765),InterpMode=CIM_CurveAutoClamped),(InVal=272.149445,OutVal=(X=-1600.162109,Y=-5294.566895,Z=-143.515320),ArriveTangent=(X=-140.431519,Y=-104.707809,Z=-10.088140),LeaveTangent=(X=-140.431519,Y=-104.707809,Z=-10.088140),InterpMode=CIM_CurveAutoClamped),(InVal=275.647461,OutVal=(X=-1926.352539,Y=-6952.006348,Z=-178.311584),ArriveTangent=(X=0.000000,Y=-53.755890,Z=0.000000),LeaveTangent=(X=0.000000,Y=-53.755890,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=279.762756,OutVal=(X=-1087.046875,Y=-7041.597168,Z=-116.483704),ArriveTangent=(X=91.590187,Y=-42.870338,Z=2.745455),LeaveTangent=(X=91.590187,Y=-42.870338,Z=2.745455),InterpMode=CIM_CurveAutoClamped),(InVal=283.878082,OutVal=(X=-892.364258,Y=-7457.461914,Z=-111.525085),InterpMode=CIM_CurveAutoClamped),(InVal=289.845245,OutVal=(X=-2860.203125,Y=-7237.351563,Z=-236.233398),ArriveTangent=(X=-167.514755,Y=77.846878,Z=-6.858957),LeaveTangent=(X=-167.514755,Y=77.846878,Z=-6.858957),InterpMode=CIM_CurveAutoClamped),(InVal=294.372101,OutVal=(X=-3292.373047,Y=-6350.577148,Z=-252.104187),ArriveTangent=(X=0.000000,Y=176.298996,Z=0.000000),LeaveTangent=(X=0.000000,Y=176.298996,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=299.721985,OutVal=(X=-2462.937500,Y=-5496.092285,Z=-192.867126),ArriveTangent=(X=148.485611,Y=206.354645,Z=10.387137),LeaveTangent=(X=148.485611,Y=206.354645,Z=10.387137),InterpMode=CIM_CurveAutoClamped),(InVal=302.808472,OutVal=(X=-2039.693359,Y=-4609.692871,Z=-164.261292),ArriveTangent=(X=148.214005,Y=53.819805,Z=10.314590),LeaveTangent=(X=148.214005,Y=53.819805,Z=10.314590),InterpMode=CIM_CurveAutoClamped),(InVal=310.421783,OutVal=(X=-844.668945,Y=-4457.789063,Z=-78.836792),ArriveTangent=(X=169.036072,Y=42.427498,Z=11.267918),LeaveTangent=(X=169.036072,Y=42.427498,Z=11.267918),InterpMode=CIM_CurveAutoClamped),(InVal=314.537079,OutVal=(X=-57.135742,Y=-4055.339844,Z=-32.104309),ArriveTangent=(X=0.000000,Y=147.839890,Z=0.000000),LeaveTangent=(X=0.000000,Y=147.839890,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=318.652374,OutVal=(X=-422.723633,Y=-3236.711914,Z=-50.154968),ArriveTangent=(X=-158.596558,Y=221.839676,Z=-6.384827),LeaveTangent=(X=-158.596558,Y=221.839676,Z=-6.384827),InterpMode=CIM_CurveAutoClamped),(InVal=322.150391,OutVal=(X=-1367.271484,Y=-2366.405273,Z=-80.713989),ArriveTangent=(X=-233.161484,Y=231.296143,Z=-9.955895),LeaveTangent=(X=-233.161484,Y=231.296143,Z=-9.955895),InterpMode=CIM_CurveAutoClamped),(InVal=325.683868,OutVal=(X=-2062.197266,Y=-1610.354492,Z=-120.159790),ArriveTangent=(X=-129.685410,Y=117.636002,Z=-6.764596),LeaveTangent=(X=-129.685410,Y=117.636002,Z=-6.764596),InterpMode=CIM_CurveAutoClamped),(InVal=331.856842,OutVal=(X=-2626.056641,Y=-1224.577148,Z=-146.374207),ArriveTangent=(X=0.000000,Y=115.914452,Z=-3.070601),LeaveTangent=(X=0.000000,Y=115.914452,Z=-3.070601),InterpMode=CIM_CurveAutoClamped),(InVal=336.795197,OutVal=(X=-2197.416016,Y=-186.353516,Z=-156.495728),ArriveTangent=(X=151.541565,Y=0.000000,Z=0.000000),LeaveTangent=(X=151.541565,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=342.350861,OutVal=(X=-696.990234,Y=-747.451172,Z=-51.099670),ArriveTangent=(X=253.725281,Y=0.000000,Z=15.853907),LeaveTangent=(X=253.725281,Y=0.000000,Z=15.853907),InterpMode=CIM_CurveAutoClamped),(InVal=348.729584,OutVal=(X=830.639648,Y=-303.416992,Z=32.710938),ArriveTangent=(X=52.448265,Y=0.000000,Z=8.646357),LeaveTangent=(X=52.448265,Y=0.000000,Z=8.646357),InterpMode=CIM_CurveAutoClamped),(InVal=353.667969,OutVal=(X=954.893555,Y=-916.057617,Z=59.783447),ArriveTangent=(X=0.000000,Y=-227.017548,Z=0.000000),LeaveTangent=(X=0.000000,Y=-227.017548,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=357.165985,OutVal=(X=650.614258,Y=-2286.112305,Z=39.467285),ArriveTangent=(X=-153.665253,Y=-222.168076,Z=-10.228606),LeaveTangent=(X=-153.665253,Y=-222.168076,Z=-10.228606),InterpMode=CIM_CurveAutoClamped),(InVal=361.281281,OutVal=(X=-535.207031,Y=-2789.468750,Z=-38.840027),ArriveTangent=(X=-255.571793,Y=-120.497772,Z=-14.763859),LeaveTangent=(X=-255.571793,Y=-120.497772,Z=-14.763859),InterpMode=CIM_CurveAutoClamped),(InVal=367.248474,OutVal=(X=-1926.185547,Y=-3501.029785,Z=-109.389160),ArriveTangent=(X=-274.048187,Y=-139.233902,Z=-18.580254),LeaveTangent=(X=-274.048187,Y=-139.233902,Z=-18.580254),InterpMode=CIM_CurveAutoClamped),(InVal=371.363770,OutVal=(X=-3298.294922,Y=-4193.292969,Z=-226.175232),ArriveTangent=(X=-201.423111,Y=-258.491913,Z=-12.341852),LeaveTangent=(X=-201.423111,Y=-258.491913,Z=-12.341852),InterpMode=CIM_CurveAutoClamped),(InVal=376.302155,OutVal=(X=-3862.515625,Y=-6010.708496,Z=-256.319397),ArriveTangent=(X=-103.705513,Y=-486.118134,Z=-6.691829),LeaveTangent=(X=-103.705513,Y=-486.118134,Z=-6.691829),InterpMode=CIM_CurveAutoClamped),(InVal=380.623199,OutVal=(X=-4258.548828,Y=-8694.469727,Z=-288.137756),ArriveTangent=(X=0.000000,Y=-272.392426,Z=0.000000),LeaveTangent=(X=0.000000,Y=-272.392426,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=384.326996,OutVal=(X=-565.551758,Y=-9229.068359,Z=31.334900),ArriveTangent=(X=851.342041,Y=-112.402512,Z=12.534073),LeaveTangent=(X=851.342041,Y=-112.402512,Z=12.534073),InterpMode=CIM_CurveAutoClamped),(InVal=387.619232,OutVal=(X=1697.467773,Y=-9486.625000,Z=49.673767),InterpMode=CIM_CurveAutoClamped),(InVal=399.879486,OutVal=(X=1539.939453,Y=-8564.601563,Z=11.836670),ArriveTangent=(X=0.000000,Y=162.548584,Z=0.000000),LeaveTangent=(X=0.000000,Y=162.548584,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=408.583649,OutVal=(X=2506.164063,Y=-4831.285156,Z=100.211243),ArriveTangent=(X=0.000000,Y=163.438446,Z=0.000000),LeaveTangent=(X=0.000000,Y=163.438446,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=416.263794,OutVal=(X=-225.986328,Y=-4194.052246,Z=-53.446411),ArriveTangent=(X=-61.555054,Y=0.000000,Z=-10.379374),LeaveTangent=(X=-61.555054,Y=0.000000,Z=-10.379374),InterpMode=CIM_CurveAutoClamped),(InVal=425.991974,OutVal=(X=-472.447266,Y=-6953.550781,Z=-106.333374),ArriveTangent=(X=0.000000,Y=-219.088058,Z=0.000000),LeaveTangent=(X=0.000000,Y=-219.088058,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=432.648102,OutVal=(X=-417.799805,Y=-7999.023438,Z=-91.739380),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),ArriveTangent=(X=0.015882,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.015882,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=117.250160,OutVal=(X=1.263428,Y=6.064453,Z=5.745850),InterpMode=CIM_CurveAutoClamped),(InVal=124.930298,OutVal=(X=0.401001,Y=4.273682,Z=-4.185791),ArriveTangent=(X=-0.060887,Y=-0.198894,Z=-0.793406),LeaveTangent=(X=-0.060887,Y=-0.198894,Z=-0.793406),InterpMode=CIM_CurveAutoClamped),(InVal=131.611816,OutVal=(X=0.170288,Y=3.208008,Z=-7.360840),ArriveTangent=(X=-0.077223,Y=-0.266706,Z=-1.116044),LeaveTangent=(X=-0.077223,Y=-0.266706,Z=-1.116044),InterpMode=CIM_CurveAutoClamped),(InVal=138.607849,OutVal=(X=-2.603760,Y=0.247192,Z=-84.721069),ArriveTangent=(X=0.000000,Y=-0.235914,Z=-6.596871),LeaveTangent=(X=0.000000,Y=-0.235914,Z=-6.596871),InterpMode=CIM_CurveAutoClamped),(InVal=143.546204,OutVal=(X=-2.460938,Y=-0.450439,Z=-104.776611),ArriveTangent=(X=0.043535,Y=0.000000,Z=-3.059090),LeaveTangent=(X=0.043535,Y=0.000000,Z=-3.059090),InterpMode=CIM_CurveAutoClamped),(InVal=149.101837,OutVal=(X=-2.131348,Y=1.153564,Z=-116.823120),ArriveTangent=(X=0.134932,Y=0.000000,Z=-4.484375),LeaveTangent=(X=0.134932,Y=0.000000,Z=-4.484375),InterpMode=CIM_CurveAutoClamped),(InVal=153.834442,OutVal=(X=0.390015,Y=-1.944580,Z=-170.134277),InterpMode=CIM_CurveAutoClamped),(InVal=157.949738,OutVal=(X=-1.483154,Y=0.241699,Z=-135.543823),ArriveTangent=(X=-0.317872,Y=0.505988,Z=11.330400),LeaveTangent=(X=-0.317872,Y=0.505988,Z=11.330400),InterpMode=CIM_CurveAutoClamped),(InVal=162.682343,OutVal=(X=-2.422485,Y=2.532349,Z=-69.884033),InterpMode=CIM_CurveAutoClamped),(InVal=168.649536,OutVal=(X=-0.230713,Y=-0.598755,Z=-160.136719),ArriveTangent=(X=0.272076,Y=0.000000,Z=-6.177631),LeaveTangent=(X=0.272076,Y=0.000000,Z=-6.177631),InterpMode=CIM_CurveAutoClamped),(InVal=174.616730,OutVal=(X=0.840454,Y=-0.582275,Z=-178.659668),ArriveTangent=(X=0.259548,Y=0.007158,Z=-4.720801),LeaveTangent=(X=0.259548,Y=0.007158,Z=-4.720801),InterpMode=CIM_CurveAutoClamped),(InVal=179.760834,OutVal=(X=2.653198,Y=1.790771,Z=-212.590942),ArriveTangent=(X=0.304451,Y=0.946521,Z=-11.068894),LeaveTangent=(X=0.304451,Y=0.946521,Z=-11.068894),InterpMode=CIM_CurveAutoClamped),(InVal=184.287689,OutVal=(X=3.784790,Y=12.480469,Z=-289.506226),InterpMode=CIM_CurveAutoClamped),(InVal=189.020264,OutVal=(X=3.175049,Y=-9.865723,Z=-225.900879),ArriveTangent=(X=-0.175433,Y=0.000000,Z=8.777944),LeaveTangent=(X=-0.175433,Y=0.000000,Z=8.777944),InterpMode=CIM_CurveAutoClamped),(InVal=192.929810,OutVal=(X=2.268677,Y=-0.615234,Z=-204.477539),ArriveTangent=(X=-0.169076,Y=0.501679,Z=3.855383),LeaveTangent=(X=-0.169076,Y=0.501679,Z=3.855383),InterpMode=CIM_CurveAutoClamped),(InVal=198.897003,OutVal=(X=1.505127,Y=0.598755,Z=-187.822266),ArriveTangent=(X=0.000000,Y=0.478042,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.478042,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=203.629578,OutVal=(X=2.098389,Y=10.601807,Z=-337.796631),ArriveTangent=(X=0.246522,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.246522,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=207.744904,OutVal=(X=4.290161,Y=6.745605,Z=-276.267700),ArriveTangent=(X=0.000000,Y=-1.596021,Z=0.000000),LeaveTangent=(X=0.000000,Y=-1.596021,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=213.506317,OutVal=(X=3.510132,Y=-10.530396,Z=-306.199951),ArriveTangent=(X=-0.352535,Y=0.000000,Z=-12.906224),LeaveTangent=(X=-0.352535,Y=0.000000,Z=-12.906224),InterpMode=CIM_CurveAutoClamped),(InVal=216.592865,OutVal=(X=-2.373047,Y=-3.125610,Z=-467.023315),ArriveTangent=(X=0.000000,Y=1.412465,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.412465,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=224.823486,OutVal=(X=-0.384521,Y=5.454712,Z=-376.759644),ArriveTangent=(X=0.373747,Y=0.000000,Z=11.868509),LeaveTangent=(X=0.373747,Y=0.000000,Z=11.868509),InterpMode=CIM_CurveAutoClamped),(InVal=228.733032,OutVal=(X=2.164307,Y=3.383789,Z=-322.937622),ArriveTangent=(X=0.000000,Y=-0.920982,Z=20.112997),LeaveTangent=(X=0.000000,Y=-0.920982,Z=20.112997),InterpMode=CIM_CurveAutoClamped),(InVal=234.082916,OutVal=(X=-0.142822,Y=-6.295166,Z=-176.467896),ArriveTangent=(X=-0.365982,Y=0.000000,Z=13.764536),LeaveTangent=(X=-0.365982,Y=0.000000,Z=13.764536),InterpMode=CIM_CurveAutoClamped),(InVal=240.050110,OutVal=(X=-1.977539,Y=-0.499878,Z=-133.209229),ArriveTangent=(X=0.000000,Y=0.735653,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.735653,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=245.399994,OutVal=(X=3.790283,Y=2.175293,Z=-273.339844),InterpMode=CIM_CurveAutoClamped),(InVal=249.926819,OutVal=(X=1.120605,Y=-2.427979,Z=-188.360596),ArriveTangent=(X=-0.666137,Y=0.000000,Z=17.078024),LeaveTangent=(X=-0.666137,Y=0.000000,Z=17.078024),InterpMode=CIM_CurveAutoClamped),(InVal=254.042114,OutVal=(X=-1.966553,Y=-0.203247,Z=-125.749512),ArriveTangent=(X=0.000000,Y=0.515535,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.515535,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=259.186249,OutVal=(X=3.938599,Y=2.345581,Z=-284.468994),InterpMode=CIM_CurveAutoClamped),(InVal=263.095795,OutVal=(X=0.087891,Y=-4.982300,Z=-165.706787),InterpMode=CIM_CurveAutoClamped),(InVal=268.239929,OutVal=(X=1.071167,Y=-2.340088,Z=-175.808716),ArriveTangent=(X=0.000000,Y=0.531500,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.531500,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=272.149445,OutVal=(X=-2.103882,Y=-0.170288,Z=-105.249023),ArriveTangent=(X=0.000000,Y=0.881413,Z=22.753429),LeaveTangent=(X=0.000000,Y=0.881413,Z=22.753429),InterpMode=CIM_CurveAutoClamped),(InVal=275.647461,OutVal=(X=0.499878,Y=4.196777,Z=-7.261963),ArriveTangent=(X=0.000000,Y=0.147906,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.147906,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=279.762756,OutVal=(X=0.247192,Y=4.443970,Z=-10.195313),InterpMode=CIM_CurveAutoClamped),(InVal=283.878082,OutVal=(X=1.790771,Y=-3.867188,Z=169.085083),ArriveTangent=(X=0.393362,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.393362,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=289.845245,OutVal=(X=4.213257,Y=-1.170044,Z=86.973267),ArriveTangent=(X=0.000000,Y=0.878684,Z=-4.112995),LeaveTangent=(X=0.000000,Y=0.878684,Z=-4.112995),InterpMode=CIM_CurveAutoClamped),(InVal=294.372101,OutVal=(X=4.119873,Y=6.740112,Z=77.607422),ArriveTangent=(X=-0.043299,Y=0.000000,Z=-3.349101),LeaveTangent=(X=-0.043299,Y=0.000000,Z=-3.349101),InterpMode=CIM_CurveAutoClamped),(InVal=299.721985,OutVal=(X=3.202515,Y=5.784302,Z=49.850464),ArriveTangent=(X=-0.383661,Y=0.000000,Z=-10.090573),LeaveTangent=(X=-0.383661,Y=0.000000,Z=-10.090573),InterpMode=CIM_CurveAutoClamped),(InVal=302.808472,OutVal=(X=-0.010986,Y=5.822754,Z=-9.266968),ArriveTangent=(X=-0.458970,Y=0.000000,Z=-8.595167),LeaveTangent=(X=-0.458970,Y=0.000000,Z=-8.595167),InterpMode=CIM_CurveAutoClamped),(InVal=310.421783,OutVal=(X=-1.708374,Y=4.641724,Z=-42.116089),ArriveTangent=(X=0.000000,Y=-0.380475,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.380475,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=314.537079,OutVal=(X=3.938599,Y=-1.318359,Z=103.496704),ArriveTangent=(X=0.000000,Y=0.000000,Z=3.018870),LeaveTangent=(X=0.000000,Y=0.000000,Z=3.018870),InterpMode=CIM_CurveAutoClamped),(InVal=318.652374,OutVal=(X=3.806763,Y=-1.131592,Z=108.676758),ArriveTangent=(X=-0.038962,Y=0.113180,Z=0.552901),LeaveTangent=(X=-0.038962,Y=0.113180,Z=0.552901),InterpMode=CIM_CurveAutoClamped),(InVal=322.150391,OutVal=(X=3.641968,Y=3.015747,Z=109.703979),ArriveTangent=(X=-0.107552,Y=0.801961,Z=0.000000),LeaveTangent=(X=-0.107552,Y=0.801961,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=325.683868,OutVal=(X=1.461182,Y=4.768066,Z=23.856812),InterpMode=CIM_CurveAutoClamped),(InVal=331.856842,OutVal=(X=3.251953,Y=2.532349,Z=65.588379),ArriveTangent=(X=0.000000,Y=-0.352984,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.352984,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=336.795197,OutVal=(X=-2.092896,Y=0.845947,Z=-40.836182),InterpMode=CIM_CurveAutoClamped),(InVal=342.350861,OutVal=(X=0.351563,Y=6.031494,Z=5.191040),InterpMode=CIM_CurveAutoClamped),(InVal=348.729584,OutVal=(X=-3.087158,Y=-2.340088,Z=-98.503418),ArriveTangent=(X=-0.025174,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.025174,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=353.667969,OutVal=(X=-3.142090,Y=0.499878,Z=-81.875610),InterpMode=CIM_CurveAutoClamped),(InVal=357.165985,OutVal=(X=-0.373535,Y=-1.922607,Z=-167.255859),ArriveTangent=(X=0.125332,Y=-0.293004,Z=-1.766309),LeaveTangent=(X=0.125332,Y=-0.293004,Z=-1.766309),InterpMode=CIM_CurveAutoClamped),(InVal=361.281281,OutVal=(X=-0.159302,Y=-2.515869,Z=-170.134277),ArriveTangent=(X=0.000000,Y=-0.021096,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.021096,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=367.248474,OutVal=(X=-1.955566,Y=-2.565308,Z=-134.203491),ArriveTangent=(X=-0.248617,Y=0.000000,Z=7.307701),LeaveTangent=(X=-0.248617,Y=0.000000,Z=7.307701),InterpMode=CIM_CurveAutoClamped),(InVal=371.363770,OutVal=(X=-2.730103,Y=-0.109863,Z=-96.454468),ArriveTangent=(X=0.000000,Y=0.447162,Z=9.694982),LeaveTangent=(X=0.000000,Y=0.447162,Z=9.694982),InterpMode=CIM_CurveAutoClamped),(InVal=376.302155,OutVal=(X=-1.944580,Y=1.483154,Z=-46.428223),ArriveTangent=(X=0.277210,Y=0.242191,Z=9.793977),LeaveTangent=(X=0.277210,Y=0.242191,Z=9.793977),InterpMode=CIM_CurveAutoClamped),(InVal=380.623199,OutVal=(X=0.016479,Y=2.191772,Z=-5.767822),ArriveTangent=(X=0.683151,Y=0.309752,Z=14.470752),LeaveTangent=(X=0.683151,Y=0.309752,Z=14.470752),InterpMode=CIM_CurveAutoClamped),(InVal=384.326996,OutVal=(X=3.537598,Y=4.405518,Z=69.697266),InterpMode=CIM_CurveAutoClamped),(InVal=387.619232,OutVal=(X=3.328857,Y=2.246704,Z=66.033325),ArriveTangent=(X=0.000000,Y=-0.334482,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.334482,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=399.879486,OutVal=(X=3.658447,Y=-0.796509,Z=91.175537),ArriveTangent=(X=0.000000,Y=-0.222458,Z=4.130861),LeaveTangent=(X=0.000000,Y=-0.222458,Z=4.130861),InterpMode=CIM_CurveAutoClamped),(InVal=408.583649,OutVal=(X=1.159058,Y=-2.416992,Z=167.810669),ArriveTangent=(X=-0.405006,Y=0.000000,Z=10.039990),LeaveTangent=(X=-0.405006,Y=0.000000,Z=10.039990),InterpMode=CIM_CurveAutoClamped),(InVal=416.263794,OutVal=(X=-2.977295,Y=-0.225220,Z=255.673828),ArriveTangent=(X=-0.043419,Y=0.136862,Z=2.980090),LeaveTangent=(X=-0.043419,Y=0.136862,Z=2.980090),InterpMode=CIM_CurveAutoClamped),(InVal=425.991974,OutVal=(X=-3.142090,Y=0.450439,Z=268.269653),ArriveTangent=(X=0.000000,Y=0.158578,Z=3.176451),LeaveTangent=(X=0.000000,Y=0.158578,Z=3.176451),InterpMode=CIM_CurveAutoClamped),(InVal=432.648102,OutVal=(X=0.565796,Y=3.834229,Z=370.382080),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=117.250160),(Time=124.930298),(Time=131.611816),(Time=138.607849),(Time=143.546204),(Time=149.101837),(Time=153.834442),(Time=157.949738),(Time=162.682343),(Time=168.649536),(Time=174.616730),(Time=179.760834),(Time=184.287689),(Time=189.020264),(Time=192.929810),(Time=198.897003),(Time=203.629578),(Time=207.744904),(Time=213.506317),(Time=216.592865),(Time=224.823486),(Time=228.733032),(Time=234.082916),(Time=240.050110),(Time=245.399994),(Time=249.926819),(Time=254.042114),(Time=259.186249),(Time=263.095795),(Time=268.239929),(Time=272.149445),(Time=275.647461),(Time=279.762756),(Time=283.878082),(Time=289.845245),(Time=294.372101),(Time=299.721985),(Time=302.808472),(Time=310.421783),(Time=314.537079),(Time=318.652374),(Time=322.150391),(Time=325.683868),(Time=331.856842),(Time=336.795197),(Time=342.350861),(Time=348.729584),(Time=353.667969),(Time=357.165985),(Time=361.281281),(Time=367.248474),(Time=371.363770),(Time=376.302155),(Time=380.623199),(Time=384.326996),(Time=387.619232),(Time=399.879486),(Time=408.583649),(Time=416.263794),(Time=425.991974),(Time=432.648102)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_9.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_9.InterpTrackFloatProp_1'
+      GroupName="forest"
+      GroupColor=(B=0,G=92,R=218,A=255)
+      Name="InterpGroup_9"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),InterpMode=CIM_CurveAutoClamped),(InVal=999.994385,OutVal=(X=76.767578,Y=72.203125,Z=72.010254),ArriveTangent=(X=0.766104,Y=0.000000,Z=0.358940),LeaveTangent=(X=0.766104,Y=0.000000,Z=0.358940),InterpMode=CIM_CurveAutoClamped),(InVal=1009.727905,OutVal=(X=1049.931641,Y=5.984375,Z=127.713379),ArriveTangent=(X=108.418808,Y=-13.969585,Z=5.984223),LeaveTangent=(X=108.418808,Y=-13.969585,Z=5.984223),InterpMode=CIM_CurveAutoClamped),(InVal=1019.971802,OutVal=(X=2242.695313,Y=-413.109375,Z=191.559570),ArriveTangent=(X=118.326279,Y=-44.104401,Z=7.547116),LeaveTangent=(X=118.326279,Y=-44.104401,Z=7.547116),InterpMode=CIM_CurveAutoClamped),(InVal=1029.894897,OutVal=(X=3436.216797,Y=-883.468750,Z=279.916016),ArriveTangent=(X=178.375549,Y=-60.270557,Z=9.906096),LeaveTangent=(X=178.375549,Y=-60.270557,Z=9.906096),InterpMode=CIM_CurveAutoClamped),(InVal=1040.211914,OutVal=(X=5865.826172,Y=-1632.992188,Z=392.060059),ArriveTangent=(X=0.000000,Y=-70.428772,Z=0.000000),LeaveTangent=(X=0.000000,Y=-70.428772,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1050.016846,OutVal=(X=5756.417969,Y=-2300.632813,Z=380.280762),ArriveTangent=(X=-10.484057,Y=-66.613556,Z=0.000000),LeaveTangent=(X=-10.484057,Y=-66.613556,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1060.407104,OutVal=(X=5654.098633,Y=-2978.265625,Z=406.050293),ArriveTangent=(X=-8.736958,Y=-80.897636,Z=0.674400),LeaveTangent=(X=-8.736958,Y=-80.897636,Z=0.674400),InterpMode=CIM_CurveAutoClamped),(InVal=1070.504639,OutVal=(X=5577.416992,Y=-3958.046875,Z=409.215332),ArriveTangent=(X=-16.265041,Y=-105.197037,Z=0.000000),LeaveTangent=(X=-16.265041,Y=-105.197037,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1079.934448,OutVal=(X=5093.876953,Y=-5032.484375,Z=372.281738),ArriveTangent=(X=-50.509491,Y=-89.174232,Z=-3.860171),LeaveTangent=(X=-50.509491,Y=-89.174232,Z=-3.860171),InterpMode=CIM_CurveAutoClamped),(InVal=1090.105225,OutVal=(X=4587.401367,Y=-5705.914063,Z=333.553711),ArriveTangent=(X=-77.393623,Y=-38.820572,Z=-4.235236),LeaveTangent=(X=-77.393623,Y=-38.820572,Z=-4.235236),InterpMode=CIM_CurveAutoClamped),(InVal=1100.056396,OutVal=(X=3515.656250,Y=-5927.828125,Z=287.060547),ArriveTangent=(X=-89.157219,Y=0.000000,Z=-3.684729),LeaveTangent=(X=-89.157219,Y=0.000000,Z=-3.684729),InterpMode=CIM_CurveAutoClamped),(InVal=1109.568604,OutVal=(X=2852.100586,Y=-5860.632813,Z=261.836426),ArriveTangent=(X=-101.833321,Y=7.403728,Z=-4.369495),LeaveTangent=(X=-101.833321,Y=7.403728,Z=-4.369495),InterpMode=CIM_CurveAutoClamped),(InVal=1119.519775,OutVal=(X=1533.635742,Y=-5783.726563,Z=194.669922),ArriveTangent=(X=-118.164963,Y=15.766738,Z=-6.352567),LeaveTangent=(X=-118.164963,Y=15.766738,Z=-6.352567),InterpMode=CIM_CurveAutoClamped),(InVal=1130.041382,OutVal=(X=432.935547,Y=-5310.164063,Z=131.781738),ArriveTangent=(X=-74.359489,Y=73.708572,Z=-3.617232),LeaveTangent=(X=-74.359489,Y=73.708572,Z=-3.617232),InterpMode=CIM_CurveAutoClamped),(InVal=1140.065552,OutVal=(X=-46.882813,Y=-4203.953125,Z=110.538574),ArriveTangent=(X=-29.548019,Y=107.913643,Z=-0.467309),LeaveTangent=(X=-29.548019,Y=107.913643,Z=-0.467309),InterpMode=CIM_CurveAutoClamped),(InVal=1150.016846,OutVal=(X=-219.796875,Y=-3154.539063,Z=108.450684),ArriveTangent=(X=0.000000,Y=85.965714,Z=0.000000),LeaveTangent=(X=0.000000,Y=85.965714,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1159.968018,OutVal=(X=226.261719,Y=-2493.023438,Z=164.814453),ArriveTangent=(X=50.710487,Y=0.000000,Z=4.919221),LeaveTangent=(X=50.710487,Y=0.000000,Z=4.919221),InterpMode=CIM_CurveAutoClamped),(InVal=1170.065552,OutVal=(X=796.882813,Y=-3018.500000,Z=207.074707),ArriveTangent=(X=0.000000,Y=-74.030273,Z=8.481642),LeaveTangent=(X=0.000000,Y=-74.030273,Z=8.481642),InterpMode=CIM_CurveAutoClamped),(InVal=1180.096924,OutVal=(X=743.154297,Y=-3983.171875,Z=429.282715),ArriveTangent=(X=-5.380384,Y=-65.881050,Z=15.094047),LeaveTangent=(X=-5.380384,Y=-65.881050,Z=15.094047),InterpMode=CIM_CurveAutoClamped),(InVal=1189.755493,OutVal=(X=690.943359,Y=-4382.320313,Z=520.419922),ArriveTangent=(X=0.000000,Y=-14.005732,Z=0.000000),LeaveTangent=(X=0.000000,Y=-14.005732,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1200.218872,OutVal=(X=1338.833008,Y=-4451.515625,Z=187.104492),ArriveTangent=(X=85.721680,Y=0.000000,Z=0.000000),LeaveTangent=(X=85.721680,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1209.731079,OutVal=(X=2403.284180,Y=-4430.695313,Z=230.942871),ArriveTangent=(X=93.885323,Y=5.040678,Z=5.880753),LeaveTangent=(X=93.885323,Y=5.040678,Z=5.880753),InterpMode=CIM_CurveAutoClamped),(InVal=1220.413940,OutVal=(X=3234.853516,Y=-3890.875000,Z=305.866699),ArriveTangent=(X=47.342922,Y=81.979797,Z=5.238694),LeaveTangent=(X=47.342922,Y=81.979797,Z=5.238694),InterpMode=CIM_CurveAutoClamped),(InVal=1230.024658,OutVal=(X=3504.628906,Y=-2739.382813,Z=339.705566),ArriveTangent=(X=0.000000,Y=92.532288,Z=0.000000),LeaveTangent=(X=0.000000,Y=92.532288,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1239.683228,OutVal=(X=2442.602539,Y=-2107.843750,Z=294.479980),ArriveTangent=(X=-44.813656,Y=0.000000,Z=-1.782165),LeaveTangent=(X=-44.813656,Y=0.000000,Z=-1.782165),InterpMode=CIM_CurveAutoClamped),(InVal=1250.000366,OutVal=(X=2213.507813,Y=-3381.054688,Z=285.532715),ArriveTangent=(X=-18.298529,Y=-138.521133,Z=-1.939568),LeaveTangent=(X=-18.298529,Y=-138.521133,Z=-1.939568),InterpMode=CIM_CurveAutoClamped),(InVal=1260.171021,OutVal=(X=2067.706055,Y=-4945.835938,Z=197.027832),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.003604),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.003604),InterpMode=CIM_CurveAutoClamped),(InVal=999.994385,OutVal=(X=-0.093384,Y=1.911621,Z=-10.821533),ArriveTangent=(X=-0.000361,Y=0.000000,Z=-0.005904),LeaveTangent=(X=-0.000361,Y=0.000000,Z=-0.005904),InterpMode=CIM_CurveAutoClamped),(InVal=1009.727905,OutVal=(X=-2.592773,Y=-1.455688,Z=-97.278442),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.465431),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.465431),InterpMode=CIM_CurveAutoClamped),(InVal=1019.971802,OutVal=(X=-2.532349,Y=2.713623,Z=-103.716431),ArriveTangent=(X=0.003713,Y=0.000000,Z=-0.466598),LeaveTangent=(X=0.003713,Y=0.000000,Z=-0.466598),InterpMode=CIM_CurveAutoClamped),(InVal=1029.894897,OutVal=(X=-2.510376,Y=0.560303,Z=-106.787109),ArriveTangent=(X=0.004736,Y=-0.141440,Z=-0.531048),LeaveTangent=(X=0.004736,Y=-0.141440,Z=-0.531048),InterpMode=CIM_CurveAutoClamped),(InVal=1040.211914,OutVal=(X=-2.334595,Y=-0.318604,Z=-115.911255),ArriveTangent=(X=0.040757,Y=-0.084628,Z=-1.936895),LeaveTangent=(X=0.040757,Y=-0.084628,Z=-1.936895),InterpMode=CIM_CurveAutoClamped),(InVal=1050.016846,OutVal=(X=1.065674,Y=-1.142578,Z=-185.163574),InterpMode=CIM_CurveAutoClamped),(InVal=1060.407104,OutVal=(X=-1.664429,Y=1.021729,Z=-135.884399),InterpMode=CIM_CurveAutoClamped),(InVal=1070.504639,OutVal=(X=0.192261,Y=-1.560059,Z=-171.699829),ArriveTangent=(X=0.222513,Y=0.000000,Z=-4.211436),LeaveTangent=(X=0.222513,Y=0.000000,Z=-4.211436),InterpMode=CIM_CurveAutoClamped),(InVal=1079.934448,OutVal=(X=2.680664,Y=-1.104126,Z=-218.122559),ArriveTangent=(X=0.000000,Y=0.085186,Z=-0.078137),LeaveTangent=(X=0.000000,Y=0.085186,Z=-0.078137),InterpMode=CIM_CurveAutoClamped),(InVal=1090.105225,OutVal=(X=2.675171,Y=0.444946,Z=-218.435669),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.076633),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.076633),InterpMode=CIM_CurveAutoClamped),(InVal=1100.056396,OutVal=(X=3.647461,Y=-2.048950,Z=-250.977173),ArriveTangent=(X=0.000000,Y=-0.002835,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.002835,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1109.568604,OutVal=(X=2.471924,Y=-2.059937,Z=-214.925537),InterpMode=CIM_CurveAutoClamped),(InVal=1119.519775,OutVal=(X=3.680420,Y=0.933838,Z=-273.609009),ArriveTangent=(X=0.000000,Y=0.306685,Z=-5.089409),LeaveTangent=(X=0.000000,Y=0.306685,Z=-5.089409),InterpMode=CIM_CurveAutoClamped),(InVal=1130.041382,OutVal=(X=2.373047,Y=4.218750,Z=-319.119873),InterpMode=CIM_CurveAutoClamped),(InVal=1140.065552,OutVal=(X=3.010254,Y=1.444702,Z=-303.601685),InterpMode=CIM_CurveAutoClamped),(InVal=1150.016846,OutVal=(X=0.340576,Y=3.966064,Z=-356.050415),ArriveTangent=(X=-0.271588,Y=0.279040,Z=-5.317773),LeaveTangent=(X=-0.271588,Y=0.279040,Z=-5.317773),InterpMode=CIM_CurveAutoClamped),(InVal=1159.968018,OutVal=(X=-2.395020,Y=6.998291,Z=-409.438477),InterpMode=CIM_CurveAutoClamped),(InVal=1170.065552,OutVal=(X=-2.263184,Y=1.329346,Z=-405.499878),ArriveTangent=(X=0.030175,Y=0.000000,Z=0.867808),LeaveTangent=(X=0.030175,Y=0.000000,Z=0.867808),InterpMode=CIM_CurveAutoClamped),(InVal=1180.096924,OutVal=(X=-0.368042,Y=8.371582,Z=-367.437744),ArriveTangent=(X=0.185245,Y=0.000000,Z=3.492591),LeaveTangent=(X=0.185245,Y=0.000000,Z=3.492591),InterpMode=CIM_CurveAutoClamped),(InVal=1189.755493,OutVal=(X=1.384277,Y=5.042725,Z=-336.730957),ArriveTangent=(X=0.000000,Y=-0.491389,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.491389,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1200.218872,OutVal=(X=0.840454,Y=-1.516113,Z=-345.997925),InterpMode=CIM_CurveAutoClamped),(InVal=1209.731079,OutVal=(X=3.422241,Y=2.515869,Z=-281.200562),ArriveTangent=(X=0.000000,Y=0.000000,Z=4.397669),LeaveTangent=(X=0.000000,Y=0.000000,Z=4.397669),InterpMode=CIM_CurveAutoClamped),(InVal=1220.413940,OutVal=(X=3.394775,Y=0.878906,Z=-253.322754),ArriveTangent=(X=-0.006552,Y=-0.204638,Z=4.340504),LeaveTangent=(X=-0.006552,Y=-0.204638,Z=4.340504),InterpMode=CIM_CurveAutoClamped),(InVal=1230.024658,OutVal=(X=0.884399,Y=-1.636963,Z=-189.959106),ArriveTangent=(X=-0.337812,Y=0.000000,Z=7.677031),LeaveTangent=(X=-0.337812,Y=0.000000,Z=7.677031),InterpMode=CIM_CurveAutoClamped),(InVal=1239.683228,OutVal=(X=-3.114624,Y=1.560059,Z=-105.391846),ArriveTangent=(X=-0.041309,Y=0.000000,Z=2.047139),LeaveTangent=(X=-0.041309,Y=0.000000,Z=2.047139),InterpMode=CIM_CurveAutoClamped),(InVal=1250.000366,OutVal=(X=-3.290405,Y=-3.186035,Z=-96.009521),ArriveTangent=(X=0.000000,Y=0.000000,Z=1.995416),LeaveTangent=(X=0.000000,Y=0.000000,Z=1.995416),InterpMode=CIM_CurveAutoClamped),(InVal=1260.171021,OutVal=(X=-1.175537,Y=2.598267,Z=-16.792603),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=999.994385),(Time=1009.727905),(Time=1019.971802),(Time=1029.894897),(Time=1040.211914),(Time=1050.016846),(Time=1060.407104),(Time=1070.504639),(Time=1079.934448),(Time=1090.105225),(Time=1100.056396),(Time=1109.568604),(Time=1119.519775),(Time=1130.041382),(Time=1140.065552),(Time=1150.016846),(Time=1159.968018),(Time=1170.065552),(Time=1180.096924),(Time=1189.755493),(Time=1200.218872),(Time=1209.731079),(Time=1220.413940),(Time=1230.024658),(Time=1239.683228),(Time=1250.000366),(Time=1260.171021)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_8.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_8.InterpTrackFloatProp_1'
+      GroupName="Space"
+      GroupColor=(B=0,G=233,R=0,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_7
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),ArriveTangent=(X=0.000000,Y=-0.068238,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.068238,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=596.479553,OutVal=(X=208.557129,Y=-40.703125,Z=10.246094),ArriveTangent=(X=1.844385,Y=-0.075542,Z=0.549793),LeaveTangent=(X=1.844385,Y=-0.075542,Z=0.549793),InterpMode=CIM_CurveAutoClamped),(InVal=610.575073,OutVal=(X=1116.053711,Y=-47.890625,Z=100.971191),ArriveTangent=(X=59.455585,Y=-1.067898,Z=5.855650),LeaveTangent=(X=59.455585,Y=-1.067898,Z=5.855650),InterpMode=CIM_CurveAutoClamped),(InVal=630.571228,OutVal=(X=2235.497559,Y=-187.187500,Z=209.875000),ArriveTangent=(X=64.789612,Y=-14.977945,Z=5.468053),LeaveTangent=(X=64.789612,Y=-14.977945,Z=5.468053),InterpMode=CIM_CurveAutoClamped),(InVal=650.179138,OutVal=(X=3681.985840,Y=-1190.414063,Z=317.528320),ArriveTangent=(X=1.068932,Y=-42.122608,Z=0.725092),LeaveTangent=(X=1.068932,Y=-42.122608,Z=0.725092),InterpMode=CIM_CurveAutoClamped),(InVal=670.175293,OutVal=(X=3690.540527,Y=-1855.414063,Z=323.688477),ArriveTangent=(X=0.000000,Y=-27.407808,Z=0.000000),LeaveTangent=(X=0.000000,Y=-27.407808,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=690.171448,OutVal=(X=3620.347168,Y=-2286.515625,Z=311.522949),ArriveTangent=(X=0.000000,Y=-19.915359,Z=0.000000),LeaveTangent=(X=0.000000,Y=-19.915359,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=710.390015,OutVal=(X=4061.456543,Y=-2656.304688,Z=339.488281),ArriveTangent=(X=0.000000,Y=-35.313026,Z=0.000000),LeaveTangent=(X=0.000000,Y=-35.313026,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=730.192017,OutVal=(X=4020.050293,Y=-4180.375000,Z=336.158203),ArriveTangent=(X=-4.650836,Y=-14.210449,Z=-0.353649),LeaveTangent=(X=-4.650836,Y=-14.210449,Z=-0.353649),InterpMode=CIM_CurveAutoClamped),(InVal=751.158875,OutVal=(X=3530.979004,Y=-4309.351563,Z=311.370605),ArriveTangent=(X=-20.642519,Y=-13.923866,Z=-1.342671),LeaveTangent=(X=-20.642519,Y=-13.923866,Z=-1.342671),InterpMode=CIM_CurveAutoClamped),(InVal=770.960938,OutVal=(X=3178.477051,Y=-5559.265625,Z=281.418945),ArriveTangent=(X=-32.416645,Y=-8.282436,Z=-2.216982),LeaveTangent=(X=-32.416645,Y=-8.282436,Z=-2.216982),InterpMode=CIM_CurveAutoClamped),(InVal=790.176758,OutVal=(X=2025.266113,Y=-5627.781250,Z=224.868652),ArriveTangent=(X=-16.919830,Y=0.000000,Z=-1.075660),LeaveTangent=(X=-16.919830,Y=0.000000,Z=-1.075660),InterpMode=CIM_CurveAutoClamped),(InVal=809.784668,OutVal=(X=1871.979980,Y=-4865.671875,Z=214.607422),ArriveTangent=(X=-15.251878,Y=18.623924,Z=-0.975734),LeaveTangent=(X=-15.251878,Y=18.623924,Z=-0.975734),InterpMode=CIM_CurveAutoClamped),(InVal=829.780884,OutVal=(X=1166.148926,Y=-4669.929688,Z=175.349609),ArriveTangent=(X=-36.709057,Y=0.000000,Z=-2.370720),LeaveTangent=(X=-36.709057,Y=0.000000,Z=-2.370720),InterpMode=CIM_CurveAutoClamped),(InVal=850.359436,OutVal=(X=382.518555,Y=-5096.273438,Z=118.416016),ArriveTangent=(X=-58.819706,Y=0.000000,Z=-4.119321),LeaveTangent=(X=-58.819706,Y=0.000000,Z=-4.119321),InterpMode=CIM_CurveAutoClamped),(InVal=869.835083,OutVal=(X=-1191.317871,Y=-4442.117188,Z=10.353516),ArriveTangent=(X=-10.035442,Y=56.724602,Z=0.000000),LeaveTangent=(X=-10.035442,Y=56.724602,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=880.534973,OutVal=(X=-1245.990723,Y=-3384.578125,Z=15.372559),ArriveTangent=(X=0.000000,Y=41.041855,Z=1.102980),LeaveTangent=(X=0.000000,Y=41.041855,Z=1.102980),InterpMode=CIM_CurveAutoClamped),(InVal=889.972229,OutVal=(X=-505.138672,Y=-3183.679688,Z=72.061523),ArriveTangent=(X=26.185366,Y=42.407043,Z=3.893639),LeaveTangent=(X=26.185366,Y=42.407043,Z=3.893639),InterpMode=CIM_CurveAutoClamped),(InVal=900.353149,OutVal=(X=-377.644531,Y=-2006.945313,Z=96.161133),ArriveTangent=(X=24.412313,Y=0.000000,Z=1.421464),LeaveTangent=(X=24.412313,Y=0.000000,Z=1.421464),InterpMode=CIM_CurveAutoClamped),(InVal=910.060059,OutVal=(X=173.502441,Y=-2039.789063,Z=104.316895),ArriveTangent=(X=36.156250,Y=0.000000,Z=1.537208),LeaveTangent=(X=36.156250,Y=0.000000,Z=1.537208),InterpMode=CIM_CurveAutoClamped),(InVal=920.575806,OutVal=(X=398.254395,Y=-1418.890625,Z=136.188477),ArriveTangent=(X=44.064835,Y=0.000000,Z=5.081021),LeaveTangent=(X=44.064835,Y=0.000000,Z=5.081021),InterpMode=CIM_CurveAutoClamped),(InVal=929.743408,OutVal=(X=1417.325684,Y=-1453.593750,Z=207.463867),ArriveTangent=(X=86.982025,Y=-8.535875,Z=6.105673),LeaveTangent=(X=86.982025,Y=-8.535875,Z=6.105673),InterpMode=CIM_CurveAutoClamped),(InVal=939.989502,OutVal=(X=2086.896973,Y=-2057.664063,Z=254.722168),ArriveTangent=(X=0.000000,Y=-59.795250,Z=0.000000),LeaveTangent=(X=0.000000,Y=-59.795250,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=949.966064,OutVal=(X=1421.335449,Y=-2662.812500,Z=227.390137),ArriveTangent=(X=-67.990540,Y=-56.919308,Z=-2.220505),LeaveTangent=(X=-67.990540,Y=-56.919308,Z=-2.220505),InterpMode=CIM_CurveAutoClamped),(InVal=961.021057,OutVal=(X=656.950195,Y=-3254.765625,Z=208.021484),ArriveTangent=(X=-60.273705,Y=-35.751644,Z=-2.183084),LeaveTangent=(X=-60.273705,Y=-35.751644,Z=-2.183084),InterpMode=CIM_CurveAutoClamped),(InVal=970.139160,OutVal=(X=205.428223,Y=-3460.843750,Z=183.350586),ArriveTangent=(X=-31.719324,Y=-44.021763,Z=-2.180550),LeaveTangent=(X=-31.719324,Y=-44.021763,Z=-2.180550),InterpMode=CIM_CurveAutoClamped),(InVal=980.058777,OutVal=(X=18.895508,Y=-4516.429688,Z=166.508789),ArriveTangent=(X=0.000000,Y=-17.513763,Z=0.000000),LeaveTangent=(X=0.000000,Y=-17.513763,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=989.083130,OutVal=(X=1824.344238,Y=-4586.906250,Z=302.576172),ArriveTangent=(X=190.268982,Y=0.000000,Z=12.363053),LeaveTangent=(X=190.268982,Y=0.000000,Z=12.363053),InterpMode=CIM_CurveAutoClamped),(InVal=992.956543,OutVal=(X=2509.380371,Y=-3763.992188,Z=341.304199),ArriveTangent=(X=151.216095,Y=327.294464,Z=9.425988),LeaveTangent=(X=151.216095,Y=327.294464,Z=9.425988),InterpMode=CIM_CurveAutoClamped),(InVal=995.597595,OutVal=(X=2822.516113,Y=-2454.757813,Z=363.981445),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),InterpMode=CIM_CurveAutoClamped),(InVal=596.479553,OutVal=(X=-0.576782,Y=-1.889648,Z=-7.327881),ArriveTangent=(X=-0.003299,Y=0.008655,Z=0.000000),LeaveTangent=(X=-0.003299,Y=0.008655,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=610.575073,OutVal=(X=-3.317871,Y=0.538330,Z=-81.611938),ArriveTangent=(X=0.000000,Y=0.169991,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.169991,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=630.571228,OutVal=(X=-3.180542,Y=3.905640,Z=-68.109741),InterpMode=CIM_CurveAutoClamped),(InVal=650.179138,OutVal=(X=-3.208008,Y=2.460938,Z=-105.023804),ArriveTangent=(X=0.000000,Y=-0.102085,Z=-1.750697),LeaveTangent=(X=0.000000,Y=-0.102085,Z=-1.750697),InterpMode=CIM_CurveAutoClamped),(InVal=670.175293,OutVal=(X=-2.142334,Y=-0.137329,Z=-137.444458),InterpMode=CIM_CurveAutoClamped),(InVal=690.171448,OutVal=(X=-2.609253,Y=0.203247,Z=-46.505127),ArriveTangent=(X=-0.028958,Y=0.037231,Z=0.000000),LeaveTangent=(X=-0.028958,Y=0.037231,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=710.390015,OutVal=(X=-3.306885,Y=3.191528,Z=-103.392334),ArriveTangent=(X=0.000000,Y=0.000000,Z=-2.899861),LeaveTangent=(X=0.000000,Y=0.000000,Z=-2.899861),InterpMode=CIM_CurveAutoClamped),(InVal=730.192017,OutVal=(X=-0.922852,Y=-6.152344,Z=-162.559204),InterpMode=CIM_CurveAutoClamped),(InVal=751.158875,OutVal=(X=-2.625732,Y=-1.625977,Z=-128.545532),InterpMode=CIM_CurveAutoClamped),(InVal=770.960938,OutVal=(X=0.818481,Y=-10.156860,Z=-193.419800),ArriveTangent=(X=0.147966,Y=0.000000,Z=-3.457981),LeaveTangent=(X=0.147966,Y=0.000000,Z=-3.457981),InterpMode=CIM_CurveAutoClamped),(InVal=790.176758,OutVal=(X=3.147583,Y=-0.318604,Z=-263.468628),InterpMode=CIM_CurveAutoClamped),(InVal=809.784668,OutVal=(X=0.818481,Y=-2.653198,Z=-195.117188),ArriveTangent=(X=-0.067099,Y=-0.065436,Z=1.308764),LeaveTangent=(X=-0.067099,Y=-0.065436,Z=1.308764),InterpMode=CIM_CurveAutoClamped),(InVal=829.780884,OutVal=(X=0.065918,Y=-3.378296,Z=-182.301636),InterpMode=CIM_CurveAutoClamped),(InVal=850.359436,OutVal=(X=2.861938,Y=-1.241455,Z=-246.527710),ArriveTangent=(X=0.000692,Y=0.110812,Z=-2.545928),LeaveTangent=(X=0.000692,Y=0.110812,Z=-2.545928),InterpMode=CIM_CurveAutoClamped),(InVal=869.835083,OutVal=(X=2.867432,Y=1.060181,Z=-284.276733),ArriveTangent=(X=0.000000,Y=0.173848,Z=-3.243958),LeaveTangent=(X=0.000000,Y=0.173848,Z=-3.243958),InterpMode=CIM_CurveAutoClamped),(InVal=880.534973,OutVal=(X=0.357056,Y=4.004517,Z=-344.415894),InterpMode=CIM_CurveAutoClamped),(InVal=889.972229,OutVal=(X=2.730103,Y=2.427979,Z=-287.968140),InterpMode=CIM_CurveAutoClamped),(InVal=900.353149,OutVal=(X=-0.697632,Y=2.576294,Z=-361.065674),ArriveTangent=(X=0.000000,Y=0.032839,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.032839,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=910.060059,OutVal=(X=2.059937,Y=4.185791,Z=-307.331543),ArriveTangent=(X=0.000000,Y=0.109162,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.109162,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=920.575806,OutVal=(X=-1.351318,Y=4.877930,Z=-370.816040),ArriveTangent=(X=-0.303915,Y=0.000000,Z=-6.958777),LeaveTangent=(X=-0.303915,Y=0.000000,Z=-6.958777),InterpMode=CIM_CurveAutoClamped),(InVal=929.743408,OutVal=(X=-3.922119,Y=0.686646,Z=-444.303589),ArriveTangent=(X=0.000000,Y=0.000000,Z=-6.931783),LeaveTangent=(X=0.000000,Y=0.000000,Z=-6.931783),InterpMode=CIM_CurveAutoClamped),(InVal=939.989502,OutVal=(X=-2.356567,Y=1.153564,Z=-505.387573),ArriveTangent=(X=0.019255,Y=0.000000,Z=-0.567274),LeaveTangent=(X=0.019255,Y=0.000000,Z=-0.567274),InterpMode=CIM_CurveAutoClamped),(InVal=949.966064,OutVal=(X=-2.274170,Y=-2.828979,Z=-507.777100),ArriveTangent=(X=0.007574,Y=0.000000,Z=-0.208427),LeaveTangent=(X=0.007574,Y=0.000000,Z=-0.208427),InterpMode=CIM_CurveAutoClamped),(InVal=961.021057,OutVal=(X=-2.197266,Y=-2.202759,Z=-509.771118),ArriveTangent=(X=0.000000,Y=0.130628,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.130628,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=970.139160,OutVal=(X=-3.999023,Y=2.708130,Z=-455.668945),ArriveTangent=(X=0.000000,Y=0.202740,Z=7.549677),LeaveTangent=(X=0.000000,Y=0.202740,Z=7.549677),InterpMode=CIM_CurveAutoClamped),(InVal=980.058777,OutVal=(X=-1.230469,Y=3.680420,Z=-366.042480),ArriveTangent=(X=0.344483,Y=0.000000,Z=9.079800),LeaveTangent=(X=0.344483,Y=0.000000,Z=9.079800),InterpMode=CIM_CurveAutoClamped),(InVal=989.083130,OutVal=(X=2.526855,Y=2.213745,Z=-283.661499),ArriveTangent=(X=0.000000,Y=-0.241911,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.241911,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=992.956543,OutVal=(X=2.208252,Y=0.560303,Z=-296.295776),ArriveTangent=(X=-0.191121,Y=-0.645068,Z=0.000000),LeaveTangent=(X=-0.191121,Y=-0.645068,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=995.597595,OutVal=(X=0.455933,Y=-1.988525,Z=-197.720947),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=596.479553),(Time=610.575073),(Time=630.571228),(Time=650.179138),(Time=670.175293),(Time=690.171448),(Time=710.390015),(Time=730.192017),(Time=751.158875),(Time=770.960938),(Time=790.176758),(Time=809.784668),(Time=829.780884),(Time=850.359436),(Time=869.835083),(Time=880.534973),(Time=889.972229),(Time=900.353149),(Time=910.060059),(Time=920.575806),(Time=929.743408),(Time=939.989502),(Time=949.966064),(Time=961.021057),(Time=970.139160),(Time=980.058777),(Time=989.083130),(Time=992.956543),(Time=995.597595)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_7.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_7.InterpTrackFloatProp_1'
+      GroupName="computer"
+      GroupColor=(B=0,G=120,R=206,A=255)
+      Name="InterpGroup_7"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),ArriveTangent=(X=0.000000,Y=-0.082667,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.082667,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=492.381226,OutVal=(X=208.558594,Y=-40.703949,Z=10.246399),ArriveTangent=(X=2.396381,Y=-0.276866,Z=0.515280),LeaveTangent=(X=2.396381,Y=-0.276866,Z=0.515280),InterpMode=CIM_CurveAutoClamped),(InVal=493.984863,OutVal=(X=1420.342773,Y=-239.355438,Z=19.821716),ArriveTangent=(X=699.124084,Y=0.000000,Z=9.948514),LeaveTangent=(X=699.124084,Y=0.000000,Z=9.948514),InterpMode=CIM_CurveAutoClamped),(InVal=495.529053,OutVal=(X=2409.280273,Y=370.920654,Z=43.538147),ArriveTangent=(X=565.884705,Y=0.000000,Z=24.373621),LeaveTangent=(X=565.884705,Y=0.000000,Z=24.373621),InterpMode=CIM_CurveAutoClamped),(InVal=497.506653,OutVal=(X=3413.269531,Y=-9.840851,Z=117.418945),ArriveTangent=(X=579.267334,Y=-130.775070,Z=55.716057),LeaveTangent=(X=579.267334,Y=-130.775070,Z=55.716057),InterpMode=CIM_CurveAutoClamped),(InVal=499.037964,OutVal=(X=4441.877930,Y=-139.076111,Z=239.040833),ArriveTangent=(X=698.009644,Y=-68.216606,Z=47.094913),LeaveTangent=(X=698.009644,Y=-68.216606,Z=47.094913),InterpMode=CIM_CurveAutoClamped),(InVal=500.962738,OutVal=(X=5825.650391,Y=-245.603241,Z=289.697449),ArriveTangent=(X=750.377075,Y=0.000000,Z=30.267887),LeaveTangent=(X=750.377075,Y=0.000000,Z=30.267887),InterpMode=CIM_CurveAutoClamped),(InVal=502.494049,OutVal=(X=7035.245117,Y=283.396271,Z=343.649231),ArriveTangent=(X=243.968826,Y=465.209137,Z=15.706448),LeaveTangent=(X=243.968826,Y=465.209137,Z=15.706448),InterpMode=CIM_CurveAutoClamped),(InVal=504.637909,OutVal=(X=7265.501953,Y=1510.541382,Z=360.065247),ArriveTangent=(X=58.399200,Y=508.116150,Z=4.898424),LeaveTangent=(X=58.399200,Y=508.116150,Z=4.898424),InterpMode=CIM_CurveAutoClamped),(InVal=506.492981,OutVal=(X=7327.074219,Y=2315.318115,Z=365.630676),ArriveTangent=(X=0.000000,Y=153.076599,Z=0.000000),LeaveTangent=(X=0.000000,Y=153.076599,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=507.975769,OutVal=(X=6505.076172,Y=2431.390381,Z=325.616760),ArriveTangent=(X=-655.006104,Y=84.789116,Z=-32.027340),LeaveTangent=(X=-655.006104,Y=84.789116,Z=-32.027340),InterpMode=CIM_CurveAutoClamped),(InVal=509.515839,OutVal=(X=5347.083984,Y=2571.623535,Z=268.816589),ArriveTangent=(X=-255.555603,Y=0.000000,Z=-23.480757),LeaveTangent=(X=-255.555603,Y=0.000000,Z=-23.480757),InterpMode=CIM_CurveAutoClamped),(InVal=511.702454,OutVal=(X=5096.187500,Y=1870.130371,Z=238.111389),ArriveTangent=(X=-208.225616,Y=-160.559082,Z=-22.923485),LeaveTangent=(X=-208.225616,Y=-160.559082,Z=-22.923485),InterpMode=CIM_CurveAutoClamped),(InVal=514.065979,OutVal=(X=4148.084961,Y=1669.580811,Z=155.073669),ArriveTangent=(X=-297.076111,Y=-34.673058,Z=-19.163715),LeaveTangent=(X=-297.076111,Y=-34.673058,Z=-19.163715),InterpMode=CIM_CurveAutoClamped),(InVal=517.049805,OutVal=(X=3507.617188,Y=1619.806885,Z=124.434631),ArriveTangent=(X=-1.279526,Y=0.000000,Z=-14.130754),LeaveTangent=(X=-1.279526,Y=0.000000,Z=-14.130754),InterpMode=CIM_CurveAutoClamped),(InVal=519.394897,OutVal=(X=3506.321289,Y=2841.223633,Z=79.772034),ArriveTangent=(X=0.000000,Y=459.006256,Z=-6.144273),LeaveTangent=(X=0.000000,Y=459.006256,Z=-6.144273),InterpMode=CIM_CurveAutoClamped),(InVal=521.437805,OutVal=(X=3609.746094,Y=3633.926514,Z=73.599182),ArriveTangent=(X=64.191185,Y=639.547180,Z=0.000000),LeaveTangent=(X=64.191185,Y=639.547180,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=523.082825,OutVal=(X=3743.053711,Y=5199.827148,Z=74.929382),InterpMode=CIM_CurveAutoClamped),(InVal=525.034180,OutVal=(X=2911.028320,Y=4972.024414,Z=13.323608),ArriveTangent=(X=-411.703491,Y=-87.706482,Z=-26.677372),LeaveTangent=(X=-411.703491,Y=-87.706482,Z=-26.677372),InterpMode=CIM_CurveAutoClamped),(InVal=527.020447,OutVal=(X=2121.920898,Y=4854.472168,Z=-30.116028),ArriveTangent=(X=-136.966095,Y=-129.681396,Z=-11.799911),LeaveTangent=(X=-136.966095,Y=-129.681396,Z=-11.799911),InterpMode=CIM_CurveAutoClamped),(InVal=528.980225,OutVal=(X=1992.064453,Y=3870.139160,Z=-42.903137),ArriveTangent=(X=0.000000,Y=-520.571838,Z=0.000000),LeaveTangent=(X=0.000000,Y=-520.571838,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=530.511536,OutVal=(X=2139.580078,Y=3037.109619,Z=-19.293396),ArriveTangent=(X=0.000000,Y=-397.581818,Z=0.000000),LeaveTangent=(X=0.000000,Y=-397.581818,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=532.540100,OutVal=(X=1919.781250,Y=2454.797363,Z=-23.293640),ArriveTangent=(X=-216.540802,Y=-340.922974,Z=-4.732093),LeaveTangent=(X=-216.540802,Y=-340.922974,Z=-4.732093),InterpMode=CIM_CurveAutoClamped),(InVal=533.985413,OutVal=(X=1265.452148,Y=1852.785156,Z=-53.236694),ArriveTangent=(X=-448.328094,Y=0.000000,Z=-21.121246),LeaveTangent=(X=-448.328094,Y=0.000000,Z=-21.121246),InterpMode=CIM_CurveAutoClamped),(InVal=536.457031,OutVal=(X=163.710938,Y=2021.977173,Z=-106.024109),ArriveTangent=(X=0.000000,Y=114.137123,Z=0.000000),LeaveTangent=(X=0.000000,Y=114.137123,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=539.111267,OutVal=(X=258.457031,Y=2503.631592,Z=-101.111755),ArriveTangent=(X=47.782169,Y=371.656250,Z=0.000000),LeaveTangent=(X=47.782169,Y=371.656250,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=540.998413,OutVal=(X=380.708008,Y=4067.677002,Z=-114.623352),ArriveTangent=(X=18.503990,Y=480.640991,Z=0.000000),LeaveTangent=(X=18.503990,Y=480.640991,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=543.492249,OutVal=(X=400.916992,Y=4726.485840,Z=-100.945984),ArriveTangent=(X=22.146070,Y=465.044403,Z=13.494829),LeaveTangent=(X=22.146070,Y=465.044403,Z=13.494829),InterpMode=CIM_CurveAutoClamped),(InVal=544.533142,OutVal=(X=538.005859,Y=5711.482910,Z=-52.215149),ArriveTangent=(X=128.601974,Y=921.495789,Z=0.000000),LeaveTangent=(X=128.601974,Y=921.495789,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=545.740723,OutVal=(X=690.075195,Y=6798.445313,Z=-55.551697),ArriveTangent=(X=152.974976,Y=766.450073,Z=0.000000),LeaveTangent=(X=152.974976,Y=766.450073,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=548.015808,OutVal=(X=1090.541016,Y=8380.772461,Z=-12.336975),ArriveTangent=(X=376.495422,Y=0.000000,Z=32.084446),LeaveTangent=(X=376.495422,Y=0.000000,Z=32.084446),InterpMode=CIM_CurveAutoClamped),(InVal=549.512085,OutVal=(X=2477.894531,Y=8046.169922,Z=65.450378),ArriveTangent=(X=130.241882,Y=-383.264679,Z=0.000000),LeaveTangent=(X=130.241882,Y=-383.264679,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=551.246704,OutVal=(X=2571.127930,Y=6896.233887,Z=57.285828),ArriveTangent=(X=118.165268,Y=0.000000,Z=0.000000),LeaveTangent=(X=118.165268,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=552.968201,OutVal=(X=3384.792969,Y=7001.731445,Z=100.836121),ArriveTangent=(X=589.802795,Y=115.000763,Z=38.758442),LeaveTangent=(X=589.802795,Y=115.000763,Z=38.758442),InterpMode=CIM_CurveAutoClamped),(InVal=554.517029,OutVal=(X=4499.974609,Y=7346.113281,Z=184.038513),ArriveTangent=(X=275.278656,Y=0.000000,Z=18.329674),LeaveTangent=(X=275.278656,Y=0.000000,Z=18.329674),InterpMode=CIM_CurveAutoClamped),(InVal=556.633850,OutVal=(X=4771.488281,Y=6753.295898,Z=201.586487),ArriveTangent=(X=0.000000,Y=-300.974609,Z=0.000000),LeaveTangent=(X=0.000000,Y=-300.974609,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=558.480896,OutVal=(X=4266.528320,Y=6153.089844,Z=145.329529),ArriveTangent=(X=0.000000,Y=-359.377350,Z=0.000000),LeaveTangent=(X=0.000000,Y=-359.377350,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=560.475586,OutVal=(X=4503.446289,Y=5372.663086,Z=147.594421),ArriveTangent=(X=233.896423,Y=-95.394737,Z=2.777493),LeaveTangent=(X=233.896423,Y=-95.394737,Z=2.777493),InterpMode=CIM_CurveAutoClamped),(InVal=562.470642,OutVal=(X=5603.584961,Y=5286.243652,Z=268.481506),ArriveTangent=(X=0.000000,Y=-80.693375,Z=3.326155),LeaveTangent=(X=0.000000,Y=-80.693375,Z=3.326155),InterpMode=CIM_CurveAutoClamped),(InVal=566.438721,OutVal=(X=5101.152344,Y=3542.937012,Z=273.050110),ArriveTangent=(X=0.000000,Y=-92.511765,Z=2.901699),LeaveTangent=(X=0.000000,Y=-92.511765,Z=2.901699),InterpMode=CIM_CurveAutoClamped),(InVal=570.053223,OutVal=(X=6025.734375,Y=3390.223145,Z=536.258484),ArriveTangent=(X=166.183212,Y=-28.815557,Z=13.965523),LeaveTangent=(X=166.183212,Y=-28.815557,Z=13.965523),InterpMode=CIM_CurveAutoClamped),(InVal=574.975098,OutVal=(X=6519.754883,Y=3296.956543,Z=564.414612),ArriveTangent=(X=210.345856,Y=-34.397003,Z=15.330276),LeaveTangent=(X=210.345856,Y=-34.397003,Z=15.330276),InterpMode=CIM_CurveAutoClamped),(InVal=577.820496,OutVal=(X=7863.501953,Y=3123.052246,Z=915.291077),ArriveTangent=(X=310.056030,Y=-53.678341,Z=31.748035),LeaveTangent=(X=310.056030,Y=-53.678341,Z=31.748035),InterpMode=CIM_CurveAutoClamped),(InVal=580.589050,OutVal=(X=8387.365234,Y=2995.608887,Z=955.792786),ArriveTangent=(X=167.904755,Y=-27.626949,Z=10.313902),LeaveTangent=(X=167.904755,Y=-27.626949,Z=10.313902),InterpMode=CIM_CurveAutoClamped),(InVal=583.357605,OutVal=(X=8793.208984,Y=2951.321777,Z=973.963196),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.235640),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.235640),InterpMode=CIM_CurveAutoClamped),(InVal=586.126099,OutVal=(X=8782.255859,Y=3832.665283,Z=1006.930969),ArriveTangent=(X=-8.775543,Y=249.963043,Z=0.000000),LeaveTangent=(X=-8.775543,Y=249.963043,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=589.894409,OutVal=(X=8181.283203,Y=4585.281250,Z=950.127014),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),InterpMode=CIM_CurveAutoClamped),(InVal=492.381226,OutVal=(X=-0.554810,Y=-1.889648,Z=-7.305908),ArriveTangent=(X=0.000000,Y=0.011465,Z=0.015961),LeaveTangent=(X=0.000000,Y=0.011465,Z=0.015961),InterpMode=CIM_CurveAutoClamped),(InVal=493.984863,OutVal=(X=2.894897,Y=0.917358,Z=62.248535),ArriveTangent=(X=0.000000,Y=1.975414,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.975414,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=495.529053,OutVal=(X=0.873413,Y=4.328613,Z=18.847046),InterpMode=CIM_CurveAutoClamped),(InVal=497.506653,OutVal=(X=1.230469,Y=4.180298,Z=25.675049),ArriveTangent=(X=0.358897,Y=0.000000,Z=7.021221),LeaveTangent=(X=0.358897,Y=0.000000,Z=7.021221),InterpMode=CIM_CurveAutoClamped),(InVal=499.037964,OutVal=(X=2.395020,Y=4.416504,Z=49.965820),ArriveTangent=(X=0.112408,Y=0.000000,Z=2.946814),LeaveTangent=(X=0.112408,Y=0.000000,Z=2.946814),InterpMode=CIM_CurveAutoClamped),(InVal=500.962738,OutVal=(X=2.482910,Y=2.356567,Z=52.322388),ArriveTangent=(X=0.106900,Y=0.000000,Z=2.977966),LeaveTangent=(X=0.106900,Y=0.000000,Z=2.977966),InterpMode=CIM_CurveAutoClamped),(InVal=502.494049,OutVal=(X=3.191528,Y=2.856445,Z=79.436646),ArriveTangent=(X=0.000000,Y=0.000000,Z=27.626392),LeaveTangent=(X=0.000000,Y=0.000000,Z=27.626392),InterpMode=CIM_CurveAutoClamped),(InVal=504.637909,OutVal=(X=0.653687,Y=-1.417236,Z=170.156250),ArriveTangent=(X=-0.171925,Y=-0.941919,Z=2.172987),LeaveTangent=(X=-0.171925,Y=-0.941919,Z=2.172987),InterpMode=CIM_CurveAutoClamped),(InVal=506.492981,OutVal=(X=0.510864,Y=-2.362061,Z=171.881104),ArriveTangent=(X=-0.196885,Y=0.000000,Z=2.419069),LeaveTangent=(X=-0.196885,Y=0.000000,Z=2.419069),InterpMode=CIM_CurveAutoClamped),(InVal=507.975769,OutVal=(X=-3.186035,Y=1.159058,Z=247.153931),ArriveTangent=(X=-0.026929,Y=1.898983,Z=0.000000),LeaveTangent=(X=-0.026929,Y=1.898983,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=509.515839,OutVal=(X=-3.202515,Y=3.378296,Z=246.665039),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.698853),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.698853),InterpMode=CIM_CurveAutoClamped),(InVal=511.702454,OutVal=(X=-1.746826,Y=-3.438721,Z=210.014648),ArriveTangent=(X=0.261246,Y=-1.081683,Z=-5.412539),LeaveTangent=(X=0.261246,Y=-1.081683,Z=-5.412539),InterpMode=CIM_CurveAutoClamped),(InVal=514.065979,OutVal=(X=-1.444702,Y=-4.652710,Z=204.032593),ArriveTangent=(X=0.273173,Y=0.000000,Z=-5.476542),LeaveTangent=(X=0.273173,Y=0.000000,Z=-5.476542),InterpMode=CIM_CurveAutoClamped),(InVal=517.049805,OutVal=(X=3.021240,Y=1.933594,Z=100.162354),ArriveTangent=(X=0.000000,Y=0.000000,Z=-13.446154),LeaveTangent=(X=0.000000,Y=0.000000,Z=-13.446154),InterpMode=CIM_CurveAutoClamped),(InVal=519.394897,OutVal=(X=2.960815,Y=-3.109131,Z=83.649902),ArriveTangent=(X=-0.065546,Y=-1.763871,Z=0.000000),LeaveTangent=(X=-0.065546,Y=-1.763871,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=521.437805,OutVal=(X=0.049438,Y=-5.806274,Z=175.720825),ArriveTangent=(X=-0.607306,Y=0.000000,Z=10.694168),LeaveTangent=(X=-0.607306,Y=0.000000,Z=10.694168),InterpMode=CIM_CurveAutoClamped),(InVal=523.082825,OutVal=(X=-0.483398,Y=-3.240967,Z=184.147339),ArriveTangent=(X=-0.223003,Y=0.706315,Z=3.609287),LeaveTangent=(X=-0.223003,Y=0.706315,Z=3.609287),InterpMode=CIM_CurveAutoClamped),(InVal=525.034180,OutVal=(X=-0.752563,Y=-2.548828,Z=188.701172),ArriveTangent=(X=-0.309886,Y=0.759762,Z=5.427531),LeaveTangent=(X=-0.309886,Y=0.759762,Z=5.427531),InterpMode=CIM_CurveAutoClamped),(InVal=527.020447,OutVal=(X=-3.828735,Y=2.763062,Z=268.330078),ArriveTangent=(X=0.000000,Y=1.976285,Z=43.109570),LeaveTangent=(X=0.000000,Y=1.976285,Z=43.109570),InterpMode=CIM_CurveAutoClamped),(InVal=528.980225,OutVal=(X=-0.769043,Y=5.317383,Z=358.813477),InterpMode=CIM_CurveAutoClamped),(InVal=530.511536,OutVal=(X=-1.647949,Y=0.208740,Z=203.208618),ArriveTangent=(X=0.000000,Y=-1.199296,Z=-24.299049),LeaveTangent=(X=0.000000,Y=-1.199296,Z=-24.299049),InterpMode=CIM_CurveAutoClamped),(InVal=532.540100,OutVal=(X=-0.488892,Y=-0.911865,Z=182.279663),InterpMode=CIM_CurveAutoClamped),(InVal=533.985413,OutVal=(X=-3.751831,Y=2.477417,Z=293.071289),ArriveTangent=(X=0.000000,Y=0.000000,Z=56.416363),LeaveTangent=(X=0.000000,Y=0.000000,Z=56.416363),InterpMode=CIM_CurveAutoClamped),(InVal=536.457031,OutVal=(X=1.543579,Y=-1.735840,Z=403.258667),ArriveTangent=(X=0.820453,Y=0.000000,Z=24.252375),LeaveTangent=(X=0.820453,Y=0.000000,Z=24.252375),InterpMode=CIM_CurveAutoClamped),(InVal=539.111267,OutVal=(X=2.603760,Y=0.049438,Z=438.480835),ArriveTangent=(X=0.000000,Y=1.322023,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.322023,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=540.998413,OutVal=(X=-1.505127,Y=5.053711,Z=349.112549),InterpMode=CIM_CurveAutoClamped),(InVal=543.492249,OutVal=(X=0.708618,Y=3.955078,Z=388.729248),InterpMode=CIM_CurveAutoClamped),(InVal=544.533142,OutVal=(X=-0.247192,Y=5.971069,Z=372.315674),InterpMode=CIM_CurveAutoClamped),(InVal=545.740723,OutVal=(X=2.213745,Y=-2.416992,Z=427.615356),InterpMode=CIM_CurveAutoClamped),(InVal=548.015808,OutVal=(X=-2.109375,Y=6.245728,Z=340.993652),ArriveTangent=(X=-1.695068,Y=0.000000,Z=-39.974915),LeaveTangent=(X=-1.695068,Y=0.000000,Z=-39.974915),InterpMode=CIM_CurveAutoClamped),(InVal=549.512085,OutVal=(X=-4.202271,Y=1.549072,Z=276.855469),InterpMode=CIM_CurveAutoClamped),(InVal=551.246704,OutVal=(X=-0.796509,Y=1.658936,Z=364.806519),ArriveTangent=(X=0.362440,Y=0.000000,Z=7.297436),LeaveTangent=(X=0.362440,Y=0.000000,Z=7.297436),InterpMode=CIM_CurveAutoClamped),(InVal=552.968201,OutVal=(X=-0.521851,Y=-0.692139,Z=370.217285),InterpMode=CIM_CurveAutoClamped),(InVal=554.517029,OutVal=(X=-4.163818,Y=2.933350,Z=290.978394),ArriveTangent=(X=0.000000,Y=0.000000,Z=-38.604183),LeaveTangent=(X=0.000000,Y=0.000000,Z=-38.604183),InterpMode=CIM_CurveAutoClamped),(InVal=556.633850,OutVal=(X=-3.394775,Y=-2.246704,Z=228.707886),ArriveTangent=(X=0.194941,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.194941,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=558.480896,OutVal=(X=-3.191528,Y=1.417236,Z=323.712158),ArriveTangent=(X=0.242100,Y=1.827368,Z=35.103733),LeaveTangent=(X=0.242100,Y=1.827368,Z=35.103733),InterpMode=CIM_CurveAutoClamped),(InVal=560.475586,OutVal=(X=-0.889893,Y=4.773560,Z=366.926880),ArriveTangent=(X=0.000000,Y=1.305226,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.305226,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=562.470642,OutVal=(X=-4.416504,Y=6.624756,Z=260.474854),ArriveTangent=(X=0.000000,Y=1.225231,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.225231,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=566.438721,OutVal=(X=-1.878662,Y=12.897949,Z=350.864868),InterpMode=CIM_CurveAutoClamped),(InVal=570.053223,OutVal=(X=-1.988525,Y=10.398560,Z=349.612427),InterpMode=CIM_CurveAutoClamped),(InVal=574.975098,OutVal=(X=-1.928101,Y=14.776611,Z=351.644897),InterpMode=CIM_CurveAutoClamped),(InVal=577.820496,OutVal=(X=-2.076416,Y=8.377075,Z=349.552002),ArriveTangent=(X=-0.122711,Y=-2.805314,Z=-1.804628),LeaveTangent=(X=-0.122711,Y=-2.805314,Z=-1.804628),InterpMode=CIM_CurveAutoClamped),(InVal=580.589050,OutVal=(X=-4.581299,Y=-0.972290,Z=259.985962),InterpMode=CIM_CurveAutoClamped),(InVal=583.357605,OutVal=(X=1.944580,Y=1.389771,Z=464.990845),ArriveTangent=(X=0.000000,Y=0.000000,Z=30.137875),LeaveTangent=(X=0.000000,Y=0.000000,Z=30.137875),InterpMode=CIM_CurveAutoClamped),(InVal=586.126099,OutVal=(X=0.609741,Y=-0.851440,Z=506.876221),ArriveTangent=(X=0.000000,Y=-1.229895,Z=0.000000),LeaveTangent=(X=0.000000,Y=-1.229895,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=589.894409,OutVal=(X=1.186523,Y=-7.553101,Z=492.989502),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=492.381226),(Time=493.984863),(Time=495.529053),(Time=497.506653),(Time=499.037964),(Time=500.962738),(Time=502.494049),(Time=504.637909),(Time=506.492981),(Time=507.975769),(Time=509.515839),(Time=511.702454),(Time=514.065979),(Time=517.049805),(Time=519.394897),(Time=521.437805),(Time=523.082825),(Time=525.034180),(Time=527.020447),(Time=528.980225),(Time=530.511536),(Time=532.540100),(Time=533.985413),(Time=536.457031),(Time=539.111267),(Time=540.998413),(Time=543.492249),(Time=544.533142),(Time=545.740723),(Time=548.015808),(Time=549.512085),(Time=551.246704),(Time=552.968201),(Time=554.517029),(Time=556.633850),(Time=558.480896),(Time=560.475586),(Time=562.470642),(Time=566.438721),(Time=570.053223),(Time=574.975098),(Time=577.820496),(Time=580.589050),(Time=583.357605),(Time=586.126099),(Time=589.894409)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_6.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_6.InterpTrackFloatProp_1'
+      GroupName="Desert"
+      GroupColor=(B=220,G=88,R=0,A=255)
+      Name="InterpGroup_6"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=435.070160,OutVal=(X=65.168213,Y=-61.948242,Z=-27.039734),ArriveTangent=(X=0.566758,Y=0.000000,Z=-0.234602),LeaveTangent=(X=0.566758,Y=0.000000,Z=-0.234602),InterpMode=CIM_CurveAutoClamped),(InVal=437.011963,OutVal=(X=950.364502,Y=-0.736328,Z=-377.839905),ArriveTangent=(X=0.000000,Y=68.029587,Z=0.000000),LeaveTangent=(X=0.000000,Y=68.029587,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=438.990021,OutVal=(X=919.500732,Y=495.864258,Z=-364.313660),ArriveTangent=(X=-36.856567,Y=62.849480,Z=5.282343),LeaveTangent=(X=-36.856567,Y=62.849480,Z=5.282343),InterpMode=CIM_CurveAutoClamped),(InVal=440.989777,OutVal=(X=243.800049,Y=552.997070,Z=-356.827728),ArriveTangent=(X=-300.268188,Y=66.051163,Z=0.000000),LeaveTangent=(X=-300.268188,Y=66.051163,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=443.011292,OutVal=(X=-287.958984,Y=1441.352539,Z=-360.622223),ArriveTangent=(X=-58.052795,Y=439.248566,Z=0.000000),LeaveTangent=(X=-58.052795,Y=439.248566,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=445.032806,OutVal=(X=-340.555908,Y=2328.892090,Z=-350.360107),ArriveTangent=(X=0.000000,Y=431.502380,Z=5.289798),LeaveTangent=(X=0.000000,Y=431.502380,Z=5.289798),InterpMode=CIM_CurveAutoClamped),(InVal=446.989136,OutVal=(X=375.958496,Y=3157.801758,Z=-339.580231),ArriveTangent=(X=355.407990,Y=0.000000,Z=11.557486),LeaveTangent=(X=355.407990,Y=0.000000,Z=11.557486),InterpMode=CIM_CurveAutoClamped),(InVal=448.907349,OutVal=(X=1036.487305,Y=2938.458984,Z=-273.067322),ArriveTangent=(X=355.614563,Y=-93.491531,Z=60.514278),LeaveTangent=(X=355.614563,Y=-93.491531,Z=60.514278),InterpMode=CIM_CurveAutoClamped),(InVal=450.972321,OutVal=(X=1792.437012,Y=2785.407715,Z=-54.632385),ArriveTangent=(X=316.262543,Y=-143.947662,Z=46.057037),LeaveTangent=(X=316.262543,Y=-143.947662,Z=46.057037),InterpMode=CIM_CurveAutoClamped),(InVal=452.972107,OutVal=(X=2322.018066,Y=2150.687500,Z=-7.195801),ArriveTangent=(X=186.044144,Y=-285.291290,Z=0.000000),LeaveTangent=(X=186.044144,Y=-285.291290,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=454.910522,OutVal=(X=2551.812012,Y=1661.873047,Z=-63.096375),ArriveTangent=(X=205.498138,Y=0.000000,Z=-48.827835),LeaveTangent=(X=205.498138,Y=0.000000,Z=-48.827835),InterpMode=CIM_CurveAutoClamped),(InVal=457.074280,OutVal=(X=3328.612305,Y=1708.478516,Z=-238.465637),ArriveTangent=(X=0.000000,Y=0.000000,Z=-68.103386),LeaveTangent=(X=0.000000,Y=0.000000,Z=-68.103386),InterpMode=CIM_CurveAutoClamped),(InVal=458.906219,OutVal=(X=3192.593506,Y=1258.022461,Z=-335.216858),ArriveTangent=(X=-142.563843,Y=-202.599503,Z=-91.701439),LeaveTangent=(X=-142.563843,Y=-202.599503,Z=-91.701439),InterpMode=CIM_CurveAutoClamped),(InVal=460.927734,OutVal=(X=2523.824219,Y=927.770508,Z=-658.746948),ArriveTangent=(X=0.000000,Y=-223.873749,Z=-21.200539),LeaveTangent=(X=0.000000,Y=-223.873749,Z=-21.200539),InterpMode=CIM_CurveAutoClamped),(InVal=462.201172,OutVal=(X=2670.151367,Y=520.369141,Z=-671.963257),ArriveTangent=(X=180.380402,Y=0.000000,Z=-8.409266),LeaveTangent=(X=180.380402,Y=0.000000,Z=-8.409266),InterpMode=CIM_CurveAutoClamped),(InVal=464.014343,OutVal=(X=3180.506836,Y=575.046875,Z=-684.703064),ArriveTangent=(X=194.832123,Y=67.236832,Z=-6.750473),LeaveTangent=(X=194.832123,Y=67.236832,Z=-6.750473),InterpMode=CIM_CurveAutoClamped),(InVal=465.992401,OutVal=(X=3420.378418,Y=1315.303711,Z=-697.555847),ArriveTangent=(X=206.319687,Y=100.787979,Z=0.000000),LeaveTangent=(X=206.319687,Y=100.787979,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=467.535675,OutVal=(X=3911.428711,Y=1391.735352,Z=-690.162781),ArriveTangent=(X=308.660797,Y=109.035797,Z=4.731243),LeaveTangent=(X=308.660797,Y=109.035797,Z=4.731243),InterpMode=CIM_CurveAutoClamped),(InVal=469.057251,OutVal=(X=4366.377441,Y=2054.443848,Z=-683.055298),ArriveTangent=(X=385.278229,Y=200.362717,Z=0.110317),LeaveTangent=(X=385.278229,Y=200.362717,Z=0.110317),InterpMode=CIM_CurveAutoClamped),(InVal=470.426666,OutVal=(X=5025.264648,Y=2200.340820,Z=-682.992249),ArriveTangent=(X=534.298523,Y=0.000000,Z=0.124335),LeaveTangent=(X=534.298523,Y=0.000000,Z=0.124335),InterpMode=CIM_CurveAutoClamped),(InVal=471.404816,OutVal=(X=5620.677734,Y=2018.568359,Z=-679.359924),ArriveTangent=(X=459.938293,Y=-314.801025,Z=0.000000),LeaveTangent=(X=459.938293,Y=-314.801025,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=472.513367,OutVal=(X=5985.018066,Y=1435.473633,Z=-680.732422),ArriveTangent=(X=244.342758,Y=-500.325470,Z=-0.127729),LeaveTangent=(X=244.342758,Y=-500.325470,Z=-0.127729),InterpMode=CIM_CurveAutoClamped),(InVal=473.947998,OutVal=(X=6242.085938,Y=746.149414,Z=-680.804443),ArriveTangent=(X=0.000000,Y=-561.551147,Z=0.000000),LeaveTangent=(X=0.000000,Y=-561.551147,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=474.969635,OutVal=(X=6198.801758,Y=56.153320,Z=-675.778259),ArriveTangent=(X=-93.400726,Y=-640.863831,Z=4.313331),LeaveTangent=(X=-93.400726,Y=-640.863831,Z=4.313331),InterpMode=CIM_CurveAutoClamped),(InVal=476.056458,OutVal=(X=5723.281250,Y=-605.085938,Z=-671.709961),ArriveTangent=(X=-683.314758,Y=-263.278992,Z=9.444748),LeaveTangent=(X=-683.314758,Y=-263.278992,Z=9.444748),InterpMode=CIM_CurveAutoClamped),(InVal=477.056366,OutVal=(X=4772.907715,Y=-741.903320,Z=-377.284149),ArriveTangent=(X=-991.670288,Y=-111.006119,Z=66.077194),LeaveTangent=(X=-991.670288,Y=-111.006119,Z=66.077194),InterpMode=CIM_CurveAutoClamped),(InVal=478.012756,OutVal=(X=3783.277832,Y=-822.247070,Z=-348.575897),ArriveTangent=(X=-915.732666,Y=-2.673531,Z=3.777338),LeaveTangent=(X=-915.732666,Y=-2.673531,Z=3.777338),InterpMode=CIM_CurveAutoClamped),(InVal=479.012665,OutVal=(X=2981.460938,Y=-823.318359,Z=-346.987213),ArriveTangent=(X=-870.727600,Y=0.000000,Z=3.636335),LeaveTangent=(X=-870.727600,Y=0.000000,Z=3.636335),InterpMode=CIM_CurveAutoClamped),(InVal=479.903870,OutVal=(X=2136.633301,Y=-783.113281,Z=-332.626465),ArriveTangent=(X=-256.882141,Y=98.731079,Z=13.462062),LeaveTangent=(X=-256.882141,Y=98.731079,Z=13.462062),InterpMode=CIM_CurveAutoClamped),(InVal=480.947235,OutVal=(X=2017.419556,Y=-203.787109,Z=-320.943909),ArriveTangent=(X=-121.294876,Y=495.669983,Z=14.838260),LeaveTangent=(X=-121.294876,Y=495.669983,Z=14.838260),InterpMode=CIM_CurveAutoClamped),(InVal=481.947113,OutVal=(X=1888.798340,Y=229.661133,Z=-302.308289),ArriveTangent=(X=0.000000,Y=354.417664,Z=0.000000),LeaveTangent=(X=0.000000,Y=354.417664,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=483.033936,OutVal=(X=1936.776489,Y=535.776367,Z=-702.185791),ArriveTangent=(X=0.000000,Y=137.200439,Z=0.000000),LeaveTangent=(X=0.000000,Y=137.200439,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=483.855988,OutVal=(X=1495.109131,Y=599.221680,Z=-689.188721),ArriveTangent=(X=-223.346405,Y=165.753387,Z=20.005405),LeaveTangent=(X=-223.346405,Y=165.753387,Z=20.005405),InterpMode=CIM_CurveAutoClamped),(InVal=484.772888,OutVal=(X=1393.909424,Y=1236.341797,Z=-667.397339),ArriveTangent=(X=-81.891556,Y=760.642395,Z=0.000000),LeaveTangent=(X=-81.891556,Y=760.642395,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=485.908569,OutVal=(X=1327.020020,Y=2160.502441,Z=-677.266785),ArriveTangent=(X=-54.716530,Y=702.213196,Z=-2.745092),LeaveTangent=(X=-54.716530,Y=702.213196,Z=-2.745092),InterpMode=CIM_CurveAutoClamped),(InVal=487.386688,OutVal=(X=1250.891357,Y=3071.786621,Z=-679.085571),ArriveTangent=(X=-44.208370,Y=569.013916,Z=-2.917887),LeaveTangent=(X=-44.208370,Y=569.013916,Z=-2.917887),InterpMode=CIM_CurveAutoClamped),(InVal=488.473511,OutVal=(X=1213.399658,Y=3619.989746,Z=-692.471802),ArriveTangent=(X=0.000000,Y=111.457489,Z=-27.100220),LeaveTangent=(X=0.000000,Y=111.457489,Z=-27.100220),InterpMode=CIM_CurveAutoClamped),(InVal=489.842926,OutVal=(X=2233.164551,Y=3684.746582,Z=-991.927124),ArriveTangent=(X=73.874176,Y=0.000000,Z=0.000000),LeaveTangent=(X=73.874176,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=490.908020,OutVal=(X=2268.725586,Y=2933.817383,Z=-961.967590),ArriveTangent=(X=29.486532,Y=-886.825806,Z=3.638341),LeaveTangent=(X=29.486532,Y=-886.825806,Z=3.638341),InterpMode=CIM_CurveAutoClamped),(InVal=491.734009,OutVal=(X=2288.926025,Y=2007.685547,Z=-960.588745),ArriveTangent=(X=73.190674,Y=0.000000,Z=5.045685),LeaveTangent=(X=73.190674,Y=0.000000,Z=5.045685),InterpMode=CIM_CurveAutoClamped),(InVal=492.125275,OutVal=(X=3616.882080,Y=2091.633789,Z=-688.715515),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=435.070160,OutVal=(X=0.000000,Y=-20.390625,Z=-6.328125),InterpMode=CIM_CurveAutoClamped),(InVal=437.011963,OutVal=(X=0.000000,Y=4.218750,Z=83.144531),ArriveTangent=(X=0.000000,Y=0.000000,Z=36.547653),LeaveTangent=(X=0.000000,Y=0.000000,Z=36.547653),InterpMode=CIM_CurveAutoClamped),(InVal=438.990021,OutVal=(X=0.000000,Y=4.218750,Z=136.933594),InterpMode=CIM_CurveAutoClamped),(InVal=440.989777,OutVal=(X=0.000000,Y=1.230469,Z=89.824219),ArriveTangent=(X=0.000000,Y=0.000000,Z=-26.402569),LeaveTangent=(X=0.000000,Y=0.000000,Z=-26.402569),InterpMode=CIM_CurveAutoClamped),(InVal=443.011292,OutVal=(X=0.000000,Y=3.339844,Z=30.761719),InterpMode=CIM_CurveAutoClamped),(InVal=445.032806,OutVal=(X=0.000000,Y=2.812500,Z=33.046875),InterpMode=CIM_CurveAutoClamped),(InVal=446.989136,OutVal=(X=0.000000,Y=2.812500,Z=-51.503906),InterpMode=CIM_CurveAutoClamped),(InVal=448.907349,OutVal=(X=0.000000,Y=17.226563,Z=-21.796875),InterpMode=CIM_CurveAutoClamped),(InVal=450.972321,OutVal=(X=0.000000,Y=2.988281,Z=-123.222656),ArriveTangent=(X=0.000000,Y=-4.834240,Z=0.000000),LeaveTangent=(X=0.000000,Y=-4.834240,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=452.972107,OutVal=(X=0.000000,Y=-3.164063,Z=-60.468750),ArriveTangent=(X=0.000000,Y=-3.302983,Z=29.682209),LeaveTangent=(X=0.000000,Y=-3.302983,Z=29.682209),InterpMode=CIM_CurveAutoClamped),(InVal=454.910522,OutVal=(X=0.000000,Y=-10.019531,Z=-6.328125),InterpMode=CIM_CurveAutoClamped),(InVal=457.074280,OutVal=(X=0.000000,Y=-9.316406,Z=-97.558594),ArriveTangent=(X=0.000000,Y=0.170434,Z=-44.608536),LeaveTangent=(X=0.000000,Y=0.170434,Z=-44.608536),InterpMode=CIM_CurveAutoClamped),(InVal=458.906219,OutVal=(X=0.000000,Y=-9.140625,Z=-184.570313),ArriveTangent=(X=0.000000,Y=0.227399,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.227399,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=460.927734,OutVal=(X=0.000000,Y=-0.175781,Z=-88.066406),ArriveTangent=(X=0.000000,Y=0.000000,Z=55.535942),LeaveTangent=(X=0.000000,Y=0.000000,Z=55.535942),InterpMode=CIM_CurveAutoClamped),(InVal=462.201172,OutVal=(X=0.000000,Y=-3.691406,Z=-1.582031),ArriveTangent=(X=0.000000,Y=0.000000,Z=48.578037),LeaveTangent=(X=0.000000,Y=0.000000,Z=48.578037),InterpMode=CIM_CurveAutoClamped),(InVal=464.014343,OutVal=(X=0.000000,Y=1.054688,Z=61.875000),InterpMode=CIM_CurveAutoClamped),(InVal=465.992401,OutVal=(X=0.000000,Y=0.175781,Z=1.582031),InterpMode=CIM_CurveAutoClamped),(InVal=467.535675,OutVal=(X=0.000000,Y=2.812500,Z=22.500000),ArriveTangent=(X=0.000000,Y=1.491203,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.491203,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=469.057251,OutVal=(X=0.000000,Y=4.746094,Z=-26.367188),ArriveTangent=(X=0.000000,Y=0.000000,Z=-27.726217),LeaveTangent=(X=0.000000,Y=0.000000,Z=-27.726217),InterpMode=CIM_CurveAutoClamped),(InVal=470.426666,OutVal=(X=0.000000,Y=4.394531,Z=-57.656250),ArriveTangent=(X=0.000000,Y=-0.658259,Z=-21.415144),LeaveTangent=(X=0.000000,Y=-0.658259,Z=-21.415144),InterpMode=CIM_CurveAutoClamped),(InVal=471.404816,OutVal=(X=0.000000,Y=-0.878906,Z=-76.640625),ArriveTangent=(X=0.000000,Y=0.000000,Z=-17.942875),LeaveTangent=(X=0.000000,Y=0.000000,Z=-17.942875),InterpMode=CIM_CurveAutoClamped),(InVal=472.513367,OutVal=(X=0.000000,Y=3.339844,Z=-95.097656),ArriveTangent=(X=0.000000,Y=0.000000,Z=-15.067859),LeaveTangent=(X=0.000000,Y=0.000000,Z=-15.067859),InterpMode=CIM_CurveAutoClamped),(InVal=473.947998,OutVal=(X=0.000000,Y=1.406250,Z=-114.960938),ArriveTangent=(X=0.000000,Y=-0.828740,Z=-21.898691),LeaveTangent=(X=0.000000,Y=-0.828740,Z=-21.898691),InterpMode=CIM_CurveAutoClamped),(InVal=474.969635,OutVal=(X=0.000000,Y=0.878906,Z=-148.886719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-33.431175),LeaveTangent=(X=0.000000,Y=0.000000,Z=-33.431175),InterpMode=CIM_CurveAutoClamped),(InVal=476.056458,OutVal=(X=0.000000,Y=4.218750,Z=-185.449219),ArriveTangent=(X=0.000000,Y=2.442891,Z=-52.690804),LeaveTangent=(X=0.000000,Y=2.442891,Z=-52.690804),InterpMode=CIM_CurveAutoClamped),(InVal=477.056366,OutVal=(X=0.000000,Y=5.976563,Z=-258.925781),InterpMode=CIM_CurveAutoClamped),(InVal=478.012756,OutVal=(X=0.000000,Y=-2.988281,Z=-216.738281),InterpMode=CIM_CurveAutoClamped),(InVal=479.012665,OutVal=(X=0.000000,Y=3.691406,Z=-226.757813),ArriveTangent=(X=0.000000,Y=0.000000,Z=-19.912727),LeaveTangent=(X=0.000000,Y=0.000000,Z=-19.912727),InterpMode=CIM_CurveAutoClamped),(InVal=479.903870,OutVal=(X=0.000000,Y=1.757813,Z=-266.835938),InterpMode=CIM_CurveAutoClamped),(InVal=480.947235,OutVal=(X=0.000000,Y=2.460938,Z=-218.320313),InterpMode=CIM_CurveAutoClamped),(InVal=481.947113,OutVal=(X=0.000000,Y=-30.234375,Z=-271.757813),InterpMode=CIM_CurveAutoClamped),(InVal=483.033936,OutVal=(X=0.000000,Y=3.515625,Z=-220.605469),InterpMode=CIM_CurveAutoClamped),(InVal=483.855988,OutVal=(X=0.000000,Y=3.164063,Z=-269.648438),ArriveTangent=(X=0.000000,Y=-0.837198,Z=-3.833778),LeaveTangent=(X=0.000000,Y=-0.837198,Z=-3.833778),InterpMode=CIM_CurveAutoClamped),(InVal=484.772888,OutVal=(X=0.000000,Y=1.230469,Z=-271.054688),ArriveTangent=(X=0.000000,Y=-2.569173,Z=-2.895895),LeaveTangent=(X=0.000000,Y=-2.569173,Z=-2.895895),InterpMode=CIM_CurveAutoClamped),(InVal=485.908569,OutVal=(X=0.000000,Y=-2.109375,Z=-278.964844),ArriveTangent=(X=0.000000,Y=0.000000,Z=-6.119861),LeaveTangent=(X=0.000000,Y=0.000000,Z=-6.119861),InterpMode=CIM_CurveAutoClamped),(InVal=487.386688,OutVal=(X=0.000000,Y=-1.582031,Z=-287.050781),ArriveTangent=(X=0.000000,Y=0.000000,Z=-13.243006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-13.243006),InterpMode=CIM_CurveAutoClamped),(InVal=488.473511,OutVal=(X=0.000000,Y=-3.867188,Z=-357.363281),ArriveTangent=(X=0.000000,Y=0.000000,Z=-67.915413),LeaveTangent=(X=0.000000,Y=0.000000,Z=-67.915413),InterpMode=CIM_CurveAutoClamped),(InVal=489.842926,OutVal=(X=0.000000,Y=-0.527344,Z=-453.867188),ArriveTangent=(X=0.000000,Y=0.669332,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.669332,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=490.908020,OutVal=(X=0.000000,Y=-0.175781,Z=-440.156250),ArriveTangent=(X=0.000000,Y=0.831710,Z=28.710073),LeaveTangent=(X=0.000000,Y=0.831710,Z=28.710073),InterpMode=CIM_CurveAutoClamped),(InVal=491.734009,OutVal=(X=0.000000,Y=5.625000,Z=-364.570313),ArriveTangent=(X=0.000000,Y=6.521350,Z=0.000000),LeaveTangent=(X=0.000000,Y=6.521350,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=492.125275,OutVal=(X=0.000000,Y=7.910156,Z=-364.746094),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=435.070160),(Time=437.011963),(Time=438.990021),(Time=440.989777),(Time=443.011292),(Time=445.032806),(Time=446.989136),(Time=448.907349),(Time=450.972321),(Time=452.972107),(Time=454.910522),(Time=457.074280),(Time=458.906219),(Time=460.927734),(Time=462.201172),(Time=464.014343),(Time=465.992401),(Time=467.535675),(Time=469.057251),(Time=470.426666),(Time=471.404816),(Time=472.513367),(Time=473.947998),(Time=474.969635),(Time=476.056458),(Time=477.056366),(Time=478.012756),(Time=479.012665),(Time=479.903870),(Time=480.947235),(Time=481.947113),(Time=483.033936),(Time=483.855988),(Time=484.772888),(Time=485.908569),(Time=487.386688),(Time=488.473511),(Time=489.842926),(Time=490.908020),(Time=491.734009),(Time=492.125275)))
+         MoveFrame=IMF_RelativeToInitial
+         RotMode=IMR_LookAtGroup
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_0"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_3.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_3.InterpTrackFloatProp_0'
+      GroupName="Castle"
+      GroupColor=(B=162,G=0,R=178,A=255)
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=58.136620,OutVal=(X=153.800659,Y=90.710938,Z=-84.442932),ArriveTangent=(X=7.696613,Y=1.874067,Z=-1.466223),LeaveTangent=(X=7.696613,Y=1.874067,Z=-1.466223),InterpMode=CIM_CurveAutoClamped),(InVal=61.306545,OutVal=(X=492.176453,Y=114.892578,Z=-89.889099),ArriveTangent=(X=53.575512,Y=0.000000,Z=-4.471321),LeaveTangent=(X=53.575512,Y=0.000000,Z=-4.471321),InterpMode=CIM_CurveAutoClamped),(InVal=63.830070,OutVal=(X=568.101196,Y=-655.076172,Z=-319.920807),ArriveTangent=(X=70.049316,Y=-117.382698,Z=0.000000),LeaveTangent=(X=70.049316,Y=-117.382698,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=66.260132,OutVal=(X=1623.201050,Y=-797.358398,Z=-306.780457),ArriveTangent=(X=548.257324,Y=0.000000,Z=0.000000),LeaveTangent=(X=548.257324,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=68.503265,OutVal=(X=3130.214355,Y=-491.780273,Z=-340.214142),ArriveTangent=(X=302.779358,Y=160.936401,Z=0.000000),LeaveTangent=(X=302.779358,Y=160.936401,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=70.559464,OutVal=(X=3457.910645,Y=-105.439453,Z=-159.261536),ArriveTangent=(X=0.000000,Y=212.635818,Z=75.317589),LeaveTangent=(X=0.000000,Y=212.635818,Z=75.317589),InterpMode=CIM_CurveAutoClamped),(InVal=72.615669,OutVal=(X=3420.966797,Y=382.664063,Z=-30.477814),ArriveTangent=(X=0.000000,Y=197.741486,Z=0.000000),LeaveTangent=(X=0.000000,Y=197.741486,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=74.952263,OutVal=(X=3613.387695,Y=763.199219,Z=-94.661926),ArriveTangent=(X=0.000000,Y=190.874588,Z=-50.732620),LeaveTangent=(X=0.000000,Y=190.874588,Z=-50.732620),InterpMode=CIM_CurveAutoClamped),(InVal=77.288864,OutVal=(X=3595.252441,Y=1274.658203,Z=-324.924561),ArriveTangent=(X=0.000000,Y=335.647156,Z=-6.179779),LeaveTangent=(X=0.000000,Y=335.647156,Z=-6.179779),InterpMode=CIM_CurveAutoClamped),(InVal=79.158142,OutVal=(X=3943.276855,Y=2174.890625,Z=-330.014038),ArriveTangent=(X=150.834854,Y=400.498291,Z=0.000000),LeaveTangent=(X=150.834854,Y=400.498291,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=81.307808,OutVal=(X=4201.449219,Y=2884.238281,Z=-323.249512),ArriveTangent=(X=51.006504,Y=354.918884,Z=3.894488),LeaveTangent=(X=51.006504,Y=354.918884,Z=3.894488),InterpMode=CIM_CurveAutoClamped),(InVal=83.737869,OutVal=(X=4262.938477,Y=3800.322266,Z=-312.178345),ArriveTangent=(X=0.000000,Y=375.502960,Z=0.000000),LeaveTangent=(X=0.000000,Y=375.502960,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=85.887535,OutVal=(X=3768.969238,Y=4603.939453,Z=-315.583893),ArriveTangent=(X=-314.220215,Y=294.712921,Z=-1.385534),LeaveTangent=(X=-314.220215,Y=294.712921,Z=-1.385534),InterpMode=CIM_CurveAutoClamped),(InVal=87.850273,OutVal=(X=2970.738037,Y=5012.300781,Z=-317.876221),ArriveTangent=(X=-472.466644,Y=248.041412,Z=0.000000),LeaveTangent=(X=-472.466644,Y=248.041412,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=89.532623,OutVal=(X=2046.786621,Y=5508.072266,Z=-306.683350),ArriveTangent=(X=-594.694214,Y=0.000000,Z=0.000000),LeaveTangent=(X=-594.694214,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=91.028046,OutVal=(X=1080.935059,Y=4901.371094,Z=-308.698120),ArriveTangent=(X=-560.406006,Y=0.000000,Z=0.000000),LeaveTangent=(X=-560.406006,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=92.616928,OutVal=(X=318.323608,Y=4936.382813,Z=-298.202698),ArriveTangent=(X=-438.670776,Y=0.000000,Z=14.051708),LeaveTangent=(X=-438.670776,Y=0.000000,Z=14.051708),InterpMode=CIM_CurveAutoClamped),(InVal=94.018890,OutVal=(X=-231.061157,Y=4462.177734,Z=-241.363876),ArriveTangent=(X=0.000000,Y=-261.299622,Z=59.960690),LeaveTangent=(X=0.000000,Y=-261.299622,Z=59.960690),InterpMode=CIM_CurveAutoClamped),(InVal=95.701241,OutVal=(X=69.608276,Y=4130.453125,Z=-105.561890),ArriveTangent=(X=331.657227,Y=-269.297546,Z=0.000000),LeaveTangent=(X=331.657227,Y=-269.297546,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=97.103195,OutVal=(X=923.164246,Y=3631.582031,Z=-128.323761),ArriveTangent=(X=700.144104,Y=-306.365936,Z=0.000000),LeaveTangent=(X=700.144104,Y=-306.365936,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=97.944374,OutVal=(X=1640.125000,Y=3424.753906,Z=-106.508331),ArriveTangent=(X=538.341187,Y=-77.679550,Z=15.399939),LeaveTangent=(X=538.341187,Y=-77.679550,Z=15.399939),InterpMode=CIM_CurveAutoClamped),(InVal=99.439789,OutVal=(X=2181.048828,Y=3375.128906,Z=-92.340363),ArriveTangent=(X=316.410309,Y=-55.101791,Z=18.172194),LeaveTangent=(X=316.410309,Y=-55.101791,Z=18.172194),InterpMode=CIM_CurveAutoClamped),(InVal=101.785934,OutVal=(X=2855.634277,Y=3131.707031,Z=63.046417),ArriveTangent=(X=167.062057,Y=-194.467468,Z=17.436575),LeaveTangent=(X=167.062057,Y=-194.467468,Z=17.436575),InterpMode=CIM_CurveAutoClamped),(InVal=104.317245,OutVal=(X=3093.933594,Y=2093.095703,Z=82.950378),ArriveTangent=(X=0.000000,Y=-388.127472,Z=0.000000),LeaveTangent=(X=0.000000,Y=-388.127472,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=106.199493,OutVal=(X=2694.238281,Y=1418.683594,Z=-273.384094),ArriveTangent=(X=-290.807098,Y=0.000000,Z=0.000000),LeaveTangent=(X=-290.807098,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=107.692322,OutVal=(X=2112.437500,Y=2031.943359,Z=-69.251953),ArriveTangent=(X=-400.163116,Y=241.278046,Z=0.000000),LeaveTangent=(X=-400.163116,Y=241.278046,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=108.795715,OutVal=(X=1655.326050,Y=2193.185547,Z=-96.816803),ArriveTangent=(X=-311.863495,Y=0.000000,Z=0.000000),LeaveTangent=(X=-311.863495,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=110.353455,OutVal=(X=1282.527344,Y=1229.101563,Z=-81.855347),ArriveTangent=(X=-126.911705,Y=-569.637390,Z=7.805512),LeaveTangent=(X=-126.911705,Y=-569.637390,Z=7.805512),InterpMode=CIM_CurveAutoClamped),(InVal=112.040985,OutVal=(X=1166.760010,Y=344.558594,Z=-71.485809),ArriveTangent=(X=-138.293304,Y=-267.784302,Z=0.000000),LeaveTangent=(X=-138.293304,Y=-267.784302,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=113.533813,OutVal=(X=680.572083,Y=123.628906,Z=-78.020355),ArriveTangent=(X=-248.240753,Y=0.000000,Z=-5.706821),LeaveTangent=(X=-248.240753,Y=0.000000,Z=-5.706821),InterpMode=CIM_CurveAutoClamped),(InVal=114.572296,OutVal=(X=498.036560,Y=268.167969,Z=-85.931549),ArriveTangent=(X=0.000000,Y=329.945221,Z=-20.969322),LeaveTangent=(X=0.000000,Y=329.945221,Z=-20.969322),InterpMode=CIM_CurveAutoClamped),(InVal=115.221359,OutVal=(X=541.052734,Y=1032.822266,Z=-327.053467),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=58.136620,OutVal=(X=0.000000,Y=-0.175781,Z=-2.285156),ArriveTangent=(X=0.000000,Y=-0.011156,Z=-0.148313),LeaveTangent=(X=0.000000,Y=-0.011156,Z=-0.148313),InterpMode=CIM_CurveAutoClamped),(InVal=61.306545,OutVal=(X=0.000000,Y=-3.339844,Z=-92.109375),ArriveTangent=(X=0.000000,Y=-0.895354,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.895354,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=63.830070,OutVal=(X=0.000000,Y=-5.273438,Z=-5.449219),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.587247),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.587247),InterpMode=CIM_CurveAutoClamped),(InVal=66.260132,OutVal=(X=0.000000,Y=1.230469,Z=5.449219),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.288902),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.288902),InterpMode=CIM_CurveAutoClamped),(InVal=68.503265,OutVal=(X=0.000000,Y=0.000000,Z=40.429688),ArriveTangent=(X=0.000000,Y=0.000000,Z=18.725658),LeaveTangent=(X=0.000000,Y=0.000000,Z=18.725658),InterpMode=CIM_CurveAutoClamped),(InVal=70.559464,OutVal=(X=0.000000,Y=13.886719,Z=85.957031),InterpMode=CIM_CurveAutoClamped),(InVal=72.615669,OutVal=(X=0.000000,Y=1.582031,Z=63.632813),ArriveTangent=(X=0.000000,Y=-7.963138,Z=0.000000),LeaveTangent=(X=0.000000,Y=-7.963138,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=74.952263,OutVal=(X=0.000000,Y=-21.093750,Z=84.550781),InterpMode=CIM_CurveAutoClamped),(InVal=77.288864,OutVal=(X=0.000000,Y=3.867188,Z=80.683594),InterpMode=CIM_CurveAutoClamped),(InVal=79.158142,OutVal=(X=0.000000,Y=2.812500,Z=154.687500),ArriveTangent=(X=0.000000,Y=0.000000,Z=7.499624),LeaveTangent=(X=0.000000,Y=0.000000,Z=7.499624),InterpMode=CIM_CurveAutoClamped),(InVal=81.307808,OutVal=(X=0.000000,Y=2.988281,Z=161.542969),InterpMode=CIM_CurveAutoClamped),(InVal=83.737869,OutVal=(X=0.000000,Y=0.175781,Z=117.773438),InterpMode=CIM_CurveAutoClamped),(InVal=85.887535,OutVal=(X=0.000000,Y=1.230469,Z=159.082031),ArriveTangent=(X=0.000000,Y=0.641162,Z=28.937796),LeaveTangent=(X=0.000000,Y=0.641162,Z=28.937796),InterpMode=CIM_CurveAutoClamped),(InVal=87.850273,OutVal=(X=0.000000,Y=2.812500,Z=236.777344),InterpMode=CIM_CurveAutoClamped),(InVal=89.532623,OutVal=(X=0.000000,Y=2.109375,Z=198.281250),ArriveTangent=(X=0.000000,Y=0.000000,Z=-14.265078),LeaveTangent=(X=0.000000,Y=0.000000,Z=-14.265078),InterpMode=CIM_CurveAutoClamped),(InVal=91.028046,OutVal=(X=0.000000,Y=2.988281,Z=185.449219),InterpMode=CIM_CurveAutoClamped),(InVal=92.616928,OutVal=(X=0.000000,Y=1.582031,Z=221.132813),ArriveTangent=(X=0.000000,Y=0.000000,Z=23.803110),LeaveTangent=(X=0.000000,Y=0.000000,Z=23.803110),InterpMode=CIM_CurveAutoClamped),(InVal=94.018890,OutVal=(X=0.000000,Y=4.394531,Z=256.640625),ArriveTangent=(X=0.000000,Y=0.000000,Z=31.060661),LeaveTangent=(X=0.000000,Y=0.000000,Z=31.060661),InterpMode=CIM_CurveAutoClamped),(InVal=95.701241,OutVal=(X=0.000000,Y=4.218750,Z=316.933594),ArriveTangent=(X=0.000000,Y=0.000000,Z=21.728453),LeaveTangent=(X=0.000000,Y=0.000000,Z=21.728453),InterpMode=CIM_CurveAutoClamped),(InVal=97.103195,OutVal=(X=0.000000,Y=6.503906,Z=335.214844),InterpMode=CIM_CurveAutoClamped),(InVal=97.944374,OutVal=(X=0.000000,Y=3.691406,Z=247.851563),InterpMode=CIM_CurveAutoClamped),(InVal=99.439789,OutVal=(X=0.000000,Y=4.570313,Z=262.968750),InterpMode=CIM_CurveAutoClamped),(InVal=101.785934,OutVal=(X=0.000000,Y=0.703125,Z=211.113281),ArriveTangent=(X=0.000000,Y=-1.441581,Z=-7.493506),LeaveTangent=(X=0.000000,Y=-1.441581,Z=-7.493506),InterpMode=CIM_CurveAutoClamped),(InVal=104.317245,OutVal=(X=0.000000,Y=-2.460938,Z=202.148438),ArriveTangent=(X=0.000000,Y=0.000000,Z=-5.217409),LeaveTangent=(X=0.000000,Y=0.000000,Z=-5.217409),InterpMode=CIM_CurveAutoClamped),(InVal=106.199493,OutVal=(X=0.000000,Y=-1.757813,Z=188.085938),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.062295),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.062295),InterpMode=CIM_CurveAutoClamped),(InVal=107.692322,OutVal=(X=0.000000,Y=-2.636719,Z=171.562500),InterpMode=CIM_CurveAutoClamped),(InVal=108.795715,OutVal=(X=0.000000,Y=0.878906,Z=225.000000),InterpMode=CIM_CurveAutoClamped),(InVal=110.353455,OutVal=(X=0.000000,Y=-2.812500,Z=149.062500),ArriveTangent=(X=0.000000,Y=-2.274946,Z=-14.684356),LeaveTangent=(X=0.000000,Y=-2.274946,Z=-14.684356),InterpMode=CIM_CurveAutoClamped),(InVal=112.040985,OutVal=(X=0.000000,Y=-6.503906,Z=137.636719),ArriveTangent=(X=0.000000,Y=0.000000,Z=-9.838218),LeaveTangent=(X=0.000000,Y=0.000000,Z=-9.838218),InterpMode=CIM_CurveAutoClamped),(InVal=113.533813,OutVal=(X=0.000000,Y=0.703125,Z=117.773438),ArriveTangent=(X=0.000000,Y=0.000000,Z=-20.971716),LeaveTangent=(X=0.000000,Y=0.000000,Z=-20.971716),InterpMode=CIM_CurveAutoClamped),(InVal=114.572296,OutVal=(X=0.000000,Y=-4.218750,Z=84.550781),InterpMode=CIM_CurveAutoClamped),(InVal=115.221359,OutVal=(X=0.000000,Y=-2.636719,Z=162.597656),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=58.136620),(Time=61.306545),(Time=63.830070),(Time=66.260132),(Time=68.503265),(Time=70.559464),(Time=72.615669),(Time=74.952263),(Time=77.288864),(Time=79.158142),(Time=81.307808),(Time=83.737869),(Time=85.887535),(Time=87.850273),(Time=89.532623),(Time=91.028046),(Time=92.616928),(Time=94.018890),(Time=95.701241),(Time=97.103195),(Time=97.944374),(Time=99.439789),(Time=101.785934),(Time=104.317245),(Time=106.199493),(Time=107.692322),(Time=108.795715),(Time=110.353455),(Time=112.040985),(Time=113.533813),(Time=114.572296),(Time=115.221359)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_2.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_2.InterpTrackFloatProp_1'
+      GroupName="Swamp"
+      GroupColor=(B=192,G=0,R=145,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_11
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),InterpMode=CIM_CurveAutoClamped),(InVal=1378.155151,OutVal=(X=-117.733398,Y=62.265625,Z=-5.773438),InterpMode=CIM_CurveAutoClamped),(InVal=1378.155151,OutVal=(X=-117.733398,Y=62.265625,Z=-5.773438),InterpMode=CIM_CurveAutoClamped),(InVal=1399.722534,OutVal=(X=289.060059,Y=4.695313,Z=7.495605),ArriveTangent=(X=0.000000,Y=-5.828220,Z=0.000000),LeaveTangent=(X=0.000000,Y=-5.828220,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1422.160767,OutVal=(X=272.707031,Y=-537.234375,Z=0.741211),ArriveTangent=(X=-1.996966,Y=-13.988614,Z=-0.465114),LeaveTangent=(X=-1.996966,Y=-13.988614,Z=-0.465114),InterpMode=CIM_CurveAutoClamped),(InVal=1435.891602,OutVal=(X=-110.491699,Y=-657.757813,Z=-9.327148),ArriveTangent=(X=-15.515855,Y=-11.750126,Z=-0.363748),LeaveTangent=(X=-15.515855,Y=-11.750126,Z=-0.363748),InterpMode=CIM_CurveAutoClamped),(InVal=1450.292114,OutVal=(X=-234.375977,Y=-867.781250,Z=-12.100586),ArriveTangent=(X=0.000000,Y=-26.763887,Z=0.000000),LeaveTangent=(X=0.000000,Y=-26.763887,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1461.008911,OutVal=(X=-2.473145,Y=-1369.117188,Z=10.319336),ArriveTangent=(X=31.763712,Y=-52.640652,Z=2.699299),LeaveTangent=(X=31.763712,Y=-52.640652,Z=2.699299),InterpMode=CIM_CurveAutoClamped),(InVal=1473.400146,OutVal=(X=518.639160,Y=-2084.203125,Z=50.274902),ArriveTangent=(X=29.202515,Y=-36.288940,Z=0.842811),LeaveTangent=(X=29.202515,Y=-36.288940,Z=0.842811),InterpMode=CIM_CurveAutoClamped),(InVal=1489.810059,OutVal=(X=838.592773,Y=-2426.765625,Z=56.232910),ArriveTangent=(X=28.171869,Y=-34.825081,Z=0.821345),LeaveTangent=(X=28.171869,Y=-34.825081,Z=0.821345),InterpMode=CIM_CurveAutoClamped),(InVal=1501.196655,OutVal=(X=1301.718750,Y=-3052.218750,Z=85.312500),ArriveTangent=(X=52.936432,Y=-23.875139,Z=3.313436),LeaveTangent=(X=52.936432,Y=-23.875139,Z=3.313436),InterpMode=CIM_CurveAutoClamped),(InVal=1515.597290,OutVal=(X=2203.676758,Y=-3220.804688,Z=141.677246),ArriveTangent=(X=9.386396,Y=0.000000,Z=0.716470),LeaveTangent=(X=9.386396,Y=0.000000,Z=0.716470),InterpMode=CIM_CurveAutoClamped),(InVal=1529.662964,OutVal=(X=2260.967773,Y=-2776.304688,Z=146.128418),ArriveTangent=(X=9.281605,Y=0.000000,Z=0.714262),LeaveTangent=(X=9.281605,Y=0.000000,Z=0.714262),InterpMode=CIM_CurveAutoClamped),(InVal=1545.403198,OutVal=(X=3446.854492,Y=-2869.742188,Z=225.178223),ArriveTangent=(X=61.258823,Y=0.000000,Z=3.076379),LeaveTangent=(X=61.258823,Y=0.000000,Z=3.076379),InterpMode=CIM_CurveAutoClamped),(InVal=1559.803711,OutVal=(X=4107.354492,Y=-2589.953125,Z=251.463867),ArriveTangent=(X=52.726501,Y=30.796032,Z=1.867549),LeaveTangent=(X=52.726501,Y=30.796032,Z=1.867549),InterpMode=CIM_CurveAutoClamped),(InVal=1571.190308,OutVal=(X=4806.518555,Y=-2075.601563,Z=273.336914),ArriveTangent=(X=40.377502,Y=34.019867,Z=1.808053),LeaveTangent=(X=40.377502,Y=34.019867,Z=1.808053),InterpMode=CIM_CurveAutoClamped),(InVal=1585.255981,OutVal=(X=5144.314453,Y=-1724.070313,Z=297.482910),ArriveTangent=(X=3.597178,Y=27.000246,Z=1.585633),LeaveTangent=(X=3.597178,Y=27.000246,Z=1.585633),InterpMode=CIM_CurveAutoClamped),(InVal=1595.972778,OutVal=(X=5162.269531,Y=-1406.468750,Z=312.632813),ArriveTangent=(X=4.446140,Y=9.562256,Z=2.370517),LeaveTangent=(X=4.446140,Y=9.562256,Z=2.370517),InterpMode=CIM_CurveAutoClamped),(InVal=1603.675415,OutVal=(X=5721.279297,Y=-1368.390625,Z=341.146484),ArriveTangent=(X=7.138708,Y=10.836620,Z=0.000000),LeaveTangent=(X=7.138708,Y=10.836620,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1613.052490,OutVal=(X=5747.926758,Y=-701.539063,Z=336.438965),ArriveTangent=(X=6.634605,Y=28.683437,Z=0.000000),LeaveTangent=(X=6.634605,Y=28.683437,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1623.340454,OutVal=(X=6543.921875,Y=-556.500000,Z=349.946777),InterpMode=CIM_CurveAutoClamped),(InVal=1631.043091,OutVal=(X=6488.348633,Y=-1530.835938,Z=19.584961),ArriveTangent=(X=-15.610796,Y=0.000000,Z=-31.157183),LeaveTangent=(X=-15.610796,Y=0.000000,Z=-31.157183),InterpMode=CIM_CurveAutoClamped),(InVal=1639.750366,OutVal=(X=5865.159180,Y=-1488.382813,Z=-161.339844),ArriveTangent=(X=-12.386990,Y=11.234287,Z=-19.483435),LeaveTangent=(X=-12.386990,Y=11.234287,Z=-19.483435),InterpMode=CIM_CurveAutoClamped),(InVal=1649.127563,OutVal=(X=5815.416992,Y=-631.078125,Z=-332.762695),ArriveTangent=(X=-12.711216,Y=44.140816,Z=-14.700453),LeaveTangent=(X=-12.711216,Y=44.140816,Z=-14.700453),InterpMode=CIM_CurveAutoClamped),(InVal=1658.504639,OutVal=(X=4445.826172,Y=-412.148438,Z=-437.036133),ArriveTangent=(X=0.000000,Y=32.582588,Z=0.000000),LeaveTangent=(X=0.000000,Y=32.582588,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1670.895874,OutVal=(X=4511.033203,Y=101.015625,Z=-433.348145),ArriveTangent=(X=0.000000,Y=62.691269,Z=0.249000),LeaveTangent=(X=0.000000,Y=62.691269,Z=0.249000),InterpMode=CIM_CurveAutoClamped),(InVal=1681.612671,OutVal=(X=4138.683594,Y=1036.523438,Z=-431.282227),ArriveTangent=(X=-63.733429,Y=6.975613,Z=0.000000),LeaveTangent=(X=-63.733429,Y=6.975613,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1689.985107,OutVal=(X=3197.945313,Y=1062.648438,Z=-521.443359),ArriveTangent=(X=-19.513042,Y=7.175663,Z=-5.205790),LeaveTangent=(X=-19.513042,Y=7.175663,Z=-5.205790),InterpMode=CIM_CurveAutoClamped),(InVal=1699.027344,OutVal=(X=3122.416016,Y=1580.875000,Z=-546.007813),ArriveTangent=(X=0.000000,Y=66.823074,Z=0.000000),LeaveTangent=(X=0.000000,Y=66.823074,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1710.078979,OutVal=(X=3204.611328,Y=2405.382813,Z=-540.260742),ArriveTangent=(X=0.000000,Y=4.328674,Z=1.249472),LeaveTangent=(X=0.000000,Y=4.328674,Z=1.249472),InterpMode=CIM_CurveAutoClamped),(InVal=1719.790771,OutVal=(X=2456.517578,Y=2423.343750,Z=-457.798340),ArriveTangent=(X=0.000000,Y=4.543930,Z=12.746248),LeaveTangent=(X=0.000000,Y=4.543930,Z=12.746248),InterpMode=CIM_CurveAutoClamped),(InVal=1729.167969,OutVal=(X=2545.721680,Y=3166.781250,Z=-296.947754),ArriveTangent=(X=18.538097,Y=0.000000,Z=18.169313),LeaveTangent=(X=18.538097,Y=0.000000,Z=18.169313),InterpMode=CIM_CurveAutoClamped),(InVal=1740.889404,OutVal=(X=3150.625977,Y=3051.140625,Z=-74.450684),ArriveTangent=(X=36.705158,Y=0.000000,Z=17.106842),LeaveTangent=(X=36.705158,Y=0.000000,Z=17.106842),InterpMode=CIM_CurveAutoClamped),(InVal=1751.606079,OutVal=(X=3405.302734,Y=3657.585938,Z=86.897461),ArriveTangent=(X=13.009783,Y=0.000000,Z=10.621445),LeaveTangent=(X=13.009783,Y=0.000000,Z=10.621445),InterpMode=CIM_CurveAutoClamped),(InVal=1760.983276,OutVal=(X=3474.676758,Y=2668.406250,Z=151.424805),ArriveTangent=(X=0.000000,Y=-15.839127,Z=0.000000),LeaveTangent=(X=0.000000,Y=-15.839127,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1772.034912,OutVal=(X=2658.453125,Y=2596.070313,Z=113.522949),ArriveTangent=(X=-27.711563,Y=-13.414461,Z=-0.510569),LeaveTangent=(X=-27.711563,Y=-13.414461,Z=-0.510569),InterpMode=CIM_CurveAutoClamped),(InVal=1781.746948,OutVal=(X=2522.181641,Y=2272.648438,Z=111.308105),ArriveTangent=(X=-31.498821,Y=-37.413914,Z=-0.585876),LeaveTangent=(X=-31.498821,Y=-37.413914,Z=-0.585876),InterpMode=CIM_CurveAutoClamped),(InVal=1789.114746,OutVal=(X=1773.973633,Y=1957.046875,Z=65.511719),ArriveTangent=(X=0.000000,Y=-27.638288,Z=-3.259652),LeaveTangent=(X=0.000000,Y=-27.638288,Z=-3.259652),InterpMode=CIM_CurveAutoClamped),(InVal=1800.836182,OutVal=(X=1873.439453,Y=1745.054688,Z=45.830078),ArriveTangent=(X=13.464717,Y=-15.567747,Z=-3.917852),LeaveTangent=(X=13.464717,Y=-15.567747,Z=-3.917852),InterpMode=CIM_CurveAutoClamped),(InVal=1813.844360,OutVal=(X=2130.992188,Y=1572.062500,Z=-590.539551),ArriveTangent=(X=0.000000,Y=-24.963617,Z=-2.515171),LeaveTangent=(X=0.000000,Y=-24.963617,Z=-2.515171),InterpMode=CIM_CurveAutoClamped),(InVal=1824.226196,OutVal=(X=1476.805664,Y=1089.914063,Z=-601.993164),ArriveTangent=(X=0.000000,Y=-66.574913,Z=0.000000),LeaveTangent=(X=0.000000,Y=-66.574913,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1833.268555,OutVal=(X=1505.331055,Y=278.898438,Z=-583.305664),ArriveTangent=(X=0.000000,Y=-54.960468,Z=0.000000),LeaveTangent=(X=0.000000,Y=-54.960468,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1841.306030,OutVal=(X=1396.082031,Y=15.468750,Z=-584.163086),ArriveTangent=(X=-28.718342,Y=0.000000,Z=-0.246358),LeaveTangent=(X=-28.718342,Y=0.000000,Z=-0.246358),InterpMode=CIM_CurveAutoClamped),(InVal=1851.353027,OutVal=(X=26.461914,Y=261.070313,Z=-685.105957),ArriveTangent=(X=-23.863396,Y=0.000000,Z=0.000000),LeaveTangent=(X=-23.863396,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1859.390503,OutVal=(X=-62.702148,Y=-114.601563,Z=-669.467285),ArriveTangent=(X=-5.349145,Y=-46.033298,Z=3.506948),LeaveTangent=(X=-5.349145,Y=-46.033298,Z=3.506948),InterpMode=CIM_CurveAutoClamped),(InVal=1872.116699,OutVal=(X=-96.476563,Y=-694.750000,Z=-554.671387),ArriveTangent=(X=-7.445835,Y=0.000000,Z=17.263786),LeaveTangent=(X=-7.445835,Y=0.000000,Z=17.263786),InterpMode=CIM_CurveAutoClamped),(InVal=1879.149536,OutVal=(X=-851.675781,Y=-628.710938,Z=-328.351563),ArriveTangent=(X=-22.455330,Y=20.271591,Z=29.555859),LeaveTangent=(X=-22.455330,Y=20.271591,Z=29.555859),InterpMode=CIM_CurveAutoClamped),(InVal=1887.187012,OutVal=(X=-929.427734,Y=122.773438,Z=-109.255371),ArriveTangent=(X=0.000000,Y=40.620079,Z=9.769390),LeaveTangent=(X=0.000000,Y=40.620079,Z=9.769390),InterpMode=CIM_CurveAutoClamped),(InVal=1896.899170,OutVal=(X=-440.844238,Y=317.601563,Z=-64.859863),ArriveTangent=(X=52.695332,Y=0.000000,Z=3.999470),LeaveTangent=(X=52.695332,Y=0.000000,Z=3.999470),InterpMode=CIM_CurveAutoClamped),(InVal=1905.606445,OutVal=(X=41.190430,Y=274.382813,Z=-35.587402),ArriveTangent=(X=26.260662,Y=0.000000,Z=0.000000),LeaveTangent=(X=26.260662,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1912.639282,OutVal=(X=142.701172,Y=916.648438,Z=-38.710449),ArriveTangent=(X=29.429146,Y=48.233646,Z=0.000000),LeaveTangent=(X=29.429146,Y=48.233646,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1920.342041,OutVal=(X=814.226074,Y=1116.796875,Z=0.523438),ArriveTangent=(X=59.065536,Y=9.067118,Z=0.000000),LeaveTangent=(X=59.065536,Y=9.067118,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1928.044678,OutVal=(X=1096.216797,Y=1150.570313,Z=-6.760254),ArriveTangent=(X=38.608551,Y=0.000000,Z=-2.430927),LeaveTangent=(X=38.608551,Y=0.000000,Z=-2.430927),InterpMode=CIM_CurveAutoClamped),(InVal=1934.742554,OutVal=(X=1370.208984,Y=877.078125,Z=-615.367188),ArriveTangent=(X=28.243275,Y=-62.672291,Z=0.000000),LeaveTangent=(X=28.243275,Y=-62.672291,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1944.119751,OutVal=(X=1550.229492,Y=4.117188,Z=-601.842773),ArriveTangent=(X=41.539360,Y=-36.126953,Z=2.543458),LeaveTangent=(X=41.539360,Y=-36.126953,Z=2.543458),InterpMode=CIM_CurveAutoClamped),(InVal=1952.492188,OutVal=(X=2649.048828,Y=-149.679688,Z=-566.017578),ArriveTangent=(X=4.780807,Y=-42.959763,Z=0.571677),LeaveTangent=(X=4.780807,Y=-42.959763,Z=0.571677),InterpMode=CIM_CurveAutoClamped),(InVal=1959.859985,OutVal=(X=2663.939453,Y=-1781.296875,Z=-564.151367),ArriveTangent=(X=4.843948,Y=-23.094055,Z=0.601484),LeaveTangent=(X=4.843948,Y=-23.094055,Z=0.601484),InterpMode=CIM_CurveAutoClamped),(InVal=1967.562622,OutVal=(X=3275.486328,Y=-1855.273438,Z=-506.068359),ArriveTangent=(X=94.877708,Y=0.000000,Z=7.281853),LeaveTangent=(X=94.877708,Y=0.000000,Z=7.281853),InterpMode=CIM_CurveAutoClamped),(InVal=1975.600098,OutVal=(X=4157.325195,Y=-1845.000000,Z=-449.534180),ArriveTangent=(X=70.344559,Y=3.548706,Z=5.518665),LeaveTangent=(X=70.344559,Y=3.548706,Z=5.518665),InterpMode=CIM_CurveAutoClamped),(InVal=1980.958496,OutVal=(X=4400.022461,Y=-642.515625,Z=-427.990234),ArriveTangent=(X=0.000000,Y=92.314850,Z=0.000000),LeaveTangent=(X=0.000000,Y=92.314850,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1986.316895,OutVal=(X=3850.105469,Y=-393.476563,Z=-468.782227),ArriveTangent=(X=-124.423546,Y=0.000000,Z=-6.548355),LeaveTangent=(X=-124.423546,Y=0.000000,Z=-6.548355),InterpMode=CIM_CurveAutoClamped),(InVal=1992.345093,OutVal=(X=2983.261719,Y=-505.570313,Z=-502.553711),ArriveTangent=(X=-101.653130,Y=0.000000,Z=-5.527067),LeaveTangent=(X=-101.653130,Y=0.000000,Z=-5.527067),InterpMode=CIM_CurveAutoClamped),(InVal=1998.038330,OutVal=(X=2611.708008,Y=-441.179688,Z=-533.567383),ArriveTangent=(X=0.000000,Y=21.916059,Z=0.000000),LeaveTangent=(X=0.000000,Y=21.916059,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2005.406128,OutVal=(X=2786.141602,Y=15.296875,Z=-530.288574),ArriveTangent=(X=22.357630,Y=85.993126,Z=0.545841),LeaveTangent=(X=22.357630,Y=85.993126,Z=0.545841),InterpMode=CIM_CurveAutoClamped),(InVal=2011.434204,OutVal=(X=2911.208008,Y=710.773438,Z=-526.255371),ArriveTangent=(X=36.839973,Y=69.025925,Z=1.452369),LeaveTangent=(X=36.839973,Y=69.025925,Z=1.452369),InterpMode=CIM_CurveAutoClamped),(InVal=2016.457764,OutVal=(X=3221.677734,Y=917.578125,Z=-504.367188),InterpMode=CIM_CurveAutoClamped),(InVal=2021.146240,OutVal=(X=3119.663086,Y=452.171875,Z=-520.886719),ArriveTangent=(X=0.000000,Y=-115.336342,Z=0.000000),LeaveTangent=(X=0.000000,Y=-115.336342,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2025.500000,OutVal=(X=3187.882813,Y=-125.320313,Z=-520.028320),ArriveTangent=(X=25.206593,Y=-92.400719,Z=0.424677),LeaveTangent=(X=25.206593,Y=-92.400719,Z=0.424677),InterpMode=CIM_CurveAutoClamped),(InVal=2031.528076,OutVal=(X=3434.512695,Y=-507.117188,Z=-496.431152),ArriveTangent=(X=0.000000,Y=-23.180830,Z=0.000000),LeaveTangent=(X=0.000000,Y=-23.180830,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2036.216675,OutVal=(X=2797.693359,Y=-563.507813,Z=-543.437988),ArriveTangent=(X=-76.135033,Y=0.000000,Z=-5.873581),LeaveTangent=(X=-76.135033,Y=0.000000,Z=-5.873581),InterpMode=CIM_CurveAutoClamped),(InVal=2042.579834,OutVal=(X=2536.663086,Y=-4.210938,Z=-564.043457),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.009993),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.009993),InterpMode=CIM_CurveAutoClamped),(InVal=1378.155151,OutVal=(X=-0.659180,Y=-1.999512,Z=-20.989380),InterpMode=CIM_CurveAutoClamped),(InVal=1378.155151,OutVal=(X=-0.659180,Y=-1.999512,Z=-20.989380),InterpMode=CIM_CurveAutoClamped),(InVal=1399.722534,OutVal=(X=-2.631226,Y=-0.692139,Z=-92.807007),ArriveTangent=(X=0.000000,Y=0.119707,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.119707,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1422.160767,OutVal=(X=-0.604248,Y=5.899658,Z=-18.797607),InterpMode=CIM_CurveAutoClamped),(InVal=1435.891602,OutVal=(X=-2.724609,Y=-4.180298,Z=-85.100098),InterpMode=CIM_CurveAutoClamped),(InVal=1450.292114,OutVal=(X=-2.642212,Y=5.158081,Z=-72.103271),ArriveTangent=(X=0.015258,Y=0.000000,Z=2.134483),LeaveTangent=(X=0.015258,Y=0.000000,Z=2.134483),InterpMode=CIM_CurveAutoClamped),(InVal=1461.008911,OutVal=(X=1.768799,Y=3.526611,Z=24.318237),ArriveTangent=(X=0.139045,Y=-0.160696,Z=2.834968),LeaveTangent=(X=0.139045,Y=-0.160696,Z=2.834968),InterpMode=CIM_CurveAutoClamped),(InVal=1473.400146,OutVal=(X=2.570801,Y=1.444702,Z=40.429688),ArriveTangent=(X=0.000000,Y=-0.072907,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.072907,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1489.810059,OutVal=(X=1.576538,Y=0.862427,Z=21.231079),ArriveTangent=(X=0.000000,Y=-0.071875,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.071875,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1501.196655,OutVal=(X=3.076172,Y=-0.895386,Z=52.750854),ArriveTangent=(X=0.066343,Y=0.000000,Z=1.871796),LeaveTangent=(X=0.066343,Y=0.000000,Z=1.871796),InterpMode=CIM_CurveAutoClamped),(InVal=1515.597290,OutVal=(X=3.570557,Y=0.346069,Z=69.499512),ArriveTangent=(X=0.000000,Y=0.150460,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.150460,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1529.662964,OutVal=(X=2.197266,Y=3.922119,Z=34.590454),InterpMode=CIM_CurveAutoClamped),(InVal=1545.403198,OutVal=(X=3.817749,Y=-6.844482,Z=95.245972),ArriveTangent=(X=0.000000,Y=0.000000,Z=3.239866),LeaveTangent=(X=0.000000,Y=0.000000,Z=3.239866),InterpMode=CIM_CurveAutoClamped),(InVal=1559.803711,OutVal=(X=3.026733,Y=-3.581543,Z=132.242432),ArriveTangent=(X=0.000000,Y=0.253920,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.253920,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1571.190308,OutVal=(X=3.713379,Y=-0.296631,Z=84.825439),InterpMode=CIM_CurveAutoClamped),(InVal=1585.255981,OutVal=(X=2.499390,Y=-2.526855,Z=144.003296),ArriveTangent=(X=-0.132328,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.132328,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1595.972778,OutVal=(X=0.433960,Y=2.691650,Z=5.163574),InterpMode=CIM_CurveAutoClamped),(InVal=1603.675415,OutVal=(X=3.641968,Y=-1.757813,Z=93.630981),InterpMode=CIM_CurveAutoClamped),(InVal=1613.052490,OutVal=(X=-0.390015,Y=3.268433,Z=-7.558594),ArriveTangent=(X=-0.344981,Y=0.000000,Z=-9.772589),LeaveTangent=(X=-0.344981,Y=0.000000,Z=-9.772589),InterpMode=CIM_CurveAutoClamped),(InVal=1623.340454,OutVal=(X=-3.142090,Y=-13.260498,Z=-98.547363),ArriveTangent=(X=0.000000,Y=-1.159243,Z=-10.463227),LeaveTangent=(X=0.000000,Y=-1.159243,Z=-10.463227),InterpMode=CIM_CurveAutoClamped),(InVal=1631.043091,OutVal=(X=1.362305,Y=-19.275513,Z=-195.798340),ArriveTangent=(X=0.411738,Y=-0.036734,Z=-11.278286),LeaveTangent=(X=0.411738,Y=-0.036734,Z=-11.278286),InterpMode=CIM_CurveAutoClamped),(InVal=1639.750366,OutVal=(X=3.614502,Y=-19.401855,Z=-283.623047),InterpMode=CIM_CurveAutoClamped),(InVal=1649.127563,OutVal=(X=0.851440,Y=-9.234009,Z=-188.530884),ArriveTangent=(X=0.000000,Y=1.044489,Z=0.000000),LeaveTangent=(X=0.000000,Y=1.044489,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1658.504639,OutVal=(X=3.455200,Y=0.186768,Z=-270.197754),InterpMode=CIM_CurveAutoClamped),(InVal=1670.895874,OutVal=(X=0.884399,Y=-3.477173,Z=-190.420532),ArriveTangent=(X=-0.080946,Y=0.000000,Z=1.474077),LeaveTangent=(X=-0.080946,Y=0.000000,Z=1.474077),InterpMode=CIM_CurveAutoClamped),(InVal=1681.612671,OutVal=(X=0.439453,Y=-0.609741,Z=-183.032227),InterpMode=CIM_CurveAutoClamped),(InVal=1689.985107,OutVal=(X=3.427734,Y=-4.669189,Z=-267.357788),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.357401),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.357401),InterpMode=CIM_CurveAutoClamped),(InVal=1699.027344,OutVal=(X=3.394775,Y=1.175537,Z=-268.643188),ArriveTangent=(X=-0.008429,Y=0.102643,Z=0.000000),LeaveTangent=(X=-0.008429,Y=0.102643,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1710.078979,OutVal=(X=0.884399,Y=1.642456,Z=-191.865234),ArriveTangent=(X=0.000000,Y=0.104873,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.104873,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1719.790771,OutVal=(X=3.164063,Y=13.249512,Z=-287.034302),ArriveTangent=(X=0.000000,Y=0.760389,Z=-9.541173),LeaveTangent=(X=0.000000,Y=0.760389,Z=-9.541173),InterpMode=CIM_CurveAutoClamped),(InVal=1729.167969,OutVal=(X=-1.098633,Y=17.528687,Z=-373.996582),InterpMode=CIM_CurveAutoClamped),(InVal=1740.889404,OutVal=(X=3.180542,Y=12.095947,Z=-283.255005),ArriveTangent=(X=0.000000,Y=-0.385582,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.385582,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1751.606079,OutVal=(X=-3.499146,Y=8.876953,Z=-454.822998),ArriveTangent=(X=0.000000,Y=-0.583624,Z=-11.463454),LeaveTangent=(X=0.000000,Y=-0.583624,Z=-11.463454),InterpMode=CIM_CurveAutoClamped),(InVal=1760.983276,OutVal=(X=-0.840454,Y=-2.581787,Z=-525.162964),InterpMode=CIM_CurveAutoClamped),(InVal=1772.034912,OutVal=(X=-2.307129,Y=-0.010986,Z=-497.664185),InterpMode=CIM_CurveAutoClamped),(InVal=1781.746948,OutVal=(X=-1.510620,Y=-3.356323,Z=-513.967896),InterpMode=CIM_CurveAutoClamped),(InVal=1789.114746,OutVal=(X=-3.449707,Y=-2.477417,Z=-429.334717),ArriveTangent=(X=-0.061888,Y=0.000000,Z=4.093309),LeaveTangent=(X=-0.061888,Y=0.000000,Z=4.093309),InterpMode=CIM_CurveAutoClamped),(InVal=1800.836182,OutVal=(X=-3.746338,Y=-39.940796,Z=-407.883911),InterpMode=CIM_CurveAutoClamped),(InVal=1813.844360,OutVal=(X=-2.966309,Y=-3.191528,Z=-482.354736),ArriveTangent=(X=0.000000,Y=0.845327,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.845327,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1824.226196,OutVal=(X=-3.614502,Y=1.164551,Z=-444.396973),ArriveTangent=(X=0.000000,Y=0.363398,Z=5.121510),LeaveTangent=(X=0.000000,Y=0.363398,Z=5.121510),InterpMode=CIM_CurveAutoClamped),(InVal=1833.268555,OutVal=(X=-1.790771,Y=3.867188,Z=-382.873535),ArriveTangent=(X=0.216127,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.216127,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1841.306030,OutVal=(X=0.076904,Y=-8.646240,Z=-543.900146),InterpMode=CIM_CurveAutoClamped),(InVal=1851.353027,OutVal=(X=-3.674927,Y=2.191772,Z=-458.959351),ArriveTangent=(X=-0.030744,Y=1.358675,Z=0.000000),LeaveTangent=(X=-0.030744,Y=1.358675,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1859.390503,OutVal=(X=-3.784790,Y=15.924683,Z=-464.375610),ArriveTangent=(X=0.000000,Y=0.000000,Z=-1.336259),LeaveTangent=(X=0.000000,Y=0.000000,Z=-1.336259),InterpMode=CIM_CurveAutoClamped),(InVal=1872.116699,OutVal=(X=0.291138,Y=12.046509,Z=-549.574585),ArriveTangent=(X=0.357796,Y=0.000000,Z=-8.454494),LeaveTangent=(X=0.357796,Y=0.000000,Z=-8.454494),InterpMode=CIM_CurveAutoClamped),(InVal=1879.149536,OutVal=(X=3.284912,Y=29.141235,Z=-631.428223),ArriveTangent=(X=0.000000,Y=0.000000,Z=-11.811334),LeaveTangent=(X=0.000000,Y=0.000000,Z=-11.811334),InterpMode=CIM_CurveAutoClamped),(InVal=1887.187012,OutVal=(X=-1.208496,Y=6.740112,Z=-727.575073),ArriveTangent=(X=-0.076338,Y=-1.113521,Z=-1.262712),LeaveTangent=(X=-0.076338,Y=-1.113521,Z=-1.262712),InterpMode=CIM_CurveAutoClamped),(InVal=1896.899170,OutVal=(X=-1.510620,Y=1.532593,Z=-732.485962),ArriveTangent=(X=0.000000,Y=-0.628960,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.628960,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1905.606445,OutVal=(X=2.416992,Y=-4.844971,Z=-652.664795),InterpMode=CIM_CurveAutoClamped),(InVal=1912.639282,OutVal=(X=-1.587524,Y=0.730591,Z=-733.084717),ArriveTangent=(X=0.000000,Y=0.706422,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.706422,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1920.342041,OutVal=(X=-0.928345,Y=5.564575,Z=-720.834961),InterpMode=CIM_CurveAutoClamped),(InVal=1928.044678,OutVal=(X=-4.097900,Y=-34.409180,Z=-771.410522),ArriveTangent=(X=0.000000,Y=0.000000,Z=-5.129517),LeaveTangent=(X=0.000000,Y=0.000000,Z=-5.129517),InterpMode=CIM_CurveAutoClamped),(InVal=1934.742554,OutVal=(X=-4.015503,Y=-1.746826,Z=-795.448608),ArriveTangent=(X=0.026046,Y=1.055005,Z=0.000000),LeaveTangent=(X=0.026046,Y=1.055005,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1944.119751,OutVal=(X=-2.252197,Y=2.345581,Z=-742.901001),InterpMode=CIM_CurveAutoClamped),(InVal=1952.492188,OutVal=(X=-4.119873,Y=-2.213745,Z=-799.711304),InterpMode=CIM_CurveAutoClamped),(InVal=1959.859985,OutVal=(X=-1.109619,Y=3.515625,Z=-721.329346),ArriveTangent=(X=0.170763,Y=0.542392,Z=3.238675),LeaveTangent=(X=0.170763,Y=0.542392,Z=3.238675),InterpMode=CIM_CurveAutoClamped),(InVal=1967.562622,OutVal=(X=-0.450439,Y=6.141357,Z=-709.711304),ArriveTangent=(X=0.163230,Y=0.000000,Z=3.215645),LeaveTangent=(X=0.163230,Y=0.000000,Z=3.215645),InterpMode=CIM_CurveAutoClamped),(InVal=1975.600098,OutVal=(X=2.411499,Y=0.351563,Z=-617.991943),ArriveTangent=(X=0.000000,Y=-0.754107,Z=11.668367),LeaveTangent=(X=0.000000,Y=-0.754107,Z=11.668367),InterpMode=CIM_CurveAutoClamped),(InVal=1980.958496,OutVal=(X=0.043945,Y=-3.960571,Z=-553.403320),ArriveTangent=(X=-0.347526,Y=0.000000,Z=7.362902),LeaveTangent=(X=-0.347526,Y=0.000000,Z=7.362902),InterpMode=CIM_CurveAutoClamped),(InVal=1986.316895,OutVal=(X=-1.312866,Y=0.796509,Z=-530.354004),InterpMode=CIM_CurveAutoClamped),(InVal=1992.345093,OutVal=(X=0.000000,Y=-4.048462,Z=-553.403320),ArriveTangent=(X=0.286341,Y=0.000000,Z=-7.549288),LeaveTangent=(X=0.286341,Y=0.000000,Z=-7.549288),InterpMode=CIM_CurveAutoClamped),(InVal=1998.038330,OutVal=(X=2.043457,Y=1.422729,Z=-651.785889),ArriveTangent=(X=0.037887,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.037887,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2005.406128,OutVal=(X=2.153320,Y=0.428467,Z=-647.127686),ArriveTangent=(X=0.013122,Y=0.000000,Z=0.610585),LeaveTangent=(X=0.013122,Y=0.000000,Z=0.610585),InterpMode=CIM_CurveAutoClamped),(InVal=2011.434204,OutVal=(X=2.219238,Y=0.889893,Z=-643.606567),InterpMode=CIM_CurveAutoClamped),(InVal=2016.457764,OutVal=(X=-4.196777,Y=-1.812744,Z=-823.595581),ArriveTangent=(X=-0.072632,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.072632,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2021.146240,OutVal=(X=-4.339600,Y=-1.290894,Z=-813.630981),ArriveTangent=(X=0.000000,Y=0.251711,Z=4.715199),LeaveTangent=(X=0.000000,Y=0.251711,Z=4.715199),InterpMode=CIM_CurveAutoClamped),(InVal=2025.500000,OutVal=(X=-2.120361,Y=3.488159,Z=-735.199585),ArriveTangent=(X=0.358209,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.358209,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2031.528076,OutVal=(X=-0.620728,Y=-0.922852,Z=-904.812012),ArriveTangent=(X=0.372646,Y=-1.050279,Z=-18.409046),LeaveTangent=(X=0.372646,Y=-1.050279,Z=-18.409046),InterpMode=CIM_CurveAutoClamped),(InVal=2036.216675,OutVal=(X=1.873169,Y=-7.767334,Z=-959.320679),ArriveTangent=(X=0.000000,Y=0.000000,Z=-16.228813),LeaveTangent=(X=0.000000,Y=0.000000,Z=-16.228813),InterpMode=CIM_CurveAutoClamped),(InVal=2042.579834,OutVal=(X=-1.988525,Y=6.322632,Z=-1091.233521),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=1378.155151),(Time=1378.155151),(Time=1399.722534),(Time=1422.160767),(Time=1435.891602),(Time=1450.292114),(Time=1461.008911),(Time=1473.400146),(Time=1489.810059),(Time=1501.196655),(Time=1515.597290),(Time=1529.662964),(Time=1545.403198),(Time=1559.803711),(Time=1571.190308),(Time=1585.255981),(Time=1595.972778),(Time=1603.675415),(Time=1613.052490),(Time=1623.340454),(Time=1631.043091),(Time=1639.750366),(Time=1649.127563),(Time=1658.504639),(Time=1670.895874),(Time=1681.612671),(Time=1689.985107),(Time=1699.027344),(Time=1710.078979),(Time=1719.790771),(Time=1729.167969),(Time=1740.889404),(Time=1751.606079),(Time=1760.983276),(Time=1772.034912),(Time=1781.746948),(Time=1789.114746),(Time=1800.836182),(Time=1813.844360),(Time=1824.226196),(Time=1833.268555),(Time=1841.306030),(Time=1851.353027),(Time=1859.390503),(Time=1872.116699),(Time=1879.149536),(Time=1887.187012),(Time=1896.899170),(Time=1905.606445),(Time=1912.639282),(Time=1920.342041),(Time=1928.044678),(Time=1934.742554),(Time=1944.119751),(Time=1952.492188),(Time=1959.859985),(Time=1967.562622),(Time=1975.600098),(Time=1980.958496),(Time=1986.316895),(Time=1992.345093),(Time=1998.038330),(Time=2005.406128),(Time=2011.434204),(Time=2016.457764),(Time=2021.146240),(Time=2025.500000),(Time=2031.528076),(Time=2036.216675),(Time=2042.579834)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_11.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_11.InterpTrackFloatProp_1'
+      GroupName="garden"
+      GroupColor=(B=173,G=0,R=167,A=255)
+      Name="InterpGroup_11"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_10
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((OutVal=(X=-0.001953,Y=-0.000488,Z=-0.000122),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-147.833008,Y=-1.766602,Z=-234.718567),InterpMode=CIM_CurveAutoClamped),(InVal=1264.949829,OutVal=(X=-111.058594,Y=59.695313,Z=5.847168),ArriveTangent=(X=0.113715,Y=0.000000,Z=0.261317),LeaveTangent=(X=0.113715,Y=0.000000,Z=0.261317),InterpMode=CIM_CurveAutoClamped),(InVal=1270.371460,OutVal=(X=1255.734375,Y=-126.664063,Z=97.250732),ArriveTangent=(X=227.178177,Y=-11.495886,Z=0.000000),LeaveTangent=(X=227.178177,Y=-11.495886,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1274.937378,OutVal=(X=2157.894531,Y=-152.875000,Z=-192.970947),ArriveTangent=(X=186.690140,Y=-10.314817,Z=0.000000),LeaveTangent=(X=186.690140,Y=-10.314817,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1280.717041,OutVal=(X=3187.152344,Y=-275.593750,Z=-143.480957),ArriveTangent=(X=122.772629,Y=-17.398947,Z=15.189129),LeaveTangent=(X=122.772629,Y=-17.398947,Z=15.189129),InterpMode=CIM_CurveAutoClamped),(InVal=1289.972412,OutVal=(X=4003.785156,Y=-414.468750,Z=197.576904),ArriveTangent=(X=140.542068,Y=-21.067902,Z=15.961456),LeaveTangent=(X=140.542068,Y=-21.067902,Z=15.961456),InterpMode=CIM_CurveAutoClamped),(InVal=1295.325684,OutVal=(X=5240.281250,Y=-583.367188,Z=247.303711),ArriveTangent=(X=77.216911,Y=-73.146675,Z=5.302628),LeaveTangent=(X=77.216911,Y=-73.146675,Z=5.302628),InterpMode=CIM_CurveAutoClamped),(InVal=1299.979370,OutVal=(X=5418.296875,Y=-2175.148438,Z=261.601563),InterpMode=CIM_CurveAutoClamped),(InVal=1299.979370,OutVal=(X=5418.296875,Y=-2175.148438,Z=261.601563),InterpMode=CIM_CurveAutoClamped),(InVal=1305.079346,OutVal=(X=5440.195313,Y=-3129.406250,Z=70.887451),ArriveTangent=(X=0.000000,Y=-179.512238,Z=-25.750374),LeaveTangent=(X=0.000000,Y=-179.512238,Z=-25.750374),InterpMode=CIM_CurveAutoClamped),(InVal=1310.072998,OutVal=(X=5234.820313,Y=-3987.078125,Z=-9.864014),ArriveTangent=(X=-57.312687,Y=-162.162491,Z=0.000000),LeaveTangent=(X=-57.312687,Y=-162.162491,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1315.066772,OutVal=(X=4867.789063,Y=-4748.992188,Z=188.390137),ArriveTangent=(X=-71.449173,Y=-211.222580,Z=0.000000),LeaveTangent=(X=-71.449173,Y=-211.222580,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1319.935669,OutVal=(X=4530.140625,Y=-6070.296875,Z=160.854980),ArriveTangent=(X=-128.301117,Y=-36.676826,Z=-9.922739),LeaveTangent=(X=-128.301117,Y=-36.676826,Z=-9.922739),InterpMode=CIM_CurveAutoClamped),(InVal=1325.054321,OutVal=(X=3215.984375,Y=-6149.539063,Z=71.824219),ArriveTangent=(X=-211.779312,Y=0.000000,Z=-33.058758),LeaveTangent=(X=-211.779312,Y=0.000000,Z=-33.058758),InterpMode=CIM_CurveAutoClamped),(InVal=1329.923218,OutVal=(X=2414.984375,Y=-6123.984375,Z=-257.941895),ArriveTangent=(X=-184.963562,Y=10.524324,Z=-24.189442),LeaveTangent=(X=-184.963562,Y=10.524324,Z=-24.189442),InterpMode=CIM_CurveAutoClamped),(InVal=1334.667236,OutVal=(X=1437.945313,Y=-6000.765625,Z=-314.046875),ArriveTangent=(X=-175.196838,Y=40.847492,Z=0.000000),LeaveTangent=(X=-175.196838,Y=40.847492,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1339.910645,OutVal=(X=665.218750,Y=-5690.578125,Z=-47.303223),ArriveTangent=(X=-197.606384,Y=55.634899,Z=0.000000),LeaveTangent=(X=-197.606384,Y=55.634899,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1345.029297,OutVal=(X=-609.664063,Y=-5424.273438,Z=-123.463867),ArriveTangent=(X=-92.779404,Y=91.286133,Z=0.000000),LeaveTangent=(X=-92.779404,Y=91.286133,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1350.147827,OutVal=(X=-842.765625,Y=-4619.875000,Z=-119.266113),ArriveTangent=(X=0.000000,Y=142.063614,Z=1.434609),LeaveTangent=(X=0.000000,Y=142.063614,Z=1.434609),InterpMode=CIM_CurveAutoClamped),(InVal=1354.891846,OutVal=(X=-792.625000,Y=-4023.164063,Z=-107.886230),ArriveTangent=(X=17.535240,Y=142.539368,Z=0.000000),LeaveTangent=(X=17.535240,Y=142.539368,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1360.135254,OutVal=(X=-646.539063,Y=-3196.273438,Z=-435.426514),ArriveTangent=(X=23.945150,Y=173.188141,Z=0.000000),LeaveTangent=(X=23.945150,Y=173.188141,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1365.253906,OutVal=(X=-544.503906,Y=-2228.578125,Z=-405.885254),ArriveTangent=(X=37.798885,Y=249.712875,Z=13.469021),LeaveTangent=(X=37.798885,Y=249.712875,Z=13.469021),InterpMode=CIM_CurveAutoClamped),(InVal=1369.997925,OutVal=(X=-183.914063,Y=-733.437500,Z=-40.695313),ArriveTangent=(X=63.139759,Y=196.514496,Z=3.186153),LeaveTangent=(X=63.139759,Y=196.514496,Z=3.186153),InterpMode=CIM_CurveAutoClamped),(InVal=1374.617188,OutVal=(X=46.691406,Y=-195.234375,Z=-34.645020),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((OutVal=(X=-0.598755,Y=3.301392,Z=-7.218018),InterpMode=CIM_CurveAutoClamped),(OutVal=(X=0.000000,Y=-4.746094,Z=-9.316406),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.003965),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.003965),InterpMode=CIM_CurveAutoClamped),(InVal=1264.949829,OutVal=(X=-0.175781,Y=2.241211,Z=-12.233276),ArriveTangent=(X=0.000000,Y=0.006365,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.006365,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1270.371460,OutVal=(X=0.000000,Y=3.339844,Z=-9.124146),ArriveTangent=(X=0.000000,Y=0.353728,Z=0.000000),LeaveTangent=(X=0.000000,Y=0.353728,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1274.937378,OutVal=(X=-0.010986,Y=5.971069,Z=-9.354858),ArriveTangent=(X=-0.005563,Y=0.000000,Z=-0.117127),LeaveTangent=(X=-0.005563,Y=0.000000,Z=-0.117127),InterpMode=CIM_CurveAutoClamped),(InVal=1280.717041,OutVal=(X=-2.504883,Y=-1.829224,Z=-103.485718),ArriveTangent=(X=0.000000,Y=-0.817305,Z=-3.815299),LeaveTangent=(X=0.000000,Y=-0.817305,Z=-3.815299),InterpMode=CIM_CurveAutoClamped),(InVal=1289.972412,OutVal=(X=-2.169800,Y=-6.317139,Z=-117.899780),ArriveTangent=(X=0.081650,Y=0.000000,Z=-2.992880),LeaveTangent=(X=0.081650,Y=0.000000,Z=-2.992880),InterpMode=CIM_CurveAutoClamped),(InVal=1295.325684,OutVal=(X=-0.950317,Y=0.186768,Z=-147.617798),ArriveTangent=(X=0.292582,Y=0.000000,Z=-6.116228),LeaveTangent=(X=0.292582,Y=0.000000,Z=-6.116228),InterpMode=CIM_CurveAutoClamped),(InVal=1299.979370,OutVal=(X=0.758057,Y=-1.527100,Z=-179.104614),InterpMode=CIM_CurveAutoClamped),(InVal=1299.979370,OutVal=(X=0.758057,Y=-1.527100,Z=-179.104614),InterpMode=CIM_CurveAutoClamped),(InVal=1305.079346,OutVal=(X=0.774536,Y=-8.756104,Z=-179.675903),ArriveTangent=(X=0.007953,Y=0.000000,Z=-0.270077),LeaveTangent=(X=0.007953,Y=0.000000,Z=-0.270077),InterpMode=CIM_CurveAutoClamped),(InVal=1310.072998,OutVal=(X=1.642456,Y=-5.641479,Z=-195.243530),ArriveTangent=(X=0.263323,Y=0.806312,Z=-5.184403),LeaveTangent=(X=0.263323,Y=0.806312,Z=-5.184403),InterpMode=CIM_CurveAutoClamped),(InVal=1315.066772,OutVal=(X=3.416748,Y=-0.703125,Z=-235.431519),ArriveTangent=(X=0.099186,Y=0.000000,Z=-3.691738),LeaveTangent=(X=0.099186,Y=0.000000,Z=-3.691738),InterpMode=CIM_CurveAutoClamped),(InVal=1319.935669,OutVal=(X=3.641968,Y=-1.444702,Z=-244.824829),ArriveTangent=(X=0.025337,Y=0.000000,Z=-1.415153),LeaveTangent=(X=0.025337,Y=0.000000,Z=-1.415153),InterpMode=CIM_CurveAutoClamped),(InVal=1325.054321,OutVal=(X=3.713379,Y=2.312622,Z=-249.565430),ArriveTangent=(X=0.014300,Y=0.000000,Z=-1.963393),LeaveTangent=(X=0.014300,Y=0.000000,Z=-1.963393),InterpMode=CIM_CurveAutoClamped),(InVal=1329.923218,OutVal=(X=3.784790,Y=2.224731,Z=-278.794556),ArriveTangent=(X=0.000000,Y=0.000000,Z=-4.378773),LeaveTangent=(X=0.000000,Y=0.000000,Z=-4.378773),InterpMode=CIM_CurveAutoClamped),(InVal=1334.667236,OutVal=(X=3.504639,Y=2.246704,Z=-292.379150),ArriveTangent=(X=-0.110281,Y=0.000000,Z=-4.352517),LeaveTangent=(X=-0.110281,Y=0.000000,Z=-4.352517),InterpMode=CIM_CurveAutoClamped),(InVal=1339.910645,OutVal=(X=2.279663,Y=0.422974,Z=-323.800049),ArriveTangent=(X=-0.070426,Y=0.000000,Z=-1.312461),LeaveTangent=(X=-0.070426,Y=0.000000,Z=-1.312461),InterpMode=CIM_CurveAutoClamped),(InVal=1345.029297,OutVal=(X=2.109375,Y=5.943604,Z=-326.826782),ArriveTangent=(X=-0.074962,Y=0.487343,Z=-1.332341),LeaveTangent=(X=-0.074962,Y=0.487343,Z=-1.332341),InterpMode=CIM_CurveAutoClamped),(InVal=1350.147827,OutVal=(X=0.219727,Y=7.234497,Z=-360.401001),InterpMode=CIM_CurveAutoClamped),(InVal=1354.891846,OutVal=(X=1.455688,Y=2.839966,Z=-338.933716),InterpMode=CIM_CurveAutoClamped),(InVal=1360.135254,OutVal=(X=0.186768,Y=4.026489,Z=-360.609741),ArriveTangent=(X=-0.233254,Y=0.000000,Z=-4.014090),LeaveTangent=(X=-0.233254,Y=0.000000,Z=-4.014090),InterpMode=CIM_CurveAutoClamped),(InVal=1365.253906,OutVal=(X=-0.961304,Y=3.548584,Z=-380.527954),ArriveTangent=(X=-0.250634,Y=-0.213175,Z=-4.911876),LeaveTangent=(X=-0.250634,Y=-0.213175,Z=-4.911876),InterpMode=CIM_CurveAutoClamped),(InVal=1369.997925,OutVal=(X=-2.285156,Y=-1.186523,Z=-409.053955),ArriveTangent=(X=-0.191529,Y=0.000000,Z=-5.293531),LeaveTangent=(X=-0.191529,Y=0.000000,Z=-5.293531),InterpMode=CIM_CurveAutoClamped),(InVal=1374.617188,OutVal=(X=-2.839966,Y=0.362549,Z=-430.092773),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=1264.949829),(Time=1270.371460),(Time=1274.937378),(Time=1280.717041),(Time=1289.972412),(Time=1295.325684),(Time=1299.979370),(Time=1299.979370),(Time=1305.079346),(Time=1310.072998),(Time=1315.066772),(Time=1319.935669),(Time=1325.054321),(Time=1329.923218),(Time=1334.667236),(Time=1339.910645),(Time=1345.029297),(Time=1350.147827),(Time=1354.891846),(Time=1360.135254),(Time=1365.253906),(Time=1369.997925),(Time=1374.617188)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_1
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_1"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_10.InterpTrackMove_1'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_10.InterpTrackFloatProp_1'
+      GroupName="library"
+      GroupColor=(B=0,G=222,R=79,A=255)
+      Name="InterpGroup_10"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((OutVal=(X=0.000488,Y=-0.000488,Z=-0.000061),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=1409.238037,Y=-181.928223,Z=72.270844),ArriveTangent=(X=428.074249,Y=-89.379700,Z=0.000000),LeaveTangent=(X=428.074249,Y=-89.379700,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=7.800000,OutVal=(X=3338.979736,Y=-1166.025757,Z=17.900116),ArriveTangent=(X=1208.969604,Y=-195.545639,Z=-5.182724),LeaveTangent=(X=1208.969604,Y=-195.545639,Z=-5.182724),InterpMode=CIM_CurveAutoClamped),(InVal=9.839215,OutVal=(X=7302.224609,Y=-1403.011963,Z=12.614075),ArriveTangent=(X=656.528198,Y=0.000000,Z=-1.947001),LeaveTangent=(X=656.528198,Y=0.000000,Z=-1.947001),InterpMode=CIM_CurveAutoClamped),(InVal=14.469993,OutVal=(X=8598.931641,Y=-816.182861,Z=4.913635),ArriveTangent=(X=51.523331,Y=241.120697,Z=0.000000),LeaveTangent=(X=51.523331,Y=241.120697,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=19.679615,OutVal=(X=8713.328125,Y=2049.332764,Z=65.325256),ArriveTangent=(X=0.000000,Y=750.526550,Z=7.686038),LeaveTangent=(X=0.000000,Y=750.526550,Z=7.686038),InterpMode=CIM_CurveAutoClamped),(InVal=24.475777,OutVal=(X=8676.920898,Y=6693.423828,Z=88.129425),ArriveTangent=(X=-18.587097,Y=9.109772,Z=8.790682),LeaveTangent=(X=-18.587097,Y=9.109772,Z=8.790682),InterpMode=CIM_CurveAutoClamped),(InVal=29.437325,OutVal=(X=4730.970703,Y=6711.392578,Z=174.510498),ArriveTangent=(X=-747.424622,Y=0.000000,Z=0.000000),LeaveTangent=(X=-747.424622,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=35.225796,OutVal=(X=642.091797,Y=6208.406250,Z=5.005615),ArriveTangent=(X=-292.268494,Y=-207.548294,Z=0.000000),LeaveTangent=(X=-292.268494,Y=-207.548294,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=39.608494,OutVal=(X=-46.067871,Y=1998.791260,Z=49.046112),ArriveTangent=(X=0.000000,Y=-812.619385,Z=14.150238),LeaveTangent=(X=0.000000,Y=-812.619385,Z=14.150238),InterpMode=CIM_CurveAutoClamped),(InVal=44.983505,OutVal=(X=745.204834,Y=-1720.897461,Z=145.605011),ArriveTangent=(X=296.808838,Y=-243.714890,Z=0.000000),LeaveTangent=(X=296.808838,Y=-243.714890,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=4377.874512,Y=-2322.717285,Z=131.027374),ArriveTangent=(X=798.628113,Y=0.000000,Z=0.000000),LeaveTangent=(X=798.628113,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=54.900002,OutVal=(X=8664.797852,Y=-1700.499023,Z=148.942535),LeaveTangent=(X=0.000015,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=-6.152344,Z=0.791016),ArriveTangent=(X=0.000000,Y=0.000000,Z=0.457361),LeaveTangent=(X=0.000000,Y=0.000000,Z=0.457361),InterpMode=CIM_CurveAutoClamped),(InVal=7.800000,OutVal=(X=0.000000,Y=1.164551,Z=69.807129),ArriveTangent=(X=0.000000,Y=0.000000,Z=22.416653),LeaveTangent=(X=0.000000,Y=0.000000,Z=22.416653),InterpMode=CIM_CurveAutoClamped),(InVal=9.839215,OutVal=(X=0.000000,Y=0.395508,Z=109.270020),ArriveTangent=(X=0.000000,Y=0.000000,Z=11.437654),LeaveTangent=(X=0.000000,Y=0.000000,Z=11.437654),InterpMode=CIM_CurveAutoClamped),(InVal=14.469993,OutVal=(X=0.000000,Y=0.791016,Z=146.096191),ArriveTangent=(X=0.000000,Y=0.000000,Z=6.301252),LeaveTangent=(X=0.000000,Y=0.000000,Z=6.301252),InterpMode=CIM_CurveAutoClamped),(InVal=19.679615,OutVal=(X=0.000000,Y=-0.131836,Z=171.276855),ArriveTangent=(X=0.000000,Y=-0.371975,Z=6.970089),LeaveTangent=(X=0.000000,Y=-0.371975,Z=6.970089),InterpMode=CIM_CurveAutoClamped),(InVal=24.475777,OutVal=(X=0.000000,Y=-5.185547,Z=215.837402),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.966768),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.966768),InterpMode=CIM_CurveAutoClamped),(InVal=29.437325,OutVal=(X=0.000000,Y=-0.395508,Z=258.771973),ArriveTangent=(X=0.000000,Y=0.619090,Z=8.470188),LeaveTangent=(X=0.000000,Y=0.619090,Z=8.470188),InterpMode=CIM_CurveAutoClamped),(InVal=35.225796,OutVal=(X=0.000000,Y=1.713867,Z=306.892090),ArriveTangent=(X=0.000000,Y=0.429897,Z=9.822830),LeaveTangent=(X=0.000000,Y=0.429897,Z=9.822830),InterpMode=CIM_CurveAutoClamped),(InVal=39.608494,OutVal=(X=0.000000,Y=3.977051,Z=358.681641),ArriveTangent=(X=0.000000,Y=0.000000,Z=8.923984),LeaveTangent=(X=0.000000,Y=0.000000,Z=8.923984),InterpMode=CIM_CurveAutoClamped),(InVal=44.983505,OutVal=(X=0.000000,Y=0.065918,Z=393.969727),ArriveTangent=(X=0.000000,Y=-0.589941,Z=8.142872),LeaveTangent=(X=0.000000,Y=-0.589941,Z=8.142872),InterpMode=CIM_CurveAutoClamped),(InVal=50.000000,OutVal=(X=0.000000,Y=-2.153320,Z=443.298340),ArriveTangent=(X=0.000000,Y=0.000000,Z=9.279637),LeaveTangent=(X=0.000000,Y=0.000000,Z=9.279637),InterpMode=CIM_CurveAutoClamped),(InVal=54.900002,OutVal=(X=0.000000,Y=-1.340332,Z=485.991211),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000),(Time=7.800000),(Time=9.839215),(Time=14.469993),(Time=19.679615),(Time=24.475777),(Time=29.437325),(Time=35.225796),(Time=39.608494),(Time=44.983505),(Time=50.000000),(Time=54.900002)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackFloatProp Name=InterpTrackFloatProp_0
+         PropertyName="FOVAngle"
+         TrackTitle="FOVAngle"
+         Name="InterpTrackFloatProp_0"
+         ObjectArchetype=InterpTrackFloatProp'Engine.Default__InterpTrackFloatProp'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_0.InterpTrackMove_0'
+      InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_0.InterpTrackFloatProp_0'
+      GroupName="MainArea"
+      GroupColor=(B=51,G=0,R=229,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2111.383789
    InterpGroups(0)=InterpGroupDirector'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroupDirector_0'
@@ -16301,7 +16264,7 @@ End Object
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_10
    InputLinks(0)=(DrawY=-6874,OverrideDelta=23)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_ActivateRemoteEvent_57')),DrawY=-6884,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_16')),DrawY=-6864,OverrideDelta=33)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_3')),DrawY=-6864,OverrideDelta=33)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Named_2'),DrawX=-8299,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-8249,OverrideDelta=59)
    ObjInstanceVersion=2
@@ -16664,7 +16627,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_56
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_FirePile_Loop'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_FirePile_Loop_01'
    InputLinks(0)=(DrawY=-2254,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-2254,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1018'),DrawX=-8896,OverrideDelta=26)
@@ -16698,7 +16661,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_78
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_FireSpirit_Loop'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_FireSpirit_Loop_01'
    InputLinks(0)=(DrawY=-2262,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-2262,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_938'),DrawX=-7456,OverrideDelta=26)
@@ -16714,7 +16677,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_85
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_FireSpirit_Loop'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_FireSpirit_Loop_01'
    InputLinks(0)=(DrawY=-2075,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-2075,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_904'),DrawX=-7456,OverrideDelta=26)
@@ -16790,7 +16753,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_70
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_RadioactiveFountains'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_RadioactiveFountains_01'
    InputLinks(0)=(DrawY=-5174,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5174,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_949'),DrawX=-7528,OverrideDelta=26)
@@ -16824,7 +16787,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_87
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_RadioactiveFountains'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_RadioactiveFountains_01'
    InputLinks(0)=(DrawY=-5078,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5078,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_971'),DrawX=-7520,OverrideDelta=26)
@@ -16840,7 +16803,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_67
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_RadioactiveFountains'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_RadioactiveFountains_01'
    InputLinks(0)=(DrawY=-4974,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-4974,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_960'),DrawX=-7512,OverrideDelta=26)
@@ -16976,7 +16939,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_73
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-5174,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5174,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_949'),DrawX=-7320,OverrideDelta=26)
@@ -16992,7 +16955,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_72
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-5078,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5078,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_971'),DrawX=-7312,OverrideDelta=26)
@@ -17008,7 +16971,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_84
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-4974,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-4974,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_960'),DrawX=-7304,OverrideDelta=26)
@@ -17024,7 +16987,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_76
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-5182,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5182,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1082'),DrawX=-6248,OverrideDelta=26)
@@ -17070,7 +17033,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_77
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-5078,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5078,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1093'),DrawX=-6256,OverrideDelta=26)
@@ -17086,7 +17049,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_79
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-4966,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-4966,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1104'),DrawX=-6256,OverrideDelta=26)
@@ -17102,7 +17065,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_80
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-4974,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-4974,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1071'),DrawX=-8704,OverrideDelta=26)
@@ -17118,7 +17081,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_81
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-5086,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5086,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1060'),DrawX=-8704,OverrideDelta=26)
@@ -17164,7 +17127,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_82
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-5190,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5190,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1049'),DrawX=-8696,OverrideDelta=26)
@@ -17180,7 +17143,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_74
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-5190,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5190,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_982'),DrawX=-9560,OverrideDelta=26)
@@ -17226,7 +17189,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_75
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-5086,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-5086,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1026'),DrawX=-9568,OverrideDelta=26)
@@ -17242,7 +17205,7 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_71
    bReplicateToClients=True
-   Event=AkEvent'WW_ENV_Elysium.Play_MonumentAppears'
+   Event=AkEvent'WW_ENV_Elysium_2.Play_MonumentAppears_01'
    InputLinks(0)=(DrawY=-4974,OverrideDelta=11)
    OutputLinks(0)=(DrawY=-4974,OverrideDelta=11)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1037'),DrawX=-9568,OverrideDelta=26)
@@ -17330,7 +17293,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1182
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_1393
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
    ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_4'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -17339,7 +17302,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1393
    ObjComment="Black hole spawn"
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_1393"
+   Name="SeqVar_Object_61"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -19536,89 +19499,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_11
 End Object
 
 Begin Object Class=InterpData Name=InterpData_11
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
-         PropertyName="HeightFogComponent0.OppositeLightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.212044,Y=0.280124,Z=0.425905),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.409826,Y=0.054592,Z=0.019918),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="OppositeLightColor"
-         Name="InterpTrackColorProp_0"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackVectorMaterialParam Name=InterpTrackVectorMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Elysium_Lights_FX.Rim_Clouds')
+         ParamName="Scalar_Glow_color"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=1.002211,Y=0.997249,Z=0.997250),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackVectorMaterialParam_0"
+         ObjectArchetype=InterpTrackVectorMaterialParam'Engine.Default__InterpTrackVectorMaterialParam'
       End Object
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
-         PropertyName="HeightFogComponent0.LightInscatteringColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.147998,Y=0.238828,Z=0.425905),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="LightInscatteringColor"
-         Name="InterpTrackColorProp_1"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_0.InterpTrackColorProp_0'
-      InterpTracks(1)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_0.InterpTrackColorProp_1'
-      GroupName="Fog"
-      GroupColor=(B=105,G=213,R=0,A=255)
+      InterpTracks(0)=InterpTrackVectorMaterialParam'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_8.InterpTrackVectorMaterialParam_0'
+      GroupName="Cloud"
+      GroupColor=(B=0,G=203,R=126,A=255)
       bCollapsed=True
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
-         PropertyName="SpotLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.394083,Y=0.592438,Z=0.796917),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1.000000,Y=0.060032,Z=0.019918),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_0"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_1.InterpTrackColorProp_0'
-      GroupName="Light"
-      GroupColor=(B=231,G=30,R=0,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
-         PropertyName="DominantDirectionalLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.598942,Y=0.388910,Z=0.166872),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.493616,Y=0.003697,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_0"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_2.InterpTrackColorProp_0'
-      GroupName="DominantDir"
-      GroupColor=(B=159,G=179,R=0,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
-         PropertyName="DominantDirectionalLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.598942,Y=0.388910,Z=0.166872),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.096266,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_2"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_3.InterpTrackColorProp_2'
-      GroupName="SkyLight"
-      GroupColor=(B=69,G=225,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
-         PropertyName="SpotLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.453456,Y=0.708298,Z=1.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.744530,Y=0.127530,Z=0.108711),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_0"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_4.InterpTrackColorProp_0'
-      GroupName="Ball_Room_Light_Spotlight"
-      GroupColor=(B=187,G=0,R=151,A=255)
-      bCollapsed=True
-      Name="InterpGroup_4"
+      Name="InterpGroup_8"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_5
@@ -19636,20 +19529,90 @@ Begin Object Class=InterpData Name=InterpData_11
       Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackVectorMaterialParam Name=InterpTrackVectorMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Elysium_Lights_FX.Rim_Clouds')
-         ParamName="Scalar_Glow_color"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=1.002211,Y=0.997249,Z=0.997250),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackVectorMaterialParam_0"
-         ObjectArchetype=InterpTrackVectorMaterialParam'Engine.Default__InterpTrackVectorMaterialParam'
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
+         PropertyName="SpotLightComponent0.LightColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.453456,Y=0.708298,Z=1.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.744530,Y=0.127530,Z=0.108711),InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_0"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackVectorMaterialParam'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_8.InterpTrackVectorMaterialParam_0'
-      GroupName="Cloud"
-      GroupColor=(B=0,G=203,R=126,A=255)
+      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_4.InterpTrackColorProp_0'
+      GroupName="Ball_Room_Light_Spotlight"
+      GroupColor=(B=187,G=0,R=151,A=255)
       bCollapsed=True
-      Name="InterpGroup_8"
+      Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
+         PropertyName="DominantDirectionalLightComponent0.LightColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.598942,Y=0.388910,Z=0.166872),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.096266,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_2"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_3.InterpTrackColorProp_2'
+      GroupName="SkyLight"
+      GroupColor=(B=69,G=225,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
+         PropertyName="DominantDirectionalLightComponent0.LightColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.598942,Y=0.388910,Z=0.166872),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.493616,Y=0.003697,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_0"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_2.InterpTrackColorProp_0'
+      GroupName="DominantDir"
+      GroupColor=(B=159,G=179,R=0,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
+         PropertyName="SpotLightComponent0.LightColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.394083,Y=0.592438,Z=0.796917),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1.000000,Y=0.060032,Z=0.019918),InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="LightColor"
+         Name="InterpTrackColorProp_0"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_1.InterpTrackColorProp_0'
+      GroupName="Light"
+      GroupColor=(B=231,G=30,R=0,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
+         PropertyName="HeightFogComponent0.LightInscatteringColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.147998,Y=0.238828,Z=0.425905),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="LightInscatteringColor"
+         Name="InterpTrackColorProp_1"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
+         PropertyName="HeightFogComponent0.OppositeLightColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.212044,Y=0.280124,Z=0.425905),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.409826,Y=0.054592,Z=0.019918),InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="OppositeLightColor"
+         Name="InterpTrackColorProp_0"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_0.InterpTrackColorProp_0'
+      InterpTracks(1)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_0.InterpTrackColorProp_1'
+      GroupName="Fog"
+      GroupColor=(B=105,G=213,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1200.599976
    InterpGroups(0)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_0'
@@ -20062,12 +20025,12 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_41
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
    InputLinks(0)=(DrawY=-2595,OverrideDelta=14)
    InputLinks(1)=(DrawY=-2574,OverrideDelta=35)
    InputLinks(2)=(DrawY=-2553,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-2574,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_3',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_2',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_5',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_4',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_9',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_6',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_7',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_8',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_16',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_14',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_10',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_15',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_12',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_11',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_13',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_722'),DrawX=-7458,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_29',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_2',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_5',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_4',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_9',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_6',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_7',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_8',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_16',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_14',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_10',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_15',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_12',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_11',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_13',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_722'),DrawX=-7458,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-7407,OverrideDelta=76)
    EventLinks(0)=(DrawX=-7358,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -20076,7 +20039,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_41
    ObjPosY=-2632
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_41"
+   Name="SeqAct_Toggle_4"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
@@ -20092,7 +20055,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_29
    ObjValue=DynamicBlockingVolume'KF-ELYSIUM.TheWorld:PersistentLevel.DynamicBlockingVolume_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -20100,7 +20063,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
    ObjPosY=-2496
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_3"
+   Name="SeqVar_Object_29"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -20416,7 +20379,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
    InputLinks(1)=(DrawY=-7590,OverrideDelta=35)
    InputLinks(2)=(DrawY=-7569,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-7590,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_27',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_901',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_906',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_910',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_911',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1397',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_860',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_853',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1044',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_965',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_952',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_940',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_830',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_800',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_918',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_984',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1155',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_885',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_892',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_887',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_883',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1156',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_827',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_916',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_909',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_933',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_944',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_805',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_921',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_956',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_917',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_895',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1067',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1008',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1066',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1065',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1064',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_975',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_968',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1061',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1062',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1063',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1396',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1213',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1222',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1212',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1182',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1204',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1293',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1326'),DrawX=-3610,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_76',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_901',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_906',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_910',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_911',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1397',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_860',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_853',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1044',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_965',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_952',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_940',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_830',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_800',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_918',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_984',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1155',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_885',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_892',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_887',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_883',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1156',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_827',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_916',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_909',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_933',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_944',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_805',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_921',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_956',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_917',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_895',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1067',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1008',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1066',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1065',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1064',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_975',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_968',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1061',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1062',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1063',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1396',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1213',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1222',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1212',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1182',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1204',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1293',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1326',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_27'),DrawX=-3610,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3559,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3510,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -20429,7 +20392,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_18
    InputLinks(0)=(DrawY=-1555,OverrideDelta=14)
    InputLinks(1)=(DrawY=-1534,OverrideDelta=35)
    InputLinks(2)=(DrawY=-1513,OverrideDelta=56)
@@ -20443,6 +20406,1437 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
    ObjPosY=-1592
    DrawWidth=173
    DrawHeight=109
+   Name="SeqAct_Toggle_18"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_725
+   ObjValue=DynamicBlockingVolume'KF-ELYSIUM.TheWorld:PersistentLevel.DynamicBlockingVolume_31'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7960
+   ObjPosY=-4648
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_725"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3272
+   ObjPosY=-7680
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_52"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
+   InputLinks(0)=(DrawY=-7811,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7790,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7769,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7790,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_54',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_52',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_53'),DrawX=-3250,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3199,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3150,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3288
+   ObjPosY=-7848
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_13"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_28'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3344
+   ObjPosY=-7600
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_53"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_75'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3368
+   ObjPosY=-7680
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_54"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_76'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2984
+   ObjPosY=-7696
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_55"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_74'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3080
+   ObjPosY=-7696
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_56"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_57
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_47'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2896
+   ObjPosY=-7720
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_57"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_12'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2784
+   ObjPosY=-7616
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_58"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_73'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2768
+   ObjPosY=-7696
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_59"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_46'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2688
+   ObjPosY=-7648
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_60"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_5
+   LinkCount=3
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-7818,OverrideDelta=19)
+   InputLinks(1)=(DrawY=-7786,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_13')),DrawY=-7823,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_14')),LinkDesc="Link 2",DrawY=-7802,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_15')),LinkDesc="Link 3",DrawY=-7781,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-3498,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3542
+   ObjPosY=-7860
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_5"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
+   InputLinks(0)=(DrawY=-7819,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7798,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7777,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7798,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_56',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_55',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_57'),DrawX=-2962,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2911,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2862,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3000
+   ObjPosY=-7856
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_14"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_15
+   InputLinks(0)=(DrawY=-7775,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7754,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7733,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7754,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_59',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_60',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_58'),DrawX=-2666,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2615,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2566,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2704
+   ObjPosY=-7812
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_15"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_38
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_46'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8728
+   ObjPosY=-1720
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_38"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_37
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_73'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8752
+   ObjPosY=-1784
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_37"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_12'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8848
+   ObjPosY=-1664
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_36"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_47'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8952
+   ObjPosY=-1656
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_35"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_34
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_74'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-9064
+   ObjPosY=-1752
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_34"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_33
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_76'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-9112
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_33"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_32
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_75'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-9016
+   ObjPosY=-1704
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_32"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_31
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_28'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8904
+   ObjPosY=-1712
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_31"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_30
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8824
+   ObjPosY=-1736
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_30"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_16
+   InputLinks(0)=(DrawY=-1795,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-1774,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-1753,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-1774,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_149',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_150',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_151',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_154',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_155',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_156',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_157',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_158',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_159',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_160',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_161',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_163',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_164',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_165',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_166',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_167',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_168',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_169',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_171',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_172',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_173',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_174',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_175',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_176',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_177',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_178',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_179',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_180',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_181',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_182',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_183',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_184',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_185',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_186',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_187',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_188',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_189',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_192',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_193',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_194',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_195',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_196',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_197',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_198',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_199',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_200',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_201',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_202',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_203',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_204',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_205',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_206',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_207',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_208',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_209',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_210',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_211',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_212',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_213',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_214',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_215',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_216',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_217',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_218',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_219',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_224',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_225',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_226',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_227'),DrawX=-8170,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-8119,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-8070,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8208
+   ObjPosY=-1832
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_16"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
+   InputLinks(0)=(DrawY=-1835,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-1814,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-1793,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-1814,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_32',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_30',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_31',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_33',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_34',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_36',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_35',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_37',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_38',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_45'),DrawX=-8938,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-8887,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-8838,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8976
+   ObjPosY=-1872
+   DrawWidth=173
+   DrawHeight=109
    Name="SeqAct_Toggle_5"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4344
+   ObjPosY=-5272
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_62"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_130'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4433
+   ObjPosY=-5256
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_63"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_65
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4096
+   ObjPosY=-5304
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_65"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_1393
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_23'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4200
+   ObjPosY=-5360
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_1393"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_66
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_17'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3896
+   ObjPosY=-5392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_66"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_67
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_14'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4088
+   ObjPosY=-5432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_67"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_69
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_117'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4184
+   ObjPosY=-5440
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_69"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_70
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_116'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3816
+   ObjPosY=-5424
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_70"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_72
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_115'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3728
+   ObjPosY=-5272
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_72"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_73
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_26'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4400
+   ObjPosY=-5360
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_73"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_64
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_39'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3984
+   ObjPosY=-5440
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_64"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_45
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-9152
+   ObjPosY=-1728
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_45"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_106'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3274
+   ObjPosY=-7226
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_27"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_1
+   Duration=2.750000
+   InputLinks(0)=(DrawY=-1419,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-1398,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-1377,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_12',InputLinkIdx=1)),DrawY=-1414,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-1382,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-3628,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3680
+   ObjPosY=-1456
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_1"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_12
+   InputLinks(0)=(DrawY=-1403,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-1382,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-1361,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-1382,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1013'),DrawX=-3426,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3375,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3326,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3464
+   ObjPosY=-1440
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_12"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_19
+   InputLinks(0)=(DrawY=-1203,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-1182,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-1161,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-1182,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_961'),DrawX=-3434,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3383,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3334,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3472
+   ObjPosY=-1240
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_19"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_2
+   Duration=2.750000
+   InputLinks(0)=(DrawY=-1219,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-1198,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-1177,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_19',InputLinkIdx=1)),DrawY=-1214,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-1182,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-3636,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3688
+   ObjPosY=-1256
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_2"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_0
+   Duration=2.750000
+   InputLinks(0)=(DrawY=-1003,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-982,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-961,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_43',InputLinkIdx=1)),DrawY=-998,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-966,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-3652,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3704
+   ObjPosY=-1040
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_0"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_43
+   InputLinks(0)=(DrawY=-987,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-966,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-945,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-966,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1136'),DrawX=-3450,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3399,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3350,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3488
+   ObjPosY=-1024
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_43"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_149
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8216
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_149"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_150
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8112
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_150"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_151
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8016
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_151"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_154
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_13'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7712
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_154"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_155
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_14'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7616
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_155"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_156
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_15'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7512
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_156"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_157
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_16'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7416
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_157"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_158
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_17'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7312
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_158"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_159
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_18'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7216
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_159"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_160
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7112
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_160"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_161
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7016
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_161"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_163
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_21'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6816
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_163"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_164
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_22'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6712
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_164"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_165
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_23'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6616
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_165"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_166
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_24'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6512
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_166"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_167
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_25'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6416
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_167"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_168
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_26'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6312
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_168"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_169
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_27'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6216
+   ObjPosY=-1672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_169"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_171
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_29'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8160
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_171"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_172
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8056
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_172"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_173
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_30'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7960
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_173"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_174
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_31'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7856
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_174"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_175
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_32'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7760
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_175"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_176
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_33'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7656
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_176"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_177
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_34'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7560
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_177"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_178
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_35'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7456
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_178"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_179
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_36'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7360
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_179"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_180
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_37'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7256
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_180"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_181
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_38'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7160
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_181"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_182
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_39'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7056
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_182"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_183
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_4'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6960
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_183"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_184
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_40'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6856
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_184"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_185
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_41'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6760
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_185"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_186
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_42'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6656
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_186"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_187
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_43'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6560
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_187"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_188
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_44'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6456
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_188"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_189
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_45'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6360
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_189"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_192
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_48'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6056
+   ObjPosY=-1608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_192"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_193
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_49'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8208
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_193"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_194
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8104
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_194"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_195
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_50'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8008
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_195"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_196
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_51'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7904
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_196"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_197
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_52'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7808
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_197"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_198
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_53'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7704
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_198"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_199
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_54'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7608
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_199"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_200
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_55'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7504
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_200"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_201
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_56'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7408
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_201"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_202
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_57'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7304
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_202"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_203
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_58'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7208
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_203"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_204
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_59'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7104
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_204"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_205
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_6'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7008
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_205"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_206
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_60'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6904
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_206"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_207
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_61'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6808
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_207"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_208
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_62'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6704
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_208"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_209
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_63'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6608
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_209"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_210
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_64'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6504
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_210"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_211
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_65'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6408
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_211"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_212
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_66'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6304
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_212"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_213
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_67'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6208
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_213"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_214
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_68'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6104
+   ObjPosY=-1544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_214"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_215
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_69'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8144
+   ObjPosY=-1472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_215"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_216
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8040
+   ObjPosY=-1472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_216"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_217
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_70'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7944
+   ObjPosY=-1472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_217"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_218
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_71'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7840
+   ObjPosY=-1472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_218"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_219
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_72'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7744
+   ObjPosY=-1472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_219"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_224
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_77'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7240
+   ObjPosY=-1472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_224"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_225
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_78'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7144
+   ObjPosY=-1472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_225"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_226
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_8'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-7040
+   ObjPosY=-1472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_226"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_227
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6944
+   ObjPosY=-1472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_227"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object

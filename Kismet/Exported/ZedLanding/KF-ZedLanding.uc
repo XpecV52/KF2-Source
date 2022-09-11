@@ -12768,3 +12768,10 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
    Name="SeqVar_Object_46"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
+
+Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+   OscillationDuration=20.000000
+   RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
+   Name="CameraShake_0"
+   ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
+End Object
