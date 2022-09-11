@@ -33,6 +33,7 @@ KF-Sanitarium="Jogando Sanatório"
 KF-Biolapse="Jogando Biolapso"
 KF-Desolation="Jogando Desolação"
 KF-HellmarkStation="Jogando Zona da Marca do Inferno"
+KF-Elysium="Jogando Elísio"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -166,7 +167,7 @@ PlayOffline="Quer jogar off-line? Os recursos do Xbox Live não estarão dispon�
 [Notifications]
 ControllerDisconnectedTitle="Controle desconectado"
 ControllerDisconnectedPS4Message="Controle sem fio desconectado. Reconecte o controle sem fio do usuário que iniciou o jogo."
-ControllerDisconnectedXB1="Controle sem fio do Xbox One desconectado. Reconecte o controle."
+ControllerDisconnectedXB1="Controle Sem Fio Xbox One desconectado. Reconecte o controle."
 PlayGoBusyTitle="Ainda instalando"
 PlayGoBusyMessage="O conteúdo e os recursos disponíveis ficam limitados enquanto o jogo termina de ser instalado."
 UnableToJoinInviteTitle="Não foi possível entrar"
@@ -185,14 +186,14 @@ InviteMessage="Vamos explodir uns Zeds juntos!"
 NotConnectedTitle="Erro de rede"
 NotConnectedMessage="Não conectado à internet. Verifique a conexão e tente de novo."
 NotConnectedForOnlinePlay="Não conectado à internet. Verifique a conexão e tente de novo para usar os recursos on-line."
-NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+NotConnectedForOnlinePlayXB1="É preciso conectar-se ao Xbox Live para jogar on-line. Verifique a conexão e tente de novo para usar os recursos on-line."
 MultiplayerNotAllowed_MessageLive="Para jogar, é necessário estar conectado a um perfil habilitado no Xbox Live com privilégios de multijogador."
 MultiplayerNotAllowed_Title="Multijogador não permitido"
 LoggedOutMessage="O perfil ativo foi alterado. Você voltou à tela inicial."
 LoggedOutTitle="Desconectado"
 LoggedInTitle="Conectado."
-NewRegionTitle="Welcome"
-NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
+NewRegionTitle="Boas-vindas"
+NewRegionMessage="Boas-vindas à organização de partidas on-line. Assegure-se que a sua região ao organizar partida esteja correta!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Exibir perfil do jogador"
@@ -214,10 +215,10 @@ ControllerSound="Som do controle"
 
 [KFGFxMenu_StartGame]
 MatchmakingRegionString="REGIÃO"
-LeaveMenuString="Se você sair do criador de partidas, também sairá do grupo"
+LeaveMenuString="Se você sair de Organizar Partida, também sairá do grupo"
 
 [KFGFxMenu_Store]
-StoreStringXB1="LOJA XBOX"
+StoreStringXB1="MICROSOFT STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGIÃO"
@@ -261,7 +262,7 @@ HorzineSupplyCrate3ShortDesription="Este caixote de suprimentos de Horzine cont�
 HorzineSupplyCrate4ProductName="Chave cx. sup. Horzine s. 4"
 HorzineSupplyCrate4ShortDesription="Este caixote de suprimentos de Horzine contém uma aparência para arma. É necessária uma chave de caixote de suprimentos de Horzine para abrir. Contém uma aparência de arma rara ou melhor das seguintes:"
 
-StoreGameLegalText="Software sujeito à licença (us.playstation.com/softwarelicense). Atividade on-line sujeita aos Termos de Serviços e Contrato do Usuário (www.playstationnetwork.com/terms-of-service). Taxa de licença única para jogo do sistema principal PS4™ designado da conta ou outros sistemas PS4™ quando conectados com aquela conta. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor© é uma marca registrada da Tripwire Interactive nos EUA e noutros países. Unreal® Engine, Copyright 1998–2016, Epic Games, Inc. Todos os direitos reservados. Unreal® é uma marca comercial ou uma marca registrada da Epic Games, Inc. nos Estados Unidos da América e noutros países. Todas as outras marcas, logotipos e direitos autorais são exclusivos dos respectivos proprietários. Todos os direitos reservados."
+StoreGameLegalText="Software sujeito à licença (us.playstation.com/softwarelicense). Atividade on-line sujeita aos Termos de Serviços e Contrato do Usuário (www.playstationnetwork.com/terms-of-service). Taxa de licença única para jogo do sistema PS4™ principal designado da conta ou outros sistemas PS4™ quando conectados com aquela conta. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor© é uma marca registrada da Tripwire Interactive nos EUA e noutros países. Unreal® Engine, Copyright 1998–2016, Epic Games, Inc. Todos os direitos reservados. Unreal® é uma marca comercial ou uma marca registrada da Epic Games, Inc. nos Estados Unidos da América e noutros países. Todas as outras marcas, logotipos e direitos autorais são exclusivos dos respectivos proprietários. Todos os direitos reservados."
 
 StoreItemLegalText="Para usar este item, é necessário o jogo Killing Floor 2. O uso deste item está sujeito ao mesmo Contrato de Licença do Usuário Final do jogo original."
 

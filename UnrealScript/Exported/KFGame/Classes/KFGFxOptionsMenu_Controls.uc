@@ -82,7 +82,9 @@ const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
 const KFID_ClassicPlayerInfo=173;
 const KFID_VOIPMicVolumeMultiplier = 174;
-
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 #linenumber 13
 
 var KFGFxControlsContainer_Keybinding KeybindingsContainer;
@@ -93,6 +95,10 @@ var const float MinControllerLookSensitivity;
 var const float MaxControllerLookSensitivity;
 var const float MinControllerZoomLookSensitivity;
 var const float MaxControllerZoomLookSensitivity;
+var const float MinControllerDeadzone;
+var const float MaxControllerDeadzone;
+var const float MinControllerAccelerationJump;
+var const float MaxControllerAccelerationJump;
 var const float MinMouseLookSensitivity;
 var const float MaxMouseLookSensitivity;
 var const float MinMouseLookZoomSensitivity;
@@ -171,6 +177,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         case ('inputContainer'):
 			if ( InputContainer == none )
 			{
+				//`log(`location@" case ('inputContainer') ");
 			    InputContainer = KFGFxControlsContainer_Input( Widget );
 			    InputContainer.Initialize( self );
 		    }
@@ -235,6 +242,26 @@ function Callback_ControllerZoomSensitivity( float NewSensitivity )
 
 	KFPI.GamepadZoomedSensitivityScale = NewSensitivity / 100;
 	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GamepadZoomedSensitivityScale, KFPI.GamepadZoomedSensitivityScale);
+}
+
+function Callback_ControllerDeadzone( float NewDeadzone )
+{
+	local KFPlayerInput KFPI;
+
+	KFPI = KFPlayerInput(GetPC().PlayerInput);
+
+	KFPI.GamepadDeadzoneScale = NewDeadzone / 100;
+	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GamepadDeadzoneScale, KFPI.GamepadDeadzoneScale);
+}
+
+function Callback_ControllerAccelerationJump( float NewAccelerationJump )
+{
+	local KFPlayerInput KFPI;
+
+	KFPI = KFPlayerInput(GetPC().PlayerInput);
+
+	KFPI.GamepadAccelerationJumpScale = NewAccelerationJump / 100;
+	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_GamepadAccelerationJumpScale, KFPI.GamepadAccelerationJumpScale);
 }
 
 function Callback_ControllerInvertChanged( bool bInvertController )
@@ -384,6 +411,8 @@ defaultproperties
    MaxControllerLookSensitivity=3.500000
    MinControllerZoomLookSensitivity=0.100000
    MaxControllerZoomLookSensitivity=1.000000
+   MaxControllerDeadzone=0.300000
+   MaxControllerAccelerationJump=1.000000
    MinMouseLookSensitivity=0.010000
    MaxMouseLookSensitivity=0.700000
    MinMouseLookZoomSensitivity=0.200000

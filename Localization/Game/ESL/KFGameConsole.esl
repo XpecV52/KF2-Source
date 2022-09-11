@@ -33,6 +33,7 @@ KF-Sanitarium="Jugando Manicomio"
 KF-Biolapse="Jugando Biolapso"
 KF-Desolation="Jugando en Desolación"
 KF-HellmarkStation="Jugando en Puesto Hellmark"
+KF-Elysium="Jugando en Elíseo"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -166,7 +167,7 @@ PlayOffline="¿Quieres jugar sin conexión? Las funciones de Xbox Live no estar�
 [Notifications]
 ControllerDisconnectedTitle="Control desconectado"
 ControllerDisconnectedPS4Message="El control inalámbrico se ha desconectado. Vuelve a conectar el control inalámbrico del usuario que ha iniciado la partida."
-ControllerDisconnectedXB1="Se ha desconectado el Mando Inalámbrico Xbox One. Vuelve a conectarlo."
+ControllerDisconnectedXB1="Se ha desconectado el control inalámbrico Xbox One. Vuelve a conectarlo."
 PlayGoBusyTitle="Instalación en curso"
 PlayGoBusyMessage="Mientras el juego se instala, las características y el contenido a los que puedes acceder son limitados."
 UnableToJoinInviteTitle="Fallo al unirse"
@@ -191,8 +192,8 @@ MultiplayerNotAllowed_Title="Multijugador no permitido"
 LoggedOutMessage="El perfil activo ha cambiado. Has vuelto la pantalla de título."
 LoggedOutTitle="Sesión cerrada"
 LoggedInTitle="Sesión iniciada"
-NewRegionTitle="Welcome"
-NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
+NewRegionTitle="Te damos la bienvenida"
+NewRegionMessage="Te damos la bienvenida al matchmaking online. ¡Asegúrate de que tu región de emparejamiento es correcta!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Ver perfil de jugador"
@@ -214,10 +215,10 @@ ControllerSound="Sonido del control"
 
 [KFGFxMenu_StartGame]
 MatchmakingRegionString="REGIÓN"
-LeaveMenuString="También saldrás de tu grupo si sales del emparejamiento."
+LeaveMenuString="También saldrás de tu grupo si sales del matchmaking ."
 
 [KFGFxMenu_Store]
-StoreStringXB1="TIENDA XBOX"
+StoreStringXB1="MICROSOFT STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGIÓN"
@@ -261,7 +262,7 @@ HorzineSupplyCrate3ShortDesription="Esta caja de suministros de Horzine contiene
 HorzineSupplyCrate4ProductName="Ll. c. sumin. Horzine Serie 4"
 HorzineSupplyCrate4ShortDesription="Esta caja de suministros de Horzine contiene una apariencia de arma. Para abrirla, necesitas una llave de caja de suministros de Horzine. Contiene una de las siguientes apariencias de arma de categoría "infrecuente" o superior:"
 
-StoreGameLegalText="Software sujeto a licencia (www.playstation.com/en-us/legal/softwarelicense-esp). La actividad en línea cumple los Términos del Servicio y el Acuerdo de Usuario (www.playstationnetwork.com/terms-of-service). Cuota única por jugar en el sistema PS4™ principal asociado a la cuenta y otros sistemas PS4™ al iniciar sesión con esa cuenta. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® es una marca registrada de Tripwire Interactive en EE.UU. y otros. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Todos los derechos reservados. Unreal® es una marca comercial o registrada de Epic Games, Inc. en EE.UU. y otros. Toda marca comercial, logotipo y derecho de autor pertenece a sus propietarios. Todos los derechos reservados."
+StoreGameLegalText="Software sujeto a licencia (www.playstation.com/en-us/legal/softwarelicense-esp). La actividad en línea cumple los Términos del Servicio y el Acuerdo de Usuario (www.playstationnetwork.com/terms-of-service). Cuota única por jugar en la consola PS4™ principal asociada a la cuenta y otras consolas PS4™ al iniciar sesión con esa cuenta. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® es una marca registrada de Tripwire Interactive en EE.UU. y otros. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Todos los derechos reservados. Unreal® es una marca comercial o registrada de Epic Games, Inc. en EE.UU. y otros. Toda marca comercial, logotipo y derecho de autor pertenece a sus propietarios. Todos los derechos reservados."
 
 StoreItemLegalText="Para poder usarlo, este objeto requiere el juego completo Killing Floor 2. El uso de este objeto está sujeto al mismo Contrato para Licencia del Usuario final que el juego original."
 

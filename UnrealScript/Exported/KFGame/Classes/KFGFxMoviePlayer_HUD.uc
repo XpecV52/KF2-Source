@@ -64,6 +64,10 @@ var KFGFxWidget_NonCriticalGameMessage InviteGameMessageWidget;
 var KFGFxWidget_RhythmCounter RhythmCounterWidget;
 // Widget that displays health bar
 var KFGFxWidget_BossHealthBar bossHealthBar;
+// Widget that displays map texts
+var KFGFxWidget_MapText MapTextWidget;
+// Widget that displays map texts
+var KFGFxWidget_MapCounterText MapCounterTextWidget;
 
 var KFPlayerController KFPC;
 
@@ -170,6 +174,22 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             BossHealthBar=KFGFxWidget_BossHealthBar(Widget);
             SetWidgetPathBinding( Widget, WidgetPath );
             BossHealthBar.InitializeHUD();
+        }
+        break;
+    case 'mapTextWidget':
+        if( MapTextWidget == none )
+        {
+            MapTextWidget=KFGFxWidget_MapText(Widget);
+            SetWidgetPathBinding( Widget, WidgetPath );
+            MapTextWidget.InitializeHUD();
+        }
+        break;
+    case 'counterMapTextWidget':
+        if( MapCounterTextWidget == none )
+        {
+            MapCounterTextWidget=KFGFxWidget_MapCounterText(Widget);
+            SetWidgetPathBinding( Widget, WidgetPath );
+            MapCounterTextWidget.InitializeHUD();
         }
         break;
     case 'KickVoteWidget':
@@ -351,7 +371,7 @@ function TickHud(float DeltaTime)
     {
         return;
     }
-
+	
 	if (WaveInfoWidget != none)
 	{
 		WaveInfoWidget.TickHUD(DeltaTime);
@@ -375,6 +395,16 @@ function TickHud(float DeltaTime)
     if(BossHealthBar != none)
     {
         BossHealthBar.TickHud( DeltaTime );
+    }
+
+    if(MapTextWidget != none)
+    {
+        MapTextWidget.TickHud( UpdateInterval );
+    }
+
+    if(MapCounterTextWidget != none)
+    {
+        MapCounterTextWidget.TickHud( UpdateInterval );
     }
 
     if( SpectatorInfoWidget != none )
@@ -675,6 +705,22 @@ function HideBossNamePlate()
     if(BossHealthBar != none)
     {
         BossHealthBar.OnNamePlateHidden();
+    }
+}
+
+function DisplayMapText(string MessageText, float DisplayTime, bool bWaitForTheNextMessageToFinish)
+{
+    if(MapTextWidget != none)
+    {
+        MapTextWidget.DisplayMapText(MessageText, DisplayTime, bWaitForTheNextMessageToFinish);
+    }
+}
+
+function DisplayMapCounterText(string MessageText, float DisplayTime)
+{
+    if(MapCounterTextWidget != none)
+    {
+        MapCounterTextWidget.DisplayMapText(MessageText, DisplayTime);
     }
 }
 
@@ -1365,6 +1411,8 @@ defaultproperties
    WidgetBindings(18)=(WidgetName="InviteMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
    WidgetBindings(19)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
    WidgetBindings(20)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
+   WidgetBindings(21)=(WidgetName="MapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapText')
+   WidgetBindings(22)=(WidgetName="counterMapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapCounterText')
    Name="Default__KFGFxMoviePlayer_HUD"
    ObjectArchetype=GFxMoviePlayer'GFxUI.Default__GFxMoviePlayer'
 }

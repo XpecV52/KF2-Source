@@ -30,6 +30,7 @@ SpacePirateOutfitBundleName="Space Pirate Outfit Bundle"
 SpacePirateFullGearBundleName="Space Pirate Full Gear Bundle"
 ReaperOutfitBundleName="Reaper Outfit Bundle"
 Halloween2020FullGearBundleName="Halloween 2020 Full Gear Bundle"
+Christmas2020FullGearBundleName="Christmas 2020 Full Gear Bundle"
 HeadshotFXBundle1Name="Headshot FX Bundle 1"
 HeadshotFXBundle2Name="Headshot FX Bundle 2"
 RhinoRevolverBundleName="Rhino Revolver Bundle"
@@ -41,6 +42,7 @@ BlunderbussBundleName="Blunderbuss Bundle"
 Glock18cBundleName="Glock 18c Bundle"
 MinigunBundleName="Minigun Weapon Bundle"
 MineReconstructorBundleName="Mine Reconstructor Weapon Bundle"
+FrostFangBundleName="Frost Fang Weapon Bundle"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Horzine Supply Cosmetic Crate | Series #4 Bronze Bundle Pack"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Horzine Supply Cosmetic Crate | Series #4 Silver Bundle Pack"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Horzine Supply Cosmetic Crate | Series #4 Gold Bundle Pack"
@@ -204,6 +206,9 @@ RetroNeonGearCosmeticBundleName="Retro Neon Gear Cosmetic Bundle Pack"
 FutureNeonGearCosmeticBundleName="Future Neon Gear Cosmetic Bundle Pack"
 ApocalypseGearCosmeticBundleName="Apocalypse Gear Cosmetic Bundle Pack"
 WW1PilotGearCosmeticBundleName="WW1 Pilot Gear Cosmetic Bundle Pack"
+WinterGearCosmeticBundleName="Winter Gear Cosmetic Bundle"
+SpectreMKIIWeaponSkinPackName="Spectre MKII HRG Weapon Skin Bundle Pack"
+IceBreakerWeaponSkinPackName="Ice Breaker Weapon Skin Bundle Pack"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles)."
@@ -230,6 +235,7 @@ SpacePirateOutfitBundleDescription="Comes with the Space Pirate Outfit (includes
 SpacePirateFullGearBundleDescription="Contains 6 Space Pirate themed cosmetic accessories each with 5 texture variants in a single bundle. Compatible with most characters."
 ReaperOutfitBundleDescription="Comes with the Reaper Outfit (includes 6 of skin styles). Compatible with most characters."
 Halloween2020FullGearBundleDescription="Contains 6 Reaper themed cosmetic accessories each with 5 texture variants in a single bundle. Compatible with most characters."
+Christmas2020FullGearBundleDescription="Contains 6 Christmas themed cosmetic accessories each with 5 texture variants in a single bundle. Compatible with most characters."
 HeadshotFXBundle1Description="Comes with five Headshot FXs. Posh Dosh, Comical Action, Party Time, Love At First Shot, and Spooky Spirits."
 HeadshotFXBundle2Description="Comes with five Headshot FXs. Cartoon Splat, Fireworks, Flower Petal, Glitch, and Horzine Circuit."
 RhinoRevolverBundleDescription="Shreds Zeds like cheese. Rhino Revolvers designed for the Gunslinger perk. Comes with 5 unique weapon skin variants."
@@ -241,6 +247,7 @@ BlunderbussBundleDescription="Pegleg and parrot sold separately. Blunderbuss des
 Glock18cBundleDescription="Caution: Uncontrollable urges to declare self-identification with the law when used. Single and Dual Glock 18C designed for the Gunslinger perk comes with 5 unique skin variants."
 MinigunBundleDescription="Happiness is measured in rounds per minute. Minigun designed for the Commando perk comes with 5 unique skin variants."
 MineReconstructorBundleDescription="The source of its base material is classified information due to Health Code concerns. Mine Reconstructor designed for the Field Medic perk comes with 5 unique skin variants."
+FrostFangBundleDescription="The axe is perfect for ice sculpting. Frost Fang designed for the Support and Berserker perks comes with 5 unique skin variants."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Contains five of the Horzine Supply Cosmetic Crate | Series #4 crate along with five of its associated keys."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Contains ten of the Horzine Supply Cosmetic Crate | Series #4 crate along with ten of its associated keys."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Contains twenty of the Horzine Supply Cosmetic Crate | Series #4 crate along with twenty of its associated keys."
@@ -407,6 +414,9 @@ RetroNeonCosmeticBundleDescription="Contains 5 Retro Neon themed cosmetic access
 FutureNeonCosmeticBundleDescription="Contains 5 Future Neon themed cosmetic accessories each with 4 texture variants in a single bundle. Compatible with most characters.  "
 ApocalypseCosmeticBundleDescription="Contains 5 Apocalypse themed cosmetic accessories each with 7 texture variants in a single bundle. Compatible with most characters."
 WW1PilotCosmeticBundleDescription="Contains 4 WW1 Pilot themed cosmetic accessories each with 7 texture variants in a single bundle. Compatible with most characters."
+SpectreMKIIWeaponSkinBundleDescription="Includes 12 Spectre themed weapons skins for the HRG Weapon Set(6 Dynamic Skins, 6 Chroma Dynamic)  Weapons featured in this set are: HRG Arc Generator, HRG Incendiary Rifle, HRG Kaboomstick, HRG Scorcher, HRG Teslauncher, HRG Vampire"
+WinterCosmeticBundleDescription="Contains 4 Winter themed cosmetic accessories each with 9 texture variants in a single bundle. Compatible with most characters."
+IceBreakerWeaponSkinBundleDescription="Includes 20 Ice Breaker themed weapon skins (10 Dynamic and 10 Precious) Weapons featured in this set are: AK12, Boomstick, Desert Eagle, Dragonsbreath, Kriss, M79, M99, Hemoclobber, Pulverizer, RPG-7."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Get a new classic London Bobby uniform for playable character PC Rob Briar. Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles)."
@@ -1493,6 +1503,8 @@ AK12FostersFavoritesPreciousName="AK-12 | Foster's Favorites | Precious"
 AK12JaegerDynamicName="AK12 | Jaeger | Dynamic"
 AK12JaegerDynamicRGBName="AK12 | Jaeger | Dynamic RGB"
 AK12StarsName="AK12 | Vault | Stars"
+AK12IceBreakerDynamicName="AK-12 | Ice Breaker | Dynamic"
+AK12IceBreakerDynamicPreciousName="AK-12 | Ice Breaker | Dynamic Precious"
 
 ;AR15 Descriptions
 AR15MintDescription="Exterior: Mint | This is for Zeds, not 'varmints.'"
@@ -1603,6 +1615,8 @@ BoomstickFostersFavoritesPreciousName="Boomstick | Foster's Favorites | Precious
 BoomstickStarsName="Boomstick | Vault | Stars"
 BoomstickJaegerDynamicName="Boomstick | Jaeger | Dynamic"
 BoomstickJaegerDynamicRGBName="Boomstick | Jaeger | Dynamic RGB"
+BoomstickIceBreakerDynamicName="Boomstick | Ice Breaker | Dynamic"
+BoomstickIceBreakerDynamicPreciousName="Boomstick | Ice Breaker | Dynamic Precious"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="Exterior: Mint | Hand-held, home-made flamethrower. Please do NOT try this at home."
@@ -1755,6 +1769,8 @@ DesertEagleJaegerFieldTestedName="Desert Eagle | Jaeger | Field-Tested"
 DesertEagleJaegerBattleScarredName="Desert Eagle | Jaeger | Battle-Scarred"
 DesertEagleJaegerDynamicName="Desert Eagle | Jaeger | Dynamic"
 DesertEagleFostersFavoritesPreciousName="Desert Eagle | Foster's Favorites | Precious"
+DesertEagleIceBreakerDynamicName="Desert Eagle | Ice Breaker | Dynamic"
+DesertEagleIceBreakerDynamicPreciousName="Desert Eagle | Ice Breaker | Dynamic Precious"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Exterior: Mint | When having twice the fun is not enough...let's make it four!"
@@ -1808,6 +1824,8 @@ DragonsbreathSteampunkPreciousName="Dragonsbreath | Steampunk | Precious"
 DragonsbreathDragonKoiPreciousName="Dragonsbreath | Dragon & Koi | Precious"
 DragonsbreathJaegerDynamicName="Dragonsbreath | Jaeger | Dynamic"
 DragonsbreathJaegerDynamicRGBName="Dragonsbreath | Jaeger | Dynamic RGB"
+DragonsbreathIceBreakerDynamicName="Dragonsbreath | Ice Breaker | Dynamic"
+DragonsbreathIceBreakerDynamicPreciousName="Dragonsbreath | Ice Breaker | Dynamic Precious"
 
 ;Eviscerator Descriptions
 EvisceratorMintDescription="Exterior: Mint | Originally designed by Horzine's SDS group in one of their wilder moments, this beast isn't subtle."
@@ -2193,6 +2211,30 @@ HMTech501GrenadeLauncherVaultVoshPreciousName="HMTech-501 Grenade Rifle | Vault 
 HMTech501GrenadeRifleJaegerDynamicName="HMTech-501 Grenade Rifle | Jaeger | Dynamic"
 HMTech501GrenadeRifleJaegerDynamicRGBName="HMTech-501 Grenade Rifle | Jaeger | Dynamic RGB"
 
+;HRG ArcGenerator Names
+HRGArcGeneratorSpectreHRGDynamicName="HRG Arc Generator | Spectre HRG | Dynamic"
+HRGArcGeneratorSpectreHRGDynamicChromaName="HRG Arc Generator | Spectre HRG | Dynamic Chroma"
+
+;HRG Incendiary Rifle Names
+HRGIncendiaryRifleSpectreHRGDynamicName="HRG Incendiary Rifle | Spectre HRG | Dynamic"
+HRGIncendiaryRifleSpectreHRGDynamicChromaName="HRG Incendiary Rifle | Spectre HRG | Dynamic Chroma"
+
+;HRG Kaboomstick Names
+HRGKaboomstickSpectreHRGDynamicName="HRG Kaboomstick | Spectre HRG | Dynamic"
+HRGKaboomstickSpectreHRGDynamicChromaName="HRG Kaboomstick | Spectre HRG | Dynamic Chroma"
+
+;HRG Scorcher Names
+HRGScorcherSpectreHRGDynamicName="HRG Scorcher | Spectre HRG | Dynamic"
+HRGScorcherSpectreHRGDynamicChromaName="HRG Scorcher | Spectre HRG | Dynamic Chroma"
+
+;HRG Teslauncher Names
+HRGTeslauncherSpectreHRGDynamicName="HRG Teslauncher | Spectre HRG | Dynamic"
+HRGTeslauncherSpectreHRGDynamicChromaName="HRG Teslauncher | Spectre HRG | Dynamic Chroma"
+
+;HRG Vampire Names
+HRGVampireSpectreHRGDynamicName="HRG Vampire | Spectre HRG | Dynamic"
+HRGVampireSpectreHRGDynamicChromaName="HRG Vampire | Spectre HRG | Dynamic Chroma"
+
 ;Husk Cannon Descriptions
 HuskCannonMintDescription="Exterior: Mint | The official Horzine version of the husk cannon. This model is 95% guaranteed not to explode."
 HuskCannonFieldTestedDescription="Exterior: Field-Tested | The official Horzine version of the husk cannon. This model is 95% guaranteed not to explode."
@@ -2352,6 +2394,8 @@ KrissJaegerFieldTestedName="Kriss | Jaeger | Field-Tested"
 KrissJaegerBattleScarredName="Kriss | Jaeger | Battle-Scarred"
 KrissJaegerDynamicName="Kriss | Jaeger | Dynamic"
 KrissFostersFavoritesPreciousName="Kriss | Foster's Favorites | Precious"
+KrissIceBreakerDynamicName="Kriss | Ice Breaker | Dynamic"
+KrissIceBreakerDynamicPreciousName="Kriss | Ice Breaker | Dynamic Precious"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Exterior: Mint | The SA80 was the British Army's standard weapon, before the Army was, well, eaten."
@@ -2573,6 +2617,8 @@ M79SteampunkMintName="M79 | Steampunk | Mint"
 M79SteampunkPreciousName="M79 | Steampunk | Precious"
 M79NeonMintName="M79 | Neon | Mint"
 M79NeonRGBPreciousName="M79 | Neon RGB | Precious"
+M79IceBreakerDynamicName="M79 | Ice Breaker | Dynamic"
+M79IceBreakerDynamicPreciousName="M79 | Ice Breaker | Dynamic Precious"
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="Exterior: Mint | Has a powerful Shield Bash attack."
@@ -2602,6 +2648,8 @@ M99BeyondHorizonSpaceEliteName="M99 | Beyond Horizon | Space Elite"
 M99StarsName="M99 | Vault | Stars"
 M99JaegerDynamicName="M99 | Jaeger | Dynamic"
 M99JaegerDynamicRGBName="M99 | Jaeger | Dynamic RGB"
+M99IceBreakerDynamicName="M99 | Ice Breaker | Dynamic"
+M99IceBreakerDynamicPreciousName="M99 | Ice Breaker | Dynamic Precious"
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="Bone Crusher | Circuit | Mint"
@@ -2663,6 +2711,8 @@ MedicBatPreciousName="Hemoclobber | Precious"
 MedicBatVaultVoshPreciousName="Hemoclobber | Vault | Vosh | Precious"
 MedicBatNeonMintName="Hemoclobber | Neon | Mint"
 MedicBatNeonRGBPreciousName="Hemoclobber | Neon RGB | Precious"
+MedicBatIceBreakerDynamicName="Hemoclobber | Ice Breaker | Dynamic"
+MedicBatIceBreakerDynamicPreciousName="Hemoclobber | Ice Breaker | Dynamic Precious"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Exterior: Mint | The wonders of modern technology: a handheld Zed-cooker."
@@ -2822,6 +2872,8 @@ PulverizerJaegerBattleScarredName="Pulverizer | Jaeger | Battle-Scarred"
 PulverizerJaegerDynamicName="Pulverizer | Jaeger | Dynamic"
 PulverizerNeonMintName="Pulverizer | Neon | Mint"
 PulverizerNeonRGBPreciousName="Pulverizer | Neon RGB | Precious"
+PulverizerIceBreakerDynamicName="Pulverizer | Ice Breaker | Dynamic"
+PulverizerIceBreakerDynamicPreciousName="Pulverizer | Ice Breaker | Dynamic Precious"
 
 ;Railgun Descriptions
 RailgunMintDescription="Exterior: Mint | This weapon fires a solid steel slug at high speeds using magnets, penetrating Zeds like tissue paper."
@@ -2894,6 +2946,8 @@ RPG7BeyondHorizonSpaceEliteName="RPG-7 | Beyond Horizon | Space Elite"
 RPG7DragonKoiPreciousName="RPG-7 | Dragon & Koi | Precious"
 RPG7JaegerDynamicName="RPG-7 | Jaeger | Dynamic"
 RPG7JaegerDynamicRGBName="RPG-7 | Jaeger | Dynamic RGB"
+RPG7IceBreakerDynamicName="RPG-7 | Ice Breaker | Dynamic"
+RPG7IceBreakerDynamicPreciousName="RPG-7 | Ice Breaker | Dynamic Precious"
 
 ;Scar Descriptions
 ScarMintDescription="Exterior: Mint | Designed originally for the US Special Operations Command, it is, indeed, special!"
@@ -3539,6 +3593,20 @@ MineReconstructorCamoPreciousName="Mine Reconstructor | Camo | Precious"
 MineReconstructorRustyPreciousName="Mine Reconstructor | Rusty | Precious"
 MineReconstructorWastelanderPreciousName="Mine Reconstructor | Wastelander | Precious"
 MineReconstructorStandardPreciousName="Mine Reconstructor | Standard | Precious"
+
+;Frost Fang Descriptions
+FrostFangMintDescription="Exterior: Mint | The axe is perfect for ice sculpting."
+FrostFangFieldTestedDescription="Exterior: Field-Tested | The axe is perfect for ice sculpting."
+FrostFangBattleScarredDescription="Exterior: Battle-Scarred | The axe is perfect for ice sculpting."
+FrostFangPreciousDescription="Exterior: Precious | The axe is perfect for ice sculpting."
+
+;Frost Fang Names
+FrostFangWoodPreciousName="Frost Fang | Wood | Precious"
+FrostFangCabalaPreciousName="Frost Fang | Cabala | Precious"
+FrostFangRunicPreciousName="Frost Fang | Runic | Precious"
+FrostFangDecoIcePreciousName="Frost Fang | Deco Ice | Precious"
+FrostFangBurnedLandPreciousName="Frost Fang | Burned Land | Precious"
+FrostFangStandardPreciousName="Frost Fang | Standard | Precious"
 
 [CosmeticSection]
 
@@ -5473,6 +5541,77 @@ HalloweenBoarHeadBlueName="Halloween | Boar Head | Blue"
 HalloweenBoarHeadSpotsName="Halloween | Boar Head | Spots"
 HalloweenBoarHeadPreciousName="Halloween | Boar Head | Precious"
 HalloweenVoodooBackpackName="Halloween | Voodoo Backpack"
+
+;Winter Gear Cosmetic Names
+WinterSnowHatWhiteName="Winter | Snow Hat | White"
+WinterSnowHatBlackName="Winter | Snow Hat | Black"
+WinterSnowHatGreenName="Winter | Snow Hat | Green"
+WinterSnowHatBlueName="Winter | Snow Hat | Blue"
+WinterSnowHatRedName="Winter | Snow Hat | Red"
+WinterSnowHatDigitalCamoName="Winter | Snow Hat | Digital Camo"
+WinterSnowHatTundraCamoName="Winter | Snow Hat | Tundra Camo"
+WinterSnowHatArticCamoName="Winter | Snow Hat | Artic Camo"
+WinterSnowHatPreciousName="Winter | Snow Hat | Precious"
+WinterSnowGogglesWhiteName="Winter | Snow Goggles | White"
+WinterSnowGogglesBlackName="Winter | Snow Goggles | Black"
+WinterSnowGogglesGreenName="Winter | Snow Goggles | Green"
+WinterSnowGogglesBlueName="Winter | Snow Goggles | Blue"
+WinterSnowGogglesRedName="Winter | Snow Goggles | Red"
+WinterSnowGogglesDigitalCamoName="Winter | Snow Goggles | Digital Camo"
+WinterSnowGogglesTundraCamoName="Winter | Snow Goggles | Tundra Camo"
+WinterSnowGogglesArticCamoName="Winter | Snow Goggles | Artic Camo"
+WinterSnowGogglesPreciousName="Winter | Snow Goggles | Precious"
+WinterSnowMaskWhiteName="Winter | Snow Mask | White"
+WinterSnowMaskBlackName="Winter | Snow Mask | Black"
+WinterSnowMaskGreenName="Winter | Snow Mask | Green"
+WinterSnowMaskBlueName="Winter | Snow Mask | Blue"
+WinterSnowMaskRedName="Winter | Snow Mask | Red"
+WinterSnowMaskDigitalCamoName="Winter | Snow Mask | Digital Camo"
+WinterSnowMaskTundraCamoName="Winter | Snow Mask | Tundra Camo"
+WinterSnowMaskArticCamoName="Winter | Snow Mask | Artic Camo"
+WinterSnowMaskPreciousName="Winter | Snow Mask | Precious"
+WinterClimberPackWhiteName="Winter | Climber Pack | White"
+WinterClimberPackBlackName="Winter | Climber Pack | Black"
+WinterClimberPackGreenName="Winter | Climber Pack | Green"
+WinterClimberPackBlueName="Winter | Climber Pack | Blue"
+WinterClimberPackRedName="Winter | Climber Pack | Red"
+WinterClimberPackDigitalCamoName="Winter | Climber Pack | Digital Camo"
+WinterClimberPackTundraCamoName="Winter | Climber Pack | Tundra Camo"
+WinterClimberPackArticCamoName="Winter | Climber Pack | Artic Camo"
+WinterClimberPackPreciousName="Winter | Climber Pack | Precious"
+
+;Christmas 2020 Cosmetic Names
+ChristmasJackFrostMaskBlackName="Christmas | Jack Frost Mask | Black"
+ChristmasJackFrostMaskGreenName="Christmas | Jack Frost Mask | Green"
+ChristmasJackFrostMaskSpookyName="Christmas | Jack Frost Mask | Spooky"
+ChristmasJackFrostMaskRedName="Christmas | Jack Frost Mask | Red"
+ChristmasJackFrostMaskPreciousName="Christmas | Jack Frost Mask | Precious"
+ChristmasJollyBreatherCandycaneName="Christmas | Jolly Breather | Candycane"
+ChristmasJollyBreatherOrangeName="Christmas | Jolly Breather | Orange"
+ChristmasJollyBreatherRedName="Christmas | Jolly Breather | Red"
+ChristmasJollyBreatherGreenName="Christmas | Jolly Breather | Green"
+ChristmasJollyBreatherPreciousName="Christmas | Jolly Breather | Precious"
+ChristmasFestiveShadesRedGreenName="Christmas | Festive Shades | Red-Green"
+ChristmasFestiveShadesGreenName="Christmas | Festive Shades | Green"
+ChristmasFestiveShadesBubblegumName="Christmas | Festive Shades | Bubblegum"
+ChristmasFestiveShadesOrangeName="Christmas | Festive Shades | Orange"
+ChristmasFestiveShadesPreciousName="Christmas | Festive Shades | Precious"
+ChristmasOrnamentHeadGreenName="Christmas | Ornament Head | Green"
+ChristmasOrnamentHeadPurpleName="Christmas | Ornament Head | Purple"
+ChristmasOrnamentHeadBlueName="Christmas | Ornament Head | Blue"
+ChristmasOrnamentHeadRedName="Christmas | Ornament Head | Red"
+ChristmasOrnamentHeadPreciousName="Christmas | Ornament Head | Precious"
+ChristmasGiftWrappingBombName="Christmas | Gift Wrapping | Bomb"
+ChristmasGiftWrappingSkullsName="Christmas | Gift Wrapping | Skulls"
+ChristmasGiftWrappingLoveName="Christmas | Gift Wrapping | Love"
+ChristmasGiftWrappingBlackName="Christmas | Gift Wrapping | Black"
+ChristmasGiftWrappingToxicName="Christmas | Gift Wrapping | Toxic"
+ChristmasKrampusHeadOrangeName="Christmas | Krampus Head | Orange"
+ChristmasKrampusHeadWhiteName="Christmas | Krampus Head | White"
+ChristmasKrampusHeadRedName="Christmas | Krampus Head | Red"
+ChristmasKrampusHeadBlueName="Christmas | Krampus Head | Blue"
+ChristmasKrampusHeadPreciousName="Christmas | Krampus Head | Precious"
+ChristmasTacticalElfPackName="Christmas | Tactical Elf-pack | Precious"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Equippable from the gear menu; Compatible with most characters. This is an exclusive item from the "Summer Sideshow" seasonal event. Recycles into 1 Sideshow Ticket."

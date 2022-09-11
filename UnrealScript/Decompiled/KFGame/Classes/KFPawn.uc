@@ -3355,9 +3355,9 @@ simulated function SetPawnAmbientSound(AkEvent NewAmbientSound)
     }
 }
 
-simulated function bool IsWeaponAmbientSoundPlaying(AkEvent AmbientSound)
+simulated function bool IsWeaponAmbientSoundPlaying(AkEvent AmbientSoundToCheck)
 {
-    return WeaponAkComponent.IsPlaying(AmbientSound);
+    return WeaponAkComponent.IsPlaying(AmbientSoundToCheck);
 }
 
 simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEvent FirstPersonAmbientSound)

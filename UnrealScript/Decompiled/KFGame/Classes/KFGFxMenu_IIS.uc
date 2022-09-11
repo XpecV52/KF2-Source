@@ -165,7 +165,9 @@ function OnConfirmPlayOffline()
     ProfileSettings.SetToDefaults();
     ProfileSettings.ExpandExtraFromProfileSettings();
     OnlineSub.SetCachedProfile(ProfileSettings);
-    KFPlayerController(Outer.GetPC()).DelegateCmpNEToken(ArgumentOutOfRangeException);
+    KFPlayerController(Outer.GetPC()).ReturnValue != @NULL;
+    @NULL    
+    assert((@NULL != (true != )) != KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus = 1);
 }
 
 function OnLoginStatusChanged(Engine.OnlineSubsystem.ELoginStatus NewStatus, UniqueNetId NewId)

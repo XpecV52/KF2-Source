@@ -749,6 +749,16 @@ ItemCategory="Explosives"
 ItemDescription="•Fires bio-mines that explode on contact to hurt Zeds and heal allies.\n•Alt-fire detonates all placed mines.\n•The source of its base material is classified information due to Health Code concerns."
 SharedUnlockSource="Mine Reconstructor Weapon Bundle"
 
+[KFWeap_HRG_Vampire]
+ItemName="HRG Vampire"
+ItemCategory="Special"
+ItemDescription="•Primary fire absorbs the blood of the enemies, filling the blood pool.\n•After the primary fire, it launches an explosive coagulated blood ball that harm enemies and heal allies.\n•Alt fire mode consume the blood pool to shoot crystallized blood spikes."
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="Frost Fang"
+ItemCategory="Shotgun"
+ItemDescription="•Fire mode shoots rounds that freeze enemies.\n•Bash attack shatter enemies with the axe.\n•Alt - block / parry.\n•The axe is perfect for ice sculpting."
+SharedUnlockSource="Frost Fang Weapon Bundle"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

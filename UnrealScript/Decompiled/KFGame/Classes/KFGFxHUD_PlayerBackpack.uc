@@ -14,6 +14,7 @@ var int LastMagazineAmmo;
 var bool bUsesAmmo;
 var bool bWasUsingAltFireMode;
 var bool bUsesSecondaryAmmo;
+var bool bUsesGrenadesAsSecondaryAmmo;
 var string LastSpecialAmmo;
 var int LastFlashlightBattery;
 var int LastGrenades;
@@ -24,6 +25,9 @@ var byte LastSecondaryAmmo;
 var class<KFPerk> LastPerkClass;
 var KFWeapon LastWeapon;
 var KFInventoryManager MyKFInvManager;
+var ASColorTransform DefaultColor;
+var ASColorTransform RedColor;
+var name OldState;
 
 function InitializeHUD()
 {
@@ -32,6 +36,8 @@ function InitializeHUD()
     {
         MyKFInvManager = KFInventoryManager(MyKFPC.Pawn.InvManager);
     }
+    DefaultColor = GetObject("secondaryAmmoContainer").GetColorTransform();
+    RedColor = GetObject("FlashlightContainer").GetColorTransform();
 }
 
 function TickHud(float DeltaTime)
@@ -107,6 +113,9 @@ function UpdateWeapon()
     local byte CurrentSecondaryAmmo;
     local string CurrentSpecialAmmo;
     local KFWeapon CurrentWeapon;
+    local ASColorTransform ColorChange;
+    local name StateName;
+    local bool ForceSecondaryWeaponIconUpdate;
 
     if(((MyKFPC != none) && MyKFPC.Pawn != none) && MyKFPC.Pawn.Weapon != none)
     {
@@ -116,7 +125,8 @@ function UpdateWeapon()
             if((LastWeapon == none) || LastWeapon != CurrentWeapon)
             {
                 LastWeapon = CurrentWeapon;
-                RefreshWeapon(CurrentWeapon);                
+                RefreshWeapon(CurrentWeapon);
+                ForceSecondaryWeaponIconUpdate = true;                
             }
             else
             {
@@ -149,6 +159,7 @@ function UpdateWeapon()
                 }
             }
             LastSpecialAmmo = CurrentSpecialAmmo;
+            StateName = CurrentWeapon.GetStateName();
             if(bUsesSecondaryAmmo)
             {
                 CurrentSecondaryAmmo = byte(CurrentWeapon.GetSecondaryAmmoForHUD());
@@ -156,6 +167,25 @@ function UpdateWeapon()
                 {
                     SetInt("secondaryAmmo", CurrentSecondaryAmmo);
                     LastSecondaryAmmo = CurrentSecondaryAmmo;
+                }
+                if(!bUsesGrenadesAsSecondaryAmmo && ForceSecondaryWeaponIconUpdate)
+                {
+                    GetObject("secondaryAmmoContainer").SetColorTransform(DefaultColor);
+                }
+                if(bUsesGrenadesAsSecondaryAmmo && StateName != OldState)
+                {
+                    OldState = StateName;
+                    if(CurrentWeapon.HasToReloadSecondaryAmmoForHUD())
+                    {
+                        ColorChange.Add = MakeLinearColor(0.65, 0.23, 0, 0.2);
+                        GetObject("secondaryAmmoContainer").SetColorTransform(ColorChange);
+                        SetString("secondaryIcon", ("img://" $ string(CurrentWeapon.SecondaryAmmoTexture.GetPackageName())) $ ".UI_FireModeSelect_BulletSingleProhibited");                        
+                    }
+                    else
+                    {
+                        SetString("secondaryIcon", (("img://" $ string(CurrentWeapon.SecondaryAmmoTexture.GetPackageName())) $ ".") $ string(CurrentWeapon.SecondaryAmmoTexture));
+                        GetObject("secondaryAmmoContainer").SetColorTransform(DefaultColor);
+                    }
                 }
             }
         }
@@ -179,6 +209,7 @@ function RefreshWeapon(KFWeapon CurrentWeapon)
     bUsesAmmo = CurrentWeapon.UsesAmmo();
     SetBool("bUsesAmmo", bUsesAmmo);
     bUsesSecondaryAmmo = CurrentWeapon.UsesSecondaryAmmo();
+    bUsesGrenadesAsSecondaryAmmo = CurrentWeapon.UsesGrenadesAsSecondaryAmmo();
     SetBool("bUsesSecondaryAmmo", bUsesSecondaryAmmo);
     if(bUsesSecondaryAmmo)
     {
@@ -216,4 +247,6 @@ defaultproperties
 {
     LastMaxWeight=-1
     LastWeight=-1
+    DefaultColor=(Multiply=(R=1,G=1,B=1,A=1),Add=(R=0,G=0,B=0,A=0))
+    RedColor=(Multiply=(R=1,G=1,B=1,A=1),Add=(R=0,G=0,B=0,A=0))
 }

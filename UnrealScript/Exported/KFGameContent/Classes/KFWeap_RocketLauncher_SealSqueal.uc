@@ -157,7 +157,7 @@ simulated function PrepareAndDetonate()
 			PlayAnimation(SelectedAnim, AnimDuration);
 		}
 		else
-		{
+		{	
 			PlayAnimation(SelectedAnim);
 		}
 	}
@@ -170,7 +170,8 @@ simulated function PrepareAndDetonate()
 	// Don't want to play muzzle effects or shoot animation on detonate in 3p
 	//IncrementFlashCount();
 
-	AnimDuration = 1.f;
+	//AnimDuration value here representes the ALTFIRE FireInterval
+	AnimDuration = 0.75f; //1.f;
 	if (bInSprintState)
 	{
 		SetTimer(AnimDuration * 0.8f, false, nameof(PlaySprintStart));
@@ -223,6 +224,17 @@ function RemoveDeployedHarpoon(optional int HarpoonIndex = INDEX_NONE, optional 
 	}
 }
 
+/** Allow reloads for primary weapon to be interupted by firing secondary weapon. */
+simulated function bool CanOverrideMagReload(byte FireModeNum)
+{
+	if(FireModeNum == ALTFIRE_FIREMODE)
+	{
+		return true;
+	}
+
+	return Super.CanOverrideMagReload(FireModeNum);
+}
+
 defaultproperties
 {
    DetonateAnim="Alt_Fire"
@@ -244,7 +256,7 @@ defaultproperties
    bCanBeReloaded=True
    bReloadFromMagazine=True
    bHasFireLastAnims=True
-   InventorySize=8
+   InventorySize=7
    MeshFOV=75.000000
    MeshIronSightFOV=40.000000
    PlayerIronSightFOV=65.000000
@@ -255,7 +267,7 @@ defaultproperties
    WeaponSelectTexture=Texture2D'WEP_UI_Seal_Squeal_TEX.UI_WeaponSelect_SealSqueal'
    MagazineCapacity(0)=5
    AmmoCost(1)=0
-   SpareAmmoCapacity(0)=25
+   SpareAmmoCapacity(0)=30
    InitialSpareMags(0)=1
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
    FireSightedAnims(1)="Shoot_Iron2"
@@ -302,7 +314,7 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Rocket_SealSqueal'
-   FireInterval(0)=0.750000
+   FireInterval(0)=0.500000
    FireInterval(1)=()
    FireInterval(2)=()
    FireInterval(3)=()

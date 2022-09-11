@@ -322,24 +322,6 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             ++ AttachmentIdx;
             goto J0x260;
         }
-        AttachmentIdx = 0;
-        J0x3A2:
-
-        if(AttachmentIdx < 3)
-        {
-            CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
-            if((CosmeticMeshIdx != -1) && CosmeticMeshIdx != -1)
-            {
-                ++ NumberOfCosmeticsPostRemoval;
-            }
-            ++ AttachmentIdx;
-            goto J0x3A2;
-        }
-        if(NumberOfCosmeticsPostRemoval != NumberOfCosmetics)
-        {
-            SetCharacterMeshFromArch(KFP, KFPRI);
-            return;
-        }
         InitCharacterMICs(KFP, bMaskHeadMesh);
     }
 }
@@ -744,7 +726,7 @@ private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, 
     }
 }
 
-function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
+function array<int> DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI, optional out array<int> out_RemovedAttachments)
 {
     local name NewAttachmentSocketName;
     local int I, CurrentAttachmentIdx;
@@ -753,7 +735,7 @@ function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, op
     {
         NewAttachmentSocketName = CosmeticVariants[NewAttachmentMeshIndex].AttachmentItem.SocketName;
         I = 0;
-        J0x90:
+        J0x91:
 
         if(I < 3)
         {
@@ -765,25 +747,28 @@ function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, op
             {
                 if((KFP.ThirdPersonAttachmentSocketNames[I] != 'None') && KFP.ThirdPersonAttachmentSocketNames[I] == NewAttachmentSocketName)
                 {
-                    RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);                    
+                    RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);
+                    out_RemovedAttachments.AddItem(I;                    
                 }
                 else
                 {
                     if(GetOverrideCase(CurrentAttachmentIdx, NewAttachmentMeshIndex))
                     {
-                        RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);                        
+                        RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);
+                        out_RemovedAttachments.AddItem(I;                        
                     }
                     else
                     {
                         if(GetOverrideCase(NewAttachmentMeshIndex, CurrentAttachmentIdx))
                         {
-                            RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);                            
+                            RemoveAttachmentMeshAndSkin(I, KFP, KFPRI);
+                            out_RemovedAttachments.AddItem(I;                            
                         }
                     }
                 }
             }
             ++ I;
-            goto J0x90;
+            goto J0x91;
         }
     }
 }
@@ -849,7 +834,7 @@ function int GetAttachmentSlotIndex(int CurrentAttachmentMeshIndex, KFPawn KFP, 
 
     if(AttachmentIdx < 3)
     {
-        if((KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx] == -1) || KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx] == CurrentAttachmentMeshIndex)
+        if(KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx] == CurrentAttachmentMeshIndex)
         {
             return AttachmentIdx;
         }

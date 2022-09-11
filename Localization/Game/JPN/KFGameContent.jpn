@@ -749,6 +749,16 @@ ItemCategory="爆発物"
 ItemDescription="•接触時に爆発してZedを傷つけ味方を回復させるバイオ地雷を発射する。\n•オルトファイアが設置されたすべての地雷を起爆させる。\n•その基盤素材は衛生条例の懸念があるため極秘情報となっています。"
 SharedUnlockSource="地雷再建機武器バンドル"
 
+[KFWeap_HRG_Vampire]
+ItemName="HRG バンパイア"
+ItemCategory="特殊"
+ItemDescription="•プライマリファイアが敵の血を吸収し、血のプールを埋める。\n•プライマリファイアの後、敵にダメージを与えて味方を回復させる起爆性の凝固血液ボールを発射する。\n•オルトファイアモードは血のプールを消費して、結晶化した血のスパイクを撃つ。"
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="フロスト牙"
+ItemCategory="ショットガン"
+ItemDescription="•ファイアモードは敵を凍らせる弾を発射する。\n•殴打攻撃は斧を使って敵を粉砕する。\n•オルト - ブロック / 受け流し。\n•この斧は彫刻用に最適です。"
+SharedUnlockSource="フロスト牙の武器バンドル"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

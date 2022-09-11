@@ -101,6 +101,10 @@ package tripwire.managers
         
         public var bossHealthBar:BossHealthBarWidget;
         
+        public var mapTextWidget:MapTextWidget;
+        
+        public var counterMapTextWidget:CounterMapTextWidget;
+        
         public var barkNode:UIComponent;
         
         public var maxBarkCount:int = 8;
@@ -494,6 +498,14 @@ package tripwire.managers
             {
                 this.bossHealthBar.visible = false;
             }
+            if(this.mapTextWidget)
+            {
+                this.mapTextWidget.visible = false;
+            }
+            if(this.counterMapTextWidget)
+            {
+                this.counterMapTextWidget.visible = false;
+            }
             this.LevelUpNotificationWidget.visible = false;
             this.interactionMsgWidget.visible = false;
             this.SpectatorInfoWidget.visible = false;
@@ -540,6 +552,14 @@ package tripwire.managers
                 this.bossHealthBar.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_TOP,0,0,"","",this.PrimaryLayoutIndex,this.layoutID);
                 this.WeaponSelectContainer.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_TOP,0,0,"","",this.PrimaryLayoutIndex,this.layoutID);
                 this.RhythmCounter.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,16,"",this.bossHealthBar.name,this.SecondaryLayoutIndex,this.layoutID);
+            }
+            if(this.mapTextWidget)
+            {
+                this.mapTextWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_TOP,0,0,"","",this.SecondaryLayoutIndex,this.layoutID);
+            }
+            if(this.counterMapTextWidget)
+            {
+                this.counterMapTextWidget.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_TOP,0,0,"","",this.SecondaryLayoutIndex,this.layoutID);
             }
             if(this.ControllerWeaponSelectContainer)
             {
@@ -701,6 +721,8 @@ package tripwire.managers
             this.scaleChild(this.BossNamePlate);
             this.scaleChild(this.RhythmCounter);
             this.scaleChild(this.bossHealthBar);
+            this.scaleChild(this.mapTextWidget);
+            this.scaleChild(this.counterMapTextWidget);
         }
         
         public function scaleChild(param1:UIComponent) : void
@@ -711,7 +733,9 @@ package tripwire.managers
         
         public function start3d() : void
         {
-            this.apply3d(this.bossHealthBar,0,0,288,"top","center");
+            this.apply3d(this.mapTextWidget,0,0,0,"top","center");
+            this.apply3d(this.counterMapTextWidget,0,0,0,"top","center");
+            this.apply3d(this.bossHealthBar,0,0,120,"top","center");
             this.apply3d(this.WeaponSelectContainer,0,0,0,"center","center");
             this.apply3d(this.ControllerWeaponSelectContainer,0,0,0,"center","center");
             this.apply3d(this.PlayerStatWidgetMC,0,-24,0,"bottom","left");

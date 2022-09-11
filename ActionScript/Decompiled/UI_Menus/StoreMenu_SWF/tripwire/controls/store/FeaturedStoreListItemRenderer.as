@@ -8,6 +8,8 @@ package tripwire.controls.store
         
         public var featuredTagMC:MovieClip;
         
+        public var featuredTagOnlySaleMC:MovieClip;
+        
         public function FeaturedStoreListItemRenderer()
         {
             super();
@@ -20,15 +22,27 @@ package tripwire.controls.store
             super.data = param1;
             if(data)
             {
-                if(data.featureText && data.featureText != "")
+                if(data.itemOnSale && data.itemOnSale != "0")
                 {
-                    this.featuredTagMC.textField.visible = true;
-                    this.featuredTagMC.textField.text = data.featureText;
+                    if(data.discountRate && data.discountRate != "")
+                    {
+                        this.featuredTagMC.visible = true;
+                        this.featuredTagMC.textField.visible = true;
+                        this.featuredTagMC.textField.text = "-" + data.discountRate + "%";
+                        this.featuredTagOnlySaleMC.visible = false;
+                    }
+                    else
+                    {
+                        this.featuredTagOnlySaleMC.visible = true;
+                        this.featuredTagMC.visible = false;
+                        this.featuredTagMC.textField.visible = false;
+                    }
                 }
                 else
                 {
                     this.featuredTagMC.visible = false;
                     this.featuredTagMC.textField.visible = false;
+                    this.featuredTagOnlySaleMC.visible = false;
                 }
                 if(data.imageURLLarge && data.imageURLLarge != "")
                 {
@@ -38,6 +52,36 @@ package tripwire.controls.store
             else
             {
                 visible = false;
+            }
+        }
+        
+        override protected function updateText() : void
+        {
+            super.updateText();
+            if(data)
+            {
+                if(data.itemOnSale && data.itemOnSale != "0")
+                {
+                    if(data.discountRate && data.discountRate != "")
+                    {
+                        this.featuredTagMC.visible = true;
+                        this.featuredTagMC.textField.visible = true;
+                        this.featuredTagMC.textField.text = "-" + data.discountRate + "%";
+                        this.featuredTagOnlySaleMC.visible = false;
+                    }
+                    else
+                    {
+                        this.featuredTagOnlySaleMC.visible = true;
+                        this.featuredTagMC.visible = false;
+                        this.featuredTagMC.textField.visible = false;
+                    }
+                }
+                else
+                {
+                    this.featuredTagMC.visible = false;
+                    this.featuredTagMC.textField.visible = false;
+                    this.featuredTagOnlySaleMC.visible = false;
+                }
             }
         }
     }

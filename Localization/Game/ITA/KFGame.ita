@@ -840,6 +840,9 @@ HeadString="TESTA"
 BodyString="CORPO"
 SkinsString="SKIN"
 AttachmentsString="ACCESSORI"
+Attachment0String="ACCESSORIO 1"
+Attachment1String="ACCESSORIO 2"
+Attachment2String="ACCESSORIO 3"
 BackString="INDIETRO"
 NoneString="NESSUNO"
 WeaponsString="Armi"
@@ -1377,6 +1380,12 @@ MouseString="MOUSE"
 MouseSmoothingString="Fluidità mouse"
 ZoomSensitivityString="Sensibilità zoom"
 ControllerZoomSensitivityString="Sensibilità zoom"
+ControllerDeadzoneString="Zona morta"
+ControllerAccelerationJumpString="Salto d'accelerazione"
+ControllerDeadzoneDescriptionString="Quantità di movimento della levetta destra prima che il gioco riconosca l'input"
+ControllerDeadzoneDescriptionXboxString="Quantità di movimento della levetta destra prima che il gioco riconosca l'input"
+ControllerAccelerationJumpDescriptionString="Quantità dell'aumento della velocità di rotazione quando la levetta raggiunge il limite destro o sinistro"
+ControllerAccelerationJumpDescriptionXboxString="Quantità dell'aumento della velocità di rotazione quando la levetta raggiunge il limite destro o sinistro"
 AimAssistLockOnString="Fissa zoom mira assistita"
 AimAssistRotationString="Rotazione mira assistita"
 AimAssistSlowDownString="Rallenta mira assistita"
@@ -1463,6 +1472,7 @@ SkipTraderVoteYesReceivedString="Hai votato per saltare il commerciante"
 SkipTraderVoteNoReceivedString="Hai votato per non saltare il commerciante"
 SkipTraderNoEnoughTimeString="Non c'è tempo per iniziare una votazione salta commerciante"
 SkipTraderThisUserAlreadyStartedAVoteString="Non puoi iniziare una votazione salta commerciante fino alla prossima fase commerciante"
+SkipTraderVersusZedPlayerVotes="I giocatori della squadra degli Zed non possono votare per saltare il commerciante"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Hai ricevuto munizioni da"
@@ -1999,7 +2009,7 @@ SplashDamage="Ondata di calore"
 SplashDamageDescription="Gli Zed colpiti a bruciapelo con il fuoco verranno spinti dalla forza d'urto."
 
 Inferno="ZED TIME - Inferno"
-InfernoDescription="Durante gli Zed time, gli Zed colpiti dal fuoco sono rallentati del 30% e subiscono il 50% in più di danno da fuoco."
+InfernoDescription="I tuoi danni da fuoco si diffondono nel tempo verso tutti gli Zed nei dintorni durante gli Zed time."
 
 Scorch="ZED TIME - Piromania"
 ScorchDescription="Durante gli Zed time, puoi attaccare con le armi di classe quasi in tempo reale senza finire le munizioni."
@@ -2022,7 +2032,7 @@ Passives[3]=(Title="Riduzione Rinculo",Description="Riduzione %x% rinculo arma c
 Passives[4]=(Title="Ricarica Zedtime",Description="Aumento %x% velocità ricarica negli Zed time per livello");
 
 ShootnMove="Stabilizza"
-ShootnMoveDescription="Annulla la penalità della velocità di movimento del mirino e riduce drasticamente l'oscillazione delle armi di classe."
+ShootnMoveDescription="Ignora la penalità della velocità di movimento e aumenta i danni delle armi di classe del 5% quando si usa il mirino. Riduce drasticamente l'oscillazione delle armi di classe."
 
 QuickSwitch="Estrazione rapida"
 QuickSwitchDescription="Riduce la penalità del rinculo sparando dal fianco, aumenta la velocità di movimento del 5% e scambia le armi di classe più veloce del 50%."
@@ -2207,6 +2217,7 @@ Passives[0]=(Title="Danni arma",Description="Aumento x%x danni arma per livello"
 Passives[1]=(Title="Resistenza danni totale",Description="Aumento %x% resistenza a tutti i danni per livello");
 Passives[2]=(Title="Armatura pesante",Description="%x% ogni livello (max 25%) non subisce danni con l'armatura.");
 Passives[3]=(Title="Ricarica Zedtime",Description="Aumento %x% velocità ricarica negli Zed time per livello");
+Passives[4]=(Title="Cambio arma più veloce",Description="Aumento del 35% velocità cambio arma");
 
 
 HeavyWeaponsReload="Addestramento armi pesanti"
@@ -2332,7 +2343,7 @@ RandomLoadingStrings[37]="La rail gun può trapassare gli Zed se sono allineati 
 RandomLoadingStrings[38]="Il fucile a microonde infligge danni maggiori agli Zed con oggetti in metallo, come i Fleshpound e le Sirene."
 RandomLoadingStrings[39]="Prova la modalità di fuoco alternativa della tua arma. Non tutte le armi ne hanno una, ma potrebbe esserti d'aiuto in caso di difficoltà."
 RandomLoadingStrings[40]="Otterrai punti XP e denaro per gli assist, oltre che per le uccisioni, quindi non dispiacerti di aver aiutato un tuo alleato in un'uccisione."
-RandomLoadingStrings[41]="Per rimuovere una saldatura da una porta, equipaggia il tuo saldatore e premi il tasto Visuale arma."
+RandomLoadingStrings[41]="Per rimuovere una saldatura da una porta, equipaggia il tuo saldatore e premi il pulsante Visuale arma."
 
 [WhatsNewMessages]
 Jaegorhorn="Segui la community per sbloccare Jaegorhorn"
@@ -2784,6 +2795,20 @@ AllCompleteRewardDescriptionString="Halloween | Zaino Voodoo"
 ChanceDropDescriptionStrings[0]="Biglietto Halloween"
 ChanceDropDescriptionStrings[1]="Biglietto Oro Halloween"
 
+[KFGFxSpecialEventObjectivesContainer_Xmas2020]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Rose ghiacciate",DescriptionString="Raccogli 3 rose in Elisio")
+SpecialEventObjectiveInfoList[1]=(TitleString="Quattro racconti differenti",DescriptionString="Raccogli 4 tomi in Elisio")
+SpecialEventObjectiveInfoList[2]=(TitleString="Sotto il vischio",DescriptionString="Completa un'ondata nell'arena Botanica dell'Elisio")
+SpecialEventObjectiveInfoList[3]=(TitleString="Canto di Natale",DescriptionString="Completa un'ondata nell'arena Loremaster Sanctum dell'Elisio")
+SpecialEventObjectiveInfoList[4]=(TitleString="Inverno eterno",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Elisio")
+
+AllCompleteRewardDescriptionString="Natale | Zaino-elfo tattico"
+
+ChanceDropDescriptionStrings[0]="Biglietto Krampus"
+ChanceDropDescriptionStrings[1]="Biglietto Oro del Krampus"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2800,7 +2825,7 @@ KnifeString="Coltello"
 FriendlyName="Epidemia attuale: Spaccacranio"
 DescriptionStrings[0]="I danni al cervello sono sempre i migliori."
 DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
-ModifierDescriptions[0]="Durante questa epidemia, gli Zed sono mutati e possono essere abbattuti solamente con danni alla testa. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking."
+ModifierDescriptions[0]="Durante questa epidemia, gli Zed sono mutati e possono essere abbattuti solamente con danni alla testa. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. Livello Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2810,7 +2835,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Epidemia attuale: Mini-terrore"
 DescriptionStrings[0]="Una piccola minaccia è pur sempre una minaccia."
 DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
-ModifierDescriptions[0]="Durante questa epidemia, gli Zed si restringeranno se gli spari, e diventeranno più difficili da colpire. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking."
+ModifierDescriptions[0]="Durante questa epidemia, gli Zed si restringeranno se gli spari, e diventeranno più difficili da colpire. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. Livello Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2820,7 +2845,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Epidemia attuale: Poundemonio"
 DescriptionStrings[0]="Sempre Fleshpound, in ogni momento. O quasi."
 DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
-ModifierDescriptions[0]="Il convegno dei Fleshpound sta per iniziare! Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking."
+ModifierDescriptions[0]="Il convegno dei Fleshpound sta per iniziare! Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. Livello Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2830,7 +2855,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Epidemia attuale: Su, ancora più su, e a terra"
 DescriptionStrings[0]="Cerca di fare 99 palloncini Zed."
 DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
-ModifierDescriptions[0]="Durante questa epidemia, gli Zed si gonfieranno come palloncini quando vengono colpiti, scoppiali o si rigenereranno! Seleziona la modalità Epidemia settimanale sulla pagina del Matchmaking. Livello Classe 15+"
+ModifierDescriptions[0]="Durante questa epidemia, gli Zed si gonfieranno come palloncini quando vengono colpiti, scoppiali o si rigenereranno! Seleziona la modalità Epidemia settimanale sulla pagina del Matchmaking. Livello Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2840,7 +2865,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Epidemia attuale: Zed time"
 DescriptionStrings[0]="Tutto lo Zed time del mondo."
 DescriptionStrings[1]="Lunghezza: Corto (4 ondate)"
-ModifierDescriptions[0]="Hai mai pensato alla vita che ti passa davanti velocemente? Non succederà in questa epidemia! Sarà sempre Zed time ogni volta che ti trovi vicino a uno Zed. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking."
+ModifierDescriptions[0]="Hai mai pensato alla vita che ti passa davanti velocemente? Non succederà in questa epidemia! Sarà sempre Zed time ogni volta che ti trovi vicino a uno Zed. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. Livello Classe 15+."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2849,7 +2874,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Epidemia attuale: Boom"
 DescriptionStrings[0]="Zed sotto pressione: pericolo esplosione."
 DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
-ModifierDescriptions[0]="Sarà qualcosa che hanno mangiato? Un po' d'aria? In ogni caso, in questa epidemia gli Zed esplodono se uccisi. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking."
+ModifierDescriptions[0]="Sarà qualcosa che hanno mangiato? Un po' d'aria? In ogni caso, in questa epidemia gli Zed esplodono se uccisi. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. Livello Classe 15+."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2858,7 +2883,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Epidemia attuale: Fusti"
 DescriptionStrings[0]="Più sono grandi, più fanno male."
 DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
-ModifierDescriptions[0]="Durante questa epidemia, salute, dimensioni e portata degli Zed aumentano quando colpiscono il giocatore o usano alcune abilità Zed. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking."
+ModifierDescriptions[0]="Durante questa epidemia, salute, dimensioni e portata degli Zed aumentano quando colpiscono il giocatore o usano alcune abilità Zed. Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. Livello Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2868,7 +2893,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Epidemia attuale: Bobble Zed"
 DescriptionStrings[0]="...deve proprio fargli male al collo."
 DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
-ModifierDescriptions[0]="Qualcosa è andato decisamente storto con questi Zed, e le loro teste sono mooolto più grandi del normale! Enormi, direi! Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking."
+ModifierDescriptions[0]="Qualcosa è andato decisamente storto con questi Zed, e le loro teste sono mooolto più grandi del normale! Enormi, direi! Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. Livello Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3385,7 +3410,32 @@ DisplayName="Desolazione"
 [KF-HellmarkStation KFMapSummary]
 DisplayName="Stazione del Marchio infernale"
 
+[KF-Elysium KFMapSummary]
+DisplayName="Elisio"
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% ha trovato un collezionabile. %y% rimasti da trovare..."
 FoundAllCollectiblesString="Ogni collezionabile è stato trovato!"
+
+[KFKismetMapLocalization_Elysium]
+LeverWarningText="Tirare questa leva avrà delle conseguenze . . ."
+LoreMastersKnowsText="Il Loremaster sa"
+BotanicaOpenText="La Botanica è aperta"
+FuneralPyreIgnitionText="La sacra pira funeraria è stata data alle fiamme!\nLe anime ardenti dell'Averno ora perseguitano il cuore dell'Elisio"
+TomeMissingText="Sembra mancare un tomo da questo piedistallo"
+FlowerActivationText="Un aroma floreale aleggia dal vaso"
+SandTomeCollectedText="È stato raccolto il Tomo della Sabbia\n%VALUE%"
+SteelTomeCollectedText="È stato raccolto il Tomo dell'Acciaio\n%VALUE%"
+SludgeTomeCollectedText="È stato raccolto il Tomo della Melma\n%VALUE%"
+WoodTomeCollectedText="È stato raccolto il Tomo del Legno\n%VALUE%"
+RedRoseCollectedText="È stata raccolta una rosa rossa\n%VALUE%"
+MagentaRoseollectedText="È stata raccolta una rosa magenta\n%VALUE%"
+YellowRoseCollectedText="È stata raccolta una rosa gialla\n%VALUE%"
+OneOfThreeCollectedText="1 su 3 raccolte"
+TwoOfThreeCollectedText="2 su 3 raccolte"
+ThreeOfThreeCollectedText="3 su 3 raccolte"
+OneOfFourCollectedText="1 su 4 raccolti"
+TwoOfFourCollectedText="2 su 4 raccolti"
+ThreeOfFourCollectedText="3 su 4 raccolti"
+FourOfFourCollectedText="4 su 4 raccolti"

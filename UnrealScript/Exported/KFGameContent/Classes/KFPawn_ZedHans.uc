@@ -1246,6 +1246,9 @@ defaultproperties
    DamageTypeModifiers(22)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',DamageScale=(1.500000))
    DamageTypeModifiers(23)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGScorcherLightingImpact',DamageScale=(0.600000))
    DamageTypeModifiers(24)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGScorcherDoT',DamageScale=(0.900000))
+   DamageTypeModifiers(25)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(26)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallHeavyImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(27)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_HRG_Vampire_BloodSuck',DamageScale=(0.700000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Hans'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:SprintAkComponent0'

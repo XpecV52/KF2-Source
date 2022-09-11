@@ -38,6 +38,9 @@ var const localized string BioString;
 var const localized string HeadString;
 var const localized string BodyString;
 var const localized string AttachmentsString;
+var const localized string Attachment0String;
+var const localized string Attachment1String;
+var const localized string Attachment2String;
 var const localized string SkinsString;
 var const localized string BackString;
 var const localized string NoneString;
@@ -124,6 +127,9 @@ function LocalizeText()
     LocalizedObject.SetString("bodiesString", BodyString);
     LocalizedObject.SetString("skinsString", SkinsString);
     LocalizedObject.SetString("attachmentsString", AttachmentsString);
+    LocalizedObject.SetString("attachment0String", Attachment0String);
+    LocalizedObject.SetString("attachment1String", Attachment1String);
+    LocalizedObject.SetString("attachment2String", Attachment2String);
     SetObject("localizeText", LocalizedObject);
 }
 
@@ -599,6 +605,41 @@ private final function Callback_Body(int MeshIndex, int SkinIndex)
     SetGearButtons(MeshIndex, SkinIndex, BodyMeshKey, BodySkinKey, BodyFunctionKey);
 }
 
+private final function Callback_Attachment1(int MeshIndex, int SkinIndex)
+{
+    Callback_AttachmentNumbered(MeshIndex, SkinIndex, 0);
+}
+
+private final function Callback_Attachment2(int MeshIndex, int SkinIndex)
+{
+    Callback_AttachmentNumbered(MeshIndex, SkinIndex, 1);
+}
+
+private final function Callback_Attachment3(int MeshIndex, int SkinIndex)
+{
+    Callback_AttachmentNumbered(MeshIndex, SkinIndex, 2);
+}
+
+private final function Callback_AttachmentNumbered(int MeshIndex, int SkinIndex, int SlotIndex)
+{
+    local Pawn P;
+    local KFPawn KFP;
+    local int I;
+    local array<int> RemovedAttachments;
+
+    P = Outer.GetPC().Pawn;
+    if(P != none)
+    {
+        KFP = KFPawn(P);
+        if((KFP != none) && MyKFPRI != none)
+        {            
+            CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFP, MyKFPRI, RemovedAttachments);
+            SelectCustomizationOption(KFP, 3, MeshIndex, SkinIndex, SlotIndex);
+        }
+    }
+    SetAttachmentButtons(AttachmentKey, AttachmentFunctionKey);
+}
+
 private final function Callback_Attachment(int MeshIndex, int SkinIndex)
 {
     local Pawn P;
@@ -610,7 +651,7 @@ private final function Callback_Attachment(int MeshIndex, int SkinIndex)
     {
         KFP = KFPawn(P);
         if((KFP != none) && MyKFPRI != none)
-        {
+        {            
             CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFP, MyKFPRI);
             SlotIndex = CurrentCharInfo.GetAttachmentSlotIndex(MeshIndex, KFP, MyKFPRI);
             SelectCustomizationOption(KFP, 3, MeshIndex, SkinIndex, SlotIndex);
@@ -623,7 +664,7 @@ function RelayFromCheatManager(Pawn P, KFGFxMenu_Gear.ECustomizationOption Custo
 {
     bIgnoreConflictingSlots = false;
     if(!bIgnoreConflictingSlots)
-    {
+    {        
         CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFPawn(P), MyKFPRI);
     }
     SelectCustomizationOption(P, CustomizationOption, MeshIndex, SkinIndex, AttachmentIndex);
@@ -655,6 +696,9 @@ defaultproperties
     HeadString="HEAD"
     BodyString="BODY"
     AttachmentsString="ACCESSORIES"
+    Attachment0String="ACCESSORY 1"
+    Attachment1String="ACCESSORY 2"
+    Attachment2String="ACCESSORY 3"
     SkinsString="SKINS"
     BackString="BACK"
     NoneString="NONE"

@@ -84,9 +84,9 @@ package tripwire.popups
         
         public var labelLink:TextField;
         
-        private var _FriendSelectedIndex:int = 0;
+        private var _FriendSelectedIndex:int = -1;
         
-        private var _OtherFriendSelectedIndex:int = 0;
+        private var _OtherFriendSelectedIndex:int = -1;
         
         public function FriendsListPopup()
         {

@@ -840,6 +840,9 @@ HeadString="头"
 BodyString="身体"
 SkinsString="皮肤"
 AttachmentsString="配件"
+Attachment0String="配件 1"
+Attachment1String="配件 2"
+Attachment2String="配件 3"
 BackString="返回"
 NoneString="无"
 WeaponsString="武器"
@@ -1377,10 +1380,16 @@ MouseString="鼠标"
 MouseSmoothingString="鼠标流畅度"
 ZoomSensitivityString="缩放灵敏度"
 ControllerZoomSensitivityString="缩放灵敏度"
+ControllerDeadzoneString="死区"
+ControllerAccelerationJumpString="加速跳跃"
+ControllerDeadzoneDescriptionString="游戏确认输入之前的右操作杆移动量"
+ControllerDeadzoneDescriptionXboxString="遊戲識別輸入之前右搖桿移動量"
+ControllerAccelerationJumpDescriptionString="操作杆达到向左或向右极限时的旋转速度提升量"
+ControllerAccelerationJumpDescriptionXboxString="搖桿達到左右極限時轉速提升量"
 AimAssistLockOnString="辅助瞄准缩放锁定 - 开"
 AimAssistRotationString="辅助瞄准放置"
 AimAssistSlowDownString="辅助瞄准减速"
-ForceFeedbackString="控制器振动"
+ForceFeedbackString="控制器震动"
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="移动"
@@ -1463,6 +1472,7 @@ SkipTraderVoteYesReceivedString="你投票跳过商人"
 SkipTraderVoteNoReceivedString="你投票不跳过商人"
 SkipTraderNoEnoughTimeString="发起跳过商人投票的时间不足"
 SkipTraderThisUserAlreadyStartedAVoteString="下次商人阶段前无法发起新的跳过商人投票"
+SkipTraderVersusZedPlayerVotes="丧尸团队的玩家不能投票跳过商人"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="你收到了来自此人的弹药："
@@ -1999,7 +2009,7 @@ SplashDamage="热浪"
 SplashDamageDescription="被火焰击中的丧尸将会向后跌倒。"
 
 Inferno="丧尸时间 - 地狱"
-InfernoDescription="在丧尸时间中，丧尸被火焰击中后速度下降 30%，受到的燃烧伤害增加 50%。"
+InfernoDescription="丧尸时间内，你的火力伤害逐渐分散到周围所有丧尸身上。"
 
 Scorch="丧尸时间 - 纵火犯"
 ScorchDescription="在丧尸时间中，你可以使用神射武器发动近乎实时的攻击，而且弹药永远不会用完。"
@@ -2022,7 +2032,7 @@ Passives[3]=(Title="后坐力降低",Description="每级减少神射武器的后
 Passives[4]=(Title="丧尸时间重新加载",Description="每级提高丧尸时间的重新加载速度 %x%");
 
 ShootnMove="稳定"
-ShootnMoveDescription="忽略机械瞄准受到的移动速度惩罚，并大幅降低神射武器的武器摆动。"
+ShootnMoveDescription="使用机械瞄准时忽略移动速度惩罚，并使神射武器的伤害提高5%。大幅降低神射武器的武器摆动。"
 
 QuickSwitch="快速拔枪"
 QuickSwitchDescription="降低从臀部射击受到的后座力惩罚，提升移动速度 5%，切换神射武器的速度提升 50%。"
@@ -2207,6 +2217,7 @@ Passives[0]=(Title="武器伤害",Description="武器伤害每级增加 %x%");
 Passives[1]=(Title="整体伤害抗性",Description="对所有伤害的抗性每级提高 %x%");
 Passives[2]=(Title="重护甲",Description="身穿护甲时生命不会受到伤害，每级 %x%（最多 25%）");
 Passives[3]=(Title="丧尸时间重新加载",Description="每级提高丧尸时间的重新加载速度 %x%");
+Passives[4]=(Title="武器切换加速",Description="武器切换速度提高35%");
 
 
 HeavyWeaponsReload="重武器训练"
@@ -2784,6 +2795,20 @@ AllCompleteRewardDescriptionString="万圣节 | 巫毒背包"
 ChanceDropDescriptionStrings[0]="万圣节奖券"
 ChanceDropDescriptionStrings[1]="万圣节金奖券"
 
+[KFGFxSpecialEventObjectivesContainer_Xmas2020]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="冰冻玫瑰",DescriptionString="在极乐净土收集3朵玫瑰")
+SpecialEventObjectiveInfoList[1]=(TitleString="四个不同的故事",DescriptionString="在极乐净土收集4本书籍")
+SpecialEventObjectiveInfoList[2]=(TitleString="槲寄生下",DescriptionString="在极乐净土的花园竞技场中成功抵御一波丧尸")
+SpecialEventObjectiveInfoList[3]=(TitleString="圣诞颂歌",DescriptionString="在极乐净土的博学者圣地竞技场中成功抵御一波丧尸")
+SpecialEventObjectiveInfoList[4]=(TitleString="永冬",DescriptionString="在困难无尽或以上难度的极乐净土中成功抵御 15 波丧尸")
+
+AllCompleteRewardDescriptionString="圣诞节 | 战术精灵包"
+
+ChanceDropDescriptionStrings[0]="坎卜斯券"
+ChanceDropDescriptionStrings[1]="坎卜斯金奖券"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2800,7 +2825,7 @@ KnifeString="匕首"
 FriendlyName="当前爆发：头颅爆竹"
 DescriptionStrings[0]="大脑伤害是最好的伤害。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="在此次爆发中，丧尸发生了突变，它们只能通过头部的伤害来镇压。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
+ModifierDescriptions[0]="在此次爆发中，丧尸发生了突变，它们只能通过头部的伤害来镇压。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。神射等级 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2810,7 +2835,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：小恐怖"
 DescriptionStrings[0]="小的威胁仍然是威胁。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="在此次爆发中射击丧尸，会让它们缩小，因此就更难打击。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
+ModifierDescriptions[0]="在此次爆发中射击丧尸，会让它们缩小，因此就更难打击。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。神射等级 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2820,7 +2845,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：丧尸崇拜"
 DescriptionStrings[0]="至始至终全部都是闪击丧尸。几乎都是。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="闪击丧尸大会在市内举办！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
+ModifierDescriptions[0]="闪击丧尸大会在市内举办！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。神射等级 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2840,7 +2865,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：丧尸时间"
 DescriptionStrings[0]="这个世界里的所有丧尸时间。"
 DescriptionStrings[1]="长度：短（4 波）"
-ModifierDescriptions[0]="有没有想过生命会与你擦肩而过？不是在这次爆发中！只要你接近一个丧尸，你随时就在丧尸时间里。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
+ModifierDescriptions[0]="有没有想过生命会与你擦肩而过？不是在这次爆发中！只要你接近一个丧尸，你随时就在丧尸时间里。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。神射等级 15+。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2849,7 +2874,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：爆炸"
 DescriptionStrings[0]="丧尸在压力之下；可能会爆炸。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="或许是因为他们吃的东西？有毒气体？不管是因为什么，丧尸在此次爆发中被杀死时会爆炸。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
+ModifierDescriptions[0]="或许是因为他们吃的东西？有毒气体？不管是因为什么，丧尸在此次爆发中被杀死时会爆炸。在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。神射等级 15+。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2858,7 +2883,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：健美丧尸"
 DescriptionStrings[0]="他们越大，你摔的越重。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="在此次爆发中，丧尸会在击打玩家或受某些丧尸能力的影响时，增加他们的生命、大小和范围，在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
+ModifierDescriptions[0]="在此次爆发中，丧尸会在击打玩家或受某些丧尸能力的影响时，增加他们的生命、大小和范围，在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。神射等级 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2868,7 +2893,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="当前爆发：毛球丧尸"
 DescriptionStrings[0]="…他们肯定弄伤了他们的脖子。"
 DescriptionStrings[1]="长度：中（7 波）"
-ModifierDescriptions[0]="这批丧尸出现了非常可怕的错误，它们的头比正常的大了很多多多多多多！甚至是巨大！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。"
+ModifierDescriptions[0]="这批丧尸出现了非常可怕的错误，它们的头比正常的大了很多多多多多多！甚至是巨大！在“比赛匹配”页面选择每周游戏模式，开始游戏“每周爆发”。神射等级 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3385,7 +3410,32 @@ DisplayName="废墟"
 [KF-HellmarkStation KFMapSummary]
 DisplayName="地狱标记站"
 
+[KF-Elysium KFMapSummary]
+DisplayName="极乐净土"
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% 找到了一个收藏品。还剩下 %y% 个…"
 FoundAllCollectiblesString="找到了每个收藏品！"
+
+[KFKismetMapLocalization_Elysium]
+LeverWarningText="拉动这根杠杆可能会产生后果……"
+LoreMastersKnowsText="博学者无所不知"
+BotanicaOpenText="花园开放"
+FuneralPyreIgnitionText="神圣的火葬柴堆已经点燃！\n燃烧的炼狱之魂正在极乐净土的中心徘徊"
+TomeMissingText="这个底座似乎缺少一本书籍"
+FlowerActivationText="这个瓶子散发着花朵的芬芳"
+SandTomeCollectedText="已收集砂之书\n%VALUE%"
+SteelTomeCollectedText="已收集钢之书\n%VALUE%"
+SludgeTomeCollectedText="已收集泥之书\n%VALUE%"
+WoodTomeCollectedText="已收集木之书\n%VALUE%"
+RedRoseCollectedText="已收集一朵红玫瑰\n%VALUE%"
+MagentaRoseollectedText="已收集一朵紫玫瑰\n%VALUE%"
+YellowRoseCollectedText="已收集一朵黄玫瑰\n%VALUE%"
+OneOfThreeCollectedText="已收集1/3"
+TwoOfThreeCollectedText="已收集2/3"
+ThreeOfThreeCollectedText="已收集3/3"
+OneOfFourCollectedText="已收集1/4"
+TwoOfFourCollectedText="已收集2/4"
+ThreeOfFourCollectedText="已收集3/4"
+FourOfFourCollectedText="已收集4/4"

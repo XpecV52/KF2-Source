@@ -45,6 +45,16 @@ var() float ImpactComplete_ActorTime;
 var InterpCurveFloat FatigueCurve;
 var float MeleeImpactCamShakeScale;
 
+simulated function KFPawn.EPawnOctant GetNextAttackDir()
+{
+    return NextAttackDir;
+}
+
+simulated function SetNextAttackDir(KFPawn.EPawnOctant _nextAttackDir)
+{
+    NextAttackDir = _nextAttackDir;
+}
+
 simulated function MeleeImpactNotify(KFAnimNotify_MeleeImpact_1P Notify)
 {
     local bool bResult;
@@ -577,9 +587,14 @@ simulated function ProcessMeleeHit(byte FiringMode, ImpactInfo Impact)
         }
         Momentum = Normal(Impact.RayDir) * Outer.InstantHitMomentum[FiringMode];
         PlayMeleeHitEffects(Impact.HitActor, Impact.HitLocation, Impact.RayDir);
-        Impact.HitActor.TakeDamage(Outer.GetMeleeDamage(FiringMode, Impact.RayDir), Outer.Instigator.Controller, Impact.HitLocation, Momentum, GetDamageType(FiringMode), Impact.HitInfo, Outer);
+        PawnTakeDamage(Impact, FiringMode, Momentum);
         Outer.NotifyMeleeCollision(Impact.HitActor, Impact.HitLocation);
     }
+}
+
+simulated function PawnTakeDamage(ImpactInfo Impact, byte FiringMode, Vector Momentum)
+{
+    Impact.HitActor.TakeDamage(Outer.GetMeleeDamage(FiringMode, Impact.RayDir), Outer.Instigator.Controller, Impact.HitLocation, Momentum, GetDamageType(FiringMode), Impact.HitInfo, Outer);
 }
 
 simulated function class<DamageType> GetDamageType(byte FiringMode)
@@ -632,26 +647,26 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
 
 defaultproperties
 {
-    ChainSequence_F(0)=226
-    ChainSequence_F(1)=29
+    ChainSequence_F(0)=31
+    ChainSequence_F(1)=30
     ChainSequence_F(2)=0
     ChainSequence_F(3)=0
     ChainSequence_F(4)=0
-    ChainSequence_B(0)=222
-    ChainSequence_B(1)=29
+    ChainSequence_B(0)=27
+    ChainSequence_B(1)=30
     ChainSequence_B(2)=0
     ChainSequence_B(3)=0
     ChainSequence_B(4)=0
     ChainSequence_B(5)=0
     ChainSequence_B(6)=0
-    ChainSequence_L(0)=229
-    ChainSequence_L(1)=29
+    ChainSequence_L(0)=34
+    ChainSequence_L(1)=30
     ChainSequence_L(2)=0
     ChainSequence_L(3)=0
     ChainSequence_L(4)=0
     ChainSequence_L(5)=0
-    ChainSequence_R(0)=226
-    ChainSequence_R(1)=29
+    ChainSequence_R(0)=31
+    ChainSequence_R(1)=30
     ChainSequence_R(2)=0
     ChainSequence_R(3)=0
     ChainSequence_R(4)=0

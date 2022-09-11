@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="每個武器都有<font color="#caab05">重量值</f
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="補滿你的彈藥與護甲"
-TraderRefillGamepadDescriptionKey="你可以在商人那裡補滿你的<font color="#caab05">彈藥</font>、<font color="#caab05">手榴彈</font>還有<font color="#caab05">身體護甲</font>。要補充彈藥，用左操作桿在商人選單的左側選擇你想要購買彈藥的武器。你可以按下 <font color="#caab05">XboxTypeS_A</font>，為選擇的武器購買一個彈匣或一個手榴彈，或是按下 <font color="#caab05">XboxTypeS_X</font> 以購買你目前金錢可負擔的所有彈藥或手榴彈。如果你時間不夠（或金錢充足），按下 <font color="#caab05">LeftThumbStick</font>會自動花費你的金錢，幫你補充彈藥、護甲與手榴彈。"
+TraderRefillGamepadDescriptionKey="你可以在商人那裡補滿你的<font color="#caab05">彈藥</font>、<font color="#caab05">手榴彈</font>還有<font color="#caab05">身體護甲</font>。要補充彈藥，用左搖桿在商人選單的左側選擇你想要購買彈藥的武器。你可以按下 <font color="#caab05">XboxTypeS_A</font>，為選擇的武器購買一個彈匣或一個手榴彈，或是按下 <font color="#caab05">XboxTypeS_X</font> 以購買你目前金錢可負擔的所有彈藥或手榴彈。如果你時間不夠（或金錢充足），按下 <font color="#caab05">LeftThumbStick</font>會自動花費你的金錢，幫你補充彈藥、護甲與手榴彈。"
 TraderSellGamepadTitleKey="販賣武器"
-TraderSellGamepadDescriptionKey="要 <font color="#caab05">販賣武器</font>，用左操作桿在商人選單的左側選擇你想要販賣的武器並按下 <font color="#caab05">XboxTypeS_Y</font>。你會看見販賣物品後會獲得的金錢。你不能販賣你的備用 9 釐米手槍、護甲或手榴彈。"
+TraderSellGamepadDescriptionKey="要 <font color="#caab05">販賣武器</font>，用左搖桿在商人選單的左側選擇你想要販賣的武器並按下 <font color="#caab05">XboxTypeS_Y</font>。你會看見販賣物品後會獲得的金錢。你不能販賣你的備用 9 釐米手槍、護甲或手榴彈。"
 TraderBuyGamepadTitleKey="購買武器"
-TraderBuyGamepadDescriptionKey="要<font color="#caab05">購買武器</font>，用左操作桿在商人選單的左側選擇你想要購買的武器並按下 <font color="#caab05">XboxTypeS_A</font>。請確定你有足夠的<font color="#caab05">金錢</font>與<font color="#caab05">負重量</font>可購買武器。"
+TraderBuyGamepadDescriptionKey="要<font color="#caab05">購買武器</font>，用左搖桿在商人選單的左側選擇你想要購買的武器並按下 <font color="#caab05">XboxTypeS_A</font>。請確定你有足夠的<font color="#caab05">金錢</font>與<font color="#caab05">負重量</font>可購買武器。"
 TraderWeightGamepadTitleKey="武器重量與容量"
 TraderWeightGamepadDescriptionKey="每個武器都有<font color="#caab05">重量值</font>。你目前武器的重量可能會讓你無法購買新的武器。武器的重量在武器清單和武器詳細資訊中可以看到。你的<font color="#caab05">負重量</font>顯示在畫面中央，位於你目前所擁有的金錢數下方。會讓你無法購買目前選擇的物品的因素會以紅色顯示。"
 
@@ -749,6 +749,16 @@ ItemCategory="炸藥"
 ItemDescription="•發射生化地雷，即觸即爆，對Zed造成傷害，替友軍療傷。\n•次要攻擊引爆放置的所有地雷。\n•由於衛生守則方面的問題，其基本素材的來源屬於保密資訊。"
 SharedUnlockSource="地雷重構器武器同捆包"
 
+[KFWeap_HRG_Vampire]
+ItemName="HRG 吸血鬼"
+ItemCategory="特別"
+ItemDescription="•主要攻擊吸收敵人的血，填充血庫。\n•主要攻擊之後，它會射出爆炸性凝固血球，可對敵人造成傷害，並治愈友軍。\n•輔助功能模式消耗血庫，射出結晶血釘。"
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="冰霜尖牙"
+ItemCategory="霰彈槍"
+ItemDescription="•發射模式可射出凍結敵人的彈藥。\n•重擊攻擊用斧頭粉碎敵人。\n•輔助功能鍵 - 防禦/格擋。\n•斧頭非常適合做冰雕。"
+SharedUnlockSource="冰霜尖牙武器同捆包"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -1150,6 +1150,9 @@ struct native ItemProperties
     var int AltPerkId;
     var int WeaponType;
     var int FilterIdIndex;
+    var bool ItemOnSale;
+    var string BasePrice;
+    var string DiscountRate;
 
     structdefaultproperties
     {
@@ -1177,6 +1180,9 @@ struct native ItemProperties
         AltPerkId=0
         WeaponType=0
         FilterIdIndex=0
+        ItemOnSale=false
+        BasePrice=""
+        DiscountRate=""
     }
 };
 
@@ -1228,6 +1234,8 @@ var OnlineAuthInterface AuthInterface;
 var array< delegate<OnInventoryReadComplete> > ReadInventoryCompleteDelegates;
 var const bool bInventoryReady;
 var config bool bUseBuildIdOverride;
+var bool bSalesEvent;
+var bool bSalesEventChecked;
 var array< delegate<OnPingRegionsComplete> > PingRegionsCompleteDelegates;
 var array< delegate<OnReadOnlineAvatarComplete> > ReadAvatarCompleteDelegates;
 var array< delegate<OnReadOnlineAvatarByNameComplete> > ReadAvatarByNameCompleteDelegates;

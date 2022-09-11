@@ -1,17 +1,16 @@
 package tripwire.containers.optionsControls
 {
+    import flash.display.MovieClip;
+    import flash.events.Event;
     import flash.events.FocusEvent;
+    import flash.events.MouseEvent;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
-    import scaleform.clik.controls.CheckBox;
-    import scaleform.clik.controls.Slider;
-    import scaleform.clik.core.UIComponent;
+    import scaleform.clik.controls.ScrollBar;
     import scaleform.clik.events.ButtonEvent;
     import scaleform.clik.events.IndexEvent;
     import scaleform.clik.events.InputEvent;
-    import scaleform.clik.events.SliderEvent;
     import scaleform.clik.ui.InputDetails;
-    import scaleform.gfx.Extensions;
     import tripwire.containers.TripContainer;
     import tripwire.controls.SliderOption;
     import tripwire.controls.TripButton;
@@ -32,6 +31,10 @@ package tripwire.containers.optionsControls
         public var controllerSensitivitySliderOption:SliderOption;
         
         public var controllerZoomSensitivitySliderOption:SliderOption;
+        
+        public var controllerDeadzoneSliderOption:SliderOption;
+        
+        public var controllerAccelerationJumpSliderOption:SliderOption;
         
         public var controllerInvertYCheckBox:TripCheckBox;
         
@@ -63,6 +66,14 @@ package tripwire.containers.optionsControls
         
         public var controllerZoomSensitivityMaximumText:TextField;
         
+        public var controllerDeadzoneMinimumText:TextField;
+        
+        public var controllerDeadzoneMaximumText:TextField;
+        
+        public var controllerAccelerationJumpMinimumText:TextField;
+        
+        public var controllerAccelerationJumpMaximumText:TextField;
+        
         public var sensitivityValueText:TextField;
         
         public var zoomSensitivityValueText:TextField;
@@ -71,129 +82,71 @@ package tripwire.containers.optionsControls
         
         public var controllerZoomSensitivityValueText:TextField;
         
+        public var controllerDeadzoneValueText:TextField;
+        
+        public var controllerAccelerationJumpValueText:TextField;
+        
         public var defaultButton:TripButton;
         
         public var bOptionsInit;
         
         public var genericSliderSoundEffect:String = "GEN_Click";
         
+        public var inputSections:MovieClip;
+        
+        public var scrollBar:ScrollBar;
+        
+        private var _scrollRate:int = 48;
+        
+        private var _scrollPosition:Number;
+        
+        private var _pageSize:int;
+        
+        private var _scrollDistance:int;
+        
+        private var _scrollDifference:Number;
+        
+        private var _inputSectionsOriginalY:Number;
+        
         public function ControlsInputContainer()
         {
+            var _loc1_:int = 0;
             super();
             if(!bManagerConsoleBuild)
             {
-                this.sensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
-                this.zoomSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
-                this.invertYCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
-                this.mouseSmoothingCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
-                this.defaultButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
+                this._inputSectionsOriginalY = this.inputSections.y;
+                addEventListener(MouseEvent.MOUSE_WHEEL,this.handleMouseWheel,false,0,true);
+                this.scrollBar.addEventListener(Event.SCROLL,this.handleScroll,false,0,true);
+                this.inputSections.addEventListener(InputEvent.INPUT,this.handleScrollWhenInputSelected,false,0,true);
+                _loc1_ = this.inputSections.height;
+                this._pageSize = 664.9;
+                this._scrollDistance = _loc1_ - this._pageSize - 4;
+                this._scrollDifference = this.inputSections.y - this.scrollBar.position;
+                this.updateScrollBar();
             }
-            if(this.forceFeedbackCheckBox)
-            {
-                this.forceFeedbackCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
-            }
-            this.controllerSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
-            this.controllerZoomSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
-            this.controllerInvertYCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
-            this.aimAssistZoomLockOnCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
-            this.aimAssistRotationCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
-            this.aimAssistSlowDownCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
-            defaultFirstElement = !!bManagerConsoleBuild ? this.controllerSensitivitySliderOption : this.sensitivitySliderOption;
-            var _loc1_:int = 1;
             if(!bManagerConsoleBuild)
             {
-                this.sensitivitySliderOption.tabIndex = _loc1_++;
-                this.zoomSensitivitySliderOption.tabIndex = _loc1_++;
-                this.invertYCheckBox.tabIndex = _loc1_++;
-                this.mouseSmoothingCheckBox.tabIndex = _loc1_++;
+                this.defaultButton.addEventListener(ButtonEvent.CLICK,this.onButtonClick,false,0,true);
             }
-            if(this.forceFeedbackCheckBox)
-            {
-                this.forceFeedbackCheckBox.tabIndex = _loc1_++;
-            }
-            this.controllerSensitivitySliderOption.tabIndex = _loc1_++;
-            this.controllerZoomSensitivitySliderOption.tabIndex = _loc1_++;
-            this.controllerInvertYCheckBox.tabIndex = _loc1_++;
-            this.aimAssistZoomLockOnCheckBox.tabIndex = _loc1_++;
-            this.aimAssistRotationCheckBox.tabIndex = _loc1_++;
-            this.aimAssistSlowDownCheckBox.tabIndex = _loc1_++;
-            if(!bManagerConsoleBuild && this.defaultButton != null)
-            {
-                this.defaultButton.tabIndex = _loc1_++;
-            }
+            this.defaultButton.tabIndex = this.inputSections.nextTabIndex++;
         }
         
         public function set localizedText(param1:Object) : void
         {
-            if(!bManagerConsoleBuild)
+            this.inputSections.localizedInputText = param1;
+            if(this.defaultButton != null)
             {
-                this.sensitivitySliderOption.label = !!param1.sensitivityLabel ? param1.sensitivityLabel : "";
-                this.invertYCheckBox.label = !!param1.invertedLabel ? param1.invertedLabel : "";
-                this.sectionTextField.text = !!param1.Mouse ? param1.Mouse : "";
-                this.controllerSensitivitySliderOption.label = !!param1.controllerSensitivityLabel ? param1.controllerSensitivityLabel : "";
-                this.controllerInvertYCheckBox.label = !!param1.controllerInvertedLabel ? param1.controllerInvertedLabel : "";
-                this.sensitivitySliderOption.label = !!param1.sensitivityLabel ? param1.sensitivityLabel : "";
-                this.zoomSensitivitySliderOption.label = !!param1.zoomSensitivityLabel ? param1.zoomSensitivityLabel : "";
-                this.invertYCheckBox.label = !!param1.invertedLabel ? param1.invertedLabel : "";
-                this.mouseSmoothingCheckBox.label = !!param1.mouseSmoothingLabel ? param1.mouseSmoothingLabel : "";
-                this.controllerTextField.text = !!param1.controllerString ? param1.controllerString : "";
-                if(this.defaultButton != null)
-                {
-                    this.defaultButton.label = !!param1.resetDefault ? param1.resetDefault : "";
-                }
+                this.defaultButton.label = !!param1.resetDefault ? param1.resetDefault : "";
             }
-            if(this.forceFeedbackCheckBox)
-            {
-                this.forceFeedbackCheckBox.label = !!param1.forceFeedbackLabel ? param1.forceFeedbackLabel : "";
-            }
-            this.controllerSensitivitySliderOption.label = !!param1.controllerSensitivityLabel ? param1.controllerSensitivityLabel : "";
-            this.controllerZoomSensitivitySliderOption.label = !!param1.controllerZoomSensitivityLabel ? param1.controllerZoomSensitivityLabel : "";
-            this.controllerInvertYCheckBox.label = !!param1.controllerInvertedLabel ? param1.controllerInvertedLabel : "";
-            this.aimAssistZoomLockOnCheckBox.label = !!param1.aimAssistLockOnLabel ? param1.aimAssistLockOnLabel : "";
-            this.aimAssistRotationCheckBox.label = !!param1.aimAssistRotationLabel ? param1.aimAssistRotationLabel : "";
-            this.aimAssistSlowDownCheckBox.label = !!param1.aimAssistSlowDownLabel ? param1.aimAssistSlowDownLabel : "";
         }
         
         public function set initializeOptions(param1:Object) : void
         {
-            if(!bManagerConsoleBuild)
-            {
-                this.sensitivitySliderOption.sliderValue = !!param1.sensitivityValue ? int(param1.sensitivityValue) : 0;
-                this.sensitivitySliderOption.slider.minimum = !!param1.sensitivityValueMin ? Number(param1.sensitivityValueMin) : Number(0);
-                this.sensitivitySliderOption.slider.maximum = !!param1.sensitivityValueMax ? Number(param1.sensitivityValueMax) : Number(1);
-                this.sensitivityValueText.text = !!param1.sensitivityValue ? param1.sensitivityValue.toFixed(1).toString() : "0";
-                this.zoomSensitivitySliderOption.sliderValue = !!param1.zoomSensitivityValue ? int(param1.zoomSensitivityValue) : 0;
-                this.zoomSensitivitySliderOption.slider.minimum = !!param1.zoomSensitivityValueMin ? Number(param1.zoomSensitivityValueMin) : Number(0);
-                this.zoomSensitivitySliderOption.slider.maximum = !!param1.zoomSensitivityValueMax ? Number(param1.zoomSensitivityValueMax) : Number(1);
-                this.zoomSensitivityValueText.text = !!param1.zoomSensitivityValue ? param1.zoomSensitivityValue.toFixed(1).toString() : "0";
-                this.sensitivityMinimumText.text = this.sensitivitySliderOption.slider.minimum.toFixed(0).toString();
-                this.sensitivityMaximumText.text = this.sensitivitySliderOption.slider.maximum.toFixed(0).toString();
-                this.zoomSensitivityMinimumText.text = this.zoomSensitivitySliderOption.slider.minimum.toFixed(0).toString();
-                this.zoomSensitivityMaximumText.text = this.zoomSensitivitySliderOption.slider.maximum.toFixed(0).toString();
-                this.mouseSmoothingCheckBox.selected = !!param1.mouseSmoothingValue ? Boolean(param1.mouseSmoothingValue) : false;
-                this.invertYCheckBox.selected = !!param1.invertedValue ? Boolean(param1.invertedValue) : false;
-            }
-            if(this.forceFeedbackCheckBox)
-            {
-                this.forceFeedbackCheckBox.selected = !!param1.forceFeedbackValue ? Boolean(param1.forceFeedbackValue) : false;
-            }
-            this.controllerSensitivitySliderOption.slider.minimum = param1.controllerSensitivityValueMin != undefined ? Number(param1.controllerSensitivityValueMin) : Number(0);
-            this.controllerSensitivitySliderOption.slider.maximum = param1.controllerSensitivityValueMax != undefined ? Number(param1.controllerSensitivityValueMax) : Number(1);
-            this.controllerSensitivitySliderOption.sliderValue = param1.controllerSensitivityValue != undefined ? int(param1.controllerSensitivityValue) : 0;
-            this.controllerSensitivityValueText.text = param1.controllerSensitivityValue != undefined ? param1.controllerSensitivityValue.toFixed(1).toString() : "0";
-            this.controllerZoomSensitivitySliderOption.slider.minimum = param1.controllerZoomSensitivityValueMin != undefined ? Number(param1.controllerZoomSensitivityValueMin) : Number(0);
-            this.controllerZoomSensitivitySliderOption.slider.maximum = param1.controllerZoomSensitivityValueMax != undefined ? Number(param1.controllerZoomSensitivityValueMax) : Number(1);
-            this.controllerZoomSensitivitySliderOption.sliderValue = param1.controllerZoomSensitivityValue != undefined ? int(param1.controllerZoomSensitivityValue) : 0;
-            this.controllerZoomSensitivityValueText.text = param1.controllerZoomSensitivityValue != undefined ? param1.controllerZoomSensitivityValue.toFixed(1).toString() : "0";
-            this.controllerSensitivityMinimumText.text = this.controllerSensitivitySliderOption.slider.minimum.toFixed(0).toString();
-            this.controllerSensitivityMaximumText.text = this.controllerSensitivitySliderOption.slider.maximum.toFixed(0).toString();
-            this.controllerZoomSensitivityMinimumText.text = this.controllerZoomSensitivitySliderOption.slider.minimum.toFixed(0).toString();
-            this.controllerZoomSensitivityMaximumText.text = this.controllerZoomSensitivitySliderOption.slider.maximum.toFixed(0).toString();
-            this.aimAssistZoomLockOnCheckBox.selected = !!param1.aimAssistLockOnValue ? Boolean(param1.aimAssistLockOnValue) : false;
-            this.aimAssistRotationCheckBox.selected = !!param1.aimAssistRotationValue ? Boolean(param1.aimAssistRotationValue) : false;
-            this.aimAssistSlowDownCheckBox.selected = !!param1.aimAssistSlowDownValue ? Boolean(param1.aimAssistSlowDownValue) : false;
-            this.controllerInvertYCheckBox.selected = !!param1.controllerInvertedValue ? Boolean(param1.controllerInvertedValue) : false;
-            this.bOptionsInit = true;
+            this.inputSections.initializeInputOptions = param1;
+        }
+        
+        override protected function pushToBackAnimation() : *
+        {
         }
         
         override protected function onBPressed(param1:InputDetails) : void
@@ -201,117 +154,47 @@ package tripwire.containers.optionsControls
             dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,CANCELLED_INDEX));
         }
         
-        public function playSound(param1:String = "") : void
+        protected function onButtonClick(param1:ButtonEvent) : void
         {
-            if(Extensions.gfxProcessSound != null)
+            if(param1.target == this.defaultButton)
             {
-                Extensions.gfxProcessSound(this,"UI",param1);
+                ExternalInterface.call("CallBack_ResetInputOptions");
             }
         }
         
-        private function onSliderValueChanged(param1:SliderEvent) : void
+        private function handleMouseWheel(param1:MouseEvent) : *
         {
-            var _loc2_:Slider = null;
-            if(!this.bOptionsInit)
+            var _loc2_:int = 0;
+            if(this._scrollDistance > 0)
             {
-                return;
+                _loc2_ = 0;
+                this.inputSections.y += param1.delta > 0 ? this._scrollRate : -this._scrollRate;
+                this.inputSections.y = Math.max(Math.min(this.inputSections.y,this._inputSectionsOriginalY),-this._scrollDistance);
             }
-            _loc2_ = param1.currentTarget as Slider;
-            if(bManagerConsoleBuild)
+            this.updateScrollBar();
+        }
+        
+        private function handleScroll(param1:Event) : *
+        {
+            if(!bManagerUsingGamepad)
             {
-                switch(_loc2_)
-                {
-                    case this.controllerSensitivitySliderOption.slider:
-                        this.playSound(this.genericSliderSoundEffect);
-                        this.controllerSensitivityValueText.text = param1.value.toFixed(1).toString();
-                        ExternalInterface.call("Callback_ControllerSensitivity",param1.value);
-                        break;
-                    case this.controllerZoomSensitivitySliderOption.slider:
-                        this.playSound(this.genericSliderSoundEffect);
-                        this.controllerZoomSensitivityValueText.text = param1.value.toFixed(1).toString();
-                        ExternalInterface.call("Callback_ControllerZoomSensitivity",param1.value);
-                }
-            }
-            else
-            {
-                switch(_loc2_)
-                {
-                    case this.sensitivitySliderOption.slider:
-                        this.playSound(this.genericSliderSoundEffect);
-                        this.sensitivityValueText.text = param1.value.toFixed(1).toString();
-                        ExternalInterface.call("Callback_MouseSensitivity",param1.value);
-                        break;
-                    case this.zoomSensitivitySliderOption.slider:
-                        this.playSound(this.genericSliderSoundEffect);
-                        this.zoomSensitivityValueText.text = param1.value.toFixed(1).toString();
-                        ExternalInterface.call("Callback_MouseZoomSensitivity",param1.value);
-                        break;
-                    case this.controllerSensitivitySliderOption.slider:
-                        this.playSound(this.genericSliderSoundEffect);
-                        this.controllerSensitivityValueText.text = param1.value.toFixed(1).toString();
-                        ExternalInterface.call("Callback_ControllerSensitivity",param1.value);
-                        break;
-                    case this.controllerZoomSensitivitySliderOption.slider:
-                        this.playSound(this.genericSliderSoundEffect);
-                        this.controllerZoomSensitivityValueText.text = param1.value.toFixed(1).toString();
-                        ExternalInterface.call("Callback_ControllerZoomSensitivity",param1.value);
-                }
+                this.inputSections.y = this._inputSectionsOriginalY - this.scrollBar.position;
             }
         }
         
-        private function onCheckBoxClick(param1:ButtonEvent) : void
+        private function updateScrollBar() : *
         {
-            var _loc2_:CheckBox = null;
-            if(!this.bOptionsInit)
+            this.scrollBar.setScrollProperties(this._pageSize,0,this._scrollDistance,this._scrollRate);
+            this.scrollBar.position = -this.inputSections.y;
+            this.scrollBar.validateNow();
+        }
+        
+        override public function closeContainer() : void
+        {
+            super.closeContainer();
+            if(this.inputSections != null)
             {
-                return;
-            }
-            _loc2_ = param1.currentTarget as CheckBox;
-            if(bManagerConsoleBuild)
-            {
-                switch(_loc2_)
-                {
-                    case this.controllerInvertYCheckBox:
-                        ExternalInterface.call("Callback_ControllerInvertChanged",_loc2_.selected);
-                        break;
-                    case this.aimAssistZoomLockOnCheckBox:
-                        ExternalInterface.call("Callback_AimAssistZoomLockOnChanged",_loc2_.selected);
-                        break;
-                    case this.aimAssistRotationCheckBox:
-                        ExternalInterface.call("Callback_AimAssistRotationChanged",_loc2_.selected);
-                        break;
-                    case this.aimAssistSlowDownCheckBox:
-                        ExternalInterface.call("Callback_AimAssistSlowDownChanged",_loc2_.selected);
-                        break;
-                    case this.forceFeedbackCheckBox:
-                        ExternalInterface.call("Callback_ForceFeedbackChanged",_loc2_.selected);
-                }
-            }
-            else
-            {
-                switch(_loc2_)
-                {
-                    case this.invertYCheckBox:
-                        ExternalInterface.call("Callback_InvertChanged",_loc2_.selected);
-                        break;
-                    case this.mouseSmoothingCheckBox:
-                        ExternalInterface.call("Callback_MouseSmoothingChanged",_loc2_.selected);
-                        break;
-                    case this.controllerInvertYCheckBox:
-                        ExternalInterface.call("Callback_ControllerInvertChanged",_loc2_.selected);
-                        break;
-                    case this.aimAssistZoomLockOnCheckBox:
-                        ExternalInterface.call("Callback_AimAssistZoomLockOnChanged",_loc2_.selected);
-                        break;
-                    case this.aimAssistRotationCheckBox:
-                        ExternalInterface.call("Callback_AimAssistRotationChanged",_loc2_.selected);
-                        break;
-                    case this.aimAssistSlowDownCheckBox:
-                        ExternalInterface.call("Callback_AimAssistSlowDownChanged",_loc2_.selected);
-                        break;
-                    case this.forceFeedbackCheckBox:
-                        ExternalInterface.call("Callback_ForceFeedbackChanged",_loc2_.selected);
-                }
+                this.inputSections.closeContainer();
             }
         }
         
@@ -343,16 +226,17 @@ package tripwire.containers.optionsControls
             }
         }
         
-        override protected function pushToBackAnimation() : *
+        private function handleScrollWhenInputSelected(param1:InputEvent) : *
         {
-        }
-        
-        protected function onButtonClick(param1:ButtonEvent) : void
-        {
-            if(param1.target == this.defaultButton)
+            if(param1.target.tabIndex == 0)
             {
-                ExternalInterface.call("CallBack_ResetInputOptions");
+                this.inputSections.y = this._inputSectionsOriginalY;
+                this.updateScrollBar();
+                return;
             }
+            this.inputSections.y = Math.min(this._inputSectionsOriginalY,-stage.focus.y + this._pageSize / 2);
+            this.inputSections.y = Math.max(this.inputSections.y,-this._scrollDistance);
+            this.updateScrollBar();
         }
     }
 }

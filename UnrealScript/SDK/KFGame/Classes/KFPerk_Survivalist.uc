@@ -41,6 +41,7 @@ var private const GameExplosion		ShrapnelExplosionTemplate;
 var private const float 			ShrapnelChance;
 var private const float 			SnarePower;
 var private const float 			MeleeExpertMovementSpeedModifier;
+var private const float				PassiveWeaponSwitchModifier;
 
 var class<KFWeaponDefinition>		HealingGrenadeWeaponDef;
 var class<KFWeaponDefinition>		MolotovGrenadeWeaponDef;
@@ -299,6 +300,22 @@ function ModifyArmor( out byte MaxArmor )
 		TempArmor += MaxArmor * GetPassiveValue( HeavyBodyArmor, CurrentLevel );
 		MaxArmor = Round( TempArmor );
 	}
+}
+
+/**
+ * @brief The passive skill of the survivalist modifies the weapon switch speed
+ *
+ * @param ModifiedSwitchTime Duration of putting down or equipping the weapon
+ */
+simulated function ModifyWeaponSwitchTime( out float ModifiedSwitchTime )
+{
+	`QALog( "(Passive Weapon Switch) Increase:" @ GetPercentage( ModifiedSwitchTime,  ModifiedSwitchTime * (1.f - static.GetPassiveWeaponSwitchModifier()) ), bLogPerk );
+	ModifiedSwitchTime *= 1.f - static.GetPassiveWeaponSwitchModifier();
+}
+
+simulated final static function float GetPassiveWeaponSwitchModifier()
+{
+	return default.PassiveWeaponSwitchModifier;
 }
 
 /*********************************************************************************************
@@ -712,11 +729,13 @@ simulated static function GetPassiveStrings( out array<string> PassiveValues, ou
 	PassiveValues[1] = Round( GetPassiveValue( default.DamageResistance, Level ) * 100 ) $ "%";
 	PassiveValues[2] = Round( GetPassiveValue( default.HeavyBodyArmor, Level ) * 100 ) $ "%";
 	PassiveValues[3] = Round( GetPassiveValue( default.ZedTimeReload, Level ) * 100 ) $ "%";
+	PassiveValues[4] = "";
 
 	Increments[0] = "[" @ Left( string( default.WeaponDamage.Increment * 100 ), 	InStr(string(default.WeaponDamage.Increment * 100), ".") + 2 ) 		$ "% /" @ default.LevelString @ "]";
 	Increments[1] = "[" @ Left( string( default.DamageResistance.Increment * 100 ), InStr(string(default.DamageResistance.Increment * 100), ".") + 2 ) 	$ "% /" @ default.LevelString @ "]";
 	Increments[2] = "[" @ Left( string( default.HeavyBodyArmor.Increment * 100 ),	InStr(string(default.HeavyBodyArmor.Increment * 100), ".") + 2 ) 	$ "% /" @ default.LevelString @ "]";
 	Increments[3] = "[" @ Left( string( default.ZedTimeReload.Increment * 100 ),	InStr(string(default.ZedTimeReload.Increment * 100), ".") + 2 ) 	$ "% /" @ default.LevelString @ "]";
+	Increments[4] = "";
 }
 
 simulated function string GetGrenadeImagePath()
@@ -766,6 +785,8 @@ DefaultProperties
 	DamageResistance=(Name="Damage Resistance",Increment=0.01,Rank=0,StartingValue=0.f,MaxValue=0.25)
 	HeavyBodyArmor=(Name="Heavy Body Armor",Increment=0.01,Rank=0,StartingValue=0.f,MaxValue=0.25)
    	ZedTimeReload=(Name="Zed Time Reload",Increment=0.03f,Rank=0,StartingValue=0.f,MaxValue=0.75f)
+
+   	PassiveWeaponSwitchModifier=0.35f
 
  	PerkSkills(ESurvivalist_TacticalReload)=(Name="TacticalReload",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_TacticalReload", Increment=0.f,Rank=0,StartingValue=0.25,MaxValue=0.25)
 	PerkSkills(ESurvivalist_HeavyWeaponsReload)=(Name="HeavyWeaponsReload",IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_HeavyWeapons", Increment=0.f,Rank=0,StartingValue=2.5f,MaxValue=2.5f)

@@ -12,7 +12,7 @@ class KFDT_Bludgeon_FireAxeBash extends KFDT_Bludgeon
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_FireAxe'
-   StumblePower=150.000000
+   StumblePower=200.000000
    MeleeHitPower=100.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=1600.000000

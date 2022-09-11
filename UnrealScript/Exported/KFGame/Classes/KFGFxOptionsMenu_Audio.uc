@@ -83,7 +83,9 @@ const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
 const KFID_ClassicPlayerInfo=173;
 const KFID_VOIPMicVolumeMultiplier = 174;
-
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 #linenumber 14
 //@HSL_MOD_END
 var localized string SectionNameString;

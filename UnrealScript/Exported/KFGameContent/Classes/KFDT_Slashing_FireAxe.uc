@@ -130,8 +130,9 @@ defaultproperties
    StumblePower=50.000000
    MeleeHitPower=150.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Berserker'
-   KDamageImpulse=200.000000
-   KDeathUpKick=250.000000
+   KDamageImpulse=2000.000000
+   KDeathVel=500.000000
+   KDeathUpKick=500.000000
    Name="Default__KFDT_Slashing_FireAxe"
    ObjectArchetype=KFDT_Slashing'KFGame.Default__KFDT_Slashing'
 }

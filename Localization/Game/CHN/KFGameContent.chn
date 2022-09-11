@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="每件武器都有一个<font color="#caab05">重量
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="补充弹药和护甲"
-TraderRefillGamepadDescriptionKey="你可以在商人那里补充<font color="#caab05">弹药</font>、<font color="#caab05">手榴弹</font>和<font color="#caab05">身体护甲</font>。如需这样做，使用左操作杆在商人菜单的左侧选择想要购买弹药的武器。你可以按 <font color="#caab05">XboxTypeS_A</font> 为选中的武器购买一匣子弹或一枚手榴弹，或按 <font color="#caab05">XboxTypeS_X</font> 购买你买得起的尽可能多的弹药和手榴弹。如果你没有时间（或资金充足），按 <font color="#caab05">LeftThumbStick</font> 将为你自动付款，快速补充弹药、护甲和手榴弹。"
+TraderRefillGamepadDescriptionKey="你可以在商人那里补充<font color="#caab05">弹药</font>、<font color="#caab05">手榴弹</font>和<font color="#caab05">身体护甲</font>。如需这样做，使用左摇杆在商人菜单的左侧选择想要购买弹药的武器。你可以按 <font color="#caab05">XboxTypeS_A</font> 为选中的武器购买一匣子弹或一枚手榴弹，或按 <font color="#caab05">XboxTypeS_X</font> 购买你买得起的尽可能多的弹药和手榴弹。如果你没有时间（或资金充足），按 <font color="#caab05">LeftThumbStick</font> 将为你自动付款，快速补充弹药、护甲和手榴弹。"
 TraderSellGamepadTitleKey="出售武器"
-TraderSellGamepadDescriptionKey="要<font color="#caab05">出售武器</font>，使用左操作杆和按 <font color="#caab05">XboxTypeS_Y</font> 在商人菜单的左侧选择想要出售的武器。你可以看见出售该物品你可以获得的金钱。你不能出售备用 9 毫升手枪、身体护甲或手榴弹。"
+TraderSellGamepadDescriptionKey="要<font color="#caab05">出售武器</font>，使用左摇杆和按 <font color="#caab05">XboxTypeS_Y</font> 在商人菜单的左侧选择想要出售的武器。你可以看见出售该物品你可以获得的金钱。你不能出售备用 9 毫升手枪、身体护甲或手榴弹。"
 TraderBuyGamepadTitleKey="购买武器"
-TraderBuyGamepadDescriptionKey="要<font color="#caab05">购买武器</font>，使用左操作杆和按 <font color="#caab05">XboxTypeS_A</font> 在商人菜单的右侧选择想要购买的武器。确保你有充足的<font color="#caab05">金钱</font>和<font color="#caab05">重量容量</font>来购买武器。"
+TraderBuyGamepadDescriptionKey="要<font color="#caab05">购买武器</font>，使用左摇杆和按 <font color="#caab05">XboxTypeS_A</font> 在商人菜单的右侧选择想要购买的武器。确保你有充足的<font color="#caab05">金钱</font>和<font color="#caab05">重量容量</font>来购买武器。"
 TraderWeightGamepadTitleKey="武器重量和容量"
 TraderWeightGamepadDescriptionKey="每件武器都有一个<font color="#caab05">重量值</font>。你目前的武器重量可能会使你无法购买你想要的武器。武器重量在武器列表上和武器详细信息中显示。你的<font color="#caab05">重量容量</font>在屏幕中心目前的金钱下方显示。使你无法购买目前选中的物品的原因会以红色高亮显示。"
 
@@ -749,6 +749,16 @@ ItemCategory="炸弹"
 ItemDescription="•发射碰撞后爆炸的生物地雷，伤害丧尸并治愈盟友。\n•备用射击触发所有已布置的地雷。\n•出于卫生条例的规定，其基础材料来源为保密信息。"
 SharedUnlockSource="地雷重制者武器包"
 
+[KFWeap_HRG_Vampire]
+ItemName="HRG 吸血鬼"
+ItemCategory="特殊"
+ItemDescription="•主要攻击吸收敌人的鲜血，填充血池。\n•主要攻击之后射出爆炸性凝固血球，伤害敌人并治愈友军。\n•备用射击模式消耗血池，射出结晶血钉。"
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="霜牙"
+ItemCategory="霰弹枪"
+ItemDescription="•发射模式射出冻结敌人的弹药。\n•重击攻击用斧头粉碎敌人。\n•辅助功能键-阻挡/闪避。\n•这把斧头是冰雕的绝佳装备。"
+SharedUnlockSource="霜牙武器包"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

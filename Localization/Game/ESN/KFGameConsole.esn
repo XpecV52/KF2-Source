@@ -33,6 +33,7 @@ KF-Sanitarium="Jugando Manicomio"
 KF-Biolapse="Jugando Biolapso"
 KF-Desolation="Jugando en Desolación"
 KF-HellmarkStation="Jugando en Puesto Hellmark"
+KF-Elysium="Jugando en Elíseo"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -152,10 +153,10 @@ SwitchProfile="Usa XboxTypeS_Y para cambiar de perfil"
 LoginButtonPrompt="Iniciar sesión"
 LoggingIn="Iniciando sesión..."
 LoginFailed="Error al iniciar sesión"
-NoOnlinePlay="No puedes jugar en línea."
-TooYoung="Se ha desactivado el servicio en línea en tu cuenta de Sony Entertainment Network debido a las restricciones de control paterno."
+NoOnlinePlay="No puedes jugar online."
+TooYoung="Se ha desactivado el servicio online en tu cuenta de Sony Entertainment Network debido a las restricciones de control paterno."
 PatchAvailable="Parche disponible. Para hacer uso de las características en línea, debes actualizar la aplicación."
-NotLoggedInOnlinePSN="Para utilizar las características en línea debes iniciar sesión en PlayStation™Network."
+NotLoggedInOnlinePSN="Para utilizar las funciones online debes iniciar sesión en PlayStation™Network."
 LiveRequiredMessage="Debes iniciar sesión con un perfil que tenga Xbox Live activado y tener una conexión de red activa para jugar en Xbox Live."
 NetworkError="Se ha producido un error de red. Comprueba tu conexión de red."
 ErrorNoPlayfabDescription="No se ha podido establecer conexión con los servidores maestros del juego. Vuelve a intentarlo en unos minutos."
@@ -184,15 +185,15 @@ PSNSignoutMessage="Se ha cerrado tu sesión de PlayStation™Network. Has vuelto
 InviteMessage="¡Ven a matar unos zeds conmigo!"
 NotConnectedTitle="Error de red"
 NotConnectedMessage="No hay conexión a Internet. Comprueba tu conexión e inténtalo de nuevo."
-NotConnectedForOnlinePlay="No hay conexión a Internet. Revisa tu conexión y vuelve a intentarlo para usar las características en línea."
-NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+NotConnectedForOnlinePlay="No hay conexión a Internet. Comprueba tu conexión e inténtalo de nuevo para usar las funciones online."
+NotConnectedForOnlinePlayXB1="Tienes que iniciar sesión en Xbox Live para jugar online. Para usar funciones online, comprueba tu conexión e inténtalo de nuevo."
 MultiplayerNotAllowed_MessageLive="Debes iniciar sesión con un perfil que tenga Xbox Live activado y con privilegios para jugar en multijugador."
 MultiplayerNotAllowed_Title="Multijugador no permitido"
 LoggedOutMessage="El perfil activo ha cambiado. Has vuelto la pantalla de título."
 LoggedOutTitle="Sesión cerrada"
 LoggedInTitle="Sesión iniciada"
-NewRegionTitle="Welcome"
-NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
+NewRegionTitle="Te damos la bienvenida"
+NewRegionMessage="Te damos la bienvenida al matchmaking online. ¡Asegúrate de que tu región de matchmaking es correcta!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Ver perfil de jugador"
@@ -214,10 +215,10 @@ ControllerSound="Sonido del mando"
 
 [KFGFxMenu_StartGame]
 MatchmakingRegionString="REGIÓN"
-LeaveMenuString="También saldrás de tu grupo si sales del emparejamiento."
+LeaveMenuString="También saldrás de tu grupo si sales del matchmaking."
 
 [KFGFxMenu_Store]
-StoreStringXB1="TIENDA XBOX"
+StoreStringXB1="MICROSOFT STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGIÓN"
@@ -261,7 +262,7 @@ HorzineSupplyCrate3ShortDesription="Esta caja de suministros de Horzine contiene
 HorzineSupplyCrate4ProductName="Ll. c. sumin. Horzine Serie 4"
 HorzineSupplyCrate4ShortDesription="Esta caja de suministros de Horzine contiene una apariencia de arma. Para abrirla, necesitas una llave de caja de suministros de Horzine. Contiene una de las siguientes apariencias de arma de categoría "infrecuente" o superior:"
 
-StoreGameLegalText="Software sujeto a licencia (www.playstation.com/en-us/legal/softwarelicense-esp). La actividad en línea cumple los Términos del Servicio y el Acuerdo de Usuario (www.playstationnetwork.com/terms-of-service). Cuota única por jugar en el sistema PS4™ principal asociado a la cuenta y otros sistemas PS4™ al iniciar sesión con esa cuenta. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® es una marca registrada de Tripwire Interactive en EE.UU. y otros. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Todos los derechos reservados. Unreal® es una marca comercial o registrada de Epic Games, Inc. en EE.UU. y otros. Toda marca comercial, logotipo y derecho de autor pertenece a sus propietarios. Todos los derechos reservados."
+StoreGameLegalText="Software sujeto a licencia (www.playstation.com/en-us/legal/softwarelicense-esp). La actividad onlinea cumple los Términos del Servicio y el Acuerdo de Usuario (www.playstationnetwork.com/terms-of-service). Cuota única por jugar en el sistema PS4™ principal asociado a la cuenta y otros dispositivos PS4™ al iniciar sesión con esa cuenta. Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor® es una marca registrada de Tripwire Interactive en EE.UU. y otros. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. Todos los derechos reservados. Unreal® es una marca comercial o registrada de Epic Games, Inc. en EE.UU. y otros. Toda marca comercial, logotipo y derecho de autor pertenece a sus propietarios. Todos los derechos reservados."
 
 StoreItemLegalText="Para poder usarlo, este objeto requiere el juego completo Killing Floor 2. El uso de este objeto está sujeto al mismo Contrato para Licencia del Usuario final que el juego original."
 

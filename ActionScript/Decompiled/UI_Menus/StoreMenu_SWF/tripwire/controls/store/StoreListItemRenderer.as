@@ -1,5 +1,6 @@
 package tripwire.controls.store
 {
+    import flash.display.MovieClip;
     import flash.text.TextField;
     import tripwire.controls.TripListItemRenderer;
     import tripwire.controls.TripUILoader;
@@ -10,7 +11,11 @@ package tripwire.controls.store
         
         public var itemPriceText:TextField;
         
+        public var itemPriceBaseText:TextField;
+        
         public var imageLoader:TripUILoader;
+        
+        public var crossPrice:MovieClip;
         
         public function StoreListItemRenderer()
         {
@@ -26,6 +31,17 @@ package tripwire.controls.store
             {
                 visible = true;
                 this.itemPriceText.text = data.price;
+                if(data.itemPriceBase && data.itemPriceBase != "")
+                {
+                    this.itemPriceBaseText.text = data.itemPriceBase;
+                    this.itemPriceBaseText.visible = true;
+                    this.crossPrice.visible = true;
+                }
+                else
+                {
+                    this.itemPriceBaseText.visible = false;
+                    this.crossPrice.visible = false;
+                }
                 if(data.imageURL && data.imageURL != "")
                 {
                     this.imageLoader.source = data.imageURL;
@@ -43,6 +59,17 @@ package tripwire.controls.store
             if(data)
             {
                 this.itemPriceText.text = data.price;
+                if(data.itemPriceBase && data.itemPriceBase != "")
+                {
+                    this.itemPriceBaseText.text = data.itemPriceBase;
+                    this.itemPriceBaseText.visible = true;
+                    this.crossPrice.visible = true;
+                }
+                else
+                {
+                    this.itemPriceBaseText.visible = false;
+                    this.crossPrice.visible = false;
+                }
             }
         }
     }

@@ -178,7 +178,7 @@ simulated function ModifySpeed(out float Speed)
             MyKFWeapon = KFWeapon(KFIM.PendingWeapon);
         }
     }
-    if((MyKFWeapon != none) && MyKFWeapon.IsMeleeWeapon())
+    if((MyKFWeapon != none) && MyKFWeapon.IsMeleeWeapon() || IsWeaponOnPerk(MyKFWeapon,, self.Class))
     {
         Speed += (Speed * (GetSkillValue(PerkSkills[1])));
     }

@@ -10,5 +10,5 @@ class KFDT_Bludgeon_HRGTeslauncher extends KFDT_Bludgeon_RifleButt
 
 defaultproperties
 {
-    WeaponDef=Class'KFWeapDef_HRGTeslauncher'
+    WeaponDef=Class'KFGame.KFWeapDef_HRGTeslauncher'
 }

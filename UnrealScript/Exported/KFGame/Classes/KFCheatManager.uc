@@ -85,7 +85,9 @@ const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
 const KFID_ClassicPlayerInfo=173;
 const KFID_VOIPMicVolumeMultiplier = 174;
-
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 #linenumber 16
 //@HSL_MOD_END
 /** Debug scene related properties */
@@ -331,6 +333,44 @@ exec function TestNumbPrompts(int NumberOfPrompts)
     if(KFPC.MyGFxManager != none )
     {
         KFPC.MyGFxManager.ManagerObject.SetInt("numPrompts", NumberOfPrompts);
+    }
+}
+
+exec function TestMapMessage(String S, float time)
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+
+    if(P == none || KFPC == None)
+    {
+        return;
+    }
+
+    if(KFPC.MyGFxHUD != none )
+    {
+        KFPC.MyGFxHUD.MapTextWidget.DisplayMapText(S, time, true);
+    }
+}
+
+exec function TestMapCounterMessage(String S, float time)
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+
+    if(P == none || KFPC == None)
+    {
+        return;
+    }
+
+    if(KFPC.MyGFxHUD != none )
+    {
+        KFPC.MyGFxHUD.MapCounterTextWidget.DisplayMapText(S, time);
     }
 }
 
@@ -957,6 +997,14 @@ simulated exec function Minigun()
 }
 
 /**
+ * Give the player the Vampire
+ */
+simulated exec function Vampire()
+{
+	GiveWeapon( "KFGameContent.KFWeap_HRG_Vampire" );
+}
+
+/**
  * Give the player all pistol weapons
  */
 simulated exec function Pistols()
@@ -1068,6 +1116,11 @@ simulated exec function MineRec()
     GiveWeapon( "KFGameContent.KFWeap_Mine_Reconstructor" );
 }
 
+simulated exec function FrostSAxe()
+{
+	GiveWeapon( "KFGameContent.KFWeap_Rifle_FrostShotgunAxe" );
+}
+
 /**
  * Give the player all Medic weapons
  */
@@ -1083,6 +1136,7 @@ simulated exec function Medic()
 	GiveWeapon( "KFGameContent.KFWeap_Rifle_HRGIncision" );
 	GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_MedicRifleGrenadeLauncher" );
 	GiveWeapon( "KFGameContent.KFWeap_Blunt_MedicBat" );
+	GiveWeapon( "KFGameContent.KFWeap_HRG_Vampire" );
 }
 
 /**
@@ -2434,7 +2488,7 @@ exec function PathInfo()
 	ClientMessage( "Paths last built: "$WorldInfo.LastSuccessfulPathBuildTime, CheatType );
 }
 
-/** Sends all active NPCs and not-yet-spawned NPCs into or out of debug mode */
+/** Sends all active NPCs and not-yet-spawned NPCs into or out of debug mode */ 
 exec function AIDebugMode( optional bool bDebugMode=true )
 {
 	local KFGameInfo KFG;

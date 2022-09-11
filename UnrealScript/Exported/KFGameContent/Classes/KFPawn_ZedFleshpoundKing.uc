@@ -691,6 +691,10 @@ defaultproperties
    DamageTypeModifiers(34)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',DamageScale=(1.500000))
    DamageTypeModifiers(35)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGScorcherLightingImpact',DamageScale=(0.600000))
    DamageTypeModifiers(36)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGScorcherDoT',DamageScale=(0.400000))
+   DamageTypeModifiers(37)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(38)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallHeavyImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(39)=(DamageType=Class'kfgamecontent.KFDT_Piercing_HRG_Vampire_CrystalSpike',DamageScale=(0.500000))
+   DamageTypeModifiers(40)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_HRG_Vampire_BloodSuck',DamageScale=(0.700000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_FleshpoundKing'
    MinBlockFOV=0.200000
    FootstepCameraShake=CameraShake'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:FootstepCameraShake0'

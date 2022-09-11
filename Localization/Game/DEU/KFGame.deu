@@ -62,7 +62,7 @@ FriendsListPopupLinkButonString="Konto verknüpfen"
 ReturnString="ZURÜCK"
 
 InvitePopupTitleString="Lobby-Einladung"
-InvitePopupTextString=" hat dich in eine Lobby eingeladen"
+InvitePopupTextString=" hat dich in eine Lobby eingeladen."
 
 
 CancelConnectionString="Ladevorgang abbrechen"
@@ -167,7 +167,7 @@ VersusCompletionString="Schließe ein Spiel ab als:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="SPIELSUCHE GESCHEITERT"
-FailedSearchString="Die Spielsuche konnte kein Spiel mit den vorgegebenen Optionen finden. Bitte erweitere deine Suche oder benutze evtl. den Server-Browser um ein Spiel zu finden."
+FailedSearchString="Die Spielersuche konnte kein Spiel mit den vorgegebenen Optionen finden. Bitte erweitere deine Suche oder benutze evtl. den Server-Browser, um ein Spiel zu finden."
 BrowseServersString="SERVER BROWSEN"
 HasInvitedToGameString=" hat dich zu einem Spiel eingeladen"
 JoinGameString="Spiel beitreten?"
@@ -212,7 +212,7 @@ WhiteListedStrings[0]="JA"
 WhiteListedStrings[1]="NEIN"
 
 FindGameString="START"
-LeaveMenuString="Wenn du die Spielsuche verlässt, wird deine Gruppe aufgelöst. Willst du stattdessen zum Server-Browser?"
+LeaveMenuString="Wenn du die Spielersuche verlässt, wird deine Gruppe aufgelöst. Willst du stattdessen zum Server-Browser?"
 
 CouldNotFindGameTitleString="Kein Spiel gefunden"
 CouldNotFindGameDescriptionStringPC="Keine zur Sucheinstellg. passende Server gefunden. Versuche andere Filter oder Server-Browser."
@@ -259,7 +259,7 @@ StartGameString="SPIEL BEGINNEN"
 LaunchGameString="SPIEL BEGINNEN"
 InProgressString="SPIELFORTSCHRITT"
 SoloGameString="SOLOSPIEL"
-LeaveMatchMakingString="SPIELSUCHE VERLASSEN"
+LeaveMatchMakingString="SPIELERSUCHE VERLASSEN"
 MultiplayerLaunchString="SPIELE JETZT ONLINE"
 SearchingString="SUCHE ONLINE-SPIEL … BITTE WARTEN"
 CancelSearchingString="SUCHE ABBRECHEN"
@@ -274,7 +274,7 @@ CreateNewGameString="Neues Spiel erstellen"
 
 
 [KFGFxStartContainer_MatchMaking]
-OptionsHeaderString="SPIELSUCHE"
+OptionsHeaderString="SPIELERSUCHE"
 BackString="ZURÜCK"
 FindGameString="SPIEL FINDEN"
 
@@ -309,8 +309,8 @@ SelectPerkString="VORTEIL AUSWÄHLEN"
 
 [KFGFxMenu_ServerBrowser]
 FavoriteString="FAVORIT"
-MultiplayerMenuString="SPIELSUCHE"
-LeaveMenuString="Wenn du dieses Menü verlässt, wird deine Gruppe aufgelöst. Stattdessen zur Spielsuche gehen?"
+MultiplayerMenuString="SPIELERSUCHE"
+LeaveMenuString="Wenn du dieses Menü verlässt, wird deine Gruppe aufgelöst. Stattdessen zur Spielersuche gehen?"
 NameString="NAME"
 RefreshString="AKTUALISIEREN"
 GamesFoundString="SPIELE GEFUNDEN:"
@@ -840,6 +840,9 @@ HeadString="KOPF"
 BodyString="KÖRPER"
 SkinsString="SKINS"
 AttachmentsString="ACCESSOIRES"
+Attachment0String="ACCESSOIRE 1"
+Attachment1String="ACCESSOIRE 2"
+Attachment2String="ACCESSOIRE 3"
 BackString="ZURÜCK"
 NoneString="KEIN"
 WeaponsString="Waffen"
@@ -987,7 +990,7 @@ MenuStrings[6]="OPTIONEN"
 MenuStrings[7]="BEENDEN"
 
 ServerBrowserString="SERVER-BROWSER"
-MatchmakingString="SPIELSUCHE"
+MatchmakingString="SPIELERSUCHE"
 CreateGameString="SPIEL ERSTELLEN"
 SoloString="SOLO"
 OverviewString="SPIELÜBERSICHT"
@@ -1377,6 +1380,12 @@ MouseString="MAUS"
 MouseSmoothingString="Maus-Glättung"
 ZoomSensitivityString="Zoom Empfindlichkeit"
 ControllerZoomSensitivityString="Zoom Empfindlichkeit"
+ControllerDeadzoneString="Inaktiver Bereich"
+ControllerAccelerationJumpString="Beschleunigungssprung"
+ControllerDeadzoneDescriptionString="Bewegungsausmaß mit dem rechten Stick, bevor das Spiel die Eingabe erkennt"
+ControllerDeadzoneDescriptionXboxString="Bewegungsausmaß mit dem Rechten Stick, bevor das Spiel die Eingabe erkennt"
+ControllerAccelerationJumpDescriptionString="Höhe der Drehgeschwindigkeit, wenn der Stick das linke oder rechte Limit erreicht"
+ControllerAccelerationJumpDescriptionXboxString="Höhe der Drehgeschwindigkeit, wenn der Stick das linke oder rechte Limit erreicht"
 AimAssistLockOnString="Ziel Assist Zoom Lock-On"
 AimAssistRotationString="Ziel Assist Rotation"
 AimAssistSlowDownString="Ziel Assist Verlangsmg."
@@ -1463,6 +1472,7 @@ SkipTraderVoteYesReceivedString="Du hast dafür gestimmt, die Händlerin zu übe
 SkipTraderVoteNoReceivedString="Du hast dagegen gestimmt, die Händlerin zu überspringen"
 SkipTraderNoEnoughTimeString="Nicht genug Zeit, die Abstimmung „Händlerin überspringen“ zu starten"
 SkipTraderThisUserAlreadyStartedAVoteString="Du kannst bis zur nächsten Händlerin keine neue Abstimmung zum Überspringen der Händlerin starten"
+SkipTraderVersusZedPlayerVotes="Spieler im Zed-Team können nicht über das Überspringen der Händlerin abstimmen"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Du hast Munition erhalten von"
@@ -1999,7 +2009,7 @@ SplashDamage="Hitzewelle"
 SplashDamageDescription="Auf Kernschussweite mit Feuer getroffene Zeds taumeln nach hinten."
 
 Inferno="ZED-ZEIT – Inferno"
-InfernoDescription="Während der Zed-Zeit mit Feuer getroffene Zeds sind um 30% verlangsamt und erleiden 50% mehr Brandschaden."
+InfernoDescription="Dein Feuerschaden über Zeit wirkt sich während der Zed-Zeit auf alle Zeds um dich herum aus."
 
 Scorch="ZED-ZEIT – Pyromane"
 ScorchDescription="Während der Zed-Zeit greifst du mit Vorteils-Waffen in Fast-Echtzeit an und deine Munition geht nie aus."
@@ -2022,7 +2032,7 @@ Passives[3]=(Title="Rückstoßdämpfung",Description="Verringere Vort.-Waf.-Rüc
 Passives[4]=(Title="Zed-Zeit-Nachladen",Description="Erhöhe Nachladegeschw. in Zed-Zeit %x%/lvl");
 
 ShootnMove="Beständig"
-ShootnMoveDescription="Ignoriere Bewegungsgeschwindigkeit-Strafen für Kimme und Korn und verringere drastisch Waffenschwankungen mit Vorteils-Waffen."
+ShootnMoveDescription="Ignoriere Bewegungsgeschwindigkeit-Strafen und erhöhe den Schaden von Vorteils-Waffen um 5% beim Einsatz von Kimme und Korn. Drastische Verringerung von Waffenschwankungen mit Vorteils-Waffen."
 
 QuickSwitch="Schnell ziehen"
 QuickSwitchDescription="Verringere Rückstoß-Strafen für das Schießen aus der Hüfte, erhöhe die Bew.geschw. um 5% und wechsle 50% schneller zwischen Vorteils-Waffen."
@@ -2207,6 +2217,7 @@ Passives[0]=(Title="Waffen-Schaden",Description="Erhöhe Waffen-Schaden um x%x p
 Passives[1]=(Title="Globale Schadensresistenz",Description="Erhöhe Resistenz gegen jeglichen Schaden um %x%/Lvl");
 Passives[2]=(Title="Schwere Körperrüstung",Description="%x%/Lvl (max 25%) keinen LP-Schaden erleiden, wenn du Rüstung hast.");
 Passives[3]=(Title="Zed-Zeit-Nachladen",Description="Erhöhe Nachladegeschw. in Zed-Zeit %x%/Lvl");
+Passives[4]=(Title="Schnellerer Waffen-Wechsel",Description="Waffen-Wechselgeschwindigkeit um 35% erhöht");
 
 
 HeavyWeaponsReload="Schwere Waffen-Ausbildung"
@@ -2588,7 +2599,7 @@ Decimal="Num Pad ."
 NumLock="Num Lock"
 PageUp="Bild Hoch"
 PageDown="Bild Runter"
-Home="START"
+Home="Start"
 End="Ende"
 Insert="Einfügen"
 Delete="Entfernen"
@@ -2784,6 +2795,20 @@ AllCompleteRewardDescriptionString="Halloween | Voodoo-Rucksack"
 ChanceDropDescriptionStrings[0]="Halloween-Schein"
 ChanceDropDescriptionStrings[1]="Goldener Halloween-Schein"
 
+[KFGFxSpecialEventObjectivesContainer_Xmas2020]
+CurrentSpecialEventString="Ein zeitlich begrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Gefrorene Rosen",DescriptionString="Sammle 3 Rosen in Elysium")
+SpecialEventObjectiveInfoList[1]=(TitleString="Vier verschiedene Geschichten",DescriptionString="Sammle 4 Bücher in Elysium")
+SpecialEventObjectiveInfoList[2]=(TitleString="Unter dem Mistelzweig",DescriptionString="Schließe eine Welle in Elysiums Botanica-Arena ab")
+SpecialEventObjectiveInfoList[3]=(TitleString="Ein Weihnachtslied",DescriptionString="Schließe eine Welle in Elysiums Lehrmeister-Heiligtum-Arena ab")
+SpecialEventObjectiveInfoList[4]=(TitleString="Ewiger Winter",DescriptionString="Schließe Welle 15 von Elysium bei Endlos auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="Weihnachten | Taktischer Elf-Rucksack"
+
+ChanceDropDescriptionStrings[0]="Schein „Krampus“"
+ChanceDropDescriptionStrings[1]="Goldener Schein „Krampus“"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2800,7 +2825,7 @@ KnifeString="Messer"
 FriendlyName="Schädelknacker"
 DescriptionStrings[0]="Hirnschaden ist der beste Schaden."
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
-ModifierDescriptions[0]="Bei diesem Ausbruch sind die Zeds derartig mutiert, dass sie nur durch Schaden am Kopf endgültig ausgeschaltet werden können. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst."
+ModifierDescriptions[0]="Bei diesem Ausbruch sind die Zeds derartig mutiert, dass sie nur durch Schaden am Kopf endgültig ausgeschaltet werden können. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielersuche-Seite auswählst. Vorteilslevel 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2810,7 +2835,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Mini-Terror"
 DescriptionStrings[0]="Eine kleine Bedrohung ist noch immer eine Bedrohung."
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
-ModifierDescriptions[0]="In diesem Ausbruch werden Zeds kleiner und somit schwerer zu treffen, wenn du auf sie schießt. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst."
+ModifierDescriptions[0]="In diesem Ausbruch werden Zeds kleiner und somit schwerer zu treffen, wenn du auf sie schießt. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielersuche-Seite auswählst. Vorteilslevel 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2820,7 +2845,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Poundemonium"
 DescriptionStrings[0]="Fleshpounds, immer und überall. Beinahe."
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
-ModifierDescriptions[0]="Die Fleshpound-Convention ist in der Stadt! Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst."
+ModifierDescriptions[0]="Die Fleshpound-Convention ist in der Stadt! Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielersuche-Seite auswählst. Vorteilslevel 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2830,7 +2855,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Hoch in den Tod"
 DescriptionStrings[0]="Versuche, neunundneunzig Zed-Ballons zu machen."
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
-ModifierDescriptions[0]="In diesem Ausbruch werden Zeds durch deine Schüsse aufgeblasen wie Luftballons. Lass sie lieber platzen, sonst regenerieren sie sich! Wähle den wöchentlichen Spielmodus auf der Spielsuche-Seite. Vorteilslevel 15+."
+ModifierDescriptions[0]="In diesem Ausbruch werden Zeds durch deine Schüsse aufgeblasen wie Luftballons. Lass sie lieber platzen, sonst regenerieren sie sich! Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteilslevel 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2840,7 +2865,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Zed-Zeit"
 DescriptionStrings[0]="Alle Zed-Zeit der Welt."
 DescriptionStrings[1]="Länge: Kurz (4 Wellen)"
-ModifierDescriptions[0]="Hast du manchmal das Gefühl, das Leben zieht an dir vorbei? Nicht in diesem Ausbruch! Du bist in Zed-Zeit, sobald du in der Nähe eines Zeds bist. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst."
+ModifierDescriptions[0]="Hast du manchmal das Gefühl, das Leben zieht an dir vorbei? Nicht in diesem Ausbruch! Du bist in Zed-Zeit, sobald du in der Nähe eines Zeds bist. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielersuche-Seite auswählst. Vorteilslevel 15+."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2849,7 +2874,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Boom"
 DescriptionStrings[0]="Zeds, die unter Druck stehen, könnten explodieren."
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
-ModifierDescriptions[0]="Vielleicht haben sie etwas Falsches gegessen? Oder Magenverstimmungen? Was auch immer es war, es lässt Zeds explodieren, wenn du sie in diesem Ausbruch tötest. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst."
+ModifierDescriptions[0]="Vielleicht haben sie etwas Falsches gegessen? Oder Magenverstimmungen? Was auch immer es war, es lässt Zeds explodieren, wenn du sie in diesem Ausbruch tötest. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielersuche-Seite auswählst. Vorteilslevel 15+."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2858,7 +2883,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Muskelprotz"
 DescriptionStrings[0]="Je größer sie sind, desto schwerer ist ihr Fall."
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
-ModifierDescriptions[0]="In diesem Ausbruch leben Zeds länger, werden größer und haben eine höhere Reichweite, wenn sie Spieler treffen oder von bestimmten Zed-Fähigkeiten betroffen werden. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst."
+ModifierDescriptions[0]="In diesem Ausbruch leben Zeds länger, werden größer und haben eine höhere Reichweite, wenn sie Spieler treffen oder von bestimmten Zed-Fähigkeiten betroffen werden. Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielersuche-Seite auswählst. Vorteilslevel 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2868,7 +2893,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Wackel-Zed"
 DescriptionStrings[0]="… das muss im Nacken wehtun."
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
-ModifierDescriptions[0]="Irgendetwas muss mit diesen Zeds furchtbar schiefgelaufen sein, denn ihre Köpfe sind vieeeeeeeeeeeel größer als normalerweise! Geradezu riesig! Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielsuchen-Seite auswählst."
+ModifierDescriptions[0]="Irgendetwas muss mit diesen Zeds furchtbar schiefgelaufen sein, denn ihre Köpfe sind vieeeeeeeeeeeel größer als normalerweise! Geradezu riesig! Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielersuche-Seite auswählst. Vorteilslevel 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3385,7 +3410,32 @@ DisplayName="Verwüstung"
 [KF-HellmarkStation KFMapSummary]
 DisplayName="Hellmark Station"
 
+[KF-Elysium KFMapSummary]
+DisplayName="Elysium"
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% hat ein Sammelstück gefunden. %y% sind noch zu finden …"
 FoundAllCollectiblesString="Alle Sammelstücke wurden gefunden!"
+
+[KFKismetMapLocalization_Elysium]
+LeverWarningText="Wenn du diesen Hebel betätigst, könnte das Folgen haben …"
+LoreMastersKnowsText="Der Lehrmeister weiß Bescheid"
+BotanicaOpenText="Botanica ist geöffnet"
+FuneralPyreIgnitionText="Der heilige Scheiterhaufen wurde entzündet!\nDie brennenden Seelen von Avernus suchen jetzt das Herz von Elysium heim"
+TomeMissingText="Ein Buch scheint von diesem Sockel verschwunden zu sein"
+FlowerActivationText="Die Vase verströmt ein blumiges Aroma"
+SandTomeCollectedText="Das Buch des Sandes wurde eingesammelt\n%VALUE%"
+SteelTomeCollectedText="Das Buch des Stahls wurde eingesammelt\n%VALUE%"
+SludgeTomeCollectedText="Das Buch des Faulschlamms wurde eingesammelt\n%VALUE%"
+WoodTomeCollectedText="Das Buch des Holzes wurde eingesammelt\n%VALUE%"
+RedRoseCollectedText="Eine rote Rose wurde eingesammelt\n%VALUE%"
+MagentaRoseollectedText="Eine magentafarbene Rose wurde eingesammelt\n%VALUE%"
+YellowRoseCollectedText="Eine gelbe Rose wurde eingesammelt\n%VALUE%"
+OneOfThreeCollectedText="1 von 3 gesammelt"
+TwoOfThreeCollectedText="2 von 3 gesammelt"
+ThreeOfThreeCollectedText="3 von 3 gesammelt"
+OneOfFourCollectedText="1 von 4 gesammelt"
+TwoOfFourCollectedText="2 von 4 gesammelt"
+ThreeOfFourCollectedText="3 von 4 gesammelt"
+FourOfFourCollectedText="4 von 4 gesammelt"

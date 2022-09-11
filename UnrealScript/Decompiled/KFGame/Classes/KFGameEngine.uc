@@ -355,6 +355,12 @@ native static function int GetSeasonalEventID();
 // Export UKFGameEngine::execGetWeeklyEventIndex(FFrame&, void* const)
 native static function int GetWeeklyEventIndex();
 
+// Export UKFGameEngine::execIsSalesEventActive(FFrame&, void* const)
+native static function bool IsSalesEventActive();
+
+// Export UKFGameEngine::execIsSalesEventChecked(FFrame&, void* const)
+native static function bool IsSalesEventChecked();
+
 // Export UKFGameEngine::execInitAudioOptions(FFrame&, void* const)
 native static function InitAudioOptions();
 

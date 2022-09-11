@@ -10,7 +10,7 @@ class KFDT_Fire_HRGTeslauncherDoT extends KFDT_Fire
 
 defaultproperties
 {
-    WeaponDef=Class'KFWeapDef_HRGTeslauncher'
+    WeaponDef=Class'KFGame.KFWeapDef_HRGTeslauncher'
     DoT_Duration=2
     DoT_Interval=0.5
     DoT_DamageScale=0.3

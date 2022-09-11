@@ -33,6 +33,7 @@ KF-Sanitarium="正在游玩疗养院"
 KF-Biolapse="正在游玩生化实验室"
 KF-Desolation="玩废墟"
 KF-HellmarkStation="正在玩地狱标记站"
+KF-Elysium="正在玩极乐净土"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -185,14 +186,14 @@ InviteMessage="和我一起炸飞丧尸吧！"
 NotConnectedTitle="网络错误"
 NotConnectedMessage="未连接到网络。检查你的连接并重试。"
 NotConnectedForOnlinePlay="未连接到网络。请检查你的连接并重试，以使用在线功能"
-NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+NotConnectedForOnlinePlayXB1="你必须登录Xbox Live才能在线游戏。请检查你的连接并重试，以使用在线功能。"
 MultiplayerNotAllowed_MessageLive="您必须登录启用拥有多人游戏特权的配置文件的 Xbox Live，才能游戏。"
 MultiplayerNotAllowed_Title="不允许多人游戏"
 LoggedOutMessage="激活的配置文件已被修改。您已被返回标题界面。"
 LoggedOutTitle="已退出"
 LoggedInTitle="已登录"
-NewRegionTitle="Welcome"
-NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
+NewRegionTitle="欢迎"
+NewRegionMessage="欢迎来到在线比赛匹配。请确保你的比赛匹配区域正确！"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="查看玩家档案"
@@ -217,7 +218,7 @@ MatchmakingRegionString="区域"
 LeaveMenuString="离开比赛匹配也将意味着离开你的小队"
 
 [KFGFxMenu_Store]
-StoreStringXB1="XBOX 商店"
+StoreStringXB1="MICROSOFT STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="区域"
@@ -261,7 +262,7 @@ HorzineSupplyCrate3ShortDesription="这个霍因供应箱包含一种武器皮�
 HorzineSupplyCrate4ProductName="霍因供应箱系列 4"
 HorzineSupplyCrate4ShortDesription="这个霍因供应箱包含一种武器皮肤。需要霍因供应箱钥匙才能打开。包含以下一种稀有或更好的武器皮肤："
 
-StoreGameLegalText="软件需经过许可 (us.playstation.com/softwarelicense)。在线活动需遵循服务条款和用户协议 (www.playstationnetwork.com/terms-of-service)。使用账户注册时其指定的主要 PS4™ 系统和其他 PS4™ 系统玩游戏时的一次许可费用。Killing Floor© 2009-2016 Tripwire Interactive 版权所有。Killing Floor® 是 Tripwire Interactive 在美国和其他国家的注册商标。Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc.保留所有权利。Unreal® 是 Epic Games, Inc. 在美国和其他国家的商标或注册商标。所有其他商标、标识和版权均为其各自所有者的财产。保留所有权利。"
+StoreGameLegalText="软件需经过许可 (us.playstation.com/softwarelicense)。在线活动需遵循服务条款和用户协议 (www.playstationnetwork.com/terms-of-service)。使用账户注册时其指定的主要 PS4™主机和其他 PS4™主机玩游戏时的一次许可费用。Killing Floor© 2009-2016 Tripwire Interactive 版权所有。Killing Floor® 是 Tripwire Interactive 在美国和其他国家的注册商标。Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc.保留所有权利。Unreal® 是 Epic Games, Inc. 在美国和其他国家的商标或注册商标。所有其他商标、标识和版权均为其各自所有者的财产。保留所有权利。"
 
 StoreItemLegalText="要使用此物品，需要完整的《杀戮空间 2》游戏。此物品的使用需遵循与原始游戏相同的最终用户许可协议。"
 

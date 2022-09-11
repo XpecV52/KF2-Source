@@ -749,6 +749,16 @@ ItemCategory="Materiały wybuchowe"
 ItemDescription="•Wystrzeliwuje biominy, które wybuchają przy kontakcie, raniąc zety i uzdrawiając sojuszników.\n•Tryb alternatywny detonuje umieszczone miny.\n•Substancja uzdrawiająca nie została ujawniona ze względu na możliwe naruszenia z przepisów zdrowotnych."
 SharedUnlockSource="Zestaw broni rekonstruktora minowego"
 
+[KFWeap_HRG_Vampire]
+ItemName="Wampir HRG"
+ItemCategory="Specjalne"
+ItemDescription="• Podstawowy atak pochłania krew wrogów, wypełniając zbiornik krwi.\n• Potem podstawowy atak wystrzeliwuje wybuchową kulę skoagulowanej krwi, która rani wrogów i uzdrawia sojuszników.\n• Alternatywny atak ognia wykorzystuje zbiornik krwi, aby wystrzelić kolce z krwi."
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="Mroźny Kieł"
+ItemCategory="Strzelba"
+ItemDescription="• Tryb ognia strzela pociskami, które zamrażają wrogów.\n• Atak wręcz rozbija wrogów toporem.\n• Tryb alt. – blokowanie/parowanie.\n• Ten topór idealnie się nadaje do rzeźbienia w lodzie."
+SharedUnlockSource="Zestaw broni Mroźny Kieł"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

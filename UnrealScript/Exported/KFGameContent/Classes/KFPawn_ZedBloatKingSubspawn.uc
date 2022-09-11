@@ -144,6 +144,7 @@ defaultproperties
    DamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingFart',DamageScale=(0.000000))
    DamageTypeModifiers(13)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatPukeMine',DamageScale=(0.000000))
    DamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Toxic_BloatKingPukeMine',DamageScale=(0.000000))
+   DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_HRG_Vampire_BloodSuck',DamageScale=(2.000000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_BloatKingSubspawn'
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
       BoneName="Dummy"

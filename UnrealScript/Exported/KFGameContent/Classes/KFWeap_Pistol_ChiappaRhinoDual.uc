@@ -85,8 +85,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.010000
    Spread(1)=0.010000
-   InstantHitDamage(0)=70.000000
-   InstantHitDamage(1)=70.000000
+   InstantHitDamage(0)=75.000000
+   InstantHitDamage(1)=75.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=24.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_ChiappaRhino'

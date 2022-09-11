@@ -6305,3 +6305,131 @@ AttachmentSkin2="Hunger"
 AttachmentSkin3="Pestilenz"
 AttachmentSkin4="Krieg"
 AttachmentSkin5="Anarchie"
+
+[Cosmetic_Winter_Hat_ARCH]
+Attachment="Schneemütze"
+AttachmentSkin0="Weiß"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Grün"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Rot"
+AttachmentSkin5="Digitale Tarnung"
+AttachmentSkin6="Tundra-Tarnung"
+AttachmentSkin7="Arktische Tarnung"
+AttachmentSkin8="Edel"
+
+[Cosmetic_Winter_Goggles_ARCH]
+Attachment="Schneebrille"
+AttachmentSkin0="Weiß"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Grün"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Rot"
+AttachmentSkin5="Digitale Tarnung"
+AttachmentSkin6="Tundra-Tarnung"
+AttachmentSkin7="Arktische Tarnung"
+AttachmentSkin8="Edel"
+
+[Cosmetic_Winter_Mask_ARCH]
+Attachment="Schneemaske"
+AttachmentSkin0="Weiß"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Grün"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Rot"
+AttachmentSkin5="Digitale Tarnung"
+AttachmentSkin6="Tundra-Tarnung"
+AttachmentSkin7="Arktische Tarnung"
+AttachmentSkin8="Edel"
+
+[Cosmetic_Winter_Backpack_ARCH]
+Attachment="Kletterrucksack"
+AttachmentSkin0="Weiß"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Grün"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Rot"
+AttachmentSkin5="Digitale Tarnung"
+AttachmentSkin6="Tundra-Tarnung"
+AttachmentSkin7="Arktische Tarnung"
+AttachmentSkin8="Edel"
+
+[Cosmetic_Christmas_JackFrostMask_ARCH]
+Attachment="Väterchen-Frost-Maske"
+AttachmentSkin0="Schwarz"
+AttachmentSkin1="Grün"
+AttachmentSkin2="Gruselig"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Christmas_JollyBreather_ARCH]
+Attachment="Weihnachtliches Atemgerät"
+AttachmentSkin0="Zuckerstange"
+AttachmentSkin1="Orange"
+AttachmentSkin2="Rot"
+AttachmentSkin3="Grün"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Christmas_FestiveShades_ARCH]
+Attachment="Festliche Sonnenbrille"
+AttachmentSkin0="Rot-grün"
+AttachmentSkin1="Grün"
+AttachmentSkin2="Bubblegum"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Christmas_OrnamentHead_ARCH]
+Attachment="Baumschmuck-Kopf"
+AttachmentSkin0="Grün"
+AttachmentSkin1="Lila"
+AttachmentSkin2="Blau"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Christmas_GiftWrapping_ARCH]
+Attachment="Geschenkpapier"
+AttachmentSkin0="Bombe"
+AttachmentSkin1="Schädel"
+AttachmentSkin2="Liebe"
+AttachmentSkin3="Schwarz"
+AttachmentSkin4="Giftig"
+
+[Cosmetic_Christmas_KrampusHead_ARCH]
+Attachment="Krampuskopf"
+AttachmentSkin0="Orange"
+AttachmentSkin1="Weiß"
+AttachmentSkin2="Rot"
+AttachmentSkin3="Blau"
+AttachmentSkin4="Edel"
+
+[Cosmetic_Christmas_TacticalElfPack_ARCH]
+Attachment="Taktischer Elf-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Christmas_TacticalElfPack_Alberts_ARCH]
+Attachment="Taktischer Elf-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Christmas_TacticalElfPack_Coleman_ARCH]
+Attachment="Taktischer Elf-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Christmas_TacticalElfPack_JagerHorn_ARCH]
+Attachment="Taktischer Elf-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Christmas_TacticalElfPack_Knight_ARCH]
+Attachment="Taktischer Elf-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Christmas_TacticalElfPack_MrFoster_ARCH]
+Attachment="Taktischer Elf-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Christmas_TacticalElfPack_MrsFoster_ARCH]
+Attachment="Taktischer Elf-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
+Attachment="Taktischer Elf-Rucksack"
+AttachmentSkin0="Edel"

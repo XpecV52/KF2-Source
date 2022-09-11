@@ -41,6 +41,8 @@ var KFGFxWidget_NonCriticalGameMessage NonCriticalGameMessageWidget;
 var KFGFxWidget_NonCriticalGameMessage InviteGameMessageWidget;
 var KFGFxWidget_RhythmCounter RhythmCounterWidget;
 var KFGFxWidget_BossHealthBar bossHealthBar;
+var KFGFxWidget_MapText MapTextWidget;
+var KFGFxWidget_MapCounterText MapCounterTextWidget;
 var KFPlayerController KFPC;
 var config float HUDScale;
 var GFxObject KFGXHUDManager;
@@ -125,6 +127,22 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 bossHealthBar = KFGFxWidget_BossHealthBar(Widget);
                 SetWidgetPathBinding(Widget, WidgetPath);
                 bossHealthBar.InitializeHUD();
+            }
+            break;
+        case 'MapTextWidget':
+            if(MapTextWidget == none)
+            {
+                MapTextWidget = KFGFxWidget_MapText(Widget);
+                SetWidgetPathBinding(Widget, WidgetPath);
+                MapTextWidget.InitializeHUD();
+            }
+            break;
+        case 'counterMapTextWidget':
+            if(MapCounterTextWidget == none)
+            {
+                MapCounterTextWidget = KFGFxWidget_MapCounterText(Widget);
+                SetWidgetPathBinding(Widget, WidgetPath);
+                MapCounterTextWidget.InitializeHUD();
             }
             break;
         case 'KickVoteWidget':
@@ -324,6 +342,14 @@ function TickHud(float DeltaTime)
     if(bossHealthBar != none)
     {
         bossHealthBar.TickHud(DeltaTime);
+    }
+    if(MapTextWidget != none)
+    {
+        MapTextWidget.TickHud(UpdateInterval);
+    }
+    if(MapCounterTextWidget != none)
+    {
+        MapCounterTextWidget.TickHud(UpdateInterval);
     }
     if(SpectatorInfoWidget != none)
     {
@@ -584,6 +610,22 @@ function HideBossNamePlate()
     if(bossHealthBar != none)
     {
         bossHealthBar.OnNamePlateHidden();
+    }
+}
+
+function DisplayMapText(string MessageText, float DisplayTime, bool bWaitForTheNextMessageToFinish)
+{
+    if(MapTextWidget != none)
+    {
+        MapTextWidget.DisplayMapText(MessageText, DisplayTime, bWaitForTheNextMessageToFinish);
+    }
+}
+
+function DisplayMapCounterText(string MessageText, float DisplayTime)
+{
+    if(MapCounterTextWidget != none)
+    {
+        MapCounterTextWidget.DisplayMapText(MessageText, DisplayTime);
     }
 }
 

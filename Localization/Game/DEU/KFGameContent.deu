@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="Jede Waffe hat einen <font color="#caab05">GEWICHTSW
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="Nachfüllen von Munition und Rüstung"
-TraderRefillGamepadDescriptionKey="Du kannst <font color="#caab05">MUNITION</font>, <font color="#caab05">GRANATEN</font> und <font color="#caab05">KÖRPERRÜSTUNG</font> bei der Händlerin nachfüllen. Wähle dazu mit dem linken Stick auf der linken Seite des Händlerin-Menüs die Waffe aus, für die du Munition kaufen willst. Du kannst für die gewählte Waffe ein Magazin oder eine Granate kaufen (drücke <font color="#caab05">XboxTypeS_A</font>) oder so viel Munition oder Granaten kaufen, wie du dir leisten kannst, bis zu deinem Limit (drücke <font color="#caab05">XboxTypeS_X</font>). Bei wenig Zeit (oder viel Kohle) drücke <font color="#caab05">LeftThumbStick</font>, um deine Kohle schnell auf Munition, Rüstung und Granaten aufzuteilen."
+TraderRefillGamepadDescriptionKey="Du kannst <font color="#caab05">MUNITION</font>, <font color="#caab05">GRANATEN</font> und <font color="#caab05">KÖRPERRÜSTUNG</font> bei der Händlerin nachfüllen. Wähle dazu mit dem Linken Stick auf der linken Seite des Händlerin-Menüs die Waffe aus, für die du Munition kaufen willst. Du kannst für die gewählte Waffe ein Magazin oder eine Granate kaufen (drücke <font color="#caab05">XboxTypeS_A</font>) oder so viel Munition oder Granaten kaufen, wie du dir leisten kannst, bis zu deinem Limit (drücke <font color="#caab05">XboxTypeS_X</font>). Bei wenig Zeit (oder viel Kohle) drücke <font color="#caab05">LeftThumbStick</font>, um deine Kohle schnell auf Munition, Rüstung und Granaten aufzuteilen."
 TraderSellGamepadTitleKey="Waffen verkaufen"
-TraderSellGamepadDescriptionKey="Um eine <font color="#caab05">WAFFE ZU VERKAUFEN</font>, wähle mit dem linken Stick auf der linken Seite des Händlerin-Menüs die Waffe, die du verkaufen willst, und drücke <font color="#caab05">XboxTypeS_Y</font>. Du siehst den Betrag an Kohle, den du für den Verkauf des Gegenstands erhalten wirst. Deine 9mm-Pistole, deine Körperrüstung und deine Granaten kannst du nicht verkaufen."
+TraderSellGamepadDescriptionKey="Um eine <font color="#caab05">WAFFE ZU VERKAUFEN</font>, wähle mit dem linken Stick auf der Linken Seite des Händlerin-Menüs die Waffe, die du verkaufen willst, und drücke <font color="#caab05">XboxTypeS_Y</font>. Du siehst den Betrag an Kohle, den du für den Verkauf des Gegenstands erhalten wirst. Deine 9mm-Pistole, deine Körperrüstung und deine Granaten kannst du nicht verkaufen."
 TraderBuyGamepadTitleKey="Waffen kaufen"
-TraderBuyGamepadDescriptionKey="Um eine <font color="#caab05">WAFFE ZU KAUFEN</font>, wähle mit dem linken Stick auf der rechten Seite des Händlerin-Menüs die Waffe, die du kaufen willst, und drücke <font color="#caab05">XboxTypeS_A</font>. Vergewissere dich, dass du genug <font color="#caab05">KOHLE</font> und <font color="#caab05">TRAGKRAFT</font> hast, um die Waffe zu kaufen."
+TraderBuyGamepadDescriptionKey="Um eine <font color="#caab05">WAFFE ZU KAUFEN</font>, wähle mit dem linken Stick auf der Rechten Seite des Händlerin-Menüs die Waffe, die du kaufen willst, und drücke <font color="#caab05">XboxTypeS_A</font>. Vergewissere dich, dass du genug <font color="#caab05">KOHLE</font> und <font color="#caab05">TRAGKRAFT</font> hast, um die Waffe zu kaufen."
 TraderWeightGamepadTitleKey="Waffengewicht und -kapazität"
 TraderWeightGamepadDescriptionKey="Jede Waffe hat einen <font color="#caab05">GEWICHTSWERT</font>. Das Gewicht deiner aktuellen Waffen könnte dich davon abhalten, die von dir gewünschte Waffe kaufen zu können. Das Gewicht der Waffe kannst du in der Waffenliste und in den Waffendetails sehen. Deine <font color="#caab05">TRAGKRAFT</font> wird unterhalb deiner aktuellen Kohle, in der Mitte des Bildschirms, angezeigt. Alles, was dich davon abhält, den aktuell ausgewählten Gegenstand zu kaufen, wird rot hervorgehoben."
 
@@ -749,6 +749,16 @@ ItemCategory="Sprengstoffe"
 ItemDescription="• Feuert Biominen, die bei Aufprall explodieren und Zeds Schaden zufügen und Verbündete heilen.\n• Alt-Feuer lässt alle platzierten Minen explodieren.\n• Die Quelle des Ausgangsmaterials ist aufgrund von Bedenken im Zusammenhang mit dem Gesundheitsgesetz eine Geheiminformation."
 SharedUnlockSource="Minenrekonstruktor-Waffen-Paket"
 
+[KFWeap_HRG_Vampire]
+ItemName="HRG-Vampir"
+ItemCategory="Spezial"
+ItemDescription="• Primärfeuer absorbiert das Blut der Gegner und füllt den Blutvorrat.\n• Nach dem Primärfeuer wird ein explosives Geschoss aus geronnenem Blut abgefeuert, das Gegnern schadet und Verbündete heilt.\n• Der alternative Feuer-Modus verbraucht den Blutvorrat, um kristallisierte Blutstacheln abzuschießen."
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="Frostzahn"
+ItemCategory="Schrotflinte"
+ItemDescription="• Feuer-Modus schießt Geschosse ab, die Gegner einfrieren.\n• Schlag-Angriff zerschmettert Gegner mit der Axt.\n• Alt – Blocken/Parieren.\n• Die Axt ist perfekt für Eisskulpturen."
+SharedUnlockSource="Frostzahn-Waffen-Paket"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

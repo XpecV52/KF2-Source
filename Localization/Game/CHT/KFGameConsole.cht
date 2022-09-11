@@ -33,6 +33,7 @@ KF-Sanitarium="正在進行：休養院"
 KF-Biolapse="正在進行：生化事故區"
 KF-Desolation="正在進行：廢墟"
 KF-HellmarkStation="正在進行：地獄印記站點"
+KF-Elysium="正在進行：極樂世界"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -153,7 +154,7 @@ LoginButtonPrompt="登入"
 LoggingIn="正在登入…"
 LoginFailed="登入失敗"
 NoOnlinePlay="無法連線遊玩"
-TooYoung="你的 Sony Entertainment Network 賬戶連線功能由於家長控制設定，已被關閉。"
+TooYoung="你的 Sony Entertainment Network賬戶連線功能由於家長控制設定，已被關閉。"
 PatchAvailable="有新的更新。你必須更新應用程式以使用線上的內容。"
 NotLoggedInOnlinePSN="你必須登入 PlayStation™Network 以使用連線功能。"
 LiveRequiredMessage="您必須登入Xbox Live並開啟個人檔案，並擁有Xbox Live正常運作的網路連線功能。"
@@ -166,7 +167,7 @@ PlayOffline="您想要離線遊玩嗎？Xbox Live特別功能將無法使用，�
 [Notifications]
 ControllerDisconnectedTitle="已中斷連接控制器"
 ControllerDisconnectedPS4Message="已中斷連接無線控制器。請重新連接開啟遊戲的使用者的無線控制器。"
-ControllerDisconnectedXB1="Xbox One無線搖桿已經取消連線。請重新連線無線搖桿。"
+ControllerDisconnectedXB1="Xbox One 無線搖桿已經取消連線。請重新連線無線搖桿。"
 PlayGoBusyTitle="仍在安裝中"
 PlayGoBusyMessage="遊戲安裝完成前僅可使用部分內容。"
 UnableToJoinInviteTitle="無法加入"
@@ -185,14 +186,14 @@ InviteMessage="來跟我一起獵殺 Zed 吧！"
 NotConnectedTitle="網路錯誤"
 NotConnectedMessage="未連線至網路。請檢查連線後再試。"
 NotConnectedForOnlinePlay="未連線至網路。檢查你的連線狀態，再嘗試使用連線功能"
-NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+NotConnectedForOnlinePlayXB1="你必須登入 Xbox Live 才能連線玩遊戲。檢查你的連線狀態，再嘗試使用連線功能。"
 MultiplayerNotAllowed_MessageLive="您必須登入Xbox Live並開啟多重玩家個人檔案才能遊玩。"
 MultiplayerNotAllowed_Title="無法開啟多重玩家"
 LoggedOutMessage="已經修改該個人檔案。已經回到標題畫面。"
 LoggedOutTitle="已登出"
 LoggedInTitle="已登入"
-NewRegionTitle="Welcome"
-NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
+NewRegionTitle="歡迎"
+NewRegionMessage="歡迎來到線上配對。請確保您的配對地區正確！"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="檢視玩家個人檔案"
@@ -217,7 +218,7 @@ MatchmakingRegionString="地區"
 LeaveMenuString="離開配對也會解散你的隊伍"
 
 [KFGFxMenu_Store]
-StoreStringXB1="XBOX商店"
+StoreStringXB1="MICROSOFT STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="地區"
@@ -261,7 +262,7 @@ HorzineSupplyCrate3ShortDesription="Horzine 補給箱子含有一項武器飾品
 HorzineSupplyCrate4ProductName="Horzine 補給箱子系列 4"
 HorzineSupplyCrate4ShortDesription="Horzine 補給箱子含有一項武器飾品。需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品："
 
-StoreGameLegalText="軟體以憑證為準 (us.playstation.com/softwarelicense)。線上活動以服務條款及使用同意書為準 (www.playstationnetwork.com/terms-of-service)。一次性驗證收費，發生於帳號所指定的主要 PS4™ 系統以及該帳號所登入的其他 PS4™ 系統。Killing Floor© 2009-2016 Tripwire Interactive.Killing Floor® 為Tripwire Interactive 於美國及其他國家的註冊商標。Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. 版權所有。Unreal® 為Epic Games, Inc. 於美國及其他國家的註冊商標。所有註冊商標、標誌與版權皆僅屬於其所有者。版權所有。"
+StoreGameLegalText="軟體以憑證為準 (us.playstation.com/softwarelicense)。線上活動以服務條款及使用同意書為準 (www.playstationnetwork.com/terms-of-service)。一次性驗證收費，發生於帳號所指定的主要 PS4™主機以及該帳號所登入的其他 PS4™主機。Killing Floor© 2009-2016 Tripwire Interactive.Killing Floor® 為Tripwire Interactive 於美國及其他國家的註冊商標。Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. 版權所有。Unreal® 為Epic Games, Inc. 於美國及其他國家的註冊商標。所有註冊商標、標誌與版權皆僅屬於其所有者。版權所有。"
 
 StoreItemLegalText="此項物品需要完整的《殺戮空間 2》遊戲才能使用。此物品的使用以原本遊戲的使用者驗證同意書為準。"
 

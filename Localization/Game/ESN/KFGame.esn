@@ -62,7 +62,7 @@ FriendsListPopupLinkButonString="Vincular cuenta"
 ReturnString="VOLVER"
 
 InvitePopupTitleString="Invitación a sala"
-InvitePopupTextString=" te ha invitado a una sala"
+InvitePopupTextString=" te ha invitado a una sala."
 
 
 CancelConnectionString="Cancelar carga"
@@ -94,7 +94,7 @@ RarityStrings[1]="POCO COMÚN"
 RarityStrings[2]="INFRECUENTE"
 RarityStrings[3]="EXCEPCIONAL"
 RarityStrings[4]="ELABORADO"
-RarityStrings[5]="MUY RARO"
+RarityStrings[5]="SUMAMENTE INFRECUENTE"
 RarityStrings[6]="CUALQUIERA"
 
 WeaponTypeStrings[0]="PISTOLA"
@@ -130,13 +130,13 @@ DiscordTraderTimeString=": Mercader"
 DiscordBossWaveString=": Oleada de jefe"
 DiscordWaveString=": Oleada "
 
-StartOfflineGameString="Comenzar sin conexión"
-StartOfflineGameDescriptionString="Al comenzar una partida sin conexión, tu grupo se disolverá.\n¿Quieres continuar?"
+StartOfflineGameString="Comenzar offline"
+StartOfflineGameDescriptionString="Al comenzar una partida offline, tu grupo se disolverá.\n¿Quieres continuar?"
 
 ProceedToTutorialString="¿IR A ENTRENAMIENTO?"
 ProceedToTutorialDescriptionString="Ve al entorno controlado y aprende lo básico.  Si lo consigues, aumentas el nivel de la especialización elegida de 0 a 1."
 
-NotAvailableInFreeTrialString="No disponible en la versión de prueba"
+NotAvailableInFreeTrialString="No disponible en la versión de prueba gratuita"
 NetworkCheckFreeTrialFailedString="Error de red: No se pudo verificar el estado del evento gratis. Comprueba tu conexión de red"
 
 [KFMission_LocalizedStrings]
@@ -167,7 +167,7 @@ VersusCompletionString="Completa la partida como:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="PARTIDA NO ENCONTRADA"
-FailedSearchString="El sistema de emparejamiento no ha encontrado partidas. Aumenta las características de la búsqueda o usa el explorador de servidores."
+FailedSearchString="El sistema de matchmaking no ha encontrado partidas. Aumenta las características de la búsqueda o usa el explorador de servidores."
 BrowseServersString="EXPLORAR SERVID."
 HasInvitedToGameString=" te ha invitado a una partida"
 JoinGameString="¿Unirse?"
@@ -193,7 +193,7 @@ ExplosiveString="Trampa puerta:"
 [KFGFxMenu_StartGame]
 CreateMatchString="CREAR PARTIDA"
 MatchmakingString="ENCONTRAR UNA PARTIDA"
-ConsoleMatchmakingString="JUGAR EN LÍNEA"
+ConsoleMatchmakingString="JUGAR ONLINE"
 ServerBrowserString="Explorar servidores"
 NewsPageString="Noticias"
 
@@ -212,7 +212,7 @@ WhiteListedStrings[0]="SÍ"
 WhiteListedStrings[1]="NO"
 
 FindGameString="INICIO"
-LeaveMenuString="Tu grupo se disolverá si sales del emparejamiento. ¿Ir mejor al expl. de servidores?"
+LeaveMenuString="Tu grupo se disolverá si sales del matchmaking. ¿Ir mejor al expl. de servidores?"
 
 CouldNotFindGameTitleString="No se encontró partida"
 CouldNotFindGameDescriptionStringPC="No se han encontrado servidores. Cambia los filtros o usa el explorador de servidores."
@@ -220,7 +220,7 @@ CouldNotFindGameDescriptionStringOrbis="No se han encontrado servidores. Prueba 
 
 [KFGFxStartGameContainer_FindGame]
 MultiplayerString="Encontrar una partida"
-ConsoleMultiplayerString="Jugar en línea"
+ConsoleMultiplayerString="Jugar online"
 CreateGameString="Crear una partida"
 SoloString="Un jugador offline"
 TutorialString="Entrenam. básico"
@@ -259,7 +259,7 @@ StartGameString="INICIAR PARTIDA"
 LaunchGameString="EMPEZAR PARTIDA"
 InProgressString="PROGRESO JUEGO"
 SoloGameString="PARTIDA UN JUGADOR"
-LeaveMatchMakingString="ABANDONAR EMPAREJ."
+LeaveMatchMakingString="ABANDONAR MATCHMAKING."
 MultiplayerLaunchString="JUGAR ONLINE"
 SearchingString="BUSCANDO PARTIDA ONLINE... ESPERA"
 CancelSearchingString="CANCELAR BÚSQUEDA"
@@ -274,7 +274,7 @@ CreateNewGameString="Crear nueva partida"
 
 
 [KFGFxStartContainer_MatchMaking]
-OptionsHeaderString="EMPAREJAMIENTO"
+OptionsHeaderString="MATCHMAKING"
 BackString="ATRÁS"
 FindGameString="ENCONTRAR PARTIDA"
 
@@ -309,8 +309,8 @@ SelectPerkString="ELEGIR ESPECIALIZ."
 
 [KFGFxMenu_ServerBrowser]
 FavoriteString="FAVORITO"
-MultiplayerMenuString="EMPAREJAMIENTO"
-LeaveMenuString="Si sales de este menú se disolverá tu grupo. ¿Ir al emparejamiento en su lugar?"
+MultiplayerMenuString="MATCHMAKING"
+LeaveMenuString="Si sales de este menú se disolverá tu grupo. ¿Ir al matchmaking en su lugar?"
 NameString="NOMBRE"
 RefreshString="ACTUALIZAR"
 GamesFoundString="PARTIDAS:"
@@ -840,6 +840,9 @@ HeadString="CABEZA"
 BodyString="CUERPO"
 SkinsString="APARIENCIA"
 AttachmentsString="ACCESORIOS"
+Attachment0String="ACCESORIO 1"
+Attachment1String="ACCESORIO 2"
+Attachment2String="ACCESORIO 3"
 BackString="ATRÁS"
 NoneString="NADA"
 WeaponsString="Armas"
@@ -987,7 +990,7 @@ MenuStrings[6]="OPCIONES"
 MenuStrings[7]="SALIR"
 
 ServerBrowserString="EXPLORAR SERVIDORES"
-MatchmakingString="EMPAREJAMIENTO"
+MatchmakingString="MATCHMAKING"
 CreateGameString="CREAR PARTIDA"
 SoloString="UN JUGADOR"
 OverviewString="VISTA GENERAL"
@@ -1377,6 +1380,12 @@ MouseString="RATÓN"
 MouseSmoothingString="Suavizado de ratón"
 ZoomSensitivityString="Sensibilidad zoom"
 ControllerZoomSensitivityString="Sensibilidad zoom"
+ControllerDeadzoneString="Zona muerta"
+ControllerAccelerationJumpString="Salto acelerado"
+ControllerDeadzoneDescriptionString="Cantidad de movimiento con el joystick derecho antes de que el juego reconozca la acción"
+ControllerDeadzoneDescriptionXboxString="Cantidad de movimiento con el stick derecho antes de que el juego reconozca la acción"
+ControllerAccelerationJumpDescriptionString="Cantidad de aumento de velocidad de giro cuando el joystick alcanza el límite izquierdo o derecho"
+ControllerAccelerationJumpDescriptionXboxString="Cantidad de aumento de velocidad de giro cuando el stick alcanza el límite izquierdo o derecho"
 AimAssistLockOnString="Ayuda apunt. con zoom"
 AimAssistRotationString="Rotación ayuda apunt."
 AimAssistSlowDownString="Ralentizar ayuda apun."
@@ -1463,6 +1472,7 @@ SkipTraderVoteYesReceivedString="Has votado a favor de Saltar mercader"
 SkipTraderVoteNoReceivedString="Has votado en contra de Saltar mercader"
 SkipTraderNoEnoughTimeString="No queda tiempo suficiente para una votación de Saltar mercader"
 SkipTraderThisUserAlreadyStartedAVoteString="No puedes iniciar una votación de Saltar mercader hasta la siguiente fase de mercader"
+SkipTraderVersusZedPlayerVotes="Los jugadores del equipo Zed no pueden votar para saltar el mercader"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Has recibido munición de"
@@ -1999,7 +2009,7 @@ SplashDamage="Ola de calor"
 SplashDamageDescription="Los zeds que reciben daño ígneo a quemarropa se tambalean y caen."
 
 Inferno="MOMENTO ZED - Inferno"
-InfernoDescription="Durante el momento zed, los zeds afectados por daño de fuego se ralentizan un 30 % y reciben un 50 % más de daño por quemaduras."
+InfernoDescription="Tu daño de fuego por tiempo se extiende a todos los Zeds colindantes durante el Momento zed."
 
 Scorch="MOMENTO ZED - Pirómano"
 ScorchDescription="Durante el momento zed, atacas con armas de especialización casi en tiempo real. Además, cuentas con munición infinita."
@@ -2022,7 +2032,7 @@ Passives[3]=(Title="Reducción del retroceso",Description="Retroceso en armas de
 Passives[4]=(Title="Recarga en momento zed",Description="Vel. de recarga en momento zed: +%x %/nivel");
 
 ShootnMove="Inmutable"
-ShootnMoveDescription="Ignora la penalización en la velocidad de movimiento con mirilla y reduce drásticamente la inestabilidad de las armas de especialización."
+ShootnMoveDescription="Ignora la penalización de velocidad de movimiento y aumenta el daño de las armas de especialización en un 5 % cuando se usa la mirilla. Reduce drásticamente la inestabilidad de las armas de especialización."
 
 QuickSwitch="Desenfundado rápido"
 QuickSwitchDescription="Reduce la penalización en el retroceso al disparar sin apuntar. Velocidad de movimiento: +5 %. Velocidad de cambio de arma de esp.: +50 %."
@@ -2207,6 +2217,7 @@ Passives[0]=(Title="Daño de armas",Description="Daño de armas: +%x %/nivel");
 Passives[1]=(Title="Resistencia general al daño",Description="Resistencia a todo daño: +%x %/nivel");
 Passives[2]=(Title="Armadura pesada",Description="Con armadura, elimina el daño recibido en un %x %/nivel (máx. 25 %)");
 Passives[3]=(Title="Recarga en momento zed",Description="Vel. de recarga en momento zed: +%x %/nivel");
+Passives[4]=(Title="Cambio de arma más rápido",Description="La velocidad de cambio de arma aumenta un 35 %.");
 
 
 HeavyWeaponsReload="Entrenamiento de armas pesadas"
@@ -2784,6 +2795,20 @@ AllCompleteRewardDescriptionString="Halloween | Mochila vudú"
 ChanceDropDescriptionStrings[0]="Boleto de Halloween"
 ChanceDropDescriptionStrings[1]="Boleto dorado de Halloween"
 
+[KFGFxSpecialEventObjectivesContainer_Xmas2020]
+CurrentSpecialEventString="Un evento especial de tiempo limitado con objetos exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Rosas congeladas",DescriptionString="Consigue 3 rosas en Elíseo")
+SpecialEventObjectiveInfoList[1]=(TitleString="Cuatro historias distintas",DescriptionString="Consigue 4 tomos en Elíseo")
+SpecialEventObjectiveInfoList[2]=(TitleString="Bajo el muérdago",DescriptionString="Completa una oleada en la arena Botánica de Elíseo")
+SpecialEventObjectiveInfoList[3]=(TitleString="Un villancico navideño",DescriptionString="Completa una oleada en la arena Santuario del historiador de Elíseo")
+SpecialEventObjectiveInfoList[4]=(TitleString="Invierno eterno",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior en Elíseo")
+
+AllCompleteRewardDescriptionString="Navidad | Mochila élfica táctica"
+
+ChanceDropDescriptionStrings[0]="Boleto Krampus"
+ChanceDropDescriptionStrings[1]="Boleto dorado Krampus"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2800,7 +2825,7 @@ KnifeString="Cuchillo"
 FriendlyName="Brote actual: Rompecráneos"
 DescriptionStrings[0]="El daño cerebral es el mejor daño."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
-ModifierDescriptions[0]="En este brote, los zeds han mutado de tal modo que solo se pueden matar de verdad si se les causa daño en la cabeza. Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento."
+ModifierDescriptions[0]="En este brote, los zeds han mutado de tal modo que solo se pueden matar de verdad si se les causa daño en la cabeza. Selecciona el modo de juego Semanal en la página de matchmaking. Especialización de nivel 15 o superior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2810,7 +2835,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Brote actual: Terror enano"
 DescriptionStrings[0]="Una pequeña amenaza sigue siendo una amenaza."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
-ModifierDescriptions[0]="Al disparar a los zeds en este brote, estos se encogerán, con lo que resultará más difícil acertarles. Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento."
+ModifierDescriptions[0]="Al disparar a los zeds en este brote, estos se encogerán, con lo que resultará más difícil acertarles. Selecciona el modo de juego Semanal en la página de matchmaking. Especialización de nivel 15 o superior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2820,7 +2845,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Brote actual: Poundcaos"
 DescriptionStrings[0]="Fleshpounds sin parar. Casi."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
-ModifierDescriptions[0]="¡La convención de fleshpounds ha llegado a la ciudad! Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento."
+ModifierDescriptions[0]="¡La convención de fleshpounds ha llegado a la ciudad! Selecciona el modo de juego Semanal en la página de matchmaking. Especialización de nivel 15 o superior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2830,7 +2855,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Brote actual: Sube y baja"
 DescriptionStrings[0]="Trata de hacer 99 globos zed."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
-ModifierDescriptions[0]="Al disparar a los zeds en este brote, se inflarán como globos. ¡Explótalos o se regenerarán! Selecciona el modo de juego Semanal en la página de emparejamiento. Especialización de nivel 15 o superior."
+ModifierDescriptions[0]="Al disparar a los zeds en este brote, se inflarán como globos. ¡Explótalos o se regenerarán! Selecciona el modo de juego Semanal en la página de matchmaking. Especialización de nivel 15 o superior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2840,7 +2865,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Brote actual: Momento zed"
 DescriptionStrings[0]="Todo el momento zed del mundo."
 DescriptionStrings[1]="Duración: Corta (4 oleadas)"
-ModifierDescriptions[0]="¿Alguna vez piensas que la vida pasa rápido? ¡No en este brote! Estarás en el momento zed cada vez que te acerques a un zed. Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento."
+ModifierDescriptions[0]="¿Alguna vez piensas que la vida pasa rápido? ¡No en este brote! Estarás en el momento zed cada vez que te acerques a un zed. Selecciona el modo de juego Semanal en la página de matchmaking. Especialización de nivel 15 o superior."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2849,7 +2874,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Brote actual: ¡Bum!"
 DescriptionStrings[0]="Los zeds bajo presión pueden explotar."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
-ModifierDescriptions[0]="¿Quizás han comido algo en mal estado? ¿Problemas de gases? Fuera lo que fuera, los zeds estallan cuando los matas en este brote. Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento."
+ModifierDescriptions[0]="¿Quizás han comido algo en mal estado? ¿Problemas de gases? Fuera lo que fuera, los zeds estallan cuando los matas en este brote. Selecciona el modo de juego Semanal en la página de matchmaking. Especialización de nivel 15 o superior."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2858,7 +2883,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Brote actual: Petado"
 DescriptionStrings[0]="Cuánto más grandes, mejor caes."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
-ModifierDescriptions[0]="En este brote, los zeds aumentan su salud, tamaño y alcance cuando golpean a jugadores o se ven afectados por ciertas habilidades zed. Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento."
+ModifierDescriptions[0]="En este brote, los zeds aumentan su salud, tamaño y alcance cuando golpean a jugadores o se ven afectados por ciertas habilidades zed. Selecciona el modo de juego Semanal en la página de matchmaking. Especialización de nivel 15 o superior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2868,7 +2893,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Brote actual: Zed cabezón"
 DescriptionStrings[0]="Les debe molestar el cuello."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
-ModifierDescriptions[0]="¡Algo ha salido horriblemente mal en esta tanda de zeds y sus cabezas son muchísimo más grandes de lo normal! ¡Enormes, incluso! Para jugar a este brote semanal, selecciona el modo de juego Semanal en la página de emparejamiento."
+ModifierDescriptions[0]="¡Algo ha salido horriblemente mal en esta tanda de zeds y sus cabezas son muchísimo más grandes de lo normal! ¡Enormes, incluso! Selecciona el modo de juego Semanal en la página de matchmaking. Especialización de nivel 15 o superior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3385,7 +3410,32 @@ DisplayName="Desolación"
 [KF-HellmarkStation KFMapSummary]
 DisplayName="Puesto Hellmark"
 
+[KF-Elysium KFMapSummary]
+DisplayName="Elíseo"
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% ha encontrado un coleccionable. Quedan %y% por encontrar."
 FoundAllCollectiblesString="¡Se han encontrado todos los coleccionables!"
+
+[KFKismetMapLocalization_Elysium]
+LeverWarningText="Tirar de esta palanca puede acarrear consecuencias . . ."
+LoreMastersKnowsText="El Señor de la historia lo sabe"
+BotanicaOpenText="La Botánica está abierta"
+FuneralPyreIgnitionText="¡Se ha prendido fuego a la pira funeraria sagrada!\nLas ardientes almas del Averno atormentan ahora el corazón de Elíseo"
+TomeMissingText="Parece que falta un tomo en este pedestal"
+FlowerActivationText="Del jarrón emana un aroma floral"
+SandTomeCollectedText="Has conseguido el tomo de la arena\n%VALUE%"
+SteelTomeCollectedText="Has conseguido el tomo del acero\n%VALUE%"
+SludgeTomeCollectedText="Has conseguido el tomo del fango\n%VALUE%"
+WoodTomeCollectedText="Has conseguido el tomo de la madera\n%VALUE%"
+RedRoseCollectedText="Has conseguido una rosa roja\n%VALUE%"
+MagentaRoseollectedText="Has conseguido una rosa magenta\n%VALUE%"
+YellowRoseCollectedText="Has conseguido una rosa amarilla\n%VALUE%"
+OneOfThreeCollectedText="1 de 3 conseguidas"
+TwoOfThreeCollectedText="2 de 3 conseguidas"
+ThreeOfThreeCollectedText="3 de 3 conseguidas"
+OneOfFourCollectedText="1 de 4 conseguidos"
+TwoOfFourCollectedText="2 de 4 conseguidos"
+ThreeOfFourCollectedText="3 de 4 conseguidos"
+FourOfFourCollectedText="4 de 4 conseguidos"

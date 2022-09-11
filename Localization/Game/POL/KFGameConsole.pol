@@ -33,6 +33,7 @@ KF-Sanitarium="Gra na mapie Sanatorium"
 KF-Biolapse="Gra na mapie Biorobota"
 KF-Desolation="Gra na mapie Dewastacja"
 KF-HellmarkStation="Gra na mapie Stacja Hellmark"
+KF-Elysium="Gra na mapie Elizjum"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -166,7 +167,7 @@ PlayOffline="Czy chcesz grać offline? Funkcje Xbox Live nie będą dostępne i 
 [Notifications]
 ControllerDisconnectedTitle="Kontroler odłączony"
 ControllerDisconnectedPS4Message="Kontroler bezprzewodowy został odłączony. Podłącz kontroler bezprzewodowy dla użytkownika, który uruchomił grę."
-ControllerDisconnectedXB1="Kontroler bezprzewodowy konsoli Xbox One został odłączony. Podłącz kontroler ponownie."
+ControllerDisconnectedXB1="Kontroler bezprzewodowy dla konsoli Xbox One został odłączony. Podłącz kontroler ponownie."
 PlayGoBusyTitle="Trwa instalacja"
 PlayGoBusyMessage="Podczas zakańczania instalacji gry dostępna jest ograniczona zawartość i funkcje."
 UnableToJoinInviteTitle="Nie można dołączyć"
@@ -185,14 +186,14 @@ InviteMessage="Zapraszam na rozwałkę zetów!"
 NotConnectedTitle="Błąd sieci"
 NotConnectedMessage="Brak połączenia z internetem. Sprawdź połączenie i spróbuj ponownie."
 NotConnectedForOnlinePlay="Brak połączenia z internetem. Aby korzystać z funkcji online, sprawdź połączenie i spróbuj ponownie"
-NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+NotConnectedForOnlinePlayXB1="Aby grać online, użytkownik musi być wpisany do Xbox Live. Sprawdź swoje połączenie i spróbuj ponownie."
 MultiplayerNotAllowed_MessageLive="Aby grać, musisz zalogować się do profilu z aktywowaną usługą Xbox Live i mieć uprawnienia do gry wieloosobowej."
 MultiplayerNotAllowed_Title="Gra wieloosobowa niedozwolona"
 LoggedOutMessage="Aktywny profil został zmieniony. Nastąpił powrót do ekranu tytułowego."
 LoggedOutTitle="Wylogowano"
 LoggedInTitle="Zalogowano"
-NewRegionTitle="Welcome"
-NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
+NewRegionTitle="Witamy"
+NewRegionMessage="Witamy w matchmakingu online. Sprawdź, czy twój region matchmakingu jest prawidłowy!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Zobacz profil gracza"
@@ -217,7 +218,7 @@ MatchmakingRegionString="REGION"
 LeaveMenuString="Opuszczenie matchmakingu spowoduje opuszczenie imprezy."
 
 [KFGFxMenu_Store]
-StoreStringXB1="SKLEP XBOX"
+StoreStringXB1="MICROSOFT STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGION"

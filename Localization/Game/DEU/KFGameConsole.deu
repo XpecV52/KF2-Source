@@ -33,6 +33,7 @@ KF-Sanitarium="Spielt Sanatorium"
 KF-Biolapse="Spielt Bioverfall"
 KF-Desolation="Spielt Verwüstung"
 KF-HellmarkStation="Spielt Hellmark Station"
+KF-Elysium="Spielt Elysium"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -178,21 +179,21 @@ UnableToPlayTogetherMessage="Ein gemeinsames Spielerlebnis konnte nicht erstellt
 CheckPlusTitle="PlayStation®Plus wird überprüft"
 CheckPlusMessage="Bitte warten, bis wir den PlayStation®Plus-Status überprüft haben."
 ConnectionLostTitle="Verbindung unterbrochen"
-ConnectionLostMessage="Deine Online-Verbindung wurde unterbrochen. Du bist zum Home-Menü zurückgekehrt."
+ConnectionLostMessage="Deine Online-Verbindung wurde unterbrochen. Du bist zur Startseite zurückgekehrt."
 ConnectionLostMessageLive="Deine Verbindung zu Xbox Live wurde unterbrochen. Du bist zum Hauptmenü zurückgekehrt."
-PSNSignoutMessage="Du wurdest vom PlayStation™Network abgemeldet. Du bist zum Home-Menü zurückgekehrt."
+PSNSignoutMessage="Du wurdest vom PlayStation™Network abgemeldet. Du bist zur Startseite zurückgekehrt."
 InviteMessage="Jage mit mir Zeds in die Luft!"
 NotConnectedTitle="Netzwerk-Fehler"
 NotConnectedMessage="Nicht mit dem Internet verbunden. Überprüfe deine Verbindung und versuch es nochmal."
 NotConnectedForOnlinePlay="Nicht mit dem Internet verbunden. Überprüfe deine Verbindung und versuch es nochmal, um Online-Funktionen verwenden zu können"
-NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+NotConnectedForOnlinePlayXB1="Du musst bei Xbox Live angemeldet sein, um online zu spielen. Überprüfe deine Verbindung und versuche es nochmal, um die Online-Funktion verwenden zu können."
 MultiplayerNotAllowed_MessageLive="Du musst mit einem für Xbox Live freigegebenen Profil mit Mehrspielerrechten angemeldet sein, um zu spielen."
 MultiplayerNotAllowed_Title="Mehrspieler nicht erlaubt"
 LoggedOutMessage="Das aktive Profil wurde geändert. Du bist zum Titelbildschirm zurückgekehrt."
 LoggedOutTitle="Abgemeldet"
 LoggedInTitle="Angemeldet"
-NewRegionTitle="Welcome"
-NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
+NewRegionTitle="Willkommen"
+NewRegionMessage="Willkommen bei der Online-Spielersuche. Bitte stelle sicher, dass deine Region für die Spielersuche korrekt ist!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Spieler-Profil ansehen"
@@ -214,10 +215,10 @@ ControllerSound="Controller-Sound"
 
 [KFGFxMenu_StartGame]
 MatchmakingRegionString="REGION"
-LeaveMenuString="Verlässt du die Spielsuche, verlässt du auch die Gruppe."
+LeaveMenuString="Verlässt du die Spielersuche, verlässt du auch die Gruppe."
 
 [KFGFxMenu_Store]
-StoreStringXB1="XBOX STORE"
+StoreStringXB1="MICROSOFT STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="REGION"

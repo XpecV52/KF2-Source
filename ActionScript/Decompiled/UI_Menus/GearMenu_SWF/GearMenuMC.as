@@ -9,7 +9,9 @@ package
         public function GearMenuMC()
         {
             super();
-            this.__setProp_attachmentButton_GearMenuMC_Accessory_0();
+            this.__setProp_attachmentButton0_GearMenuMC_Accessory_0();
+            this.__setProp_attachmentButton1_GearMenuMC_Accessory_0();
+            this.__setProp_attachmentButton2_GearMenuMC_Accessory_0();
             this.__setProp_bodyButton_GearMenuMC_Skin_0();
             this.__setProp_headButton_GearMenuMC_Head_0();
             this.__setProp_bioTextArea_GearMenuMC_Bio_0();
@@ -17,29 +19,87 @@ package
             this.__setProp_emoteButton_GearMenuMC_Character_0();
         }
         
-        function __setProp_attachmentButton_GearMenuMC_Accessory_0() : *
+        function __setProp_attachmentButton0_GearMenuMC_Accessory_0() : *
         {
             try
             {
-                attachmentButton["componentInspectorSetting"] = true;
+                attachmentButton0["componentInspectorSetting"] = true;
             }
             catch(e:Error)
             {
             }
-            attachmentButton.autoRepeat = false;
-            attachmentButton.autoSize = "none";
-            attachmentButton.data = "";
-            attachmentButton.enabled = true;
-            attachmentButton.enableInitCallback = false;
-            attachmentButton.focusable = true;
-            attachmentButton.infoString = "INFO";
-            attachmentButton.label = "TITLE";
-            attachmentButton.selected = false;
-            attachmentButton.toggle = false;
-            attachmentButton.visible = true;
+            attachmentButton0.autoRepeat = false;
+            attachmentButton0.autoSize = "none";
+            attachmentButton0.data = "";
+            attachmentButton0.enabled = true;
+            attachmentButton0.enableInitCallback = false;
+            attachmentButton0.focusable = true;
+            attachmentButton0.infoString = "INFO";
+            attachmentButton0.label = "TITLE";
+            attachmentButton0.selected = false;
+            attachmentButton0.toggle = false;
+            attachmentButton0.visible = true;
             try
             {
-                attachmentButton["componentInspectorSetting"] = false;
+                attachmentButton0["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_attachmentButton1_GearMenuMC_Accessory_0() : *
+        {
+            try
+            {
+                attachmentButton1["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            attachmentButton1.autoRepeat = false;
+            attachmentButton1.autoSize = "none";
+            attachmentButton1.data = "";
+            attachmentButton1.enabled = true;
+            attachmentButton1.enableInitCallback = false;
+            attachmentButton1.focusable = true;
+            attachmentButton1.infoString = "INFO";
+            attachmentButton1.label = "TITLE";
+            attachmentButton1.selected = false;
+            attachmentButton1.toggle = false;
+            attachmentButton1.visible = true;
+            try
+            {
+                attachmentButton1["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_attachmentButton2_GearMenuMC_Accessory_0() : *
+        {
+            try
+            {
+                attachmentButton2["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            attachmentButton2.autoRepeat = false;
+            attachmentButton2.autoSize = "none";
+            attachmentButton2.data = "";
+            attachmentButton2.enabled = true;
+            attachmentButton2.enableInitCallback = false;
+            attachmentButton2.focusable = true;
+            attachmentButton2.infoString = "INFO";
+            attachmentButton2.label = "TITLE";
+            attachmentButton2.selected = false;
+            attachmentButton2.toggle = false;
+            attachmentButton2.visible = true;
+            try
+            {
+                attachmentButton2["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

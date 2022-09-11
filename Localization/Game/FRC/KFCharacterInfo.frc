@@ -6305,3 +6305,131 @@ AttachmentSkin2="Famine"
 AttachmentSkin3="Épidémie"
 AttachmentSkin4="Guerre"
 AttachmentSkin5="Anarchie"
+
+[Cosmetic_Winter_Hat_ARCH]
+Attachment="Tuque"
+AttachmentSkin0="Blanc"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Rouge"
+AttachmentSkin5="Camouflage numérique"
+AttachmentSkin6="Camouflage toundra"
+AttachmentSkin7="Camouflage arctique"
+AttachmentSkin8="Doré"
+
+[Cosmetic_Winter_Goggles_ARCH]
+Attachment="Lunettes de neige"
+AttachmentSkin0="Blanc"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Rouge"
+AttachmentSkin5="Camouflage numérique"
+AttachmentSkin6="Camouflage toundra"
+AttachmentSkin7="Camouflage arctique"
+AttachmentSkin8="Doré"
+
+[Cosmetic_Winter_Mask_ARCH]
+Attachment="Masque de neige"
+AttachmentSkin0="Blanc"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Rouge"
+AttachmentSkin5="Camouflage numérique"
+AttachmentSkin6="Camouflage toundra"
+AttachmentSkin7="Camouflage arctique"
+AttachmentSkin8="Doré"
+
+[Cosmetic_Winter_Backpack_ARCH]
+Attachment="Sac à dos d'escalade"
+AttachmentSkin0="Blanc"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Vert"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Rouge"
+AttachmentSkin5="Camouflage numérique"
+AttachmentSkin6="Camouflage toundra"
+AttachmentSkin7="Camouflage arctique"
+AttachmentSkin8="Doré"
+
+[Cosmetic_Christmas_JackFrostMask_ARCH]
+Attachment="Masque Jack Frost"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Effrayant"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Christmas_JollyBreather_ARCH]
+Attachment="Cache-nez des Fêtes"
+AttachmentSkin0="Canne en bonbon"
+AttachmentSkin1="Orange"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Vert"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Christmas_FestiveShades_ARCH]
+Attachment="Lunettes de soleil festives"
+AttachmentSkin0="Rouge et vert"
+AttachmentSkin1="Vert"
+AttachmentSkin2="Gomme à bulles"
+AttachmentSkin3="Orange"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Christmas_OrnamentHead_ARCH]
+Attachment="Tête décorative"
+AttachmentSkin0="Vert"
+AttachmentSkin1="Violet"
+AttachmentSkin2="Bleu"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Christmas_GiftWrapping_ARCH]
+Attachment="Emballage cadeau"
+AttachmentSkin0="Bombe"
+AttachmentSkin1="Crânes"
+AttachmentSkin2="Amour"
+AttachmentSkin3="Noir"
+AttachmentSkin4="Toxique"
+
+[Cosmetic_Christmas_KrampusHead_ARCH]
+Attachment="Tête de Krampus"
+AttachmentSkin0="Orange"
+AttachmentSkin1="Blanc"
+AttachmentSkin2="Rouge"
+AttachmentSkin3="Bleu"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Christmas_TacticalElfPack_ARCH]
+Attachment="Sac à dos d'elfe tactique"
+AttachmentSkin0="Doré"
+
+[Cosmetic_Christmas_TacticalElfPack_Alberts_ARCH]
+Attachment="Sac à dos d'elfe tactique"
+AttachmentSkin0="Doré"
+
+[Cosmetic_Christmas_TacticalElfPack_Coleman_ARCH]
+Attachment="Sac à dos d'elfe tactique"
+AttachmentSkin0="Doré"
+
+[Cosmetic_Christmas_TacticalElfPack_JagerHorn_ARCH]
+Attachment="Sac à dos d'elfe tactique"
+AttachmentSkin0="Doré"
+
+[Cosmetic_Christmas_TacticalElfPack_Knight_ARCH]
+Attachment="Sac à dos d'elfe tactique"
+AttachmentSkin0="Doré"
+
+[Cosmetic_Christmas_TacticalElfPack_MrFoster_ARCH]
+Attachment="Sac à dos d'elfe tactique"
+AttachmentSkin0="Doré"
+
+[Cosmetic_Christmas_TacticalElfPack_MrsFoster_ARCH]
+Attachment="Sac à dos d'elfe tactique"
+AttachmentSkin0="Doré"
+
+[Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
+Attachment="Sac à dos d'elfe tactique"
+AttachmentSkin0="Doré"

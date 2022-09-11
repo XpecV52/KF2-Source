@@ -71,6 +71,9 @@ const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
 const KFID_VOIPMicVolumeMultiplier = 174;
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 
 var const localized string SensitivityString;
 var const localized string InvertedString;
@@ -80,6 +83,12 @@ var const localized string MouseString;
 var const localized string MouseSmoothingString;
 var const localized string ZoomSensitivityString;
 var const localized string ControllerZoomSensitivityString;
+var const localized string ControllerDeadzoneString;
+var const localized string ControllerDeadzoneDescriptionString;
+var const localized string ControllerDeadzoneDescriptionXboxString;
+var const localized string ControllerAccelerationJumpString;
+var const localized string ControllerAccelerationJumpDescriptionString;
+var const localized string ControllerAccelerationJumpDescriptionXboxString;
 var const localized string AimAssistLockOnString;
 var const localized string AimAssistRotationString;
 var const localized string AimAssistSlowDownString;
@@ -108,6 +117,18 @@ function LocalizeText()
     LocalizedObject.SetString("mouseSmoothingLabel", MouseSmoothingString);
     LocalizedObject.SetString("zoomSensitivityLabel", ZoomSensitivityString);
     LocalizedObject.SetString("controllerZoomSensitivityLabel", ControllerZoomSensitivityString);
+    LocalizedObject.SetString("controllerDeadzoneLabel", ControllerDeadzoneString);
+    LocalizedObject.SetString("controllerAccelerationJumpLabel", ControllerAccelerationJumpString);
+    if(Class'WorldInfo'.static.IsConsoleBuild(9))
+    {
+        LocalizedObject.SetString("controllerDeadzoneDescriptionLabel", ControllerDeadzoneDescriptionXboxString);
+        LocalizedObject.SetString("controllerAccelerationJumpDescriptionLabel", ControllerAccelerationJumpDescriptionXboxString);        
+    }
+    else
+    {
+        LocalizedObject.SetString("controllerDeadzoneDescriptionLabel", ControllerDeadzoneDescriptionString);
+        LocalizedObject.SetString("controllerAccelerationJumpDescriptionLabel", ControllerAccelerationJumpDescriptionString);
+    }
     LocalizedObject.SetString("aimAssistLockOnLabel", AimAssistLockOnString);
     LocalizedObject.SetString("aimAssistRotationLabel", AimAssistRotationString);
     LocalizedObject.SetString("aimAssistSlowDownLabel", AimAssistSlowDownString);
@@ -141,6 +162,12 @@ function InitializeOptions()
     ValuesObject.SetFloat("controllerZoomSensitivityValue", 100 * KFPI.GamepadZoomedSensitivityScale);
     ValuesObject.SetFloat("controllerZoomSensitivityValueMin", 100 * ControlsMenu.MinControllerZoomLookSensitivity);
     ValuesObject.SetFloat("controllerZoomSensitivityValueMax", 100 * ControlsMenu.MaxControllerZoomLookSensitivity);
+    ValuesObject.SetFloat("controllerDeadzoneValue", 100 * KFPI.GamepadDeadzoneScale);
+    ValuesObject.SetFloat("controllerDeadzoneValueMin", 100 * ControlsMenu.MinControllerDeadzone);
+    ValuesObject.SetFloat("controllerDeadzoneValueMax", 100 * ControlsMenu.MaxControllerDeadzone);
+    ValuesObject.SetFloat("controllerAccelerationJumpValue", 100 * KFPI.GamepadAccelerationJumpScale);
+    ValuesObject.SetFloat("controllerAccelerationJumpValueMin", 100 * ControlsMenu.MinControllerAccelerationJump);
+    ValuesObject.SetFloat("controllerAccelerationJumpValueMax", 100 * ControlsMenu.MaxControllerAccelerationJump);
     ValuesObject.SetBool("controllerInvertedValue", KFPI.bInvertController);
     ValuesObject.SetBool("aimAssistLockOnValue", KFPI.bAutoTargetEnabled);
     ValuesObject.SetBool("aimAssistRotationValue", KFPI.bTargetAdhesionEnabled);
@@ -173,6 +200,10 @@ function ResetInputOptions()
     ControlsMenu.Manager.CachedProfile.SetProfileSettingValueFloat(133, KFPI.GamepadSensitivityScale);
     KFPI.GamepadZoomedSensitivityScale = ControlsMenu.Manager.CachedProfile.GetDefaultFloat(135);
     ControlsMenu.Manager.CachedProfile.SetProfileSettingValueFloat(135, KFPI.GamepadZoomedSensitivityScale);
+    KFPI.GamepadDeadzoneScale = ControlsMenu.Manager.CachedProfile.GetDefaultFloat(175);
+    ControlsMenu.Manager.CachedProfile.SetProfileSettingValueFloat(175, KFPI.GamepadDeadzoneScale);
+    KFPI.GamepadAccelerationJumpScale = ControlsMenu.Manager.CachedProfile.GetDefaultFloat(176);
+    ControlsMenu.Manager.CachedProfile.SetProfileSettingValueFloat(176, KFPI.GamepadAccelerationJumpScale);
     KFPI.bInvertController = ControlsMenu.Manager.CachedProfile.GetDefaultBool(131);
     ControlsMenu.Manager.CachedProfile.SetProfileSettingValueBool(131, KFPI.bInvertController);
     KFPI.bAutoTargetEnabled = ControlsMenu.Manager.CachedProfile.GetDefaultBool(132);
@@ -194,6 +225,12 @@ defaultproperties
     MouseSmoothingString="Mouse Smoothing"
     ZoomSensitivityString="Zoom Sensitivity"
     ControllerZoomSensitivityString="Zoom Sensitivity"
+    ControllerDeadzoneString="Deadzone"
+    ControllerDeadzoneDescriptionString="Amount of right stick movement before the game recognizes the input"
+    ControllerDeadzoneDescriptionXboxString="Amount of right stick movement before the game recognizes the input"
+    ControllerAccelerationJumpString="Acceleration Jump"
+    ControllerAccelerationJumpDescriptionString="Amount of turn rate speed boost when the stick reaches left or right limit"
+    ControllerAccelerationJumpDescriptionXboxString="Amount of turn rate speed boost when the stick reaches left or right limit"
     AimAssistLockOnString="Aim Assist Zoom Lock-On"
     AimAssistRotationString="Aim Assist Rotation"
     AimAssistSlowDownString="Aim Assist Slowdown"

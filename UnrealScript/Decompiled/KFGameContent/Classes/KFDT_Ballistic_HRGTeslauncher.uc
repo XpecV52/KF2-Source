@@ -36,7 +36,7 @@ static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Co
 defaultproperties
 {
     BurnDamageType=Class'KFDT_Fire_HRGTeslauncherDoT'
-    WeaponDef=Class'KFWeapDef_HRGTeslauncher'
+    WeaponDef=Class'KFGame.KFWeapDef_HRGTeslauncher'
     EffectGroup=EEffectDamageGroup.FXG_MicrowaveProj
     StumblePower=18
     GunHitPower=30

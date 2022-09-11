@@ -749,6 +749,16 @@ ItemCategory="Explosifs"
 ItemDescription="• Tire des mines biologiques qui explosent au contact pour infliger des dégâts aux Zeds et soigner les alliés.\n• Le tir alternatif déclenche l'explosion de toutes les mines posées.\n• L'origine du matériau de base est tenue secrète afin de respecter le code sanitaire."
 SharedUnlockSource="Pack d'arme Reconstructeur de mine"
 
+[KFWeap_HRG_Vampire]
+ItemName="Vampire GRH"
+ItemCategory="Spécial"
+ItemDescription="• Le tir principal absorbe le sang des ennemis, remplissant la jauge de sang.\n• Après le tir principal, tire un projectile de sang coagulé explosif qui inflige des dégâts aux ennemis et soigne les alliés.\n• Le tir alternatif consomme la jauge de sang pour tirer des pics de sang cristallisé."
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="Croc de Givre"
+ItemCategory="Fusil à pompe"
+ItemDescription="• Le mode tir utilise des projectiles qui gèlent les ennemis.\n• Les frappes au corps à corps fracassent les ennemis avec la hache.\n• Alternatif - bloquer/parer.\n• La hache est parfaite pour faire des sculptures sur glace."
+SharedUnlockSource="Pack d'arme Croc de Givre"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

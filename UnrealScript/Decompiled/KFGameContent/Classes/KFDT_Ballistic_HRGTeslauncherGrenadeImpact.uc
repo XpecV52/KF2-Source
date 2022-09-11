@@ -10,7 +10,7 @@ class KFDT_Ballistic_HRGTeslauncherGrenadeImpact extends KFDT_Ballistic_Shell
 
 defaultproperties
 {
-    WeaponDef=Class'KFWeapDef_HRGTeslauncher'
+    WeaponDef=Class'KFGame.KFWeapDef_HRGTeslauncher'
     KnockdownPower=125
     StumblePower=200
     GunHitPower=275

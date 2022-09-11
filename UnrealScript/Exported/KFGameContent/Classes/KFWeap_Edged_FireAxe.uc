@@ -48,12 +48,12 @@ defaultproperties
    WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Stat=EWUS_Damage1,Scale=1.200000),(Stat=EWUS_Damage2,Scale=1.200000),(Add=1)))
    WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Stat=EWUS_Damage1,Scale=1.400000),(Stat=EWUS_Damage2,Scale=1.400000),(Add=2)))
    WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.600000),(Stat=EWUS_Damage1,Scale=1.600000),(Stat=EWUS_Damage2,Scale=1.600000),(Add=3)))
-   InstantHitDamage(0)=80.000000
+   InstantHitDamage(0)=90.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=20.000000
    InstantHitDamage(4)=()
-   InstantHitDamage(5)=125.000000
+   InstantHitDamage(5)=135.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_FireAxe'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()

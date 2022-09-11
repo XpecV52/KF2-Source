@@ -840,6 +840,9 @@ HeadString="頭部"
 BodyString="胴体"
 SkinsString="皮膚"
 AttachmentsString="アクセサリー"
+Attachment0String="アクセサリー1"
+Attachment1String="アクセサリー2"
+Attachment2String="アクセサリー3"
 BackString="戻る"
 NoneString="なし"
 WeaponsString="武器"
@@ -1377,6 +1380,12 @@ MouseString="マウス"
 MouseSmoothingString="マウスの滑らかさ"
 ZoomSensitivityString="ズーム感度"
 ControllerZoomSensitivityString="ズーム感度"
+ControllerDeadzoneString="デッドゾーン"
+ControllerAccelerationJumpString="加速ジャンプ"
+ControllerDeadzoneDescriptionString="ゲームが入力を検知するまでの右スティック移動の量"
+ControllerDeadzoneDescriptionXboxString="ゲームが入力を検知するまでの右スティック移動の量"
+ControllerAccelerationJumpDescriptionString="スティックが左か右の限界に到達した時のターン率スピードブーストの量"
+ControllerAccelerationJumpDescriptionXboxString="スティックが左か右の限界に到達した時のターン率スピードブーストの量"
 AimAssistLockOnString="ズームロックオンの照準をアシスト"
 AimAssistRotationString="回転の照準をアシスト"
 AimAssistSlowDownString="スローダウンの照準をアシスト"
@@ -1463,6 +1472,7 @@ SkipTraderVoteYesReceivedString="トレーダースキップに投票しまし�
 SkipTraderVoteNoReceivedString="トレーダースキップしないに投票しました"
 SkipTraderNoEnoughTimeString="トレーダースキップ投票を開始するには時間が足りません"
 SkipTraderThisUserAlreadyStartedAVoteString="次にトレーダーが利用可能になるまで新しいトレーダースキップ投票を始めることはできません"
+SkipTraderVersusZedPlayerVotes="Zedチームにいるプレイヤーはトレーダースキップに投票できません"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="弾薬を受け取りました："
@@ -1999,7 +2009,7 @@ SplashDamage="熱波"
 SplashDamageDescription="至近距離から炎で攻撃を受けたzedが後ろによろめく。"
 
 Inferno="Zed-Time―インフェルノ"
-InfernoDescription="Zed-Time中、炎の攻撃を受けたzedが30%遅くなり、燃焼ダメージが50%増加する。"
+InfernoDescription="持続する炎ダメージは、Zed Timeの間周りにいるすべてのZedに拡散する。"
 
 Scorch="Zed-Time―放火魔"
 ScorchDescription="Zed-Time中、Perk武器による攻撃がほぼリアルタイムとなり、弾薬が無限になる。"
@@ -2022,7 +2032,7 @@ Passives[3]=(Title="反動軽減",Description="レベル毎に、Perk武器の�
 Passives[4]=(Title="Zed-Timeリロード",Description="レベル毎に、Zed-Time中のリロード速度が%x%増加する");
 
 ShootnMove="安定"
-ShootnMoveDescription="アイアンサイトの速度ペナルティを無視し、Perk武器での視界揺れが大きく減少する。"
+ShootnMoveDescription="速度ペナルティを無視し、アイアンサイト使用時のPerk武器ダメージが5%増加する。Perk武器での視界揺れが大きく減少する。"
 
 QuickSwitch="クイックドロー"
 QuickSwitchDescription="腰から発射した際の反動ペナルティが減少し、移動速度が5%増加し、Perk武器の切り替え速度が50%増加する。"
@@ -2207,6 +2217,7 @@ Passives[0]=(Title="武器ダメージ",Description="レベル毎に、武器ダ
 Passives[1]=(Title="全体ダメージ耐性",Description="レベル毎に、全ダメージに対する耐性が%x%増加する");
 Passives[2]=(Title="ヘビーボディーアーマー",Description="各レベル%x%(最大25%)アーマーを装備していると、ヘルスダメージを受けない。");
 Passives[3]=(Title="Zed-Timeリロード",Description="レベル毎に、Zed-Time中のリロード速度が%x%増加する");
+Passives[4]=(Title="高速武器切り替え",Description="武器切り替え速度が35%増加する");
 
 
 HeavyWeaponsReload="重武器訓練"
@@ -2784,6 +2795,20 @@ AllCompleteRewardDescriptionString="ハロウィーン | ブードゥー・リ�
 ChanceDropDescriptionStrings[0]="ハロウィーンチケット"
 ChanceDropDescriptionStrings[1]="ハロウィーンゴールデンチケット"
 
+[KFGFxSpecialEventObjectivesContainer_Xmas2020]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="凍ったバラ",DescriptionString="Elysiumでバラを3輪集める")
+SpecialEventObjectiveInfoList[1]=(TitleString="4つの異なる物語",DescriptionString="Elysiumで学術書を4冊集める")
+SpecialEventObjectiveInfoList[2]=(TitleString="ヤドリギの下で",DescriptionString="Elysiumの植物園エリアでウェーブを1つクリアする")
+SpecialEventObjectiveInfoList[3]=(TitleString="クリスマスキャロル",DescriptionString="Elysiumの伝承師の聖域アリーナでウェーブを1つクリアする")
+SpecialEventObjectiveInfoList[4]=(TitleString="終わらない冬",DescriptionString="エンドレスHardかそれ以上の難易度で、Elysiumのウェーブ15をクリアする")
+
+AllCompleteRewardDescriptionString="クリスマス | 戦術的エルフパック"
+
+ChanceDropDescriptionStrings[0]="クランプス・チケット"
+ChanceDropDescriptionStrings[1]="クランプス・ゴールデン・チケット"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2800,7 +2825,7 @@ KnifeString="ナイフ"
 FriendlyName="脳割り"
 DescriptionStrings[0]="脳へのダメージが一番。"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="このアウトブレイクではzedの突然変異が進み、頭へのダメージ以外では倒すことができなくなっている。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
+ModifierDescriptions[0]="このアウトブレイクではzedの突然変異が進み、頭へのダメージ以外では倒すことができなくなっている。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。Perkレベル15以上。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2810,7 +2835,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="小さな脅威"
 DescriptionStrings[0]="小さな脅威でも脅威には変わりない。"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="このアウトブレイクでzedを撃つと、zedが小さくなり撃ちにくくなる。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
+ModifierDescriptions[0]="このアウトブレイクでzedを撃つと、zedが小さくなり撃ちにくくなる。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。Perkレベル15以上。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2820,7 +2845,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="パウンドパーティー"
 DescriptionStrings[0]="いつでもすべてフレッシュパウンド。ほぼいつでも。"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="フレッシュパウンド集会の開催だ！マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
+ModifierDescriptions[0]="フレッシュパウンド集会の開催だ！マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。Perkレベル15以上。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2840,7 +2865,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Zed Time"
 DescriptionStrings[0]="Zed Timeはたっぷりある。"
 DescriptionStrings[1]="長さ：ショート（4ウェーブ）"
-ModifierDescriptions[0]="人生を無駄に過ごしていると思ったことってない？そんなことは、このアウトブレイクではあり得ない！Zedの近くにいる限り、常にZed Timeが起きる。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
+ModifierDescriptions[0]="人生を無駄に過ごしていると思ったことってない？そんなことは、このアウトブレイクではあり得ない！Zedの近くにいる限り、常にZed Timeが起きる。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。Perkレベル15以上。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2849,7 +2874,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="ドカーン！"
 DescriptionStrings[0]="追い詰められたZedは爆発するかも。"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="何か変なものでも食べたのかな？ガスが溜まってるとか？何であれ、このアウトブレイクではZedを倒すと爆発するぞ。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
+ModifierDescriptions[0]="何か変なものでも食べたのかな？ガスが溜まってるとか？何であれ、このアウトブレイクではZedを倒すと爆発するぞ。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。Perkレベル15以上。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2858,7 +2883,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="ビーフケーキ"
 DescriptionStrings[0]="大きければ大きいほど、激しく痛い目にあう。"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="このアウトブレイクでは、Zedの攻撃がプレイヤーに当たったり、特定のzed能力に影響を受けていたりすると、zedのヘルス、サイズ、リーチが増加する。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
+ModifierDescriptions[0]="このアウトブレイクでは、Zedの攻撃がプレイヤーに当たったり、特定のzed能力に影響を受けていたりすると、zedのヘルス、サイズ、リーチが増加する。マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。Perkレベル15以上。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2868,7 +2893,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="首振りZed"
 DescriptionStrings[0]="きっと首が痛いに違いない…"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
-ModifierDescriptions[0]="このZedの群れには何か大変なことが起きてしまい、頭が異常に大きくなっている。デカすぎる！マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。"
+ModifierDescriptions[0]="このZedの群れには何か大変なことが起きてしまい、頭が異常に大きくなっている。デカすぎる！マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。Perkレベル15以上。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3385,7 +3410,32 @@ DisplayName="Desolation"
 [KF-HellmarkStation KFMapSummary]
 DisplayName="Hellmark Station"
 
+[KF-Elysium KFMapSummary]
+DisplayName="Elysium"
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x%が収集アイテムを発見。%y%は取り残された..."
 FoundAllCollectiblesString="すべての収集アイテムを発見！"
+
+[KFKismetMapLocalization_Elysium]
+LeverWarningText="このレバーを引くと、最悪の事態が起こるかもしれません…"
+LoreMastersKnowsText="伝承師は知っている"
+BotanicaOpenText="植物園が開きました"
+FuneralPyreIgnitionText="聖なる火葬用のまきの山が燃え立っています！\nアヴェルヌスの魂を燃やすと、Elysiumの心を祟ることになるのです"
+TomeMissingText="この台座から学術書がなくなったようです"
+FlowerActivationText="花の香りが花瓶から漂ってきます"
+SandTomeCollectedText="砂の学術書を集めました\n%VALUE%"
+SteelTomeCollectedText="鋼鉄の学術書を集めました\n%VALUE%"
+SludgeTomeCollectedText="泥の学術書を集めました\n%VALUE%"
+WoodTomeCollectedText="木の学術書を集めました\n%VALUE%"
+RedRoseCollectedText="赤いバラを集めました\n%VALUE%"
+MagentaRoseollectedText="赤紫色のバラを集めました\n%VALUE%"
+YellowRoseCollectedText="黄色のバラを集めました\n%VALUE%"
+OneOfThreeCollectedText="1/3回収済み"
+TwoOfThreeCollectedText="2/3回収済み"
+ThreeOfThreeCollectedText="3/3回収済み"
+OneOfFourCollectedText="1/4回収済み"
+TwoOfFourCollectedText="2/4回収済み"
+ThreeOfFourCollectedText="3/4回収済み"
+FourOfFourCollectedText="4/4回収済み"

@@ -41,9 +41,9 @@ function Initialize( KFGFxObject_Menu NewParentMenu )
     super.Initialize( NewParentMenu );
     StartMenu = KFGFxMenu_StartGame( NewParentMenu );
 	OnlineSub = class'GameEngine'.static.GetOnlineSubsystem();
+    FillWhatsNew();
     LocalizeMenu();
     SetWhatsNewItems();
-
     if( class'KFGameEngine'.static.IsSoloPlayDisabled())
     {
         DisableSoloButton();
@@ -142,8 +142,11 @@ function SetWhatsNewItems()
 			if (!class'WorldInfo'.static.isEosBuild() && WhatsNewItems[i].TextField == "PS4Key") continue;
             DataObject = CreateObject("Object");
             DataObject.SetString("label", Localize("WhatsNewMessages",WhatsNewItems[i].TextField,"KFGame"));
+            LogInternal("label"@WhatsNewItems[i].TextField);
             DataObject.SetString("imageURL",WhatsNewItems[i].ImageURL);
+            LogInternal("imageURL"@WhatsNewItems[i].ImageURL);
             DataObject.SetString("redirectURL",WhatsNewItems[i].RedirectURL);
+            LogInternal("redirectURL"@WhatsNewItems[i].RedirectURL);
             DataArray.SetElementObject(index++, DataObject);
         }
     }
@@ -167,25 +170,56 @@ function LocalizeMenu()
     SetObject("localizedText", TextObject);
 }
 
+function FillWhatsNew()
+{
+    local SWhatsNew item;
+    WhatsNewItems.Remove(0, WhatsNewItems.Length);
+// Latest Update
+    item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Christmas_ChristmasBreakdown_Event", "LatestUpdate", "http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/");
+    WhatsNewItems.AddItem(item);
+// Featured Time Limited Item
+    item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Christmas_PremiumTicket", "FeaturedEventItem", "https://store.steampowered.com/buyitem/232090/5588");
+    WhatsNewItems.AddItem(item);
+// Featured Weapon Skin Bundle
+    item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Xmas_IceBreaker", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8616");
+    WhatsNewItems.AddItem(item);
+// Featured Weapon Skin Bundle
+    item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Christmas_Spectre", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8618");
+    WhatsNewItems.AddItem(item);
+// Featured Cosmetic Bundle
+    item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Winter","FeaturedItemBundle","https://store.steampowered.com/buyitem/232090/8617");
+    WhatsNewItems.AddItem(item);
+// Featured Weapon Bundle
+    item=SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Christmas_FrostGun", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8619");
+    WhatsNewItems.AddItem(item);
+// Misc Community Links
+    item=SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_CommunityHub", "Jaegorhorn", "https://steamcommunity.com/app/232090");
+    WhatsNewItems.AddItem(item);
+    item=SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_CommunityForums", "Forums", "http://forums.tripwireinteractive.com/");
+    WhatsNewItems.AddItem(item);
+    item=SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Survey", "Survey", "http://www.tripwireinteractive.com/redirect/KF2Survey/");
+    WhatsNewItems.AddItem(item);
+    item=SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_CommunityIssue", "CommunityTracker", "https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap");
+    WhatsNewItems.AddItem(item);
+    item=SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Merch", "Merch", "http://www.tripwireinteractive.com/redirect/shop/");
+    WhatsNewItems.AddItem(item);
+    item=SetWhatsNewItem("img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered", "Uncovered", "https://www.youtube.com/watch?v=fTdfedt9B48/");
+    WhatsNewItems.AddItem(item);
+
+}
+
+function SWhatsNew  SetWhatsNewItem(string image, string TextField, string URL)
+{
+    local SWhatsNew item;
+    item.ImageURL = image;
+    item.Textfield = TextField;
+    item.RedirectURL = URL;
+    
+    return item;
+}
+
 defaultproperties
 {
-   WhatsNewItems(0)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_InfernalInsurrection_Event",TextField="LatestUpdate",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/")
-   WhatsNewItems(1)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_PremiumTicket",TextField="FeaturedEventItem",RedirectURL="https://store.steampowered.com/buyitem/232090/4928")
-   WhatsNewItems(2)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Fall_JaegerMKIII",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8464")
-   WhatsNewItems(3)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Apocalypse",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8465")
-   WhatsNewItems(4)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_WW1",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8466")
-   WhatsNewItems(5)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Fall_Minigun",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8467")
-   WhatsNewItems(6)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Fall_MineReconstructor",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8468")
-   WhatsNewItems(7)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Fall_InfernalInsurrection_Bundle",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8469")
-   WhatsNewItems(8)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Halloween_FullGearInfernalInsurrection",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8463")
-   WhatsNewItems(9)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Fall_ReaperOutfit",TextField="FeaturedItemBundle",RedirectURL="https://store.steampowered.com/buyitem/232090/8462")
-   WhatsNewItems(10)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_PS4Key",TextField="PS4Key",RedirectURL="https://store.steampowered.com/buyitem/232090/4303")
-   WhatsNewItems(11)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityHub",TextField="Jaegorhorn",RedirectURL="https://steamcommunity.com/app/232090")
-   WhatsNewItems(12)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityForums",TextField="Forums",RedirectURL="http://forums.tripwireinteractive.com/")
-   WhatsNewItems(13)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Survey",TextField="Survey",RedirectURL="http://www.tripwireinteractive.com/redirect/KF2Survey/")
-   WhatsNewItems(14)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_CommunityIssue",TextField="CommunityTracker",RedirectURL="https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap")
-   WhatsNewItems(15)=(ImageURL="img://UI_WhatsNew.UI_WhatsNew_Merch",TextField="Merch",RedirectURL="http://www.tripwireinteractive.com/redirect/shop/")
-   WhatsNewItems(16)=(ImageURL="img://UI_WhatsNew_PS4.UI_WhatsNew_KFUncovered",TextField="Uncovered",RedirectURL="https://www.youtube.com/watch?v=fTdfedt9B48/")
    MultiplayerString="Find A Match"
    CreateGameString="Create A Match"
    SoloString="Play Solo Offline"

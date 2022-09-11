@@ -47,7 +47,7 @@ NoString="NON"
 TeamSwappedString="On vous a changé d'équipe"
 
 
-MicrophonePopupTitleString="Configurer votre micro"
+MicrophonePopupTitleString="Configurer votre microphone"
 MicrophonePopupSelectDeviceString="Choisir un périphérique"
 MicrophonePopupVolumeString="Volume du micro"
 MicrophonePopupCheckString="Tester le micro"
@@ -84,7 +84,7 @@ WeaponUpgradeComepleteString="Arme mise à niveau"
 SecondaryWeaponPurchasedString="Arme secondaire achetée"
 NoItemsPurchasedString="Aucun objet acheté"
 
-SetTakeoverServerPasswordTitle="Saisir nouv. MDP pour partie :"
+SetTakeoverServerPasswordTitle="Saisir nouv. mot de pas pour partie :"
 FreeConsolePlayOverString="Merci de jouer à Killing Floor 2 ! L'événement gratuit est terminé mais vous pouvez acheter le jeu et obtenir plus d'informations en appuyant sur le bouton magasin ci-dessous."
 BuyGameString="MAGASIN"
 CustomString="Personnalisé"
@@ -136,7 +136,7 @@ StartOfflineGameDescriptionString="Commencer une partie hors ligne dissoudra vot
 ProceedToTutorialString="LANCER L'ENTRAÎNEMENT ?"
 ProceedToTutorialDescriptionString="Découvrez les bases dans un environnement contrôlé.  Une fois terminé, la classe sélectionnée passera au niveau 1."
 
-NotAvailableInFreeTrialString="Contenu indisponible pour le mode démo"
+NotAvailableInFreeTrialString="Contenu non disponible pour l'essai gratuit"
 NetworkCheckFreeTrialFailedString="Erreur réseau : vérification du statut de l'évènement gratuit impossible. Vérifier l'état du réseau"
 
 [KFMission_LocalizedStrings]
@@ -180,7 +180,7 @@ LeavePartyTitleString="QUITTER LE GROUPE"
 LeavePartyDescriptionString="Êtes-vous sûr de vouloir quitter ce groupe en ligne ?"
 LeaveString="QUITTER"
 
-ErrorNoPlaystationNetworkTitle="Échec de connexion - PSN™"
+ErrorNoPlaystationNetworkTitle="Échec de connexion - PlayStation™Network"
 ErrorNoPlaystationNetworkDescription="Connexion impossible au PlayStation™ Network. Celle-ci est nécessaire pour jouer."
 ErrorNoPlaystationPlusTitle="Échec de connexion - PlayStation®Plus"
 ErrorNoPlaystationPlusDescription="Un compte PlayStation®Plus est requis pour jouer."
@@ -222,7 +222,7 @@ CouldNotFindGameDescriptionStringOrbis="Aucun serveur trouvé avec vos paramètr
 MultiplayerString="Trouver un match"
 ConsoleMultiplayerString="Jouer en ligne"
 CreateGameString="Créer un match"
-SoloString="Jouer en solo hors-ligne"
+SoloString="Jouer en solo hors ligne"
 TutorialString="Entraînement de base"
 
 [StartMenuHelperText]
@@ -840,6 +840,9 @@ HeadString="TÊTE"
 BodyString="CORPS"
 SkinsString="MODÈLES"
 AttachmentsString="ACCESSOIRES"
+Attachment0String="ACCESSOIRE 1"
+Attachment1String="ACCESSOIRE 2"
+Attachment2String="ACCESSOIRE 3"
 BackString="RETOUR"
 NoneString="AUCUN"
 WeaponsString="Armes"
@@ -1090,7 +1093,7 @@ DialogVolumeString="Volume des dialogues"
 MusicString="Volume de la musique en jeu"
 SFxString="Volumes des effets"
 VOIPVolumeString="Volume de récep. du chat vocal"
-ConfigureMicString="CONFIGURER LE MICRO"
+ConfigureMicString="CONFIGURER LE MICROPHONE"
 VocalsString="Voix des musiques"
 BattleChatterString="Réduire fen. discu. combat"
 PushToVoIPString="Appuyer pour parler"
@@ -1377,6 +1380,12 @@ MouseString="SOURIS"
 MouseSmoothingString="Lissage de la souris"
 ZoomSensitivityString="Sensibilité du zoom"
 ControllerZoomSensitivityString="Sensibilité du zoom"
+ControllerDeadzoneString="Zone morte"
+ControllerAccelerationJumpString="Saut d'accélération"
+ControllerDeadzoneDescriptionString="Mouvement de la manette droite nécessaire pour que le jeu reconnaisse la commande."
+ControllerDeadzoneDescriptionXboxString="Mouvement de la manette droite nécessaire pour que le jeu reconnaisse la commande."
+ControllerAccelerationJumpDescriptionString="Accélération de la vitesse de rotation lorsque la manette atteint la limite droite ou gauche."
+ControllerAccelerationJumpDescriptionXboxString="Accélération de la vitesse de rotation lorsque la manette atteint la limite droite ou gauche."
 AimAssistLockOnString="Aide visée auto en zoom"
 AimAssistRotationString="Rotation aide visée"
 AimAssistSlowDownString="Ralentissement aide visée"
@@ -1463,6 +1472,7 @@ SkipTraderVoteYesReceivedString="Vous avez voté pour passer la marchande."
 SkipTraderVoteNoReceivedString="Vous avez voté pour ne pas passer la marchande."
 SkipTraderNoEnoughTimeString="Temps insuffisant pour lancer un vote pour passer la marchande."
 SkipTraderThisUserAlreadyStartedAVoteString="Vous ne pouvez pas lancer un nouveau vote pour passer la marchande avant la prochaine phase de la marchande."
+SkipTraderVersusZedPlayerVotes="Les joueurs de l'équipe Zed ne peuvent pas voter pour passer la marchande."
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Vous avez reçu des munitions de"
@@ -1999,7 +2009,7 @@ SplashDamage="Vague de chaleur"
 SplashDamageDescription="Les Zeds touchés à bout portant par le feu sont renversés."
 
 Inferno="ZED TIME - Inferno"
-InfernoDescription="Pendant le Zed time, tous les Zeds touchés par le feu sont ralentis de 30 % et subissent 50 % de dégâts de brûlure en plus."
+InfernoDescription="Vos dégâts de feu sur la durée se propagent aux Zeds à proximité pendant le temps Zed."
 
 Scorch="ZED TIME - Incendiaire"
 ScorchDescription="Pendant le Zed time, vous attaquez quasiment en temps réel avec vos armes de classe et ne tombez jamais à court de munitions."
@@ -2022,7 +2032,7 @@ Passives[3]=(Title="Réduction du recul",Description="Réduit le recul des armes
 Passives[4]=(Title="Rechargement Zed time",Description="Vitesse de rechargement Zed time +%x% par niveau");
 
 ShootnMove="Paré"
-ShootnMoveDescription="Ignore les pénalités de vitesse pour les mires et réduit considérablement l'inclinaison des armes de classe."
+ShootnMoveDescription="Ignore les pénalités de vitesse et augmente les dégâts des armes de classe de 5 % avec la mire. Réduit considérablement l'inclinaison des armes de classe."
 
 QuickSwitch="Dégaine rapide"
 QuickSwitchDescription="Réduit la pénalité de recul des tirs à la hanche, augmente la vitesse de mouvement de 5 % et change d'arme de classe 50 % plus vite."
@@ -2207,6 +2217,7 @@ Passives[0]=(Title="Dégâts d'arme",Description="Augmente les dégâts d'arme d
 Passives[1]=(Title="Résistance générale",Description="Résistance à tous les dégâts +%x% par niveau");
 Passives[2]=(Title="Armure lourde",Description="%x% par niveau (max 25 %), pas de dégâts avec armure.");
 Passives[3]=(Title="Rechargement Zed time",Description="Vitesse de rechargement Zed time +%x% par niveau");
+Passives[4]=(Title="Changement d'arme accéléré",Description="Vitesse de changement d'arme augmentée de 35 %");
 
 
 HeavyWeaponsReload="Utilisation d'armes lourdes"
@@ -2651,7 +2662,7 @@ ChanceDropDescriptionStrings[1]="Ticket Or"
 [KFGFxFallObjectivesContainer]
 CurrentSpecialEventString="Terminez les objectifs du Bal des monstres pour des récompenses !"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Farce ou piège !",DescriptionString="Utiliser des pièges pour tuer 25 Zeds en une partie")
+SpecialEventObjectiveInfoList[0]=(TitleString="Farce ou piège !",DescriptionString="Utiliser des pièges pour tuer 25 Zeds en une session de jeu")
 SpecialEventObjectiveInfoList[1]=(TitleString="Les morts ne parlent pas",DescriptionString="Éclater 10 crânes brillants de collection")
 SpecialEventObjectiveInfoList[2]=(TitleString="Ragoût de monstre",DescriptionString="Tuer 2 500 Zeds")
 SpecialEventObjectiveInfoList[3]=(TitleString="S'amuser toute la nuit",DescriptionString="Terminer 25 vagues en Infini en mode difficile ou supérieur")
@@ -2784,6 +2795,20 @@ AllCompleteRewardDescriptionString="Halloween | Sac à dos vaudou"
 ChanceDropDescriptionStrings[0]="Ticket d'Halloween"
 ChanceDropDescriptionStrings[1]="Ticket doré d'Halloween"
 
+[KFGFxSpecialEventObjectivesContainer_Xmas2020]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Roses gelées",DescriptionString="Ramasser 3 roses dans l'Élysée")
+SpecialEventObjectiveInfoList[1]=(TitleString="Quatre histoires différentes",DescriptionString="Ramasser 4 tomes dans l'Élysée")
+SpecialEventObjectiveInfoList[2]=(TitleString="Sous le gui",DescriptionString="Terminer une vague dans l'arène Botanica de l'Élysée")
+SpecialEventObjectiveInfoList[3]=(TitleString="Un chant de Noël",DescriptionString="Terminer une vague dans le sanctuaire du maître des traditions de l'Élysée")
+SpecialEventObjectiveInfoList[4]=(TitleString="Hiver éternel",DescriptionString="Terminer 15 vagues en Infini en mode Difficile ou supérieur en Élysée")
+
+AllCompleteRewardDescriptionString="Noël | Sac à dos d'elfe tactique"
+
+ChanceDropDescriptionStrings[0]="Ticket de Krampus"
+ChanceDropDescriptionStrings[1]="Ticket doré de Krampus"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2800,7 +2825,7 @@ KnifeString="Couteau"
 FriendlyName="Brise-crânes"
 DescriptionStrings[0]="Rien de tel qu'une bonne lésion cérébrale."
 DescriptionStrings[1]="Durée : moyenne (7 vagues)"
-ModifierDescriptions[0]="Dans cette épidémie, les Zeds ont subi une mutation et n'ont plus qu'un point sensible : la tête. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking."
+ModifierDescriptions[0]="Dans cette épidémie, les Zeds ont subi une mutation et n'ont plus qu'un point sensible : la tête. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2810,7 +2835,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Mini-terreur"
 DescriptionStrings[0]="Une petite menace n'en reste pas moins dangereuse."
 DescriptionStrings[1]="Durée : moyenne (7 vagues)"
-ModifierDescriptions[0]="Dans cette épidémie, les Zeds rapetisseront quand vous leur tirerez dessus, les rendant plus difficiles à toucher. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking."
+ModifierDescriptions[0]="Dans cette épidémie, les Zeds rapetisseront quand vous leur tirerez dessus, les rendant plus difficiles à toucher. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2820,7 +2845,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Rôtissoire"
 DescriptionStrings[0]="Des Barbacks à perte de vue. Ou presque."
 DescriptionStrings[1]="Durée : moyenne (7 vagues)"
-ModifierDescriptions[0]="Le salon des Barbacks se tient en ville ! Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking."
+ModifierDescriptions[0]="Le salon des Barbacks se tient en ville ! Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2840,7 +2865,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Zed time"
 DescriptionStrings[0]="La corne d'abondance du Zed time."
 DescriptionStrings[1]="Durée : courte (4 vagues)"
-ModifierDescriptions[0]="Vous avez déjà eu l'impression que le temps vous filait entre les doigts ? Ce ne sera plus le cas avec cette épidémie ! Vous passerez en Zed time chaque vous que serez à proximité d'un Zed. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking."
+ModifierDescriptions[0]="Vous avez déjà eu l'impression que le temps vous filait entre les doigts ? Ce ne sera plus le cas avec cette épidémie ! Vous passerez en Zed time chaque vous que serez à proximité d'un Zed. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2849,7 +2874,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Boum !"
 DescriptionStrings[0]="Zeds sous pression, risque d'explosion."
 DescriptionStrings[1]="Durée : moyenne (7 vagues)"
-ModifierDescriptions[0]="Ils ont peut-être avalé une saleté ? Ou ils ont seulement des gaz ? Quoi que ce soit, les Zeds exploseront à leur mort dans cette épidémie. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking."
+ModifierDescriptions[0]="Ils ont peut-être avalé une saleté ? Ou ils ont seulement des gaz ? Quoi que ce soit, les Zeds exploseront à leur mort dans cette épidémie. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2858,7 +2883,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Tas de muscles"
 DescriptionStrings[0]="Plus ils sont gros, plus dure est la chute."
 DescriptionStrings[1]="Durée : moyenne (7 vagues)"
-ModifierDescriptions[0]="Dans cette épidémie, la santé, la taille et la portée des Zeds augmentent lorsqu'ils touchent les joueurs ou sont affectés par certaines capacités Zeds. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking."
+ModifierDescriptions[0]="Dans cette épidémie, la santé, la taille et la portée des Zeds augmentent lorsqu'ils touchent les joueurs ou sont affectés par certaines capacités Zeds. Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2868,7 +2893,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Bobble-Zed"
 DescriptionStrings[0]="... Ça doit faire mal au cou."
 DescriptionStrings[1]="Durée : moyenne (7 vagues)"
-ModifierDescriptions[0]="Ce groupe de Zeds a dû vivre une terrible expérience : leur tête est beaaaauuuucoup plus grande que d'ordinaire ! Elle est même énorme ! Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking."
+ModifierDescriptions[0]="Ce groupe de Zeds a dû vivre une terrible expérience : leur tête est beaaaauuuucoup plus grande que d'ordinaire ! Elle est même énorme ! Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3385,7 +3410,32 @@ DisplayName="Désolation"
 [KF-HellmarkStation KFMapSummary]
 DisplayName="Poste infernal"
 
+[KF-Elysium KFMapSummary]
+DisplayName="Élysée"
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% a trouvé un objet de collection. Encore %y% à trouver..."
 FoundAllCollectiblesString="Tous les objets de collection ont été trouvés !"
+
+[KFKismetMapLocalization_Elysium]
+LeverWarningText="Tirer sur ce levier pourrait avoir des conséquences..."
+LoreMastersKnowsText="Le maître des traditions le sait"
+BotanicaOpenText="Le Botanica est ouvert"
+FuneralPyreIgnitionText="Le bûcher funéraire sacré a été allumé!\nLes âmes embrasées d'Avernus hantent à présent le cœur de l'Élysée."
+TomeMissingText="Un tome semble manquer sur ce piédestal"
+FlowerActivationText="Un arôme fleuri émane du vase"
+SandTomeCollectedText="Le tome du sable a été obtenu\n%VALUE%"
+SteelTomeCollectedText="Le tome de l'acier a été obtenu\n%VALUE%"
+SludgeTomeCollectedText="Le tome des boues toxiques a été obtenu\n%VALUE%"
+WoodTomeCollectedText="Le tome du bois a été obtenu\n%VALUE%"
+RedRoseCollectedText="Une rose a été ramassée\n%VALUE%"
+MagentaRoseollectedText="Une rose magenta a été ramassée\n%VALUE%"
+YellowRoseCollectedText="Une rose jaune a été ramassée\n%VALUE%"
+OneOfThreeCollectedText="Obtenu : 1 de 3"
+TwoOfThreeCollectedText="Obtenu : 2 de 3"
+ThreeOfThreeCollectedText="Obtenu : 3 de 3"
+OneOfFourCollectedText="Obtenu : 1 de 4"
+TwoOfFourCollectedText="Obtenu : 2 de 4"
+ThreeOfFourCollectedText="Obtenu : 3 de 4"
+FourOfFourCollectedText="Obtenu : 4 de 4"

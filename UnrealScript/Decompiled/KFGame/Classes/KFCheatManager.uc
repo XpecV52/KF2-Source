@@ -73,6 +73,9 @@ const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
 const KFID_VOIPMicVolumeMultiplier = 174;
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 
 var bool bDebugSceneEnabled;
 var transient bool bUsingSplatterGun;
@@ -284,6 +287,40 @@ exec function TestNumbPrompts(int NumberOfPrompts)
     if(KFPC.MyGFxManager != none)
     {
         KFPC.MyGFxManager.ManagerObject.SetInt("numPrompts", NumberOfPrompts);
+    }
+}
+
+exec function TestMapMessage(string S, float Time)
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+    if((P == none) || KFPC == none)
+    {
+        return;
+    }
+    if(KFPC.myGfxHUD != none)
+    {
+        KFPC.myGfxHUD.MapTextWidget.DisplayMapText(S, Time, true);
+    }
+}
+
+exec function TestMapCounterMessage(string S, float Time)
+{
+    local Pawn P;
+    local KFPlayerController KFPC;
+
+    P = GetMyPawn();
+    KFPC = KFPlayerController(Outer);
+    if((P == none) || KFPC == none)
+    {
+        return;
+    }
+    if(KFPC.myGfxHUD != none)
+    {
+        KFPC.myGfxHUD.MapCounterTextWidget.DisplayMapText(S, Time);
     }
 }
 
@@ -907,6 +944,11 @@ simulated exec function Minigun()
     GiveWeapon("KFGameContent.KFWeap_Minigun");
 }
 
+simulated exec function Vampire()
+{
+    GiveWeapon("KFGameContent.KFWeap_HRG_Vampire");
+}
+
 simulated exec function Pistols()
 {
     GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
@@ -998,6 +1040,11 @@ simulated exec function MineRec()
     GiveWeapon("KFGameContent.KFWeap_Mine_Reconstructor");
 }
 
+simulated exec function FrostSAxe()
+{
+    GiveWeapon("KFGameContent.KFWeap_Rifle_FrostShotgunAxe");
+}
+
 simulated exec function Medic()
 {
     GiveWeapon("KFGameContent.KFWeap_Mine_Reconstructor");
@@ -1010,6 +1057,7 @@ simulated exec function Medic()
     GiveWeapon("KFGameContent.KFWeap_Rifle_HRGIncision");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_MedicRifleGrenadeLauncher");
     GiveWeapon("KFGameContent.KFWeap_Blunt_MedicBat");
+    GiveWeapon("KFGameContent.KFWeap_HRG_Vampire");
 }
 
 simulated exec function Demo()

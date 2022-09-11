@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="Cada arma tiene un <font color="#caab05">PESO</font>
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="Recargar la munición y la armadura"
-TraderRefillGamepadDescriptionKey="Acude al mercader para recargar <font color="#caab05">MUNICIÓN</font>, <font color="#caab05">GRANADAS</font> y <font color="#caab05">ARMADURA</font>. Ve a la parte izquierda del menú de mercader y usa el joystick izquierdo para seleccionar el arma para la que quieres comprar munición. Pulsa <font color="#caab05">XboxTypeS_A</font> para comprar un cargador o una granada para el arma seleccionada. También puedes comprar tanta munición y granadas como puedas permitirte (tú decides el límite) pulsando <font color="#caab05">XboxTypeS_X</font>. Si tienes poco tiempo (o mucho dinero), puedes pulsar <font color="#caab05">LeftThumbStick</font> para gastar rápidamente el dinero en munición, armadura y granadas."
+TraderRefillGamepadDescriptionKey="Acude al mercader para recargar <font color="#caab05">MUNICIÓN</font>, <font color="#caab05">GRANADAS</font> y <font color="#caab05">ARMADURA</font>. Ve a la parte izquierda del menú de mercader y usa el stick izquierdo para seleccionar el arma para la que quieres comprar munición. Pulsa <font color="#caab05">XboxTypeS_A</font> para comprar un cargador o una granada para el arma seleccionada. También puedes comprar tanta munición y granadas como puedas permitirte (tú decides el límite) pulsando <font color="#caab05">XboxTypeS_X</font>. Si tienes poco tiempo (o mucho dinero), puedes pulsar <font color="#caab05">LeftThumbStick</font> para gastar rápidamente el dinero en munición, armadura y granadas."
 TraderSellGamepadTitleKey="Vender armas"
-TraderSellGamepadDescriptionKey="Para <font color="#caab05">VENDER UN ARMA</font>, ve a la parte izquierda del menú de mercader usando el joystick izquierdo. A continuación, pulsa <font color="#caab05">XboxTypeS_Y</font> y selecciona el arma que quieras vender. Puedes ver la cantidad de dinero que obtendrás de la venta. Recuerda que no puedes vender las granadas, la armadura para el cuerpo ni la pistola de 9 mm de repuesto."
+TraderSellGamepadDescriptionKey="Para <font color="#caab05">VENDER UN ARMA</font>, ve a la parte izquierda del menú de mercader usando el stick izquierdo. A continuación, pulsa <font color="#caab05">XboxTypeS_Y</font> y selecciona el arma que quieras vender. Puedes ver la cantidad de dinero que obtendrás de la venta. Recuerda que no puedes vender las granadas, la armadura para el cuerpo ni la pistola de 9 mm de repuesto."
 TraderBuyGamepadTitleKey="Comprar armas"
-TraderBuyGamepadDescriptionKey="Para <font color="#caab05">COMPRAR UN ARMA</font>, ve a la parte derecha del menú de mercader usando el joystick izquierdo. A continuación, pulsa <font color="#caab05">XboxTypeS_A</font> y selecciona el arma que quieras comprar. Asegúrate de tener suficiente <font color="#caab05">DINERO</font> y <font color="#caab05">CAPACIDAD DE CARGA</font> para comprar el arma."
+TraderBuyGamepadDescriptionKey="Para <font color="#caab05">COMPRAR UN ARMA</font>, ve a la parte derecha del menú de mercader usando el stick izquierdo. A continuación, pulsa <font color="#caab05">XboxTypeS_A</font> y selecciona el arma que quieras comprar. Asegúrate de tener suficiente <font color="#caab05">DINERO</font> y <font color="#caab05">CAPACIDAD DE CARGA</font> para comprar el arma."
 TraderWeightGamepadTitleKey="Capacidad y peso de las armas"
 TraderWeightGamepadDescriptionKey="Cada arma tiene un <font color="#caab05">PESO</font>. Si peso de todas tus armas actuales es excesivo, podría impedirte comprar el arma que quieres. Para averiguar el peso de un arma, consulta sus detalles en la lista de armas. Tu <font color="#caab05">CAPACIDAD DE CARGA</font> se muestra en el centro de la pantalla, debajo del dinero. Si hubiera algo que te impidiera comprar el objeto seleccionado, aparecerá destacado en rojo."
 
@@ -749,6 +749,16 @@ ItemCategory="Explosivos"
 ItemDescription="•Lanza biominas que explotan al impactar, y dañan a los Zeds y curan a tus aliados.\n•El modo alternativo detona todas las minas colocadas.\n•El origen de sus materiales es un dato confidencial debido a asuntos del código sanitario."
 SharedUnlockSource="Paquete de armas Reconstructor de minas"
 
+[KFWeap_HRG_Vampire]
+ItemName="Vampiro HRG"
+ItemCategory="Especial"
+ItemDescription="•El disparo principal absorbe sangre de los enemigos, rellenando la reserva de sangre.\n•Después del disparo principal, lanza una bola explosiva de sangre coagulada que daña a los enemigos y sana a los aliados.\n•El disparo alternativo consume la reserva de sangre para disparar estacas de sangre cristalizada."
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="Colmillo helado"
+ItemCategory="Escopeta"
+ItemDescription="•El modo de disparo lanza balas que congelan a los enemigos.\n•El golpe cuerpo a cuerpo destroza a los enemigos con el hacha.\n•Alternativo: bloquear/desviar.\n•El hacha es perfecta para esculpir el hielo."
+SharedUnlockSource="Paquete de armas Colmillo helado"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

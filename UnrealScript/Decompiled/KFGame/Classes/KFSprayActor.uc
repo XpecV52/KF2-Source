@@ -400,6 +400,24 @@ simulated function SetFOV(float NewFOV)
     SkeletalSprayMesh.super(KFSprayActor).SetFOV(NewFOV);
 }
 
+simulated function Vector GetLastContactPositionMeshHit()
+{
+    local KFPawn_Monster KFPM;
+    local Vector ClosestBonePosition;
+
+    KFPM = KFPawn_Monster(HighestSprayMeshContactThisTick.Actor);
+    if(((KFPM != none) && KFPM.Mesh != none) && HighestSprayMeshContactThisTick.BoneName != 'None')
+    {
+        return KFPM.Mesh.GetBoneLocation(HighestSprayMeshContactThisTick.BoneName);
+    }
+    if((KFPM != none) && KFPM.Mesh != none)
+    {
+        KFPM.Mesh.FindClosestBone(HighestSprayMeshContactThisTick.ContactPosition, ClosestBonePosition);
+        return ClosestBonePosition;
+    }
+    return HighestSprayMeshContactThisTick.ContactPosition - (HighestSprayMeshContactThisTick.ContactNormal * float(32));
+}
+
 simulated function SetupFX()
 {
     local int ChainIdx, Idx;

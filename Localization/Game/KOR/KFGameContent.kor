@@ -749,6 +749,16 @@ ItemCategory="폭발물"
 ItemDescription="•접촉 시 제드에게 데미지를 가하고 아군을 치료하는 생체 지뢰를 발사합니다. \n•대체 사격 시 배치한 모든 지뢰를 폭발시킵니다. \n•기본 자재 획득처는 보건법상 기밀입니다."
 SharedUnlockSource="지뢰 재건 장치 무기 번들"
 
+[KFWeap_HRG_Vampire]
+ItemName="HRG 뱀파이어"
+ItemCategory="특수"
+ItemDescription="•기본 발사 시 적의 피를 흡수하여 피를 채웁니다.\n•기본 발사 이후 폭발하는 응고된 피의 공을 발사하여 적에게는 피해를 주고 아군은 회복시킵니다.\n•대체 사격 시 모은 피를 소진하여 가시처럼 굳은 피를 발사합니다."
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="프로스트 팽"
+ItemCategory="산탄총"
+ItemDescription="•발사 모드에서 적을 얼리는 탄을 발사합니다.\n•충돌 공격 시 적을 도끼로 파괴할 수 있습니다.\n•대체 사격 시 차단/회피합니다.\n•이 도끼는 얼음 조각을 할 때 딱 좋습니다."
+SharedUnlockSource="프로스트 팽 무기 번들"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

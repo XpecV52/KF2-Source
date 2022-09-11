@@ -250,7 +250,10 @@ function ModifyHealth(out int InHealth)
 
 simulated function float GetTightChokeModifier()
 {
-    if(IsTightChokeActive())
+    local KFWeapon MyKFWeapon;
+
+    MyKFWeapon = GetOwnerWeapon();
+    if(IsTightChokeActive() && IsWeaponOnPerk(MyKFWeapon,, self.Class))
     {
         return GetSkillValue(PerkSkills[5]);
     }

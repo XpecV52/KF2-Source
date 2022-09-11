@@ -73,6 +73,9 @@ const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
 const KFID_VOIPMicVolumeMultiplier = 174;
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 
 var string WhatsNewPS;
 var string WhatsNewMS;
@@ -218,7 +221,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 3:
             return Class'KFGFXSpecialEventObjectivesContainer_Fall2020';
         case 4:
-            return Class'KFGFxSpecialEventObjectivesContainer_Xmas2019';
+            return Class'KFGFXSpecialEventObjectivesContainer_Xmas2020';
         default:
             return Class'KFGFxSpecialEventObjectivesContainer';
             break;
@@ -1813,5 +1816,6 @@ defaultproperties
     StockMaps(29)="kf-ashwoodasylum"
     StockMaps(30)="kf-desolation"
     StockMaps(31)="kf-hellmarkstation"
+    StockMaps(32)="kf-elysium"
     SubWidgetBindings=/* Array type was not detected. */
 }

@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="Cada arma tem um <font color="#caab05">PESO</font>. 
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="Reabasteça a munição e a armadura"
-TraderRefillGamepadDescriptionKey="Recarregue <font color="#caab05">MUNIÇÃO</font>, <font color="#caab05">GRANADAS</font> e <font color="#caab05">ARMADURA</font> no comerciante. Para isso, use o controle esquerdo para selecionar a arma para a qual quer comprar munição, à esquerda do menu do comerciante. Para comprar um pente ou granada para a arma selecionada, aperte <font color="#caab05">XboxTypeS_A</font> ou, para comprar o máximo possível de munição ou granadas até o seu limite de compras, aperte <font color="#caab05">XboxTypeS_X</font>. Se você está sem tempo (ou com muita grana), aperte <font color="#caab05">LeftThumbStick</font> para distribuí-la em munição, armadura e granadas de modo rápido e automático."
+TraderRefillGamepadDescriptionKey="Recarregue <font color="#caab05">MUNIÇÃO</font>, <font color="#caab05">GRANADAS</font> e <font color="#caab05">ARMADURA</font> no comerciante. Para isso, use o direcional analógico esquerdo para selecionar a arma para a qual quer comprar munição, à esquerda do menu do comerciante. Para comprar um pente ou granada para a arma selecionada, aperte <font color="#caab05">XboxTypeS_A</font> ou, para comprar o máximo possível de munição ou granadas até o seu limite de compras, aperte <font color="#caab05">XboxTypeS_X</font>. Se você está sem tempo (ou com muita grana), aperte <font color="#caab05">LeftThumbStick</font> para distribuí-la em munição, armadura e granadas de modo rápido e automático."
 TraderSellGamepadTitleKey="Venda de armas"
-TraderSellGamepadDescriptionKey="Para <font color="#caab05">VENDER UMA ARMA</font>, use o controle esquerdo para selecionar a arma que quiser vender à esquerda do menu do comerciante e aperte <font color="#caab05">XboxTypeS_Y</font>. Veja a quantidade de grana que você ganhará se vender o item. Você não pode vender sua pistola 9 mm, armadura nem granadas."
+TraderSellGamepadDescriptionKey="Para <font color="#caab05">VENDER UMA ARMA</font>, use o direcional analógico esquerdo para selecionar a arma que quiser vender à esquerda do menu do comerciante e aperte <font color="#caab05">XboxTypeS_Y</font>. Veja a quantidade de grana que você ganhará se vender o item. Você não pode vender sua pistola 9 mm, armadura nem granadas."
 TraderBuyGamepadTitleKey="Compra de armas"
-TraderBuyGamepadDescriptionKey="Para <font color="#caab05">COMPRAR UMA ARMA</font>, use o controle esquerdo para selecionar a arma que quiser comprar à direita do menu do comerciante e aperte <font color="#caab05">XboxTypeS_A</font>. Tenha certeza de ter <font color="#caab05">GRANA</font> e <font color="#caab05">CAPACIDADE DE PESO</font> suficientes para comprar a arma."
+TraderBuyGamepadDescriptionKey="Para <font color="#caab05">COMPRAR UMA ARMA</font>, use o direcional analógico esquerdo para selecionar a arma que quiser comprar à direita do menu do comerciante e aperte <font color="#caab05">XboxTypeS_A</font>. Tenha certeza de ter <font color="#caab05">GRANA</font> e <font color="#caab05">CAPACIDADE DE PESO</font> suficientes para comprar a arma."
 TraderWeightGamepadTitleKey="Peso da arma e capacidade"
 TraderWeightGamepadDescriptionKey="Cada arma tem um <font color="#caab05">PESO</font>. O peso das armas no momento pode impedir a compra da arma desejada. O peso da arma fica na lista de armas e nos detalhes do objeto. Sua <font color="#caab05">CAPACIDADE DE PESO</font> fica abaixo da grana atual, no centro da tela. Tudo o que estiver impedindo a compra de um item fica destacado de vermelho."
 
@@ -749,6 +749,16 @@ ItemCategory="Explosivos"
 ItemDescription="•Dispara minas biológicas que explodem ao contato, ferindo Zeds e curando aliados.\n•O tiro alternativo detona todas as minas colocadas.\n•A fonte de seu material base é informação confidencial por questões do Código de Saúde."
 SharedUnlockSource="Conjunto de Armas Reconstrutora de Minas"
 
+[KFWeap_HRG_Vampire]
+ItemName="Vampiro HRG"
+ItemCategory="Especial"
+ItemDescription="•O disparo principal absorve o sangue dos inimigos e enche o conjunto de sangue.\n•Após o disparo primário, lança uma bola de sangue coagulado que fere os inimigos e cura os aliados.\n•O modo de tiro alternativo consome o conjunto de sangue para atirar espetos de sangue cristalizado."
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="Presa Gelada"
+ItemCategory="Espingarda"
+ItemDescription="•O modo de tiro atira projéteis que congelam os inimigos.\n•O ataque de pancada esmaga os inimigos com o machado.\n•Alt - bloqueio / aparo.\n•O machado é perfeito para escultura em gelo."
+SharedUnlockSource="Conjunto de Armas Presa Gelada"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

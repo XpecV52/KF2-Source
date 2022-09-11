@@ -376,8 +376,7 @@ function handleIPPolicy(WebAdminQuery Q)
             Idx = InStr(Policy, ";");
         }
         Q.Response.Subst("policy.ipmask", Class'WebAdminUtils'.static.HTMLEscape(Mid(Policy, Idx + 1)));
-        Q.Response.Subst("policy.policy", Class'WebAdminUtils'.static.HTMLEscape(Left(Policy, Idx)));
-        Q.Response.Subst("policy.selected." $ Caps(Left(Policy, Idx)), "selected=\"selected\"");        
+        Q.Response.Subst("policy.selected", Class'WebAdminUtils'.static.HTMLEscape(Left(Policy, Idx)));        
         policies $= webadmin.Include(Q, "policy_row.inc");
         Q.Response.Subst("policy.selected." $ Caps(Left(Policy, Idx)), "");
         ++ I;

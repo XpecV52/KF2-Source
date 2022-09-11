@@ -33,6 +33,7 @@ KF-Sanitarium="Игра в санатории"
 KF-Biolapse="Игра в «Биопромахе»"
 KF-Desolation="Игра в режиме «Опустошение»"
 KF-HellmarkStation="Игра на станции «Адские врата»"
+KF-Elysium="Игра в режиме «Элизиум»"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -166,7 +167,7 @@ PlayOffline="Хотите играть автономно? Будут недос
 [Notifications]
 ControllerDisconnectedTitle="Контроллер отключен"
 ControllerDisconnectedPS4Message="Беспроводной контроллер отключен. Пожалуйста, восстановите подключение беспроводного контроллер у игрока, запустившего игру."
-ControllerDisconnectedXB1="Беспроводной контроллер Xbox One отключен. Подключите контроллер заново."
+ControllerDisconnectedXB1="Беспроводной геймпад Xbox One отключен. Подключите контроллер заново."
 PlayGoBusyTitle="Установка не завершена"
 PlayGoBusyMessage="Пока установка игры не завершится, контент и функции доступны в ограниченном режиме."
 UnableToJoinInviteTitle="Присоединиться не удалось"
@@ -185,14 +186,14 @@ InviteMessage="Пошли со мной мочить мутантов!"
 NotConnectedTitle="Сетевая ошибка"
 NotConnectedMessage="Нет подключения к Интернету. Проверьте подключение и повторите попытку."
 NotConnectedForOnlinePlay="Нет подключения к Интернету. Проверьте подключение и повторите обращение к онлайн-функциям."
-NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+NotConnectedForOnlinePlayXB1="Для игры по сети необходимо войти в сервис Xbox Live. Проверьте подключение и повторите попытку, если хотите использовать сетевые функции."
 MultiplayerNotAllowed_MessageLive="Для игры нужно войти в профиль с активированной службой Xbox Live с привилегиями для многопользовательской игры."
 MultiplayerNotAllowed_Title="Многопользов. игра недоступна"
 LoggedOutMessage="Активный профиль изменен. Вы вернулись к главному экрану."
 LoggedOutTitle="Выполнен выход"
 LoggedInTitle="Выполнен вход"
-NewRegionTitle="Welcome"
-NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
+NewRegionTitle="Приветствуем"
+NewRegionMessage="Приветствуем на подборе игр в сети. Убедитесь, что выбрали верный регион для подбора!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Просмотреть профиль игрока"
@@ -217,7 +218,7 @@ MatchmakingRegionString="РЕГИОН"
 LeaveMenuString="Выходя из матча, вы также покидаете свою команду"
 
 [KFGFxMenu_Store]
-StoreStringXB1="МАГАЗИН XBOX"
+StoreStringXB1="MICROSOFT STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="РЕГИОН"

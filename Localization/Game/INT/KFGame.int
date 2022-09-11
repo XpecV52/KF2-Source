@@ -840,6 +840,9 @@ HeadString="HEAD"
 BodyString="BODY"
 SkinsString="SKINS"
 AttachmentsString="ACCESSORIES"
+Attachment0String="ACCESSORY 1"
+Attachment1String="ACCESSORY 2"
+Attachment2String="ACCESSORY 3"
 BackString="BACK"
 NoneString="NONE"
 WeaponsString="Weapons"
@@ -1377,6 +1380,12 @@ MouseString="MOUSE"
 MouseSmoothingString="Mouse Smoothing"
 ZoomSensitivityString="Zoom Sensitivity"
 ControllerZoomSensitivityString="Zoom Sensitivity"
+ControllerDeadzoneString="Deadzone"
+ControllerAccelerationJumpString="Acceleration Jump"
+ControllerDeadzoneDescriptionString="Amount of right stick movement before the game recognizes the input"
+ControllerDeadzoneDescriptionXboxString="Amount of right stick movement before the game recognizes the input"
+ControllerAccelerationJumpDescriptionString="Amount of turn rate speed boost when the stick reaches left or right limit"
+ControllerAccelerationJumpDescriptionXboxString="Amount of turn rate speed boost when the stick reaches left or right limit"
 AimAssistLockOnString="Aim Assist Zoom Lock-On"
 AimAssistRotationString="Aim Assist Rotation"
 AimAssistSlowDownString="Aim Assist Slowdown"
@@ -1463,6 +1472,7 @@ SkipTraderVoteYesReceivedString="You have voted to skip trader"
 SkipTraderVoteNoReceivedString="You have voted to not skip trader"
 SkipTraderNoEnoughTimeString="Not enough time to start a skip trader vote"
 SkipTraderThisUserAlreadyStartedAVoteString="You can't start a new skip trader vote until the next trader phase"
+SkipTraderVersusZedPlayerVotes="Players in Zed Team can’t vote to skip trader"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="You received ammo from"
@@ -1999,7 +2009,7 @@ SplashDamage="Heat Wave"
 SplashDamageDescription="Zed struck at point blank range with fire will stumble back."
 
 Inferno="ZED TIME - Inferno"
-InfernoDescription="During Zed time, any Zeds hit with fire are slowed 30% and take 50% more burning damage."
+InfernoDescription="Your fire damage over time spreads to all surrounding Zeds during Zed Time."
 
 Scorch="ZED TIME - Pyromaniac"
 ScorchDescription="During Zed time, you attack with perk weapons in close to real time and never run out of ammo."
@@ -2022,7 +2032,7 @@ Passives[3]=(Title="Recoil Reduction",Description="Reduce perk weapon recoil %x%
 Passives[4]=(Title="Zedtime Reload",Description="Increase reload speed in Zed time %x% per level");
 
 ShootnMove="Steady"
-ShootnMoveDescription="Ignore movement speed penalty for iron sights and drastically reduce weapon bob with perk weapons."
+ShootnMoveDescription="Ignore movement speed penalty and increase perk weapons damage 5% when using iron sights. Drastically reduce weapon bob with perk weapons."
 
 QuickSwitch="Quick Draw"
 QuickSwitchDescription="Reduce recoil penalty for shooting from the hip, increase movement speed 5%, and switch perk weapons 50% faster."
@@ -2207,6 +2217,7 @@ Passives[0]=(Title="Weapon Damage",Description="Increase weapon damage %x% per l
 Passives[1]=(Title="Global Damage Resistance",Description="Increase resistance to all damage %x% per level");
 Passives[2]=(Title="Heavy Body Armor",Description="%x% every level (max 25%) take no health damage if you have armor.");
 Passives[3]=(Title="Zedtime Reload",Description="Increase reload speed in Zed time %x% per level");
+Passives[4]=(Title="Faster Weapon Switch",Description="Weapon Switch Speed increased by 35%");
 
 
 HeavyWeaponsReload="Heavy Weapons Training"
@@ -2783,6 +2794,20 @@ AllCompleteRewardDescriptionString="Halloween | Voodoo Backpack"
 
 ChanceDropDescriptionStrings[0]="Halloween Ticket"
 ChanceDropDescriptionStrings[1]="Halloween Golden Ticket"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2020]
+CurrentSpecialEventString="A time-limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Frozen Roses",DescriptionString="Collect 3 roses in Elysium")
+SpecialEventObjectiveInfoList[1]=(TitleString="Four Different Tales",DescriptionString="Collect 4 tomes in Elysium")
+SpecialEventObjectiveInfoList[2]=(TitleString="Under the Mistletoe",DescriptionString="Complete one wave in Elysium's Botanica arena")
+SpecialEventObjectiveInfoList[3]=(TitleString="A Christmas Carol",DescriptionString="Complete one wave in Elysium's Loremaster Sanctum arena")
+SpecialEventObjectiveInfoList[4]=(TitleString="Everlasting Winter",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Elysium")
+
+AllCompleteRewardDescriptionString="Christmas | Tactical Elf-pack"
+
+ChanceDropDescriptionStrings[0]="Krampus Ticket"
+ChanceDropDescriptionStrings[1]="Krampus Golden Ticket"
 
 ;============================================
 ; Daily Localization
@@ -3385,7 +3410,32 @@ DisplayName="Desolation"
 [KF-HellmarkStation KFMapSummary]
 DisplayName="Hellmark Station"
 
+[KF-Elysium KFMapSummary]
+DisplayName="Elysium"
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% found a collectible. %y% left to find..."
 FoundAllCollectiblesString="Every collectible has been found!"
+
+[KFKismetMapLocalization_Elysium]
+LeverWarningText="Pulling this lever may have consequences . . ."
+LoreMastersKnowsText="The Lore Master knows"
+BotanicaOpenText="The Botanica has opened"
+FuneralPyreIgnitionText="The sacred funeral pyre has been set ablaze!\nBurning souls of Avernus now haunt the heart of Elysium"
+TomeMissingText="A tome seems to be missing from this pedestal"
+FlowerActivationText="A flowery aroma wafts from the vase"
+SandTomeCollectedText="The Tome of Sand has been collected\n%VALUE%"
+SteelTomeCollectedText="The Tome of Steel has been collected\n%VALUE%"
+SludgeTomeCollectedText="The Tome of Sludge has been collected\n%VALUE%"
+WoodTomeCollectedText="The Tome of Wood has been collected\n%VALUE%"
+RedRoseCollectedText="A red rose was collected\n%VALUE%"
+MagentaRoseollectedText="A magenta rose was collected\n%VALUE%"
+YellowRoseCollectedText="A yellow rose was collected\n%VALUE%"
+OneOfThreeCollectedText="1 of 3 collected"
+TwoOfThreeCollectedText="2 of 3 collected"
+ThreeOfThreeCollectedText="3 of 3 collected"
+OneOfFourCollectedText="1 of 4 collected"
+TwoOfFourCollectedText="2 of 4 collected"
+ThreeOfFourCollectedText="3 of 4 collected"
+FourOfFourCollectedText="4 of 4 collected"

@@ -2048,6 +2048,7 @@ function CastYesVoteSkipTrader()
 		if(KFPRI != none)
 		{
 			KFPRI.CastSkipTraderVote(KFPRI, true);
+			SetVisibility(false);
 		}
 	}
 }
@@ -2065,6 +2066,7 @@ function CastNoVoteSkipTrader()
 		if(KFPRI != none)
 		{
 			KFPRI.CastSkipTraderVote(KFPRI, false);
+			SetVisibility(false);
 		}
 	}
 }

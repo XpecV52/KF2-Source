@@ -6305,3 +6305,131 @@ AttachmentSkin2="Fome"
 AttachmentSkin3="Pestilência"
 AttachmentSkin4="Guerra"
 AttachmentSkin5="Anarquia"
+
+[Cosmetic_Winter_Hat_ARCH]
+Attachment="Chapéu de Neve"
+AttachmentSkin0="Branco"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Vermelho"
+AttachmentSkin5="Camuflagem digital"
+AttachmentSkin6="Camuflagem tundra"
+AttachmentSkin7="Camuflagem ártico"
+AttachmentSkin8="Precioso"
+
+[Cosmetic_Winter_Goggles_ARCH]
+Attachment="Óculos de Neve"
+AttachmentSkin0="Branco"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Vermelho"
+AttachmentSkin5="Camuflagem digital"
+AttachmentSkin6="Camuflagem tundra"
+AttachmentSkin7="Camuflagem ártico"
+AttachmentSkin8="Precioso"
+
+[Cosmetic_Winter_Mask_ARCH]
+Attachment="Máscara de Neve"
+AttachmentSkin0="Branco"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Vermelho"
+AttachmentSkin5="Camuflagem digital"
+AttachmentSkin6="Camuflagem tundra"
+AttachmentSkin7="Camuflagem ártico"
+AttachmentSkin8="Precioso"
+
+[Cosmetic_Winter_Backpack_ARCH]
+Attachment="Pacote Escalador"
+AttachmentSkin0="Branco"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Verde"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Vermelho"
+AttachmentSkin5="Camuflagem digital"
+AttachmentSkin6="Camuflagem tundra"
+AttachmentSkin7="Camuflagem ártico"
+AttachmentSkin8="Precioso"
+
+[Cosmetic_Christmas_JackFrostMask_ARCH]
+Attachment="Máscara Invernal"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Assustador"
+AttachmentSkin3="Vermelho"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Christmas_JollyBreather_ARCH]
+Attachment="Respirador Alegro"
+AttachmentSkin0="Bastão doce"
+AttachmentSkin1="Laranja"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Verde"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Christmas_FestiveShades_ARCH]
+Attachment="Óculos Festivos"
+AttachmentSkin0="Vermelho-Verde"
+AttachmentSkin1="Verde"
+AttachmentSkin2="Chiclete"
+AttachmentSkin3="Laranja"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Christmas_OrnamentHead_ARCH]
+Attachment="Cabeça Ornamental"
+AttachmentSkin0="Verde"
+AttachmentSkin1="Roxo"
+AttachmentSkin2="Azul"
+AttachmentSkin3="Vermelho"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Christmas_GiftWrapping_ARCH]
+Attachment="Papel de Embrulho"
+AttachmentSkin0="Bomba"
+AttachmentSkin1="Caveiras"
+AttachmentSkin2="Amor"
+AttachmentSkin3="Preto"
+AttachmentSkin4="Tóxico"
+
+[Cosmetic_Christmas_KrampusHead_ARCH]
+Attachment="Cabeça de Krampus"
+AttachmentSkin0="Laranja"
+AttachmentSkin1="Branco"
+AttachmentSkin2="Vermelho"
+AttachmentSkin3="Azul"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Christmas_TacticalElfPack_ARCH]
+Attachment="Pacote Elfo-tático"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Christmas_TacticalElfPack_Alberts_ARCH]
+Attachment="Pacote Elfo-tático"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Christmas_TacticalElfPack_Coleman_ARCH]
+Attachment="Pacote Elfo-tático"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Christmas_TacticalElfPack_JagerHorn_ARCH]
+Attachment="Pacote Elfo-tático"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Christmas_TacticalElfPack_Knight_ARCH]
+Attachment="Pacote Elfo-tático"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Christmas_TacticalElfPack_MrFoster_ARCH]
+Attachment="Pacote Elfo-tático"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Christmas_TacticalElfPack_MrsFoster_ARCH]
+Attachment="Pacote Elfo-tático"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
+Attachment="Pacote Elfo-tático"
+AttachmentSkin0="Precioso"

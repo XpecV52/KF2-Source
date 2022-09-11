@@ -33,6 +33,7 @@ KF-Sanitarium="요양원 플레이 중"
 KF-Biolapse="바이오랩스 플레이 중"
 KF-Desolation="황폐화 플레이"
 KF-HellmarkStation="헬마크 스테이션 플레이"
+KF-Elysium="엘리시움 플레이"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -185,14 +186,14 @@ InviteMessage="저와 함께 제드를 처치해주세요!"
 NotConnectedTitle="네트워크 오류"
 NotConnectedMessage="인터넷에 연결되지 않았습니다. 연결 상태를 확인하시고 다시 시도해주십시오."
 NotConnectedForOnlinePlay="인터넷에 연결되지 않았습니다. 온라인 기능을 이용하시려면 연결 상태를 확인하시고 다시 시도해주십시오."
-NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+NotConnectedForOnlinePlayXB1="온라인으로 플레이하려면 Xbox Live에 로그인해야 합니다. 온라인 기능을 사용하려면 연결을 확인한 뒤 다시 시도하세요."
 MultiplayerNotAllowed_MessageLive="멀티플레이 권한을 지닌 Xbox Live 프로필을 사용해 로그인해야 합니다."
 MultiplayerNotAllowed_Title="멀티플레이어 불가"
 LoggedOutMessage="활동 중인 프로필이 변경되었습니다. 타이틀 화면으로 돌아갑니다."
 LoggedOutTitle="접속 끊김"
 LoggedInTitle="접속됨"
-NewRegionTitle="Welcome"
-NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
+NewRegionTitle="환영합니다"
+NewRegionMessage="온라인 매치 메이킹에 오신 걸 환영합니다. 매치 메이킹 지역이 올바른지 확인해주세요!"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="플레이어 프로필 보기"
@@ -214,10 +215,10 @@ ControllerSound="컨트롤러 사운드"
 
 [KFGFxMenu_StartGame]
 MatchmakingRegionString="지역"
-LeaveMenuString="대전상대 찾기에서 나가시면 부대에서도 나가게 됩니다."
+LeaveMenuString="매치 메이킹에서 나가시면 부대에서도 나가게 됩니다."
 
 [KFGFxMenu_Store]
-StoreStringXB1="XBOX 상점"
+StoreStringXB1="MICROSOFT STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="지역"
@@ -261,7 +262,7 @@ HorzineSupplyCrate3ShortDesription="이 Horzine 보급상자에는 무기 스킨
 HorzineSupplyCrate4ProductName="희귀 무기 스킨이나 더 좋은 무기 스킨이 포함되어 있습니다."
 HorzineSupplyCrate4ShortDesription="이 Horzine 보급상자에는 무기 스킨이 들어 있습니다. 상자를 여시려면 Horzine 보급상자 열쇠가 필요합니다. 라이선스 대상 소프트웨어 (us.playstation.com/softwarelicense)와 같은"
 
-StoreGameLegalText="희귀 무기 스킨이나 더 좋은 무기 스킨이 포함되어 있습니다. 서비스 조건 및 사용자 동의에 따른 온라인 활동 (www.playstationnetwork.com/terms-of-service). 해당 계정 로그인 시 계정에 지정된 기본 PS4™ 시스템 및 기타 PS4™ 시스템에서 플레이하기 위한 일회용 라이선스 Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor®는 미국 및 기타 국가에 적용되는 Tripwire Interactive의 등록 상표입니다. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. 모든 권리 보유 Unreal®은 미국 및 기타 국가에 적용되는 Epic Games, Inc.의 상표 또는 등록 상표입니다. 모든 상표와 로고, 저작권은 각 소유자의 자산입니다. 모든 권리 보유."
+StoreGameLegalText="희귀 무기 스킨이나 더 좋은 무기 스킨이 포함되어 있습니다. 서비스 조건 및 사용자 동의에 따른 온라인 활동 (www.playstationnetwork.com/terms-of-service). 해당 계정 로그인 시 계정에 지정된 기본 PS4™ 본체 및 기타 PS4™ 본체에서 플레이하기 위한 일회용 라이선스 Killing Floor© 2009-2016 Tripwire Interactive. Killing Floor®는 미국 및 기타 국가에 적용되는 Tripwire Interactive의 등록 상표입니다. Unreal® Engine, Copyright 1998 – 2016, Epic Games, Inc. 모든 권리 보유 Unreal®은 미국 및 기타 국가에 적용되는 Epic Games, Inc.의 상표 또는 등록 상표입니다. 모든 상표와 로고, 저작권은 각 소유자의 자산입니다. 모든 권리 보유."
 
 StoreItemLegalText="이 아이템을 이용하시려면 Killing Floor 2 게임 완전판이 필요합니다. 이 아이템의 이용은 원본 게임과 같은 최종 사용자 라이선스 동의서가 적용됩니다."
 

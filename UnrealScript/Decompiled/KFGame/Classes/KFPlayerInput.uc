@@ -59,6 +59,10 @@ var(Sensitivity) float SprintingSensitivityScale;
 var(Sensitivity) config float ZoomedSensitivityScale;
 /** Used to scale the sensitivity of the joystick based on how zoomed the player is. */
 var(Sensitivity) config float GamepadZoomedSensitivityScale;
+/** Used to scale when start detecting input for looking. */
+var(Sensitivity) config float GamepadDeadzoneScale;
+/** Used to scale when to start using acceleration jump */
+var(Sensitivity) config float GamepadAccelerationJumpScale;
 /** Max acceleration units per second (since the joystick max value is 1, setting to 1 means take 1 second to get to max turn speed if starting at 0) */
 var(ViewSmoothing) float ViewSmoothing_MaxAccel;
 /** Similar to MaxAccel. Should be larger then accel. */
@@ -73,9 +77,12 @@ var(ViewAcceleration) float ViewAccel_JoyMagThreshold;
 var(ViewAcceleration) float ViewAccel_JoyPitchThreshold;
 /** Max turn speed */
 var(ViewAcceleration) float ViewAccel_MaxTurnSpeed;
+/** Min turn speed */
+var(ViewAcceleration) float ViewAccel_MinTurnSpeed;
 /** How long to blend to max turn speed */
 var(ViewAcceleration) float ViewAccel_BlendTime;
 var transient float ViewAccel_BlendTimer;
+var float ViewAccel_TurnSpeed;
 var float RemainingaTurn;
 var float RemainingaLookUp;
 /** How much friction reduces rotation */
@@ -1319,6 +1326,7 @@ function PreProcessGamepadInput(float DeltaTime)
     local KFWeapon KFW;
     local KFPawn KFP;
     local float FOVScale, ScaledJoyMagnitude;
+    local Vector RawJoyLookVector;
 
     if(bExtendedSprinting)
     {
@@ -1332,6 +1340,14 @@ function PreProcessGamepadInput(float DeltaTime)
         CurrTurn = ScaledJoyMagnitude * (RawJoyLookRight / RawJoyLookMagnitude);
         CurrLookUp = ScaledJoyMagnitude * (RawJoyLookUp / RawJoyLookMagnitude);
     }
+    RawJoyLookVector.X = RawJoyLookRight;
+    RawJoyLookVector.Y = RawJoyLookUp;
+    if(VSize2D(RawJoyLookVector) < GamepadDeadzoneScale)
+    {
+        CurrTurn = 0;
+        CurrLookUp = 0;
+    }
+    ViewAccel_TurnSpeed = Lerp(ViewAccel_MinTurnSpeed, ViewAccel_MaxTurnSpeed, GamepadAccelerationJumpScale);
     if(CanApplyViewAcceleration())
     {
         ApplyViewAcceleration(DeltaTime);        
@@ -1415,11 +1431,11 @@ function ApplyViewAcceleration(float DeltaTime)
     }
     if(CurrTurn > float(0))
     {
-        CurrTurn = Lerp(CurrTurn, ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime);        
+        CurrTurn = Lerp(CurrTurn, ViewAccel_TurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime);        
     }
     else
     {
-        CurrTurn = Lerp(CurrTurn, -ViewAccel_MaxTurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime);
+        CurrTurn = Lerp(CurrTurn, -ViewAccel_TurnSpeed, ViewAccel_BlendTimer / ViewAccel_BlendTime);
     }
 }
 
@@ -2269,11 +2285,14 @@ defaultproperties
     SprintingSensitivityScale=0.675
     ZoomedSensitivityScale=0.35
     GamepadZoomedSensitivityScale=0.6
+    GamepadDeadzoneScale=0.2
+    GamepadAccelerationJumpScale=0.15
     ViewSmoothing_MaxAccel=25
     ViewSmoothing_MaxDecel=50
     ViewAccel_JoyMagThreshold=0.97
     ViewAccel_JoyPitchThreshold=0.4
-    ViewAccel_MaxTurnSpeed=2.4
+    ViewAccel_MaxTurnSpeed=4.5
+    ViewAccel_MinTurnSpeed=1
     ViewAccel_BlendTime=0.25
     FrictionScale=0.5
     FrictionAngleCurve=(Points=/* Array type was not detected. */,InVal=0,OutVal=0,ArriveTangent=0,LeaveTangent=0,InterpMode=EInterpCurveMode.CIM_Linear)

@@ -15,10 +15,10 @@ defaultproperties
     AmbientComponent=AkComponent'Default__KFProj_Bullet_Pistol_ChiappaRhino.AmbientAkSoundComponent'
     NumSpawnedShrapnel=3
     ShrapnelClass=Class'KFProj_Bullet_Pistol_ChiappaRhinoShrapnel'
-    ShrapnelSpreadWidthEnvironment=0.5
-    ShrapnelSpreadHeightEnvironment=0.5
-    ShrapnelSpreadWidthZed=0.5
-    ShrapnelSpreadHeightZed=0.5
+    ShrapnelSpreadWidthEnvironment=0.25
+    ShrapnelSpreadHeightEnvironment=0.25
+    ShrapnelSpreadWidthZed=0.75
+    ShrapnelSpreadHeightZed=0.75
     ShrapnelSpawnSoundEvent=AkEvent'WW_WEP_ChiappaRhinos.Play_WEP_ChiappaRhinos_Bullet_Fragmentation'
     ShrapnelSpawnVFX=ParticleSystem'WEP_ChiappaRhino_EMIT.FX_ChiappaRhino_Shrapnel_Hit'
     Speed=18000

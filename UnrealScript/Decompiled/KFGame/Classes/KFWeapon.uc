@@ -261,6 +261,8 @@ var(Positioning) bool bFollowAnimSeqCamera;
 var(IronSight) protected const bool bWarnAIWhenAiming;
 /** The path that locates the image for this weapon */
 var(Inventory) bool bCanRefillSecondaryAmmo;
+/** Flag to know if the weapon uses grenades as secondary ammo to change the HUD display when not loaded or empty */
+var(Inventory) bool bUseGrenadeAsSecondaryAmmo;
 var bool bGivenAtStart;
 /** Is this a no magazine/clip weapon e.g. the hunting shotgun? */
 var(Inventory) bool bNoMagazine;
@@ -3341,6 +3343,11 @@ static simulated event bool UsesSecondaryAmmo()
     return default.MagazineCapacity[1] > 0;
 }
 
+static simulated event bool UsesGrenadesAsSecondaryAmmo()
+{
+    return default.bUseGrenadeAsSecondaryAmmo;
+}
+
 static simulated event bool CanRefillSecondaryAmmo()
 {
     return (UsesSecondaryAmmo()) && default.bCanRefillSecondaryAmmo;
@@ -3626,6 +3633,11 @@ simulated function string GetSpecialAmmoForHUD();
 simulated function int GetSecondaryAmmoForHUD()
 {
     return AmmoCount[1] + SpareAmmoCount[1];
+}
+
+simulated function bool HasToReloadSecondaryAmmoForHUD()
+{
+    return AmmoCount[1] == 0;
 }
 
 simulated function bool ForceReload()

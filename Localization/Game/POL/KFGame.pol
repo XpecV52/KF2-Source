@@ -840,6 +840,9 @@ HeadString="GŁOWA"
 BodyString="CIAŁO"
 SkinsString="SKÓRKI"
 AttachmentsString="AKCESORIA"
+Attachment0String="AKCESORIUM 1"
+Attachment1String="AKCESORIUM 2"
+Attachment2String="AKCESORIUM 3"
 BackString="WSTECZ"
 NoneString="BRAK"
 WeaponsString="Broń"
@@ -1377,6 +1380,12 @@ MouseString="MYSZ"
 MouseSmoothingString="Wygładzanie ruchów myszy"
 ZoomSensitivityString="Czułość powiększenia"
 ControllerZoomSensitivityString="Czułość powiększenia"
+ControllerDeadzoneString="Martwa strefa"
+ControllerAccelerationJumpString="Skok przyspieszenia"
+ControllerDeadzoneDescriptionString="Ilość wymaganego ruchu prawym drążkiem, aby gra rozpoznała to jako sygnał wejściowy"
+ControllerDeadzoneDescriptionXboxString="Ilość wymaganego ruchu prawym drążkiem, aby gra rozpoznała to jako sygnał wejściowy"
+ControllerAccelerationJumpDescriptionString="Wartość zwiększenia szybkości obrotu, gdy drążek osiągnie lewy lub prawy skraj"
+ControllerAccelerationJumpDescriptionXboxString="Wartość zwiększenia szybkości obrotu, gdy drążek osiągnie lewy lub prawy skraj"
 AimAssistLockOnString="Wsp. celności – namierzanie"
 AimAssistRotationString="Wsp. celności – obrót"
 AimAssistSlowDownString="Wsp. celności – spowol."
@@ -1463,6 +1472,7 @@ SkipTraderVoteYesReceivedString="Głosujesz, aby pominąć handlarkę"
 SkipTraderVoteNoReceivedString="Głosujesz, aby nie pomijać handlarki"
 SkipTraderNoEnoughTimeString="Za mało czasu na rozpoczęcie głosowania nad pominięciem handlarki"
 SkipTraderThisUserAlreadyStartedAVoteString="Nie możesz rozpocząć nowego głosowania nad pominięciem handlarki aż do następnej fazy handlarki"
+SkipTraderVersusZedPlayerVotes="Gracze w drużynie zetów nie mogą głosować za pominięciem handlarki"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Otrzymujesz amunicję od gracza"
@@ -1999,7 +2009,7 @@ SplashDamage="Fala gorąca"
 SplashDamageDescription="Zety trafione ogniem z bliska zostają odrzucone."
 
 Inferno="CZAS ZET – Piekło"
-InfernoDescription="W czasie zet wszystkie zety trafione ogniem zostają spowolnione o 30% i otrzymują 50% więcej obrażeń od podpalenia."
+InfernoDescription="W czasie zetów twoje stopniowe obrażenia od ognia rozprzestrzeniają się na wszystkie pobliskie zety."
 
 Scorch="CZAS ZET – Piroman"
 ScorchDescription="W czasie zet atakujesz bronią specjalizacji prawie tak szybko, jak w czasie rzeczywistym, i nigdy nie kończy ci się amunicja."
@@ -2022,7 +2032,7 @@ Passives[3]=(Title="Redukcja odrzutu",Description="Odrzut broni specjalizacji wz
 Passives[4]=(Title="Przeładowywanie w czasie zet",Description="Szyb. przeł. w czasie zet wzrasta o %x% na poz.");
 
 ShootnMove="Pewna ręka"
-ShootnMoveDescription="Brak kary do ruchu przy używaniu celownika mechanicznego i znaczne zmniejszenie drgania broni specjalizacji."
+ShootnMoveDescription="W czasie używania celownika mechanicznego pozwala zignorować karę do szybkości ruchu i zwiększa obrażenia broni specjalizacji o 5%. Drastycznie zmniejsza drgania broni specjalizacji."
 
 QuickSwitch="Szybkie wyjęcie broni"
 QuickSwitchDescription="Zmniejszenie odrzutu przy strzale z biodra, zwiększenie szybkości ruchu o 5% oraz o 50% szybsza zmiana broni klasy."
@@ -2207,6 +2217,7 @@ Passives[0]=(Title="Obrażenia broni",Description="Obrażenia broni wzrastają o
 Passives[1]=(Title="Odporność na obrażenia",Description="Odp. na wszys. obrażenia wzrasta o %x% na poz.");
 Passives[2]=(Title="Ciężki pancerz",Description="Co poziom %x% szans (maksymalnie 25%) , że nie stracisz zdrowia, gdy nosisz pancerz.");
 Passives[3]=(Title="Przeładowywanie w czasie zet",Description="Szyb. przeł. w czasie zet wzrasta o %x% na poz.");
+Passives[4]=(Title="Szybsza zmiana broni",Description="Szybkość zmiany broni wzrasta o 35%.");
 
 
 HeavyWeaponsReload="Znajomość ciężkiej broni"
@@ -2784,6 +2795,20 @@ AllCompleteRewardDescriptionString="Halloween | Plecak voodoo"
 ChanceDropDescriptionStrings[0]="Kupon halloweenowy"
 ChanceDropDescriptionStrings[1]="Złoty kupon halloweenowy"
 
+[KFGFxSpecialEventObjectivesContainer_Xmas2020]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Zamrożone róże",DescriptionString="Zbierz 3 róże w Elizjum")
+SpecialEventObjectiveInfoList[1]=(TitleString="Cztery różne opowieści",DescriptionString="Zbierz 4 tomy w Elizjum")
+SpecialEventObjectiveInfoList[2]=(TitleString="Pod jemiołą",DescriptionString="Ukończ jedną falę na arenie Botanika w Elizjum")
+SpecialEventObjectiveInfoList[3]=(TitleString="Kolęda",DescriptionString="Ukończ jedną falę na arenie Sanktuarium Mistrza Wiedzy w Elizjum")
+SpecialEventObjectiveInfoList[4]=(TitleString="Wieczna zima",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności na mapie Elizjum")
+
+AllCompleteRewardDescriptionString="Święta | Taktyczny zestaw elfa"
+
+ChanceDropDescriptionStrings[0]="Kupon Krampusa"
+ChanceDropDescriptionStrings[1]="Złoty kupon Krampusa"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2800,7 +2825,7 @@ KnifeString="Nóż"
 FriendlyName="Teraz: Rozbijacz czach"
 DescriptionStrings[0]="Dobre obrażenia to obrażenia mózgu."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="W trakcie tego incydentu zeci zmutowali tak, że teraz można ich pokonać jedynie przez trafienie w głowę. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
+ModifierDescriptions[0]="W trakcie tego incydentu zeci zmutowali tak, że teraz można ich pokonać jedynie przez trafienie w głowę. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. Poziom klas 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2810,7 +2835,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Trochę strach"
 DescriptionStrings[0]="Niewielkie zagrożenie to też zagrożenie."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="W trakcie tego incydentu strzelanie do zetów spowoduje, że będą się kurczyć i trudniej będzie ich trafić. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
+ModifierDescriptions[0]="W trakcie tego incydentu strzelanie do zetów spowoduje, że będą się kurczyć i trudniej będzie ich trafić. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. Poziom klas 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2820,7 +2845,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Mięśniamonium"
 DescriptionStrings[0]="Wszystkie mięśniaki. Cały czas. Prawie."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="Czas na targi mięśniaków! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
+ModifierDescriptions[0]="Czas na targi mięśniaków! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. Poziom klas 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2840,7 +2865,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Czas zetów"
 DescriptionStrings[0]="Mnóstwo czasu. Czasu zetów."
 DescriptionStrings[1]="Długość: Krótka (4 fale)"
-ModifierDescriptions[0]="Masz czasem wrażenie, że wszystko cię omija? Nie podczas tego incydentu! Czas zetów w pobliżu każdego zeta. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
+ModifierDescriptions[0]="Masz czasem wrażenie, że wszystko cię omija? Nie podczas tego incydentu! Czas zetów w pobliżu każdego zeta. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. Poziom klas 15+."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2849,7 +2874,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Wybuch"
 DescriptionStrings[0]="Zeci pod presją mogą wybuchnąć."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="Może coś zjedli? I mają gazy? Niezależnie od powodu w trakcie tego incydentu zeci wybuchają po ich zabiciu. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
+ModifierDescriptions[0]="Może coś zjedli? I mają gazy? Niezależnie od powodu w trakcie tego incydentu zeci wybuchają po ich zabiciu. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. Poziom klas 15+."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2858,7 +2883,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Góra mięśni"
 DescriptionStrings[0]="Im są silniejsi, tym gorzej dla ciebie."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="W trakcie tego incydentu zeci w momencie uderzenia w gracza lub w ramach zdolności mają zwiększone zdrowie, rozmiary oraz zasięg. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
+ModifierDescriptions[0]="W trakcie tego incydentu zeci w momencie uderzenia w gracza lub w ramach zdolności mają zwiększone zdrowie, rozmiary oraz zasięg. Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. Poziom klas 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2868,7 +2893,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Teraz: Bańkogłowi"
 DescriptionStrings[0]="…jak ich karki to wytrzymują."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
-ModifierDescriptions[0]="Coś poszło bardzo nie tak z tą partią zetów i ich głowy są znaaaacznie większe niż zwykle! Można nawet powiedzieć, że olbrzymie! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry."
+ModifierDescriptions[0]="Coś poszło bardzo nie tak z tą partią zetów i ich głowy są znaaaacznie większe niż zwykle! Można nawet powiedzieć, że olbrzymie! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. Poziom klas 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3385,7 +3410,32 @@ DisplayName="Dewastacja"
 [KF-HellmarkStation KFMapSummary]
 DisplayName="Stacja Hellmark"
 
+[KF-Elysium KFMapSummary]
+DisplayName="Elizjum"
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% znajduje przedmiot. Pozostało do znalezienia: %y%…"
 FoundAllCollectiblesString="Znaleziono wszystkie przedmioty!"
+
+[KFKismetMapLocalization_Elysium]
+LeverWarningText="Pociągnięcie tej dźwigni może mieć konsekwencje..."
+LoreMastersKnowsText="Mistrz Wiedzy wie"
+BotanicaOpenText="Botanika została otwarta"
+FuneralPyreIgnitionText="Święty stos pogrzebowy został podpalony!\nSerce Elizjum nawiedzają teraz płonące dusze Avernusa"
+TomeMissingText="Na tym cokole brakuje chyba tomu"
+FlowerActivationText="Z wazonu wydobywa się aromat kwiatów"
+SandTomeCollectedText="Zdobyto Tom Piasku\n%VALUE%"
+SteelTomeCollectedText="Zdobyto Tom Stali\n%VALUE%"
+SludgeTomeCollectedText="Zdobyto Tom Szlamu\n%VALUE%"
+WoodTomeCollectedText="Zdobyto Tom Drewna\n%VALUE%"
+RedRoseCollectedText="Zdobyto czerwoną różę\n%VALUE%"
+MagentaRoseollectedText="Zdobyto fuksjową różę\n%VALUE%"
+YellowRoseCollectedText="Zdobyto żółtą różę\n%VALUE%"
+OneOfThreeCollectedText="Zebrano 1 z 3"
+TwoOfThreeCollectedText="Zebrano 2 z 3"
+ThreeOfThreeCollectedText="Zebrano 3 z 3"
+OneOfFourCollectedText="Zebrano 1 z 4"
+TwoOfFourCollectedText="Zebrano 2 z 4"
+ThreeOfFourCollectedText="Zebrano 3 z 4"
+FourOfFourCollectedText="Zebrano 4 z 4"

@@ -71,6 +71,9 @@ const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
 const KFID_VOIPMicVolumeMultiplier = 174;
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 
 var KFGFxControlsContainer_Keybinding KeybindingsContainer;
 var KFGFxControlsContainer_Input InputContainer;
@@ -79,6 +82,10 @@ var const float MinControllerLookSensitivity;
 var const float MaxControllerLookSensitivity;
 var const float MinControllerZoomLookSensitivity;
 var const float MaxControllerZoomLookSensitivity;
+var const float MinControllerDeadzone;
+var const float MaxControllerDeadzone;
+var const float MinControllerAccelerationJump;
+var const float MaxControllerAccelerationJump;
 var const float MinMouseLookSensitivity;
 var const float MaxMouseLookSensitivity;
 var const float MinMouseLookZoomSensitivity;
@@ -213,6 +220,24 @@ function Callback_ControllerZoomSensitivity(float NewSensitivity)
     Manager.CachedProfile.SetProfileSettingValueFloat(135, KFPI.GamepadZoomedSensitivityScale);
 }
 
+function Callback_ControllerDeadzone(float NewDeadzone)
+{
+    local KFPlayerInput KFPI;
+
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    KFPI.GamepadDeadzoneScale = NewDeadzone / float(100);
+    Manager.CachedProfile.SetProfileSettingValueFloat(175, KFPI.GamepadDeadzoneScale);
+}
+
+function Callback_ControllerAccelerationJump(float NewAccelerationJump)
+{
+    local KFPlayerInput KFPI;
+
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    KFPI.GamepadAccelerationJumpScale = NewAccelerationJump / float(100);
+    Manager.CachedProfile.SetProfileSettingValueFloat(176, KFPI.GamepadAccelerationJumpScale);
+}
+
 function Callback_ControllerInvertChanged(bool bInvertController)
 {
     local KFPlayerInput KFPI;
@@ -342,6 +367,8 @@ defaultproperties
     MaxControllerLookSensitivity=3.5
     MinControllerZoomLookSensitivity=0.1
     MaxControllerZoomLookSensitivity=1
+    MaxControllerDeadzone=0.3
+    MaxControllerAccelerationJump=1
     MinMouseLookSensitivity=0.01
     MaxMouseLookSensitivity=0.7
     MinMouseLookZoomSensitivity=0.2

@@ -115,7 +115,7 @@ simulated function PrepareAndDetonate()
     {
         Detonate();
     }
-    AnimDuration = 1;
+    AnimDuration = 0.75;
     if(bInSprintState)
     {
         SetTimer(AnimDuration * 0.8, false, 'PlaySprintStart');        
@@ -169,6 +169,15 @@ function RemoveDeployedHarpoon(optional int HarpoonIndex, optional Actor Harpoon
     }
 }
 
+simulated function bool CanOverrideMagReload(byte FireModeNum)
+{
+    if(FireModeNum == 1)
+    {
+        return true;
+    }
+    return super(KFWeapon).CanOverrideMagReload(FireModeNum);
+}
+
 simulated state WeaponDetonating
 {
     ignores AllowSprinting;
@@ -206,7 +215,7 @@ defaultproperties
     bCanBeReloaded=true
     bReloadFromMagazine=true
     bHasFireLastAnims=true
-    InventorySize=8
+    InventorySize=7
     MeshFOV=75
     MeshIronSightFOV=40
     PlayerIronSightFOV=65
@@ -217,7 +226,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Seal_Squeal_TEX.UI_WeaponSelect_SealSqueal'
     MagazineCapacity=5
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=25
+    SpareAmmoCapacity=30
     InitialSpareMags=1
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
     FireSightedAnims=/* Array type was not detected. */

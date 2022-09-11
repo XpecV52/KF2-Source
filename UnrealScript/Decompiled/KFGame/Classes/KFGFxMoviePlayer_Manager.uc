@@ -72,6 +72,9 @@ const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
 const KFID_VOIPMicVolumeMultiplier = 174;
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 
 enum EUIIndex
 {
@@ -1810,6 +1813,7 @@ function CastYesVoteSkipTrader()
         if(KFPRI != none)
         {
             KFPRI.CastSkipTraderVote(KFPRI, true);
+            SetVisibility(false);
         }
     }
 }
@@ -1826,6 +1830,7 @@ function CastNoVoteSkipTrader()
         if(KFPRI != none)
         {
             KFPRI.CastSkipTraderVote(KFPRI, false);
+            SetVisibility(false);
         }
     }
 }

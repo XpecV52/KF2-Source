@@ -164,6 +164,7 @@ const STATID_ACHIEVE_DefeatMatriarch				= 4053;
 const STATID_ACHIEVE_BiolapseCollectibles			= 4054;
 const STATID_ACHIEVE_DesolationCollectibles			= 4055;
 const STATID_ACHIEVE_HellmarkStationCollectibles	= 4056;
+const STATID_ACHIEVE_ElysiumEndlessWaveFifteen	    = 4057;
  
 #linenumber 14;
 

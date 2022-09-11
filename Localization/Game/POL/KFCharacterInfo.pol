@@ -6079,7 +6079,7 @@ Attachment="Plecak kosmicznego pirata"
 AttachmentSkin0="Kosmiczna małpa"
 
 [Cosmetic_SpacePirate_MaleCaptainHat_ARCH]
-Attachment="Czapka kosmicznego pirata"
+Attachment="Czapka awanturnika"
 AttachmentSkin0="Oliwka"
 AttachmentSkin1="Granat"
 AttachmentSkin2="Karmazyn"
@@ -6088,7 +6088,7 @@ AttachmentSkin4="Lawenda"
 AttachmentSkin5="Klementynka"
 
 [Cosmetic_SpacePirate_FemaleCaptainHat_ARCH]
-Attachment="Czapka kosmicznego pirata"
+Attachment="Czapka awanturnika"
 AttachmentSkin0="Oliwka"
 AttachmentSkin1="Granat"
 AttachmentSkin2="Karmazyn"
@@ -6305,3 +6305,131 @@ AttachmentSkin2="Głód"
 AttachmentSkin3="Zaraza"
 AttachmentSkin4="Wojna"
 AttachmentSkin5="Anarchia"
+
+[Cosmetic_Winter_Hat_ARCH]
+Attachment="Czapka narciarska"
+AttachmentSkin0="Białe"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Zielone"
+AttachmentSkin3="Niebieskie"
+AttachmentSkin4="Czerwone"
+AttachmentSkin5="Kamuflaż cyfrowy"
+AttachmentSkin6="Kamuflaż tundrowy"
+AttachmentSkin7="Kamuflaż arktyczny"
+AttachmentSkin8="Cenny egzemplarz"
+
+[Cosmetic_Winter_Goggles_ARCH]
+Attachment="Gogle narciarskie"
+AttachmentSkin0="Białe"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Zielone"
+AttachmentSkin3="Niebieskie"
+AttachmentSkin4="Czerwone"
+AttachmentSkin5="Kamuflaż cyfrowy"
+AttachmentSkin6="Kamuflaż tundrowy"
+AttachmentSkin7="Kamuflaż arktyczny"
+AttachmentSkin8="Cenny egzemplarz"
+
+[Cosmetic_Winter_Mask_ARCH]
+Attachment="Maska narciarska"
+AttachmentSkin0="Białe"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Zielone"
+AttachmentSkin3="Niebieskie"
+AttachmentSkin4="Czerwone"
+AttachmentSkin5="Kamuflaż cyfrowy"
+AttachmentSkin6="Kamuflaż tundrowy"
+AttachmentSkin7="Kamuflaż arktyczny"
+AttachmentSkin8="Cenny egzemplarz"
+
+[Cosmetic_Winter_Backpack_ARCH]
+Attachment="Zestaw do wspinaczki"
+AttachmentSkin0="Białe"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Zielone"
+AttachmentSkin3="Niebieskie"
+AttachmentSkin4="Czerwone"
+AttachmentSkin5="Kamuflaż cyfrowy"
+AttachmentSkin6="Kamuflaż tundrowy"
+AttachmentSkin7="Kamuflaż arktyczny"
+AttachmentSkin8="Cenny egzemplarz"
+
+[Cosmetic_Christmas_JackFrostMask_ARCH]
+Attachment="Maska Jacka Frosta"
+AttachmentSkin0="Czarne"
+AttachmentSkin1="Zielone"
+AttachmentSkin2="Straszne"
+AttachmentSkin3="Czerwone"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Christmas_JollyBreather_ARCH]
+Attachment="Wesoły respirator"
+AttachmentSkin0="Laska cukrowa"
+AttachmentSkin1="Pomarańczowe"
+AttachmentSkin2="Czerwone"
+AttachmentSkin3="Zielone"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Christmas_FestiveShades_ARCH]
+Attachment="Świąteczne okulary słoneczne"
+AttachmentSkin0="Czerwone i zielone"
+AttachmentSkin1="Zielone"
+AttachmentSkin2="Guma balonowa"
+AttachmentSkin3="Pomarańczowe"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Christmas_OrnamentHead_ARCH]
+Attachment="Ozdobna głowa"
+AttachmentSkin0="Zielone"
+AttachmentSkin1="Purpurowe"
+AttachmentSkin2="Niebieskie"
+AttachmentSkin3="Czerwone"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Christmas_GiftWrapping_ARCH]
+Attachment="Owijka prezentów"
+AttachmentSkin0="Bomba"
+AttachmentSkin1="Czaszki"
+AttachmentSkin2="Miłość"
+AttachmentSkin3="Czarne"
+AttachmentSkin4="Toksyczne"
+
+[Cosmetic_Christmas_KrampusHead_ARCH]
+Attachment="Głowa Krampusa"
+AttachmentSkin0="Pomarańczowe"
+AttachmentSkin1="Białe"
+AttachmentSkin2="Czerwone"
+AttachmentSkin3="Niebieskie"
+AttachmentSkin4="Cenny egzemplarz"
+
+[Cosmetic_Christmas_TacticalElfPack_ARCH]
+Attachment="Taktyczny zestaw elfa"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Christmas_TacticalElfPack_Alberts_ARCH]
+Attachment="Taktyczny zestaw elfa"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Christmas_TacticalElfPack_Coleman_ARCH]
+Attachment="Taktyczny zestaw elfa"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Christmas_TacticalElfPack_JagerHorn_ARCH]
+Attachment="Taktyczny zestaw elfa"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Christmas_TacticalElfPack_Knight_ARCH]
+Attachment="Taktyczny zestaw elfa"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Christmas_TacticalElfPack_MrFoster_ARCH]
+Attachment="Taktyczny zestaw elfa"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Christmas_TacticalElfPack_MrsFoster_ARCH]
+Attachment="Taktyczny zestaw elfa"
+AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
+Attachment="Taktyczny zestaw elfa"
+AttachmentSkin0="Cenny egzemplarz"

@@ -6305,3 +6305,131 @@ AttachmentSkin2="Голод"
 AttachmentSkin3="Чума"
 AttachmentSkin4="Война"
 AttachmentSkin5="Анархия"
+
+[Cosmetic_Winter_Hat_ARCH]
+Attachment="Зимняя шапка"
+AttachmentSkin0="Белый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Синий цвет"
+AttachmentSkin4="Красный цвет"
+AttachmentSkin5="Цифровой камуфляж"
+AttachmentSkin6="Тундровый камуфляж"
+AttachmentSkin7="Зимний камуфляж"
+AttachmentSkin8="Дорогая вещь"
+
+[Cosmetic_Winter_Goggles_ARCH]
+Attachment="Лыжные очки"
+AttachmentSkin0="Белый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Синий цвет"
+AttachmentSkin4="Красный цвет"
+AttachmentSkin5="Цифровой камуфляж"
+AttachmentSkin6="Тундровый камуфляж"
+AttachmentSkin7="Зимний камуфляж"
+AttachmentSkin8="Дорогая вещь"
+
+[Cosmetic_Winter_Mask_ARCH]
+Attachment="Зимняя маска"
+AttachmentSkin0="Белый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Синий цвет"
+AttachmentSkin4="Красный цвет"
+AttachmentSkin5="Цифровой камуфляж"
+AttachmentSkin6="Тундровый камуфляж"
+AttachmentSkin7="Зимний камуфляж"
+AttachmentSkin8="Дорогая вещь"
+
+[Cosmetic_Winter_Backpack_ARCH]
+Attachment="Рюкзак альпиниста"
+AttachmentSkin0="Белый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Зеленый цвет"
+AttachmentSkin3="Синий цвет"
+AttachmentSkin4="Красный цвет"
+AttachmentSkin5="Цифровой камуфляж"
+AttachmentSkin6="Тундровый камуфляж"
+AttachmentSkin7="Зимний камуфляж"
+AttachmentSkin8="Дорогая вещь"
+
+[Cosmetic_Christmas_JackFrostMask_ARCH]
+Attachment="Маска Джека Фроста"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Жуть"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Christmas_JollyBreather_ARCH]
+Attachment="Праздничный респиратор"
+AttachmentSkin0="Карамельная трость"
+AttachmentSkin1="Оранжевый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Зеленый цвет"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Christmas_FestiveShades_ARCH]
+Attachment="Праздничные очки"
+AttachmentSkin0="Красно-зеленый"
+AttachmentSkin1="Зеленый цвет"
+AttachmentSkin2="Жвачка"
+AttachmentSkin3="Оранжевый цвет"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Christmas_OrnamentHead_ARCH]
+Attachment="Украшенная голова"
+AttachmentSkin0="Зеленый цвет"
+AttachmentSkin1="Фиолетовый цвет"
+AttachmentSkin2="Синий цвет"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Christmas_GiftWrapping_ARCH]
+Attachment="Подарочная упаковка"
+AttachmentSkin0="Бомба"
+AttachmentSkin1="Черепа"
+AttachmentSkin2="Любовь"
+AttachmentSkin3="Черный цвет"
+AttachmentSkin4="Отрава"
+
+[Cosmetic_Christmas_KrampusHead_ARCH]
+Attachment="Голова Крампуса"
+AttachmentSkin0="Оранжевый цвет"
+AttachmentSkin1="Белый цвет"
+AttachmentSkin2="Красный цвет"
+AttachmentSkin3="Синий цвет"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Christmas_TacticalElfPack_ARCH]
+Attachment="Тактический рюкзак эльфа"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Christmas_TacticalElfPack_Alberts_ARCH]
+Attachment="Тактический рюкзак эльфа"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Christmas_TacticalElfPack_Coleman_ARCH]
+Attachment="Тактический рюкзак эльфа"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Christmas_TacticalElfPack_JagerHorn_ARCH]
+Attachment="Тактический рюкзак эльфа"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Christmas_TacticalElfPack_Knight_ARCH]
+Attachment="Тактический рюкзак эльфа"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Christmas_TacticalElfPack_MrFoster_ARCH]
+Attachment="Тактический рюкзак эльфа"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Christmas_TacticalElfPack_MrsFoster_ARCH]
+Attachment="Тактический рюкзак эльфа"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
+Attachment="Тактический рюкзак эльфа"
+AttachmentSkin0="Дорогая вещь"

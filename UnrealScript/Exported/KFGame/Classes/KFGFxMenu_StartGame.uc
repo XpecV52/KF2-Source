@@ -85,7 +85,9 @@ const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
 const KFID_ClassicPlayerInfo=173;
 const KFID_VOIPMicVolumeMultiplier = 174;
-
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 #linenumber 16
 
 var string WhatsNewPS;
@@ -281,7 +283,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 		case SEI_Fall:
 			return class'KFGFxSpecialEventObjectivesContainer_Fall2020';
 		case SEI_Winter:
-			return class'KFGFxSpecialEventObjectivesContainer_Xmas2019';
+			return class'KFGFXSpecialEventObjectivesContainer_Xmas2020';
 	}
 
 	return class'KFGFxSpecialEventObjectivesContainer';
@@ -2029,6 +2031,7 @@ defaultproperties
    StockMaps(29)="kf-ashwoodasylum"
    StockMaps(30)="kf-desolation"
    StockMaps(31)="kf-hellmarkstation"
+   StockMaps(32)="kf-elysium"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
    SubWidgetBindings(1)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
    SubWidgetBindings(2)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')

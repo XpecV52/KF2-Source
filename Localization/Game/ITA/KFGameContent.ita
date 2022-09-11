@@ -15,7 +15,7 @@ PerksDescriptionKey="Completa gli <font color="#caab05">OBIETTIVI XP</font> in g
 
 ;Gear Menu
 GearTitleKey="Menu equipaggiamento"
-GearDescriptionKey="Il Menu equipaggiamento ti consente di selezionare e <font color="#caab05">PERSONALIZZARE</font> il tuo personaggio. Ogni personaggio possiede aspetto, voce e personalità unici. Le teste e i corpi di ogni personaggio possono essere personalizzati. Puoi indossare fino a 3 accessori estetici. Seleziona e personalizza il tuo personaggio utilizzando i tasti sul lato sinistro di questo menu."
+GearDescriptionKey="Il Menu equipaggiamento ti consente di selezionare e <font color="#caab05">PERSONALIZZARE</font> il tuo personaggio. Ogni personaggio possiede aspetto, voce e personalità unici. Le teste e i corpi di ogni personaggio possono essere personalizzati. Puoi indossare fino a 3 accessori estetici. Seleziona e personalizza il tuo personaggio utilizzando i pulsanti sul lato sinistro di questo menu."
 
 ;Inventory Menu
 InventoryMenuTitleKey="Menu inventario"
@@ -749,6 +749,16 @@ ItemCategory="Esplosivi"
 ItemDescription="•Spara bio-mine che esplodono al contatto, ferendo gli Zed e guarendo gli alleati.\n•La modalità Fuoco alternativo detona tutte le mine posizionate.\n•La fonte dei suoi materiali di costruzione è considerata un'informazione riservata poiché non rispetta il codice sanitario."
 SharedUnlockSource="Bundle armi Ricostruttore di mine"
 
+[KFWeap_HRG_Vampire]
+ItemName="Vampiro HRG"
+ItemCategory="Speciale"
+ItemDescription="•Il fuoco primario assorbe il sangue dei nemici riempendo la pozza di sangue.\n•Dopo il fuoco primario, lancia una sfera di sangue coagulato esplosiva che danneggia i nemici e cura gli alleati.\n•La modalità fuoco alternativa consuma la pozza di sangue per sparare aculei di sangue cristallizzato."
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="Zanna del gelo"
+ItemCategory="Fucile"
+ItemDescription="•La modalità fuoco spara colpi che congelano i nemici.\n•L'attacco con colpo frantuma i nemici con l'ascia.\n•Alt - blocca/para.\n•L'ascia è perfetta per scolpire il ghiaccio."
+SharedUnlockSource="Bundle armi Zanna del gelo"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

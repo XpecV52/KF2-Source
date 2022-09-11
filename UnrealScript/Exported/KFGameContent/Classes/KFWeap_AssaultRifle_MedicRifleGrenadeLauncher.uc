@@ -508,6 +508,7 @@ defaultproperties
    MuzzleFlashTemplateName="WEP_Medic_GrenadeLauncher_ARCH.Wep_Medic_GrenadeLauncher_MuzzleFlash"
    bHasIronSights=True
    bCanRefillSecondaryAmmo=True
+   bUseGrenadeAsSecondaryAmmo=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'

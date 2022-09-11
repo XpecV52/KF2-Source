@@ -6305,3 +6305,131 @@ AttachmentSkin2="기근"
 AttachmentSkin3="역병"
 AttachmentSkin4="전쟁"
 AttachmentSkin5="무정부 상태"
+
+[Cosmetic_Winter_Hat_ARCH]
+Attachment="스노우 햇"
+AttachmentSkin0="화이트"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그린"
+AttachmentSkin3="블루"
+AttachmentSkin4="레드"
+AttachmentSkin5="디지털 카모"
+AttachmentSkin6="툰드라 카모"
+AttachmentSkin7="극지방 카모"
+AttachmentSkin8="프레셔스"
+
+[Cosmetic_Winter_Goggles_ARCH]
+Attachment="스노우 고글"
+AttachmentSkin0="화이트"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그린"
+AttachmentSkin3="블루"
+AttachmentSkin4="레드"
+AttachmentSkin5="디지털 카모"
+AttachmentSkin6="툰드라 카모"
+AttachmentSkin7="극지방 카모"
+AttachmentSkin8="프레셔스"
+
+[Cosmetic_Winter_Mask_ARCH]
+Attachment="스노우 마스크"
+AttachmentSkin0="화이트"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그린"
+AttachmentSkin3="블루"
+AttachmentSkin4="레드"
+AttachmentSkin5="디지털 카모"
+AttachmentSkin6="툰드라 카모"
+AttachmentSkin7="극지방 카모"
+AttachmentSkin8="프레셔스"
+
+[Cosmetic_Winter_Backpack_ARCH]
+Attachment="클라이머 팩"
+AttachmentSkin0="화이트"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그린"
+AttachmentSkin3="블루"
+AttachmentSkin4="레드"
+AttachmentSkin5="디지털 카모"
+AttachmentSkin6="툰드라 카모"
+AttachmentSkin7="극지방 카모"
+AttachmentSkin8="프레셔스"
+
+[Cosmetic_Christmas_JackFrostMask_ARCH]
+Attachment="잭 프로스트 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="그린"
+AttachmentSkin2="스푸키"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Christmas_JollyBreather_ARCH]
+Attachment="졸리 호흡기"
+AttachmentSkin0="사탕 지팡이"
+AttachmentSkin1="오렌지"
+AttachmentSkin2="레드"
+AttachmentSkin3="그린"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Christmas_FestiveShades_ARCH]
+Attachment="축제용 선글라스"
+AttachmentSkin0="레드-그린"
+AttachmentSkin1="그린"
+AttachmentSkin2="풍선껌"
+AttachmentSkin3="오렌지"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Christmas_OrnamentHead_ARCH]
+Attachment="장식 머리"
+AttachmentSkin0="그린"
+AttachmentSkin1="퍼플"
+AttachmentSkin2="블루"
+AttachmentSkin3="레드"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Christmas_GiftWrapping_ARCH]
+Attachment="선물 포장지"
+AttachmentSkin0="폭탄"
+AttachmentSkin1="해골"
+AttachmentSkin2="러브"
+AttachmentSkin3="블랙"
+AttachmentSkin4="중독"
+
+[Cosmetic_Christmas_KrampusHead_ARCH]
+Attachment="크램퍼스 머리"
+AttachmentSkin0="오렌지"
+AttachmentSkin1="화이트"
+AttachmentSkin2="레드"
+AttachmentSkin3="블루"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Christmas_TacticalElfPack_ARCH]
+Attachment="전술 엘프-팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_Christmas_TacticalElfPack_Alberts_ARCH]
+Attachment="전술 엘프-팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_Christmas_TacticalElfPack_Coleman_ARCH]
+Attachment="전술 엘프-팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_Christmas_TacticalElfPack_JagerHorn_ARCH]
+Attachment="전술 엘프-팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_Christmas_TacticalElfPack_Knight_ARCH]
+Attachment="전술 엘프-팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_Christmas_TacticalElfPack_MrFoster_ARCH]
+Attachment="전술 엘프-팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_Christmas_TacticalElfPack_MrsFoster_ARCH]
+Attachment="전술 엘프-팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
+Attachment="전술 엘프-팩"
+AttachmentSkin0="프레셔스"

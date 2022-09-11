@@ -670,6 +670,10 @@ defaultproperties
    DamageTypeModifiers(38)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',DamageScale=(1.500000))
    DamageTypeModifiers(39)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGScorcherLightingImpact',DamageScale=(0.400000))
    DamageTypeModifiers(40)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGScorcherDoT',DamageScale=(0.400000))
+   DamageTypeModifiers(41)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(42)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallHeavyImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(43)=(DamageType=Class'kfgamecontent.KFDT_Piercing_HRG_Vampire_CrystalSpike',DamageScale=(0.300000))
+   DamageTypeModifiers(44)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_HRG_Vampire_BloodSuck',DamageScale=(0.700000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_BloatKing'
    FootstepCameraShakeInnerRadius=200.000000
    FootstepCameraShakeOuterRadius=900.000000

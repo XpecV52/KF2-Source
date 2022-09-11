@@ -295,6 +295,50 @@ simulated function ANIMNOTIFY_FILLMAG()
     Control.BoneTranslation = vec;
 }
 
+simulated event bool HasAmmo(byte FireModeNum, optional int Amount)
+{
+    local KFPerk InstigatorPerk;
+
+    if(FireModeNum == 3)
+    {
+        return true;        
+    }
+    else
+    {
+        if(FireModeNum == 2)
+        {
+            return CanReload();            
+        }
+        else
+        {
+            if(FireModeNum == 4)
+            {
+                if(KFInventoryManager(InvManager) != none)
+                {
+                    return KFInventoryManager(InvManager).HasGrenadeAmmo(Amount);
+                }                
+            }
+            else
+            {
+                if(FireModeNum == 1)
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    InstigatorPerk = GetPerk();
+    if((InstigatorPerk != none) && InstigatorPerk.GetIsUberAmmoActive(self))
+    {
+        return true;
+    }
+    if(Amount == 0)
+    {
+        Amount = AmmoCost[FireModeNum];
+    }
+    return AmmoCount[GetAmmoType(FireModeNum)] >= Amount;
+}
+
 simulated function Timer_StopFireEffects()
 {
     if(WorldInfo.NetMode == NM_Client)

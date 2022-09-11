@@ -840,6 +840,9 @@ HeadString="頭"
 BodyString="軀幹"
 SkinsString="飾品"
 AttachmentsString="配件"
+Attachment0String="配件 1"
+Attachment1String="配件 2"
+Attachment2String="配件 3"
 BackString="返回"
 NoneString="無"
 WeaponsString="武器"
@@ -1377,6 +1380,12 @@ MouseString="滑鼠"
 MouseSmoothingString="滑鼠流暢化"
 ZoomSensitivityString="變焦敏感度"
 ControllerZoomSensitivityString="變焦敏感度"
+ControllerDeadzoneString="死區"
+ControllerAccelerationJumpString="加速跳"
+ControllerDeadzoneDescriptionString="遊戲識別輸入之前右操作桿移動量"
+ControllerDeadzoneDescriptionXboxString="游戏确认输入之前的右摇杆移动量"
+ControllerAccelerationJumpDescriptionString="操作桿達到左右極限時轉速提升量"
+ControllerAccelerationJumpDescriptionXboxString="摇杆达到向左或向右极限时的旋转速度提升量"
 AimAssistLockOnString="瞄準輔助變焦鎖定"
 AimAssistRotationString="瞄準輔助轉換"
 AimAssistSlowDownString="瞄準輔助遲緩"
@@ -1463,6 +1472,7 @@ SkipTraderVoteYesReceivedString="你投票跳過商人"
 SkipTraderVoteNoReceivedString="你投票不跳過商人"
 SkipTraderNoEnoughTimeString="發起跳過商人投票的時間不足"
 SkipTraderThisUserAlreadyStartedAVoteString="下次商人階段前無法發起跳過新的跳過商人投票"
+SkipTraderVersusZedPlayerVotes="Zed 隊伍的玩家無法投票跳過商人"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="你收到的彈藥來自"
@@ -1999,7 +2009,7 @@ SplashDamage="熱浪"
 SplashDamageDescription="被近距離擊中的 Zed 會往後跌。"
 
 Inferno="ZED 時間 - 火焰地獄"
-InfernoDescription="Zed 時間發動時，被火燒到的 Zed 速度會減緩 30% 並受到額外 50% 的燃燒傷害。"
+InfernoDescription="Zed 時間發動時，你的火焰傷害會隨著時間的推移擴散到所有周圍的 Zed。"
 
 Scorch="ZED 時間 - 縱火狂"
 ScorchDescription="Zed 時間發動時，幾乎可以瞬間連發職業武器，而且彈藥不會耗盡。"
@@ -2022,7 +2032,7 @@ Passives[3]=(Title="後座力降低",Description="每級減少職業武器的後
 Passives[4]=(Title="Zed 時間裝填",Description="每級增加 Zed 時間發動時提升的裝填速度 %x%");
 
 ShootnMove="穩健"
-ShootnMoveDescription="可無視使用瞄具的速度延遲，並大幅減少職業武器的震動。"
+ShootnMoveDescription="可無視使用瞄具時移動速度的延遲，職業武器傷害增加 5%。大幅減少職業武器的震動。"
 
 QuickSwitch="快速拔槍"
 QuickSwitchDescription="神速射擊可減少後座力影響，增加移動速度5%，並提高perk武器切換速度50%。"
@@ -2207,6 +2217,7 @@ Passives[0]=(Title="武器傷害",Description="每級增加武器傷害 x%x");
 Passives[1]=(Title="傷害抵抗",Description="每級增加對所有傷害的抗性 x%x");
 Passives[2]=(Title="重護甲",Description="只要你擁有護甲，在每級可免除 %x%（最高 25%）的傷害。");
 Passives[3]=(Title="Zed 時間裝填",Description="每級增加 Zed 時間發動時提升的裝填速度 %x%");
+Passives[4]=(Title="更快的武器變更",Description="武器變更速度提升 35%");
 
 
 HeavyWeaponsReload="重武器訓練"
@@ -2784,6 +2795,20 @@ AllCompleteRewardDescriptionString="萬聖節 | 巫毒背包"
 ChanceDropDescriptionStrings[0]="萬聖節票券"
 ChanceDropDescriptionStrings[1]="萬聖節金色票券"
 
+[KFGFxSpecialEventObjectivesContainer_Xmas2020]
+CurrentSpecialEventString="附有專屬道具的限時活動"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="冰凍玫瑰",DescriptionString="在極樂世界收集 3 朵玫瑰")
+SpecialEventObjectiveInfoList[1]=(TitleString="四個不同的故事",DescriptionString="在極樂世界收集 4 本書")
+SpecialEventObjectiveInfoList[2]=(TitleString="槲寄生下",DescriptionString="在極樂世界的植物園競技場完成一波攻勢")
+SpecialEventObjectiveInfoList[3]=(TitleString="聖誕頌歌",DescriptionString="在極樂世界的聖所競技場完成一波攻勢")
+SpecialEventObjectiveInfoList[4]=(TitleString="永恆冬季",DescriptionString="在無盡困難或以上難度的極樂世界完成第 15 波攻勢")
+
+AllCompleteRewardDescriptionString="聖誕節 | 戰略精靈包"
+
+ChanceDropDescriptionStrings[0]="坎普斯票券"
+ChanceDropDescriptionStrings[1]="坎普斯金色票券"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2800,7 +2825,7 @@ KnifeString="刀"
 FriendlyName="目前暴動：頭顱粉碎者"
 DescriptionStrings[0]="最佳的傷害位置就是頭部傷害。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="這場暴動中的Zed突變得嚴重，要永久消滅他們只能瞄準頭部攻擊。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
+ModifierDescriptions[0]="這場暴動中的Zed突變得嚴重，要永久消滅他們只能瞄準頭部攻擊。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。職業等級 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2810,7 +2835,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：微型恐攻"
 DescriptionStrings[0]="就算是小型恐攻也算是威脅之一。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="在這場暴動中射擊Zed群將會使他們縮水，更難擊中目標。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
+ModifierDescriptions[0]="在這場暴動中射擊Zed群將會使他們縮水，更難擊中目標。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。職業等級 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2820,7 +2845,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：絞碎者魔王"
 DescriptionStrings[0]="滿滿的絞碎者，打好打滿。沒有別的選擇。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="絞碎者大會在城裡召開！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
+ModifierDescriptions[0]="絞碎者大會在城裡召開！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。職業等級 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2840,7 +2865,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：Zed時間 "
 DescriptionStrings[0]="全世界只剩下Zed時間。"
 DescriptionStrings[1]="長度：短（4 波攻擊）"
-ModifierDescriptions[0]="有想過要浪費時間嗎？在這個暴動中可不會讓你浪費任何時間！任何時候只要靠近Zed就會變成Zed時間。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
+ModifierDescriptions[0]="有想過要浪費時間嗎？在這個暴動中可不會讓你浪費任何時間！任何時候只要靠近Zed就會變成Zed時間。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。職業等級 15+。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2849,7 +2874,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：砰砰砰"
 DescriptionStrings[0]="壓力過大的Zed；可能會爆炸。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="難道是因為他們吃的東西？廢氣？管它是什麼體，反正在這場暴動中Zed死掉的時候會爆炸。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
+ModifierDescriptions[0]="難道是因為他們吃的東西？廢氣？管它是什麼體，反正在這場暴動中Zed死掉的時候會爆炸。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。職業等級 15+。"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2858,7 +2883,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：健美先生"
 DescriptionStrings[0]="越壯越難打。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="在這場暴動中，當Zed攻擊玩家或受到某些Zed能力影響的時候，血量、體型跟臂展都會增加。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
+ModifierDescriptions[0]="在這場暴動中，當Zed攻擊玩家或受到某些Zed能力影響的時候，血量、體型跟臂展都會增加。在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。職業等級 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2868,7 +2893,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="目前暴動：Zed大頭泡泡"
 DescriptionStrings[0]="……脖子應該很痛。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
-ModifierDescriptions[0]="這一批殭屍不知道吃錯什麼藥，他們的頭變得比平常還要大－－－－－－好幾倍！大得不得了！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。"
+ModifierDescriptions[0]="這一批殭屍不知道吃錯什麼藥，他們的頭變得比平常還要大－－－－－－好幾倍！大得不得了！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。職業等級 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3385,7 +3410,32 @@ DisplayName="廢墟"
 [KF-HellmarkStation KFMapSummary]
 DisplayName="地獄印記站點"
 
+[KF-Elysium KFMapSummary]
+DisplayName="極樂世界"
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% 找到了可收集物品。剩下 %y% 可以找到"
 FoundAllCollectiblesString="每一個可收集物品都已成功找到！"
+
+[KFKismetMapLocalization_Elysium]
+LeverWarningText="拉動此桿可能造成嚴重後果. . ."
+LoreMastersKnowsText="羅爾大師知道"
+BotanicaOpenText="植物園開門了"
+FuneralPyreIgnitionText="神聖的火葬堆已經點燃！\n地獄燃燒的靈魂現在縈繞在極樂世界的中心。"
+TomeMissingText="底座上似乎有一本書不見了"
+FlowerActivationText="花瓶裡飄出一股花香"
+SandTomeCollectedText="已收集黃沙之書\n%VALUE%"
+SteelTomeCollectedText="已收集鋼鐵之書\n%VALUE%"
+SludgeTomeCollectedText="已收集泥濘之書\n%VALUE%"
+WoodTomeCollectedText="已收集木頭之書\n%VALUE%"
+RedRoseCollectedText="已收集紅玫瑰\n%VALUE%"
+MagentaRoseollectedText="已收集品紅玫瑰\n%VALUE%"
+YellowRoseCollectedText="已收集黃玫瑰\n%VALUE%"
+OneOfThreeCollectedText="已收集 1 / 3 朵"
+TwoOfThreeCollectedText="已收集 2 / 3 朵"
+ThreeOfThreeCollectedText="已收集 3 / 3 朵"
+OneOfFourCollectedText="已收集 1 / 4 本"
+TwoOfFourCollectedText="已收集 2 / 4 本"
+ThreeOfFourCollectedText="已收集 3 / 4 本"
+FourOfFourCollectedText="已收集 4 / 4 本"

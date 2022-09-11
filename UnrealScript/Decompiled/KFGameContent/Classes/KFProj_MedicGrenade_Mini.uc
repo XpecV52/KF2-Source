@@ -23,6 +23,7 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 
 simulated function bool Bounce(Vector HitNormal, Actor BouncedOff)
 {
+    SetLocation(Location + HitNormal);
     super(KFProj_Grenade).Bounce(HitNormal, BouncedOff);
     Disable('Touch');
     Velocity = vect(0, 0, 0);

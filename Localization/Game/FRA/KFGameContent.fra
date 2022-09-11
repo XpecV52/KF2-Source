@@ -57,11 +57,11 @@ TraderWeightDescriptionKey="Chaque arme a un <font color="#caab05">POIDS</font>.
 
 ;Trader Open Gamepad
 TraderRefillGamepadTitleKey="Faire le plein en Munitions et Armure"
-TraderRefillGamepadDescriptionKey="Vous pouvez faire le plein en <font color="#caab05">MUNITIONS</font>, <font color="#caab05">GRENADES</font>, et <font color="#caab05">ARMURE</font> chez la marchande. Sélectionnez l'arme à remplir à gauche du menu de la marchande avec le joystick gauche. Achetez un chargeur ou une grenade pour l'arme en appuyant sur <font color="#caab05">XboxTypeS_A</font>, ou achetez le maximum en appuyant sur <font color="#caab05">XboxTypeS_X</font>. Si vous êtes à court de temps (ou bourré de fric), appuyez sur <font color="#caab05">LeftThumbStick</font> pour tout dépenser."
+TraderRefillGamepadDescriptionKey="Vous pouvez faire le plein en <font color="#caab05">MUNITIONS</font>, <font color="#caab05">GRENADES</font>, et <font color="#caab05">ARMURE</font> chez la marchande. Sélectionnez l'arme à remplir à gauche du menu de la marchande avec le stick analogique gauche. Achetez un chargeur ou une grenade pour l'arme en appuyant sur <font color="#caab05">XboxTypeS_A</font>, ou achetez le maximum en appuyant sur <font color="#caab05">XboxTypeS_X</font>. Si vous êtes à court de temps (ou bourré de fric), appuyez sur <font color="#caab05">LeftThumbStick</font> pour tout dépenser."
 TraderSellGamepadTitleKey="Vendre des armes"
-TraderSellGamepadDescriptionKey="Pour <font color="#caab05">VENDRE UNE ARME</font>, sélectionnez l'arme que vous voulez vendre à gauche du menu de la marchande grâce au joystick gauche et appuyez sur <font color="#caab05">XboxTypeS_Y</font>. La quantité de fric obtenue si vous vendez l'article s'affiche. Vous ne pouvez pas vendre votre 9 mm de secours, votre armure ni vos grenades."
+TraderSellGamepadDescriptionKey="Pour <font color="#caab05">VENDRE UNE ARME</font>, sélectionnez l'arme que vous voulez vendre à gauche du menu de la marchande grâce au stick analogique gauche et appuyez sur <font color="#caab05">XboxTypeS_Y</font>. La quantité de fric obtenue si vous vendez l'article s'affiche. Vous ne pouvez pas vendre votre 9 mm de secours, votre armure ni vos grenades."
 TraderBuyGamepadTitleKey="Acheter des armes"
-TraderBuyGamepadDescriptionKey="Pour <font color="#caab05">ACHETER UNE ARME</font>, sélectionnez l'arme que vous voulez acheter à droite du menu de la marchande grâce au joystick gauche et appuyez sur <font color="#caab05">XboxTypeS_A</font>. Assurez-vous d'avoir assez de <font color="#caab05">FRIC</font> et de <font color="#caab05">CAPACITÉ DE CHARGE</font> pour acheter l'arme."
+TraderBuyGamepadDescriptionKey="Pour <font color="#caab05">ACHETER UNE ARME</font>, sélectionnez l'arme que vous voulez acheter à droite du menu de la marchande grâce au stick analogique gauche et appuyez sur <font color="#caab05">XboxTypeS_A</font>. Assurez-vous d'avoir assez de <font color="#caab05">FRIC</font> et de <font color="#caab05">CAPACITÉ DE CHARGE</font> pour acheter l'arme."
 TraderWeightGamepadTitleKey="Poids et capacité d'arme"
 TraderWeightGamepadDescriptionKey="Chaque arme a un <font color="#caab05">POIDS</font>. Le poids de vos armes actuelles peut vous empêcher d'acheter l'arme de votre choix. Le poids de l'arme est visible sur la liste d'armes et dans les détails de l'arme. Votre <font color="#caab05">CAPACITÉ DE CHARGE</font> s'affiche en dessous de votre fric actuel au centre de l'écran. Tout ce qui vous empêche d'acheter l'article sélectionné apparaît en rouge à l'écran."
 
@@ -749,6 +749,16 @@ ItemCategory="Explosifs"
 ItemDescription="• Tire des mines biologiques qui explosent au contact pour infliger des dégâts aux Zeds et soigner les alliés.\n• Le tir alternatif déclenche l'explosion de toutes les mines posées.\n• L'origine du matériau de base est tenue secrète afin de respecter le code sanitaire."
 SharedUnlockSource="Pack d'arme Reconstructeur de mines"
 
+[KFWeap_HRG_Vampire]
+ItemName="GRH Vampire"
+ItemCategory="Spécial"
+ItemDescription="• Le tir principal absorbe le sang des ennemis, remplissant la jauge de sang.\n• Après le tir principal, tire un projectile de sang coagulé explosif qui inflige des dégâts aux ennemis et soigne les alliés.\n• Le tir alternatif consomme la jauge de sang pour tirer des pics de sang cristallisé."
+
+[KFWeap_Rifle_FrostShotgunAxe]
+ItemName="Croc de givre"
+ItemCategory="Fusil à pompe"
+ItemDescription="• Le mode tir utilise des projectiles qui gèlent les ennemis.\n• Les frappes au corps à corps fracassent les ennemis avec la hache.\n• Alternatif - bloquer / parer.\n• La hache est parfaite pour faire des sculptures de glace."
+SharedUnlockSource="Pack d'arme Croc de givre"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

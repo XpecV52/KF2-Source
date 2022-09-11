@@ -58,6 +58,7 @@ var private 			int						HeadShotComboCountDisplay;
 /** The maximum number of headshots that count toward the Rhythm Method perk skill damage multiplier */
 var private const		int 					MaxHeadShotComboCount;
 var private const		float 					HeadShotCountdownIntervall;
+var private const		float					SteadySkillDamageModifier;
 
 /*********************************************************************************************
 * @name	 Perk init and spawning
@@ -133,10 +134,13 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 	local float TempDamage;
 
 	TempDamage = InDamage;
-
 	if( DamageCauser != none )
 	{
 		KFW = GetWeaponFromDamageCauser( DamageCauser );
+		if(KFW == none && DamageCauser.IsA('KFPawn_Human'))
+		{
+			KFW = KFWeapon(KFPawn_Human(DamageCauser).Weapon);
+		}
 	}
 
 	if( (KFW != none && IsWeaponOnPerk( KFW,, self.class )) || (DamageType != none && IsDamageTypeOnPerk( DamageType )) )
@@ -159,6 +163,11 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 		{
 			;
 			TempDamage += Indamage * static.GetBoneBreakerDamage();
+		}
+
+		if( IsShootnMoveActive() && KFW.bUsingSights )
+		{
+			TempDamage += Indamage * SteadySkillDamageModifier;
 		}
 	}
 
@@ -821,6 +830,7 @@ defaultproperties
    SnareSpeedModifier=0.700000
    MaxHeadShotComboCount=5
    HeadShotCountdownIntervall=2.000000
+   SteadySkillDamageModifier=0.050000
    ProgressStatID=80
    PerkBuildStatID=81
    SecondaryXPModifier(1)=1

@@ -81,7 +81,9 @@ const KFID_SavedHeadshotID= 171;
 const KFID_ToggleToRun=172;
 const KFID_ClassicPlayerInfo=173;
 const KFID_VOIPMicVolumeMultiplier = 174;
-
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 #linenumber 12
 
 struct native WeaponSkinPairs
@@ -330,6 +332,9 @@ defaultproperties
    DefaultSettings(60)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=169,Data=(Type=SDT_Int32)))
    DefaultSettings(61)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=172,Data=(Type=SDT_Int32,Value1=1)))
    DefaultSettings(62)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=173,Data=(Type=SDT_Int32)))
+   DefaultSettings(63)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=175,Data=(Type=SDT_Float,Value1=1045220557)))
+   DefaultSettings(64)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=176,Data=(Type=SDT_Float,Value1=1053609165)))
+   DefaultSettings(65)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=177,Data=(Type=SDT_Int32)))
    VersionNumber=6
    ProfileMappings(0)=(Id=100,Name="Quick Weapon Select",MappingType=PVMT_RawValue,ValueMappings=((Id=0),))
    ProfileMappings(1)=(Id=101,Name="Current Layout Index",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))
@@ -378,22 +383,26 @@ defaultproperties
    ProfileMappings(44)=(Id=154,Name="SavedInProgressIndex")
    ProfileMappings(45)=(Id=155,Name="Controller Sound Enabled")
    ProfileMappings(46)=(Id=156,Name="Matchmaking Region")
-   ProfileMappings(47)=(Id=157,Name="Use alt Dual Aim")
-   ProfileMappings(48)=(Id=158,Name="Hide Boss Health Bar")
-   ProfileMappings(49)=(Id=159,Name="Anti Motion Sickness")
-   ProfileMappings(50)=(Id=160,Name="Show Welder in Inventory")
-   ProfileMappings(51)=(Id=161,Name="Auto Turn off")
-   ProfileMappings(52)=(Id=162,Name="Reduce High Pitch Sounds")
-   ProfileMappings(53)=(Id=167,Name="Disable Auto Upgrade")
-   ProfileMappings(54)=(Id=170,Name="Hide Remote Player Headshot Effects")
-   ProfileMappings(55)=(Id=165,Name="Weapon Skin KeyValue Pairs")
-   ProfileMappings(56)=(Id=163,Name="Show Console Crosshair")
-   ProfileMappings(57)=(Id=166,Name="Saved Emote ID")
-   ProfileMappings(58)=(Id=171,Name="Saved Headshot ID")
-   ProfileMappings(59)=(Id=168,Name="Safe Frame")
-   ProfileMappings(60)=(Id=169,Name="Native 4k Resolution")
-   ProfileMappings(61)=(Id=172,Name="Toggle To Run")
-   ProfileMappings(62)=(Id=173,Name="Legacy Health Bars")
+   ProfileMappings(47)=(Id=175,Name="Gamepad Deadzone")
+   ProfileMappings(48)=(Id=176,Name="Gamepad Acceleration Jump")
+   ProfileMappings(49)=(Id=157,Name="Use alt Dual Aim")
+   ProfileMappings(50)=(Id=158,Name="Hide Boss Health Bar")
+   ProfileMappings(51)=(Id=159,Name="Anti Motion Sickness")
+   ProfileMappings(52)=(Id=160,Name="Show Welder in Inventory")
+   ProfileMappings(53)=(Id=161,Name="Auto Turn off")
+   ProfileMappings(54)=(Id=162,Name="Reduce High Pitch Sounds")
+   ProfileMappings(55)=(Id=167,Name="Disable Auto Upgrade")
+   ProfileMappings(56)=(Id=170,Name="Hide Remote Player Headshot Effects")
+   ProfileMappings(57)=(Id=165,Name="Weapon Skin KeyValue Pairs")
+   ProfileMappings(58)=(Id=163,Name="Show Console Crosshair")
+   ProfileMappings(59)=(Id=166,Name="Saved Emote ID")
+   ProfileMappings(60)=(Id=171,Name="Saved Headshot ID")
+   ProfileMappings(61)=(Id=168,Name="Safe Frame")
+   ProfileMappings(62)=(Id=169,Name="Native 4k Resolution")
+   ProfileMappings(63)=(Id=172,Name="Toggle To Run")
+   ProfileMappings(64)=(Id=173,Name="Legacy Health Bars")
+   ProfileMappings(65)=(Id=177,Name="Has Tabbed To Store")
+   ProfileMappings(66)=(Id=177,Name="Has Tabbed To Store")
    Name="Default__KFProfileSettings"
    ObjectArchetype=OnlineProfileSettings'Engine.Default__OnlineProfileSettings'
 }

@@ -48,6 +48,7 @@ var private int HeadShotComboCount;
 var private int HeadShotComboCountDisplay;
 var private const int MaxHeadShotComboCount;
 var private const float HeadShotCountdownIntervall;
+var private const float SteadySkillDamageModifier;
 
 simulated function ModifySpeed(out float Speed)
 {
@@ -89,6 +90,10 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     if(DamageCauser != none)
     {
         KFW = GetWeaponFromDamageCauser(DamageCauser);
+        if((KFW == none) && DamageCauser.IsA('KFPawn_Human'))
+        {
+            KFW = KFWeapon(KFPawn_Human(DamageCauser).Weapon);
+        }
     }
     if(((KFW != none) && IsWeaponOnPerk(KFW,, self.Class)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
     {
@@ -104,6 +109,10 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
         if(((IsBoneBreakerActive()) && MyKFPM != none) && HitShouldGiveBodyPartDamage(MyKFPM.HitZones[HitZoneIdx].Limb))
         {
             TempDamage += (float(InDamage) * GetBoneBreakerDamage());
+        }
+        if((IsShootnMoveActive()) && KFW.bUsingSights)
+        {
+            TempDamage += (float(InDamage) * SteadySkillDamageModifier);
         }
     }
     InDamage = FCeil(TempDamage);
@@ -552,7 +561,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_9890
+    BoneBreakerBodyParts(1)=.!=_9963
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -560,6 +569,7 @@ Parameter name: index
     SnareSpeedModifier=0.7
     MaxHeadShotComboCount=5
     HeadShotCountdownIntervall=2
+    SteadySkillDamageModifier=0.05
     ProgressStatID=80
     PerkBuildStatID=81
     SecondaryXPModifier[1]=1
@@ -602,7 +612,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_1215
+    BodyPartsCanStumble(1)=.!=_1219
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4

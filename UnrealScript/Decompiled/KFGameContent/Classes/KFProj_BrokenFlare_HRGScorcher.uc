@@ -137,6 +137,7 @@ defaultproperties
     MagnitudeVelocityResidualFlamesInExplosion=0.5
     OffsetVelocityResidualFlamesInExplosion=(X=0,Y=0,Z=200)
     TimeAlive=0.5
+    bDamageDestructiblesOnTouch=true
     bWarnAIWhenFired=true
     GravityScale=0.4
     TerminalVelocity=7000

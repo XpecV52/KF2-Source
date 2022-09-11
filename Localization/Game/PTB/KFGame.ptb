@@ -167,7 +167,7 @@ VersusCompletionString="Complete uma partida como:"
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="FALHA AO LOCALIZAR PARTIDA"
-FailedSearchString="Falha ao localizar uma partida com as opções fornecidas. Amplie sua busca ou considere usar o navegador do servidor para localizar uma partida."
+FailedSearchString="Falha ao organizar partida com as opções fornecidas. Amplie sua busca ou considere usar o navegador do servidor para localizar uma partida."
 BrowseServersString="PROCURAR SERVIDOR"
 HasInvitedToGameString=" convidou você para jogar"
 JoinGameString="Entrar no jogo?"
@@ -212,7 +212,7 @@ WhiteListedStrings[0]="SIM"
 WhiteListedStrings[1]="NÃO"
 
 FindGameString="INÍCIO"
-LeaveMenuString="O grupo será desfeito se você sair do criador de partidas Procurar no servidor?"
+LeaveMenuString="O grupo será desfeito se você sair de Organizar Partida. Procurar no servidor?"
 
 CouldNotFindGameTitleString="Partida não localizada"
 CouldNotFindGameDescriptionStringPC="Nenhuma partida foi encontrada com essas opções. Tente filtros diferentes ou use o navegador."
@@ -259,7 +259,7 @@ StartGameString="INICIAR JOGO"
 LaunchGameString="INICIAR JOGO"
 InProgressString="AVANÇO NO JOGO"
 SoloGameString="JOGO INDIVIDUAL"
-LeaveMatchMakingString="SAIR DO CRIADOR PART."
+LeaveMatchMakingString="DEIXAR DE ORGANIZAR PARTIDA"
 MultiplayerLaunchString="JOGAR ON-LINE AGORA"
 SearchingString="PROCURANDO JOGO ON-LINE... AGUARDE"
 CancelSearchingString="CANCELAR BUSCA"
@@ -274,7 +274,7 @@ CreateNewGameString="Criar novo jogo"
 
 
 [KFGFxStartContainer_MatchMaking]
-OptionsHeaderString="CRIADOR DE PARTIDA"
+OptionsHeaderString="ORGANIZAR PARTIDA"
 BackString="VOLTAR"
 FindGameString="BUSCAR JOGO"
 
@@ -309,8 +309,8 @@ SelectPerkString="SELECIONAR CLASSE"
 
 [KFGFxMenu_ServerBrowser]
 FavoriteString="FAVORITAR"
-MultiplayerMenuString="CRIADOR DE PARTIDA"
-LeaveMenuString="Se você sair deste menu, o grupo será desfeito. Ir para o criador de partidas"
+MultiplayerMenuString="ORGANIZAR PARTIDA"
+LeaveMenuString="Se você sair deste menu, o grupo será desfeito. Ir para Organizar Partida?"
 NameString="NOME"
 RefreshString="ATUALIZAR"
 GamesFoundString="JOGOS ENCONTRADOS:"
@@ -840,6 +840,9 @@ HeadString="CABEÇA"
 BodyString="CORPO"
 SkinsString="APARÊNCIAS"
 AttachmentsString="ACESSÓRIOS"
+Attachment0String="ACESSÓRIO 1"
+Attachment1String="ACESSÓRIO 2"
+Attachment2String="ACESSÓRIO 3"
 BackString="VOLTAR"
 NoneString="NENHUM"
 WeaponsString="Armas"
@@ -987,7 +990,7 @@ MenuStrings[6]="OPÇÕES"
 MenuStrings[7]="SAIR"
 
 ServerBrowserString="SERVIDOR LISTA"
-MatchmakingString="CRIADOR DE PARTIDA"
+MatchmakingString="ORGANIZAR PARTIDA"
 CreateGameString="CRIAR JOGO"
 SoloString="SOLO"
 OverviewString="VISÃO GERAL"
@@ -1377,6 +1380,12 @@ MouseString="MOUSE"
 MouseSmoothingString="Suavização do mouse"
 ZoomSensitivityString="Sensibilidade de ampliação"
 ControllerZoomSensitivityString="Sensibilidade de ampliação"
+ControllerDeadzoneString="Zona Morta"
+ControllerAccelerationJumpString="Salto Acelerado"
+ControllerDeadzoneDescriptionString="Quantidade de movimento do controle direito antes de o jogo reconhecer a entrada"
+ControllerDeadzoneDescriptionXboxString="Quantidade de movimento do direcional analógico direito antes de o jogo reconhecer a entrada"
+ControllerAccelerationJumpDescriptionString="Quantidade de impulso de velocidade da taxa de giro quando o controle chega ao limite da direita ou da esquerda"
+ControllerAccelerationJumpDescriptionXboxString="Quantidade de impulso de velocidade da taxa de giro quando o direcional analógico chega ao limite da direita ou da esquerda"
 AimAssistLockOnString="Trava de amp. para mira"
 AimAssistRotationString="Giro auxiliar de mira"
 AimAssistSlowDownString="Desaceleração de mira"
@@ -1463,6 +1472,7 @@ SkipTraderVoteYesReceivedString="Você votou para ignorar o comerciante"
 SkipTraderVoteNoReceivedString="Você votou para não ignorar o comerciante"
 SkipTraderNoEnoughTimeString="Tempo insuficiente para iniciar uma votação para ignorar o comerciante"
 SkipTraderThisUserAlreadyStartedAVoteString="Não é possível iniciar uma nova votação para ignorar o comerciante até a próxima fase do comerciante"
+SkipTraderVersusZedPlayerVotes="Jogadores na equipe Zed não podem votar para ignorar o comerciante"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Você recebeu munição de"
@@ -1999,7 +2009,7 @@ SplashDamage="Onda de calor"
 SplashDamageDescription="Zeds atingidos à queima-roupa tropeçarão e cairão."
 
 Inferno="HORA DOS ZEDS - Inferno"
-InfernoDescription="Durante a hora dos Zeds, todo Zed atingido por fogo sofre 30% de lentidão e recebe 50% a mais em dano de fogo."
+InfernoDescription="O seu dano de fogo ao longo do tempo espalha-se por todos os Zeds durante a Hora dos Zeds."
 
 Scorch="HORA DOS ZEDS - Piromaníaco"
 ScorchDescription="Durante a hora dos Zeds, você ataca com armas de classe quase que em tempo real e a munição não acaba."
@@ -2022,7 +2032,7 @@ Passives[3]=(Title="Redução de recuo",Description="Reduz em %x% o recuo de arm
 Passives[4]=(Title="Recarga da hora dos Zeds",Description="Aumenta em %x% por nível a velocidade de recarga na Hora dos Zeds");
 
 ShootnMove="Estável"
-ShootnMoveDescription="Ignora a penalidade de velocidade de movimento para mira metálica e reduz drasticamente o recuo da arma em armas de classe"
+ShootnMoveDescription="Ignora a penalidade de velocidade de movimento e aumenta em 5% o dano de armas de classe para mira metálica. Reduz drasticamente o recuo da arma em armas de classe."
 
 QuickSwitch="Tirada rápida"
 QuickSwitchDescription="Reduz a penalidade de recuo para tiros usando o quadril, aumenta em 5% a velocidade de movimento e em 50% a troca de armas de classe."
@@ -2207,6 +2217,7 @@ Passives[0]=(Title="Dano de arma",Description="Aumenta em %x% o dano de arma por
 Passives[1]=(Title="Resistência de dano global",Description="Aumenta em %x% a resistência a qualquer dano por nível");
 Passives[2]=(Title="Armadura pesada",Description="%x% (máx. de 25%) a cada nível que não recebe nenhum dano caso tenha armadura.");
 Passives[3]=(Title="Recarga da hora dos Zeds",Description="Aumenta em %x% por nível a velocidade de recarga na Hora dos Zeds");
+Passives[4]=(Title="Troca de armas mais rápida",Description="Aumenta em 35% a velocidade de troca de armas");
 
 
 HeavyWeaponsReload="Treinamento de armas pesadas"
@@ -2784,6 +2795,20 @@ AllCompleteRewardDescriptionString="Halloween | Mochila de Vudu"
 ChanceDropDescriptionStrings[0]="Bilhete de Halloween"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado de Halloween"
 
+[KFGFxSpecialEventObjectivesContainer_Xmas2020]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Rosas congeladas",DescriptionString="Colha 3 rosas no Elísio")
+SpecialEventObjectiveInfoList[1]=(TitleString="Quatro contos diferentes",DescriptionString="Colete 4 tomos no Elísio")
+SpecialEventObjectiveInfoList[2]=(TitleString="Debaixo do visco",DescriptionString="Conclua uma nova leva na arena Botânica de Elísio")
+SpecialEventObjectiveInfoList[3]=(TitleString="Um conto de Natal",DescriptionString="Conclua uma nova leva na arena Santuário do Mestre da Tradição de Elísio")
+SpecialEventObjectiveInfoList[4]=(TitleString="Inverno eterno",DescriptionString="Conclua a 15ª leva do Elísio no modo Infinito em dificuldade Difícil ou maior")
+
+AllCompleteRewardDescriptionString="Natal | Pacote Elfo-tático"
+
+ChanceDropDescriptionStrings[0]="Bilhete do Krampus"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado do Krampus"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2800,7 +2825,7 @@ KnifeString="Faca"
 FriendlyName="Surto atual: Racha-Coco"
 DescriptionStrings[0]="O dano cerebral é o melhor de todos."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Nesse surto, os Zeds mutaram tanto que agora só podem ser abatidos de vez com dano na cabeça. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
+ModifierDescriptions[0]="Nesse surto, os Zeds mutaram tanto que agora só podem ser abatidos de vez com dano na cabeça. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Organizar Partida. Nível de classe 15 ou maior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2810,7 +2835,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Terror Tímido"
 DescriptionStrings[0]="Ameaça pequena também é ameaça."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Atire nos Zeds deste surto para fazê-los encolher — assim ficam mais difíceis de acertar. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
+ModifierDescriptions[0]="Atire nos Zeds deste surto para fazê-los encolher — assim ficam mais difíceis de acertar. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Organizar Partida. Nível de classe 15 ou maior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2820,7 +2845,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Carnival"
 DescriptionStrings[0]="Carniceiros sem parar. Quase."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Chegou o festival de Carniceiros! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
+ModifierDescriptions[0]="Chegou o festival de Carniceiros! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Organizar Partida. Nível de classe 15 ou maior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2830,7 +2855,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Pra Cima e… Caiu"
 DescriptionStrings[0]="Tente fazer noventa e nove balões de Zed."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Atire nos Zeds deste surto para fazê-los inflar como balões, mas é melhor estourá-los, senão eles vão começar a se regenerar! Selecione o modo de jogo Semanal na página de Criação de Partidas. Nível de classe 15 ou maior."
+ModifierDescriptions[0]="Atire nos Zeds deste surto para fazê-los inflar como balões, mas é melhor estourá-los, senão eles vão começar a se regenerar! Selecione o modo de jogo Semanal na página Organizar Partida. Nível de classe 15 ou maior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2840,7 +2865,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Hora dos Zeds"
 DescriptionStrings[0]="Toda a hora Zed do mundo."
 DescriptionStrings[1]="Duração: Curta (4 levas)"
-ModifierDescriptions[0]="Já pensou que a vida está passando? Neste surto, não! Você estará em Hora dos Zeds sempre que estiver perto de um Zed. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
+ModifierDescriptions[0]="Já pensou que a vida está passando? Neste surto, não! Você estará em Hora dos Zeds sempre que estiver perto de um Zed. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Organizar Partida. Nível de classe 15 ou maior."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2849,7 +2874,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Estouro"
 DescriptionStrings[0]="Zeds sob pressão podem explodir."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Será que foi alguma coisa que eles comeram? Serão gases? Seja o que for, os Zeds explodirão ao morrerem neste surto. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
+ModifierDescriptions[0]="Será que foi alguma coisa que eles comeram? Serão gases? Seja o que for, os Zeds explodirão ao morrerem neste surto. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Organizar Partida. Nível de classe 15 ou maior."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2858,7 +2883,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Bolo de Carne"
 DescriptionStrings[0]="Quanto maiores, mais difícil de cair."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Neste surto, os Zeds aumentam de vida, tamanho e alcance quando atingem jogadores ou são afetados por certas habilidades de Zeds. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
+ModifierDescriptions[0]="Neste surto, os Zeds aumentam de vida, tamanho e alcance quando atingem jogadores ou são afetados por certas habilidades de Zeds. Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Organizar Partida. Nível de classe 15 ou maior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2868,7 +2893,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Surto atual: Zed Cabeção"
 DescriptionStrings[0]="... deve doer no pescoço."
 DescriptionStrings[1]="Duração: Média (7 levas)"
-ModifierDescriptions[0]="Algo aconteceu com estas levas de Zeds: a cabeça deles está muuuuito maior que o normal! Maiores ainda! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Criador de Partida."
+ModifierDescriptions[0]="Algo aconteceu com estas levas de Zeds: a cabeça deles está muuuuito maior que o normal! Maiores ainda! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Organizar Partida. Nível de classe 15 ou maior."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3385,7 +3410,32 @@ DisplayName="Desolação"
 [KF-HellmarkStation KFMapSummary]
 DisplayName="Zona da Marca do Inferno"
 
+[KF-Elysium KFMapSummary]
+DisplayName="Elísio"
+
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% encontrou um item coletável. Faltam %y% para encontrar..."
 FoundAllCollectiblesString="Todos os itens coletáveis foram encontrados!"
+
+[KFKismetMapLocalization_Elysium]
+LeverWarningText="Puxar esta alavanca pode ter consequências..."
+LoreMastersKnowsText="O Mestre da Tradição sabe"
+BotanicaOpenText="A Botânica abriu"
+FuneralPyreIgnitionText="Acenderam a pira funeral sagrada!\nAlmas ardentes de Avernus agora assombram o coração de Elísio"
+TomeMissingText="Parece que está faltando um tomo neste pedestal"
+FlowerActivationText="Uma aroma floral recende do vaso"
+SandTomeCollectedText="O Tomo de Areia foi coletado\n%VALUE%"
+SteelTomeCollectedText="O Tomo de Aço foi coletado\n%VALUE%"
+SludgeTomeCollectedText="O Tomo de Lodo foi coletado\n%VALUE%"
+WoodTomeCollectedText="O Tomo de Madeira foi coletado\n%VALUE%"
+RedRoseCollectedText="Uma rosa vermelha coletada\n%VALUE%"
+MagentaRoseollectedText="Uma rosa magenta coletada\n%VALUE%"
+YellowRoseCollectedText="Uma rosa amarela coletada\n%VALUE%"
+OneOfThreeCollectedText="Coletado: 1 de 3"
+TwoOfThreeCollectedText="Coletados: 2 de 3"
+ThreeOfThreeCollectedText="Coletados: 3 de 3"
+OneOfFourCollectedText="Coletado: 1 de 4"
+TwoOfFourCollectedText="Coletados: 2 de 4"
+ThreeOfFourCollectedText="Coletados: 3 de 4"
+FourOfFourCollectedText="Coletados: 4 de 4"

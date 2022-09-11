@@ -664,7 +664,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 			{
 					NumberOfCosmetics++;
 					bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
-
+					
 					// Attach all saved attachments to the character
 					SetAttachmentMeshAndSkin(
 						CosmeticMeshIdx,
@@ -674,21 +674,21 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 		}
 
 		// Check again for all cosmetic in case one of them was removed, this will fix problems with masked heads
-		for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
+		/*for( AttachmentIdx=0; AttachmentIdx < `MAX_COSMETIC_ATTACHMENTS; AttachmentIdx++ )
 		{
 			CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
-			if ( CosmeticMeshIdx != -1&& CosmeticMeshIdx != INDEX_NONE)
+			if ( CosmeticMeshIdx != `CLEARED_ATTACHMENT_INDEX && CosmeticMeshIdx != INDEX_NONE)
 			{
 					NumberOfCosmeticsPostRemoval++;
 			}
-		}
-		
+		}*/
+
 		// If the number of cosmetics changed, made a new set of the mesh/cosmetics recursively and return
-		if(NumberOfCosmeticsPostRemoval != NumberOfCosmetics)
+		/*if(NumberOfCosmeticsPostRemoval != NumberOfCosmetics)
 		{
 			SetCharacterMeshFromArch( KFP, KFPRI );
 			return;
-		}
+		}*/
 
 		InitCharacterMICs(KFP, bMaskHeadMesh);
 	}
@@ -1087,7 +1087,6 @@ private function SetAttachmentMeshAndSkin(
 	local string CharAttachmentMeshName;
 	local name CharAttachmentSocketName;
 	local int AttachmentSlotIndex;
-
 	if (KFP.WorldInfo.NetMode == NM_DedicatedServer)
 	{
 		return;
@@ -1097,7 +1096,6 @@ private function SetAttachmentMeshAndSkin(
 	//DetachConflictingAttachments(CurrentAttachmentMeshIndex, KFP, KFPRI);
 	// Get a slot where this attachment could fit
 	AttachmentSlotIndex = GetAttachmentSlotIndex(CurrentAttachmentMeshIndex, KFP, KFPRI);
-
 	if (AttachmentSlotIndex == INDEX_NONE)
 	{
 		return;
@@ -1186,11 +1184,11 @@ private function SetAttachmentMeshAndSkin(
  * Removes any attachments that exist in the same socket or have overriding cases
  * Network: Local Player
  */
-function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
+function array<int> DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI, optional out array<int> out_RemovedAttachments )
 {
 	local name NewAttachmentSocketName;
 	local int i, CurrentAttachmentIdx;
-	
+
 	if ( CosmeticVariants.length > 0 &&
 		 NewAttachmentMeshIndex < CosmeticVariants.length && NewAttachmentMeshIndex != INDEX_NONE)
 	{
@@ -1208,6 +1206,7 @@ function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, op
 				KFP.ThirdPersonAttachmentSocketNames[i] == NewAttachmentSocketName )
 			{
 				RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);
+				out_RemovedAttachments.AddItem(i);
 				continue;
 			}
 
@@ -1215,6 +1214,7 @@ function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, op
 			if( GetOverrideCase(CurrentAttachmentIdx, NewAttachmentMeshIndex) )
 			{
 				RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);
+				out_RemovedAttachments.AddItem(i);
 				continue;
 			}
 
@@ -1222,6 +1222,7 @@ function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, op
 			if( GetOverrideCase(NewAttachmentMeshIndex, CurrentAttachmentIdx) )
 			{
 				RemoveAttachmentMeshAndSkin(i, KFP, KFPRI);
+				out_RemovedAttachments.AddItem(i);
 				continue;
 			}
 		}
@@ -1301,8 +1302,7 @@ function int GetAttachmentSlotIndex(
 	// Return the next available attachment index or the index that matches this mesh
 	for( AttachmentIdx=0; AttachmentIdx < 3; AttachmentIdx++ )
 	{
-		if (KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx] == INDEX_NONE ||
-			KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx] == CurrentAttachmentMeshIndex)
+		if (KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx] == CurrentAttachmentMeshIndex)
 		{
 			return AttachmentIdx;
 		}

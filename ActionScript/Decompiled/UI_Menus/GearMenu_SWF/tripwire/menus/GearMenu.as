@@ -17,7 +17,6 @@ package tripwire.menus
     import tripwire.containers.SectionHeaderContainer;
     import tripwire.containers.TripContainer;
     import tripwire.controls.CategoryButton;
-    import tripwire.controls.CategoryExpandedButton;
     import tripwire.controls.TripButton;
     import tripwire.controls.TripTextArea;
     import tripwire.managers.MenuManager;
@@ -44,7 +43,11 @@ package tripwire.menus
         
         public var bodyButton:CategoryButton;
         
-        public var attachmentButton:CategoryExpandedButton;
+        public var attachmentButton0:CategoryButton;
+        
+        public var attachmentButton1:CategoryButton;
+        
+        public var attachmentButton2:CategoryButton;
         
         public var rotateCameraWindow:MovieClip;
         
@@ -72,7 +75,11 @@ package tripwire.menus
         
         private var _selectedBodyIndex:int = 0;
         
-        private var _selectedAttachmentIndex:int = 0;
+        private var _selectedAttachmentIndex0:int = 0;
+        
+        private var _selectedAttachmentIndex1:int = 0;
+        
+        private var _selectedAttachmentIndex2:int = 0;
         
         private var _charactersString:String;
         
@@ -82,7 +89,11 @@ package tripwire.menus
         
         private var _bodiesString:String;
         
-        private var _attachmentString:String;
+        private var _attachment0String:String;
+        
+        private var _attachment1String:String;
+        
+        private var _attachment2String:String;
         
         private var _skinsString:String;
         
@@ -184,7 +195,9 @@ package tripwire.menus
         public function set attachmentsArray(param1:Array) : void
         {
             this._attachments = param1;
-            this.attachmentButton.enabled = this.GetCanCustomize(this._attachments);
+            this.attachmentButton0.enabled = this.GetCanCustomize(this._attachments);
+            this.attachmentButton1.enabled = this.GetCanCustomize(this._attachments);
+            this.attachmentButton2.enabled = this.GetCanCustomize(this._attachments);
         }
         
         public function set listButton(param1:String) : void
@@ -261,21 +274,29 @@ package tripwire.menus
                 switch(_loc2_)
                 {
                     case 0:
-                        this.attachmentButton.infoTextField_0.text = !!param1.selectedAttachment_0 ? param1.selectedAttachment_0 : "";
+                        this.attachmentButton0.infoString = !!param1.selectedAttachment_0 ? param1.selectedAttachment_0 : "";
+                        this._selectedAttachmentIndex0 = !!param1.selectedAttachmentIndex ? int(param1.selectedAttachmentIndex) : 0;
+                        this._selectedAttachmentSkinIndex = !!param1.selectedAttachmentSkinIndex ? int(param1.selectedAttachmentSkinIndex) : 0;
+                        this._selectedAttachmentSkinIndex = this._selectedAttachmentSkinIndex == this.Item_None ? 0 : int(this._selectedAttachmentSkinIndex);
+                        this._selectedAttachmentIndex0 = this._selectedAttachmentIndex0 == this.Item_None ? 0 : (int(this._selectedAttachmentIndex0 = this._selectedAttachmentIndex0 + 1));
                         break;
                     case 1:
-                        this.attachmentButton.infoTextField_1.text = !!param1.selectedAttachment_1 ? param1.selectedAttachment_1 : "";
+                        this.attachmentButton1.infoString = !!param1.selectedAttachment_1 ? param1.selectedAttachment_1 : "";
+                        this._selectedAttachmentIndex1 = !!param1.selectedAttachmentIndex ? int(param1.selectedAttachmentIndex) : 0;
+                        this._selectedAttachmentSkinIndex = !!param1.selectedAttachmentSkinIndex ? int(param1.selectedAttachmentSkinIndex) : 0;
+                        this._selectedAttachmentSkinIndex = this._selectedAttachmentSkinIndex == this.Item_None ? 0 : int(this._selectedAttachmentSkinIndex);
+                        this._selectedAttachmentIndex1 = this._selectedAttachmentIndex1 == this.Item_None ? 0 : (int(this._selectedAttachmentIndex1 = this._selectedAttachmentIndex1 + 1));
                         break;
                     case 2:
-                        this.attachmentButton.infoTextField_2.text = !!param1.selectedAttachment_2 ? param1.selectedAttachment_2 : "";
+                        this.attachmentButton2.infoString = !!param1.selectedAttachment_2 ? param1.selectedAttachment_2 : "";
+                        this._selectedAttachmentIndex2 = !!param1.selectedAttachmentIndex ? int(param1.selectedAttachmentIndex) : 0;
+                        this._selectedAttachmentSkinIndex = !!param1.selectedAttachmentSkinIndex ? int(param1.selectedAttachmentSkinIndex) : 0;
+                        this._selectedAttachmentSkinIndex = this._selectedAttachmentSkinIndex == this.Item_None ? 0 : int(this._selectedAttachmentSkinIndex);
+                        this._selectedAttachmentIndex2 = this._selectedAttachmentIndex2 == this.Item_None ? 0 : (int(this._selectedAttachmentIndex2 = this._selectedAttachmentIndex2 + 1));
                         break;
                 }
                 _loc2_++;
             }
-            this._selectedAttachmentIndex = !!param1.selectedAttachmentIndex ? int(param1.selectedAttachmentIndex) : 0;
-            this._selectedAttachmentSkinIndex = !!param1.selectedAttachmentSkinIndex ? int(param1.selectedAttachmentSkinIndex) : 0;
-            this._selectedAttachmentSkinIndex = this._selectedAttachmentSkinIndex == this.Item_None ? 0 : int(this._selectedAttachmentSkinIndex);
-            this._selectedAttachmentIndex = this._selectedAttachmentIndex == this.Item_None ? 0 : (int(this._selectedAttachmentIndex = this._selectedAttachmentIndex + 1));
         }
         
         public function set localizeText(param1:Object) : *
@@ -292,8 +313,12 @@ package tripwire.menus
             this._bodiesString = param1.bodiesString;
             this.bodyButton.label = this._bodiesString;
             this._skinsString = param1.skinsString;
-            this._attachmentString = param1.attachmentsString;
-            this.attachmentButton.label = this._attachmentString;
+            this._attachment0String = param1.attachment0String;
+            this._attachment1String = param1.attachment1String;
+            this._attachment2String = param1.attachment2String;
+            this.attachmentButton0.label = this._attachment0String;
+            this.attachmentButton1.label = this._attachment1String;
+            this.attachmentButton2.label = this._attachment2String;
         }
         
         override public function selectContainer() : void
@@ -323,7 +348,9 @@ package tripwire.menus
                 this.emoteButton.selected = false;
                 this.headButton.selected = false;
                 this.bodyButton.selected = false;
-                this.attachmentButton.selected = false;
+                this.attachmentButton0.selected = false;
+                this.attachmentButton1.selected = false;
+                this.attachmentButton2.selected = false;
             }
         }
         
@@ -333,7 +360,7 @@ package tripwire.menus
             currentElement = defaultFirstElement = !!this.characterButton.enabled ? this.characterButton : this.headButton;
             if(defaultFirstElement == null)
             {
-                currentElement = defaultFirstElement = !!this.bodyButton.enabled ? this.bodyButton : this.attachmentButton;
+                currentElement = defaultFirstElement = !!this.bodyButton.enabled ? this.bodyButton : this.attachmentButton0;
             }
             if(!MenuManager.manager.bPopUpOpen && bManagerUsingGamepad && bSelected)
             {
@@ -392,7 +419,9 @@ package tripwire.menus
             this.emoteButton.tabIndex = 2;
             this.headButton.tabIndex = 3;
             this.bodyButton.tabIndex = 4;
-            this.attachmentButton.tabIndex = 5;
+            this.attachmentButton0.tabIndex = 5;
+            this.attachmentButton1.tabIndex = 6;
+            this.attachmentButton2.tabIndex = 7;
         }
         
         override protected function addedToStage(param1:Event) : void
@@ -402,7 +431,9 @@ package tripwire.menus
             this.emoteButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.headButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.bodyButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
-            this.attachmentButton.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.attachmentButton0.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.attachmentButton1.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
+            this.attachmentButton2.addEventListener(ButtonEvent.PRESS,this.handleButtonEvent,false,0,true);
             this.rotateCameraWindow.addEventListener(MouseEvent.MOUSE_DOWN,this.startRotate,false,0,true);
             this.gearList.addEventListener(IndexEvent.INDEX_CHANGE,this.listSelect,false,0,true);
             this.skinList.addEventListener(IndexEvent.INDEX_CHANGE,this.listSelect,false,0,true);
@@ -414,7 +445,9 @@ package tripwire.menus
             this.bioTextArea.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.headButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.bodyButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
-            this.attachmentButton.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.attachmentButton0.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.attachmentButton1.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
+            this.attachmentButton2.addEventListener(MouseEvent.MOUSE_OVER,handleLeftSideOver,false,0,true);
             this.gearList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             this.skinList.addEventListener(MouseEvent.MOUSE_OVER,handleRightSideOver,false,0,true);
             leftSidePanels.push(this.gearHeader);
@@ -423,7 +456,9 @@ package tripwire.menus
             leftSidePanels.push(this.bioTextArea);
             leftSidePanels.push(this.headButton);
             leftSidePanels.push(this.bodyButton);
-            leftSidePanels.push(this.attachmentButton);
+            leftSidePanels.push(this.attachmentButton0);
+            leftSidePanels.push(this.attachmentButton1);
+            leftSidePanels.push(this.attachmentButton2);
             rightSidePanels.push(this.gearList);
             rightSidePanels.push(this.skinList);
             this.characterButton.textField.autoSize = TextFieldAutoSize.RIGHT;
@@ -431,7 +466,9 @@ package tripwire.menus
             this.bioTextArea.textField.autoSize = TextFieldAutoSize.RIGHT;
             this.headButton.textField.autoSize = TextFieldAutoSize.RIGHT;
             this.bodyButton.textField.autoSize = TextFieldAutoSize.RIGHT;
-            this.attachmentButton.textField.autoSize = TextFieldAutoSize.RIGHT;
+            this.attachmentButton0.textField.autoSize = TextFieldAutoSize.RIGHT;
+            this.attachmentButton1.textField.autoSize = TextFieldAutoSize.RIGHT;
+            this.attachmentButton2.textField.autoSize = TextFieldAutoSize.RIGHT;
         }
         
         protected function handleButtonEvent(param1:ButtonEvent) : void
@@ -443,7 +480,7 @@ package tripwire.menus
             {
                 return;
             }
-            if(this._selectedButton == this.headButton || this._selectedButton == this.attachmentButton)
+            if(this._selectedButton == this.headButton || this._selectedButton == this.attachmentButton0 || this._selectedButton == this.attachmentButton1 || this._selectedButton == this.attachmentButton2)
             {
                 ExternalInterface.call("Callback_HeadCamera");
                 if(Extensions.gfxProcessSound != null && enabled == true)
@@ -489,11 +526,25 @@ package tripwire.menus
                         this.gearList.tileList.selectedIndex = this._selectedBodyIndex;
                     }
                     break;
-                case this.attachmentButton:
-                    this.buttonPressed(this._attachments,this._attachmentString);
+                case this.attachmentButton0:
+                    this.buttonPressed(this._attachments,this._attachment0String);
                     if(bManagerUsingGamepad)
                     {
-                        this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex;
+                        this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex0;
+                    }
+                    break;
+                case this.attachmentButton1:
+                    this.buttonPressed(this._attachments,this._attachment1String);
+                    if(bManagerUsingGamepad)
+                    {
+                        this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex1;
+                    }
+                    break;
+                case this.attachmentButton2:
+                    this.buttonPressed(this._attachments,this._attachment2String);
+                    if(bManagerUsingGamepad)
+                    {
+                        this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex2;
                     }
             }
         }
@@ -547,7 +598,13 @@ package tripwire.menus
                         case this.bodyButton:
                             this.skinList.tileList.selectedIndex = this._selectedBodySkinIndex;
                             break;
-                        case this.attachmentButton:
+                        case this.attachmentButton0:
+                            this.skinList.tileList.selectedIndex = this._selectedAttachmentSkinIndex;
+                            break;
+                        case this.attachmentButton1:
+                            this.skinList.tileList.selectedIndex = this._selectedAttachmentSkinIndex;
+                            break;
+                        case this.attachmentButton2:
                             this.skinList.tileList.selectedIndex = this._selectedAttachmentSkinIndex;
                     }
                 }
@@ -576,8 +633,14 @@ package tripwire.menus
                     case this.bodyButton:
                         this.chosenItem(this._bodies,param1.index,"Callback_Body");
                         break;
-                    case this.attachmentButton:
-                        this.chosenItem(this._attachments,param1.index,"Callback_Attachment");
+                    case this.attachmentButton0:
+                        this.chosenItem(this._attachments,param1.index,"Callback_Attachment1");
+                        break;
+                    case this.attachmentButton1:
+                        this.chosenItem(this._attachments,param1.index,"Callback_Attachment2");
+                        break;
+                    case this.attachmentButton2:
+                        this.chosenItem(this._attachments,param1.index,"Callback_Attachment3");
                 }
             }
             else if(param1.target.bIsSubMenu)
@@ -612,11 +675,25 @@ package tripwire.menus
                             this.gearList.tileList.selectedIndex = this._selectedBodyIndex;
                         }
                         break;
-                    case this.attachmentButton:
-                        this.buttonPressed(this._attachments,this._attachmentString);
+                    case this.attachmentButton0:
+                        this.buttonPressed(this._attachments,this._attachment0String);
                         if(bManagerUsingGamepad)
                         {
-                            this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex;
+                            this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex0;
+                        }
+                        break;
+                    case this.attachmentButton1:
+                        this.buttonPressed(this._attachments,this._attachment1String);
+                        if(bManagerUsingGamepad)
+                        {
+                            this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex1;
+                        }
+                        break;
+                    case this.attachmentButton2:
+                        this.buttonPressed(this._attachments,this._attachment2String);
+                        if(bManagerUsingGamepad)
+                        {
+                            this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex2;
                         }
                 }
             }
@@ -632,7 +709,7 @@ package tripwire.menus
             var _loc4_:int = 0;
             if(!this._bSelectingSkin)
             {
-                this._meshIndex = this._selectedButton != this.attachmentButton ? int(param2) : int(param2);
+                this._meshIndex = param2;
                 if(this._meshIndex >= 0 && param1[param2].skinInfo && param1[param2].skinInfo.length > 0)
                 {
                     this.setOptionList(this.skinList,param1[param2].skinInfo,this._skinsString,true);
@@ -757,7 +834,9 @@ package tripwire.menus
             this.characterButton.selected = false;
             this.headButton.selected = false;
             this.bodyButton.selected = false;
-            this.attachmentButton.selected = false;
+            this.attachmentButton0.selected = false;
+            this.attachmentButton1.selected = false;
+            this.attachmentButton2.selected = false;
             if(param1 != null)
             {
                 param1.selected = true;

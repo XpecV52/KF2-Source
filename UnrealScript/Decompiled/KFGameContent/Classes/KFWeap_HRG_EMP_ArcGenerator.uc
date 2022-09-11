@@ -45,6 +45,8 @@ var int ChainDamage;
 replication
 {
      if((Role == ROLE_Authority) && bNetDirty)
+        ChainDamage, MaxDistanceToBeZapped, 
+        MaxNumberOfZedsZapped, ZapInterval, 
         oZedCurrentlyBeingSprayed;
 }
 
@@ -233,7 +235,6 @@ simulated function int SpawnBeam(Actor _OriginActor, Actor _DestinationActor)
 
 simulated function MarkBeamToDeactivate(BeamAttachedToActor _BeamData)
 {
-    LogInternal(string(_BeamData.oAttachedZed));
     vAuxDeletionArray.AddItem(_BeamData;
 }
 

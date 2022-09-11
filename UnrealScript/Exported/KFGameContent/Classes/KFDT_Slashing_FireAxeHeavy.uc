@@ -29,11 +29,12 @@ static simulated function bool CanDismemberHitZone(name InHitZoneName)
 
 defaultproperties
 {
-   StunPower=75.000000
+   StunPower=100.000000
    StumblePower=75.000000
    MeleeHitPower=100.000000
-   KDamageImpulse=300.000000
-   KDeathUpKick=400.000000
+   KDamageImpulse=2500.000000
+   KDeathVel=700.000000
+   KDeathUpKick=700.000000
    Name="Default__KFDT_Slashing_FireAxeHeavy"
    ObjectArchetype=KFDT_Slashing_FireAxe'kfgamecontent.Default__KFDT_Slashing_FireAxe'
 }

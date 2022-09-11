@@ -64,6 +64,7 @@ defaultproperties
    ColumnIds(100)=4054
    ColumnIds(101)=4055
    ColumnIds(102)=4056
+   ColumnIds(103)=4057
    ColumnMappings(51)=(Id=4001,Name="AchievementMrPerky5")
    ColumnMappings(52)=(Id=4002,Name="AchievementMrPerky10")
    ColumnMappings(53)=(Id=4003,Name="AchievementMrPerky15")
@@ -116,6 +117,7 @@ defaultproperties
    ColumnMappings(100)=(Id=4054,Name="AchievementCollectBiolapse")
    ColumnMappings(101)=(Id=4055,Name="AchievementCollectDesolation")
    ColumnMappings(102)=(Id=4056,Name="AchievementCollectHellmarkStation")
+   ColumnMappings(103)=(Id=4057,Name="AchievementEndlessElysium")
    Name="Default__KFOnlineStatsReadDingo"
    ObjectArchetype=KFOnlineStatsRead'KFGame.Default__KFOnlineStatsRead'
 }

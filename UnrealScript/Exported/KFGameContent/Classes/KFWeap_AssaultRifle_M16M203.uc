@@ -544,6 +544,7 @@ defaultproperties
    AttachmentArchetypeName="Wep_M16_M203_ARCH.Wep_M16_M203_3P_new"
    MuzzleFlashTemplateName="wep_m16_m203_arch.Wep_M16_M203_MuzzleFlash"
    bHasIronSights=True
+   bUseGrenadeAsSecondaryAmmo=True
    bCanBeReloaded=True
    bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletAuto'

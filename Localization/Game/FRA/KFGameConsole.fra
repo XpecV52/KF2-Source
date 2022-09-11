@@ -33,6 +33,7 @@ KF-Sanitarium="Joue sur le Sanatorium"
 KF-Biolapse="Joue sur Biolapse"
 KF-Desolation="Joue sur Désolation"
 KF-HellmarkStation="Joue sur Poste infernal"
+KF-Elysium="Joue sur Élysée"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -166,7 +167,7 @@ PlayOffline="Voulez-vous jouer hors-ligne ? Les fonctions Xbox Live ne seront p
 [Notifications]
 ControllerDisconnectedTitle="Manette déconnectée"
 ControllerDisconnectedPS4Message="La manette sans fil a été déconnectée. Veuillez reconnecter la manette sans fil de l'utilisateur qui a lancé le jeu."
-ControllerDisconnectedXB1="La manette sans fil Xbox One a été déconnectée. Veuillez reconnecter la manette."
+ControllerDisconnectedXB1="La Manette sans fil Xbox One a été déconnectée. Veuillez reconnecter la manette."
 PlayGoBusyTitle="Installation en cours"
 PlayGoBusyMessage="Le contenu et les fonctionnalités disponibles sont limitées pendant l'installation du jeu."
 UnableToJoinInviteTitle="Connexion impossible"
@@ -185,14 +186,14 @@ InviteMessage="Viens exploser des Zeds avec moi !"
 NotConnectedTitle="Erreur réseau"
 NotConnectedMessage="Vous n'êtes pas connecté à internet. Vérifiez votre connexion et réessayez."
 NotConnectedForOnlinePlay="Vous n'êtes pas connecté à internet. Vérifiez votre connexion et réessayez"
-NotConnectedForOnlinePlayXB1="You must be signed into Xbox Live to play online. Check your connection and try again to use online feature."
+NotConnectedForOnlinePlayXB1="Vous devez être connecté(e) au Xbox Live pour jouer en ligne. Vérifiez votre connexion et réessayez pour utiliser les fonctionnalités en ligne."
 MultiplayerNotAllowed_MessageLive="Vous devez être connecté à un profil Xbox Live et avoir des privilèges multijoueur pour jouer."
 MultiplayerNotAllowed_Title="Multijoueur non autorisé"
 LoggedOutMessage="Le profil actif a été modifié. Vous avez été renvoyé à l'écran-titre."
 LoggedOutTitle="Déconnecté"
 LoggedInTitle="Connecté"
-NewRegionTitle="Welcome"
-NewRegionMessage="Welcome to online matchmaking. Please make sure your matchmaking region is correct!"
+NewRegionTitle="Bienvenue"
+NewRegionMessage="Bienvenue dans le matchmaking en ligne. Veuillez vous assurer que votre région de matchmaking est correcte !"
 
 [KFGFxWidget_BaseParty]
 ViewProfileString="Afficher le profil"
@@ -217,7 +218,7 @@ MatchmakingRegionString="RÉGION"
 LeaveMenuString="En quittant le matchmaking, vous quittez aussi votre groupe."
 
 [KFGFxMenu_Store]
-StoreStringXB1="MAGASIN XBOX"
+StoreStringXB1="MICROSOFT STORE"
 
 [KFGFxStartGameContainer_Options]
 MatchmakingRegionString="RÉGION"

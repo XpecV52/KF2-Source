@@ -120,6 +120,7 @@ const STATID_ACHIEVE_DefeatMatriarch = 4053;
 const STATID_ACHIEVE_BiolapseCollectibles = 4054;
 const STATID_ACHIEVE_DesolationCollectibles = 4055;
 const STATID_ACHIEVE_HellmarkStationCollectibles = 4056;
+const STATID_ACHIEVE_ElysiumEndlessWaveFifteen = 4057;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -184,6 +185,9 @@ const KFID_SavedHeadshotID = 171;
 const KFID_ToggleToRun = 172;
 const KFID_ClassicPlayerInfo = 173;
 const KFID_VOIPMicVolumeMultiplier = 174;
+const KFID_GamepadDeadzoneScale = 175;
+const KFID_GamepadAccelerationJumpScale = 176;
+const KFID_HasTabbedToStore = 177;
 const MapObjectiveIndex = 4;
 const MAX_AIM_CORRECTION_SIZE = 35.f;
 
@@ -1302,6 +1306,8 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
             KFInput.bTargetFrictionEnabled = Profile.GetProfileBool(140);
             KFInput.GamepadSensitivityScale = Profile.GetProfileFloat(133);
             KFInput.GamepadZoomedSensitivityScale = Profile.GetProfileFloat(135);
+            KFInput.GamepadDeadzoneScale = Profile.GetProfileFloat(175);
+            KFInput.GamepadAccelerationJumpScale = Profile.GetProfileFloat(176);
             KFInput.SetGamepadLayout(Profile.GetProfileInt(101));
             KFInput.bToggleToRun = Profile.GetProfileBool(172);
             KFInput.ReInitializeControlsUI();
@@ -8361,6 +8367,76 @@ event ShowInviteMessage(string InviteMessageName)
 {
     LogInternal("KFPlayerController: ShowInviteMessage");
     myGfxHUD.ShowInviteMessage(InviteMessageName);
+}
+
+function OnDrawCountText(KFSeqAct_DrawCountText inAction)
+{
+    if(inAction.InputLinks[0].bHasImpulse)
+    {
+        if(WorldInfo.NetMode == NM_DedicatedServer)
+        {
+            DrawCountTextOnHud(inAction.DrawTextInfo.MessageText, inAction.DisplayTimeSeconds);            
+        }
+        else
+        {
+            if(myGfxHUD != none)
+            {
+                myGfxHUD.DisplayMapCounterText(inAction.DrawTextInfo.MessageText, inAction.DisplayTimeSeconds);
+            }
+        }
+    }
+}
+
+reliable client simulated function DrawCountTextOnHud(string Message, float DisplayTime)
+{
+    if(myGfxHUD != none)
+    {
+        myGfxHUD.DisplayMapCounterText(Message, DisplayTime);
+    }
+}
+
+function OnDrawLocalizedText(KFSeqAct_DrawLocalizedText inAction)
+{
+    if(inAction.InputLinks[0].bHasImpulse)
+    {
+        if(WorldInfo.NetMode == NM_DedicatedServer)
+        {
+            DrawLocalizedTextOnHud(inAction.DrawTextInfo.MessageText, inAction.DisplayTimeSeconds);            
+        }
+        else
+        {
+            if(myGfxHUD != none)
+            {
+                myGfxHUD.DisplayMapText(inAction.DrawTextInfo.MessageText, inAction.DisplayTimeSeconds, true);
+            }
+        }
+    }
+}
+
+function OnDrawRandomLocalizedText(KFSeqAct_DrawRandomLocalizedText inAction)
+{
+    if(inAction.InputLinks[0].bHasImpulse)
+    {
+        if(WorldInfo.NetMode == NM_DedicatedServer)
+        {
+            DrawLocalizedTextOnHud(inAction.DrawTextInfo.MessageText, inAction.DisplayTimeSeconds);            
+        }
+        else
+        {
+            if(myGfxHUD != none)
+            {
+                myGfxHUD.DisplayMapText(inAction.DrawTextInfo.MessageText, inAction.DisplayTimeSeconds, true);
+            }
+        }
+    }
+}
+
+reliable client simulated function DrawLocalizedTextOnHud(string Message, float DisplayTime)
+{
+    if(myGfxHUD != none)
+    {
+        myGfxHUD.DisplayMapText(Message, DisplayTime, true);
+    }
 }
 
 event OnLoginOnOtherPlatformDoneAndFriendsReady()

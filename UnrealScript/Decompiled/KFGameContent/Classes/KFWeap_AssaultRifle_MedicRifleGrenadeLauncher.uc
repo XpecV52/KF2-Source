@@ -410,6 +410,7 @@ defaultproperties
     MuzzleFlashTemplateName="WEP_Medic_GrenadeLauncher_ARCH.Wep_Medic_GrenadeLauncher_MuzzleFlash"
     bHasIronSights=true
     bCanRefillSecondaryAmmo=true
+    bUseGrenadeAsSecondaryAmmo=true
     bCanBeReloaded=true
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
