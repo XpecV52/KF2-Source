@@ -830,7 +830,7 @@ defaultproperties
    SnareSpeedModifier=0.700000
    MaxHeadShotComboCount=5
    HeadShotCountdownIntervall=2.000000
-   SteadySkillDamageModifier=0.050000
+   SteadySkillDamageModifier=0.075000
    ProgressStatID=80
    PerkBuildStatID=81
    SecondaryXPModifier(1)=1

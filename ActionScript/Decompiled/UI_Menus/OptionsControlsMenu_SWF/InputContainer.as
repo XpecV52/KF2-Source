@@ -9,10 +9,10 @@ package
         public function InputContainer()
         {
             super();
-            this.__setProp_defaultButton_InputContainerMC_ScrollAndReset_0();
+            this.__setProp_defaultButton_InputContainerMC_defaultButton_0();
         }
         
-        function __setProp_defaultButton_InputContainerMC_ScrollAndReset_0() : *
+        function __setProp_defaultButton_InputContainerMC_defaultButton_0() : *
         {
             try
             {

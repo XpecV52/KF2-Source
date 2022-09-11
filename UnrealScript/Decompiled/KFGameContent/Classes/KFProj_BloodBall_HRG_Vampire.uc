@@ -22,7 +22,6 @@ struct BloodBallChargeInfo
 
 var float DampenFactor;
 var float DampenFactorParallel;
-var float SpawnCollisionOffsetAmt;
 var Vector LandedFXOffset;
 var MaterialInterface ImpactDecalMaterial;
 var float ImpactDecalWidth;
@@ -95,19 +94,9 @@ simulated function ScalingProjEffectsByBloodBallCharge()
 
 simulated event PostBeginPlay()
 {
-    local Vector HitLocation, HitNormal;
-
     super.PostBeginPlay();
     BloodBallCharge.ChargePercentage = 0;
     BloodBallCharge.DamageByChargePercentage = 0;
-    if(Role == ROLE_Authority)
-    {
-        Instigator.Trace(HitLocation, HitNormal, Location, Instigator.Location, false,,, 1);
-        if(!IsZero(HitLocation))
-        {
-            SetLocation(HitLocation + (HitNormal * SpawnCollisionOffsetAmt));
-        }
-    }
 }
 
 simulated function SpawnFlightEffects()
@@ -156,7 +145,6 @@ defaultproperties
 {
     DampenFactor=0.125
     DampenFactorParallel=0.175
-    SpawnCollisionOffsetAmt=28
     LandedFXOffset=(X=0,Y=0,Z=2)
     ImpactDecalWidth=178
     ImpactDecalHeight=178
@@ -169,8 +157,8 @@ defaultproperties
     MinCollisionRadius=10
     MaxCollisionHeight=20
     MinCollisionHeight=10
-    MaxDamagePerPercentage=150
-    MinDamagePerPercentage=15
+    MaxDamagePerPercentage=200
+    MinDamagePerPercentage=20
     bCantBeTouchedByInstigator=true
     bCantDetonateOnFullHP=true
     bSyncToOriginalLocation=true

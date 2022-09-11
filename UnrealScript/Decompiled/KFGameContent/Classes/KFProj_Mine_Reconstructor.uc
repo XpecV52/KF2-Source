@@ -28,7 +28,6 @@ var byte TeamNum;
 var int Health;
 var float DampenFactor;
 var float DampenFactorParallel;
-var float SpawnCollisionOffsetAmt;
 var Vector LandedFXOffset;
 var float ExplodeTriggerRadius;
 var float ExplodeTriggerHeight;
@@ -131,8 +130,6 @@ simulated function SetInheritedScale(float Scale, float ChargePercentage)
 
 simulated event PostBeginPlay()
 {
-    local Vector HitLocation, HitNormal;
-
     TeamNum = GetTeamNum();
     super.PostBeginPlay();
     if(WorldInfo.NetMode != NM_Client)
@@ -143,11 +140,6 @@ simulated event PostBeginPlay()
     }
     if(Role == ROLE_Authority)
     {
-        Instigator.Trace(HitLocation, HitNormal, Location, Instigator.Location, false,,, 1);
-        if(!IsZero(HitLocation))
-        {
-            SetLocation(HitLocation + (HitNormal * SpawnCollisionOffsetAmt));
-        }
         SetTimer(FuseDuration, false, 'Timer_Explode');
     }
 }
@@ -629,7 +621,6 @@ defaultproperties
     BurstFXTemplate=ParticleSystem'WEP_Mine_Reconstructor_EMIT.FX_Bloat_Mine_Hit_01'
     DampenFactor=0.125
     DampenFactorParallel=0.175
-    SpawnCollisionOffsetAmt=28
     LandedFXOffset=(X=0,Y=0,Z=2)
     ExplodeTriggerRadius=60
     ExplodeTriggerHeight=22

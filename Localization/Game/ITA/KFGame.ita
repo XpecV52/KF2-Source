@@ -2009,7 +2009,7 @@ SplashDamage="Ondata di calore"
 SplashDamageDescription="Gli Zed colpiti a bruciapelo con il fuoco verranno spinti dalla forza d'urto."
 
 Inferno="ZED TIME - Inferno"
-InfernoDescription="I tuoi danni da fuoco si diffondono nel tempo verso tutti gli Zed nei dintorni durante gli Zed time."
+InfernoDescription="Durante gli Zed time, gli Zed colpiti dal fuoco sono rallentati del 30% e subiscono il 50% in più di danno da fuoco."
 
 Scorch="ZED TIME - Piromania"
 ScorchDescription="Durante gli Zed time, puoi attaccare con le armi di classe quasi in tempo reale senza finire le munizioni."
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="Riduzione Rinculo",Description="Riduzione %x% rinculo arma c
 Passives[4]=(Title="Ricarica Zedtime",Description="Aumento %x% velocità ricarica negli Zed time per livello");
 
 ShootnMove="Stabilizza"
-ShootnMoveDescription="Ignora la penalità della velocità di movimento e aumenta i danni delle armi di classe del 5% quando si usa il mirino. Riduce drasticamente l'oscillazione delle armi di classe."
+ShootnMoveDescription="Ignora la penalità della velocità di movimento e aumenta i danni delle armi di classe del 7.5% quando si usa il mirino. Riduce drasticamente l'oscillazione delle armi di classe."
 
 QuickSwitch="Estrazione rapida"
 QuickSwitchDescription="Riduce la penalità del rinculo sparando dal fianco, aumenta la velocità di movimento del 5% e scambia le armi di classe più veloce del 50%."

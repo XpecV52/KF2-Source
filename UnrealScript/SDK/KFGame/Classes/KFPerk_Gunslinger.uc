@@ -810,7 +810,7 @@ DefaultProperties
    	PerkBuildStatID=STATID_Guns_Build
 
    	ShootnMooveBobDamp=1.11f
-	SteadySkillDamageModifier=0.05f
+	SteadySkillDamageModifier=0.075f
 
    	MaxHeadShotComboCount=5
    	RhytmMethodRTPCName="R_Method"

@@ -2009,7 +2009,7 @@ SplashDamage="Vague de chaleur"
 SplashDamageDescription="Les Zeds touchés à bout portant par le feu sont renversés."
 
 Inferno="ZED TIME - Inferno"
-InfernoDescription="Vos dégâts de feu sur la durée se propagent aux Zeds à proximité pendant le temps Zed."
+InfernoDescription="Pendant le Zed time, tous les Zeds touchés par le feu sont ralentis de 30 % et subissent 50 % de dégâts de brûlure en plus."
 
 Scorch="ZED TIME - Incendiaire"
 ScorchDescription="Pendant le Zed time, vous attaquez quasiment en temps réel avec vos armes de classe et ne tombez jamais à court de munitions."
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="Réduction du recul",Description="Réduit le recul des armes
 Passives[4]=(Title="Rechargement Zed time",Description="Vitesse de rechargement Zed time +%x% par niveau");
 
 ShootnMove="Paré"
-ShootnMoveDescription="Ignore les pénalités de vitesse et augmente les dégâts des armes de classe de 5 % avec la mire. Réduit considérablement l'inclinaison des armes de classe."
+ShootnMoveDescription="Ignore les pénalités de vitesse et augmente les dégâts des armes de classe de 7.5 % avec la mire. Réduit considérablement l'inclinaison des armes de classe."
 
 QuickSwitch="Dégaine rapide"
 QuickSwitchDescription="Réduit la pénalité de recul des tirs à la hanche, augmente la vitesse de mouvement de 5 % et change d'arme de classe 50 % plus vite."

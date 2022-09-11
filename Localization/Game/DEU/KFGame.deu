@@ -2009,7 +2009,7 @@ SplashDamage="Hitzewelle"
 SplashDamageDescription="Auf Kernschussweite mit Feuer getroffene Zeds taumeln nach hinten."
 
 Inferno="ZED-ZEIT – Inferno"
-InfernoDescription="Dein Feuerschaden über Zeit wirkt sich während der Zed-Zeit auf alle Zeds um dich herum aus."
+InfernoDescription="Während der Zed-Zeit mit Feuer getroffene Zeds sind um 30% verlangsamt und erleiden 50% mehr Brandschaden."
 
 Scorch="ZED-ZEIT – Pyromane"
 ScorchDescription="Während der Zed-Zeit greifst du mit Vorteils-Waffen in Fast-Echtzeit an und deine Munition geht nie aus."
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="Rückstoßdämpfung",Description="Verringere Vort.-Waf.-Rüc
 Passives[4]=(Title="Zed-Zeit-Nachladen",Description="Erhöhe Nachladegeschw. in Zed-Zeit %x%/lvl");
 
 ShootnMove="Beständig"
-ShootnMoveDescription="Ignoriere Bewegungsgeschwindigkeit-Strafen und erhöhe den Schaden von Vorteils-Waffen um 5% beim Einsatz von Kimme und Korn. Drastische Verringerung von Waffenschwankungen mit Vorteils-Waffen."
+ShootnMoveDescription="Ignoriere Bewegungsgeschwindigkeit-Strafen und erhöhe den Schaden von Vorteils-Waffen um 7.5% beim Einsatz von Kimme und Korn. Drastische Verringerung von Waffenschwankungen mit Vorteils-Waffen."
 
 QuickSwitch="Schnell ziehen"
 QuickSwitchDescription="Verringere Rückstoß-Strafen für das Schießen aus der Hüfte, erhöhe die Bew.geschw. um 5% und wechsle 50% schneller zwischen Vorteils-Waffen."

@@ -2009,7 +2009,7 @@ SplashDamage="熱波"
 SplashDamageDescription="至近距離から炎で攻撃を受けたzedが後ろによろめく。"
 
 Inferno="Zed-Time―インフェルノ"
-InfernoDescription="持続する炎ダメージは、Zed Timeの間周りにいるすべてのZedに拡散する。"
+InfernoDescription="Zed-Time中、炎の攻撃を受けたzedが30%遅くなり、燃焼ダメージが50%増加する。"
 
 Scorch="Zed-Time―放火魔"
 ScorchDescription="Zed-Time中、Perk武器による攻撃がほぼリアルタイムとなり、弾薬が無限になる。"
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="反動軽減",Description="レベル毎に、Perk武器の�
 Passives[4]=(Title="Zed-Timeリロード",Description="レベル毎に、Zed-Time中のリロード速度が%x%増加する");
 
 ShootnMove="安定"
-ShootnMoveDescription="速度ペナルティを無視し、アイアンサイト使用時のPerk武器ダメージが5%増加する。Perk武器での視界揺れが大きく減少する。"
+ShootnMoveDescription="速度ペナルティを無視し、アイアンサイト使用時のPerk武器ダメージが7.5%増加する。Perk武器での視界揺れが大きく減少する。"
 
 QuickSwitch="クイックドロー"
 QuickSwitchDescription="腰から発射した際の反動ペナルティが減少し、移動速度が5%増加し、Perk武器の切り替え速度が50%増加する。"

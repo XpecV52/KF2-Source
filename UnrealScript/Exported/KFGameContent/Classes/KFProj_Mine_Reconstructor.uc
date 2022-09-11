@@ -29,9 +29,6 @@ var float DampenFactor;
 /** Dampen amount for parallel angle to velocity */
 var float DampenFactorParallel;
 
-/** How much to offset the mine when spawning inside of collision */
-var float SpawnCollisionOffsetAmt;
-
 /** Vector to offset the ground FX particle system by when landing */
 var vector LandedFXOffset;
 
@@ -175,8 +172,6 @@ simulated function SetInheritedScale(float Scale, float ChargePercentage)
 /** Adds our puke mine to the pool */
 simulated event PostBeginPlay()
 {
-	local vector Hitlocation, HitNormal;
-
 	// Cache team num
 	TeamNum = GetTeamNum();
 
@@ -197,13 +192,6 @@ simulated event PostBeginPlay()
 
 	if( Role == ROLE_Authority )
 	{
-		// If we're spawning in collision for some reason, offset it towards the instigator to keep it in play
-		Instigator.Trace( HitLocation, HitNormal, Location, Instigator.Location, false,,, TRACEFLAG_Bullet );
-		if( !IsZero(HitLocation) )
-		{
-			SetLocation( HitLocation + HitNormal*SpawnCollisionOffsetAmt );
-		}
-
 		SetTimer( FuseDuration, false, nameOf(Timer_Explode) );
 	}
 }
@@ -804,7 +792,6 @@ defaultproperties
    BurstFXTemplate=ParticleSystem'WEP_Mine_Reconstructor_EMIT.FX_Bloat_Mine_Hit_01'
    DampenFactor=0.125000
    DampenFactorParallel=0.175000
-   SpawnCollisionOffsetAmt=28.000000
    LandedFXOffset=(X=0.000000,Y=0.000000,Z=2.000000)
    ExplodeTriggerRadius=60.000000
    ExplodeTriggerHeight=22.000000

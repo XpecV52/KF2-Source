@@ -1235,7 +1235,7 @@ defaultproperties
 	InstantHitDamage(ALTFIRE_FIREMODE)=320 //250
 	InstantHitDamageTypes(ALTFIRE_FIREMODE)=class'KFDT_Piercing_HRG_Vampire_CrystalSpike'
 	FireInterval(ALTFIRE_FIREMODE)=+0.22 // 269 RPM
-	AmmoCost(ALTFIRE_FIREMODE)=25
+	AmmoCost(ALTFIRE_FIREMODE)=20 //25
 	PenetrationPower(ALTFIRE_FIREMODE)=2.0
 	SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Vampire'
 

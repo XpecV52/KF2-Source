@@ -215,6 +215,7 @@ var bool bMenusOpen;
 var bool bMenusActive;
 var bool bSearchingForGame;
 var bool bCanCloseMenu;
+var bool bForceCloseMenuNextTime;
 var bool bPlayerInLobby;
 var bool bSetGamma;
 var bool bCheckConnectionOnFirstLaunch;
@@ -1154,6 +1155,7 @@ function CloseMenus(optional bool bForceClose)
     LogInternal(((((((((((((("(" $ string(Name)) $ ") KFGfxMoviePlayer_Manager::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ "PartyWidget:'") $ string(PartyWidget)) $ "'") @ "bAfterLobby:'") $ string(bAfterLobby)) $ "'") @ "bForceClose:'") $ string(bForceClose)) $ "'");
     if((bMenusOpen && bCanCloseMenu) || bForceClose)
     {
+        bForceCloseMenuNextTime = false;
         UnloadCurrentPopup();
         if((((!bAfterLobby && PartyWidget != none) || (GetPC()) == none) || GetPC().WorldInfo.GRI == none) || GetPC().WorldInfo.GRI.bMatchIsOver)
         {
@@ -1174,7 +1176,14 @@ function CloseMenus(optional bool bForceClose)
         bMenusActive = false;
         ConditionalPauseGame(false);
         SetMenuVisibility(false);
-        SetHUDVisiblity(true);
+        SetHUDVisiblity(true);        
+    }
+    else
+    {
+        if(bForceCloseMenuNextTime)
+        {
+            Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'CloseMenus', self);
+        }
     }
 }
 
@@ -1633,6 +1642,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, Core.Object.EInp
                 {
                     if(((((KFPRI.bHasSpawnedIn && !KFGRI.bMatchIsOver) && KFGRI.bMatchHasBegun) && KFGRI.bTraderIsOpen) && CurrentMenu != TraderMenu) && bMenusOpen)
                     {
+                        bForceCloseMenuNextTime = true;
                         CurrentMenu.Callback_ReadyClicked(true);
                     }
                 }                
@@ -1813,7 +1823,6 @@ function CastYesVoteSkipTrader()
         if(KFPRI != none)
         {
             KFPRI.CastSkipTraderVote(KFPRI, true);
-            SetVisibility(false);
         }
     }
 }
@@ -1830,7 +1839,6 @@ function CastNoVoteSkipTrader()
         if(KFPRI != none)
         {
             KFPRI.CastSkipTraderVote(KFPRI, false);
-            SetVisibility(false);
         }
     }
 }

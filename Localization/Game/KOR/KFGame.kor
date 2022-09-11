@@ -2009,7 +2009,7 @@ SplashDamage="열파"
 SplashDamageDescription="직사거리에서 화염을 맞은 제드가  뒤로 비틀거림"
 
 Inferno="제드 타임 - 인페르노"
-InfernoDescription="제드 타임 동안 주변 제드에게 지속 화염 데미지가 퍼집니다."
+InfernoDescription="제드 타임 동안 화염을 맞은 모든 제드의 속도가 30% 느려지고 화상 데미지는 50% 높아짐"
 
 Scorch="제드 타임 - 방화범"
 ScorchDescription="제드 타임 동안 병과 무기로 가까이에서 실시간으로 공격하고 탄약이 떨어지지 않음"
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="반동 감소",Description="병과 무기 반동이 레벨 �
 Passives[4]=(Title="제드 타임 재장전",Description="제드 타임 동안 레벨 당 재장전 속도가 %x%씩 향상");
 
 ShootnMove="고정"
-ShootnMoveDescription="가늠좌 이용 시 병과 무기의 이동 속도 페널티를 무시하고 무기 데미지가 5% 증가, 무기 흔들림 크게 감소"
+ShootnMoveDescription="가늠좌 이용 시 병과 무기의 이동 속도 페널티를 무시하고 무기 데미지가 7.5% 증가, 무기 흔들림 크게 감소"
 
 QuickSwitch="빨리 쏘기"
 QuickSwitchDescription="힙 사격의 반동 페널티를 줄이고 이동 속도를 5% 향상 및 병과 무기 전환 속도를 50% 향상"

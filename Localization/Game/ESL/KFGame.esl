@@ -2009,7 +2009,7 @@ SplashDamage="Ola de calor"
 SplashDamageDescription="Los zeds que reciben daño ígneo a quemarropa se tambalean y caen."
 
 Inferno="MOMENTO ZED - Inferno"
-InfernoDescription="Tu daño de fuego por tiempo se extiende a todos los Zeds colindantes durante el Momento zed."
+InfernoDescription="Durante el momento zed, los zeds afectados por daño de fuego se ralentizan un 30 % y reciben un 50 % más de daño por quemaduras."
 
 Scorch="MOMENTO ZED - Pirómano"
 ScorchDescription="Durante el momento zed, atacas con armas de especialización casi en tiempo real. Además, cuentas con munición infinita."
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="Reducción del retroceso",Description="Retroceso en armas de
 Passives[4]=(Title="Recarga en momento zed",Description="Vel. de recarga en momento zed: +%x %/nivel");
 
 ShootnMove="Inmutable"
-ShootnMoveDescription="Ignora la penalización de velocidad de movimiento y aumenta el daño de las armas de especialización en un 5 % cuando se usa la mirilla. Reduce drásticamente la inestabilidad de las armas de especialización."
+ShootnMoveDescription="Ignora la penalización de velocidad de movimiento y aumenta el daño de las armas de especialización en un 7.5 % cuando se usa la mirilla. Reduce drásticamente la inestabilidad de las armas de especialización."
 
 QuickSwitch="Desenfundado rápido"
 QuickSwitchDescription="Reduce la penalización en el retroceso al disparar sin apuntar. Velocidad de movimiento: +5 %. Velocidad de cambio de arma de esp.: +50 %."

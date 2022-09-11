@@ -22,9 +22,6 @@ var float DampenFactor;
 /** Dampen amount for parallel angle to velocity */
 var float DampenFactorParallel;
 
-/** How much to offset the mine when spawning inside of collision */
-var float SpawnCollisionOffsetAmt;
-
 /** Vector to offset the ground FX particle system by when landing */
 var vector LandedFXOffset;
 
@@ -116,22 +113,10 @@ simulated function ScalingProjEffectsByBloodBallCharge()
 
 simulated event PostBeginPlay()
 {
-	local vector Hitlocation, HitNormal;
-
 	super.PostBeginPlay();
 
 	BloodBallCharge.ChargePercentage=0;
 	BloodBallCharge.DamageByChargePercentage=0;
-
-	if( Role == ROLE_Authority )
-	{
-		// If we're spawning in collision for some reason, offset it towards the instigator to keep it in play
-		Instigator.Trace( HitLocation, HitNormal, Location, Instigator.Location, false,,, TRACEFLAG_Bullet );
-		if( !IsZero(HitLocation) )
-		{
-			SetLocation( HitLocation + HitNormal*SpawnCollisionOffsetAmt );
-		}
-	}
 }
 
 simulated function SpawnFlightEffects()
@@ -241,8 +226,6 @@ defaultproperties
 	// Since we're still using an extent cylinder, we need a line at 0
 	ExtraLineCollisionOffsets.Add(())
 
-	SpawnCollisionOffsetAmt=28.f
-
 	// Explosion
 	Begin Object Class=KFGameExplosion Name=ExploTemplate0
 		Damage=200
@@ -287,8 +270,8 @@ defaultproperties
 	MaxDamageRadiusPerPercentage=280 //340
 	MinDamageRadiusPerPercentage=130 //160
 
-	MaxDamagePerPercentage=150 //200
-	MinDamagePerPercentage=15 //20
+	MaxDamagePerPercentage=200 //150
+	MinDamagePerPercentage=20 //15
 
 	MaxCollisionRadius=20
 	MinCollisionRadius=10

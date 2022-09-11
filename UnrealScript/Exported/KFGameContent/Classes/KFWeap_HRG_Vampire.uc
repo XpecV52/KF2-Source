@@ -1222,7 +1222,7 @@ defaultproperties
    SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Vampire'
    MagazineCapacity(0)=40
    MagazineCapacity(1)=100
-   AmmoCost(1)=25
+   AmmoCost(1)=20
    AmmoCost(2)=0
    AmmoCost(3)=0
    AmmoCost(4)=0

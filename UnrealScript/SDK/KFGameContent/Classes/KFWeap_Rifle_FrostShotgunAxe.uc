@@ -318,7 +318,7 @@ defaultproperties
 
 	// Custom animations
 	FireSightedAnims = (Shoot_Iron)
-	BonesToLockOnEmpty = (RW_Bolt_Back)
+	BonesToLockOnEmpty = (RW_Hammer)
 	bHasFireLastAnims = true
 
 	// Defensive
@@ -376,4 +376,6 @@ defaultproperties
 	// Weapon Upgrades
 	WeaponUpgrades[1]=(Stats=((Stat=EWUS_Damage0, Scale=1.125f), (Stat=EWUS_Damage1, Scale=1.125f), (Stat=EWUS_Damage2, Scale=1.1f), (Stat=EWUS_Weight, Add=1)))
 	WeaponUpgrades[2]=(Stats=((Stat=EWUS_Damage0, Scale=1.25f), (Stat=EWUS_Damage1, Scale=1.25f), (Stat=EWUS_Damage2, Scale=1.2f), (Stat=EWUS_Weight, Add=2)))
+
+	bHasToBeConsideredAsRangedWeaponForPerks=true;
 }

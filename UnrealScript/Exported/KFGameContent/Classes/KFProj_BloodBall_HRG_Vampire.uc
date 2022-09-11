@@ -22,9 +22,6 @@ var float DampenFactor;
 /** Dampen amount for parallel angle to velocity */
 var float DampenFactorParallel;
 
-/** How much to offset the mine when spawning inside of collision */
-var float SpawnCollisionOffsetAmt;
-
 /** Vector to offset the ground FX particle system by when landing */
 var vector LandedFXOffset;
 
@@ -116,22 +113,10 @@ simulated function ScalingProjEffectsByBloodBallCharge()
 
 simulated event PostBeginPlay()
 {
-	local vector Hitlocation, HitNormal;
-
 	super.PostBeginPlay();
 
 	BloodBallCharge.ChargePercentage=0;
 	BloodBallCharge.DamageByChargePercentage=0;
-
-	if( Role == ROLE_Authority )
-	{
-		// If we're spawning in collision for some reason, offset it towards the instigator to keep it in play
-		Instigator.Trace( HitLocation, HitNormal, Location, Instigator.Location, false,,, TRACEFLAG_Bullet );
-		if( !IsZero(HitLocation) )
-		{
-			SetLocation( HitLocation + HitNormal*SpawnCollisionOffsetAmt );
-		}
-	}
 }
 
 simulated function SpawnFlightEffects()
@@ -186,7 +171,6 @@ defaultproperties
 {
    DampenFactor=0.125000
    DampenFactorParallel=0.175000
-   SpawnCollisionOffsetAmt=28.000000
    LandedFXOffset=(X=0.000000,Y=0.000000,Z=2.000000)
    ImpactDecalWidth=178.000000
    ImpactDecalHeight=178.000000
@@ -199,8 +183,8 @@ defaultproperties
    MinCollisionRadius=10.000000
    MaxCollisionHeight=20.000000
    MinCollisionHeight=10.000000
-   MaxDamagePerPercentage=150.000000
-   MinDamagePerPercentage=15.000000
+   MaxDamagePerPercentage=200.000000
+   MinDamagePerPercentage=20.000000
    bCantBeTouchedByInstigator=True
    bCantDetonateOnFullHP=True
    bSyncToOriginalLocation=True

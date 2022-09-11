@@ -153,12 +153,28 @@ package tripwire.containers.store
             else
             {
                 this.currentSelectedScrollingList.focused = 1;
-                this.currentSelectedScrollingList.selectedIndex = 0;
+                this.currentSelectedScrollingList.selectedIndex = this._storeListSelectedIndex;
                 FocusManager.setModalClip(this.currentSelectedScrollingList);
                 if(MenuManager.manager != null)
                 {
                     MenuManager.manager.numPrompts = 2;
                 }
+            }
+        }
+        
+        override public function deselectContainer() : void
+        {
+            tabEnabled = false;
+            tabChildren = false;
+            bSelected = false;
+            removeEventListener(FocusEvent.FOCUS_IN,onFocusIn);
+            if(stage)
+            {
+                stage.removeEventListener(InputEvent.INPUT,this.handleInput);
+            }
+            if(sectionHeader != null && bOpen)
+            {
+                sectionHeader.controllerIconVisible = !bSelected;
             }
         }
         

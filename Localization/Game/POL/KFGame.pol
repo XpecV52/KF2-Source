@@ -2009,7 +2009,7 @@ SplashDamage="Fala gorąca"
 SplashDamageDescription="Zety trafione ogniem z bliska zostają odrzucone."
 
 Inferno="CZAS ZET – Piekło"
-InfernoDescription="W czasie zetów twoje stopniowe obrażenia od ognia rozprzestrzeniają się na wszystkie pobliskie zety."
+InfernoDescription="W czasie zet wszystkie zety trafione ogniem zostają spowolnione o 30% i otrzymują 50% więcej obrażeń od podpalenia."
 
 Scorch="CZAS ZET – Piroman"
 ScorchDescription="W czasie zet atakujesz bronią specjalizacji prawie tak szybko, jak w czasie rzeczywistym, i nigdy nie kończy ci się amunicja."
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="Redukcja odrzutu",Description="Odrzut broni specjalizacji wz
 Passives[4]=(Title="Przeładowywanie w czasie zet",Description="Szyb. przeł. w czasie zet wzrasta o %x% na poz.");
 
 ShootnMove="Pewna ręka"
-ShootnMoveDescription="W czasie używania celownika mechanicznego pozwala zignorować karę do szybkości ruchu i zwiększa obrażenia broni specjalizacji o 5%. Drastycznie zmniejsza drgania broni specjalizacji."
+ShootnMoveDescription="W czasie używania celownika mechanicznego pozwala zignorować karę do szybkości ruchu i zwiększa obrażenia broni specjalizacji o 7.5%. Drastycznie zmniejsza drgania broni specjalizacji."
 
 QuickSwitch="Szybkie wyjęcie broni"
 QuickSwitchDescription="Zmniejszenie odrzutu przy strzale z biodra, zwiększenie szybkości ruchu o 5% oraz o 50% szybsza zmiana broni klasy."

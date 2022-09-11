@@ -2009,7 +2009,7 @@ SplashDamage="热浪"
 SplashDamageDescription="被火焰击中的丧尸将会向后跌倒。"
 
 Inferno="丧尸时间 - 地狱"
-InfernoDescription="丧尸时间内，你的火力伤害逐渐分散到周围所有丧尸身上。"
+InfernoDescription="在丧尸时间中，丧尸被火焰击中后速度下降 30%，受到的燃烧伤害增加 50%。"
 
 Scorch="丧尸时间 - 纵火犯"
 ScorchDescription="在丧尸时间中，你可以使用神射武器发动近乎实时的攻击，而且弹药永远不会用完。"
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="后坐力降低",Description="每级减少神射武器的后
 Passives[4]=(Title="丧尸时间重新加载",Description="每级提高丧尸时间的重新加载速度 %x%");
 
 ShootnMove="稳定"
-ShootnMoveDescription="使用机械瞄准时忽略移动速度惩罚，并使神射武器的伤害提高5%。大幅降低神射武器的武器摆动。"
+ShootnMoveDescription="使用机械瞄准时忽略移动速度惩罚，并使神射武器的伤害提高7.5%。大幅降低神射武器的武器摆动。"
 
 QuickSwitch="快速拔枪"
 QuickSwitchDescription="降低从臀部射击受到的后座力惩罚，提升移动速度 5%，切换神射武器的速度提升 50%。"

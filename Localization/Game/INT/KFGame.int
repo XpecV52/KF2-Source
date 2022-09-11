@@ -2009,7 +2009,7 @@ SplashDamage="Heat Wave"
 SplashDamageDescription="Zed struck at point blank range with fire will stumble back."
 
 Inferno="ZED TIME - Inferno"
-InfernoDescription="Your fire damage over time spreads to all surrounding Zeds during Zed Time."
+InfernoDescription="During Zed time, any Zeds hit with fire are slowed 30% and take 50% more burning damage."
 
 Scorch="ZED TIME - Pyromaniac"
 ScorchDescription="During Zed time, you attack with perk weapons in close to real time and never run out of ammo."
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="Recoil Reduction",Description="Reduce perk weapon recoil %x%
 Passives[4]=(Title="Zedtime Reload",Description="Increase reload speed in Zed time %x% per level");
 
 ShootnMove="Steady"
-ShootnMoveDescription="Ignore movement speed penalty and increase perk weapons damage 5% when using iron sights. Drastically reduce weapon bob with perk weapons."
+ShootnMoveDescription="Ignore movement speed penalty and increase perk weapons damage 7.5% when using iron sights. Drastically reduce weapon bob with perk weapons."
 
 QuickSwitch="Quick Draw"
 QuickSwitchDescription="Reduce recoil penalty for shooting from the hip, increase movement speed 5%, and switch perk weapons 50% faster."

@@ -254,8 +254,8 @@ DefaultProperties
 	HealingDamageType=class'KFDT_Healing'
 	HealingAmount=0;
 
-	fMinAmmoutHealing=10;
-	fMaxAmmoutHealing=50;
+	fMinAmmoutHealing=12; //10;
+	fMaxAmmoutHealing=60; //50;
 	
 	ImpactDecalSizeMax=425.f
     ImpactDecalSizeMin=178.f

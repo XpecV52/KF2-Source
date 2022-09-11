@@ -37,9 +37,9 @@ defaultproperties
 	KDeathVel=650
 
 	// Afflictions
-	StumblePower =40 //15 //80
-	GunHitPower =20 //25 //250
-	FreezePower =17 //14 //8
+	StumblePower =20 //40 
+	GunHitPower =20
+	FreezePower =11 //17
 
 	WeaponDef=class'KFWeapDef_Rifle_FrostShotgunAxe'
 

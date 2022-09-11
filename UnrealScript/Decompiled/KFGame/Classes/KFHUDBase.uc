@@ -648,10 +648,10 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     FontScale = Class'KFGameEngine'.static.GetKFFontScale() * FriendlyHudScale;
     Canvas.Font = Class'KFGameEngine'.static.GetKFCanvasFont();
     Canvas.SetDrawColorStruct(PlayerBarShadowColor);
-    Canvas.SetPos((ScreenPos.X - (BarLength * 0.5)) + float(1), ScreenPos.Y + float(8));
+    Canvas.SetPos((ScreenPos.X - (BarLength * 0.5)) + float(1), ((ScreenPos.Y - (2.5 * BarHeight)) + ((float(36) * FontScale) * ResModifier)) + float(1));
     Canvas.DrawText(KFPRI.PlayerName,, FontScale, FontScale, MyFontRenderInfo);
     Canvas.SetDrawColorStruct(PlayerBarTextColor);
-    Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), ScreenPos.Y + float(7));
+    Canvas.SetPos(ScreenPos.X - (BarLength * 0.5), (ScreenPos.Y - (2.5 * BarHeight)) + ((float(36) * FontScale) * ResModifier));
     Canvas.DrawText(KFPRI.PlayerName,, FontScale, FontScale, MyFontRenderInfo);
     Percentage = FMin(float(KFPH.Armor) / float(KFPH.MaxArmor), 100);
     CurrentArmorColor = ((ClassicPlayerInfo) ? ClassicArmorColor : ArmorColor);

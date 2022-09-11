@@ -13,7 +13,7 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_HRG_Vampire"
     ImagePath="WEP_UI_HRG_Vampire_TEX.UI_WeaponSelect_HRG_Vampire"
     BuyPrice=1500
-    AmmoPricePerMag=70
+    AmmoPricePerMag=60
     UpgradePrice(0)=1500
     UpgradeSellPrice(0)=1125
     EffectiveRange=70

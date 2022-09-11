@@ -224,6 +224,7 @@ defaultproperties
 {
    LastFireInterval=0.500000
    iInstantHitDamageOnEnemyFrozen=185
+   bHasToBeConsideredAsRangedWeaponForPerks=True
    BlockDamageMitigation=0.600000
    ParryDamageMitigationPercent=0.500000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'
@@ -266,7 +267,7 @@ defaultproperties
    SpareAmmoCapacity(0)=66
    InitialSpareMags(0)=4
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
-   BonesToLockOnEmpty(0)="RW_Bolt_Back"
+   BonesToLockOnEmpty(0)="RW_Hammer"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_FrostFang.Play_FrostFang_Shoot_3P',FirstPersonCue=AkEvent'WW_WEP_FrostFang.Play_FrostFang_Shoot_1P')
    WeaponDryFireSnd(0)=AkEvent'WW_WEP_FrostFang.Play_FrostFang_DryFire'
    PlayerViewOffset=(X=8.000000,Y=7.000000,Z=-3.500000)

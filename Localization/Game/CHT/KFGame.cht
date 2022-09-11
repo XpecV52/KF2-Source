@@ -2009,7 +2009,7 @@ SplashDamage="熱浪"
 SplashDamageDescription="被近距離擊中的 Zed 會往後跌。"
 
 Inferno="ZED 時間 - 火焰地獄"
-InfernoDescription="Zed 時間發動時，你的火焰傷害會隨著時間的推移擴散到所有周圍的 Zed。"
+InfernoDescription="Zed 時間發動時，被火燒到的 Zed 速度會減緩 30% 並受到額外 50% 的燃燒傷害。"
 
 Scorch="ZED 時間 - 縱火狂"
 ScorchDescription="Zed 時間發動時，幾乎可以瞬間連發職業武器，而且彈藥不會耗盡。"
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="後座力降低",Description="每級減少職業武器的後
 Passives[4]=(Title="Zed 時間裝填",Description="每級增加 Zed 時間發動時提升的裝填速度 %x%");
 
 ShootnMove="穩健"
-ShootnMoveDescription="可無視使用瞄具時移動速度的延遲，職業武器傷害增加 5%。大幅減少職業武器的震動。"
+ShootnMoveDescription="可無視使用瞄具時移動速度的延遲，職業武器傷害增加 7.5%。大幅減少職業武器的震動。"
 
 QuickSwitch="快速拔槍"
 QuickSwitchDescription="神速射擊可減少後座力影響，增加移動速度5%，並提高perk武器切換速度50%。"

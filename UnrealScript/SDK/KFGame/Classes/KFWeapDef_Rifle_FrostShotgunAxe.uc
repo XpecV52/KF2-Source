@@ -13,8 +13,8 @@ DefaultProperties
 {
 	WeaponClassPath="KFGameContent.KFWeap_Rifle_FrostShotgunAxe"
 
-	BuyPrice=1200
-	AmmoPricePerMag=36 //24
+	BuyPrice=1300 //1200
+	AmmoPricePerMag=39 //36
 	ImagePath="WEP_UI_Frost_Shotgun_Axe_TEX.UI_WeaponSelect_FrostGun"
 
 	EffectiveRange=35

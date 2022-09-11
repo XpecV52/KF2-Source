@@ -29,9 +29,9 @@ defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Rifle_FrostShotgunAxe'
     EffectGroup=EEffectDamageGroup.FXG_Freeze
-    StumblePower=40
+    StumblePower=20
     GunHitPower=20
-    FreezePower=17
+    FreezePower=11
     ModifierPerkList=/* Array type was not detected. */
     KDamageImpulse=2500
     KDeathVel=650

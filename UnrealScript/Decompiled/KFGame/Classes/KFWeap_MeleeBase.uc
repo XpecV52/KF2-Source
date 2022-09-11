@@ -59,6 +59,7 @@ struct native BlockEffectInfo
 
 var bool bIsBloody;
 var bool StartFireDisabled;
+var bool bHasToBeConsideredAsRangedWeaponForPerks;
 var bool bMoveAtWalkingSpeed;
 var byte MaxChainAtkCount;
 /** Hit reaction strength to bypass pawn's ParryStumbleResist */

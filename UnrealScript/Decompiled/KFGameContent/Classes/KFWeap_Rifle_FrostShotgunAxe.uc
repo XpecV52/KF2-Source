@@ -200,6 +200,7 @@ defaultproperties
 {
     LastFireInterval=0.5
     iInstantHitDamageOnEnemyFrozen=185
+    bHasToBeConsideredAsRangedWeaponForPerks=true
     BlockDamageMitigation=0.6
     ParryDamageMitigationPercent=0.5
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Hammer'

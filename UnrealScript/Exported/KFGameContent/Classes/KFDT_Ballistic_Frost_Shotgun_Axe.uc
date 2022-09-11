@@ -33,9 +33,9 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Rifle_FrostShotgunAxe'
    EffectGroup=FXG_Freeze
-   StumblePower=40.000000
+   StumblePower=20.000000
    GunHitPower=20.000000
-   FreezePower=17.000000
+   FreezePower=11.000000
    ModifierPerkList(1)=Class'KFGame.KFPerk_Berserker'
    KDamageImpulse=2500.000000
    KDeathVel=650.000000

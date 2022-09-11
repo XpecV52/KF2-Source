@@ -2009,7 +2009,7 @@ SplashDamage="Onda de calor"
 SplashDamageDescription="Zeds atingidos à queima-roupa tropeçarão e cairão."
 
 Inferno="HORA DOS ZEDS - Inferno"
-InfernoDescription="O seu dano de fogo ao longo do tempo espalha-se por todos os Zeds durante a Hora dos Zeds."
+InfernoDescription="Durante a hora dos Zeds, todo Zed atingido por fogo sofre 30% de lentidão e recebe 50% a mais em dano de fogo."
 
 Scorch="HORA DOS ZEDS - Piromaníaco"
 ScorchDescription="Durante a hora dos Zeds, você ataca com armas de classe quase que em tempo real e a munição não acaba."
@@ -2032,7 +2032,7 @@ Passives[3]=(Title="Redução de recuo",Description="Reduz em %x% o recuo de arm
 Passives[4]=(Title="Recarga da hora dos Zeds",Description="Aumenta em %x% por nível a velocidade de recarga na Hora dos Zeds");
 
 ShootnMove="Estável"
-ShootnMoveDescription="Ignora a penalidade de velocidade de movimento e aumenta em 5% o dano de armas de classe para mira metálica. Reduz drasticamente o recuo da arma em armas de classe."
+ShootnMoveDescription="Ignora a penalidade de velocidade de movimento e aumenta em 7.5% o dano de armas de classe para mira metálica. Reduz drasticamente o recuo da arma em armas de classe."
 
 QuickSwitch="Tirada rápida"
 QuickSwitchDescription="Reduz a penalidade de recuo para tiros usando o quadril, aumenta em 5% a velocidade de movimento e em 50% a troca de armas de classe."

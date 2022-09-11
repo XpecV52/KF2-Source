@@ -242,7 +242,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     local name StateName;
 
     StateName = W.GetStateName();
-    if((IsRapidAssaultActive()) && Is9mm(W) || IsWeaponOnPerk(W,, self.Class))
+    if((IsRapidAssaultActive()) && (Is9mm(W) || IsWeaponOnPerk(W,, self.Class)) || W.IsA('KFWeap_Pistol_Dual9mm'))
     {
         if(ZedTimeModifyingStates.Find(StateName != -1)
         {
@@ -272,7 +272,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 
 simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
 {
-    return (IsRapidAssaultActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class);
+    return (IsRapidAssaultActive()) && (Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class)) || KFW.IsA('KFWeap_Pistol_Dual9mm');
 }
 
 simulated function bool ShouldKnockDownOnBump()

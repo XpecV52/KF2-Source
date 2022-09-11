@@ -309,7 +309,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
 {
     local name StateName;
 
-    if((GetMadManActive()) && !W.IsMeleeWeapon())
+    if(((GetMadManActive()) && !W.IsMeleeWeapon()) || KFWeap_MeleeBase(W).default.bHasToBeConsideredAsRangedWeaponForPerks)
     {
         StateName = W.GetStateName();
         WarnInternal(string(StateName));

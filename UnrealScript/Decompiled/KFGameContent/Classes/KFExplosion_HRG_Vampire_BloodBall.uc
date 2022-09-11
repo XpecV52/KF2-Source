@@ -206,8 +206,8 @@ simulated function SpawnExplosionDecal()
 defaultproperties
 {
     HealingDamageType=Class'KFGame.KFDT_Healing'
-    fMinAmmoutHealing=10
-    fMaxAmmoutHealing=50
+    fMinAmmoutHealing=12
+    fMaxAmmoutHealing=60
     fAltMinAmmoutHealing=1
     fAltMaxAmmoutHealing=5
     ImpactDecalSizeMax=425

@@ -561,7 +561,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_9963
+    BoneBreakerBodyParts(1)=.!=_9965
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -569,7 +569,7 @@ Parameter name: index
     SnareSpeedModifier=0.7
     MaxHeadShotComboCount=5
     HeadShotCountdownIntervall=2
-    SteadySkillDamageModifier=0.05
+    SteadySkillDamageModifier=0.075
     ProgressStatID=80
     PerkBuildStatID=81
     SecondaryXPModifier[1]=1
