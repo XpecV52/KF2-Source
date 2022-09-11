@@ -1357,7 +1357,14 @@ function ConnectToPlayfabServer(string ServerIp)
 
 	if( bAttemptingServerCreate )
 	{
-		OpenCommand @= BuildTakeoverURL();
+		if ( class'WorldInfo'.static.IsEOSBuild() )
+		{
+			OpenCommand @= BuildTakeoverURL(LobbyOwnerPassword);
+		}
+		else
+		{
+			OpenCommand @= BuildTakeoverURL();
+		}
 	}
 	else if( bInParty )
 	{

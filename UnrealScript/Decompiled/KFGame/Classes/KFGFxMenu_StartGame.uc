@@ -1219,8 +1219,15 @@ function ConnectToPlayfabServer(string ServerIP)
         PendingResolvedAddress = ServerIP;
     }
     if(bAttemptingServerCreate)
-    {        
-        OpenCommand @= (BuildTakeoverURL());        
+    {
+        if(Class'WorldInfo'.static.IsEOSBuild())
+        {            
+            OpenCommand @= (BuildTakeoverURL(LobbyOwnerPassword));            
+        }
+        else
+        {            
+            OpenCommand @= (BuildTakeoverURL());
+        }        
     }
     else
     {
