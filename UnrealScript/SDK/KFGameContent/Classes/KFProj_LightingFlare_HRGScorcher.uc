@@ -171,14 +171,14 @@ defaultproperties
 
 	LifeSpan=20
 
-	Speed=3500 //5000
+	Speed=4550		//3500 //5000
 	MaxSpeed=5000
 	TerminalVelocity=5000
 
 	bWarnAIWhenFired=true
 
 	DamageRadius=0
-	GravityScale=0.4 //0.5 //1.0
+	GravityScale=0.36	//0.4 //0.5 //1.0
 	TossZ=0
 	FlameDisperalDelay=0.25
 
@@ -217,7 +217,7 @@ defaultproperties
 		CollideActors=true
 	End Object
 
-	Begin Object Class=KFProjectileStickHelper Name=StickHelper0
+	Begin Object Class=KFProjectileStickHelper_HRGScorcher Name=StickHelper0
 	End Object
 	StickHelper=StickHelper0
 

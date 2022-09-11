@@ -58,7 +58,6 @@ simulated event Tick(float DeltaTime)
             vec.Y = FMin(1, ChargeRTPC);
             vec.Z = FMin(1, ChargeRTPC);
             ChargingPSC.SetVectorParameter(name("BlobCharge"), vec);
-            ChargingPSC.SetTemplate(ChargedEffect);
         }
         if((ChargingPSC != none) && !bIsFullyCharged)
         {

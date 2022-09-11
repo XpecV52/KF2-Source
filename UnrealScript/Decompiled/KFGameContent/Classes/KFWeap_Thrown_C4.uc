@@ -330,6 +330,7 @@ simulated state WeaponEquipping
         {
             PerformArtificialReload();
         }
+        StopFire(5);
     }
     stop;    
 }
@@ -337,6 +338,12 @@ simulated state WeaponEquipping
 simulated state WeaponPuttingDown
 {
     ignores SetIronSights;
+
+    simulated event BeginState(name PreviousStateName)
+    {
+        super.BeginState(PreviousStateName);
+        StopFire(5);
+    }
     stop;    
 }
 

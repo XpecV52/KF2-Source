@@ -260,7 +260,7 @@ DefaultProperties
 	HealingAmount=0;
 
 	fMinAmmoutHealing=4;
-	fMaxAmmoutHealing=24;
+	fMaxAmmoutHealing=40 //24;
 	
 	Interval=0
 	MaxTime=0.0

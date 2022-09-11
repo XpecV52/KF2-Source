@@ -714,8 +714,7 @@ function UpdateMaterialParameter(EAfflictionType Type, float Value)
 	{
 		return;
 	}
-	if(Type == AF_Microwave)
-		`Warn(Type);
+
 	// If the value is zero no need to create an instance
 	if( Type >= Afflictions.Length || Afflictions[Type] == None )
 	{

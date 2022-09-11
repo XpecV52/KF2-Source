@@ -612,10 +612,6 @@ function UpdateMaterialParameter(KFAfflictionManager.EAfflictionType Type, float
     {
         return;
     }
-    if(Type == 10)
-    {
-        WarnInternal(string(Type));
-    }
     if((Type >= Afflictions.Length) || Afflictions[Type] == none)
     {
         if((Value == float(0)) || !VerifyAfflictionInstance(Type))

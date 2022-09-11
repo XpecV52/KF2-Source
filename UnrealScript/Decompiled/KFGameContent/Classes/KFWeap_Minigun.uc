@@ -174,7 +174,7 @@ defaultproperties
     WindUpActivationTime=0.7
     WindUpRotationSpeed=1200
     WindUpPawnMovementSpeed=0.8
-    FiringViewRotationSpeed=320
+    FiringViewRotationSpeed=488
     FiringPawnMovementSpeed=0.3
     PackageKey="Minigun"
     FirstPersonMeshName="wep_1p_minigun_mesh.Wep_1stP_Minigun_Rig"
@@ -198,7 +198,6 @@ defaultproperties
     MagazineCapacity=90
     SpareAmmoCapacity=540
     InitialSpareMags=1
-    AmmoPickupScale=0.67
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

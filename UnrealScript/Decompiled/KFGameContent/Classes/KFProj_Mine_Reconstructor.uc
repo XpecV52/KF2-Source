@@ -276,7 +276,7 @@ simulated function Stick(Vector StuckLocation, Vector StuckNormal)
     bBounce = false;
     SetPhysics(0);
     SetOwner(none);
-    NetUpdateFrequency = 0.25;
+    NetUpdateFrequency = 10;
     bOnlyDirtyReplication = true;
     bForceNetUpdate = true;
     Trace(HitLocation, HitNormal, Location - vect(0, 0, 50), Location + vect(0, 0, 5), false,,, 1);
@@ -654,7 +654,7 @@ defaultproperties
     MinCollisionRadius=10
     MaxCollisionHeight=20
     MinCollisionHeight=10
-    MaxDamagePerPercentage=270
+    MaxDamagePerPercentage=300
     MinDamagePerPercentage=30
     InheritedScale=1
     bSyncToOriginalLocation=true

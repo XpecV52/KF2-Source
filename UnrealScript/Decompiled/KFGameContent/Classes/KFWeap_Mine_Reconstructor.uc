@@ -295,7 +295,19 @@ simulated function ANIMNOTIFY_FILLMAG()
     Control.BoneTranslation = vec;
 }
 
-simulated function Timer_StopFireEffects();
+simulated function Timer_StopFireEffects()
+{
+    if(WorldInfo.NetMode == NM_Client)
+    {
+        Instigator.WeaponStoppedFiring(self, false);
+        if(FullyChargedPSC != none)
+        {
+            FullyChargedPSC.DeactivateSystem();
+        }
+    }
+    ClearFlashCount();
+    ClearFlashLocation();
+}
 
 simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
 {
@@ -483,7 +495,7 @@ simulated state MineReconstructorCharge extends WeaponFiring
         if((ChargeTime >= MaxChargeTime) || !HasAmmo(0))
         {
             bIsFullyCharged = true;
-            if(Instigator.Role != ROLE_Authority)
+            if((Instigator.Role != ROLE_Authority) || WorldInfo.NetMode == NM_Standalone)
             {
                 if(FullyChargedPSC == none)
                 {
@@ -536,16 +548,7 @@ simulated state MineReconstructorCharge extends WeaponFiring
         {
             StopLoopingFireEffects(CurrentFireMode);
         }
-        if(WorldInfo.NetMode == NM_Client)
-        {
-            Instigator.WeaponStoppedFiring(self, false);
-            if(FullyChargedPSC != none)
-            {
-                FullyChargedPSC.DeactivateSystem();
-            }
-        }
-        ClearFlashCount();
-        ClearFlashLocation();
+        SetTimer(0.1, false, 'Timer_StopFireEffects');
         NotifyWeaponFinishedFiring(CurrentFireMode);
         super(Weapon).HandleFinishedFiring();
     }
@@ -557,16 +560,7 @@ simulated state MineReconstructorCharge extends WeaponFiring
         {
             StopLoopingFireEffects(CurrentFireMode);
         }
-        if(WorldInfo.NetMode == NM_Client)
-        {
-            Instigator.WeaponStoppedFiring(self, false);
-            if(FullyChargedPSC != none)
-            {
-                FullyChargedPSC.DeactivateSystem();
-            }
-        }
-        ClearFlashCount();
-        ClearFlashLocation();
+        SetTimer(0.1, false, 'Timer_StopFireEffects');
         NotifyWeaponFinishedFiring(CurrentFireMode);
         if(Role == ROLE_Authority)
         {
@@ -623,7 +617,7 @@ defaultproperties
     FullChargedTimerInterval=2
     MinScale=0.5
     MaxScale=1.5
-    MaxDamageByCharge=200
+    MaxDamageByCharge=250
     MinDamageByCharge=25
     MAX_ACTIVE_MINE_RECONSTRUCTOR_MINES=12
     PackageKey="Mine_Reconstructor"
@@ -648,8 +642,9 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Mine_Reconstructor_TEX.UI_WeaponSelect_HMTechMineReconstructor'
     MagazineCapacity=12
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=96
+    SpareAmmoCapacity=108
     InitialSpareMags=2
+    AmmoPickupScale=1.5
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */

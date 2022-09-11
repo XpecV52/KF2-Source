@@ -13,10 +13,13 @@ package tripwire.controls
         
         public var titleTextField:TextField;
         
+        public var orangeTitleBG:MovieClip;
+        
         public function FriendsTitle()
         {
             super();
             this.showMinus();
+            this.orangeTitleBG.visible = false;
         }
         
         public function showMinus() : *
@@ -29,6 +32,11 @@ package tripwire.controls
         {
             this.btnPlus.visible = true;
             this.btnMinus.visible = false;
+        }
+        
+        public function onFocusChange(param1:Boolean) : *
+        {
+            this.orangeTitleBG.visible = param1 || this.btnPlus.hasFocus || this.btnMinus.hasFocus;
         }
     }
 }

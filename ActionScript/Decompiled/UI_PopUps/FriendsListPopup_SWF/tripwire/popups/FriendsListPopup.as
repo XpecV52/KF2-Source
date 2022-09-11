@@ -4,6 +4,7 @@ package tripwire.popups
     import flash.events.*;
     import flash.external.*;
     import flash.text.TextField;
+    import flash.ui.*;
     import flash.utils.*;
     import scaleform.clik.constants.*;
     import scaleform.clik.controls.*;
@@ -13,6 +14,7 @@ package tripwire.popups
     import tripwire.controls.FriendsTitle;
     import tripwire.controls.OtherFriendsTitle;
     import tripwire.controls.TripButton;
+    import tripwire.managers.*;
     
     public class FriendsListPopup extends BasePopup
     {
@@ -81,6 +83,10 @@ package tripwire.popups
         public var btnLink:SimpleButton;
         
         public var labelLink:TextField;
+        
+        private var _FriendSelectedIndex:int = 0;
+        
+        private var _OtherFriendSelectedIndex:int = 0;
         
         public function FriendsListPopup()
         {
@@ -156,19 +162,120 @@ package tripwire.popups
             super.addedToStage(param1);
             this.openPopup();
             this.btnBack.addEventListener(ButtonEvent.PRESS,this.onBtnBackClick,false,0,true);
-            this.friendsTitle.btnPlus.addEventListener(MouseEvent.CLICK,this.onFriendsBtnPlusClick,false,0,true);
-            this.friendsTitle.btnMinus.addEventListener(MouseEvent.CLICK,this.onFriendsBtnMinusClick,false,0,true);
-            this.otherFriendsTitle.btnPlus.addEventListener(MouseEvent.CLICK,this.onOtherFriendsBtnPlusClick,false,0,true);
-            this.otherFriendsTitle.btnMinus.addEventListener(MouseEvent.CLICK,this.onOtherFriendsBtnMinusClick,false,0,true);
+            this.friendsTitle.tabEnabled = true;
+            this.friendsTitle.tabChildren = true;
+            this.friendsTitle.addEventListener(FocusHandlerEvent.FOCUS_IN,this.onFriendsTitleFocusIn,false,0,true);
+            this.friendsTitle.addEventListener(FocusHandlerEvent.FOCUS_OUT,this.onFriendsTitleFocusOut,false,0,true);
+            this.friendsTitle.addEventListener(MouseEvent.CLICK,this.onFriendsTitleClick,false,0,true);
+            this.friendsTitle.addEventListener(KeyboardEvent.KEY_UP,this.onFriendsTitleKeyUP,false,0,true);
+            this.otherFriendsTitle.tabEnabled = true;
+            this.otherFriendsTitle.tabChildren = true;
+            this.otherFriendsTitle.addEventListener(FocusHandlerEvent.FOCUS_IN,this.onOtherFriendsTitleFocusIn,false,0,true);
+            this.otherFriendsTitle.addEventListener(FocusHandlerEvent.FOCUS_OUT,this.onOtherFriendsTitleFocusOut,false,0,true);
+            this.otherFriendsTitle.addEventListener(MouseEvent.CLICK,this.onOtherFriendsTitleClick,false,0,true);
+            this.otherFriendsTitle.addEventListener(KeyboardEvent.KEY_UP,this.onOtherFriendsTitleKeyUP,false,0,true);
             this.listViewFriends.addEventListener(ListEvent.ITEM_CLICK,this.onFriendsListClicked,false,0,true);
             this.listViewOtherFriends.addEventListener(ListEvent.ITEM_CLICK,this.onOtherFriendsListClicked,false,0,true);
+            this.listViewFriends.addEventListener(FocusHandlerEvent.FOCUS_IN,this.onFriendListFocusChange,false,0,true);
+            this.listViewFriends.addEventListener(FocusHandlerEvent.FOCUS_OUT,this.onFriendListFocusChange,false,0,true);
+            this.listViewOtherFriends.addEventListener(FocusHandlerEvent.FOCUS_IN,this.onOtherFriendListFocusChange,false,0,true);
+            this.listViewOtherFriends.addEventListener(FocusHandlerEvent.FOCUS_OUT,this.onOtherFriendListFocusChange,false,0,true);
+            this.friendNameInputField.tabEnabled = true;
             this.friendNameInputField.addEventListener(KeyboardEvent.KEY_UP,this.restartTimer,false,0,true);
-            this.clearButton.addEventListener(MouseEvent.CLICK,this.onClearButtonClick,false,0,true);
+            this.btnLink.tabEnabled = true;
             this.btnLink.addEventListener(MouseEvent.CLICK,this.onBtnLinkClick,false,0,true);
+            this.btnLink.addEventListener(KeyboardEvent.KEY_UP,this.onBtnLinkKeyUp,false,0,true);
+            this.clearButton.addEventListener(MouseEvent.CLICK,this.onClearButtonClick,false,0,true);
+            this.setDpadTabIndex();
         }
         
-        private function restartTimer() : *
+        public function testFocusIn(param1:FocusHandlerEvent) : void
         {
+            this.log("testFocusIn");
+        }
+        
+        public function testFocusOut(param1:FocusHandlerEvent) : void
+        {
+            this.log("testFocusOut");
+        }
+        
+        public function testKeyFocusChange(param1:FocusHandlerEvent) : void
+        {
+            this.log("testKeyFocusChange");
+        }
+        
+        public function testMouseFocusChange(param1:FocusHandlerEvent) : void
+        {
+            this.log("testMouseFocusChange");
+        }
+        
+        protected function setDpadTabIndex() : *
+        {
+            var _loc1_:int = 0;
+            this.btnBack.tabIndex = _loc1_ = (this.btnLink.tabIndex = int((this.listViewOtherFriends.tabIndex = int((this.otherFriendsTitle.tabIndex = int((this.listViewFriends.tabIndex = int((this.friendsTitle.tabIndex = int((this.friendNameInputField.tabIndex = int(_loc1_ + 1)) + 1)) + 1)) + 1)) + 1)) + 1)) + 1;
+        }
+        
+        public function onFriendsTitleFocusIn(param1:FocusHandlerEvent) : void
+        {
+            this.log("onFriendsTitleFocusIn");
+            this.friendsTitle.onFocusChange(true);
+        }
+        
+        public function onFriendsTitleFocusOut(param1:FocusHandlerEvent) : void
+        {
+            this.log("onFriendsTitleFocusOut");
+            this.friendsTitle.onFocusChange(false);
+        }
+        
+        public function onFriendListFocusChange(param1:FocusHandlerEvent) : void
+        {
+            this.log("onStoreListFocusChange");
+            if(param1.target.hasFocus)
+            {
+                this.log("e.target.hasFocus = true");
+                param1.target.selectedIndex = this._FriendSelectedIndex;
+            }
+            else
+            {
+                this.log("e.target.hasFocus = false");
+                this._FriendSelectedIndex = param1.target.selectedIndex;
+                param1.target.selectedIndex = -1;
+            }
+        }
+        
+        public function onOtherFriendsTitleFocusIn(param1:FocusHandlerEvent) : void
+        {
+            this.log("onOtherFriendsTitleFocusIn");
+            this.otherFriendsTitle.onFocusChange(true);
+        }
+        
+        public function onOtherFriendsTitleFocusOut(param1:FocusHandlerEvent) : void
+        {
+            this.log("onOtherFriendsTitleFocusOut");
+            this.otherFriendsTitle.onFocusChange(false);
+        }
+        
+        public function onOtherFriendListFocusChange(param1:FocusHandlerEvent) : void
+        {
+            this.log("onOtherFriendListFocusChange");
+            if(param1.target.hasFocus)
+            {
+                this.log("e.target.hasFocus = true");
+                param1.target.selectedIndex = this._OtherFriendSelectedIndex;
+            }
+            else
+            {
+                this.log("e.target.hasFocus = false");
+                this._OtherFriendSelectedIndex = param1.target.selectedIndex;
+                param1.target.selectedIndex = -1;
+            }
+        }
+        
+        private function restartTimer(param1:KeyboardEvent) : *
+        {
+            this.log("restartTimer");
+            this.log(param1.type);
+            this.log(param1.keyCode);
             this.findFriendTimer = new Timer(this.timerDelay,1);
             this.findFriendTimer.addEventListener("timer",this.timerHandler);
             this.findFriendTimer.start();
@@ -271,6 +378,38 @@ package tripwire.popups
             this.listViewOtherFriends.invalidateData();
         }
         
+        public function onFriendsTitleKeyUP(param1:KeyboardEvent) : *
+        {
+            this.log("onFriendsTitleKeyUP");
+            this.log(param1.keyCode);
+            switch(param1.keyCode)
+            {
+                case Keyboard.TAB:
+                    return;
+                case Keyboard.UP:
+                    return;
+                case Keyboard.DOWN:
+                    return;
+                default:
+                    this.onFriendsTitleClick(param1);
+                    return;
+            }
+        }
+        
+        public function onFriendsTitleClick(param1:Event) : *
+        {
+            this.log("onFriendsTitleClick");
+            this.log(param1.type);
+            if(this.friendsTitle.btnPlus.visible)
+            {
+                this.onFriendsBtnPlusClick(param1);
+            }
+            else
+            {
+                this.onFriendsBtnMinusClick(param1);
+            }
+        }
+        
         public function onFriendsBtnPlusClick(param1:Event) : *
         {
             this.friendsTitle.showMinus();
@@ -331,6 +470,37 @@ package tripwire.popups
                 this.scrollbarFriends.height = this.friendsScrollbarHeight * 2;
             }
             this.friendBlockCollapsed = false;
+        }
+        
+        public function onOtherFriendsTitleKeyUP(param1:KeyboardEvent) : *
+        {
+            this.log("onOtherFriendsTitleKeyUP");
+            this.log(param1.keyCode);
+            switch(param1.keyCode)
+            {
+                case Keyboard.TAB:
+                    return;
+                case Keyboard.UP:
+                    return;
+                case Keyboard.DOWN:
+                    return;
+                default:
+                    this.onOtherFriendsTitleClick(param1);
+                    return;
+            }
+        }
+        
+        public function onOtherFriendsTitleClick(param1:Event) : *
+        {
+            this.log("onOtherFriendsTitleClick");
+            if(this.otherFriendsTitle.btnPlus.visible)
+            {
+                this.onOtherFriendsBtnPlusClick(param1);
+            }
+            else
+            {
+                this.onOtherFriendsBtnMinusClick(param1);
+            }
         }
         
         public function onOtherFriendsBtnPlusClick(param1:Event) : *
@@ -433,7 +603,12 @@ package tripwire.popups
         
         function onBtnBackClick(param1:Event) : *
         {
+            this.log("onBtnBackClick");
             ExternalInterface.call("Callback_BtnBackClick");
+            if(!MenuManager.manager.bUsingGamepad)
+            {
+                MenuManager.manager.setFocusBackToMenu();
+            }
         }
         
         override public function handleInput(param1:InputEvent) : void
@@ -442,9 +617,23 @@ package tripwire.popups
             {
                 return;
             }
+            this.log("handleInput");
             var _loc2_:InputDetails = param1.details;
+            this.log(param1.target);
+            this.log(param1.currentTarget);
+            this.log(this.friendNameInputField.focused);
+            this.log(this.friendNameInputField.selected);
+            if(param1.target == this.friendNameInputField)
+            {
+            }
+            if(param1.target == stage)
+            {
+                this.log("[Focus to the Moon!]");
+                stage.focus = this.friendNameInputField;
+            }
             if(_loc2_.value == InputValue.KEY_DOWN && _loc2_.navEquivalent == NavigationCode.GAMEPAD_B)
             {
+                this.log("NavigationCode.GAMEPAD_B");
                 ExternalInterface.call("Callback_BtnBackClick");
             }
         }
@@ -452,6 +641,24 @@ package tripwire.popups
         function onBtnLinkClick(param1:Event) : *
         {
             ExternalInterface.call("Callback_BtnLinkClick");
+        }
+        
+        private function onBtnLinkKeyUp(param1:KeyboardEvent) : *
+        {
+            this.log("onBtnLinkKeyUp");
+            this.log(param1.keyCode);
+            switch(param1.keyCode)
+            {
+                case Keyboard.TAB:
+                    return;
+                case Keyboard.UP:
+                    return;
+                case Keyboard.DOWN:
+                    return;
+                default:
+                    this.onBtnLinkClick(param1);
+                    return;
+            }
         }
         
         public function set showLink(param1:Boolean) : *

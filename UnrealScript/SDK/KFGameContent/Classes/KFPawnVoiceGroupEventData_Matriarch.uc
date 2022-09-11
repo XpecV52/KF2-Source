@@ -133,7 +133,8 @@ defaultproperties
 		Weight=1,
 		Chance=1.0,
 		CooldownTime=0,
-		bCanBeMinimized=0
+		bCanBeMinimized=0,
+		bCanInterruptEqualPriority=true
 	)}
 	Events[`MATTY_TeslaBlastKill]={(
 		EventID=`MATTY_TeslaBlastKill,
@@ -168,7 +169,8 @@ defaultproperties
 		Weight=1,
 		Chance=1.0,
 		CooldownTime=0,
-		bCanBeMinimized=0
+		bCanBeMinimized=0,
+		bCanInterruptEqualPriority=true
 	)}
 	//This is not used
 	Events[`MATTY_PlasmaCannonAttack]={(
@@ -194,7 +196,8 @@ defaultproperties
 		Weight=1,
 		Chance=1,
 		CooldownTime=0,
-		bCanBeMinimized=0
+		bCanBeMinimized=0,
+		bCanInterruptEqualPriority=true
 	)}
 	Events[`MATTY_LightningStormKill]={(
 		EventID=`MATTY_LightningStormKill,

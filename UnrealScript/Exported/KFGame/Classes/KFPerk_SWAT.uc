@@ -277,7 +277,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 	if( KFW != none )
 	{
-		if( IsBackupActive() && IsBackupWeapon( KFW ) )
+		if( IsBackupActive() && (IsBackupWeapon( KFW ) || KFW.Class.Name == 'KFWeap_Pistol_Dual9mm') ) 
 		{
 			;
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ESWAT_Backup] );

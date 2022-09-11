@@ -3355,6 +3355,11 @@ simulated function SetPawnAmbientSound(AkEvent NewAmbientSound)
     }
 }
 
+simulated function bool IsWeaponAmbientSoundPlaying(AkEvent AmbientSound)
+{
+    return WeaponAkComponent.IsPlaying(AmbientSound);
+}
+
 simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEvent FirstPersonAmbientSound)
 {
     if(NewAmbientSound == none)
@@ -3382,7 +3387,8 @@ simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEve
             {
                 if(NewAmbientSound != none)
                 {
-                    WeaponAkComponent.OcclusionUpdateInterval = 0.2;
+                    WeaponAkComponent.OcclusionUpdateInterval = 0.001;
+                    SetTimer(0.2, false, 'RestoreOcclusionUpdate');
                     WeaponAkComponent.PlayEvent(NewAmbientSound, false);
                     if(NewAmbientSound.bUseAdvancedSoundFunctionality)
                     {
@@ -3392,6 +3398,11 @@ simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEve
             }
         }
     }
+}
+
+simulated function RestoreOcclusionUpdate()
+{
+    WeaponAkComponent.OcclusionUpdateInterval = 0.2;
 }
 
 simulated function SetSecondaryWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEvent FirstPersonAmbientSound)
@@ -3694,6 +3705,10 @@ simulated event DoSpecialMove(KFPawn.ESpecialMove NewMove, optional bool bForceM
     if(!bForceMove && Role < ROLE_Authority)
     {
         WarnInternal(((string(self) @ string(GetFuncName())) @ "initiated from client!") @ string(NewMove));
+    }
+    if(((NewMove == 35) && MyKFWeapon != none) && MyKFWeapon.IsInState('WeaponFiring'))
+    {
+        return;
     }
     if(SpecialMoveHandler != none)
     {

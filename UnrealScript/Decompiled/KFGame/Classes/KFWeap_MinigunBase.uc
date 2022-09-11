@@ -150,17 +150,21 @@ simulated function EndFire(byte FireModeNum)
 
 simulated function bool ShouldOwnerWalk()
 {
-    return IsFiring();
+    return (IsFiring()) && IsInState('WeaponFiring');
 }
 
 simulated function SetWeaponSprint(bool bNewSprintStatus)
 {
     if(bNewSprintStatus && bWindUpModeActive)
     {
-        WindUp(false);
-        UpdateZoom();
+        return;
     }
     super.SetWeaponSprint(bNewSprintStatus);
+}
+
+simulated function bool AllowSprinting()
+{
+    return true;
 }
 
 simulated function bool AllowIronSights()
@@ -181,7 +185,7 @@ simulated function SetIronSights(bool bNewIronSights)
     }
     ServerSetIronSights(bNewIronSights);
     bStoredWindUpMode = bNewIronSights;
-    if((GetStateName() == 'Reloading') || GetStateName() == 'WeaponSprinting')
+    if(GetStateName() == 'Reloading')
     {
         WindUp(false);
         UpdateZoom();
@@ -196,7 +200,7 @@ simulated function SetIronSights(bool bNewIronSights)
 reliable server function ServerSetIronSights(bool bNewIronSights)
 {
     bStoredWindUpMode = bNewIronSights;
-    if((GetStateName() == 'Reloading') || GetStateName() == 'WeaponSprinting')
+    if(GetStateName() == 'Reloading')
     {
         WindUp(false);
         UpdateZoom();
@@ -251,46 +255,64 @@ simulated event Tick(float DeltaTime)
     local KFPawn_Human OwnerHuman;
     local KFPlayerController OwnerController;
     local float NewMovementSpeedMod, NewRotationSpeedLimit;
+    local bool bLimitFiring, bLimitWindingUp;
 
     super.Tick(DeltaTime);
     if((WorldInfo.NetMode == NM_DedicatedServer) || WorldInfo.NetMode == NM_ListenServer)
     {
         ReplicatedWindUpControlTime = WindUpControlTime;
     }
-    if(Role == ROLE_Authority)
+    OwnerHuman = KFPawn_Human(Instigator);
+    if(OwnerHuman != none)
     {
-        OwnerHuman = KFPawn_Human(Instigator);
-        if(OwnerHuman != none)
+        OwnerController = KFPlayerController(OwnerHuman.Controller);
+        if(OwnerController != none)
         {
-            OwnerController = KFPlayerController(OwnerHuman.Controller);
-            if(OwnerController != none)
+            bLimitFiring = (IsFiring()) && IsInState('WeaponFiring');
+            bLimitWindingUp = (IsFiring()) || bWindUpModeActive;
+            if(Role == ROLE_Authority)
             {
                 NewMovementSpeedMod = MovementSpeedMod;
-                NewRotationSpeedLimit = OwnerController.RotationSpeedLimit;
-                if(IsFiring())
+                if(bLimitFiring)
                 {
-                    NewMovementSpeedMod = FiringPawnMovementSpeed;
-                    NewRotationSpeedLimit = FiringViewRotationSpeed;                    
+                    NewMovementSpeedMod = FiringPawnMovementSpeed;                    
                 }
                 else
                 {
-                    if(bWindUpModeActive)
+                    if(bLimitWindingUp)
                     {
-                        NewMovementSpeedMod = WindUpPawnMovementSpeed;
-                        NewRotationSpeedLimit = WindUpViewRotationSpeed;                        
+                        NewMovementSpeedMod = WindUpPawnMovementSpeed;                        
                     }
                     else
                     {
                         NewMovementSpeedMod = 1;
-                        NewRotationSpeedLimit = 2000;
                     }
                 }
-                if((NewMovementSpeedMod != MovementSpeedMod) || NewRotationSpeedLimit != OwnerController.RotationSpeedLimit)
+                if(NewMovementSpeedMod != MovementSpeedMod)
                 {
                     MovementSpeedMod = NewMovementSpeedMod;
-                    OwnerController.RotationSpeedLimit = NewRotationSpeedLimit;
                     OwnerHuman.UpdateGroundSpeed();
                 }
+            }
+            NewRotationSpeedLimit = OwnerController.RotationSpeedLimit;
+            if(bLimitFiring)
+            {
+                NewRotationSpeedLimit = FiringViewRotationSpeed;                
+            }
+            else
+            {
+                if(bLimitWindingUp)
+                {
+                    NewRotationSpeedLimit = WindUpViewRotationSpeed;                    
+                }
+                else
+                {
+                    NewRotationSpeedLimit = 2000;
+                }
+            }
+            if(NewRotationSpeedLimit != OwnerController.RotationSpeedLimit)
+            {
+                OwnerController.RotationSpeedLimit = NewRotationSpeedLimit;
             }
         }
     }
@@ -324,6 +346,8 @@ reliable server function ServerSendToReload(byte ClientReloadAmount)
 
 simulated state WeaponWindingUp
 {
+    ignores AllowSprinting;
+
     simulated event bool IsFiring()
     {
         return true;

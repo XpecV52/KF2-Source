@@ -22,7 +22,7 @@ defaultproperties
 	// How often, in seconds, we should apply burn
 	Interval=0.5
 	// How long the ground fire should stick around
-	MaxTime=5.0
+	MaxTime=6.0 //5.0
 
 	LoopingParticleEffect=ParticleSystem'WEP_HRGScorcher_Pistol_EMIT.FX_Splash_Fire_Ground_Loop'
 	LoopingParticleEffectAlternate=ParticleSystem'WEP_HRGScorcher_Pistol_EMIT.FX_Splash_Fire_Ground_Loop_Blue'

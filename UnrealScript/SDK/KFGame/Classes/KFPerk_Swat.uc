@@ -277,7 +277,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 	if( KFW != none )
 	{
-		if( IsBackupActive() && IsBackupWeapon( KFW ) )
+		if( IsBackupActive() && (IsBackupWeapon( KFW ) || KFW.Class.Name == 'KFWeap_Pistol_Dual9mm') ) 
 		{
 			`QALog( "Backup Damage" @ KFW @ GetPercentage( InDamage, InDamage * GetSkillValue(PerkSkills[ESWAT_Backup])), bLogPerk );
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ESWAT_Backup] );

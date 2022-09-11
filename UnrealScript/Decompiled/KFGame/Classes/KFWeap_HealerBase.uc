@@ -319,6 +319,8 @@ simulated event Tick(float DeltaTime)
 simulated function UpdateInteractionMessage()
 {
     local KFPlayerController InstigatorKFPC;
+    local bool bCannotBeHealed;
+    local KFPowerUp PowerUp;
 
     if(((Instigator != none) && Instigator.IsLocallyControlled()) && Instigator.Health > 0)
     {
@@ -327,15 +329,17 @@ simulated function UpdateInteractionMessage()
         {
             return;
         }
+        PowerUp = InstigatorKFPC.GetPowerUp();
+        bCannotBeHealed = (PowerUp != none) && !PowerUp.CanBeHealedWhilePowerUpIsActive;
         if(bIsQuickHealMessageShowing)
         {
-            if((Instigator.Health > InstigatorKFPC.LowHealthThreshold) || AmmoCount[0] < AmmoCost[1])
+            if(((Instigator.Health > InstigatorKFPC.LowHealthThreshold) || AmmoCount[0] < AmmoCost[1]) || bCannotBeHealed)
             {
                 bIsQuickHealMessageShowing = false;
                 InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 0);
             }
         }
-        if((Instigator.Health <= InstigatorKFPC.LowHealthThreshold) && AmmoCount[0] >= AmmoCost[1])
+        if(((Instigator.Health <= InstigatorKFPC.LowHealthThreshold) && AmmoCount[0] >= AmmoCost[1]) && !bCannotBeHealed)
         {
             bIsQuickHealMessageShowing = true;
             InstigatorKFPC.ReceiveLocalizedMessage(Class'KFLocalMessage_Interaction', 13);

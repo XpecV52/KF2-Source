@@ -55,6 +55,10 @@ function SpecialMoveEnded(name PrevMove, name NextMove)
     if((KFPOwner != none) && KFPOwner.IsAliveAndWell())
     {
         KFPOwner.UpdateGameplayMICParams();
+        if(KFPOwner.IsWeaponAmbientSoundPlaying(EMPStartSFX))
+        {
+            KFPOwner.SetWeaponAmbientSound(EMPEndSFX);
+        }
     }
     KFPOwner.FlushPersistentDebugLines();
 }

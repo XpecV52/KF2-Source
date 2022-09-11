@@ -63,6 +63,7 @@ defaultproperties
    DamageTypeModifiers(38)=(DamageType=Class'kfgamecontent.KFDT_Slashing_Eviscerator',DamageScale=(0.700000))
    DamageTypeModifiers(39)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_DragonsBreath')
    DamageTypeModifiers(40)=(DamageType=Class'kfgamecontent.KFDT_Bludgeon_Crovel',DamageScale=(1.200000))
+   DamageTypeModifiers(41)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGTeslauncher',DamageScale=(0.580000))
    MoveListGamepadScheme(0)=SM_PlayerZedMove_LMB
    MoveListGamepadScheme(1)=SM_PlayerZedMove_MMB
    MoveListGamepadScheme(2)=SM_PlayerZedMove_V

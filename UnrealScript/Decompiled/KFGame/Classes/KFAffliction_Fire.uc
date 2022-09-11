@@ -35,6 +35,7 @@ function Activate()
 function DeActivate()
 {
     super.DeActivate();
+    BurningEffect.DeactivateSystem();
     SetFirePanicked(false);
 }
 

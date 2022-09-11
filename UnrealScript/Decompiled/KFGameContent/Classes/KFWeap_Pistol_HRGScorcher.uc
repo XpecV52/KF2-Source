@@ -48,7 +48,7 @@ defaultproperties
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_HRGScorcher_Pistol_TEX.UI_WeaponSelect_HRGScorcher'
     MagazineCapacity=1
-    SpareAmmoCapacity=28
+    SpareAmmoCapacity=31
     InitialSpareMags=12
     AmmoPickupScale=4
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'

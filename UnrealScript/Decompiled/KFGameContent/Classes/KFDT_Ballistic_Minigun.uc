@@ -5,15 +5,12 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFDT_Ballistic_Minigun extends KFDT_Ballistic
+class KFDT_Ballistic_Minigun extends KFDT_Ballistic_AssaultRifle
     abstract;
 
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_Minigun'
-    GoreDamageGroup=EGoreDamageGroup.DGT_AssaultRifle
-    StumblePower=10
-    LegStumblePower=20
     GunHitPower=10
     ModifierPerkList=/* Array type was not detected. */
 }

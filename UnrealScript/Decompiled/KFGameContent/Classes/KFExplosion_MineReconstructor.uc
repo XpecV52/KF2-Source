@@ -198,7 +198,7 @@ defaultproperties
 {
     HealingDamageType=Class'KFGame.KFDT_Healing'
     fMinAmmoutHealing=4
-    fMaxAmmoutHealing=24
+    fMaxAmmoutHealing=40
     fAltMinAmmoutHealing=1
     fAltMaxAmmoutHealing=5
     bAllowFractureDamage=true

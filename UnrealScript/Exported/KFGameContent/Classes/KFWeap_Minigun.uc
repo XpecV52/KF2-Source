@@ -199,7 +199,7 @@ defaultproperties
    WindUpActivationTime=0.700000
    WindUpRotationSpeed=1200.000000
    WindUpPawnMovementSpeed=0.800000
-   FiringViewRotationSpeed=320.000000
+   FiringViewRotationSpeed=488.000000
    FiringPawnMovementSpeed=0.300000
    PackageKey="Minigun"
    FirstPersonMeshName="wep_1p_minigun_mesh.Wep_1stP_Minigun_Rig"
@@ -225,7 +225,6 @@ defaultproperties
    MagazineCapacity(0)=90
    SpareAmmoCapacity(0)=540
    InitialSpareMags(0)=1
-   AmmoPickupScale(0)=0.670000
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_Minigun.Play_WEP_Minigun_Shoot_Loop_3P',FirstPersonCue=AkEvent'WW_WEP_Minigun.Play_WEP_Minigun_Shoot_Loop_1P')
@@ -273,7 +272,7 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.008500
-   InstantHitDamage(0)=32.000000
+   InstantHitDamage(0)=35.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=30.000000

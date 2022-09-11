@@ -197,7 +197,7 @@ simulated function EndFire(byte FireModeNum)
 /** If TRUE, Instigator/Owner moves at walking speed when this weapon is equipped */
 simulated function bool ShouldOwnerWalk()
 {
-	return IsFiring();
+	return IsFiring() && IsInState('WeaponFiring');
 }
 
 /** Disable the rotation of the barrels when sprinting */
@@ -205,10 +205,14 @@ simulated function SetWeaponSprint(bool bNewSprintStatus)
 {
 	if(bNewSprintStatus && bWindUpModeActive)
 	{
-		WindUp(false);
-		UpdateZoom();
+		return;
 	}
 	Super.SetWeaponSprint(bNewSprintStatus);
+}
+
+simulated function bool AllowSprinting()
+{
+	return true;
 }
 
 /** Force iron sights as the default configuration is set to false */
@@ -238,7 +242,7 @@ simulated function SetIronSights(bool bNewIronSights)
 
 	bStoredWindUpMode = bNewIronSights;
 
-	if(GetStateName() == 'Reloading' || GetStateName() == 'WeaponSprinting')
+	if(GetStateName() == 'Reloading')
 	{
 		WindUp(false);
 		UpdateZoom();
@@ -256,7 +260,7 @@ reliable server function ServerSetIronSights(bool bNewIronSights)
 {
 	bStoredWindUpMode = bNewIronSights;
 
-	if(GetStateName() == 'Reloading' || GetStateName() == 'WeaponSprinting')
+	if(GetStateName() == 'Reloading')
 	{
 		WindUp(false);
 		UpdateZoom();
@@ -316,9 +320,9 @@ simulated event Tick( float DeltaTime )
 {
 	local KFPawn_Human OwnerHuman;
 	local KFPlayerController OwnerController;
-
 	local float NewMovementSpeedMod;
 	local float NewRotationSpeedLimit;
+	local bool bLimitFiring, bLimitWindingUp;
 
 	Super.Tick(DeltaTime);
 	
@@ -327,40 +331,58 @@ simulated event Tick( float DeltaTime )
 	{
 		ReplicatedWindUpControlTime = WindUpControlTime;
 	}
-
-	if( Role == Role_Authority )
+	
+	OwnerHuman = KFPawn_Human(Instigator);
+	if ( OwnerHuman != None )
 	{
-		OwnerHuman = KFPawn_Human(Instigator);
-		if (OwnerHuman != None)
+		OwnerController = KFPlayerController(OwnerHuman.Controller);
+		if( OwnerController != none )
 		{
-			OwnerController = KFPlayerController(OwnerHuman.Controller);
-			if (OwnerController != none)
+			bLimitFiring = IsFiring() && IsInState('WeaponFiring');
+			bLimitWindingUp = IsFiring() || bWindUpModeActive;
+
+			if( Role == Role_Authority )
 			{
 				NewMovementSpeedMod = MovementSpeedMod;
-				NewRotationSpeedLimit = OwnerController.RotationSpeedLimit;
 
-				if ( IsFiring() )
+				if ( bLimitFiring )
 				{
 					NewMovementSpeedMod = FiringPawnMovementSpeed;
-					NewRotationSpeedLimit = FiringViewRotationSpeed;
 				}
-				else if( bWindUpModeActive )
+				else if( bLimitWindingUp )
 				{
 					NewMovementSpeedMod = WindUpPawnMovementSpeed;
-					NewRotationSpeedLimit = WindUpViewRotationSpeed;
 				}
 				else
 				{
 					NewMovementSpeedMod = 1;
-					NewRotationSpeedLimit = 2000.0f;
 				}
 				
-				if( NewMovementSpeedMod != MovementSpeedMod || NewRotationSpeedLimit != OwnerController.RotationSpeedLimit)
+				if( NewMovementSpeedMod != MovementSpeedMod )
 				{
 					MovementSpeedMod = NewMovementSpeedMod;
-					OwnerController.RotationSpeedLimit = NewRotationSpeedLimit;
 					OwnerHuman.UpdateGroundSpeed();
 				}
+			}
+			
+			NewRotationSpeedLimit = OwnerController.RotationSpeedLimit;
+
+			if ( bLimitFiring )
+			{
+				NewRotationSpeedLimit = FiringViewRotationSpeed;
+			}
+			else if( bLimitWindingUp )
+			{
+				NewRotationSpeedLimit = WindUpViewRotationSpeed;
+			}
+			else
+			{
+				NewRotationSpeedLimit = 2000.0f;
+			}
+			
+			if( NewRotationSpeedLimit != OwnerController.RotationSpeedLimit )
+			{
+				OwnerController.RotationSpeedLimit = NewRotationSpeedLimit;
 			}
 		}
 	}
@@ -385,6 +407,8 @@ simulated function NotifyEndState()
 
 simulated state WeaponWindingUp
 {
+	ignores AllowSprinting;
+
 	simulated event bool IsFiring()
 	{
 		return true;

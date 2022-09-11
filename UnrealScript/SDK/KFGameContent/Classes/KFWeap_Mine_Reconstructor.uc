@@ -316,12 +316,14 @@ simulated function RefireCheckTimer()
 {
 	Super.RefireCheckTimer();
 	if(bBlocked && Role != Role_Authority)
+	{
 		SetTimer(0.25f , false, nameof(UnlockClientFire));
+	}
 }
 
 reliable client function UnlockClientFire()
 {
-		bBlocked = false;
+	bBlocked = false;
 }
 
 simulated function EndFire(byte FiremodeNum)
@@ -534,7 +536,7 @@ simulated state MineReconstructorCharge extends WeaponFiring
 		{
 			bIsFullyCharged = true;
 			//ChargingPSC.SetTemplate(ChargedEffect);
-			if(( Instigator.Role != ROLE_Authority ))
+			if(( Instigator.Role != ROLE_Authority ) || WorldInfo.NetMode == NM_Standalone)
 			{
 				if (FullyChargedPSC == none)
 				{
@@ -566,9 +568,10 @@ simulated state MineReconstructorCharge extends WeaponFiring
     //Now that we're done charging, directly call FireAmmunition. This will handle the actual projectile fire and scaling.
     simulated event EndState(Name NextStateName)
     {
-
 		if(Role == Role_Authority)
+		{
 			UnlockClientFire();
+		}
 
 		ClearZedTimeResist();
         ClearPendingFire(CurrentFireMode);
@@ -599,57 +602,31 @@ simulated state MineReconstructorCharge extends WeaponFiring
 			StopLoopingFireEffects(CurrentFireMode);
 		}
 
-		// Simulate weapon firing effects on the local client
-		if (WorldInfo.NetMode == NM_Client)
-		{
-			Instigator.WeaponStoppedFiring(self, false);
-
-			if (FullyChargedPSC != none)
-			{
-				FullyChargedPSC.DeactivateSystem();
-			}
-
-		}
-
-		ClearFlashCount();
-		ClearFlashLocation();
+		SetTimer(0.1f, false, 'Timer_StopFireEffects');
 
 		NotifyWeaponFinishedFiring(CurrentFireMode);
 
 		super.HandleFinishedFiring();
 		//`Log("ChargePercentage"@ChargePercentage);
-
 	}
 
 	simulated function PutDownWeapon()
 	{
-
 		global.FireAmmunition();
 
 		if (bPlayingLoopingFireAnim)
 		{
 			StopLoopingFireEffects(CurrentFireMode);
 		}
-
-		// Simulate weapon firing effects on the local client
-		if (WorldInfo.NetMode == NM_Client)
-		{
-			Instigator.WeaponStoppedFiring(self, false);
-
-			if (FullyChargedPSC != none)
-			{
-				FullyChargedPSC.DeactivateSystem();
-			}
-
-		}
-
-		ClearFlashCount();
-		ClearFlashLocation();
+		
+		SetTimer(0.1f, false, 'Timer_StopFireEffects');
 
 		NotifyWeaponFinishedFiring(CurrentFireMode);
-
+		
 		if(Role == Role_Authority)
+		{
 			UnlockClientFire();
+		}
 
 		super.PutDownWeapon();
 	}
@@ -658,7 +635,19 @@ simulated state MineReconstructorCharge extends WeaponFiring
 // Placing the actual Weapon Firing end state here since we need it to happen at the end of the actual firing loop.
 simulated function Timer_StopFireEffects()
 {
+	// Simulate weapon firing effects on the local client
+	if (WorldInfo.NetMode == NM_Client)
+	{
+		Instigator.WeaponStoppedFiring(self, false);
 
+		if (FullyChargedPSC != none)
+		{
+			FullyChargedPSC.DeactivateSystem();
+		}
+	}
+
+	ClearFlashCount();
+	ClearFlashLocation();
 }
 
 simulated state Active
@@ -667,7 +656,9 @@ simulated state Active
 	{
 		Super.BeginState(PreviousStateName);
 		if(Role == Role_Authority)
+		{
 			UnlockClientFire();
+		}
 	}
 
 }
@@ -808,7 +799,7 @@ defaultproperties
 	ValueIncreaseTime=0.2
 
 	//FOR LERPING DAMANGE
-	MaxDamageByCharge=200 //120
+	MaxDamageByCharge=250 //200 //120
 	MinDamageByCharge=25 //30
     // FOV
     Meshfov=80
@@ -836,9 +827,9 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=12 //24
-	SpareAmmoCapacity[0]=96 //120
+	SpareAmmoCapacity[0]=108 //96 //120
 	InitialSpareMags[0]=2 //1
-	AmmoPickupScale[0]=1 //0.75
+	AmmoPickupScale[0]=1.5 //1 //0.75
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -880,7 +871,7 @@ defaultproperties
 	// ALT_FIREMODE
 	FiringStatesArray(ALTFIRE_FIREMODE)=WeaponSingleFiring
 	WeaponFireTypes(ALTFIRE_FIREMODE)=EWFT_Custom
-	FireInterval(ALTFIRE_FIREMODE)=+1.0
+	FireInterval(ALTFIRE_FIREMODE)=+0.25
 	AmmoCost(ALTFIRE_FIREMODE)=0
 
 	// BASH_FIREMODE

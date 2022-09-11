@@ -24,6 +24,8 @@ package tripwire.controls.friends
         
         public var sendInviteRedBG:MovieClip;
         
+        public var profileFrameOrange:MovieClip;
+        
         public var clickSoundEffect:String = "SHARED_BUTTON_CLICK";
         
         public var voipSliderSoundEffect:String = "VOIP_Click";
@@ -32,13 +34,16 @@ package tripwire.controls.friends
         {
             super();
             this.sendInviteOrange.visible = false;
+            this.profileFrameOrange.visible = false;
             this.profileLoader = UILoader(this.profileImageContainer.profileLoader);
             addEventListener(MouseEvent.MOUSE_OVER,this.onMouseOver,false,0,true);
             addEventListener(MouseEvent.MOUSE_OUT,this.onMouseOut,false,0,true);
+            addEventListener(Event.SELECT,this.onSelectChanged,false,0,true);
         }
         
         function onMouseOver(param1:MouseEvent) : *
         {
+            this.profileFrameOrange.visible = true;
             if(this.sendInviteIcon.visible)
             {
                 this.sendInviteOrange.visible = true;
@@ -51,7 +56,17 @@ package tripwire.controls.friends
         
         function onMouseOut(param1:MouseEvent) : *
         {
+            this.profileFrameOrange.visible = false;
             this.sendInviteOrange.visible = false;
+        }
+        
+        protected function onSelectChanged(param1:Event) : *
+        {
+            this.profileFrameOrange.visible = this.selected;
+            if(this.sendInviteIcon.visible)
+            {
+                this.sendInviteOrange.visible = this.selected;
+            }
         }
         
         override public function setData(param1:Object) : void

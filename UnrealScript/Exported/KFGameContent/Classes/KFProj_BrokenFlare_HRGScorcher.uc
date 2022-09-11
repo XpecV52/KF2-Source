@@ -16,6 +16,7 @@ var vector SpeedDirectionResidualFlames;
 
 /** Amount of residual flames to drop during flight
  *  This is the max number, if the projectile is interrupted before reaching the max, the left residual numbers will NOT be spawned.
+ *  This value can NOT be 0 or 1.
  */
 var int AmountResidualFlamesDuringFlight;
 
@@ -59,7 +60,9 @@ simulated protected function StopSimulating()
 
 simulated function PostBeginPlay()
 {
-	IntervalDroppingResidualFlames=(TimeAlive - TimeDelayStartDroppingResidualFlames)/AmountResidualFlamesDuringFlight;
+	//Subtract a bit (0.005) from TimeAlive to not match last cycle of the timer with time the projectile has to disappear (causing last flame not to drop then)
+	//Subtract 1 from AmountResidualFlamesDuringFlight because the first flame will be spawned manually at the start of the timer.
+	IntervalDroppingResidualFlames=((TimeAlive - 0.005) - TimeDelayStartDroppingResidualFlames)/(AmountResidualFlamesDuringFlight - 1);
 	if (Instigator != none && Instigator.Role == ROLE_Authority)
 	{
 		SetTimer(TimeDelayStartDroppingResidualFlames, false, nameof(Timer_StartSpawningResidualFlamesDuringFlight));
@@ -84,6 +87,7 @@ simulated function Timer_SpawningResidualFlamesDuringFlight()
 /** Timer to act as offset to start spawning residual flames during flight (in order to avoid dropping flames to close to player) */
 simulated function Timer_StartSpawningResidualFlamesDuringFlight()
 {
+	SpawnResidualFlame(ResidualFlameProjClass, Location, SpeedDirectionResidualFlames);
 	SetTimer(IntervalDroppingResidualFlames, true, nameof(Timer_SpawningResidualFlamesDuringFlight));
 }
 

@@ -36,7 +36,7 @@ protected simulated function StopSimulating()
 
 simulated function PostBeginPlay()
 {
-    IntervalDroppingResidualFlames = (TimeAlive - TimeDelayStartDroppingResidualFlames) / float(AmountResidualFlamesDuringFlight);
+    IntervalDroppingResidualFlames = ((TimeAlive - 0.005) - TimeDelayStartDroppingResidualFlames) / float(AmountResidualFlamesDuringFlight - 1);
     if((Instigator != none) && Instigator.Role == ROLE_Authority)
     {
         SetTimer(TimeDelayStartDroppingResidualFlames, false, 'Timer_StartSpawningResidualFlamesDuringFlight');
@@ -58,6 +58,7 @@ simulated function Timer_SpawningResidualFlamesDuringFlight()
 
 simulated function Timer_StartSpawningResidualFlamesDuringFlight()
 {
+    SpawnResidualFlame(ResidualFlameProjClass, Location, SpeedDirectionResidualFlames);
     SetTimer(IntervalDroppingResidualFlames, true, 'Timer_SpawningResidualFlamesDuringFlight');
 }
 

@@ -4401,6 +4401,11 @@ simulated function SetPawnAmbientSound(AkEvent NewAmbientSound)
 	}
 }
 
+simulated function bool IsWeaponAmbientSoundPlaying(AkEvent AmbientSound)
+{
+	return WeaponAkComponent.IsPlaying(AmbientSound);
+}
+
 /** starts playing the given sound via the WeaponAmbientSound AudioComponent and sets WeaponAmbientSoundCue for replicating to clients
  *  @param NewAmbientSound the new sound to play, or None to stop any ambient that was playing
  */
@@ -4433,8 +4438,8 @@ simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEve
 		else if (NewAmbientSound != None)
 		{
 			// check occlusion for third person sound
-			WeaponAkComponent.OcclusionUpdateInterval = 0.2f;
-
+			WeaponAkComponent.OcclusionUpdateInterval = 0.001f;
+			SetTimer( 0.2f, false, nameof(RestoreOcclusionUpdate) );
 		    WeaponAkComponent.PlayEvent( NewAmbientSound, false );
 		    if( NewAmbientSound.bUseAdvancedSoundFunctionality )
 		    {
@@ -4442,6 +4447,11 @@ simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEve
 		    }
 		}
 	}
+}
+
+simulated function RestoreOcclusionUpdate()
+{
+	WeaponAkComponent.OcclusionUpdateInterval = 0.2f;
 }
 
 /** starts playing the given sound via the SecondaryWeaponAmbientSound AudioComponent and sets SecondaryWeaponAmbientSoundCue for replicating to clients
@@ -4803,6 +4813,11 @@ simulated event DoSpecialMove(ESpecialMove NewMove, optional bool bForceMove, op
 	if ( !bForceMove && Role < ROLE_Authority )
 	{
 		`Warn(Self @ GetFuncName() @ "initiated from client!" @ NewMove);
+	}
+
+	if( NewMove == SM_Emote && MyKFWeapon != None && MyKFWeapon.IsInState('WeaponFiring') )
+	{
+		return;
 	}
 
 	if ( SpecialMoveHandler != None )

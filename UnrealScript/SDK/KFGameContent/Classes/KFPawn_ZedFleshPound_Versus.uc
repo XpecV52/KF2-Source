@@ -124,6 +124,9 @@ DefaultProperties
 	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire', 	                    DamageScale=(0.5)))
 	//DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic', DamageScale=(0.7f)))
 
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Ballistic_HRGTeslauncher',   DamageScale=(0.5)))
+	DamageTypeModifiers.Add((DamageType=class'KFDT_Fire_HRGTeslauncherDoT',     DamageScale=(0.5)))
+
 	IncapSettings(AF_Stun)=		(Vulnerability=(0.2, 0.25, 0.2, 0.0, 0.25),   Cooldown=10.0, Duration=1.5) //0.5, 0.55, 0.5, 0.0, 0.55
 	IncapSettings(AF_Knockdown)=(Vulnerability=(0.25, 0.25, 0.25, 0.25, 0.4), Cooldown=10.0)
 	IncapSettings(AF_Stumble)=	(Vulnerability=(0.2, 0.25, 0.25, 0.0, 0.4),   Cooldown=7.0)

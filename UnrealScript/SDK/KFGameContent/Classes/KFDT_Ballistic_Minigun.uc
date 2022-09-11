@@ -7,7 +7,7 @@
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
 
-class KFDT_Ballistic_Minigun extends KFDT_Ballistic
+class KFDT_Ballistic_Minigun extends KFDT_Ballistic_AssaultRifle
 	abstract
 	hidedropdown;
 
@@ -20,7 +20,7 @@ defaultproperties
 	GunHitPower=10
 
 	WeaponDef=class'KFWeapDef_Minigun'
-
+	
 	//Perk
 	ModifierPerkList(0)=class'KFPerk_Commando'
 }

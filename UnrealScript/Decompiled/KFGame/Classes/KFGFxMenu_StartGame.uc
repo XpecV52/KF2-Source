@@ -491,7 +491,6 @@ function string GetMapSource(string MapName)
     MapData = Class'KFUIDataStore_GameResource'.static.GetMapSummaryFromMapName(MapName);
     if(MapData != none)
     {
-        LogInternal(MapData.ScreenshotPathName);
         return "img://" $ MapData.ScreenshotPathName;        
     }
     else

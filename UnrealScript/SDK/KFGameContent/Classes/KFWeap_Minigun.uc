@@ -220,7 +220,7 @@ defaultproperties
 	MagazineCapacity[0]=90 //125 //175 //250
 	SpareAmmoCapacity[0]=540 //500 //750
 	InitialSpareMags[0]=1
-	AmmoPickupScale[0]=0.67
+	AmmoPickupScale[0]=1 //0.67
 	bCanBeReloaded=true
 	bReloadFromMagazine=true
 
@@ -258,7 +258,7 @@ defaultproperties
 	FireInterval(DEFAULT_FIREMODE)=+0.05 // 1200 RPM
 	Spread(DEFAULT_FIREMODE)=0.0085
 	PenetrationPower(DEFAULT_FIREMODE)=2.0
-	InstantHitDamage(DEFAULT_FIREMODE)=32.0 //25
+	InstantHitDamage(DEFAULT_FIREMODE)=35.0 //32.0 //25
 	FireOffset=(X=30,Y=4.5,Z=-5)
 
 	// ALT_FIREMODE
@@ -306,7 +306,7 @@ defaultproperties
 	WindUpPawnMovementSpeed=0.8f //0.7f // base modifier is 1
 	
 	// movement and rotation speed values when firing
-	FiringViewRotationSpeed=320 //270
+	FiringViewRotationSpeed=488 //320 //270
 	FiringPawnMovementSpeed=0.3f //0.2f //0.08f
 }
 

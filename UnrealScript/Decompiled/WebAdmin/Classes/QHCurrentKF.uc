@@ -8,6 +8,8 @@
 class QHCurrentKF extends QHCurrent
     config(webadmin);
 
+var int DefaultPerkLevel;
+
 function registerMenuItems(WebAdminMenu menu)
 {
     super.registerMenuItems(menu);
@@ -116,7 +118,7 @@ function substPri(WebAdminQuery Q, PlayerReplicationInfo PRI)
         {
             Q.Response.Subst("player.perk.name", "");
         }
-        Q.Response.Subst("player.perk.level", string(ropri.GetActivePerkLevel()));
+        Q.Response.Subst("player.perk.level", string(DefaultPerkLevel));
     }
 }
 
@@ -177,6 +179,7 @@ function decorateChatWindow(WebAdminQuery Q)
 
 defaultproperties
 {
+    DefaultPerkLevel=25
     ChatRefresh=5000
     bConsoleEnabled=true
     bAdminConsoleCommandsHack=true

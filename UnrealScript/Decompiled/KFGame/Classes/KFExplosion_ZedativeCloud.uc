@@ -60,6 +60,10 @@ protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
 {
     local KFPawn_Human HumanVictim;
     local KFPawn_Monster MonsterVictim;
+    local Box BBox;
+    local Vector BBoxCenter;
+    local Actor HitActor;
+    local bool bDamageBlocked;
 
     if((Victim != none) && Victim.IsAliveAndWell())
     {
@@ -70,7 +74,18 @@ protected simulated function AffectsPawn(Pawn Victim, float DamageScale)
             {
                 return;
             }
-            Victim.TakeRadiusDamage(InstigatorController, float(ZedativeDamage) * DamageScale, float(ZedativeEffectRadius), ZedativeDamageType, ExplosionTemplate.MomentumTransferScale, Location, bDoFullDamage, ((Owner != none) ? Owner : self), ExplosionTemplate.DamageFalloffExponent);            
+            Victim.GetComponentsBoundingBox(BBox);
+            BBoxCenter = (BBox.Min + BBox.Max) * 0.5;
+            HitActor = TraceExplosive(BBoxCenter, Location + vect(0, 0, 20));
+            bDamageBlocked = (HitActor != none) && HitActor != Victim;
+            if(bDamageBlocked && HitActor.IsA('KFDoorActor'))
+            {
+                bDamageBlocked = false;
+            }
+            if(!bDamageBlocked)
+            {
+                Victim.TakeRadiusDamage(InstigatorController, float(ZedativeDamage) * DamageScale, float(ZedativeEffectRadius), ZedativeDamageType, ExplosionTemplate.MomentumTransferScale, Location, bDoFullDamage, ((Owner != none) ? Owner : self), ExplosionTemplate.DamageFalloffExponent);
+            }            
         }
         else
         {

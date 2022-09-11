@@ -365,7 +365,7 @@ simulated function Stick( vector StuckLocation, vector StuckNormal )
 	SetOwner( none );
 
 	// Optimize for network
-	NetUpdateFrequency = 0.25f;
+	NetUpdateFrequency = 10;
 	bOnlyDirtyReplication = true;
 	bForceNetUpdate = true;
 
@@ -829,7 +829,7 @@ defaultproperties
    MinCollisionRadius=10.000000
    MaxCollisionHeight=20.000000
    MinCollisionHeight=10.000000
-   MaxDamagePerPercentage=270.000000
+   MaxDamagePerPercentage=300.000000
    MinDamagePerPercentage=30.000000
    InheritedScale=1.000000
    bSyncToOriginalLocation=True

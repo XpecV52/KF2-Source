@@ -195,7 +195,7 @@ defaultproperties
    bWarnAIWhenFired=True
    bCanStick=True
    ProjFlightLightPriority=LPP_High
-   GravityScale=0.400000
+   GravityScale=0.360000
    TerminalVelocity=5000.000000
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    ProjFlightTemplate=ParticleSystem'WEP_HRGScorcher_Pistol_EMIT.FX_HRGScorcher_Projectile_01'
@@ -223,12 +223,12 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFProj_RicochetBullet:AmbientAkSoundComponent'
    End Object
    AmbientComponent=AmbientAkSoundComponent
-   Begin Object Class=KFProjectileStickHelper Name=StickHelper0
+   Begin Object Class=KFProjectileStickHelper_HRGScorcher Name=StickHelper0
       Name="StickHelper0"
-      ObjectArchetype=KFProjectileStickHelper'KFGame.Default__KFProjectileStickHelper'
+      ObjectArchetype=KFProjectileStickHelper_HRGScorcher'KFGame.Default__KFProjectileStickHelper_HRGScorcher'
    End Object
-   StickHelper=KFProjectileStickHelper'kfgamecontent.Default__KFProj_LightingFlare_HRGScorcher:StickHelper0'
-   Speed=3500.000000
+   StickHelper=KFProjectileStickHelper_HRGScorcher'kfgamecontent.Default__KFProj_LightingFlare_HRGScorcher:StickHelper0'
+   Speed=4550.000000
    MaxSpeed=5000.000000
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_RicochetBullet:CollisionCylinder'
       CollisionHeight=0.000000

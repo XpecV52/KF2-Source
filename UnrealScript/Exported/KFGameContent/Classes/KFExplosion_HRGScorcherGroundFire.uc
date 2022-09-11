@@ -21,7 +21,7 @@ defaultproperties
    LoopingParticleEffectCeiling=ParticleSystem'WEP_HRGScorcher_Pistol_EMIT.FX_Splash_Fire_Ceiling'
    LoopingParticleEffectWall=ParticleSystem'WEP_HRGScorcher_Pistol_EMIT.FX_Splash_Fire_Wall_Loop'
    interval=0.500000
-   maxTime=5.000000
+   maxTime=6.000000
    bDoFullDamage=True
    LoopStartEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'
    LoopStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_Residual_Fire_Loop'

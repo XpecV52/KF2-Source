@@ -90,6 +90,7 @@ defaultproperties
     object end
     // Reference: CylinderComponent'Default__KFProj_MedicGrenade_Mini.CollisionCylinder'
     Components(0)=CollisionCylinder
+    bUpdateSimulatedPosition=true
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=0
         CollisionRadius=0

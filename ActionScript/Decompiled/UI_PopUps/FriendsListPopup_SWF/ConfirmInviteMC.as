@@ -24,37 +24,8 @@ package
         public function ConfirmInviteMC()
         {
             super();
-            this.__setProp_btnBack_ConfirmInviteMC_btnBack_0();
             this.__setProp_listViewOtherFriends_ConfirmInviteMC_AnotherFriendList_0();
             this.__setProp_listViewFriends_ConfirmInviteMC_FriendList_0();
-        }
-        
-        function __setProp_btnBack_ConfirmInviteMC_btnBack_0() : *
-        {
-            try
-            {
-                btnBack["componentInspectorSetting"] = true;
-            }
-            catch(e:Error)
-            {
-            }
-            btnBack.autoRepeat = false;
-            btnBack.autoSize = "none";
-            btnBack.data = "";
-            btnBack.enabled = true;
-            btnBack.enableInitCallback = false;
-            btnBack.focusable = true;
-            btnBack.label = "Canceltxt";
-            btnBack.selected = false;
-            btnBack.toggle = false;
-            btnBack.visible = true;
-            try
-            {
-                btnBack["componentInspectorSetting"] = false;
-            }
-            catch(e:Error)
-            {
-            }
         }
         
         function __setProp_listViewOtherFriends_ConfirmInviteMC_AnotherFriendList_0() : *

@@ -237,7 +237,6 @@ simulated function bool Bounce( vector HitNormal, Actor BouncedOff )
 simulated event GrenadeIsAtRest()
 {
     local rotator NewRotation;
-
 	SetPhysics(PHYS_None);
 
 	if( ProjEffects != none )

@@ -435,10 +435,12 @@ simulated event Tick(float DeltaTime)
 	UpdateScreenUI();
 }
 
-//Updates weither or not the "Press GBA_QuickHeal to heal" should be shown based on health and ammo
+//Updates weither or not the "Press GBA_QuickHeal to heal" should be shown based on health, ammo and other factors
 simulated function UpdateInteractionMessage()
 {
 	local KFPlayerController InstigatorKFPC;
+	local bool bCannotBeHealed;
+	local KFPowerUp PowerUp;
 
 	//Update Interaction message	
 	if (Instigator != none && Instigator.IsLocallyControlled() && Instigator.Health > 0)
@@ -449,11 +451,15 @@ simulated function UpdateInteractionMessage()
 		{
 			return;
 		}
+		
+		//Check if we have a power up that disables healing
+		PowerUp = InstigatorKFPC.GetPowerUp();
+		bCannotBeHealed = PowerUp != none && !PowerUp.CanBeHealedWhilePowerUpIsActive;
 
 		if (bIsQuickHealMessageShowing)
 		{
 			//We use AmmoCount[0] since the healer weapon only uses this ammo.  AmmoCost[ALTFIRE_FIREMODE] is the cost to heal yourself
-			if (Instigator.Health > InstigatorKFPC.LowHealthThreshold || AmmoCount[0] < AmmoCost[ALTFIRE_FIREMODE])
+			if (Instigator.Health > InstigatorKFPC.LowHealthThreshold || AmmoCount[0] < AmmoCost[ALTFIRE_FIREMODE] || bCannotBeHealed)
 			{
 				bIsQuickHealMessageShowing = false;
 				InstigatorKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_None);
@@ -461,7 +467,7 @@ simulated function UpdateInteractionMessage()
 		}
 
 		//We use AmmoCount[0] since the healer weapon only uses this ammo.  AmmoCost[ALTFIRE_FIREMODE] is the cost to heal yourself
-		if (Instigator.Health <= InstigatorKFPC.LowHealthThreshold && AmmoCount[0] >= AmmoCost[ALTFIRE_FIREMODE])
+		if (Instigator.Health <= InstigatorKFPC.LowHealthThreshold && AmmoCount[0] >= AmmoCost[ALTFIRE_FIREMODE] && !bCannotBeHealed)
 		{
 			bIsQuickHealMessageShowing = true;
 			InstigatorKFPC.ReceiveLocalizedMessage(class'KFLocalMessage_Interaction', IMT_HealSelfWarning);

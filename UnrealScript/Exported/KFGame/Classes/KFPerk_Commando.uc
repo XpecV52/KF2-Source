@@ -97,7 +97,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 	//		have the perks so tied into using that, it's easier to just specifically fix commando here.
 	if( KFW != none && !DamageCauser.IsA('KFProj_Grenade'))
 	{
-		if( IsBackupActive() && IsBackupWeapon( KFW ) )
+		if( IsBackupActive() && (IsBackupWeapon( KFW ) || KFW.Class.Name == 'KFWeap_Pistol_Dual9mm') )
 		{
 			;
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ECommandoBackup] );

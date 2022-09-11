@@ -67,13 +67,19 @@ simulated function Init(KFWeapon InKFW, byte InAmmoCost)
 simulated event Tick(float DeltaTime)
 {
     super.Tick(DeltaTime);
-    if(KFW.AmmoCount[1] < KFW.MagazineCapacity[1])
+    if(KFW != none)
     {
-        HealAmmoRegeneration(DeltaTime);
+        if(KFW.AmmoCount[1] < KFW.MagazineCapacity[1])
+        {
+            HealAmmoRegeneration(DeltaTime);
+        }
     }
-    if(Instigator.IsLocallyControlled() && Instigator.Weapon == KFW)
+    if(Instigator != none)
     {
-        UpdateOpticsUI();
+        if(Instigator.IsLocallyControlled() && Instigator.Weapon == KFW)
+        {
+            UpdateOpticsUI();
+        }
     }
 }
 

@@ -40,6 +40,7 @@ function DeActivate()
 {
     Super.DeActivate();
     SetMicrowavePanicked(false);
+    SteamingEffect.DeactivateSystem();
 }
 
 /** Set the fire panic functionality */

@@ -69,7 +69,7 @@ defaultproperties
 
 	// Ammo
 	MagazineCapacity[0]=1
-	SpareAmmoCapacity[0]=28
+	SpareAmmoCapacity[0]=31 //28
 	InitialSpareMags[0]=12
 	AmmoPickupScale[0]=4.0 //3.0
 	bCanBeReloaded=true
@@ -100,10 +100,10 @@ defaultproperties
 	FiringStatesArray(DEFAULT_FIREMODE)=WeaponSingleFireAndReload
 	WeaponFireTypes(DEFAULT_FIREMODE)=EWFT_Projectile
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_LightingFlare_HRGScorcher'
-	InstantHitDamage(DEFAULT_FIREMODE)=185 //210 //250.0
+	InstantHitDamage(DEFAULT_FIREMODE)=333	//370 //185 //210 //250.0
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_HRGScorcherLightingImpact'
 	PenetrationPower(DEFAULT_FIREMODE)=0
-	Spread(DEFAULT_FIREMODE)=0.05f//0.1f
+	Spread(DEFAULT_FIREMODE)=0.01f//0.05f//0.1f
 	FireInterval(DEFAULT_FIREMODE)=0.25
 	FireOffset=(X=23,Y=4.0,Z=-3)
 

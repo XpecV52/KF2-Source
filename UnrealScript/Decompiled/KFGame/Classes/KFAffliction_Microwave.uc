@@ -29,6 +29,7 @@ function DeActivate()
 {
     super.DeActivate();
     SetMicrowavePanicked(false);
+    SteamingEffect.DeactivateSystem();
 }
 
 function SetMicrowavePanicked(bool bEnabled)

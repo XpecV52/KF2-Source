@@ -149,7 +149,7 @@ defaultproperties
     bWarnAIWhenFired=true
     bCanStick=true
     ProjFlightLightPriority=LightPoolPriority.LPP_High
-    GravityScale=0.4
+    GravityScale=0.36
     TerminalVelocity=5000
     ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
     ProjFlightTemplate=ParticleSystem'WEP_HRGScorcher_Pistol_EMIT.FX_HRGScorcher_Projectile_01'
@@ -170,8 +170,8 @@ defaultproperties
     AmbientSoundStopEvent=none
     AmbientComponent=AkComponent'Default__KFProj_LightingFlare_HRGScorcher.AmbientAkSoundComponent'
     PinBoneIdx=-1
-    StickHelper=KFProjectileStickHelper'Default__KFProj_LightingFlare_HRGScorcher.StickHelper0'
-    Speed=3500
+    StickHelper=KFProjectileStickHelper_HRGScorcher'Default__KFProj_LightingFlare_HRGScorcher.StickHelper0'
+    Speed=4550
     MaxSpeed=5000
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

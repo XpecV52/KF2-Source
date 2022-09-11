@@ -26,7 +26,7 @@ simulated function StartFire()
 {
 	StartFireTime = WorldInfo.TimeSeconds;
 	bIsCharging = true;
-
+	
 	if (ChargingPSC == none)
 	{
 		ChargingPSC = new(self) class'ParticleSystemComponent';
@@ -67,13 +67,13 @@ simulated event Tick(float DeltaTime)
 			vec.Y = FMin(1.0f, ChargeRTPC);
 			vec.Z = FMin(1.0f, ChargeRTPC);
 			ChargingPSC.SetVectorParameter( name("BlobCharge"), vec);
-			ChargingPSC.SetTemplate(ChargedEffect);
+			//ChargingPSC.SetTemplate(ChargedEffect);
 		}
 
 		if( ChargingPSC != none && !bIsFullyCharged)
 		{
 			//ChargingPSC.SetScale( FXScalingFactorByCharge );
-//			FXScalingFactorByCharge = FMin(Lerp(class'KFWeap_Mine_Reconstructor'.default.MinScale, class'KFWeap_Mine_Reconstructor'.default.MaxScale, WorldInfo.TimeSeconds - StartFireTime / class'KFWeap_Mine_Reconstructor'.default.MaxChargeTime), class'KFWeap_Mine_Reconstructor'.default.MaxScale);
+			//FXScalingFactorByCharge = FMin(Lerp(class'KFWeap_Mine_Reconstructor'.default.MinScale, class'KFWeap_Mine_Reconstructor'.default.MaxScale, WorldInfo.TimeSeconds - StartFireTime / class'KFWeap_Mine_Reconstructor'.default.MaxChargeTime), class'KFWeap_Mine_Reconstructor'.default.MaxScale);
 			vec.X =ChargeRTPC;
 			vec.Y =ChargeRTPC;
 			vec.Z =ChargeRTPC;

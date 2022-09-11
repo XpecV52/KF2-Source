@@ -7,18 +7,15 @@
 // Copyright (C) 2015 Tripwire Interactive LLC
 //=============================================================================
 
-class KFDT_Ballistic_Minigun extends KFDT_Ballistic
+class KFDT_Ballistic_Minigun extends KFDT_Ballistic_AssaultRifle
 	abstract
 	hidedropdown;
 
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_Minigun'
-   GoreDamageGroup=DGT_AssaultRifle
-   StumblePower=10.000000
-   LegStumblePower=20.000000
    GunHitPower=10.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Commando'
    Name="Default__KFDT_Ballistic_Minigun"
-   ObjectArchetype=KFDT_Ballistic'KFGame.Default__KFDT_Ballistic'
+   ObjectArchetype=KFDT_Ballistic_AssaultRifle'kfgamecontent.Default__KFDT_Ballistic_AssaultRifle'
 }

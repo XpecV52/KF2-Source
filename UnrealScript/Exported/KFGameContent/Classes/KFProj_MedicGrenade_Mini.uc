@@ -96,6 +96,7 @@ defaultproperties
    End Object
    CylinderComponent=CollisionCylinder
    Components(0)=CollisionCylinder
+   bUpdateSimulatedPosition=True
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_MedicGrenade_Mini"
    ObjectArchetype=KFProj_MedicGrenade'kfgamecontent.Default__KFProj_MedicGrenade'

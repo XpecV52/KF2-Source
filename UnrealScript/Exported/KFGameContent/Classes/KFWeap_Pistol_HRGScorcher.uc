@@ -55,7 +55,7 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HRGScorcher_Pistol_TEX.UI_WeaponSelect_HRGScorcher'
    MagazineCapacity(0)=1
-   SpareAmmoCapacity(0)=28
+   SpareAmmoCapacity(0)=31
    InitialSpareMags(0)=12
    AmmoPickupScale(0)=4.000000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Medium_Recoil'
@@ -106,9 +106,9 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   Spread(0)=0.050000
+   Spread(0)=0.010000
    Spread(1)=0.100000
-   InstantHitDamage(0)=185.000000
+   InstantHitDamage(0)=333.000000
    InstantHitDamage(1)=70.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000

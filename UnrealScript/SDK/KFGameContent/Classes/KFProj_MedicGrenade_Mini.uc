@@ -71,6 +71,7 @@ defaultproperties
 
 	bSyncToOriginalLocation=true
 	bSyncToThirdPersonMuzzleLocation=true
+	bUpdateSimulatedPosition=true
 
 	bDamageDestructiblesOnTouch=true
 	Damage=50

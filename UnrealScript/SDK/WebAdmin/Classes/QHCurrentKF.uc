@@ -9,6 +9,8 @@ class QHCurrentKF extends QHCurrent;
 
 `include(WebAdmin.uci)
 
+var int DefaultPerkLevel;
+
 function registerMenuItems(WebAdminMenu menu)
 {
 	super.registerMenuItems(menu);
@@ -116,7 +118,7 @@ function substPri(WebAdminQuery q, PlayerReplicationInfo pri)
 		else {
 			q.response.subst("player.perk.name", "");
 		}
-		q.response.subst("player.perk.level", ropri.GetActivePerkLevel());
+		q.response.subst("player.perk.level", DefaultPerkLevel);
 	}
 }
 
@@ -174,4 +176,5 @@ function decorateChatWindow(WebAdminQuery q)
 defaultproperties
 {
 	separateSpectators=true
+	DefaultPerkLevel=25
 }
