@@ -2352,11 +2352,20 @@ function string GetNextMap()
         if(I < GameMapCycles[ActiveMapCycle].Maps.Length)
         {
             MapCycleIndex = (((MapCycleIndex + 1) < GameMapCycles[ActiveMapCycle].Maps.Length) ? MapCycleIndex + 1 : 0);
+            if(Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11)
+            {
+                if(((((MyKFGRI.IsA('KFGameReplicationInfo_WeeklySurvival') && GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Biolapse") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Nightmare") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-PowerCore_Holdout") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-TheDescent") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-KrampusLair")
+                {
+                    goto J0x34E;
+                }
+            }
             if(IsMapAllowedInCycle(GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex]))
             {
                 SaveConfig();
                 return GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex];
             }
+            J0x34E:
+
             ++ I;
             goto J0xA8;
         }

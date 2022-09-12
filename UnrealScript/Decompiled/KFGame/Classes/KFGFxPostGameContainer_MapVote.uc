@@ -42,10 +42,10 @@ function SetMapOptions()
     if((KFGRI != none) && KFGRI.VoteCollector != none)
     {
         ServerMapList = KFGRI.VoteCollector.MapList;
-        IsBrokenTrader = Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11;
+        IsBrokenTrader = KFGRI.IsA('KFGameReplicationInfo_WeeklySurvival') && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11;
         MapList = Outer.CreateArray();
         I = 0;
-        J0x13B:
+        J0x160:
 
         if(I < ServerMapList.Length)
         {
@@ -62,7 +62,7 @@ function SetMapOptions()
                 ++ Counter;
             }
             ++ I;
-            goto J0x13B;
+            goto J0x160;
         }
     }
     SetObject("mapChoices", MapList);

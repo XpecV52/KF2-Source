@@ -304,6 +304,21 @@ simulated function ModifyRecoil(out float CurrentRecoilModifier)
     super(KFWeapon).ModifyRecoil(CurrentRecoilModifier);
 }
 
+simulated function KFProjectile SpawnAllProjectiles(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
+{
+    local KFPerk InstigatorPerk;
+
+    if(CurrentFireMode == 1)
+    {
+        InstigatorPerk = GetPerk();
+        if(InstigatorPerk != none)
+        {
+            Spread[CurrentFireMode] = default.Spread[CurrentFireMode] * InstigatorPerk.GetTightChokeModifier();
+        }
+    }
+    return super(KFWeapon).SpawnAllProjectiles(KFProjClass, RealStartLoc, AimDir);
+}
+
 simulated state WeaponBurstFiring
 {
     simulated event BeginState(name PreviousStateName)

@@ -9781,7 +9781,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_351
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_352
-   ObjValue=PointLightToggleable'KF-MOONBASE.TheWorld:PersistentLevel.PointLightToggleable_77'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=4640
@@ -11501,7 +11500,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1054
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1056
-   ObjValue=PointLightToggleable'KF-MOONBASE.TheWorld:PersistentLevel.PointLightToggleable_195'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=600
@@ -11513,7 +11511,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1056
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1057
-   ObjValue=PointLightToggleable'KF-MOONBASE.TheWorld:PersistentLevel.PointLightToggleable_196'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=704
@@ -11525,7 +11522,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1057
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1060
-   ObjValue=PointLightToggleable'KF-MOONBASE.TheWorld:PersistentLevel.PointLightToggleable_199'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=1000
@@ -11561,7 +11557,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1080
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1082
-   ObjValue=PointLightToggleable'KF-MOONBASE.TheWorld:PersistentLevel.PointLightToggleable_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3208
@@ -11573,7 +11568,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1082
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1085
-   ObjValue=PointLightToggleable'KF-MOONBASE.TheWorld:PersistentLevel.PointLightToggleable_224'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3512
@@ -11585,7 +11579,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1085
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1087
-   ObjValue=PointLightToggleable'KF-MOONBASE.TheWorld:PersistentLevel.PointLightToggleable_47'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3712
@@ -11597,7 +11590,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1087
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1088
-   ObjValue=PointLightToggleable'KF-MOONBASE.TheWorld:PersistentLevel.PointLightToggleable_227'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=3808
@@ -12543,7 +12535,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_511
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_512
-   ObjValue=PointLight'KF-MOONBASE.TheWorld:PersistentLevel.PointLight_153'
+   ObjValue=PointLight'KF-MOONBASE.TheWorld:PersistentLevel.PointLight_290'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1560

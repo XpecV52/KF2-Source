@@ -553,6 +553,23 @@ simulated function ModifyRecoil( out float CurrentRecoilModifier )
 	super.ModifyRecoil( CurrentRecoilModifier );
 }
 
+/** Spawn projectile is called once for each shot pellet fired */
+simulated function KFProjectile SpawnAllProjectiles(class<KFProjectile> KFProjClass, vector RealStartLoc, vector AimDir)
+{
+	local KFPerk InstigatorPerk;
+
+	if (CurrentFireMode == ALTFIRE_FIREMODE)
+	{
+		InstigatorPerk = GetPerk();
+		if (InstigatorPerk != none)
+		{
+			Spread[CurrentFireMode] = default.Spread[CurrentFireMode] * InstigatorPerk.GetTightChokeModifier();
+		}
+	}
+
+	return super.SpawnAllProjectiles(KFProjClass, RealStartLoc, AimDir);
+}
+
 defaultproperties
 {
 	bCanRefillSecondaryAmmo = true;
