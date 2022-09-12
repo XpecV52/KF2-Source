@@ -217,7 +217,6 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     local KFWeapon KFW;
     local float TempDamage;
 
-    super.ModifyDamageGiven(InDamage, DamageCauser, MyKFPM, DamageInstigator, DamageType, HitZoneIdx);
     TempDamage = float(InDamage);
     if(DamageCauser != none)
     {
@@ -450,7 +449,7 @@ defaultproperties
     MovementSpeed=(Name="Movement Speed",Increment=0.004,Rank=0,StartingValue=0,MaxValue=0.1,ModifierValue=0,IconPath="",bActive=false)
     Armor=(Name="Armor",Increment=0.03,Rank=0,StartingValue=1,MaxValue=1.75,ModifierValue=0,IconPath="",bActive=false)
     SelfHealingSurgePct=0.1
-    MaxSurvivalistResistance=0.7
+    MaxSurvivalistResistance=0.6
     CombatantSpeedModifier=0.1
     MaxHealingSpeedBoost=30
     HealingSpeedBoostDuration=5

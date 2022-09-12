@@ -1584,7 +1584,7 @@ SkillCatagories[2]=""
 SkillCatagories[3]=""
 SkillCatagories[4]=""
 
-LevelString="Poziom"
+LevelString="Poz"
 
 SpecialAbilityName="Popisowa zdolność"
 SpecialAbilityDescription=""
@@ -1938,7 +1938,7 @@ HealingSurge="Zdrowie symbiotyczne"
 HealingSurgeDescription="Całkowite zdrowie zwiększone o 25%. Leczenie członków drużyny przywróci też 10% twojego maksymalnego zdrowia."
 
 Survivalist="Wytrzymałość"
-SurvivalistDescription="Odporność na obrażenia zwiększona o 1% na każdy utracony punkt zdrowia, łącznie do 70%."
+SurvivalistDescription="Odporność na obrażenia zwiększona o 1% na każdy utracony punkt zdrowia, łącznie do 60%."
 
 HealingSpeedBoost="Dawka adrenaliny"
 HealingSpeedBoostDescription="Twoje uzdrawianie zwiększa szybkość ruchu graczy o 10% na 5 s. Efekt kumuluje się do premii 30%."

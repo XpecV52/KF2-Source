@@ -1938,7 +1938,7 @@ HealingSurge="Symbiotic Health"
 HealingSurgeDescription="Increase total Health 25%. Healing teammates will heal you 10% of your total Health."
 
 Survivalist="Resilience"
-SurvivalistDescription="Increase damage resistance 1% per Health point lost, up to 70%."
+SurvivalistDescription="Increase damage resistance 1% per Health point lost, up to 60%."
 
 HealingSpeedBoost="Adrenaline Shot"
 HealingSpeedBoostDescription="All your healing increases player movement speed 10% for 5 seconds. This can stack up to a 30% bonus."

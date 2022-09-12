@@ -357,8 +357,8 @@ defaultproperties
     ChargeAnimIronLast=Alt_Fire_Iron_Last
     ForceReloadTime=0.3
     MaxChargeLevel=1
-    SonicBlastDamageByChargeLevel(0)=110
-    SonicBlastDamageByChargeLevel(1)=280
+    SonicBlastDamageByChargeLevel(0)=100
+    SonicBlastDamageByChargeLevel(1)=240
     SonicBlastMomentumByChargeLevel(0)=100000
     SonicBlastMomentumByChargeLevel(1)=40000
     SonicBlastPenetrationPowerByChargeLevel(0)=4
@@ -382,9 +382,9 @@ defaultproperties
     MomentumMultiplierByZedArray(3)=(ZedClassName=KFPawn_ZedCrawler,MomentumMultiplier=1)
     MomentumMultiplierByZedArray(4)=(ZedClassName=KFPawn_ZedGorefast,MomentumMultiplier=1.2)
     MomentumMultiplierByZedArray(5)=(ZedClassName=KFPawn_ZedStalker,MomentumMultiplier=1)
-    MomentumMultiplierByZedArray(6)=(ZedClassName=KFPawn_ZedScrake,MomentumMultiplier=1.2)
-    MomentumMultiplierByZedArray(7)=(ZedClassName=KFPawn_ZedFleshpound,MomentumMultiplier=1.3)
-    MomentumMultiplierByZedArray(8)=(ZedClassName=KFPawn_ZedFleshpoundMini,MomentumMultiplier=1.3)
+    MomentumMultiplierByZedArray(6)=(ZedClassName=KFPawn_ZedScrake,MomentumMultiplier=0.8)
+    MomentumMultiplierByZedArray(7)=(ZedClassName=KFPawn_ZedFleshpound,MomentumMultiplier=0.7)
+    MomentumMultiplierByZedArray(8)=(ZedClassName=KFPawn_ZedFleshpoundMini,MomentumMultiplier=0.7)
     MomentumMultiplierByZedArray(9)=(ZedClassName=KFPawn_ZedBloat,MomentumMultiplier=1.7)
     MomentumMultiplierByZedArray(10)=(ZedClassName=KFPawn_ZedSiren,MomentumMultiplier=0.8)
     MomentumMultiplierByZedArray(11)=(ZedClassName=KFPawn_ZedHusk,MomentumMultiplier=0.8)

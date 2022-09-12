@@ -236,7 +236,6 @@ var protected array<byte> BodyPartsCanKnockDown;
 var bool bCanSeeCloakedZeds;
 var bool bHasTempSkill_TacticalReload;
 var const bool bInitialized;
-var transient bool bWasLastHitAHeadshot;
 var config bool bLogPerk;
 var() const float SignatureDamageScale;
 var() const float SignatureRecoilScale;
@@ -1022,6 +1021,8 @@ function FinalizeSpeedVariables();
 
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW);
 
+function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx);
+
 function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy);
 
 simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
@@ -1576,11 +1577,6 @@ simulated function string GetGrenadeImagePath()
 simulated function class<KFWeaponDefinition> GetGrenadeWeaponDef()
 {
     return default.GrenadeWeaponDef;
-}
-
-function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
-{
-    bWasLastHitAHeadshot = (MyKFPM != none) && HitZoneIdx == 0;
 }
 
 simulated function float GetPercentage(float OriginalValue, float NewValue)

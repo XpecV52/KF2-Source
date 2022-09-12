@@ -839,8 +839,21 @@ function Callback_OnWhatsNewClicked(int Index, string URL)
 				Manager.OnBuyGamePressed();
 				return;
 			}
+			//We skip looking in the catalog for the linked Playfab item to this entitlement. We open up directly the store
+			if ( !FindGameContainer.PS4ActiveWhatsNewItems[Index].bPlayfabItemPairedUp )
+			{
+				LogInternal("("$Name$") KFGFxMenu_StartGame::"$GetStateName()$":"$GetFuncName()@" Product ID: "@FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId@" does not have a playfab item paired up. Opening up directly store.");
+				if( class'WorldInfo'.static.IsConsoleBuild( CONSOLE_Orbis ) )
+				{
+					OnlineSub.OpenMarketPlaceSearchBySignedOfferId( FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId );
+				}
+				else
+				{
+					OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI( GetLP().ControllerId, FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId );
+				}
+			}
 			// If this is attached to a PSN product ID, we need to look up the signed offer Id
-			if( FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId != "" )
+			else if( FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId != "" )
 			{
 				for( i = 0; i < OnlineSub.ItemPropertiesList.Length; i++ )
 				{
@@ -1965,9 +1978,9 @@ function OnPartyLeave()
 
 defaultproperties
 {
-   WhatsNewPS="http://www.killingfloor2.com/psnews"
-   WhatsNewMS="http://www.killingfloor2.com/xboxnews"
-   WhatsNewSteam="http://www.killingfloor2.com/pcnews"
+   WhatsNewPS="https://www.killingfloor2.com/psnews"
+   WhatsNewMS="https://www.killingfloor2.com/xboxnews"
+   WhatsNewSteam="https://www.killingfloor2.com/pcnews"
    ModeKey="ModeKey"
    DifficultyKey="DifficultyKey"
    MapKey="MapKey"

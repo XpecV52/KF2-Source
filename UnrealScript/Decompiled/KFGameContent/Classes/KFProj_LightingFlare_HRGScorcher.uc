@@ -14,7 +14,6 @@ var(Projectile) ParticleSystem ProjStickedTemplate;
 var export editinline PointLightComponent ProjStickedLight;
 var KFGame.KFLightPool.LightPoolPriority ProjStickedLightPriority;
 var float FlameDisperalDelay;
-var Vector LastHitNormal;
 var KFImpactEffectInfo ImpactEffectsOnZed;
 var AkEvent AmbientSoundPlayEventSticked;
 var bool bSticked;
@@ -79,7 +78,6 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
-    LastHitNormal = HitNormal;
     if(((Other != Instigator) && !Other.bStatic) && DamageRadius == 0)
     {
         ProcessBulletTouch(Other, HitLocation, HitNormal);
@@ -126,18 +124,7 @@ simulated event Tick(float DeltaTime)
 
 simulated function SyncOriginalLocation()
 {
-    local Actor HitActor;
-    local Vector HitLocation, HitNormal;
-    local TraceHitInfo HitInfo;
-
-    if(((Role < ROLE_Authority) && Instigator != none) && Instigator.IsLocallyControlled())
-    {
-        HitActor = Trace(HitLocation, HitNormal, OriginalLocation, Location,,, HitInfo, 1);
-        if(HitActor != none)
-        {
-            StickHelper.TryStick(HitNormal, HitLocation, HitActor);
-        }
-    }
+    super.SyncOriginalLocation();
 }
 
 defaultproperties
@@ -201,22 +188,17 @@ defaultproperties
     DamageRadius=0
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
-        CollideActors=true
-        BlockNonZeroExtent=false
     object end
     // Reference: CylinderComponent'Default__KFProj_LightingFlare_HRGScorcher.CollisionCylinder'
     CylinderComponent=CollisionCylinder
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
-        CollideActors=true
-        BlockNonZeroExtent=false
     object end
     // Reference: CylinderComponent'Default__KFProj_LightingFlare_HRGScorcher.CollisionCylinder'
     Components(0)=CollisionCylinder
     Physics=EPhysics.PHYS_Falling
     bPushedByEncroachers=false
     bNetTemporary=false
-    bUpdateSimulatedPosition=true
     bCanBeDamaged=false
     bCollideComplex=true
     NetUpdateFrequency=200
@@ -224,8 +206,6 @@ defaultproperties
     LifeSpan=20
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
-        CollideActors=true
-        BlockNonZeroExtent=false
     object end
     // Reference: CylinderComponent'Default__KFProj_LightingFlare_HRGScorcher.CollisionCylinder'
     CollisionComponent=CollisionCylinder

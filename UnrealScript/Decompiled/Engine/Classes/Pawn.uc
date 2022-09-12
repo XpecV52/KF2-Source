@@ -1807,13 +1807,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
         }
         Killer = SetKillInstigator(InstigatedBy, DamageType);
         TearOffMomentum = Momentum;
-        Died(Killer, DamageType, HitLocation);
-        HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), DamageType, DamageCauser);        
+        Died(Killer, DamageType, HitLocation);        
     }
     else
     {
         HandleMomentum(Momentum, HitLocation, DamageType, HitInfo);
-        HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), DamageType, DamageCauser);
         NotifyTakeHit(InstigatedBy, HitLocation, actualDamage, DamageType, Momentum, DamageCauser);
         if(DrivenVehicle != none)
         {
@@ -1827,8 +1825,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     PlayHit(float(actualDamage), InstigatedBy, HitLocation, DamageType, Momentum, HitInfo);
     MakeNoise(1, 'TakeDamage');
 }
-
-function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<DamageType> DamageType, Actor DamageCauser);
 
 // Export UPawn::execGetTeamNum(FFrame&, void* const)
 native simulated function byte GetTeamNum();

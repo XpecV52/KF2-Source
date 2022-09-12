@@ -1265,6 +1265,9 @@ var delegate<OnReadOnlineAvatarByNameComplete> __OnReadOnlineAvatarByNameComplet
 // Export UOnlineSubsystem::execOpenMarketPlaceSearch(FFrame&, void* const)
 native function OpenMarketPlaceSearch(ItemProperties Item);
 
+// Export UOnlineSubsystem::execOpenMarketPlaceSearchBySignedOfferId(FFrame&, void* const)
+native function OpenMarketPlaceSearchBySignedOfferId(string SignedOfferId);
+
 // Export UOnlineSubsystem::execOpenItemPurchaseOverlay(FFrame&, void* const)
 native function OpenItemPurchaseOverlay(int SKU);
 

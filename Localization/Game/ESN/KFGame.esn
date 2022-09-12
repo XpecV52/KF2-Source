@@ -964,8 +964,8 @@ OutfitBundlesString="Atuendos"
 TicketCratesUSBBundlesString="Boletos/cajas/USB"
 CosmeticBundlesString="Cosméticos"
 WeaponSkinBundlesString="Apariencias de arma"
-HeadshotFxBundlesString="Efectos de disparo en la cabeza"
-SelectWeaponSkinsString="Seleccionar apariencias de arma"
+HeadshotFxBundlesString="Efectos de disp. en la cabeza"
+SelectWeaponSkinsString="Selec. apariencias de arma"
 SelectCosmeticsString="Seleccionar cosméticos"
 SelectEmotesString="Seleccionar emotes"
 SelectKeysAndTicketsString="Seleccionar llaves y boletos"
@@ -1938,7 +1938,7 @@ HealingSurge="Salud simbiótica"
 HealingSurgeDescription="Aumenta la salud total un 25 %. Al curar a tus compañeros, recuperas un 10 % de tu salud total."
 
 Survivalist="Aguante"
-SurvivalistDescription="Aumenta la resistencia al daño en un 1 % por cada punto de salud perdido (hasta un 70 %)."
+SurvivalistDescription="Aumenta la resistencia al daño en un 1 % por cada punto de salud perdido (hasta un 60 %)."
 
 HealingSpeedBoost="Inyección de adrenalina"
 HealingSpeedBoostDescription="Toda tu curación aumenta la velocidad de movimiento del jugador un 10 % durante 5 s. Bonificación máxima acumulable: 30 %."
@@ -2122,7 +2122,7 @@ Passives[1]=(Title="Daño con escopeta",Description="Daño con armas de esp.: +%
 Passives[2]=(Title="Penetración de escopeta",Description="Penetración con armas de esp.: +%x %/nivel");
 Passives[3]=(Title="Munición",Description="Munición +15 %, además de +%x % por nivel");
 Passives[4]=(Title="Más capacidad de peso",Description="La cap. de peso aumenta en 1 cada 5 niv.");
-Passives[5]=(Title="Mochila mun. + Repar. puertas",Description="Una vez por ronda, puedes obtener munición de la mochila - reparar puertas");
+Passives[5]=(Title="Mochila mun. + Reparapuertas",Description="Una vez por ronda, puedes obtener munición de la mochila - reparar puertas");
 
 EXPAction1="Infligir daño con armas de apoyo"
 EXPAction2="Soldar puertas"

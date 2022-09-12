@@ -676,7 +676,7 @@ simulated function EndGame()
 {
     bMatchHasBegun = false;
     bMatchIsOver = true;
-    Class'KFGameEngine'.static.RefreshOnlineGameData();
+    Class'KFGameEngine'.static.RefreshOnlineGameData(false);
 }
 
 reliable client simulated exec function ShowPreGameServerWelcomeScreen()

@@ -1593,14 +1593,14 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 
 event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
-	local int ActualDamageTaken, OldHealth;
+	local int ActualDamageTaken, OldHealth, OldArmor;
 	//local KFGameInfo KFGI;
 	local KFGameReplicationInfo KFGRI;
 	local KFPlayerReplicationInfo KFPRI;
 	local KFAIController_ZedBoss InstigatedByBoss;
 
 	OldHealth = Health;
-
+	OldArmor  = Armor;
     if (bLogTakeDamage) LogInternal(GetFuncName()@"Damage BEFORE ="$Damage$" DamageType: "$DamageType$" DamageCauser: "$DamageCauser);
 
 	Super.TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
@@ -1609,7 +1609,12 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 	if (bLogTakeDamage) LogInternal(GetFuncName()@"Damage AFTER ="$ActualDamageTaken$" DamageType: "$DamageType$" DamageCauser: "$DamageCauser);
 
 	KFGRI = KFGameReplicationInfo(KFGameInfo(WorldInfo.Game).GameReplicationInfo);
-	if( Damage > 0 && IsAliveAndWell() && !KFGRI.bTraderIsOpen )
+
+	LogInternal("ARMOR OLD: " $ OldArmor);
+	LogInternal("ARMOR NEW: " $ Armor);
+	LogInternal("ARMOR diff: " $ OldArmor - Armor);
+
+	if( (ActualDamageTaken > 0 || OldArmor - Armor > 0) && IsAliveAndWell() && !KFGRI.bTraderIsOpen )
 	{
 		KFPlayerController(Controller).NotifyHitTaken();
 	}

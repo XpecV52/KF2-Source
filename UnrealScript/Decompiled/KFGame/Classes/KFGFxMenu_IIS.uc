@@ -165,7 +165,7 @@ function OnConfirmPlayOffline()
     ProfileSettings.SetToDefaults();
     ProfileSettings.ExpandExtraFromProfileSettings();
     OnlineSub.SetCachedProfile(ProfileSettings);
-    KFPlayerController(Outer.GetPC()).break;
+    KFPlayerController(Outer.GetPC()).continue;
     /* Statement decompilation error: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
         

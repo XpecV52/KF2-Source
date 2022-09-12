@@ -957,7 +957,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     local int I;
     local KFPlayerController KFPC;
 
-    if(!bWaveStarted)
+    if(!bWaveStarted && !MyKFGRI.bTraderIsOpen)
     {
         return;
     }
@@ -970,7 +970,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     {
         GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveEnd', true, AllWaveEndEvents);
         I = 0;
-        J0xB9:
+        J0xDF:
 
         if(I < AllWaveEndEvents.Length)
         {
@@ -990,7 +990,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
                 WaveEndEvt.CheckActivate(self, self,, OutputLinksToActivate);
             }
             ++ I;
-            goto J0xB9;
+            goto J0xDF;
         }
     }
     BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 1);

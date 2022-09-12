@@ -126,8 +126,8 @@ defaultproperties
    TerminalVelocity=3200.000000
    Begin Object Class=KFGameExplosion Name=ImploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_Gravity_Imploder_ARCH.Yellow_Explosion'
-      Damage=350.000000
-      DamageRadius=375.000000
+      Damage=320.000000
+      DamageRadius=280.000000
       DamageFalloffExponent=0.200000
       MyDamageType=Class'kfgamecontent.KFDT_Explosive_GravityImploder'
       KnockDownStrength=0.000000

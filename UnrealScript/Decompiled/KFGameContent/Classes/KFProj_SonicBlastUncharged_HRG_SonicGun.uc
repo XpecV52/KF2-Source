@@ -76,7 +76,7 @@ defaultproperties
     bCollideComplex=false
     NetUpdateFrequency=200
     NetPriority=5
-    LifeSpan=1.5
+    LifeSpan=1.3
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
         CollideActors=true

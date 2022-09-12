@@ -966,7 +966,7 @@ CosmeticBundlesString="Packs cosmétiques"
 WeaponSkinBundlesString="Packs de modèle d'arme"
 HeadshotFxBundlesString="Pack d'effets tir en pleine tête"
 SelectWeaponSkinsString="Choisir des modèles d'arme"
-SelectCosmeticsString="Choisir des éléments cosmétiques"
+SelectCosmeticsString="Choisir des cosmétiques"
 SelectEmotesString="Choisir des emotes"
 SelectKeysAndTicketsString="Choisir des clés et des tickets"
 
@@ -1584,7 +1584,7 @@ SkillCatagories[2]=""
 SkillCatagories[3]=""
 SkillCatagories[4]=""
 
-LevelString="Niveau"
+LevelString="Niv"
 
 SpecialAbilityName="Capacité symbolique"
 SpecialAbilityDescription=""
@@ -1938,7 +1938,7 @@ HealingSurge="Santé symbiotique"
 HealingSurgeDescription="Augmente la Santé totale de 25 %. Soigner des équipiers vous soigne de 10 % de votre Santé totale."
 
 Survivalist="Ténacité"
-SurvivalistDescription="Augmente la résistance aux dégâts de 1 % par point de Santé perdu, jusqu'à 70 %."
+SurvivalistDescription="Augmente la résistance aux dégâts de 1 % par point de Santé perdu, jusqu'à 60 %."
 
 HealingSpeedBoost="Injection d'adrénaline"
 HealingSpeedBoostDescription="Tous vos soins augmentent la vitesse de mouvement du joueur de 10 % pendant 5 secondes. Cumulable jusqu'à un bonus de 30 %."

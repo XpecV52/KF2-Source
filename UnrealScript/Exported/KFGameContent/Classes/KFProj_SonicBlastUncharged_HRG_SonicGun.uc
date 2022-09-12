@@ -101,7 +101,7 @@ defaultproperties
    bCollideComplex=False
    NetUpdateFrequency=200.000000
    NetPriority=5.000000
-   LifeSpan=1.500000
+   LifeSpan=1.300000
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_SonicBlastUncharged_HRG_SonicGun"
    ObjectArchetype=KFProj_Bullet'KFGame.Default__KFProj_Bullet'

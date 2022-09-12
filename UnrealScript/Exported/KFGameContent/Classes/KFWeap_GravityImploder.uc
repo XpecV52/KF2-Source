@@ -78,6 +78,7 @@ function AdjustDamage(out int InDamage, class<DamageType> DamageType, Actor Dama
 
 defaultproperties
 {
+   SelfDamageReductionValue=0.075000
    DefaultFireMaterialColor=(R=0.965000,G=0.297200,B=0.000000,A=1.000000)
    AltFireMaterialColor=(R=0.000000,G=0.963100,B=0.965810,A=1.000000)
    PackageKey="Gravity_Imploder"
@@ -93,7 +94,7 @@ defaultproperties
    bHasFireLastAnims=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Grenade'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_Electricity'
-   InventorySize=7
+   InventorySize=8
    MeshFOV=75.000000
    MeshIronSightFOV=40.000000
    PlayerIronSightFOV=65.000000

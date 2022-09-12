@@ -31,7 +31,7 @@ defaultproperties
    EffectGroup=FXG_MicrowaveBlast
    StumblePower=0.000000
    GunHitPower=30.000000
-   MicrowavePower=75.000000
+   MicrowavePower=50.000000
    ModifierPerkList(0)=Class'KFGame.KFPerk_Sharpshooter'
    OverrideImpactEffect=ParticleSystem'WEP_HRG_SonicGun_EMIT.FX_SonicGun_Impact'
    OverrideImpactSound=AkEvent'WW_WEP_HRG_SonicGun.Play_WEP_HRG_SonicGun_Hit_Surface'

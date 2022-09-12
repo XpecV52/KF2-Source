@@ -70,6 +70,7 @@ function AdjustDamage(out int InDamage, class<DamageType> DamageType, Actor Dama
 
 defaultproperties
 {
+    SelfDamageReductionValue=0.075
     DefaultFireMaterialColor=(R=0.965,G=0.2972,B=0,A=1)
     AltFireMaterialColor=(R=0,G=0.9631,B=0.96581,A=1)
     PackageKey="Gravity_Imploder"
@@ -84,7 +85,7 @@ defaultproperties
     bReloadFromMagazine=true
     bHasFireLastAnims=true
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=7
+    InventorySize=8
     MeshFOV=75
     MeshIronSightFOV=40
     PlayerIronSightFOV=65

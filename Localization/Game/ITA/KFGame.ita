@@ -1584,7 +1584,7 @@ SkillCatagories[2]=""
 SkillCatagories[3]=""
 SkillCatagories[4]=""
 
-LevelString="Livello"
+LevelString="Lvl"
 
 SpecialAbilityName="Abilità unica"
 SpecialAbilityDescription=""
@@ -1938,7 +1938,7 @@ HealingSurge="Salute simbiotica"
 HealingSurgeDescription="Aumenta la salute totale del 25%. Curando i compagni di squadra aumenterai la tua salute totale del 10%."
 
 Survivalist="Resilienza"
-SurvivalistDescription="Aumenta la resistenza danni dell'1% per punto salute perso, fino al 70%."
+SurvivalistDescription="Aumenta la resistenza danni dell'1% per punto salute perso, fino al 60%."
 
 HealingSpeedBoost="Iniezione di adrenalina"
 HealingSpeedBoostDescription="Tutte le tue cure aumentano la velocità di movimento del giocatore del 10% per 5 secondi. Bonus cumulabile fino al 30%."

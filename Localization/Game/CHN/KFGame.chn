@@ -1938,7 +1938,7 @@ HealingSurge="共生生命"
 HealingSurgeDescription="增加生命总值 25%。治愈队员，你的总生命也会恢复 10%。"
 
 Survivalist="恢复力"
-SurvivalistDescription="每失去 1 点生命，伤害抗性提升 1%，最高可达 70%。"
+SurvivalistDescription="每失去 1 点生命，伤害抗性提升 1%，最高可达 60%。"
 
 HealingSpeedBoost="肾上腺素注射"
 HealingSpeedBoostDescription="你的所有治疗增加玩家移动速度 10%，持续 5 秒。这可以叠加到 30% 奖励。"

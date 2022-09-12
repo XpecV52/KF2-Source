@@ -43,6 +43,7 @@ var private const float CrouchAimReloadSpeedModifier;
 var private const array<name> AdditionalOnPerkWeaponNames;
 var private const array<name> AdditionalOnPerkDTNames;
 var float SkillZedTimeChance;
+var private transient bool bWasHeadshot;
 
 static simulated function GetPassiveStrings(out array<string> PassiveValues, out array<string> Increments, byte Level)
 {
@@ -85,7 +86,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     local KFWeapon KFW;
     local float TempDamage;
 
-    super.ModifyDamageGiven(InDamage, DamageCauser, MyKFPM, DamageInstigator, DamageType, HitZoneIdx);
+    bWasHeadshot = false;
     TempDamage = float(InDamage);
     if(DamageCauser != none)
     {
@@ -95,6 +96,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     {
         if((MyKFPM != none) && HitZoneIdx == 0)
         {
+            bWasHeadshot = true;
             TempDamage += (float(InDamage) * (GetPassiveValue(HeadshotDamage, CurrentLevel)));
             if(GetScopedActive(KFW))
             {
@@ -231,7 +233,7 @@ function bool IsStunGuaranteed(optional class<DamageType> DamageType, optional b
 {
     if((IsDamageTypeOnPerk(class<KFDamageType>(DamageType))) && GetZTStunActive())
     {
-        return bWasLastHitAHeadshot;
+        return bWasHeadshot;
     }
     return false;
 }

@@ -123,7 +123,10 @@ native static function InitEventContent();
 native static function RefreshEventContent();
 
 // Export UKFGameEngine::execRefreshOnlineGameData(FFrame&, void* const)
-native static function RefreshOnlineGameData();
+native static function RefreshOnlineGameData(optional bool RefreshTimeEvent)
+{
+    RefreshTimeEvent = true;            
+}
 
 // Export UKFGameEngine::execApplyTweaks(FFrame&, void* const)
 native static function ApplyTweaks(string MapName);

@@ -24,12 +24,12 @@ defaultproperties
     EffectGroup=EEffectDamageGroup.FXG_MicrowaveBlast
     StumblePower=250
     GunHitPower=120
-    MicrowavePower=25
     ModifierPerkList=/* Array type was not detected. */
     OverrideImpactEffect=ParticleSystem'WEP_HRG_SonicGun_EMIT.FX_SonicGun_Impact_AltFire'
     OverrideImpactSound=AkEvent'WW_WEP_HRG_SonicGun.Play_WEP_HRG_SonicGun_Hit_Surface'
     bExtraMomentumZ=true
-    ArmorDamageModifier=1.5
-    KDamageImpulse=0
+    KDamageImpulse=1750
+    KDeathVel=325
+    KDeathUpKick=400
     RadialDamageImpulse=5000
 }

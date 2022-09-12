@@ -1938,7 +1938,7 @@ HealingSurge="공생 체력"
 HealingSurgeDescription="총 체력 25% 증가 팀원 치료 시 자신의 총 체력 10% 증가"
 
 Survivalist="회복력"
-SurvivalistDescription="체력 포인트 상실 시 최고 70%까지 1%씩 데미지 저항력 증가"
+SurvivalistDescription="체력 포인트 상실 시 최고 60%까지 1%씩 데미지 저항력 증가"
 
 HealingSpeedBoost="아드레날린 샷"
 HealingSpeedBoostDescription="체력 회복 시 이동 속도가 5초 동안 10% 향상되며 최대 30%의 보너스가 쌓입니다."

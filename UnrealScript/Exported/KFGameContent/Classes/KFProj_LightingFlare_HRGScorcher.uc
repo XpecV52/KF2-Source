@@ -24,8 +24,6 @@ var LightPoolPriority ProjStickedLightPriority;
 
 /** Time before particle system parameter is set */
 var float FlameDisperalDelay;
-/** Last hit normal from Touch() or HitWall() */
-var vector LastHitNormal;
 
 /** Impact effects to use when projectile hits a zed */
 var KFImpactEffectInfo ImpactEffectsOnZed;
@@ -119,7 +117,6 @@ simulated event HitWall( vector HitNormal, actor Wall, PrimitiveComponent WallCo
 // Overriding functions where StickHelper.TryStick is called to start timer to delete the proyectile
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
-	LastHitNormal = HitNormal;
 	if (Other != Instigator && !Other.bStatic && DamageRadius == 0.0 )
 	{
 		ProcessBulletTouch(Other, HitLocation, HitNormal);
@@ -169,21 +166,9 @@ simulated event Tick( float DeltaTime )
 	}
 }
 
-// Last location needs to be correct, even on first tick.
 simulated function SyncOriginalLocation()
 {
-	local Actor HitActor;
-	local vector HitLocation, HitNormal;
-	local TraceHitInfo HitInfo;
-
-	if (Role < ROLE_Authority && Instigator != none && Instigator.IsLocallyControlled())
-	{
-		HitActor = Trace(HitLocation, HitNormal, OriginalLocation, Location,,, HitInfo, TRACEFLAG_Bullet);
-		if (HitActor != none)
-		{
-			StickHelper.TryStick(HitNormal, HitLocation, HitActor);
-		}
-	}
+	super.SyncOriginalLocation();
 }
 
 defaultproperties
@@ -254,8 +239,6 @@ defaultproperties
       CollisionHeight=0.000000
       CollisionRadius=0.000000
       ReplacementPrimitive=None
-      CollideActors=True
-      BlockNonZeroExtent=False
       Name="CollisionCylinder"
       ObjectArchetype=CylinderComponent'KFGame.Default__KFProjectile:CollisionCylinder'
    End Object
@@ -264,7 +247,6 @@ defaultproperties
    Physics=PHYS_Falling
    bPushedByEncroachers=False
    bNetTemporary=False
-   bUpdateSimulatedPosition=True
    bCanBeDamaged=False
    bCollideComplex=True
    NetUpdateFrequency=200.000000

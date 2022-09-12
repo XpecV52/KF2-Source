@@ -1938,7 +1938,7 @@ HealingSurge="Symbiotische Gesundheit"
 HealingSurgeDescription="Erhöhe Gesamt-LP um 25%. Wenn du Teamkollegen heilst, wirst du um 10% deiner gesamten Lebenspunkte geheilt."
 
 Survivalist="Widerstandsfähigkeit"
-SurvivalistDescription="Erhöhe Schadensresistenz um 1% pro verlorenem LP, bis zu 70%."
+SurvivalistDescription="Erhöhe Schadensresistenz um 1% pro verlorenem LP, bis zu 60%."
 
 HealingSpeedBoost="Adrenalin-Schuss"
 HealingSpeedBoostDescription="Deine gesamte Heilung erhöht die Spieler-Bewegungsgeschwindigkeit für 5 Sek. um 10%. Bonus stapelt sich bis auf 30%."

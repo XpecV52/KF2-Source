@@ -715,43 +715,58 @@ function Callback_OnWhatsNewClicked(int Index, string URL)
                 Manager.OnBuyGamePressed();
                 return;
             }
-            if(FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId != "")
+            if(!FindGameContainer.PS4ActiveWhatsNewItems[Index].bPlayfabItemPairedUp)
             {
-                I = 0;
-                J0x113:
-
-                if(I < OnlineSub.ItemPropertiesList.Length)
+                LogInternal(((((((("(" $ string(Name)) $ ") KFGFxMenu_StartGame::") $ string(GetStateName())) $ ":") $ string(GetFuncName())) @ " Product ID: ") @ FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId) @ " does not have a playfab item paired up. Opening up directly store.");
+                if(Class'WorldInfo'.static.IsConsoleBuild(8))
                 {
-                    if(OnlineSub.ItemPropertiesList[I].ProductID == FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId)
-                    {
-                        if(OnlineSub.ItemPropertiesList[I].SignedOfferId != "")
-                        {
-                            if(Class'WorldInfo'.static.IsConsoleBuild(8))
-                            {
-                                OnlineSub.OpenMarketPlaceSearch(OnlineSub.ItemPropertiesList[I]);                                
-                            }
-                            else
-                            {
-                                OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI(byte(Outer.GetLP().ControllerId), OnlineSub.ItemPropertiesList[I].ProductID);
-                            }                            
-                        }
-                        else
-                        {
-                            WarnInternal("No PSN signed offer ID for item with product ID" @ FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId);
-                        }
-                        goto J0x395;
-                    }
-                    ++ I;
-                    goto J0x113;
+                    OnlineSub.OpenMarketPlaceSearchBySignedOfferId(FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId);                    
                 }
-                J0x395:
-                
+                else
+                {
+                    OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI(byte(Outer.GetLP().ControllerId), FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId);
+                }                
             }
             else
             {
-                if(FindGameContainer.PS4ActiveWhatsNewItems[Index].RedirectURL != "")
+                if(FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId != "")
                 {
-                    OnlineSub.OpenURL(FindGameContainer.PS4ActiveWhatsNewItems[Index].RedirectURL);
+                    I = 0;
+                    J0x35B:
+
+                    if(I < OnlineSub.ItemPropertiesList.Length)
+                    {
+                        if(OnlineSub.ItemPropertiesList[I].ProductID == FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId)
+                        {
+                            if(OnlineSub.ItemPropertiesList[I].SignedOfferId != "")
+                            {
+                                if(Class'WorldInfo'.static.IsConsoleBuild(8))
+                                {
+                                    OnlineSub.OpenMarketPlaceSearch(OnlineSub.ItemPropertiesList[I]);                                    
+                                }
+                                else
+                                {
+                                    OnlineSub.PlayerInterfaceEx.ShowProductDetailsUI(byte(Outer.GetLP().ControllerId), OnlineSub.ItemPropertiesList[I].ProductID);
+                                }                                
+                            }
+                            else
+                            {
+                                WarnInternal("No PSN signed offer ID for item with product ID" @ FindGameContainer.PS4ActiveWhatsNewItems[Index].PSNProductId);
+                            }
+                            goto J0x5DD;
+                        }
+                        ++ I;
+                        goto J0x35B;
+                    }
+                    J0x5DD:
+                    
+                }
+                else
+                {
+                    if(FindGameContainer.PS4ActiveWhatsNewItems[Index].RedirectURL != "")
+                    {
+                        OnlineSub.OpenURL(FindGameContainer.PS4ActiveWhatsNewItems[Index].RedirectURL);
+                    }
                 }
             }            
         }
@@ -1748,9 +1763,9 @@ function OnPartyLeave()
 
 defaultproperties
 {
-    WhatsNewPS="http://www.killingfloor2.com/psnews"
-    WhatsNewMS="http://www.killingfloor2.com/xboxnews"
-    WhatsNewSteam="http://www.killingfloor2.com/pcnews"
+    WhatsNewPS="https://www.killingfloor2.com/psnews"
+    WhatsNewMS="https://www.killingfloor2.com/xboxnews"
+    WhatsNewSteam="https://www.killingfloor2.com/pcnews"
     ModeKey="ModeKey"
     DifficultyKey="DifficultyKey"
     MapKey="MapKey"

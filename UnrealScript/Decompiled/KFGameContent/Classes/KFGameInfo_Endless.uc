@@ -157,6 +157,10 @@ function bool TrySetNextWaveSpecial()
 
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
+    if(!bWaveStarted)
+    {
+        return;
+    }
     WaveMax = byte(WaveNum + 2);
     MyKFGRI.WaveMax = WaveMax;
     if(KFGameReplicationInfo_Endless(GameReplicationInfo).CurrentWeeklyMode != -1)
@@ -628,7 +632,7 @@ function SetMonsterDefaults(KFPawn_Monster P)
 
 defaultproperties
 {
-    SpecialWaveTypes(0)=246
+    SpecialWaveTypes(0)=245
     SpecialWaveTypes(1)=1
     SpecialWaveTypes(2)=0
     SpecialWaveTypes(3)=0
@@ -636,7 +640,7 @@ defaultproperties
     SpecialWaveTypes(5)=0
     SpecialWaveTypes(6)=0
     SpecialWaveTypes(7)=0
-    SpecialWaveTypes(8)=253
+    SpecialWaveTypes(8)=252
     SpecialWaveTypes(9)=1
     SpecialWaveTypes(10)=0
     SpecialWaveStart=6

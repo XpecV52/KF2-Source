@@ -14,6 +14,7 @@ struct SWhatsNew
     var string TextField;
     var string RedirectURL;
     var string PSNProductId;
+    var bool bPlayfabItemPairedUp;
 
     structdefaultproperties
     {
@@ -21,6 +22,7 @@ struct SWhatsNew
         TextField=""
         RedirectURL=""
         PSNProductId=""
+        bPlayfabItemPairedUp=true
     }
 };
 

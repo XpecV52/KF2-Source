@@ -434,8 +434,8 @@ defaultproperties
    ChargeAnimIronLast="Alt_Fire_Iron_Last"
    ForceReloadTime=0.300000
    MaxChargeLevel=1
-   SonicBlastDamageByChargeLevel(0)=110.000000
-   SonicBlastDamageByChargeLevel(1)=280.000000
+   SonicBlastDamageByChargeLevel(0)=100.000000
+   SonicBlastDamageByChargeLevel(1)=240.000000
    SonicBlastMomentumByChargeLevel(0)=100000.000000
    SonicBlastMomentumByChargeLevel(1)=40000.000000
    SonicBlastPenetrationPowerByChargeLevel(0)=4.000000
@@ -459,9 +459,9 @@ defaultproperties
    MomentumMultiplierByZedArray(3)=(ZedClassName="KFPawn_ZedCrawler",MomentumMultiplier=1.000000)
    MomentumMultiplierByZedArray(4)=(ZedClassName="KFPawn_ZedGorefast",MomentumMultiplier=1.200000)
    MomentumMultiplierByZedArray(5)=(ZedClassName="KFPawn_ZedStalker",MomentumMultiplier=1.000000)
-   MomentumMultiplierByZedArray(6)=(ZedClassName="KFPawn_ZedScrake",MomentumMultiplier=1.200000)
-   MomentumMultiplierByZedArray(7)=(ZedClassName="KFPawn_ZedFleshpound",MomentumMultiplier=1.300000)
-   MomentumMultiplierByZedArray(8)=(ZedClassName="KFPawn_ZedFleshpoundMini",MomentumMultiplier=1.300000)
+   MomentumMultiplierByZedArray(6)=(ZedClassName="KFPawn_ZedScrake",MomentumMultiplier=0.800000)
+   MomentumMultiplierByZedArray(7)=(ZedClassName="KFPawn_ZedFleshpound",MomentumMultiplier=0.700000)
+   MomentumMultiplierByZedArray(8)=(ZedClassName="KFPawn_ZedFleshpoundMini",MomentumMultiplier=0.700000)
    MomentumMultiplierByZedArray(9)=(ZedClassName="KFPawn_ZedBloat",MomentumMultiplier=1.700000)
    MomentumMultiplierByZedArray(10)=(ZedClassName="KFPawn_ZedSiren",MomentumMultiplier=0.800000)
    MomentumMultiplierByZedArray(11)=(ZedClassName="KFPawn_ZedHusk",MomentumMultiplier=0.800000)
@@ -542,8 +542,8 @@ defaultproperties
    RecoilISMinPitchLimit=65485
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Sharpshooter'
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Add=1)))
-   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.300000),(Add=2)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.100000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Add=2)))
    FiringStatesArray(0)="WeaponSonicGunSingleFiring"
    FiringStatesArray(1)="WeaponSonicGunCharging"
    FiringStatesArray(2)=()

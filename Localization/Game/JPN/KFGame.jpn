@@ -1938,7 +1938,7 @@ HealingSurge="共生ヘルス"
 HealingSurgeDescription="合計ヘルスが25%増加する。チームメイトを回復すると、あなたの合計ヘルスの10%、あなたが回復する。"
 
 Survivalist="復活力"
-SurvivalistDescription="ヘルスポイントを失う毎に、ダメージ耐性が1%増加する(最大70%)。"
+SurvivalistDescription="ヘルスポイントを失う毎に、ダメージ耐性が1%増加する(最大60%)。"
 
 HealingSpeedBoost="アドレナリン注射"
 HealingSpeedBoostDescription="回復させるといつでも、プレイヤーの移動速度が、5秒間、10%増加する。最大30%ボーナスまで積み上げることが可能。"

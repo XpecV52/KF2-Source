@@ -36,7 +36,7 @@ defaultproperties
 {
    bWarnAIWhenFired=True
    GravityScale=0.000000
-   TerminalVelocity=7200.000000
+   TerminalVelocity=12000.000000
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    ProjFlightTemplate=ParticleSystem'WEP_HRG_SonicGun_EMIT.FX_Projectile_AltFire'
    ProjFlightTemplateZedTime=ParticleSystem'WEP_HRG_SonicGun_EMIT.FX_Projectile_AltFire'
@@ -50,8 +50,8 @@ defaultproperties
    AmbientComponent=AmbientAkSoundComponent
    ImpactEffects=KFImpactEffectInfo'WEP_HRG_SonicGun_ARCH.HRG_SonicGun_Projectile_AltFire_Impacts'
    AssociatedPerkClass=Class'KFGame.KFPerk_Sharpshooter'
-   Speed=10000.000000
-   MaxSpeed=10000.000000
+   Speed=12000.000000
+   MaxSpeed=12000.000000
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_Bullet:CollisionCylinder'
       CollisionHeight=0.000000
       CollisionRadius=0.000000

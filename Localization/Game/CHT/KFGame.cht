@@ -1938,7 +1938,7 @@ HealingSurge="共同生命"
 HealingSurgeDescription="增加 25% 血量。治療隊友也會治療你 10% 的血量"
 
 Survivalist="恢復力"
-SurvivalistDescription="每失去1點血量就增加傷害抵抗1%，最多增加70%。"
+SurvivalistDescription="每失去1點血量就增加傷害抵抗1%，最多增加60%。"
 
 HealingSpeedBoost="腎上腺素注射"
 HealingSpeedBoostDescription="你的所有治療使玩家的移動速度增加10%，效力維持5秒，最多可疊加至30%的加成。"
