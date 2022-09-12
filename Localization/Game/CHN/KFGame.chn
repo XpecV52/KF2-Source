@@ -369,6 +369,7 @@ InProgressString="进行中"
 OnlyStockMapsString="仅限仓库地图"
 OnlyCustomMapsString="仅限自定义地图"
 LimitServerResultsString="限制结果："
+NotServerExiledString="无本地管理员"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="增变基因"
@@ -1383,9 +1384,9 @@ ControllerZoomSensitivityString="缩放灵敏度"
 ControllerDeadzoneString="死区"
 ControllerAccelerationJumpString="加速跳跃"
 ControllerDeadzoneDescriptionString="游戏确认输入之前的右操作杆移动量"
-ControllerDeadzoneDescriptionXboxString="遊戲識別輸入之前右搖桿移動量"
+ControllerDeadzoneDescriptionXboxString="游戏确认输入之前的右摇杆移动量"
 ControllerAccelerationJumpDescriptionString="操作杆达到向左或向右极限时的旋转速度提升量"
-ControllerAccelerationJumpDescriptionXboxString="搖桿達到左右極限時轉速提升量"
+ControllerAccelerationJumpDescriptionXboxString="摇杆达到向左或向右极限时的旋转速度提升量"
 AimAssistLockOnString="辅助瞄准缩放锁定 - 开"
 AimAssistRotationString="辅助瞄准放置"
 AimAssistSlowDownString="辅助瞄准减速"
@@ -1790,7 +1791,7 @@ EXPAction1="造成狂战士武器伤害"
 EXPAction2="使用狂战士武器杀死玩家附近的丧尸"
 
 Fortitude="无所畏惧"
-FortitudeDescription="增加生命总值 75%。"
+FortitudeDescription="增加生命总值 100%。"
 
 Ninja="游兵散勇"
 NinjaDescription="使用神射近战武器时，移动速度提升 20%，冲刺速度提升 25%，每秒生成 2 点生命。"
@@ -1802,7 +1803,7 @@ Speed="屠夫"
 SpeedDescription="使用神射武器时攻击速度提升 20%，伤害增加 20%。"
 
 Resistance="抗性"
-ResistanceDescription="对所有伤害获得 20% 抗性。对毒药和声波伤害获得额外 20% 抗性。"
+ResistanceDescription="对所有伤害获得 25% 抗性。对毒药和声波伤害获得额外 25% 抗性。"
 
 Parry="闪避"
 ParryDescription="使用神射近战武器闪避，可以减少受到伤害 40%，提升近战攻击速度 5% 和近战伤害 35%，持续 10 秒。"
@@ -1937,22 +1938,22 @@ HealingSurge="共生生命"
 HealingSurgeDescription="增加生命总值 25%。治愈队员，你的总生命也会恢复 10%。"
 
 Survivalist="恢复力"
-SurvivalistDescription="每失去 1 点生命，伤害抗性提升 1%，最高可达 50%。"
+SurvivalistDescription="每失去 1 点生命，伤害抗性提升 1%，最高可达 70%。"
 
 HealingSpeedBoost="肾上腺素注射"
-HealingSpeedBoostDescription="向队员投掷治愈飞镖，提升他们的移动速度 10%，持续 5 秒。这可以叠加到 30% 奖励。"
+HealingSpeedBoostDescription="你的所有治疗增加玩家移动速度 10%，持续 5 秒。这可以叠加到 30% 奖励。"
 
 Combatant="战斗博士"
 CombatantDescription="提升神射武器的弹匣容量 50% 和移动速度 10%。"
 
 HealingDamageBoost="焦点注射"
-HealingDamageBoostDescription="向队员投掷治愈飞镖，提升他们的破坏力 5%，持续 5 秒。这可以叠加到 20% 奖励。"
+HealingDamageBoostDescription="你的所有治疗增加玩家伤害输出 5%，持续 5 秒。这可以叠加到 20% 奖励。"
 
 AcidicCompound="酸弹"
 AcidicCompoundDescription="神射武器可以使丧尸中毒，在一定时间内施加中毒伤害。"
 
 HealingShield="促凝剂"
-HealingShieldDescription="向队员投掷治愈飞镖，提升他们的伤害抗性 10%，持续 5 秒。这可以叠加到 30% 奖励。"
+HealingShieldDescription="你的所有治疗增加玩家伤害坑性 10%，持续 5 秒。这可以叠加到 30% 奖励。"
 
 Enforcer="战斗医师"
 EnforcerDescription="提升神射武器的伤害 20%。"
@@ -2032,7 +2033,7 @@ Passives[3]=(Title="后坐力降低",Description="每级减少神射武器的后
 Passives[4]=(Title="丧尸时间重新加载",Description="每级提高丧尸时间的重新加载速度 %x%");
 
 ShootnMove="稳定"
-ShootnMoveDescription="使用机械瞄准时忽略移动速度惩罚，并使神射武器的伤害提高7.5%。大幅降低神射武器的武器摆动。"
+ShootnMoveDescription="使用机械瞄准时忽略移动速度惩罚，并使神射武器的伤害提高 7.5%。大幅降低神射武器的武器摆动。"
 
 QuickSwitch="快速拔枪"
 QuickSwitchDescription="降低从臀部射击受到的后座力惩罚，提升移动速度 5%，切换神射武器的速度提升 50%。"
@@ -2375,7 +2376,7 @@ BullseyeUpdate="最新内容 - 靶眼更新"
 LatestUpdate="最新内容更新"
 Forums="访问我们的社区论坛"
 Survey="参加游戏可玩性调查"
-CommunityTracker="追踪社区问题请求"
+CommunityTracker="路线图"
 FeaturedCrateKey="本周主打霍因供应箱钥匙 - $2.49"
 FeaturedEventItem="特色活动道具"
 FeaturedUsbKey="本周主打武器皮肤 USB 钥匙 - $2.49"
@@ -2402,6 +2403,7 @@ USBHighVoltage="高电压 USB 钥匙 - $2.49"
 MerchSale="KF2 装备大促销！2017 年 4 月 30 日之前优惠至 7.5 折，促销码 ZED"
 FreeTrial="今天马上购买 Killing Floor 2 吧！"
 FeaturedCrossover="跨界商品促销"
+ArmorySeasonPass="军械库季票"
 
 [Objectives]
 ObjectiveTitle="目标"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="圣诞节 | 战术精灵包"
 ChanceDropDescriptionStrings[0]="坎卜斯券"
 ChanceDropDescriptionStrings[1]="坎卜斯金奖券"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="网络威胁",DescriptionString="在任意地图或模式击杀 15 名首领")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周砍杀",DescriptionString="在竞技场 2029 完成每周任务")
+SpecialEventObjectiveInfoList[2]=(TitleString="人工智能失控",DescriptionString="在竞技场 2029 击杀 50 个精锐攻防机器人")
+SpecialEventObjectiveInfoList[3]=(TitleString="不是模拟",DescriptionString="在竞技场 2029 中成功抵御 10 波丧尸，不受到任何伤害")
+SpecialEventObjectiveInfoList[4]=(TitleString="勇闯丧尸世界",DescriptionString="在困难无尽或以上难度的竞技场 2029 中成功抵御 15 波丧尸")
+
+AllCompleteRewardDescriptionString="机器人 | 同伴背包 | 宝物"
+
+ChanceDropDescriptionStrings[0]="春季奖励劵"
+ChanceDropDescriptionStrings[1]="春季金奖劵"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2898,6 +2914,26 @@ ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName="竞技场"
+DescriptionStrings[0]="仅允许狂战士！"
+DescriptionStrings[1]="长度：中（7 波）"
+ModifierDescriptions[0]="准备好你的剑和斧头，欢迎来到竞技场！训练你的攻城锤技能。在“比赛匹配”页面选择每周游戏模式。神社等级 15+。"
+ModifierDescriptions[1]="测试 2"
+ModifierDescriptions[2]="测试 3"
+ModifierDescriptions[3]="测试 4"
+ModifierDescriptions[4]="测试 5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="嗜血"
+DescriptionStrings[0]="继续使用连杀技能，不然就死定了..."
+DescriptionStrings[1]="长度：中（7 波）"
+ModifierDescriptions[0]="（当“每周”图标出现在生命计数器旁时）对丧尸鲜血的渴望会持续对你造成伤害。杀戮是恢复生命的唯一方法。在“比赛匹配”页面选择每周游戏模式。特技增加 15."
+ModifierDescriptions[1]="测试 2"
+ModifierDescriptions[2]="测试 3"
+ModifierDescriptions[3]="测试 4"
+ModifierDescriptions[4]="测试 5"
 
 ;============================================
 ; Map Localization
@@ -3412,6 +3448,9 @@ DisplayName="地狱标记站"
 
 [KF-Elysium KFMapSummary]
 DisplayName="极乐净土"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="竞技场 2029"
 
 [KFMapInfo]
 ; defaults

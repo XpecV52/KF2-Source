@@ -1565,6 +1565,20 @@ function Logout(Controller Exiting)
     }
 }
 
+simulated function ExileServerUsingKickBan()
+{
+    local OnlineGameSettings GameSettings;
+
+    if(NotEqual_InterfaceInterface(GameInterface, (none)))
+    {
+        GameSettings = GameInterface.GetGameSettings(PlayerReplicationInfoClass.default.SessionName);
+    }
+    if(GameSettings != none)
+    {
+        GameSettings.bServerExiled = true;
+    }
+}
+
 function UnregisterPlayer(PlayerController PC)
 {
     local UniqueNetId ZeroId;

@@ -760,6 +760,17 @@ ItemCategory="산탄총"
 ItemDescription="•발사 모드에서 적을 얼리는 탄을 발사합니다.\n•충돌 공격 시 적을 도끼로 파괴할 수 있습니다.\n•대체 사격 시 차단/회피합니다.\n•이 도끼는 얼음 조각을 할 때 딱 좋습니다."
 SharedUnlockSource="프로스트 팽 무기 번들"
 
+[KFWeap_HRG_SonicGun]
+ItemName="HRG 벨루가 비트"
+ItemCategory="특수"
+ItemDescription="•기본 발사 시 음파 폭발을 일으킵니다.\n•대체 발사 시 다음 폭발이 충전되어 빈도가 증가합니다.\n•어느 팀의 데시벨이든 모두 증폭됩니다."
+
+[KFWeap_GravityImploder]
+ItemName="중력 속의 분노"
+ItemCategory="폭발물"
+ItemDescription="•기본 발사 모드에서 폭발 수류탄을 발사합니다.\n•대체 발사 시 적을 잡아당기는 중력 수류탄을 발사합니다.\n•개발된 것 중 가장 매력적인 무기입니다."
+SharedUnlockSource="중력 속의 분노 무기 번들"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

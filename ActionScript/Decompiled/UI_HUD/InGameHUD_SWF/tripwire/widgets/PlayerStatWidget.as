@@ -1,6 +1,8 @@
 package tripwire.widgets
 {
+    import com.greensock.TimelineMax;
     import com.greensock.TweenMax;
+    import com.greensock.easing.Cubic;
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.text.TextField;
@@ -47,9 +49,15 @@ package tripwire.widgets
         
         public var currentXPPercent:int;
         
+        public var WaveDmgIcon:MovieClip;
+        
         public var bLevelUp:Boolean = false;
         
         public var bXPInit:Boolean = false;
+        
+        public var flickeringTimeline;
+        
+        public const FADEOUT_TIME:Number = 0.5;
         
         private var whiteColor:uint = 16777215;
         
@@ -57,10 +65,18 @@ package tripwire.widgets
         
         public function PlayerStatWidget()
         {
+            this.flickeringTimeline = new TimelineMax({
+                "yoyo":true,
+                "repeat":-1
+            });
             super();
             _enableInitCallback = true;
             this.cachePlayerStatWidgets();
             this.init();
+            this.flickeringTimeline.to(this.WaveDmgIcon,this.FADEOUT_TIME,{
+                "alpha":0,
+                "ease":Cubic.easeInOut
+            });
         }
         
         public function init() : *
@@ -92,6 +108,14 @@ package tripwire.widgets
         {
             this.IndicatorTileList.dataProvider = new DataProvider(param1);
             this.IndicatorTileList.invalidate();
+        }
+        
+        public function set waveApplyingDamage(param1:Boolean) : *
+        {
+            if(this.WaveDmgIcon.visible != param1)
+            {
+                this.WaveDmgIcon.visible = param1;
+            }
         }
         
         public function set playerHealth(param1:int) : void

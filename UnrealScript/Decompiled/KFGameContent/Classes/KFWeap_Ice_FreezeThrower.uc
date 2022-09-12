@@ -132,7 +132,7 @@ defaultproperties
     FireHeavyAnim=Shoot_Heavy
     FireLastHeavyAnim=Shoot_Heavy_Last
     FireLastHeavySightedAnim=Shoot_Heavy_Iron_Last
-    AltFireRecoilScale=4
+    AltFireRecoilScale=6
     bWarnAIWhenFiring=true
     FlameSprayArchetype=SprayActor_Flame'WEP_CryoGun_ARCH.Wep_CryoGun_IceSpray'
     PSC_PilotLight=none
@@ -141,7 +141,7 @@ defaultproperties
     object end
     // Reference: KFParticleSystemComponent'Default__KFWeap_Ice_FreezeThrower.FlameEndSpray0'
     PSC_EndSpray=FlameEndSpray0
-    MinAmmoConsumed=4
+    MinAmmoConsumed=3
     PackageKey="CryoGun"
     FirstPersonMeshName="WEP_1P_CryoGun_MESH.Wep_1stP_CryoGun_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -183,8 +183,8 @@ defaultproperties
     NumPellets=/* Array type was not detected. */
     maxRecoilPitch=150
     minRecoilPitch=115
-    maxRecoilYaw=115
-    minRecoilYaw=-115
+    maxRecoilYaw=80
+    minRecoilYaw=-80
     RecoilRate=0.085
     RecoilViewRotationScale=0.25
     RecoilMaxYawLimit=500

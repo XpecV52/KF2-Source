@@ -71,7 +71,7 @@ simulated function bool GetImpactResult(Actor HitActor, PrimitiveComponent HitCo
     StaticMeshComp = StaticMeshComponent(HitComp);
     if(StaticMeshComp != none)
     {
-        return !StaticMeshComp.CanBecomeDynamic();
+        return true;
     }
     KFP = KFPawn_Human(HitActor);
     if(KFP != none)

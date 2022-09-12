@@ -32,6 +32,25 @@ static simulated event KFGame.KFGFxObject_TraderItems.EFilterTypeUI GetTraderFil
     return 3;
 }
 
+simulated function float GetUpgradedAfflictionPower(KFGame.KFAfflictionManager.EAfflictionType AfflictionType, float InPower, optional int FireMode, optional int UpgradeIndex)
+{
+    local class<KFDT_Piercing_Crossbow> DT;
+    local KFPerk Perk;
+
+    FireMode = -1;
+    UpgradeIndex = -1;
+    Perk = GetPerk();
+    if(((AfflictionType == 5) && Perk != none) && Perk.bWasLastHitAHeadshot)
+    {
+        DT = class<KFDT_Piercing_Crossbow>(InstantHitDamageTypes[0]);
+        if(DT != none)
+        {
+            return super(KFWeapon).GetUpgradedAfflictionPower(AfflictionType, DT.default.HeadStunPower, FireMode, UpgradeIndex);
+        }
+    }
+    return super(KFWeapon).GetUpgradedAfflictionPower(AfflictionType, InPower, FireMode, UpgradeIndex);
+}
+
 defaultproperties
 {
     begin object name=SceneCapture2DComponent0 class=TWSceneCapture2DDPGComponent

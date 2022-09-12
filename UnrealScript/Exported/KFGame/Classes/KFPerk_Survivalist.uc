@@ -142,6 +142,8 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 	local KFWeapon KFW;
 	local float TempDamage;
 
+	super.ModifyDamageGiven(InDamage, DamageCauser, MyKFPM, DamageInstigator, DamageType, HitZoneIdx);
+
 	TempDamage = InDamage;
 	TempDamage += InDamage * GetPassiveValue( WeaponDamage, CurrentLevel );
 
@@ -462,7 +464,7 @@ simulated function float GetAoERadiusModifier()
 simulated function float GetZedTimeModifier( KFWeapon W )
 {
 	local name StateName;
-	if( GetMadManActive() && !W.IsMeleeWeapon() || KFWeap_MeleeBase(W).default.bHasToBeConsideredAsRangedWeaponForPerks )
+	if( GetMadManActive() && (!W.IsMeleeWeapon() || KFWeap_MeleeBase(W).default.bHasToBeConsideredAsRangedWeaponForPerks ))
 	{
 		StateName = W.GetStateName();
 		WarnInternal(StateName);
@@ -525,18 +527,17 @@ function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDa
 }
 
 /**
- * @brief skills and weapons can modify the stun power
- * @return stun power modifier
+ * @brief skills and weapons can guarantee a stun
+ * @return true/false
  */
-function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
+function bool IsStunGuaranteed( optional class<DamageType> DamageType, optional byte HitZoneIdx )
 {
 	if( GetIncapMasterActive() )
 	{
-		;
-		return (GetSkillValue( PerkSkills[ESurvivalist_IncapMaster] ) );
+		return true;
 	}
 
-    return 0.f;
+    return false;
 }
 
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx )
@@ -839,6 +840,8 @@ defaultproperties
    ZedTimeModifyingStates(8)="BlunderbussDeployAndDetonate"
    ZedTimeModifyingStates(9)="WeaponWindingUp"
    ZedTimeModifyingStates(10)="MineReconstructorCharge"
+   ZedTimeModifyingStates(11)="WeaponSonicGunSingleFiring"
+   ZedTimeModifyingStates(12)="WeaponSonicGunCharging"
    PrimaryWeaponDef=Class'KFGame.KFWeapDef_Random'
    KnifeWeaponDef=Class'KFGame.KFWeapDef_Knife_Survivalist'
    GrenadeWeaponDef=Class'KFGame.KFWeapDef_Grenade_Commando'

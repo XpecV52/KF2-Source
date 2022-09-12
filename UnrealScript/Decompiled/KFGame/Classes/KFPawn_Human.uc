@@ -62,9 +62,9 @@ var byte IntegrityLevel_High;
 var byte IntegrityLevel_Medium;
 var byte IntegrityLevel_Low;
 var byte MinEnemiesToTriggerSurrounded;
-var private byte HealingSpeedBoost;
-var private byte HealingDamageBoost;
-var private byte HealingShield;
+var private repnotify byte HealingSpeedBoost;
+var private repnotify byte HealingDamageBoost;
+var private repnotify byte HealingShield;
 var repnotify const int WeaponSkinItemId;
 var array<name> DeathFaceAnims;
 var globalconfig float BloodPoolDelay;
@@ -242,6 +242,15 @@ simulated event ReplicatedEvent(name VarName)
         case 'PowerUpFxStopInfo':
             StopPowerUpEffect(PowerUpFxStopInfo);
             break;
+        case 'HealingSpeedBoost':
+            NotifyHealingSpeedBoostBuff(HealingSpeedBoost);
+            break;
+        case 'HealingDamageBoost':
+            NotifyHealingDamageBoostBuff(HealingDamageBoost);
+            break;
+        case 'HealingShield':
+            NotifyHealingShieldBoostBuff(HealingShield);
+            break;
         default:
             break;
     }
@@ -300,13 +309,18 @@ simulated function OnCharacterMeshChanged()
 function AddDefaultInventory()
 {
     local KFPerk MyPerk;
+    local KFGameInfo GameInfo;
 
     MyPerk = GetPerk();
     if(MyPerk != none)
     {
         MyPerk.AddDefaultInventory(self);
     }
-    DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject("KFGameContent.KFWeap_Healer_Syringe", Class'Class'));
+    GameInfo = KFGameInfo(WorldInfo.Game);
+    if((GameInfo.OutbreakEvent == none) || !GameInfo.OutbreakEvent.ActiveEvent.bCannotBeHealed)
+    {
+        DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject("KFGameContent.KFWeap_Healer_Syringe", Class'Class'));
+    }
     DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject("KFGameContent.KFWeap_Welder", Class'Class'));
     DefaultInventory.AddItem(class<Inventory>(DynamicLoadObject("KFGameContent.KFInventory_Money", Class'Class'));
     super.AddDefaultInventory();
@@ -474,20 +488,12 @@ simulated function bool CanBeHealed()
 
 event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bCanRepairArmor, optional bool bMessageHealer)
 {
-    local int DoshEarned;
-    local float UsedHealAmount;
-    local KFPlayerReplicationInfo InstigatorPRI;
-    local KFPlayerController InstigatorPC, KFPC;
-    local KFPerk InstigatorPerk;
+    local KFPlayerController KFPC;
     local KFPowerUp KFPowerUp;
-    local class<KFDamageType> KFDT;
-    local int I;
-    local bool bRepairedArmor;
-    local int OldHealth;
+    local KFGameInfo GameInfo;
 
     bCanRepairArmor = true;
     bMessageHealer = true;
-    OldHealth = Health;
     KFPC = KFPlayerController(Controller);
     if(KFPC != none)
     {
@@ -497,6 +503,29 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
             return false;
         }
     }
+    GameInfo = KFGameInfo(WorldInfo.Game);
+    if((GameInfo.OutbreakEvent != none) && GameInfo.OutbreakEvent.ActiveEvent.bCannotBeHealed)
+    {
+        return false;
+    }
+    return HealDamageForce(Amount, Healer, DamageType, bCanRepairArmor, bMessageHealer);
+}
+
+event bool HealDamageForce(int Amount, Controller Healer, class<DamageType> DamageType, optional bool bCanRepairArmor, optional bool bMessageHealer)
+{
+    local int DoshEarned;
+    local float UsedHealAmount;
+    local KFPlayerReplicationInfo InstigatorPRI;
+    local KFPlayerController InstigatorPC, KFPC;
+    local KFPerk InstigatorPerk;
+    local class<KFDamageType> KFDT;
+    local int I;
+    local bool bRepairedArmor;
+    local int OldHealth;
+
+    bCanRepairArmor = true;
+    bMessageHealer = true;
+    OldHealth = Health;
     InstigatorPC = KFPlayerController(Healer);
     InstigatorPerk = ((InstigatorPC != none) ? InstigatorPC.GetPerk() : none);
     if(InstigatorPerk != none)
@@ -594,7 +623,7 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 }
             }
             I = 0;
-            J0x900:
+            J0x875:
 
             if(I < DamageOverTimeArray.Length)
             {
@@ -602,12 +631,12 @@ event bool HealDamage(int Amount, Controller Healer, class<DamageType> DamageTyp
                 {
                     DamageOverTimeArray[I].Duration *= 0.5;
                     DamageOverTimeArray[I].Damage *= 0.5;
-                    goto J0x9B1;
+                    goto J0x926;
                 }
                 ++ I;
-                goto J0x900;
+                goto J0x875;
             }
-            J0x9B1:
+            J0x926:
 
             if((Health - OldHealth) > 0)
             {
@@ -971,6 +1000,7 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
 event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector Momentum, class<DamageType> DamageType, optional TraceHitInfo HitInfo, optional Actor DamageCauser)
 {
     local int ActualDamageTaken, OldHealth;
+    local KFGameReplicationInfo KFGRI;
     local KFPlayerReplicationInfo KFPRI;
     local KFAIController_ZedBoss InstigatedByBoss;
 
@@ -984,6 +1014,11 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     if(bLogTakeDamage)
     {
         LogInternal((((((string(GetFuncName()) @ "Damage AFTER =") $ string(ActualDamageTaken)) $ " DamageType: ") $ string(DamageType)) $ " DamageCauser: ") $ string(DamageCauser));
+    }
+    KFGRI = KFGameReplicationInfo(KFGameInfo(WorldInfo.Game).GameReplicationInfo);
+    if(((Damage > 0) && IsAliveAndWell()) && !KFGRI.bTraderIsOpen)
+    {
+        KFPlayerController(Controller).NotifyHitTaken();
     }
     if((ActualDamageTaken > 0) && IsAliveAndWell())
     {
@@ -1096,6 +1131,10 @@ simulated function UpdateHealingSpeedBoost()
 {
     HealingSpeedBoost = byte(Min(HealingSpeedBoost + Class'KFPerk_FieldMedic'.static.GetHealingSpeedBoost(), Class'KFPerk_FieldMedic'.static.GetMaxHealingSpeedBoost()));
     SetTimer(Class'KFPerk_FieldMedic'.static.GetHealingSpeedBoostDuration(),, 'ResetHealingSpeedBoost');
+    if(WorldInfo.NetMode == NM_Standalone)
+    {
+        NotifyHealingSpeedBoostBuff(HealingSpeedBoost);
+    }
 }
 
 simulated function ResetHealingSpeedBoost()
@@ -1104,6 +1143,10 @@ simulated function ResetHealingSpeedBoost()
     if(IsTimerActive('ResetHealingSpeedBoost'))
     {
         ClearTimer('ResetHealingSpeedBoost');
+    }
+    if(WorldInfo.NetMode == NM_Standalone)
+    {
+        NotifyHealingSpeedBoostBuff(HealingSpeedBoost);
     }
 }
 
@@ -1116,6 +1159,10 @@ simulated function UpdateHealingDamageBoost()
 {
     HealingDamageBoost = byte(Min(HealingDamageBoost + Class'KFPerk_FieldMedic'.static.GetHealingDamageBoost(), Class'KFPerk_FieldMedic'.static.GetMaxHealingDamageBoost()));
     SetTimer(Class'KFPerk_FieldMedic'.static.GetHealingDamageBoostDuration(),, 'ResetHealingDamageBoost');
+    if(WorldInfo.NetMode == NM_Standalone)
+    {
+        NotifyHealingDamageBoostBuff(HealingDamageBoost);
+    }
 }
 
 simulated function ResetHealingDamageBoost()
@@ -1124,6 +1171,10 @@ simulated function ResetHealingDamageBoost()
     if(IsTimerActive('ResetHealingDamageBoost'))
     {
         ClearTimer('ResetHealingDamageBoost');
+    }
+    if(WorldInfo.NetMode == NM_Standalone)
+    {
+        NotifyHealingDamageBoostBuff(HealingDamageBoost);
     }
 }
 
@@ -1136,6 +1187,10 @@ simulated function UpdateHealingShield()
 {
     HealingShield = byte(Min(HealingShield + Class'KFPerk_FieldMedic'.static.GetHealingShield(), Class'KFPerk_FieldMedic'.static.GetMaxHealingShield()));
     SetTimer(Class'KFPerk_FieldMedic'.static.GetHealingShieldDuration(),, 'ResetHealingShield');
+    if(WorldInfo.NetMode == NM_Standalone)
+    {
+        NotifyHealingShieldBoostBuff(HealingShield);
+    }
 }
 
 simulated function ResetHealingShield()
@@ -1144,6 +1199,10 @@ simulated function ResetHealingShield()
     if(IsTimerActive('ResetHealingShield'))
     {
         ClearTimer('ResetHealingShield');
+    }
+    if(WorldInfo.NetMode == NM_Standalone)
+    {
+        NotifyHealingShieldBoostBuff(HealingShield);
     }
 }
 
@@ -1548,6 +1607,64 @@ simulated function DisplayDebug(HUD HUD, out float out_YL, out float out_YPos)
         out_YPos += out_YL;
         Canvas.SetPos(4, out_YPos);
     }
+}
+
+simulated function NotifyHealingSpeedBoostBuff(byte Speed)
+{
+    if(Role == ROLE_Authority)
+    {
+        HealingSpeedBoost = Speed;
+        bForceNetUpdate = true;
+    }
+    if(IsLocallyControlled())
+    {
+        UpdateActiveSkillsPath(Class'KFPerk_FieldMedic'.default.PerkSkills[2].IconPath, float(Speed) > 0);
+    }
+}
+
+simulated function NotifyHealingDamageBoostBuff(byte Damage)
+{
+    if(Role == ROLE_Authority)
+    {
+        HealingSpeedBoost = Damage;
+        bForceNetUpdate = true;
+    }
+    if(IsLocallyControlled())
+    {
+        UpdateActiveSkillsPath(Class'KFPerk_FieldMedic'.default.PerkSkills[4].IconPath, float(Damage) > 0);
+    }
+}
+
+simulated function NotifyHealingShieldBoostBuff(byte Shield)
+{
+    if(Role == ROLE_Authority)
+    {
+        HealingSpeedBoost = Shield;
+        bForceNetUpdate = true;
+    }
+    if(IsLocallyControlled())
+    {
+        UpdateActiveSkillsPath(Class'KFPerk_FieldMedic'.default.PerkSkills[6].IconPath, float(Shield) > 0);
+    }
+}
+
+function UpdateActiveSkillsPath(string IconPath, bool Active)
+{
+    local KFPlayerController KFPC;
+
+    if(Active)
+    {
+        if(ActiveSkillIconPaths.Find(IconPath == -1)
+        {
+            ActiveSkillIconPaths.AddItem(IconPath;
+        }        
+    }
+    else
+    {
+        ActiveSkillIconPaths.RemoveItem(IconPath;
+    }
+    KFPC = KFPlayerController(Controller);
+    KFPC.myGfxHUD.PlayerStatusContainer.ShowActiveIndicators(ActiveSkillIconPaths);
 }
 
 state Dying

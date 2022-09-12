@@ -156,7 +156,7 @@ defaultproperties
    FireHeavyAnim="Shoot_Heavy"
    FireLastHeavyAnim="Shoot_Heavy_Last"
    FireLastHeavySightedAnim="Shoot_Heavy_Iron_Last"
-   AltFireRecoilScale=4.000000
+   AltFireRecoilScale=6.000000
    bWarnAIWhenFiring=True
    FlameSprayArchetype=SprayActor_Flame'WEP_CryoGun_ARCH.Wep_CryoGun_IceSpray'
    PSC_PilotLight=None
@@ -168,7 +168,7 @@ defaultproperties
       ObjectArchetype=KFParticleSystemComponent'KFGame.Default__KFWeap_FlameBase:FlameEndSpray0'
    End Object
    PSC_EndSpray=FlameEndSpray0
-   MinAmmoConsumed=4
+   MinAmmoConsumed=3
    PackageKey="CryoGun"
    FirstPersonMeshName="WEP_1P_CryoGun_MESH.Wep_1stP_CryoGun_Rig"
    FirstPersonAnimSetNames(0)="wep_1p_CryoGun_anim.Wep_1stP_CryoGun_anim"
@@ -218,7 +218,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_FlameBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Ice_FreezeThrower:MeleeHelper_0'
-   NumPellets(1)=12
+   NumPellets(1)=8
    NumPellets(2)=()
    NumPellets(3)=()
    NumPellets(4)=()
@@ -226,8 +226,8 @@ defaultproperties
    NumPellets(6)=()
    maxRecoilPitch=150
    minRecoilPitch=115
-   maxRecoilYaw=115
-   minRecoilYaw=-115
+   maxRecoilYaw=80
+   minRecoilYaw=-80
    RecoilRate=0.085000
    RecoilViewRotationScale=0.250000
    RecoilMaxYawLimit=500
@@ -255,14 +255,14 @@ defaultproperties
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=None
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_FreezeThrower_IceShards'
-   FireInterval(0)=0.070000
+   FireInterval(0)=0.100000
    FireInterval(1)=0.600000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.000000
-   Spread(1)=0.150000
-   InstantHitDamage(1)=20.000000
+   Spread(1)=0.120000
+   InstantHitDamage(1)=35.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=28.000000
    InstantHitDamageTypes(1)=Class'kfgamecontent.KFDT_Freeze_FreezeThrower_IceShards'

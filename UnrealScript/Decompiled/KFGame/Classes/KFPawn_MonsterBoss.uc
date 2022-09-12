@@ -363,6 +363,7 @@ defaultproperties
     BossCaptionStrings(1)="Boss caption 2"
     MinSpawnSquadSizeType=ESquadType.EST_Boss
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_MonsterBoss.MeleeHelper'
+    VortexAttracionModifier=0.3
     SprintAkComponent=AkComponent'Default__KFPawn_MonsterBoss.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_MonsterBoss.HeadshotAkComponent0'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

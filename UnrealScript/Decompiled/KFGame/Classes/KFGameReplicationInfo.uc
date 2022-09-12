@@ -27,6 +27,36 @@ struct native PreGameServerAdInfo
     }
 };
 
+struct native PerkAvailableData
+{
+    var bool bPerksAvailableLimited;
+    var bool bBerserkerAvailable;
+    var bool bCommandoAvailable;
+    var bool bSupportAvailable;
+    var bool bFieldMedicAvailable;
+    var bool bDemolitionistAvailable;
+    var bool bFirebugAvailable;
+    var bool bGunslingerAvailable;
+    var bool bSharpshooterAvailable;
+    var bool bSwatAvailable;
+    var bool bSurvivalistAvailable;
+
+    structdefaultproperties
+    {
+        bPerksAvailableLimited=false
+        bBerserkerAvailable=false
+        bCommandoAvailable=false
+        bSupportAvailable=false
+        bFieldMedicAvailable=false
+        bDemolitionistAvailable=false
+        bFirebugAvailable=false
+        bGunslingerAvailable=false
+        bSharpshooterAvailable=false
+        bSwatAvailable=false
+        bSurvivalistAvailable=false
+    }
+};
+
 struct native SpawnVolumeInfo
 {
     var Vector VolumeLocation;
@@ -132,12 +162,14 @@ var bool bTrackingMapEnabled;
 var bool bHidePawnIcons;
 var bool bGameConductorGraphingEnabled;
 var bool bVersusGame;
+var bool bGlobalDamage;
 var bool bAllowSwitchTeam;
 var bool NextObjectiveIsEndless;
 var bool bForceNextObjective;
 var KFTraderDialogManager TraderDialogManager;
 var class<KFTraderDialogManager> TraderDialogManagerClass;
 var class<KFTraderVoiceGroupBase> TraderVoiceGroupClass;
+var repnotify PerkAvailableData PerksAvailableData;
 var int AIRemaining;
 var int WaveTotalAICount;
 var repnotify string ConsoleGameSessionGuid;
@@ -210,10 +242,10 @@ replication
         PreviousObjectiveVoshResult, PreviousObjectiveXPResult, 
         ReplicatedMusicTrackInfo, TraderVolume, 
         TraderVolumeCheckType, WaveNum, 
-        WaveTotalAICount, bHidePawnIcons, 
-        bIsUnrankedGame, bTraderIsOpen, 
-        bWaveIsActive, bWaveIsEndless, 
-        bWaveStarted;
+        WaveTotalAICount, bGlobalDamage, 
+        bHidePawnIcons, bIsUnrankedGame, 
+        bTraderIsOpen, bWaveIsActive, 
+        bWaveIsEndless, bWaveStarted;
 
      if(bNetInitial)
         GameAmmoCostScale, GameLength, 
@@ -221,6 +253,9 @@ replication
         WaveMax, bAllowGrenadePurchase, 
         bCustom, bTradersEnabled, 
         bVersusGame;
+
+     if(bNetInitial || bNetDirty)
+        PerksAvailableData;
 
      if(bNetInitial && Role == ROLE_Authority)
         ServerAdInfo;
@@ -405,7 +440,14 @@ simulated event ReplicatedEvent(name VarName)
                                                             }
                                                             else
                                                             {
-                                                                super.ReplicatedEvent(VarName);
+                                                                if(VarName == 'PerksAvailableData')
+                                                                {
+                                                                    UpdatePerksAvailable();                                                                    
+                                                                }
+                                                                else
+                                                                {
+                                                                    super.ReplicatedEvent(VarName);
+                                                                }
                                                             }
                                                         }
                                                     }
@@ -1899,6 +1941,96 @@ simulated function int GetFinalWaveNum()
 simulated function bool IsObjectiveMode()
 {
     return false;
+}
+
+function SetGlobalDamage(bool bEnable)
+{
+    bGlobalDamage = bEnable;
+}
+
+simulated function bool IsGlobalDamage()
+{
+    return bGlobalDamage;
+}
+
+simulated function bool IsPerkAllowed(class<KFPerk> PerkClass)
+{
+    if(PerksAvailableData.bPerksAvailableLimited)
+    {
+        if(PerkClass == Class'KFPerk_Berserker')
+        {
+            return PerksAvailableData.bBerserkerAvailable;            
+        }
+        else
+        {
+            if(PerkClass == Class'KFPerk_Commando')
+            {
+                return PerksAvailableData.bCommandoAvailable;                
+            }
+            else
+            {
+                if(PerkClass == Class'KFPerk_Support')
+                {
+                    return PerksAvailableData.bSupportAvailable;                    
+                }
+                else
+                {
+                    if(PerkClass == Class'KFPerk_FieldMedic')
+                    {
+                        return PerksAvailableData.bFieldMedicAvailable;                        
+                    }
+                    else
+                    {
+                        if(PerkClass == Class'KFPerk_Demolitionist')
+                        {
+                            return PerksAvailableData.bDemolitionistAvailable;                            
+                        }
+                        else
+                        {
+                            if(PerkClass == Class'KFPerk_Firebug')
+                            {
+                                return PerksAvailableData.bFirebugAvailable;                                
+                            }
+                            else
+                            {
+                                if(PerkClass == Class'KFPerk_Gunslinger')
+                                {
+                                    return PerksAvailableData.bGunslingerAvailable;                                    
+                                }
+                                else
+                                {
+                                    if(PerkClass == Class'KFPerk_Sharpshooter')
+                                    {
+                                        return PerksAvailableData.bSharpshooterAvailable;                                        
+                                    }
+                                    else
+                                    {
+                                        if(PerkClass == Class'KFPerk_SWAT')
+                                        {
+                                            return PerksAvailableData.bSwatAvailable;                                            
+                                        }
+                                        else
+                                        {
+                                            if(PerkClass == Class'KFPerk_Survivalist')
+                                            {
+                                                return PerksAvailableData.bSurvivalistAvailable;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return true;
+}
+
+simulated function UpdatePerksAvailable()
+{
+    KFPlayerController(GetALocalPlayerController()).UpdatePerkOnInit();
 }
 
 defaultproperties

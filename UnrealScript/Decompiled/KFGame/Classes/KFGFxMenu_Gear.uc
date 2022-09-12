@@ -624,7 +624,6 @@ private final function Callback_AttachmentNumbered(int MeshIndex, int SkinIndex,
 {
     local Pawn P;
     local KFPawn KFP;
-    local int I;
     local array<int> RemovedAttachments;
 
     P = Outer.GetPC().Pawn;
@@ -632,7 +631,7 @@ private final function Callback_AttachmentNumbered(int MeshIndex, int SkinIndex,
     {
         KFP = KFPawn(P);
         if((KFP != none) && MyKFPRI != none)
-        {            
+        {
             CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFP, MyKFPRI, RemovedAttachments);
             SelectCustomizationOption(KFP, 3, MeshIndex, SkinIndex, SlotIndex);
         }
@@ -651,7 +650,7 @@ private final function Callback_Attachment(int MeshIndex, int SkinIndex)
     {
         KFP = KFPawn(P);
         if((KFP != none) && MyKFPRI != none)
-        {            
+        {
             CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFP, MyKFPRI);
             SlotIndex = CurrentCharInfo.GetAttachmentSlotIndex(MeshIndex, KFP, MyKFPRI);
             SelectCustomizationOption(KFP, 3, MeshIndex, SkinIndex, SlotIndex);
@@ -664,7 +663,7 @@ function RelayFromCheatManager(Pawn P, KFGFxMenu_Gear.ECustomizationOption Custo
 {
     bIgnoreConflictingSlots = false;
     if(!bIgnoreConflictingSlots)
-    {        
+    {
         CurrentCharInfo.DetachConflictingAttachments(MeshIndex, KFPawn(P), MyKFPRI);
     }
     SelectCustomizationOption(P, CustomizationOption, MeshIndex, SkinIndex, AttachmentIndex);

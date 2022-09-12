@@ -102,6 +102,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     local KFWeapon KFW;
     local float TempDamage;
 
+    super.ModifyDamageGiven(InDamage, DamageCauser, MyKFPM, DamageInstigator, DamageType, HitZoneIdx);
     TempDamage = float(InDamage);
     TempDamage += (float(InDamage) * (GetPassiveValue(WeaponDamage, CurrentLevel)));
     if(DamageCauser != none)
@@ -309,7 +310,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
 {
     local name StateName;
 
-    if(((GetMadManActive()) && !W.IsMeleeWeapon()) || KFWeap_MeleeBase(W).default.bHasToBeConsideredAsRangedWeaponForPerks)
+    if((GetMadManActive()) && !W.IsMeleeWeapon() || KFWeap_MeleeBase(W).default.bHasToBeConsideredAsRangedWeaponForPerks)
     {
         StateName = W.GetStateName();
         WarnInternal(string(StateName));
@@ -349,13 +350,13 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
     return 0;
 }
 
-function float GetStunPowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+function bool IsStunGuaranteed(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     if(GetIncapMasterActive())
     {
-        return GetSkillValue(PerkSkills[9]);
+        return true;
     }
-    return 0;
+    return false;
 }
 
 simulated function float GetSnarePowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
@@ -585,6 +586,8 @@ defaultproperties
     ZedTimeModifyingStates(8)=BlunderbussDeployAndDetonate
     ZedTimeModifyingStates(9)=WeaponWindingUp
     ZedTimeModifyingStates(10)=MineReconstructorCharge
+    ZedTimeModifyingStates(11)=WeaponSonicGunSingleFiring
+    ZedTimeModifyingStates(12)=WeaponSonicGunCharging
     PrimaryWeaponDef=Class'KFWeapDef_Random'
     KnifeWeaponDef=Class'KFWeapDef_Knife_Survivalist'
     GrenadeWeaponDef=Class'KFWeapDef_Grenade_Commando'

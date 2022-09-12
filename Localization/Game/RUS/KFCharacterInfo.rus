@@ -6433,3 +6433,129 @@ AttachmentSkin0="Дорогая вещь"
 [Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
 Attachment="Тактический рюкзак эльфа"
 AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Paratrooper_Altimeter_ARCH]
+Attachment="Десантник: высотометр"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пустыня"
+AttachmentSkin2="Лес"
+AttachmentSkin3="Радиация"
+AttachmentSkin4="Инферно"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Paratrooper_JumpBottle_ARCH]
+Attachment="Десантник: баллон O2"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пустыня"
+AttachmentSkin2="Лес"
+AttachmentSkin3="Радиация"
+AttachmentSkin4="Инферно"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Paratrooper_Mask_ARCH]
+Attachment="Десантник: маска O2"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пустыня"
+AttachmentSkin2="Лес"
+AttachmentSkin3="Радиация"
+AttachmentSkin4="Инферно"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_ChemicalTrooper_Helmet_ARCH]
+Attachment="Десантник: шлем"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пустыня"
+AttachmentSkin2="Лес"
+AttachmentSkin3="Радиация"
+AttachmentSkin4="Инферно"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_ChemicalTrooper_Hood_ARCH]
+Attachment="Ликвидатор: капюшон"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пустыня"
+AttachmentSkin2="Лес"
+AttachmentSkin3="Радиация"
+AttachmentSkin4="Инферно"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_ChemicalTrooper_GasMask_ARCH]
+Attachment="Ликвидатор: противогаз"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пустыня"
+AttachmentSkin2="Лес"
+AttachmentSkin3="Радиация"
+AttachmentSkin4="Инферно"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_ChemicalTrooper_Respirator_ARCH]
+Attachment="Ликвидатор: респиратор"
+AttachmentSkin0="Черный цвет"
+AttachmentSkin1="Пустыня"
+AttachmentSkin2="Лес"
+AttachmentSkin3="Радиация"
+AttachmentSkin4="Инферно"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Cyborg_BrainHelmet_ARCH]
+Attachment="Киборг: мозгошлем"
+AttachmentSkin0="Титан"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Сверхновая"
+AttachmentSkin3="Неон"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Cyborg_PowerCore_ARCH]
+Attachment="Киборг: рюкзак «Генератор»"
+AttachmentSkin0="Титан"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Сверхновая"
+AttachmentSkin3="Неон"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Cyborg_HeartBackpack_ARCH]
+Attachment="Киборг: рюкзак «Сердце»"
+AttachmentSkin0="Титан"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Сверхновая"
+AttachmentSkin3="Неон"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Cyborg_TacticalHelmet_ARCH]
+Attachment="Киборг: тактический шлем"
+AttachmentSkin0="Титан"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Сверхновая"
+AttachmentSkin3="Неон"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Cyborg_ComModule_ARCH]
+Attachment="Киборг: коммуникатор"
+AttachmentSkin0="Титан"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Сверхновая"
+AttachmentSkin3="Неон"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Cyborg_Vision_ARCH]
+Attachment="Киборг: визор"
+AttachmentSkin0="Титан"
+AttachmentSkin1="Угольно-черный цвет"
+AttachmentSkin2="Сверхновая"
+AttachmentSkin3="Неон"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Cyborg_CompanionBackpack_ARCH]
+Attachment="Киборг: рюкзак «Компаньон»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_BloodThirst_Backpack_ARCH]
+Attachment="Рюкзак «Жажда крови»"
+AttachmentSkin0="Дорогая вещь"

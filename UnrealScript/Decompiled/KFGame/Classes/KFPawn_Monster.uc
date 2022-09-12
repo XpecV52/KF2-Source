@@ -213,6 +213,8 @@ var private const int DoshValue;
 var private const float XPValues[4];
 /** List of sockets representing weakpoint zone locations */
 var() array<name> WeakSpotSocketNames;
+var int HealByKill;
+var int HealByAssistance;
 var array<DamageModifierInfo> DamageTypeModifiers;
 var array<DamageModifierInfo> LiveDamageTypeModifiers;
 var float ZedBumpDamageScale;
@@ -239,6 +241,7 @@ var protected transient sBlockInfo DifficultyBlockSettings;
 var protected const float MinBlockFOV;
 var protected const float BlockSprintSpeedModifier;
 var transient float LastBlockTime;
+var protected float VortexAttracionModifier;
 var float KnockedDownBySonicWaveOdds;
 var float LastSpottedStatusUpdate;
 var KFPlayerController LastStoredCC;
@@ -1773,6 +1776,11 @@ function BleedOutTimer()
         }
         Died(LastHitBy, Class'KFDT_Bleeding', Location);
     }
+}
+
+function float GetVortexAttractionModifier()
+{
+    return VortexAttracionModifier;
 }
 
 simulated function bool Rally(KFPawn RallyInstigator, ParticleSystem RallyEffect, name EffectBoneName, Vector EffectOffset, ParticleSystem AltRallyEffect, name AltEffectBoneNames[2], Vector AltEffectOffset, optional bool bSkipEffects)
@@ -3807,6 +3815,7 @@ defaultproperties
     DifficultyBlockSettings=(Chance=0,Duration=0,MaxBlocks=0,Cooldown=0,DamagedHealthPctToTrigger=0,MeleeDamageModifier=1,DamageModifier=1,AfflictionModifier=1,SoloChanceMultiplier=0)
     MinBlockFOV=0.1
     BlockSprintSpeedModifier=0.75
+    VortexAttracionModifier=1
     DifficultyRallySettings=(bCanRally=true,bCauseSprint=false,RallyBuffTime=10,TakenDamageModifier=1,DealtDamageModifier=1)
     InitialGroundSpeedModifier=1
     MatchEnemySpeedAtDistance=200

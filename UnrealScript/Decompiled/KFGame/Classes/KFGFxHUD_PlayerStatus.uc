@@ -8,6 +8,7 @@
 class KFGFxHUD_PlayerStatus extends GFxObject within GFxMoviePlayer;
 
 var KFPlayerController MyPC;
+var KFGameReplicationInfo KFGRI;
 var KFPawn_Human MyHumanPawn;
 var KFInventoryManager MyInventoryManager;
 var class<KFPerk> LastPerkClass;
@@ -35,6 +36,7 @@ function TickHud(float DeltaTime)
     UpdateHealth();
     UpdateArmor();
     UpdateHealer();
+    UpdateGlobalDamage();
 }
 
 function ShowActiveIndicators(array<string> IconPathStrings)
@@ -199,6 +201,18 @@ function UpdateXP(int XPDelta, int XPPercent, bool bLevelUp, class<KFPerk> PerkC
 function ShowXPBark(int DeltaXP, string IconPath, bool bIsCurrentPerk)
 {
     ActionScriptVoid("showXPBark");
+}
+
+function UpdateGlobalDamage()
+{
+    if(KFGRI == none)
+    {
+        KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);        
+    }
+    else
+    {
+        SetBool("waveApplyingDamage", KFGRI.IsGlobalDamage());
+    }
 }
 
 defaultproperties

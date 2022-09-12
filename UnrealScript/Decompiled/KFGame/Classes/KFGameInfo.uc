@@ -879,8 +879,14 @@ function ResetAllPickups()
         ++ I;
         goto J0x72;
     }
-    ResetPickups(ItemPickups, NumWeaponPickups);
-    ResetPickups(AmmoPickups, NumAmmoPickups);
+    if(NumWeaponPickups > 0)
+    {
+        ResetPickups(ItemPickups, NumWeaponPickups);
+    }
+    if(NumAmmoPickups > 0)
+    {
+        ResetPickups(AmmoPickups, NumAmmoPickups);
+    }
 }
 
 function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
@@ -1258,9 +1264,19 @@ function bool AllowPrimaryWeapon(string ClassPath)
     return true;
 }
 
+function bool AllowSecondaryWeapon(string ClassPath)
+{
+    return true;
+}
+
 function int AdjustStartingGrenadeCount(int CurrentCount)
 {
     return CurrentCount;
+}
+
+function bool IsPerkAllowed(class<KFPerk> PerkClass)
+{
+    return true;
 }
 
 function SetMonsterDefaults(KFPawn_Monster P)
@@ -2192,7 +2208,14 @@ function CheckZedTimeOnKill(Controller Killer, Controller KilledPlayer, Pawn Kil
         }
         if(((Killer != none) && Killer.Pawn != none) && VSizeSq(Killer.Pawn.Location - KilledPawn.Location) < float(90000))
         {
-            DramaticEvent(0.05);            
+            if(((OutbreakEvent != none) && Role == ROLE_Authority) && OutbreakEvent.ActiveEvent.bModifyZedTimeOnANearZedKill)
+            {
+                DramaticEvent(OutbreakEvent.ActiveEvent.ZedTimeOnANearZedKill);                
+            }
+            else
+            {
+                DramaticEvent(0.05);
+            }            
         }
         else
         {
@@ -3270,7 +3293,7 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

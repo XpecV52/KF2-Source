@@ -450,6 +450,7 @@ defaultproperties
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         bUpdateKinematicBonesFromAnimation=true
         ReplacementPrimitive=none
+        BlockNonZeroExtent=true
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_ZedFleshpound.KFPawnSkeletalMeshComponent'
     Mesh=KFPawnSkeletalMeshComponent
@@ -478,6 +479,7 @@ defaultproperties
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent
         bUpdateKinematicBonesFromAnimation=true
         ReplacementPrimitive=none
+        BlockNonZeroExtent=true
     object end
     // Reference: KFSkeletalMeshComponent'Default__KFPawn_ZedFleshpound.KFPawnSkeletalMeshComponent'
     Components(3)=KFPawnSkeletalMeshComponent

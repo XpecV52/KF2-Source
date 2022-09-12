@@ -359,10 +359,18 @@ function float GetArmorDamageTypeModifier(class<DamageType> DT)
             {
                 DamageModifier = FMax(Lerp(1, DamageModifier, Outer.GameResistancePct), 0);
             }
+            if(DT.default.ArmorDamageModifier != float(1))
+            {
+                DamageModifier *= DT.default.ArmorDamageModifier;
+            }
             return DamageModifier;
         }
         -- I;
         goto J0x17;
+    }
+    if(DT.default.ArmorDamageModifier != float(1))
+    {
+        return DT.default.ArmorDamageModifier;
     }
     return 1;
 }

@@ -233,11 +233,13 @@ function bool execute(string cmd, out string result, PlayerController pc)
 	}
 	else if (cmd ~= "AdminKick" || cmd ~= "Kick")
 	{
+		WorldInfo.Game.ExileServerUsingKickBan();
 		WorldInfo.Game.AccessControl.Kick(args/*, "Engine.AccessControl.KickedMsg"*/);
 		return true;
 	}
 	else if (cmd ~= "AdminKickBan" || cmd ~= "KickBan")
 	{
+		WorldInfo.Game.ExileServerUsingKickBan();
 		WorldInfo.Game.AccessControl.KickBan(args/*, "Engine.AccessControl.KickAndPermaBan"*/);
 		return true;
 	}
@@ -290,11 +292,13 @@ function bool execute(string cmd, out string result, PlayerController pc)
 	{
 		if (cmd ~= "KickBan")
 		{
+			WorldInfo.Game.ExileServerUsingKickBan();
 			adminuser.KickBan(args/*, "Engine.AccessControl.KickAndPermaBan"*/);
 			return true;
 		}
 		else if (cmd ~= "Kick")
 		{
+			WorldInfo.Game.ExileServerUsingKickBan();
 			adminuser.Kick(args/*, "Engine.AccessControl.KickedMsg"*/);
 			return true;
 		}
@@ -383,6 +387,7 @@ function string SessionBan(string TargetPlayer, optional string reason)
 	if ( TargetPlayerPC != none )
 	{
 		KFAccessControl (WorldInfo.Game.AccessControl).KickSessionBanPlayer(TargetPlayerPC, TargetPlayerPC.PlayerReplicationInfo.UniqueId, "Engine.AccessControl.KickAndSessionBan");
+		WorldInfo.Game.ExileServerUsingKickBan();
 		return TargetPlayer$" banned for this session";
 	}
 	return "Player "$TargetPlayer$" not found";

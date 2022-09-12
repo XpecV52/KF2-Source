@@ -1,8 +1,8 @@
 package
 {
-    import tripwire.controls.IconLoaderListItemRenderer;
+    import tripwire.controls.BuffIconLoaderListItemRenderer;
     
-    public dynamic class ActiveIndicatorTileItem extends IconLoaderListItemRenderer
+    public dynamic class ActiveIndicatorTileItem extends BuffIconLoaderListItemRenderer
     {
          
         

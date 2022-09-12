@@ -34,6 +34,7 @@ KF-Biolapse="Biolapseをプレイ中"
 KF-Desolation="Desolationをプレイ中"
 KF-HellmarkStation="Hellmark Stationをプレイ中"
 KF-Elysium="Elysiumをプレイ中"
+KF-Dystopia2029="ディストピア2029をプレイ中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"
@@ -167,7 +168,7 @@ PlayOffline="オフラインでプレイしますか？Xbox Liveの機能は利�
 [Notifications]
 ControllerDisconnectedTitle="コントローラーの接続が切れました"
 ControllerDisconnectedPS4Message="ワイヤレスコントローラーの接続が切れました。ゲームをブートしたユーザーのワイヤレスコントローラーを再接続してください。"
-ControllerDisconnectedXB1="Xbox One ワイヤレス コントローラーの接続が切れました。コントローラーを再接続してください。"
+ControllerDisconnectedXB1=" Xbox One ワイヤレス コントローラーの接続が切れました。コントローラーを再接続してください。"
 PlayGoBusyTitle="インストール中です"
 PlayGoBusyMessage="ゲームのインストールを完了するまで、利用可能なコンテンツおよび機能には制限があります。"
 UnableToJoinInviteTitle="参加できません"

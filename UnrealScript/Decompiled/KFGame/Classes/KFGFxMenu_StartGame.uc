@@ -215,7 +215,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
     switch(SpecialEventID)
     {
         case 1:
-            return Class'KFGFxSpecialEventObjectivesContainer_Spring2020';
+            return Class'KFGFxSpecialEventObjectivesContainer_Spring2021';
         case 2:
             return Class'KFGFxSpecialEventObjectivesContainer_Summer2020';
         case 3:
@@ -1400,6 +1400,7 @@ function BuildServerFilters(OnlineGameInterface GameInterfaceSteam, KFGFxStartGa
     else
     {
         Search.AddServerFilter("version_match", string(Class'KFGameEngine'.static.GetKFGameVersion()));
+        Search.TestAddBoolGametagFilter(GameTagFilters, true, 'bServerExiled', 0);
     }
     if(OptionsComponent.GetMakeNewServer() || bAttemptingServerCreate)
     {
@@ -1817,5 +1818,6 @@ defaultproperties
     StockMaps(30)="kf-desolation"
     StockMaps(31)="kf-hellmarkstation"
     StockMaps(32)="kf-elysium"
+    StockMaps(33)="kf-dystopia2029"
     SubWidgetBindings=/* Array type was not detected. */
 }

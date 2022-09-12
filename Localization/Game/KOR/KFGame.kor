@@ -369,6 +369,7 @@ InProgressString="진행 중"
 OnlyStockMapsString="스톡 맵만"
 OnlyCustomMapsString="커스텀 맵만"
 LimitServerResultsString="결과 제한:"
+NotServerExiledString="로컬 관리자 없음"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="뮤테이터"
@@ -1385,7 +1386,7 @@ ControllerAccelerationJumpString="가속 점프"
 ControllerDeadzoneDescriptionString="게임에서 입력으로 인지하기 위해 필요한 오른쪽 스틱의 움직이는 정도"
 ControllerDeadzoneDescriptionXboxString="게임에서 입력으로 인지하기 위해 필요한 오른쪽 스틱의 움직이는 정도"
 ControllerAccelerationJumpDescriptionString="스틱이 왼쪽 또는 오른쪽 한도에 도달하기까지의 회전 속도 부스트의 정도"
-ControllerAccelerationJumpDescriptionXboxString="스틱이 왼쪽 또는 오른쪽 한도에 도달하기까지의 회전 속도 부스트의 정도"
+ControllerAccelerationJumpDescriptionXboxString="쪽 스틱이 왼쪽 또는 오른쪽 한도에 도달하기까지의 회전 속도 부스트의 정도"
 AimAssistLockOnString="조준 보조 줌 고정"
 AimAssistRotationString="조준 보조 회전"
 AimAssistSlowDownString="조준 보조 천천히"
@@ -1790,7 +1791,7 @@ EXPAction1="버서커 무기 데미지"
 EXPAction2="버서커 무기를 이용하여 플레이어 근처의 제드 죽이기"
 
 Fortitude="드레드노트"
-FortitudeDescription="총 체력 75% 증가"
+FortitudeDescription="총 체력 100% 증가"
 
 Ninja="척후병"
 NinjaDescription="병과 무기 이용 시 이동 속도 20%, 스프린트 속도 25% 향상, 매 초마다 체력을 2포인트 회복"
@@ -1802,7 +1803,7 @@ Speed="도살자"
 SpeedDescription="병과 무기 이용 시 공격 속도 20%, 대미지 20% 증가"
 
 Resistance="저항력"
-ResistanceDescription="모든 데미지 저항력 20% 증가 독성 및 음파 데미지에 대한 저항력 20% 추가"
+ResistanceDescription="모든 데미지 저항력 25% 증가 독성 및 음파 데미지에 대한 저항력 25% 추가"
 
 Parry="회피"
 ParryDescription="병과 백병전 무기를 이용한 회피 시 10초간 유입 데미지 40% 감소, 백병전 공격 속도 5% 증가 및 백병전 데미지 35% 증가"
@@ -1937,22 +1938,22 @@ HealingSurge="공생 체력"
 HealingSurgeDescription="총 체력 25% 증가 팀원 치료 시 자신의 총 체력 10% 증가"
 
 Survivalist="회복력"
-SurvivalistDescription="체력 포인트 상실 시 최고 50%까지 1%씩 데미지 저항력 증가"
+SurvivalistDescription="체력 포인트 상실 시 최고 70%까지 1%씩 데미지 저항력 증가"
 
 HealingSpeedBoost="아드레날린 샷"
-HealingSpeedBoostDescription="치료 다트로 팀원을 쏘면 이동 속도가 5초 동안 10% 향상 최대 30%의 보너스가 쌓입니다."
+HealingSpeedBoostDescription="체력 회복 시 이동 속도가 5초 동안 10% 향상되며 최대 30%의 보너스가 쌓입니다."
 
 Combatant="전투 의사"
 CombatantDescription="병과 무기의 탄창 용량 50% 증가 및 이동 속도 10% 향상"
 
 HealingDamageBoost="포커스 주사"
-HealingDamageBoostDescription="치료 다트로 팀원을 쏘면 팀원이 가하는 데미지가 5초 동안 5% 증가 최대 20%의 보너스가 쌓입니다."
+HealingDamageBoostDescription="체력 회복 시 플레이어가 입히는 데미지가 5초 동안 5% 향상되며 최대 20%의 보너스가 쌓입니다."
 
 AcidicCompound="애시드 탄환"
 AcidicCompoundDescription="병과 무기로 제드를 중독시키고 시간이 지나면서 독성 데미지를 가함"
 
 HealingShield="응고 촉진제"
-HealingShieldDescription="치료 다트로 팀원을 쏘면 데미지 저항력이 5초 동안 10% 향상 최대 30%의 보너스가 쌓입니다."
+HealingShieldDescription="체력 회복 시 플레이어의 데미지 저항이 5초 동안 10% 향상되며 최대 30%의 보너스가 쌓입니다."
 
 Enforcer="군의관"
 EnforcerDescription="병과 무기의 데미지 20% 증가"
@@ -2375,7 +2376,7 @@ BullseyeUpdate="최신 소식 콘텐츠 - 불스아이 업데이트"
 LatestUpdate="최신 콘텐츠 업데이트"
 Forums="저희 커뮤니티 포럼을 방문해주세요."
 Survey="게임플레이 조사에 참여해주세요."
-CommunityTracker="커뮤니티 이슈 요청 추적"
+CommunityTracker="로드맵"
 FeaturedCrateKey="특별 Horzine 보급상자 열쇠 - $2.49"
 FeaturedEventItem="이벤트 아이템 구성"
 FeaturedUsbKey="특별 무기 스킨 USB 키 - $2.49"
@@ -2402,6 +2403,7 @@ USBHighVoltage="고전압 USB 키 - $2.49"
 MerchSale="KF2 장비 세일! 2017년 4월 30일까지 25% 할인됩니다. 프로모 코드 ZED"
 FreeTrial="오늘 Killing Floor 2를 구매하세요!"
 FeaturedCrossover="주요 크로스오버 프로모션"
+ArmorySeasonPass="무기고 시즌 패스"
 
 [Objectives]
 ObjectiveTitle="목표"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="크리스마스 | 전술 엘프-팩"
 ChanceDropDescriptionStrings[0]="크램퍼스 티켓"
 ChanceDropDescriptionStrings[1]="크램퍼스 황금 티켓"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특별 이벤트입니다"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="사이버 위협",DescriptionString="아무 지도 혹은 모드에서 보스 15마리를 처치하기")
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 해킹",DescriptionString="디스토피아 2029에서 주간 게임 모드를 완료하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="날뛰는 AI",DescriptionString="디스토피아 2029에서 E.D.A.R. 50마리를 처치하기")
+SpecialEventObjectiveInfoList[3]=(TitleString="시뮬레이션이 아니야",DescriptionString="디스토피아 2029에서 데미지를 10회 이상 받지 않고 웨이브 완료하기")
+SpecialEventObjectiveInfoList[4]=(TitleString="새로운 제드 월드",DescriptionString="디스토피아 2029에서 끝없는 도전 어려움 이상으로 15 웨이브 완료하기")
+
+AllCompleteRewardDescriptionString="사이보그 | 동반자 백팩 | 프레셔스"
+
+ChanceDropDescriptionStrings[0]="봄 티켓"
+ChanceDropDescriptionStrings[1]="봄 황금 티켓"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2894,6 +2910,26 @@ FriendlyName="현재 아웃브레이크: 버블제드"
 DescriptionStrings[0]="...그들의 목이 아프겠네요."
 DescriptionStrings[1]="길이: 중간(7웨이브)"
 ModifierDescriptions[0]="이 제드들은 무엇인가 크게 잘못된 것 같습니다. 머리가 정상보다 너무 너무 너무 큽니다. 너무 거대해요! 매치 메이킹 페이지에서 주간 게임 모드를 선택하여 이 주간 아웃브레이크를 플레이하세요. 병과 레벨 15 이상입니다."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName="콜로세움"
+DescriptionStrings[0]="광전사만 들어갈 수 있습니다!"
+DescriptionStrings[1]="길이: 중간 (7웨이브)"
+ModifierDescriptions[0]="칼과 도끼를 준비하여 아레나로 들어가십시오! 박치기 스킬을 갈고 닦으십시오. 매치 메이킹 페이지에서 주간 게임 모드를 선택하십시오. 병과 레벨 15 이상입니다."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="피의 갈증"
+DescriptionStrings[0]="연속 킬을 유지하지 못하면 죽습니다..."
+DescriptionStrings[1]="길이: 중간 (7웨이브)"
+ModifierDescriptions[0]="제드의 피에 대한 갈증으로 몸에 계속 무리가 옵니다(체력 카운터 근처에 주간 아이콘이 표시된 동안만 적용). 체력을 높이려면 오직 적을 처치해야 합니다. 매치 메이킹 페이지에서 주간 게임 모드를 선택하십시오. 병과 레벨 15 이상입니다."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3412,6 +3448,9 @@ DisplayName="헬마크 스테이션"
 
 [KF-Elysium KFMapSummary]
 DisplayName="엘리시움"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="디스토피아 2029"
 
 [KFMapInfo]
 ; defaults

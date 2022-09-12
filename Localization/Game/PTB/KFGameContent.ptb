@@ -473,7 +473,7 @@ ItemCategory="Pistola de mão"
 ItemDescription="•Apenas disparo único.\n•Atirar a esmo nunca foi tão divertido."
 
 [KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="Chumbo Grosso HRG Duplo"
+ItemName="Duas Chumbo Grosso HRG"
 ItemCategory="Pistola de mão"
 ItemDescription="•Apenas disparo semiautomático.\n•Tiro alt. alterna estilos de mira ao usar a mira metálica.\n•Atirar a esmo nunca foi tão divertido, de verdade."
 
@@ -759,6 +759,17 @@ ItemName="Presa Gelada"
 ItemCategory="Espingarda"
 ItemDescription="•O modo de tiro atira projéteis que congelam os inimigos.\n•O ataque de pancada esmaga os inimigos com o machado.\n•Alt - bloqueio / aparo.\n•O machado é perfeito para escultura em gelo."
 SharedUnlockSource="Conjunto de Armas Presa Gelada"
+
+[KFWeap_HRG_SonicGun]
+ItemName="Batida Beluga HRG"
+ItemCategory="Especial"
+ItemDescription="•O disparo principal lança rajadas sônicas.\n• O fogo alternativo carrega a próxima explosão, aumentando sua frequência.\n• Aumenta os decibéis de qualquer grupo."
+
+[KFWeap_GravityImploder]
+ItemName="Implosão de Gravidade"
+ItemCategory="Explosivos"
+ItemDescription="•O disparo padrão lança granadas de implosão.\n•O modo de fogo alternativo lança granadas de gravidade que atraem os inimigos.\n•Uma das armas mais legais já desenvolvidas."
+SharedUnlockSource="Conjunto de Arma Implosão de Gravidade"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -85,6 +85,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     local KFWeapon KFW;
     local float TempDamage;
 
+    super.ModifyDamageGiven(InDamage, DamageCauser, MyKFPM, DamageInstigator, DamageType, HitZoneIdx);
     TempDamage = float(InDamage);
     if(DamageCauser != none)
     {
@@ -214,26 +215,25 @@ event Destroyed()
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return (IsTacticalReloadActive()) && (IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW);
+    return (IsTacticalReloadActive()) && ((IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW)) || IsDual9mm(KFW);
 }
 
 function float GetStunPowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
-    if(IsDamageTypeOnPerk(class<KFDamageType>(DamageType)))
+    if((IsDamageTypeOnPerk(class<KFDamageType>(DamageType))) && IsStunActive())
     {
-        if((HitZoneIdx == 0) && GetZTStunActive())
-        {
-            return GetSkillValue(PerkSkills[9]);            
-        }
-        else
-        {
-            if(IsStunActive())
-            {
-                return GetSkillValue(PerkSkills[3]);
-            }
-        }
+        return GetSkillValue(PerkSkills[3]);
     }
     return 0;
+}
+
+function bool IsStunGuaranteed(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+{
+    if((IsDamageTypeOnPerk(class<KFDamageType>(DamageType))) && GetZTStunActive())
+    {
+        return bWasLastHitAHeadshot;
+    }
+    return false;
 }
 
 function bool IsStationaryAimActive()

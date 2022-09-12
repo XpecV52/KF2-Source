@@ -635,7 +635,7 @@ ItemCategory="Materiały wybuchowe"
 ItemDescription="•Wystrzeliwuje granaty.\n•Granaty eksplodują po trafieniu w cel.\n•Broń dla tych, którzy sklejenie sześciu granatników M79 taśmą uważają za nieeleganckie."
 
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
-ItemName="Karabin HMTech-501 z granatnikiem"
+ItemName="Karabin HMTech-501"
 ItemCategory="Karabin szturmowy"
 ItemDescription="•Strzela wyłącznie ogniem ciągłym.\n•Alt. — wystrzeliwuje granaty medyczne.\n•Jeśli lubisz ciskać granatami w swoich, to broń dla ciebie!"
 SecondaryAmmo="Granat medyczny"
@@ -681,7 +681,7 @@ ItemCategory="Karabin wyborowy"
 ItemDescription="•Tryb ataku strzela szybkimi pociskami elektrycznymi.\n•Tryb alternatywny strzela strzałkami leczniczymi, które leczą sojuszników."
 
 [KFWeap_SMG_G18]
-ItemName="Tarcza policyjna z Glockiem 18"
+ItemName="Tarcza policyjna z G18"
 ItemCategory="Pistolet maszynowy"
 ItemDescription="•Wybór ostrzału automatycznego i półautomatycznego.\n•Tryb alternatywny przełącza tryby ostrzału.\n•Używanie celownika mechanicznego unosi tarczę redukującą większość ataków od przodu."
 SharedUnlockSource="Zestaw broni tarcza policyjna z G18, zestaw broni Świąteczny Horror"
@@ -759,6 +759,17 @@ ItemName="Mroźny Kieł"
 ItemCategory="Strzelba"
 ItemDescription="• Tryb ognia strzela pociskami, które zamrażają wrogów.\n• Atak wręcz rozbija wrogów toporem.\n• Tryb alt. – blokowanie/parowanie.\n• Ten topór idealnie się nadaje do rzeźbienia w lodzie."
 SharedUnlockSource="Zestaw broni Mroźny Kieł"
+
+[KFWeap_HRG_SonicGun]
+ItemName="HRG Rytm Bieługi"
+ItemCategory="Specjalne"
+ItemDescription="• Podstawowy atak wystrzeliwuje toksyczne wybuchy.\n• Alternatywny atak podładowuje następnych wybuch, zwiększając jego częstotliwość.\n• Wzmocni decybele każdej imprezy."
+
+[KFWeap_GravityImploder]
+ItemName="Imploder grawitacyjny"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="• Domyślny atak wystrzeliwuje implodujące granaty.\n• Alternatywny atak wystrzeliwuje granaty, które przyciągają wrogów.\n• Jedna z najbardziej przyciągających broni w historii."
+SharedUnlockSource="Zestaw broni implodera grawitacyjnego"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

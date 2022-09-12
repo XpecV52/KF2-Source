@@ -199,6 +199,7 @@ defaultproperties
       bUseOnePassLightingOnTranslucency=True
       CollideActors=True
       BlockZeroExtent=True
+      BlockNonZeroExtent=True
       BlockRigidBody=True
       RBCollideWithChannels=(Default=True,Pawn=True,Vehicle=True,BlockingVolume=True)
       Translation=(X=0.000000,Y=0.000000,Z=-86.000000)

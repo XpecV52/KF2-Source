@@ -8,10 +8,13 @@
 class KFDT_Piercing_Crossbow extends KFDT_Piercing
     abstract;
 
+var float HeadStunPower;
+
 defaultproperties
 {
+    HeadStunPower=1000
     WeaponDef=Class'KFGame.KFWeapDef_Crossbow'
-    StunPower=101
+    StunPower=30
     KnockdownPower=20
     StumblePower=250
     GunHitPower=100

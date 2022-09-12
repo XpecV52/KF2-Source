@@ -94,7 +94,7 @@ RarityStrings[1]="POCO COMÚN"
 RarityStrings[2]="INFRECUENTE"
 RarityStrings[3]="EXCEPCIONAL"
 RarityStrings[4]="ELABORADO"
-RarityStrings[5]="SUMAMENTE INFRECUENTE"
+RarityStrings[5]="MUY RARO"
 RarityStrings[6]="CUALQUIERA"
 
 WeaponTypeStrings[0]="PISTOLA"
@@ -315,7 +315,7 @@ NameString="NOMBRE"
 RefreshString="ACTUALIZAR"
 GamesFoundString="PARTIDAS:"
 
-ServerBrowserString="EXPLORAR SERVIDORES"
+ServerBrowserString="EXPLORAR SERVID."
 
 JoinString="UNIRSE"
 PasswordPromptString="ESCRIBE LA CONTRASEÑA"
@@ -369,6 +369,7 @@ InProgressString="EN CURSO"
 OnlyStockMapsString="SOLO MAPAS BASE"
 OnlyCustomMapsString="SOLO MAPAS PERSONALIZ."
 LimitServerResultsString="LIMITAR RESULTADOS:"
+NotServerExiledString="SIN ADMINSTRADOR LOCAL"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="MUTÁGENOS"
@@ -957,13 +958,13 @@ MarketCosmeticsString="Cosméticos de mercado"
 MarketEmotesString="Emo. mercado"
 MarketSFXString="Efectos de mercado"
 ThankYouString="¡Gracias por tu compra! Esto nos ayudará a desarrollar nuevos objetos, mapas, armas, zeds y modos de juego para futuras actualizaciones."
-WeaponBundlesString="Paquetes de armas"
-CharacterBundlesString="Paquetes de personajes"
-OutfitBundlesString="Paquetes de atuendos"
-TicketCratesUSBBundlesString="Paquetes de boletos/cajas/USB"
-CosmeticBundlesString="Paquetes de cosméticos"
-WeaponSkinBundlesString="Paquetes de apariencias de arma"
-HeadshotFxBundlesString="Paquetes de efectos de disparo en la cabeza"
+WeaponBundlesString="Armas"
+CharacterBundlesString="Personajes"
+OutfitBundlesString="Atuendos"
+TicketCratesUSBBundlesString="Boletos/cajas/USB"
+CosmeticBundlesString="Cosméticos"
+WeaponSkinBundlesString="Apariencias de arma"
+HeadshotFxBundlesString="Efectos de disparo en la cabeza"
 SelectWeaponSkinsString="Seleccionar apariencias de arma"
 SelectCosmeticsString="Seleccionar cosméticos"
 SelectEmotesString="Seleccionar emotes"
@@ -989,7 +990,7 @@ MenuStrings[5]="TIENDA"
 MenuStrings[6]="OPCIONES"
 MenuStrings[7]="SALIR"
 
-ServerBrowserString="EXPLORAR SERVIDORES"
+ServerBrowserString="EXPLORAR SERVID."
 MatchmakingString="MATCHMAKING"
 CreateGameString="CREAR PARTIDA"
 SoloString="UN JUGADOR"
@@ -1790,7 +1791,7 @@ EXPAction1="Hacer daño con armas de berserker"
 EXPAction2="Mata a zeds junto a jug. con arm. beserker"
 
 Fortitude="Acorazado"
-FortitudeDescription="Aumenta la salud total un 75 %."
+FortitudeDescription="Aumenta la salud total un 100 %."
 
 Ninja="Escaramuzador"
 NinjaDescription="Muévete un 20 % más rápido y esprinta un 25 % más rápido al usar armas de especialización. Además, regeneras 2 puntos de salud por segundo."
@@ -1802,7 +1803,7 @@ Speed="Carnicero"
 SpeedDescription="Ataca un 20 % más rápido e inflige un 20 % más de daño con armas de especialización."
 
 Resistance="Resistencia"
-ResistanceDescription="Gana un 20 % de resistencia contra todo el daño. Gana un 20 % de resistencia adicional contra veneno y daño sónico."
+ResistanceDescription="Gana un 25 % de resistencia contra todo el daño. Gana un 25 % de resistencia adicional contra veneno y daño sónico."
 
 Parry="Parar"
 ParryDescription="Parar con armas de esp. reduce el daño recibido un 40% y aumenta la velocidad de ataque c/c un 5 % y el daño c/c un 35 % durante 10 seg."
@@ -1937,22 +1938,22 @@ HealingSurge="Salud simbiótica"
 HealingSurgeDescription="Aumenta la salud total un 25 %. Al curar a tus compañeros, recuperas un 10 % de tu salud total."
 
 Survivalist="Aguante"
-SurvivalistDescription="Aumenta la resistencia al daño en un 1 % por cada punto de salud perdido (hasta un 50 %)."
+SurvivalistDescription="Aumenta la resistencia al daño en un 1 % por cada punto de salud perdido (hasta un 70 %)."
 
 HealingSpeedBoost="Inyección de adrenalina"
-HealingSpeedBoostDescription="Al disparar un dardo curativo a un compañero, su velocidad de movimiento aumenta un 10 % durante 5 s. Bonificación máxima acumulable: 30 %."
+HealingSpeedBoostDescription="Toda tu curación aumenta la velocidad de movimiento del jugador un 10 % durante 5 s. Bonificación máxima acumulable: 30 %."
 
 Combatant="Doctor combatiente"
 CombatantDescription="Aumenta la capacidad de los cargadores de armas de especialización un 50 %, y la velocidad de movimiento un 10 %."
 
 HealingDamageBoost="Inyección de precisión"
-HealingDamageBoostDescription="Al disparar un dardo curativo a un compañero, el daño que provocan aumenta un 5 % durante 5 s. Bonificación máxima acumulable: 20 %."
+HealingDamageBoostDescription="Toda tu curación aumenta el daño que inflige el jugador un 5 % durante 5 s. Bonificación máxima acumulable: 20 %."
 
 AcidicCompound="Rondas ácidas"
 AcidicCompoundDescription="Las armas de especialización pueden envenenar a los zeds y provocarles daño prolongado."
 
 HealingShield="Potenciador coagulante"
-HealingShieldDescription="Al disparar un dardo curativo a un compañero, su resistencia al daño aumenta un 10 % durante 5 s. Bonificación máxima acumulable: 30 %."
+HealingShieldDescription="Toda tu curación aumenta la resistencia al daño del jugador un 10 % durante 5 s. Bonificación máxima acumulable: 30 %."
 
 Enforcer="Cirujano de campo"
 EnforcerDescription="Aumenta el daño de las armas de especialización un 20 %."
@@ -1961,7 +1962,7 @@ AirborneAgent="MOMENTO ZED - Agente aéreo"
 AirborneAgentDescription="Durante el momento zed, sueltas un gas beneficioso que cura a los compañeros cercanos."
 
 Sedative="MOMENTO ZED - Zedante"
-SedativeDescription="El daño de tus armas de especialización aumenta un 30 % durante el Momento Zed, y tus eliminaciones provocan una explosión tóxica que inflige daño a los Zeds y cura a los jugadores."
+SedativeDescription="El daño de tus armas de especialización aumenta un 30 % durante el Momento Zed, y tus eliminaciones provocan una explosión de gas curativo."
 
 
 EXPAction1="Infligir daño con armas médicas"
@@ -2009,7 +2010,7 @@ SplashDamage="Ola de calor"
 SplashDamageDescription="Los zeds que reciben daño ígneo a quemarropa se tambalean y caen."
 
 Inferno="MOMENTO ZED - Inferno"
-InfernoDescription="Durante el momento zed, los zeds afectados por daño de fuego se ralentizan un 30 % y reciben un 50 % más de daño por quemaduras."
+InfernoDescription="Durante el momento zed, los zeds afectados por daño de fuego se ralentizan un 30 % y reciben un 50 % más de daño por quemaduras."
 
 Scorch="MOMENTO ZED - Pirómano"
 ScorchDescription="Durante el momento zed, atacas con armas de especialización casi en tiempo real. Además, cuentas con munición infinita."
@@ -2032,7 +2033,7 @@ Passives[3]=(Title="Reducción del retroceso",Description="Retroceso en armas de
 Passives[4]=(Title="Recarga en momento zed",Description="Vel. de recarga en momento zed: +%x %/nivel");
 
 ShootnMove="Inmutable"
-ShootnMoveDescription="Ignora la penalización de velocidad de movimiento y aumenta el daño de las armas de especialización en un 7.5 % cuando se usa la mirilla. Reduce drásticamente la inestabilidad de las armas de especialización."
+ShootnMoveDescription="Ignora la penalización de velocidad de movimiento y aumenta el daño de las armas de especialización en un 7,5 % cuando se usa la mirilla. Reduce drásticamente la inestabilidad de las armas de especialización."
 
 QuickSwitch="Desenfundado rápido"
 QuickSwitchDescription="Reduce la penalización en el retroceso al disparar sin apuntar. Velocidad de movimiento: +5 %. Velocidad de cambio de arma de esp.: +50 %."
@@ -2375,7 +2376,7 @@ BullseyeUpdate="Contenido nuevo: Actualización de diana"
 LatestUpdate="Nueva actualización de contenido"
 Forums="Visita los foros de la comunidad"
 Survey="Rellena nuestra encuesta sobre el juego"
-CommunityTracker="Sigue las peticiones de la comunidad"
+CommunityTracker="Mapa de ruta"
 FeaturedCrateKey="Destaca: Llave caja sumin. Horzine - 2,49 $"
 FeaturedEventItem="Objeto de evento destacado"
 FeaturedUsbKey="Destaca: Llave USB apariencia arma - 2,49 $"
@@ -2402,6 +2403,7 @@ USBHighVoltage="Llave USB Alto voltaje - 2,49 $"
 MerchSale="¡Rebajas KF2! 25% menos hasta 30/4/17 (cód.: ZED)"
 FreeTrial="¡Compra hoy Killing Floor 2!"
 FeaturedCrossover="Promoción de crossover destacada"
+ArmorySeasonPass="Pase de temporada de armería"
 
 [Objectives]
 ObjectiveTitle="OBJETIVO"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="Navidad | Mochila élfica táctica"
 ChanceDropDescriptionStrings[0]="Boleto Krampus"
 ChanceDropDescriptionStrings[1]="Boleto dorado Krampus"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="Un evento especial de tiempo limitado con objetos exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Ciberamenaza",DescriptionString="Mata a 15 jefes en cualquiera de los mapas y modos")
+SpecialEventObjectiveInfoList[1]=(TitleString="Pirateo semanal",DescriptionString="Completa el semanal en Distopía 2029")
+SpecialEventObjectiveInfoList[2]=(TitleString="IA fuera de control",DescriptionString="Mata a 50 E.D.A.R. en Distopía 2029")
+SpecialEventObjectiveInfoList[3]=(TitleString="No es una simulación",DescriptionString="Completa 10 veces una oleada sin recibir daño en Distopía 2029")
+SpecialEventObjectiveInfoList[4]=(TitleString="Desafío del mundo Zed",DescriptionString="Completa la oleada 15 del modo Sin fin en dificultad difícil o superior en Distopía 2029")
+
+AllCompleteRewardDescriptionString="Cíborg | Mochila de acompañante | Preciosa"
+
+ChanceDropDescriptionStrings[0]="Boleto de primavera"
+ChanceDropDescriptionStrings[1]="Boleto dorado de primavera"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2894,6 +2910,26 @@ FriendlyName="Brote actual: Zed cabezón"
 DescriptionStrings[0]="Les debe molestar el cuello."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
 ModifierDescriptions[0]="¡Algo ha salido horriblemente mal en esta tanda de zeds y sus cabezas son muchísimo más grandes de lo normal! ¡Enormes, incluso! Selecciona el modo de juego Semanal en la página de matchmaking. Especialización de nivel 15 o superior."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName="Coliseo"
+DescriptionStrings[0]="¡Solo se admiten berserkers!"
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="¡Afila tus espadas y hachas, y participa en la arena! Entrena tus habilidades de Azote embestida. Selecciona el modo de juego semanal en la página de matchmaking. Especialización 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="Sed de sangre"
+DescriptionStrings[0]="Continúa la racha de asesinatos, o muere..."
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="La sed de sangre de Zeds te infligirá daño de forma continua (mientras el icono semanal se muestre cerca del contador de salud). Matar es la única forma de regenerar salud. Selecciona el modo de juego semanal en la página de matchmaking. Especialización 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3412,6 +3448,9 @@ DisplayName="Puesto Hellmark"
 
 [KF-Elysium KFMapSummary]
 DisplayName="Elíseo"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="Distopía 2029"
 
 [KFMapInfo]
 ; defaults

@@ -369,6 +369,7 @@ InProgressString="LÄUFT"
 OnlyStockMapsString="NUR STANDARD-KARTEN"
 OnlyCustomMapsString="NUR BENUTZERDEF. KARTEN"
 LimitServerResultsString="ERGEBNISSE EINGRENZEN:"
+NotServerExiledString="KEIN LOKALER ADMIN"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="MUTATOREN"
@@ -1790,7 +1791,7 @@ EXPAction1="Berserker-Waffenschaden verursachen"
 EXPAction2="Zeds bei Spieler mit Berserker-Waffe töten"
 
 Fortitude="Dreadnaught"
-FortitudeDescription="Erhöhe Gesamt-LP um 75%."
+FortitudeDescription="Erhöhe Gesamt-LP um 100%."
 
 Ninja="Plänkler"
 NinjaDescription="20% schneller bewegen, 25% schneller sprinten und jede Sekunde 2 LP regenerieren, wenn eine Vorteilswaffe benutzt wird."
@@ -1802,7 +1803,7 @@ Speed="Schlachter"
 SpeedDescription="Greife mit Vorteilswaffen 20% schneller an und verursache 20% mehr Schaden."
 
 Resistance="Resistenz"
-ResistanceDescription="Erhalte 20% Resistenz gegen jeglichen Schaden. Erhalte 20% zusätzliche Resistenz gegen Gift- und Schall-Schaden."
+ResistanceDescription="Erhalte 25% Resistenz gegen jeglichen Schaden. Erhalte 25% zusätzliche Resistenz gegen Gift- und Schall-Schaden."
 
 Parry="Parieren"
 ParryDescription="Parieren mit Vorteils-Nahkampfwaffen verringert erhaltenen Schaden um 40%, erhöht Nahkampf-Ang.-Geschw. um 5% und -Schaden um 35% für 10 Sek."
@@ -1937,22 +1938,22 @@ HealingSurge="Symbiotische Gesundheit"
 HealingSurgeDescription="Erhöhe Gesamt-LP um 25%. Wenn du Teamkollegen heilst, wirst du um 10% deiner gesamten Lebenspunkte geheilt."
 
 Survivalist="Widerstandsfähigkeit"
-SurvivalistDescription="Erhöhe Schadensresistenz um 1% pro verlorenem LP, bis zu 50%."
+SurvivalistDescription="Erhöhe Schadensresistenz um 1% pro verlorenem LP, bis zu 70%."
 
 HealingSpeedBoost="Adrenalin-Schuss"
-HealingSpeedBoostDescription="Das Beschießen von Teamkollegen mit heilenden Pfeilen erhöht ihre Bewegungsgeschwindigkeit für 5 Sek. um 10%. Bonus stapelt sich bis auf 30%."
+HealingSpeedBoostDescription="Deine gesamte Heilung erhöht die Spieler-Bewegungsgeschwindigkeit für 5 Sek. um 10%. Bonus stapelt sich bis auf 30%."
 
 Combatant="Kämpfender Arzt"
 CombatantDescription="Erhöhe die Magazinkapazität von Vorteils-Waffen um 50% und die Bewegungsgeschwindigkeit um 10%."
 
 HealingDamageBoost="Fokus-Injektion"
-HealingDamageBoostDescription="Das Beschießen von Teamkollegen mit heilenden Pfeilen erhöht ihren verursachten Schaden für 5 Sek. um 5%. Bonus stapelt sich bis auf 20%."
+HealingDamageBoostDescription="Deine gesamte Heilung erhöht den verursachten Schaden für 5 Sek. um 5%. Bonus stapelt sich bis auf 20%."
 
 AcidicCompound="Säuregeschosse"
 AcidicCompoundDescription="Vorteils-Waffen können Zeds vergiften und Giftschaden über Zeit verursachen."
 
 HealingShield="Gerinnungsverstärker"
-HealingShieldDescription="Das Beschießen von Teamkollegen mit heilenden Pfeilen erhöht ihre Schadensresistenz für 5 Sek. um 10%. Bonus stapelt sich bis auf 30%."
+HealingShieldDescription="Deine gesamte Heilung erhöht den Schadenswiderstand für 5 Sek. um 10%. Bonus stapelt sich bis auf 30%."
 
 Enforcer="Kampfchirurg"
 EnforcerDescription="Erhöhe den Schaden mit Vorteils-Waffen um 20%."
@@ -2032,7 +2033,7 @@ Passives[3]=(Title="Rückstoßdämpfung",Description="Verringere Vort.-Waf.-Rüc
 Passives[4]=(Title="Zed-Zeit-Nachladen",Description="Erhöhe Nachladegeschw. in Zed-Zeit %x%/lvl");
 
 ShootnMove="Beständig"
-ShootnMoveDescription="Ignoriere Bewegungsgeschwindigkeit-Strafen und erhöhe den Schaden von Vorteils-Waffen um 7.5% beim Einsatz von Kimme und Korn. Drastische Verringerung von Waffenschwankungen mit Vorteils-Waffen."
+ShootnMoveDescription="Ignoriere Bewegungsgeschwindigkeit-Strafen und erhöhe den Schaden von Vorteils-Waffen um 7,5% beim Einsatz von Kimme und Korn. Drastische Verringerung von Waffenschwankungen mit Vorteils-Waffen."
 
 QuickSwitch="Schnell ziehen"
 QuickSwitchDescription="Verringere Rückstoß-Strafen für das Schießen aus der Hüfte, erhöhe die Bew.geschw. um 5% und wechsle 50% schneller zwischen Vorteils-Waffen."
@@ -2375,7 +2376,7 @@ BullseyeUpdate="Neuster Inhalt - Bullseye-Update"
 LatestUpdate="Neustes Inhalts-Update"
 Forums="Besuche unsere Community Foren"
 Survey="Nimm an der Gameplay-Umfrage teil"
-CommunityTracker="Verfolge Problemanfragen der Community"
+CommunityTracker="Roadmap"
 FeaturedCrateKey="Akt. Horzine Vorratskisten-Schl. – $2.49"
 FeaturedEventItem="Aktueller Event-Gegenstand"
 FeaturedUsbKey="Aktueller Waffen-Skin USB-Schlüssel – $2.49"
@@ -2402,6 +2403,7 @@ USBHighVoltage="Hochspannungs-USB-Schlüssel – $2.49"
 MerchSale="KF2-Ware-Sale! 25 % Rabatt bis 30.04.17, Code: ZED"
 FreeTrial="Kauf Killing Floor 2 noch heute!"
 FeaturedCrossover="Aktuelle Crossover-Promo"
+ArmorySeasonPass="Waffenkammer-Saisonpass"
 
 [Objectives]
 ObjectiveTitle="AUFGABE"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="Weihnachten | Taktischer Elf-Rucksack"
 ChanceDropDescriptionStrings[0]="Schein „Krampus“"
 ChanceDropDescriptionStrings[1]="Goldener Schein „Krampus“"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="Ein zeitbegrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Cyber-Bedrohung",DescriptionString="Töte 15 Bosse auf einer beliebigen Karte oder in einem beliebigen Modus")
+SpecialEventObjectiveInfoList[1]=(TitleString="Wöchentlicher Hack",DescriptionString="Schaffe das wöchentliche Dystopia 2029")
+SpecialEventObjectiveInfoList[2]=(TitleString="KI außer Kontrolle",DescriptionString="Töte 50 E.D.A.R.s in Dystopia 2029")
+SpecialEventObjectiveInfoList[3]=(TitleString="Keine Simulation",DescriptionString="Schließe 10 Mal eine Welle in Dystopia 2029 ab ohne Schaden zu erleiden")
+SpecialEventObjectiveInfoList[4]=(TitleString="Schöne Zed-Welt",DescriptionString="Schließe Welle 15 von Dystopia 2029 bei Endlos auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="Cyborg | Gefährten-Rucksack | Edel"
+
+ChanceDropDescriptionStrings[0]="Frühlingsschein"
+ChanceDropDescriptionStrings[1]="Goldener Frühlingsschein"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2894,6 +2910,26 @@ FriendlyName="Wackel-Zed"
 DescriptionStrings[0]="… das muss im Nacken wehtun."
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
 ModifierDescriptions[0]="Irgendetwas muss mit diesen Zeds furchtbar schiefgelaufen sein, denn ihre Köpfe sind vieeeeeeeeeeeel größer als normalerweise! Geradezu riesig! Spiele diesen Wöchentlichen Ausbruch, indem du den Wöchentlich-Spielmodus auf der Spielersuche-Seite auswählst. Vorteilslevel 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName="Kolosseum"
+DescriptionStrings[0]="Nur Berserker erlaubt!"
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Willkommen in der Arena! Schärfe deine Waffen und feile an deinen Rammbock-Fähigkeiten. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="Blutdurst"
+DescriptionStrings[0]="Halte die Killserie aufrecht oder stirb …"
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Der Durst nach Zed-Blut fügt dir ständig Schaden zu (während das Wochensymbol neben dem Lebenspunktezähler angezeigt wird). Töten ist die einzige Möglichkeit, deine Lebenspunkte zu regenerieren. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3412,6 +3448,9 @@ DisplayName="Hellmark Station"
 
 [KF-Elysium KFMapSummary]
 DisplayName="Elysium"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="Dystopia 2029"
 
 [KFMapInfo]
 ; defaults

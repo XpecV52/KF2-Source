@@ -128,6 +128,23 @@ simulated function SpawnFlightEffects()
     }
 }
 
+simulated function SyncOriginalLocation()
+{
+    local Actor HitActor;
+    local Vector HitLocation, HitNormal;
+    local TraceHitInfo HitInfo;
+
+    if(((Role < ROLE_Authority) && Instigator != none) && Instigator.IsLocallyControlled())
+    {
+        HitActor = Trace(HitLocation, HitNormal, OriginalLocation, Location,,, HitInfo, 1);
+        if(HitActor != none)
+        {
+            Explode(HitLocation, HitNormal);
+        }
+    }
+    super.SyncOriginalLocation();
+}
+
 defaultproperties
 {
     AmountResidualFlamesDuringFlight=8

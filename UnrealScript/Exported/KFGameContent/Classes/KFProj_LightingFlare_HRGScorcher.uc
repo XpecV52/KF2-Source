@@ -8,7 +8,7 @@
 // Roberto Moreno (Saber Interactive)
 //=============================================================================
 
-class KFProj_LightingFlare_HRGScorcher extends KFProj_RicochetBullet
+class KFProj_LightingFlare_HRGScorcher extends KFProjectile
 	hidedropdown;
 
 /** Time projectile is alive after being sticked to an actor or a pawn */
@@ -120,6 +120,10 @@ simulated event HitWall( vector HitNormal, actor Wall, PrimitiveComponent WallCo
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
 	LastHitNormal = HitNormal;
+	if (Other != Instigator && !Other.bStatic && DamageRadius == 0.0 )
+	{
+		ProcessBulletTouch(Other, HitLocation, HitNormal);
+	}
 	super.ProcessTouch(Other, HitLocation, HitNormal);
 	SetTimer(StickedTime, false, nameof(Timer_Explode));
 	StartStickedEffects();
@@ -165,6 +169,23 @@ simulated event Tick( float DeltaTime )
 	}
 }
 
+// Last location needs to be correct, even on first tick.
+simulated function SyncOriginalLocation()
+{
+	local Actor HitActor;
+	local vector HitLocation, HitNormal;
+	local TraceHitInfo HitInfo;
+
+	if (Role < ROLE_Authority && Instigator != none && Instigator.IsLocallyControlled())
+	{
+		HitActor = Trace(HitLocation, HitNormal, OriginalLocation, Location,,, HitInfo, TRACEFLAG_Bullet);
+		if (HitActor != none)
+		{
+			StickHelper.TryStick(HitNormal, HitLocation, HitActor);
+		}
+	}
+}
+
 defaultproperties
 {
    StickedTime=5.000000
@@ -188,17 +209,23 @@ defaultproperties
    AmbientSoundPlayEventSticked=AkEvent'WW_WEP_HRG_Scorcher.Stop_WEP_HRG_Scorcher_Burn'
    StickedLightFadeStartTime=4.000000
    StickedLightFadeTime=1.000000
-   BouncesLeft=0
-   bNoReplicationToInstigator=False
+   bSyncToOriginalLocation=True
+   bSyncToThirdPersonMuzzleLocation=True
+   bUseClientSideHitDetection=True
+   bDamageDestructiblesOnTouch=True
    bCanDisintegrate=True
-   bAmbientSoundZedTimeOnly=False
+   bWaitForEffects=True
+   bAutoStartAmbientSound=True
+   bStopAmbientSoundOnExplode=True
    bWarnAIWhenFired=True
    bCanStick=True
    ProjFlightLightPriority=LPP_High
+   TouchTimeThreshhold=0.150000
    GravityScale=0.360000
    TerminalVelocity=5000.000000
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
    ProjFlightTemplate=ParticleSystem'WEP_HRGScorcher_Pistol_EMIT.FX_HRGScorcher_Projectile_01'
+   ProjEffectsFadeOutDuration=0.250000
    Begin Object Class=PointLightComponent Name=PointLight0
       Radius=350.000000
       FalloffExponent=3.000000
@@ -214,15 +241,7 @@ defaultproperties
    End Object
    ProjFlightLight=PointLight0
    AmbientSoundPlayEvent=AkEvent'WW_WEP_HRG_Scorcher.Stop_WEP_HRG_Scorcher_Flyby'
-   AmbientSoundStopEvent=None
-   Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'KFGame.Default__KFProj_RicochetBullet:AmbientAkSoundComponent'
-      bStopWhenOwnerDestroyed=True
-      bForceOcclusionUpdateInterval=True
-      OcclusionUpdateInterval=0.100000
-      Name="AmbientAkSoundComponent"
-      ObjectArchetype=AkComponent'KFGame.Default__KFProj_RicochetBullet:AmbientAkSoundComponent'
-   End Object
-   AmbientComponent=AmbientAkSoundComponent
+   ImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Light_bullet_impact'
    Begin Object Class=KFProjectileStickHelper_HRGScorcher Name=StickHelper0
       Name="StickHelper0"
       ObjectArchetype=KFProjectileStickHelper_HRGScorcher'KFGame.Default__KFProjectileStickHelper_HRGScorcher'
@@ -230,26 +249,28 @@ defaultproperties
    StickHelper=KFProjectileStickHelper_HRGScorcher'kfgamecontent.Default__KFProj_LightingFlare_HRGScorcher:StickHelper0'
    Speed=4550.000000
    MaxSpeed=5000.000000
-   Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_RicochetBullet:CollisionCylinder'
+   DamageRadius=0.000000
+   Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProjectile:CollisionCylinder'
       CollisionHeight=0.000000
       CollisionRadius=0.000000
       ReplacementPrimitive=None
       CollideActors=True
       BlockNonZeroExtent=False
       Name="CollisionCylinder"
-      ObjectArchetype=CylinderComponent'KFGame.Default__KFProj_RicochetBullet:CollisionCylinder'
+      ObjectArchetype=CylinderComponent'KFGame.Default__KFProjectile:CollisionCylinder'
    End Object
    CylinderComponent=CollisionCylinder
    Components(0)=CollisionCylinder
-   Components(1)=AmbientAkSoundComponent
    Physics=PHYS_Falling
+   bPushedByEncroachers=False
    bNetTemporary=False
    bUpdateSimulatedPosition=True
    bCanBeDamaged=False
+   bCollideComplex=True
    NetUpdateFrequency=200.000000
    NetPriority=5.000000
    LifeSpan=20.000000
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_LightingFlare_HRGScorcher"
-   ObjectArchetype=KFProj_RicochetBullet'KFGame.Default__KFProj_RicochetBullet'
+   ObjectArchetype=KFProjectile'KFGame.Default__KFProjectile'
 }

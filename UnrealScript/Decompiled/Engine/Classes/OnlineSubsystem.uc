@@ -1622,6 +1622,7 @@ static function DumpGameSettings(const OnlineGameSettings GameSettings)
     LogInternal("      bIsLanMatch: " $ string(GameSettings.bIsLanMatch));
     LogInternal("      bIsDedicated: " $ string(GameSettings.bIsDedicated));
     LogInternal("      bUsesStats: " $ string(GameSettings.bUsesStats));
+    LogInternal("      bServerExiled: " $ string(GameSettings.bServerExiled));
     LogInternal("      bUsesArbitration: " $ string(GameSettings.bUsesArbitration));
     LogInternal("      bAntiCheatProtected: " $ string(GameSettings.bAntiCheatProtected));
     LogInternal("      bShouldAdvertise: " $ string(GameSettings.bShouldAdvertise));

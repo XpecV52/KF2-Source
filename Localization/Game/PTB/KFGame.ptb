@@ -313,7 +313,7 @@ MultiplayerMenuString="ORGANIZAR PARTIDA"
 LeaveMenuString="Se você sair deste menu, o grupo será desfeito. Ir para Organizar Partida?"
 NameString="NOME"
 RefreshString="ATUALIZAR"
-GamesFoundString="JOGOS ENCONTRADOS:"
+GamesFoundString="JOGOS ACHADO:"
 
 ServerBrowserString="SERVIDOR LISTA"
 
@@ -369,6 +369,7 @@ InProgressString="EM ANDAMENTO"
 OnlyStockMapsString="SOMENTE MAPAS DE ESTOQUE"
 OnlyCustomMapsString="SOMENTE MAPAS PERSONALIZADOS"
 LimitServerResultsString="RESULTADO LIMITE:"
+NotServerExiledString="SEM ADMINISTRADOR LOCAL"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="MODIFICADORES"
@@ -957,13 +958,13 @@ MarketCosmeticsString="Cosméticos do mercado"
 MarketEmotesString="Emotes do mercado"
 MarketSFXString="Efeito Son. de Mercado"
 ThankYouString="Obrigado pela compra! Ela nos ajudará a desenvolver novos itens, mapas, armas, zeds e modos de jogo para atualizações futuras."
-WeaponBundlesString="Conjuntos de armas"
-CharacterBundlesString="Conjuntos de personagem"
-OutfitBundlesString="Conjuntos de traje"
-TicketCratesUSBBundlesString="Conjuntos de Bilhetes/Caixotes/USB"
-CosmeticBundlesString="Conjuntos de cosméticos"
-WeaponSkinBundlesString="Conjuntos de aparências de arma"
-HeadshotFxBundlesString="Conjuntos de efeitos de tiro na cabeça"
+WeaponBundlesString="Armas"
+CharacterBundlesString="Personagem"
+OutfitBundlesString="Trajes"
+TicketCratesUSBBundlesString="Bilhetes/Caixotes/USB"
+CosmeticBundlesString="Cosméticos"
+WeaponSkinBundlesString="Aparências de arma"
+HeadshotFxBundlesString="Efeitos de tiro na cabeça"
 SelectWeaponSkinsString="Selecione aparências de arma"
 SelectCosmeticsString="Selecione cosméticos"
 SelectEmotesString="Selecione emotes"
@@ -1790,7 +1791,7 @@ EXPAction1="Causando dano de arma berserker"
 EXPAction2="Matando Zeds próximos com uma arma de berserker"
 
 Fortitude="Couraçado"
-FortitudeDescription="Aumenta em 75% o total de vida."
+FortitudeDescription="Aumenta em 100% o total de vida."
 
 Ninja="Guerrilheiro"
 NinjaDescription="Movimenta-se 20% mais rápido, corre 25% mais rápido ao usar uma arma de classe. Você também regenera 2 pontos de vida a cada segundo."
@@ -1802,7 +1803,7 @@ Speed="Açougueiro"
 SpeedDescription="Ataca 20% mais rápido e causa 20% mais dano com armas de classe."
 
 Resistance="Resistência"
-ResistanceDescription="Ganha 20% de resistência a todo tipo de dano. Ganha 20% de resistência adicional a veneno e dano sônico."
+ResistanceDescription="Ganha 25% de resistência a todo tipo de dano. Ganha 25% de resistência adicional a veneno e dano sônico."
 
 Parry="Aparar"
 ParryDescription="Aparos uma arma corpo a corpo da classe diminuem em 40% o dano recebido, aumentam em 5% a vel. de ataque e em 35% o dano corpo a corpo por 10 s."
@@ -1937,22 +1938,22 @@ HealingSurge="Vida simbiótica"
 HealingSurgeDescription="Aumenta em 25% a vida total. Curar aliados curará o personagem em 10% do total de vida."
 
 Survivalist="Resiliência"
-SurvivalistDescription="Aumenta a resistência a dano em 1% por ponto de vida perdido até 50%."
+SurvivalistDescription="Aumenta a resistência a dano em 1% por ponto de vida perdido até 70%."
 
 HealingSpeedBoost="Injeção de adrenalina"
-HealingSpeedBoostDescription="Aumenta em 10% a velocidade de movimento dos aliados acertados por dardos curativos durante 5 segundos. Bônus acumulável em até 30%."
+HealingSpeedBoostDescription="Toda a sua cura aumenta em 10% a velocidade de movimento por 5 segundos. Acumulável em um bônus de até 30%."
 
 Combatant="Médico combatente"
 CombatantDescription="Aumenta em 50% a capacidade de munição de armas de classe e em 10% a velocidade de movimento."
 
 HealingDamageBoost="Injeção de foco"
-HealingDamageBoostDescription="Aumenta em 5% o dano causado pelos aliados acertados por dardos curativos durante 5 segundos. Bônus acumulável em até 20%."
+HealingDamageBoostDescription="Toda a sua cura aumenta em 5% o dano causado do jogador por 5 segundos. Acumulável em um bônus de até 20%."
 
 AcidicCompound="Rodadas ácidas"
 AcidicCompoundDescription="Armas de classe podem envenenar Zeds, concedendo dano de veneno ao longo do tempo."
 
 HealingShield="Bônus coagulante"
-HealingShieldDescription="Aumenta em 10% a resistência a dano dos aliados acertados por dardos curativos durante 5 segundos. Bônus acumulável em até 30%."
+HealingShieldDescription="Toda a sua cura aumenta em 10% a resistência a danos do jogador por 5 segundos. Acumulável em um bônus de até 30%."
 
 Enforcer="Cirurgião de batalha"
 EnforcerDescription="Aumenta em 20% o dano de armas de classe"
@@ -2032,7 +2033,7 @@ Passives[3]=(Title="Redução de recuo",Description="Reduz em %x% o recuo de arm
 Passives[4]=(Title="Recarga da hora dos Zeds",Description="Aumenta em %x% por nível a velocidade de recarga na Hora dos Zeds");
 
 ShootnMove="Estável"
-ShootnMoveDescription="Ignora a penalidade de velocidade de movimento e aumenta em 7.5% o dano de armas de classe para mira metálica. Reduz drasticamente o recuo da arma em armas de classe."
+ShootnMoveDescription="Ignora a penalidade de velocidade de movimento e aumenta em 7,5% o dano de armas de classe para mira metálica. Reduz drasticamente o recuo da arma em armas de classe."
 
 QuickSwitch="Tirada rápida"
 QuickSwitchDescription="Reduz a penalidade de recuo para tiros usando o quadril, aumenta em 5% a velocidade de movimento e em 50% a troca de armas de classe."
@@ -2121,7 +2122,7 @@ Passives[1]=(Title="Dano de espingarda",Description="Aumenta em %x% o dano de ar
 Passives[2]=(Title="Penetração de espingarda",Description="Aumenta em %x% a penetração de arma de classe por nível");
 Passives[3]=(Title="Munição",Description="Aumenta em 15% a munição mais %x% por nível");
 Passives[4]=(Title="Maior capacidade de peso",Description="Cap. peso aumentada em 1 a cada 5 níveis");
-Passives[5]=(Title="Mochila munição + conserto de porta",Description="Uma vez por rodada, todos os jogadores podem pegar munição da mochila e consertar portas destruídas");
+Passives[5]=(Title="Mochila munição + reparo porta",Description="Uma vez por rodada, todos os jogadores podem pegar munição da mochila e consertar portas destruídas");
 
 EXPAction1="Causando dano de arma de apoio"
 EXPAction2="Solda de portas"
@@ -2375,7 +2376,7 @@ BullseyeUpdate="Lançamento de conteúdo - atualização no alvo"
 LatestUpdate="Última atualização de conteúdo"
 Forums="Acesse nosso Fórum da Comunidade"
 Survey="Faça a Pesquisa de Jogabilidade"
-CommunityTracker="Acompanhar solicitações da comunidade"
+CommunityTracker="Mapa"
 FeaturedCrateKey="Destaque chav. cx. de sup. Horzine - US$2,49"
 FeaturedEventItem="Item de evento em destaque"
 FeaturedUsbKey="Destaque chav. USB ap. de arma - US$2,49"
@@ -2402,6 +2403,7 @@ USBHighVoltage="Chave de USB Alta Tensão - US$2,49"
 MerchSale="Promoção KF2! 25% menos até 30/4/17, cód. prom. ZED"
 FreeTrial="Compre Killing Floor 2 hoje!"
 FeaturedCrossover="Promoção de Crossover em destaque"
+ArmorySeasonPass="Passe de Temporada do Arsenal"
 
 [Objectives]
 ObjectiveTitle="OBJETIVO"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="Natal | Pacote Elfo-tático"
 ChanceDropDescriptionStrings[0]="Bilhete do Krampus"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado do Krampus"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Ameaça Cibernética",DescriptionString="Mate 15 chefes em qualquer mapa ou modo")
+SpecialEventObjectiveInfoList[1]=(TitleString="Hack semanal",DescriptionString="Conclua o semanal em Distopia 2029")
+SpecialEventObjectiveInfoList[2]=(TitleString="IA fora de controle",DescriptionString="Mate 50 R.E.D.A.s em Distopia 2029")
+SpecialEventObjectiveInfoList[3]=(TitleString="Não é uma simulação",DescriptionString="Conclua uma leva sem sofrer dano 10 vezes em Distopia 2029")
+SpecialEventObjectiveInfoList[4]=(TitleString="Mundo do Zed Intrépido",DescriptionString="Conclua a 15ª leva no Distopia 2029 no modo Difícil Infinito em dificuldade Difícil ou maior")
+
+AllCompleteRewardDescriptionString="Ciborgue | Mochila de Companheiro | Precioso"
+
+ChanceDropDescriptionStrings[0]="Bilhete de Primavera"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado de Primavera"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2894,6 +2910,26 @@ FriendlyName="Surto atual: Zed Cabeção"
 DescriptionStrings[0]="... deve doer no pescoço."
 DescriptionStrings[1]="Duração: Média (7 levas)"
 ModifierDescriptions[0]="Algo aconteceu com estas levas de Zeds: a cabeça deles está muuuuito maior que o normal! Maiores ainda! Para jogar este Surto Semanal, selecione o modo de jogo Semanal na página Organizar Partida. Nível de classe 15 ou maior."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName="Coliseu"
+DescriptionStrings[0]="Somente berserkers são permitidos"
+DescriptionStrings[1]="Duração: média (7 levas)"
+ModifierDescriptions[0]="Afie suas espadas e seus machados e seja bem-vindo à arena! Treine suas habilidades de Aríete. Selecione o modo de jogo Semanal na página "Organizar partida". Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="Sanguinário"
+DescriptionStrings[0]="Mantenha a série de abates ou morra..."
+DescriptionStrings[1]="Duração: média (7 levas)"
+ModifierDescriptions[0]="Um Zed sanguinário ferirá você continuamente (enquanto o ícone semanal é exibido perto do contador de vida). Matar é a única maneira de regenerar vida. Selecione o modo de jogo Semanal na página "Organizar partida". Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3412,6 +3448,9 @@ DisplayName="Zona da Marca do Inferno"
 
 [KF-Elysium KFMapSummary]
 DisplayName="Elísio"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="Distopia 2029"
 
 [KFMapInfo]
 ; defaults

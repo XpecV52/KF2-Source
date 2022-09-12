@@ -5,12 +5,14 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFDT_Freeze_FreezeThrower_IceShards extends KFDT_Freeze
+class KFDT_Freeze_FreezeThrower_IceShards extends KFDT_Ballistic_Shotgun
     abstract;
 
 defaultproperties
 {
     WeaponDef=Class'KFGame.KFWeapDef_FreezeThrower'
     StumblePower=25
-    FreezePower=0
+    KDamageImpulse=500
+    KDeathVel=350
+    KDeathUpKick=-500
 }

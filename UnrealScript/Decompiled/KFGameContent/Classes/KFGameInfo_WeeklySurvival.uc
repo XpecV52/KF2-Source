@@ -102,10 +102,16 @@ function SetPickupItemList()
     {
         foreach AllActors(Class'KFPickupFactory_Item', ItemFactory)
         {
+            if(OutbreakEvent.ActiveEvent.OverrideItemPickupModifier == float(0))
+            {
+                ItemFactory.ShutDown();
+                ItemFactory.ItemPickups.Remove(0, ItemFactory.ItemPickups.Length;
+                continue;                
+            }
             foreach OutbreakEvent.ActiveEvent.TraderWeaponList.SaleItems(TraderItem,)
             {
                 Idx = ItemFactory.ItemPickups.Length - 1;
-                J0xD0:
+                J0x16C:
 
                 if(Idx >= 0)
                 {
@@ -114,7 +120,7 @@ function SetPickupItemList()
                         ItemFactory.ItemPickups.Remove(Idx, 1;
                     }
                     -- Idx;
-                    goto J0xD0;
+                    goto J0x16C;
                 }                
             }                        
         }        
@@ -186,13 +192,76 @@ function ResetPermanentZed()
     }    
 }
 
+function float GetAdjustedAIDoshValue(class<KFPawn_Monster> MonsterClass)
+{
+    return super(KFGameInfo).GetAdjustedAIDoshValue(MonsterClass) * OutbreakEvent.ActiveEvent.DoshOnKillGlobalModifier;
+}
+
+protected function ScoreMonsterKill(Controller Killer, Controller Monster, KFPawn_Monster MonsterPawn)
+{
+    super(KFGameInfo).ScoreMonsterKill(Killer, Monster, MonsterPawn);
+    if(OutbreakEvent.ActiveEvent.bHealAfterKill)
+    {
+        if((MonsterPawn != none) && MonsterPawn.DamageHistory.Length > 0)
+        {
+            HealAfterKilling(MonsterPawn, Killer);
+        }
+    }
+}
+
+function HealAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer)
+{
+    local int I;
+    local KFPlayerController KFPC;
+    local KFPlayerReplicationInfo DamagerKFPRI;
+    local array<DamageInfo> DamageHistory;
+    local array<KFPlayerController> Attackers;
+    local KFPawn_Human PawnHuman;
+
+    DamageHistory = MonsterPawn.DamageHistory;
+    I = 0;
+    J0x33:
+
+    if(I < DamageHistory.Length)
+    {
+        if((((DamageHistory[I].DamagerController != none) && DamageHistory[I].DamagerController.bIsPlayer) && DamageHistory[I].DamagerPRI.GetTeamNum() == 0) && DamageHistory[I].DamagerPRI != none)
+        {
+            DamagerKFPRI = KFPlayerReplicationInfo(DamageHistory[I].DamagerPRI);
+            if(DamagerKFPRI != none)
+            {
+                KFPC = KFPlayerController(DamagerKFPRI.Owner);
+                if(KFPC != none)
+                {
+                    if(Attackers.Find(KFPC < 0)
+                    {
+                        PawnHuman = KFPawn_Human(KFPC.Pawn);
+                        Attackers.AddItem(KFPC;
+                        if(KFPC == Killer)
+                        {
+                            LogInternal("Heal by Kill: " $ string(MonsterPawn.HealByKill));
+                            PawnHuman.HealDamageForce(MonsterPawn.HealByKill, KFPC, Class'KFDT_Healing', false, false);
+                            if((KFPawn_ZedFleshpound(MonsterPawn) != none) || KFPawn_ZedScrake(MonsterPawn) != none)
+                            {
+                                KFPC.ReceivePowerUp(Class'KFPowerUp_HellishRage_NoCostHeal');
+                            }                            
+                        }
+                        else
+                        {
+                            LogInternal("Heal by Assistance: " $ string(MonsterPawn.HealByAssistance));
+                            PawnHuman.HealDamageForce(MonsterPawn.HealByAssistance, KFPC, Class'KFDT_Healing', false, false);
+                        }
+                    }
+                }
+            }
+        }
+        ++ I;
+        goto J0x33;
+    }
+}
+
 function StartMatch()
 {
     super.StartMatch();
-    if((OutbreakEvent.ActiveEvent.GlobalDamageTickRate > 0) && OutbreakEvent.ActiveEvent.GlobalDamageTickAmount > 0)
-    {
-        SetTimer(OutbreakEvent.ActiveEvent.GlobalDamageTickRate, true, 'ApplyGlobalDamage', OutbreakEvent);
-    }
 }
 
 function CreateDifficultyInfo(string Options)
@@ -282,12 +351,22 @@ function TickZedTime(float DeltaTime)
 
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
+    local KFPawn_Human Pawn;
+
     super.WaveEnded(WinCondition);
     if(OutbreakEvent.ActiveEvent.bPermanentZedTime && ZedTimeRemaining > ZedTimeBlendOutTime)
     {
         ClearZedTimePCTimers();
         ZedTimeRemaining = ZedTimeBlendOutTime;
     }
+    if(OutbreakEvent.ActiveEvent.bHealPlayerAfterWave)
+    {
+        foreach WorldInfo.AllPawns(Class'KFPawn_Human', Pawn)
+        {
+            Pawn.Health = Pawn.HealthMax;            
+        }        
+    }
+    DisableGlobalDamage();
 }
 
 function ClearZedTimePCTimers()
@@ -317,6 +396,21 @@ function EndOfMatch(bool bVictory)
 function StartWave()
 {
     super.StartWave();
+    if(!OutbreakEvent.ActiveEvent.bApplyGlobalDamageBossWave && WaveNum == WaveMax)
+    {
+        DisableGlobalDamage();        
+    }
+    else
+    {
+        if((OutbreakEvent.ActiveEvent.GlobalDamageTickRate > 0) && OutbreakEvent.ActiveEvent.GlobalDamageTickAmount > 0)
+        {
+            if(!IsTimerActive('EnableGlobalDamage', self))
+            {
+                SetTimer(OutbreakEvent.ActiveEvent.DamageDelayAfterWaveStarted, false, 'EnableGlobalDamage', self);
+            }
+            SetTimer(1, true, 'CheckForZedFrustrationMode', self);
+        }
+    }
     if(OutbreakEvent.ActiveEvent.bPermanentZedTime)
     {
         if(WaveNum == WaveMax)
@@ -331,6 +425,37 @@ function StartWave()
     if((OutbreakEvent.ActiveEvent.AdditionalBossWaveInfo != none) && WaveNum == WaveMax)
     {
         SetTimer(OutbreakEvent.ActiveEvent.AdditionalBossWaveStartDelay, true, 'SpawnBossWave');
+    }
+}
+
+function EnableGlobalDamage()
+{
+    MyKFGRI.SetGlobalDamage(true);
+    SetTimer(OutbreakEvent.ActiveEvent.GlobalDamageTickRate, true, 'ApplyGlobalDamage', OutbreakEvent);
+}
+
+function DisableGlobalDamage()
+{
+    MyKFGRI.SetGlobalDamage(false);
+    if(IsTimerActive('ApplyGlobalDamage', OutbreakEvent))
+    {
+        ClearTimer('ApplyGlobalDamage', OutbreakEvent);
+    }
+    if(IsTimerActive('EnableGlobalDamage', self))
+    {
+        ClearTimer('EnableGlobalDamage', self);
+    }
+}
+
+function CheckForZedFrustrationMode()
+{
+    if(IsTimerActive('ApplyGlobalDamage', OutbreakEvent))
+    {
+        if((Class'KFAIController'.default.FrustrationThreshold > 0) && MyKFGRI.AIRemaining <= Class'KFAIController'.default.FrustrationThreshold)
+        {
+            DisableGlobalDamage();
+            ClearTimer('CheckForZedFrustrationMode', self);
+        }
     }
 }
 
@@ -413,6 +538,8 @@ function InitAllPickups()
     {
         NumWeaponPickups = byte(float(ItemPickups.Length) * ((OutbreakEvent.ActiveEvent.OverrideItemPickupModifier >= 0) ? OutbreakEvent.ActiveEvent.OverrideItemPickupModifier : DifficultyInfo.GetItemPickupModifier()));
         NumAmmoPickups = byte(float(AmmoPickups.Length) * ((OutbreakEvent.ActiveEvent.OverrideAmmoPickupModifier >= 0) ? OutbreakEvent.ActiveEvent.OverrideAmmoPickupModifier : DifficultyInfo.GetAmmoPickupModifier()));
+        LogInternal("OutbreakEvent.ActiveEvent.OverrideItemPickupModifier" @ string(OutbreakEvent.ActiveEvent.OverrideItemPickupModifier));
+        LogInternal("NumWeaponPickups" @ string(NumWeaponPickups));
         if(BaseMutator != none)
         {
             BaseMutator.ModifyPickupFactories();
@@ -461,6 +588,10 @@ function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
         if((OutbreakEvent.ActiveEvent.WaveItemPickupModifiers.Length >= WaveMax) && KFPickupFactory_Item(PickupList[0]) != none)
         {
             NumPickups *= OutbreakEvent.ActiveEvent.WaveItemPickupModifiers[WaveNum];
+            if(OutbreakEvent.ActiveEvent.OverrideItemPickupModifier == float(0))
+            {
+                NumPickups = 0;
+            }
             super(KFGameInfo).ResetPickups(PickupList, NumPickups);            
         }
         else
@@ -487,7 +618,25 @@ function bool AllowPrimaryWeapon(string ClassPath)
     {
         foreach OutbreakEvent.ActiveEvent.SpawnWeaponList.SaleItems(Item,)
         {
-            if(Item.ClassName == name(ClassPath))
+            if(name(Item.WeaponDef.default.WeaponClassPath) == name(ClassPath))
+            {                
+                return true;
+            }            
+        }        
+        return false;
+    }
+    return true;
+}
+
+function bool AllowSecondaryWeapon(string ClassPath)
+{
+    local STraderItem Item;
+
+    if((OutbreakEvent.ActiveEvent.SpawnWeaponList != none) && OutbreakEvent.ActiveEvent.bSpawnWeaponListAffectsSecondaryWeapons)
+    {
+        foreach OutbreakEvent.ActiveEvent.SpawnWeaponList.SaleItems(Item,)
+        {
+            if(name(Item.WeaponDef.default.WeaponClassPath) == name(ClassPath))
             {                
                 return true;
             }            
@@ -504,6 +653,29 @@ function int AdjustStartingGrenadeCount(int CurrentCount)
         return 0;
     }
     return CurrentCount;
+}
+
+function bool IsPerkAllowed(class<KFPerk> PerkClass)
+{
+    local int Index;
+
+    if(OutbreakEvent.ActiveEvent.PerksAvailableList.Length == 0)
+    {
+        return true;
+    }
+    Index = 0;
+    J0x45:
+
+    if(Index < OutbreakEvent.ActiveEvent.PerksAvailableList.Length)
+    {
+        if(OutbreakEvent.ActiveEvent.PerksAvailableList[Index] == PerkClass)
+        {
+            return true;
+        }
+        ++ Index;
+        goto J0x45;
+    }
+    return false;
 }
 
 function RestartPlayer(Controller NewPlayer)

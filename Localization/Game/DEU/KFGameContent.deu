@@ -760,6 +760,17 @@ ItemCategory="Schrotflinte"
 ItemDescription="• Feuer-Modus schießt Geschosse ab, die Gegner einfrieren.\n• Schlag-Angriff zerschmettert Gegner mit der Axt.\n• Alt – Blocken/Parieren.\n• Die Axt ist perfekt für Eisskulpturen."
 SharedUnlockSource="Frostzahn-Waffen-Paket"
 
+[KFWeap_HRG_SonicGun]
+ItemName="HRG-Belugabeat"
+ItemCategory="Spezial"
+ItemDescription="•Primärfeuer löst Schallwellen aus.\n•Alt. Feuer lädt die nächste Explosion auf und erhöht deren Frequenz.\n•Sie wird die Dezibel jeder Party erhöhen."
+
+[KFWeap_GravityImploder]
+ItemName="Schwerkraftimplodierer"
+ItemCategory="Sprengstoffe"
+ItemDescription="•Standard-Feuer feuert Implosionsgranaten ab.\n•Alt. Feuer setzt Schwerkraftgranaten ein, die Gegner anziehen.\n•Eine der attraktivsten Waffen, die je entwickelt wurden."
+SharedUnlockSource="Schwerkraftimplodierer-Waffen-Paket"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

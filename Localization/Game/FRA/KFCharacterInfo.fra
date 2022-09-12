@@ -6433,3 +6433,129 @@ AttachmentSkin0="Doré"
 [Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
 Attachment="Sac à dos d'elfe tactique"
 AttachmentSkin0="Doré"
+
+[Cosmetic_Paratrooper_Altimeter_ARCH]
+Attachment="Altimètre de parachutiste"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Désert"
+AttachmentSkin2="Forêt"
+AttachmentSkin3="Toxique"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Paratrooper_JumpBottle_ARCH]
+Attachment="Réservoir à O2 de parachutiste"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Désert"
+AttachmentSkin2="Forêt"
+AttachmentSkin3="Toxique"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Paratrooper_Mask_ARCH]
+Attachment="Masque à O2 de parachutiste"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Désert"
+AttachmentSkin2="Forêt"
+AttachmentSkin3="Toxique"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_ChemicalTrooper_Helmet_ARCH]
+Attachment="Casque de parachutiste"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Désert"
+AttachmentSkin2="Forêt"
+AttachmentSkin3="Toxique"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_ChemicalTrooper_Hood_ARCH]
+Attachment="Capuche de guerrier chimique"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Désert"
+AttachmentSkin2="Forêt"
+AttachmentSkin3="Toxique"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_ChemicalTrooper_GasMask_ARCH]
+Attachment="Masque à gaz de guerrier chimique"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Désert"
+AttachmentSkin2="Forêt"
+AttachmentSkin3="Toxique"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_ChemicalTrooper_Respirator_ARCH]
+Attachment="Respirateur de guerrier chimique"
+AttachmentSkin0="Noir"
+AttachmentSkin1="Désert"
+AttachmentSkin2="Forêt"
+AttachmentSkin3="Toxique"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Cyborg_BrainHelmet_ARCH]
+Attachment="Casque cérébral de cyborg"
+AttachmentSkin0="Titane"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Néon"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Cyborg_PowerCore_ARCH]
+Attachment="Sac à dos noyau d'énergie de cyborg"
+AttachmentSkin0="Titane"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Néon"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Cyborg_HeartBackpack_ARCH]
+Attachment="Sac à dos cœur de cyborg"
+AttachmentSkin0="Titane"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Néon"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Cyborg_TacticalHelmet_ARCH]
+Attachment="Casque tactique de cyborg"
+AttachmentSkin0="Titane"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Néon"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Cyborg_ComModule_ARCH]
+Attachment="Module de communication de cyborg"
+AttachmentSkin0="Titane"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Néon"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Cyborg_Vision_ARCH]
+Attachment="Module de vision de cyborg"
+AttachmentSkin0="Titane"
+AttachmentSkin1="Jais"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Néon"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Cyborg_CompanionBackpack_ARCH]
+Attachment="Sac à dos compagnon de cyborg"
+AttachmentSkin0="Doré"
+
+[Cosmetic_BloodThirst_Backpack_ARCH]
+Attachment="Sac à dos soif de sang"
+AttachmentSkin0="Doré"

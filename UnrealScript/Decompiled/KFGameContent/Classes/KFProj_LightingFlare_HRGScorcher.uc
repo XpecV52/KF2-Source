@@ -5,7 +5,7 @@
  *
  * All rights belong to their respective owners.
  *******************************************************************************/
-class KFProj_LightingFlare_HRGScorcher extends KFProj_RicochetBullet
+class KFProj_LightingFlare_HRGScorcher extends KFProjectile
     hidecategories(Navigation);
 
 var float StickedTime;
@@ -24,7 +24,7 @@ var float StickedLightFadeTime;
 
 simulated function SpawnFlightEffects()
 {
-    super(KFProjectile).SpawnFlightEffects();
+    super.SpawnFlightEffects();
     if((WorldInfo.NetMode != NM_DedicatedServer) && WorldInfo.GetDetailMode() > 0)
     {
         SetTimer(FlameDisperalDelay, false, 'MidFlightFXTimer');
@@ -41,7 +41,7 @@ simulated function MidFlightFXTimer()
 
 protected simulated function StopFlightEffects()
 {
-    super(KFProjectile).StopFlightEffects();
+    super.StopFlightEffects();
     ClearTimer('MidFlightFXTimer');
 }
 
@@ -52,7 +52,7 @@ simulated function Detonate()
 
 simulated event PostBeginPlay()
 {
-    super(KFProjectile).PostBeginPlay();
+    super.PostBeginPlay();
     AdjustCanDisintigrate();
 }
 
@@ -71,7 +71,7 @@ simulated function OnInstigatorControllerLeft()
 
 simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallComp)
 {
-    super(KFProjectile).HitWall(HitNormal, Wall, WallComp);
+    super.HitWall(HitNormal, Wall, WallComp);
     SetTimer(StickedTime, false, 'Timer_Explode');
     StartStickedEffects();
     KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(Location, Instigator,, ImpactEffects);
@@ -80,7 +80,11 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
 simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNormal)
 {
     LastHitNormal = HitNormal;
-    super(KFProj_Bullet).ProcessTouch(Other, HitLocation, HitNormal);
+    if(((Other != Instigator) && !Other.bStatic) && DamageRadius == 0)
+    {
+        ProcessBulletTouch(Other, HitLocation, HitNormal);
+    }
+    super.ProcessTouch(Other, HitLocation, HitNormal);
     SetTimer(StickedTime, false, 'Timer_Explode');
     StartStickedEffects();
     KFImpactEffectManager(WorldInfo.MyImpactEffectManager).PlayImpactEffects(Location, Instigator,, ImpactEffects);
@@ -120,6 +124,22 @@ simulated event Tick(float DeltaTime)
     }
 }
 
+simulated function SyncOriginalLocation()
+{
+    local Actor HitActor;
+    local Vector HitLocation, HitNormal;
+    local TraceHitInfo HitInfo;
+
+    if(((Role < ROLE_Authority) && Instigator != none) && Instigator.IsLocallyControlled())
+    {
+        HitActor = Trace(HitLocation, HitNormal, OriginalLocation, Location,,, HitInfo, 1);
+        if(HitActor != none)
+        {
+            StickHelper.TryStick(HitNormal, HitLocation, HitActor);
+        }
+    }
+}
+
 defaultproperties
 {
     StickedTime=5
@@ -142,17 +162,23 @@ defaultproperties
     AmbientSoundPlayEventSticked=AkEvent'WW_WEP_HRG_Scorcher.Stop_WEP_HRG_Scorcher_Burn'
     StickedLightFadeStartTime=4
     StickedLightFadeTime=1
-    BouncesLeft=0
-    bNoReplicationToInstigator=false
+    bSyncToOriginalLocation=true
+    bSyncToThirdPersonMuzzleLocation=true
+    bUseClientSideHitDetection=true
+    bDamageDestructiblesOnTouch=true
     bCanDisintegrate=true
-    bAmbientSoundZedTimeOnly=false
+    bWaitForEffects=true
+    bAutoStartAmbientSound=true
+    bStopAmbientSoundOnExplode=true
     bWarnAIWhenFired=true
     bCanStick=true
     ProjFlightLightPriority=LightPoolPriority.LPP_High
+    TouchTimeThreshhold=0.15
     GravityScale=0.36
     TerminalVelocity=5000
     ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
     ProjFlightTemplate=ParticleSystem'WEP_HRGScorcher_Pistol_EMIT.FX_HRGScorcher_Projectile_01'
+    ProjEffectsFadeOutDuration=0.25
     begin object name=PointLight0 class=PointLightComponent
         Radius=350
         FalloffExponent=3
@@ -167,12 +193,12 @@ defaultproperties
     // Reference: PointLightComponent'Default__KFProj_LightingFlare_HRGScorcher.PointLight0'
     ProjFlightLight=PointLight0
     AmbientSoundPlayEvent=AkEvent'WW_WEP_HRG_Scorcher.Stop_WEP_HRG_Scorcher_Flyby'
-    AmbientSoundStopEvent=none
-    AmbientComponent=AkComponent'Default__KFProj_LightingFlare_HRGScorcher.AmbientAkSoundComponent'
+    ImpactEffects=KFImpactEffectInfo'FX_Impacts_ARCH.Light_bullet_impact'
     PinBoneIdx=-1
     StickHelper=KFProjectileStickHelper_HRGScorcher'Default__KFProj_LightingFlare_HRGScorcher.StickHelper0'
     Speed=4550
     MaxSpeed=5000
+    DamageRadius=0
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
         CollideActors=true
@@ -187,11 +213,12 @@ defaultproperties
     object end
     // Reference: CylinderComponent'Default__KFProj_LightingFlare_HRGScorcher.CollisionCylinder'
     Components(0)=CollisionCylinder
-    Components(1)=AkComponent'Default__KFProj_LightingFlare_HRGScorcher.AmbientAkSoundComponent'
     Physics=EPhysics.PHYS_Falling
+    bPushedByEncroachers=false
     bNetTemporary=false
     bUpdateSimulatedPosition=true
     bCanBeDamaged=false
+    bCollideComplex=true
     NetUpdateFrequency=200
     NetPriority=5
     LifeSpan=20

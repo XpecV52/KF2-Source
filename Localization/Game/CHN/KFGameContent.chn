@@ -760,6 +760,17 @@ ItemCategory="霰弹枪"
 ItemDescription="•发射模式射出冻结敌人的弹药。\n•重击攻击用斧头粉碎敌人。\n•辅助功能键-阻挡/闪避。\n•这把斧头是冰雕的绝佳装备。"
 SharedUnlockSource="霜牙武器包"
 
+[KFWeap_HRG_SonicGun]
+ItemName="HRG 白鲸打击"
+ItemCategory="特殊"
+ItemDescription="•主要攻击发射音速爆炸\n•Alt fire 为下一次爆炸充电，提高爆炸频率\n•这会提高任何一方的分贝。"
+
+[KFWeap_GravityImploder]
+ItemName="重力内爆器"
+ItemCategory="炸弹"
+ItemDescription="•默认射击模式发射内爆手榴弹。\n•Alt-fire 模式发射重力手榴弹吸引敌人\n•有史以来最具吸引力的武器之一。"
+SharedUnlockSource="重力内爆器武器包"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

@@ -9,13 +9,14 @@ class DamageType extends Object
     abstract
     native;
 
-/** does regular armor provide protection against this damage */
+/** does regular armor provide protection against this damage (only affects KFPawn_Human) */
 var() bool bArmorStops;
 var bool bCausedByWorld;
 var bool bExtraMomentumZ;
 var() bool bCausesFracture;
 /** When applying radial impulses, whether to treat as impulse or velocity change. */
 var(RigidBody) bool bRadialDamageVelChange;
+var float ArmorDamageModifier;
 /** magnitude of impulse applied to KActor due to this damage type. */
 var(RigidBody) float KDamageImpulse;
 /** How fast ragdoll moves upon death */
@@ -38,6 +39,7 @@ defaultproperties
 {
     bArmorStops=true
     bExtraMomentumZ=true
+    ArmorDamageModifier=1
     KDamageImpulse=800
     VehicleDamageScaling=1
     VehicleMomentumScaling=1

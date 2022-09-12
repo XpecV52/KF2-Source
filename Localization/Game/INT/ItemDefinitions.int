@@ -31,6 +31,7 @@ SpacePirateFullGearBundleName="Space Pirate Full Gear Bundle"
 ReaperOutfitBundleName="Reaper Outfit Bundle"
 Halloween2020FullGearBundleName="Halloween 2020 Full Gear Bundle"
 Christmas2020FullGearBundleName="Christmas 2020 Full Gear Bundle"
+DystopianDevastationFullGearBundleName="Dystopian Devastation Full Gear Bundle"
 HeadshotFXBundle1Name="Headshot FX Bundle 1"
 HeadshotFXBundle2Name="Headshot FX Bundle 2"
 RhinoRevolverBundleName="Rhino Revolver Bundle"
@@ -43,6 +44,7 @@ Glock18cBundleName="Glock 18c Bundle"
 MinigunBundleName="Minigun Weapon Bundle"
 MineReconstructorBundleName="Mine Reconstructor Weapon Bundle"
 FrostFangBundleName="Frost Fang Weapon Bundle"
+GravityImploderBundleName="Gravity Imploder Weapon Bundle"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Horzine Supply Cosmetic Crate | Series #4 Bronze Bundle Pack"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Horzine Supply Cosmetic Crate | Series #4 Silver Bundle Pack"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Horzine Supply Cosmetic Crate | Series #4 Gold Bundle Pack"
@@ -209,6 +211,9 @@ WW1PilotGearCosmeticBundleName="WW1 Pilot Gear Cosmetic Bundle Pack"
 WinterGearCosmeticBundleName="Winter Gear Cosmetic Bundle"
 SpectreMKIIWeaponSkinPackName="Spectre MKII HRG Weapon Skin Bundle Pack"
 IceBreakerWeaponSkinPackName="Ice Breaker Weapon Skin Bundle Pack"
+NeonMKVIIWeaponSkinPackName="Neon MKVII Weapon Skin Pack"
+ParatrooperGearCosmeticBundleName="Paratrooper Gear Cosmetic Bundle"
+ChemicalWarriorGearCosmeticBundleName="Chemical Warrior Gear Cosmetic Bundle"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles)."
@@ -236,6 +241,7 @@ SpacePirateFullGearBundleDescription="Contains 6 Space Pirate themed cosmetic ac
 ReaperOutfitBundleDescription="Comes with the Reaper Outfit (includes 6 of skin styles). Compatible with most characters."
 Halloween2020FullGearBundleDescription="Contains 6 Reaper themed cosmetic accessories each with 5 texture variants in a single bundle. Compatible with most characters."
 Christmas2020FullGearBundleDescription="Contains 6 Christmas themed cosmetic accessories each with 5 texture variants in a single bundle. Compatible with most characters."
+DystopianDevastationFullGearBundleDescription="Contains 6 Cyborg themed cosmetic accessories each with 5 texture variants in a single bundle. Compatible with most characters."
 HeadshotFXBundle1Description="Comes with five Headshot FXs. Posh Dosh, Comical Action, Party Time, Love At First Shot, and Spooky Spirits."
 HeadshotFXBundle2Description="Comes with five Headshot FXs. Cartoon Splat, Fireworks, Flower Petal, Glitch, and Horzine Circuit."
 RhinoRevolverBundleDescription="Shreds Zeds like cheese. Rhino Revolvers designed for the Gunslinger perk. Comes with 5 unique weapon skin variants."
@@ -248,6 +254,7 @@ Glock18cBundleDescription="Caution: Uncontrollable urges to declare self-identif
 MinigunBundleDescription="Happiness is measured in rounds per minute. Minigun designed for the Commando perk comes with 5 unique skin variants."
 MineReconstructorBundleDescription="The source of its base material is classified information due to Health Code concerns. Mine Reconstructor designed for the Field Medic perk comes with 5 unique skin variants."
 FrostFangBundleDescription="The axe is perfect for ice sculpting. Frost Fang designed for the Support and Berserker perks comes with 5 unique skin variants."
+GravityImploderBundleDescription="Using this weapon won't cost you 51 years but keep away from the event horizon to avoid spaghettification. Gravity Imploder designed for the Demolitionist perk comes with 5 unique skin variants."
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="Contains five of the Horzine Supply Cosmetic Crate | Series #4 crate along with five of its associated keys."
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="Contains ten of the Horzine Supply Cosmetic Crate | Series #4 crate along with ten of its associated keys."
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="Contains twenty of the Horzine Supply Cosmetic Crate | Series #4 crate along with twenty of its associated keys."
@@ -417,6 +424,9 @@ WW1PilotCosmeticBundleDescription="Contains 4 WW1 Pilot themed cosmetic accessor
 SpectreMKIIWeaponSkinBundleDescription="Includes 12 Spectre themed weapons skins for the HRG Weapon Set(6 Dynamic Skins, 6 Chroma Dynamic)  Weapons featured in this set are: HRG Arc Generator, HRG Incendiary Rifle, HRG Kaboomstick, HRG Scorcher, HRG Teslauncher, HRG Vampire"
 WinterCosmeticBundleDescription="Contains 4 Winter themed cosmetic accessories each with 9 texture variants in a single bundle. Compatible with most characters."
 IceBreakerWeaponSkinBundleDescription="Includes 20 Ice Breaker themed weapon skins (10 Dynamic and 10 Precious) Weapons featured in this set are: AK12, Boomstick, Desert Eagle, Dragonsbreath, Kriss, M79, M99, Hemoclobber, Pulverizer, RPG-7."
+NeonMKVIIWeaponSkinBundleDescription="Contains 32 Neon themed weapon skins (10 Standard Neon and 10 RGB Neon) Weapons featured in this set are: Caulk n Burn, Crovel, HX25, MP5RAS, 1858 Revolver, Eviscerator, Berserker Knife, KF-BAR, Demo Knife, Firemans Knife, Gunslinger Knife, HMTech-001 Scalple, Kukri, Support Knife, Gore Shiv, Tactical Knife."
+ParatrooperGearCosmeticBundleDescription="Contains 4 Paratrooper themed cosmetic accessories each with 8 texture variants in a single bundle. Compatible with most characters."
+ChemicalWarriorGearCosmeticBundleDescription="Contains 3 Chemical Warrior themed cosmetic accessories each with 8 texture variants in a single bundle. Compatible with most characters."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Get a new classic London Bobby uniform for playable character PC Rob Briar. Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles)."
@@ -1232,6 +1242,8 @@ HMTechHealerSynthwaveBattleScarredName="HMTech Healer | Synthwave | Battle-Scarr
 1858RevolverHeirloomBattleScarredName="1858 Revolver | Heirloom | Battle-Scarred"
 1858RevolverPrestigePreciousName="1858 Revolver | Prestige | Precious"
 1858RevolverDragonKoiPreciousName="1858 Revolver | Dragon & Koi | Precious"
+1858RevolverNeonMintName="1858 Revolver | Neon | Mint"
+1858RevolverNeonRGBPreciousName="1858 Revolver | Neon RGB | Precious"
 
 ;500 Magnum Revolver Descriptions
 500MagnumRevolverMintDescription="Exterior: Mint | True hand artillery in the form of a long-barrelled .50-caliber 'Bone Collector' revolver, firing full-load magnum rounds. For the serious Gunslinger."
@@ -1578,6 +1590,8 @@ BerserkerKnifeVaultVoshPreciousName="Berserker Knife | Vault | Vosh | Precious"
 BerserkerKnifeBlackGoldenMintName="Berserker Knife | Black Golden | Mint"
 BerserkerKnifeBlackGoldenFieldTestedName="Berserker Knife | Black Golden | Field-Tested"
 BerserkerKnifeBlackGoldenBattleScarredName="Berserker Knife | Black Golden | Battle-Scarred"
+BerserkerKnifeNeonMintName="Berserker Knife | Neon | Mint"
+BerserkerKnifeNeonRGBPreciousName="Berserker Knife | Neon RGB | Precious"
 
 ;Boomstick Descriptions
 BoomstickMintDescription="Exterior: Mint | Double-barrelled, side-by-side 12-gauge shotgun. Ideal for close-range combat. Even the biggest zeds will stagger!"
@@ -1641,6 +1655,8 @@ CaulknBurnPreciousName="Caulk n Burn | Precious"
 CaulknBurnVaultVoshPreciousName="Caulk n Burn | Vault | Vosh | Precious"
 CaulknBurnPrestigePreciousName="Caulk n Burn | Prestige | Precious"
 CaulknBurnDragonKoiPreciousName="Caulk n Burn | Dragon & Koi | Precious"
+CaulknBurnNeonMintName="Caulk n Burn | Neon | Mint"
+CaulknBurnNeonRGBPreciousName="Caulk n Burn | Neon RGB | Precious"
 
 ;Centerfire Descriptions
 CenterfireMintWeeklyDescription="Exterior: Mint | A modern Mossberg centerfire lever-action rifle with low recoil and high stopping power. An updated classic. This item was unlocked by completing a weekly outbreak."
@@ -1716,6 +1732,8 @@ CrovelBlackGoldenBattleScarredName="Crovel | Black Golden | Battle-Scarred"
 CrovelPrestigePreciousName="Crovel | Prestige | Precious"
 CrovelDragonKoiPreciousName="Crovel | Dragon & Koi | Precious"
 CrovelStarsName="Crovel | Vault | Stars"
+CrovelNeonMintName="Crovel | Neon | Mint"
+CrovelNeonRGBPreciousName="Crovel | Neon RGB | Precious"
 
 ;Desert Eagle Descriptions
 DesertEagleMintDescription="Exterior: Mint | The Desert Eagle is the beast of hand guns, which is why we all know it as the 'Hand Cannon.'"
@@ -1846,6 +1864,8 @@ EvisceratorPrestigePreciousName="Eviscerator | Prestige | Precious"
 EvisceratorDragonKoiPreciousName="Eviscerator | Dragon & Koi | Precious"
 EvisceratorJaegerDynamicName="Eviscerator | Jaeger | Dynamic"
 EvisceratorJaegerDynamicRGBName="Eviscerator | Jaeger | Dynamic RGB"
+EvisceratorNeonMintName="Eviscerator | Neon | Mint"
+EvisceratorNeonRGBPreciousName="Eviscerator | Neon RGB | Precious"
 
 ;Firemans Knife Descriptions
 FiremansKnifeMintDescription="Exterior: Mint | It's a firemans knife. You're a fireman, so we're assuming that we do not need to explain to you how to use it."
@@ -1860,6 +1880,8 @@ FiremansKnifeDragonfireBattleScarredName="Firemans Knife | Dragonfire | Battle-S
 FiremansKnifePreciousName="Firemans Knife | Precious"
 FiremansKnifePrestigePreciousName="Firemans Knife | Prestige | Precious"
 FiremansKnifeVaultVoshPreciousName="Firemans Knife | Vault | Vosh | Precious"
+FiremansKnifeNeonMintName="Firemans Knife | Neon | Mint"
+FiremansKnifeNeonRGBPreciousName="Firemans Knife | Neon RGB | Precious"
 
 ;Flamethrower Descriptions
 FlamethrowerMintDescription="Exterior: Mint | A classic in any generation. If in doubt, simply burn everything down."
@@ -2040,6 +2062,8 @@ HMTech001ScalpelEliteUnitBattleScarredName="HMTech-001 Scalpel | Elite Unit | Ba
 HMTech001ScalpelPreciousName="HMTech-001 Scalpel | Precious"
 HMTech001ScalpelPrestigePreciousName="HMTech-001 Scalpel | Prestige | Precious"
 HMTech001ScalpelVaultVoshPreciousName="HMTech-001 Scalpel | Vault | Vosh | Precious"
+HMTech001ScalpelNeonMintName="HMTech-001 Scalpel | Neon | Mint"
+HMTech001ScalpelNeonRGBPreciousName="HMTech-001 Scalpel | Neon RGB | Precious"
 
 ;HMTech-101 Pistol Descriptions
 HMTech101PistolMintDescription="Exterior: Mint | Shoots healing darts to heal team members. It uses caseless ammunition and counts the rounds for you."
@@ -2278,6 +2302,8 @@ HX25PreciousName="HX25 | Precious"
 HX25VaultVoshPreciousName="HX25 | Vault | Vosh | Precious"
 HX25PrestigePreciousName="HX25 | Prestige | Precious"
 HX25DragonKoiPreciousName="HX25 | Dragon & Koi | Precious"
+HX25NeonMintName="HX25 | Neon | Mint"
+HX25NeonRGBPreciousName="HX25 | Neon RGB | Precious"
 
 ;HZ12 Descriptions
 HZ12MintDescription="Exterior: Mint | The HZ12 shotgun is an experimental prototype that is being tested by Horzine security forces."
@@ -2343,6 +2369,8 @@ KFBARStreetPunksBattleScarredName="KF-BAR | Street Punks | Battle-Scarred"
 KFBARPreciousName="KF-BAR | Precious"
 KFBARPrestigePreciousName="KF-BAR | Prestige | Precious"
 KFBARVaultVoshPreciousName="KF-BAR | Vault | Vosh | Precious"
+KFBARNeonMintName="KF-BAR | Neon | Mint"
+KFBARNeonRGBPreciousName="KF-BAR | Neon RGB | Precious"
 
 ;Kriss Descriptions
 KrissMintDescription="Exterior: Mint | The latest in compact bullet redistribution, it is a firehose of destruction."
@@ -2780,6 +2808,8 @@ MP5RASSteampunkFieldTestedName="MP5RAS | Steampunk | Field-Tested"
 MP5RASSteampunkMintName="MP5RAS | Steampunk | Mint"
 MP5RASSteampunkPreciousName="MP5RAS | Steampunk | Precious"
 MP5RASStarsName="MP5RAS | Vault | Stars"
+MP5RASNeonMintName="MP5RAS | Neon | Mint"
+MP5RASNeonRGBPreciousName="MP5RAS | Neon RGB | Precious"
 
 ;MP7 Descriptions
 MP7MintDescription="Exterior: Mint | Used by alphabet soup agencies and special forces units the world over."
@@ -3138,6 +3168,8 @@ SupportKnifeVictorianBattleScarredName="Support Knife | Victorian | Battle-Scarr
 SupportKnifePreciousName="Support Knife | Precious"
 SupportKnifePrestigePreciousName="Support Knife | Prestige | Precious"
 SupportKnifeVaultVoshPreciousName="Support Knife | Vault | Vosh | Precious"
+SupportKnifeNeonMintName="Support Knife | Neon | Mint"
+SupportKnifeNeonRGBPreciousName="Support Knife | Neon RGB | Precious"
 
 ;VLAD-1000 Nailgun Descriptions
 VLAD1000NailgunMintDescription="Exterior: Mint | We understand that one of the Horzine scientists borrowed the original nailgun from a (dead) maintenance man."
@@ -3248,6 +3280,7 @@ ZweihanderSteampunkFieldTestedName="Zweihander | Steampunk | Field-Tested"
 ZweihanderSteampunkMintName="Zweihander | Steampunk | Mint"
 ZweihanderSteampunkPreciousName="Zweihander | Steampunk | Precious"
 ZweihanderVaultVoshPreciousName="Zweihander | Vault | Vosh | Precious" 
+ZweihanderColiseumPreciousName="Zweihander | Coliseum | Precious" 
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="Exterior: Mint | The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
@@ -3259,6 +3292,8 @@ GunslingerKnifePreciousDescription="Exterior: Precious | The over-sized knife of
 GunslingerKnifePreciousName="Gunslinger Knife | Precious"
 GunslingerKnifePrestigePreciousName="Gunslinger Knife | Prestige | Precious"
 GunslingerKnifeVaultVoshPreciousName="Gunslinger Knife | Vault | Vosh | Precious"
+GunslingerKnifeNeonMintName="Gunslinger Knife | Neon | Mint"
+GunslingerKnifeNeonRGBPreciousName="Gunslinger Knife | Neon RGB | Precious"
 
 ;Demo Knife Descriptions
 DemoKnifeMintDescription="Exterior: Mint | It's a box cutter. Perfect for opening any boxes you may come across on the killing floor."
@@ -3270,6 +3305,8 @@ DemoKnifePreciousDescription="Exterior: Precious | It's a box cutter. Perfect fo
 DemoKnifePreciousName="Demo Knife | Precious"
 DemoKnifePrestigePreciousName="Demo Knife | Prestige | Precious"
 DemoKnifeVaultVoshPreciousName="Demo Knife | Vault | Vosh | Precious"
+DemoKnifeNeonMintName="Demo Knife | Neon | Mint"
+DemoKnifeNeonRGBPreciousName="Demo Knife | Neon RGB | Precious"
 
 ;C4 Descriptions
 C4MintDescription="Exterior: Mint | A block of C4, wired for on-demand remote detonation."
@@ -3295,6 +3332,8 @@ SharpshooterKnifePreciousDescription="Exterior: Precious | The traditional knife
 SharpshooterKnifePreciousName="Kukri | Precious"
 SharpshooterKnifePrestigePreciousName="Kukri | Prestige | Precious"
 SharpshooterKnifeVaultVoshPreciousName="Kukri | Vault | Vosh | Precious"
+SharpshooterKnifeNeonMintName="Kukri | Neon | Mint"
+SharpshooterKnifeNeonRGBPreciousName="Kukri | Neon RGB | Precious"
 
 ;SwatKnife Descriptions
 SwatKnifeMintDescription="Exterior: Mint | It's a knife. It cuts things. Tactical things."
@@ -3306,6 +3345,8 @@ SwatKnifePreciousDescription="Exterior: Precious | It's a knife. It cuts things.
 SwatKnifePreciousName="Tactical Knife | Precious"
 SwatKnifePrestigePreciousName="Tactical Knife | Prestige | Precious"
 SwatKnifeVaultVoshPreciousName="Tactical Knife | Vault | Vosh | Precious"
+SwatKnifeNeonMintName="Tactical Knife | Neon | Mint"
+SwatKnifeNeonRGBPreciousName="Tactical Knife | Neon RGB | Precious"
 
 ;SurvivalistKnife Descriptions
 SurvivalistKnifeMintDescription="Exterior: Mint | Gotta gore fast!  Show em what you're made of."
@@ -3317,6 +3358,8 @@ SurvivalistKnifePreciousDescription="Exterior: Precious | Gotta gore fast!  Show
 SurvivalistKnifePreciousName="Gore Shiv | Precious"
 SurvivalistKnifePrestigePreciousName="Gore Shiv | Prestige | Precious"
 SurvivalistKnifeVaultVoshPreciousName="Gore Shiv | Vault | Vosh | Precious"
+SurvivalistKnifeNeonMintName="Gore Shiv | Neon | Mint"
+SurvivalistKnifeNeonRGBPreciousName="Gore Shiv | Neon RGB | Precious"
 
 ;MKB42 Descriptions
 MKB42MintDescription="Exterior: Mint | Show off your inner Hans! Sanity not guaranteed."
@@ -3607,6 +3650,20 @@ FrostFangRunicPreciousName="Frost Fang | Runic | Precious"
 FrostFangDecoIcePreciousName="Frost Fang | Deco Ice | Precious"
 FrostFangBurnedLandPreciousName="Frost Fang | Burned Land | Precious"
 FrostFangStandardPreciousName="Frost Fang | Standard | Precious"
+
+;Gravity Imploder Descriptions
+GravityImploderMintDescription="Exterior: Mint | Using this weapon won't cost you 51 years but keep away from the event horizon to avoid spaghettification."
+GravityImploderFieldTestedDescription="Exterior: Field-Tested | Using this weapon won't cost you 51 years but keep away from the event horizon to avoid spaghettification."
+GravityImploderBattleScarredDescription="Exterior: Battle-Scarred | Using this weapon won't cost you 51 years but keep away from the event horizon to avoid spaghettification."
+GravityImploderPreciousDescription="Exterior: Precious | Using this weapon won't cost you 51 years but keep away from the event horizon to avoid spaghettification."
+
+;Gravity Imploder Names
+GravityImploderArea51Name="Gravity Imploder | Area 51"
+GravityImploderBanzaiName="Gravity Imploder | Banzai"
+GravityImploderHighTechName="Gravity Imploder | High Tech"
+GravityImploderJungleName="Gravity Imploder | Jungle"
+GravityImploderRustName="Gravity Imploder | Rust"
+GravityImploderStandardName="Gravity Imploder | Standard"
 
 [CosmeticSection]
 
@@ -5612,6 +5669,93 @@ ChristmasKrampusHeadRedName="Christmas | Krampus Head | Red"
 ChristmasKrampusHeadBlueName="Christmas | Krampus Head | Blue"
 ChristmasKrampusHeadPreciousName="Christmas | Krampus Head | Precious"
 ChristmasTacticalElfPackName="Christmas | Tactical Elf-pack | Precious"
+
+;Paratrooper Chemical Warrior Gear Cosmetic Names
+ParatrooperAltimeterBlackName="Paratrooper | Altimeter | Black"
+ParatrooperAltimeterDesertName="Paratrooper | Altimeter | Desert"
+ParatrooperAltimeterForestName="Paratrooper | Altimeter | Forest"
+ParatrooperAltimeterToxicName="Paratrooper | Altimeter | Toxic"
+ParatrooperAltimeterInfernoName="Paratrooper | Altimeter | Inferno"
+ParatrooperAltimeterTechName="Paratrooper | Altimeter | Tech"
+ParatrooperAltimeterPreciousName="Paratrooper | Altimeter | Precious"
+ParatrooperO2TankBlackName="Paratrooper | O2 Tank | Black"
+ParatrooperO2TankLabName="Paratrooper | O2 Tank | Lab"
+ParatrooperO2TankForestName="Paratrooper | O2 Tank | Forest"
+ParatrooperO2TankToxicName="Paratrooper | O2 Tank | Toxic"
+ParatrooperO2TankInfernoName="Paratrooper | O2 Tank | Inferno"
+ParatrooperO2TankTechName="Paratrooper | O2 Tank | Tech"
+ParatrooperO2TankPreciousName="Paratrooper | O2 Tank | Precious"
+ParatrooperO2MaskBlackName="Paratrooper | O2 Mask | Black"
+ParatrooperO2MaskDesertName="Paratrooper | O2 Mask | Desert"
+ParatrooperO2MaskForestName="Paratrooper | O2 Mask | Forest"
+ParatrooperO2MaskToxicName="Paratrooper | O2 Mask | Toxic"
+ParatrooperO2MaskInfernoName="Paratrooper | O2 Mask | Inferno"
+ParatrooperO2MaskTechName="Paratrooper | O2 Mask | Tech"
+ParatrooperO2MaskPreciousName="Paratrooper | O2 Mask | Precious"
+ParatrooperHelmetBlackName="Paratrooper | Helmet | Black"
+ParatrooperHelmetDesertName="Paratrooper | Helmet | Desert"
+ParatrooperHelmetForestName="Paratrooper | Helmet | Forest"
+ParatrooperHelmetToxicName="Paratrooper | Helmet | Toxic"
+ParatrooperHelmetInfernoName="Paratrooper | Helmet | Inferno"
+ParatrooperHelmetTechName="Paratrooper | Helmet | Tech"
+ParatrooperHelmetPreciousName="Paratrooper | Helmet | Precious"
+ChemicalWarriorHoodBlackName="Chemical Warrior | Hood | Black"
+ChemicalWarriorHoodDesertName="Chemical Warrior | Hood | Desert"
+ChemicalWarriorHoodForestName="Chemical Warrior | Hood | Forest"
+ChemicalWarriorHoodToxicName="Chemical Warrior | Hood | Toxic"
+ChemicalWarriorHoodInfernoName="Chemical Warrior | Hood | Inferno"
+ChemicalWarriorHoodTechName="Chemical Warrior | Hood | Tech"
+ChemicalWarriorHoodPreciousName="Chemical Warrior | Hood | Precious"
+ChemicalWarriorGasMaskBlackName="Chemical Warrior | Gas Mask | Black"
+ChemicalWarriorGasMaskDesertName="Chemical Warrior | Gas Mask | Desert"
+ChemicalWarriorGasMaskForestName="Chemical Warrior | Gas Mask | Forest"
+ChemicalWarriorGasMaskToxicName="Chemical Warrior | Gas Mask | Toxic"
+ChemicalWarriorGasMaskInfernoName="Chemical Warrior | Gas Mask | Inferno"
+ChemicalWarriorGasMaskTechName="Chemical Warrior | Gas Mask | Tech"
+ChemicalWarriorGasMaskPreciousName="Chemical Warrior | Gas Mask | Precious"
+ChemicalWarriorRespiratorBlackName="Chemical Warrior | Respirator | Black"
+ChemicalWarriorRespiratorDesertName="Chemical Warrior | Respirator | Desert"
+ChemicalWarriorRespiratorForestName="Chemical Warrior | Respirator | Forest"
+ChemicalWarriorRespiratorToxicName="Chemical Warrior | Respirator | Toxic"
+ChemicalWarriorRespiratorInfernoName="Chemical Warrior | Respirator | Inferno"
+ChemicalWarriorRespiratorTechName="Chemical Warrior | Respirator | Tech"
+ChemicalWarriorRespiratorPreciousName="Chemical Warrior | Respirator | Precious"
+
+;Spring 2021 Cosmetic Names
+CyborgBrainHelmetTitaniumName="Cyborg | Brain Helmet | Titanium"
+CyborgBrainHelmetJetBlackName="Cyborg | Brain Helmet | Jet Black"
+CyborgBrainHelmetSupernovaName="Cyborg | Brain Helmet | Supernova"
+CyborgBrainHelmetNeonName="Cyborg | Brain Helmet | Neon"
+CyborgBrainHelmetPreciousName="Cyborg | Brain Helmet | Precious"
+CyborgPowerCoreBackpackTitaniumName="Cyborg | Power Core Backpack | Titanium"
+CyborgPowerCoreBackpackJetBlackName="Cyborg | Power Core Backpack | Jet Black"
+CyborgPowerCoreBackpackSupernovaName="Cyborg | Power Core Backpack | Supernova"
+CyborgPowerCoreBackpackNeonName="Cyborg | Power Core Backpack | Neon"
+CyborgPowerCoreBackpackPreciousName="Cyborg | Power Core Backpack | Precious"
+CyborgHeartBackpackTitaniumName="Cyborg | Heart Backpack | Titanium"
+CyborgHeartBackpackJetBlackName="Cyborg | Heart Backpack | Jet Black"
+CyborgHeartBackpackSupernovaName="Cyborg | Heart Backpack | Supernova"
+CyborgHeartBackpackNeonName="Cyborg | Heart Backpack | Neon"
+CyborgHeartBackpackPreciousName="Cyborg | Heart Backpack | Precious"
+CyborgTacticalHelmetTitaniumName="Cyborg | Tactical Helmet | Titanium"
+CyborgTacticalHelmetJetBlackName="Cyborg | Tactical Helmet | Jet Black"
+CyborgTacticalHelmetSupernovaName="Cyborg | Tactical Helmet | Supernova"
+CyborgTacticalHelmetNeonName="Cyborg | Tactical Helmet | Neon"
+CyborgTacticalHelmetPreciousName="Cyborg | Tactical Helmet | Precious"
+CyborgCommunicationModuleTitaniumName="Cyborg | Communication Module | Titanium"
+CyborgCommunicationModuleJetBlackName="Cyborg | Communication Module | Jet Black"
+CyborgCommunicationModuleSupernovaName="Cyborg | Communication Module | Supernova"
+CyborgCommunicationModuleNeonName="Cyborg | Communication Module | Neon"
+CyborgCommunicationModulePreciousName="Cyborg | Communication Module | Precious"
+CyborgVisionModuleTitaniumName="Cyborg | Vision Module | Titanium"
+CyborgVisionModuleJetBlackName="Cyborg | Vision Module | Jet Black"
+CyborgVisionModuleSupernovaName="Cyborg | Vision Module | Supernova"
+CyborgVisionModuleNeonName="Cyborg | Vision Module | Neon"
+CyborgVisionModulePreciousName="Cyborg | Vision Module | Precious"
+CyborgCompanionBackpackPreciousName="Cyborg | Companion Backpack | Precious"
+
+;Weekly Blood Thirst Cosmetic Names
+BloodThirstBackpackPreciousName="Blood Thirst Backpack | Precious"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Equippable from the gear menu; Compatible with most characters. This is an exclusive item from the "Summer Sideshow" seasonal event. Recycles into 1 Sideshow Ticket."

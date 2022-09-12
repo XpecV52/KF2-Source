@@ -121,6 +121,7 @@ const STATID_ACHIEVE_BiolapseCollectibles = 4054;
 const STATID_ACHIEVE_DesolationCollectibles = 4055;
 const STATID_ACHIEVE_HellmarkStationCollectibles = 4056;
 const STATID_ACHIEVE_ElysiumEndlessWaveFifteen = 4057;
+const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -414,6 +415,7 @@ var transient KFPlayerController.KFSpectateModes CurrentSpectateMode;
 var transient KFPlayerController.ETrackingRangeMode CurrentTrackerRangeMode;
 var transient KFPlayerController.ETrackingMode CurrentTrackingMode;
 var transient KFPlayerController.EGameConductorDebugMode CurrentGameConductorDebugMode;
+var transient byte StoredLocalUserNum;
 var array<PlayerSteamAvatar> AvatarList;
 var array<PlayerAvatarPS4> AvatarListPS4;
 var array<PerkInfo> PerkList;
@@ -722,6 +724,30 @@ simulated event PostBeginPlay()
     }
 }
 
+function UpdateVOIP()
+{
+    local KFPlayerInput KFPI;
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+    KFPI = KFPlayerInput(PlayerInput);
+    if((KFPI == none) || KFPRI == none)
+    {
+        SetTimer(0.1, false, 'UpdateVOIP');        
+    }
+    else
+    {
+        if(KFPI.bRequiresPushToTalk)
+        {
+            ClientStopNetworkedVoice();            
+        }
+        else
+        {
+            ClientStartNetworkedVoice();
+        }
+    }
+}
+
 function SpawnDefaultHUD()
 {
     super(PlayerController).SpawnDefaultHUD();
@@ -896,6 +922,7 @@ simulated event ReceivedPlayer()
                 -- I;
                 goto J0x40D;
             }
+            UpdateVOIP();
         }
     }
     if((Role == ROLE_Authority) && IsLocalController())
@@ -1274,12 +1301,14 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
     local KFProfileSettings Profile;
     local KFPlayerInput KFInput;
     local KFGameInfo KFGI;
+    local KFGameReplicationInfo KFGRI;
     local KFGameEngine KFEngine;
     local KFPlayerReplicationInfo KFPRI;
     local string MatchmakingRegion;
     local KFGoreManager GoreMgr;
     local UniqueNetId LobbyId, Zero;
 
+    StoredLocalUserNum = LocalUserNum;
     Profile = KFProfileSettings(OnlineSub.PlayerInterface.GetProfileSettings(LocalUserNum));
     if(Profile != none)
     {
@@ -1382,8 +1411,53 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
     {
         OnlineSub.GetLobbyInterface().LobbyInvite(LobbyId, Zero, true);
     }
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && !KFGRI.IsPerkAllowed(PerkList[SavedPerkIndex].PerkClass))
+    {
+        SavedPerkIndex = 0;
+        SavedPerkIndex = 0;
+        J0xF60:
+
+        if(SavedPerkIndex < PerkList.Length)
+        {
+            if(KFGRI.IsPerkAllowed(PerkList[SavedPerkIndex].PerkClass))
+            {                
+            }
+            ++ SavedPerkIndex;
+            goto J0xF60;
+        }
+        Profile.SetProfileSettingValueInt(105, SavedPerkIndex);
+    }
     Class'KFEmoteList'.static.RefreshCachedEmoteId();
     Class'KFHeadShotEffectList'.static.RefreshCachedHeadShotEffectId();
+}
+
+function UpdatePerkOnInit()
+{
+    local KFGameReplicationInfo KFGRI;
+    local KFProfileSettings Profile;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && !KFGRI.IsPerkAllowed(PerkList[SavedPerkIndex].PerkClass))
+    {
+        SavedPerkIndex = 0;
+        SavedPerkIndex = 0;
+        J0xA6:
+
+        if(SavedPerkIndex < PerkList.Length)
+        {
+            if(KFGRI.IsPerkAllowed(PerkList[SavedPerkIndex].PerkClass))
+            {                
+            }
+            ++ SavedPerkIndex;
+            goto J0xA6;
+        }
+        Profile = KFProfileSettings(OnlineSub.PlayerInterface.GetProfileSettings(StoredLocalUserNum));
+        if(Profile != none)
+        {
+            Profile.SetProfileSettingValueInt(105, SavedPerkIndex);
+        }
+    }
 }
 
 simulated function HandleConnectionStatusChange(Engine.OnlineSubsystem.EOnlineServerConnectionStatus ConnectionStatus)
@@ -6075,6 +6149,14 @@ event byte GetPerkLevelFromPerkList(class<KFPerk> PerkClass)
     return 0;
 }
 
+function NotifyHitTaken()
+{
+    ClientNotifyHitTaken();
+}
+
+// Export UKFPlayerController::execClientNotifyHitTaken(FFrame&, void* const)
+private reliable client native final simulated function ClientNotifyHitTaken();
+
 function AddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT, bool bKiller)
 {
     ClientAddZedKill(MonsterClass, Difficulty, DT, bKiller);
@@ -8437,6 +8519,19 @@ reliable client simulated function DrawLocalizedTextOnHud(string Message, float 
     {
         myGfxHUD.DisplayMapText(Message, DisplayTime, true);
     }
+}
+
+function bool CanUseHealObject()
+{
+    local class<KFPowerUp> KFPowerUpClass;
+    local KFGameInfo GameInfo;
+    local bool CanHealPowerUp, CanHealGameMode;
+
+    GameInfo = KFGameInfo(WorldInfo.Game);
+    KFPowerUpClass = GetPowerUpClass();
+    CanHealPowerUp = (KFPowerUpClass == none) || KFPowerUpClass.default.CanBeHealedWhilePowerUpIsActive;
+    CanHealGameMode = ((GameInfo == none) || GameInfo.OutbreakEvent == none) || !GameInfo.OutbreakEvent.ActiveEvent.bCannotBeHealed;
+    return CanHealPowerUp && CanHealGameMode;
 }
 
 event OnLoginOnOtherPlatformDoneAndFriendsReady()

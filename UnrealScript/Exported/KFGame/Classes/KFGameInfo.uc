@@ -1471,8 +1471,14 @@ function ResetAllPickups()
  	 	AllPickupFactories.AddItem( AmmoPickups[i] );
  	}
 
-	ResetPickups( ItemPickups, NumWeaponPickups );
-	ResetPickups( AmmoPickups, NumAmmoPickups );
+	if(NumWeaponPickups > 0 )
+	{
+		ResetPickups( ItemPickups, NumWeaponPickups );
+	}
+	if(NumAmmoPickups > 0)
+	{
+		ResetPickups( AmmoPickups, NumAmmoPickups );
+	}
 }
 
 /** Pick random pickup items to enable and put all others to sleep */
@@ -1938,10 +1944,22 @@ function bool AllowPrimaryWeapon(string ClassPath)
     return true;
 }
 
+/** Whether or not a specific secondary weapon is allowed.  Called at player spawn time while setting inventory. */
+function bool AllowSecondaryWeapon(string ClassPath)
+{
+    return true;
+}
+
 /** Allows gametype to adjust starting grenade count.  Called at player spawn time from GiveInitialGrenadeCount in the inventory. */
 function int AdjustStartingGrenadeCount(int CurrentCount)
 {
     return CurrentCount;
+}
+
+/** Allows gametype to validate a perk for the current match */
+function bool IsPerkAllowed(class<KFPerk> PerkClass)
+{
+    return true;
 }
 
 /************************************************************************************
@@ -3025,7 +3043,14 @@ function CheckZedTimeOnKill(Controller Killer, Controller KilledPlayer, Pawn Kil
 		// Handle monster/zed kills - increased probability if closer to the player
 		if( Killer != none && Killer.Pawn != none && VSizeSq(Killer.Pawn.Location - KilledPawn.Location) < 90000 ) // 3 meters
 		{
-			DramaticEvent(0.05);
+			if(OutbreakEvent != none && Role == ROLE_Authority && OutbreakEvent.ActiveEvent.bModifyZedTimeOnANearZedKill)
+			{
+				DramaticEvent(OutbreakEvent.ActiveEvent.ZedTimeOnANearZedKill);
+			}
+			else
+			{
+				DramaticEvent(0.05);
+			}
 		}
 		else
 		{
@@ -4106,7 +4131,7 @@ defaultproperties
    BossIndex=-1
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

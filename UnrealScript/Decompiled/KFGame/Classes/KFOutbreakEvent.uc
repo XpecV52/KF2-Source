@@ -72,8 +72,14 @@ struct StatAdjustments
     var() KFAIWaveInfo AdditionalSubSpawns;
     /** 1 to max player count range of how many AI should spawn during the sub wave */
     var() Vector2D AdditionalSubSpawnCount;
+    /** Ammount of health recovered to the player on kill */
+    var() int HealByKill;
+    /** Ammount of health recovered to the player on kill assistance */
+    var() int HealByAssistance;
     /** Killing the zed should give a different dosh amount than the standard. */
     var() int DoshGiven;
+    /** Speed modifier */
+    var() float InitialGroundSpeedModifierScale;
 
     structdefaultproperties
     {
@@ -94,7 +100,10 @@ struct StatAdjustments
         OverrideDeflationRate=(X=0,Y=0)
         AdditionalSubSpawns=none
         AdditionalSubSpawnCount=(X=1,Y=1)
+        HealByKill=0
+        HealByAssistance=0
         DoshGiven=-1
+        InitialGroundSpeedModifierScale=1
     }
 };
 
@@ -119,10 +128,19 @@ struct WeeklyOverrides
      *            array prior to calling in to P.AddDefaultInventory
      */
     var() KFGFxObject_TraderItems SpawnWeaponList;
+    /** If this flag is set to true, the secondary weapon will be checked for availability in the current game mode */
+    var() bool bSpawnWeaponListAffectsSecondaryWeapons;
     /** If this array is not empty, modifies the trader's list of available weapons */
     var() KFGFxObject_TraderItems TraderWeaponList;
     /** Whether or not grenades are disabled at spawn and for purchase */
     var() bool bDisableGrenades;
+    /** If this array is not empty, modifies the list of perks available for this weekly mode */
+    var() const array< class<KFPerk> > PerksAvailableList;
+    /**  
+     *Activates the special conditions for the Colliseum Weekly Mode
+     *               1) Disables Berserker lvl25 skills  2) Enables lvl25 battery ram skill of the swat
+     */
+    var() bool bColliseumSkillConditionsActive;
     /** If this array is not empty, replaces AIClassList entries with a new spawn class */
     var() array<SpawnReplacement> SpawnReplacementList;
     /** Whether or not to use the spawn replacement list in the boss wave */
@@ -165,6 +183,10 @@ struct WeeklyOverrides
     var() float ZedTimeBossRadius;
     /** Height to use for kicking players out of partial zed time */
     var() float ZedTimeHeight;
+    /** Use a new probability of getting a drama event when a Zed is killed on a 3m radius of the player */
+    var() bool bModifyZedTimeOnANearZedKill;
+    /** Percentage value (0...1) for the probability of getting a drama event when a Zed is killed on a 3m radius of the player */
+    var() float ZedTimeOnANearZedKill;
     /** Whether or not to use size scale on damage */
     var() bool bScaleOnHealth;
     /** Starting size scale (typically should be 1.0) */
@@ -223,6 +245,20 @@ struct WeeklyOverrides
     var() byte MaxPerkLevel;
     /** Boom performance optimization - Max booms in one frame (avoids big Demo spikes) */
     var() int MaxBoomsPerFrame;
+    /** Heal after kill */
+    var() bool bHealAfterKill;
+    /** Cannot be Healed */
+    var() bool bCannotBeHealed;
+    /** Global Damage affects shield or ignores it */
+    var() bool bGlobalDamageAffectsShield;
+    /** Global Damage Should be applied during a boss wave */
+    var() bool bApplyGlobalDamageBossWave;
+    /** Replenish player's health once a wave ends. */
+    var() bool bHealPlayerAfterWave;
+    /** Global modifier of dosh received by players when a zed is killed. Default value is 1.0 */
+    var() float DoshOnKillGlobalModifier;
+    /** Delay After a wave starts for applying global damage. */
+    var() float DamageDelayAfterWaveStarted;
     /** If another outbreak mode shares the same events, this will link the two to quicker UI lookup */
     var() int WeeklyOutbreakId;
 
@@ -236,8 +272,11 @@ struct WeeklyOverrides
         GlobalDamageTickAmount=0
         GlobalAmmoCostScale=1
         SpawnWeaponList=none
+        bSpawnWeaponListAffectsSecondaryWeapons=false
         TraderWeaponList=none
         bDisableGrenades=false
+        PerksAvailableList=none
+        bColliseumSkillConditionsActive=false
         SpawnReplacementList=none
         bAllowSpawnReplacementDuringBossWave=true
         BossSpawnReplacementList=none
@@ -259,6 +298,8 @@ struct WeeklyOverrides
         ZedTimeRadius=0
         ZedTimeBossRadius=0
         ZedTimeHeight=0
+        bModifyZedTimeOnANearZedKill=false
+        ZedTimeOnANearZedKill=0.05
         bScaleOnHealth=false
         StartingDamageSizeScale=1
         DeadDamageSizeScale=0.1
@@ -288,6 +329,13 @@ struct WeeklyOverrides
         bDisableHeadless=false
         MaxPerkLevel=4
         MaxBoomsPerFrame=0
+        bHealAfterKill=false
+        bCannotBeHealed=false
+        bGlobalDamageAffectsShield=true
+        bApplyGlobalDamageBossWave=true
+        bHealPlayerAfterWave=false
+        DoshOnKillGlobalModifier=1
+        DamageDelayAfterWaveStarted=10
         WeeklyOutbreakId=-1
     }
 };
@@ -301,6 +349,7 @@ struct CachedOutbreakInfo
     var byte MaxPerkLevel;
     var float CachedWorldGravityZ;
     var float CachedGlobalGravityZ;
+    var PerkAvailableData PerksAvailableData;
 
     structdefaultproperties
     {
@@ -311,6 +360,7 @@ struct CachedOutbreakInfo
         MaxPerkLevel=0
         CachedWorldGravityZ=0
         CachedGlobalGravityZ=0
+        PerksAvailableData=(bPerksAvailableLimited=false,bBerserkerAvailable=false,bCommandoAvailable=false,bSupportAvailable=false,bFieldMedicAvailable=false,bDemolitionistAvailable=false,bFirebugAvailable=false,bGunslingerAvailable=false,bSharpshooterAvailable=false,bSwatAvailable=false,bSurvivalistAvailable=false)
     }
 };
 
@@ -339,6 +389,10 @@ function ClearActiveEvent()
         {
             KFGameReplicationInfo(Outer.GameReplicationInfo).TraderItems = CachedItems.TraderItems;
         }
+        if(ActiveEvent.PerksAvailableList.Length > 0)
+        {
+            KFGameReplicationInfo(Outer.GameReplicationInfo).PerksAvailableData = CachedItems.PerksAvailableData;
+        }
         KFGameReplicationInfo(Outer.GameReplicationInfo).GameAmmoCostScale = CachedItems.GameAmmoCostScale;
         KFGameReplicationInfo(Outer.GameReplicationInfo).bAllowGrenadePurchase = CachedItems.bAllowGrenadePurchase;
         KFGameReplicationInfo(Outer.GameReplicationInfo).bTradersEnabled = CachedItems.bTradersEnabled;
@@ -357,6 +411,10 @@ function CacheGRI()
         {
             CachedItems.TraderItems = KFGameReplicationInfo(Outer.GameReplicationInfo).TraderItems;
         }
+        if(ActiveEvent.PerksAvailableList.Length > 0)
+        {
+            CachedItems.PerksAvailableData = KFGameReplicationInfo(Outer.GameReplicationInfo).PerksAvailableData;
+        }
         CachedItems.GameAmmoCostScale = KFGameReplicationInfo(Outer.GameReplicationInfo).GameAmmoCostScale;
         CachedItems.bAllowGrenadePurchase = KFGameReplicationInfo(Outer.GameReplicationInfo).bAllowGrenadePurchase;
         CachedItems.bTradersEnabled = KFGameReplicationInfo(Outer.GameReplicationInfo).bTradersEnabled;
@@ -366,17 +424,110 @@ function CacheGRI()
 
 function UpdateGRI()
 {
+    local int I;
+    local KFGameReplicationInfo KFGRI;
+
     CacheGRI();
     if((Outer.GameReplicationInfo != none) && KFGameReplicationInfo(Outer.GameReplicationInfo) != none)
     {
+        KFGRI = KFGameReplicationInfo(Outer.GameReplicationInfo);
         if(ActiveEvent.TraderWeaponList != none)
         {
-            KFGameReplicationInfo(Outer.GameReplicationInfo).TraderItems = ActiveEvent.TraderWeaponList;
+            KFGRI.TraderItems = ActiveEvent.TraderWeaponList;
         }
-        KFGameReplicationInfo(Outer.GameReplicationInfo).GameAmmoCostScale = ActiveEvent.GlobalAmmoCostScale;
-        KFGameReplicationInfo(Outer.GameReplicationInfo).bAllowGrenadePurchase = !ActiveEvent.bDisableGrenades;
-        KFGameReplicationInfo(Outer.GameReplicationInfo).bTradersEnabled = !ActiveEvent.bDisableTraders;
-        KFGameReplicationInfo(Outer.GameReplicationInfo).MaxPerkLevel = ActiveEvent.MaxPerkLevel;
+        if(ActiveEvent.PerksAvailableList.Length > 0)
+        {
+            KFGRI.PerksAvailableData.bPerksAvailableLimited = true;
+            KFGRI.PerksAvailableData.bBerserkerAvailable = false;
+            KFGRI.PerksAvailableData.bCommandoAvailable = false;
+            KFGRI.PerksAvailableData.bSupportAvailable = false;
+            KFGRI.PerksAvailableData.bFieldMedicAvailable = false;
+            KFGRI.PerksAvailableData.bDemolitionistAvailable = false;
+            KFGRI.PerksAvailableData.bFirebugAvailable = false;
+            KFGRI.PerksAvailableData.bGunslingerAvailable = false;
+            KFGRI.PerksAvailableData.bSharpshooterAvailable = false;
+            KFGRI.PerksAvailableData.bSwatAvailable = false;
+            KFGRI.PerksAvailableData.bSurvivalistAvailable = false;
+            I = 0;
+            J0x355:
+
+            if(I < ActiveEvent.PerksAvailableList.Length)
+            {
+                if(ActiveEvent.PerksAvailableList[I] == Class'KFPerk_Berserker')
+                {
+                    KFGRI.PerksAvailableData.bBerserkerAvailable = true;                    
+                }
+                else
+                {
+                    if(ActiveEvent.PerksAvailableList[I] == Class'KFPerk_Commando')
+                    {
+                        KFGRI.PerksAvailableData.bCommandoAvailable = true;                        
+                    }
+                    else
+                    {
+                        if(ActiveEvent.PerksAvailableList[I] == Class'KFPerk_Support')
+                        {
+                            KFGRI.PerksAvailableData.bSupportAvailable = true;                            
+                        }
+                        else
+                        {
+                            if(ActiveEvent.PerksAvailableList[I] == Class'KFPerk_FieldMedic')
+                            {
+                                KFGRI.PerksAvailableData.bFieldMedicAvailable = true;                                
+                            }
+                            else
+                            {
+                                if(ActiveEvent.PerksAvailableList[I] == Class'KFPerk_Demolitionist')
+                                {
+                                    KFGRI.PerksAvailableData.bDemolitionistAvailable = true;                                    
+                                }
+                                else
+                                {
+                                    if(ActiveEvent.PerksAvailableList[I] == Class'KFPerk_Firebug')
+                                    {
+                                        KFGRI.PerksAvailableData.bFirebugAvailable = true;                                        
+                                    }
+                                    else
+                                    {
+                                        if(ActiveEvent.PerksAvailableList[I] == Class'KFPerk_Gunslinger')
+                                        {
+                                            KFGRI.PerksAvailableData.bGunslingerAvailable = true;                                            
+                                        }
+                                        else
+                                        {
+                                            if(ActiveEvent.PerksAvailableList[I] == Class'KFPerk_Sharpshooter')
+                                            {
+                                                KFGRI.PerksAvailableData.bSharpshooterAvailable = true;                                                
+                                            }
+                                            else
+                                            {
+                                                if(ActiveEvent.PerksAvailableList[I] == Class'KFPerk_SWAT')
+                                                {
+                                                    KFGRI.PerksAvailableData.bSwatAvailable = true;                                                    
+                                                }
+                                                else
+                                                {
+                                                    if(ActiveEvent.PerksAvailableList[I] == Class'KFPerk_Survivalist')
+                                                    {
+                                                        KFGRI.PerksAvailableData.bSurvivalistAvailable = true;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                ++ I;
+                goto J0x355;
+            }
+        }
+        KFGRI.GameAmmoCostScale = ActiveEvent.GlobalAmmoCostScale;
+        KFGRI.bAllowGrenadePurchase = !ActiveEvent.bDisableGrenades;
+        KFGRI.bTradersEnabled = !ActiveEvent.bDisableTraders;
+        KFGRI.MaxPerkLevel = ActiveEvent.MaxPerkLevel;
     }
 }
 
@@ -553,6 +704,9 @@ function AdjustMonsterDefaults(out KFPawn_Monster P)
             P.HitZones[0].GoreHealth *= ToAdjust.HeadHealthScale;
             P.HitZones[0].MaxGoreHealth = P.HitZones[0].GoreHealth;
             P.SetShieldScale(ToAdjust.ShieldScale);
+            P.HealByKill = ToAdjust.HealByKill;
+            P.HealByAssistance = ToAdjust.HealByAssistance;
+            P.InitialGroundSpeedModifier *= ToAdjust.InitialGroundSpeedModifierScale;
             if(ToAdjust.bStartEnraged)
             {
                 if((KFAIController(P.Controller) == none) || !KFAIController(P.Controller).SpawnEnraged())
@@ -600,10 +754,12 @@ function OnScoreKill(Pawn KilledPawn);
 function ApplyGlobalDamage()
 {
     local KFPawn_Human Pawn;
+    local class<DamageType> DamageType;
 
+    DamageType = ((ActiveEvent.bGlobalDamageAffectsShield) ? Class'DmgType_Crushed' : Class'KFDT_Falling');
     foreach Outer.WorldInfo.AllPawns(Class'KFPawn_Human', Pawn)
     {
-        Pawn.TakeDamage(int(Outer.OutbreakEvent.ActiveEvent.GlobalDamageTickAmount), none, Pawn.Location, vect(0, 0, 0), Class'DmgType_Crushed');        
+        Pawn.TakeDamage(int(Outer.OutbreakEvent.ActiveEvent.GlobalDamageTickAmount), none, Pawn.Location, vect(0, 0, 0), DamageType);        
     }    
 }
 
@@ -659,6 +815,6 @@ static function int GetOutbreakId(int SetEventsIndex);
 
 defaultproperties
 {
-    ActiveEvent=(EventDifficulty=0,GameLength=0,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,TraderWeaponList=none,bDisableGrenades=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0,WeeklyOutbreakId=-1)
-    CachedItems=(TraderItems=none,GameAmmoCostScale=1,bAllowGrenadePurchase=true,bTradersEnabled=true,MaxPerkLevel=0,CachedWorldGravityZ=0,CachedGlobalGravityZ=0)
+    ActiveEvent=(EventDifficulty=0,GameLength=0,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,bSpawnWeaponListAffectsSecondaryWeapons=false,TraderWeaponList=none,bDisableGrenades=false,PerksAvailableList=none,bColliseumSkillConditionsActive=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bModifyZedTimeOnANearZedKill=false,ZedTimeOnANearZedKill=0.05,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0,bHealAfterKill=false,bCannotBeHealed=false,bGlobalDamageAffectsShield=true,bApplyGlobalDamageBossWave=true,bHealPlayerAfterWave=false,DoshOnKillGlobalModifier=1,DamageDelayAfterWaveStarted=10,WeeklyOutbreakId=-1)
+    CachedItems=(TraderItems=none,GameAmmoCostScale=1,bAllowGrenadePurchase=true,bTradersEnabled=true,MaxPerkLevel=0,CachedWorldGravityZ=0,CachedGlobalGravityZ=0,PerksAvailableData=(bPerksAvailableLimited=false,bBerserkerAvailable=false,bCommandoAvailable=false,bSupportAvailable=false,bFieldMedicAvailable=false,bDemolitionistAvailable=false,bFirebugAvailable=false,bGunslingerAvailable=false,bSharpshooterAvailable=false,bSwatAvailable=false,bSurvivalistAvailable=false))
 }

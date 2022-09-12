@@ -96,8 +96,14 @@ simulated state WeaponDoubleBarrelFiring extends WeaponSingleFiring
     simulated function BeginState(name PreviousStateName)
     {
         local Vector UsedKickMomentum;
+        local KFMapInfo KFMI;
 
         super(WeaponFiring).BeginState(PreviousStateName);
+        KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+        if((KFMI != none) && !KFMI.bAllowShootgunJump)
+        {
+            return;
+        }
         if(Instigator != none)
         {
             UsedKickMomentum.X = -DoubleBarrelKickMomentum;

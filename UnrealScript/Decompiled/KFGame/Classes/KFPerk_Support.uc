@@ -119,6 +119,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     local KFWeapon KFW;
     local float TempDamage;
 
+    super.ModifyDamageGiven(InDamage, DamageCauser, MyKFPM, DamageInstigator, DamageType, HitZoneIdx);
     TempDamage = float(InDamage);
     TempDamage = float(InDamage);
     if(DamageCauser != none)
@@ -233,7 +234,7 @@ private static final simulated function float GetResupplyMaxSpareAmmoModifier()
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return IsTacticalReloadActive() && (IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW);
+    return IsTacticalReloadActive() && ((IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW)) || IsDual9mm(KFW);
 }
 
 function ModifyHealth(out int InHealth)

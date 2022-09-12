@@ -6433,3 +6433,129 @@ AttachmentSkin0="프레셔스"
 [Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
 Attachment="전술 엘프-팩"
 AttachmentSkin0="프레셔스"
+
+[Cosmetic_Paratrooper_Altimeter_ARCH]
+Attachment="공수부대 고도계"
+AttachmentSkin0="블랙"
+AttachmentSkin1="데저트"
+AttachmentSkin2="포레스트"
+AttachmentSkin3="중독"
+AttachmentSkin4="인페르노"
+AttachmentSkin5="기술"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Paratrooper_JumpBottle_ARCH]
+Attachment="공수부대 산소 탱크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="데저트"
+AttachmentSkin2="포레스트"
+AttachmentSkin3="중독"
+AttachmentSkin4="인페르노"
+AttachmentSkin5="기술"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Paratrooper_Mask_ARCH]
+Attachment="공수부대 산소 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="데저트"
+AttachmentSkin2="포레스트"
+AttachmentSkin3="중독"
+AttachmentSkin4="인페르노"
+AttachmentSkin5="기술"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_ChemicalTrooper_Helmet_ARCH]
+Attachment="공수부대 헬멧"
+AttachmentSkin0="블랙"
+AttachmentSkin1="데저트"
+AttachmentSkin2="포레스트"
+AttachmentSkin3="중독"
+AttachmentSkin4="인페르노"
+AttachmentSkin5="기술"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_ChemicalTrooper_Hood_ARCH]
+Attachment="화학 전사 후드"
+AttachmentSkin0="블랙"
+AttachmentSkin1="데저트"
+AttachmentSkin2="포레스트"
+AttachmentSkin3="중독"
+AttachmentSkin4="인페르노"
+AttachmentSkin5="기술"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_ChemicalTrooper_GasMask_ARCH]
+Attachment="화학 전사 가스 마스크"
+AttachmentSkin0="블랙"
+AttachmentSkin1="데저트"
+AttachmentSkin2="포레스트"
+AttachmentSkin3="중독"
+AttachmentSkin4="인페르노"
+AttachmentSkin5="기술"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_ChemicalTrooper_Respirator_ARCH]
+Attachment="화학 전사 호흡기"
+AttachmentSkin0="블랙"
+AttachmentSkin1="데저트"
+AttachmentSkin2="포레스트"
+AttachmentSkin3="중독"
+AttachmentSkin4="인페르노"
+AttachmentSkin5="기술"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Cyborg_BrainHelmet_ARCH]
+Attachment="사이보그 브레인 헬멧"
+AttachmentSkin0="티타늄"
+AttachmentSkin1="제트 블랙"
+AttachmentSkin2="슈퍼노바"
+AttachmentSkin3="네온"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Cyborg_PowerCore_ARCH]
+Attachment="사이보그 파워 코어 백팩"
+AttachmentSkin0="티타늄"
+AttachmentSkin1="제트 블랙"
+AttachmentSkin2="슈퍼노바"
+AttachmentSkin3="네온"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Cyborg_HeartBackpack_ARCH]
+Attachment="사이보그 하트 백팩"
+AttachmentSkin0="티타늄"
+AttachmentSkin1="제트 블랙"
+AttachmentSkin2="슈퍼노바"
+AttachmentSkin3="네온"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Cyborg_TacticalHelmet_ARCH]
+Attachment="사이보그 전술 헬멧"
+AttachmentSkin0="티타늄"
+AttachmentSkin1="제트 블랙"
+AttachmentSkin2="슈퍼노바"
+AttachmentSkin3="네온"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Cyborg_ComModule_ARCH]
+Attachment="사이보그 통신 모듈"
+AttachmentSkin0="티타늄"
+AttachmentSkin1="제트 블랙"
+AttachmentSkin2="슈퍼노바"
+AttachmentSkin3="네온"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Cyborg_Vision_ARCH]
+Attachment="사이보그 시각 모듈"
+AttachmentSkin0="티타늄"
+AttachmentSkin1="제트 블랙"
+AttachmentSkin2="슈퍼노바"
+AttachmentSkin3="네온"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Cyborg_CompanionBackpack_ARCH]
+Attachment="사이보그 동반자 백팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_BloodThirst_Backpack_ARCH]
+Attachment="피의 갈증 백팩"
+AttachmentSkin0="프레셔스"

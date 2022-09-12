@@ -369,6 +369,7 @@ InProgressString="進行中"
 OnlyStockMapsString="ストックマップのみ"
 OnlyCustomMapsString="カスタムマップのみ"
 LimitServerResultsString="結果を制限する："
+NotServerExiledString="ローカル管理者がいません"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="MUTATORS"
@@ -1790,7 +1791,7 @@ EXPAction1="バーサーカーに武器ダメージを与える"
 EXPAction2="バーサーカー武器でプレイヤーの近くのzedをキルする"
 
 Fortitude="ドレッドノート"
-FortitudeDescription="合計ヘルスを75%増加する"
+FortitudeDescription="合計ヘルスを100%増加する"
 
 Ninja="散兵"
 NinjaDescription="動きが20%速くなり、ダッシュが25%速くなり、Perk武器を使用中はヘルスが毎秒1ポイント回復する。"
@@ -1802,7 +1803,7 @@ Speed="肉屋"
 SpeedDescription="Perk武器により攻撃が 20% 速くなり、ダメージが 20% 増加する。"
 
 Resistance="耐性"
-ResistanceDescription="全ダメージに対して20%耐性を得る。毒および音波攻撃に対しては、さらに20%耐性を得る。"
+ResistanceDescription="全ダメージに対して25%耐性を得る。毒および音波攻撃に対しては、さらに25%耐性を得る。"
 
 Parry="受け流し"
 ParryDescription="Perk近接武器で攻撃を受け流すと受けるダメージが40%減少し、10秒間近接攻撃速度が5%と近接ダメージが35%増加します。"
@@ -1937,22 +1938,22 @@ HealingSurge="共生ヘルス"
 HealingSurgeDescription="合計ヘルスが25%増加する。チームメイトを回復すると、あなたの合計ヘルスの10%、あなたが回復する。"
 
 Survivalist="復活力"
-SurvivalistDescription="ヘルスポイントを失う毎に、ダメージ耐性が1%増加する(最大50%)。"
+SurvivalistDescription="ヘルスポイントを失う毎に、ダメージ耐性が1%増加する(最大70%)。"
 
 HealingSpeedBoost="アドレナリン注射"
-HealingSpeedBoostDescription="回復ダーツでチームメイトを打つと、5秒間、移動速度が10%増加する。最大30%ボーナスまで積み上げることが可能。"
+HealingSpeedBoostDescription="回復させるといつでも、プレイヤーの移動速度が、5秒間、10%増加する。最大30%ボーナスまで積み上げることが可能。"
 
 Combatant="戦闘医"
 CombatantDescription="Perk武器のマガジン容量が50%、移動速度が10%増加する。"
 
 HealingDamageBoost="集中力注入"
-HealingDamageBoostDescription="回復ダーツでチームメイトを打つと、5秒間、与えるダメージが5%増加する。最大20%ボーナスまで積み上げることが可能。"
+HealingDamageBoostDescription="回復させるといつでも、プレイヤーのダメージ効果が、5秒間、5%増加する。最大20%ボーナスまで積み上げることが可能。"
 
 AcidicCompound="酸性弾"
 AcidicCompoundDescription="Perk武器がzedに毒を与え、時間経過で毒ダメージを与える。"
 
 HealingShield="凝固剤ブースター"
-HealingShieldDescription="回復ダーツでチームメイトを打つと、5秒間、ダメージ耐性が10%増加する。最大30%ボーナスまで積み上げることが可能。"
+HealingShieldDescription="回復させるといつでも、プレイヤーのダメージ耐性が、5秒間、10%増加する。最大30%ボーナスまで積み上げることが可能。"
 
 Enforcer="戦う軍医"
 EnforcerDescription="Perk武器によるダメージが20%増加する。"
@@ -2009,7 +2010,7 @@ SplashDamage="熱波"
 SplashDamageDescription="至近距離から炎で攻撃を受けたzedが後ろによろめく。"
 
 Inferno="Zed-Time―インフェルノ"
-InfernoDescription="Zed-Time中、炎の攻撃を受けたzedが30%遅くなり、燃焼ダメージが50%増加する。"
+InfernoDescription="Zed-Time 中、炎の攻撃を受けた zed が30%遅くなり、燃焼ダメージが50%増加する。"
 
 Scorch="Zed-Time―放火魔"
 ScorchDescription="Zed-Time中、Perk武器による攻撃がほぼリアルタイムとなり、弾薬が無限になる。"
@@ -2375,7 +2376,7 @@ BullseyeUpdate="最新コンテンツ―大当たりアップデート"
 LatestUpdate="最新コンテンツアップデート"
 Forums="コミュニティフォーラムにお越しください"
 Survey="ゲームプレイアンケートにお答えください"
-CommunityTracker="コミュニティ問題リクエストを追跡"
+CommunityTracker="ロードマップ"
 FeaturedCrateKey="特集ホージン物資箱の鍵―$2.49"
 FeaturedEventItem="特集イベントアイテム"
 FeaturedUsbKey="特集武器スキンUSBの鍵―$2.49"
@@ -2402,6 +2403,7 @@ USBHighVoltage="ハイボルテージUSBの鍵―$2.49"
 MerchSale="お得なKF2セール！2017年4月30日まで25%オフ、プロモコード：ZED"
 FreeTrial="今すぐKilling Floor 2を購入！"
 FeaturedCrossover="コラボプロモーション"
+ArmorySeasonPass="武器シーズンパス"
 
 [Objectives]
 ObjectiveTitle="任務"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="クリスマス | 戦術的エルフパッ�
 ChanceDropDescriptionStrings[0]="クランプス・チケット"
 ChanceDropDescriptionStrings[1]="クランプス・ゴールデン・チケット"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="限定アイテムつきの期間限定特別イベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="サイバー脅威",DescriptionString="マップやモードを問わず、ボスを15人殺す")
+SpecialEventObjectiveInfoList[1]=(TitleString="ウィークリーハック",DescriptionString="ディストピア2029でウィークリーをクリアする")
+SpecialEventObjectiveInfoList[2]=(TitleString="AI 制御不能",DescriptionString="ディストピア2029で50のE.D.A.R.を殺す")
+SpecialEventObjectiveInfoList[3]=(TitleString="シミュレーションではない",DescriptionString="ダメージを受けずにディストピア2029のウェーブを10回クリアする")
+SpecialEventObjectiveInfoList[4]=(TitleString="勇敢なZedの世界",DescriptionString="エンドレス Hard かそれ以上の難易度で、ディストピア2029のウェーブ15をクリアする")
+
+AllCompleteRewardDescriptionString="サイボーグ | 仲間リュック | 希少"
+
+ChanceDropDescriptionStrings[0]="春のチケット"
+ChanceDropDescriptionStrings[1]="春のゴールデンチケット"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2894,6 +2910,26 @@ FriendlyName="首振りZed"
 DescriptionStrings[0]="きっと首が痛いに違いない…"
 DescriptionStrings[1]="長さ：ミディアム（7ウェーブ）"
 ModifierDescriptions[0]="このZedの群れには何か大変なことが起きてしまい、頭が異常に大きくなっている。デカすぎる！マッチメイキングページのウィークリーゲームモードから、このウィークリーアウトブレイクをプレイしよう。Perkレベル15以上。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName=" コロシアム"
+DescriptionStrings[0]="バーサーカーだけが許可されています！"
+DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
+ModifierDescriptions[0]="剣と斧を研いでアリーナに登場しましょう！破壊槌を使いこなす腕を磨きましょう。マッチメイキングページでウィークリーゲームモードを選択しましょう。Perk 15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="血に飢えた"
+DescriptionStrings[0]="殺し続けるか死ぬかだ…"
+DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
+ModifierDescriptions[0]="Zed の血への渇望はあなたを蝕み続けます (ヘルスカウンターのそばにウィークリーアイコンが表示されている間)。殺すことのみによってヘルスが回復します。マッチメイキングページでウィークリーゲームモードを選択しましょう。Perk 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3412,6 +3448,9 @@ DisplayName="Hellmark Station"
 
 [KF-Elysium KFMapSummary]
 DisplayName="Elysium"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="ディストピア2029"
 
 [KFMapInfo]
 ; defaults

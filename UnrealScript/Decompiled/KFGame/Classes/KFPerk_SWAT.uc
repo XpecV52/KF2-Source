@@ -138,7 +138,7 @@ private static final simulated function bool Is9mm(KFWeapon KFW)
 
 simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
 {
-    if((IsTacticalMovementActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class))
+    if((IsTacticalMovementActive()) && (Is9mm(KFW) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class))
     {
         return GetSkillValue(PerkSkills[1]);
     }
@@ -156,7 +156,7 @@ function FinalizeSpeedVariables()
 
 simulated event float GetCrouchSpeedModifier(KFWeapon KFW)
 {
-    if((IsTacticalMovementActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class))
+    if((IsTacticalMovementActive()) && (Is9mm(KFW) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class))
     {
         return (GetSkillValue(PerkSkills[1])) * CurrentHealthPenalty;
     }
@@ -176,6 +176,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     local KFWeapon KFW;
     local float TempDamage;
 
+    super.ModifyDamageGiven(InDamage, DamageCauser, MyKFPM, DamageInstigator, DamageType, HitZoneIdx);
     TempDamage = float(InDamage);
     if(DamageCauser != none)
     {
@@ -183,7 +184,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     }
     if(KFW != none)
     {
-        if(IsBackupActive() && (IsBackupWeapon(KFW)) || KFW.Class.Name == 'KFWeap_Pistol_Dual9mm')
+        if(IsBackupActive() && (IsBackupWeapon(KFW)) || IsDual9mm(KFW))
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[2])));            
         }
@@ -242,7 +243,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     local name StateName;
 
     StateName = W.GetStateName();
-    if((IsRapidAssaultActive()) && (Is9mm(W) || IsWeaponOnPerk(W,, self.Class)) || W.IsA('KFWeap_Pistol_Dual9mm'))
+    if((IsRapidAssaultActive()) && (Is9mm(W) || IsWeaponOnPerk(W,, self.Class)) || IsDual9mm(W))
     {
         if(ZedTimeModifyingStates.Find(StateName != -1)
         {
@@ -259,7 +260,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 
     StumbleModifier = 0;
     KFW = GetOwnerWeapon();
-    if((IsSpecialAmmunitionActive()) && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class))
+    if((IsSpecialAmmunitionActive()) && (Is9mm(KFW) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class))
     {
         StumbleModifier += (GetSkillValue(PerkSkills[4]));
     }
@@ -272,7 +273,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 
 simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
 {
-    return (IsRapidAssaultActive()) && (Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class)) || KFW.IsA('KFWeap_Pistol_Dual9mm');
+    return (IsRapidAssaultActive()) && (Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class)) || IsDual9mm(KFW);
 }
 
 simulated function bool ShouldKnockDownOnBump()
@@ -352,7 +353,7 @@ private final simulated function bool IsTacticalReloadActive()
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return IsTacticalReloadActive() && Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class);
+    return IsTacticalReloadActive() && (Is9mm(KFW) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class);
 }
 
 simulated function bool IsSpecialAmmunitionActive()

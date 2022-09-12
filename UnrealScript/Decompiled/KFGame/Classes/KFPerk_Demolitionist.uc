@@ -86,6 +86,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     local KFWeapon KFW;
     local float TempDamage;
 
+    super.ModifyDamageGiven(InDamage, DamageCauser, MyKFPM, DamageInstigator, DamageType, HitZoneIdx);
     if((DamageType != none) && IsDamageIgnoredDT(DamageType))
     {
         return;
@@ -327,7 +328,7 @@ protected simulated function int GetAmmoExtraAmmo()
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return ((IsTacticalReloadActive()) && (IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW)) && TacticalReloadAsReloadRateClassNames.Find(KFW.Class.Name == -1;
+    return ((IsTacticalReloadActive()) && ((IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW)) || IsDual9mm(KFW)) && TacticalReloadAsReloadRateClassNames.Find(KFW.Class.Name == -1;
 }
 
 simulated function float GetReloadRateScale(KFWeapon KFW)

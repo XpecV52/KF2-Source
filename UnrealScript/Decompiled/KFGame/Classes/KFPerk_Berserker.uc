@@ -47,13 +47,15 @@ var private const int RageFleeDistance;
 var private const int RageDialogEvent;
 var AkEvent ParrySkillSoundModeStart;
 var AkEvent ParrySkillSoundModeStop;
+var float LastBumpTime;
+var array<Actor> CurrentBumpedActors;
 
 function ApplySkillsToPawn()
 {
     super.ApplySkillsToPawn();
     if(OwnerPawn != none)
     {
-        OwnerPawn.bMovesFastInZedTime = IsFastInZedTime();
+        OwnerPawn.bMovesFastInZedTime = (IsFastInZedTime()) || IsSWATEnforcerActiveForWeekly();
     }
 }
 
@@ -88,11 +90,17 @@ event Tick(float DeltaTime)
     }
 }
 
+simulated event float GetZedTimeSpeedScale()
+{
+    return GetZedTimeSpeedScaleForColliseum();
+}
+
 simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
 {
     local KFWeapon MyKFWeapon;
     local float TempDamage;
 
+    super.ModifyDamageGiven(InDamage, DamageCauser, MyKFPM, DamageInstigator, DamageType, HitZoneIdx);
     TempDamage = float(InDamage);
     if(DamageCauser != none)
     {
@@ -368,6 +376,7 @@ function NotifyZedTimeStarted()
     local KFPlayerController KFPC;
     local KFPowerUp PowerUp;
     local KFAIController KFAIC;
+    local KFGameInfo GameInfo;
     local bool bScaredAI, bCannotBeHealed;
 
     if(IsRageActive() && OwnerPawn != none)
@@ -377,6 +386,11 @@ function NotifyZedTimeStarted()
         {
             PowerUp = KFPC.GetPowerUp();
             bCannotBeHealed = (PowerUp != none) && !PowerUp.CanBeHealedWhilePowerUpIsActive;
+            GameInfo = KFGameInfo(WorldInfo.Game);
+            if(GameInfo != none)
+            {
+                bCannotBeHealed = bCannotBeHealed || (GameInfo.OutbreakEvent != none) && GameInfo.OutbreakEvent.ActiveEvent.bCannotBeHealed;
+            }
         }
         if(bCannotBeHealed == false)
         {
@@ -528,31 +542,97 @@ function bool CanNotBeGrabbed()
 
 private final simulated event bool IsRageActive()
 {
-    return (PerkSkills[8].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(8);
+    return ((PerkSkills[8].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(8)) && !ShouldDisableZedTimeSkillsForWeekly();
 }
 
 private final simulated event bool IsSpartanActive()
 {
-    return (PerkSkills[9].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(9);
+    return ((PerkSkills[9].bActive && WorldInfo.TimeDilation < 1) && IsPerkLevelAllowed(9)) && !ShouldDisableZedTimeSkillsForWeekly();
 }
 
 private final simulated event bool CouldSpartanBeActive()
 {
-    return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
+    return (PerkSkills[9].bActive && IsPerkLevelAllowed(9)) && !ShouldDisableZedTimeSkillsForWeekly();
 }
 
 simulated function bool IsFastInZedTime()
 {
-    return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
+    return (PerkSkills[9].bActive && IsPerkLevelAllowed(9)) && !ShouldDisableZedTimeSkillsForWeekly();
+}
+
+simulated function bool IsFastInZedTimeOutbreak()
+{
+    return ShouldDisableZedTimeSkillsForWeekly();
 }
 
 simulated event bool ShouldUseFastInstigatorDilation(KFWeapon Weap)
 {
-    if((PerkSkills[9].bActive && Weap != none) && IsPerkLevelAllowed(9))
+    if(((PerkSkills[9].bActive && Weap != none) && IsPerkLevelAllowed(9)) && !ShouldDisableZedTimeSkillsForWeekly())
     {
         return Weap.GetWeaponPerkClass(default.Class) == default.Class;
     }
     return false;
+}
+
+simulated event float GetZedTimeSpeedScaleForColliseum()
+{
+    return ((IsSWATEnforcerActiveForWeekly()) ? Class'KFPerk_SWAT'.default.SWATEnforcerZedTimeSpeedScale : 1);
+}
+
+function bool ShouldDisableZedTimeSkillsForWeekly()
+{
+    return ((MyKFGI != none) && MyKFGI.OutbreakEvent != none) && MyKFGI.OutbreakEvent.ActiveEvent.bColliseumSkillConditionsActive;
+}
+
+function bool IsSWATEnforcerActiveForWeekly()
+{
+    return ((MyKFGI != none) && MyKFGI.OutbreakEvent != none) && MyKFGI.OutbreakEvent.ActiveEvent.bColliseumSkillConditionsActive;
+}
+
+simulated function bool ShouldKnockDownOnBump()
+{
+    return (IsSWATEnforcerActiveForWeekly()) && WorldInfo.TimeDilation < 1;
+}
+
+simulated function OnBump(Actor BumpedActor, KFPawn_Human BumpInstigator, Vector BumpedVelocity, Rotator BumpedRotation)
+{
+    local KFPawn_Monster KFPM;
+    local bool CanBump;
+
+    if((ShouldKnockDownOnBump()) && (Normal(BumpedVelocity) Dot vector(BumpedRotation)) > 0.7)
+    {
+        KFPM = KFPawn_Monster(BumpedActor);
+        if(KFPM != none)
+        {
+            if((WorldInfo.TimeSeconds - LastBumpTime) > Class'KFPerk_SWAT'.default.BumpCooldown)
+            {
+                CurrentBumpedActors.Length = 0;
+                CurrentBumpedActors.AddItem(BumpedActor;
+                CanBump = true;                
+            }
+            else
+            {
+                if(CurrentBumpedActors.Find(BumpedActor == -1)
+                {
+                    CurrentBumpedActors.AddItem(BumpedActor;
+                    CanBump = true;
+                }
+            }
+            LastBumpTime = WorldInfo.TimeSeconds;
+            if(CanBump)
+            {
+                if(KFPM.IsHeadless())
+                {
+                    KFPM.TakeDamage(KFPM.HealthMax, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * Class'KFPerk_SWAT'.default.BumpMomentum, Class'KFPerk_SWAT'.default.BumpDamageType);                    
+                }
+                else
+                {
+                    KFPM.TakeDamage(Class'KFPerk_SWAT'.default.BumpDamageAmount, BumpInstigator.Controller, BumpInstigator.Location, Normal(vector(BumpedRotation)) * Class'KFPerk_SWAT'.default.BumpMomentum, Class'KFPerk_SWAT'.default.BumpDamageType);
+                    KFPM.Knockdown(BumpedVelocity * float(3), vect(1, 1, 1), KFPM.Location, 1000, 100);
+                }
+            }
+        }
+    }
 }
 
 simulated function class<EmitterCameraLensEffectBase> GetPerkLensEffect(class<KFDamageType> dmgType)
@@ -634,11 +714,11 @@ defaultproperties
     SkillCatagories[4]="Advanced Training"
     EXPAction1="Dealing Berserker weapon damage"
     EXPAction2="Killing Zeds near a player with a Berserker weapon"
-    PerkSkills(0)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=0.75,MaxValue=0.75,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",bActive=false)
+    PerkSkills(0)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",bActive=false)
     PerkSkills(1)=(Name="Ninja",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Ninja",bActive=false)
     PerkSkills(2)=(Name="Vampire",Increment=0,Rank=0,StartingValue=4,MaxValue=4,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",bActive=false)
     PerkSkills(3)=(Name="Speed",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Speed",bActive=false)
-    PerkSkills(4)=(Name="Resistance",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_PoisonResistance",bActive=false)
+    PerkSkills(4)=(Name="Resistance",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_PoisonResistance",bActive=false)
     PerkSkills(5)=(Name="Parry",Increment=0,Rank=0,StartingValue=0.35,MaxValue=0.35,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",bActive=false)
     PerkSkills(6)=(Name="Smash",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",bActive=false)
     PerkSkills(7)=(Name="Fury",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Intimidate",bActive=false)

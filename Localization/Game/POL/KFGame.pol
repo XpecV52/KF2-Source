@@ -279,14 +279,14 @@ BackString="WSTECZ"
 FindGameString="ZNAJDŹ GRĘ"
 
 [KFGFxStartContainer_InGameOverview]
-OverviewString="PRZEGLĄD ROZGRYWKI"
+OverviewString="PRZEGLĄD MECZU"
 ChangeString="ZMIEŃ"
 SharedByString="Udostępnione przez:"
 SharedContentString="UDOSTĘPNIONA ZAWARTOŚĆ"
 AuthorString="Autor "
 
 [KFGFxStartContainer_ServerBrowserOverview]
-OverviewString="PRZEGLĄD ROZGRYWKI"
+OverviewString="PRZEGLĄD MECZU"
 DescriptionString="szuka gry w przeglądarce serwerów…"
 
 [KFGFxTraderContainer_GameInfo]
@@ -369,6 +369,7 @@ InProgressString="W TOKU"
 OnlyStockMapsString="TYLKO MAPY STANDARDOWE"
 OnlyCustomMapsString="TYLKO MAPY NIESTANDARDOWE"
 LimitServerResultsString="LIMIT WYNIKÓW:"
+NotServerExiledString="BRAK LOKALNEGO ADMINISTRATORA"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="MUTATORY"
@@ -960,10 +961,10 @@ ThankYouString="Dziękujemy za zakup! Pomoże nam w tworzeniu nowych przedmiotó
 WeaponBundlesString="Zestawy broni"
 CharacterBundlesString="Zestawy postaci"
 OutfitBundlesString="Zestawy strojów"
-TicketCratesUSBBundlesString="Kupon/skrzynie/zestawy USB"
+TicketCratesUSBBundlesString="Kupon/skrzynie/USB"
 CosmeticBundlesString="Zestawy ozdób"
 WeaponSkinBundlesString="Zestawy skórek broni"
-HeadshotFxBundlesString="Zestawy efektów strzału w głowę"
+HeadshotFxBundlesString="Efektów strzału w głowę"
 SelectWeaponSkinsString="Wybierz skórki broni"
 SelectCosmeticsString="Wybierz ozdoby"
 SelectEmotesString="Wybierz emocje"
@@ -993,7 +994,7 @@ ServerBrowserString="SERWERY"
 MatchmakingString="MATCHMAKING"
 CreateGameString="STWÓRZ GRĘ"
 SoloString="SOLO"
-OverviewString="PRZEGLĄD ROZGRYWKI"
+OverviewString="PRZEGLĄD MECZU"
 
 TitleStrings[0]="Opuszczasz walkę tak szybko?"
 TitleStrings[1]="Tak szybko rezygnujesz?"
@@ -1790,7 +1791,7 @@ EXPAction1="Zadawanie obrażeń bronią berserkera"
 EXPAction2="Zabijanie zetów obok gracza bronią berserkera"
 
 Fortitude="Twardziel"
-FortitudeDescription="Całkowite zdrowie zwiększone o 75%."
+FortitudeDescription="Całkowite zdrowie zwiększone o 100%."
 
 Ninja="Bojownik"
 NinjaDescription="Chodzenie szybsze o 20% i bieg szybszy o 25% podczas używania broni specjalizacji. Regenerujesz też 2 punkty zdrowia co sekundę."
@@ -1802,7 +1803,7 @@ Speed="Rzeźnik"
 SpeedDescription="Atak szybszy o 20%, a także 20% więcej obrażeń podczas używania broni specjalizacji."
 
 Resistance="Odporność"
-ResistanceDescription="20% odporności na wszystkie rodzaje obrażeń. Dodatkowe 20% odporności na truciznę i obrażenia soniczne."
+ResistanceDescription="25% odporności na wszystkie rodzaje obrażeń. Dodatkowe 25% odporności na truciznę i obrażenia soniczne."
 
 Parry="Parowanie"
 ParryDescription="Parowanie bronią białą specjalizacji zmniejsza otrzymywane obrażenia o 40% i na 10 s zwiększa szyb. ataku o 5% oraz obrażenia broni białej o 35%."
@@ -1937,22 +1938,22 @@ HealingSurge="Zdrowie symbiotyczne"
 HealingSurgeDescription="Całkowite zdrowie zwiększone o 25%. Leczenie członków drużyny przywróci też 10% twojego maksymalnego zdrowia."
 
 Survivalist="Wytrzymałość"
-SurvivalistDescription="Odporność na obrażenia zwiększona o 1% na każdy utracony punkt zdrowia, łącznie do 50%."
+SurvivalistDescription="Odporność na obrażenia zwiększona o 1% na każdy utracony punkt zdrowia, łącznie do 70%."
 
 HealingSpeedBoost="Dawka adrenaliny"
-HealingSpeedBoostDescription="Trafianie członków drużyny strzałkami leczniczymi zwiększa ich szybkość ruchu o 10% na 5 s. Efekt kumuluje się do premii 30%."
+HealingSpeedBoostDescription="Twoje uzdrawianie zwiększa szybkość ruchu graczy o 10% na 5 s. Efekt kumuluje się do premii 30%."
 
 Combatant="Lekarz polowy"
 CombatantDescription="Pojemność magazynka broni specjalizacji zwiększona o 50%, a szybkość ruchu o 10%."
 
 HealingDamageBoost="Zastrzyk koncentrujący"
-HealingDamageBoostDescription="Trafianie członków drużyny strzałkami leczniczymi zwiększa zadawane przez nich obrażenia o 5% na 5 s. Efekt kumuluje się do premii 20%."
+HealingDamageBoostDescription="Twoje uzdrawianie zwiększa obrażenia zadawane przez graczy o 5% na 5 s. Efekt kumuluje się do premii 20%."
 
 AcidicCompound="Pociski kwasowe"
 AcidicCompoundDescription="Broń specjalizacji może zatruć zetów, zadając obrażenia w czasie od trucizny."
 
 HealingShield="Koagulant"
-HealingShieldDescription="Trafianie członków drużyny strzałkami leczniczymi zwiększa ich odporność na obrażenia o 10% na 5 s. Efekt kumuluje się do premii 30%."
+HealingShieldDescription="Twoje uzdrawianie zwiększa odporność na obrażenia graczy o 10% na 5 s. Efekt kumuluje się do premii 30%."
 
 Enforcer="Chirurg bojowy"
 EnforcerDescription="Obrażenia broni specjalizacji zwiększone o 20%."
@@ -1978,11 +1979,11 @@ SkillCatagories[2]="Spalenie"
 SkillCatagories[3]="Płomień"
 SkillCatagories[4]="Zaawansowane szkolenie"
 
-Passives[0]=(Title="Obrażenia broni specjalizacji",Description="Obr. broni spec. wzrastają o %x% na poziom");
-Passives[1]=(Title="Przeładowywanie broni specjalizacji",Description="Szyb. przeł. broni spec. wzrasta o %x% na poz.");
-Passives[2]=(Title="Odporność na ogień zetów",Description="Odporność na ogień zetów wzrasta o 30% oraz dodatkowo o %x% na poziom");
-Passives[3]=(Title="Odporność na własny ogień",Description="Odporność na własny ogień wzrasta o 25% oraz dodatkowo o %x% na poziom");
-Passives[4]=(Title="Amunicja początkowa",Description="Ilość amunicji pocz. wzrasta o %x% co 5 poz.");
+Passives[0]=(Title="Obrażenia broni specjalizacji",Description="Obr. broni spec. wzrastają o %x% na poz");
+Passives[1]=(Title="Przeładowywanie broni specjalizacji",Description="Szyb. przeł. broni spec. wzrasta o %x% na poz");
+Passives[2]=(Title="Odporność na ogień zetów",Description="Odporność na ogień zetów wzrasta o 30% oraz dodatkowo o %x% na poz");
+Passives[3]=(Title="Odporność na własny ogień",Description="Odporność na własny ogień wzrasta o 25% oraz dodatkowo o %x% na poz");
+Passives[4]=(Title="Amunicja początkowa",Description="Ilość amunicji pocz. wzrasta o %x% co 5 poz");
 
 BringTheHeat="Gorączka"
 BringTheHeatDescription="Obrażenia broni ogniowej zwiększone o 35%."
@@ -2009,7 +2010,7 @@ SplashDamage="Fala gorąca"
 SplashDamageDescription="Zety trafione ogniem z bliska zostają odrzucone."
 
 Inferno="CZAS ZET – Piekło"
-InfernoDescription="W czasie zet wszystkie zety trafione ogniem zostają spowolnione o 30% i otrzymują 50% więcej obrażeń od podpalenia."
+InfernoDescription="W czasie zetów wszystkie zety trafione ogniem zostają spowolnione o 30% i otrzymują 50% więcej obrażeń od podpalenia."
 
 Scorch="CZAS ZET – Piroman"
 ScorchDescription="W czasie zet atakujesz bronią specjalizacji prawie tak szybko, jak w czasie rzeczywistym, i nigdy nie kończy ci się amunicja."
@@ -2032,7 +2033,7 @@ Passives[3]=(Title="Redukcja odrzutu",Description="Odrzut broni specjalizacji wz
 Passives[4]=(Title="Przeładowywanie w czasie zet",Description="Szyb. przeł. w czasie zet wzrasta o %x% na poz.");
 
 ShootnMove="Pewna ręka"
-ShootnMoveDescription="W czasie używania celownika mechanicznego pozwala zignorować karę do szybkości ruchu i zwiększa obrażenia broni specjalizacji o 7.5%. Drastycznie zmniejsza drgania broni specjalizacji."
+ShootnMoveDescription="W czasie używania celownika mechanicznego pozwala zignorować karę do szybkości ruchu i zwiększa obrażenia broni specjalizacji o 7,5%. Drastycznie zmniejsza drgania broni specjalizacji."
 
 QuickSwitch="Szybkie wyjęcie broni"
 QuickSwitchDescription="Zmniejszenie odrzutu przy strzale z biodra, zwiększenie szybkości ruchu o 5% oraz o 50% szybsza zmiana broni klasy."
@@ -2375,7 +2376,7 @@ BullseyeUpdate="Nowa zawartość - aktualizacja Bullseye"
 LatestUpdate="Nowa aktualizacja zawartości"
 Forums="Odwiedź fora naszej społeczności"
 Survey="Wypełnij ankietę dotyczącą rozgrywki"
-CommunityTracker="Śledź prośby społeczności"
+CommunityTracker="Zarys planów"
 FeaturedCrateKey="Wyróżniony klucz do skrzyni Horzine - 2,49$"
 FeaturedEventItem="Wyróżniony przedmiot wydarzenia"
 FeaturedUsbKey="Wyróżniony klucz USB ze skórką broni - 2,49$"
@@ -2402,6 +2403,7 @@ USBHighVoltage="Klucz USB: Wysokie napięcie – 2,49 $"
 MerchSale="Wyprzedaż KF2! -25% do 30.04.17 Kod promocyjny ZED"
 FreeTrial="Kup Killing Floor 2 już dziś!"
 FeaturedCrossover="Specjalna promocja crossover"
+ArmorySeasonPass="Przepustka sezonowa zbrojowni"
 
 [Objectives]
 ObjectiveTitle="CEL"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="Święta | Taktyczny zestaw elfa"
 ChanceDropDescriptionStrings[0]="Kupon Krampusa"
 ChanceDropDescriptionStrings[1]="Złoty kupon Krampusa"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Cybergratka",DescriptionString="Zabij 15 bossów na dowolnej mapie i w dowolnym trybie")
+SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowe hakowanie",DescriptionString="Ukończ tygodniowy incydent na mapie Dystopia 2029")
+SpecialEventObjectiveInfoList[2]=(TitleString="SI poza kontrolą",DescriptionString="Zabij 50 E.D.A.R.-ów na Dystopii 2029")
+SpecialEventObjectiveInfoList[3]=(TitleString="To nie symulacja",DescriptionString="Ukończ 10 razy falę na Dystopii 2029, nie otrzymując żadnych obrażeń")
+SpecialEventObjectiveInfoList[4]=(TitleString="Wspaniały świat zetów",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności w Dystopia 2029")
+
+AllCompleteRewardDescriptionString="Cyborg | Plecak towarzyszący | Cenne"
+
+ChanceDropDescriptionStrings[0]="Kupon wiosenny"
+ChanceDropDescriptionStrings[1]="Złoty kupon wiosenny"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2894,6 +2910,26 @@ FriendlyName="Teraz: Bańkogłowi"
 DescriptionStrings[0]="…jak ich karki to wytrzymują."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
 ModifierDescriptions[0]="Coś poszło bardzo nie tak z tą partią zetów i ich głowy są znaaaacznie większe niż zwykle! Można nawet powiedzieć, że olbrzymie! Zagraj tygodniowy incydent, wybierając na stronie Matchmaking tygodniowy tryb gry. Poziom klas 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName="Koloseum"
+DescriptionStrings[0]="Tylko dla berserkerów!"
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="Witamy na arenie! Naostrz miecze i topory. Doszlifuj swoje umiejętności taranowania. Wybierz tygodniowy tryb gry na stronie matchmakingu. Specjalizacja 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="Pragnienie krwi"
+DescriptionStrings[0]="Utrzymuj serię zabić albo zginiesz..."
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="Pragnienie krwi zetów będzie cię nieustannie ranić (gdy obok licznika zdrowia wyświetlona jest ikona tygodnia). Jedyny sposób na regenerację zdrowia to zabijanie. Wybierz tygodniowy tryb gry na stronie matchmakingu. Specjalizacja 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3412,6 +3448,9 @@ DisplayName="Stacja Hellmark"
 
 [KF-Elysium KFMapSummary]
 DisplayName="Elizjum"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="Dystopia 2029"
 
 [KFMapInfo]
 ; defaults

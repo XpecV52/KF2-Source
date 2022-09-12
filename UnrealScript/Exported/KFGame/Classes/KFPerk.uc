@@ -166,6 +166,7 @@ const STATID_ACHIEVE_BiolapseCollectibles			= 4054;
 const STATID_ACHIEVE_DesolationCollectibles			= 4055;
 const STATID_ACHIEVE_HellmarkStationCollectibles	= 4056;
 const STATID_ACHIEVE_ElysiumEndlessWaveFifteen	    = 4057;
+const STATID_ACHIEVE_Dystopia2029Collectibles       = 4058;
  
 #linenumber 15
 
@@ -343,6 +344,17 @@ var float 						HeadshotAccuracyHandicap;
 ********************************************************************************************* */
 
 var array<string> PrestigeRewardItemIconPaths;
+
+/*********************************************************************************************
+* Transient vars
+********************************************************************************************* */
+/**
+	Indicates if the last hit was a headshot.
+	This is added for the crossbow to apply the stun on enemies only if hit in the head. 
+	Afflictions are calculated after adjusting the damage, so the bone is not necessary
+	indicating a headshot anymore. 
+ */
+var transient bool bWasLastHitAHeadshot; 
 
 /*********************************************************************************************
 * Caching
@@ -614,6 +626,17 @@ static function MultiplySecondaryXPPoints( out int XP, byte Difficulty )
 static function bool IsBackupWeapon( KFWeapon KFW )
 {
 	return KFW != none && KFW.default.bIsBackupWeapon;
+}
+
+/**
+ * @brief Return if a weapon is Dual 9mm
+ *
+ * @param KFW Weapon to check
+ * @return true if backup weapon
+ */
+static function bool IsDual9mm( KFWeapon KFW )
+{
+	return KFW != none && KFW.Class.Name == 'KFWeap_Pistol_Dual9mm';
 }
 
 /*********************************************************************************************
@@ -1089,13 +1112,18 @@ function AddDefaultInventory( KFPawn P )
             {
                 P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
             }
+
+			if(KFGameInfo(WorldInfo.Game).AllowSecondaryWeapon(GetSecondaryWeaponClassPath()))
+			{
+				P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), class'Class')));
+			}
         }
         else
         {
             P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
+			P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), class'Class')));
         }
-		// Secondary weapon is spawned through the pawn unless we want an additional one  not anymore
-		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), class'Class')));
+
 		P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetKnifeWeaponClassPath(), class'Class')));
 	}
 }
@@ -1228,8 +1256,7 @@ simulated function ModifySprintSpeed( out float Speed ){ ModifySpeed( Speed ); }
 function FinalizeSpeedVariables();
 /** Kickback - recaoil bonus */
 simulated function ModifyRecoil( out float CurrentRecoilModifier, KFWeapon KFW );
-/** Allow perk to adjust damage given */
-function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx );
+/** Allows to modify the damage taken */
 function ModifyDamageTaken( out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy );
 /** Ammunition capacity and mag count increased */
 simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out int MagazineCapacity, optional array< Class<KFPerk> > WeaponPerkClass, optional bool bSecondary=false, optional name WeaponClassname );
@@ -1247,6 +1274,7 @@ static simulated function float GetZedTimeExtension( byte Level ){ return 1.0f; 
 function float GetKnockdownPowerModifier( optional class<DamageType> DamageType, optional byte BodyPart, optional bool bIsSprinting=false ){ return 0.f; }
 function float GetStumblePowerModifier( optional KFPawn KFP, optional class<KFDamageType> DamageType, optional out float CooldownModifier, optional byte BodyPart ){ return 0.f; }
 function float GetStunPowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 0.f; }
+function bool IsStunGuaranteed( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return false; }
 function float GetReactionModifier( optional class<KFDamageType> DamageType ){ return 1.f; }
 simulated function float GetSnareSpeedModifier() { return 1.f; }
 simulated function float GetSnarePowerModifier( optional class<DamageType> DamageType, optional byte HitZoneIdx ){ return 1.f; }
@@ -1354,9 +1382,6 @@ simulated function int GetArmorDamageAmount( int AbsorbedAmt ) { return Absorbed
 simulated event float GetZedTimeSpeedScale() { return 1.f; }
 
 
-/** Survivalist dunctions */
-simulated function bool GetIncapMasterActive(){ return false; }
-
 static function ModifyAssistDosh( out int EarnedDosh )
 {
 	local float TempDosh;
@@ -1459,6 +1484,7 @@ function TickRegen( float DeltaTime )
 	local KFPlayerController KFPC;
 	local KFPowerUp PowerUp;
 	local bool bCannotBeHealed;
+	local KFGameInfo GameInfo;
 
 	TimeUntilNextRegen -= DeltaTime;
 	if( TimeUntilNextRegen <= 0.f )
@@ -1469,9 +1495,12 @@ function TickRegen( float DeltaTime )
 			if( KFPC != none )
 			{
 				PowerUp = KFPC.GetPowerUp();
-				bCannotBeHealed = PowerUp != none && !PowerUp.CanBeHealedWhilePowerUpIsActive;
+				bCannotBeHealed = PowerUp != none && !PowerUp.CanBeHealed();
 			}
 			
+			GameInfo = KFGameInfo(WorldInfo.Game);
+			bCannotBeHealed = bCannotBeHealed || (GameInfo.OutbreakEvent != none && GameInfo.OutbreakEvent.ActiveEvent.bCannotBeHealed);
+
 			// If the Pawn cannot be healed return...
 			if( bCannotBeHealed )
 			{
@@ -1525,6 +1554,12 @@ simulated function string GetGrenadeImagePath()
 simulated function class<KFWeaponDefinition> GetGrenadeWeaponDef()
 {
 	return default.GrenadeWeaponDef;
+}
+
+/** Allow perk to adjust damage given */
+function ModifyDamageGiven( out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx )
+{
+	bWasLastHitAHeadshot = MyKFPM != none && HitZoneIdx == HZI_HEAD;
 }
 
 /*********************************************************************************************

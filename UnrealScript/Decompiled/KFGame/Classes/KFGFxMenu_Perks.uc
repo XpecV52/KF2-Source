@@ -274,8 +274,15 @@ function bool IsMatchStarted()
 
 function PerkChanged(byte NewPerkIndex, bool bClickedIndex)
 {
+    local KFGameReplicationInfo KFGRI;
+
     if(KFPC != none)
     {
+        KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+        if((KFGRI != none) && !KFGRI.IsPerkAllowed(KFPC.PerkList[NewPerkIndex].PerkClass))
+        {
+            return;
+        }
         UpdateSkillsHolder(KFPC.PerkList[NewPerkIndex].PerkClass);
         bChangesMadeDuringLobby = !IsMatchStarted();
         if(bClickedIndex)

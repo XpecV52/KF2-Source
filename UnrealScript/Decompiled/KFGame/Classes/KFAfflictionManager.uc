@@ -8,6 +8,8 @@
 class KFAfflictionManager extends Object within KFPawn
     native(Pawn);
 
+const STUN_GUARANTEED_POWER = 10000.f;
+
 enum EHitZoneBodyPart
 {
     BP_Torso,
@@ -171,9 +173,9 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     KnockdownPower *= KnockdownModifier;
     StumblePower *= StumbleModifier;
     StunPower *= StunModifier;
-    if((InstigatorPerk != none) && InstigatorPerk.GetIncapMasterActive())
+    if((InstigatorPerk != none) && InstigatorPerk.IsStunGuaranteed(DamageType, HitZoneIdx))
     {
-        StunPower += InstigatorPerk.GetStunPowerModifier(DamageType, HitZoneIdx);
+        StunPower = 10000;
     }
     if((KnockdownPower > float(0)) && Outer.CanDoSpecialMove(6))
     {

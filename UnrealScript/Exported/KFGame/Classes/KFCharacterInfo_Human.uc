@@ -616,7 +616,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 {
 	local int AttachmentIdx, CosmeticMeshIdx;
 	local bool bMaskHeadMesh;
-	local int NumberOfCosmetics, NumberOfCosmeticsPostRemoval;
+	//local int NumberOfCosmetics, NumberOfCosmeticsPostRemoval;
 
    	super.SetCharacterMeshFromArch( KFP, KFPRI );
 
@@ -662,7 +662,7 @@ simulated function SetCharacterMeshFromArch( KFPawn KFP, optional KFPlayerReplic
 			CosmeticMeshIdx = KFPRI.RepCustomizationInfo.AttachmentMeshIndices[AttachmentIdx];
 			if ( CosmeticMeshIdx != -1&& CosmeticMeshIdx != INDEX_NONE)
 			{
-					NumberOfCosmetics++;
+					//NumberOfCosmetics++;
 					bMaskHeadMesh = bMaskHeadMesh || CosmeticVariants[CosmeticMeshIdx].bMaskHeadMesh;
 					
 					// Attach all saved attachments to the character
@@ -1184,7 +1184,7 @@ private function SetAttachmentMeshAndSkin(
  * Removes any attachments that exist in the same socket or have overriding cases
  * Network: Local Player
  */
-function array<int> DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI, optional out array<int> out_RemovedAttachments )
+function DetachConflictingAttachments(int NewAttachmentMeshIndex, KFPawn KFP, optional KFPlayerReplicationInfo KFPRI, optional out array<int> out_RemovedAttachments )
 {
 	local name NewAttachmentSocketName;
 	local int i, CurrentAttachmentIdx;

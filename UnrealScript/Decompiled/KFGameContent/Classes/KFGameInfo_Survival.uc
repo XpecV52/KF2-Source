@@ -24,6 +24,7 @@ var array<AARAward> TeamAwardList;
 var byte WaveMax;
 var int WaveNum;
 var bool bHumanDeathsLastWave;
+var protected transient bool bWaveStarted;
 var int ObjectiveSpawnDelay;
 
 static function bool ShouldPlayMusicAtStart()
@@ -801,10 +802,13 @@ function ResetAllPickups()
 
 function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
 {
-    NumPickups *= (float(WaveNum) / float(WaveMax));
-    if(((NumPickups == 0) && PickupList.Length > 0) && (WaveNum > 1) || KFPickupFactory_Ammo(PickupList[0]) != none)
+    if(NumPickups != 0)
     {
-        NumPickups = 1;
+        NumPickups *= (float(WaveNum) / float(WaveMax));
+        if(((NumPickups == 0) && PickupList.Length > 0) && (WaveNum > 1) || KFPickupFactory_Ammo(PickupList[0]) != none)
+        {
+            NumPickups = 1;
+        }
     }
     super.ResetPickups(PickupList, NumPickups);
 }
@@ -913,6 +917,7 @@ function WaveStarted()
         }
     }
     UpdateGameSettings();
+    bWaveStarted = true;
 }
 
 function CheckWaveEnd(optional bool bForceWaveEnd)
@@ -952,6 +957,10 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     local int I;
     local KFPlayerController KFPC;
 
+    if(!bWaveStarted)
+    {
+        return;
+    }
     if(WorldInfo.NetMode == NM_DedicatedServer)
     {
         ScriptTrace();
@@ -961,7 +970,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     {
         GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveEnd', true, AllWaveEndEvents);
         I = 0;
-        J0xA8:
+        J0xB9:
 
         if(I < AllWaveEndEvents.Length)
         {
@@ -981,7 +990,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
                 WaveEndEvt.CheckActivate(self, self,, OutputLinksToActivate);
             }
             ++ I;
-            goto J0xA8;
+            goto J0xB9;
         }
     }
     BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 1);
@@ -1023,6 +1032,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
         }
     }
     SetTimer(WorldInfo.DeltaSeconds, false, 'Timer_FinalizeEndOfWaveStats');
+    bWaveStarted = false;
 }
 
 function Timer_FinalizeEndOfWaveStats()

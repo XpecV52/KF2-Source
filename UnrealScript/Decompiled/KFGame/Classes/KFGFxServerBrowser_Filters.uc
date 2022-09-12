@@ -20,6 +20,7 @@ enum EFilter_Key
     IN_LOBBY,
     IN_PROGRESS,
     LIMIT_SERVER_RESULTS,
+    NO_LOCAL_ADMIN,
     FILTERS_MAX,
     EFilter_Key_MAX
 };
@@ -39,6 +40,7 @@ var const localized string InProgressString;
 var const localized string OnlyStockMapsString;
 var const localized string OnlyCustomMapsString;
 var const localized string LimitServerResultsString;
+var const localized string NotServerExiledString;
 var array<string> FilterStrings;
 var config bool bNoPassword;
 var config bool bNoMutators;
@@ -53,6 +55,7 @@ var config bool bInProgress;
 var config bool bOnlyStockMaps;
 var config bool bOnlyCustomMaps;
 var config bool bLimitServerResults;
+var config bool bNoLocalAdmin;
 var bool bNoPasswordPending;
 var bool bNoMutatorsPending;
 var bool bNotFullPending;
@@ -66,6 +69,7 @@ var bool bInProgressPending;
 var bool bOnlyStockMapsPending;
 var bool bOnlyCustomMapsPending;
 var bool bLimitServerResultsPending;
+var bool bNoLocalAdminPending;
 var config byte SavedGameModeIndex;
 var config byte SavedMapIndex;
 var config byte SavedDifficultyIndex;
@@ -149,6 +153,7 @@ function InitFiltersArray()
     FilterStrings[6] = InLobbyString;
     FilterStrings[7] = InProgressString;
     FilterStrings[8] = LimitServerResultsString @ string(Class'KFGFxServerBrowser_ServerList'.default.MaxSearchResults);
+    FilterStrings[9] = NotServerExiledString;
 }
 
 function LocalizeText()
@@ -184,7 +189,7 @@ function LocalizeCheckBoxes()
     I = 0;
     J0x35:
 
-    if(I < 9)
+    if(I < 10)
     {
         TempObject = Outer.CreateObject("Object");
         TempObject.SetString("label", FilterStrings[I]);
@@ -341,6 +346,7 @@ function ApplyFilters()
     bOnlyStockMaps = bOnlyStockMapsPending;
     bOnlyCustomMaps = bOnlyCustomMapsPending;
     bLimitServerResults = bLimitServerResultsPending;
+    bNoLocalAdmin = bNoLocalAdminPending;
     SavedGameModeIndex = SavedGameModeIndexPending;
     SavedMapIndex = SavedMapIndexPending;
     SavedDifficultyIndex = SavedDifficultyIndexPending;
@@ -364,6 +370,7 @@ function ClearPendingValues()
     bOnlyStockMapsPending = bOnlyStockMaps;
     bOnlyCustomMapsPending = bOnlyCustomMaps;
     bLimitServerResultsPending = bLimitServerResults;
+    bNoLocalAdminPending = bNoLocalAdmin;
     SavedGameModeIndexPending = SavedGameModeIndex;
     SavedMapIndexPending = SavedMapIndex;
     SavedDifficultyIndexPending = SavedDifficultyIndex;
@@ -386,6 +393,7 @@ function ResetFilters()
     bOnlyStockMaps = false;
     bOnlyCustomMaps = false;
     bLimitServerResults = true;
+    bNoLocalAdmin = true;
     SavedGameModeIndex = 255;
     SavedMapIndex = 255;
     SavedDifficultyIndex = 255;
@@ -428,6 +436,9 @@ function SetBoolByEFilter_Key(KFGFxServerBrowser_Filters.EFilter_Key Filter, boo
         case 8:
             bLimitServerResultsPending = FilterValue;
             break;
+        case 9:
+            bNoLocalAdminPending = FilterValue;
+            break;
         default:
             break;
     }
@@ -455,6 +466,8 @@ function bool GetBoolByEFilter_Key(KFGFxServerBrowser_Filters.EFilter_Key Filter
             return bInProgress;
         case 8:
             return bLimitServerResults;
+        case 9:
+            return bNoLocalAdmin;
         default:
             break;
     }
@@ -475,8 +488,10 @@ defaultproperties
     OnlyStockMapsString="ONLY STOCK MAPS"
     OnlyCustomMapsString="ONLY CUSTOM MAPS"
     LimitServerResultsString="LIMIT RESULTS:"
+    NotServerExiledString="NO LOCAL ADMIN"
     bUsesStats=true
     bLimitServerResults=true
+    bNoLocalAdmin=true
     SavedGameModeIndex=255
     SavedMapIndex=255
     SavedDifficultyIndex=255

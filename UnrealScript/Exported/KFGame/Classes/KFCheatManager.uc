@@ -1005,6 +1005,15 @@ simulated exec function Vampire()
 }
 
 /**
+ * Give the player the HRG SonicGun
+ */
+simulated exec function SonicGun()
+{
+	GiveWeapon( "KFGameContent.KFWeap_HRG_SonicGun" );
+}
+
+
+/**
  * Give the player all pistol weapons
  */
 simulated exec function Pistols()
@@ -1252,6 +1261,7 @@ exec function Surv()
     GiveWeapon( "KFGameContent.KFWeap_HRG_EMP_ArcGenerator" );
     GiveWeapon( "KFGameContent.KFWeap_Ice_FreezeThrower" );
     GiveWeapon( "KFGameContent.KFWeap_AssaultRifle_LazerCutter" );
+    GiveWeapon( "KFGameContent.KFWeap_HRG_SonicGun" );
 }
 
 /**

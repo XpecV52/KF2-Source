@@ -347,6 +347,8 @@ var	byte								WaveMax;	// The "end" wave
 var	int									WaveNum;	// The wave we are currently in
 var bool                                bHumanDeathsLastWave; //Track this separate from player count in case someone dies and leaves
 var int									ObjectiveSpawnDelay; // How long should the first wave be delayed if there is an active objective.
+// The boss waves spams the WaveEnd functions, adding this to prevent it (was affecting seasonal events).
+var protected transient bool    		bWaveStarted;
 
 /** Whether this game mode should play music from the get-go (lobby) */
 static function bool ShouldPlayMusicAtStart()
@@ -1241,15 +1243,17 @@ function ResetAllPickups()
 /** Overridden to scale the number of active pickups by wave */
 function ResetPickups( array<KFPickupFactory> PickupList, int NumPickups )
 {
-	NumPickups *= (float(WaveNum) / float(WaveMax));
-
-	// make sure to have at least 1 ammo pickup in the level, and if it's wave 2 or later make sure there's
-	// at least one weapon pickup
-	if( NumPickups == 0 && PickupList.Length > 0 && (WaveNum > 1 || KFPickupFactory_Ammo(PickupList[0]) != none) )
+	if(NumPickups != 0)
 	{
-		NumPickups = 1;
+		NumPickups *= (float(WaveNum) / float(WaveMax));
+		
+		// make sure to have at least 1 ammo pickup in the level, and if it's wave 2 or later make sure there's
+		// at least one weapon pickup
+		if( NumPickups == 0 && PickupList.Length > 0 && (WaveNum > 1 || KFPickupFactory_Ammo(PickupList[0]) != none) )
+		{
+			NumPickups = 1;
+		}
 	}
-
 	super.ResetPickups( PickupList, NumPickups );
 }
 
@@ -1377,6 +1381,8 @@ function WaveStarted()
 
 	//So the server browser can have our new wave information
 	UpdateGameSettings();
+
+	bWaveStarted = true;
 }
 
 /** Do something when there are no AIs left */
@@ -1416,6 +1422,9 @@ function WaveEnded(EWaveEndCondition WinCondition)
 	local Sequence GameSeq;
 	local int i;
 	local KFPlayerController KFPC;
+
+	if(!bWaveStarted)
+		return;
 
 	if (WorldInfo.NetMode == NM_DedicatedServer)
 	{
@@ -1488,6 +1497,7 @@ function WaveEnded(EWaveEndCondition WinCondition)
 	// To allow any statistics that are recorded on the very last zed killed at the end of the wave,
 	// wait a single frame to allow them to finalize.
 	SetTimer( WorldInfo.DeltaSeconds, false, nameOf(Timer_FinalizeEndOfWaveStats) );
+	bWaveStarted=false;
 }
 
 /** All stats should be finalized here */
@@ -2139,9 +2149,9 @@ defaultproperties
    SpawnManagerClasses(0)=Class'KFGame.KFAISpawnManager_Short'
    SpawnManagerClasses(1)=Class'KFGame.KFAISpawnManager_Normal'
    SpawnManagerClasses(2)=Class'KFGame.KFAISpawnManager_Long'
-   LateArrivalStarts(0)=(StartingDosh=(550,650,1200,1500))
-   LateArrivalStarts(1)=(StartingDosh=(450,600,750,800,1100,1400,1500,1600))
-   LateArrivalStarts(2)=(StartingDosh=(450,550,750,1000,1200,1300,1400,1500,1600,1600))
+   LateArrivalStarts(0)=(StartingDosh=(700,850,1650,2200))
+   LateArrivalStarts(1)=(StartingDosh=(600,800,1000,1100,1500,2000,2200,2400))
+   LateArrivalStarts(2)=(StartingDosh=(600,700,1000,1300,1650,1800,2000,2200,2400,2400))
    AIClassList(0)=Class'kfgamecontent.KFPawn_ZedClot_Cyst'
    AIClassList(1)=Class'kfgamecontent.KFPawn_ZedClot_Slasher'
    AIClassList(2)=Class'kfgamecontent.KFPawn_ZedClot_Alpha'

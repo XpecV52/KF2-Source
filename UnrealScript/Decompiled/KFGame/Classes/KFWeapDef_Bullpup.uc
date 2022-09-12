@@ -13,7 +13,7 @@ defaultproperties
     WeaponClassPath="KFGameContent.KFWeap_AssaultRifle_Bullpup"
     ImagePath="ui_weaponselect_tex.UI_WeaponSelect_Bullpup"
     BuyPrice=650
-    AmmoPricePerMag=30
+    AmmoPricePerMag=32
     UpgradePrice(0)=600
     UpgradePrice(1)=700
     UpgradePrice(2)=1500

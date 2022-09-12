@@ -760,6 +760,17 @@ ItemCategory="Escopeta"
 ItemDescription="•El modo de disparo lanza balas que congelan a los enemigos.\n•El golpe cuerpo a cuerpo destroza a los enemigos con el hacha.\n•Alternativo: bloquear/desviar.\n•El hacha es perfecta para esculpir el hielo."
 SharedUnlockSource="Paquete de armas Colmillo helado"
 
+[KFWeap_HRG_SonicGun]
+ItemName="Canto de beluga HRG"
+ItemCategory="Especial"
+ItemDescription="•El disparo principal lanza explosiones sónicas.\n•El disparo alternativo carga la siguiente explosión, aumentando su frecuencia.\n•Potenciará los decibelios de cualquier sarao."
+
+[KFWeap_GravityImploder]
+ItemName="Imp. de gravedad"
+ItemCategory="Explosivos"
+ItemDescription="•El modo de disparo predeterminado lanza granadas de implosión.\n•El modo de disparo alternativo lanza granadas gravitatorias que atraen a los enemigos.\n•Una de las armas más atractivas jamás creadas."
+SharedUnlockSource="Paquete de armas Implosionador de gravedad"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

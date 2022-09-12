@@ -369,6 +369,7 @@ InProgressString="EN COURS"
 OnlyStockMapsString="CARTES DE SÉRIE UNIQUEMENT"
 OnlyCustomMapsString="CARTES PERSO. UNIQ."
 LimitServerResultsString="LIMITER LES RÉSULTATS :"
+NotServerExiledString="PAS D'ADMIN LOCAL"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="MUTATEURS"
@@ -924,10 +925,10 @@ ConfigureSkillsString="CONFIGURER LES COMPÉTENCES"
 BackButtonString="<< RETOUR"
 
 [KFGFxPerksContainer_Selection]
-HeaderTitle="SELECTIONNER LA CLASSE"
-EndOfWaveString="Les changements de classes seront appliqués à la fin de la vague !"
-ChangesAppliedOnCloseString="Les changements de classes seront appliqués à la fermeture de ce menu."
-OncePerWaveString="Les changements de classes ne sont possible qu'une fois par vague !"
+HeaderTitle="CHOISIR LA CLASSE"
+EndOfWaveString="Les échanger de classe se produiront à la fin de la vague!"
+ChangesAppliedOnCloseString="Les échanger de classes seront appliqués à la fermeture."
+OncePerWaveString="Échanges de classe autorisés une fois par vague!"
 
 [KFGFxPerksContainer_Prestige]
 AtMaxPrestigeLevelString="Niveau de prestige de classe max atteint !"
@@ -1384,8 +1385,8 @@ ControllerDeadzoneString="Zone morte"
 ControllerAccelerationJumpString="Saut d'accélération"
 ControllerDeadzoneDescriptionString="Mouvement de la manette droite nécessaire pour que le jeu reconnaisse la commande."
 ControllerDeadzoneDescriptionXboxString="Mouvement de la manette droite nécessaire pour que le jeu reconnaisse la commande."
-ControllerAccelerationJumpDescriptionString="Accélération de la vitesse de rotation lorsque la manette atteint la limite droite ou gauche."
-ControllerAccelerationJumpDescriptionXboxString="Accélération de la vitesse de rotation lorsque la manette atteint la limite droite ou gauche."
+ControllerAccelerationJumpDescriptionString="Accélération de la vitesse de rotation lorsque le stick analogique atteint la limite droite ou gauche."
+ControllerAccelerationJumpDescriptionXboxString="Accélération de la vitesse de rotation lorsque le stick analogique atteint la limite droite ou gauche."
 AimAssistLockOnString="Aide visée auto en zoom"
 AimAssistRotationString="Rotation aide visée"
 AimAssistSlowDownString="Ralentissement aide visée"
@@ -1790,7 +1791,7 @@ EXPAction1="Infliger des dégâts d'arme de Fou furieux"
 EXPAction2="Tuer des Zeds près d'un J avec arme de Fou furieux"
 
 Fortitude="Cuirassé"
-FortitudeDescription="Augmente la Santé totale de 75 %."
+FortitudeDescription="Augmente la Santé totale de 100 %."
 
 Ninja="Escarmoucheur"
 NinjaDescription="Se déplace 20 % plus vite, court 25 % plus vite et régénère 2 point de santé par seconde lorsqu'il utilise une arme de classe."
@@ -1802,7 +1803,7 @@ Speed="Boucher"
 SpeedDescription="Attaque 20 % plus rapide et inflige 20 % de dégâts en plus avec des armes de classe."
 
 Resistance="Résistance"
-ResistanceDescription="Gagne 20 % de résistance à tous les dégâts. Gagne 20 % de résistance supplémentaire aux Dégâts de Poison et Soniques."
+ResistanceDescription="Gagne 25 % de résistance à tous les dégâts. Gagne 25 % de résistance supplémentaire aux Dégâts de Poison et Soniques."
 
 Parry="Parade"
 ParryDescription="Parer avec une AMC réduit les dégâts subis de 40% et augmente la vitesse d'atq en mêlée de 5 % et les dégâts en mêlée de 35 % pendant 10 s."
@@ -1937,22 +1938,22 @@ HealingSurge="Santé symbiotique"
 HealingSurgeDescription="Augmente la Santé totale de 25 %. Soigner des équipiers vous soigne de 10 % de votre Santé totale."
 
 Survivalist="Ténacité"
-SurvivalistDescription="Augmente la résistance aux dégâts de 1 % par point de Santé perdu, jusqu'à 50 %."
+SurvivalistDescription="Augmente la résistance aux dégâts de 1 % par point de Santé perdu, jusqu'à 70 %."
 
 HealingSpeedBoost="Injection d'adrénaline"
-HealingSpeedBoostDescription="Tirer sur vos équipiers avec des fléchettes soignantes augmente leur vitesse de mouvement de 10 % pendant 5 secondes. Cumulable jusqu'à 30 %."
+HealingSpeedBoostDescription="Tous vos soins augmentent la vitesse de mouvement du joueur de 10 % pendant 5 secondes. Cumulable jusqu'à un bonus de 30 %."
 
 Combatant="Docteur combattant"
 CombatantDescription="Augmente la capacité des chargeurs des armes de classe de 50 % et la vitesse de mouvement de 10 %."
 
 HealingDamageBoost="Injection de concentration"
-HealingDamageBoostDescription="Tirer sur vos équipiers avec des fléchettes soignantes augmente les dégâts qu'ils infligent de 5 % pendant 5 s. Cumulable jusqu'à 20 %."
+HealingDamageBoostDescription="Tous vos soins augmentent les dégâts infligés par le joueur de 5 % pendant 5 secondes. Cumulable jusqu'à un bonus de 20 %."
 
 AcidicCompound="Balles acides"
 AcidicCompoundDescription="Les armes de classe peuvent empoisonner les Zeds et leur infliger des dégâts continus de poison."
 
 HealingShield="Accélérateur de coagulation"
-HealingShieldDescription="Tirer sur vos équipiers avec des fléchettes soignantes augmente leur résistance aux dégâts de 10 % pendant 5 s. Cumulable jusqu'à 30 %."
+HealingShieldDescription="Tous vos soins augmentent la résistance aux dégâts du joueur de 10 % pendant 5 secondes. Cumulable jusqu'à un bonus de 30 %."
 
 Enforcer="Chirurgien de bataille"
 EnforcerDescription="Augmente les dégâts des armes de classe de 20 %."
@@ -1978,11 +1979,11 @@ SkillCatagories[2]="Brûler"
 SkillCatagories[3]="Flamme"
 SkillCatagories[4]="Entraînement avancé"
 
-Passives[0]=(Title="Dégâts d'arme de classe",Description="Dégâts de l'arme de classe + %x% par niveau");
-Passives[1]=(Title="Rechargement arme de classe",Description="Vitesse de rechargement +%x% par niveau");
-Passives[2]=(Title="Résiste au feu Zed",Description="Résistance dégâts de feu Zed +30 %, +%x% par niveau");
-Passives[3]=(Title="Immunisé à votre propre feu",Description="Résistance à votre feu +25 %, +%x% par niveau");
-Passives[4]=(Title="Munitions de départ",Description="Munitions de départ +%x% tous les 5 niveaux");
+Passives[0]=(Title="Dégâts d'arme de classe",Description="Dégâts de l'arme de classe + %x% par niv");
+Passives[1]=(Title="Rechargement arme de classe",Description="Vitesse de rechargement +%x% par niv");
+Passives[2]=(Title="Résiste au feu Zed",Description="Résistance dégâts de feu Zed +30 %, +%x% par niv");
+Passives[3]=(Title="Immunisé à votre propre feu",Description="Résistance à votre feu +25 %, +%x% par niv");
+Passives[4]=(Title="Munitions de départ",Description="Munitions de départ +%x% tous les 5 niv");
 
 BringTheHeat="Allumer le feu"
 BringTheHeatDescription="Augmente les dégâts des lance-flammes de 35 %."
@@ -2032,7 +2033,7 @@ Passives[3]=(Title="Réduction du recul",Description="Réduit le recul des armes
 Passives[4]=(Title="Rechargement Zed time",Description="Vitesse de rechargement Zed time +%x% par niveau");
 
 ShootnMove="Paré"
-ShootnMoveDescription="Ignore les pénalités de vitesse et augmente les dégâts des armes de classe de 7.5 % avec la mire. Réduit considérablement l'inclinaison des armes de classe."
+ShootnMoveDescription="Ignore les pénalités de vitesse de mouvement et augmente les dégâts des armes de classe de 7,5 % avec la mire. Réduit considérablement l'inclinaison des armes de classe."
 
 QuickSwitch="Dégaine rapide"
 QuickSwitchDescription="Réduit la pénalité de recul des tirs à la hanche, augmente la vitesse de mouvement de 5 % et change d'arme de classe 50 % plus vite."
@@ -2375,7 +2376,7 @@ BullseyeUpdate="Dernier contenu - Mise à jour Bullseye"
 LatestUpdate="Dernière mise à jour de contenu"
 Forums="Visitez les forums de la communauté"
 Survey="Participez à l'enquête de jouabilité"
-CommunityTracker="Suivre les demandes de la communauté"
+CommunityTracker="Feuille de route"
 FeaturedCrateKey="Clé caisse Horzine à la une - 2,49 $"
 FeaturedEventItem="Objet d'événement à la une"
 FeaturedUsbKey="Clé USB modèle d'arme à la une - 2,49 $"
@@ -2402,6 +2403,7 @@ USBHighVoltage="Clé USB Haute tension - 2,49 $"
 MerchSale="Super promo KF2 ! -25 % jusqu'au 30/04. Code : ZED"
 FreeTrial="Achetez Killing Floor 2 aujourd'hui !"
 FeaturedCrossover="Promotion de crossover à la une"
+ArmorySeasonPass="Pass de saison Armurerie"
 
 [Objectives]
 ObjectiveTitle="OBJECTIF"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="Noël | Sac à dos d'elfe tactique"
 ChanceDropDescriptionStrings[0]="Ticket de Krampus"
 ChanceDropDescriptionStrings[1]="Ticket doré de Krampus"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Cybermenace",DescriptionString="Tuer 15 boss sur n'importe quelle carte ou dans n'importe quel mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Hack hebdomadaire",DescriptionString="Terminer l'hebdomadaire de Dystopie 2029")
+SpecialEventObjectiveInfoList[2]=(TitleString="IA hors de contrôle",DescriptionString="Tuer 50 R.E.D.A. sur Dystopie 2029")
+SpecialEventObjectiveInfoList[3]=(TitleString="Pas une simulation",DescriptionString="Terminer une vague sans subir aucun dégât 10 fois sur Dystopie 2029")
+SpecialEventObjectiveInfoList[4]=(TitleString="Zed Attacks!",DescriptionString="Terminer 15 vagues en Infini en mode difficile ou supérieur sur Dystopie 2029")
+
+AllCompleteRewardDescriptionString="Cyborg | Sac à dos compagnon | Doré"
+
+ChanceDropDescriptionStrings[0]="Ticket printanier"
+ChanceDropDescriptionStrings[1]="Ticket doré printanier"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2894,6 +2910,26 @@ FriendlyName="Bobble-Zed"
 DescriptionStrings[0]="... Ça doit faire mal au cou."
 DescriptionStrings[1]="Durée : moyenne (7 vagues)"
 ModifierDescriptions[0]="Ce groupe de Zeds a dû vivre une terrible expérience : leur tête est beaaaauuuucoup plus grande que d'ordinaire ! Elle est même énorme ! Pour participer à cette épidémie hebdomadaire, sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName="Colisée"
+DescriptionStrings[0]="Seuls les Fous furieux sont admis!"
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Aiguisez vos épées et vos haches, et bienvenue dans l'arène! Perfectionnez vos compétences de béliers. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="Soif de sang"
+DescriptionStrings[0]="La série d'éliminations doit continuer, sinon vous mourrez..."
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Une soif de sang de Zed vous inflige des dégâts continus (pendant que l'icône hebdomadaire s'affiche près de la barre de santé). Tuer est le seul moyen de régénérer votre santé. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3412,6 +3448,9 @@ DisplayName="Poste infernal"
 
 [KF-Elysium KFMapSummary]
 DisplayName="Élysée"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="Dystopie 2029"
 
 [KFMapInfo]
 ; defaults

@@ -6433,3 +6433,129 @@ AttachmentSkin0="Cenny egzemplarz"
 [Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
 Attachment="Taktyczny zestaw elfa"
 AttachmentSkin0="Cenny egzemplarz"
+
+[Cosmetic_Paratrooper_Altimeter_ARCH]
+Attachment="Wysokościomierz spadochroniarza"
+AttachmentSkin0="Czarne"
+AttachmentSkin1="Pustynia"
+AttachmentSkin2="Las"
+AttachmentSkin3="Toksyczne"
+AttachmentSkin4="Piekło"
+AttachmentSkin5="Technika"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Paratrooper_JumpBottle_ARCH]
+Attachment="Zbiornik O2 spadochroniarza"
+AttachmentSkin0="Czarne"
+AttachmentSkin1="Pustynia"
+AttachmentSkin2="Las"
+AttachmentSkin3="Toksyczne"
+AttachmentSkin4="Piekło"
+AttachmentSkin5="Technika"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Paratrooper_Mask_ARCH]
+Attachment="Maska O2 spadochroniarza"
+AttachmentSkin0="Czarne"
+AttachmentSkin1="Pustynia"
+AttachmentSkin2="Las"
+AttachmentSkin3="Toksyczne"
+AttachmentSkin4="Piekło"
+AttachmentSkin5="Technika"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_ChemicalTrooper_Helmet_ARCH]
+Attachment="Hełm spadochroniarza"
+AttachmentSkin0="Czarne"
+AttachmentSkin1="Pustynia"
+AttachmentSkin2="Las"
+AttachmentSkin3="Toksyczne"
+AttachmentSkin4="Piekło"
+AttachmentSkin5="Technika"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_ChemicalTrooper_Hood_ARCH]
+Attachment="Kaptur chemicznego wojownika"
+AttachmentSkin0="Czarne"
+AttachmentSkin1="Pustynia"
+AttachmentSkin2="Las"
+AttachmentSkin3="Toksyczne"
+AttachmentSkin4="Piekło"
+AttachmentSkin5="Technika"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_ChemicalTrooper_GasMask_ARCH]
+Attachment="Maska gazowa chemicznego wojownika"
+AttachmentSkin0="Czarne"
+AttachmentSkin1="Pustynia"
+AttachmentSkin2="Las"
+AttachmentSkin3="Toksyczne"
+AttachmentSkin4="Piekło"
+AttachmentSkin5="Technika"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_ChemicalTrooper_Respirator_ARCH]
+Attachment="Respirator chemicznego wojownika"
+AttachmentSkin0="Czarne"
+AttachmentSkin1="Pustynia"
+AttachmentSkin2="Las"
+AttachmentSkin3="Toksyczne"
+AttachmentSkin4="Piekło"
+AttachmentSkin5="Technika"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Cyborg_BrainHelmet_ARCH]
+Attachment="Hełm: mózg cyborga"
+AttachmentSkin0="Tytan"
+AttachmentSkin1="Głęboka czerń"
+AttachmentSkin2="Supernowa"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Cyborg_PowerCore_ARCH]
+Attachment="Plecak: rdzeń zasilający cyborga"
+AttachmentSkin0="Tytan"
+AttachmentSkin1="Głęboka czerń"
+AttachmentSkin2="Supernowa"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Cyborg_HeartBackpack_ARCH]
+Attachment="Plecak: serce cyborga"
+AttachmentSkin0="Tytan"
+AttachmentSkin1="Głęboka czerń"
+AttachmentSkin2="Supernowa"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Cyborg_TacticalHelmet_ARCH]
+Attachment="Hełm taktyczny cyborga"
+AttachmentSkin0="Tytan"
+AttachmentSkin1="Głęboka czerń"
+AttachmentSkin2="Supernowa"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Cyborg_ComModule_ARCH]
+Attachment="Moduł komunikacyjny cyborga"
+AttachmentSkin0="Tytan"
+AttachmentSkin1="Głęboka czerń"
+AttachmentSkin2="Supernowa"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Cyborg_Vision_ARCH]
+Attachment="Moduł wizyjny cyborga"
+AttachmentSkin0="Tytan"
+AttachmentSkin1="Głęboka czerń"
+AttachmentSkin2="Supernowa"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Cyborg_CompanionBackpack_ARCH]
+Attachment="Plecak towarzyszący cyborga"
+AttachmentSkin0="Cenne"
+
+[Cosmetic_BloodThirst_Backpack_ARCH]
+Attachment="Plecak: pragnienie krwi"
+AttachmentSkin0="Cenne"

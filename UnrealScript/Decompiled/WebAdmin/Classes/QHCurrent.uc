@@ -74,7 +74,7 @@ var const localized string msgNotAllowed;
 var const localized string menuServerInfo;
 var const localized string menuServerInfoDesc;
 var array<string> playerActions;
-var array<string> notAllowedBanConsoleCommands;
+var array<string> consoleCommandsToGetServerExiled;
 
 function Init(webadmin webapp)
 {
@@ -799,11 +799,56 @@ function int handleCurrentPlayersAction(WebAdminQuery Q)
                         }
                         else
                         {
-                            if((((((((Action ~= "banip") || Action ~= "ban ip") || Action ~= "banid") || Action ~= "ban unique id") || Action ~= "banhash") || Action ~= "ban client hash") || Action ~= "sessionban") || Action ~= "session ban")
+                            if((Action ~= "banip") || Action ~= "ban ip")
                             {
-                                webadmin.addMessage(Q, msgNotAllowed, 2);
+                                banByIP(PC);
+                                kickMessage = "Engine.AccessControl.KickAndPermaBan";                                
+                            }
+                            else
+                            {
+                                if((Action ~= "banid") || Action ~= "ban unique id")
+                                {
+                                    banByID(PC);
+                                    kickMessage = "Engine.AccessControl.KickAndPermaBan";                                    
+                                }
+                                else
+                                {
+                                    if((Action ~= "sessionban") || Action ~= "session ban")
+                                    {
+                                        if(webadmin.WorldInfo.Game.AccessControl.IsAdmin(PC))
+                                        {
+                                            webadmin.addMessage(Q, Repl(msgCantBanAdmin, "%s", PRI.PlayerName), 2);
+                                            return 0;                                            
+                                        }
+                                        else
+                                        {
+                                            if(KFAccessControl(webadmin.WorldInfo.Game.AccessControl) != none)
+                                            {
+                                                KFAccessControl(webadmin.WorldInfo.Game.AccessControl).KickSessionBanPlayer(PC, PC.PlayerReplicationInfo.UniqueId, "Engine.AccessControl.KickAndSessionBan");
+                                                webadmin.WorldInfo.Game.ExileServerUsingKickBan();
+                                                webadmin.addMessage(Q, Repl(msgSessionBanned, "%s", PRI.PlayerName));
+                                                return 1;                                                
+                                            }
+                                            else
+                                            {
+                                                webadmin.addMessage(Q, msgSessionBanNoROAC, 2);
+                                                return 1;
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
+                    }
+                    if(!webadmin.WorldInfo.Game.AccessControl.KickPlayer(PC, kickMessage))
+                    {
+                        webadmin.addMessage(Q, Repl(msgCantKickAdmin, "%s", PRI.PlayerName), 2);                        
+                    }
+                    else
+                    {
+                        webadmin.WorldInfo.Game.ExileServerUsingKickBan();
+                        webadmin.addMessage(Q, Repl(msgPlayerRemoved, "%s", PRI.PlayerName));
+                        return 1;
                     }
                 }                
             }
@@ -1133,17 +1178,17 @@ function handleConsole(WebAdminQuery Q)
         I = 0;
         J0x102:
 
-        if(I < notAllowedBanConsoleCommands.Length)
+        if(I < consoleCommandsToGetServerExiled.Length)
         {
-            if((notAllowedBanConsoleCommands[I] ~= Locs(Cmd)) || InStr(Locs(Cmd) $ " ", notAllowedBanConsoleCommands[I] $ " ") >= 0)
+            if((consoleCommandsToGetServerExiled[I] ~= Locs(Cmd)) || InStr(Locs(Cmd) $ " ", consoleCommandsToGetServerExiled[I] $ " ") >= 0)
             {
-                denied = true;
-                goto J0x18F;
+                webadmin.WorldInfo.Game.ExileServerUsingKickBan();
+                goto J0x1CC;
             }
             ++ I;
             goto J0x102;
         }
-        J0x18F:
+        J0x1CC:
 
         if(!denied)
         {
@@ -1616,8 +1661,12 @@ defaultproperties
     msgNotAllowed="You are not allowed to execute this action.\""
     menuServerInfo="Server Info"
     menuServerInfoDesc="The current game status."
-    playerActions(0)="mutevoice"
-    playerActions(1)="unmutevoice"
-    notAllowedBanConsoleCommands(0)="kick"
-    notAllowedBanConsoleCommands(1)="kickban"
+    playerActions(0)="kick"
+    playerActions(1)="sessionban"
+    playerActions(2)="banip"
+    playerActions(3)="banid"
+    playerActions(4)="mutevoice"
+    playerActions(5)="unmutevoice"
+    consoleCommandsToGetServerExiled(0)="kick"
+    consoleCommandsToGetServerExiled(1)="kickban"
 }

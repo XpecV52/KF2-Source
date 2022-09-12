@@ -369,6 +369,7 @@ InProgressString="進行中"
 OnlyStockMapsString="僅限制式地圖"
 OnlyCustomMapsString="僅限自訂地圖"
 LimitServerResultsString="限制搜尋結果："
+NotServerExiledString="無本機管理員"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="變異"
@@ -1383,9 +1384,9 @@ ControllerZoomSensitivityString="變焦敏感度"
 ControllerDeadzoneString="死區"
 ControllerAccelerationJumpString="加速跳"
 ControllerDeadzoneDescriptionString="遊戲識別輸入之前右操作桿移動量"
-ControllerDeadzoneDescriptionXboxString="游戏确认输入之前的右摇杆移动量"
+ControllerDeadzoneDescriptionXboxString="遊戲識別輸入之前右搖桿移動量"
 ControllerAccelerationJumpDescriptionString="操作桿達到左右極限時轉速提升量"
-ControllerAccelerationJumpDescriptionXboxString="摇杆达到向左或向右极限时的旋转速度提升量"
+ControllerAccelerationJumpDescriptionXboxString="搖桿達到左右極限時轉速提升量"
 AimAssistLockOnString="瞄準輔助變焦鎖定"
 AimAssistRotationString="瞄準輔助轉換"
 AimAssistSlowDownString="瞄準輔助遲緩"
@@ -1790,7 +1791,7 @@ EXPAction1="造成狂戰士武器傷害"
 EXPAction2="使用狂戰士武器殺死附近的 Zed"
 
 Fortitude="勇士"
-FortitudeDescription="血量增加 75%。"
+FortitudeDescription="血量完全增加100%。"
 
 Ninja="散兵"
 NinjaDescription="移動速度增加 20%，衝刺速度增加 25%，使用職業武器時每秒回復 2 點血量。"
@@ -1802,7 +1803,7 @@ Speed="屠夫"
 SpeedDescription="使用職業武器時攻擊速度增加 20%，傷害增加 20%。"
 
 Resistance="抗性"
-ResistanceDescription="對所有傷害抵抗增加 20%毒害與超音波傷害抵抗再增加 20%"
+ResistanceDescription="對所有傷害抵抗增加25%；毒害與超音波傷害抵抗再增加25%。"
 
 Parry="格檔"
 ParryDescription="以職業近身武器進行格檔可減少 40% 即將受到的傷害，且增加 5% 近身攻速與 35% 近身攻擊傷害，效果持續 10 秒。"
@@ -1937,22 +1938,22 @@ HealingSurge="共同生命"
 HealingSurgeDescription="增加 25% 血量。治療隊友也會治療你 10% 的血量"
 
 Survivalist="恢復力"
-SurvivalistDescription="每失去 1 點血量就增加傷害抵抗 1%，最多增加到 50%"
+SurvivalistDescription="每失去1點血量就增加傷害抵抗1%，最多增加70%。"
 
 HealingSpeedBoost="腎上腺素注射"
-HealingSpeedBoostDescription="以治療鏢射擊隊友能增加他們的移動速度 10%，效力維持 5 秒。這可加到總共 30% 的加成。"
+HealingSpeedBoostDescription="你的所有治療使玩家的移動速度增加10%，效力維持5秒，最多可疊加至30%的加成。"
 
 Combatant="搏鬥醫師"
 CombatantDescription="職業武器彈匣上限增加 50% 且移動速度增加 10% "
 
 HealingDamageBoost="注意力注射"
-HealingDamageBoostDescription="以治療鏢射擊隊友能增加他們的殺傷力 5%，效力維持 5 秒。這可加到總共 20% 的加成。"
+HealingDamageBoostDescription="你的所有治療使玩家的殺傷力增加5%，效力維持5秒，最多可疊加至20%的加成。"
 
 AcidicCompound="酸性回合"
 AcidicCompoundDescription="職業武器可使 Zed 中毒，造成持續傷害。"
 
 HealingShield="凝結加速器"
-HealingShieldDescription="以治療鏢射擊隊友能增加他們的傷害抵抗 10%，效力維持 5 秒。這可加到總共 30% 的加成。"
+HealingShieldDescription="你的所有治療使玩家的傷害抵抗增加10%，效力維持5秒，最多可疊加至30%的加成。"
 
 Enforcer="戰地外科醫生"
 EnforcerDescription="職業武器傷害增加 20%。"
@@ -2009,7 +2010,7 @@ SplashDamage="熱浪"
 SplashDamageDescription="被近距離擊中的 Zed 會往後跌。"
 
 Inferno="ZED 時間 - 火焰地獄"
-InfernoDescription="Zed 時間發動時，被火燒到的 Zed 速度會減緩 30% 並受到額外 50% 的燃燒傷害。"
+InfernoDescription="Zed時間發動時，被火燒到的Zed速度會減緩30%並受到額外50%的燃燒傷害。"
 
 Scorch="ZED 時間 - 縱火狂"
 ScorchDescription="Zed 時間發動時，幾乎可以瞬間連發職業武器，而且彈藥不會耗盡。"
@@ -2032,7 +2033,7 @@ Passives[3]=(Title="後座力降低",Description="每級減少職業武器的後
 Passives[4]=(Title="Zed 時間裝填",Description="每級增加 Zed 時間發動時提升的裝填速度 %x%");
 
 ShootnMove="穩健"
-ShootnMoveDescription="可無視使用瞄具時移動速度的延遲，職業武器傷害增加 7.5%。大幅減少職業武器的震動。"
+ShootnMoveDescription="使用瞄具時，可無視移動速度的延遲並使職業武器傷害增加7.5%。大幅減少職業武器的搖晃程度。"
 
 QuickSwitch="快速拔槍"
 QuickSwitchDescription="神速射擊可減少後座力影響，增加移動速度5%，並提高perk武器切換速度50%。"
@@ -2375,7 +2376,7 @@ BullseyeUpdate="最新內容 - 紅心更新"
 LatestUpdate="最新內容更新"
 Forums="看看我們的社群論壇"
 Survey="填寫遊戲問卷"
-CommunityTracker="搜尋社群問題"
+CommunityTracker="預計規劃內容"
 FeaturedCrateKey="特賣 Horzine 補給箱子鑰匙 - $2.49"
 FeaturedEventItem="特賣活動物品"
 FeaturedUsbKey="特賣武器飾品 USB 鑰匙 - $2.49"
@@ -2402,6 +2403,7 @@ USBHighVoltage="高壓USB鑰匙-$2.49"
 MerchSale="KF2酷炫組特賣！特價75折只到2017年4月30日。促銷代碼ZED"
 FreeTrial="立即購買《殺戮空間 2》"
 FeaturedCrossover="混合推廣特賣"
+ArmorySeasonPass="武器庫季票"
 
 [Objectives]
 ObjectiveTitle="目標"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="聖誕節 | 戰略精靈包"
 ChanceDropDescriptionStrings[0]="坎普斯票券"
 ChanceDropDescriptionStrings[1]="坎普斯金色票券"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="附有獨特道具的限時特別活動"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="生化人威脅",DescriptionString="在任何地圖或模式擊殺15個頭目")
+SpecialEventObjectiveInfoList[1]=(TitleString="每週入侵計畫",DescriptionString="完成每週反烏托邦2029任務")
+SpecialEventObjectiveInfoList[2]=(TitleString="AI失控",DescriptionString="在反烏托邦2029地圖擊殺50個精銳攻防機器人")
+SpecialEventObjectiveInfoList[3]=(TitleString="不是模擬",DescriptionString="在反烏托邦2029地圖中，沒有受到任何傷害10次，通過一波攻勢")
+SpecialEventObjectiveInfoList[4]=(TitleString="Zed世界勇者",DescriptionString="在無盡困難以上難度的反烏托邦2029地圖中，通過第15波攻勢")
+
+AllCompleteRewardDescriptionString="生化人 | 同伴背包 | 珍貴"
+
+ChanceDropDescriptionStrings[0]="春季票券"
+ChanceDropDescriptionStrings[1]="春季黃金票券"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2894,6 +2910,26 @@ FriendlyName="目前暴動：Zed大頭泡泡"
 DescriptionStrings[0]="……脖子應該很痛。"
 DescriptionStrings[1]="長度：中（7 波攻擊）"
 ModifierDescriptions[0]="這一批殭屍不知道吃錯什麼藥，他們的頭變得比平常還要大－－－－－－好幾倍！大得不得了！在配對頁面中選擇每週活動遊戲模式就能參加這場每週暴動。職業等級 15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName="競技場"
+DescriptionStrings[0]="只限狂戰士！"
+DescriptionStrings[1]="長度：中（7波攻勢）"
+ModifierDescriptions[0]="磨利你的刀斧，歡迎來到競技場！訓練你的強力撞擊技能。在配對頁面中選擇每週遊戲模式。職業等級15以上。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="嗜血"
+DescriptionStrings[0]="保持連殺紀錄，不然死路一條……"
+DescriptionStrings[1]="長度：中（7波攻勢）"
+ModifierDescriptions[0]="（當每週圖示在血量計數器旁顯示時）對Zed鮮血的渴望會讓你持續受到傷害。殺戮是唯一回復血量的方法。在配對頁面中選擇每週遊戲模式。職業等級15以上。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3412,6 +3448,9 @@ DisplayName="地獄印記站點"
 
 [KF-Elysium KFMapSummary]
 DisplayName="極樂世界"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="反烏托邦2029"
 
 [KFMapInfo]
 ; defaults

@@ -165,6 +165,7 @@ const STATID_ACHIEVE_BiolapseCollectibles			= 4054;
 const STATID_ACHIEVE_DesolationCollectibles			= 4055;
 const STATID_ACHIEVE_HellmarkStationCollectibles	= 4056;
 const STATID_ACHIEVE_ElysiumEndlessWaveFifteen	    = 4057;
+const STATID_ACHIEVE_Dystopia2029Collectibles       = 4058;
  
 #linenumber 14
 

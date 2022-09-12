@@ -203,6 +203,7 @@ function BuildServerFilters(KFGFxServerBrowser_Filters Filters, OnlineGameSearch
     Search.AddServerFilter("version_match", string(Class'KFGameEngine'.static.GetKFGameVersion()));
     Search.TestAddServerFilter(Filters.bNotFull, "notfull");
     Search.TestAddServerFilter(Filters.bNotEmpty, "hasplayers");
+    Search.TestAddBoolGametagFilter(GametagSearch, Filters.bNoLocalAdmin, 'bServerExiled', 0);
     if(!Class'WorldInfo'.static.IsConsoleBuild())
     {
         Search.TestAddServerFilter(Filters.bDedicated, "dedicated");
@@ -752,17 +753,17 @@ function UpdateListDataProvider()
                 if(NewServerCount > 10)
                 {
                     Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
-                    goto J0xA68;
+                    goto J0xAB4;
                 }
                 TempOnlineGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[I].GameSettings);
                 if(Class'WorldInfo'.static.IsEOSBuild() && I >= LatestGameSearch.MaxSearchResults)
                 {
-                    goto J0xA68;
+                    goto J0xAB4;
                 }
                 if(Class'WorldInfo'.static.IsEOSBuild() && TempOnlineGamesSettings.PingInMs == -1)
                 {
                     Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'UpdateListDataProvider', self);
-                    goto J0xA68;
+                    goto J0xAB4;
                 }
                 TempObj = Outer.CreateObject("Object");
                 TempObj.SetString("serverName", TempOnlineGamesSettings.OwningPlayerName);
@@ -782,6 +783,7 @@ function UpdateListDataProvider()
                 TempObj.SetString("mode", Class'KFCommon_LocalizedStrings'.static.GetGameModeString(TempOnlineGamesSettings.Mode));
                 TempObj.SetString("map", TempOnlineGamesSettings.MapName);
                 TempObj.SetBool("locked", TempOnlineGamesSettings.bRequiresPassword);
+                TempObj.SetBool("serverExiled", TempOnlineGamesSettings.bServerExiled);
                 TempObj.SetString("gameStatus", string(TempOnlineGamesSettings.GameState));
                 GFxServerObjects.AddItem(TempObj;
                 TempOnlineGamesSettings.GfxID = GFxServerObjects.Length - 1;
@@ -795,7 +797,7 @@ function UpdateListDataProvider()
             ++ I;
             goto J0x5D;
         }
-        J0xA68:
+        J0xAB4:
 
         SetObject("dataProvider", DataProvider);
     }

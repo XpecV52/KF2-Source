@@ -268,7 +268,7 @@ ItemCategory="ショットガン"
 ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•AA-12は自動ショットガンです。近距離から中距離で壊滅的な火力を発揮しますが、フルオートでは弾薬が食われます！"
 
 [KFWeap_Shotgun_MB500]
-ItemName="SG 500ポンプアクションショットガン"
+ItemName="SG 500ポンプショットガン"
 ItemCategory="ショットガン"
 ItemDescription="•ファイアモードはポンプアクションのみ。\n•ピストルグリップを持つポンプアクションモスバーグSG 500は、素晴らしい接近戦用zedキラーです。シンプルで効果的です。"
 
@@ -759,6 +759,17 @@ ItemName="フロスト牙"
 ItemCategory="ショットガン"
 ItemDescription="•ファイアモードは敵を凍らせる弾を発射する。\n•殴打攻撃は斧を使って敵を粉砕する。\n•オルト - ブロック / 受け流し。\n•この斧は彫刻用に最適です。"
 SharedUnlockSource="フロスト牙の武器バンドル"
+
+[KFWeap_HRG_SonicGun]
+ItemName="HRG ベルーガビート"
+ItemCategory="特殊"
+ItemDescription="•プライマリファイアは音の衝撃を発射します。\n•オルトファイアは次の衝撃を強化しその周波数を上昇させます。\n•これにより、誰にとっても音の強さが高まります。"
+
+[KFWeap_GravityImploder]
+ItemName="グラビティインプローダー"
+ItemCategory="爆発物"
+ItemDescription="•デフォルトファイアモードは爆縮型手榴弾を発射します。\n•オルトファイアモードは敵を引き寄せる重力手榴弾を発射します。\n•これまでに開発されたうちで最も注目を集める武器のひとつです。"
+SharedUnlockSource="グラビティインプローダー武器バンドル"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

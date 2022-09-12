@@ -6433,3 +6433,129 @@ AttachmentSkin0="Precioso"
 [Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
 Attachment="Pacote Elfo-tático"
 AttachmentSkin0="Precioso"
+
+[Cosmetic_Paratrooper_Altimeter_ARCH]
+Attachment="Altímetro de Paraquedista"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Deserto"
+AttachmentSkin2="Floresta"
+AttachmentSkin3="Tóxico"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Paratrooper_JumpBottle_ARCH]
+Attachment="Tanque de O2 de Paraquedista"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Deserto"
+AttachmentSkin2="Floresta"
+AttachmentSkin3="Tóxico"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Paratrooper_Mask_ARCH]
+Attachment="Máscara de O2 de Paraquedista"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Deserto"
+AttachmentSkin2="Floresta"
+AttachmentSkin3="Tóxico"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_ChemicalTrooper_Helmet_ARCH]
+Attachment="Capacete de Paraquedista"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Deserto"
+AttachmentSkin2="Floresta"
+AttachmentSkin3="Tóxico"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_ChemicalTrooper_Hood_ARCH]
+Attachment="Capuz de Guerreiro Químico"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Deserto"
+AttachmentSkin2="Floresta"
+AttachmentSkin3="Tóxico"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_ChemicalTrooper_GasMask_ARCH]
+Attachment="Máscara de Gás de Guerreiro Químico"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Deserto"
+AttachmentSkin2="Floresta"
+AttachmentSkin3="Tóxico"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_ChemicalTrooper_Respirator_ARCH]
+Attachment="Respirador de Guerreiro Químico"
+AttachmentSkin0="Preto"
+AttachmentSkin1="Deserto"
+AttachmentSkin2="Floresta"
+AttachmentSkin3="Tóxico"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Cyborg_BrainHelmet_ARCH]
+Attachment="Capacete de Cérebro de Ciborgue"
+AttachmentSkin0="Titânio"
+AttachmentSkin1="Preto jateado"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Cyborg_PowerCore_ARCH]
+Attachment="Mochila Núcleo de Energia de Ciborgue"
+AttachmentSkin0="Titânio"
+AttachmentSkin1="Preto jateado"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Cyborg_HeartBackpack_ARCH]
+Attachment="Mochila Coração de Ciborgue"
+AttachmentSkin0="Titânio"
+AttachmentSkin1="Preto jateado"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Cyborg_TacticalHelmet_ARCH]
+Attachment="Capacete Tático de Ciborgue"
+AttachmentSkin0="Titânio"
+AttachmentSkin1="Preto jateado"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Cyborg_ComModule_ARCH]
+Attachment="Módulo de Comunicação de Ciborgue"
+AttachmentSkin0="Titânio"
+AttachmentSkin1="Preto jateado"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Cyborg_Vision_ARCH]
+Attachment="Módulo de Visão de Ciborgue"
+AttachmentSkin0="Titânio"
+AttachmentSkin1="Preto jateado"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Cyborg_CompanionBackpack_ARCH]
+Attachment="Mochila de Companheiro Ciborgue"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_BloodThirst_Backpack_ARCH]
+Attachment="Mochila Sanguinária"
+AttachmentSkin0="Precioso"

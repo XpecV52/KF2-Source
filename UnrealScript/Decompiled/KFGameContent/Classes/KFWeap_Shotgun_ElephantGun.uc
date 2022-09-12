@@ -24,11 +24,7 @@ simulated function AltFireMode()
     {
         return;
     }
-    if(ReloadStatus == 2)
-    {
-        return;
-    }
-    if(AmmoCount[0] <= 1)
+    if(AmmoCount[0] == 1)
     {
         StartFire(0);        
     }
@@ -103,8 +99,14 @@ simulated state WeaponQuadBarrelFiring extends WeaponSingleFiring
     simulated function BeginState(name PreviousStateName)
     {
         local Vector UsedKickMomentum;
+        local KFMapInfo KFMI;
 
         super(WeaponFiring).BeginState(PreviousStateName);
+        KFMI = KFMapInfo(WorldInfo.GetMapInfo());
+        if((KFMI != none) && !KFMI.bAllowShootgunJump)
+        {
+            return;
+        }
         if(Instigator != none)
         {
             UsedKickMomentum.X = -DoubleBarrelKickMomentum;

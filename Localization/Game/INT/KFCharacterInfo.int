@@ -6433,3 +6433,129 @@ AttachmentSkin0="Precious"
 [Cosmetic_Christmas_TacticalElfPack_RockabillyGirl_ARCH]
 Attachment="Tactical Elf-pack"
 AttachmentSkin0="Precious"
+
+[Cosmetic_Paratrooper_Altimeter_ARCH]
+Attachment="Paratrooper Altimeter"
+AttachmentSkin0="Black"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Forest"
+AttachmentSkin3="Toxic"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Paratrooper_JumpBottle_ARCH]
+Attachment="Paratrooper O2 Tank"
+AttachmentSkin0="Black"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Forest"
+AttachmentSkin3="Toxic"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Paratrooper_Mask_ARCH]
+Attachment="Paratrooper O2 Mask"
+AttachmentSkin0="Black"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Forest"
+AttachmentSkin3="Toxic"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_ChemicalTrooper_Helmet_ARCH]
+Attachment="Paratrooper Helmet"
+AttachmentSkin0="Black"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Forest"
+AttachmentSkin3="Toxic"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_ChemicalTrooper_Hood_ARCH]
+Attachment="Chemical Warrior Hood"
+AttachmentSkin0="Black"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Forest"
+AttachmentSkin3="Toxic"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_ChemicalTrooper_GasMask_ARCH]
+Attachment="Chemical Warrior Gas Mask"
+AttachmentSkin0="Black"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Forest"
+AttachmentSkin3="Toxic"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_ChemicalTrooper_Respirator_ARCH]
+Attachment="Chemical Warrior Respirator"
+AttachmentSkin0="Black"
+AttachmentSkin1="Desert"
+AttachmentSkin2="Forest"
+AttachmentSkin3="Toxic"
+AttachmentSkin4="Inferno"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Cyborg_BrainHelmet_ARCH]
+Attachment="Cyborg Brain Helmet"
+AttachmentSkin0="Titanium"
+AttachmentSkin1="Jet Black"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Cyborg_PowerCore_ARCH]
+Attachment="Cyborg Power Core Backpack"
+AttachmentSkin0="Titanium"
+AttachmentSkin1="Jet Black"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Cyborg_HeartBackpack_ARCH]
+Attachment="Cyborg Heart Backpack"
+AttachmentSkin0="Titanium"
+AttachmentSkin1="Jet Black"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Cyborg_TacticalHelmet_ARCH]
+Attachment="Cyborg Tactical Helmet"
+AttachmentSkin0="Titanium"
+AttachmentSkin1="Jet Black"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Cyborg_ComModule_ARCH]
+Attachment="Cyborg Communication Module"
+AttachmentSkin0="Titanium"
+AttachmentSkin1="Jet Black"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Cyborg_Vision_ARCH]
+Attachment="Cyborg Vision Module"
+AttachmentSkin0="Titanium"
+AttachmentSkin1="Jet Black"
+AttachmentSkin2="Supernova"
+AttachmentSkin3="Neon"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Cyborg_CompanionBackpack_ARCH]
+Attachment="Cyborg Companion Backpack"
+AttachmentSkin0="Precious"
+
+[Cosmetic_BloodThirst_Backpack_ARCH]
+Attachment="Blood Thirst Backpack"
+AttachmentSkin0="Precious"

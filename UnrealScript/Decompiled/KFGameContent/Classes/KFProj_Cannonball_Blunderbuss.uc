@@ -290,6 +290,34 @@ protected simulated function StopSimulating()
     }
 }
 
+simulated function SyncOriginalLocation()
+{
+    local Actor HitActor;
+    local Vector HitLocation, HitNormal;
+    local TraceHitInfo HitInfo;
+
+    if(((Role < ROLE_Authority) && Instigator != none) && Instigator.IsLocallyControlled())
+    {
+        HitActor = Trace(HitLocation, HitNormal, OriginalLocation, Location,,, HitInfo, 1);
+        if(HitActor != none)
+        {
+            ServerForceExplosion();
+        }
+    }
+    super.SyncOriginalLocation();
+}
+
+reliable server function ServerForceExplosion()
+{
+    local Vector ExplosionNormal;
+
+    if(((Instigator.Role == ROLE_Authority) && !bHasExploded) && !bHasDisintegrated)
+    {
+        ExplosionNormal = vect(0, 0, 1) >> Rotation;
+        CallExplode(Location, ExplosionNormal);
+    }
+}
+
 defaultproperties
 {
     TossX=150
@@ -349,6 +377,8 @@ defaultproperties
     Components(1)=AkComponent'Default__KFProj_Cannonball_Blunderbuss.AmbientAkSoundComponent'
     Physics=EPhysics.PHYS_Falling
     bUpdateSimulatedPosition=true
+    NetUpdateFrequency=200
+    NetPriority=5
     LifeSpan=0
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=0

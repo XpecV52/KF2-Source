@@ -320,7 +320,6 @@ simulated function UpdateInteractionMessage()
 {
     local KFPlayerController InstigatorKFPC;
     local bool bCannotBeHealed;
-    local KFPowerUp PowerUp;
 
     if(((Instigator != none) && Instigator.IsLocallyControlled()) && Instigator.Health > 0)
     {
@@ -329,8 +328,7 @@ simulated function UpdateInteractionMessage()
         {
             return;
         }
-        PowerUp = InstigatorKFPC.GetPowerUp();
-        bCannotBeHealed = (PowerUp != none) && !PowerUp.CanBeHealedWhilePowerUpIsActive;
+        bCannotBeHealed = !InstigatorKFPC.CanUseHealObject();
         if(bIsQuickHealMessageShowing)
         {
             if(((Instigator.Health > InstigatorKFPC.LowHealthThreshold) || AmmoCount[0] < AmmoCost[1]) || bCannotBeHealed)

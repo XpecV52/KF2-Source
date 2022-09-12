@@ -949,6 +949,11 @@ simulated exec function Vampire()
     GiveWeapon("KFGameContent.KFWeap_HRG_Vampire");
 }
 
+simulated exec function SonicGun()
+{
+    GiveWeapon("KFGameContent.KFWeap_HRG_SonicGun");
+}
+
 simulated exec function Pistols()
 {
     GiveWeapon("KFGameContent.KFWeap_Pistol_9mm");
@@ -1157,6 +1162,7 @@ exec function Surv()
     GiveWeapon("KFGameContent.KFWeap_HRG_EMP_ArcGenerator");
     GiveWeapon("KFGameContent.KFWeap_Ice_FreezeThrower");
     GiveWeapon("KFGameContent.KFWeap_AssaultRifle_LazerCutter");
+    GiveWeapon("KFGameContent.KFWeap_HRG_SonicGun");
 }
 
 simulated exec function Scope()

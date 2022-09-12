@@ -189,17 +189,21 @@ function FillWhatsNew()
     local SWhatsNew Item;
 
     WhatsNewItems.Remove(0, WhatsNewItems.Length;
-    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Christmas_ChristmasBreakdown_Event", "LatestUpdate", "http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/");
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Spring_DystopianDevastation_Event", "LatestUpdate", "http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/");
     WhatsNewItems.AddItem(Item;
-    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Christmas_PremiumTicket", "FeaturedEventItem", "https://store.steampowered.com/buyitem/232090/5588");
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Spring_Armory_Season_Pass", "ArmorySeasonPass", "https://store.steampowered.com/app/1524820/Killing_Floor_2__Armory_Season_Pass");
     WhatsNewItems.AddItem(Item;
-    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Xmas_IceBreaker", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8616");
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Spring_PremiumTicket", "FeaturedEventItem", "https://store.steampowered.com/buyitem/232090/5803");
     WhatsNewItems.AddItem(Item;
-    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Christmas_Spectre", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8618");
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Spring_Neon_MKVII", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8774");
     WhatsNewItems.AddItem(Item;
-    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Winter", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8617");
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Spring_Paratrooper", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8775");
     WhatsNewItems.AddItem(Item;
-    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Christmas_FrostGun", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8619");
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Spring_DystopianDevastation", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8773");
+    WhatsNewItems.AddItem(Item;
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Spring_Chemical", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8776");
+    WhatsNewItems.AddItem(Item;
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Spring_GravityImploder", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/8777");
     WhatsNewItems.AddItem(Item;
     Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_CommunityHub", "Jaegorhorn", "https://steamcommunity.com/app/232090");
     WhatsNewItems.AddItem(Item;
@@ -207,7 +211,7 @@ function FillWhatsNew()
     WhatsNewItems.AddItem(Item;
     Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Survey", "Survey", "http://www.tripwireinteractive.com/redirect/KF2Survey/");
     WhatsNewItems.AddItem(Item;
-    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_CommunityIssue", "CommunityTracker", "https://trello.com/b/ZOwMRlcW/killing-floor-2-community-issue-roadmap");
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_CommunityIssue", "CommunityTracker", "http://www.killingfloor2.com/roadmap");
     WhatsNewItems.AddItem(Item;
     Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Merch", "Merch", "http://www.tripwireinteractive.com/redirect/shop/");
     WhatsNewItems.AddItem(Item;

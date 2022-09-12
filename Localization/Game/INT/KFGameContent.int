@@ -760,6 +760,17 @@ ItemCategory="Shotgun"
 ItemDescription="•Fire mode shoots rounds that freeze enemies.\n•Bash attack shatter enemies with the axe.\n•Alt - block / parry.\n•The axe is perfect for ice sculpting."
 SharedUnlockSource="Frost Fang Weapon Bundle"
 
+[KFWeap_HRG_SonicGun]
+ItemName="HRG Beluga Beat"
+ItemCategory="Special"
+ItemDescription="•Primary fire launches sonic blasts.\n•Alt fire charges the next blast, increasing it frequency.\n•It will boost the decibels of any party."
+
+[KFWeap_GravityImploder]
+ItemName="Gravity Imploder"
+ItemCategory="Explosives"
+ItemDescription="•Default fire mode launches implosion grenades.\n•Alt-fire mode launches gravity grenades that attract enemies.\n•One of the most attractive weapons ever developed."
+SharedUnlockSource="Gravity Imploder Weapon Bundle"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

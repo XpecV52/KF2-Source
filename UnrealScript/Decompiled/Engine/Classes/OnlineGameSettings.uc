@@ -52,6 +52,7 @@ var const bool bWasFromInvite;
 var databinding bool bIsDedicated;
 var const bool bHasSkillUpdateInProgress;
 var const bool bShouldShrinkArbitratedSessions;
+var databinding bool bServerExiled;
 var databinding bool bRequiresPassword;
 var databinding bool bCloudServer;
 var databinding string OwningPlayerName;

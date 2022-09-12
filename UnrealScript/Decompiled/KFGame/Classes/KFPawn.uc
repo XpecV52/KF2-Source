@@ -1993,7 +1993,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     bAllowHeadshot = CanCountHeadshots();
     OldHealth = Health;
     super(Pawn).TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
-    HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), class<KFDamageType>(DamageType), DamageCauser);
     actualDamage = OldHealth - Health;
     if(actualDamage > 0)
     {
@@ -3008,11 +3007,11 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 
 simulated function AdjustAffliction(out float AfflictionPower);
 
-function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
+function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<DamageType> DamageType, Actor DamageCauser)
 {
     if(AfflictionHandler != none)
     {
-        AfflictionHandler.NotifyTakeHit(DamageInstigator, HitDir, DamageType, DamageCauser);
+        AfflictionHandler.NotifyTakeHit(DamageInstigator, HitDir, class<KFDamageType>(DamageType), DamageCauser);
     }
 }
 

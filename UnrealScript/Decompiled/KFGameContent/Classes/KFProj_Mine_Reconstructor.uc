@@ -174,7 +174,7 @@ simulated event HitWall(Vector HitNormal, Actor Wall, PrimitiveComponent WallCom
     {
         return;
     }
-    if((CanStick(Wall, HitNormal)) && Wall.bStatic == true)
+    if((CanStick(Wall, HitNormal)) && (Wall.bStatic == true) || Wall.bCanBeDamaged && KFPawn(Wall) == none)
     {
         Stick(Location, HitNormal);        
     }

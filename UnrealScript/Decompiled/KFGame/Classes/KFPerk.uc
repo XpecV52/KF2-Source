@@ -121,6 +121,7 @@ const STATID_ACHIEVE_BiolapseCollectibles = 4054;
 const STATID_ACHIEVE_DesolationCollectibles = 4055;
 const STATID_ACHIEVE_HellmarkStationCollectibles = 4056;
 const STATID_ACHIEVE_ElysiumEndlessWaveFifteen = 4057;
+const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -235,6 +236,7 @@ var protected array<byte> BodyPartsCanKnockDown;
 var bool bCanSeeCloakedZeds;
 var bool bHasTempSkill_TacticalReload;
 var const bool bInitialized;
+var transient bool bWasLastHitAHeadshot;
 var config bool bLogPerk;
 var() const float SignatureDamageScale;
 var() const float SignatureRecoilScale;
@@ -476,6 +478,11 @@ static function MultiplySecondaryXPPoints(out int XP, byte Difficulty)
 static function bool IsBackupWeapon(KFWeapon KFW)
 {
     return (KFW != none) && KFW.default.bIsBackupWeapon;
+}
+
+static function bool IsDual9mm(KFWeapon KFW)
+{
+    return (KFW != none) && KFW.Class.Name == 'KFWeap_Pistol_Dual9mm';
 }
 
 simulated function int GetCurrentPrestigeLevel()
@@ -853,13 +860,17 @@ function AddDefaultInventory(KFPawn P)
             if(KFGameInfo(WorldInfo.Game).AllowPrimaryWeapon(GetPrimaryWeaponClassPath()))
             {
                 P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), Class'Class'));
+            }
+            if(KFGameInfo(WorldInfo.Game).AllowSecondaryWeapon(GetSecondaryWeaponClassPath()))
+            {
+                P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), Class'Class'));
             }            
         }
         else
         {
             P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), Class'Class'));
+            P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), Class'Class'));
         }
-        P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), Class'Class'));
         P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetKnifeWeaponClassPath(), Class'Class'));
     }
 }
@@ -1011,8 +1022,6 @@ function FinalizeSpeedVariables();
 
 simulated function ModifyRecoil(out float CurrentRecoilModifier, KFWeapon KFW);
 
-function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx);
-
 function ModifyDamageTaken(out int InDamage, optional class<DamageType> DamageType, optional Controller InstigatedBy);
 
 simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
@@ -1058,6 +1067,11 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 function float GetStunPowerModifier(optional class<DamageType> DamageType, optional byte HitZoneIdx)
 {
     return 0;
+}
+
+function bool IsStunGuaranteed(optional class<DamageType> DamageType, optional byte HitZoneIdx)
+{
+    return false;
 }
 
 function float GetReactionModifier(optional class<KFDamageType> DamageType)
@@ -1412,11 +1426,6 @@ simulated event float GetZedTimeSpeedScale()
     return 1;
 }
 
-simulated function bool GetIncapMasterActive()
-{
-    return false;
-}
-
 static function ModifyAssistDosh(out int EarnedDosh)
 {
     local float TempDosh;
@@ -1509,6 +1518,7 @@ function TickRegen(float DeltaTime)
     local KFPlayerController KFPC;
     local KFPowerUp PowerUp;
     local bool bCannotBeHealed;
+    local KFGameInfo GameInfo;
 
     TimeUntilNextRegen -= DeltaTime;
     if(TimeUntilNextRegen <= 0)
@@ -1519,8 +1529,10 @@ function TickRegen(float DeltaTime)
             if(KFPC != none)
             {
                 PowerUp = KFPC.GetPowerUp();
-                bCannotBeHealed = (PowerUp != none) && !PowerUp.CanBeHealedWhilePowerUpIsActive;
+                bCannotBeHealed = (PowerUp != none) && !PowerUp.CanBeHealed();
             }
+            GameInfo = KFGameInfo(WorldInfo.Game);
+            bCannotBeHealed = bCannotBeHealed || (GameInfo.OutbreakEvent != none) && GameInfo.OutbreakEvent.ActiveEvent.bCannotBeHealed;
             if(bCannotBeHealed)
             {
                 return;
@@ -1564,6 +1576,11 @@ simulated function string GetGrenadeImagePath()
 simulated function class<KFWeaponDefinition> GetGrenadeWeaponDef()
 {
     return default.GrenadeWeaponDef;
+}
+
+function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx)
+{
+    bWasLastHitAHeadshot = (MyKFPM != none) && HitZoneIdx == 0;
 }
 
 simulated function float GetPercentage(float OriginalValue, float NewValue)

@@ -760,6 +760,17 @@ ItemCategory="Fusil à pompe"
 ItemDescription="• Le mode tir utilise des projectiles qui gèlent les ennemis.\n• Les frappes au corps à corps fracassent les ennemis avec la hache.\n• Alternatif - bloquer/parer.\n• La hache est parfaite pour faire des sculptures sur glace."
 SharedUnlockSource="Pack d'arme Croc de Givre"
 
+[KFWeap_HRG_SonicGun]
+ItemName="Rythme du béluga GRH"
+ItemCategory="Spécial"
+ItemDescription="• Le tir principal lance des explosions soniques.\n• Le tir alternatif charge l'explosion suivante, augmentant ainsi sa fréquence.\n• Il boostera les décibels de n'importe quelle fête."
+
+[KFWeap_GravityImploder]
+ItemName="Imploseur de gravité"
+ItemCategory="Explosifs"
+ItemDescription="• Le tir principal lance des grenades à implosion.\n• Le tir alternatif lance des grenades gravitationnelles qui attirent les ennemis.\n• L'une des armes les plus sexy ayant jamais vu le jour."
+SharedUnlockSource="Pack d'arme Imploseur de gravité"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

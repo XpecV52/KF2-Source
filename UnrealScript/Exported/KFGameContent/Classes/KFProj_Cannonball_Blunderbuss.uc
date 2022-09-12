@@ -280,26 +280,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
     if( (!bDud || ( bWantsClientSideDudHit && !bClientDudHit)) && ((TraveledDistance < ArmDistSquared) || bIsTimedExplosive || (OriginalLocation == vect(0,0,0) && ArmDistSquared > 0)))
     {
-		//for (Index = 0; Index < vActorsTouched.Length; Index++)
-		//{
-		//	if(vActorsTouched[Index] == Other)
-		//	{
-		//		return;
-		//	}
-		//}
-		//if(Other == LastActorTouched)
-		//{
-		//	return;
-		//}
-		//LastActorTouched = Other;
-		//bForceNetUpdate=true;
-		//vActorsTouched.AddItem(Other);
-        // Don't touch the same actor multiple time's immediately after just
-        // touching it if the TouchTimeThreshhold is set to greater than 0.
-        // This was causing projectiles just to "stop" sometimes when hitting
-        // dead/ragdolled pawns because it was counting as multiple penetrations
-        if( LastTouched.Actor == Other && TouchTimeThreshhold > 0
-            && (WorldInfo.TimeSeconds - LastTouched.Time) <= TouchTimeThreshhold )
+        if( LastTouched.Actor == Other && TouchTimeThreshhold > 0  && (WorldInfo.TimeSeconds - LastTouched.Time) <= TouchTimeThreshhold )
         {
             return;
         }
@@ -311,13 +292,10 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 		{
 			ProcessBulletTouch(Other, HitLocation, HitNormal);
 		}
-		// Reflect off Wall w/damping but allow penetration if the pawn is dead
-		//if(KFPawn_Monster(Other) == None || KFPawn_Monster(Other).Health > 0)
-		//{
-			VNorm = (Velocity dot HitNormal) * HitNormal;
-			Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
-			Speed = VSize(Velocity);
-		//}
+
+		VNorm = (Velocity dot HitNormal) * HitNormal;
+		Velocity = -VNorm * DampenFactor + (Velocity - VNorm) * DampenFactorParallel;
+		Speed = VSize(Velocity);
     }
 	else if (!bDud && !bIsTimedExplosive)
 	{
@@ -350,7 +328,6 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
 
     	StopSimulating();
 	}
-	
 }
 
 simulated protected function StopSimulating()
@@ -367,6 +344,35 @@ simulated protected function StopSimulating()
 	if (ProjIndicatorEffects!=None)
 	{
         ProjIndicatorEffects.DeactivateSystem();
+	}
+}
+
+simulated function SyncOriginalLocation()
+{
+	local Actor HitActor;
+	local vector HitLocation, HitNormal;
+	local TraceHitInfo HitInfo;
+
+	if (Role < ROLE_Authority && Instigator != none && Instigator.IsLocallyControlled())
+	{
+		HitActor = Trace(HitLocation, HitNormal, OriginalLocation, Location,,, HitInfo, TRACEFLAG_Bullet);
+		if (HitActor != none)
+		{
+			ServerForceExplosion();
+		}
+	}
+
+    Super.SyncOriginalLocation();
+}
+
+reliable server function ServerForceExplosion()
+{	
+	local vector ExplosionNormal;
+
+	if (Instigator.Role == ROLE_Authority && !bHasExploded && !bHasDisintegrated)
+	{
+		ExplosionNormal =  vect(0,0,1) >> Rotation;
+		CallExplode(Location, ExplosionNormal);
 	}
 }
 
@@ -434,6 +440,8 @@ defaultproperties
    Components(1)=AmbientAkSoundComponent
    Physics=PHYS_Falling
    bUpdateSimulatedPosition=True
+   NetUpdateFrequency=200.000000
+   NetPriority=5.000000
    LifeSpan=0.000000
    CollisionComponent=CollisionCylinder
    Name="Default__KFProj_Cannonball_Blunderbuss"

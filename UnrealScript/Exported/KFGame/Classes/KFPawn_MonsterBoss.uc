@@ -1071,6 +1071,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'KFGame.Default__KFPawn_MonsterBoss:MeleeHelper_0'
+   VortexAttracionModifier=0.300000
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_Monster:SprintAkComponent0'
       BoneName="Dummy"
       bStopWhenOwnerDestroyed=True

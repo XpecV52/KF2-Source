@@ -26,6 +26,8 @@ package tripwire.controls.serverBrowser
         
         public var lockIcon:MovieClip;
         
+        public var serverExiledIcon:MovieClip;
+        
         private var _bRanked:Boolean;
         
         private var _bCustom:Boolean;
@@ -66,6 +68,7 @@ package tripwire.controls.serverBrowser
                 this.locked = !!param1.locked ? Boolean(param1.locked) : false;
                 this.ranked = !!param1.bRanked ? Boolean(param1.bRanked) : false;
                 this.custom = !!param1.bCustom ? Boolean(param1.bCustom) : false;
+                this.serverExiled = !!param1.serverExiled ? Boolean(param1.serverExiled) : false;
                 this.updateServerTypeIcon();
             }
         }
@@ -101,6 +104,14 @@ package tripwire.controls.serverBrowser
             if(this.lockIcon)
             {
                 this.lockIcon.visible = param1;
+            }
+        }
+        
+        public function set serverExiled(param1:Boolean) : void
+        {
+            if(this.serverExiledIcon)
+            {
+                this.serverExiledIcon.visible = param1;
             }
         }
         

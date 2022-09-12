@@ -760,6 +760,17 @@ ItemCategory="Fucile"
 ItemDescription="•La modalità fuoco spara colpi che congelano i nemici.\n•L'attacco con colpo frantuma i nemici con l'ascia.\n•Alt - blocca/para.\n•L'ascia è perfetta per scolpire il ghiaccio."
 SharedUnlockSource="Bundle armi Zanna del gelo"
 
+[KFWeap_HRG_SonicGun]
+ItemName="Ritmo Beluga HRG"
+ItemCategory="Speciale"
+ItemDescription="•Il fuoco primario spara delle scariche soniche.\n•Il fuoco alternativo carica la scarica successiva, aumentandone la frequenza.\n•Aumenterà i decibel di qualsiasi party."
+
+[KFWeap_GravityImploder]
+ItemName="Collassatore di gravità"
+ItemCategory="Esplosivi"
+ItemDescription="•La modalità di fuoco predefinita lancia delle granate implosive.\n•La modalità fuoco alternato lancia delle granate gravitazionali che attraggono i nemici.\n•Una delle armi più belle mai create."
+SharedUnlockSource="Bundle armi Collassatore di gravità"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

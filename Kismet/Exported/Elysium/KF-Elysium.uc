@@ -6953,18 +6953,6 @@ Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_77
    ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
 End Object
 
-Begin Object Class=SequenceFrame Name=SequenceFrame_48
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-8824
-   ObjPosY=-1416
-   ObjComment="Void trap damage triggers"
-   DrawWidth=128
-   DrawHeight=64
-   Name="SequenceFrame_48"
-   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
-End Object
-
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_42
    InputLinks(0)=(DrawY=-2899,OverrideDelta=14)
    InputLinks(1)=(DrawY=-2878,OverrideDelta=35)
@@ -17414,10 +17402,10 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_58
    EventName="Dynamic_Change"
    MaxWidth=229
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Delay_46')),DrawY=-1270,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-8726,OverrideDelta=82)
+   VariableLinks(0)=(DrawX=-8718,OverrideDelta=82)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-8840
+   ObjPosX=-8832
    ObjPosY=-1336
    ObjComment="Dynamic_Change"
    DrawWidth=134
@@ -19485,14 +19473,12 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_11
    VariableLinks(2)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="Light",MinVars=0,DrawX=-9305,OverrideDelta=103)
    VariableLinks(3)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1069'),LinkDesc="DominantDir",MinVars=0,DrawX=-9243,OverrideDelta=151)
    VariableLinks(4)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="SkyLight",MinVars=0,DrawX=-9168,OverrideDelta=228)
-   VariableLinks(5)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="Ball_Room_Light_Spotlight",MinVars=0,DrawX=-9053,OverrideDelta=300)
-   VariableLinks(6)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="Ball_Room_PointLight",MinVars=0,DrawX=-8912,OverrideDelta=458)
-   VariableLinks(7)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="Cloud",MinVars=0,DrawX=-8824,OverrideDelta=582)
+   VariableLinks(5)=(ExpectedType=Class'Engine.SeqVar_Object',LinkDesc="Cloud",MinVars=0,DrawX=-9106,OverrideDelta=300)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-9424
    ObjPosY=-968
-   DrawWidth=634
+   DrawWidth=352
    DrawHeight=173
    Name="SeqAct_Interp_11"
    ObjectArchetype=SeqAct_Interp'Engine.Default__SeqAct_Interp'
@@ -19514,36 +19500,6 @@ Begin Object Class=InterpData Name=InterpData_11
       Name="InterpGroup_8"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
-         PropertyName="PointLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.453456,Y=0.708298,Z=1.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.618686,Y=0.044553,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_1"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_5.InterpTrackColorProp_1'
-      GroupName="Ball_Room_PointLight"
-      GroupColor=(B=0,G=84,R=221,A=255)
-      bCollapsed=True
-      Name="InterpGroup_5"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
-         PropertyName="SpotLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.453456,Y=0.708298,Z=1.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.744530,Y=0.127530,Z=0.108711),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_0"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_4.InterpTrackColorProp_0'
-      GroupName="Ball_Room_Light_Spotlight"
-      GroupColor=(B=187,G=0,R=151,A=255)
-      bCollapsed=True
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_2
          PropertyName="DominantDirectionalLightComponent0.LightColor"
@@ -19555,14 +19511,13 @@ Begin Object Class=InterpData Name=InterpData_11
       InterpTracks(0)=InterpTrackColorProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_3.InterpTrackColorProp_2'
       GroupName="SkyLight"
       GroupColor=(B=69,G=225,R=0,A=255)
-      bCollapsed=True
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
          PropertyName="DominantDirectionalLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.598942,Y=0.388910,Z=0.166872),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.493616,Y=0.003697,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         VectorTrack=(Points=((InVal=2.585516,OutVal=(X=0.598942,Y=0.388910,Z=0.166872),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.493616,Y=0.003697,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_0"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
@@ -19576,7 +19531,7 @@ Begin Object Class=InterpData Name=InterpData_11
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
          PropertyName="SpotLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.394083,Y=0.592438,Z=0.796917),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1.000000,Y=0.060032,Z=0.019918),InterpMode=CIM_CurveAutoClamped)))
+         VectorTrack=(Points=((InVal=2.585516,OutVal=(X=0.394083,Y=0.592438,Z=0.796917),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1.000000,Y=0.060032,Z=0.019918),InterpMode=CIM_CurveAutoClamped)))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_0"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
@@ -19619,9 +19574,7 @@ Begin Object Class=InterpData Name=InterpData_11
    InterpGroups(1)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_1'
    InterpGroups(2)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_2'
    InterpGroups(3)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_3'
-   InterpGroups(4)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_4'
-   InterpGroups(5)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_5'
-   InterpGroups(6)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_8'
+   InterpGroups(4)=InterpGroup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpGroup_8'
    CurveEdSetup=InterpCurveEdSetup'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_11.InterpCurveEdSetup_1'
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    EdSectionEnd=1200.599976
@@ -20235,16 +20188,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_53'
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_122'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-9080
-   ObjPosY=-1424
+   ObjPosX=-9096
+   ObjPosY=-1392
    ObjComment="Boss"
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_19"
+   Name="SeqVar_Object_3"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -20397,7 +20350,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_18
    InputLinks(1)=(DrawY=-1534,OverrideDelta=35)
    InputLinks(2)=(DrawY=-1513,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-1534,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_19'),DrawX=-9058,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_3',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_39',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_40',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_19'),DrawX=-9058,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-9007,OverrideDelta=76)
    EventLinks(0)=(DrawX=-8958,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -21838,5 +21791,44 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_227
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_227"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_123'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-9000
+   ObjPosY=-1416
+   ObjComment="Boss"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_39"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_124'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-9192
+   ObjPosY=-1432
+   ObjComment="Boss"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_40"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_53'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-8904
+   ObjPosY=-1464
+   ObjComment="Boss"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_19"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object

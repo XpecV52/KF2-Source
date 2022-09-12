@@ -394,6 +394,10 @@ var private const 	float	XPValues[4];
 /** List of sockets representing weakpoint zone locations */
 var() array<name> WeakSpotSocketNames;
 
+/** Heal after die */
+var int	HealByKill;
+var int	HealByAssistance;
+
 /**
  * Information on resistant or vulnerable damage types
  * @todo: This is all static data so we should consider moving to the archetype
@@ -624,8 +628,11 @@ var protected const float BlockSprintSpeedModifier;
 /** The last time a successful block ended */
 var transient float LastBlockTime;
 
+/** Multiplier applied to the vortex attraction force */
+var protected float VortexAttracionModifier;
+
 var				float	KnockedDownBySonicWaveOdds;
-var 			bool 				bCloakOnMeleeEnd;
+var 			bool 	bCloakOnMeleeEnd;
 var				bool	bIsCloakingSpottedByLP;
 var	repnotify	bool	bIsCloakingSpottedByTeam;
 var				float	LastSpottedStatusUpdate;
@@ -2672,6 +2679,11 @@ function BleedOutTimer()
 		if (bLogTakeDamage) LogInternal(GetFuncName() @ "LastHitBy" @ LastHitBy);
 		Died(LastHitBy, class'KFDT_Bleeding', Location);
 	}
+}
+
+function float GetVortexAttractionModifier ()
+{
+	return VortexAttracionModifier;
 }
 
 /** Applies the rally buff and spawns a rally effect */
@@ -5000,6 +5012,7 @@ defaultproperties
    BleedIncapFX=ParticleSystem'FX_Gameplay_EMIT_THREE.FX_Incap_Bleed_01'
    MinBlockFOV=0.100000
    BlockSprintSpeedModifier=0.750000
+   VortexAttracionModifier=1.000000
    MatchEnemySpeedAtDistance=200.000000
    MinimumEnemySpeedToMatch=280.000000
    PursuitSpeedScale=1.000000

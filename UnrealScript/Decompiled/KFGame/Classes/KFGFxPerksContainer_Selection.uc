@@ -82,6 +82,7 @@ function UpdatePerkSelection(byte SelectedPerkIndex)
             TempObj.SetString("Title", PerkClass.default.PerkName);
             TempObj.SetString("iconSource", "img://" $ PerkClass.static.GetPerkIconPath());
             TempObj.SetBool("bTierUnlocked", bool(bTierUnlocked) && KFPC.PerkList[I].PerkLevel >= UnlockedPerkLevel);
+            TempObj.SetBool("bPerkAllowed", true);
             DataProvider.SetElementObject(I, TempObj);
             ++ I;
             goto J0x75;

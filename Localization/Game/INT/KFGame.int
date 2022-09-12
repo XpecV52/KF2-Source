@@ -369,6 +369,7 @@ InProgressString="IN PROGRESS"
 OnlyStockMapsString="ONLY STOCK MAPS"
 OnlyCustomMapsString="ONLY CUSTOM MAPS"
 LimitServerResultsString="LIMIT RESULTS:"
+NotServerExiledString="NO LOCAL ADMIN"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="MUTATORS"
@@ -1790,7 +1791,7 @@ EXPAction1="Dealing Berserker weapon damage"
 EXPAction2="Killing Zeds near a player with a Berserker weapon"
 
 Fortitude="Dreadnaught"
-FortitudeDescription="Increase total Health 75%."
+FortitudeDescription="Increase total Health 100%."
 
 Ninja="Skirmisher"
 NinjaDescription="Move 20% faster and sprint 25% faster when using a perk weapon. You also regenerate 2 points of Health every second."
@@ -1802,7 +1803,7 @@ Speed="Butcher"
 SpeedDescription="Attack 20% faster and do 20% more damage with perk weapons."
 
 Resistance="Resistance"
-ResistanceDescription="Gain 20% resistance to all damage. Gain additional 20% resistance to Poison and Sonic Damage."
+ResistanceDescription="Gain 25% resistance to all damage. Gain additional 25% resistance to Poison and Sonic Damage."
 
 Parry="Parry"
 ParryDescription="Parrying with a perk melee weapon reduces incoming damage 40% and increases both melee attack speed 5% and melee damage 35% for 10 seconds."
@@ -1937,22 +1938,22 @@ HealingSurge="Symbiotic Health"
 HealingSurgeDescription="Increase total Health 25%. Healing teammates will heal you 10% of your total Health."
 
 Survivalist="Resilience"
-SurvivalistDescription="Increase damage resistance 1% per Health point lost, up to 50%."
+SurvivalistDescription="Increase damage resistance 1% per Health point lost, up to 70%."
 
 HealingSpeedBoost="Adrenaline Shot"
-HealingSpeedBoostDescription="Shooting teammates with healing darts increases their movement speed 10% for 5 seconds. This can stack up to a 30% bonus."
+HealingSpeedBoostDescription="All your healing increases player movement speed 10% for 5 seconds. This can stack up to a 30% bonus."
 
 Combatant="Combatant Doctor"
 CombatantDescription="Increase magazine capacity of perk weapons 50% and movement speed by 10%."
 
 HealingDamageBoost="Focus Injection"
-HealingDamageBoostDescription="Shooting teammates with healing darts increases the damage they inflict 5% for 5 seconds. This can stack up to a 20% bonus."
+HealingDamageBoostDescription="All your healing increases player damage output 5% for 5 seconds. This can stack up to a 20% bonus."
 
 AcidicCompound="Acidic Rounds"
 AcidicCompoundDescription="Perk weapons can poison Zeds, inflicting poison damage over time."
 
 HealingShield="Coagulant Booster"
-HealingShieldDescription="Shooting teammates with healing darts increases their damage resistance 10% for 5 seconds. This can stack up to a 30% bonus."
+HealingShieldDescription="All your healing increases player damage resistance 10% for 5 seconds. This can stack up to a 30% bonus."
 
 Enforcer="Battle Surgeon"
 EnforcerDescription="Increase damage with perk weapons 20%."
@@ -2375,7 +2376,7 @@ BullseyeUpdate="Latest New Content - Bullseye Update"
 LatestUpdate="Latest Content Update"
 Forums="Visit Our Community Forums"
 Survey="Take the Gameplay Survey"
-CommunityTracker="Track Community Issue Requests"
+CommunityTracker="Roadmap"
 FeaturedCrateKey="Featured Horzine Supply Crate Key - $2.49"
 FeaturedEventItem="Featured Event Item"
 FeaturedUsbKey="Featured Weapon Skin USB Key - $2.49"
@@ -2402,6 +2403,7 @@ USBHighVoltage="High Voltage USB Key - $2.49"
 MerchSale="KF2 Swag Sale! 25% off till 4/30/17 Promo code ZED"
 FreeTrial="Purchase Killing Floor 2 today!"
 FeaturedCrossover="Featured Crossover Promotion"
+ArmorySeasonPass="Armory Season Pass"
 
 [Objectives]
 ObjectiveTitle="OBJECTIVE"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="Christmas | Tactical Elf-pack"
 ChanceDropDescriptionStrings[0]="Krampus Ticket"
 ChanceDropDescriptionStrings[1]="Krampus Golden Ticket"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="A time-limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Cyber Threat",DescriptionString="Kill 15 Bosses on any map or mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Weekly Hack",DescriptionString="Complete the Weekly on Dystopia 2029")
+SpecialEventObjectiveInfoList[2]=(TitleString="AI out of control",DescriptionString="Kill 50 E.D.A.R.s on Dystopia 2029")
+SpecialEventObjectiveInfoList[3]=(TitleString="Not a Simulation",DescriptionString="Complete a wave without taking any damage 10 times on Dystopia 2029")
+SpecialEventObjectiveInfoList[4]=(TitleString="Brave Zed World",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Dystopia 2029")
+
+AllCompleteRewardDescriptionString="Cyborg | Companion Backpack | Precious"
+
+ChanceDropDescriptionStrings[0]="Spring Ticket"
+ChanceDropDescriptionStrings[1]="Spring Golden Ticket"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2894,6 +2910,26 @@ FriendlyName="Bobble Zed"
 DescriptionStrings[0]="...that must hurt their necks."
 DescriptionStrings[1]="Length: Medium (7 waves)"
 ModifierDescriptions[0]="Something went horribly wrong with this batch of Zeds and their heads are wwwaaaayyyyyyy larger than normal! Huge even! Select the Weekly game mode on the Matchmaking page. Perk level 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName="Coliseum"
+DescriptionStrings[0]="Only berserkers allowed!"
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="Sharp your swords and axes and welcome to the arena! Train your Battering Rams skills. Select the Weekly game mode on the Matchmaking page. Perk 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="Blood Thirst"
+DescriptionStrings[0]="Keep the kill streak going or die..."
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="A thirst of Zed blood will continuously harm you (while the weekly icon is displayed near the health counter). Killing is the only way to regenerate your health. Select the Weekly game mode on the Matchmaking page. Perk 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3412,6 +3448,9 @@ DisplayName="Hellmark Station"
 
 [KF-Elysium KFMapSummary]
 DisplayName="Elysium"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="Dystopia 2029"
 
 [KFMapInfo]
 ; defaults

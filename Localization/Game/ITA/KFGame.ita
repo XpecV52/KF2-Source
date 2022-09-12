@@ -369,6 +369,7 @@ InProgressString="IN CORSO"
 OnlyStockMapsString="SOLO MAPPE STOCK"
 OnlyCustomMapsString="SOLO MAPPE CUSTOM"
 LimitServerResultsString="LIMITE RISULTATI:"
+NotServerExiledString="NESSUN AMMINISTRATORE LOCALE"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="MUTATORI"
@@ -963,7 +964,7 @@ OutfitBundlesString="Bundle vestito"
 TicketCratesUSBBundlesString="Bundle Biglietto/Casse/USB"
 CosmeticBundlesString="Bundle estetici"
 WeaponSkinBundlesString="Bundle skin per armi"
-HeadshotFxBundlesString="Bundle Effetto Colpo alla testa"
+HeadshotFxBundlesString="Effetto Colpo alla testa"
 SelectWeaponSkinsString="Seleziona skin per armi"
 SelectCosmeticsString="Seleziona elementi estetici"
 SelectEmotesString="Seleziona emote"
@@ -1790,7 +1791,7 @@ EXPAction1="Arrecare danni con arma Berserker"
 EXPAction2="Uccidere gli Zed vicini con arma Berserker"
 
 Fortitude="Corazzato"
-FortitudeDescription="Aumento salute totale del 75%"
+FortitudeDescription="Aumento salute totale del 100%."
 
 Ninja="Soldato prima linea"
 NinjaDescription="Movimenti più veloci del 20%, sprint più veloce del 25%, 2 punti salute rigenerati ogni secondo utilizzando un'arma classe."
@@ -1802,7 +1803,7 @@ Speed="Macellaio"
 SpeedDescription="Attacco più veloce del 20% e danni maggiori del 20% con armi di classe."
 
 Resistance="Resistenza"
-ResistanceDescription="Resistenza a tutti i danni maggiore del 20%. Aumenta di un altro 20% la resistenza a danni Veleno e Sonoro."
+ResistanceDescription="Resistenza a tutti i danni maggiore del 25%. Aumenta di un altro 25% la resistenza a danni Veleno e Sonoro."
 
 Parry="Parata"
 ParryDescription="La parata con arma classe da mischia riduce il danno del 40% e aumenta per 10 sec velocità att. da mischia del 5% e danno da mischia del 35%."
@@ -1937,22 +1938,22 @@ HealingSurge="Salute simbiotica"
 HealingSurgeDescription="Aumenta la salute totale del 25%. Curando i compagni di squadra aumenterai la tua salute totale del 10%."
 
 Survivalist="Resilienza"
-SurvivalistDescription="Aumenta la resistenza danni dell'1% per punto salute perso, fino al 50%."
+SurvivalistDescription="Aumenta la resistenza danni dell'1% per punto salute perso, fino al 70%."
 
 HealingSpeedBoost="Iniezione di adrenalina"
-HealingSpeedBoostDescription="Lanciare dardi curativi ai compagni di squadra aumenta la loro velocità di movimento del 10% per 5 secondi. Bonus cumulabile fino al 30%."
+HealingSpeedBoostDescription="Tutte le tue cure aumentano la velocità di movimento del giocatore del 10% per 5 secondi. Bonus cumulabile fino al 30%."
 
 Combatant="Dottore combattente"
 CombatantDescription="Aumenta la capacità caricatore delle armi di classe del 50% e la velocità di movimento del 10%."
 
 HealingDamageBoost="Dose di concentrazione"
-HealingDamageBoostDescription="Lanciare dardi curativi ai compagni di squadra aumenta i danni da loro inflitti del 5% per 5 secondi. Bonus cumulabile fino al 20%."
+HealingDamageBoostDescription="Tutte le tue cure aumentano i danni inflitti dal giocatore del 5% per 5 secondi. Bonus cumulabile fino al 20%."
 
 AcidicCompound="Colpi acidi"
 AcidicCompoundDescription="Le armi di classe possono avvelenare gli Zed, infliggendo danni veleno nel tempo."
 
 HealingShield="Potenziamento coagulante"
-HealingShieldDescription="Lanciare dardi curativi ai compagni di squadra aumenta la loro resistenza ai danni del 10% per 5 secondi. Bonus cumulabile fino al 30%."
+HealingShieldDescription="Tutte le tue cure aumentano la resistenza ai danni del giocatore del 10% per 5 secondi. Bonus cumulabile fino al 30%."
 
 Enforcer="Chirurgo di battaglia"
 EnforcerDescription="Aumenta il danno delle armi di classe del 20%."
@@ -1978,11 +1979,11 @@ SkillCatagories[2]="Brucianti"
 SkillCatagories[3]="Fiamma"
 SkillCatagories[4]="Addestramento avanzato"
 
-Passives[0]=(Title="Danni arma classe",Description="Aumento x%x danni arma classe per livello");
-Passives[1]=(Title="Ricarica arma classe",Description="Aumento x%x velocità ricarica arma classe per livello");
-Passives[2]=(Title="Resistenza fuoco Zed",Description="Aumento 30% resistenza fuoco Zed più %x% per livello");
-Passives[3]=(Title="Immunità al tuo fuoco",Description="Aumento 25% resistenza al tuo fuoco più %x% per livello");
-Passives[4]=(Title="Munizioni di partenza",Description="Aumento x%x munizioni di partenza ogni 5 livelli");
+Passives[0]=(Title="Danni arma classe",Description="Aumento x%x danni arma classe per lvl");
+Passives[1]=(Title="Ricarica arma classe",Description="Aumento x%x velocità ricarica arma classe per lvl");
+Passives[2]=(Title="Resistenza fuoco Zed",Description="Aumento 30% resistenza fuoco Zed più %x% per lvl");
+Passives[3]=(Title="Immunità al tuo fuoco",Description="Aumento 25% resistenza al tuo fuoco più %x% per lvl");
+Passives[4]=(Title="Munizioni di partenza",Description="Aumento x%x munizioni di partenza ogni 5 lvl");
 
 BringTheHeat="Alzare la fiamma"
 BringTheHeatDescription="Aumenta il danno delle armi incendiarie del 35%."
@@ -2032,7 +2033,7 @@ Passives[3]=(Title="Riduzione Rinculo",Description="Riduzione %x% rinculo arma c
 Passives[4]=(Title="Ricarica Zedtime",Description="Aumento %x% velocità ricarica negli Zed time per livello");
 
 ShootnMove="Stabilizza"
-ShootnMoveDescription="Ignora la penalità della velocità di movimento e aumenta i danni delle armi di classe del 7.5% quando si usa il mirino. Riduce drasticamente l'oscillazione delle armi di classe."
+ShootnMoveDescription="Ignora la penalità della velocità di movimento e aumenta i danni delle armi di classe del 7,5% quando si usa il mirino. Riduce drasticamente l'oscillazione delle armi di classe."
 
 QuickSwitch="Estrazione rapida"
 QuickSwitchDescription="Riduce la penalità del rinculo sparando dal fianco, aumenta la velocità di movimento del 5% e scambia le armi di classe più veloce del 50%."
@@ -2375,7 +2376,7 @@ BullseyeUpdate="Nuovo contenuto - Aggiornamento Bullseye"
 LatestUpdate="Aggiornamento nuovo contenuto"
 Forums="Visita i forum della nostra community"
 Survey="Partecipa al sondaggio sul gioco"
-CommunityTracker="Segui le segnalazioni della community"
+CommunityTracker="Cartina"
 FeaturedCrateKey="Speciale Chiave cassa Horzine - $2.49"
 FeaturedEventItem="Speciale Oggetto Evento"
 FeaturedUsbKey="Speciale Chiave USB skin arma - $2.49"
@@ -2402,6 +2403,7 @@ USBHighVoltage="Chiave USB alta tensione - $2.49"
 MerchSale="Offerta Merchandise KF2! -25% fino al 30/04/17 Cod. promo ZED"
 FreeTrial="Acquista subito Killing Floor 2!"
 FeaturedCrossover="Promozione Crossover in evidenza"
+ArmorySeasonPass="Pass stagionale Arsenale"
 
 [Objectives]
 ObjectiveTitle="OBIETTIVO"
@@ -2809,6 +2811,20 @@ AllCompleteRewardDescriptionString="Natale | Zaino-elfo tattico"
 ChanceDropDescriptionStrings[0]="Biglietto Krampus"
 ChanceDropDescriptionStrings[1]="Biglietto Oro del Krampus"
 
+[KFGFxSpecialEventObjectivesContainer_Spring2021]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Cyber-minaccia",DescriptionString="Uccidi 15 boss in qualsiasi mappa o modalità")
+SpecialEventObjectiveInfoList[1]=(TitleString="Attacco settimanale",DescriptionString="Completa il Settimanale in Distopia 2029")
+SpecialEventObjectiveInfoList[2]=(TitleString="IA fuori controllo",DescriptionString="Uccidi 50 E.D.A.R. in Distopia 2029")
+SpecialEventObjectiveInfoList[3]=(TitleString="Non è una simulazione",DescriptionString="Completa 10 volte un'ondata senza subire danni in Distopia 2029")
+SpecialEventObjectiveInfoList[4]=(TitleString="Zed coraggiosi",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Distopia 2029")
+
+AllCompleteRewardDescriptionString="Cyborg | Zaino Compagno | Prezioso"
+
+ChanceDropDescriptionStrings[0]="Biglietto primavera"
+ChanceDropDescriptionStrings[1]="Biglietto primavera Oro"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2894,6 +2910,26 @@ FriendlyName="Epidemia attuale: Bobble Zed"
 DescriptionStrings[0]="...deve proprio fargli male al collo."
 DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
 ModifierDescriptions[0]="Qualcosa è andato decisamente storto con questi Zed, e le loro teste sono mooolto più grandi del normale! Enormi, direi! Gioca a questa Epidemia settimanale selezionando la modalità di gioco Settimanale sulla pagina del Matchmaking. Livello Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Colliseum KFWeeklyOutBreakInformation]
+FriendlyName="Colosseo"
+DescriptionStrings[0]="Solo per berserker!"
+DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
+ModifierDescriptions[0]="Affila le spade e le asce ed entra nell'arena! Addestra le abilità del tuo Ariete. Seleziona la modalità Epidemia settimanale sulla pagina del Matchmaking. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BloodThirst KFWeeklyOutBreakInformation]
+FriendlyName="Sete di Sangue"
+DescriptionStrings[0]="Mantieni la serie di uccisioni o muori..."
+DescriptionStrings[1]="Lunghezza: Medio (7 ondate)"
+ModifierDescriptions[0]="La sete per il sangue di Zed ti danneggia di continuo (mentre l'icona Settimanale viene mostrata vicino al contatore della salute). Uccidere è l'unico modo per rigenerare la tua salute. Seleziona la modalità Epidemia settimanale sulla pagina del Matchmaking. Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3412,6 +3448,9 @@ DisplayName="Stazione del Marchio infernale"
 
 [KF-Elysium KFMapSummary]
 DisplayName="Elisio"
+
+[KF-Dystopia2029 KFMapSummary]
+DisplayName="Distopia 2029"
 
 [KFMapInfo]
 ; defaults

@@ -760,6 +760,17 @@ ItemCategory="霰彈槍"
 ItemDescription="•發射模式可射出凍結敵人的彈藥。\n•重擊攻擊用斧頭粉碎敵人。\n•輔助功能鍵 - 防禦/格擋。\n•斧頭非常適合做冰雕。"
 SharedUnlockSource="冰霜尖牙武器同捆包"
 
+[KFWeap_HRG_SonicGun]
+ItemName="HRG白鯨之擊"
+ItemCategory="特殊"
+ItemDescription="•主要攻擊會發射音波爆破。\n•次要攻擊會為下一次爆破充能，提高爆破頻率。\n•這會提高任何一方的分貝。"
+
+[KFWeap_GravityImploder]
+ItemName="重力內爆器"
+ItemCategory="炸藥"
+ItemDescription="•預設攻擊模式會發射內爆榴彈。\n•次要攻擊模式會發射吸引敵人的重力榴彈。\n•研發以來最具吸引力的武器之一。"
+SharedUnlockSource="重力內爆器武器同捆包"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="漢斯華特博士"

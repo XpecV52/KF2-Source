@@ -54,12 +54,13 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     local KFWeapon KFW;
     local float TempDamage;
 
+    super.ModifyDamageGiven(InDamage, DamageCauser, MyKFPM, DamageInstigator, DamageType, HitZoneIdx);
     TempDamage = float(InDamage);
     if(DamageCauser != none)
     {
         KFW = GetWeaponFromDamageCauser(DamageCauser);
     }
-    if(((KFW != none) && IsWeaponOnPerk(KFW,, self.Class)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
+    if(((KFW != none) && ((IsWeaponOnPerk(KFW,, self.Class)) || IsDual9mm(KFW)) || Is9mm(KFW)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
     {
         TempDamage += (float(InDamage) * (GetPassiveValue(WeaponDamage, CurrentLevel)));
         if(IsRapidFireActive())
@@ -69,7 +70,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     }
     if((KFW != none) && !DamageCauser.IsA('KFProj_Grenade'))
     {
-        if(IsBackupActive() && (IsBackupWeapon(KFW)) || KFW.Class.Name == 'KFWeap_Pistol_Dual9mm')
+        if(IsBackupActive() && (IsBackupWeapon(KFW)) || IsDual9mm(KFW))
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[2])));
         }
@@ -166,7 +167,7 @@ function ModifyArmor(out byte MaxArmor)
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return IsTacticalReloadActive() && (IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW);
+    return IsTacticalReloadActive() && ((IsWeaponOnPerk(KFW,, self.Class)) || IsBackupWeapon(KFW)) || IsDual9mm(KFW);
 }
 
 simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity, optional array< class<KFPerk> > WeaponPerkClass, optional bool bSecondary, optional name WeaponClassName)
@@ -194,7 +195,7 @@ simulated function ModifyMaxSpareAmmoAmount(KFWeapon KFW, out int MaxSpareAmmo, 
     local float TempMaxSpareAmmoAmount;
 
     bSecondary = false;
-    if(IsAmmoVestActive() && (IsWeaponOnPerk(KFW, TraderItem.AssociatedPerkClasses, self.Class)) || IsBackupWeapon(KFW))
+    if(IsAmmoVestActive() && ((IsWeaponOnPerk(KFW, TraderItem.AssociatedPerkClasses, self.Class)) || IsBackupWeapon(KFW)) || IsDual9mm(KFW))
     {
         TempMaxSpareAmmoAmount = float(MaxSpareAmmo);
         TempMaxSpareAmmoAmount += (float(MaxSpareAmmo) * (GetSkillValue(PerkSkills[5])));
@@ -212,7 +213,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     local name StateName;
 
     StateName = W.GetStateName();
-    if(IsProfessionalActive() && (IsWeaponOnPerk(W,, self.Class)) || IsBackupWeapon(W))
+    if(IsProfessionalActive() && ((IsWeaponOnPerk(W,, self.Class)) || IsBackupWeapon(W)) || IsDual9mm(W))
     {
         if((StateName == 'Reloading') || StateName == 'AltReloading')
         {
@@ -226,7 +227,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
             }
         }
     }
-    if(((CouldRapidFireActive()) && Is9mm(W) || IsWeaponOnPerk(W,, self.Class)) && ZedTimeModifyingStates.Find(StateName != -1)
+    if(((CouldRapidFireActive()) && (Is9mm(W) || IsDual9mm(W)) || IsWeaponOnPerk(W,, self.Class)) && ZedTimeModifyingStates.Find(StateName != -1)
     {
         return RapidFireFiringRate;
     }
