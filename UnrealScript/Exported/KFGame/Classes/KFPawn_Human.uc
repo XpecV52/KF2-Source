@@ -1610,10 +1610,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
 	KFGRI = KFGameReplicationInfo(KFGameInfo(WorldInfo.Game).GameReplicationInfo);
 
-	LogInternal("ARMOR OLD: " $ OldArmor);
-	LogInternal("ARMOR NEW: " $ Armor);
-	LogInternal("ARMOR diff: " $ OldArmor - Armor);
-
 	if( (ActualDamageTaken > 0 || OldArmor - Armor > 0) && IsAliveAndWell() && !KFGRI.bTraderIsOpen )
 	{
 		KFPlayerController(Controller).NotifyHitTaken();

@@ -1,10 +1,10 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 9036702352655837759 / 3/10/2021 4:59:27 PM
+Manifest ID / date     : 7044437268087002330 / 3/17/2021 7:56:33 AM
 Total number of files  : 4760
 Total number of chunks : 4828
-Total bytes on disk    : 99229890
-Total bytes compressed : 28300272
+Total bytes on disk    : 99229780
+Total bytes compressed : 28299776
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
@@ -12,12 +12,12 @@ Total bytes compressed : 28300272
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
         546816      1 8A2B0597A4CC9BED598D6BB7EB771F113849AFB3     0 Binaries\SDKFrontend.exe
          75264      1 1B891EE290FAFF7D6B51E41CDACEDE5D166CF2DF     0 Binaries\UnrealControls.dll
-       1592832      2 8BAC43E74921C898D8D213770598DAF208CF6924     0 Binaries\UnrealEdCSharp.dll
+       1592832      2 6129DD9617D28889695AC401F83665655B0B9BE4     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      67774464     65 686CC4D4933904A62DCE600764CB7DA2F5B9EF54     0 Binaries\Win64\KFEditor.exe
+      67774464     65 C5B8F96CA497B672D7AC8A84DEEDB4E4265A98EC     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -3124,7 +3124,7 @@ Total bytes compressed : 28300272
           2051      1 A3DC9DD53FA856E7D43307610F3D0984EA73C547     0 Development\Src\KFGame\Classes\KFPawnVoiceGroup.uc
           2823      1 F3B0A33278CCA9C2750BC7AB8130E76194CECA0E     0 Development\Src\KFGame\Classes\KFPawnVoiceGroupEventData.uc
          10350      1 544ABBB61C22942B2C2001539A0CB8D53EE6786A     0 Development\Src\KFGame\Classes\KFPawn_Customization.uc
-         64134      1 D5911D19E46BD02745D4B73B5249821709938074     0 Development\Src\KFGame\Classes\KFPawn_Human.uc
+         64024      1 957F5BEC378964B17CAAE0A56253D648C6868B2C     0 Development\Src\KFGame\Classes\KFPawn_Human.uc
         151272      1 D3A04539C07734BC7041A0D4BF47255D0704B391     0 Development\Src\KFGame\Classes\KFPawn_Monster.uc
          12088      1 18A8E9D68C5BB63974FB1149CD7166086286C60C     0 Development\Src\KFGame\Classes\KFPawn_MonsterBoss.uc
          30787      1 C7C2F8CF15BAF90AD2148E8D76153CCD622F9D71     0 Development\Src\KFGame\Classes\KFPawn_Scripted.uc

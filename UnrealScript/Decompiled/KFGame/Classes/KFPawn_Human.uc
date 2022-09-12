@@ -1017,9 +1017,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
         LogInternal((((((string(GetFuncName()) @ "Damage AFTER =") $ string(ActualDamageTaken)) $ " DamageType: ") $ string(DamageType)) $ " DamageCauser: ") $ string(DamageCauser));
     }
     KFGRI = KFGameReplicationInfo(KFGameInfo(WorldInfo.Game).GameReplicationInfo);
-    LogInternal("ARMOR OLD: " $ string(OldArmor));
-    LogInternal("ARMOR NEW: " $ string(Armor));
-    LogInternal("ARMOR diff: " $ string(OldArmor - Armor));
     if((((ActualDamageTaken > 0) || (OldArmor - Armor) > 0) && IsAliveAndWell()) && !KFGRI.bTraderIsOpen)
     {
         KFPlayerController(Controller).NotifyHitTaken();
