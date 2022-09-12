@@ -304,6 +304,7 @@ class KFGameInfo extends FrameworkGame
 
 
 
+
 	
 
 
@@ -1471,24 +1472,34 @@ function ResetAllPickups()
  	 	AllPickupFactories.AddItem( AmmoPickups[i] );
  	}
 
-	if(NumWeaponPickups > 0 )
-	{
-		ResetPickups( ItemPickups, NumWeaponPickups );
-	}
-	if(NumAmmoPickups > 0)
-	{
-		ResetPickups( AmmoPickups, NumAmmoPickups );
-	}
+	ResetPickups( ItemPickups, NumWeaponPickups );
+
+	ResetPickups( AmmoPickups, NumAmmoPickups );
 }
 
+/** Pick random pickup items to enable and put all others to sleep */
 /** Pick random pickup items to enable and put all others to sleep */
 function ResetPickups( array<KFPickupFactory> PickupList, int NumPickups )
 {
  	local byte i, ChosenIndex;
  	local array<KFPickupFactory>	PossiblePickups;
+	local int NumIterations;
+	
+	if (PickupList.Length == 0)
+		return;
 
     PossiblePickups = PickupList;
- 	for ( i = 0; i < NumPickups; i++ )
+
+	if (OutbreakEvent != none && OutbreakEvent.ActiveEvent.bUnlimitedWeaponPickups && KFPickupFactory_Item(PickupList[0]) != none)
+	{
+		NumIterations = Min(NumPickups, PickupList.Length - 1);
+	}
+	else
+	{
+		NumIterations = Min(NumPickups, PickupList.Length);
+	}
+
+ 	for ( i = 0; i < NumIterations; i++ )
  	{
  		ChosenIndex = Rand( PossiblePickups.Length );
  		PossiblePickups[ChosenIndex].Reset();
@@ -4080,6 +4091,19 @@ static function bool HasCustomTraderVoiceGroup()
 	return false;
 }
 
+/***********************************************
+ * @name        Initial loadout modifier
+ **********************************************/
+
+simulated function AddWeaponsFromSpawnList(KFPawn P);
+
+simulated function OverrideHumanDefaults(KFPawn_Human P);
+
+/***********************************************
+ * @name        Damage Modifier for Event
+ **********************************************/
+simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx );
+
 defaultproperties
 {
    POINTS_FOR_BOSS_KILL=10000
@@ -4131,7 +4155,7 @@ defaultproperties
    BossIndex=-1
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Moonbase","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

@@ -13,7 +13,6 @@ var float VortexDuration;
 var float VortexRadius;
 var float VortexImpulseStrength;
 var protected transient bool bVortexActive;
-var protected export editinline RB_RadialImpulseComponent RadialImpulseComponent;
 
 simulated event PostBeginPlay()
 {
@@ -80,16 +79,24 @@ simulated state VortexState
 
     simulated event Tick(float DeltaTime)
     {
-        local float ImpulseModifier;
+        local Actor Victim;
+        local TraceHitInfo HitInfo;
+        local FracturedStaticMeshActor FracActor;
 
         if(bVortexActive && (WorldInfo.NetMode == NM_Client) || WorldInfo.NetMode == NM_Standalone)
         {
-            ImpulseModifier = 1;
-            RadialImpulseComponent.ImpulseRadius = VortexRadius;
-            RadialImpulseComponent.ImpulseStrength = VortexImpulseStrength * ImpulseModifier;
-            RadialImpulseComponent.bVelChange = true;
-            RadialImpulseComponent.ImpulseFalloff = 0;
-            RadialImpulseComponent.FireImpulse(Location);
+            foreach CollidingActors(Class'Actor', Victim, VortexRadius, Location, true,, HitInfo)
+            {
+                if(((KFPawn_Human(Victim) == none) && Victim.CollisionComponent != none) && !Victim.bWorldGeometry)
+                {
+                    Victim.CollisionComponent.AddRadialImpulse(Location, VortexRadius, VortexImpulseStrength, 0, true);
+                }
+                FracActor = FracturedStaticMeshActor(Victim);
+                if(FracActor != none)
+                {
+                    FracActor.BreakOffPartsInRadius(Location, VortexRadius, VortexImpulseStrength, true);
+                }                
+            }            
         }
     }
     stop;    
@@ -101,12 +108,6 @@ defaultproperties
     VortexDuration=0.5
     VortexRadius=450
     VortexImpulseStrength=-100
-    begin object name=ImpulseComponent0 class=RB_RadialImpulseComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: RB_RadialImpulseComponent'Default__KFProj_Grenade_GravityImploder.ImpulseComponent0'
-    RadialImpulseComponent=ImpulseComponent0
-    GrenadeBounceEffectInfo=KFImpactEffectInfo'FX_Impacts_ARCH.DefaultGrenadeImpacts'
     bWarnAIWhenFired=true
     TouchTimeThreshhold=60
     TerminalVelocity=3200
@@ -128,7 +129,6 @@ defaultproperties
     // Reference: KFGameExplosion'Default__KFProj_Grenade_GravityImploder.ImploTemplate0'
     ExplosionTemplate=ImploTemplate0
     ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
-    AltExploEffects=KFImpactEffectInfo'WEP_Gravity_Imploder_ARCH.Yellow_Explosion_Concussive_Force'
     ProjFlightTemplate=ParticleSystem'WEP_Gravity_Imploder_EMIT.FX_Yellow_Projectile'
     ProjFlightTemplateZedTime=ParticleSystem'WEP_Gravity_Imploder_EMIT.FX_Yellow_Projectile_ZEDTIME'
     AmbientComponent=AkComponent'Default__KFProj_Grenade_GravityImploder.AmbientAkSoundComponent'
@@ -145,11 +145,6 @@ defaultproperties
     // Reference: CylinderComponent'Default__KFProj_Grenade_GravityImploder.CollisionCylinder'
     Components(0)=CollisionCylinder
     Components(1)=AkComponent'Default__KFProj_Grenade_GravityImploder.AmbientAkSoundComponent'
-    begin object name=ImpulseComponent0 class=RB_RadialImpulseComponent
-        ReplacementPrimitive=none
-    object end
-    // Reference: RB_RadialImpulseComponent'Default__KFProj_Grenade_GravityImploder.ImpulseComponent0'
-    Components(2)=ImpulseComponent0
     Physics=EPhysics.PHYS_Falling
     LifeSpan=0
     begin object name=CollisionCylinder class=CylinderComponent

@@ -44,6 +44,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
+BodyMesh14="Traje Uniforme de Astronauta"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -242,6 +243,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
+BodyMesh14="Traje Uniforme de Astronauta"
 HeadMesh0="Poder da Barba!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -461,6 +463,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
+BodyMesh14="Traje Uniforme de Astronauta"
 HeadMesh0="Máscara do Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -626,6 +629,7 @@ BodyMesh11="Caçador de Bruxas"
 BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
+BodyMesh15="Traje Uniforme de Astronauta"
 HeadMesh0="Cabelo"
 
 [chr_briar_archetype.BodyMesh0]
@@ -791,6 +795,7 @@ BodyMesh11="Caçador de Bruxas"
 BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
+BodyMesh15="Traje Uniforme de Astronauta"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -1081,6 +1086,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
+BodyMesh15="Traje Uniforme de Astronauta"
 HeadMesh0="Rosto"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1237,6 +1243,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
+BodyMesh14="Traje Uniforme de Astronauta"
 HeadMesh0="Cabelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -2255,6 +2262,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
+BodyMesh14="Traje Uniforme de Astronauta"
 HeadMesh0="Rosto"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2400,6 +2408,7 @@ BodyMesh11="Caçador de Bruxas"
 BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
+BodyMesh15="Traje Uniforme de Astronauta"
 HeadMesh0="Cabelo"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2578,6 +2587,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
+BodyMesh14="Traje Uniforme de Astronauta"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2735,6 +2745,7 @@ BodyMesh11="Caçador de Bruxas"
 BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
+BodyMesh15="Traje Uniforme de Astronauta"
 HeadMesh0="Cabelo"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2886,6 +2897,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
+BodyMesh14="Traje Uniforme de Astronauta"
 HeadMesh0="Rosto"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3039,6 +3051,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
+BodyMesh14="Traje Uniforme de Astronauta"
 HeadMesh0="Cabelo"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3331,6 +3344,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
+BodyMesh14="Traje Uniforme de Astronauta"
 HeadMesh0="Cabeça Padrão"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -6559,3 +6573,260 @@ AttachmentSkin0="Precioso"
 [Cosmetic_BloodThirst_Backpack_ARCH]
 Attachment="Mochila Sanguinária"
 AttachmentSkin0="Precioso"
+
+[Cosmetic_Foundry_DynamiteBox_ARCH]
+Attachment="Mochila de Dinamite da Fundição"
+AttachmentSkin0="Marrom"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Branco"
+AttachmentSkin3="Areia"
+AttachmentSkin4="Verde-oliva"
+AttachmentSkin5="Turquesa"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Foundry_LanternBackpack_ARCH]
+Attachment="Mochila de Lanterna da Fundição"
+AttachmentSkin0="Marrom"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Branco"
+AttachmentSkin3="Fogo"
+AttachmentSkin4="Verde-oliva"
+AttachmentSkin5="Turquesa"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Foundry_MinerHat_ARCH]
+Attachment="Capacete de Minerador da Fundição"
+AttachmentSkin0="Marrom"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Branco"
+AttachmentSkin3="Areia"
+AttachmentSkin4="Verde-oliva"
+AttachmentSkin5="Turquesa"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Foundry_HardHat_ARCH]
+Attachment="Capacete Reforçado da Fundição"
+AttachmentSkin0="Cuidado"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Branco"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Risco Biológico"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Foundry_HardHatShield_ARCH]
+Attachment="Capacete Reforçado e Escudo da Fundição"
+AttachmentSkin0="Cuidado"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Branco"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Risco Biológico"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Foundry_CastingBucket_ARCH]
+Attachment="Mochila com Cadinho da Fundição"
+AttachmentSkin0="Cuidado"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Branco"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Risco Biológico"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Foundry_WeldingHelmet_ARCH]
+Attachment="Capacete de Solda da Fundição"
+AttachmentSkin0="Cuidado"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Branco"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Risco Biológico"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Foundry_WeldingTank_ARCH]
+Attachment="Mochila de Tanque de Solda da Fundição"
+AttachmentSkin0="Cuidado"
+AttachmentSkin1="Preto"
+AttachmentSkin2="Branco"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Risco Biológico"
+AttachmentSkin5="Tecnológico"
+AttachmentSkin6="Precioso"
+
+[Cosmetic_Arachnophobia_Backpack_ARCH]
+Attachment="Mochila Pernas de Rastejador"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Astronaut_StrikeForceHelmet_ARCH]
+Attachment="Capacete Força de Ataque de Astronauta"
+AttachmentSkin0="Espaço Sideral"
+AttachmentSkin1="Singularidade"
+AttachmentSkin2="Explosão Estelar"
+AttachmentSkin3="Galáxia"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Astronaut_CrewGoggles_ARCH]
+Attachment="Óculos de Proteção de Tripulação de Astronautas"
+AttachmentSkin0="Espaço Sideral"
+AttachmentSkin1="Singularidade"
+AttachmentSkin2="Explosão Estelar"
+AttachmentSkin3="Galáxia"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Astronaut_CrewHeadSet_ARCH]
+Attachment="Óculos de Tripulação de Astronautas"
+AttachmentSkin0="Espaço Sideral"
+AttachmentSkin1="Singularidade"
+AttachmentSkin2="Explosão Estelar"
+AttachmentSkin3="Galáxia"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Astronaut_CrewMask_ARCH]
+Attachment="Máscara de Tripulação de Astronautas"
+AttachmentSkin0="Espaço Sideral"
+AttachmentSkin1="Singularidade"
+AttachmentSkin2="Explosão Estelar"
+AttachmentSkin3="Galáxia"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Astronaut_JetPack_ARCH]
+Attachment="Mochila a Jato de Astronauta"
+AttachmentSkin0="Espaço Sideral"
+AttachmentSkin1="Singularidade"
+AttachmentSkin2="Explosão Estelar"
+AttachmentSkin3="Galáxia"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Astronaut_RadarArmband_ARCH]
+Attachment="Braçadeira Radar de Astronauta"
+AttachmentSkin0="Espaço Sideral"
+AttachmentSkin1="Singularidade"
+AttachmentSkin2="Explosão Estelar"
+AttachmentSkin3="Galáxia"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Astronaut_CompanionBackpack_ARCH]
+Attachment="Mochila de Acompanhante de Astronauta"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Astronaut_Helmet_ARCH]
+Attachment="Capacete de Astronauta"
+AttachmentSkin0="Espaço Sideral"
+AttachmentSkin1="Singularidade"
+AttachmentSkin2="Explosão Estelar"
+AttachmentSkin3="Galáxia"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_Astronaut_O2Backpack_ARCH]
+Attachment="Mochila de O2 de Astronauta"
+AttachmentSkin0="Espaço Sideral"
+AttachmentSkin1="Singularidade"
+AttachmentSkin2="Explosão Estelar"
+AttachmentSkin3="Galáxia"
+AttachmentSkin4="Precioso"
+
+[CHR_Tanaka_Archetype.BodyMesh15]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[CHR_Ana_Archetype.BodyMesh14]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[CHR_BadSanta_Archetype.BodyMesh14]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[chr_briar_archetype.BodyMesh15]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[chr_DJSkully_archetype.BodyMesh14]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[CHR_Jagerhorn_Archetype.BodyMesh14]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[chr_mark_archetype.BodyMesh15]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[chr_rockabilly_archetype.BodyMesh14]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[chr_strasser_archetype.BodyMesh14]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"
+
+[chr_alan_archetype.BodyMesh14]
+BodySkin0="Espaço Sideral"
+BodySkin1="Singularidade"
+BodySkin2="Explosão Estelar"
+BodySkin3="Galáxia"
+BodySkin4="Precioso"

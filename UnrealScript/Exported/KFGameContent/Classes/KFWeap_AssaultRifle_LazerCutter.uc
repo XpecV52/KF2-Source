@@ -1127,7 +1127,7 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Survivalist'
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Stat=EWUS_Damage1,Scale=1.200000),(Add=1)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0),(Stat=EWUS_Damage1),))
    FiringStatesArray(1)="LazerCharge"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

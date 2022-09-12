@@ -802,13 +802,10 @@ function ResetAllPickups()
 
 function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
 {
-    if(NumPickups != 0)
+    NumPickups *= (float(WaveNum) / float(WaveMax));
+    if(((NumPickups == 0) && PickupList.Length > 0) && ((WaveNum > 1) || KFPickupFactory_Ammo(PickupList[0]) != none) || (KFPickupFactory_Item(PickupList[0]) != none) && (OutbreakEvent == none) || OutbreakEvent.ActiveEvent.OverrideItemPickupModifier != float(0))
     {
-        NumPickups *= (float(WaveNum) / float(WaveMax));
-        if(((NumPickups == 0) && PickupList.Length > 0) && (WaveNum > 1) || KFPickupFactory_Ammo(PickupList[0]) != none)
-        {
-            NumPickups = 1;
-        }
+        NumPickups = 1;
     }
     super.ResetPickups(PickupList, NumPickups);
 }
@@ -957,7 +954,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     local int I;
     local KFPlayerController KFPC;
 
-    if(!bWaveStarted && !MyKFGRI.bTraderIsOpen)
+    if((!bWaveStarted && !MyKFGRI.bTraderIsOpen) && WinCondition != 1)
     {
         return;
     }
@@ -970,7 +967,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     {
         GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveEnd', true, AllWaveEndEvents);
         I = 0;
-        J0xDF:
+        J0xF5:
 
         if(I < AllWaveEndEvents.Length)
         {
@@ -990,7 +987,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
                 WaveEndEvt.CheckActivate(self, self,, OutputLinksToActivate);
             }
             ++ I;
-            goto J0xDF;
+            goto J0xF5;
         }
     }
     BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 1);

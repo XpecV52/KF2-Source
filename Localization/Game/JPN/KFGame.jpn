@@ -738,8 +738,8 @@ ComboMakerValue="zedアシスト"
 GrabbyValue="回収したプレイヤー"
 ZedSupportValue="間接ダメージ"
 ZednnihilationValue="ウェーブでのキル数"
-
-
+ZedStomper="Zedストンパー"
+ZedStomperValue="Zedストンパー"
 
 EPB_Healing="回復中"
 EPB_Kills="キル数"
@@ -750,6 +750,7 @@ EPB_HeadShots="ヘッドショット数"
 EPB_KnifeKills="ナイフによるキル数"
 EPB_PistolKills="ピストルによるキル数"
 EPB_DoorWelding="ドア溶接"
+EPB_ZedStomps="Zedストンプ"
 
 EPB_HealingValue="ヘルス"
 EPB_KillsValue="キル数"
@@ -760,6 +761,7 @@ EPB_HeadShotsValue="ヘッドショット数"
 EPB_KnifeKillsValue="キル数"
 EPB_PistolKillsValue="キル数"
 EPB_DoorWeldingValue="溶接ポイント"
+EPB_ZedStompsValue="ストンプ"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="チームアワード"
@@ -780,6 +782,7 @@ HeadShotsString="ヘッドショット数："
 LargeZedKillsString="大型zedキル数："
 TotalDoshEarnedString="獲得dosh合計："
 TotalKillsString="キル数合計："
+TotalStompsString="ストンプ合計"
 AssistsString="アシスト数："
 DamageDealtString="与えたダメージ："
 
@@ -1794,19 +1797,19 @@ Fortitude="ドレッドノート"
 FortitudeDescription="合計ヘルスを100%増加する"
 
 Ninja="散兵"
-NinjaDescription="動きが20%速くなり、ダッシュが25%速くなり、Perk武器を使用中はヘルスが毎秒1ポイント回復する。"
+NinjaDescription="Perk武器使用時に移動が20%、ダッシュが25%速くなる。また、毎秒1HP回復する。"
 
 Vampire="吸血鬼"
-VampireDescription="Perk武器でzedをキルする毎に、ヘルスを4ポイント回復する。Perk近接武器での攻撃が20%速くなる。"
+VampireDescription="Perk武器でzedをキルする毎に、ヘルスを3ポイント回復する。Perk近接武器での攻撃が20%速くなる。"
 
 Speed="肉屋"
 SpeedDescription="Perk武器により攻撃が 20% 速くなり、ダメージが 20% 増加する。"
 
 Resistance="耐性"
-ResistanceDescription="全ダメージに対して25%耐性を得る。毒および音波攻撃に対しては、さらに25%耐性を得る。"
+ResistanceDescription="全ダメージに対して15%耐性を得る。毒および音波攻撃に対しては、さらに15%耐性を得る。"
 
 Parry="受け流し"
-ParryDescription="Perk近接武器で攻撃を受け流すと受けるダメージが40%減少し、10秒間近接攻撃速度が5%と近接ダメージが35%増加します。"
+ParryDescription="Perk近接武器で攻撃を受け流すと受けるダメージが25%減少し、6秒間近接攻撃速度が5%と近接ダメージが35%増加します。"
 
 Smash="スマッシュ"
 SmashDescription="Perk近接武器による強攻撃のダメージが50%増加し、ヘッドダメージのダメージが25%増加し、怯みパワーが200%になる。"
@@ -1898,7 +1901,7 @@ DirectHit="高衝撃弾"
 DirectHitDescription="榴弾による直接ヒットダメージが25%増加する。"
 
 Ammo="追加弾"
-AmmoDescription="爆発Perk武器の最大弾薬が5増加する。これはC4には適用しない。"
+AmmoDescription="爆発Perk武器の最大弾薬が10増加する。これはC4には適用しない。"
 
 SirenResistance="音波耐性弾"
 SirenResistanceDescription="爆発物がサイレンの叫び声の影響を受けず、必ず爆発する。"
@@ -1935,7 +1938,7 @@ Passives[3]=(Title="移動速度",Description="5レベル毎に、移動速度�
 Passives[4]=(Title="アーマーボーナス",Description="レベル毎に、アーマーが%x%増加する");
 
 HealingSurge="共生ヘルス"
-HealingSurgeDescription="合計ヘルスが25%増加する。チームメイトを回復すると、あなたの合計ヘルスの10%、あなたが回復する。"
+HealingSurgeDescription="合計ヘルスが25%増加する。チームメイトを回復すると、あなたの合計ヘルスの6%、あなたが回復する。"
 
 Survivalist="復活力"
 SurvivalistDescription="ヘルスポイントを失う毎に、ダメージ耐性が1%増加する(最大60%)。"
@@ -2128,7 +2131,7 @@ EXPAction1="サポート武器でダメージを与える"
 EXPAction2="ドアを溶接する"
 
 HighCapMags="高容量マガジン"
-HighCapMagsDescription="Perk武器のマガジン容量が50%増加する。"
+HighCapMagsDescription="Perk武器のマガジン容量が75%増加する。"
 
 TacticalReload="戦術的リロード"
 TacticalReloadDescription="Perk武器のリロード速度が上昇する。"
@@ -2825,6 +2828,20 @@ AllCompleteRewardDescriptionString="サイボーグ | 仲間リュック | 希�
 ChanceDropDescriptionStrings[0]="春のチケット"
 ChanceDropDescriptionStrings[1]="春のゴールデンチケット"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2021]
+CurrentSpecialEventString="限定アイテムつきの期間限定特別イベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="追放しました！",DescriptionString="50体のZedを踏みつける")
+SpecialEventObjectiveInfoList[1]=(TitleString="週ごとの月探査",DescriptionString="Moonbaseでウィークリーをクリア")
+SpecialEventObjectiveInfoList[2]=(TitleString="驚くべき月光",DescriptionString="Moonbaseにてレーザーの罠を使って20体のZedを殺す")
+SpecialEventObjectiveInfoList[3]=(TitleString="無重力スキル",DescriptionString="Moonbaseで空中ジャンプをしている間に300体のZedを殺す")
+SpecialEventObjectiveInfoList[4]=(TitleString="無限空間",DescriptionString="エンドレスHardかそれ以上の難易度で、Moonbaseのウェーブ15をクリアする")
+
+AllCompleteRewardDescriptionString="宇宙飛行士 | 仲間リュック | 希少"
+
+ChanceDropDescriptionStrings[0]="サマーチケット"
+ChanceDropDescriptionStrings[1]="サマー・ゴールデン・チケット"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2930,6 +2947,26 @@ FriendlyName="血に飢えた"
 DescriptionStrings[0]="殺し続けるか死ぬかだ…"
 DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
 ModifierDescriptions[0]="Zed の血への渇望はあなたを蝕み続けます (ヘルスカウンターのそばにウィークリーアイコンが表示されている間)。殺すことのみによってヘルスが回復します。マッチメイキングページでウィークリーゲームモードを選択しましょう。Perk 15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Arachnophobia KFWeeklyOutBreakInformation]
+FriendlyName="クモ恐怖症"
+DescriptionStrings[0]="踏みつけ強化！"
+DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
+ModifierDescriptions[0]="私たちはクローラーの疫病に悩まされています。ブーツを履いて、奴らを踏み付ける準備をしましょう。マッチメイキングページでウィークリーゲームモードを選択してください。Perk 15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Scavenger KFWeeklyOutBreakInformation]
+FriendlyName="スカベンジャー"
+DescriptionStrings[0]="即興で。順応。そして克服。"
+DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
+ModifierDescriptions[0]="トレーダーが妨害され、武器が完全になくなってしまいました。地面に落ちている武器を利用しなければなりません。マッチメイキングページでウィークリーゲームモードを選択してください。Perk 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3451,6 +3488,9 @@ DisplayName="Elysium"
 
 [KF-Dystopia2029 KFMapSummary]
 DisplayName="ディストピア2029"
+
+[KF-Moonbase KFMapSummary]
+DisplayName="Moonbase"
 
 [KFMapInfo]
 ; defaults

@@ -36,6 +36,7 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 defaultproperties
 {
     HealingDartDamageType=Class'KFDT_Dart_Healing'
+    HealAmount=25
     HealFullRechargeSeconds=10
     HealImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Heal'
     HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
@@ -69,7 +70,7 @@ defaultproperties
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     MagazineCapacity=7
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=98
+    SpareAmmoCapacity=112
     InitialSpareMags=4
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
     FireSightedAnims=/* Array type was not detected. */

@@ -37,7 +37,7 @@ AlternateFireDescription="大部分主武器都有备用射击模式。按 <font
 FlashLightBatteryTitleKey="使用手电筒"
 FlashLightBatteryDescriptionKey="外面的环境可能较暗。按 <font color="#caab05">%x%</font> 可以开关<font color="#caab05">手电筒</font>。手电筒将缓慢没电。当完全没电时，它将关闭并且自动开始充电。"
 GrenadeTitleKey="使用手榴弹"
-GrenadeDescriptionKey="手榴弹可以有效对付聚集在一起的丧尸。神射在<font color="#caab05">武器加载</font>中有不同的手榴弹，每一种都可以伤害丧尸，而且可能有额外的效果。按 <font color="#caab05">%x%</font> 投掷一枚手榴弹。"
+GrenadeDescriptionKey="手榴弹可以有效对付聚集在一起的丧尸。神射在<font color="#caab05">武器加载</font>中有不同的手榴弹，每一种都可以伤害丧尸，而且可能有额外的效果。按<font color="#caab05">%x%</font>投掷一枚手榴弹”。 "
 
 ;Wave 1 end
 TraderTimeTitleKey="商人时间"
@@ -770,6 +770,30 @@ ItemName="重力内爆器"
 ItemCategory="炸弹"
 ItemDescription="•默认射击模式发射内爆手榴弹。\n•Alt-fire 模式发射重力手榴弹吸引敌人\n•有史以来最具吸引力的武器之一。"
 SharedUnlockSource="重力内爆器武器包"
+
+[KFWeap_HRG_BlastBrawlers]
+ItemName="HRG爆裂斗士"
+ItemCategory="近战"
+ItemDescription="•主要攻击：发射2次爆炸，每只拳头各一次。\n•次要攻击：强力近战攻击。\n•研究团队也束手无策。"
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="HRG堡垒"
+ItemCategory="轻机枪"
+ItemDescription="•只有全自动开火模式。\n•备用射击会激活能量屏障，减少受到的伤害。\n•它攻防兼备，但最重要的是，它属于SWAT。"
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="FAMAS下挂霰弹枪"
+ItemCategory="突击步枪"
+ItemDescription="•默认开火模式是FAMAS 3连发。\n•备用射击为压动式M26下挂霰弹枪射击。\n突击步枪？霰弹枪？两种都很好。"
+SecondaryAmmo="FAMAS霰弹枪弹"
+SharedUnlockSource="FAMAS下挂霰弹枪武器包"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="灼烧之眼"
+ItemCategory="火焰"
+ItemDescription="•主要射击模式会发射铝热手榴弹，并在4秒后爆炸。\n•备用射击可手动引爆所有铝热剂。\n•就像光对于苍蝇，火对于丧尸。"
+SharedUnlockSource="灼烧之眼武器包"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

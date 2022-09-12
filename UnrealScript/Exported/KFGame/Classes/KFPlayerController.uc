@@ -167,6 +167,7 @@ const STATID_ACHIEVE_DesolationCollectibles			= 4055;
 const STATID_ACHIEVE_HellmarkStationCollectibles	= 4056;
 const STATID_ACHIEVE_ElysiumEndlessWaveFifteen	    = 4057;
 const STATID_ACHIEVE_Dystopia2029Collectibles       = 4058;
+const STATID_ACHIEVE_MoonbaseCollectibles           = 4059;
  
 #linenumber 15
 
@@ -500,6 +501,7 @@ const KFID_HasTabbedToStore = 177;
 #linenumber 52;
 
 #linenumber 17
+
 
 
 
@@ -1080,6 +1082,7 @@ struct native PostWaveReplicationInfo
 	var Vector 	VectData1; //used for compressing data //X:HeadShots Y:Dosh Earned Z:Damage Dealt
 	var Vector 	VectData2;	//used for compressing data //Damage Taken, Heals Received, Heals Given
 
+	var byte    NumStomps;
 	var byte	LargeZedKills;
 	//Dialog
 	var bool 	bDiedDuringWave;
@@ -7012,6 +7015,14 @@ function UpdateRhythmCounterWidget( int Count, int Max )
 	}
 }
 
+function UpdateGoompaCounterWidget(int Count, int Max)
+{
+	if( MyGFxHUD != none )
+	{
+		MyGFxHUD.UpdateGoompaCounterWidget(Count, Max);
+	}
+}
+
 /*********************************************************************************************
  * Objective
  * Tell the objective that a player has accepted/denied the objective
@@ -7803,7 +7814,7 @@ reliable client event ClientUnlockAchievement( int AchievementIndex, optional bo
 	{
 		if( WorldInfo.IsConsoleBuild( CONSOLE_Durango ) )
 		{
-			LogInternal("PS4: Client unlock achievement: " @AchievementIndex);
+			LogInternal("Client unlock achievement: " @AchievementIndex);
 			// Just toggle the stat relevent to this to on now, so the next stats write will trigger the achievement unlock.
 			StatsWrite.UnlockDingoAchievement(AchievementIndex);
 			OnlineSub.StatsInterface.WriteOnlineStats('Game', PlayerReplicationInfo.UniqueId, StatsWrite);
@@ -7893,6 +7904,12 @@ function NotifyHitTaken()
 	ClientNotifyHitTaken();
 }
 native reliable client private function ClientNotifyHitTaken();
+
+function NotifyHitGiven(class<DamageType> DT)
+{
+	ClientNotifyHitGiven(DT);
+}
+native reliable client private function ClientNotifyHitGiven(class<DamageType> DT);
 
 /** Kill stat */
 function AddZedKill( class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT, bool bKiller )

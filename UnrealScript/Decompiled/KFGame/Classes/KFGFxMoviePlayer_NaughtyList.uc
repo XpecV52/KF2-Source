@@ -49,7 +49,7 @@ simulated function Refresh()
     DataProvider = CreateArray();
     KFGRI.GetKFPRIArray(KFPRIArray);
     I = 0;
-    J0x59:
+    J0x5A:
 
     if(I < 12)
     {
@@ -64,7 +64,7 @@ simulated function Refresh()
         }
         DataProvider.SetElementObject(I, DataObject);
         ++ I;
-        goto J0x59;
+        goto J0x5A;
     }
     NaughtyListMenu.SetObject("Data", DataProvider);
 }

@@ -37,7 +37,7 @@ AlternateFireDescription="Die meisten Primärwaffen haben einen alternativen Feu
 FlashLightBatteryTitleKey="Benutzen einer Taschenlampe"
 FlashLightBatteryDescriptionKey="Dort draußen kann es ziemlich düster werden. Drücke <font color="#caab05">%x%</font> um deine <font color="#caab05">TASCHENLAMPE</font> ein- und auszuschalten Die Batterie deiner Taschenlampe wird sich langsam leeren. Wenn sie leer ist, schaltet sie sich aus und beginnt automatisch sich wieder aufzuladen."
 GrenadeTitleKey="Benutzen von Granaten"
-GrenadeDescriptionKey="Granaten erlauben dir, mit dicht gepackten Gruppen von Zeds fertigzuwerden. Vorteile haben verschiedene Typen von Granaten in ihren <font color="#caab05">WAFFEN-LADUNGEN</font>, die alle Zeds Schaden zufügen, aber zusätzliche Effekte besitzen können. Drücke <font color="#caab05">%x%</font> um eine Granate zu werfen."
+GrenadeDescriptionKey="Granaten erlauben dir, mit dicht gepackten Gruppen von Zeds fertigzuwerden. Vorteile haben verschiedene Typen von Granaten in ihren <font color="#caab05">WAFFEN-LADUNGEN</font>, die allen Zeds Schaden zufügen, aber zusätzliche Effekte besitzen können. Drücke <font color="#caab05">%x%</font> um eine Granate zu werfen."
 
 ;Wave 1 end
 TraderTimeTitleKey="Zeit für die Händlerin"
@@ -635,7 +635,7 @@ ItemCategory="Sprengstoffe"
 ItemDescription="•Wirft im Feuer-Modus Granaten.\n• Granate explodiert beim Aufprall.\n•Eleganter als 6 M79-Granatwerfer aneinanderzukleben."
 
 [KFWeap_AssaultRifle_MedicRifleGrenadeLauncher]
-ItemName="HMTech-501-Granatgewehr"
+ItemName="HMTech-501-G.-Gewehr"
 ItemCategory="Sturmgewehr"
 ItemDescription="•Der Feuer-Modus ist ausschließlich vollautomatisch.\n•Alt-Feuer zum Abfeuern von Sanitäter-Granaten.\n•Die einzige Waffe, bei der es in Ordnung ist, deine Freunde mit Granaten zu beschießen!"
 SecondaryAmmo="Sanitäter-Granate"
@@ -770,6 +770,30 @@ ItemName="Schwerkraftimplodierer"
 ItemCategory="Sprengstoffe"
 ItemDescription="•Standard-Feuer feuert Implosionsgranaten ab.\n•Alt. Feuer setzt Schwerkraftgranaten ein, die Gegner anziehen.\n•Eine der attraktivsten Waffen, die je entwickelt wurden."
 SharedUnlockSource="Schwerkraftimplodierer-Waffen-Paket"
+
+[KFWeap_HRG_BlastBrawlers]
+ItemName="HRG-Druckwellenfäuste"
+ItemCategory="Nahkampf"
+ItemDescription="• Primär: Schießt 2 Druckwellen, eine aus jeder Faust.\n• Sekundär: Schwerer Nahkampfangriff\n• Zwanzig Fliegen mit einer Druckwelle schlagen."
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="HRG-Bastion"
+ItemCategory="Leichtes Maschinengewehr"
+ItemDescription="• Ausschließlich vollautomatischer Feuer-Modus.\n• Alt-Feuer errichtet eine Energiebarriere, die erhaltenen Schaden verringert.\n• Beschützt. Greift an. Gehört in deine Hand."
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="FAMAS-Masterkey"
+ItemCategory="Sturmgewehr"
+ItemDescription="• Standard-Feuer-Modus ist eine 3-Schuss-Salve mit der FAMAS.\n• Alt-Feuer mit dem M26-Unterlauf funktioniert nach Pumpprinzip.\n• Sturmgewehr? Schrotflinte? Warum nicht beides?"
+SecondaryAmmo="FAMAS-Schrotpatronen"
+SharedUnlockSource="FAMAS-Masterkey-Waffen-Paket"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="Thermit-Werfer"
+ItemCategory="Flammen"
+ItemDescription="• Primärer Feuer-Modus verschießt Thermit-Granaten, die nach 4 Sekunden explodieren.\n• Alt-Feuer detoniert alle Granaten manuell.\n• Wie die Motten zum Licht, auch die Zeds sollen brennen."
+SharedUnlockSource="Thermit-Werfer-Waffen-Paket"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

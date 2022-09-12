@@ -771,6 +771,30 @@ ItemCategory="Explosifs"
 ItemDescription="• Le tir principal lance des grenades à implosion.\n• Le tir alternatif lance des grenades gravitationnelles qui attirent les ennemis.\n• L'une des armes les plus sexy ayant jamais vu le jour."
 SharedUnlockSource="Pack d'arme Imploseur de gravité"
 
+[KFWeap_HRG_BlastBrawlers]
+ItemName="Bagarreur explosif GRH"
+ItemCategory="Mêlée"
+ItemDescription="• Principal - lance 2 explosions, 1 par poing.\n• Secondaire - effectue une attaque de mêlée puissante.\n• L'équipe de recherche prépare une mise à jour coup-de-poing."
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="Bastion GRH"
+ItemCategory="Mitrailleuse légère"
+ItemDescription="• Tir auto uniquement.\n• Le tir alternatif active une barrière énergétique réduisant les dégâts subis.\n• Ils mitraillent, ils matraquent, c'est le SWAT!"
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="Passe FAMAS"
+ItemCategory="Fusil d'assaut"
+ItemDescription="• Avec le mode par défaut, le FAMAS tire 3 coups.\n• Le tir alternatif utilise le fusil à pompe M26 placé sous le canon.\n• Fusil d'assaut ou à pompe? Pourquoi pas les deux?"
+SecondaryAmmo="Chevrotines de FAMAS"
+SharedUnlockSource="Pack d'arme Passe FAMAS"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="Canon à thermite"
+ItemCategory="Incendiaire"
+ItemDescription="• Le tir principal lance des grenades de thermite qui explosent après 4 secondes.\n• Le tir alternatif déclenche manuellement toutes les thermites.\n• La lumière attire les mouches et le feu les Zeds."
+SharedUnlockSource="Pack d'arme Canon à thermite"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

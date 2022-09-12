@@ -17,6 +17,7 @@ var const localized string TotalDoshEarnedString;
 var const localized string TotalKillsString;
 var const localized string AssistsString;
 var const localized string DamageDealtString;
+var const localized string TotalStompsString;
 var const localized string KnifeString;
 var string PlayerStatsString;
 var int ItemCount;
@@ -156,5 +157,6 @@ defaultproperties
     TotalKillsString="Total Kills:"
     AssistsString="Assists:"
     DamageDealtString="Damage Dealt:"
+    TotalStompsString="Total Stomps"
     KnifeString="Knife"
 }

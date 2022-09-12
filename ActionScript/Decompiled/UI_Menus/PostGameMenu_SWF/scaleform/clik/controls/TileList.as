@@ -289,7 +289,7 @@ package scaleform.clik.controls
             }
             var _loc3_:InputDetails = param1.details;
             var _loc4_:Boolean = _loc3_.value == InputValue.KEY_DOWN || _loc3_.value == InputValue.KEY_HOLD;
-            var _loc5_:int = NaN;
+            var _loc5_:Number = NaN;
             var _loc6_:String = _loc3_.navEquivalent;
             if(this._direction == DirectionMode.HORIZONTAL)
             {

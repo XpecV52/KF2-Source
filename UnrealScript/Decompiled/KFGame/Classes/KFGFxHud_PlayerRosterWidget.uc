@@ -58,7 +58,7 @@ function UpdatePlayerData()
     KFPC = KFPlayerController(Outer.GetPC());
     DataProvider = Outer.CreateArray();
     I = 0;
-    J0x118:
+    J0x119:
 
     if(I < CurrentPlayerList.Length)
     {
@@ -105,7 +105,7 @@ function UpdatePlayerData()
             ++ PlayerIndex;
         }
         ++ I;
-        goto J0x118;
+        goto J0x119;
     }
     SetObject("data", DataProvider);
 }

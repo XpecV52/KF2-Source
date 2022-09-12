@@ -63,12 +63,7 @@ function OnDestroyOrReset()
 
     foreach TouchingActors(Class'KFPawn_Human', P)
     {
-        InstigatorPerk
-        @NULL
-        @NULL != return;
-        @NULL
-        default.@NULL
-        @NULL
+        -- UnresolvedNativeFunction_100(@NULL, P);        
     }
 }
 

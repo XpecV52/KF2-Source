@@ -32,7 +32,10 @@ simulated function PlayHeadAsplode()
 
 function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLocation)
 {
-    if(!bPlayedDeath && DamageType != Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType)
+    local KFGameInfo_WeeklySurvival KFGI_WS;
+
+    KFGI_WS = KFGameInfo_WeeklySurvival(WorldInfo.Game);
+    if((!bPlayedDeath && DamageType != Class'KFSM_PlayerCrawler_Suicide'.default.SuicideDamageType) && (KFGI_WS == none) || !KFGI_WS.OutbreakEvent.ActiveEvent.bGoompaJumpEnabled)
     {
         bShouldExplode = true;
     }

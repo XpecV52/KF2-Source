@@ -369,7 +369,7 @@ InProgressString="EM ANDAMENTO"
 OnlyStockMapsString="SOMENTE MAPAS DE ESTOQUE"
 OnlyCustomMapsString="SOMENTE MAPAS PERSONALIZADOS"
 LimitServerResultsString="RESULTADO LIMITE:"
-NotServerExiledString="SEM ADMINISTRADOR LOCAL"
+NotServerExiledString="SEM ADMIN. LOCAL"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="MODIFICADORES"
@@ -738,8 +738,8 @@ ComboMakerValue="Assistência de Zed"
 GrabbyValue="Jogadores pegos"
 ZedSupportValue="Dano indireto"
 ZednnihilationValue="Abates na leva"
-
-
+ZedStomper="Zed Pisoteador"
+ZedStomperValue="Zeds Pisoteadores"
 
 EPB_Healing="Cura"
 EPB_Kills="Abates"
@@ -750,6 +750,7 @@ EPB_HeadShots="Tiros na cabeça"
 EPB_KnifeKills="Abates a faca"
 EPB_PistolKills="Abates a pistola"
 EPB_DoorWelding="Soldagem de porta"
+EPB_ZedStomps="Zed Pisoteia"
 
 EPB_HealingValue="Vida"
 EPB_KillsValue="Abates"
@@ -760,6 +761,7 @@ EPB_HeadShotsValue="Tiros na cabeça"
 EPB_KnifeKillsValue="Abates"
 EPB_PistolKillsValue="Abates"
 EPB_DoorWeldingValue="Pontos de soldagem"
+EPB_ZedStompsValue="Pisoteadas"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="PRÊMIOS DE EQUIPE"
@@ -780,6 +782,7 @@ HeadShotsString="Tiros na cabeça:"
 LargeZedKillsString="Maiores abates de Zeds:"
 TotalDoshEarnedString="Total de grana obtida:"
 TotalKillsString="Total de abates:"
+TotalStompsString="Pisoteadas Totais"
 AssistsString="Assistências:"
 DamageDealtString="Dano causado:"
 
@@ -1794,19 +1797,19 @@ Fortitude="Couraçado"
 FortitudeDescription="Aumenta em 100% o total de vida."
 
 Ninja="Guerrilheiro"
-NinjaDescription="Movimenta-se 20% mais rápido, corre 25% mais rápido ao usar uma arma de classe. Você também regenera 2 pontos de vida a cada segundo."
+NinjaDescription="Movimenta-se 20% mais rápido, corre 25% mais rápido ao usar uma arma de classe. Você também regenera 1 ponto de vida a cada segundo."
 
 Vampire="Vampiro"
-VampireDescription="Cura 4 pontos de vida para cada Zed que abater com arma da classe. Ataca 20% mais rápido com armas corpo a corpo da classe."
+VampireDescription="Cura 3 pontos de vida para cada Zed que abater com arma da classe. Ataca 20% mais rápido com armas corpo a corpo da classe."
 
 Speed="Açougueiro"
 SpeedDescription="Ataca 20% mais rápido e causa 20% mais dano com armas de classe."
 
 Resistance="Resistência"
-ResistanceDescription="Ganha 25% de resistência a todo tipo de dano. Ganha 25% de resistência adicional a veneno e dano sônico."
+ResistanceDescription="Ganha 15% de resistência a todo tipo de dano. Ganha 15% de resistência adicional a veneno e dano sônico."
 
 Parry="Aparar"
-ParryDescription="Aparos uma arma corpo a corpo da classe diminuem em 40% o dano recebido, aumentam em 5% a vel. de ataque e em 35% o dano corpo a corpo por 10 s."
+ParryDescription="Aparos uma arma corpo a corpo da classe diminuem em 25% o dano recebido, aumentam em 5% a vel. de ataque e em 35% o dano corpo a corpo por 6 s."
 
 Smash="Esmagar"
 SmashDescription="Ataques fortes com armas corpo a corpo da classe causam 50% mais dano, 25% mais dano em acertos na cabeça e têm 200% mais poder de derrubar."
@@ -1898,7 +1901,7 @@ DirectHit="Rodada de alto impacto"
 DirectHitDescription="Aumenta em 25% o dano de acerto direto de armas explosivas."
 
 Ammo="Rodadas extras"
-AmmoDescription="Aumenta em 5 a munição máxima para armas de classe explosivas. Não se aplica ao C4."
+AmmoDescription="Aumenta em 10 a munição máxima para armas de classe explosivas. Não se aplica ao C4."
 
 SirenResistance="Rodadas de resistência sônica"
 SirenResistanceDescription="Seus explosivos ficam imunes ao grito da sereia e sempre explodirão."
@@ -1935,7 +1938,7 @@ Passives[3]=(Title="Velocidade de movimento",Description="Aumenta em %x% a veloc
 Passives[4]=(Title="Bônus de armadura",Description="Aumenta em %x% a armadura por nível");
 
 HealingSurge="Vida simbiótica"
-HealingSurgeDescription="Aumenta em 25% a vida total. Curar aliados curará o personagem em 10% do total de vida."
+HealingSurgeDescription="Aumenta em 25% a vida total. Curar aliados curará o personagem em 6% do total de vida."
 
 Survivalist="Resiliência"
 SurvivalistDescription="Aumenta a resistência a dano em 1% por ponto de vida perdido até 60%."
@@ -2033,7 +2036,7 @@ Passives[3]=(Title="Redução de recuo",Description="Reduz em %x% o recuo de arm
 Passives[4]=(Title="Recarga da hora dos Zeds",Description="Aumenta em %x% por nível a velocidade de recarga na Hora dos Zeds");
 
 ShootnMove="Estável"
-ShootnMoveDescription="Ignora a penalidade de velocidade de movimento e aumenta em 7,5% o dano de armas de classe para mira metálica. Reduz drasticamente o recuo da arma em armas de classe."
+ShootnMoveDescription="Ignora a penalidade de velocidade de movimento e aumenta em 7,5% o dano de armas de classe para mira metálica. Reduz muito o recuo das armas de classe."
 
 QuickSwitch="Tirada rápida"
 QuickSwitchDescription="Reduz a penalidade de recuo para tiros usando o quadril, aumenta em 5% a velocidade de movimento e em 50% a troca de armas de classe."
@@ -2128,7 +2131,7 @@ EXPAction1="Causando dano de arma de apoio"
 EXPAction2="Solda de portas"
 
 HighCapMags="Alta capacidade de munição"
-HighCapMagsDescription="Aumenta em 50% a capacidade de munição de armas de classe."
+HighCapMagsDescription="Aumenta em 75% a capacidade de munição de armas de classe."
 
 TacticalReload="Recarga tática"
 TacticalReloadDescription="Aumenta a velocidade de recarga com armas de classe."
@@ -2825,6 +2828,20 @@ AllCompleteRewardDescriptionString="Ciborgue | Mochila de Companheiro | Precioso
 ChanceDropDescriptionStrings[0]="Bilhete de Primavera"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado de Primavera"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2021]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Expulso!",DescriptionString="Pise em 50 Zeds")
+SpecialEventObjectiveInfoList[1]=(TitleString="Lunar semanal",DescriptionString="Conclua o semanal em Base Lunar")
+SpecialEventObjectiveInfoList[2]=(TitleString="Luar chocante",DescriptionString="Use a armadilha laser para matar 20 Zeds na Base Lunar")
+SpecialEventObjectiveInfoList[3]=(TitleString="Habilidades de leveza",DescriptionString="Mate 300 Zeds enquanto salta no ar na Base Lunar")
+SpecialEventObjectiveInfoList[4]=(TitleString="Vácuo infinito",DescriptionString="Conclua a 15ª leva no modo Difícil Infinito ou maior na Base Lunar")
+
+AllCompleteRewardDescriptionString="Astronauta | Mochila Acompanhante | Precioso"
+
+ChanceDropDescriptionStrings[0]="Bilhete de Verão"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado de Verão"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2930,6 +2947,26 @@ FriendlyName="Sanguinário"
 DescriptionStrings[0]="Mantenha a série de abates ou morra..."
 DescriptionStrings[1]="Duração: média (7 levas)"
 ModifierDescriptions[0]="Um Zed sanguinário ferirá você continuamente (enquanto o ícone semanal é exibido perto do contador de vida). Matar é a única maneira de regenerar vida. Selecione o modo de jogo Semanal na página "Organizar partida". Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Arachnophobia KFWeeklyOutBreakInformation]
+FriendlyName="Aracnofobia"
+DescriptionStrings[0]="Pisadas superpoderosas!"
+DescriptionStrings[1]="Duração: média (7 levas)"
+ModifierDescriptions[0]="Estamos sofrendo com uma praga de rastejadores. Calce as suas botas e prepare-se para pisar em todos eles. Selecione o modo de jogo Semanal na página Organizar Partida. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Scavenger KFWeeklyOutBreakInformation]
+FriendlyName="Vasculhador"
+DescriptionStrings[0]="Improvise. Adapte-se. Supere-se."
+DescriptionStrings[1]="Duração: média (7 levas)"
+ModifierDescriptions[0]="Os comerciantes foram sabotados e estão sem armas. Você deve usar as armas que encontrar no chão. Selecione o modo de jogo Semanal na página Organizar Partida. Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3451,6 +3488,9 @@ DisplayName="Elísio"
 
 [KF-Dystopia2029 KFMapSummary]
 DisplayName="Distopia 2029"
+
+[KF-Moonbase KFMapSummary]
+DisplayName="Base Lunar"
 
 [KFMapInfo]
 ; defaults

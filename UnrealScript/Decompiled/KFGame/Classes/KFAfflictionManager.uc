@@ -130,7 +130,7 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     {
         return;
     }
-    HitZoneIdx = Outer.HitFxInfo.HitBoneIndex;
+    HitZoneIdx = Outer.LastHitZoneIndex;
     BodyPart = (((HitZoneIdx != 255) && HitZoneIdx < Outer.HitZones.Length) ? Outer.HitZones[HitZoneIdx].Limb : 0);
     DamageWeapon = Class'KFPerk'.static.GetWeaponFromDamageCauser(DamageCauser);
     if(DamageWeapon != none)

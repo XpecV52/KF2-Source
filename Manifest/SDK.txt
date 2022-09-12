@@ -1,10 +1,10 @@
 Content Manifest for Depot 232151
 
-Manifest ID / date     : 7044437268087002330 / 3/17/2021 7:56:33 AM
-Total number of files  : 4760
-Total number of chunks : 4828
-Total bytes on disk    : 99229780
-Total bytes compressed : 28299776
+Manifest ID / date     : 3196784488951072849 / 6/1/2021 12:10:13 AM
+Total number of files  : 4796
+Total number of chunks : 4864
+Total bytes on disk    : 99414582
+Total bytes compressed : 28343184
 
           Size Chunks File SHA                                 Flags Name
              0      0 0000000000000000000000000000000000000000    64 Binaries
@@ -12,12 +12,12 @@ Total bytes compressed : 28299776
        3508104      4 C125EF957B4DAD1E1CEC4B31AB623C56D6367EEA     0 Binaries\GFx\gfxexport.exe
         546816      1 8A2B0597A4CC9BED598D6BB7EB771F113849AFB3     0 Binaries\SDKFrontend.exe
          75264      1 1B891EE290FAFF7D6B51E41CDACEDE5D166CF2DF     0 Binaries\UnrealControls.dll
-       1592832      2 6129DD9617D28889695AC401F83665655B0B9BE4     0 Binaries\UnrealEdCSharp.dll
+       1592320      2 32DD2D656DA8CE85E0301B6DF6F66A77848E7CBF     0 Binaries\UnrealEdCSharp.dll
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64
         149504      1 47D40E38D126F4782A7E5A0FA54DA435E00A2D2F     0 Binaries\Win64\Aga.Controls.dll
          81408      1 9EE1453BE1FFCCC7C3BD7D059C1C5AD8E327C166     0 Binaries\Win64\DebuggerInterface.dll
         352256      1 C70D9FFD6B361F411A1AC44FF688C9C2C83F5836     0 Binaries\Win64\ICSharpCode.TextEditor.dll
-      67774464     65 C5B8F96CA497B672D7AC8A84DEEDB4E4265A98EC     0 Binaries\Win64\KFEditor.exe
+      67786752     65 ACC5679BCC3DFE3121E2E2C38E138ACDBF64F3A9     0 Binaries\Win64\KFEditor.exe
            474      1 8FE8B25AED690CAEB4CD6AF26B55DA616D25CBE9     0 Binaries\Win64\KFEditor.exe.config
              0      0 0000000000000000000000000000000000000000    64 Binaries\Win64\Licenses
          14062      1 78DAD2CAB6D97D1178476553092C34B5A6D867A8     0 Binaries\Win64\Licenses\Aga.Controls.html
@@ -417,7 +417,7 @@ Total bytes compressed : 28299776
           1049      1 3520EE16685DD748867F50C9E29962C407248904     0 Development\Src\Engine\Classes\GenericParamListStatEntry.uc
           2248      1 7DF094F9DE20F42BB86FBA081A12BC0F2CAB5770     0 Development\Src\Engine\Classes\Goal_AtActor.uc
           1000      1 1A4FD7C07FFFEEADC906DF82936D4F8C9C95CA9D     0 Development\Src\Engine\Classes\Goal_Null.uc
-           419      1 CCF43CD3A09740E27FF3E90B7568645A43BB90B1     0 Development\Src\Engine\Classes\GravityVolume.uc
+           895      1 864E868A29FD5D1BF327C0EDEC8577570ACAF195     0 Development\Src\Engine\Classes\GravityVolume.uc
          26110      1 C12199AF29E9962438CF47C72723054DB2F8AF4E     0 Development\Src\Engine\Classes\HUD.uc
           3763      1 2405EF791BCA0E32DC2A2827C91956DFABD53B06     0 Development\Src\Engine\Classes\HeadTrackingComponent.uc
           1814      1 5E112A6E6FC52554C665EF9E3D6FA6FC9A74D211     0 Development\Src\Engine\Classes\HeightFog.uc
@@ -999,14 +999,14 @@ Total bytes compressed : 28299776
            793      1 F5C217B304C61510143E83DDEB10F7121C1ED754     0 Development\Src\Engine\Classes\Path_TowardPoint.uc
           2222      1 F1357BEB0494F01CE976EDA8B0DC577084093A67     0 Development\Src\Engine\Classes\Path_WithinDistanceEnvelope.uc
           1380      1 E9F938F119D6D337715CA6957548B931C75D038F     0 Development\Src\Engine\Classes\Path_WithinTraversalDist.uc
-        118195      1 654E99E733866B60964835FAD943B7D6828CB7B4     0 Development\Src\Engine\Classes\Pawn.uc
+        118741      1 E8435E9122C1F48F09A50F3C961171FE38CC7E4C     0 Development\Src\Engine\Classes\Pawn.uc
           8394      1 458E67900E373174D2DE3946A67588B4E2C588A0     0 Development\Src\Engine\Classes\PhysXParticleSystem.uc
           6020      1 476D684635AD96F7AFF55477BB0CAF55DFFBA747     0 Development\Src\Engine\Classes\PhysicalMaterial.uc
           2119      1 359D064299999D3914C10E7697CD6BD9E1A7FC31     0 Development\Src\Engine\Classes\PhysicalMaterialPropertyBase.uc
           4738      1 A7856A95709A1AA2345F93C2C6356BFBD13E2DAA     0 Development\Src\Engine\Classes\PhysicsAsset.uc
           7561      1 33A72AC15A8624A59CBF675863E202A614F885F9     0 Development\Src\Engine\Classes\PhysicsAssetInstance.uc
            425      1 990DD6888A8B0E252EC94024DA4441338EDDE249     0 Development\Src\Engine\Classes\PhysicsLODVerticalEmitter.uc
-          9913      1 B7FF4503B1A6847B66FA5262C933DD32427766A2     0 Development\Src\Engine\Classes\PhysicsVolume.uc
+         10001      1 72132DE5456C661817C0288B7B4F5CD78A7B8D55     0 Development\Src\Engine\Classes\PhysicsVolume.uc
          10527      1 F2A31B933A591C026DC79B5A31FFA6E2DFE7C7AF     0 Development\Src\Engine\Classes\PickupFactory.uc
           1401      1 20F5DC8B4E2B32E504A5358691C96966DA66CB72     0 Development\Src\Engine\Classes\PixelFormatEnum.uci
           7154      1 3DA296068C955745698695A8EE6E2BCDE7ED0287     0 Development\Src\Engine\Classes\PlatformInterfaceBase.uc
@@ -1736,6 +1736,7 @@ Total bytes compressed : 28299776
            767      1 1CC3761C88331255F0799663A3C3BF4CDE8E3B7A     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_AR15.uc
            715      1 7861628C1DAA57156689C05E1105E607320C67F1     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_AssaultRifle.uc
           2263      1 97D2CE751A230E7965D7F343725185FE61241D3F     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_Assault_Medic.uc
+          1292      1 4EF1E42849452A42C5BEC9EA4A00C7B3BC9029BF     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_BlastBrawlersShotgun.uc
            727      1 70F942625A83F1E2D024FDA7AED54D144FC633EA     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_BlunderbussImpact.uc
           1025      1 8FA8625660267F6DAE2BE8239979FDF809027EC2     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_BlunderbussShards.uc
            780      1 A129764AD7B7C21042989018F17BD960635CF3F4     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_Bullpup.uc
@@ -1746,6 +1747,8 @@ Total bytes compressed : 28299776
           1212      1 D73A2FC43FE05DA2D3FC920DA11E5FB59CC0C571     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_Deagle.uc
           2621      1 0489827D784DEBBD8083743B8DE3762A7ECEE0BE     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_DragonsBreath.uc
           1054      1 3263436F438FE563DCD89852EC1AA2936920F403     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_ElephantGun.uc
+           816      1 67118EF4D1E41F8FBA4715C85B903E93AAFB26BA     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_FAMAS_Rifle.uc
+          1162      1 E4F325A46E06C61EAE74A613CA2C7CB3DF496D45     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_FAMAS_Shotgun.uc
           1198      1 13D8F73D734DCB3636E92C65071FB8B4702FED38     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_FNFal.uc
           1321      1 879E74AE9B29A491DF73801BD54E97FD81348613     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_Frost_Shotgun_Axe.uc
            702      1 420292191069B102C53967C9A451F0BDBE2AF481     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_G18.uc
@@ -1763,6 +1766,7 @@ Total bytes compressed : 28299776
           1643      1 DE9FC3323B7266311CAF400E6922C7CCB8EA6545     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_HRGScorcherLightingImpact.uc
           2488      1 53B59F60384D15F377F35DBE310237ECE19577FC     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_HRGTeslauncher.uc
            835      1 3A75E42E60C8E4FF3C2831FA0E8FA80D04616BA5     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_HRGTeslauncherGrenadeImpact.uc
+           757      1 3D0632F4F75FD936C7130AE8AE7882301CF8E28F     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_HRG_BarrierRifle.uc
            880      1 F01072EFA9A3658D196BA62D90D0707F94E4B421     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_HRG_Kaboomstick.uc
           1605      1 72EF4D3300567A507A3EF75614DB0D62ED8815E2     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_HRG_SonicGun_SonicBlastFullyCharged.uc
           1591      1 B2A788DFF9AFABF6B311ACA9EC32CA66F51D066B     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_HRG_SonicGun_SonicBlastHalfCharged.uc
@@ -1813,6 +1817,7 @@ Total bytes compressed : 28299776
           1794      1 48AC2BE98FB0D3CDE0AFD46F80BAD36B8B7E5800     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_Shotgun_Medic.uc
            758      1 AF943E94E10769713E58F793CED45258FAAFF79A     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_Stoner63A.uc
            652      1 2C9BE8406139FA5A5991BFA41B056C066603EB8D     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_Submachinegun.uc
+          1741      1 FE51951BF5A3E737B985FDA7F5DB4832B4974442     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_ThermiteBoreImpact.uc
            782      1 4D8D5E7E7774D9B55192907AEEC9132032752D78     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_Thompson.uc
           1226      1 493072C768F6585F838B4DC48C42D875C40DB61F     0 Development\Src\KFGameContent\Classes\KFDT_Ballistic_Winchester.uc
            626      1 EC39382F8B26748C520D1B7A14ED6B27C2AADFF3     0 Development\Src\KFGameContent\Classes\KFDT_BellTrap.uc
@@ -1827,6 +1832,9 @@ Total bytes compressed : 28299776
            493      1 4B4D2C80904C8E6376D72A898496318B98535827     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_AR15.uc
            523      1 E6BCACFC475A8A6C632F540FF24F93B31D8AEE09     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_ArcGenerator.uc
            517      1 06470551DF917077CDF28C4BF23BB7190561CEAE     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_Assault_Medic.uc
+           660      1 7B112208AD0C04F13139CE863150BF9F50CDECCB     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_BlastBrawlers.uc
+           697      1 51A9D831A51BE34DEF4373A34500A529713E5CCC     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_BlastBrawlersBash.uc
+           803      1 8250F9764477BC7362D750D2A18C37581567D444     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_BlastBrawlersHeavy.uc
            792      1 1438AD0B109A1078318FC58FBA97C0BE1262D528     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_BloatKing.uc
           1219      1 739015A2C06CA4F569CB0CD4F68D0C866230C615     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_BloatKingGorge.uc
            541      1 CD8DCE691B258F1DA4AD92A56E59F49A1C53601F     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_Blunderbuss.uc
@@ -1847,6 +1855,7 @@ Total bytes compressed : 28299776
            499      1 F6A2756819C9D98A136D721BE146BFB68909C1B6     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_Deagle.uc
            520      1 0E6E04E33C560F2A41C1E2CBC6C5C3C0CB1B0E3D     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_DragonsBreath.uc
            514      1 590595B0B51D81E6E15ADEB97F8EB9BFD9BFFFD7     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_ElephantGun.uc
+           494      1 26AC00CFECA9141CC18F7CAE9EBB997600C90547     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_FAMAS.uc
            498      1 C05A5125FC14F1DB3E0AE22E730EEF31D591CBC9     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_FNFal.uc
            641      1 CFD1C4521661F14D183C76E9CCAE9E0264696B31     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_FireAxeBash.uc
            517      1 E45086C01EFA340F2B2A58D90D943A9D4A50CBCB     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_Flamethrower.uc
@@ -1867,6 +1876,7 @@ Total bytes compressed : 28299776
            581      1 BC850B46A5CAD0C996ABDF4372CB9AC865E5E218     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_HRGScorcher.uc
            525      1 ABE56A128A9C7C1797C332CF1896212087A8D1C9     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_HRGTeslauncher.uc
            606      1 DDE0268681A156CCF82D1E3FF9296693FDFDBF6B     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_HRGWinterbite.uc
+           527      1 C077A145AD2F1D94896D3D6EDCFA19DFB34CD7B1     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_HRG_BarrierRifle.uc
            566      1 785138CF57271C4490C7CA708375454A2CE129C2     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_HRG_Kaboomstick.uc
            563      1 810BBF6786165A0974719A7677AA3D270B2D0CD2     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_HRG_SonicGun.uc
            589      1 2B598A4077CF65F72FF3AC7B00365C047F4951EA     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_HRG_Vampire.uc
@@ -1925,6 +1935,7 @@ Total bytes compressed : 28299776
            500      1 6D40C5D5AE075C87BAA1CBD37E48744D962B1395     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_Seeker6.uc
            519      1 B22530484438609B836E5C6DFB125F7C25871108     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_Shotgun_Medic.uc
            506      1 D6CC2B5505E958031F1E43261B5AE75F74549A35     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_Stoner63A.uc
+           515      1 D9DF5C5EA82FE6975755BFE49DED5F12A32609E2     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_ThermiteBore.uc
            494      1 85F4CE47EA05FB331FC4E4DC3BB59454E525E824     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_Thompson.uc
            499      1 2B8BBE3E8D772F0CC99A985825D89AB597100DB7     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_Welder.uc
            515      1 59E0E00DC9B02DCC254EB08A2C21F89513D81F76     0 Development\Src\KFGameContent\Classes\KFDT_Bludgeon_Winchester.uc
@@ -1975,6 +1986,7 @@ Total bytes compressed : 28299776
            894      1 53B5ADBB4591A79ED95B018CB70C9E105E6A6076     0 Development\Src\KFGameContent\Classes\KFDT_Explosive_RPG7BackBlast.uc
            886      1 09B43C348C1F0D94F07F9C46013D13BA0CE5F4DA     0 Development\Src\KFGameContent\Classes\KFDT_Explosive_SealSqueal.uc
            935      1 5B33476394E7DBF4772FA6D4EEE2DE3B3FD37039     0 Development\Src\KFGameContent\Classes\KFDT_Explosive_Seeker6.uc
+          1594      1 01FDB9C076671B574A2BA83E3252887B57AA3697     0 Development\Src\KFGameContent\Classes\KFDT_Explosive_Thermite.uc
            800      1 BEA78B5D5D5B1465EEC468A7BA1273AC1E2987A8     0 Development\Src\KFGameContent\Classes\KFDT_FireTrap.uc
            983      1 59227F741FEA9363CE48DBA3F4FB0285CEE8C123     0 Development\Src\KFGameContent\Classes\KFDT_Fire_CaulkBurn.uc
           1033      1 F6600F846269812547572DE7397BD8A38B1D2706     0 Development\Src\KFGameContent\Classes\KFDT_Fire_DragonsBreathDoT.uc
@@ -1993,6 +2005,7 @@ Total bytes compressed : 28299776
            691      1 D795033FB58EF1A1B8E14E9D033482FC1F03596B     0 Development\Src\KFGameContent\Classes\KFDT_Fire_Ground_HuskCannon.uc
            646      1 1C413F50F925ED1B64E68EDBA95E548320C6C86D     0 Development\Src\KFGameContent\Classes\KFDT_Fire_Ground_MicrowaveGun.uc
            955      1 E4B15CCA0CC2B003E1CE864AC6536B61B1A36557     0 Development\Src\KFGameContent\Classes\KFDT_Fire_Ground_MolotovGrenade.uc
+           912      1 0C6D1027AAF13051998B144684E30A19A9D4A32F     0 Development\Src\KFGameContent\Classes\KFDT_Fire_Ground_ThermiteBore.uc
            934      1 19F76988FB34ED6860E9EC70699172B0840BC474     0 Development\Src\KFGameContent\Classes\KFDT_Fire_HRGIncendiaryRifleBulletDoT.uc
            714      1 A9FC5E6A565EB6CCD53C840E2D9BA9A86D37F6BC     0 Development\Src\KFGameContent\Classes\KFDT_Fire_HRGIncendiaryRifleGrenadeDoT.uc
           1042      1 E8F5CEE8ED2A7F080AF189B5E577E17B14FCAFBD     0 Development\Src\KFGameContent\Classes\KFDT_Fire_HRGScorcherDoT.uc
@@ -2002,6 +2015,8 @@ Total bytes compressed : 28299776
           1042      1 558E7B4D0966164F9966AE480A935D6AB18DBF2E     0 Development\Src\KFGameContent\Classes\KFDT_Fire_IonThrusterDoT.uc
           2465      1 AB9319CEF407332A3927503920E255B449C35E83     0 Development\Src\KFGameContent\Classes\KFDT_Fire_Mac10.uc
            904      1 2E3991D12D8F8F2E1106EABC866B8ECD7DE4FCDB     0 Development\Src\KFGameContent\Classes\KFDT_Fire_MolotovGrenade.uc
+          1053      1 5FD7740AEF2BE6902FD51BE0B9C6162763B9404E     0 Development\Src\KFGameContent\Classes\KFDT_Fire_ThermiteExplosionDoT.uc
+           973      1 906BD43E3147B00A12069AB0F3570DB47DB91595     0 Development\Src\KFGameContent\Classes\KFDT_Fire_ThermiteImpactDoT.uc
            578      1 6F2441578C52246498384E914124B92F4AD3D2B2     0 Development\Src\KFGameContent\Classes\KFDT_Fire_ZedGround.uc
            732      1 C6958A0BD97A2752B1BE3144EA4219AA0498EE33     0 Development\Src\KFGameContent\Classes\KFDT_FleshpoundKing_ChestBeam.uc
            799      1 7D9D563936AF11D2267A0B7D19E74121636F6C7F     0 Development\Src\KFGameContent\Classes\KFDT_Freeze_CompoundBowCryExplosion.uc
@@ -2143,6 +2158,7 @@ Total bytes compressed : 28299776
            867      1 33FB57ABC0D618871B87522101E29421418D4083     0 Development\Src\KFGameContent\Classes\KFExplosion_PlayerCrawlerSuicide.uc
           4077      1 A15D6B4302F8DE93D680839C9E56D7065C550B1F     0 Development\Src\KFGameContent\Classes\KFExplosion_ReplicatedMedicGrenade.uc
           1195      1 83926173407A7BEAF9A8AE1C88F54FE837F9AF11     0 Development\Src\KFGameContent\Classes\KFExplosion_SirenScream.uc
+          1261      1 7C1000D629A054BEB93E56BCA6C660F80386F520     0 Development\Src\KFGameContent\Classes\KFExplosion_Thermite.uc
          14731      1 D8E093B010EBBF4433C8F5E15BB1545721CB3F33     0 Development\Src\KFGameContent\Classes\KFGFXHudWrapper_Versus.uc
           1377      1 D5898F81D7CEE444C372749E87587A55F4572E6C     0 Development\Src\KFGameContent\Classes\KFGFxHUD_PlayerStatusVersus.uc
           5383      1 C47F2F3483F9026B769D4F15E64D2CE4372E6E82     0 Development\Src\KFGameContent\Classes\KFGFxMoviePlayer_HUD_Versus.uc
@@ -2159,16 +2175,16 @@ Total bytes compressed : 28299776
            623      1 87061095026ED9920A68492AF20C03E2FEBBADD6     0 Development\Src\KFGameContent\Classes\KFGameDifficulty_Survival_Console.uc
            798      1 B5914DEB9A6098B1C0DE31B1550D5A9D5536BBEE     0 Development\Src\KFGameContent\Classes\KFGameDifficulty_Versus.uc
            567      1 ADFD0B49133C9FE48018DB8B83837D90B8C50D38     0 Development\Src\KFGameContent\Classes\KFGameDifficulty_Versus_Console.uc
-         17172      1 4067D3A0B45A8CEC43F44FF22FADB7C96CC0EBF3     0 Development\Src\KFGameContent\Classes\KFGameInfo_Endless.uc
+         17234      1 ADD717FD5599E0C95C9CF085A31C910EDABBFEB6     0 Development\Src\KFGameContent\Classes\KFGameInfo_Endless.uc
           8707      1 5041525C7FCAA8E5F6B60955CEBE4845AB88AB64     0 Development\Src\KFGameContent\Classes\KFGameInfo_Objective.uc
-         54393      1 7042FC9DE1BB76F9F958CD6C181D3250856C642D     0 Development\Src\KFGameContent\Classes\KFGameInfo_Survival.uc
+         54666      1 6BC6B8FB99590F4690B2064BDA1E510E0B179BE3     0 Development\Src\KFGameContent\Classes\KFGameInfo_Survival.uc
          15295      1 E1ECAE8DE9876CFCA73C489B32A76DE77CDDD77B     0 Development\Src\KFGameContent\Classes\KFGameInfo_Tutorial.uc
          45418      1 E024EE64D00E0F62A9F449B4EC3B65920FE724AE     0 Development\Src\KFGameContent\Classes\KFGameInfo_VersusSurvival.uc
-         24865      1 E81AB4D1924B732B58B947355729CB140934EFD5     0 Development\Src\KFGameContent\Classes\KFGameInfo_WeeklySurvival.uc
+         28015      1 E8E9F69867BB593C20FB3B91C34164437D4F196B     0 Development\Src\KFGameContent\Classes\KFGameInfo_WeeklySurvival.uc
           5554      1 A89436922DC45A9F0C26B95962B45006545E6254     0 Development\Src\KFGameContent\Classes\KFGameReplicationInfoVersus.uc
           2575      1 4B40FC274A3314E15AD85A18C01A8982BE9AE1B2     0 Development\Src\KFGameContent\Classes\KFGameReplicationInfo_Endless.uc
           3559      1 C8E08676412D1B72E845661671B6020D4EDBFD74     0 Development\Src\KFGameContent\Classes\KFGameReplicationInfo_Objective.uc
-           677      1 09A4F43248A8B4DCA924880FFCEE9B390C9DA76C     0 Development\Src\KFGameContent\Classes\KFGameReplicationInfo_WeeklySurvival.uc
+         11238      1 731745915515D62966D40356FB2DEADC94270CA2     0 Development\Src\KFGameContent\Classes\KFGameReplicationInfo_WeeklySurvival.uc
            940      1 267DEE465961742B13A39CAE6FF335A9B908EFF6     0 Development\Src\KFGameContent\Classes\KFGoreJoint_Arm.uc
           1307      1 300483C677D0678197E2050FD4F59CA03F1448AC     0 Development\Src\KFGameContent\Classes\KFGoreJoint_Chest.uc
            944      1 6AB1073CDACB4E706DC4A7277401CC02BD5332AD     0 Development\Src\KFGameContent\Classes\KFGoreJoint_Foot.uc
@@ -2206,9 +2222,10 @@ Total bytes compressed : 28299776
           9266      1 3893722D12A4028DC2A74D1822140889B41968A4     0 Development\Src\KFGameContent\Classes\KFMapObjective_HoldZone.uc
          14313      1 DD95286F509D6ACA4F8013AEA2C23257CDB9B635     0 Development\Src\KFGameContent\Classes\KFMapObjective_RepairActors.uc
           1223      1 0448A91D21DE32247D1BCA23DD6BD0983793965D     0 Development\Src\KFGameContent\Classes\KFMedicWeaponComponent_HRGIncision.uc
+          1065      1 59084976A3665BFD8805C6C0751EB3AC15D18E95     0 Development\Src\KFGameContent\Classes\KFMeleeHelperWeaponBlastBrawlers.uc
           7281      1 6B946FCD99F3E58F205CA66B8ED78307B31372DA     0 Development\Src\KFGameContent\Classes\KFObjectiveCollectActor.uc
          23253      1 C05C64FA85E2A7CCB3DC94E559CCE74CB587CE27     0 Development\Src\KFGameContent\Classes\KFOutbreakEvent_Endless.uc
-         42037      1 17C91BA6864FC51586FA63A3B250652ECA54AD19     0 Development\Src\KFGameContent\Classes\KFOutbreakEvent_Weekly.uc
+         50523      1 756BE81C74DB52A9C497A40C0B1F4220B79B9699     0 Development\Src\KFGameContent\Classes\KFOutbreakEvent_Weekly.uc
           6446      1 F5F741EF4A8CAEA19C6F3BE12C03435399CEA66E     0 Development\Src\KFGameContent\Classes\KFPawnVoiceGroupEventData_Hans.uc
           7084      1 8DE0A73FEBC40EC683C40128B4AE4755671898C6     0 Development\Src\KFGameContent\Classes\KFPawnVoiceGroupEventData_Matriarch.uc
           5846      1 A2BBC96B6B3DD68EF76E5A1560B4E475F4A48308     0 Development\Src\KFGameContent\Classes\KFPawnVoiceGroupEventData_Patriarch.uc
@@ -2248,7 +2265,7 @@ Total bytes compressed : 28299776
           4266      1 BFA311C164812D9451C082427CD81E1B01CA22F3     0 Development\Src\KFGameContent\Classes\KFPawn_ZedClot_Slasher.uc
           7422      1 1C6A0D9F11E577BF2DABBC27EE2A4E6E7CCDAB26     0 Development\Src\KFGameContent\Classes\KFPawn_ZedClot_Slasher_Versus.uc
          16655      1 6CEAFE101821B63F022FCD216E69DC256ECFBE53     0 Development\Src\KFGameContent\Classes\KFPawn_ZedCrawler.uc
-          3606      1 404F930D5764338F19F0F8806850641A37CC8C84     0 Development\Src\KFGameContent\Classes\KFPawn_ZedCrawlerKing.uc
+          3845      1 420A0EBC483CDF06DDA0C6330211D365B03877F4     0 Development\Src\KFGameContent\Classes\KFPawn_ZedCrawlerKing.uc
           7306      1 224339B3805E23E8F3E652AEED2D5546F1850EE6     0 Development\Src\KFGameContent\Classes\KFPawn_ZedCrawler_Versus.uc
          14922      1 09CDCEBB5A4942E3AD35750975D36E44EEFF41D1     0 Development\Src\KFGameContent\Classes\KFPawn_ZedDAR.uc
           2368      1 748F62272C8834A47EDCE7044C5E5554C9DACBD8     0 Development\Src\KFGameContent\Classes\KFPawn_ZedDAR_EMP.uc
@@ -2256,7 +2273,7 @@ Total bytes compressed : 28299776
           1377      1 C5510DD5AA9DD62DE13382413A79E1491E51CA2F     0 Development\Src\KFGameContent\Classes\KFPawn_ZedDAR_Rocket.uc
           7450      1 839FF56FF1890EB7470D727C4C75905E416812D2     0 Development\Src\KFGameContent\Classes\KFPawn_ZedFleshPound_Versus.uc
          20104      1 69422FCCF0A679E2CA0488D6963595CD8AC6C45E     0 Development\Src\KFGameContent\Classes\KFPawn_ZedFleshpound.uc
-         34983      1 220C13EDD44A79442DA9131F71ECEBC190F417D3     0 Development\Src\KFGameContent\Classes\KFPawn_ZedFleshpoundKing.uc
+         34981      1 49DEF6E8730AA4BFB6791DC717796272711871E0     0 Development\Src\KFGameContent\Classes\KFPawn_ZedFleshpoundKing.uc
           4202      1 FBD7BF9C70622FC0D8ED3F1D10FC1ED490586D22     0 Development\Src\KFGameContent\Classes\KFPawn_ZedFleshpoundMini.uc
            678      1 80BC66434ABF25E41F99B5163409B0B15BC1A6FD     0 Development\Src\KFGameContent\Classes\KFPawn_ZedFleshpoundMini_Mixer.uc
            670      1 63B59BEF954857A244B8BE2FDBF41AD0E20C8CD8     0 Development\Src\KFGameContent\Classes\KFPawn_ZedFleshpound_Mixer.uc
@@ -2279,6 +2296,7 @@ Total bytes compressed : 28299776
           6843      1 ECF329845384ED987E0C7FBCEFFE284ED75E8663     0 Development\Src\KFGameContent\Classes\KFPawn_ZedSiren_Versus.uc
          15892      1 9764020F3AD10ECC168F98418DF174A85C94A47F     0 Development\Src\KFGameContent\Classes\KFPawn_ZedStalker.uc
           7243      1 6F7039C4CA7145A6E02C59267D3AF3DFA21D174C     0 Development\Src\KFGameContent\Classes\KFPawn_ZedStalker_Versus.uc
+          1768      1 97E74F2B45458DF61B44919CE61CAFACE0A2EA7E     0 Development\Src\KFGameContent\Classes\KFPhysicsDamageByPawnVolume.uc
           2239      1 7740FB3401A02EB1747D86513A757F536C3B48DB     0 Development\Src\KFGameContent\Classes\KFPhysicsVolume.uc
           2654      1 1A8BF5D48252829F175CC22FF2D2C81FA662AC8C     0 Development\Src\KFGameContent\Classes\KFPickupFactory_Ammo.uc
           1299      1 30E6448ED7FEFBAC7E6CFDBBF88532D1F2553A77     0 Development\Src\KFGameContent\Classes\KFPickupFactory_ItemDefault.uc
@@ -2293,12 +2311,13 @@ Total bytes compressed : 28299776
          16097      1 79DA496893D324255C605CAD99E1D1D0BD5AA6E9     0 Development\Src\KFGameContent\Classes\KFProj_BloatPukeMine.uc
           8405      1 97C6EEDECB52B5C07880FF6A372F4F96504BCD7F     0 Development\Src\KFGameContent\Classes\KFProj_BloodBall_HRG_Vampire.uc
           6697      1 1C60F0156DF0F5B5AA0606BB33803702CCE5CC74     0 Development\Src\KFGameContent\Classes\KFProj_BloodSplash.uc
-          6252      1 6E970F41450F2942C1B22A5CBD321715F1B216C2     0 Development\Src\KFGameContent\Classes\KFProj_Bolt_CompoundBowCryo.uc
+          6270      1 02D46A9B2424C8B90CE5A8EA9D40986E45144E03     0 Development\Src\KFGameContent\Classes\KFProj_Bolt_CompoundBowCryo.uc
           3197      1 3F5A1B26F2C1CA744561C7CED9B01A3BD85C0D7B     0 Development\Src\KFGameContent\Classes\KFProj_Bolt_CompoundBowSharp.uc
           1720      1 C156CEFB04007043B3F1AA6E4226CCFE0DFFC9E4     0 Development\Src\KFGameContent\Classes\KFProj_Bolt_Crossbow.uc
           9245      1 192ABD3F419323710088023BF587D86FD998D3FF     0 Development\Src\KFGameContent\Classes\KFProj_BrokenFlare_HRGScorcher.uc
           3679      1 74A1C40F04A7EE8261C24FF24A6FCBB41532010C     0 Development\Src\KFGameContent\Classes\KFProj_BrokenFlare_HRGScorcherSplash.uc
            755      1 4A45FE0DDFC1DF371A2259E8F5811DD93EEC25A2     0 Development\Src\KFGameContent\Classes\KFProj_Bullet_AssaultRifle.uc
+          1169      1 ABEB7BCA7FE3D0B22FB045CB9693EE52E7949B3F     0 Development\Src\KFGameContent\Classes\KFProj_Bullet_BlastBrawlers.uc
           2603      1 E8B6BCE493324FEDC94A2959271E373D27DEFB52     0 Development\Src\KFGameContent\Classes\KFProj_Bullet_DragonsBreath.uc
           1388      1 7AC3DEADDDDE1CF781B84670F0EA76E7BF23CEEE     0 Development\Src\KFGameContent\Classes\KFProj_Bullet_Frost_Shotgun_Axe.uc
            649      1 5764A4DBBDB6881D6156736CF7F83DDDD123E75F     0 Development\Src\KFGameContent\Classes\KFProj_Bullet_G18.uc
@@ -2355,7 +2374,7 @@ Total bytes compressed : 28299776
           1251      1 666B2F7D4853B701213751283B4C8343DE6E32E8     0 Development\Src\KFGameContent\Classes\KFProj_FreezeThrower_GroundIce.uc
            989      1 92E55F95F049B2DF8CF3154D0399963400CBAB46     0 Development\Src\KFGameContent\Classes\KFProj_FreezeThrower_IceShards.uc
           2500      1 717C8E83545229F331FEC4E9604E79C77D00D938     0 Development\Src\KFGameContent\Classes\KFProj_GrenadeShard.uc
-          4982      1 05BA12D64956FFE42044B66551EB20ECA02D437C     0 Development\Src\KFGameContent\Classes\KFProj_Grenade_GravityImploder.uc
+          4923      1 4E9A634286FB9103DC964A73720553297D7BB8B3     0 Development\Src\KFGameContent\Classes\KFProj_Grenade_GravityImploder.uc
          16388      1 3668FC20976CD0485B4D427D01FAD2645E7F2DFB     0 Development\Src\KFGameContent\Classes\KFProj_Grenade_GravityImploderAlt.uc
           7394      1 CFE754FD29E47B01672073997B9ED3A3865BF50B     0 Development\Src\KFGameContent\Classes\KFProj_Grenade_HRGIncendiaryRifle.uc
           6187      1 94366A279958F7892C663BE6E96659A18312807C     0 Development\Src\KFGameContent\Classes\KFProj_Grenade_HRGTeslauncher.uc
@@ -2400,9 +2419,11 @@ Total bytes compressed : 28299776
           2715      1 F7D4B9E7D5BC6AB5D887AA86F4CC3C30AFBD7F52     0 Development\Src\KFGameContent\Classes\KFProj_Rocket_RPG7.uc
           7881      1 14F7CCD45F400AE50B84DACB3738FAAF3AB5F3AC     0 Development\Src\KFGameContent\Classes\KFProj_Rocket_SealSqueal.uc
           4024      1 F542AFDB84D0DAF417D05C4183E9A555748BE714     0 Development\Src\KFGameContent\Classes\KFProj_Rocket_Seeker6.uc
+         10113      1 FCE1EA50B1369F0230C263DA8EEF0AF795406F0B     0 Development\Src\KFGameContent\Classes\KFProj_Rocket_ThermiteBore.uc
           1667      1 B2F93197E74BBE5F5339C211F3BFABD7CBFBFFBE     0 Development\Src\KFGameContent\Classes\KFProj_SonicBlastFullyCharged_HRG_SonicGun.uc
           3265      1 12061B44A9854FB28AEADC85987998E5B38E98EC     0 Development\Src\KFGameContent\Classes\KFProj_SonicBlastHalfCharged_HRG_SonicGun.uc
           3678      1 B751213F3062E403F7BF67B50ABC833D92A73F80     0 Development\Src\KFGameContent\Classes\KFProj_SonicBlastUncharged_HRG_SonicGun.uc
+          3198      1 1B0CBE400EBEE4ACE0A0C7041736C6846EED693C     0 Development\Src\KFGameContent\Classes\KFProj_ThermiteSplash.uc
          11231      1 5F6AEAA8CC93D41101B81492E30444C703A768E7     0 Development\Src\KFGameContent\Classes\KFProj_Thrown_C4.uc
           3301      1 3BE41FDEBB224A6CE36F6CC70A452E63275DDE76     0 Development\Src\KFGameContent\Classes\KFSM_AlphaRally.uc
           1862      1 63AB5236D8D45A0E2FC69630874F6B69E9AAA0B3     0 Development\Src\KFGameContent\Classes\KFSM_BloatKingSubspawn_Explode.uc
@@ -2488,6 +2509,7 @@ Total bytes compressed : 28299776
           3888      1 D1826CB5680C089E2E0C9C4816427064718EAF7C     0 Development\Src\KFGameContent\Classes\KFSeasonalEventStats_Spring2021.uc
           3139      1 AF7F8A9A4A176CA62841908F93CE02C3706F08CA     0 Development\Src\KFGameContent\Classes\KFSeasonalEventStats_Summer2019.uc
           4203      1 03CA4FEBF51A89222A5846EA11F9AA93EEFFFC04     0 Development\Src\KFGameContent\Classes\KFSeasonalEventStats_Summer2020.uc
+          3800      1 D47D906768D3A6B5E8B7D96D1A5F9428BFCBAAC0     0 Development\Src\KFGameContent\Classes\KFSeasonalEventStats_Summer2021.uc
           3584      1 A09EF3B7B4B600356ACF35398CBFF4822D43768F     0 Development\Src\KFGameContent\Classes\KFSeasonalEventStats_Xmas2018.uc
           3448      1 9BA586545EE06D2AA7CB6B8000E66FA733A4EF4C     0 Development\Src\KFGameContent\Classes\KFSeasonalEventStats_Xmas2019.uc
           3539      1 F1B2D65DF30FDDFEED3FB30CB008E9905F2A6049     0 Development\Src\KFGameContent\Classes\KFSeasonalEventStats_Xmas2020.uc
@@ -2535,9 +2557,12 @@ Total bytes compressed : 28299776
           9824      1 117EC3C4C78EC7BFFB8C8CF62BDA4AC81F250A83     0 Development\Src\KFGameContent\Classes\KFWeapAttach_CompoundBow.uc
           2842      1 14DF74AAFCEC1A28400D770E9A9C1A982A35372A     0 Development\Src\KFGameContent\Classes\KFWeapAttach_Dual_C4.uc
           1632      1 B341E2006CE2A2723BC70384A0261388A3772212     0 Development\Src\KFGameContent\Classes\KFWeapAttach_Eviscerator.uc
+          6215      1 7A3381CA91F8AED5C15E3AA6760C5E6C911052C1     0 Development\Src\KFGameContent\Classes\KFWeapAttach_FAMAS.uc
           5124      1 E1AB35F0D96EE9F177A1313A9E9362D5806A8073     0 Development\Src\KFGameContent\Classes\KFWeapAttach_Flamethrower.uc
            663      1 6D379187AD113F075989165D80DB4F2CA98C9B1C     0 Development\Src\KFGameContent\Classes\KFWeapAttach_G18.uc
           1731      1 3378FAE2A34CDD93A6FF2458F3B6B7A7048F5868     0 Development\Src\KFGameContent\Classes\KFWeapAttach_GravityImploder.uc
+          3027      1 6D6B78F57C68F6A3A029EB219935DC98A9F4F81D     0 Development\Src\KFGameContent\Classes\KFWeapAttach_HRG_BarrierRifle.uc
+          3704      1 496EEDD424F2BA2D1ABEFDC515F09EB11E371688     0 Development\Src\KFGameContent\Classes\KFWeapAttach_HRG_BlastBrawlers.uc
          14311      1 8B3562F03806C8E90A2A9680A1E7DB8257F8ACDC     0 Development\Src\KFGameContent\Classes\KFWeapAttach_HRG_Vampire.uc
           4082      1 CABE527DD6DA8610C23201BB52EB7299876FE441     0 Development\Src\KFGameContent\Classes\KFWeapAttach_HuskCannon.uc
           1301      1 62E36179EB923AC907C6F59125170DBFB8005A16     0 Development\Src\KFGameContent\Classes\KFWeapAttach_IonThruster.uc
@@ -2555,10 +2580,11 @@ Total bytes compressed : 28299776
           4738      1 5DC27989F01FC67B898073ED22161B235F837478     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_Bullpup.uc
           4567      1 6B07738174E4497F74B59C5375F0C29F9A6874DA     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_DualMKb42_Hans.uc
           1127      1 D4B5F27CB86D772DB9798C5A145EF7C601CC4CFC     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_DualMKb42_HansFriendlyTest.uc
+         19400      1 46CB95011C79D9AAEE21B0430622B4FFEC63C8B1     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_FAMAS.uc
           5270      1 C6DA4D689E6722F0B7A1BCE0F45B0B41F1352A10     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_FNFal.uc
           5289      1 C8CA7CE4579FCEE75DC71CEEC53AB8D571DBA44B     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_HRGIncendiaryRifle.uc
           9505      1 29955E70B9DAD0BD7BDC0AD9CA043EEA41DE07E2     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_HRGTeslauncher.uc
-         37037      1 1407E1996EC8D75FCA7CF024AEE3984D6AE7B6C9     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_LazerCutter.uc
+         37037      1 A3097787BBB26F5DC21CA99299E232DA8D0AAE0F     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_LazerCutter.uc
          19777      1 7859634A6671414996B4F5770994621FCAB380EB     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_M16M203.uc
          10332      1 3698E64EEA82438F59CDDDEC6B6B1F36FD8C0A76     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_MKB42.uc
           5694      1 88B2A1DD2C2926C56F42592527FBB6A6D211CFE2     0 Development\Src\KFGameContent\Classes\KFWeap_AssaultRifle_Medic.uc
@@ -2574,7 +2600,7 @@ Total bytes compressed : 28299776
          23616      1 4DF0953E083BF6593DE7FA136D4AC05419FB7999     0 Development\Src\KFGameContent\Classes\KFWeap_Blunt_MedicBat.uc
           3385      1 0E06EEDE4F66F79E3EF330B651093F347C642AA8     0 Development\Src\KFGameContent\Classes\KFWeap_Blunt_PowerGloves.uc
          15887      1 87928A2E19A7320BD8EC0FB473EADEC9B2208265     0 Development\Src\KFGameContent\Classes\KFWeap_Blunt_Pulverizer.uc
-         22869      1 E06B207656C76C3D8D961F41054F19AD6F3B1A4D     0 Development\Src\KFGameContent\Classes\KFWeap_Bow_CompoundBow.uc
+         22873      1 A5B665A72AF216C8922A2AF8056FA76D48E279AB     0 Development\Src\KFGameContent\Classes\KFWeap_Bow_CompoundBow.uc
           5473      1 A7E1E888F4150B494FDBC676254687B1D4D06E91     0 Development\Src\KFGameContent\Classes\KFWeap_Bow_Crossbow.uc
           3029      1 8F53C3C5C50F9F4E400F2F3B244090E4063A8FDE     0 Development\Src\KFGameContent\Classes\KFWeap_Edged_AbominationAxe.uc
           3463      1 61D86B573C2D05E0FF80F7F1D8EB5D82E9EA8B19     0 Development\Src\KFGameContent\Classes\KFWeap_Edged_FireAxe.uc
@@ -2589,6 +2615,8 @@ Total bytes compressed : 28299776
           6811      1 92BA66E0763F0264CAAE6C08738BCDD2472B933C     0 Development\Src\KFGameContent\Classes\KFWeap_GrenadeLauncher_HX25.uc
           8649      1 B59460E9953719C9E998F575D7F0E5ECCFBF2293     0 Development\Src\KFGameContent\Classes\KFWeap_GrenadeLauncher_M32.uc
           3664      1 0EC30A6398D6F110C4007B185B6D476691249C8D     0 Development\Src\KFGameContent\Classes\KFWeap_GrenadeLauncher_M79.uc
+         22393      1 B329F2E00C152458EC0E54B3B0F09C98944ED537     0 Development\Src\KFGameContent\Classes\KFWeap_HRG_BarrierRifle.uc
+         12493      1 6E0E15239CA9ECB60C184034F339D7B39EE718F1     0 Development\Src\KFGameContent\Classes\KFWeap_HRG_BlastBrawlers.uc
          25127      1 F77C44EE9DEF30553F1691CACDE67CE51D7691CB     0 Development\Src\KFGameContent\Classes\KFWeap_HRG_EMP_ArcGenerator.uc
          33782      1 0FF5BF0C4CEEB2E4E88261074F2EDFABEBF2B41D     0 Development\Src\KFGameContent\Classes\KFWeap_HRG_Healthrower.uc
           6586      1 13487013E8B0C1550D2E41DAF819FABDF812AE5F     0 Development\Src\KFGameContent\Classes\KFWeap_HRG_Nailgun.uc
@@ -2643,7 +2671,7 @@ Total bytes compressed : 28299776
           4095      1 80BFEA74BC9F376ED28089EDC4CA77B489550F29     0 Development\Src\KFGameContent\Classes\KFWeap_Rifle_CenterfireMB464.uc
          12555      1 75E46963EEF1C7C4FCC8C7EC04EAD56552D5C428     0 Development\Src\KFGameContent\Classes\KFWeap_Rifle_FrostShotgunAxe.uc
           7546      1 84CB9F0AA75244938A716D2E91B7E178653454BD     0 Development\Src\KFGameContent\Classes\KFWeap_Rifle_HRGIncision.uc
-          6199      1 1A8FA4A179D990438274545EBBB1DF147D16E2B1     0 Development\Src\KFGameContent\Classes\KFWeap_Rifle_Hemogoblin.uc
+          6218      1 929CFA2EF183C007EBF02A2FC96A5F49E2D0BE1E     0 Development\Src\KFGameContent\Classes\KFWeap_Rifle_Hemogoblin.uc
           4132      1 F695B22E2B00B4313E6A1F8CCF278C39C3C54172     0 Development\Src\KFGameContent\Classes\KFWeap_Rifle_M14EBR.uc
           3806      1 91054CC19AAF8E0C08F447311108812574E9984E     0 Development\Src\KFGameContent\Classes\KFWeap_Rifle_M99.uc
           9684      1 83432D31D7C206835431E21650D19DC6113B59A5     0 Development\Src\KFGameContent\Classes\KFWeap_Rifle_MosinNagant.uc
@@ -2652,6 +2680,7 @@ Total bytes compressed : 28299776
           6697      1 72E3135256F24FE440CBD524572C2910DBC5486F     0 Development\Src\KFGameContent\Classes\KFWeap_RocketLauncher_RPG7.uc
           9953      1 48DEBFB5DDCEB7AF904913196E7E0701EEFBFE5E     0 Development\Src\KFGameContent\Classes\KFWeap_RocketLauncher_SealSqueal.uc
          20859      1 7E002D2CCDC2AEB4B99DA0ECD7063A6CC53B75C3     0 Development\Src\KFGameContent\Classes\KFWeap_RocketLauncher_Seeker6.uc
+          9116      1 84F05EA8A2204E5219FA2238409E21CC4E35CB97     0 Development\Src\KFGameContent\Classes\KFWeap_RocketLauncher_ThermiteBore.uc
          14429      1 0E1A74A7A6BB3A58A7A04A2BC6051D121424ECE8     0 Development\Src\KFGameContent\Classes\KFWeap_SMG_G18.uc
          10658      1 7C2658262CFCF702E8878689A9DA2ECF560CA1B3     0 Development\Src\KFGameContent\Classes\KFWeap_SMG_HK_UMP.uc
           4111      1 DEC3D100FB6E2A846EA1CF2D66F00E67867A2F8F     0 Development\Src\KFGameContent\Classes\KFWeap_SMG_Kriss.uc
@@ -2717,7 +2746,7 @@ Total bytes compressed : 28299776
            805      1 FD2F8D3B8EED278DAC0E8C502022CEEB3ED055AC     0 Development\Src\KFGame\Classes\ActorFactoryKFPathnode.uc
            873      1 BE96B61A2C3A1DCA4763E38FE232079C52411311     0 Development\Src\KFGame\Classes\ActorFactoryKFScriptedPlayerPathGoal.uc
            825      1 58C454C604DA19C195B3646DB57C7A043418A544     0 Development\Src\KFGame\Classes\ActorFactoryKFWallPathNode.uc
-         38440      1 067B1DC47958B71068DD6ED2530C2B253FAF0377     0 Development\Src\KFGame\Classes\EphemeralMatchStats.uc
+         40408      1 52E405F676D9B2F983B85EF892B472A2EE2CE6B8     0 Development\Src\KFGame\Classes\EphemeralMatchStats.uc
           1127      1 80740D5057EC647F9DB3EAD035162DA4EA00F043     0 Development\Src\KFGame\Classes\FloorToWallReachSpec.uc
           1735      1 C76A5E36A5D0C8C70C41DC205836E1D361395854     0 Development\Src\KFGame\Classes\Goal_AwayFromPosition.uc
           1765      1 5C13C9AA76B8B24CEFC4B7492E8A2346D6F27DF6     0 Development\Src\KFGame\Classes\Goal_Random.uc
@@ -2745,7 +2774,7 @@ Total bytes compressed : 28299776
           4254      1 BAF9044305E1813CAC95DDAF9E34EFA9CBA9A2F1     0 Development\Src\KFGame\Classes\KFActor_DoshPile.uc
           1527      1 1FB0C50A4B07EEFF8D129282C6C401696BE5DE0F     0 Development\Src\KFGame\Classes\KFAfflictionAdvanced.uc
           4518      1 6AB60513E52765A3C1D7EA86B0A6C29928C6FB52     0 Development\Src\KFGame\Classes\KFAfflictionBase.uc
-         23972      1 BD736123D783FA0BB828FBE5A584125995FDC8FE     0 Development\Src\KFGame\Classes\KFAfflictionManager.uc
+         24008      1 1F58FF96A586B89DD78340771B19D882DB22DAE1     0 Development\Src\KFGame\Classes\KFAfflictionManager.uc
           6478      1 09476DDC21C75BF65CC136381F69953705AD3EDA     0 Development\Src\KFGame\Classes\KFAffliction_Bleed.uc
           3890      1 04EFA9E962F615F55F409534533C07350168CEC9     0 Development\Src\KFGame\Classes\KFAffliction_EMP.uc
           2018      1 3EB2DA580CB67D5F319F2D7D67E2E46FCDC7C2F8     0 Development\Src\KFGame\Classes\KFAffliction_EMPDisrupt.uc
@@ -2838,6 +2867,7 @@ Total bytes compressed : 28299776
            678      1 E4D6E79DF4595FD6A9A54839432D55836A68519E     0 Development\Src\KFGame\Classes\KFDT_Fire_Napalm.uc
           4138      1 47088B6C0D79DF5D650176F688BA41C21627EE36     0 Development\Src\KFGame\Classes\KFDT_Freeze.uc
            669      1 FB2022AF0663A4F1AA22025500C4726F49C1EE14     0 Development\Src\KFGame\Classes\KFDT_Freeze_Ground.uc
+          1257      1 46D1136278A334D5C64C22F7C4EECEF33C82EF19     0 Development\Src\KFGame\Classes\KFDT_GoompaStomp.uc
           1238      1 A8AB88801CD9D78FCE9FA09E6CA6AEDBE10F21AA     0 Development\Src\KFGame\Classes\KFDT_Healing.uc
            759      1 65061F87BA58935E9E73722ABCD92F9355413F0A     0 Development\Src\KFGame\Classes\KFDT_HellishRageCost.uc
           1144      1 BBEAC8412FDDE4EA2309559B28A7E0FC13347FE1     0 Development\Src\KFGame\Classes\KFDT_HuskCannonDot.uc
@@ -2873,7 +2903,7 @@ Total bytes compressed : 28299776
           6267      1 3F814547EC768575DDFD98A047A0D4C305D195D0     0 Development\Src\KFGame\Classes\KFDoorMarker.uc
            677      1 0C8FEA6E3C64F2827226363220373D3D3B901113     0 Development\Src\KFGame\Classes\KFDoorReachSpec.uc
           4029      1 C1B09CA4C9D4B138A88173F3129FB673A3A70545     0 Development\Src\KFGame\Classes\KFDoorTrigger.uc
-         19267      1 5E71977031E0937283623C4AA85CEA1CA303584B     0 Development\Src\KFGame\Classes\KFDroppedPickup.uc
+         19524      1 11F2ADDA2154D77FB96A15F9B919EABAB1B6A4B1     0 Development\Src\KFGame\Classes\KFDroppedPickup.uc
           3775      1 92AACA91631212B898DB9026BCB17ED6A7DA7726     0 Development\Src\KFGame\Classes\KFDroppedPickup_Cash.uc
            860      1 18FC1E2C3DAA72A1F2F5CB841306F06280C3CE9A     0 Development\Src\KFGame\Classes\KFDummyReplicationInfo.uc
          10392      1 08B1591A640DCAE067AF5778DA16154EB2143AE2     0 Development\Src\KFGame\Classes\KFDynamicFogAndDamageVolumeInfo.uc
@@ -2921,7 +2951,7 @@ Total bytes compressed : 28299776
           2356      1 FADCAB8107D7E20E2060FCEC39B0F3DB77FE1C8B     0 Development\Src\KFGame\Classes\KFGFxGearContainer_PerksSelection.uc
           2352      1 FB216CFE11FCDB7D18015E79CB26B67A579210C4     0 Development\Src\KFGame\Classes\KFGFxHUD_ChatBoxWidget.uc
           5215      1 2079A7775998E31883466698765B76F04D7882BF     0 Development\Src\KFGame\Classes\KFGFxHUD_ObjectiveConatiner.uc
-          9921      1 358E7784B66FB3304A9A698CFEC3BA99E6E6C17F     0 Development\Src\KFGame\Classes\KFGFxHUD_PlayerBackpack.uc
+         11136      1 97161DC2406F44F44561D29A35759B4003A31815     0 Development\Src\KFGame\Classes\KFGFxHUD_PlayerBackpack.uc
           8193      1 625EADA1D2FBB7281934C66159B495BE6544D986     0 Development\Src\KFGame\Classes\KFGFxHUD_PlayerMoveList.uc
           6704      1 B836672E6254EB219C5DB484D5F70DCBD9D200D0     0 Development\Src\KFGame\Classes\KFGFxHUD_PlayerStatus.uc
           3742      1 C28193EFAAC859A1513609E4F9BD20E4D17B46D5     0 Development\Src\KFGame\Classes\KFGFxHUD_PostRoundMenu.uc
@@ -2941,11 +2971,11 @@ Total bytes compressed : 28299776
          13828      1 8385AB46278E632D6482592F196617404510388B     0 Development\Src\KFGame\Classes\KFGFxMenu_IIS.uc
          36761      1 B000D92B76FB53BBE7327FBAA3559BDEDE3B38DA     0 Development\Src\KFGame\Classes\KFGFxMenu_Inventory.uc
          13604      1 C0A9BAE09664F6F406B215A871E73AE6930FCE40     0 Development\Src\KFGame\Classes\KFGFxMenu_Perks.uc
-         15037      1 7E8C4C09D67A06C458AA369C02F1D188D54FA14D     0 Development\Src\KFGame\Classes\KFGFxMenu_PostGameReport.uc
+         15117      1 43E4D7D0E285EC5E60BBC3B5271CC2AA6B693291     0 Development\Src\KFGame\Classes\KFGFxMenu_PostGameReport.uc
          12242      1 444C59AE3D677694F0DAD9B72D19563E6AAA767D     0 Development\Src\KFGame\Classes\KFGFxMenu_ServerBrowser.uc
           8698      1 1559D3A7BBF2CACD93C6F63494F83AD6253DAA7D     0 Development\Src\KFGame\Classes\KFGFxMenu_Store.uc
           4622      1 BFC9B674F4B677F4BC697D67BFBA1E203088E0CB     0 Development\Src\KFGame\Classes\KFGFxMissionObjectivesContainer.uc
-         43544      1 841761130AA65D44CFCC2DD337073B35C8C3D4D3     0 Development\Src\KFGame\Classes\KFGFxMoviePlayer_HUD.uc
+         44085      1 263D404622E8241FE59FA40BD2742AB1EE830CCB     0 Development\Src\KFGame\Classes\KFGFxMoviePlayer_HUD.uc
           1497      1 8942EAA94661DCB30D0B005604435C10D8427E9B     0 Development\Src\KFGame\Classes\KFGFxMoviePlayer_Manager_Versus.uc
           1984      1 445C531573B65086C5AFF46C91C9CA11A7DA642B     0 Development\Src\KFGame\Classes\KFGFxMoviePlayer_NaughtyList.uc
           4681      1 08016FB295C76620823D37C014DBD37A53E8737B     0 Development\Src\KFGame\Classes\KFGFxMoviePlayer_PlayerInfo.uc
@@ -2974,8 +3004,8 @@ Total bytes compressed : 28299776
           7811      1 2271292C24718D1DADA04E565F7F75D8D03B35D9     0 Development\Src\KFGame\Classes\KFGFxPopup_FriendsList.uc
           1332      1 EEF5D521ABF4DBF99251EF2E7787E8957EFDE026     0 Development\Src\KFGame\Classes\KFGFxPopup_InputPrompt.uc
           4062      1 0AC525A43E93E880C623EFF7E0A08AFFEF9ABB63     0 Development\Src\KFGame\Classes\KFGFxPopup_OptionMic.uc
-          3914      1 5DF565F987FCD87266712368DC96748F5DC612D6     0 Development\Src\KFGame\Classes\KFGFxPostGameContainer_MapVote.uc
-          6338      1 0DD72D4AC4F2A05B0F836B3319C8DB7A19A432D1     0 Development\Src\KFGame\Classes\KFGFxPostGameContainer_PlayerStats.uc
+          4400      1 ED0ADD051F659A10914FD9BC4ABC04823BCE0059     0 Development\Src\KFGame\Classes\KFGFxPostGameContainer_MapVote.uc
+          6354      1 DA0965E2760A1DF5CE5CB3DA0A6DB434B19B0178     0 Development\Src\KFGame\Classes\KFGFxPostGameContainer_PlayerStats.uc
           3263      1 800B99B72A558A26B79289A4C1C5A163F84FBB71     0 Development\Src\KFGame\Classes\KFGFxPostGameContainer_PlayerXP.uc
           3921      1 23395C48179C9F93863C8B351AA4186059D6E948     0 Development\Src\KFGame\Classes\KFGFxPostGameContainer_TeamAwards.uc
           2763      1 78E687473BF96CE524C022C61AB8A2AE889A5F06     0 Development\Src\KFGame\Classes\KFGFxPostRoundContainer_Team.uc
@@ -2984,17 +3014,18 @@ Total bytes compressed : 28299776
           5523      1 2EE975930F525BA953829D67FC4A36B8E92A1729     0 Development\Src\KFGame\Classes\KFGFxServerBrowser_ServerDetails.uc
          33546      1 4612D8390E30EE7027DFB0A97D378E72543C0AB4     0 Development\Src\KFGame\Classes\KFGFxServerBrowser_ServerList.uc
           1463      1 83C0DB1AF15E3AE8B75B297B96700A0E00277368     0 Development\Src\KFGame\Classes\KFGFxSpecialEventObjectivesContainer_Summer2020.uc
+          1393      1 365D1902D50E67E8A0379780DDCF026BE2C9091B     0 Development\Src\KFGame\Classes\KFGFxSpecialEventObjectivesContainer_Summer2021.uc
           1325      1 58B521768FED13B33F0F6D7A90CFDCFAE0EAD993     0 Development\Src\KFGame\Classes\KFGFxSpecialEventObjectivesContainer_Xmas2019.uc
           7511      1 252612AAFDD98C3061504C8D7B4031417A56D126     0 Development\Src\KFGame\Classes\KFGFxSpecialeventObjectivesContainer.uc
           1011      1 DA0F51F3F81D63DCBF4EAB26D0C5D0F5B993D492     0 Development\Src\KFGame\Classes\KFGFxSpring2019ObjectivesContainer.uc
          12005      1 80DFB4A9D1252848C719813FA99E24C09DF7D223     0 Development\Src\KFGame\Classes\KFGFxStartContainer_InGameOverview.uc
           1315      1 286941902C0487A1BC9503B4F4CD37BC80841EC7     0 Development\Src\KFGame\Classes\KFGFxStartContainer_NewsImageHolder.uc
            948      1 17ACEEB18E04C01802041012DACD551C1A61203A     0 Development\Src\KFGame\Classes\KFGFxStartContainer_ServerBrowserOverview.uc
-          9329      1 7F12E175E3342ACA1361D18A872EF39785C4AFCF     0 Development\Src\KFGame\Classes\KFGFxStartGameContainer_FindGame.uc
-         18962      1 082CAB9B3DEC742EE21984EC624FEF2357F9781B     0 Development\Src\KFGame\Classes\KFGFxStartGameContainer_Options.uc
+          9536      1 34EE7330AC6AFB86154149F17A0BA36E01FB296E     0 Development\Src\KFGame\Classes\KFGFxStartGameContainer_FindGame.uc
+         19441      1 EF9EC93F807081AA6407E7E74776B3A2B3B3EC7C     0 Development\Src\KFGame\Classes\KFGFxStartGameContainer_Options.uc
           1213      1 CF217E429F3942803E8DEDDD6AF41F9ABD35A73E     0 Development\Src\KFGame\Classes\KFGFxStoreContainer_Cart.uc
           1181      1 3BD8463A95EBCEB3517817B8081AF1A7CA406F02     0 Development\Src\KFGame\Classes\KFGFxStoreContainer_Details.uc
-         14813      1 72A1F1B776E1ECD4AA17AC17F86045646F86BDB9     0 Development\Src\KFGame\Classes\KFGFxStoreContainer_Main.uc
+         14872      1 3F3F2A2373DDF2ABD93F493A801AEB1EA9F3C787     0 Development\Src\KFGame\Classes\KFGFxStoreContainer_Main.uc
           1071      1 B284E81B8E48AB7FC48EA64CFCCAFB620DC9170F     0 Development\Src\KFGame\Classes\KFGFxSummer2019ObjectivesContainer.uc
            934      1 E058CBEE32B7EF53473AF33C9C18A0F5DD653987     0 Development\Src\KFGame\Classes\KFGFxSummerSideShowObjectivesContainer.uc
            462      1 29D8F5BD12D7C7D81887DEF6658D9E3DBBA4D3F3     0 Development\Src\KFGame\Classes\KFGFxTraderContainer_ErrorMessage.uc
@@ -3009,6 +3040,7 @@ Total bytes compressed : 28299776
          13481      1 E61E3857068EFBD98D6FE7E28AB4C2EBD9EF3A6D     0 Development\Src\KFGame\Classes\KFGFxWidget_BaseParty.uc
           5566      1 4D8FC408384BEBB029BA338C97078AAB5774AEB2     0 Development\Src\KFGame\Classes\KFGFxWidget_BossHealthBar.uc
           1337      1 0C6B6F89FD2BFDA2E29472863D7136238B5D2CE8     0 Development\Src\KFGame\Classes\KFGFxWidget_ButtonPrompt.uc
+           848      1 B36D28511AAEB51AE0EB7B16D67A0EB539A9432E     0 Development\Src\KFGame\Classes\KFGFxWidget_GoompaCounter.uc
           4412      1 7585DE92F4613BC5755B0DA3EBC6B9BD44222F89     0 Development\Src\KFGame\Classes\KFGFxWidget_KickVote.uc
           3549      1 3FC19E8B2EA10113DFF64C1F321CD9912466A26D     0 Development\Src\KFGame\Classes\KFGFxWidget_LevelUpNotification.uc
           1300      1 1146BE62994A4D25BCC96B32A8E17EC1E90F2708     0 Development\Src\KFGame\Classes\KFGFxWidget_MapCounterText.uc
@@ -3017,7 +3049,7 @@ Total bytes compressed : 28299776
            266      1 2AB99E3622F14C7C15CD7C84AC8B9CCC737DEF90     0 Development\Src\KFGame\Classes\KFGFxWidget_MenuBarVersus.uc
            947      1 A3D9872CB3959DCDDD0D21E392DB0BC1103B0FEB     0 Development\Src\KFGame\Classes\KFGFxWidget_MusicNotification.uc
            676      1 B79821A499A2ED716C0D32945642F634CBDB2721     0 Development\Src\KFGame\Classes\KFGFxWidget_NonCriticalGameMessage.uc
-         11425      1 43D06C444FAB90C36CC6ABFB3BCBA3317668B057     0 Development\Src\KFGame\Classes\KFGFxWidget_PartyInGame.uc
+         11435      1 AC7D660C4823B8A1A2E3DFCAB90BA3BC3C5DC521     0 Development\Src\KFGame\Classes\KFGFxWidget_PartyInGame.uc
           4894      1 A147BFF427737C99929E16E64D4A85FE51012B28     0 Development\Src\KFGame\Classes\KFGFxWidget_PartyInGame_Versus.uc
          15017      1 8A7A60FA45F2AE00858450B0EE1226DBCA088BF0     0 Development\Src\KFGame\Classes\KFGFxWidget_PartyMainMenu.uc
            802      1 1F61EA82F772D6F6C9F304E8E454BE467EEFEDEA     0 Development\Src\KFGame\Classes\KFGFxWidget_RhythmCounter.uc
@@ -3028,20 +3060,20 @@ Total bytes compressed : 28299776
          18086      1 A91103026906DD337045F5A773CD3C2D94A76C13     0 Development\Src\KFGame\Classes\KFGameDifficultyInfo.uc
          25142      1 DBD3BFC35CFF093E35C42E8B62094CF074663191     0 Development\Src\KFGame\Classes\KFGameEngine.uc
           1711      1 7F5C94C8FB5B921ED890C89C6AC3D60CDFB0B2A8     0 Development\Src\KFGame\Classes\KFGameExplosion.uc
-        116848      1 896639E31D2BEA2AD54BCA526359CC6772828D8D     0 Development\Src\KFGame\Classes\KFGameInfo.uc
+        117832      1 117CDBD069BBA5192CA724D508A40D8EF62101C5     0 Development\Src\KFGame\Classes\KFGameInfo.uc
            545      1 27E91DD9DB33492F34E282B5CFD6F98DBF70C721     0 Development\Src\KFGame\Classes\KFGameInfoSummary.uc
          14711      1 0C69BC0D59AAA3928035014C099CA30DD857FA50     0 Development\Src\KFGame\Classes\KFGameInfo_Entry.uc
-         65266      1 7E4A8256CD07D752691488BD12A6BC56E0985772     0 Development\Src\KFGame\Classes\KFGameReplicationInfo.uc
+         65636      1 3588E29252769D0DB028CC05A6DAC0DA385D6AD7     0 Development\Src\KFGame\Classes\KFGameReplicationInfo.uc
           7103      1 B490146E7CB787367B7E4466E15F953CD9E9DC0B     0 Development\Src\KFGame\Classes\KFGameViewportClient.uc
           1271      1 54A2C6ED1C8E0B89D5DAC0485E467F101DA522FB     0 Development\Src\KFGame\Classes\KFGameWaveforms.uc
           7285      1 32B4CEFA3B078AF53B00FBAD31DBF7A32A4B4DC4     0 Development\Src\KFGame\Classes\KFGamepadLayoutManager.uc
          30972      1 4792CCA0B1909FB336D41298A8EEDF56259AFDE1     0 Development\Src\KFGame\Classes\KFGameplayEventsWriter.uc
           3017      1 61F3A303AE54BA51DA22B4D29A5D20C980FC1AC7     0 Development\Src\KFGame\Classes\KFGameplayPoolManager.uc
-         56830      1 CA4E7F884D9EC30FC73BF9FDEBAA83F8E25E9D3D     0 Development\Src\KFGame\Classes\KFGfxMenu_StartGame.uc
+         56830      1 D8DD985EE3FD721B72C0069B79CD5652527ACD5E     0 Development\Src\KFGame\Classes\KFGfxMenu_StartGame.uc
          24439      1 B67E5597E0AB619A0C32B03A0A0156042B8B81F6     0 Development\Src\KFGame\Classes\KFGfxMenu_Trader.uc
          69673      1 A63A4B965C6F9E066012874CCAAF2C59AA70D8D9     0 Development\Src\KFGame\Classes\KFGfxMoviePlayer_Manager.uc
            553      1 D5D41BA04B51A6D245278954041D0939662453A8     0 Development\Src\KFGame\Classes\KFGfxMoviePlayer_World.uc
-         12477      1 7358221EEEBC3880D8484726A12FDE9AE9DE95A1     0 Development\Src\KFGame\Classes\KFGfxObject_Menu.uc
+         12455      1 738DA5DF89CD3BF9B0DD708D1A7B7CD363F6B8CD     0 Development\Src\KFGame\Classes\KFGfxObject_Menu.uc
           4227      1 0B8D2D5C8CC4FEE52236232DF6D4A3A44FDD6D3A     0 Development\Src\KFGame\Classes\KFGfxObject_TraderItems.uc
           3531      1 A9E5308FA11B515D10A9D3B67DF351FD48180BDB     0 Development\Src\KFGame\Classes\KFGfxPopup_Gamma.uc
           1236      1 BA6E1A3BCEFDCAB592EC69AAE34D621811B6DBEB     0 Development\Src\KFGame\Classes\KFGfxWorld_HealerScreen.uc
@@ -3097,7 +3129,7 @@ Total bytes compressed : 28299776
          11413      1 D1BBA1C7F630CDD50154C4B96B21F3FBAA1D91D6     0 Development\Src\KFGame\Classes\KFMedicWeaponComponent.uc
          21600      1 15BB816C177B7F869B5CA4D4724213B5558D9D4E     0 Development\Src\KFGame\Classes\KFMeleeHelperAI.uc
          15898      1 09F46EC4873C02BA28AFD4D8B76035D993337770     0 Development\Src\KFGame\Classes\KFMeleeHelperBase.uc
-         27165      1 3A476634443E7DABD67ADA822C3F68EFF602528F     0 Development\Src\KFGame\Classes\KFMeleeHelperWeapon.uc
+         27168      1 43B540C5F2A698AFD1B66748B6985D7FAAC4139D     0 Development\Src\KFGame\Classes\KFMeleeHelperWeapon.uc
           5534      1 5D269FD0D5DCFFA9EB8AA2D9178D9B8FF375A025     0 Development\Src\KFGame\Classes\KFMeleeHelperWeaponFrostShotgunAxe.uc
           2103      1 80BB73F9F01D3606B712A0597B7CDFBC6E299DD8     0 Development\Src\KFGame\Classes\KFMission_LocalizedStrings.uc
           7796      1 67E49D2A91BF85088CFE51CC331FD4A3193EDB7E     0 Development\Src\KFGame\Classes\KFMonsterDifficultyInfo.uc
@@ -3111,46 +3143,46 @@ Total bytes compressed : 28299776
           2100      1 254BD539794394E42F638A0F0B0AD3958E912CCC     0 Development\Src\KFGame\Classes\KFOnlineGameSettings.uc
            705      1 53377159272A4AAF92FC3266788F75C7960E0709     0 Development\Src\KFGame\Classes\KFOnlineGameSettingsVersus.uc
           9894      1 7BA7865F1CA0A369AD6FE348E7F0AAB4645696DC     0 Development\Src\KFGame\Classes\KFOnlineStatsRead.uc
-          8549      1 E4A139330ED6D79BD27870D5F9E501F3140BFE99     0 Development\Src\KFGame\Classes\KFOnlineStatsReadDingo.uc
-        110801      1 46BCB368227D4AE798AA353A732CA91240474751     0 Development\Src\KFGame\Classes\KFOnlineStatsWrite.uc
-          6227      1 45BB16E5167C8179C662F324C2A3A67AC3A2D16A     0 Development\Src\KFGame\Classes\KFOnlineStatsWriteDingo.uc
-         28597      1 10DED0E3F444E00360646D42A87DE4E7578DAD0B     0 Development\Src\KFGame\Classes\KFOutbreakEvent.uc
+          8699      1 8F91D36B856B221DB532C1B4B2CBF9F807676800     0 Development\Src\KFGame\Classes\KFOnlineStatsReadDingo.uc
+        112032      1 ED7F0B7EB86716B9ABCD3E482CEBB48B723DCC92     0 Development\Src\KFGame\Classes\KFOnlineStatsWrite.uc
+          6335      1 CCC9C65AD3015CF3F33F63879249992EF7B3AF56     0 Development\Src\KFGame\Classes\KFOnlineStatsWriteDingo.uc
+         29697      1 C197A84BE34A693AF6DB9CA0627841E01C34B81C     0 Development\Src\KFGame\Classes\KFOutbreakEvent.uc
           1669      1 19A09F65F6D519C05250ABE6D21D3363A9387D89     0 Development\Src\KFGame\Classes\KFParticleSystemComponent.uc
           6714      1 268B5ECE882DD1FAD5248A05644D5060B434DB32     0 Development\Src\KFGame\Classes\KFPathnode.uc
-        184618      1 EA6AF5255312DB0213EF5F6BD2F5CB5AD7681F3F     0 Development\Src\KFGame\Classes\KFPawn.uc
+        185471      1 C6DA3887B1B408B9BA514F9A89E10B4331129AE4     0 Development\Src\KFGame\Classes\KFPawn.uc
          34926      1 4EED82CFB411D50BD1010AA7F3A9E624E69AEEBB     0 Development\Src\KFGame\Classes\KFPawnAnimInfo.uc
           1129      1 B14E45E596152722CB7E16A050B5BD1C2EFE1F18     0 Development\Src\KFGame\Classes\KFPawnBlockingVolume.uc
          14809      1 68DFFACE89375FBA1B95DA2ED98DCD68ECE16479     0 Development\Src\KFGame\Classes\KFPawnSoundGroup.uc
           2051      1 A3DC9DD53FA856E7D43307610F3D0984EA73C547     0 Development\Src\KFGame\Classes\KFPawnVoiceGroup.uc
           2823      1 F3B0A33278CCA9C2750BC7AB8130E76194CECA0E     0 Development\Src\KFGame\Classes\KFPawnVoiceGroupEventData.uc
          10350      1 544ABBB61C22942B2C2001539A0CB8D53EE6786A     0 Development\Src\KFGame\Classes\KFPawn_Customization.uc
-         64024      1 957F5BEC378964B17CAAE0A56253D648C6868B2C     0 Development\Src\KFGame\Classes\KFPawn_Human.uc
-        151272      1 D3A04539C07734BC7041A0D4BF47255D0704B391     0 Development\Src\KFGame\Classes\KFPawn_Monster.uc
+         64445      1 E30AC733F61710288DECCBA4D0C01D0397E38366     0 Development\Src\KFGame\Classes\KFPawn_Human.uc
+        152998      1 A5E11BAAF19154368AD9E5EF6534E40F3F9398FB     0 Development\Src\KFGame\Classes\KFPawn_Monster.uc
          12088      1 18A8E9D68C5BB63974FB1149CD7166086286C60C     0 Development\Src\KFGame\Classes\KFPawn_MonsterBoss.uc
          30787      1 C7C2F8CF15BAF90AD2148E8D76153CCD622F9D71     0 Development\Src\KFGame\Classes\KFPawn_Scripted.uc
          24047      1 4E4415B5114B7ADE9DF6468789602444E86C3526     0 Development\Src\KFGame\Classes\KFPawn_ZedHansBase.uc
-         48448      1 7FE3D311473CB7619D9E68FD78AD2B3388EF1FFD     0 Development\Src\KFGame\Classes\KFPerk.uc
+         49054      1 D9EE9A03D10A10A25FD571FEC9285D9BBA13D494     0 Development\Src\KFGame\Classes\KFPerk.uc
            600      1 82E00842FE938EE10D051D6CBF79BB43ED0896E3     0 Development\Src\KFGame\Classes\KFPerkFXEmitterPool.uc
-         32055      1 9FBBD9AB6B7F85BD99A6955846D33CA0287E9CCA     0 Development\Src\KFGame\Classes\KFPerk_Berserker.uc
-         26184      1 4BC0302D74E67016159B8560C5616E97247FFED4     0 Development\Src\KFGame\Classes\KFPerk_Commando.uc
-         37740      1 2AE1E32EA4480BA96C3722E12F976D93EBCA3279     0 Development\Src\KFGame\Classes\KFPerk_Demolitionist.uc
-         24839      1 941C2B035333A38443A1C25357A06152E63C73D2     0 Development\Src\KFGame\Classes\KFPerk_FieldMedic.uc
+         32200      1 678C72431BBF768744AF4C1332134F21471BD37F     0 Development\Src\KFGame\Classes\KFPerk_Berserker.uc
+         26247      1 D64BB1DC7E909BBFEFA048057C4666AD7FF69429     0 Development\Src\KFGame\Classes\KFPerk_Commando.uc
+         37747      1 F15D9139CBE947EF5C18C1039F3D4C9F82874262     0 Development\Src\KFGame\Classes\KFPerk_Demolitionist.uc
+         24869      1 0467C4CEBEC91B2DFDB9A64A14237AEE38BF8511     0 Development\Src\KFGame\Classes\KFPerk_FieldMedic.uc
          25074      1 E53AC9B19A39737FDA0E043EBC52E1BDEDCE8017     0 Development\Src\KFGame\Classes\KFPerk_Firebug.uc
          30720      1 42DD7BBF4AE60E039E6D5EC8DB77EA9ECD480DE8     0 Development\Src\KFGame\Classes\KFPerk_Gunslinger.uc
           1119      1 4CA99A43A1DA1572AE728379ABE1B708CCECE4CF     0 Development\Src\KFGame\Classes\KFPerk_Monster.uc
          25035      1 93D3C7ADF0CAB57F74625FE0903478D703EF6FD1     0 Development\Src\KFGame\Classes\KFPerk_Sharpshooter.uc
-         29478      1 8462AC79FDEBFFE8B1A4DE4133AA13CF747F0BB7     0 Development\Src\KFGame\Classes\KFPerk_Support.uc
-         29046      1 11F4271AF1653A44CF4EF42BA872E1259668D6F5     0 Development\Src\KFGame\Classes\KFPerk_Survivalist.uc
+         29718      1 C2782ACA050D638ABC5FC8AF428167C077F29917     0 Development\Src\KFGame\Classes\KFPerk_Support.uc
+         29248      1 5F67D6675C1F4FF7F2AE530E38F09087F8FA615E     0 Development\Src\KFGame\Classes\KFPerk_Survivalist.uc
          23458      1 E18F0CC49A8A87C590AB62370F40BFC310B0D26B     0 Development\Src\KFGame\Classes\KFPerk_Swat.uc
           4222      1 D71CE756BCFDA9E0E563AFA6642DB593144263E2     0 Development\Src\KFGame\Classes\KFPersistentBloodActor.uc
            645      1 83CE46926E67063BED47053B66CFED89B12F11F3     0 Development\Src\KFGame\Classes\KFPhysicalMaterialProperty.uc
           4672      1 C1FC9AE9B51F8AFE50DB42A1614E5C84238AAA12     0 Development\Src\KFGame\Classes\KFPickupFactory.uc
-          8040      1 E3AEF0DFCA0F87C7275FCE316CCF326ADE57D96F     0 Development\Src\KFGame\Classes\KFPickupFactory_Item.uc
+          9029      1 801EA6F1F4A3DE530F9819C855E8BDB92941E41A     0 Development\Src\KFGame\Classes\KFPickupFactory_Item.uc
           8850      1 25956BAAA0D5F8F517E0D16A4946E6F0CE212954     0 Development\Src\KFGame\Classes\KFPlayerCamera.uc
-        366919      1 DAA49898FA87AD394B37268F8B4B5BFA8BA37261     0 Development\Src\KFGame\Classes\KFPlayerController.uc
-          2660      1 CCF4C69DDF9612F80610727A13071E3A3D43382C     0 Development\Src\KFGame\Classes\KFPlayerController_WeeklySurvival.uc
+        367255      1 E3721F0A4C5F2A99A4EAE63060FCE5EB04A65A76     0 Development\Src\KFGame\Classes\KFPlayerController.uc
+          5656      1 34816D83E3AA79BA9987170328B02028A438B1B4     0 Development\Src\KFGame\Classes\KFPlayerController_WeeklySurvival.uc
          85021      1 7123EF6CB6A783A520CC5B15E3633B61BF6BDC37     0 Development\Src\KFGame\Classes\KFPlayerInput.uc
-         42531      1 B69C9D6E7918B520311AF155352F51C2FF13793B     0 Development\Src\KFGame\Classes\KFPlayerReplicationInfo.uc
+         42632      1 F66768ECC089E6F37B8F7188B19FD1283481FD16     0 Development\Src\KFGame\Classes\KFPlayerReplicationInfo.uc
           6789      1 99DE75126F4EF75EE7E3340F50916E2A56127FE2     0 Development\Src\KFGame\Classes\KFPlayerReplicationInfoVersus.uc
            909      1 B4E6A2F1836F31D491F43D11CBAC18D7C2106656     0 Development\Src\KFGame\Classes\KFPlayerStart.uc
           5304      1 E7907AA5B176A53D4CAEF329DBACA9408F682296     0 Development\Src\KFGame\Classes\KFPowerUp.uc
@@ -3210,7 +3242,7 @@ Total bytes compressed : 28299776
           4114      1 99DB8CDAE362BC342CC5C6F2BD947927A59C84EE     0 Development\Src\KFGame\Classes\KFScout.uc
           5145      1 2F82BCF80E6EEDD14848DCFBFC5F30F5E2D6F61A     0 Development\Src\KFGame\Classes\KFScriptedPawnSpawner.uc
            895      1 7476793294961A36DAAD8C9136A656BA4AC285F9     0 Development\Src\KFGame\Classes\KFScriptedPlayerPathGoal.uc
-          3594      1 A7F1A761E16C4C4602202CA591ED610C0F5548C5     0 Development\Src\KFGame\Classes\KFSeasonalEventStats.uc
+          3648      1 C85AAD605BB44659D53EE5E607576EA408B87BEE     0 Development\Src\KFGame\Classes\KFSeasonalEventStats.uc
           1141      1 DBFCFF5C1DCA71967289DFBE53E449C302E5A437     0 Development\Src\KFGame\Classes\KFSeqAct_DisableDoor.uc
           2298      1 37B39BC8CFDCCD4443A950A3E66684A30AEB7F51     0 Development\Src\KFGame\Classes\KFSeqAct_DrawCountText.uc
           3637      1 A2F6B06C098732C7C2AFD2FB4632BACC679F8506     0 Development\Src\KFGame\Classes\KFSeqAct_DrawLocalizedText.uc
@@ -3280,7 +3312,7 @@ Total bytes compressed : 28299776
           9343      1 207E2FC3D14EB264582364DC7BE016FF0AFA1609     0 Development\Src\KFGame\Classes\KFTrigger_PowerUp.uc
             83      1 A7C8E272FA003DC448940AADDF28E9D8F9C1749A     0 Development\Src\KFGame\Classes\KFUIDataProvider_SearchResult.uc
           3180      1 CE3C9B94C6ED0DF24407D7632323D5A9F151817F     0 Development\Src\KFGame\Classes\KFUIDataStore_GameResource.uc
-          9952      1 CE849213F743FF4D15C7D3F5F663786A7ACB331C     0 Development\Src\KFGame\Classes\KFUnlockManager.uc
+         10270      1 7465AB9653506502D0B6A0497537A943582BF5C4     0 Development\Src\KFGame\Classes\KFUnlockManager.uc
            478      1 1B9852496D884910981AA729EF42A9E38BEEB9DF     0 Development\Src\KFGame\Classes\KFUnlockableAsset.uc
           2308      1 BFFD1CA0996599C207ABC744B32D6587B7362CFE     0 Development\Src\KFGame\Classes\KFUsablePerkTrigger.uc
           2802      1 7EFE6E682DBFF51A82F1D59A71EA277FD91EAA96     0 Development\Src\KFGame\Classes\KFUsableTrigger.uc
@@ -3288,7 +3320,7 @@ Total bytes compressed : 28299776
           4492      1 0F5F8F7827BE4B56737F3E33F868DFF0717BCF52     0 Development\Src\KFGame\Classes\KFVersusNoGoVolume.uc
            594      1 0C080BA5CDC1197C12C1913EA0669231A6508BBE     0 Development\Src\KFGame\Classes\KFVersusNoTakeoverVolume.uc
           3020      1 C57D400F9132F0EA5A4E1346C5E55E567A116A84     0 Development\Src\KFGame\Classes\KFVoiceInfo.uc
-         21715      1 FA68999B644280A128D98968B5621616B3ED1B5B     0 Development\Src\KFGame\Classes\KFVoteCollector.uc
+         21742      1 095763FE630B26ADA8EA6CCEA5A65F1D44641032     0 Development\Src\KFGame\Classes\KFVoteCollector.uc
           5423      1 F1553007CFFF20ED76FDD6BBC9CE441D28D4E96C     0 Development\Src\KFGame\Classes\KFWallPathNode.uc
            870      1 F86341D31481E056ECE2EBC381E29FBB02AB8AFA     0 Development\Src\KFGame\Classes\KFWaterMeshActor.uc
          11512      1 CF26BC448247C76FB5471C477959C73A1EA5E986     0 Development\Src\KFGame\Classes\KFWeapAttach_DualBase.uc
@@ -3322,6 +3354,7 @@ Total bytes compressed : 28299776
            983      1 DF7911B552C68ADBA2BF3612FA07243DEDDBB1B7     0 Development\Src\KFGame\Classes\KFWeapDef_DragonsBreath.uc
            720      1 A916F8FD8BCC18D27F14F689A631C0362A018B77     0 Development\Src\KFGame\Classes\KFWeapDef_ElephantGun.uc
            932      1 2E474FD2566D86AC36653B05D676343D8DAA74EC     0 Development\Src\KFGame\Classes\KFWeapDef_Eviscerator.uc
+          1062      1 3CE858311B5168A9A6EC30AC4DEF90DCEF9B9850     0 Development\Src\KFGame\Classes\KFWeapDef_FAMAS.uc
            743      1 B8ABC567449452C843CE70D69BC7077FA74B66CC     0 Development\Src\KFGame\Classes\KFWeapDef_FNFal.uc
            820      1 0B913F6544D40CF3CD73F4DFC855478CFB959836     0 Development\Src\KFGame\Classes\KFWeapDef_FireAxe.uc
            936      1 3F72D253AE5AB205FF7AFE7D89DBA471BCF40C68     0 Development\Src\KFGame\Classes\KFWeapDef_FlameThrower.uc
@@ -3346,6 +3379,8 @@ Total bytes compressed : 28299776
            994      1 E53CE6ADF3DD5C9F139B65276CDD55A4B8D0B3C1     0 Development\Src\KFGame\Classes\KFWeapDef_HRGTeslauncher.uc
            789      1 279E8D1EC78C195DB9385C4C842B04A7082B3730     0 Development\Src\KFGame\Classes\KFWeapDef_HRGWinterbite.uc
            806      1 9602798FCC00C788C2434BD27601E0F683B17218     0 Development\Src\KFGame\Classes\KFWeapDef_HRGWinterbiteDual.uc
+           775      1 D50A1722053A1596F899B06BF7C0E486C82BD69F     0 Development\Src\KFGame\Classes\KFWeapDef_HRG_BarrierRifle.uc
+           802      1 EAD993DA209052A750114245D922E1014A242CA2     0 Development\Src\KFGame\Classes\KFWeapDef_HRG_BlastBrawlers.uc
            707      1 3423B6EC8AB8622CA60D74D819DE70182C630348     0 Development\Src\KFGame\Classes\KFWeapDef_HRG_EMP_ArcGenerator.uc
           1001      1 91007B4746EBA0E719CBA5CE98F3E8405379B55A     0 Development\Src\KFGame\Classes\KFWeapDef_HRG_Kaboomstick.uc
            723      1 7C32BA41F888E1C118FCBFE1645774028682C546     0 Development\Src\KFGame\Classes\KFWeapDef_HRG_SonicGun.uc
@@ -3414,6 +3449,7 @@ Total bytes compressed : 28299776
            724      1 CF07511A8DCAB2E85C9DE4FAF397C7D98A478086     0 Development\Src\KFGame\Classes\KFWeapDef_SealSqueal.uc
            883      1 E127D49D0BB991F47F67CFC1E9B7461E313A95E0     0 Development\Src\KFGame\Classes\KFWeapDef_Seeker6.uc
            874      1 0719CBE0500E486EC2656F788BC5603266C5BDCE     0 Development\Src\KFGame\Classes\KFWeapDef_Stoner63A.uc
+           711      1 330AFD520D498740F68EEA2E76D2FD8DC0287537     0 Development\Src\KFGame\Classes\KFWeapDef_ThermiteBore.uc
            851      1 C81E2421D6D2729306654C8EAAD539FDE6E1DCD0     0 Development\Src\KFGame\Classes\KFWeapDef_Thompson.uc
            783      1 87719B0AD674E11B29F05E49F656B8AE4567094D     0 Development\Src\KFGame\Classes\KFWeapDef_Welder.uc
           1033      1 8EBC4546D186429E50BA3D9E0B890CFE0F143B9D     0 Development\Src\KFGame\Classes\KFWeapDef_Winchester1894.uc
@@ -3429,14 +3465,14 @@ Total bytes compressed : 28299776
          10777      1 27206D57872465B434400D0BFB2F025F32598683     0 Development\Src\KFGame\Classes\KFWeap_PistolBase.uc
           1821      1 CFD0EB13CAA6060BC0553F08E6A909662C6F1601     0 Development\Src\KFGame\Classes\KFWeap_RifleBase.uc
            965      1 92132DAC9357C2F73D460EE6A11730D29F1F1A9F     0 Development\Src\KFGame\Classes\KFWeap_SMGBase.uc
-         11430      1 335B0324003B78C8394B398D420A9A2D680F45EF     0 Development\Src\KFGame\Classes\KFWeap_ScopedBase.uc
+         11531      1 28A4C535D2CF77AD4334C6C21D497779A519E6A4     0 Development\Src\KFGame\Classes\KFWeap_ScopedBase.uc
           1786      1 0B9FF7C1D367082DE565EFCACF6FAEBB4B513CAB     0 Development\Src\KFGame\Classes\KFWeap_ShotgunBase.uc
          11745      1 D83FA8AB89F2198B21D8862782A4305556578A61     0 Development\Src\KFGame\Classes\KFWeap_ThrownBase.uc
-        243842      1 DA1BEFE0723E376A441501C716B037ABDEB85114     0 Development\Src\KFGame\Classes\KFWeapon.uc
+        244159      1 32A8B8CB8B2F1302DABDB02AACA6B48F5882C31D     0 Development\Src\KFGame\Classes\KFWeapon.uc
           9949      1 CE4FF71EF2C89BA5A99501ABCBD5B90071D6EFD1     0 Development\Src\KFGame\Classes\KFWeaponAmbientEchoHandler.uc
-         37384      1 D419B4FEC2CF3E00D258ED18C0C9F6D2B00A0927     0 Development\Src\KFGame\Classes\KFWeaponAttachment.uc
+         37484      1 628549BAD77114508A9F96EE569EA16F92F87C85     0 Development\Src\KFGame\Classes\KFWeaponAttachment.uc
           3525      1 916E5BC9F4C8DD54BD2ACA565596E59B7D60D143     0 Development\Src\KFGame\Classes\KFWeaponDefinition.uc
-        568493      1 F6B1BB76B52A3EC529663012E2C8CD3AD289D7A1     0 Development\Src\KFGame\Classes\KFWeaponSkinList.uc
+        579089      1 34613F7F8A43F4B76B27786B00A3BEA3242A8E15     0 Development\Src\KFGame\Classes\KFWeaponSkinList.uc
            719      1 79F3C56996545C4FAF06A6A6C8F8465AF15D955D     0 Development\Src\KFGame\Classes\KFWeeklyOutbreakInformation.uc
           5530      1 AC269EB3240D6F39F3E065614F22FBFCF3F68ADC     0 Development\Src\KFGame\Classes\KFWeldableActor.uc
           5431      1 86B951A7AF82C6B072812C7CB77C87329122BBA6     0 Development\Src\KFGame\Classes\KFWeldableComponent.uc
@@ -3456,8 +3492,8 @@ Total bytes compressed : 28299776
           4021      1 1E8C78AEBD08C4E6462A34055D07E31E0CE2099A     0 Development\Src\KFGame\Globals.uci
           4068      1 34CEE4A037CC557B3A55E4E7CEF854AF94A35BCD     0 Development\Src\KFGame\KFGameAnalytics.uci
          25763      1 CD1ADA1F6D8F6A9E2680D9ACA5C94F18236D580B     0 Development\Src\KFGame\KFGameDialog.uci
-          2663      1 66676CDFDD570B98772801D94DAC70BB23F0BF9A     0 Development\Src\KFGame\KFMatchStats.uci
-          5515      1 F164E6080A1B14D1A9EE811D7708369FFB8EFD19     0 Development\Src\KFGame\KFOnlineStats.uci
+          2700      1 3E2BF3BB4E230F34036091B4BF740811CF5219ED     0 Development\Src\KFGame\KFMatchStats.uci
+          5576      1 B925A73933A4F454FA2226F153C068F76F9D0DEA     0 Development\Src\KFGame\KFOnlineStats.uci
           3017      1 FD6A6EC7501381DB07C530F38472759367328809     0 Development\Src\KFGame\KFProfileSettings.uci
              0      0 0000000000000000000000000000000000000000    64 Development\Src\OnlineSubsystemDingo
              0      0 0000000000000000000000000000000000000000    64 Development\Src\OnlineSubsystemDingo\Classes
@@ -3467,7 +3503,7 @@ Total bytes compressed : 28299776
          31737      1 08E42A8B2E1BBCFDE5D440082AF575D0D8425F1D     0 Development\Src\OnlineSubsystemDingo\Classes\OnlineContentInterfaceDingo.uc
           6191      1 4C818AEF9F900AEF930B2ADFDAA95D53713EC039     0 Development\Src\OnlineSubsystemDingo\Classes\OnlineGameDVRInterfaceDingo.uc
          50805      1 E717BE12804F2016595E58320A67D3D719104195     0 Development\Src\OnlineSubsystemDingo\Classes\OnlineGameInterfaceDingo.uc
-         13786      1 05A482D0E362E33584F6E0C5AAAD622FF1C90433     0 Development\Src\OnlineSubsystemDingo\Classes\OnlineMarketplaceInterfaceDingo.uc
+         13781      1 9C64FDC24FD7F58E07ED4333730B10E0DCEDCF88     0 Development\Src\OnlineSubsystemDingo\Classes\OnlineMarketplaceInterfaceDingo.uc
          14695      1 1A77D0F3BD2AB8AD68A02E4A619E1D78C618B4A4     0 Development\Src\OnlineSubsystemDingo\Classes\OnlineStatsInterfaceDingo.uc
         125624      1 3DB079F01F36FDF3F435C0BCB563AA5419BDF849     0 Development\Src\OnlineSubsystemDingo\Classes\OnlineSubsystemDingo.uc
           4850      1 CEE2D98B683D4469DB8EF054BDF2EF46EE751D95     0 Development\Src\OnlineSubsystemDingo\Classes\OnlineTitleFileInterfaceDingo.uc

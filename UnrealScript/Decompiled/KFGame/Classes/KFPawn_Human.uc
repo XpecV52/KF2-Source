@@ -138,6 +138,9 @@ replication
         bUsingIronSights;
 }
 
+// Export UKFPawn_Human::execGetGravityZ(FFrame&, void* const)
+native function float GetGravityZ();
+
 simulated event Tick(float DeltaTime)
 {
     local float NewSpeedPenalty;
@@ -197,6 +200,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
     {
         SetTimer(1, true, 'Timer_CheckSurrounded');
     }
+    KFGameInfo(WorldInfo.Game).OverrideHumanDefaults(self);
 }
 
 simulated function NotifyTeamChanged()
@@ -1666,6 +1670,21 @@ function UpdateActiveSkillsPath(string IconPath, bool Active)
     }
     KFPC = KFPlayerController(Controller);
     KFPC.myGfxHUD.PlayerStatusContainer.ShowActiveIndicators(ActiveSkillIconPaths);
+}
+
+event Landed(Vector HitNormal, Actor FloorActor)
+{
+    local KFPlayerController_WeeklySurvival KFPC;
+
+    super.Landed(HitNormal, FloorActor);
+    if(KFPawn_Monster(FloorActor) == none)
+    {
+        KFPC = KFPlayerController_WeeklySurvival(Controller);
+        if(KFPC != none)
+        {
+            KFPC.ResetGoompaStreak();
+        }
+    }
 }
 
 state Dying

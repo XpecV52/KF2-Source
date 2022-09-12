@@ -671,7 +671,7 @@ ItemCategory="Criogénica"
 ItemDescription="•Modo de disparo: lanza carámbanos de hielo explosivos.\n•La mejor manera de romper el hielo."
 
 [KFWeap_Pistol_DualHRGWinterbite]
-ItemName="Mordisco invernal HRG dual"
+ItemName="Mordisco invern. HRG dual"
 ItemCategory="Criogénica"
 ItemDescription="•Modo de disparo: lanza carámbanos de hielo explosivos.\n•Alternativo: al usar la mirilla, cambia la forma de apuntar.\n•El doble de hielo."
 
@@ -770,6 +770,30 @@ ItemName="Imp. de gravedad"
 ItemCategory="Explosivos"
 ItemDescription="•El modo de disparo predeterminado lanza granadas de implosión.\n•El modo de disparo alternativo lanza granadas gravitatorias que atraen a los enemigos.\n•Una de las armas más atractivas jamás creadas."
 SharedUnlockSource="Paquete de armas Implosionador de gravedad"
+
+[KFWeap_HRG_BlastBrawlers]
+ItemName="Reparteleña HRG"
+ItemCategory="Cuerpo a cuerpo"
+ItemDescription="•Principal: dispara dos ráfagas, una por cada puño.\n•Secundario: ataque fuerte cuerpo a cuerpo.\n•Al equipo de investigación no se le han ocurrido chistes."
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="Bastión HRG"
+ItemCategory="Ametralladora ligera"
+ItemDescription="•Modo de disparo: solo automático.\n•Alternativo: activa una barrera de energía que reduce el daño recibido.\n•Joer, una ametralladora. Madre mía. Y encima táctica."
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="FAMAS Masterkey"
+ItemCategory="Fusil de asalto"
+ItemDescription="•Modo de disparo por defecto: ráfaga de 3 disparos con el FAMAS.\n•Alternativo: acción de bombeo con el soporte M26.\n•¿Rifle de asalto? ¿Escopeta? Ambos. Ambos, sí."
+SecondaryAmmo="Cartuchos de escopeta FAMAS"
+SharedUnlockSource="Paquete de armas FAMAS Masterkey"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="Cañón de termita"
+ItemCategory="Llamaradas"
+ItemDescription="•Principal: lanza granadas de termita que explotan a los 4 segundos.\n•Alternativo: hace estallar manualmente las termitas.\n•Fuego a los zeds como la luz a las moscas."
+SharedUnlockSource="Paquete de armas Cañón de termita"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

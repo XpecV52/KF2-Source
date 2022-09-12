@@ -175,7 +175,7 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if((!bSecondary && IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine)
+    if(((!bSecondary || IsFAMAS(KFW)) && IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine)
     {
         if(IsLargeMagActive())
         {

@@ -167,6 +167,7 @@ const STATID_ACHIEVE_DesolationCollectibles			= 4055;
 const STATID_ACHIEVE_HellmarkStationCollectibles	= 4056;
 const STATID_ACHIEVE_ElysiumEndlessWaveFifteen	    = 4057;
 const STATID_ACHIEVE_Dystopia2029Collectibles       = 4058;
+const STATID_ACHIEVE_MoonbaseCollectibles           = 4059;
  
 #linenumber 15
 
@@ -626,6 +627,28 @@ static function bool IsBackupWeapon( KFWeapon KFW )
 static function bool IsDual9mm( KFWeapon KFW )
 {
 	return KFW != none && KFW.Class.Name == 'KFWeap_Pistol_Dual9mm';
+}
+
+/**
+ * @brief Return if a weapon is FAMAS (special case for high capacity perk)
+ *
+ * @param KFW Weapon to check
+ * @return true if backup weapon
+ */
+static function bool IsFAMAS( KFWeapon KFW )
+{
+	return KFW != none && KFW.Class.Name == 'KFWeap_AssaultRifle_FAMAS';
+}
+
+/**
+ * @brief Return if a weapon is the Blast Brawlers (special case needed for ZedTime perks)
+ *
+ * @param KFW Weapon to check
+ * @return true if backup weapon
+ */
+static function bool IsBlastBrawlers( KFWeapon KFW )
+{
+	return KFW != none && KFW.Class.Name == 'KFWeap_HRG_BlastBrawlers';
 }
 
 /*********************************************************************************************
@@ -1097,15 +1120,17 @@ function AddDefaultInventory( KFPawn P )
 
         if (KFGameInfo(WorldInfo.Game) != none)
         {
-            if (KFGameInfo(WorldInfo.Game).AllowPrimaryWeapon(GetPrimaryWeaponClassPath()))
-            {
-                P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
-            }
+			if (KFGameInfo(WorldInfo.Game).AllowPrimaryWeapon(GetPrimaryWeaponClassPath()))
+			{
+				P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetPrimaryWeaponClassPath(), class'Class')));
+			}
 
 			if(KFGameInfo(WorldInfo.Game).AllowSecondaryWeapon(GetSecondaryWeaponClassPath()))
 			{
 				P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), class'Class')));
 			}
+
+			KFGameInfo(WorldInfo.Game).AddWeaponsFromSpawnList(P);
         }
         else
         {

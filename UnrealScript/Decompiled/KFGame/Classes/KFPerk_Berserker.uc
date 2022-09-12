@@ -138,7 +138,7 @@ simulated function ModifyMeleeAttackSpeed(out float InDuration, KFWeapon KFW)
 {
     local float TempDuration;
 
-    if((KFW == none) || !KFW.IsMeleeWeapon())
+    if(((KFW == none) || !KFW.IsMeleeWeapon()) || IsBlastBrawlers(KFW))
     {
         return;
     }
@@ -185,7 +185,7 @@ simulated function ModifySpeed(out float Speed)
             MyKFWeapon = KFWeapon(KFIM.PendingWeapon);
         }
     }
-    if((MyKFWeapon != none) && MyKFWeapon.IsMeleeWeapon() || IsWeaponOnPerk(MyKFWeapon,, self.Class))
+    if((MyKFWeapon != none) && (MyKFWeapon.IsMeleeWeapon() && !IsBlastBrawlers(MyKFWeapon)) || IsWeaponOnPerk(MyKFWeapon,, self.Class))
     {
         Speed += (Speed * (GetSkillValue(PerkSkills[1])));
     }
@@ -209,7 +209,7 @@ simulated function ModifySprintSpeed(out float Speed)
             MyKFWeapon = KFWeapon(KFIM.PendingWeapon);
         }
     }
-    if((MyKFWeapon != none) && MyKFWeapon.IsMeleeWeapon() || IsWeaponOnPerk(MyKFWeapon,, self.Class))
+    if((MyKFWeapon != none) && (MyKFWeapon.IsMeleeWeapon() && !IsBlastBrawlers(MyKFWeapon)) || IsWeaponOnPerk(MyKFWeapon,, self.Class))
     {
         Speed += (Speed * GetNinjaSprintModifier());
     }
@@ -675,19 +675,19 @@ static function PrepareExplosive(Pawn ProjOwner, KFProjectile Proj, optional flo
 defaultproperties
 {
     BerserkerDamage=(Name="Berserker Damage",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
-    DamageResistance=(Name="Damage Resistance",Increment=0.03,Rank=0,StartingValue=0,MaxValue=0.15,ModifierValue=0,IconPath="",bActive=false)
+    DamageResistance=(Name="Damage Resistance",Increment=0.02,Rank=0,StartingValue=0,MaxValue=0.1,ModifierValue=0,IconPath="",bActive=false)
     NightVision=(Name="Night Vision",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="",bActive=false)
     NinjaSprintModifer=0.25
     SmashStumbleModifier=2
     SmallRadiusSizeSQ=40000
-    ParryDuration=10
+    ParryDuration=6
     ParrySpeed=0.05
     FurySpeed=0.05
     SpartanZedTimeResistance=1
     SpeedDamageModifier=0.2
     SmashHeadDamageModifier=0.25
     VampireAttackSpeedModifier=0.2
-    ParryDamageReduction=0.4
+    ParryDamageReduction=0.25
     RageRadius=1000
     RageFleeDuration=5
     RageFleeDistance=2500
@@ -715,15 +715,15 @@ defaultproperties
     EXPAction2="Killing Zeds near a player with a Berserker weapon"
     PerkSkills(0)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Fortitude",bActive=false)
     PerkSkills(1)=(Name="Ninja",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Ninja",bActive=false)
-    PerkSkills(2)=(Name="Vampire",Increment=0,Rank=0,StartingValue=4,MaxValue=4,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",bActive=false)
+    PerkSkills(2)=(Name="Vampire",Increment=0,Rank=0,StartingValue=3,MaxValue=3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Vampire",bActive=false)
     PerkSkills(3)=(Name="Speed",Increment=0,Rank=0,StartingValue=0.2,MaxValue=0.2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Speed",bActive=false)
-    PerkSkills(4)=(Name="Resistance",Increment=0,Rank=0,StartingValue=0.25,MaxValue=0.25,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_PoisonResistance",bActive=false)
+    PerkSkills(4)=(Name="Resistance",Increment=0,Rank=0,StartingValue=0.15,MaxValue=0.15,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_PoisonResistance",bActive=false)
     PerkSkills(5)=(Name="Parry",Increment=0,Rank=0,StartingValue=0.35,MaxValue=0.35,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Parry",bActive=false)
     PerkSkills(6)=(Name="Smash",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Smash",bActive=false)
     PerkSkills(7)=(Name="Fury",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Intimidate",bActive=false)
     PerkSkills(8)=(Name="Rage",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Menace",bActive=false)
     PerkSkills(9)=(Name="Spartan",Increment=0,Rank=0,StartingValue=0,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.berserker.UI_Talents_Berserker_Flash",bActive=false)
-    RegenerationAmount=2
+    RegenerationAmount=1
     ZedTimeModifyingStates(0)=MeleeChainAttacking
     ZedTimeModifyingStates(1)=MeleeAttackBasic
     ZedTimeModifyingStates(2)=MeleeHeavyAttacking

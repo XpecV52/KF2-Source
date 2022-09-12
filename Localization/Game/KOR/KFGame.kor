@@ -738,8 +738,8 @@ ComboMakerValue="제드 지원"
 GrabbyValue="플레이어 붙잡힘"
 ZedSupportValue="간접 데미지"
 ZednnihilationValue="웨이브 킬"
-
-
+ZedStomper="제드 스톰퍼"
+ZedStomperValue="제드 스톰퍼"
 
 EPB_Healing="치료"
 EPB_Kills="킬"
@@ -750,6 +750,7 @@ EPB_HeadShots="헤드샷"
 EPB_KnifeKills="나이프 킬"
 EPB_PistolKills="권총 킬"
 EPB_DoorWelding="도어 용접"
+EPB_ZedStomps="제드 짓밟기"
 
 EPB_HealingValue="체력"
 EPB_KillsValue="킬"
@@ -760,6 +761,7 @@ EPB_HeadShotsValue="헤드샷"
 EPB_KnifeKillsValue="킬"
 EPB_PistolKillsValue="킬"
 EPB_DoorWeldingValue="용접 포인트"
+EPB_ZedStompsValue="짓밟기"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="팀 보상"
@@ -780,6 +782,7 @@ HeadShotsString="헤드샷:"
 LargeZedKillsString="대형 제드 킬:"
 TotalDoshEarnedString="총 획득 Dosh:"
 TotalKillsString="총 킬 수:"
+TotalStompsString="총 짓밟기"
 AssistsString="지원:"
 DamageDealtString="가한 데미지:"
 
@@ -1794,19 +1797,19 @@ Fortitude="드레드노트"
 FortitudeDescription="총 체력 100% 증가"
 
 Ninja="척후병"
-NinjaDescription="병과 무기 이용 시 이동 속도 20%, 스프린트 속도 25% 향상, 매 초마다 체력을 2포인트 회복"
+NinjaDescription="병과 무기 이용 시 이동 속도 20%, 스프린트 속도 25% 향상, 매 초마다 체력을 1포인트 회복"
 
 Vampire="뱀파이어"
-VampireDescription="병과 무기로 제드를 처치할 때마다 체력 4 포인트 치료 병과 백병전 무기를 이용할 때 공격속도 20% 향상"
+VampireDescription="병과 무기로 제드를 처치할 때마다 체력 3 포인트 치료 병과 백병전 무기를 이용할 때 공격속도 20% 향상"
 
 Speed="도살자"
 SpeedDescription="병과 무기 이용 시 공격 속도 20%, 대미지 20% 증가"
 
 Resistance="저항력"
-ResistanceDescription="모든 데미지 저항력 25% 증가 독성 및 음파 데미지에 대한 저항력 25% 추가"
+ResistanceDescription="모든 데미지 저항력 15% 증가 독성 및 음파 데미지에 대한 저항력 15% 추가"
 
 Parry="회피"
-ParryDescription="병과 백병전 무기를 이용한 회피 시 10초간 유입 데미지 40% 감소, 백병전 공격 속도 5% 증가 및 백병전 데미지 35% 증가"
+ParryDescription="병과 백병전 무기를 이용한 회피 시 6초간 유입 데미지 25% 감소, 백병전 공격 속도 5% 증가 및 백병전 데미지 35% 증가"
 
 Smash="스매시"
 SmashDescription="병과 백병전 무기로 강타 시 50% 데미지 증가, 헤드 히트 데미지 25% 증가, 스텀블 파워 200% 증가."
@@ -1898,7 +1901,7 @@ DirectHit="하이 임팩트 탄환"
 DirectHitDescription="폭발물 무기의 직접 히트 데미지 25% 증가"
 
 Ammo="특별 탄환"
-AmmoDescription="폭발물 병과 무기의 최대 탄약 5개 증가. C4에는 적용되지 않음"
+AmmoDescription="폭발물 병과 무기의 최대 탄약 10개 증가. C4에는 적용되지 않음"
 
 SirenResistance="음파 저항 탄환"
 SirenResistanceDescription="폭발물이 Siren의 비명에 면역력을 갖고 항상 폭발"
@@ -1935,7 +1938,7 @@ Passives[3]=(Title="이동 속도",Description="5 레벨 당 이동 속도 %x% �
 Passives[4]=(Title="장갑 보너스",Description="레벨 당 장갑 %x% 증가");
 
 HealingSurge="공생 체력"
-HealingSurgeDescription="총 체력 25% 증가 팀원 치료 시 자신의 총 체력 10% 증가"
+HealingSurgeDescription="총 체력 25% 증가 팀원 치료 시 자신의 총 체력 6% 증가"
 
 Survivalist="회복력"
 SurvivalistDescription="체력 포인트 상실 시 최고 60%까지 1%씩 데미지 저항력 증가"
@@ -2128,7 +2131,7 @@ EXPAction1="서포트 무기 데미지"
 EXPAction2="도어 용접"
 
 HighCapMags="고용량 탄창"
-HighCapMagsDescription="병과 무기 탄창 용량 50% 증가"
+HighCapMagsDescription="병과 무기 탄창 용량 75% 증가"
 
 TacticalReload="전술 재장전"
 TacticalReloadDescription="병과 무기 이용 시 재장전 속도 향상"
@@ -2825,6 +2828,20 @@ AllCompleteRewardDescriptionString="사이보그 | 동반자 백팩 | 프레셔�
 ChanceDropDescriptionStrings[0]="봄 티켓"
 ChanceDropDescriptionStrings[1]="봄 황금 티켓"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2021]
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특별 이벤트입니다"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="헥토파스칼 킥!",DescriptionString="제드 50마리 짓밟기")
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 달",DescriptionString="달 기지에서 주간 게임 모드를 완료하십시오")
+SpecialEventObjectiveInfoList[2]=(TitleString="달빛의 충격",DescriptionString="달 기지에서 레이저 트랩으로 제드 20마리 처치")
+SpecialEventObjectiveInfoList[3]=(TitleString="무중력 기술",DescriptionString="달 기지에서 공중에 점프한 상태로 제드 300마리 처치")
+SpecialEventObjectiveInfoList[4]=(TitleString="끝없는 심연",DescriptionString="달 기지에서 끝없는 도전 어려움 이상으로 15 웨이브 완료하기")
+
+AllCompleteRewardDescriptionString="우주인 | 동반자 백팩 | 프레셔스"
+
+ChanceDropDescriptionStrings[0]="여름 티켓"
+ChanceDropDescriptionStrings[1]="여름 골든 티켓"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2930,6 +2947,26 @@ FriendlyName="피의 갈증"
 DescriptionStrings[0]="연속 킬을 유지하지 못하면 죽습니다..."
 DescriptionStrings[1]="길이: 중간 (7웨이브)"
 ModifierDescriptions[0]="제드의 피에 대한 갈증으로 몸에 계속 무리가 옵니다(체력 카운터 근처에 주간 아이콘이 표시된 동안만 적용). 체력을 높이려면 오직 적을 처치해야 합니다. 매치 메이킹 페이지에서 주간 게임 모드를 선택하십시오. 병과 레벨 15 이상입니다."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Arachnophobia KFWeeklyOutBreakInformation]
+FriendlyName="거미 공포증"
+DescriptionStrings[0]="강력한 짓밟기!"
+DescriptionStrings[1]="길이: 중간 (7웨이브)"
+ModifierDescriptions[0]="사방에 크롤러가 가득합니다. 부츠를 신고 모두 밟아서 터뜨리십시오. 매치 메이킹 페이지에서 주간 게임 모드를 선택하십시오. 병과 15 이상."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Scavenger KFWeeklyOutBreakInformation]
+FriendlyName="스캐빈저"
+DescriptionStrings[0]="임기응변. 적응. 극복."
+DescriptionStrings[1]="길이: 중간 (7웨이브)"
+ModifierDescriptions[0]="상점이 공격을 받아 무기가 모두 사라졌습니다. 현장에서 떨어져 있는 무기를 찾아 사용해야 합니다. 매치 메이킹 페이지에서 주간 게임 모드를 선택하십시오. 병과 15 이상."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3451,6 +3488,9 @@ DisplayName="엘리시움"
 
 [KF-Dystopia2029 KFMapSummary]
 DisplayName="디스토피아 2029"
+
+[KF-Moonbase KFMapSummary]
+DisplayName="달 기지"
 
 [KFMapInfo]
 ; defaults

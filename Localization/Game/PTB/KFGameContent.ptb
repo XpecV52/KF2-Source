@@ -771,6 +771,30 @@ ItemCategory="Explosivos"
 ItemDescription="•O disparo padrão lança granadas de implosão.\n•O modo de fogo alternativo lança granadas de gravidade que atraem os inimigos.\n•Uma das armas mais legais já desenvolvidas."
 SharedUnlockSource="Conjunto de Arma Implosão de Gravidade"
 
+[KFWeap_HRG_BlastBrawlers]
+ItemName="Brigões explosivos HRG"
+ItemCategory="Corpo a corpo"
+ItemDescription="•Primário: Atira 2 raios, um em cada punho.\n•Secundário: Ataque corpo a corpo pesado.\n•A equipe de pesquisa ficou sem ideias para terminar a piada."
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="Baluarte HRG"
+ItemCategory="Submetralhadora Leve"
+ItemDescription="•Tiro somente automático.\n•O tiro alternativo ativa uma barreira de energia que reduz o dano recebido.\n•Protege e ataca. Mas o mais importante: pertence à SWAT."
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="Chave-mestra FAMAS"
+ItemCategory="Fuzil de Assalto"
+ItemDescription="•O tiro padrão dispara 3 rajadas com a FAMAS.\n•O tiro alternativo é uma ação de bombeamento com a M26 pendurada.\n•Fuzil de assalto? Espingarda? O bom é que é os dois."
+SecondaryAmmo="Cápsulas da Espingarda FAMAS"
+SharedUnlockSource="Conjunto de Armas Chave-mestra FAMAS"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="Furo de Termite"
+ItemCategory="Chamas"
+ItemDescription="•O tiro principal lança granadas termites que explodem após 4 segundos.\n•O tiro alternativo detona manualmente todas as termites.\n•Como a luz é para as mariposas, o fogo é para os Zeds."
+SharedUnlockSource="Conjunto de Armas Furo de Termite"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

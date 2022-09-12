@@ -309,11 +309,11 @@ simulated function float GetZedTimeModifier(KFWeapon W)
 {
     local name StateName;
 
-    if((GetMadManActive()) && !W.IsMeleeWeapon() || KFWeap_MeleeBase(W).default.bHasToBeConsideredAsRangedWeaponForPerks)
+    if((GetMadManActive()) && (!W.IsMeleeWeapon() || KFWeap_MeleeBase(W).default.bHasToBeConsideredAsRangedWeaponForPerks) || IsBlastBrawlers(W))
     {
         StateName = W.GetStateName();
         WarnInternal(string(StateName));
-        if(ZedTimeModifyingStates.Find(StateName != -1)
+        if((ZedTimeModifyingStates.Find(StateName != -1) || (StateName == 'MeleeChainAttacking') && IsBlastBrawlers(W))
         {
             return GetSkillValue(PerkSkills[8]);
         }

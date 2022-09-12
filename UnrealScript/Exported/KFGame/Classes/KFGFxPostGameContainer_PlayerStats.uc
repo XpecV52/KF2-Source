@@ -12,7 +12,7 @@ class KFGFxPostGameContainer_PlayerStats extends KFGFxObject_Container
 	dependson(EphemeralMatchStats);
 
 var localized string AchievementsString, ZedKillsString, TopWeaponsString;
-var localized string TotalDamageDealtString, HeadShotsString, LargeZedKillsString, TotalDoshEarnedString, TotalKillsString, AssistsString, DamageDealtString;
+var localized string TotalDamageDealtString, HeadShotsString, LargeZedKillsString, TotalDoshEarnedString, TotalKillsString, AssistsString, DamageDealtString, TotalStompsString;
 var localized string KnifeString;
 var string PlayerStatsString;
 var int ItemCount;
@@ -74,7 +74,7 @@ function SetPlayerStats()
 		ObjectArray.SetElementObject(ItemCount, MakeTextObject(HeadShotsString, String(StatCollector.TotalHeadShots) ));
 		ObjectArray.SetElementObject(ItemCount, MakeTextObject(TotalDamageDealtString, String(StatCollector.TotalDamageDealt) ));
 		//ObjectArray.SetElementObject(ItemCount, MakeTextObject("Total Damage Received:", String(StatCollector.TotalDamageTaken) ));
-		
+
 		//weapons
 		StatCollector.GetTopWeapons(3, TopWeaponList);		
 
@@ -141,7 +141,7 @@ function GFxObject MakeZedKillObject(Class<KFPawn_Monster> MonsterClass, String 
 function GFxObject MakeWeaponObject( string WeaponName, string WeaponIcon, int WeaponDamage, int HeadShotsWithWeapon, int LargeZedKillsWithWeapon )
 {
 	local GFxObject TempObject;
-	
+
 	TempObject = CreateObject("Object");
 	TempObject.SetString("typeString", 		"TopWeapon");
 	TempObject.SetString("weaponName", 		WeaponName);
@@ -181,6 +181,7 @@ defaultproperties
    TotalKillsString="Total Kills:"
    AssistsString="Assists:"
    DamageDealtString="Damage Dealt:"
+   TotalStompsString="Total Stomps"
    KnifeString="Knife"
    Name="Default__KFGFxPostGameContainer_PlayerStats"
    ObjectArchetype=KFGFxObject_Container'KFGame.Default__KFGFxObject_Container'

@@ -122,6 +122,7 @@ const STATID_ACHIEVE_DesolationCollectibles = 4055;
 const STATID_ACHIEVE_HellmarkStationCollectibles = 4056;
 const STATID_ACHIEVE_ElysiumEndlessWaveFifteen = 4057;
 const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
+const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -374,6 +375,7 @@ struct native PostWaveReplicationInfo
 {
     var Vector VectData1;
     var Vector VectData2;
+    var byte NumStomps;
     var byte LargeZedKills;
     var bool bDiedDuringWave;
     var bool bBestTeammate;
@@ -392,6 +394,7 @@ struct native PostWaveReplicationInfo
     {
         VectData1=(X=0,Y=0,Z=0)
         VectData2=(X=0,Y=0,Z=0)
+        NumStomps=0
         LargeZedKills=0
         bDiedDuringWave=false
         bBestTeammate=false
@@ -5404,6 +5407,14 @@ function UpdateRhythmCounterWidget(int Count, int Max)
     }
 }
 
+function UpdateGoompaCounterWidget(int Count, int Max)
+{
+    if(myGfxHUD != none)
+    {
+        myGfxHUD.UpdateGoompaCounterWidget(Count, Max);
+    }
+}
+
 simulated function SetObjectiveUIActive(bool bActive)
 {
     if(((myGfxHUD != none) && myGfxHUD.WaveInfoWidget != none) && myGfxHUD.WaveInfoWidget.ObjectiveContainer != none)
@@ -6055,7 +6066,7 @@ reliable client simulated event ClientUnlockAchievement(int AchievementIndex, op
     {
         if(WorldInfo.IsConsoleBuild(9))
         {
-            LogInternal("PS4: Client unlock achievement: " @ string(AchievementIndex));
+            LogInternal("Client unlock achievement: " @ string(AchievementIndex));
             StatsWrite.UnlockDingoAchievement(AchievementIndex);
             OnlineSub.StatsInterface.WriteOnlineStats('Game', PlayerReplicationInfo.UniqueId, StatsWrite);
         }
@@ -6156,6 +6167,14 @@ function NotifyHitTaken()
 
 // Export UKFPlayerController::execClientNotifyHitTaken(FFrame&, void* const)
 private reliable client native final simulated function ClientNotifyHitTaken();
+
+function NotifyHitGiven(class<DamageType> DT)
+{
+    ClientNotifyHitGiven(DT);
+}
+
+// Export UKFPlayerController::execClientNotifyHitGiven(FFrame&, void* const)
+private reliable client native final simulated function ClientNotifyHitGiven(class<DamageType> DT);
 
 function AddZedKill(class<KFPawn_Monster> MonsterClass, byte Difficulty, class<DamageType> DT, bool bKiller)
 {

@@ -879,41 +879,48 @@ function ResetAllPickups()
         ++ I;
         goto J0x72;
     }
-    if(NumWeaponPickups > 0)
-    {
-        ResetPickups(ItemPickups, NumWeaponPickups);
-    }
-    if(NumAmmoPickups > 0)
-    {
-        ResetPickups(AmmoPickups, NumAmmoPickups);
-    }
+    ResetPickups(ItemPickups, NumWeaponPickups);
+    ResetPickups(AmmoPickups, NumAmmoPickups);
 }
 
 function ResetPickups(array<KFPickupFactory> PickupList, int NumPickups)
 {
     local byte I, ChosenIndex;
     local array<KFPickupFactory> PossiblePickups;
+    local int NumIterations;
 
+    if(PickupList.Length == 0)
+    {
+        return;
+    }
     PossiblePickups = PickupList;
+    if(((OutbreakEvent != none) && OutbreakEvent.ActiveEvent.bUnlimitedWeaponPickups) && KFPickupFactory_Item(PickupList[0]) != none)
+    {
+        NumIterations = Min(NumPickups, PickupList.Length - 1);        
+    }
+    else
+    {
+        NumIterations = Min(NumPickups, PickupList.Length);
+    }
     I = 0;
-    J0x1F:
+    J0xD7:
 
-    if(I < NumPickups)
+    if(I < NumIterations)
     {
         ChosenIndex = byte(Rand(PossiblePickups.Length));
         PossiblePickups[ChosenIndex].Reset();
         PossiblePickups.Remove(ChosenIndex, 1;
         ++ I;
-        goto J0x1F;
+        goto J0xD7;
     }
     I = 0;
-    J0xAC:
+    J0x164:
 
     if(I < PossiblePickups.Length)
     {
         PossiblePickups[I].StartSleeping();
         ++ I;
-        goto J0xAC;
+        goto J0x164;
     }
 }
 
@@ -3045,7 +3052,7 @@ function bool CheckAllPlayersReady()
 
     MyKFGRI.GetKFPRIArray(KFPRIArray);
     I = 0;
-    J0x34:
+    J0x35:
 
     if(I < KFPRIArray.Length)
     {
@@ -3054,7 +3061,7 @@ function bool CheckAllPlayersReady()
             return false;
         }
         ++ I;
-        goto J0x34;
+        goto J0x35;
     }
     return true;
 }
@@ -3071,7 +3078,7 @@ function bool MajorityPlayersReady()
         return false;
     }
     I = 0;
-    J0x46:
+    J0x47:
 
     if(I < KFPRIArray.Length)
     {
@@ -3080,7 +3087,7 @@ function bool MajorityPlayersReady()
             ++ readyPlayers;
         }
         ++ I;
-        goto J0x46;
+        goto J0x47;
     }
     if(readyPlayers == 0)
     {
@@ -3097,7 +3104,7 @@ function bool AnyPlayerReady()
 
     MyKFGRI.GetKFPRIArray(KFPRIArray);
     I = 0;
-    J0x34:
+    J0x35:
 
     if(I < KFPRIArray.Length)
     {
@@ -3106,7 +3113,7 @@ function bool AnyPlayerReady()
             return true;
         }
         ++ I;
-        goto J0x34;
+        goto J0x35;
     }
     return false;
 }
@@ -3154,6 +3161,12 @@ static function bool HasCustomTraderVoiceGroup()
 {
     return false;
 }
+
+simulated function AddWeaponsFromSpawnList(KFPawn P);
+
+simulated function OverrideHumanDefaults(KFPawn_Human P);
+
+simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx);
 
 auto state PendingMatch
 {
@@ -3293,7 +3306,7 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Moonbase","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

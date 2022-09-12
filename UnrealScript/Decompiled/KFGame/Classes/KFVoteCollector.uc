@@ -135,13 +135,13 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
         bIsKickVoteInProgress = true;
         Outer.GetKFPRIArray(PRIs);
         I = 0;
-        J0x3E4:
+        J0x3E5:
 
         if(I < PRIs.Length)
         {
             PRIs[I].ShowKickVote(PRI_Kickee, VoteTime, !(PRIs[I] == PRI_Kicker) || PRIs[I] == PRI_Kickee);
             ++ I;
-            goto J0x3E4;
+            goto J0x3E5;
         }
         KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 6, CurrentKickVote.PlayerPRI);
         Outer.SetTimer(float(VoteTime), false, 'ConcludeVoteKick', self);
@@ -284,13 +284,13 @@ reliable server function ConcludeVoteKick()
     {
         Outer.GetKFPRIArray(PRIs);
         I = 0;
-        J0x87:
+        J0x88:
 
         if(I < PRIs.Length)
         {
             PRIs[I].HideKickVote();
             ++ I;
-            goto J0x87;
+            goto J0x88;
         }
         NumPRIs = PRIs.Length;
         if(PRIs.Find(CurrentKickVote.PlayerPRI != -1)
@@ -304,20 +304,20 @@ reliable server function ConcludeVoteKick()
             if((CurrentKickVote.PlayerPRI == none) || CurrentKickVote.PlayerPRI.bPendingDelete)
             {
                 I = 0;
-                J0x203:
+                J0x204:
 
                 if(I < Outer.WorldInfo.Game.InactivePRIArray.Length)
                 {
                     if(Outer.WorldInfo.Game.InactivePRIArray[I].UniqueId == CurrentKickVote.PlayerID)
                     {
                         CurrentKickVote.PlayerPRI = Outer.WorldInfo.Game.InactivePRIArray[I];
-                        goto J0x369;
+                        goto J0x36A;
                     }
                     ++ I;
-                    goto J0x203;
+                    goto J0x204;
                 }
             }
-            J0x369:
+            J0x36A:
 
             if(KFGI.AccessControl != none)
             {
@@ -389,13 +389,13 @@ function ServerStartVoteSkipTrader(PlayerReplicationInfo PRI)
         CurrentVoteTime = byte(Min(VoteTime, TraderTimeRemaining - SkipTraderVoteLimit));
         Outer.GetKFPRIArray(PRIs);
         I = 0;
-        J0x337:
+        J0x338:
 
         if(I < PRIs.Length)
         {
-            PRIs[I].ShowSkipTraderVote(PRI, CurrentVoteTime, !PRIs[I] == PRI);
+            PRIs[I].ShowSkipTraderVote(PRI, CurrentVoteTime, !PRIs[I] == PRI && PRI.GetTeamNum() != 255);
             ++ I;
-            goto J0x337;
+            goto J0x338;
         }
         KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 20, CurrentSkipTraderVote.PlayerPRI);
         Outer.SetTimer(float(CurrentVoteTime), false, 'ConcludeVoteSkipTrader', self);
@@ -417,13 +417,13 @@ reliable server function UpdateTimer()
     CurrentVoteTime -= 1;
     Outer.GetKFPRIArray(PRIs);
     I = 0;
-    J0x41:
+    J0x42:
 
     if(I < PRIs.Length)
     {
         PRIs[I].UpdateSkipTraderTime(CurrentVoteTime);
         ++ I;
-        goto J0x41;
+        goto J0x42;
     }
 }
 
@@ -524,13 +524,13 @@ reliable server function ConcludeVoteSkipTrader()
     {
         Outer.GetKFPRIArray(PRIs);
         I = 0;
-        J0x87:
+        J0x88:
 
         if(I < PRIs.Length)
         {
             PRIs[I].HideSkipTraderVote();
             ++ I;
-            goto J0x87;
+            goto J0x88;
         }
         NumPRIs = PRIs.Length;
         Outer.SetTimer(0, true, 'UpdateTimer', self);
@@ -587,13 +587,13 @@ function ResetSkipTraderBeforeWaveStarts()
 
     Outer.GetKFPRIArray(PRIs);
     I = 0;
-    J0x34:
+    J0x35:
 
     if(I < PRIs.Length)
     {
         PRIs[I].bAlreadyStartedASkipTraderVote = false;
         ++ I;
-        goto J0x34;
+        goto J0x35;
     }
 }
 
@@ -646,7 +646,7 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
     {
         SearchAndClearPreviousVote(PRI);
         I = 0;
-        J0x57:
+        J0x58:
 
         if(I < MapVoteList.Length)
         {
@@ -654,13 +654,13 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
             {
                 bMapFound = true;
                 MapVoteList[I].VoterPRIList.AddItem(PRI;
-                goto J0xF3;
+                goto J0xF4;
             }
             ++ I;
-            goto J0x57;
+            goto J0x58;
         }
     }
-    J0xF3:
+    J0xF4:
 
     if(!bMapFound)
     {
@@ -671,7 +671,7 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
     MapVoteList.Sort(MapVoteSort;
     KFGI = KFGameInfo(Outer.WorldInfo.Game);
     I = 0;
-    J0x1DF:
+    J0x1E0:
 
     if(I < TopResultsToShow)
     {
@@ -723,22 +723,22 @@ reliable server function ReceiveVoteMap(PlayerReplicationInfo PRI, int MapIndex)
         else
         {
             ++ I;
-            goto J0x1DF;
-        }/* !MISMATCHING REMOVE, tried Loop got Type:Else Position:0x66B! */
+            goto J0x1E0;
+        }/* !MISMATCHING REMOVE, tried Loop got Type:Else Position:0x66C! */
         I = 0;
-        J0x684:
+        J0x685:
 
         if(I < PRIs.Length)
         {
             PRIs[I].RecieveTopMaps(TopVotesObject);
             ++ I;
-            goto J0x684;
+            goto J0x685;
         }
         if(CheckAllPlayerVoted(PRIs))
         {
             ShortenVoteTime(KFGI);
         }
-    }/* !MISMATCHING REMOVE, tried Else got Type:Loop Position:0x1DF! */
+    }/* !MISMATCHING REMOVE, tried Else got Type:Loop Position:0x1E0! */
 }
 
 function ShortenVoteTime(KFGameInfo KFGI)

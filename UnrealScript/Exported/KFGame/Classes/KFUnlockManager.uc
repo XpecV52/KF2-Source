@@ -28,6 +28,8 @@ enum ESharedContentUnlock
 	SCU_MineReconstructor,
 	SCU_FrostFang,
 	SCU_GravityImploder,
+	SCU_FAMAS,
+	SCU_Thermite
 };
 
 
@@ -291,6 +293,8 @@ defaultproperties
    SharedContentList(11)=(Name="KFWeap_Mine_Reconstructor",IconPath="WEP_UI_Mine_Reconstructor_TEX.UI_WeaponSelect_HMTechMineReconstructor",Id=8472)
    SharedContentList(12)=(Name="KFWeap_Rifle_FrostShotgunAxe",IconPath="WEP_UI_Frost_Shotgun_Axe_TEX.UI_WeaponSelect_FrostGun",Id=8609)
    SharedContentList(13)=(Name="KFWeap_GravityImploder",IconPath="WEP_UI_Gravity_Imploder_TEX.UI_WeaponSelect_Gravity_Imploder",Id=8778)
+   SharedContentList(14)=(Name="KFWeap_AssaultRifle_FAMAS",IconPath="WEP_UI_Famas_TEX.UI_WeaponSelect_Famas",Id=8934)
+   SharedContentList(15)=(Name="KFWeap_RocketLauncher_ThermiteBore",IconPath="WEP_UI_Thermite_TEX.UI_WeaponSelect_Thermite",Id=8940)
    Name="Default__KFUnlockManager"
    ObjectArchetype=Object'Core.Default__Object'
 }

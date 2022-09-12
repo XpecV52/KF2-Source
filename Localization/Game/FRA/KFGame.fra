@@ -738,8 +738,8 @@ ComboMakerValue="Assistances en tant que Zed"
 GrabbyValue="Joueurs attrapés"
 ZedSupportValue="Dégâts indirects"
 ZednnihilationValue="Tués par vague"
-
-
+ZedStomper="Piétineur Zed"
+ZedStomperValue="Piétineurs Zeds"
 
 EPB_Healing="Soins"
 EPB_Kills="Tués"
@@ -750,6 +750,7 @@ EPB_HeadShots="Tirs à la tête"
 EPB_KnifeKills="Tués au couteau"
 EPB_PistolKills="Tués au pistolet"
 EPB_DoorWelding="Soudure de porte"
+EPB_ZedStomps="Piétinages de Zed"
 
 EPB_HealingValue="Santé"
 EPB_KillsValue="Tués"
@@ -760,6 +761,7 @@ EPB_HeadShotsValue="Tirs en pleine tête"
 EPB_KnifeKillsValue="Tués"
 EPB_PistolKillsValue="Tués"
 EPB_DoorWeldingValue="Points de soudure"
+EPB_ZedStompsValue="Piétinages"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="RÉCOMPENSES D'ÉQUIPE"
@@ -780,6 +782,7 @@ HeadShotsString="Tirs à la tête :"
 LargeZedKillsString="Tués en tant que grand Zed :"
 TotalDoshEarnedString="Fric total gagné :"
 TotalKillsString="Total de tués :"
+TotalStompsString="Total de piétinages"
 AssistsString="Assistances :"
 DamageDealtString="Dégâts infligés :"
 
@@ -1794,19 +1797,19 @@ Fortitude="Cuirassé"
 FortitudeDescription="Augmente la Santé totale de 100 %."
 
 Ninja="Escarmoucheur"
-NinjaDescription="Se déplace 20 % plus vite, court 25 % plus vite et régénère 2 points de santé par seconde lorsqu'il utilise une arme de classe."
+NinjaDescription="Se déplace 20 % plus vite, court 25 % plus vite et régénère 1 point de santé par seconde lorsqu'il utilise une arme de classe."
 
 Vampire="Vampire"
-VampireDescription="Soigne 4 points de Santé pour chaque Zed tué avec des armes de classe. Attaque 20 % plus rapide avec des armes de mêlée de classe."
+VampireDescription="Soigne 3 points de Santé pour chaque Zed tué avec des armes de classe. Attaque 20 % plus rapide avec des armes de mêlée de classe."
 
 Speed="Boucher"
 SpeedDescription="Attaque 20 % plus rapide et inflige 20 % de dégâts en plus avec des armes de classe."
 
 Resistance="Résistance"
-ResistanceDescription="Gagne 25 % de résistance à tous les dégâts. Gagne 25 % de résistance supplémentaire aux Dégâts de Poison et Soniques."
+ResistanceDescription="Gagne 15 % de résistance à tous les dégâts. Gagne 15 % de résistance supplémentaire aux Dégâts de Poison et Soniques."
 
 Parry="Parade"
-ParryDescription="Parer avec une AMC réduit les dégâts subis de 40% et augmente la vitesse d'atq en mêlée de 5 % et les dégâts en mêlée de 35 % pendant 10 s."
+ParryDescription="Parer avec une AMC réduit les dégâts subis de 25% et augmente la vitesse d'atq en mêlée de 5 % et les dégâts en mêlée de 35 % pendant 6 s."
 
 Smash="Fracasser"
 SmashDescription="Attaques lourdes avec des armes de mêlée de classe -> +50 % de dégâts, +25 % de dégâts à la tête, +200 % de chances de renverser."
@@ -1898,7 +1901,7 @@ DirectHit="Projectiles à fort impact"
 DirectHitDescription="Augmente les dégâts des tirs directs par arme explosive de 25 %."
 
 Ammo="Munitions supplémentaires"
-AmmoDescription="Augmente le nombre maximal de munitions des armes de classe explosives de 5. Ne s'applique pas au C4."
+AmmoDescription="Augmente le nombre maximal de munitions des armes de classe explosives de 10. Ne s'applique pas au C4."
 
 SirenResistance="Munitions résistantes au son"
 SirenResistanceDescription="Vos explosifs ne sont pas affectés par le cri des sirènes et explosent toujours."
@@ -1935,7 +1938,7 @@ Passives[3]=(Title="Vitesse de mouvement",Description="Vitesse de mouvement +%x%
 Passives[4]=(Title="Bonus d'armure",Description="Augmente l'Armure de %x% par niveau");
 
 HealingSurge="Santé symbiotique"
-HealingSurgeDescription="Augmente la Santé totale de 25 %. Soigner des équipiers vous soigne de 10 % de votre Santé totale."
+HealingSurgeDescription="Augmente la Santé totale de 25 %. Soigner des équipiers vous soigne de 6 % de votre Santé totale."
 
 Survivalist="Ténacité"
 SurvivalistDescription="Augmente la résistance aux dégâts de 1 % par point de Santé perdu, jusqu'à 60 %."
@@ -1962,7 +1965,7 @@ AirborneAgent="ZED TIME - Agent aéroporté"
 AirborneAgentDescription="Vous libérez un gaz soignant pendant le Zed time qui soigne vos équipiers à proximité."
 
 Sedative="ZED TIME - Zédatif"
-SedativeDescription="Pendant le Zed time, les dégâts des armes de votre classe sont augmentés de 30 % et les tués génèrent une explosion toxique qui inflige des dégâts aux Zeds et soigne les joueurs."
+SedativeDescription="Pendant le Zed time, les dégâts des armes de votre classe sont augmentés de 30% et les tués génèrent une expl. toxique qui inflige des dégâts aux Zeds et soigne les joueurs."
 
 
 EXPAction1="Infliger des dégâts d'arme de Médecin"
@@ -2128,7 +2131,7 @@ EXPAction1="Infliger des dégâts d'arme de Soutien"
 EXPAction2="Souder des portes"
 
 HighCapMags="Chargeurs haute capacité"
-HighCapMagsDescription="Augmente la capacité des armes de classe de 50 %."
+HighCapMagsDescription="Augmente la capacité des armes de classe de 75 %."
 
 TacticalReload="Rechargement tactique"
 TacticalReloadDescription="Augmente la vitesse de rechargement des armes de classe."
@@ -2825,6 +2828,20 @@ AllCompleteRewardDescriptionString="Cyborg | Sac à dos compagnon | Doré"
 ChanceDropDescriptionStrings[0]="Ticket printanier"
 ChanceDropDescriptionStrings[1]="Ticket doré printanier"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2021]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="C'est le pied !",DescriptionString="Piétiner 50 Zeds")
+SpecialEventObjectiveInfoList[1]=(TitleString="Lune hebdomadaire",DescriptionString="Terminer l'hebdomadaire de la Base lunaire")
+SpecialEventObjectiveInfoList[2]=(TitleString="Clair de lune de choc",DescriptionString="Tuer 20 Zeds avec le piège de laser sur la Base lunaire")
+SpecialEventObjectiveInfoList[3]=(TitleString="En apesanteur",DescriptionString="Tuer 300 Zeds tout en sautant dans les airs sur la Base lunaire")
+SpecialEventObjectiveInfoList[4]=(TitleString="Vide infini",DescriptionString="Terminer 15 vagues en Infini en mode difficile ou supérieur sur la Base lunaire")
+
+AllCompleteRewardDescriptionString="Astronaute | Sac à dos compagnon | Doré"
+
+ChanceDropDescriptionStrings[0]="Ticket estival"
+ChanceDropDescriptionStrings[1]="Ticket doré estival"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2930,6 +2947,26 @@ FriendlyName="Soif de sang"
 DescriptionStrings[0]="La série d'éliminations doit continuer, sinon vous mourrez..."
 DescriptionStrings[1]="Durée : moyenne (7 vagues)"
 ModifierDescriptions[0]="Une soif de sang de Zed vous inflige des dégâts continus (pendant que l'icône hebdomadaire s'affiche près de la barre de santé). Tuer est le seul moyen de régénérer votre santé. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Classe +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Arachnophobia KFWeeklyOutBreakInformation]
+FriendlyName="Arachnophobie"
+DescriptionStrings[0]="Piétinements surpuissants !"
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Nous sommes confrontés à une invasion de Lèche-bottes. Enfilez vos bottes et préparez-vous à tous les affronter. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Classe +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Scavenger KFWeeklyOutBreakInformation]
+FriendlyName="Pilleur"
+DescriptionStrings[0]="Improviser. S'adapter. Gagner"
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="On a saboté les marchands et leurs armes ont été pillées. Vous devez utiliser celles que vous trouvez par terre. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Classe +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3451,6 +3488,9 @@ DisplayName="Élysée"
 
 [KF-Dystopia2029 KFMapSummary]
 DisplayName="Dystopie 2029"
+
+[KF-Moonbase KFMapSummary]
+DisplayName="Base lunaire"
 
 [KFMapInfo]
 ; defaults

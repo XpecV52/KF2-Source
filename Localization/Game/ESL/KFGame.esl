@@ -738,8 +738,8 @@ ComboMakerValue="Asistencia zed"
 GrabbyValue="Jugadores agarrados"
 ZedSupportValue="Daño indirecto"
 ZednnihilationValue="Bajas en oleada"
-
-
+ZedStomper="Pisoteador de zed"
+ZedStomperValue="Pisoteador de zeds"
 
 EPB_Healing="Curación"
 EPB_Kills="Bajas"
@@ -750,6 +750,7 @@ EPB_HeadShots="Disparos a la cabeza"
 EPB_KnifeKills="Bajas por cuchillo"
 EPB_PistolKills="Bajas por pistola"
 EPB_DoorWelding="Soldaje de puertas"
+EPB_ZedStomps="Pisotones de zed"
 
 EPB_HealingValue="Salud"
 EPB_KillsValue="Bajas"
@@ -760,6 +761,7 @@ EPB_HeadShotsValue="Disparos a la cabeza"
 EPB_KnifeKillsValue="Bajas"
 EPB_PistolKillsValue="Bajas"
 EPB_DoorWeldingValue="Puntos de soldaje"
+EPB_ZedStompsValue="Pisotones"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="PREMIOS DE EQUIPO"
@@ -780,6 +782,7 @@ HeadShotsString="Disparos a la cabeza:"
 LargeZedKillsString="Bajas de zeds grandes:"
 TotalDoshEarnedString="Dinero ganado:"
 TotalKillsString="Bajas:"
+TotalStompsString="Pisotones totales"
 AssistsString="Asistencias:"
 DamageDealtString="Daño infligido:"
 
@@ -1794,19 +1797,19 @@ Fortitude="Acorazado"
 FortitudeDescription="Aumenta la salud total un 100 %."
 
 Ninja="Escaramuzador"
-NinjaDescription="Muévete y 20 % y espinta 25 % más rápido al usar armas de especialización. Además, regeneras 2 puntos de salud por segundo."
+NinjaDescription="Muévete y 20 % y espinta 25 % más rápido al usar armas de especialización. Además, regeneras 1 punto de salud por segundo."
 
 Vampire="Vampiro"
-VampireDescription="Cúrate 4 puntos de salud por cada zed que mates con armas de especialización. Ataca un 20 % más rápido con armas c/c de esp."
+VampireDescription="Cúrate 3 puntos de salud por cada zed que mates con armas de especialización. Ataca un 20 % más rápido con armas c/c de esp."
 
 Speed="Carnicero"
 SpeedDescription="Ataca un 20 % más rápido e inflige un 20 % más de daño con armas de especialización."
 
 Resistance="Resistencia"
-ResistanceDescription="Gana un 25 % de resistencia contra todo el daño. Gana un 25 % de resistencia adicional contra veneno y daño sónico."
+ResistanceDescription="Gana un 15 % de resistencia contra todo el daño. Gana un 25 % de resistencia adicional contra veneno y daño sónico."
 
 Parry="Parar"
-ParryDescription="Parar con armas de esp. reduce el daño recibido un 40% y aumenta la velocidad de ataque c/c un 5 % y el daño c/c un 35 % durante 10 seg."
+ParryDescription="Parar con armas de esp. reduce el daño recibido un 25% y aumenta la velocidad de ataque c/c un 5 % y el daño c/c un 35 % durante 6 seg."
 
 Smash="Destrozar"
 SmashDescription="Los ataques fuertes con armas c/c de esp. infligen un 50 % más de daño, un 25 % más en la cabeza y ganan 200 % más de capacidad de empuje."
@@ -1898,7 +1901,7 @@ DirectHit="Balas de alto impacto"
 DirectHitDescription="Aumenta el daño directo con armas explosivas un 25 %."
 
 Ammo="Balas adicionales"
-AmmoDescription="Aumenta en 5 la munición máxima de las armas de especialización explosivas. Esto no se aplica al C4."
+AmmoDescription="Aumenta en 10 la munición máxima de las armas de especialización explosivas. Esto no se aplica al C4."
 
 SirenResistance="Balas antisónicas"
 SirenResistanceDescription="Tus explosivos son inmunes a los gritos de la siren y siempre explotarán."
@@ -1935,7 +1938,7 @@ Passives[3]=(Title="Velocidad de movimiento",Description="Vel. de movimiento: +%
 Passives[4]=(Title="Bonificación de armadura",Description="La armadura aumenta un %x % por nivel");
 
 HealingSurge="Salud simbiótica"
-HealingSurgeDescription="Aumenta la salud total un 25 %. Al curar a tus compañeros, recuperas un 10 % de tu salud total."
+HealingSurgeDescription="Aumenta la salud total un 25 %. Al curar a tus compañeros, recuperas un 6 % de tu salud total."
 
 Survivalist="Aguante"
 SurvivalistDescription="Aumenta la resistencia al daño en un 1 % por cada punto de salud perdido (hasta un 60 %)."
@@ -2128,7 +2131,7 @@ EXPAction1="Infligir daño con armas de apoyo"
 EXPAction2="Soldar puertas"
 
 HighCapMags="Cargadores alta capacidad"
-HighCapMagsDescription="Aumenta la capacidad de los cargadores de armas de especialización un 50 %."
+HighCapMagsDescription="Aumenta la capacidad de los cargadores de armas de especialización un 75 %."
 
 TacticalReload="Recarga táctica"
 TacticalReloadDescription="Aumenta la velocidad de recarga con armas de especialización."
@@ -2825,6 +2828,20 @@ AllCompleteRewardDescriptionString="Cíborg | Mochila de acompañante | Preciosa
 ChanceDropDescriptionStrings[0]="Boleto de primavera"
 ChanceDropDescriptionStrings[1]="Boleto dorado de primavera"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2021]
+CurrentSpecialEventString="Un evento especial de tiempo limitado con objetos exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="¡Pisotón!",DescriptionString="Pisotea 50 zeds")
+SpecialEventObjectiveInfoList[1]=(TitleString="Lunar semanal",DescriptionString="Completa la semana en la Base lunar")
+SpecialEventObjectiveInfoList[2]=(TitleString="Luz de luna impactante",DescriptionString="Usa la trampa láser para matar a 20 zeds en la Base lunar")
+SpecialEventObjectiveInfoList[3]=(TitleString="Habilidades en ingravidez",DescriptionString="Mata a 300 zeds saltando en el aire en la Base lunar")
+SpecialEventObjectiveInfoList[4]=(TitleString="Vacío infinito",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior en la Base lunar")
+
+AllCompleteRewardDescriptionString="Astronauta | Mochila de acompañante | Preciosa"
+
+ChanceDropDescriptionStrings[0]="Boleto Verano"
+ChanceDropDescriptionStrings[1]="Boleto Verano dorado"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2930,6 +2947,26 @@ FriendlyName="Sed de sangre"
 DescriptionStrings[0]="Mantén la racha de asesinatos o muere..."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
 ModifierDescriptions[0]="La sed de sangre zed te infligirá daño de forma continua (mientras el icono semanal se muestre cerca del contador de salud). Matar es la única forma de regenerar salud. Selecciona el modo de juego Semanal en la página de matchmaking. Especialización 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Arachnophobia KFWeeklyOutBreakInformation]
+FriendlyName="Aracnofobia"
+DescriptionStrings[0]="¡Pisotones a tope!"
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="Sufrimos una plaga de crawlers. Ponte las botes y prepárate para pisotearlos todos. Selecciona el modo de juego Semanal en la página de matchmaking. Especialización 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Scavenger KFWeeklyOutBreakInformation]
+FriendlyName="Carroñero"
+DescriptionStrings[0]="Improvisa. Adáptate. Supéralo."
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="Han saboteado a los mercadores y no te quedan armas. Tienes que aprovechar las armas que encuentres por el suelo. Selecciona el modo de juego Semanal en la página de matchmaking. Especialización 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3451,6 +3488,9 @@ DisplayName="Elíseo"
 
 [KF-Dystopia2029 KFMapSummary]
 DisplayName="Distopía 2029"
+
+[KF-Moonbase KFMapSummary]
+DisplayName="Base lunar"
 
 [KFMapInfo]
 ; defaults

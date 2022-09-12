@@ -40,6 +40,7 @@ var KFGFxWidget_KickVote KickVoteWidget;
 var KFGFxWidget_NonCriticalGameMessage NonCriticalGameMessageWidget;
 var KFGFxWidget_NonCriticalGameMessage InviteGameMessageWidget;
 var KFGFxWidget_RhythmCounter RhythmCounterWidget;
+var KFGFxWidget_GoompaCounter GoompaCounterWidget;
 var KFGFxWidget_BossHealthBar bossHealthBar;
 var KFGFxWidget_MapText MapTextWidget;
 var KFGFxWidget_MapCounterText MapCounterTextWidget;
@@ -290,6 +291,12 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             if(RhythmCounterWidget == none)
             {
                 RhythmCounterWidget = KFGFxWidget_RhythmCounter(Widget);
+            }
+            break;
+        case 'GoompaCounter':
+            if(GoompaCounterWidget == none)
+            {
+                GoompaCounterWidget = KFGFxWidget_GoompaCounter(Widget);
             }
             break;
         default:
@@ -941,6 +948,14 @@ function UpdateRhythmCounterWidget(int Value, int Max)
     if(RhythmCounterWidget != none)
     {
         RhythmCounterWidget.SetCount(Value, Max);
+    }
+}
+
+function UpdateGoompaCounterWidget(int Value, int Max)
+{
+    if(GoompaCounterWidget != none)
+    {
+        GoompaCounterWidget.SetCount(Value, Max);
     }
 }
 

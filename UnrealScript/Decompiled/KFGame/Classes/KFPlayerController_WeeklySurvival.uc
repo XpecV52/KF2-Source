@@ -15,12 +15,33 @@ var float ZedTimeRadius;
 var float ZedTimeBossRadius;
 var float ZedTimeHeight;
 var float ZedRecheckTime;
+var int GoompaStreak;
+var int GoompaStreakBonus;
+var transient int MaxGoompaStreak;
+var protected const name RhytmMethodRTPCName;
+var protected const AkEvent RhythmMethodSoundReset;
+var protected const AkEvent RhythmMethodSoundHit;
+var protected const AkEvent RhythmMethodSoundTop;
+var protected const AkEvent AracnoStompSoundEvent;
 
 replication
 {
      if(bNetDirty)
-        ZedTimeBossRadius, ZedTimeHeight, 
-        ZedTimeRadius, bUsingPermanentZedTime;
+        GoompaStreak, ZedTimeBossRadius, 
+        ZedTimeHeight, ZedTimeRadius, 
+        bUsingPermanentZedTime;
+}
+
+simulated event PostBeginPlay()
+{
+    local KFGameInfo KFGI;
+
+    super.PostBeginPlay();
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if(((KFGI != none) && KFGI.OutbreakEvent != none) && KFGI.OutbreakEvent.ActiveEvent.bGoompaJumpEnabled)
+    {
+        MaxGoompaStreak = KFGI.OutbreakEvent.ActiveEvent.GoompaStreakMax;
+    }
 }
 
 function EnterZedTime()
@@ -63,8 +84,93 @@ function RecheckZedTime()
     EnterZedTime();
 }
 
+function UpdateGoompaStreak()
+{
+    ++ GoompaStreak;
+    GoompaStreakBonus = GoompaStreak;
+    UpdateGoompaCounterWidget(GoompaStreak, MaxGoompaStreak);
+    GoompaStompMessage(byte(GoompaStreak));
+    if(IsTimerActive('ResetStreakInfo'))
+    {
+        ClearTimer('ResetStreakInfo');
+    }
+}
+
+function ResetGoompaStreak()
+{
+    local KFGameInfo KFGI;
+
+    if(GoompaStreak > 0)
+    {
+        KFGI = KFGameInfo(WorldInfo.Game);
+        GoompaStreak = 0;
+        if(KFGI != none)
+        {
+            SetTimer(KFGI.OutbreakEvent.ActiveEvent.GoompaBonusDuration, false, 'ResetStreakInfo');
+        }
+    }
+}
+
+function ResetStreakInfo()
+{
+    UpdateGoompaCounterWidget(GoompaStreak, MaxGoompaStreak);
+    GoompaStompMessage(byte(GoompaStreak));
+    GoompaStreakBonus = 0;
+}
+
+function bool IsGoompaBonusActive()
+{
+    return GoompaStreakBonus > 0;
+}
+
+reliable client simulated function GoompaStompMessage(byte StompNum)
+{
+    local int I;
+    local AkEvent TempAkEvent;
+
+    if(myGfxHUD == none)
+    {
+        return;
+    }
+    I = StompNum;
+    UpdateGoompaCounterWidget(StompNum, MaxGoompaStreak);
+    if(StompNum == 0)
+    {
+        TempAkEvent = RhythmMethodSoundReset;        
+    }
+    else
+    {
+        if(StompNum == (MaxGoompaStreak - 1))
+        {
+            TempAkEvent = RhythmMethodSoundHit;            
+        }
+        else
+        {
+            if(StompNum == MaxGoompaStreak)
+            {
+                TempAkEvent = RhythmMethodSoundTop;
+                ++ I;
+            }
+        }
+    }
+    if(TempAkEvent != none)
+    {
+        PlayRMEffect(TempAkEvent, RhytmMethodRTPCName, I);
+    }
+    if((StompNum > 0) && AracnoStompSoundEvent != none)
+    {
+        PlaySoundBase(AracnoStompSoundEvent);
+    }
+}
+
 defaultproperties
 {
+    MaxGoompaStreak=-1
+    RhytmMethodRTPCName=R_Method
+    RhythmMethodSoundReset=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Reset'
+    RhythmMethodSoundHit=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Hit'
+    RhythmMethodSoundTop=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Top'
+    AracnoStompSoundEvent=AkEvent'WW_GLO_Runtime.WeeklyArcno'
     StingerAkComponent=AkComponent'Default__KFPlayerController_WeeklySurvival.AkComponent'
     AmplificationLightTemplate=PointLightComponent'Default__KFPlayerController_WeeklySurvival.AmplificationLightTemplate'
     NVGLightTemplate=PointLightComponent'Default__KFPlayerController_WeeklySurvival.NVGLightTemplate'

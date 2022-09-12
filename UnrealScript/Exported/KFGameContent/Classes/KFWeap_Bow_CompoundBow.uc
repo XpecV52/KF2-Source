@@ -724,9 +724,9 @@ defaultproperties
    GroupPriority=125.000000
    WeaponSelectTexture=Texture2D'WEP_UI_CompoundBow_TEX.UI_WeaponSelect_Compound_Bow'
    MagazineCapacity(0)=1
-   SpareAmmoCapacity(0)=30
-   InitialSpareMags(0)=10
-   AmmoPickupScale(0)=3.000000
+   SpareAmmoCapacity(0)=35
+   InitialSpareMags(0)=11
+   AmmoPickupScale(0)=4.000000
    bLoopingFireAnim(0)=True
    bLoopingFireAnim(1)=True
    FireAnim=

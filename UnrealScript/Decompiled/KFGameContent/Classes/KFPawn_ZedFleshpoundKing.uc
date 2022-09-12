@@ -362,7 +362,7 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     }
 }
 
-function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
+function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<DamageType> DamageType, Actor DamageCauser)
 {
     if(ShieldHealthPctByte == 0)
     {

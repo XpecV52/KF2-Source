@@ -32,26 +32,37 @@ function LocalizeText()
 function SetMapOptions()
 {
     local GFxObject MapList, MapObject;
-    local int I;
+    local int I, Counter;
     local array<string> ServerMapList;
     local KFGameReplicationInfo KFGRI;
+    local bool IsBrokenTrader;
 
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
+    Counter = 0;
     if((KFGRI != none) && KFGRI.VoteCollector != none)
     {
         ServerMapList = KFGRI.VoteCollector.MapList;
+        IsBrokenTrader = Class'KFGameEngine'.static.GetWeeklyEventIndex() == 11;
         MapList = Outer.CreateArray();
         I = 0;
-        J0x102:
+        J0x13B:
 
         if(I < ServerMapList.Length)
         {
-            MapObject = Outer.CreateObject("Object");
-            MapObject.SetString("label", Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(ServerMapList[I]));
-            MapObject.SetString("mapSource", GetMapSource(ServerMapList[I]));
-            MapList.SetElementObject(I, MapObject);
+            if(IsBrokenTrader && ((((ServerMapList[I] == "KF-Biolapse") || ServerMapList[I] == "KF-Nightmare") || ServerMapList[I] == "KF-PowerCore_Holdout") || ServerMapList[I] == "KF-TheDescent") || ServerMapList[I] == "KF-KrampusLair")
+            {                
+            }
+            else
+            {
+                MapObject = Outer.CreateObject("Object");
+                MapObject.SetString("label", Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(ServerMapList[I]));
+                MapObject.SetString("mapSource", GetMapSource(ServerMapList[I]));
+                MapObject.SetInt("mapindex", I);
+                MapList.SetElementObject(Counter, MapObject);
+                ++ Counter;
+            }
             ++ I;
-            goto J0x102;
+            goto J0x13B;
         }
     }
     SetObject("mapChoices", MapList);

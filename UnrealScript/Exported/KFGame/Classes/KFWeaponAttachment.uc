@@ -1223,6 +1223,9 @@ simulated State LoopingWeaponAction
 	}
 }
 
+/** Special event added for weap attachments. Free for use */
+function OnSpecialEvent(int Arg);
+
 defaultproperties
 {
    LaserSightArchetype=KFLaserSightAttachment'FX_LaserSight_ARCH.Default_LaserSight_3P'

@@ -738,8 +738,8 @@ ComboMakerValue="丧尸助攻"
 GrabbyValue="被抓的玩家"
 ZedSupportValue="间接伤害"
 ZednnihilationValue="波杀敌数"
-
-
+ZedStomper="丧尸践踏者"
+ZedStomperValue="丧尸践踏者"
 
 EPB_Healing="治愈"
 EPB_Kills="杀敌数"
@@ -750,6 +750,7 @@ EPB_HeadShots="爆头"
 EPB_KnifeKills="匕首杀敌数"
 EPB_PistolKills="手枪杀敌数"
 EPB_DoorWelding="门焊接"
+EPB_ZedStomps="丧尸践踏"
 
 EPB_HealingValue="生命"
 EPB_KillsValue="杀敌数"
@@ -760,6 +761,7 @@ EPB_HeadShotsValue="爆头"
 EPB_KnifeKillsValue="杀敌数"
 EPB_PistolKillsValue="杀敌数"
 EPB_DoorWeldingValue="焊接点数"
+EPB_ZedStompsValue="践踏"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="队伍奖励"
@@ -780,6 +782,7 @@ HeadShotsString="爆头："
 LargeZedKillsString="大丧尸死亡数："
 TotalDoshEarnedString="赚取的资金总额："
 TotalKillsString="总杀敌数："
+TotalStompsString="总践踏数"
 AssistsString="助攻："
 DamageDealtString="造成的伤害："
 
@@ -1794,19 +1797,19 @@ Fortitude="无所畏惧"
 FortitudeDescription="增加生命总值 100%。"
 
 Ninja="游兵散勇"
-NinjaDescription="使用神射近战武器时，移动速度提升 20%，冲刺速度提升 25%，每秒生成 2 点生命。"
+NinjaDescription="使用神射武器时，移动速度加快 20%，冲刺加快 25%；同时每秒回复 1 点生命值。"
 
 Vampire="吸血鬼"
-VampireDescription="使用神射武器每杀死一个丧尸可以治愈 4 点生命。使用神射近战武器时攻击速度提升 20%。"
+VampireDescription="使用神射武器每杀死一个丧尸可以治愈 3 点生命。使用神射近战武器时攻击速度提升 20%。"
 
 Speed="屠夫"
 SpeedDescription="使用神射武器时攻击速度提升 20%，伤害增加 20%。"
 
 Resistance="抗性"
-ResistanceDescription="对所有伤害获得 25% 抗性。对毒药和声波伤害获得额外 25% 抗性。"
+ResistanceDescription="对所有伤害获得 15% 抗性。对毒药和声波伤害获得额外 15% 抗性。"
 
 Parry="闪避"
-ParryDescription="使用神射近战武器闪避，可以减少受到伤害 40%，提升近战攻击速度 5% 和近战伤害 35%，持续 10 秒。"
+ParryDescription="使用神射近战武器闪避，可以减少受到伤害 25%，提升近战攻击速度 5% 和近战伤害 35%，持续 6 秒。"
 
 Smash="粉碎"
 SmashDescription="使用神射近战武器发起重击，伤害提升 50%，爆头伤害提升 25%，击退力增加 200%。"
@@ -1898,7 +1901,7 @@ DirectHit="高冲击弹"
 DirectHitDescription="爆炸武器的直接攻击伤害提升 25%。"
 
 Ammo="额外弹"
-AmmoDescription="提升爆炸神射武器的最大弹药容量 5。这不适用于 C4。"
+AmmoDescription="提升爆炸神射武器的最大弹药容量 10。这不适用于 C4。"
 
 SirenResistance="抗声波弹"
 SirenResistanceDescription="你的爆炸物对女妖的尖叫免疫，因此总是能够爆炸。"
@@ -1935,10 +1938,10 @@ Passives[3]=(Title="移动速度",Description="每 5 级提升移动速度 %x%")
 Passives[4]=(Title="护甲奖励",Description="每级提升护甲 %x%");
 
 HealingSurge="共生生命"
-HealingSurgeDescription="增加生命总值 25%。治愈队员，你的总生命也会恢复 10%。"
+HealingSurgeDescription="增加生命总值 25%。治愈队员，你的总生命也会恢复 6%。"
 
 Survivalist="恢复力"
-SurvivalistDescription="每失去 1 点生命，伤害抗性提升 1%，最高可达 60%。"
+SurvivalistDescription="每失去1点生命，伤害抗性提升1%，最高可达60%。"
 
 HealingSpeedBoost="肾上腺素注射"
 HealingSpeedBoostDescription="你的所有治疗增加玩家移动速度 10%，持续 5 秒。这可以叠加到 30% 奖励。"
@@ -2128,7 +2131,7 @@ EXPAction1="造成支援兵武器伤害"
 EXPAction2="焊接门"
 
 HighCapMags="高容量弹匣"
-HighCapMagsDescription="提升神射武器的容量弹匣 50%。"
+HighCapMagsDescription="提升神射武器的容量弹匣 75%。"
 
 TacticalReload="策略填弹"
 TacticalReloadDescription="提升神射武器的填弹速度。"
@@ -2825,6 +2828,20 @@ AllCompleteRewardDescriptionString="机器人 | 同伴背包 | 宝物"
 ChanceDropDescriptionStrings[0]="春季奖励劵"
 ChanceDropDescriptionStrings[1]="春季金奖劵"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2021]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="重踢！",DescriptionString="踩踏50个丧尸")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周月球",DescriptionString="完成每周的月球基地任务")
+SpecialEventObjectiveInfoList[2]=(TitleString="震撼月光",DescriptionString="使用激光陷阱在月球基地上杀死20个丧尸")
+SpecialEventObjectiveInfoList[3]=(TitleString="失重技能",DescriptionString="在月球基地上跳起并杀死300个丧尸")
+SpecialEventObjectiveInfoList[4]=(TitleString="无限虚空",DescriptionString="在困难无尽或以上难度的月球基地中成功抵御15波丧尸")
+
+AllCompleteRewardDescriptionString="宇航员 | 同伴背包 | 宝物"
+
+ChanceDropDescriptionStrings[0]="夏季奖劵"
+ChanceDropDescriptionStrings[1]="夏季金奖券"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2934,6 +2951,26 @@ ModifierDescriptions[1]="测试 2"
 ModifierDescriptions[2]="测试 3"
 ModifierDescriptions[3]="测试 4"
 ModifierDescriptions[4]="测试 5"
+
+[Arachnophobia KFWeeklyOutBreakInformation]
+FriendlyName="蜘蛛恐惧症"
+DescriptionStrings[0]="超能踩踏！"
+DescriptionStrings[1]="长度：中（7波）"
+ModifierDescriptions[0]="爬行动物肆虐让我们痛苦不堪。穿上你的靴子，准备把它们全部踩死。在“比赛匹配”页面选择每周游戏模式。特技增加 15。"
+ModifierDescriptions[1]="测试2"
+ModifierDescriptions[2]="测试3"
+ModifierDescriptions[3]="测试4"
+ModifierDescriptions[4]="测试5"
+
+[Scavenger KFWeeklyOutBreakInformation]
+FriendlyName="拾荒者"
+DescriptionStrings[0]="即兴。适应。克服。"
+DescriptionStrings[1]="长度：中（7波）"
+ModifierDescriptions[0]="商人的武器被抢劫一空。你必须充分利用自己找到的武器。在“比赛匹配”页面选择每周游戏模式。神射15+。"
+ModifierDescriptions[1]="测试2"
+ModifierDescriptions[2]="测试3"
+ModifierDescriptions[3]="测试4"
+ModifierDescriptions[4]="测试5"
 
 ;============================================
 ; Map Localization
@@ -3451,6 +3488,9 @@ DisplayName="极乐净土"
 
 [KF-Dystopia2029 KFMapSummary]
 DisplayName="竞技场 2029"
+
+[KF-Moonbase KFMapSummary]
+DisplayName="月球基地"
 
 [KFMapInfo]
 ; defaults

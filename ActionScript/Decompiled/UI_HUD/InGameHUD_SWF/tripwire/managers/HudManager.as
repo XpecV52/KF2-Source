@@ -22,6 +22,7 @@ package tripwire.managers
     import tripwire.widgets.BossHealthBarWidget;
     import tripwire.widgets.BossNameplateWidget;
     import tripwire.widgets.ControllerWeaponSelectWidget;
+    import tripwire.widgets.GoompaCounterWidget;
     import tripwire.widgets.InviteTextMessageWidget;
     import tripwire.widgets.NonCriticalGameMessageWidget;
     import tripwire.widgets.PlayerChatWidget;
@@ -96,6 +97,8 @@ package tripwire.managers
         public var MusicNotification:MusicNotificationWidget;
         
         public var RhythmCounter:RhythmCounterWidget;
+        
+        public var GoompaCounter:GoompaCounterWidget;
         
         public var ControllerWeaponSelectContainer:ControllerWeaponSelectWidget;
         
@@ -552,6 +555,7 @@ package tripwire.managers
                 this.bossHealthBar.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_TOP,0,0,"","",this.PrimaryLayoutIndex,this.layoutID);
                 this.WeaponSelectContainer.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_TOP,0,0,"","",this.PrimaryLayoutIndex,this.layoutID);
                 this.RhythmCounter.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,16,"",this.bossHealthBar.name,this.SecondaryLayoutIndex,this.layoutID);
+                this.GoompaCounter.layoutData = new LayoutData(LayoutMode.ALIGN_CENTER,LayoutMode.ALIGN_BOTTOM,0,-75,"",this.bossHealthBar.name,this.SecondaryLayoutIndex,this.layoutID);
             }
             if(this.mapTextWidget)
             {
@@ -720,6 +724,7 @@ package tripwire.managers
             this.scaleChild(this.KickVoteWidget);
             this.scaleChild(this.BossNamePlate);
             this.scaleChild(this.RhythmCounter);
+            this.scaleChild(this.GoompaCounter);
             this.scaleChild(this.bossHealthBar);
             this.scaleChild(this.mapTextWidget);
             this.scaleChild(this.counterMapTextWidget);
@@ -755,6 +760,7 @@ package tripwire.managers
             this.apply3d(this.InviteMessageWidget,0,24,0,"bottom","right");
             this.apply3d(this.MusicNotification,0,24,0,"top","right");
             this.apply3d(this.RhythmCounter,0,0,288,"top","center");
+            this.apply3d(this.GoompaCounter,0,0,288,"top","center");
         }
         
         public function apply3d(param1:UIComponent, param2:Number, param3:Number, param4:Number, param5:String = "top", param6:String = "left") : void

@@ -162,8 +162,9 @@ defaultproperties
     ExplosionActorClass=Class'KFGame.KFExplosionActor'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_CompoundBow_ARCH.FX_CompoundBow_Cryo_Projectile_Explosion'
-        Damage=25
-        DamageRadius=200
+        Damage=75
+        DamageRadius=250
+        DamageFalloffExponent=0.5
         MyDamageType=Class'KFDT_Freeze_CompoundBowCryExplosion'
         KnockDownStrength=0
         MomentumTransferScale=1

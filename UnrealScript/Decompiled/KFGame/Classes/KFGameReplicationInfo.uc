@@ -166,6 +166,7 @@ var bool bGlobalDamage;
 var bool bAllowSwitchTeam;
 var bool NextObjectiveIsEndless;
 var bool bForceNextObjective;
+var transient bool bIsBrokenTrader;
 var KFTraderDialogManager TraderDialogManager;
 var class<KFTraderDialogManager> TraderDialogManagerClass;
 var class<KFTraderVoiceGroupBase> TraderVoiceGroupClass;
@@ -243,9 +244,10 @@ replication
         ReplicatedMusicTrackInfo, TraderVolume, 
         TraderVolumeCheckType, WaveNum, 
         WaveTotalAICount, bGlobalDamage, 
-        bHidePawnIcons, bIsUnrankedGame, 
-        bTraderIsOpen, bWaveIsActive, 
-        bWaveIsEndless, bWaveStarted;
+        bHidePawnIcons, bIsBrokenTrader, 
+        bIsUnrankedGame, bTraderIsOpen, 
+        bWaveIsActive, bWaveIsEndless, 
+        bWaveStarted;
 
      if(bNetInitial)
         GameAmmoCostScale, GameLength, 
@@ -694,22 +696,22 @@ reliable client simulated exec function ShowPreGameServerWelcomeScreen()
     }
 }
 
-simulated function GetKFPRIArray(out array<KFPlayerReplicationInfo> KFPRIArray, optional bool bGetSpectators)
+simulated function GetKFPRIArray(out array<KFPlayerReplicationInfo> KFPRIArray, optional bool bGetSpectators, optional bool bGetZedPlayers)
 {
     local int I, Num;
 
     KFPRIArray.Remove(0, KFPRIArray.Length;
     I = 0;
-    J0x22:
+    J0x23:
 
     if(I < PRIArray.Length)
     {
-        if(((PRIArray[I] != none) && KFPlayerReplicationInfo(PRIArray[I]) != none) && bGetSpectators || !PRIArray[I].bOnlySpectator)
+        if((((PRIArray[I] != none) && KFPlayerReplicationInfo(PRIArray[I]) != none) && bGetSpectators || !PRIArray[I].bOnlySpectator) && bGetZedPlayers || PRIArray[I].GetTeamNum() != 255)
         {
             KFPRIArray[++ Num] = KFPlayerReplicationInfo(PRIArray[I]);
         }
         ++ I;
-        goto J0x22;
+        goto J0x23;
     }
 }
 
@@ -1203,7 +1205,7 @@ simulated function int GetNumPlayersAlive()
 
     GetKFPRIArray(PRIs);
     I = 0;
-    J0x1F:
+    J0x20:
 
     if(I < PRIs.Length)
     {
@@ -1212,7 +1214,7 @@ simulated function int GetNumPlayersAlive()
             ++ NumPlayersAlive;
         }
         ++ I;
-        goto J0x1F;
+        goto J0x20;
     }
     return NumPlayersAlive;
 }
@@ -2031,6 +2033,12 @@ simulated function bool IsPerkAllowed(class<KFPerk> PerkClass)
 simulated function UpdatePerksAvailable()
 {
     KFPlayerController(GetALocalPlayerController()).UpdatePerkOnInit();
+}
+
+simulated function NotifyBrokenTrader()
+{
+    bIsBrokenTrader = true;
+    bNetDirty = true;
 }
 
 defaultproperties

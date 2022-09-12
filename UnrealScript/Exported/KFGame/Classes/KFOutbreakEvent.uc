@@ -93,7 +93,6 @@ struct StatAdjustments
 	/** Speed modifier */
 	var() float InitialGroundSpeedModifierScale;
 
-
 	structdefaultproperties
 	{
 		HealthScale = 1.f;
@@ -146,6 +145,9 @@ struct WeeklyOverrides
 	*      array prior to calling in to P.AddDefaultInventory
 	*/
 	var() KFGFxObject_TraderItems SpawnWeaponList;
+	
+	/** Adds weapon spawn list to the player's loadout */
+	var() bool bAddSpawnListToLoadout;
 
 	/** If this flag is set to true, the secondary weapon will be checked for availability in the current game mode */
 	var() bool bSpawnWeaponListAffectsSecondaryWeapons;
@@ -333,11 +335,38 @@ struct WeeklyOverrides
 	/** Replenish player's health once a wave ends. */
 	var() bool bHealPlayerAfterWave;
 
+	/** Can kill enemies by jumping on them */
+	var() bool bGoompaJumpEnabled;
+
+	/** Damage done when jumping over an enemy */
+	var() int GoompaJumpDamage;
+
+	/** Damage added per goompa streak */
+	var() float GoompaStreakDamage;
+
+	/** Max number of goompa jumps that counts for damage increase */
+	var() int GoompaStreakMax;
+
+	/** Impulse applied to the player when jumping over an enemy */
+	var() float GoompaJumpImpulse;
+
+	/** Duration of the goompa streak bonus */
+	var() float GoompaBonusDuration;
+
+	/** Z velocity for jumping */
+	var() float JumpZ;
+
+	/** Drop items lifespan */
+	var() float DroppedItemLifespan;
+
 	/** Global modifier of dosh received by players when a zed is killed. Default value is 1.0 */
 	var() float DoshOnKillGlobalModifier;
 
 	/** Delay After a wave starts for applying global damage. */
 	var() float DamageDelayAfterWaveStarted;
+
+	/** If weapon pickups should spawn unfinitely */
+	var() bool bUnlimitedWeaponPickups;
 
 	/** If another outbreak mode shares the same events, this will link the two to quicker UI lookup */
 	var() int WeeklyOutbreakId;
@@ -378,13 +407,23 @@ struct WeeklyOverrides
 		bGlobalDamageAffectsShield = true
 		bApplyGlobalDamageBossWave = true
 		bHealPlayerAfterWave = false
+		bGoompaJumpEnabled = false
+		bUnlimitedWeaponPickups = false 
+		GoompaJumpDamage = 0;
+		GoompaStreakDamage = 0;
+		GoompaJumpImpulse = 0;
+		GoompaStreakMax = 0;
+		GoompaBonusDuration = 0.0f;
 		DamageDelayAfterWaveStarted = 10.0f
 		WeeklyOutbreakId=INDEX_NONE
+		bAddSpawnListToLoadout = false
 		bSpawnWeaponListAffectsSecondaryWeapons = false
 		bColliseumSkillConditionsActive = false
 		bModifyZedTimeOnANearZedKill = false
 		ZedTimeOnANearZedKill = 0.05
 		DoshOnKillGlobalModifier = 1.0f
+		JumpZ = -1.f
+		DroppedItemLifespan=-1.0f
 	}
 };
 
@@ -756,7 +795,6 @@ function AdjustMonsterDefaults(out KFPawn_Monster P)
 
 			P.HealByKill = ToAdjust.HealByKill;
 			P.HealByAssistance = ToAdjust.HealByAssistance;
-
 			P.InitialGroundSpeedModifier *= ToAdjust.InitialGroundSpeedModifierScale;
 
 			if (ToAdjust.bStartEnraged)
@@ -879,7 +917,7 @@ static function int GetOutbreakId(int SetEventsIndex);
 
 defaultproperties
 {
-   ActiveEvent=(SpawnRateMultiplier=1.000000,GlobalAmmoCostScale=1.000000,bAllowSpawnReplacementDuringBossWave=True,OverrideItemPickupModifier=-1.000000,OverrideAmmoPickupModifier=-1.000000,OverrideItemRespawnTime=(PlayersMod[0]=1.000000,PlayersMod[1]=1.000000,PlayersMod[2]=1.000000,PlayersMod[3]=1.000000,PlayersMod[4]=1.000000,PlayersMod[5]=1.000000,ModCap=2.000000),OverrideAmmoRespawnTime=(PlayersMod[0]=1.000000,PlayersMod[1]=1.000000,PlayersMod[2]=1.000000,PlayersMod[3]=1.000000,PlayersMod[4]=1.000000,PlayersMod[5]=1.000000,ModCap=2.000000),PermanentZedResetTime=1.000000,OverrideZedTimeSlomoScale=0.200000,ZedTimeOnANearZedKill=0.050000,StartingDamageSizeScale=1.000000,DeadDamageSizeScale=0.100000,OverrideSpawnDerateTime=-1.000000,OverrideTeleportDerateTime=-1.000000,GlobalGravityZ=-1150.000000,ZedSpawnHeadScale=1.000000,PlayerSpawnHeadScale=1.000000,bHumanSprintEnabled=True,OffPerkCostScale=1.000000,AdditionalBossWaveStartDelay=15.000000,bContinuousAdditionalBossWave=True,CrushScale=1.000000,JumpDamageScale=1.000000,NumJumpsAllowed=1,ZeroHealthInflation=1.000000,GlobalDeflationRate=0.100000,InflationDeathGravity=-0.100000,InflationExplosionTimer=3.000000,MaxPerkLevel=4,bGlobalDamageAffectsShield=True,bApplyGlobalDamageBossWave=True,DoshOnKillGlobalModifier=1.000000,DamageDelayAfterWaveStarted=10.000000,WeeklyOutbreakId=-1)
+   ActiveEvent=(SpawnRateMultiplier=1.000000,GlobalAmmoCostScale=1.000000,bAllowSpawnReplacementDuringBossWave=True,OverrideItemPickupModifier=-1.000000,OverrideAmmoPickupModifier=-1.000000,OverrideItemRespawnTime=(PlayersMod[0]=1.000000,PlayersMod[1]=1.000000,PlayersMod[2]=1.000000,PlayersMod[3]=1.000000,PlayersMod[4]=1.000000,PlayersMod[5]=1.000000,ModCap=2.000000),OverrideAmmoRespawnTime=(PlayersMod[0]=1.000000,PlayersMod[1]=1.000000,PlayersMod[2]=1.000000,PlayersMod[3]=1.000000,PlayersMod[4]=1.000000,PlayersMod[5]=1.000000,ModCap=2.000000),PermanentZedResetTime=1.000000,OverrideZedTimeSlomoScale=0.200000,ZedTimeOnANearZedKill=0.050000,StartingDamageSizeScale=1.000000,DeadDamageSizeScale=0.100000,OverrideSpawnDerateTime=-1.000000,OverrideTeleportDerateTime=-1.000000,GlobalGravityZ=-1150.000000,ZedSpawnHeadScale=1.000000,PlayerSpawnHeadScale=1.000000,bHumanSprintEnabled=True,OffPerkCostScale=1.000000,AdditionalBossWaveStartDelay=15.000000,bContinuousAdditionalBossWave=True,CrushScale=1.000000,JumpDamageScale=1.000000,NumJumpsAllowed=1,ZeroHealthInflation=1.000000,GlobalDeflationRate=0.100000,InflationDeathGravity=-0.100000,InflationExplosionTimer=3.000000,MaxPerkLevel=4,bGlobalDamageAffectsShield=True,bApplyGlobalDamageBossWave=True,JumpZ=-1.000000,DroppedItemLifespan=-1.000000,DoshOnKillGlobalModifier=1.000000,DamageDelayAfterWaveStarted=10.000000,WeeklyOutbreakId=-1)
    CachedItems=(GameAmmoCostScale=1.000000,bAllowGrenadePurchase=True,bTradersEnabled=True)
    Name="Default__KFOutbreakEvent"
    ObjectArchetype=Object'Core.Default__Object'

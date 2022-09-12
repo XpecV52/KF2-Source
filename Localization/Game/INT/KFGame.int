@@ -738,8 +738,8 @@ ComboMakerValue="Zed Assist"
 GrabbyValue="Players Grabbed"
 ZedSupportValue="Indirect Damage"
 ZednnihilationValue="Kills in Wave"
-
-
+ZedStomper="Zed Stomper"
+ZedStomperValue="Zeds Stomped"
 
 EPB_Healing="Healing"
 EPB_Kills="Kills"
@@ -750,6 +750,7 @@ EPB_HeadShots="Head Shots"
 EPB_KnifeKills="Knife Kills"
 EPB_PistolKills="Pistol Kills"
 EPB_DoorWelding="Door Welding"
+EPB_ZedStomps="Zed Stomps"
 
 EPB_HealingValue="Health"
 EPB_KillsValue="Kills"
@@ -760,6 +761,7 @@ EPB_HeadShotsValue="Headshots"
 EPB_KnifeKillsValue="Kills"
 EPB_PistolKillsValue="Kills"
 EPB_DoorWeldingValue="Welding Points"
+EPB_ZedStompsValue="Stomps"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="TEAM AWARDS"
@@ -780,6 +782,7 @@ HeadShotsString="Headshots:"
 LargeZedKillsString="Large Zed Kills:"
 TotalDoshEarnedString="Total Dosh Earned:"
 TotalKillsString="Total Kills:"
+TotalStompsString="Total Stomps"
 AssistsString="Assists:"
 DamageDealtString="Damage Dealt:"
 
@@ -1794,19 +1797,19 @@ Fortitude="Dreadnaught"
 FortitudeDescription="Increase total Health 100%."
 
 Ninja="Skirmisher"
-NinjaDescription="Move 20% faster and sprint 25% faster when using a perk weapon. You also regenerate 2 points of Health every second."
+NinjaDescription="Move 20% faster and sprint 25% faster when using a perk weapon. You also regenerate 1 point of Health every second."
 
 Vampire="Vampire"
-VampireDescription="Heal 4 points of Health for every Zed you kill with perk weapons. Attack 20% faster with perk melee weapons."
+VampireDescription="Heal 3 points of Health for every Zed you kill with perk weapons. Attack 20% faster with perk melee weapons."
 
 Speed="Butcher"
 SpeedDescription="Attack 20% faster and do 20% more damage with perk weapons."
 
 Resistance="Resistance"
-ResistanceDescription="Gain 25% resistance to all damage. Gain additional 25% resistance to Poison and Sonic Damage."
+ResistanceDescription="Gain 15% resistance to all damage. Gain additional 15% resistance to Poison and Sonic Damage."
 
 Parry="Parry"
-ParryDescription="Parrying with a perk melee weapon reduces incoming damage 40% and increases both melee attack speed 5% and melee damage 35% for 10 seconds."
+ParryDescription="Parrying with a perk melee weapon reduces incoming damage 25% and increases both melee attack speed 5% and melee damage 35% for 6 seconds."
 
 Smash="Smash"
 SmashDescription="Hard attacks with perk melee weapons do 50% more damage, do 25% more damage on head hits, and have 200% more stumble power."
@@ -1898,7 +1901,7 @@ DirectHit="High Impact Rounds"
 DirectHitDescription="Increase direct hit damage with explosive weapons 25%."
 
 Ammo="Extra Rounds"
-AmmoDescription="Increase the maximum ammo for explosive perk weapons by 5. This does not apply to C4."
+AmmoDescription="Increase the maximum ammo for explosive perk weapons by 10. This does not apply to C4."
 
 SirenResistance="Sonic Resistant Rounds"
 SirenResistanceDescription="Your explosives are immune to the siren’s scream and will always explode."
@@ -1935,7 +1938,7 @@ Passives[3]=(Title="Movement Speed",Description="Increase movement speed %x% eve
 Passives[4]=(Title="Armor Bonus",Description="Increase Armor %x% per level");
 
 HealingSurge="Symbiotic Health"
-HealingSurgeDescription="Increase total Health 25%. Healing teammates will heal you 10% of your total Health."
+HealingSurgeDescription="Increase total Health 25%. Healing teammates will heal you 6% of your total Health."
 
 Survivalist="Resilience"
 SurvivalistDescription="Increase damage resistance 1% per Health point lost, up to 60%."
@@ -2128,7 +2131,7 @@ EXPAction1="Dealing Support weapon damage"
 EXPAction2="Welding doors"
 
 HighCapMags="High Capacity Magazines"
-HighCapMagsDescription="Increase magazine capacity of perk weapons 50%."
+HighCapMagsDescription="Increase magazine capacity of perk weapons 75%."
 
 TacticalReload="Tactical Reload"
 TacticalReloadDescription="Increase reload speed with perk weapons."
@@ -2825,6 +2828,20 @@ AllCompleteRewardDescriptionString="Cyborg | Companion Backpack | Precious"
 ChanceDropDescriptionStrings[0]="Spring Ticket"
 ChanceDropDescriptionStrings[1]="Spring Golden Ticket"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2021]
+CurrentSpecialEventString="A time-limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Kicked!",DescriptionString="Stomp on 50 Zeds")
+SpecialEventObjectiveInfoList[1]=(TitleString="Weekly Lunar",DescriptionString="Complete the Weekly on Moonbase")
+SpecialEventObjectiveInfoList[2]=(TitleString="Shocking Moonlight",DescriptionString="Use the laser trap to kill 20 Zeds on Moonbase")
+SpecialEventObjectiveInfoList[3]=(TitleString="Weightlessness Skills",DescriptionString="Kill 300 Zeds while jumping in the air on Moonbase")
+SpecialEventObjectiveInfoList[4]=(TitleString="Infinite Void",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Moonbase")
+
+AllCompleteRewardDescriptionString="Astronaut | Companion Backpack | Precious"
+
+ChanceDropDescriptionStrings[0]="Summer Ticket"
+ChanceDropDescriptionStrings[1]="Summer Golden Ticket"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2930,6 +2947,26 @@ FriendlyName="Blood Thirst"
 DescriptionStrings[0]="Keep the kill streak going or die..."
 DescriptionStrings[1]="Length: Medium (7 waves)"
 ModifierDescriptions[0]="A thirst of Zed blood will continuously harm you (while the weekly icon is displayed near the health counter). Killing is the only way to regenerate your health. Select the Weekly game mode on the Matchmaking page. Perk 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Arachnophobia KFWeeklyOutBreakInformation]
+FriendlyName="Arachnophobia"
+DescriptionStrings[0]="Overpowered Stomps!"
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="We are suffering a plague of crawlers. Put on your boots and prepare to step on all of them. Select the Weekly game mode on the Matchmaking page. Perk 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Scavenger KFWeeklyOutBreakInformation]
+FriendlyName="Scavenger"
+DescriptionStrings[0]="Improvise. Adapt. Overcome."
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="Traders have been sabotaged and are empty of weapons. You must make use of the weapons that you find on the ground. Select the Weekly game mode on the Matchmaking page. Perk 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3451,6 +3488,9 @@ DisplayName="Elysium"
 
 [KF-Dystopia2029 KFMapSummary]
 DisplayName="Dystopia 2029"
+
+[KF-Moonbase KFMapSummary]
+DisplayName="Moonbase"
 
 [KFMapInfo]
 ; defaults

@@ -41,6 +41,7 @@ class EphemeralMatchStats extends Object within KFPlayerController
 
 	const MATCH_EVENT_HEAL_RECEIVED 	= 5;
 
+	const MATCH_EVENT_STOMP_GIVEN = 6;
 	 
 	
 	const MATCH_EVENT_MAX_EVENTID 	= 0x0000FFFF;
@@ -95,6 +96,7 @@ var array<AARAward> TeamAwardList;
 
 enum ETeamAwards
 {
+	ETA_ZedStomper,
 	ETA_MedicineMaster,
 	ETA_ZedSlayer,
 	ETA_Enforcer,
@@ -122,7 +124,8 @@ enum EPersonalBests
 	EPB_Assists,
 	EPB_LargeZedKill,
 	EPB_Dosh,
-	EPB_DoorWelding
+	EPB_DoorWelding,
+	EPB_ZedStomps
 };
 
 var array<AARAward> PersonalBestList;
@@ -151,6 +154,7 @@ var int 	TotalAmountHealGiven; //dialog
 var int 	TotalAmountHealReceived; //dialog
 
 var int		TotalLargeZedKills;
+var int     TotalStomps;
 
 var bool bKilledBoss;
 
@@ -209,6 +213,9 @@ function RecordIntStat(int StatID, int Value)
 
 		case MATCH_EVENT_HEAL_RECEIVED:
 			IncrementHealReceivedInWave(Value);
+			break;
+		case MATCH_EVENT_STOMP_GIVEN:
+			IncrementStompsGivenInWave(Value);
 			break;
 	}
 }
@@ -276,6 +283,16 @@ function int GetHealGivenInWave()
 	return PWRI.VectData2.Z;
 }
 
+function IncrementStompsGivenInWave(int Delta)
+{
+	PWRI.NumStomps += Delta;
+}
+
+function int GetStompsGivenInWave()
+{
+	return PWRI.NumStomps;
+}
+
 //Called at the end of the wave. @Note - End of wave is also called with the loss condition is met.  This includes at trader time.
 function RecordWaveInfo()
 {
@@ -291,6 +308,7 @@ function RecordWaveInfo()
     TotalAmountHealReceived	+= GetHealReceivedInWave();
     TotalDamageTaken 		+= GetDamageTakenInWave();
     TotalDamageDealt 		+= GetDamageDealtInWave();
+	TotalStomps             += GetStompsGivenInWave();
 
     if ( PWRI.bDiedDuringWave )
     {
@@ -325,6 +343,7 @@ function ResetLastWaveInfo()
     PWRI.bSomeSurvivedLastWave = false;
     PWRI.bOneSurvivedLastWave = false;
     PWRI.bDiedDuringWave = false;
+	PWRI.NumStomps = 0;
     ZedsKilledLastWave = 0;
 }
 
@@ -788,6 +807,9 @@ function GetPersonalBests(out Array<AARAward> PersonalBests)
 	PersonalBests.AddItem( GivePersonalBestDoshEarned() );
 	//Headshots
 	PersonalBests.AddItem( GivePersonalBestHeadShots() );
+	// Stomps
+	PersonalBests.AddItem( GivePersonalBestZedStomp() );
+
 }
 
 function int GetPistolKills()
@@ -1054,6 +1076,29 @@ function AARAward GivePersonalBestDoorWelding()
 	return PersonalBestList[EPB_DoorWelding];
 }
 
+function AARAward GivePersonalBestZedStomp()
+{
+	local int Value;
+	local KFPlayerReplicationInfo KFPRI;
+
+	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+	Value = GetPersonalBest(EPB_ZedStomps);
+
+	if(Value < KFPRI.ZedStomps)
+	{
+		PersonalBestList[EPB_ZedStomps].DisplayValue = KFPRI.ZedStomps;
+		PersonalBestList[EPB_ZedStomps].bHighLight   = true;
+
+		SavePersonalBest(EPB_ZedStomps, KFPRI.ZedStomps);
+	}
+	else
+	{
+		PersonalBestList[EPB_ZedStomps].DisplayValue = Value;
+	}
+
+	return PersonalBestList[EPB_ZedStomps];
+}
+
 static function GetTeamAward(ETeamAwards AwardIndex, out AARAward TempAwardObject, const out Array<KFPlayerController> KFPCArray)
 {
 	switch (AwardIndex)
@@ -1108,6 +1153,9 @@ static function GetTeamAward(ETeamAwards AwardIndex, out AARAward TempAwardObjec
 		case ETA_Zednnihilation:
 			Give_Zednnihilation(TempAwardObject, KFPCArray);
 				break;
+		case ETA_ZedStomper:
+			Give_ZedStomper(TempAwardObject, KFPCArray);
+			break;
 	}
 }
 
@@ -1404,6 +1452,23 @@ static function Give_Dominator(out AARAward outAward, const out Array<KFPlayerCo
 	}
 }
 
+static function Give_ZedStomper(out AARAward outAward, const out Array<KFPlayerController> KFPCArray)
+{
+	local int i;
+	for(i = 0; i < KFPCArray.Length; i++)
+	{
+		if(KFPCArray[i].MatchStats != none)
+		{
+			if(KFPCArray[i].MatchStats.TotalStomps > outAward.DisplayValue)
+			{
+				outAward.PRI = KFPCArray[i].PlayerReplicationInfo;
+				outAward.DisplayValue = KFPCArray[i].MatchStats.TotalStomps;
+				if (class'EphemeralMatchStats'.default.bShowMatchStatsLogging) LogInternal(KFPCArray[i].PlayerReplicationInfo.PlayerName @KFPCArray[i].MatchStats.TotalStomps);
+			}
+		}
+	}
+}
+
 function ReceiveAwardInfo(byte AwardID, PlayerReplicationInfo PRI, int Value)
 {
 	TeamAwardList[AwardID].PRI = PRI;
@@ -1412,20 +1477,21 @@ function ReceiveAwardInfo(byte AwardID, PlayerReplicationInfo PRI, int Value)
 
 defaultproperties
 {
-   TeamAwardList(0)=(IconPath="UI_Award_Team.UI_Award_Team-Healing",TitleIdentifier="MedicineMaster",ValueIdentifier="MedicineMasterValue")
-   TeamAwardList(1)=(IconPath="UI_Award_Team.UI_Award_Team-Kills",TitleIdentifier="ZedSlayer",ValueIdentifier="ZedSlayerValue")
-   TeamAwardList(2)=(IconPath="UI_Award_Team.UI_Award_Team-Assists",TitleIdentifier="Enforcer",ValueIdentifier="EnforcerValue")
-   TeamAwardList(3)=(IconPath="UI_Award_Team.UI_Award_Team-Damage",TitleIdentifier="Destroyer",ValueIdentifier="DestroyerValue")
-   TeamAwardList(4)=(IconPath="UI_Award_Team.UI_Award_Team-Giants",TitleIdentifier="GiantSlayer",ValueIdentifier="GiantSlayerValue")
-   TeamAwardList(5)=(IconPath="UI_Award_Team.UI_Award_Team-Dosh",TitleIdentifier="MoneyBags",ValueIdentifier="MoneyBagsValue")
-   TeamAwardList(6)=(IconPath="UI_Award_Team.UI_Award_Team-Headshots",TitleIdentifier="HeadPopper",ValueIdentifier="HeadPopperValue")
-   TeamAwardList(7)=(IconPath="UI_Award_Team.UI_Award_Team-BossKO",TitleIdentifier="Dominator",ValueIdentifier="DominatorValue")
-   TeamAwardList(8)=(IconPath="ui_award_zeds.UI_Award_ZED_RawDmg",TitleIdentifier="Carnage",ValueIdentifier="CarnageValue")
-   TeamAwardList(9)=(IconPath="ui_award_zeds.UI_Award_ZED_Kills",TitleIdentifier="Closer",ValueIdentifier="CloserValue")
-   TeamAwardList(10)=(IconPath="ui_award_zeds.UI_Award_ZED_Assists",TitleIdentifier="ComboMaker",ValueIdentifier="ComboMakerValue")
-   TeamAwardList(11)=(IconPath="ui_award_zeds.UI_Award_ZED_CC",TitleIdentifier="Grabby",ValueIdentifier="GrabbyValue")
-   TeamAwardList(12)=(IconPath="ui_award_zeds.UI_Award_ZED_SupportAoE",TitleIdentifier="ZedSupport",ValueIdentifier="ZedSupportValue")
-   TeamAwardList(13)=(IconPath="ui_award_zeds.UI_Award_ZED_MostKills",TitleIdentifier="Zednnihilation",ValueIdentifier="ZednnihilationValue")
+   TeamAwardList(0)=(IconPath="UI_Award_Team.UI_Award_Team-ZedStomper",TitleIdentifier="ZedStomper",ValueIdentifier="ZedStomperValue")
+   TeamAwardList(1)=(IconPath="UI_Award_Team.UI_Award_Team-Healing",TitleIdentifier="MedicineMaster",ValueIdentifier="MedicineMasterValue")
+   TeamAwardList(2)=(IconPath="UI_Award_Team.UI_Award_Team-Kills",TitleIdentifier="ZedSlayer",ValueIdentifier="ZedSlayerValue")
+   TeamAwardList(3)=(IconPath="UI_Award_Team.UI_Award_Team-Assists",TitleIdentifier="Enforcer",ValueIdentifier="EnforcerValue")
+   TeamAwardList(4)=(IconPath="UI_Award_Team.UI_Award_Team-Damage",TitleIdentifier="Destroyer",ValueIdentifier="DestroyerValue")
+   TeamAwardList(5)=(IconPath="UI_Award_Team.UI_Award_Team-Giants",TitleIdentifier="GiantSlayer",ValueIdentifier="GiantSlayerValue")
+   TeamAwardList(6)=(IconPath="UI_Award_Team.UI_Award_Team-Dosh",TitleIdentifier="MoneyBags",ValueIdentifier="MoneyBagsValue")
+   TeamAwardList(7)=(IconPath="UI_Award_Team.UI_Award_Team-Headshots",TitleIdentifier="HeadPopper",ValueIdentifier="HeadPopperValue")
+   TeamAwardList(8)=(IconPath="UI_Award_Team.UI_Award_Team-BossKO",TitleIdentifier="Dominator",ValueIdentifier="DominatorValue")
+   TeamAwardList(9)=(IconPath="ui_award_zeds.UI_Award_ZED_RawDmg",TitleIdentifier="Carnage",ValueIdentifier="CarnageValue")
+   TeamAwardList(10)=(IconPath="ui_award_zeds.UI_Award_ZED_Kills",TitleIdentifier="Closer",ValueIdentifier="CloserValue")
+   TeamAwardList(11)=(IconPath="ui_award_zeds.UI_Award_ZED_Assists",TitleIdentifier="ComboMaker",ValueIdentifier="ComboMakerValue")
+   TeamAwardList(12)=(IconPath="ui_award_zeds.UI_Award_ZED_CC",TitleIdentifier="Grabby",ValueIdentifier="GrabbyValue")
+   TeamAwardList(13)=(IconPath="ui_award_zeds.UI_Award_ZED_SupportAoE",TitleIdentifier="ZedSupport",ValueIdentifier="ZedSupportValue")
+   TeamAwardList(14)=(IconPath="ui_award_zeds.UI_Award_ZED_MostKills",TitleIdentifier="Zednnihilation",ValueIdentifier="ZednnihilationValue")
    PersonalBestList(0)=(IconPath="UI_Award_PersonalSolo.UI_Award_PersonalSolo-Knife",TitleIdentifier="EPB_KnifeKills",ValueIdentifier="EPB_KnifeKillsValue")
    PersonalBestList(1)=(IconPath="UI_Award_PersonalSolo.UI_Award_PersonalSolo-Pistol",TitleIdentifier="EPB_PistolKills",ValueIdentifier="EPB_PistolKillsValue")
    PersonalBestList(2)=(IconPath="UI_Award_PersonalMulti.UI_Award_PersonalMulti-Headshots",TitleIdentifier="EPB_HeadShots",ValueIdentifier="EPB_HeadShotsValue")
@@ -1435,6 +1501,7 @@ defaultproperties
    PersonalBestList(6)=(IconPath="UI_Award_PersonalMulti.UI_Award_PersonalMulti-Giants",TitleIdentifier="EPB_LargeZedKill",ValueIdentifier="EPB_LargeZedKillValue")
    PersonalBestList(7)=(IconPath="UI_Award_PersonalMulti.UI_Award_PersonalMulti-Dosh",TitleIdentifier="EPB_Dosh",ValueIdentifier="EPB_DoshValue")
    PersonalBestList(8)=(IconPath="ui_weaponselect_tex.UI_WeaponSelect_Welder",TitleIdentifier="EPB_DoorWelding",ValueIdentifier="EPB_DoorWeldingValue")
+   PersonalBestList(9)=(IconPath="UI_Award_PersonalSolo.UI_Award_PersonalSolo-ZedStomper",TitleIdentifier="EPB_ZedStomps",ValueIdentifier="EPB_ZedStompsValue")
    Name="Default__EphemeralMatchStats"
    ObjectArchetype=Object'Core.Default__Object'
 }

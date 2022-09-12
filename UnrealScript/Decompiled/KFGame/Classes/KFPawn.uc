@@ -465,6 +465,8 @@ var const byte RagdollWarningLevel;
 var KFPawn.ESpecialMove SpecialMove;
 var byte SpecialMoveFlags;
 var transient byte CurrDialogPriority;
+var repnotify byte WeaponSpecialAction;
+var transient byte LastHitZoneIndex;
 var float LastTakeHitTimeout;
 var Vector LastRadiusHurtOrigin;
 var array<MaterialInstance> BloodSplatterDecalMaterials;
@@ -638,7 +640,8 @@ replication
         bIgnoreTeamCollision;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
-        SecondaryWeaponAmbientSound, WeaponAmbientSound;
+        SecondaryWeaponAmbientSound, WeaponAmbientSound, 
+        WeaponSpecialAction;
 
      if(bEnableAimOffset && !bNetOwner || bDemoRecording)
         ReplicatedAimOffsetPct;
@@ -787,6 +790,8 @@ simulated event ReplicatedEvent(name VarName)
                 OnStartFire();
             }
             break;
+        case 'WeaponSpecialAction':
+            OnWeaponSpecialAction(WeaponSpecialAction);
         default:
             break;
     }
@@ -1340,6 +1345,19 @@ simulated function OnStartFire()
     if(WeaponAttachment != none)
     {
         WeaponAttachment.StartFire();
+    }
+}
+
+simulated function OnWeaponSpecialAction(int Arg)
+{
+    if(Role == ROLE_Authority)
+    {
+        WeaponSpecialAction = byte(Arg);
+        bNetDirty = true;
+    }
+    if(WeaponAttachment != none)
+    {
+        WeaponAttachment.OnSpecialEvent(Arg);
     }
 }
 
@@ -1993,7 +2011,6 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     bAllowHeadshot = CanCountHeadshots();
     OldHealth = Health;
     super(Pawn).TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
-    HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), class<KFDamageType>(DamageType), DamageCauser);
     actualDamage = OldHealth - Health;
     if(actualDamage > 0)
     {
@@ -2084,6 +2101,7 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
     {
         InDamage = Health - 1;
     }
+    LastHitZoneIndex = byte(HitZoneIdx);
     if(bLogTakeDamage)
     {
         LogInternal(((((((((string(self) @ string(GetFuncName())) @ " After KFPawn adjustment Damage=") $ string(InDamage)) @ "Momentum=") $ string(Momentum)) @ "Zone=") $ string(HitInfo.BoneName)) @ "DamageType=") $ string(DamageType));
@@ -3008,11 +3026,11 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 
 simulated function AdjustAffliction(out float AfflictionPower);
 
-function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
+function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<DamageType> DamageType, Actor DamageCauser)
 {
     if(AfflictionHandler != none)
     {
-        AfflictionHandler.NotifyTakeHit(DamageInstigator, HitDir, DamageType, DamageCauser);
+        AfflictionHandler.NotifyTakeHit(DamageInstigator, HitDir, class<KFDamageType>(DamageType), DamageCauser);
     }
 }
 

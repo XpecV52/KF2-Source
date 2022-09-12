@@ -37,7 +37,7 @@ AlternateFireDescription="大部分的主要武器都具有其他射擊模式。
 FlashLightBatteryTitleKey="使用手電筒"
 FlashLightBatteryDescriptionKey="有的地方相當黑暗。按下 <font color="#caab05">%x%</font> 開啟或關閉你的<font color="#caab05">手電筒</font>。你的手電筒電池電力會逐漸消耗。電源用盡時手電筒會自動熄滅，並直接開始充電。"
 GrenadeTitleKey="使用手榴彈"
-GrenadeDescriptionKey="手榴彈讓你方便處理一群你附近成群的 Zed。各職業在其<font color="#caab05">武器庫</font>裡有不同的手榴彈，都會對 Zed 造成傷害，但可能分別有其他效果。按下 <font color="#caab05">%x%</font> 來投擲手榴彈。"
+GrenadeDescriptionKey="手榴彈讓你方便處理一群你附近成群的Zed。各職業在其<font color="#caab05">武器庫</font>裡有不同的手榴彈，都會對 Zed 造成傷害，但可能分別有其他效果。按<font color="#caab05">%x%</font>擲出手榴彈。"
 
 ;Wave 1 end
 TraderTimeTitleKey="商人時間"
@@ -770,6 +770,30 @@ ItemName="重力內爆器"
 ItemCategory="炸藥"
 ItemDescription="•預設攻擊模式會發射內爆榴彈。\n•次要攻擊模式會發射吸引敵人的重力榴彈。\n•研發以來最具吸引力的武器之一。"
 SharedUnlockSource="重力內爆器武器同捆包"
+
+[KFWeap_HRG_BlastBrawlers]
+ItemName="HRG 爆破大亂鬥"
+ItemCategory="近戰"
+ItemDescription="•主要攻擊：發射2次爆炸，每隻拳頭各一次。\n•次要攻擊：強力近戰攻擊。\n•研究團隊也想不出任何驚人之語。"
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="HRG稜堡"
+ItemCategory="輕機槍"
+ItemDescription="•僅限全自動射擊模式。\n•Alt-主要攻擊可啟動一道能量屏障，減少即將受到的傷害。\n•它可攻可守，但最重要的是它屬於SWAT。"
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="FAMAS萬能鑰匙"
+ItemCategory="突擊步槍"
+ItemDescription="•預設的射擊模式是以FAMAS連續射擊3次。\n•Alt-主要攻擊是泵動式M26下掛霰彈槍射擊。\n•突擊步槍？霰彈槍？兩樣都很棒。"
+SecondaryAmmo="FAMAS霰彈槍彈殼"
+SharedUnlockSource="FAMAS萬能鑰匙武器同捆包"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="鋁熱槍膛"
+ItemCategory="火焰"
+ItemDescription="•主要攻擊是發射鋁熱手榴彈，手榴彈於4秒後爆炸。\n•Alt-主要攻擊以手動引爆所有鋁熱劑。\n•就像光之於昆蟲，火之於Zed。"
+SharedUnlockSource="鋁熱槍膛武器同捆包"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -44,6 +44,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
+BodyMesh14="우주인 수트 의상"
 HeadMesh0="가스 마스크"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -242,6 +243,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
+BodyMesh14="우주인 수트 의상"
 HeadMesh0="수염의 힘!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -461,6 +463,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적"
 BodyMesh13="리퍼 복장"
+BodyMesh14="우주인 수트 의상"
 HeadMesh0="스컬리 마스크"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -626,6 +629,7 @@ BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
+BodyMesh15="우주인 수트 의상"
 HeadMesh0="헤어"
 
 [chr_briar_archetype.BodyMesh0]
@@ -791,6 +795,7 @@ BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
+BodyMesh15="우주인 수트 의상"
 HeadMesh0="가스 마스크"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -1081,6 +1086,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
+BodyMesh15="우주인 수트 의상"
 HeadMesh0="페이스"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1237,6 +1243,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
+BodyMesh14="우주인 수트 의상"
 HeadMesh0="헤어"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -2255,6 +2262,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
+BodyMesh14="우주인 수트 의상"
 HeadMesh0="페이스"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2400,6 +2408,7 @@ BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
+BodyMesh15="우주인 수트 의상"
 HeadMesh0="헤어"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2578,6 +2587,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
+BodyMesh14="우주인 수트 의상"
 HeadMesh0="모호크"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2735,6 +2745,7 @@ BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
+BodyMesh15="우주인 수트 의상"
 HeadMesh0="헤어"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2886,6 +2897,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
+BodyMesh14="우주인 수트 의상"
 HeadMesh0="페이스"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3039,6 +3051,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
+BodyMesh14="우주인 수트 의상"
 HeadMesh0="헤어"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3331,6 +3344,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
+BodyMesh14="우주인 수트 의상"
 HeadMesh0="기본 머리"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -6559,3 +6573,260 @@ AttachmentSkin0="프레셔스"
 [Cosmetic_BloodThirst_Backpack_ARCH]
 Attachment="피의 갈증 백팩"
 AttachmentSkin0="프레셔스"
+
+[Cosmetic_Foundry_DynamiteBox_ARCH]
+Attachment="파운드리 다이너마이트 백팩"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="모래색"
+AttachmentSkin4="올리브"
+AttachmentSkin5="틸"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Foundry_LanternBackpack_ARCH]
+Attachment="파운드리 랜턴 백팩"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="파이어"
+AttachmentSkin4="올리브"
+AttachmentSkin5="틸"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Foundry_MinerHat_ARCH]
+Attachment="파운드리 광부 헬멧"
+AttachmentSkin0="브라운"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="모래색"
+AttachmentSkin4="올리브"
+AttachmentSkin5="틸"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Foundry_HardHat_ARCH]
+Attachment="파운드리 안전모"
+AttachmentSkin0="주의"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="바이오하자드"
+AttachmentSkin5="테크"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Foundry_HardHatShield_ARCH]
+Attachment="파운드리 안전모 및 실드"
+AttachmentSkin0="주의"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="바이오하자드"
+AttachmentSkin5="테크"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Foundry_CastingBucket_ARCH]
+Attachment="파운드리 주조 버켓 백팩"
+AttachmentSkin0="주의"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="바이오하자드"
+AttachmentSkin5="테크"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Foundry_WeldingHelmet_ARCH]
+Attachment="파운드리 용접 헬멧"
+AttachmentSkin0="주의"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="바이오하자드"
+AttachmentSkin5="테크"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Foundry_WeldingTank_ARCH]
+Attachment="파운드리 용접 탱크 백팩"
+AttachmentSkin0="주의"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="바이오하자드"
+AttachmentSkin5="테크"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Arachnophobia_Backpack_ARCH]
+Attachment="Crawler 레그 백팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_Astronaut_StrikeForceHelmet_ARCH]
+Attachment="우주인 공격대 헬멧"
+AttachmentSkin0="심우주"
+AttachmentSkin1="특이점"
+AttachmentSkin2="스타버스트"
+AttachmentSkin3="갤럭시"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Astronaut_CrewGoggles_ARCH]
+Attachment="우주인 크루 고글"
+AttachmentSkin0="심우주"
+AttachmentSkin1="특이점"
+AttachmentSkin2="스타버스트"
+AttachmentSkin3="갤럭시"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Astronaut_CrewHeadSet_ARCH]
+Attachment="우주인 크루 헤드셋"
+AttachmentSkin0="심우주"
+AttachmentSkin1="특이점"
+AttachmentSkin2="스타버스트"
+AttachmentSkin3="갤럭시"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Astronaut_CrewMask_ARCH]
+Attachment="우주인 크루 마스크"
+AttachmentSkin0="심우주"
+AttachmentSkin1="특이점"
+AttachmentSkin2="스타버스트"
+AttachmentSkin3="갤럭시"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Astronaut_JetPack_ARCH]
+Attachment="우주인 제트팩"
+AttachmentSkin0="심우주"
+AttachmentSkin1="특이점"
+AttachmentSkin2="스타버스트"
+AttachmentSkin3="갤럭시"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Astronaut_RadarArmband_ARCH]
+Attachment="우주인 레이더 암밴드"
+AttachmentSkin0="심우주"
+AttachmentSkin1="특이점"
+AttachmentSkin2="스타버스트"
+AttachmentSkin3="갤럭시"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Astronaut_CompanionBackpack_ARCH]
+Attachment="우주인 동반자 백팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_Astronaut_Helmet_ARCH]
+Attachment="우주인 헬멧"
+AttachmentSkin0="심우주"
+AttachmentSkin1="특이점"
+AttachmentSkin2="스타버스트"
+AttachmentSkin3="갤럭시"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_Astronaut_O2Backpack_ARCH]
+Attachment="우주인 산소 백팩"
+AttachmentSkin0="심우주"
+AttachmentSkin1="특이점"
+AttachmentSkin2="스타버스트"
+AttachmentSkin3="갤럭시"
+AttachmentSkin4="프레셔스"
+
+[CHR_Tanaka_Archetype.BodyMesh15]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[CHR_Ana_Archetype.BodyMesh14]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[CHR_BadSanta_Archetype.BodyMesh14]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[chr_briar_archetype.BodyMesh15]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[chr_DJSkully_archetype.BodyMesh14]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[CHR_Jagerhorn_Archetype.BodyMesh14]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[chr_mark_archetype.BodyMesh15]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[chr_rockabilly_archetype.BodyMesh14]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[chr_strasser_archetype.BodyMesh14]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"
+
+[chr_alan_archetype.BodyMesh14]
+BodySkin0="심우주"
+BodySkin1="특이점"
+BodySkin2="스타버스트"
+BodySkin3="갤럭시"
+BodySkin4="프레셔스"

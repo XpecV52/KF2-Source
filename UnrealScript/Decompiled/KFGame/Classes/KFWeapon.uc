@@ -266,6 +266,7 @@ var(Inventory) bool bUseGrenadeAsSecondaryAmmo;
 var bool bGivenAtStart;
 /** Is this a no magazine/clip weapon e.g. the hunting shotgun? */
 var(Inventory) bool bNoMagazine;
+var(Inventory) bool bUsesSecondaryAmmoAltHUD;
 var(Inventory) bool bCanBeReloaded;
 var(Inventory) bool bReloadFromMagazine;
 var const bool bInfiniteSpareAmmo;
@@ -3343,6 +3344,11 @@ static simulated event bool UsesSecondaryAmmo()
     return default.MagazineCapacity[1] > 0;
 }
 
+static simulated event bool UsesAltSecondaryAmmo()
+{
+    return default.bUsesSecondaryAmmoAltHUD;
+}
+
 static simulated event bool UsesGrenadesAsSecondaryAmmo()
 {
     return default.bUseGrenadeAsSecondaryAmmo;
@@ -3633,6 +3639,11 @@ simulated function string GetSpecialAmmoForHUD();
 simulated function int GetSecondaryAmmoForHUD()
 {
     return AmmoCount[1] + SpareAmmoCount[1];
+}
+
+simulated function int GetSecondarySpareAmmoForHUD()
+{
+    return -1;
 }
 
 simulated function bool HasToReloadSecondaryAmmoForHUD()

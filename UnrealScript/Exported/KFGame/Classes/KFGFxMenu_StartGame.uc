@@ -279,7 +279,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 		case SEI_Spring:
 			return class'KFGFxSpecialEventObjectivesContainer_Spring2021';
 		case SEI_Summer:
-			return class'KFGFxSpecialEventObjectivesContainer_Summer2020';
+			return class'KFGFxSpecialEventObjectivesContainer_Summer2021';
 		case SEI_Fall:
 			return class'KFGFxSpecialEventObjectivesContainer_Fall2020';
 		case SEI_Winter:
@@ -2048,6 +2048,7 @@ defaultproperties
    StockMaps(31)="kf-hellmarkstation"
    StockMaps(32)="kf-elysium"
    StockMaps(33)="kf-dystopia2029"
+   StockMaps(34)="kf-moonbase"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
    SubWidgetBindings(1)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
    SubWidgetBindings(2)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')

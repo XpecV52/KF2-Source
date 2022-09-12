@@ -327,6 +327,9 @@ native function SetChokePointCollision(bool bUseChokeCollision);
 // Export UKFPawn_Monster::execCheckEncroachingWorldGeometry(FFrame&, void* const)
 native function bool CheckEncroachingWorldGeometry();
 
+// Export UKFPawn_Monster::execGetGravityZ(FFrame&, void* const)
+native function float GetGravityZ();
+
 simulated event ReplicatedEvent(name VarName)
 {
     switch(VarName)
@@ -988,6 +991,46 @@ function SetMovementPhysics()
 
 function CrushedBy(Pawn OtherPawn)
 {
+    local KFGameInfo KFGI;
+    local KFPlayerController_WeeklySurvival KFPC_WS;
+    local KFPawn_Human KFPH;
+    local KFPlayerController KFPC;
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPH = KFPawn_Human(OtherPawn);
+    if(KFPH != none)
+    {
+        KFPC = KFPlayerController(KFPH.Controller);
+        if(KFPC != none)
+        {
+            KFPC.NotifyHitGiven(Class'DmgType_Crushed');
+        }
+        KFGI = KFGameInfo(WorldInfo.Game);
+        if(KFGI != none)
+        {
+            if(KFGI.OutbreakEvent.ActiveEvent.bGoompaJumpEnabled)
+            {
+                OtherPawn.Velocity = OtherPawn.Velocity * vect(1, 1, 0);
+                OtherPawn.AddVelocity(vect(0, 0, 1) * KFGI.OutbreakEvent.ActiveEvent.GoompaJumpImpulse, Instigator.Location, none);
+                TakeDamage(KFGI.OutbreakEvent.ActiveEvent.GoompaJumpDamage, OtherPawn.Controller, Location, vect(0, 0, 0), Class'KFDT_GoompaStomp');
+                KFPC_WS = KFPlayerController_WeeklySurvival(OtherPawn.Controller);
+                if(KFPC_WS != none)
+                {
+                    KFPC_WS.UpdateGoompaStreak();
+                }
+                if((KFPC != none) && KFPC.MatchStats != none)
+                {
+                    KFPC.MatchStats.RecordIntStat(6, 1);
+                }
+                KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+                if(KFPRI != none)
+                {
+                    ++ KFPRI.ZedStomps;
+                }
+                return;
+            }
+        }
+    }
     super.CrushedBy(OtherPawn);
     if(((((bKnockdownWhenJumpedOn && Health > 0) && !IsDoingSpecialMove(11)) && (OtherPawn.Location.Z - Location.Z) > (OtherPawn.CylinderComponent.CollisionHeight + CylinderComponent.CollisionHeight)) && !IsHumanControlled()) && GetTeamNum() != OtherPawn.GetTeamNum())
     {
@@ -1519,6 +1562,7 @@ function AdjustDamageForInstigator(out int InDamage, Controller InstigatedBy, cl
     local KFPawn_Human KFPH;
     local KFPerk InstigatorPerk;
     local KFPowerUp InstigatorPowerUp;
+    local KFGameInfo KFGI;
     local float TempDamage;
 
     KFPC = KFPlayerController(InstigatedBy);
@@ -1533,6 +1577,11 @@ function AdjustDamageForInstigator(out int InDamage, Controller InstigatedBy, cl
         if(InstigatorPowerUp != none)
         {
             InstigatorPowerUp.ModifyDamageGiven(InDamage, DamageCauser, self, KFPC, class<KFDamageType>(DamageType), HitZoneIdx);
+        }
+        KFGI = KFGameInfo(WorldInfo.Game);
+        if((KFGI != none) && KFGI.OutbreakEvent != none)
+        {
+            KFGI.ModifyDamageGiven(InDamage, DamageCauser, self, KFPC, class<KFDamageType>(DamageType), HitZoneIdx);
         }
         if(KFPC.Pawn != none)
         {

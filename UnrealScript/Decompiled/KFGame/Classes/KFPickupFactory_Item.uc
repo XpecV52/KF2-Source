@@ -18,7 +18,7 @@ struct native ItemPickup
      */
     var() class<Inventory> ItemClass;
     /** Chance relative to other valid attacks (Works like AnimNodeRandom) */
-    var() const float Priority<ClampMin=0.0>;
+    var() float Priority<ClampMin=0.0>;
 
     structdefaultproperties
     {
@@ -36,6 +36,21 @@ replication
 {
      if(bNetDirty && Role == ROLE_Authority)
         PickupIndex;
+}
+
+simulated event PreBeginPlay()
+{
+    local KFGameInfo KFGI;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if(((KFGI != none) && KFGI.OutbreakEvent != none) && KFGI.OutbreakEvent.ActiveEvent.bUnlimitedWeaponPickups)
+    {
+        if(bKismetDriven && bEnabledAtStart)
+        {
+            bKismetDriven = false;
+        }
+    }
+    super(PickupFactory).PreBeginPlay();
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -81,12 +96,30 @@ function Reset()
     SetPickupMesh();
 }
 
+simulated event OverridePickup()
+{
+    PickupIndex = byte(ChooseWeaponPickup());
+    bNetDirty = true;
+    SetPickupMesh();
+}
+
 function SetRespawn()
 {
+    local KFGameInfo KFGI;
+
     if(bKismetDriven && bEnabledAtStart)
     {
         PickupIndex = byte(ChooseWeaponPickup());
-        SetPickupMesh();
+        SetPickupMesh();        
+    }
+    else
+    {
+        KFGI = KFGameInfo(WorldInfo.Game);
+        if(((KFGI != none) && KFGI.OutbreakEvent != none) && KFGI.OutbreakEvent.ActiveEvent.bUnlimitedWeaponPickups)
+        {
+            StartSleeping();
+            return;
+        }
     }
     super.SetRespawn();
 }
@@ -143,6 +176,10 @@ native simulated function GetPickupMesh(class<KFWeapon> ItemClass);
 
 simulated function SetPickupMesh()
 {
+    if(PickupIndex >= ItemPickups.Length)
+    {
+        return;
+    }
     if(ItemPickups[PickupIndex].ItemClass.Name == ArmorClassName)
     {
         FinalizePickupMesh(StaticMeshComponent(ItemPickups[PickupIndex].ItemClass.default.PickupFactoryMesh).StaticMesh);        
@@ -164,6 +201,10 @@ simulated event FinalizePickupMesh(StaticMesh NewMesh)
 
 function GiveTo(Pawn P)
 {
+    if(PickupIndex >= ItemPickups.Length)
+    {
+        return;
+    }
     if(ItemPickups[PickupIndex].ItemClass.Name == ArmorClassName)
     {
         GiveArmor(P);        
@@ -262,7 +303,7 @@ function ActivateNewPickup(Pawn P)
 
 function bool CurrentPickupIsWeapon()
 {
-    if(ItemPickups.Length == 0)
+    if((ItemPickups.Length == 0) || ItemPickups.Length <= PickupIndex)
     {
         return false;
     }
@@ -271,7 +312,7 @@ function bool CurrentPickupIsWeapon()
 
 function bool CurrentPickupIsArmor()
 {
-    if(ItemPickups.Length == 0)
+    if((ItemPickups.Length == 0) || ItemPickups.Length <= PickupIndex)
     {
         return false;
     }

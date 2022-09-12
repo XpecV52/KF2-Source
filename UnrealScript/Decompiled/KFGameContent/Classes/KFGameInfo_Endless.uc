@@ -157,7 +157,7 @@ function bool TrySetNextWaveSpecial()
 
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
-    if(!bWaveStarted)
+    if((!bWaveStarted && !MyKFGRI.bTraderIsOpen) && WinCondition != 1)
     {
         return;
     }
@@ -632,7 +632,7 @@ function SetMonsterDefaults(KFPawn_Monster P)
 
 defaultproperties
 {
-    SpecialWaveTypes(0)=245
+    SpecialWaveTypes(0)=252
     SpecialWaveTypes(1)=1
     SpecialWaveTypes(2)=0
     SpecialWaveTypes(3)=0
@@ -640,8 +640,8 @@ defaultproperties
     SpecialWaveTypes(5)=0
     SpecialWaveTypes(6)=0
     SpecialWaveTypes(7)=0
-    SpecialWaveTypes(8)=252
-    SpecialWaveTypes(9)=1
+    SpecialWaveTypes(8)=8
+    SpecialWaveTypes(9)=2
     SpecialWaveTypes(10)=0
     SpecialWaveStart=6
     OutbreakWaveStart=6

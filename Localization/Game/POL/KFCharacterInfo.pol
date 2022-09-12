@@ -44,6 +44,7 @@ BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
+BodyMesh14="Strój skafandra astronauty"
 HeadMesh0="Maska gazowa"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -242,6 +243,7 @@ BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
+BodyMesh14="Strój skafandra astronauty"
 HeadMesh0="Moc brody!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -461,6 +463,7 @@ BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Kosmiczny pirat"
 BodyMesh13="Strój Reaper"
+BodyMesh14="Strój skafandra astronauty"
 HeadMesh0="Maska Scully'ego"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -626,6 +629,7 @@ BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
 BodyMesh14="Strój Reaper"
+BodyMesh15="Strój skafandra astronauty"
 HeadMesh0="Włosy"
 
 [chr_briar_archetype.BodyMesh0]
@@ -791,6 +795,7 @@ BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
 BodyMesh14="Strój Reaper"
+BodyMesh15="Strój skafandra astronauty"
 HeadMesh0="Maska gazowa"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -1081,6 +1086,7 @@ BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
+BodyMesh15="Strój skafandra astronauty"
 HeadMesh0="Twarz"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1237,6 +1243,7 @@ BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
+BodyMesh14="Strój skafandra astronauty"
 HeadMesh0="Włosy"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -2255,6 +2262,7 @@ BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
+BodyMesh14="Strój skafandra astronauty"
 HeadMesh0="Twarz"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2400,6 +2408,7 @@ BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
 BodyMesh14="Strój Reaper"
+BodyMesh15="Strój skafandra astronauty"
 HeadMesh0="Włosy"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2578,6 +2587,7 @@ BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
+BodyMesh14="Strój skafandra astronauty"
 HeadMesh0="Irokez"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2735,6 +2745,7 @@ BodyMesh11="Łowca wiedźm"
 BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
 BodyMesh14="Strój Reaper"
+BodyMesh15="Strój skafandra astronauty"
 HeadMesh0="Włosy"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2886,6 +2897,7 @@ BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
+BodyMesh14="Strój skafandra astronauty"
 HeadMesh0="Twarz"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3039,6 +3051,7 @@ BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
+BodyMesh14="Strój skafandra astronauty"
 HeadMesh0="Włosy"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3331,6 +3344,7 @@ BodyMesh10="Łowca wiedźm"
 BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
+BodyMesh14="Strój skafandra astronauty"
 HeadMesh0="Domyślna głowa"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -6559,3 +6573,260 @@ AttachmentSkin0="Cenne"
 [Cosmetic_BloodThirst_Backpack_ARCH]
 Attachment="Plecak: pragnienie krwi"
 AttachmentSkin0="Cenne"
+
+[Cosmetic_Foundry_DynamiteBox_ARCH]
+Attachment="Plecak: dynamit z odlewni"
+AttachmentSkin0="Brązowe"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Białe"
+AttachmentSkin3="Piaskowe"
+AttachmentSkin4="Oliwkowe"
+AttachmentSkin5="Turkusowe"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Foundry_LanternBackpack_ARCH]
+Attachment="Plecak: lampa z odlewni"
+AttachmentSkin0="Brązowe"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Białe"
+AttachmentSkin3="Ogniowe"
+AttachmentSkin4="Oliwkowe"
+AttachmentSkin5="Turkusowe"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Foundry_MinerHat_ARCH]
+Attachment="Hełm górnika odlewni"
+AttachmentSkin0="Brązowe"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Białe"
+AttachmentSkin3="Piaskowe"
+AttachmentSkin4="Oliwkowe"
+AttachmentSkin5="Turkusowe"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Foundry_HardHat_ARCH]
+Attachment="Kask odlewni"
+AttachmentSkin0="Uwaga"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Białe"
+AttachmentSkin3="Napięcie"
+AttachmentSkin4="Biohazard"
+AttachmentSkin5="Technologia"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Foundry_HardHatShield_ARCH]
+Attachment="Kask i tarcza odlewni"
+AttachmentSkin0="Uwaga"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Białe"
+AttachmentSkin3="Napięcie"
+AttachmentSkin4="Biohazard"
+AttachmentSkin5="Technologia"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Foundry_CastingBucket_ARCH]
+Attachment="Plecak: wiadro z odlewni"
+AttachmentSkin0="Uwaga"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Białe"
+AttachmentSkin3="Napięcie"
+AttachmentSkin4="Biohazard"
+AttachmentSkin5="Technologia"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Foundry_WeldingHelmet_ARCH]
+Attachment="Hełm spawalniczy z odlewni"
+AttachmentSkin0="Uwaga"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Białe"
+AttachmentSkin3="Napięcie"
+AttachmentSkin4="Biohazard"
+AttachmentSkin5="Technologia"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Foundry_WeldingTank_ARCH]
+Attachment="Plecak: zbiornik z odlewni"
+AttachmentSkin0="Uwaga"
+AttachmentSkin1="Czarne"
+AttachmentSkin2="Białe"
+AttachmentSkin3="Napięcie"
+AttachmentSkin4="Biohazard"
+AttachmentSkin5="Technologia"
+AttachmentSkin6="Cenne"
+
+[Cosmetic_Arachnophobia_Backpack_ARCH]
+Attachment="Plecak: nogi pełzacza"
+AttachmentSkin0="Cenne"
+
+[Cosmetic_Astronaut_StrikeForceHelmet_ARCH]
+Attachment="Hełm astronauty z drużyny uderzeniowej"
+AttachmentSkin0="Odległy kosmos"
+AttachmentSkin1="Osobliwość"
+AttachmentSkin2="Gwiezdna eksplozja"
+AttachmentSkin3="Galaktyka"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Astronaut_CrewGoggles_ARCH]
+Attachment="Gogle astronauty z załogi"
+AttachmentSkin0="Odległy kosmos"
+AttachmentSkin1="Osobliwość"
+AttachmentSkin2="Gwiezdna eksplozja"
+AttachmentSkin3="Galaktyka"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Astronaut_CrewHeadSet_ARCH]
+Attachment="Słuchawki astronauty z załogi"
+AttachmentSkin0="Odległy kosmos"
+AttachmentSkin1="Osobliwość"
+AttachmentSkin2="Gwiezdna eksplozja"
+AttachmentSkin3="Galaktyka"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Astronaut_CrewMask_ARCH]
+Attachment="Maska astronauty z załogi"
+AttachmentSkin0="Odległy kosmos"
+AttachmentSkin1="Osobliwość"
+AttachmentSkin2="Gwiezdna eksplozja"
+AttachmentSkin3="Galaktyka"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Astronaut_JetPack_ARCH]
+Attachment="Plecak odrzutowy astronauty"
+AttachmentSkin0="Odległy kosmos"
+AttachmentSkin1="Osobliwość"
+AttachmentSkin2="Gwiezdna eksplozja"
+AttachmentSkin3="Galaktyka"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Astronaut_RadarArmband_ARCH]
+Attachment="Przepaska radarowa astronauty"
+AttachmentSkin0="Odległy kosmos"
+AttachmentSkin1="Osobliwość"
+AttachmentSkin2="Gwiezdna eksplozja"
+AttachmentSkin3="Galaktyka"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Astronaut_CompanionBackpack_ARCH]
+Attachment="Plecak: towarzysz astronauty"
+AttachmentSkin0="Cenne"
+
+[Cosmetic_Astronaut_Helmet_ARCH]
+Attachment="Hełm astronauty"
+AttachmentSkin0="Odległy kosmos"
+AttachmentSkin1="Osobliwość"
+AttachmentSkin2="Gwiezdna eksplozja"
+AttachmentSkin3="Galaktyka"
+AttachmentSkin4="Cenne"
+
+[Cosmetic_Astronaut_O2Backpack_ARCH]
+Attachment="Plecak: O2 astronauty"
+AttachmentSkin0="Odległy kosmos"
+AttachmentSkin1="Osobliwość"
+AttachmentSkin2="Gwiezdna eksplozja"
+AttachmentSkin3="Galaktyka"
+AttachmentSkin4="Cenne"
+
+[CHR_Tanaka_Archetype.BodyMesh15]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[CHR_Ana_Archetype.BodyMesh14]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[CHR_BadSanta_Archetype.BodyMesh14]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[chr_briar_archetype.BodyMesh15]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[chr_DJSkully_archetype.BodyMesh14]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[CHR_Jagerhorn_Archetype.BodyMesh14]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[chr_mark_archetype.BodyMesh15]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[chr_rockabilly_archetype.BodyMesh14]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[chr_strasser_archetype.BodyMesh14]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"
+
+[chr_alan_archetype.BodyMesh14]
+BodySkin0="Odległy kosmos"
+BodySkin1="Osobliwość"
+BodySkin2="Gwiezdna eksplozja"
+BodySkin3="Galaktyka"
+BodySkin4="Cenne"

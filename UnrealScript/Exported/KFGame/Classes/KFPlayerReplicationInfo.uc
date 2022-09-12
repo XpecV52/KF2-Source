@@ -309,6 +309,7 @@ class KFPlayerReplicationInfo extends PlayerReplicationInfo
 
 
 
+
 	
 
 
@@ -506,6 +507,8 @@ var 			bool 			bNukeActive;
 var 			bool 			bConcussiveActive;
 /** Certain perks can supply ammo etc. We need to replicate that for the HUD */
 var 			byte 			PerkSupplyLevel;
+/** Number of stomps during Arachnophobia */
+var             int             ZedStomps;
 
 /************************************
  *  Not replicated Perk Data,
@@ -584,7 +587,7 @@ replication
 		RepCustomizationInfo, NetPerkIndex, ActivePerkLevel, ActivePerkPrestigeLevel, bHasSpawnedIn,
 		CurrentPerkClass, bObjectivePlayer, Assists, PlayerHealth, PlayerHealthPercent,
 		bExtraFireRange, bSplashActive, bNukeActive, bConcussiveActive, PerkSupplyLevel,
-		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID, bCarryingCollectible;
+		CharPortrait, DamageDealtOnTeam, bVOIPRegisteredWithOSS, CurrentVoiceCommsRequest,CurrentHeadShotEffectID, bCarryingCollectible, ZedStomps;
 
   	// sent to non owning clients
  	if ( bNetDirty && (!bNetOwner || bDemoRecording) )

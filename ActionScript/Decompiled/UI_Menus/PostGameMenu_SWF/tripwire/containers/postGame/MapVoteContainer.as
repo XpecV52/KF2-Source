@@ -250,10 +250,10 @@ package tripwire.containers.postGame
         
         public function castVote(param1:int, param2:Boolean = false) : void
         {
-            this.yourMapVoteIndex = param1;
-            ExternalInterface.call("Callback_MapVote",param1,param2);
+            this.yourMapVoteIndex = this.mapVoteList.dataProvider.requestItemAt(param1).mapindex;
+            ExternalInterface.call("Callback_MapVote",this.yourMapVoteIndex,param2);
             this.votedMapNameText.text = this.mapVoteList.dataProvider.requestItemAt(param1).label;
-            this.mapSource = this.mapVoteList.dataProvider.requestItemAt(this.yourMapVoteIndex).mapSource;
+            this.mapSource = this.mapVoteList.dataProvider.requestItemAt(param1).mapSource;
         }
         
         public function set mapSource(param1:String) : *

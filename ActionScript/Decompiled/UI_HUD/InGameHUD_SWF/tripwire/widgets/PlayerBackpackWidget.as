@@ -58,6 +58,12 @@ package tripwire.widgets
         
         private var _secondaryLoader:UILoader = null;
         
+        private var _secondaryAltAmmoTF:TextField = null;
+        
+        private var _secondaryAltSpareTF:TextField = null;
+        
+        private var _secondaryAltConnectorMC:MovieClip = null;
+        
         private var _grenadeIconLoader:UILoader = null;
         
         private var _doshBarkPrefix:TextField = null;
@@ -105,6 +111,9 @@ package tripwire.widgets
         {
             this._secondaryAmmoTF = this.secondaryAmmoContainer.ammoTextField;
             this._secondaryLoader = this.secondaryAmmoContainer.secondaryLoader;
+            this._secondaryAltAmmoTF = this.secondaryAmmoContainer.AltSecondaryAmmoText;
+            this._secondaryAltSpareTF = this.secondaryAmmoContainer.AltSecondarySpareText;
+            this._secondaryAltConnectorMC = this.secondaryAmmoContainer.AltConnector;
             this._ammoContainerMC = this.AmmoContainer;
             this._storedAmmoTF = this.AmmoContainer.AmmoInfo.StoredAmmoTextField;
             this._magazineAmmoTF = this.AmmoContainer.AmmoInfo.CurrentAmmoTextField;
@@ -154,9 +163,32 @@ package tripwire.widgets
             this._secondaryLoader.source = param1;
         }
         
+        public function set secondaryAltAmmo(param1:int) : *
+        {
+            this._secondaryAltAmmoTF.text = param1.toString();
+        }
+        
+        public function set secondaryAltSpareAmmo(param1:int) : *
+        {
+            this._secondaryAltSpareTF.text = param1.toString();
+        }
+        
         public function set bUsesSecondaryAmmo(param1:Boolean) : void
         {
             this.secondaryAmmoContainer.visible = param1;
+            this._secondaryAmmoTF.visible = param1;
+            this._secondaryAltAmmoTF.visible = false;
+            this._secondaryAltSpareTF.visible = false;
+            this._secondaryAltConnectorMC.visible = false;
+        }
+        
+        public function set bUsesSecondaryAmmoAlt(param1:Boolean) : void
+        {
+            this.secondaryAmmoContainer.visible = param1;
+            this._secondaryAltAmmoTF.visible = param1;
+            this._secondaryAltSpareTF.visible = param1;
+            this._secondaryAltConnectorMC.visible = param1;
+            this._secondaryAmmoTF.visible = false;
         }
         
         public function set backpackStoredAmmo(param1:int) : void

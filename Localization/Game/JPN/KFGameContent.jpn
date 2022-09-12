@@ -771,6 +771,30 @@ ItemCategory="爆発物"
 ItemDescription="•デフォルトファイアモードは爆縮型手榴弾を発射します。\n•オルトファイアモードは敵を引き寄せる重力手榴弾を発射します。\n•これまでに開発されたうちで最も注目を集める武器のひとつです。"
 SharedUnlockSource="グラビティインプローダー武器バンドル"
 
+[KFWeap_HRG_BlastBrawlers]
+ItemName="HRGブラストブローラー"
+ItemCategory="近接"
+ItemDescription="•プライマリ：拳ごとに2発の衝撃を放ちます。\n•セカンダリ：ヘビー近接攻撃。\n•研究チームはオチを思い付くことができませんでした。"
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="HRG バスチョン"
+ItemCategory="ライトマシンガン"
+ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアで向かってくるダメージを軽減するエネルギーバリアを起動させます。\n•守る。攻撃する。だけど、最も重要なことは、これがSWATのものだということ。"
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="FAMASマスターキー"
+ItemCategory="アサルトライフル"
+ItemDescription="•デフォルトのファイアモードはFAMASを使った3点バースト。\n•オルトファイアは、M26つり下げ式のポンプアクション。\n•アサルトライフル？ショットガン？もちろん、両方がベスト。"
+SecondaryAmmo="FAMASショットガン用弾丸"
+SharedUnlockSource="FAMASマスターキー武器バンドル"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="テルミットボア"
+ItemCategory="火炎"
+ItemDescription="•プライマリファイアは4秒後に爆発するテルミット手榴弾を発射します。\n•織るとファイアはすべてのテルミットを手動で起爆させます。\n•ハエのように軽く、Zedに火を点けます。"
+SharedUnlockSource="テルミットボア武器バンドル"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="ドクター ハンス・ヴォルター"
@@ -915,13 +939,13 @@ BossCaptionStrings[5]="マトリアークは死が近付くと遮蔽フィール
 GameName="基本トレーニング"
 
 [KFGameInfo_Survival]
-GameName="基本トレーニング"
-
-[KFGameInfo_VersusSurvival]
 GameName="サバイバル"
 
-[KFGameInfo_WeeklySurvival]
+[KFGameInfo_VersusSurvival]
 GameName="VSサバイバル"
+
+[KFGameInfo_WeeklySurvival]
+GameName="ウィークリー"
 
 [KFGameInfo_Endless]
 GameName="エンドレス"

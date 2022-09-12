@@ -59,7 +59,7 @@ function UpdateReadyButtonVisibility()
         KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
         if(KFGRI != none)
         {
-            if(((KFGRI.bMatchHasBegun && ((MyKFPRI != none) && MyKFPRI.bHasSpawnedIn) && KFGRI.bTraderIsOpen) && !KFGRI.bMatchIsOver) && !KFGRI.bVersusGame)
+            if(((KFGRI.bMatchHasBegun && ((MyKFPRI != none) && MyKFPRI.bHasSpawnedIn) && KFGRI.bTraderIsOpen) && !KFGRI.bMatchIsOver) && MyKFPRI.GetTeamNum() != 255)
             {
                 bShowingSkipTrader = !MyKFPRI.bVotedToSkipTraderTime;
                 if(bShowingSkipTrader && !ReadyButton.GetBool("visible"))

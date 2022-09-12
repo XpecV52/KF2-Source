@@ -246,7 +246,8 @@ simulated function ModifyMagSizeAndNumber( KFWeapon KFW, out int MagazineCapacit
 
 	TempCapacity = MagazineCapacity;
 
-	if( !bSecondary && IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && (KFW == none || !KFW.bNoMagazine) &&
+	// FAMAS needs its secondary ammo affected
+	if( (!bSecondary || IsFAMAS(KFW)) && IsWeaponOnPerk( KFW, WeaponPerkClass, self.class ) && (KFW == none || !KFW.bNoMagazine) &&
 		HighCapMagExemptList.Find(WeaponClassName) == INDEX_NONE )
 	{
 		if( IsHighCapMagsMagActive() )
@@ -559,8 +560,9 @@ simulated function float GetZedTimeModifier( KFWeapon W )
 	local name StateName;
 	StateName = W.GetStateName();
 
+	// Blast Brawlers use a different state for shooting (combining melee + firing). Needs a special case for this
 	if( IsWeaponOnPerk( W,, self.class ) && CouldBarrageActive() && 
-		ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE )
+		(ZedTimeModifyingStates.Find( StateName ) != INDEX_NONE || (StateName == 'MeleeChainAttacking' && IsBlastBrawlers(W))))
 	{
 		return BarrageFiringRate;
 	}
@@ -841,7 +843,7 @@ defaultproperties
    EXPAction2="Welding doors"
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Support'
    InteractIcon=Texture2D'UI_World_TEX.Support_Supplier_HUD'
-   PerkSkills(0)=(Name="HighCapMags",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.support.UI_Talents_Support_HighCapacityMags")
+   PerkSkills(0)=(Name="HighCapMags",StartingValue=0.750000,MaxValue=0.750000,IconPath="UI_PerkTalent_TEX.support.UI_Talents_Support_HighCapacityMags")
    PerkSkills(1)=(Name="TacticalReload",StartingValue=0.800000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_TacticalReload")
    PerkSkills(2)=(Name="Fortitude",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Fortitude")
    PerkSkills(3)=(Name="Salvo",StartingValue=0.300000,MaxValue=0.300000,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Salvo")

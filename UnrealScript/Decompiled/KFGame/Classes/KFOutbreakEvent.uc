@@ -128,6 +128,8 @@ struct WeeklyOverrides
      *            array prior to calling in to P.AddDefaultInventory
      */
     var() KFGFxObject_TraderItems SpawnWeaponList;
+    /** Adds weapon spawn list to the player's loadout */
+    var() bool bAddSpawnListToLoadout;
     /** If this flag is set to true, the secondary weapon will be checked for availability in the current game mode */
     var() bool bSpawnWeaponListAffectsSecondaryWeapons;
     /** If this array is not empty, modifies the trader's list of available weapons */
@@ -255,10 +257,28 @@ struct WeeklyOverrides
     var() bool bApplyGlobalDamageBossWave;
     /** Replenish player's health once a wave ends. */
     var() bool bHealPlayerAfterWave;
+    /** Can kill enemies by jumping on them */
+    var() bool bGoompaJumpEnabled;
+    /** Damage done when jumping over an enemy */
+    var() int GoompaJumpDamage;
+    /** Damage added per goompa streak */
+    var() float GoompaStreakDamage;
+    /** Max number of goompa jumps that counts for damage increase */
+    var() int GoompaStreakMax;
+    /** Impulse applied to the player when jumping over an enemy */
+    var() float GoompaJumpImpulse;
+    /** Duration of the goompa streak bonus */
+    var() float GoompaBonusDuration;
+    /** Z velocity for jumping */
+    var() float JumpZ;
+    /** Drop items lifespan */
+    var() float DroppedItemLifespan;
     /** Global modifier of dosh received by players when a zed is killed. Default value is 1.0 */
     var() float DoshOnKillGlobalModifier;
     /** Delay After a wave starts for applying global damage. */
     var() float DamageDelayAfterWaveStarted;
+    /** If weapon pickups should spawn unfinitely */
+    var() bool bUnlimitedWeaponPickups;
     /** If another outbreak mode shares the same events, this will link the two to quicker UI lookup */
     var() int WeeklyOutbreakId;
 
@@ -272,6 +292,7 @@ struct WeeklyOverrides
         GlobalDamageTickAmount=0
         GlobalAmmoCostScale=1
         SpawnWeaponList=none
+        bAddSpawnListToLoadout=false
         bSpawnWeaponListAffectsSecondaryWeapons=false
         TraderWeaponList=none
         bDisableGrenades=false
@@ -334,8 +355,17 @@ struct WeeklyOverrides
         bGlobalDamageAffectsShield=true
         bApplyGlobalDamageBossWave=true
         bHealPlayerAfterWave=false
+        bGoompaJumpEnabled=false
+        GoompaJumpDamage=0
+        GoompaStreakDamage=0
+        GoompaStreakMax=0
+        GoompaJumpImpulse=0
+        GoompaBonusDuration=0
+        JumpZ=-1
+        DroppedItemLifespan=-1
         DoshOnKillGlobalModifier=1
         DamageDelayAfterWaveStarted=10
+        bUnlimitedWeaponPickups=false
         WeeklyOutbreakId=-1
     }
 };
@@ -815,6 +845,6 @@ static function int GetOutbreakId(int SetEventsIndex);
 
 defaultproperties
 {
-    ActiveEvent=(EventDifficulty=0,GameLength=0,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,bSpawnWeaponListAffectsSecondaryWeapons=false,TraderWeaponList=none,bDisableGrenades=false,PerksAvailableList=none,bColliseumSkillConditionsActive=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bModifyZedTimeOnANearZedKill=false,ZedTimeOnANearZedKill=0.05,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0,bHealAfterKill=false,bCannotBeHealed=false,bGlobalDamageAffectsShield=true,bApplyGlobalDamageBossWave=true,bHealPlayerAfterWave=false,DoshOnKillGlobalModifier=1,DamageDelayAfterWaveStarted=10,WeeklyOutbreakId=-1)
+    ActiveEvent=(EventDifficulty=0,GameLength=0,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,bAddSpawnListToLoadout=false,bSpawnWeaponListAffectsSecondaryWeapons=false,TraderWeaponList=none,bDisableGrenades=false,PerksAvailableList=none,bColliseumSkillConditionsActive=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bModifyZedTimeOnANearZedKill=false,ZedTimeOnANearZedKill=0.05,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0,bHealAfterKill=false,bCannotBeHealed=false,bGlobalDamageAffectsShield=true,bApplyGlobalDamageBossWave=true,bHealPlayerAfterWave=false,bGoompaJumpEnabled=false,GoompaJumpDamage=0,GoompaStreakDamage=0,GoompaStreakMax=0,GoompaJumpImpulse=0,GoompaBonusDuration=0,JumpZ=-1,DroppedItemLifespan=-1,DoshOnKillGlobalModifier=1,DamageDelayAfterWaveStarted=10,bUnlimitedWeaponPickups=false,WeeklyOutbreakId=-1)
     CachedItems=(TraderItems=none,GameAmmoCostScale=1,bAllowGrenadePurchase=true,bTradersEnabled=true,MaxPerkLevel=0,CachedWorldGravityZ=0,CachedGlobalGravityZ=0,PerksAvailableData=(bPerksAvailableLimited=false,bBerserkerAvailable=false,bCommandoAvailable=false,bSupportAvailable=false,bFieldMedicAvailable=false,bDemolitionistAvailable=false,bFirebugAvailable=false,bGunslingerAvailable=false,bSharpshooterAvailable=false,bSwatAvailable=false,bSurvivalistAvailable=false))
 }

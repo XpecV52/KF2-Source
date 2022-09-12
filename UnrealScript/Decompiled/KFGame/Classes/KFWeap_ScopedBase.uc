@@ -28,6 +28,7 @@ var const MaterialInstanceConstant ScopeLenseMICTemplate;
 var MaterialInstanceConstant ScopeLenseMIC;
 var int CurrentScopeTextureSize;
 var(Scope) float ScopedSensitivityMod;
+var byte ScopeMICIndex;
 
 simulated exec function ScopeFOV(float NewFOV)
 {
@@ -90,7 +91,7 @@ reliable client simulated function ClientWeaponSet(bool bOptionalSet, optional b
         ScopeLenseMIC.SetParent(ScopeLenseMICTemplate);
         ScopeLenseMIC.SetTextureParameterValue('ScopeTextureTarget', SniperScopeTextureTarget);
         ScopeLenseMIC.SetScalarParameterValue(InterpParamName, 0);
-        Mesh.SetMaterial(2, ScopeLenseMIC);
+        Mesh.SetMaterial(ScopeMICIndex, ScopeLenseMIC);
     }
 }
 
@@ -248,6 +249,7 @@ defaultproperties
     MaxSceneCaptureSize=1024
     InterpParamName=mat_blend_scaler
     ScopedSensitivityMod=6
+    ScopeMICIndex=2
     AimCorrectionSize=40
     MeleeAttackHelper=KFMeleeHelperWeapon'Default__KFWeap_ScopedBase.MeleeHelper'
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

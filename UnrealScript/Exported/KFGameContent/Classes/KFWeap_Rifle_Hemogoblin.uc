@@ -42,6 +42,7 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 defaultproperties
 {
    HealingDartDamageType=Class'kfgamecontent.KFDT_Dart_Healing'
+   HealAmount=25
    HealFullRechargeSeconds=10.000000
    HealImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Heal'
    HurtImpactSoundPlayEvent=AkEvent'WW_WEP_SA_MedicDart.Play_WEP_SA_Medic_Dart_Hurt'
@@ -75,7 +76,7 @@ defaultproperties
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
    MagazineCapacity(0)=7
    AmmoCost(1)=30
-   SpareAmmoCapacity(0)=98
+   SpareAmmoCapacity(0)=112
    InitialSpareMags(0)=4
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil'
    FireSightedAnims(1)="Shoot_Iron2"
@@ -121,7 +122,7 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.006000
    Spread(1)=()
-   InstantHitDamage(0)=100.000000
+   InstantHitDamage(0)=120.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=27.000000

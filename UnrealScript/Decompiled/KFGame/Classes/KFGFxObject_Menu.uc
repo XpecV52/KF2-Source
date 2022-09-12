@@ -187,7 +187,7 @@ function Callback_ReadyClicked(bool bReady)
         {
             if(KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
             {
-                if((KFPC.MyGFxManager.bMenusOpen && KFPC.MyGFxManager.CurrentMenu != KFPC.MyGFxManager.TraderMenu) && !KFGRI.bVersusGame)
+                if(KFPC.MyGFxManager.bMenusOpen && KFPC.MyGFxManager.CurrentMenu != KFPC.MyGFxManager.TraderMenu)
                 {
                     KFPRI.RequestSkiptTrader(KFPRI);
                     KFPC.MyGFxManager.CloseMenus();

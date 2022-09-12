@@ -208,13 +208,14 @@ defaultproperties
    WidgetBindings(15)=(WidgetName="NonCriticalMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
    WidgetBindings(16)=(WidgetName="InviteMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
    WidgetBindings(17)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
-   WidgetBindings(18)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
-   WidgetBindings(19)=(WidgetName="MapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapText')
-   WidgetBindings(20)=(WidgetName="counterMapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapCounterText')
-   WidgetBindings(21)=(WidgetName="teamRoster",WidgetClass=Class'KFGame.KFGFxHud_PlayerRosterWidget')
-   WidgetBindings(22)=(WidgetName="MoveListContainer",WidgetClass=Class'KFGame.KFGFxHUD_PlayerMoveList')
-   WidgetBindings(23)=(WidgetName="PlayerStatWidgetMC",WidgetClass=Class'kfgamecontent.KFGFxHUD_PlayerStatusVersus')
-   WidgetBindings(24)=(WidgetName="SpectatorInfoWidget",WidgetClass=Class'KFGame.KFGFxHUD_SpectatorInfo_Versus')
+   WidgetBindings(18)=(WidgetName="GoompaCounter",WidgetClass=Class'KFGame.KFGFxWidget_GoompaCounter')
+   WidgetBindings(19)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
+   WidgetBindings(20)=(WidgetName="MapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapText')
+   WidgetBindings(21)=(WidgetName="counterMapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapCounterText')
+   WidgetBindings(22)=(WidgetName="teamRoster",WidgetClass=Class'KFGame.KFGFxHud_PlayerRosterWidget')
+   WidgetBindings(23)=(WidgetName="MoveListContainer",WidgetClass=Class'KFGame.KFGFxHUD_PlayerMoveList')
+   WidgetBindings(24)=(WidgetName="PlayerStatWidgetMC",WidgetClass=Class'kfgamecontent.KFGFxHUD_PlayerStatusVersus')
+   WidgetBindings(25)=(WidgetName="SpectatorInfoWidget",WidgetClass=Class'KFGame.KFGFxHUD_SpectatorInfo_Versus')
    Name="Default__KFGFxMoviePlayer_HUD_Versus"
    ObjectArchetype=KFGFxMoviePlayer_HUD'KFGame.Default__KFGFxMoviePlayer_HUD'
 }

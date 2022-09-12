@@ -45,6 +45,7 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
     local editinline ActorComponent Comp;
     local editinline SkeletalMeshComponent SkelMC;
     local editinline StaticMeshComponent StaticMC;
+    local KFGameInfo KFGI;
 
     if(Role == ROLE_Authority)
     {
@@ -53,6 +54,11 @@ simulated function SetPickupMesh(PrimitiveComponent NewPickupMesh)
             SkinItemId = KFWeapon(Inventory).SkinItemId;
             bEmptyPickup = !KFWeapon(Inventory).HasAnyAmmo();
             bUpgradedPickup = KFWeapon(Inventory).CurrentWeaponUpgradeIndex > 0;
+        }
+        KFGI = KFGameInfo(WorldInfo.Game);
+        if(((KFGI != none) && KFGI.OutbreakEvent != none) && KFGI.OutbreakEvent.ActiveEvent.DroppedItemLifespan >= 0)
+        {
+            LifeSpan = KFGI.OutbreakEvent.ActiveEvent.DroppedItemLifespan;
         }
         SetTimer(LifeSpan, false, 'TryFadeOut');
     }

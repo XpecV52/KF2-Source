@@ -167,7 +167,7 @@ VersusCompletionString="完成遊戲的身分："
 
 [KFGFxMoviePlayer_Manager]
 FailedSearchTitleString="無法找到遊戲"
-FailedSearchString="無法在提供的選項中為你找到對手。請放寬搜尋範圍或使用伺服器瀏覽器來尋找對手。"
+FailedSearchString="無法在提供的選項中為你配對到對手。請放寬搜尋範圍或使用伺服器瀏覽器來尋找對手。"
 BrowseServersString="瀏覽伺服器"
 HasInvitedToGameString=" 邀請你參加遊戲。"
 JoinGameString="是否參加遊戲？"
@@ -738,8 +738,8 @@ ComboMakerValue="Zed 助攻"
 GrabbyValue="抓到的玩家"
 ZedSupportValue="間接傷害"
 ZednnihilationValue="一波攻擊中殺敵數"
-
-
+ZedStomper="Zed踐踏者"
+ZedStomperValue="Zed踐踏者"
 
 EPB_Healing="療傷"
 EPB_Kills="殺敵數"
@@ -750,6 +750,7 @@ EPB_HeadShots="爆頭"
 EPB_KnifeKills="刀殺"
 EPB_PistolKills="槍殺"
 EPB_DoorWelding="焊接門"
+EPB_ZedStomps="Zed踐踏"
 
 EPB_HealingValue="生命值"
 EPB_KillsValue="殺敵數"
@@ -760,6 +761,7 @@ EPB_HeadShotsValue="爆頭"
 EPB_KnifeKillsValue="殺敵數"
 EPB_PistolKillsValue="殺敵數"
 EPB_DoorWeldingValue="焊接分數"
+EPB_ZedStompsValue="踐踏"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="隊伍獎勵"
@@ -780,6 +782,7 @@ HeadShotsString="爆頭："
 LargeZedKillsString="殺死大型 Zed 數："
 TotalDoshEarnedString="總計獲得金錢："
 TotalKillsString="總計殺敵數："
+TotalStompsString="總踐踏數"
 AssistsString="助攻："
 DamageDealtString="造成傷害："
 
@@ -1794,19 +1797,19 @@ Fortitude="勇士"
 FortitudeDescription="血量完全增加100%。"
 
 Ninja="散兵"
-NinjaDescription="移動速度增加 20%，衝刺速度增加 25%，使用職業武器時每秒回復 2 點血量。"
+NinjaDescription="使用職業武器時移動速度加快20%，衝刺速度加快25%並每秒回復1點生命值。"
 
 Vampire="吸血鬼"
-VampireDescription="每次使用近身武器殺死 Zed 可回復 4 點血量。使用職業近身武器攻擊時速度增加 20%。"
+VampireDescription="每次使用近身武器殺死 Zed 可回復 3 點血量。使用職業近身武器攻擊時速度增加 20%。"
 
 Speed="屠夫"
 SpeedDescription="使用職業武器時攻擊速度增加 20%，傷害增加 20%。"
 
 Resistance="抗性"
-ResistanceDescription="對所有傷害抵抗增加25%；毒害與超音波傷害抵抗再增加25%。"
+ResistanceDescription="對所有傷害抵抗增加15%；毒害與超音波傷害抵抗再增加15%。"
 
 Parry="格檔"
-ParryDescription="以職業近身武器進行格檔可減少 40% 即將受到的傷害，且增加 5% 近身攻速與 35% 近身攻擊傷害，效果持續 10 秒。"
+ParryDescription="以職業近身武器進行格檔可減少 25% 即將受到的傷害，且增加 5% 近身攻速與 35% 近身攻擊傷害，效果持續 6 秒。"
 
 Smash="猛擊"
 SmashDescription="以職業近身武器重擊可增加 50% 傷害，擊中頭部時增加 25 %傷害，並增加 200% 踉蹌力量。"
@@ -1898,7 +1901,7 @@ DirectHit="高衝擊回合"
 DirectHitDescription="爆炸性武器直接擊中時，傷害增加 25%。"
 
 Ammo="加分回合"
-AmmoDescription="爆炸性職業武器彈藥上限增加 5。C4 不適用。"
+AmmoDescription="爆炸性職業武器彈藥上限增加 10。C4 不適用。"
 
 SirenResistance="防超音回合"
 SirenResistanceDescription="你的炸藥不受海妖的叫聲影響，一定會爆炸"
@@ -1935,7 +1938,7 @@ Passives[3]=(Title="移動速度",Description="每 5 級增加移動速度 %x%")
 Passives[4]=(Title="護甲值加成",Description="每級增加護甲值 %x%");
 
 HealingSurge="共同生命"
-HealingSurgeDescription="增加 25% 血量。治療隊友也會治療你 10% 的血量"
+HealingSurgeDescription="增加 25% 血量。治療隊友也會治療你 6% 的血量"
 
 Survivalist="恢復力"
 SurvivalistDescription="每失去1點血量就增加傷害抵抗1%，最多增加60%。"
@@ -2128,7 +2131,7 @@ EXPAction1="造成協助武器傷害"
 EXPAction2="焊接門"
 
 HighCapMags="高容量彈匣"
-HighCapMagsDescription="職業武器彈匣容量增加 50%"
+HighCapMagsDescription="職業武器彈匣容量增加 75%"
 
 TacticalReload="戰略裝填"
 TacticalReloadDescription="職業武器裝填速度增加"
@@ -2825,6 +2828,20 @@ AllCompleteRewardDescriptionString="生化人 | 同伴背包 | 珍貴"
 ChanceDropDescriptionStrings[0]="春季票券"
 ChanceDropDescriptionStrings[1]="春季黃金票券"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2021]
+CurrentSpecialEventString="附有獨特道具的限時特別活動"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="重踢！",DescriptionString="重踩50隻Zed")
+SpecialEventObjectiveInfoList[1]=(TitleString="每週新月",DescriptionString="在月球基地完成每週任務")
+SpecialEventObjectiveInfoList[2]=(TitleString="震驚月光",DescriptionString="利用雷射陷阱擊殺月球基地上的20隻Zed")
+SpecialEventObjectiveInfoList[3]=(TitleString="飄逸技能",DescriptionString="在月球基地上跳躍時擊殺300隻Zed")
+SpecialEventObjectiveInfoList[4]=(TitleString="無窮虛空",DescriptionString="在月球基地以無盡模式困難或更高難度完成第15波攻勢")
+
+AllCompleteRewardDescriptionString="太空人 | 同伴背包 | 珍貴"
+
+ChanceDropDescriptionStrings[0]="夏日票券"
+ChanceDropDescriptionStrings[1]="夏日金色票券"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2930,6 +2947,26 @@ FriendlyName="嗜血"
 DescriptionStrings[0]="保持連殺紀錄，不然死路一條……"
 DescriptionStrings[1]="長度：中（7波攻勢）"
 ModifierDescriptions[0]="（當每週圖示在血量計數器旁顯示時）對Zed鮮血的渴望會讓你持續受到傷害。殺戮是唯一回復血量的方法。在配對頁面中選擇每週遊戲模式。職業等級15以上。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Arachnophobia KFWeeklyOutBreakInformation]
+FriendlyName="蜘蛛恐懼症"
+DescriptionStrings[0]="強力踐踏！"
+DescriptionStrings[1]="長度：中（7波攻勢）"
+ModifierDescriptions[0]="爬蟲瘟疫來襲；穿上靴子，準備讓牠們一隻隻命喪你的腳下。在配對頁面中選擇每週活動遊戲模式。職業等級15以上。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Scavenger KFWeeklyOutBreakInformation]
+FriendlyName="清道夫"
+DescriptionStrings[0]="湊合。適應。克服。"
+DescriptionStrings[1]="長度：中（7波攻勢）"
+ModifierDescriptions[0]="商人已遭到破壞，手無寸鐵。你必須使用在地上找到的武器。在配對頁面中選擇每週活動遊戲模式。職業等級15以上。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3451,6 +3488,9 @@ DisplayName="極樂世界"
 
 [KF-Dystopia2029 KFMapSummary]
 DisplayName="反烏托邦2029"
+
+[KF-Moonbase KFMapSummary]
+DisplayName="月球基地"
 
 [KFMapInfo]
 ; defaults

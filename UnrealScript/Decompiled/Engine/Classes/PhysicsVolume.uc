@@ -78,6 +78,12 @@ var transient PhysicsVolume NextPhysicsVolume;
 // Export UPhysicsVolume::execGetGravityZ(FFrame&, void* const)
 native function float GetGravityZ();
 
+// Export UPhysicsVolume::execGetGravityZHuman(FFrame&, void* const)
+native function float GetGravityZHuman();
+
+// Export UPhysicsVolume::execGetGravityZMonster(FFrame&, void* const)
+native function float GetGravityZMonster();
+
 // Export UPhysicsVolume::execGetZoneVelocityForActor(FFrame&, void* const)
 native function Vector GetZoneVelocityForActor(Actor TheActor);
 

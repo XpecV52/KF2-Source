@@ -946,6 +946,8 @@ simulated function StartLoopingAnim(KFPawn P, name InLoopAnim, optional name InI
 
 simulated function PlayLoopAnim();
 
+function OnSpecialEvent(int Arg);
+
 simulated state LoopingWeaponAction
 {
     simulated function BeginState(name PreviousStateName)

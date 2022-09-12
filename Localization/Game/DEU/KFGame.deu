@@ -368,7 +368,7 @@ InLobbyString="IN DER LOBBY"
 InProgressString="LÄUFT"
 OnlyStockMapsString="NUR STANDARD-KARTEN"
 OnlyCustomMapsString="NUR BENUTZERDEF. KARTEN"
-LimitServerResultsString="ERGEBNISSE EINGRENZEN:"
+LimitServerResultsString="EINGRENZEN:"
 NotServerExiledString="KEIN LOKALER ADMIN"
 
 [KFGFxServerBrowser_ServerDetails]
@@ -738,8 +738,8 @@ ComboMakerValue="Zed-Assists"
 GrabbyValue="Spieler ergriffen"
 ZedSupportValue="Indirekter Schaden"
 ZednnihilationValue="Kills in der Welle"
-
-
+ZedStomper="Zed-Stampfer"
+ZedStomperValue="Zeds-Stampfer"
 
 EPB_Healing="Heilung"
 EPB_Kills="Kills"
@@ -750,6 +750,7 @@ EPB_HeadShots="Kopfschüsse"
 EPB_KnifeKills="Kills mit Messer"
 EPB_PistolKills="Kills mit Pistole"
 EPB_DoorWelding="Türenschweißen"
+EPB_ZedStomps="Zed-Stampfer"
 
 EPB_HealingValue="Lebenspunkte"
 EPB_KillsValue="Kills"
@@ -760,6 +761,7 @@ EPB_HeadShotsValue="Kopfschüsse"
 EPB_KnifeKillsValue="Kills"
 EPB_PistolKillsValue="Kills"
 EPB_DoorWeldingValue="Schweißpunkte"
+EPB_ZedStompsValue="Stampfer"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="TEAM-AUSZEICHNUNGEN"
@@ -780,6 +782,7 @@ HeadShotsString="Kopfschüsse:"
 LargeZedKillsString="Große Zeds-Kills:"
 TotalDoshEarnedString="Insgesamt verdiente Kohle:"
 TotalKillsString="Gesamtkills:"
+TotalStompsString="Gesamtzahl der Stampfer"
 AssistsString="Assists:"
 DamageDealtString="Verursachter Schaden:"
 
@@ -1794,19 +1797,19 @@ Fortitude="Dreadnaught"
 FortitudeDescription="Erhöhe Gesamt-LP um 100%."
 
 Ninja="Plänkler"
-NinjaDescription="20% schneller bewegen, 25% schneller sprinten und jede Sekunde 2 LP regenerieren, wenn eine Vorteilswaffe benutzt wird."
+NinjaDescription="20% schneller bewegen, 25% schneller sprinten und jede Sekunde 1 LP regenerieren, wenn eine Vorteilswaffe benutzt wird."
 
 Vampire="Vampir"
-VampireDescription="Heile 4 Lebenspunkte für jeden Zed, den du mit Vorteils-Waffen tötest. Greife mit Vorteils-Nahkampfwaffen 20% schneller an."
+VampireDescription="Heile 3 Lebenspunkte für jeden Zed, den du mit Vorteils-Waffen tötest. Greife mit Vorteils-Nahkampfwaffen 20% schneller an."
 
 Speed="Schlachter"
 SpeedDescription="Greife mit Vorteilswaffen 20% schneller an und verursache 20% mehr Schaden."
 
 Resistance="Resistenz"
-ResistanceDescription="Erhalte 25% Resistenz gegen jeglichen Schaden. Erhalte 25% zusätzliche Resistenz gegen Gift- und Schall-Schaden."
+ResistanceDescription="Erhalte 15% Resistenz gegen jeglichen Schaden. Erhalte 15% zusätzliche Resistenz gegen Gift- und Schall-Schaden."
 
 Parry="Parieren"
-ParryDescription="Parieren mit Vorteils-Nahkampfwaffen verringert erhaltenen Schaden um 40%, erhöht Nahkampf-Ang.-Geschw. um 5% und -Schaden um 35% für 10 Sek."
+ParryDescription="Parieren mit Vorteils-Nahkampfwaffen verringert erhaltenen Schaden um 25%, erhöht Nahkampf-Ang.-Geschw. um 5% und -Schaden um 35% für 6 Sek."
 
 Smash="Zerschmettern"
 SmashDescription="Harte Angriffe mit Vorteils-Nahkampfwaffen machen 50% mehr Schaden, 25% mehr Schaden bei Kopftreffern, und haben 200% mehr Strauchel-Macht."
@@ -1898,7 +1901,7 @@ DirectHit="Hochwirksame Geschosse"
 DirectHitDescription="Erhöhe den Schaden direkter Treffer mit explosiven Waffen um 25%."
 
 Ammo="Zusätzliche Geschosse"
-AmmoDescription="Erhöhe die maximale Munition für explosive Vorteils-Waffen um 5. Dies gilt nicht für C4."
+AmmoDescription="Erhöhe die maximale Munition für explosive Vorteils-Waffen um 10. Dies gilt nicht für C4."
 
 SirenResistance="Schallresistente Geschosse"
 SirenResistanceDescription="Deine Sprengstoffe sind immun gegen den Schrei der Sirene und explodieren immer."
@@ -1935,7 +1938,7 @@ Passives[3]=(Title="Bewegungsgeschwindigkeit",Description="Erhöhe Bewegungsgesc
 Passives[4]=(Title="Rüstungs-Bonus",Description="Erhöhe Rüstung um %x% pro Level");
 
 HealingSurge="Symbiotische Gesundheit"
-HealingSurgeDescription="Erhöhe Gesamt-LP um 25%. Wenn du Teamkollegen heilst, wirst du um 10% deiner gesamten Lebenspunkte geheilt."
+HealingSurgeDescription="Erhöhe Gesamt-LP um 25%. Wenn du Teamkollegen heilst, wirst du um 6% deiner gesamten Lebenspunkte geheilt."
 
 Survivalist="Widerstandsfähigkeit"
 SurvivalistDescription="Erhöhe Schadensresistenz um 1% pro verlorenem LP, bis zu 60%."
@@ -1962,7 +1965,7 @@ AirborneAgent="ZED-ZEIT – Aerogener Wirkstoff"
 AirborneAgentDescription="Während der Zed-Zeit setzt du ein heilendes Gas frei, das nahe Teamkollegen heilt."
 
 Sedative="ZED-ZEIT – Zedative"
-SedativeDescription="Während der Zed-Zeit wird der Schaden deiner Vorteilwaffen um 30 % erhöht und deine Kills generieren eine giftige Explosion, die den Zeds schaden zufügt und Spieler heilt."
+SedativeDescription="Während Zed-Zeit: +30% Schaden mit Vorteils-Waffen. Deine Kills erzeugen eine Giftxeplosion, die Zeds Schaden zufügt und Spieler heilt."
 
 
 EXPAction1="Sanitäter-Waffenschaden verursachen"
@@ -2033,7 +2036,7 @@ Passives[3]=(Title="Rückstoßdämpfung",Description="Verringere Vort.-Waf.-Rüc
 Passives[4]=(Title="Zed-Zeit-Nachladen",Description="Erhöhe Nachladegeschw. in Zed-Zeit %x%/lvl");
 
 ShootnMove="Beständig"
-ShootnMoveDescription="Ignoriere Bewegungsgeschwindigkeit-Strafen und erhöhe den Schaden von Vorteils-Waffen um 7,5% beim Einsatz von Kimme und Korn. Drastische Verringerung von Waffenschwankungen mit Vorteils-Waffen."
+ShootnMoveDescription="Ignoriere Bew.-Geschw.-Strafen. Bei Kimme und Korn: +7,5% Schaden mit Vorteils-Waffen. Drastische Verr. von Schwankungen mit Vorteils-Waffen."
 
 QuickSwitch="Schnell ziehen"
 QuickSwitchDescription="Verringere Rückstoß-Strafen für das Schießen aus der Hüfte, erhöhe die Bew.geschw. um 5% und wechsle 50% schneller zwischen Vorteils-Waffen."
@@ -2128,7 +2131,7 @@ EXPAction1="Unterstützer-Waffenschaden verursachen"
 EXPAction2="Türen schweißen"
 
 HighCapMags="Magazine hoher Kapazität"
-HighCapMagsDescription="Erhöhe die Magazinkapazität von Vorteils-Waffen um 50%."
+HighCapMagsDescription="Erhöhe die Magazinkapazität von Vorteils-Waffen um 75%."
 
 TacticalReload="Taktisches Nachladen"
 TacticalReloadDescription="Erhöhe die Nachladegeschwindigkeit mit Vorteils-Waffen"
@@ -2825,6 +2828,20 @@ AllCompleteRewardDescriptionString="Cyborg | Gefährten-Rucksack | Edel"
 ChanceDropDescriptionStrings[0]="Frühlingsschein"
 ChanceDropDescriptionStrings[1]="Goldener Frühlingsschein"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2021]
+CurrentSpecialEventString="Ein zeitlich begrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Getreten!",DescriptionString="Stampfe auf 50 Zeds")
+SpecialEventObjectiveInfoList[1]=(TitleString="Wöchentliche Mondbasis",DescriptionString="Schaffe die wöchentliche Mondbasis")
+SpecialEventObjectiveInfoList[2]=(TitleString="Schockierender Mondschein",DescriptionString="Verwende die Laser-Falle, um 20 Zeds in Mondbasis zu töten")
+SpecialEventObjectiveInfoList[3]=(TitleString="Schwerelose Schießbude",DescriptionString="Töte 300 Zeds, während du in Mondbasis durch die Luft springst")
+SpecialEventObjectiveInfoList[4]=(TitleString="Endlose Leere",DescriptionString="Schließe Welle 15 von Mondbasis bei Endlos auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="Astronaut | Gefährten-Rucksack | Edel"
+
+ChanceDropDescriptionStrings[0]="Summer-Schein"
+ChanceDropDescriptionStrings[1]="Summer-Goldschein"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2930,6 +2947,26 @@ FriendlyName="Blutdurst"
 DescriptionStrings[0]="Halte die Killserie aufrecht oder stirb …"
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
 ModifierDescriptions[0]="Der Durst nach Zed-Blut fügt dir ständig Schaden zu (während das Wochensymbol neben dem Lebenspunktezähler angezeigt wird). Töten ist die einzige Möglichkeit, deine Lebenspunkte zu regenerieren. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Arachnophobia KFWeeklyOutBreakInformation]
+FriendlyName="Arachnophobie"
+DescriptionStrings[0]="Überwältigendes Stampfen!"
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Wir haben hier eine Crawler-Plage. Zieh deine Stiefel an und mach sie platt. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Scavenger KFWeeklyOutBreakInformation]
+FriendlyName="Plünderer"
+DescriptionStrings[0]="Improvisieren. Anpassen. Überwinden"
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Die Händler wurden sabotiert und haben keine Waffen mehr auf Lager. Jetzt musst du mit den Waffen zurechtkommen, die du auf dem Boden findest. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3451,6 +3488,9 @@ DisplayName="Elysium"
 
 [KF-Dystopia2029 KFMapSummary]
 DisplayName="Dystopia 2029"
+
+[KF-Moonbase KFMapSummary]
+DisplayName="Mondbasis"
 
 [KFMapInfo]
 ; defaults

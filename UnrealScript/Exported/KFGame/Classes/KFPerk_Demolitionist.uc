@@ -1053,7 +1053,7 @@ defaultproperties
    PerkSkills(0)=(Name="Damage",StartingValue=0.250000,MaxValue=0.250000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_GrenadeSupplier")
    PerkSkills(1)=(Name="Speed",StartingValue=0.100000,MaxValue=0.100000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Speed")
    PerkSkills(2)=(Name="DirectHit",StartingValue=0.250000,MaxValue=0.250000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_ExplosiveResistance")
-   PerkSkills(3)=(Name="Ammo",StartingValue=5.000000,MaxValue=5.000000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Ammo")
+   PerkSkills(3)=(Name="Ammo",StartingValue=10.000000,MaxValue=10.000000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Ammo")
    PerkSkills(4)=(Name="SirenResistance",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_SirenResistance")
    PerkSkills(5)=(Name="AreaOfEffect",StartingValue=1.500000,MaxValue=1.500000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_AoE")
    PerkSkills(6)=(Name="CriticalHit",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.demolition.UI_Talents_Demolition_Crit")

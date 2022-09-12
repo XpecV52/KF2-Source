@@ -771,6 +771,30 @@ ItemCategory="Explosives"
 ItemDescription="•Default fire mode launches implosion grenades.\n•Alt-fire mode launches gravity grenades that attract enemies.\n•One of the most attractive weapons ever developed."
 SharedUnlockSource="Gravity Imploder Weapon Bundle"
 
+[KFWeap_HRG_BlastBrawlers]
+ItemName="HRG Blast Brawlers"
+ItemCategory="Melee"
+ItemDescription="•Primary: Shoot 2 blasts, one with each fist.\n•Secondary: Heavy melee attack.\n•Research team was out of ideas for any punchline."
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="HRG Bastion"
+ItemCategory="Light Machine Gun"
+ItemDescription="•Fire mode is full-auto only.\n•Alt-fire to activate an energy barrier that reduces incoming damage.\n•It protec. It attac. But most importantly, it belongs to SWAT."
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="FAMAS Masterkey"
+ItemCategory="Assault Rifle"
+ItemDescription="•Default fire mode is 3 shoot burst with the FAMAS.\n•Alt-fire is pump-action with the M26 underslung.\n•Assault Rifle? Shotgun? Both, both is good."
+SecondaryAmmo="FAMAS Shotgun Shells"
+SharedUnlockSource="FAMAS Masterkey Weapon Bundle"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="Thermite Bore"
+ItemCategory="Flames"
+ItemDescription="•Primary fire launches thermite grenades that explode after 4 seconds.\n•Alt-fire manually detonates all thermites.\n•Like light to the flies, fire to the Zeds."
+SharedUnlockSource="Thermite Bore Weapon Bundle"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

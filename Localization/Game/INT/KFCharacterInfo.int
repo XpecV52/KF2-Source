@@ -44,6 +44,7 @@ BodyMesh10="Witch Hunter"
 BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
+BodyMesh14="Astronaut Suit Outfit"
 HeadMesh0="Gas Mask"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -242,6 +243,7 @@ BodyMesh10="Witch Hunter"
 BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
+BodyMesh14="Astronaut Suit Outfit"
 HeadMesh0="Beard Power!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -461,6 +463,7 @@ BodyMesh10="Witch Hunter"
 BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate"
 BodyMesh13="Reaper Outfit"
+BodyMesh14="Astronaut Suit Outfit"
 HeadMesh0="Scully Mask"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -626,6 +629,7 @@ BodyMesh11="Witch Hunter"
 BodyMesh12="Santa Suit"
 BodyMesh13="Space Pirate Outfit"
 BodyMesh14="Reaper Outfit"
+BodyMesh15="Astronaut Suit Outfit"
 HeadMesh0="Hair"
 
 [chr_briar_archetype.BodyMesh0]
@@ -791,6 +795,7 @@ BodyMesh11="Witch Hunter"
 BodyMesh12="Santa Suit"
 BodyMesh13="Space Pirate Outfit"
 BodyMesh14="Reaper Outfit"
+BodyMesh15="Astronaut Suit Outfit"
 HeadMesh0="Gas Mask"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -1081,6 +1086,7 @@ BodyMesh10="Witch Hunter"
 BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
+BodyMesh15="Astronaut Suit Outfit"
 HeadMesh0="Face"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1237,6 +1243,7 @@ BodyMesh10="Witch Hunter"
 BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
+BodyMesh14="Astronaut Suit Outfit"
 HeadMesh0="Hair"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -2255,6 +2262,7 @@ BodyMesh10="Witch Hunter"
 BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
+BodyMesh14="Astronaut Suit Outfit"
 HeadMesh0="Face"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2400,6 +2408,7 @@ BodyMesh11="Witch Hunter"
 BodyMesh12="Santa Suit"
 BodyMesh13="Space Pirate Outfit"
 BodyMesh14="Reaper Outfit"
+BodyMesh15="Astronaut Suit Outfit"
 HeadMesh0="Hair"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2578,6 +2587,7 @@ BodyMesh10="Witch Hunter"
 BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
+BodyMesh14="Astronaut Suit Outfit"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2735,6 +2745,7 @@ BodyMesh11="Witch Hunter"
 BodyMesh12="Santa Suit"
 BodyMesh13="Space Pirate Outfit"
 BodyMesh14="Reaper Outfit"
+BodyMesh15="Astronaut Suit Outfit"
 HeadMesh0="Hair"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2886,6 +2897,7 @@ BodyMesh10="Witch Hunter"
 BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
+BodyMesh14="Astronaut Suit Outfit"
 HeadMesh0="Face"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3039,6 +3051,7 @@ BodyMesh10="Witch Hunter"
 BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
+BodyMesh14="Astronaut Suit Outfit"
 HeadMesh0="Hair"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3331,6 +3344,7 @@ BodyMesh10="Witch Hunter"
 BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
+BodyMesh14="Astronaut Suit Outfit"
 HeadMesh0="Default Head"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -6559,3 +6573,260 @@ AttachmentSkin0="Precious"
 [Cosmetic_BloodThirst_Backpack_ARCH]
 Attachment="Blood Thirst Backpack"
 AttachmentSkin0="Precious"
+
+[Cosmetic_Foundry_DynamiteBox_ARCH]
+Attachment="Foundry Dynamite Backpack"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Sand"
+AttachmentSkin4="Olive"
+AttachmentSkin5="Teal"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Foundry_LanternBackpack_ARCH]
+Attachment="Foundry Lantern Backpack"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Fire"
+AttachmentSkin4="Olive"
+AttachmentSkin5="Teal"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Foundry_MinerHat_ARCH]
+Attachment="Foundry Miner Helmet"
+AttachmentSkin0="Brown"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Sand"
+AttachmentSkin4="Olive"
+AttachmentSkin5="Teal"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Foundry_HardHat_ARCH]
+Attachment="Foundry Hard Hat"
+AttachmentSkin0="Caution"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Voltage"
+AttachmentSkin4="Biohazard"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Foundry_HardHatShield_ARCH]
+Attachment="Hard Hat & Shield"
+AttachmentSkin0="Caution"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Voltage"
+AttachmentSkin4="Biohazard"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Foundry_CastingBucket_ARCH]
+Attachment="Casting Bucket Backpack"
+AttachmentSkin0="Caution"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Voltage"
+AttachmentSkin4="Biohazard"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Foundry_WeldingHelmet_ARCH]
+Attachment="Foundry Welding Helmet"
+AttachmentSkin0="Caution"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Voltage"
+AttachmentSkin4="Biohazard"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Foundry_WeldingTank_ARCH]
+Attachment="Welding Tank Backpack"
+AttachmentSkin0="Caution"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Voltage"
+AttachmentSkin4="Biohazard"
+AttachmentSkin5="Tech"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Arachnophobia_Backpack_ARCH]
+Attachment="Crawler Legs Backpack"
+AttachmentSkin0="Precious"
+
+[Cosmetic_Astronaut_StrikeForceHelmet_ARCH]
+Attachment="Astronaut Strike Force Helmet"
+AttachmentSkin0="Deep Space"
+AttachmentSkin1="Singularity"
+AttachmentSkin2="Starburst"
+AttachmentSkin3="Galaxy"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Astronaut_CrewGoggles_ARCH]
+Attachment="Astronaut Crew Goggles"
+AttachmentSkin0="Deep Space"
+AttachmentSkin1="Singularity"
+AttachmentSkin2="Starburst"
+AttachmentSkin3="Galaxy"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Astronaut_CrewHeadSet_ARCH]
+Attachment="Astronaut Crew Headset"
+AttachmentSkin0="Deep Space"
+AttachmentSkin1="Singularity"
+AttachmentSkin2="Starburst"
+AttachmentSkin3="Galaxy"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Astronaut_CrewMask_ARCH]
+Attachment="Astronaut Crew Mask"
+AttachmentSkin0="Deep Space"
+AttachmentSkin1="Singularity"
+AttachmentSkin2="Starburst"
+AttachmentSkin3="Galaxy"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Astronaut_JetPack_ARCH]
+Attachment="Astronaut Jetpack"
+AttachmentSkin0="Deep Space"
+AttachmentSkin1="Singularity"
+AttachmentSkin2="Starburst"
+AttachmentSkin3="Galaxy"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Astronaut_RadarArmband_ARCH]
+Attachment="Astronaut Radar Armband"
+AttachmentSkin0="Deep Space"
+AttachmentSkin1="Singularity"
+AttachmentSkin2="Starburst"
+AttachmentSkin3="Galaxy"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Astronaut_CompanionBackpack_ARCH]
+Attachment="Astronaut Comp. Backpack"
+AttachmentSkin0="Precious"
+
+[Cosmetic_Astronaut_Helmet_ARCH]
+Attachment="Astronaut Helmet"
+AttachmentSkin0="Deep Space"
+AttachmentSkin1="Singularity"
+AttachmentSkin2="Starburst"
+AttachmentSkin3="Galaxy"
+AttachmentSkin4="Precious"
+
+[Cosmetic_Astronaut_O2Backpack_ARCH]
+Attachment="Astronaut O2 Backpack"
+AttachmentSkin0="Deep Space"
+AttachmentSkin1="Singularity"
+AttachmentSkin2="Starburst"
+AttachmentSkin3="Galaxy"
+AttachmentSkin4="Precious"
+
+[CHR_Tanaka_Archetype.BodyMesh15]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[CHR_Ana_Archetype.BodyMesh14]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[CHR_BadSanta_Archetype.BodyMesh14]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[chr_briar_archetype.BodyMesh15]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[chr_DJSkully_archetype.BodyMesh14]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[CHR_Jagerhorn_Archetype.BodyMesh14]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[chr_mark_archetype.BodyMesh15]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[chr_rockabilly_archetype.BodyMesh14]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[chr_strasser_archetype.BodyMesh14]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"
+
+[chr_alan_archetype.BodyMesh14]
+BodySkin0="Deep Space"
+BodySkin1="Singularity"
+BodySkin2="Starburst"
+BodySkin3="Galaxy"
+BodySkin4="Precious"

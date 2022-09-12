@@ -44,6 +44,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
+BodyMesh14="Tenue d'astronaute"
 HeadMesh0="Masque à gaz"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -242,6 +243,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
+BodyMesh14="Tenue d'astronaute"
 HeadMesh0="Pouvoir aux barbus !"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -461,6 +463,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
 BodyMesh12="Pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
+BodyMesh14="Tenue d'astronaute"
 HeadMesh0="Masque de Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -626,6 +629,7 @@ BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de père Noël"
 BodyMesh13="Tenue de pirate de l'espace"
 BodyMesh14="Tenue de faucheuse"
+BodyMesh15="Tenue d'astronaute"
 HeadMesh0="Cheveux"
 
 [chr_briar_archetype.BodyMesh0]
@@ -791,6 +795,7 @@ BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de père Noël"
 BodyMesh13="Tenue de pirate de l'espace"
 BodyMesh14="Tenue de faucheuse"
+BodyMesh15="Tenue d'astronaute"
 HeadMesh0="Masque à gaz"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -1081,6 +1086,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
+BodyMesh15="Tenue d'astronaute"
 HeadMesh0="Visage"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1237,6 +1243,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
+BodyMesh14="Tenue d'astronaute"
 HeadMesh0="Cheveux"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -2255,6 +2262,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
+BodyMesh14="Tenue d'astronaute"
 HeadMesh0="Visage"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2400,6 +2408,7 @@ BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de père Noël"
 BodyMesh13="Tenue de pirate de l'espace"
 BodyMesh14="Tenue de faucheuse"
+BodyMesh15="Tenue d'astronaute"
 HeadMesh0="Cheveux"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2578,6 +2587,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
+BodyMesh14="Tenue d'astronaute"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2735,6 +2745,7 @@ BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de père Noël"
 BodyMesh13="Tenue de pirate de l'espace"
 BodyMesh14="Tenue de faucheuse"
+BodyMesh15="Tenue d'astronaute"
 HeadMesh0="Cheveux"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2886,6 +2897,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
+BodyMesh14="Tenue d'astronaute"
 HeadMesh0="Visage"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3039,6 +3051,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
+BodyMesh14="Tenue d'astronaute"
 HeadMesh0="Cheveux"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3331,6 +3344,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
+BodyMesh14="Tenue d'astronaute"
 HeadMesh0="Tête par défaut"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -6559,3 +6573,260 @@ AttachmentSkin0="Doré"
 [Cosmetic_BloodThirst_Backpack_ARCH]
 Attachment="Sac à dos soif de sang"
 AttachmentSkin0="Doré"
+
+[Cosmetic_Foundry_DynamiteBox_ARCH]
+Attachment="Sac à dos dynamité de fonderie"
+AttachmentSkin0="Marron"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Sable"
+AttachmentSkin4="Olive"
+AttachmentSkin5="Sarcelle"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Foundry_LanternBackpack_ARCH]
+Attachment="Sac à dos lanterne de fonderie"
+AttachmentSkin0="Marron"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Feu"
+AttachmentSkin4="Olive"
+AttachmentSkin5="Sarcelle"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Foundry_MinerHat_ARCH]
+Attachment="Casque de mineur de fonderie"
+AttachmentSkin0="Marron"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Sable"
+AttachmentSkin4="Olive"
+AttachmentSkin5="Sarcelle"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Foundry_HardHat_ARCH]
+Attachment="Casque de chantier de fonderie"
+AttachmentSkin0="Précaution"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Risque sanitaire"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Foundry_HardHatShield_ARCH]
+Attachment="Casque de chantier et bouclier de fonderie"
+AttachmentSkin0="Précaution"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Risque sanitaire"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Foundry_CastingBucket_ARCH]
+Attachment="Sac à dos creuset de fonderie"
+AttachmentSkin0="Précaution"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Risque sanitaire"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Foundry_WeldingHelmet_ARCH]
+Attachment="Masque de soudeur de fonderie"
+AttachmentSkin0="Précaution"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Risque sanitaire"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Foundry_WeldingTank_ARCH]
+Attachment="Sac à dos bouteille de gaz de soudure de fonderie"
+AttachmentSkin0="Précaution"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Risque sanitaire"
+AttachmentSkin5="Technologie"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Arachnophobia_Backpack_ARCH]
+Attachment="Sac à dos jambes de Lèche-bottes"
+AttachmentSkin0="Doré"
+
+[Cosmetic_Astronaut_StrikeForceHelmet_ARCH]
+Attachment="Casque des forces d'intervention d'astronaute"
+AttachmentSkin0="Espace lointain"
+AttachmentSkin1="Singularité"
+AttachmentSkin2="Étoile rayonnante"
+AttachmentSkin3="Galaxie"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Astronaut_CrewGoggles_ARCH]
+Attachment="Lunettes d'employé d'astronaute"
+AttachmentSkin0="Espace lointain"
+AttachmentSkin1="Singularité"
+AttachmentSkin2="Étoile rayonnante"
+AttachmentSkin3="Galaxie"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Astronaut_CrewHeadSet_ARCH]
+Attachment="Casque d'employé d'astronaute"
+AttachmentSkin0="Espace lointain"
+AttachmentSkin1="Singularité"
+AttachmentSkin2="Étoile rayonnante"
+AttachmentSkin3="Galaxie"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Astronaut_CrewMask_ARCH]
+Attachment="Masque d'employé d'astronaute"
+AttachmentSkin0="Espace lointain"
+AttachmentSkin1="Singularité"
+AttachmentSkin2="Étoile rayonnante"
+AttachmentSkin3="Galaxie"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Astronaut_JetPack_ARCH]
+Attachment="Réacteur dorsal d'astronaute"
+AttachmentSkin0="Espace lointain"
+AttachmentSkin1="Singularité"
+AttachmentSkin2="Étoile rayonnante"
+AttachmentSkin3="Galaxie"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Astronaut_RadarArmband_ARCH]
+Attachment="Brassard radar d'astronaute"
+AttachmentSkin0="Espace lointain"
+AttachmentSkin1="Singularité"
+AttachmentSkin2="Étoile rayonnante"
+AttachmentSkin3="Galaxie"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Astronaut_CompanionBackpack_ARCH]
+Attachment="Sac à dos compagnon d'astronaute"
+AttachmentSkin0="Doré"
+
+[Cosmetic_Astronaut_Helmet_ARCH]
+Attachment="Casque d'astronaute"
+AttachmentSkin0="Espace lointain"
+AttachmentSkin1="Singularité"
+AttachmentSkin2="Étoile rayonnante"
+AttachmentSkin3="Galaxie"
+AttachmentSkin4="Doré"
+
+[Cosmetic_Astronaut_O2Backpack_ARCH]
+Attachment="Sac à dos à O2 d'astronaute"
+AttachmentSkin0="Espace lointain"
+AttachmentSkin1="Singularité"
+AttachmentSkin2="Étoile rayonnante"
+AttachmentSkin3="Galaxie"
+AttachmentSkin4="Doré"
+
+[CHR_Tanaka_Archetype.BodyMesh15]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[CHR_Ana_Archetype.BodyMesh14]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[CHR_BadSanta_Archetype.BodyMesh14]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[chr_briar_archetype.BodyMesh15]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[chr_DJSkully_archetype.BodyMesh14]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[CHR_Jagerhorn_Archetype.BodyMesh14]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[chr_mark_archetype.BodyMesh15]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[chr_rockabilly_archetype.BodyMesh14]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[chr_strasser_archetype.BodyMesh14]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"
+
+[chr_alan_archetype.BodyMesh14]
+BodySkin0="Espace lointain"
+BodySkin1="Singularité"
+BodySkin2="Étoile rayonnante"
+BodySkin3="Galaxie"
+BodySkin4="Doré"

@@ -169,7 +169,7 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if(((!bSecondary && IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine) && HighCapMagExemptList.Find(WeaponClassName == -1)
+    if((((!bSecondary || IsFAMAS(KFW)) && IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine) && HighCapMagExemptList.Find(WeaponClassName == -1)
     {
         if(IsHighCapMagsMagActive())
         {
@@ -410,7 +410,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     local name StateName;
 
     StateName = W.GetStateName();
-    if(((IsWeaponOnPerk(W,, self.Class)) && CouldBarrageActive()) && ZedTimeModifyingStates.Find(StateName != -1)
+    if(((IsWeaponOnPerk(W,, self.Class)) && CouldBarrageActive()) && (ZedTimeModifyingStates.Find(StateName != -1) || (StateName == 'MeleeChainAttacking') && IsBlastBrawlers(W))
     {
         return BarrageFiringRate;
     }
@@ -590,7 +590,7 @@ defaultproperties
     EXPAction2="Welding doors"
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_Support'
     InteractIcon=Texture2D'UI_World_TEX.Support_Supplier_HUD'
-    PerkSkills(0)=(Name="HighCapMags",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.support.UI_Talents_Support_HighCapacityMags",bActive=false)
+    PerkSkills(0)=(Name="HighCapMags",Increment=0,Rank=0,StartingValue=0.75,MaxValue=0.75,ModifierValue=0,IconPath="UI_PerkTalent_TEX.support.UI_Talents_Support_HighCapacityMags",bActive=false)
     PerkSkills(1)=(Name="TacticalReload",Increment=0,Rank=0,StartingValue=0.8,MaxValue=0,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_TacticalReload",bActive=false)
     PerkSkills(2)=(Name="Fortitude",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Fortitude",bActive=false)
     PerkSkills(3)=(Name="Salvo",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.Support.UI_Talents_Support_Salvo",bActive=false)

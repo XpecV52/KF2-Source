@@ -156,8 +156,8 @@ defaultproperties
    GridSizes(9)=640.000000
    GridSizes(10)=1280.000000
    HeightMapExportClassName=
-   PlayInEditorWidth=3840
-   PlayInEditorHeight=2160
+   PlayInEditorWidth=1280
+   PlayInEditorHeight=720
    Name="Default__UnrealEdEngine"
    ObjectArchetype=EditorEngine'UnrealEd.Default__EditorEngine'
 }

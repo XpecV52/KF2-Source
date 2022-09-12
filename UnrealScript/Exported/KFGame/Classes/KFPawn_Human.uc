@@ -304,6 +304,7 @@ class KFPawn_Human extends KFPawn
 
 
 
+
 	
 
 
@@ -536,6 +537,8 @@ replication
 // (cpptext)
 // (cpptext)
 
+native function float GetGravityZ();
+
 /*********************************************************************************************
 * @name  General
 ********************************************************************************************* */
@@ -615,6 +618,9 @@ function PossessedBy(Controller C, bool bVehicleTransition)
 	{
 		SetTimer( 1.f, true, nameOf(Timer_CheckSurrounded) );
 	}
+
+	KFGameInfo(WorldInfo.Game).OverrideHumanDefaults( self );
+
 }
 
 simulated function NotifyTeamChanged()
@@ -2397,6 +2403,22 @@ function UpdateActiveSkillsPath(string IconPath, bool Active)
 
 	KFPC = KFPlayerController(Controller);
 	KFPC.MyGFxHUD.PlayerStatusContainer.ShowActiveIndicators(ActiveSkillIconPaths);
+}
+
+event Landed(vector HitNormal, actor FloorActor)
+{
+	local KFPlayerController_WeeklySurvival KFPC;
+
+	super.Landed(HitNormal, FloorActor);
+
+	if (KFPawn_Monster(FloorActor) == none)
+	{
+		KFPC = KFPlayerController_WeeklySurvival(Controller);
+		if (KFPC != none)
+		{
+			KFPC.ResetGoompaStreak();
+		}
+	}
 }
 
 defaultproperties

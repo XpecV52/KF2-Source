@@ -369,7 +369,7 @@ InProgressString="ВЫПОЛНЯЕТСЯ"
 OnlyStockMapsString="СТАНДАРТНЫЕ КАРТЫ"
 OnlyCustomMapsString="ПОЛЬЗОВАТЕЛЬСКИЕ КАРТЫ"
 LimitServerResultsString="ПРЕДЕЛ РЕЗУЛЬТАТОВ:"
-NotServerExiledString="НЕТ ЛОКАЛЬНОГО АДМИНИСТРАТОРА"
+NotServerExiledString="Без администратора"
 
 [KFGFxServerBrowser_ServerDetails]
 MutatorsString="МУТАТОРЫ"
@@ -738,8 +738,8 @@ ComboMakerValue="Помощь мутантам"
 GrabbyValue="Схвачено игроков"
 ZedSupportValue="Косвенный урон"
 ZednnihilationValue="Убито за волну"
-
-
+ZedStomper="Шагающий по мутанту"
+ZedStomperValue="Шагающий по мутантам"
 
 EPB_Healing="Лечение"
 EPB_Kills="Убито"
@@ -750,6 +750,7 @@ EPB_HeadShots="Попаданий в голову"
 EPB_KnifeKills="Убито ножом"
 EPB_PistolKills="Убито из пистолета"
 EPB_DoorWelding="Заваривание дверей"
+EPB_ZedStomps="Шаги по мутантам"
 
 EPB_HealingValue="Здоровье"
 EPB_KillsValue="Убито"
@@ -760,6 +761,7 @@ EPB_HeadShotsValue="Попаданий в голову"
 EPB_KnifeKillsValue="Убито"
 EPB_PistolKillsValue="Убито"
 EPB_DoorWeldingValue="Точки сварки"
+EPB_ZedStompsValue="Шаги"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="НАГРАДЫ КОМАНДЫ"
@@ -780,6 +782,7 @@ HeadShotsString="Попаданий в голову:"
 LargeZedKillsString="Убито крупных мутантов:"
 TotalDoshEarnedString="Всего получено денег:"
 TotalKillsString="Всего убито:"
+TotalStompsString="Всего шагов"
 AssistsString="Помощь:"
 DamageDealtString="Нанесено урона:"
 
@@ -1794,19 +1797,19 @@ Fortitude="Дредноут"
 FortitudeDescription="Общее здоровье растет на 100%."
 
 Ninja="Рубака"
-NinjaDescription="Скорость движения +20%, перебежки +25% при использовании профильного оружия. Каждую секунду восстанавливает 2 очка здоровья."
+NinjaDescription="Скорость движения +20%, перебежки +25% при использовании профильного оружия. Каждую секунду восстанавливает 1 очко здоровья."
 
 Vampire="Вампир"
-VampireDescription="Восстанавливает 4 очка здоровья за каждого мутанта, убитого профильным оружием. На 20% быстрее атака профильным холодным оружием."
+VampireDescription="Восстанавливает 3 очка здоровья за каждого мутанта, убитого профильным оружием. На 20% быстрее атака профильным холодным оружием."
 
 Speed="Мясник"
 SpeedDescription="Атака на 20% быстрее и урон на 20% больше при использовании профильного оружия."
 
 Resistance="Сопротивление"
-ResistanceDescription="+25% к сопротивлению любому урону. +25% к сопротивлению яду и урону звуком."
+ResistanceDescription="+15% к сопротивлению любому урону. +15% к сопротивлению яду и урону звуком."
 
 Parry="Отбив"
-ParryDescription="Парирование проф. холодным оружием снижает урон на 40% и на 10 с повышает скорость атаки в ближнем бою на 5%, а урон от нее — на 35%."
+ParryDescription="Парирование проф. холодным оружием снижает урон на 25% и на 6 с повышает скорость атаки в ближнем бою на 5%, а урон от нее — на 35%."
 
 Smash="Сносящий удар"
 SmashDescription="Сильные атаки профильным холодным оружием наносят +50% урона, +25% урона при попад. в голову, а их остан. дейст. на 200% сильнее."
@@ -1898,7 +1901,7 @@ DirectHit="Сверхмощные боеприпасы"
 DirectHitDescription="Прямой урон взрывного оружия возрастает на 25%."
 
 Ammo="Дополнительные боеприпасы"
-AmmoDescription="Максимальный боезапас профильного взрывного оружия повышается на 5. Это не касается C4."
+AmmoDescription="Максимальный боезапас профильного взрывного оружия повышается на 10. Это не касается C4."
 
 SirenResistance="Звукоустойчивые боеприпасы"
 SirenResistanceDescription="Взрывные устройства устойчивы к крику сирен и всегда взрываются."
@@ -1935,7 +1938,7 @@ Passives[3]=(Title="Скорость движения",Description="Скорос
 Passives[4]=(Title="Бонусная броня",Description="Броня растет на %x% за уровень");
 
 HealingSurge="Симбиотическое здоровье"
-HealingSurgeDescription="Общее здоровье растет на 25%. При лечении бойцов команды восстанавливает 10% общего здоровья."
+HealingSurgeDescription="Общее здоровье растет на 25%. При лечении бойцов команды восстанавливает 6% общего здоровья."
 
 Survivalist="Стойкость"
 SurvivalistDescription="Сопротивление к урону растет на 1% за каждое потерянное очко здоровья вплоть до 60%."
@@ -2128,7 +2131,7 @@ EXPAction1="Наносит урон оружием бойца поддержки
 EXPAction2="Заваривание дверей"
 
 HighCapMags="Магазины большой емкости"
-HighCapMagsDescription="Емкость магазинов профильного оружия растет на 50%."
+HighCapMagsDescription="Емкость магазинов профильного оружия растет на 75%."
 
 TacticalReload="Тактическое заряжание"
 TacticalReloadDescription="Повышает скорость заряжания профильного оружия."
@@ -2825,6 +2828,20 @@ AllCompleteRewardDescriptionString="Киборг | Рюкзак «Компань
 ChanceDropDescriptionStrings[0]="Весенний билет"
 ChanceDropDescriptionStrings[1]="Золотой весенний билет"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2021]
+CurrentSpecialEventString="Временное событие с эксклюзивными наградами"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Пинок!",DescriptionString="Наступить на 50 мутантов")
+SpecialEventObjectiveInfoList[1]=(TitleString="Еженедельная луна",DescriptionString="Выполнить еженедельное задание на Лунной базе")
+SpecialEventObjectiveInfoList[2]=(TitleString="Шокирующий лунный свет",DescriptionString="Убить 20 мутантов с помощью лазерной ловушки на Лунной базе")
+SpecialEventObjectiveInfoList[3]=(TitleString="Передвижение в невесомости",DescriptionString="Убить 300 мутантов, подпрыгивая вверх на Лунной базе")
+SpecialEventObjectiveInfoList[4]=(TitleString="Бесконечная пустота",DescriptionString="Пройдите 15 волн на Лунной базе в бесконечном режиме на «Сложно» или выше")
+
+AllCompleteRewardDescriptionString="Космонавт | Рюкзак «Компаньон» | Дорогая вещь"
+
+ChanceDropDescriptionStrings[0]="Летний билет"
+ChanceDropDescriptionStrings[1]="Летний золотой билет"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2841,7 +2858,7 @@ KnifeString="Нож"
 FriendlyName="Текущая вспышка: Крушитель черепов"
 DescriptionStrings[0]="Лучший удар — удар по мозгам."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="В этой вспышке вам придется столкнуться с мутантами, которых можно вырубить, только ударив по голове. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
+ModifierDescriptions[0]="В этой вспышке вам придется столкнуться с мутантами, которых можно вырубить, только ударив по голове. Выберите еженедельный режим игры на странице подбора игроков, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2851,7 +2868,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Маленький кошмар"
 DescriptionStrings[0]="Маленькая угроза — всё равно угроза."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="Когда вы стреляете по мутантам во время этой вспышки, они уменьшаются, и в них сложнее попасть. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
+ModifierDescriptions[0]="Когда вы стреляете по мутантам во время этой вспышки, они уменьшаются, и в них сложнее попасть. Выберите еженедельный режим игры на странице подбора игроков, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2861,7 +2878,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Отбивальщики"
 DescriptionStrings[0]="Сплошные отбивальщики. Ну, почти."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="В городе проходит конвенция отбивальщиков! Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
+ModifierDescriptions[0]="В городе проходит конвенция отбивальщиков! Выберите еженедельный режим игры на странице подбора игроков, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2871,7 +2888,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Полет гнили"
 DescriptionStrings[0]="Постарайтесь сделать 99 воздушных шаров из мутантов."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="Когда вы стреляете в мутантов во время этой катастрофы, они раздуваются, как воздушные шары. Не забудьте их лопнуть, иначе они начнут восстанавливаться! Выберите режим игры для этой недели на странице поиска игр. Уровень навыков: 15+."
+ModifierDescriptions[0]="Когда вы стреляете в мутантов во время этой катастрофы, они раздуваются, как воздушные шары. Не забудьте их лопнуть, иначе они начнут восстанавливаться! Выберите режим игры для этой недели на странице подбора игроков. Уровень навыков: 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2881,7 +2898,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Время мутантов"
 DescriptionStrings[0]="Всё время мира принадлежит мутантам."
 DescriptionStrings[1]="Длина: Короткая (4 волны)"
-ModifierDescriptions[0]="Вам когда-нибудь казалось, что жизнь проходит мимо вас? Что ж, только не во время этой вспышки! Всякий раз, когда рядом окажется мутант, вы попадете во время мутантов. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
+ModifierDescriptions[0]="Вам когда-нибудь казалось, что жизнь проходит мимо вас? Что ж, только не во время этой вспышки! Всякий раз, когда рядом окажется мутант, вы попадете во время мутантов. Выберите еженедельный режим игры на странице подбора игроков, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2890,7 +2907,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Ба-бах"
 DescriptionStrings[0]="Мутанты под давлением; взрывоопасно."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="Может, они съели что-то не то? Или это газ? Что бы это ни было, убитые во время этой вспышки мутанты взрываются. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
+ModifierDescriptions[0]="Может, они съели что-то не то? Или это газ? Что бы это ни было, убитые во время этой вспышки мутанты взрываются. Выберите еженедельный режим игры на странице подбора игроков, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
@@ -2899,7 +2916,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Качки"
 DescriptionStrings[0]="Чем больше шкаф, тем громче вы падаете."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="Во время этой вспышки мутанты увеличиваются в размерах, поправляют здоровье и становятся сильнее, когда бьют игроков или попадают под воздействие мутантских способностей. Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
+ModifierDescriptions[0]="Во время этой вспышки мутанты увеличиваются в размерах, поправляют здоровье и становятся сильнее, когда бьют игроков или попадают под воздействие мутантских способностей. Выберите еженедельный режим игры на странице подбора игроков, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2909,7 +2926,7 @@ ModifierDescriptions[4]="test5"
 FriendlyName="Текущая вспышка: Головастики"
 DescriptionStrings[0]="...у них наверняка болят шеи."
 DescriptionStrings[1]="Длина: Средняя (7 волн)"
-ModifierDescriptions[0]="С этой толпой мутантов что-то очень сильно не так: их головы намно-о-го больше обычного! Они просто огромные! Выберите еженедельный режим игры на странице поиска игр, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
+ModifierDescriptions[0]="С этой толпой мутантов что-то очень сильно не так: их головы намно-о-го больше обычного! Они просто огромные! Выберите еженедельный режим игры на странице подбора игроков, чтобы принять участие в этой вспышке. Уровень навыков: 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -2930,6 +2947,26 @@ FriendlyName="Жажда крови"
 DescriptionStrings[0]="Продолжите серию убийств или умрите..."
 DescriptionStrings[1]="Длина: средняя (7 волн)"
 ModifierDescriptions[0]="Жажда крови мутантов постоянно наносит вам урон (пока значок еженедельного события отображается рядом со шкалой здоровья). Единственный способ восстановить здоровье — убивать. Выберите режим игры для этой недели на странице подбора игроков. Профильное оружие: +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Arachnophobia KFWeeklyOutBreakInformation]
+FriendlyName="Арахнофобия"
+DescriptionStrings[0]="Мощное приземление!"
+DescriptionStrings[1]="Длина: средняя (7 волн)"
+ModifierDescriptions[0]="Мы переживаем нашествие ползунов. Надевайте ботинки и готовьтесь наступать на них. Выберите режим игры для этой недели на странице подбора игроков. Профессия: +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Scavenger KFWeeklyOutBreakInformation]
+FriendlyName="Мусорщик"
+DescriptionStrings[0]="Импровизируй. Адаптируйся. Преодолевай."
+DescriptionStrings[1]="Длина: средняя (7 волн)"
+ModifierDescriptions[0]="У торговцев проблемы с поставками: оружия у них нет. Что найдете на земле — всё ваше. Выберите режим игры для этой недели на странице подбора игроков. Профессия: +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3451,6 +3488,9 @@ DisplayName="Элизиум"
 
 [KF-Dystopia2029 KFMapSummary]
 DisplayName="Антиутопия 2029"
+
+[KF-Moonbase KFMapSummary]
+DisplayName="Лунная база"
 
 [KFMapInfo]
 ; defaults

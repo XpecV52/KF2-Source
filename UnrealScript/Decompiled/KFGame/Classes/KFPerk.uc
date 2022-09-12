@@ -122,6 +122,7 @@ const STATID_ACHIEVE_DesolationCollectibles = 4055;
 const STATID_ACHIEVE_HellmarkStationCollectibles = 4056;
 const STATID_ACHIEVE_ElysiumEndlessWaveFifteen = 4057;
 const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
+const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -482,6 +483,16 @@ static function bool IsBackupWeapon(KFWeapon KFW)
 static function bool IsDual9mm(KFWeapon KFW)
 {
     return (KFW != none) && KFW.Class.Name == 'KFWeap_Pistol_Dual9mm';
+}
+
+static function bool IsFAMAS(KFWeapon KFW)
+{
+    return (KFW != none) && KFW.Class.Name == 'KFWeap_AssaultRifle_FAMAS';
+}
+
+static function bool IsBlastBrawlers(KFWeapon KFW)
+{
+    return (KFW != none) && KFW.Class.Name == 'KFWeap_HRG_BlastBrawlers';
 }
 
 simulated function int GetCurrentPrestigeLevel()
@@ -863,7 +874,8 @@ function AddDefaultInventory(KFPawn P)
             if(KFGameInfo(WorldInfo.Game).AllowSecondaryWeapon(GetSecondaryWeaponClassPath()))
             {
                 P.DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject(GetSecondaryWeaponClassPath(), Class'Class'));
-            }            
+            }
+            KFGameInfo(WorldInfo.Game).AddWeaponsFromSpawnList(P);            
         }
         else
         {

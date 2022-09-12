@@ -305,6 +305,7 @@ class KFCharacterInfo_Human extends KFCharacterInfoBase
 
 
 
+
 	
 
 

@@ -237,11 +237,12 @@ function InitializeGameOptions()
     Profile = GetCachedProfile();
     bIsSoloGame = GetBool("bIsSoloGame");
     StartMenu.GetMapList(StartMenu.MapStringList, ParentMenu.Manager.GetModeIndex(false), StartMenu.GetStartMenuState() == 1);
+    FilterWeeklyMaps(StartMenu.MapStringList);
     InitialMapIndex = GetInitialMapIndex();
     UpdateButtonsEnabled();
     SupportedGameModeStrings = Class'KFCommon_LocalizedStrings'.static.GetGameModeStringsArray();
     I = SupportedGameModeStrings.Length - 1;
-    J0x12A:
+    J0x152:
 
     if(I >= 0)
     {
@@ -250,7 +251,7 @@ function InitializeGameOptions()
             SupportedGameModeStrings.Remove(I, 1;
         }
         -- I;
-        goto J0x12A;
+        goto J0x152;
     }
     TextObject = Outer.CreateObject("Object");
     StoredLengthIndex = GetLengthIndex();
@@ -283,6 +284,22 @@ function InitializeGameOptions()
         TextObject.SetObject("regionList", CreateList(PlayfabRegionList, byte(Class'GameEngine'.static.GetPlayfabInterface().GetIndexForCurrentRegion()), false));
     }
     SetObject("localizedText", TextObject);
+}
+
+function FilterWeeklyMaps(out array<string> List)
+{
+    if(ParentMenu.Manager.GetModeIndex(false) != 1)
+    {
+        return;
+    }
+    if(Class'KFGameEngine'.static.GetWeeklyEventIndex() == 11)
+    {
+        List.RemoveItem("KF-Biolapse";
+        List.RemoveItem("KF-Nightmare";
+        List.RemoveItem("KF-PowerCore_Holdout";
+        List.RemoveItem("KF-TheDescent";
+        List.RemoveItem("KF-KrampusLair";
+    }
 }
 
 function GFxObject CreateList(array<string> TextArray, byte SelectedIndex, bool bAddNoPrefString, optional bool bIsMapList, optional byte MaxLength)

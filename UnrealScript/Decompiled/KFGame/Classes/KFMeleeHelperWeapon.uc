@@ -24,8 +24,8 @@ var transient bool bResetChainSequence;
 var() bool bUseMeleeHitTimer;
 var bool bHitEnemyThisAttack;
 var transient byte ChooseAtkCount;
-var private KFPawn.EPawnOctant NextAttackDir;
-var private KFMeleeHelperWeapon.EMeleeAttackType NextAttackType;
+var protected KFPawn.EPawnOctant NextAttackDir;
+var protected KFMeleeHelperWeapon.EMeleeAttackType NextAttackType;
 var KFPawn.EPawnOctant CurrentAttackDir;
 var byte CurrentAtkChainIdx;
 /** 4-way directional combo chain sequence */
@@ -647,25 +647,25 @@ simulated function PlayMeleeHitEffects(Actor Target, Vector HitLocation, Vector 
 
 defaultproperties
 {
-    ChainSequence_F(0)=71
+    ChainSequence_F(0)=92
     ChainSequence_F(1)=30
     ChainSequence_F(2)=0
     ChainSequence_F(3)=0
     ChainSequence_F(4)=0
-    ChainSequence_B(0)=67
+    ChainSequence_B(0)=88
     ChainSequence_B(1)=30
     ChainSequence_B(2)=0
     ChainSequence_B(3)=0
     ChainSequence_B(4)=0
     ChainSequence_B(5)=0
     ChainSequence_B(6)=0
-    ChainSequence_L(0)=74
+    ChainSequence_L(0)=95
     ChainSequence_L(1)=30
     ChainSequence_L(2)=0
     ChainSequence_L(3)=0
     ChainSequence_L(4)=0
     ChainSequence_L(5)=0
-    ChainSequence_R(0)=71
+    ChainSequence_R(0)=92
     ChainSequence_R(1)=30
     ChainSequence_R(2)=0
     ChainSequence_R(3)=0

@@ -43,6 +43,8 @@ var int CurrentScopeTextureSize;
 
 var(Scope) float ScopedSensitivityMod;
 
+/** MIC Index for the scope material */
+var byte ScopeMICIndex;
 
 simulated exec function ScopeFOV( float NewFOV )
 {
@@ -128,7 +130,7 @@ reliable client function ClientWeaponSet(bool bOptionalSet, optional bool bDoNot
     	ScopeLenseMIC.SetParent(ScopeLenseMICTemplate);
     	ScopeLenseMIC.SetTextureParameterValue('ScopeTextureTarget', SniperScopeTextureTarget);
     	ScopeLenseMIC.SetScalarParameterValue(InterpParamName, 0.0);
-    	mesh.SetMaterial(2, ScopeLenseMIC);
+    	mesh.SetMaterial(ScopeMICIndex, ScopeLenseMIC);
     }
 }
 
@@ -339,6 +341,7 @@ defaultproperties
    MaxSceneCaptureSize=1024
    InterpParamName="mat_blend_scaler"
    ScopedSensitivityMod=6.000000
+   ScopeMICIndex=2
    AimCorrectionSize=40.000000
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeapon:MeleeHelper_0'
       MaxHitRange=175.000000

@@ -44,6 +44,7 @@ BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
+BodyMesh14="Костюм «Скафандр космонавта»"
 HeadMesh0="Противогаз"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -242,6 +243,7 @@ BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
+BodyMesh14="Костюм «Скафандр космонавта»"
 HeadMesh0="Сила бороды!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -461,6 +463,7 @@ BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Космический пират"
 BodyMesh13="Костюм смерти"
+BodyMesh14="Костюм «Скафандр космонавта»"
 HeadMesh0="Маска Скалли"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -626,6 +629,7 @@ BodyMesh11="Охотник на ведьм"
 BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
 BodyMesh14="Костюм смерти"
+BodyMesh15="Костюм «Скафандр космонавта»"
 HeadMesh0="Волосы"
 
 [chr_briar_archetype.BodyMesh0]
@@ -791,6 +795,7 @@ BodyMesh11="Охотник на ведьм"
 BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
 BodyMesh14="Костюм смерти"
+BodyMesh15="Костюм «Скафандр космонавта»"
 HeadMesh0="Противогаз"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -1081,6 +1086,7 @@ BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
+BodyMesh15="Костюм «Скафандр космонавта»"
 HeadMesh0="Лицо"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1237,6 +1243,7 @@ BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
+BodyMesh14="Костюм «Скафандр космонавта»"
 HeadMesh0="Волосы"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -2255,6 +2262,7 @@ BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
+BodyMesh14="Костюм «Скафандр космонавта»"
 HeadMesh0="Лицо"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2400,6 +2408,7 @@ BodyMesh11="Охотник на ведьм"
 BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
 BodyMesh14="Костюм смерти"
+BodyMesh15="Костюм «Скафандр космонавта»"
 HeadMesh0="Волосы"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2578,6 +2587,7 @@ BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
+BodyMesh14="Костюм «Скафандр космонавта»"
 HeadMesh0="Ирокез"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2735,6 +2745,7 @@ BodyMesh11="Охотник на ведьм"
 BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
 BodyMesh14="Костюм смерти"
+BodyMesh15="Костюм «Скафандр космонавта»"
 HeadMesh0="Волосы"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2886,6 +2897,7 @@ BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
+BodyMesh14="Костюм «Скафандр космонавта»"
 HeadMesh0="Лицо"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3039,6 +3051,7 @@ BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
+BodyMesh14="Костюм «Скафандр космонавта»"
 HeadMesh0="Волосы"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3331,6 +3344,7 @@ BodyMesh10="Охотник на ведьм"
 BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
+BodyMesh14="Костюм «Скафандр космонавта»"
 HeadMesh0="Обычная голова"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -6559,3 +6573,260 @@ AttachmentSkin0="Дорогая вещь"
 [Cosmetic_BloodThirst_Backpack_ARCH]
 Attachment="Рюкзак «Жажда крови»"
 AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Foundry_DynamiteBox_ARCH]
+Attachment="Цех: рюкзак «Динамит»"
+AttachmentSkin0="Коричневый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Песок"
+AttachmentSkin4="Оливковый цвет"
+AttachmentSkin5="Зеленовато-голубой цвет"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Foundry_LanternBackpack_ARCH]
+Attachment="Цех: рюкзак «Фонарь»"
+AttachmentSkin0="Коричневый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Огонь"
+AttachmentSkin4="Оливковый цвет"
+AttachmentSkin5="Зеленовато-голубой цвет"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Foundry_MinerHat_ARCH]
+Attachment="Цех: каска шахтера"
+AttachmentSkin0="Коричневый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Песок"
+AttachmentSkin4="Оливковый цвет"
+AttachmentSkin5="Зеленовато-голубой цвет"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Foundry_HardHat_ARCH]
+Attachment="Цех: каска"
+AttachmentSkin0="Предупреждение"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Высокое напряжение"
+AttachmentSkin4="Биоугроза"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Foundry_HardHatShield_ARCH]
+Attachment="Цех: каска и щит"
+AttachmentSkin0="Предупреждение"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Высокое напряжение"
+AttachmentSkin4="Биоугроза"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Foundry_CastingBucket_ARCH]
+Attachment="Цех: рюкзак «Отливочное ведро»"
+AttachmentSkin0="Предупреждение"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Высокое напряжение"
+AttachmentSkin4="Биоугроза"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Foundry_WeldingHelmet_ARCH]
+Attachment="Цех: шлем сварщика"
+AttachmentSkin0="Предупреждение"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Высокое напряжение"
+AttachmentSkin4="Биоугроза"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Foundry_WeldingTank_ARCH]
+Attachment="Цех: рюкзак «Сварочный баллон»"
+AttachmentSkin0="Предупреждение"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Высокое напряжение"
+AttachmentSkin4="Биоугроза"
+AttachmentSkin5="Технологичн."
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Arachnophobia_Backpack_ARCH]
+Attachment="Рюкзак «Ноги ползуна»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Astronaut_StrikeForceHelmet_ARCH]
+Attachment="Космонавт: шлем «Ударный отряд»"
+AttachmentSkin0="Глубокий космос"
+AttachmentSkin1="Сингулярность"
+AttachmentSkin2="Символ звезды"
+AttachmentSkin3="Галактика"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Astronaut_CrewGoggles_ARCH]
+Attachment="Космонавт: очки «Экипаж»"
+AttachmentSkin0="Глубокий космос"
+AttachmentSkin1="Сингулярность"
+AttachmentSkin2="Символ звезды"
+AttachmentSkin3="Галактика"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Astronaut_CrewHeadSet_ARCH]
+Attachment="Космонавт: гарнитура «Экипаж»"
+AttachmentSkin0="Глубокий космос"
+AttachmentSkin1="Сингулярность"
+AttachmentSkin2="Символ звезды"
+AttachmentSkin3="Галактика"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Astronaut_CrewMask_ARCH]
+Attachment="Космонавт: маска «Экипаж»"
+AttachmentSkin0="Глубокий космос"
+AttachmentSkin1="Сингулярность"
+AttachmentSkin2="Символ звезды"
+AttachmentSkin3="Галактика"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Astronaut_JetPack_ARCH]
+Attachment="Ракетный ранец космонавта"
+AttachmentSkin0="Глубокий космос"
+AttachmentSkin1="Сингулярность"
+AttachmentSkin2="Символ звезды"
+AttachmentSkin3="Галактика"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Astronaut_RadarArmband_ARCH]
+Attachment="Космонавт: повязка «Радар»"
+AttachmentSkin0="Глубокий космос"
+AttachmentSkin1="Сингулярность"
+AttachmentSkin2="Символ звезды"
+AttachmentSkin3="Галактика"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Astronaut_CompanionBackpack_ARCH]
+Attachment="Космонавт: рюкзак «Компаньон»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_Astronaut_Helmet_ARCH]
+Attachment="Шлем космонавта"
+AttachmentSkin0="Глубокий космос"
+AttachmentSkin1="Сингулярность"
+AttachmentSkin2="Символ звезды"
+AttachmentSkin3="Галактика"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_Astronaut_O2Backpack_ARCH]
+Attachment="Кислородный рюкзак космонавта"
+AttachmentSkin0="Глубокий космос"
+AttachmentSkin1="Сингулярность"
+AttachmentSkin2="Символ звезды"
+AttachmentSkin3="Галактика"
+AttachmentSkin4="Дорогая вещь"
+
+[CHR_Tanaka_Archetype.BodyMesh15]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[CHR_Ana_Archetype.BodyMesh14]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[CHR_BadSanta_Archetype.BodyMesh14]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[chr_briar_archetype.BodyMesh15]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[chr_DJSkully_archetype.BodyMesh14]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[CHR_Jagerhorn_Archetype.BodyMesh14]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[chr_mark_archetype.BodyMesh15]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[chr_rockabilly_archetype.BodyMesh14]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[chr_strasser_archetype.BodyMesh14]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"
+
+[chr_alan_archetype.BodyMesh14]
+BodySkin0="Глубокий космос"
+BodySkin1="Сингулярность"
+BodySkin2="Символ звезды"
+BodySkin3="Галактика"
+BodySkin4="Дорогая вещь"

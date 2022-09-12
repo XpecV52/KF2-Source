@@ -473,7 +473,7 @@ ItemCategory="Broń krótka"
 ItemDescription="• Wyłącznie tryb pojedynczego strzału.\n• Broń, która wymaga sporo szczęścia."
 
 [KFWeap_HRG_Revolver_DualBuckshot]
-ItemName="Dwa rewolwery śrutowe HRG"
+ItemName="Dwa rew. śrutowe HRG"
 ItemCategory="Broń krótka"
 ItemDescription="• Tryb strzelania: tylko ogień pojedynczy.\n• Tryb alternatywny przełącza style celowania, gdy używany jest celownik mechaniczny.\n• Broń, która wymaga sporo szczęścia."
 
@@ -770,6 +770,30 @@ ItemName="Imploder grawitacyjny"
 ItemCategory="Materiały wybuchowe"
 ItemDescription="• Domyślny atak wystrzeliwuje implodujące granaty.\n• Alternatywny atak wystrzeliwuje granaty, które przyciągają wrogów.\n• Jedna z najbardziej przyciągających broni w historii."
 SharedUnlockSource="Zestaw broni implodera grawitacyjnego"
+
+[KFWeap_HRG_BlastBrawlers]
+ItemName="Wybuchowa Bitka HRG"
+ItemCategory="Walka wręcz"
+ItemDescription="• Główny atak: Wytwarza 2 wybuchy – po jednym z każdej pięści.\n• Dodatkowy atak: mocny atak wręcz.\n• Zwycięstwo masz już w garści."
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="Bastion HRG"
+ItemCategory="Lekki karabin maszynowy"
+ItemDescription="• Tylko ogień ciągły.\n• Alternatywny atak aktywuje barierę energetyczną, która zmniejsza otrzymywane obrażenia.\n• Da trochę atak, da trochę obronę, ale zostało SWAT-owi podwędzone."
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="FAMAS Masterkey"
+ItemCategory="Karabin szturmowy"
+ItemDescription="• Domyślny atak to seria 3 strzałów z FAMAS-a.\n• Alternatywny atak to strzał z podwieszanej strzelby M26.\n• Karabin szturmowy? Strzelba? Może jedno i drugie?"
+SecondaryAmmo="Naboje do strzelby FAMAS-a"
+SharedUnlockSource="Zestaw broni FAMAS Masterkey"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="Wiertło termitowe"
+ItemCategory="Ogień"
+ItemDescription="• Główny atak wystrzeliwuje granaty termitowe, które eksplodują po 4 sekundach.\n• Alternatywny atak ręcznie detonuje cały termit.\n• Jak światło dla much, tak ogień dla zetów."
+SharedUnlockSource="Zestaw broni wiertła termitowego"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

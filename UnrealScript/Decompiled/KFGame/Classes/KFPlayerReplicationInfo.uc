@@ -138,6 +138,7 @@ var Texture CharPortrait;
 var int DamageDealtOnTeam;
 var class<KFPerk> CurrentPerkClass;
 var int Assists;
+var int ZedStomps;
 var float VoiceCommsStatusDisplayInterval;
 var int VoiceCommsStatusDisplayIntervalCount;
 var int VoiceCommsStatusDisplayIntervalMax;
@@ -157,11 +158,11 @@ replication
         CurrentVoiceCommsRequest, DamageDealtOnTeam, 
         NetPerkIndex, PerkSupplyLevel, 
         PlayerHealth, PlayerHealthPercent, 
-        RepCustomizationInfo, bCarryingCollectible, 
-        bConcussiveActive, bExtraFireRange, 
-        bHasSpawnedIn, bNukeActive, 
-        bObjectivePlayer, bSplashActive, 
-        bVOIPRegisteredWithOSS;
+        RepCustomizationInfo, ZedStomps, 
+        bCarryingCollectible, bConcussiveActive, 
+        bExtraFireRange, bHasSpawnedIn, 
+        bNukeActive, bObjectivePlayer, 
+        bSplashActive, bVOIPRegisteredWithOSS;
 
      if(bNetDirty && !bNetOwner || bDemoRecording)
         SharedUnlocks, VOIPStatus;
@@ -1196,14 +1197,14 @@ simulated function ResetSupplierUsed()
 
     KFGameReplicationInfo(WorldInfo.GRI).GetKFPRIArray(KFPRIArray);
     I = 0;
-    J0x52:
+    J0x53:
 
     if(I < KFPRIArray.Length)
     {
         KFPRIArray[I].bPerkPrimarySupplyUsed = false;
         KFPRIArray[I].bPerkSecondarySupplyUsed = false;
         ++ I;
-        goto J0x52;
+        goto J0x53;
     }
 }
 

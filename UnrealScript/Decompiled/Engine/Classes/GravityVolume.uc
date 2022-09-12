@@ -12,10 +12,16 @@ class GravityVolume extends PhysicsVolume
 
 /** Gravity along Z axis applied to objects inside this volume. */
 var() float GravityZ;
+/** Scaling GravityZ and being used different function (GetGravityZHuman) to retrieve GravityZ */
+var() float ScaleGravityHuman;
+/** Scaling GravityZ and being used different function (GetGravityZMonster) to retrieve GravityZ */
+var() float ScaleGravityMonster;
 
 defaultproperties
 {
     GravityZ=-520
+    ScaleGravityHuman=1
+    ScaleGravityMonster=1
     begin object name=BrushComponent0 class=BrushComponent
         ReplacementPrimitive=none
     object end

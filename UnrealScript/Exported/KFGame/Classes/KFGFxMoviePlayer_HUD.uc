@@ -62,6 +62,8 @@ var KFGFxWidget_NonCriticalGameMessage NonCriticalGameMessageWidget;
 var KFGFxWidget_NonCriticalGameMessage InviteGameMessageWidget;
 // Widget that shows headshots for gunslinger
 var KFGFxWidget_RhythmCounter RhythmCounterWidget;
+// Widget that shows goompa jumps.
+var KFGFxWidget_GoompaCounter GoompaCounterWidget;
 // Widget that displays health bar
 var KFGFxWidget_BossHealthBar bossHealthBar;
 // Widget that displays map texts
@@ -335,12 +337,18 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
         break;
     case 'RhythmCounter':
         if(RhythmCounterWidget == none)
-    {
+        {
             RhythmCounterWidget=KFGFxWidget_RhythmCounter(Widget);
-    }
+        }
+        break;
+    case 'GoompaCounter':
+        if (GoompaCounterWidget == none)
+        {
+            GoompaCounterWidget=KFGFxWidget_GoompaCounter(Widget);
+        }
         break;
     }
-
+   
     return true;
 }
 
@@ -1074,6 +1082,14 @@ function UpdateRhythmCounterWidget(int value, int max)
     }
 }
 
+function UpdateGoompaCounterWidget(int value, int max)
+{
+    if(GoompaCounterWidget != none)
+    {
+        GoompaCounterWidget.SetCount(value, max);
+    }
+}
+
 //==============================================================
 // Input
 //==============================================================
@@ -1410,9 +1426,10 @@ defaultproperties
    WidgetBindings(17)=(WidgetName="NonCriticalMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
    WidgetBindings(18)=(WidgetName="InviteMessageWidget",WidgetClass=Class'KFGame.KFGFxWidget_NonCriticalGameMessage')
    WidgetBindings(19)=(WidgetName="RhythmCounter",WidgetClass=Class'KFGame.KFGFxWidget_RhythmCounter')
-   WidgetBindings(20)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
-   WidgetBindings(21)=(WidgetName="MapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapText')
-   WidgetBindings(22)=(WidgetName="counterMapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapCounterText')
+   WidgetBindings(20)=(WidgetName="GoompaCounter",WidgetClass=Class'KFGame.KFGFxWidget_GoompaCounter')
+   WidgetBindings(21)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
+   WidgetBindings(22)=(WidgetName="MapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapText')
+   WidgetBindings(23)=(WidgetName="counterMapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapCounterText')
    Name="Default__KFGFxMoviePlayer_HUD"
    ObjectArchetype=GFxMoviePlayer'GFxUI.Default__GFxMoviePlayer'
 }

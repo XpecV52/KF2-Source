@@ -447,8 +447,8 @@ defaultproperties
     HealPotency=(Name="Healer Potency",Increment=0.02,Rank=0,StartingValue=1,MaxValue=1.5,ModifierValue=0,IconPath="",bActive=false)
     BloatBileResistance=(Name="Bloat Bile Resistance",Increment=0.02,Rank=0,StartingValue=0,MaxValue=0.5,ModifierValue=0,IconPath="",bActive=false)
     MovementSpeed=(Name="Movement Speed",Increment=0.004,Rank=0,StartingValue=0,MaxValue=0.1,ModifierValue=0,IconPath="",bActive=false)
-    Armor=(Name="Armor",Increment=0.03,Rank=0,StartingValue=1,MaxValue=1.75,ModifierValue=0,IconPath="",bActive=false)
-    SelfHealingSurgePct=0.1
+    Armor=(Name="Armor",Increment=0.02,Rank=0,StartingValue=1,MaxValue=1.5,ModifierValue=0,IconPath="",bActive=false)
+    SelfHealingSurgePct=0.06
     MaxSurvivalistResistance=0.6
     CombatantSpeedModifier=0.1
     MaxHealingSpeedBoost=30

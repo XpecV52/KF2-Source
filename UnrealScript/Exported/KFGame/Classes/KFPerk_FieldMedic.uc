@@ -640,8 +640,8 @@ defaultproperties
    HealPotency=(Name="Healer Potency",Increment=0.020000,StartingValue=1.000000,MaxValue=1.500000)
    BloatBileResistance=(Name="Bloat Bile Resistance",Increment=0.020000,MaxValue=0.500000)
    MovementSpeed=(Name="Movement Speed",Increment=0.004000,MaxValue=0.100000)
-   Armor=(Name="Armor",Increment=0.030000,StartingValue=1.000000,MaxValue=1.750000)
-   SelfHealingSurgePct=0.100000
+   Armor=(Name="Armor",Increment=0.020000,StartingValue=1.000000,MaxValue=1.500000)
+   SelfHealingSurgePct=0.060000
    MaxSurvivalistResistance=0.600000
    CombatantSpeedModifier=0.100000
    MaxHealingSpeedBoost=30.000000

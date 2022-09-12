@@ -671,7 +671,7 @@ ItemCategory="Criogenico"
 ItemDescription="•Spara proiettili di ghiaccio esplosivi.\n•Il miglior modo per avere una giornata ghiacciata."
 
 [KFWeap_Pistol_DualHRGWinterbite]
-ItemName="HRG Morsa dell'inverno doppia"
+ItemName="HRG Morsa dell'inv. doppia"
 ItemCategory="Criogenico"
 ItemDescription="•Lancia proiettili di ghiaccio esplosivi.\n•Il fuoco alternativo cambia il metodo di puntamento quando si usa il mirino.\n•Il brivido raddoppia."
 
@@ -770,6 +770,30 @@ ItemName="Collassatore di gravità"
 ItemCategory="Esplosivi"
 ItemDescription="•La modalità di fuoco predefinita lancia delle granate implosive.\n•La modalità fuoco alternato lancia delle granate gravitazionali che attraggono i nemici.\n•Una delle armi più belle mai create."
 SharedUnlockSource="Bundle armi Collassatore di gravità"
+
+[KFWeap_HRG_BlastBrawlers]
+ItemName="Pugniraggio HRG"
+ItemCategory="Mischia"
+ItemDescription="•Primario: spara 2 raggi, uno da ogni pugno.\n•Secondario: attacco da mischia pesante.\n•Il nome lascia poco all'immaginazione."
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="HRG bastione"
+ItemCategory="Mitragliatrice leggera"
+ItemDescription="•La modalità di fuoco è solo automatica.\n•Il fuoco alternativo attiva una barriera di energia che riduce i danni in arrivo.\n•Protegge. Attacca. Ma soprattutto, appartiene alla SWAT."
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="FAMAS Passepartout"
+ItemCategory="Fucile d'assalto"
+ItemDescription="•La modalità di fuoco predefinita è a 3 raffiche con il FAMAS.\n•Il fuoco alternativo è a pompa con il M26 sospeso.\n•Fucile o fucile d'assalto? Entrambi, ovvio."
+SecondaryAmmo="Bossoli di fucile FAMAS"
+SharedUnlockSource="Bundle armi FAMAS Passepartout"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="Lanciatermite"
+ItemCategory="Fiamme"
+ItemDescription="•Il fuoco primario lancia granate di termite che esplodono dopo 4 secondi.\n•Il fuoco alternativo fa esplodere tutta la termite.\n•Quello che la luce è per gli insetti, il fuoco lo è per gli Zed."
+SharedUnlockSource="Bundle armi Lanciatermite"
+
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

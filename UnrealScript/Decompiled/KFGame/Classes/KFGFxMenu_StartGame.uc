@@ -217,7 +217,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 1:
             return Class'KFGFxSpecialEventObjectivesContainer_Spring2021';
         case 2:
-            return Class'KFGFxSpecialEventObjectivesContainer_Summer2020';
+            return Class'KFGFxSpecialEventObjectivesContainer_Summer2021';
         case 3:
             return Class'KFGFXSpecialEventObjectivesContainer_Fall2020';
         case 4:
@@ -1834,5 +1834,6 @@ defaultproperties
     StockMaps(31)="kf-hellmarkstation"
     StockMaps(32)="kf-elysium"
     StockMaps(33)="kf-dystopia2029"
+    StockMaps(34)="kf-moonbase"
     SubWidgetBindings=/* Array type was not detected. */
 }

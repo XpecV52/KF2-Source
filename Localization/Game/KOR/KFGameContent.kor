@@ -771,6 +771,30 @@ ItemCategory="폭발물"
 ItemDescription="•기본 발사 모드에서 폭발 수류탄을 발사합니다.\n•대체 발사 시 적을 잡아당기는 중력 수류탄을 발사합니다.\n•개발된 것 중 가장 매력적인 무기입니다."
 SharedUnlockSource="중력 속의 분노 무기 번들"
 
+[KFWeap_HRG_BlastBrawlers]
+ItemName="HRG 블라스터 브롤러"
+ItemCategory="백병전"
+ItemDescription="•기본: 각 주먹에서 2번 발사.\n•보조: 강력한 근접 공격.\n•연구팀은 주먹이 어떻게 우는지 잘 알았던 거 같습니다."
+
+[KFWeap_HRG_BarrierRifle]
+ItemName="HRG 바스티온"
+ItemCategory="경기관총"
+ItemDescription="•완전 자동 발사 모드만 지원.\n•대체 사격 시 받은 데미지를 감쇄하는 에너지 배리어 작동.\n•보호합니다. 공격합니다. SWAT용입니다."
+
+[KFWeap_AssaultRifle_FAMAS]
+ItemName="FAMAS 마스터키"
+ItemCategory="돌격소총"
+ItemDescription="•FAMAS 기본 사격 모드는 3점사입니다.\n•대체 사격은 M26 언더슬러그를 사용한 펌프 액션입니다.\n•돌격 소총? 산탄총? 둘 다. 둘 다가 좋죠."
+SecondaryAmmo="FAMAS 샷건 탄환"
+SharedUnlockSource="FAMAS 마스터키 무기 번들"
+
+[KFWeap_RocketLauncher_ThermiteBore]
+ItemName="터마이트 보어"
+ItemCategory="화염"
+ItemDescription="•기본 사격 시 4초 뒤 폭발하는 터마이트 수류탄을 발사합니다.\n•대체 사격 시 터마이트를 자동으로 기폭합니다.\n•파리떼를 불로 지지듯 제드 녀석들을 불로 지지세요."
+SharedUnlockSource="터마이트 보어 무기 번들"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
