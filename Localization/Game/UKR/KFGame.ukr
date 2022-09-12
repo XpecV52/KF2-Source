@@ -1164,7 +1164,7 @@ Resistance="Resistance"
 ResistanceDescription="Gain 20% resistance to all damage. You gain an additional 20% resistance to Poison and Sonic Damage."
 
 Parry="Parry"
-ParryDescription="Parrying an attack with a Berserker melee weapon will increase melee attack speed by 5% and melee damage by 35% for 10 seconds."
+ParryDescription="Parrying with a perk melee weapon reduces incoming damage 30% and increases both melee attack speed 5% and melee damage 35% for 8 seconds."
 
 Smash="Smash"
 SmashDescription="Hard attacks with Berserker melee weapons do 50% more damage, plus an additional 25%  damage on head shots, and have 200% more Stumble power."

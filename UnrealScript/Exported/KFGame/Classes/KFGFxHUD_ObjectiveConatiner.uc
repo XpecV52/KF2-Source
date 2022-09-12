@@ -13,6 +13,8 @@ var name SoundCueName;
 var float LastProgress;
 var bool bLastMissionCritical;
 
+var bool bPrevCompleted;
+
 function InitializeHUD()
 {
 	KFPC = KFPlayerController(GetPC());
@@ -77,10 +79,16 @@ function SetCompleted(bool bComplete)
 	DataObject.SetString("completeString", bComplete ? Localize("Objectives", "SuccessString", "KFGame") : "");
 	SetObject("completeStatus", DataObject);
 
+	if (!bComplete)
+	{
+		bPrevCompleted = false;
+	}
+
 	//play sound queue
-	if (KFPC != none && KFPC.MyGFxHUD != none && bComplete)
+	if (KFPC != none && KFPC.MyGFxHUD != none && bComplete && bComplete != bPrevCompleted)
 	{
 		KFPC.MyGFxHUD.PlaySoundFromTheme(SoundCueName, SoundThemeName);
+		bPrevCompleted = true;
 	}
 }
 

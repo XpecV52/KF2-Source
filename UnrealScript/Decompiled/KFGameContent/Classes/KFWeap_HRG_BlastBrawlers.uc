@@ -315,6 +315,7 @@ defaultproperties
     ReloadAnimation=Atk_B
     ReloadAnimRateModifier=1.6
     ReloadAnimRateModifierElite=1
+    BlockDamageMitigation=0.5
     PackageKey="HRG_BlastBrawlers"
     FirstPersonMeshName="WEP_1P_HRG_BlastBrawlers_MESH.WEP_1stP_HRG_Blast_Brawlers_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -326,11 +327,12 @@ defaultproperties
     bAllowClientAmmoTracking=false
     FireModeIconPaths=/* Array type was not detected. */
     InventorySize=9
+    PenetrationPower=/* Array type was not detected. */
     PenetrationDamageReductionCurve=/* Array type was not detected. */
     WeaponSelectTexture=Texture2D'WEP_UI_HRG_BlastBrawlers_TEX.UI_WeaponSelect_HRG_BlastBrawlers'
     MagazineCapacity=4
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=36
+    SpareAmmoCapacity=40
     InitialSpareMags=2
     AmmoPickupScale=1.5
     WeaponFireSnd=/* Array type was not detected. */

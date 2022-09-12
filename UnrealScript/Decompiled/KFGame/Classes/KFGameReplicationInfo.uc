@@ -700,9 +700,10 @@ simulated function GetKFPRIArray(out array<KFPlayerReplicationInfo> KFPRIArray, 
 {
     local int I, Num;
 
+    bGetZedPlayers = true;
     KFPRIArray.Remove(0, KFPRIArray.Length;
     I = 0;
-    J0x23:
+    J0x27:
 
     if(I < PRIArray.Length)
     {
@@ -711,7 +712,7 @@ simulated function GetKFPRIArray(out array<KFPlayerReplicationInfo> KFPRIArray, 
             KFPRIArray[++ Num] = KFPlayerReplicationInfo(PRIArray[I]);
         }
         ++ I;
-        goto J0x23;
+        goto J0x27;
     }
 }
 

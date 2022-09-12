@@ -18,7 +18,7 @@ defaultproperties
    LoopingParticleEffectCeiling=ParticleSystem'WEP_Thermite_EMIT.FX_Thermite_Spread_Ceiling_01'
    LoopingParticleEffectWall=ParticleSystem'WEP_Thermite_EMIT.FX_Thermite_Spread_Wall_01'
    interval=0.500000
-   maxTime=10.000000
+   maxTime=7.000000
    bDoFullDamage=True
    LoopStartEvent=AkEvent'WW_WEP_SA_Flamethrower.Play_WEP_SA_Flamethrower_Residual_Fire_Loop'
    LoopStopEvent=AkEvent'WW_WEP_SA_Flamethrower.Stop_WEP_SA_Flamethrower_Residual_Fire_Loop'

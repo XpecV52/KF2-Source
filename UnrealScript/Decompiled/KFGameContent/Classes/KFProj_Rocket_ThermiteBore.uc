@@ -47,7 +47,6 @@ simulated event PostBeginPlay()
     {
         SetTimer(FuseTime, false, 'Timer_Detonate');
     }
-    AdjustCanDisintigrate();
 }
 
 function Timer_Detonate()
@@ -137,12 +136,6 @@ simulated function Disintegrate(Rotator InDisintegrateEffectRotation)
         }
     }
     super.Disintegrate(InDisintegrateEffectRotation);
-}
-
-protected simulated function PrepareExplosionTemplate()
-{
-    Class'KFPerk_Demolitionist'.static.PrepareExplosive(Instigator, self);
-    super.PrepareExplosionTemplate();
 }
 
 simulated function SyncOriginalLocation()

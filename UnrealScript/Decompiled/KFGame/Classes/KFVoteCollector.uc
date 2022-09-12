@@ -387,7 +387,7 @@ function ServerStartVoteSkipTrader(PlayerReplicationInfo PRI)
         CurrentSkipTraderVote.PlayerIPAddress = KFPC.GetPlayerNetworkAddress();
         bIsSkipTraderVoteInProgress = true;
         CurrentVoteTime = byte(Min(VoteTime, TraderTimeRemaining - SkipTraderVoteLimit));
-        Outer.GetKFPRIArray(PRIs);
+        Outer.GetKFPRIArray(PRIs,, false);
         I = 0;
         J0x338:
 
@@ -415,7 +415,7 @@ reliable server function UpdateTimer()
     local int I;
 
     CurrentVoteTime -= 1;
-    Outer.GetKFPRIArray(PRIs);
+    Outer.GetKFPRIArray(PRIs,, false);
     I = 0;
     J0x42:
 
@@ -504,7 +504,7 @@ function bool ShouldConcludeSkipTraderVote()
     local array<KFPlayerReplicationInfo> PRIs;
     local int NumPRIs;
 
-    Outer.GetKFPRIArray(PRIs);
+    Outer.GetKFPRIArray(PRIs,, false);
     NumPRIs = PRIs.Length;
     if(((YesVotes + NoVotes) >= NumPRIs) || NoVotes > 0)
     {
@@ -522,7 +522,7 @@ reliable server function ConcludeVoteSkipTrader()
     KFGI = KFGameInfo(Outer.WorldInfo.Game);
     if(bIsSkipTraderVoteInProgress)
     {
-        Outer.GetKFPRIArray(PRIs);
+        Outer.GetKFPRIArray(PRIs,, false);
         I = 0;
         J0x88:
 
@@ -585,7 +585,7 @@ function ResetSkipTraderBeforeWaveStarts()
     local array<KFPlayerReplicationInfo> PRIs;
     local int I;
 
-    Outer.GetKFPRIArray(PRIs);
+    Outer.GetKFPRIArray(PRIs,, false);
     I = 0;
     J0x35:
 

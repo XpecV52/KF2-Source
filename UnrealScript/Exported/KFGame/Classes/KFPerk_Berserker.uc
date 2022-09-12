@@ -978,14 +978,14 @@ defaultproperties
    NinjaSprintModifer=0.250000
    SmashStumbleModifier=2.000000
    SmallRadiusSizeSQ=40000
-   ParryDuration=6.000000
+   ParryDuration=8.000000
    ParrySpeed=0.050000
    FurySpeed=0.050000
    SpartanZedTimeResistance=1.000000
    SpeedDamageModifier=0.200000
    SmashHeadDamageModifier=0.250000
    VampireAttackSpeedModifier=0.200000
-   ParryDamageReduction=0.250000
+   ParryDamageReduction=0.300000
    RageRadius=1000
    RageFleeDuration=5.000000
    RageFleeDistance=2500

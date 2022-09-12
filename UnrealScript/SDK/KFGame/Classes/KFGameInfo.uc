@@ -437,6 +437,11 @@ enum EMonsterProperties
 var int SpawnedMonsterProperties[EMonsterProperties];
 
 /************************************************************************************
+* @name		Force to sort maps by name
+***********************************************************************************/
+var bool bForceMapSorting;
+
+/************************************************************************************
  * @name		Native
  ***********************************************************************************/
 
@@ -3875,4 +3880,6 @@ defaultproperties
 
 	DebugForcedOutbreakIdx=INDEX_NONE
 	DebugForceSpecialWaveZedType=INDEX_NONE
+
+	bForceMapSorting=True
 }

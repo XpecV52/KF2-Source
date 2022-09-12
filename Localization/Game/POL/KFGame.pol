@@ -1809,7 +1809,7 @@ Resistance="Odporność"
 ResistanceDescription="15% odporności na wszystkie rodzaje obrażeń. Dodatkowe 15% odporności na truciznę i obrażenia soniczne."
 
 Parry="Parowanie"
-ParryDescription="Parowanie bronią białą specjalizacji zmniejsza otrzymywane obrażenia o 25% i na 6 s zwiększa szyb. ataku o 5% oraz obrażenia broni białej o 35%."
+ParryDescription="Parowanie bronią białą specjalizacji zmniejsza otrzymywane obrażenia o 30% i na 8 s zwiększa szyb. ataku o 5% oraz obrażenia broni białej o 35%."
 
 Smash="Zmiażdżenie"
 SmashDescription="Ciężkie ataki bronią białą specjalizacji zadają o 50% więcej obrażeń, o 25% więcej obrażeń w głowę i mają o 200% większą siłę oszołamiania."

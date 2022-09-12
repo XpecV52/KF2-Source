@@ -1809,7 +1809,7 @@ Resistance="Resistencia"
 ResistanceDescription="Gana un 15 % de resistencia contra todo el daño. Gana un 25 % de resistencia adicional contra veneno y daño sónico."
 
 Parry="Parar"
-ParryDescription="Parar con armas de esp. reduce el daño recibido un 25% y aumenta la velocidad de ataque c/c un 5 % y el daño c/c un 35 % durante 6 seg."
+ParryDescription="Parar con armas de esp. reduce el daño recibido un 30% y aumenta la velocidad de ataque c/c un 5 % y el daño c/c un 35 % durante 8 seg."
 
 Smash="Destrozar"
 SmashDescription="Los ataques fuertes con armas c/c de esp. infligen un 50 % más de daño, un 25 % más en la cabeza y ganan 200 % más de capacidad de empuje."

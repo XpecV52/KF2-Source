@@ -15,6 +15,7 @@ var name SoundThemeName;
 var name SoundCueName;
 var float LastProgress;
 var bool bLastMissionCritical;
+var bool bPrevCompleted;
 
 function InitializeHUD()
 {
@@ -73,9 +74,14 @@ function SetCompleted(bool bComplete)
     DataObject.SetBool("bComplete", bComplete);
     DataObject.SetString("completeString", ((bComplete) ? Localize("Objectives", "SuccessString", "KFGame") : ""));
     SetObject("completeStatus", DataObject);
-    if(((KFPC != none) && KFPC.myGfxHUD != none) && bComplete)
+    if(!bComplete)
+    {
+        bPrevCompleted = false;
+    }
+    if((((KFPC != none) && KFPC.myGfxHUD != none) && bComplete) && bComplete != bPrevCompleted)
     {
         KFPC.myGfxHUD.PlaySoundFromTheme(SoundCueName, SoundThemeName);
+        bPrevCompleted = true;
     }
 }
 

@@ -381,6 +381,7 @@ defaultproperties
    ReloadAnimation="Atk_B"
    ReloadAnimRateModifier=1.600000
    ReloadAnimRateModifierElite=1.000000
+   BlockDamageMitigation=0.500000
    PackageKey="HRG_BlastBrawlers"
    FirstPersonMeshName="WEP_1P_HRG_BlastBrawlers_MESH.WEP_1stP_HRG_Blast_Brawlers_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_HRG_BlastBrawlers_ANIM.WEP_1P_HRG_BlastBrawlers_ANIM"
@@ -398,11 +399,16 @@ defaultproperties
    FireModeIconPaths(5)=()
    FireModeIconPaths(6)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    InventorySize=9
+   PenetrationPower(2)=0.000000
+   PenetrationPower(3)=0.000000
+   PenetrationPower(4)=0.000000
+   PenetrationPower(5)=0.000000
+   PenetrationPower(6)=2.000000
    PenetrationDamageReductionCurve(6)=(Points=(,(InVal=1.000000,OutVal=1.000000)))
    WeaponSelectTexture=Texture2D'WEP_UI_HRG_BlastBrawlers_TEX.UI_WeaponSelect_HRG_BlastBrawlers'
    MagazineCapacity(0)=4
    AmmoCost(6)=0
-   SpareAmmoCapacity(0)=36
+   SpareAmmoCapacity(0)=40
    InitialSpareMags(0)=2
    AmmoPickupScale(0)=1.500000
    WeaponFireSnd(6)=(DefaultCue=AkEvent'WW_WEP_HRG_BlastBrawlers.Play_WEP_HRG_BlastBrawlers_Shoot_3P',FirstPersonCue=AkEvent'WW_WEP_HRG_BlastBrawlers.Play_WEP_HRG_BlastBrawlers_Shoot_1P')
@@ -448,14 +454,14 @@ defaultproperties
    Spread(3)=0.000000
    Spread(4)=0.000000
    Spread(5)=0.000000
-   Spread(6)=0.100000
+   Spread(6)=0.120000
    InstantHitDamage(0)=50.000000
    InstantHitDamage(1)=()
    InstantHitDamage(2)=()
    InstantHitDamage(3)=()
    InstantHitDamage(4)=()
    InstantHitDamage(5)=200.000000
-   InstantHitDamage(6)=36.000000
+   InstantHitDamage(6)=39.000000
    InstantHitMomentum(6)=1.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Bludgeon_BlastBrawlers'
    InstantHitDamageTypes(1)=()

@@ -1809,7 +1809,7 @@ Resistance="Resistance"
 ResistanceDescription="Gain 15% resistance to all damage. Gain additional 15% resistance to Poison and Sonic Damage."
 
 Parry="Parry"
-ParryDescription="Parrying with a perk melee weapon reduces incoming damage 25% and increases both melee attack speed 5% and melee damage 35% for 6 seconds."
+ParryDescription="Parrying with a perk melee weapon reduces incoming damage 30% and increases both melee attack speed 5% and melee damage 35% for 8 seconds."
 
 Smash="Smash"
 SmashDescription="Hard attacks with perk melee weapons do 50% more damage, do 25% more damage on head hits, and have 200% more stumble power."

@@ -785,7 +785,7 @@ ItemDescription="•Tiro somente automático.\n•O tiro alternativo ativa uma b
 ItemName="Chave-mestra FAMAS"
 ItemCategory="Fuzil de Assalto"
 ItemDescription="•O tiro padrão dispara 3 rajadas com a FAMAS.\n•O tiro alternativo é uma ação de bombeamento com a M26 pendurada.\n•Fuzil de assalto? Espingarda? O bom é que é os dois."
-SecondaryAmmo="Cápsulas da Espingarda FAMAS"
+SecondaryAmmo="C. da Espingarda FAMAS"
 SharedUnlockSource="Conjunto de Armas Chave-mestra FAMAS"
 
 [KFWeap_RocketLauncher_ThermiteBore]

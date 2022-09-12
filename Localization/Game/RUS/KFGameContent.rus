@@ -785,7 +785,7 @@ ItemDescription="•Огонь только в автоматическом ре
 ItemName="Винтовка-дробовик FAMAS"
 ItemCategory="Автомат"
 ItemDescription="•Режим огня по умолчанию: три залпа из FAMAS.\n•Режим альтернативного огня — огонь из подвесного помпового ствола M26.\n•Автомат? Дробовик? А почему бы не всё сразу?"
-SecondaryAmmo="FAMAS: снаряды для дробовика"
+SecondaryAmmo="FAMAS: с. для дробовика"
 SharedUnlockSource="Набор оружия «Винтовка-дробовик FAMAS»"
 
 [KFWeap_RocketLauncher_ThermiteBore]

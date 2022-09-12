@@ -744,6 +744,11 @@ enum EMonsterProperties
 var int SpawnedMonsterProperties[EMonsterProperties];
 
 /************************************************************************************
+* @name		Force to sort maps by name
+***********************************************************************************/
+var bool bForceMapSorting;
+
+/************************************************************************************
  * @name		Native
  ***********************************************************************************/
 
@@ -4118,6 +4123,7 @@ defaultproperties
    bUseMapList=True
    bLogReservations=True
    bLogGroupTeamBalance=True
+   bForceMapSorting=True
    KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager'
    GameLength=1
    MinNetPlayers=1

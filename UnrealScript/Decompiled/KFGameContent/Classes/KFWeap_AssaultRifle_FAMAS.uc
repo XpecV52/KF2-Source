@@ -420,7 +420,7 @@ simulated state AltReloading extends Reloading
 
     simulated function bool CanOverrideMagReload(byte FireModeNum)
     {
-        return false;
+        return true;
     }
 
     simulated function name GetReloadAnimName(bool bTacticalReload)
@@ -502,7 +502,7 @@ defaultproperties
     GroupPriority=80
     WeaponSelectTexture=Texture2D'WEP_UI_Famas_TEX.UI_WeaponSelect_Famas'
     SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-    MagazineCapacity[0]=24
+    MagazineCapacity[0]=30
     MagazineCapacity[1]=6
     SpareAmmoCapacity[0]=240
     SpareAmmoCapacity[1]=36

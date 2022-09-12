@@ -1809,7 +1809,7 @@ Resistance="Resistenza"
 ResistanceDescription="Resistenza a tutti i danni maggiore del 15%. Aumenta di un altro 15% la resistenza a danni Veleno e Sonoro."
 
 Parry="Parata"
-ParryDescription="La parata con arma classe da mischia riduce il danno del 25% e aumenta per 6 sec velocità att. da mischia del 5% e danno da mischia del 35%."
+ParryDescription="La parata con arma classe da mischia riduce il danno del 30% e aumenta per 8 sec velocità att. da mischia del 5% e danno da mischia del 35%."
 
 Smash="Scontro"
 SmashDescription="Con attacchi duri con armi classe da mischia, danni maggiori del 50%, danni colpi alla testa maggiori del 25% e forza urto maggiore del 200%"

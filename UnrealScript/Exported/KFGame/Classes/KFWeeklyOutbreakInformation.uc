@@ -24,6 +24,12 @@ var localized array<string> DescriptionStrings;
 //List of any modifer information we need specific to the mode
 var localized array<string> ModifierDescriptions;
 
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+// (cpptext)
+
 defaultproperties
 {
    Name="Default__KFWeeklyOutbreakInformation"

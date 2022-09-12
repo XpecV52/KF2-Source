@@ -292,7 +292,7 @@ function FilterWeeklyMaps(out array<string> List)
     {
         return;
     }
-    if(Class'KFGameEngine'.static.GetWeeklyEventIndex() == 11)
+    if(Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11)
     {
         List.RemoveItem("KF-Biolapse";
         List.RemoveItem("KF-Nightmare";

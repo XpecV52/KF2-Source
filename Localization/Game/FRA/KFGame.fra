@@ -1809,7 +1809,7 @@ Resistance="Résistance"
 ResistanceDescription="Gagne 15 % de résistance à tous les dégâts. Gagne 15 % de résistance supplémentaire aux Dégâts de Poison et Soniques."
 
 Parry="Parade"
-ParryDescription="Parer avec une AMC réduit les dégâts subis de 25% et augmente la vitesse d'atq en mêlée de 5 % et les dégâts en mêlée de 35 % pendant 6 s."
+ParryDescription="Parer avec une AMC réduit les dégâts subis de 30% et augmente la vitesse d'atq en mêlée de 5 % et les dégâts en mêlée de 35 % pendant 8 s."
 
 Smash="Fracasser"
 SmashDescription="Attaques lourdes avec des armes de mêlée de classe -> +50 % de dégâts, +25 % de dégâts à la tête, +200 % de chances de renverser."

@@ -189,6 +189,7 @@ var bool bNVBlockDramatic;
 var bool bNVAlwaysHeadshot;
 var bool bNVDebugDamage;
 var bool bLogGroupTeamBalance;
+var bool bForceMapSorting;
 var int HumanDeaths;
 var class<KFGFxMoviePlayer_Manager> KFGFxManagerClass;
 var globalconfig int GameLength;
@@ -3269,6 +3270,7 @@ defaultproperties
     bUseMapList=true
     bLogReservations=true
     bLogGroupTeamBalance=true
+    bForceMapSorting=true
     KFGFxManagerClass=Class'KFGFxMoviePlayer_Manager'
     GameLength=1
     MinNetPlayers=1

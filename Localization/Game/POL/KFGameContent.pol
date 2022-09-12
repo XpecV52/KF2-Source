@@ -785,7 +785,7 @@ ItemDescription="• Tylko ogień ciągły.\n• Alternatywny atak aktywuje bari
 ItemName="FAMAS Masterkey"
 ItemCategory="Karabin szturmowy"
 ItemDescription="• Domyślny atak to seria 3 strzałów z FAMAS-a.\n• Alternatywny atak to strzał z podwieszanej strzelby M26.\n• Karabin szturmowy? Strzelba? Może jedno i drugie?"
-SecondaryAmmo="Naboje do strzelby FAMAS-a"
+SecondaryAmmo="N. do strzelby FAMAS-a"
 SharedUnlockSource="Zestaw broni FAMAS Masterkey"
 
 [KFWeap_RocketLauncher_ThermiteBore]

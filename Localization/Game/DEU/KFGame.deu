@@ -1809,7 +1809,7 @@ Resistance="Resistenz"
 ResistanceDescription="Erhalte 15% Resistenz gegen jeglichen Schaden. Erhalte 15% zusätzliche Resistenz gegen Gift- und Schall-Schaden."
 
 Parry="Parieren"
-ParryDescription="Parieren mit Vorteils-Nahkampfwaffen verringert erhaltenen Schaden um 25%, erhöht Nahkampf-Ang.-Geschw. um 5% und -Schaden um 35% für 6 Sek."
+ParryDescription="Parieren mit Vorteils-Nahkampfwaffen verringert erhaltenen Schaden um 30%, erhöht Nahkampf-Ang.-Geschw. um 5% und -Schaden um 35% für 8 Sek."
 
 Smash="Zerschmettern"
 SmashDescription="Harte Angriffe mit Vorteils-Nahkampfwaffen machen 50% mehr Schaden, 25% mehr Schaden bei Kopftreffern, und haben 200% mehr Strauchel-Macht."

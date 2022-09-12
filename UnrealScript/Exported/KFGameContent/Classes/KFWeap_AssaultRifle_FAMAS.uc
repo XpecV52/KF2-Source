@@ -419,7 +419,7 @@ simulated state AltReloading extends Reloading
 	/** Make sure we can inturrupt secondary reload with anything. */
 	simulated function bool CanOverrideMagReload(byte FireModeNum)
 	{
-		return false;
+		return true;
 	}
 
 	/** Returns animation to play based on reload type and status */
@@ -593,8 +593,8 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
    BurstAmount=3
    InventorySize=6
-   PenetrationPower(0)=2.000000
-   PenetrationPower(1)=()
+   PenetrationPower(0)=1.000000
+   PenetrationPower(1)=2.000000
    MeshFOV=65.000000
    MeshIronSightFOV=60.000000
    PlayerIronSightFOV=70.000000
@@ -604,7 +604,7 @@ defaultproperties
    GroupPriority=80.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Famas_TEX.UI_WeaponSelect_Famas'
    SecondaryAmmoTexture=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-   MagazineCapacity(0)=24
+   MagazineCapacity(0)=30
    MagazineCapacity(1)=6
    SpareAmmoCapacity(0)=240
    SpareAmmoCapacity(1)=36
@@ -621,7 +621,7 @@ defaultproperties
       ObjectArchetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_ScopedBase:MeleeHelper_0'
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_FAMAS:MeleeHelper_0'
-   NumPellets(1)=6
+   NumPellets(1)=7
    NumPellets(2)=()
    NumPellets(3)=()
    NumPellets(4)=()
@@ -664,9 +664,9 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.005000
-   Spread(1)=0.120000
+   Spread(1)=0.100000
    InstantHitDamage(0)=35.000000
-   InstantHitDamage(1)=25.000000
+   InstantHitDamage(1)=30.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_FAMAS_Rifle'

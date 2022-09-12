@@ -1226,33 +1226,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
 End Object
 
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_4
-   Begin Object Class=InterpGroupInstDirector Name=InterpGroupInstDirector_0
-      Begin Object Class=InterpTrackInstDirector Name=InterpTrackInstDirector_0
-         Name="InterpTrackInstDirector_0"
-         ObjectArchetype=InterpTrackInstDirector'Engine.Default__InterpTrackInstDirector'
-      End Object
-      Group=InterpGroupDirector'KF-DYSTOPIA2029.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroupDirector_0'
-      Name="InterpGroupInstDirector_0"
-      ObjectArchetype=InterpGroupInstDirector'Engine.Default__InterpGroupInstDirector'
-   End Object
-   Begin Object Class=InterpGroupInst Name=InterpGroupInst_0
-      Begin Object Class=InterpTrackInstFloatProp Name=InterpTrackInstFloatProp_0
-         FloatProp=
-         ResetFloat=90.000000
-         Name="InterpTrackInstFloatProp_0"
-         ObjectArchetype=InterpTrackInstFloatProp'Engine.Default__InterpTrackInstFloatProp'
-      End Object
-      Begin Object Class=InterpTrackInstMove Name=InterpTrackInstMove_0
-         InitialTM=(XPlane=(W=0.000000,X=-0.000000,Y=1.000000,Z=0.000000),YPlane=(W=0.000000,X=-1.000000,Y=-0.000000,Z=0.000000),ZPlane=(W=0.000000,X=-0.000000,Y=0.000000,Z=1.000000),WPlane=(W=1.000000,X=-4139.525391,Y=2880.146484,Z=26.942625))
-         InitialQuat=(X=0.000000,Y=-0.000000,Z=0.707107,W=0.707107)
-         Name="InterpTrackInstMove_0"
-         ObjectArchetype=InterpTrackInstMove'Engine.Default__InterpTrackInstMove'
-      End Object
-      Group=InterpGroup'KF-DYSTOPIA2029.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0'
-      GroupActor=CameraActor'KF-DYSTOPIA2029.TheWorld:PersistentLevel.CameraActor_0'
-      Name="InterpGroupInst_0"
-      ObjectArchetype=InterpGroupInst'Engine.Default__InterpGroupInst'
-   End Object
    InputLinks(0)=(DrawY=-9602,OverrideDelta=15)
    InputLinks(1)=(DrawY=-9580,OverrideDelta=37)
    InputLinks(2)=(DrawY=-9558,OverrideDelta=59)

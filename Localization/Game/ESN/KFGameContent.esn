@@ -785,7 +785,7 @@ ItemDescription="•Modo de disparo: solo automático.\n•Alternativo: activa u
 ItemName="FAMAS Masterkey"
 ItemCategory="Fusil de asalto"
 ItemDescription="•Modo de disparo por defecto: ráfaga de 3 disparos con el FAMAS.\n•Alternativo: acción de bombeo con el soporte M26.\n•¿Rifle de asalto? ¿Escopeta? Ambos. Ambos, sí."
-SecondaryAmmo="Cartuchos de escopeta FAMAS"
+SecondaryAmmo="C. de escopeta FAMAS"
 SharedUnlockSource="Paquete de armas FAMAS Masterkey"
 
 [KFWeap_RocketLauncher_ThermiteBore]

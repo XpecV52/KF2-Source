@@ -1809,7 +1809,7 @@ Resistance="Resistência"
 ResistanceDescription="Ganha 15% de resistência a todo tipo de dano. Ganha 15% de resistência adicional a veneno e dano sônico."
 
 Parry="Aparar"
-ParryDescription="Aparos uma arma corpo a corpo da classe diminuem em 25% o dano recebido, aumentam em 5% a vel. de ataque e em 35% o dano corpo a corpo por 6 s."
+ParryDescription="Aparos uma arma corpo a corpo da classe diminuem em 30% o dano recebido, aumentam em 5% a vel. de ataque e em 35% o dano corpo a corpo por 8 s."
 
 Smash="Esmagar"
 SmashDescription="Ataques fortes com armas corpo a corpo da classe causam 50% mais dano, 25% mais dano em acertos na cabeça e têm 200% mais poder de derrubar."
