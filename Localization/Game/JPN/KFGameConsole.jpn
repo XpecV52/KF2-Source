@@ -36,6 +36,7 @@ KF-HellmarkStation="Hellmark Stationをプレイ中"
 KF-Elysium="Elysiumをプレイ中"
 KF-Dystopia2029="ディストピア2029をプレイ中"
 KF-Moonbase="Moonbaseをプレイ中"
+KF-Netherhold="Netherholdをプレイ中"
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

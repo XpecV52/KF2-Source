@@ -738,8 +738,8 @@ ComboMakerValue="Asistencia zed"
 GrabbyValue="Jugadores agarrados"
 ZedSupportValue="Daño indirecto"
 ZednnihilationValue="Bajas en oleada"
-ZedStomper="Pisoteador de zed"
-ZedStomperValue="Pisoteador de zeds"
+ZedStomper="Aplastazeds"
+ZedStomperValue="Zeds aplastados"
 
 EPB_Healing="Curación"
 EPB_Kills="Bajas"
@@ -750,7 +750,7 @@ EPB_HeadShots="Disparos a la cabeza"
 EPB_KnifeKills="Bajas por cuchillo"
 EPB_PistolKills="Bajas por pistola"
 EPB_DoorWelding="Soldaje de puertas"
-EPB_ZedStomps="Pisotones de zed"
+EPB_ZedStomps="Aplastamiento de zeds"
 
 EPB_HealingValue="Salud"
 EPB_KillsValue="Bajas"
@@ -761,7 +761,7 @@ EPB_HeadShotsValue="Disparos a la cabeza"
 EPB_KnifeKillsValue="Bajas"
 EPB_PistolKillsValue="Bajas"
 EPB_DoorWeldingValue="Puntos de soldaje"
-EPB_ZedStompsValue="Pisotones"
+EPB_ZedStompsValue="Aplastamientos"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="PREMIOS DE EQUIPO"
@@ -782,7 +782,7 @@ HeadShotsString="Disparos a la cabeza:"
 LargeZedKillsString="Bajas de zeds grandes:"
 TotalDoshEarnedString="Dinero ganado:"
 TotalKillsString="Bajas:"
-TotalStompsString="Pisotones totales"
+TotalStompsString="Aplastamientos totales"
 AssistsString="Asistencias:"
 DamageDealtString="Daño infligido:"
 
@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="Desac. comercio autom."
 HideRemodeHeadshotEffectsString="Desactivar efectos en la cabeza"
 ToggleToRunString="Activa para esprintar"
 ClassicPlayerInfoString="Barras de vida clásicas"
+AllowSwap9mmString="Permitir cambio a 9 mm"
 
 EnableMixerString="Activar interactividad con Mixer"
 DisableMixerString="Desactivar Mixer"
@@ -1800,7 +1801,7 @@ Ninja="Escaramuzador"
 NinjaDescription="Muévete un 20 % más rápido y esprinta un 25 % más rápido al usar armas de especialización. Además, regeneras 1 punto de salud por segundo."
 
 Vampire="Vampiro"
-VampireDescription="Cúrate 3 puntos de salud por cada zed que mates con armas de especialización. Ataca un 20 % más rápido con armas c/c de esp."
+VampireDescription="Cúrate 3 puntos de salud por cada zed que mates con armas de especialización. Ataca un 20 % más rápido con armas CaC de esp."
 
 Speed="Carnicero"
 SpeedDescription="Ataca un 20 % más rápido e inflige un 20 % más de daño con armas de especialización."
@@ -1809,7 +1810,7 @@ Resistance="Resistencia"
 ResistanceDescription="Gana un 15 % de resistencia contra todo el daño. Gana un 15 % de resistencia adicional contra veneno y daño sónico."
 
 Parry="Parar"
-ParryDescription="Parar con armas de esp. reduce el daño recibido un 30% y aumenta la velocidad de ataque c/c un 5 % y el daño c/c un 35 % durante 8 seg."
+ParryDescription="Parar con armas de esp. reduce el daño recibido un 30 % y aumenta la velocidad de ataque CaC un 5 % y el daño CaC un 35 % durante 8 seg."
 
 Smash="Destrozar"
 SmashDescription="Los ataques fuertes con armas c/c de esp. infligen un 50 % más de daño, un 25 % más en la cabeza y ganan 200 % más de capacidad de empuje."
@@ -2180,10 +2181,10 @@ HeavyArmor="Entrenamiento de armadura pesada"
 HeavyArmorDescription="Mientras tengas armadura, no te alcanzarán los clots ni perderás salud por ataques sónicos. Empiezas cada partida con un 50 % de armadura."
 
 TacticalMovement="Movimiento táctico"
-TacticalMovementDescription="No hay penalización por utilizar la mirilla o agacharse con armas de especialización."
+TacticalMovementDescription="Muévete y esprinta más rápido. No hay penalización por utilizar la mirilla o agacharse con armas de especialización."
 
 Backup="Entrenamiento cuerpo a cuerpo"
-BackupDescription="Aumenta un 85 % el daño con tu cuchillo y tu pistola de 9 mm. Empiezas cada partida con dos pistolas de 9 mm."
+BackupDescription="Aumenta un 100 % el daño con tu pistola de 9 mm, tu cuchillo y tus golpes con escudo. Empiezas cada partida con dos pistolas de 9 mm."
 
 TacticalReload="Recarga táctica"
 TacticalReloadDescription="Aumenta la velocidad de recarga con armas de especialización."
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="Astronauta | Mochila de acompañante | Preci
 ChanceDropDescriptionStrings[0]="Boleto Verano"
 ChanceDropDescriptionStrings[1]="Boleto Verano dorado"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="Un evento especial de tiempo limitado con objetos exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Manifestaciones terroríficas",DescriptionString="Mata a 15 jefes en cualquiera de los mapas y modos")
+SpecialEventObjectiveInfoList[1]=(TitleString="Culto semanal",DescriptionString="Completa la semana en el Fuerte del más allá")
+SpecialEventObjectiveInfoList[2]=(TitleString="Oigo latidos de corazón",DescriptionString="Encuentra el corazón del más allá")
+SpecialEventObjectiveInfoList[3]=(TitleString="Miasma morado",DescriptionString="Desbloquea la capilla y las puertas del comedor")
+SpecialEventObjectiveInfoList[4]=(TitleString="Castigo eterno",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior el Fuerte del más allá")
+
+AllCompleteRewardDescriptionString="Astronauta | Mochila de acompañante | Preciosa"
+
+ChanceDropDescriptionStrings[0]="Boleto de Halloween"
+ChanceDropDescriptionStrings[1]="Boleto dorado de Halloween"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="Carroñero"
 DescriptionStrings[0]="Improvisa. Adáptate. Supéralo."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
 ModifierDescriptions[0]="Han saboteado a los mercadores y no te quedan armas. Tienes que aprovechar las armas que encuentres por el suelo. Selecciona el modo de juego Semanal en la página de matchmaking. Especialización 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="Salvaje oeste de Londres"
+DescriptionStrings[0]="¡El sol está en la cima!"
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="¡Yija, vaqueros y vaqueras! Preparaos para desenfundar los revólveres con un fuego a discreción en esta historia de terror del oeste. Solo pueden participar pistoleros y tiradores. Seleccionad el modo de juego Semanal en la página de Matchmaking. Especialización +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="Abandona toda esperanza"
+DescriptionStrings[0]="El desafío definitivo"
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="AVISO: ¡este modo es muy difícil! Solo para aquellos que piensen que el infierno es cosa de niños. Selecciona el modo de juego Semanal en la página de Matchmaking. Especialización +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3491,6 +3526,9 @@ DisplayName="Distopía 2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="Base lunar"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="Fuerte del más allá"
 
 [KFMapInfo]
 ; defaults

@@ -12,6 +12,8 @@ BodySkin2="褐色无花果"
 BodySkin3="柺杖糖"
 BodySkin4="欢乐绿"
 BodySkin5="奶色古典风"
+BodySkin6="丧尸之日节日"
+BodySkin7="丧尸之日荧光"
 
 [CHR_BadSanta_archetype.BodyMesh1]
 BodySkin0="已用"
@@ -54,6 +56,8 @@ BodySkin2="红色"
 BodySkin3="蓝色"
 BodySkin4="粉红"
 BodySkin5="黑色"
+BodySkin6="丧尸之日节日"
+BodySkin7="丧尸之日荧光"
 
 [CHR_MrsFoster_archetype.BodyMesh1]
 BodySkin0="蓝色"
@@ -183,6 +187,8 @@ BodySkin0="Endo 800"
 BodySkin1="经典灰"
 BodySkin2="塑料"
 BodySkin3="宝物"
+BodySkin4="丧尸之日节日"
+BodySkin5="丧尸之日荧光"
 
 [CHR_DAR_archetype.HeadMesh0]
 HeadSkin0="无"
@@ -259,6 +265,8 @@ BodySkin8="赛博朋克 | 绿色"
 BodySkin9="赛博朋克 | 宝物"
 BodySkin10="赛博朋克 | 红色"
 BodySkin11="赛博朋克 | 蓝色"
+BodySkin12="丧尸之日节日"
+BodySkin13="丧尸之日荧光"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="经典"
@@ -478,6 +486,8 @@ BodySkin7="赛博朋克 | 绿色"
 BodySkin8="赛博朋克 | 宝物"
 BodySkin9="赛博朋克 | 红色"
 BodySkin10="赛博朋克 | 蓝色"
+BodySkin11="丧尸之日节日"
+BodySkin12="丧尸之日荧光"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -643,6 +653,8 @@ BodySkin6="赛博朋克 | 绿色"
 BodySkin7="赛博朋克 | 宝物"
 BodySkin8="赛博朋克 | 红色"
 BodySkin9="赛博朋克 | 蓝色"
+BodySkin10="丧尸之日节日"
+BodySkin11="丧尸之日荧光"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="地铁"
@@ -806,6 +818,8 @@ BodySkin3="真经典"
 BodySkin4="熔岩红"
 BodySkin5="宝物金库"
 BodySkin6="金库地砖"
+BodySkin7="丧尸之日节日"
+BodySkin8="丧尸之日荧光"
 
 [CHR_MrFoster_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -1099,6 +1113,8 @@ BodySkin5="赛博朋克 | 绿色"
 BodySkin6="赛博朋克 | 宝物"
 BodySkin7="赛博朋克 | 红色"
 BodySkin8="赛博朋克 | 蓝色"
+BodySkin9="丧尸之日节日"
+BodySkin10="丧尸之日荧光"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -1258,6 +1274,8 @@ BodySkin7="赛博朋克 | 绿色"
 BodySkin8="赛博朋克 | 宝物"
 BodySkin9="赛博朋克 | 红色"
 BodySkin10="赛博朋克 | 蓝色"
+BodySkin11="丧尸之日节日"
+BodySkin12="丧尸之日荧光"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -2286,6 +2304,8 @@ BodySkin8="赛博朋克 | 绿色"
 BodySkin9="赛博朋克 | 宝物"
 BodySkin10="赛博朋克 | 红色"
 BodySkin11="赛博朋克 | 蓝色"
+BodySkin12="丧尸之日节日"
+BodySkin13="丧尸之日荧光"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -2430,6 +2450,8 @@ BodySkin7="赛博朋克 | 绿色"
 BodySkin8="赛博朋克 | 宝物"
 BodySkin9="赛博朋克 | 红色"
 BodySkin10="赛博朋克 | 蓝色"
+BodySkin11="丧尸之日节日"
+BodySkin12="丧尸之日荧光"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="红黑"
@@ -2611,6 +2633,8 @@ BodySkin6="赛博朋克 | 绿色"
 BodySkin7="赛博朋克 | 宝物"
 BodySkin8="赛博朋克 | 红色"
 BodySkin9="赛博朋克 | 蓝色"
+BodySkin10="丧尸之日节日"
+BodySkin11="丧尸之日荧光"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="蓝色精英"
@@ -2759,6 +2783,8 @@ BodySkin6="赛博朋克 | 绿色"
 BodySkin7="赛博朋克 | 宝物"
 BodySkin8="赛博朋克 | 红色"
 BodySkin9="赛博朋克 | 蓝色"
+BodySkin10="丧尸之日节日"
+BodySkin11="丧尸之日荧光"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="地铁"
@@ -2913,6 +2939,8 @@ BodySkin8="赛博朋克 | 绿色"
 BodySkin9="赛博朋克 | 宝物"
 BodySkin10="赛博朋克 | 红色"
 BodySkin11="赛博朋克 | 蓝色"
+BodySkin12="丧尸之日节日"
+BodySkin13="丧尸之日荧光"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -3064,6 +3092,8 @@ BodySkin5="赛博朋克 | 绿色"
 BodySkin6="赛博朋克 | 宝物"
 BodySkin7="赛博朋克 | 红色"
 BodySkin8="赛博朋克 | 蓝色"
+BodySkin9="丧尸之日节日"
+BodySkin10="丧尸之日荧光"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -3208,6 +3238,8 @@ BodySkin5="赛博朋克 | 绿色"
 BodySkin6="赛博朋克 | 宝物"
 BodySkin7="赛博朋克 | 红色"
 BodySkin8="赛博朋克 | 蓝色"
+BodySkin9="丧尸之日节日"
+BodySkin10="丧尸之日荧光"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="经典"
@@ -3361,6 +3393,8 @@ BodySkin9="赛博朋克 | 绿色"
 BodySkin10="赛博朋克 | 宝物"
 BodySkin11="赛博朋克 | 红色"
 BodySkin12="赛博朋克 | 蓝色"
+BodySkin13="丧尸之日节日"
+BodySkin14="丧尸之日荧光"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="蓝色精英"
@@ -4770,6 +4804,8 @@ AttachmentSkin1="装填手"
 AttachmentSkin2="标准"
 AttachmentSkin3="宝物"
 AttachmentSkin4="骷髅头"
+AttachmentSkin5="丧尸之日节日"
+AttachmentSkin6="丧尸之日荧光"
 
 [Cosmetic_DAR_AssaultArmor_ARCH]
 Attachment="攻击护甲"
@@ -6625,7 +6661,7 @@ AttachmentSkin5="科技"
 AttachmentSkin6="宝物"
 
 [Cosmetic_Foundry_CastingBucket_ARCH]
-Attachment="铸造厂铸桶背包"
+Attachment="铸桶背包"
 AttachmentSkin0="注意"
 AttachmentSkin1="黑色"
 AttachmentSkin2="白色"
@@ -6645,7 +6681,7 @@ AttachmentSkin5="科技"
 AttachmentSkin6="宝物"
 
 [Cosmetic_Foundry_WeldingTank_ARCH]
-Attachment="铸造厂焊接罐背包"
+Attachment="焊接罐背包"
 AttachmentSkin0="注意"
 AttachmentSkin1="黑色"
 AttachmentSkin2="白色"
@@ -6830,3 +6866,160 @@ BodySkin1="奇点"
 BodySkin2="星爆"
 BodySkin3="星系"
 BodySkin4="宝物"
+
+[Cosmetic_Vietnam_USHelmet_ARCH]
+Attachment="越南美国头盔"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="黑色"
+AttachmentSkin2="丛林"
+AttachmentSkin3="林地"
+AttachmentSkin4="热带草原"
+AttachmentSkin5="万圣节"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Vietnam_USHelmetGoggles_ARCH]
+Attachment="越南美国目镜头盔"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="黑色"
+AttachmentSkin2="丛林"
+AttachmentSkin3="林地"
+AttachmentSkin4="热带草原"
+AttachmentSkin5="万圣节"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Vietnam_USRadio_ARCH]
+Attachment="越南美国无线电"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="黑色"
+AttachmentSkin2="灰色"
+AttachmentSkin3="斗士"
+AttachmentSkin4="凝固汽油"
+AttachmentSkin5="万圣节"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Vietnam_USPilotHelmet_ARCH]
+Attachment="越南飞行员头盔"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="黑色"
+AttachmentSkin2="白色"
+AttachmentSkin3="凝固汽油"
+AttachmentSkin4="天空"
+AttachmentSkin5="万圣节"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Vietnam_USPilotHelmetGoggles_ARCH]
+Attachment="越南飞行员盾牌头盔"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="黑色"
+AttachmentSkin2="白色"
+AttachmentSkin3="凝固汽油"
+AttachmentSkin4="天空"
+AttachmentSkin5="万圣节"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Vietnam_USPilotHelmetGogglesMask_ARCH]
+Attachment="越南飞行员面罩头盔"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="黑色"
+AttachmentSkin2="白色"
+AttachmentSkin3="凝固汽油"
+AttachmentSkin4="天空"
+AttachmentSkin5="万圣节"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Vietnam_Beret_ARCH]
+Attachment="越南贝雷帽"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="黑色"
+AttachmentSkin2="白色"
+AttachmentSkin3="红色"
+AttachmentSkin4="蓝色"
+AttachmentSkin5="万圣节"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Vietnam_Bandana_ARCH]
+Attachment="越南大头巾"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="黑色"
+AttachmentSkin2="丛林"
+AttachmentSkin3="林地"
+AttachmentSkin4="热带草原"
+AttachmentSkin5="万圣节"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Vietnam_Hat_ARCH]
+Attachment="越南圆边帽"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="黑色"
+AttachmentSkin2="丛林"
+AttachmentSkin3="林地"
+AttachmentSkin4="热带草原"
+AttachmentSkin5="万圣节"
+AttachmentSkin6="宝物"
+
+[Cosmetic_Vietnam_VCHelmet_ARCH]
+Attachment="越南VC头盔"
+AttachmentSkin0="橄榄色"
+AttachmentSkin1="黑色"
+AttachmentSkin2="白色"
+AttachmentSkin3="灰色"
+AttachmentSkin4="棕色"
+AttachmentSkin5="万圣节"
+AttachmentSkin6="宝物"
+
+[Cosmetic_DiaDeLosMuertos_TopHat_ARCH]
+Attachment="丧尸之日大礼帽"
+AttachmentSkin0="节日"
+AttachmentSkin1="金盏花"
+AttachmentSkin2="希望"
+AttachmentSkin3="荧光"
+AttachmentSkin4="宝物"
+
+[Cosmetic_DiaDeLosMuertos_SkullHead_ARCH]
+Attachment="丧尸之日骷髅头"
+AttachmentSkin0="节日"
+AttachmentSkin1="金盏花"
+AttachmentSkin2="希望"
+AttachmentSkin3="荧光"
+AttachmentSkin4="宝物"
+
+[Cosmetic_DiaDeLosMuertos_Coffin_ARCH]
+Attachment="丧尸之日棺材"
+AttachmentSkin0="节日"
+AttachmentSkin1="金盏花"
+AttachmentSkin2="希望"
+AttachmentSkin3="荧光"
+AttachmentSkin4="宝物"
+
+[Cosmetic_DiaDeLosMuertos_Headband_ARCH]
+Attachment="丧尸之日头巾"
+AttachmentSkin0="节日"
+AttachmentSkin1="金盏花"
+AttachmentSkin2="希望"
+AttachmentSkin3="荧光"
+AttachmentSkin4="宝物"
+
+[Cosmetic_DiaDeLosMuertos_Armband_ARCH]
+Attachment="丧尸之日臂环"
+AttachmentSkin0="节日"
+AttachmentSkin1="金盏花"
+AttachmentSkin2="希望"
+AttachmentSkin3="荧光"
+AttachmentSkin4="宝物"
+
+[Cosmetic_DiaDeLosMuertos_CowSkull_ARCH]
+Attachment="丧尸之日骷髅牛头"
+AttachmentSkin0="节日"
+AttachmentSkin1="金盏花"
+AttachmentSkin2="希望"
+AttachmentSkin3="荧光"
+AttachmentSkin4="宝物"
+
+[Cosmetic_DiaDeLosMuertos_Companion_ARCH]
+Attachment="丧尸之日同伴"
+AttachmentSkin0="宝物"
+
+[Cosmetic_WildWest_CowboyHat_ARCH]
+Attachment="伦敦西大荒帽子"
+AttachmentSkin0="宝物"
+

@@ -844,8 +844,8 @@ defaultproperties
    FullChargedTimerInterval=2.000000
    MinScale=0.500000
    MaxScale=1.500000
-   MaxDamageByCharge=250
-   MinDamageByCharge=25
+   MaxDamageByCharge=300
+   MinDamageByCharge=30
    MAX_ACTIVE_MINE_RECONSTRUCTOR_MINES=12
    PackageKey="Mine_Reconstructor"
    FirstPersonMeshName="WEP_1P_Mine_Reconstructor_MESH.Wep_1stP_HMTech_Mine_Reconstructor_Rig"
@@ -870,8 +870,8 @@ defaultproperties
    WeaponSelectTexture=Texture2D'WEP_UI_Mine_Reconstructor_TEX.UI_WeaponSelect_HMTechMineReconstructor'
    MagazineCapacity(0)=12
    AmmoCost(1)=0
-   SpareAmmoCapacity(0)=108
-   InitialSpareMags(0)=2
+   SpareAmmoCapacity(0)=132
+   InitialSpareMags(0)=3
    AmmoPickupScale(0)=1.500000
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
    bLoopingFireAnim(0)=True
@@ -919,8 +919,8 @@ defaultproperties
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Mine_Reconstructor'
-   FireInterval(0)=0.330000
-   FireInterval(1)=0.250000
+   FireInterval(0)=0.223000
+   FireInterval(1)=0.150000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()

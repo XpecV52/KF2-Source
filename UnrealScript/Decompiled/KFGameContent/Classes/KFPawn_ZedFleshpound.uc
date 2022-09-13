@@ -388,6 +388,7 @@ defaultproperties
     XPValues[2]=63
     XPValues[3]=72
     WeakSpotSocketNames=/* Array type was not detected. */
+    ZEDCowboyHatAttachName=Hat_Attach
     DamageTypeModifiers=/* Array type was not detected. */
     ZedBumpDamageScale=0
     DifficultySettings=Class'KFDifficulty_Fleshpound'

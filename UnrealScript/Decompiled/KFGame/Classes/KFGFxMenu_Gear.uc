@@ -61,6 +61,7 @@ function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
     UpdateCharacterList();
     UpdateGear();
     TraderItems = KFGameReplicationInfo(KFPlayerController(Outer.GetPC()).WorldInfo.GRI).TraderItems;
+    ForceWeeklyCowboyHat();
 }
 
 function OnOpen()
@@ -203,7 +204,8 @@ function UpdateGear()
         UpdateMeshList(HeadMeshKey, HeadSkinKey, CurrentCharInfo.HeadVariants, "headsArray");
         UpdateAttachmentsList(CurrentCharInfo.CosmeticVariants);
         UpdateEmoteList();
-        SetCurrentCharacterButtons();        
+        SetCurrentCharacterButtons();
+        ForceWeeklyCowboyHat();        
     }
     else
     {
@@ -259,7 +261,10 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
     local Pawn MyPawn;
     local SkinVariant FirstSkin;
     local string AttachmentName;
+    local PlayerController PC;
+    local bool bIsWildWest;
 
+    bIsWildWest = false;
     ItemIndex = 0;
     DataProvider = Outer.CreateArray();
     MyPawn = Outer.GetPC().Pawn;
@@ -270,27 +275,35 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
     SlotObject.SetBool("enabled", true);
     DataProvider.SetElementObject(ItemIndex, SlotObject);
     ++ ItemIndex;
+    PC = Outer.GetPC();
+    bIsWildWest = ((PC != none) && PC.WorldInfo.GRI.IsA('KFGameReplicationInfo_WeeklySurvival')) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12;
     I = 0;
-    J0x1AF:
+    J0x272:
 
     if(I < Attachments.Length)
     {
         Variant = Attachments[I];
         if(CurrentCharInfo.IsAttachmentAvailable(Variant, MyPawn))
         {
-            SlotObject = Outer.CreateObject("Object");
-            SlotObject.SetInt("ItemIndex", I);
-            FirstSkin = UpdateCosmeticVariants(AttachmentKey, AttachmentSkinKey, Variant.AttachmentItem, I, SlotObject);
-            AttachmentName = Localize(string(Variant.AttachmentItem.Name), AttachmentKey, KFCharacterInfoString);
-            SlotObject.SetString("label", AttachmentName);
-            SlotObject.SetBool("enabled", true);
-            TexturePath = "img://" $ PathName(FirstSkin.UITexture);
-            SlotObject.SetString("source", TexturePath);
-            DataProvider.SetElementObject(ItemIndex, SlotObject);
-            ++ ItemIndex;
+            if(bIsWildWest && Variant.SocketName == 'Hat_Attach')
+            {                
+            }
+            else
+            {
+                SlotObject = Outer.CreateObject("Object");
+                SlotObject.SetInt("ItemIndex", I);
+                FirstSkin = UpdateCosmeticVariants(AttachmentKey, AttachmentSkinKey, Variant.AttachmentItem, I, SlotObject);
+                AttachmentName = Localize(string(Variant.AttachmentItem.Name), AttachmentKey, KFCharacterInfoString);
+                SlotObject.SetString("label", AttachmentName);
+                SlotObject.SetBool("enabled", true);
+                TexturePath = "img://" $ PathName(FirstSkin.UITexture);
+                SlotObject.SetString("source", TexturePath);
+                DataProvider.SetElementObject(ItemIndex, SlotObject);
+                ++ ItemIndex;
+            }
         }
         ++ I;
-        goto J0x1AF;
+        goto J0x272;
     }
     SetObject("attachmentsArray", DataProvider);
 }
@@ -670,11 +683,31 @@ function RelayFromCheatManager(Pawn P, KFGFxMenu_Gear.ECustomizationOption Custo
     Manager.CachedProfile.SetCharacterGear(MyKFPRI.RepCustomizationInfo);
 }
 
+function ForceWeeklyCowboyHat()
+{
+    local PlayerController PC;
+    local int CowboyHatIndex;
+
+    PC = Outer.GetPC();
+    if(((PC != none) && PC.WorldInfo.GRI.IsA('KFGameReplicationInfo_WeeklySurvival')) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12)
+    {
+        CowboyHatIndex = FindCowboyHatAttachmentIndex(CurrentCharInfo);
+        if(CowboyHatIndex >= 0)
+        {
+            Callback_AttachmentNumbered(CowboyHatIndex, 0, 2);
+        }
+        SetBool("ThirdAttachmentBlocked", true);
+    }
+}
+
 // Export UKFGFxMenu_Gear::execSelectCharacter(FFrame&, void* const)
 private native final function SelectCharacter(Pawn P, byte CharacterIndex);
 
 // Export UKFGFxMenu_Gear::execSelectCustomizationOption(FFrame&, void* const)
 private native final function SelectCustomizationOption(Pawn P, KFGFxMenu_Gear.ECustomizationOption CustomizationOption, int MeshIndex, int SkinIndex, optional int AttachmentIndex);
+
+// Export UKFGFxMenu_Gear::execFindCowboyHatAttachmentIndex(FFrame&, void* const)
+native static function int FindCowboyHatAttachmentIndex(KFCharacterInfo_Human CharInfo);
 
 defaultproperties
 {

@@ -74,6 +74,7 @@ const KFID_VOIPMicVolumeMultiplier = 174;
 const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
+const KFID_AllowSwapTo9mm = 178;
 
 var const localized string SectionNameString;
 var const localized string GameSettingsString;
@@ -98,6 +99,7 @@ var const localized array<localized string> GoreOptionStrings;
 var const localized string HideRemodeHeadshotEffectsString;
 var const localized string ToggleToRunString;
 var const localized string ClassicPlayerInfoString;
+var const localized string AllowSwap9mmString;
 var float FOVMinValue;
 var float FOVMaxValue;
 var float FOVCurrentValue;
@@ -150,6 +152,7 @@ function LocalizeText()
     LocalizedObject.SetString("autoTurnOff", AutoTurnOffString);
     LocalizedObject.SetString("enableMixer", EnableMixerString);
     LocalizedObject.SetString("disableMixer", DisableMixerString);
+    LocalizedObject.SetString("allowSwap9mmLabel", AllowSwap9mmString);
     SetObject("localizedText", LocalizedObject);
 }
 
@@ -183,6 +186,7 @@ function InitValues()
     DataObject.SetBool("autoTurnOff", Manager.CachedProfile.GetProfileBool(161));
     DataObject.SetBool("enableToggleToRun", Manager.CachedProfile.GetProfileBool(172));
     DataObject.SetBool("enableClassicPlayerInfo", Manager.CachedProfile.GetProfileBool(173));
+    DataObject.SetBool("allowSwapTo9mm", Manager.CachedProfile.GetProfileBool(178));
     if(Class'WorldInfo'.static.IsConsoleBuild(9))
     {
         DataObject.SetBool("bDingo", true);
@@ -528,6 +532,23 @@ function Callback_ClassicPlayerInfoChanged(bool bActive)
     }
 }
 
+function Callback_AllowSwapTo9mm(bool bActive)
+{
+    local OnlineProfileSettings Settings;
+    local KFPlayerInput KFPI;
+
+    Settings = Class'GameEngine'.static.GetOnlineSubsystem().PlayerInterface.GetProfileSettings(byte(Outer.GetLP().ControllerId));
+    KFPI = KFPlayerInput(Outer.GetPC().PlayerInput);
+    if(Settings != none)
+    {
+        Settings.SetProfileSettingValueInt(178, ((bActive) ? 1 : 0));
+    }
+    if(KFPI != none)
+    {
+        KFPI.bAllowSwapTo9mm = bActive;
+    }
+}
+
 function ResetGameOptions()
 {
     Callback_GoreChanged(Manager.CachedProfile.GetDefaultInt(107));
@@ -549,6 +570,7 @@ function ResetGameOptions()
     }
     Callback_FOVChanged(Manager.CachedProfile.GetDefaultFloat(122));
     Callback_ClassicPlayerInfoChanged(Manager.CachedProfile.GetDefaultInt(173) != 0);
+    Callback_AllowSwapTo9mm(Manager.CachedProfile.GetDefaultInt(178) != 0);
     InitValues();
 }
 
@@ -579,6 +601,7 @@ defaultproperties
     HideRemodeHeadshotEffectsString="Disable Remote Headshot effects"
     ToggleToRunString="Toggle to Sprint"
     ClassicPlayerInfoString="Legacy Health Bars"
+    AllowSwap9mmString="Allow Swap to 9mm"
     FOVMinValue=1
     FOVMaxValue=1.25
     FriendlyHudScaleMinValue=0.25

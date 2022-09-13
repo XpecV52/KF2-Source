@@ -282,6 +282,7 @@ var(Animations) bool bHasFireLastAnims;
 var(Animations) bool bUseAdditiveMoveAnim;
 var bool bEnableTiltSkelControl;
 var transient bool bCheckBoltLockPostReload;
+var bool bForceHandleImpacts;
 /** @name Sounds */
 var(Sounds) bool bSuppressSounds;
 /** If set to true, attempting to reload will switch to best available weapon */

@@ -739,7 +739,7 @@ GrabbyValue="Spieler ergriffen"
 ZedSupportValue="Indirekter Schaden"
 ZednnihilationValue="Kills in der Welle"
 ZedStomper="Zed-Stampfer"
-ZedStomperValue="Zeds-Stampfer"
+ZedStomperValue="Gestampfte Zeds"
 
 EPB_Healing="Heilung"
 EPB_Kills="Kills"
@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="Auto-Handel deakt."
 HideRemodeHeadshotEffectsString="Fremdkopfschuss-Effekte deaktiv."
 ToggleToRunString="Schalten, um zu sprinten"
 ClassicPlayerInfoString="Legacy-LP-Balken"
+AllowSwap9mmString="Wechsel zu 9mm erlauben"
 
 EnableMixerString="Mixer-Interaktivität aktivieren/deaktivieren"
 DisableMixerString="Mixer deaktivieren"
@@ -2180,10 +2181,10 @@ HeavyArmor="Schwere Rüstung-Ausbildung"
 HeavyArmorDescription="Bei angelegter Rüstung fügen dir nur Schallangriffe Schaden zu und Clots greifen dich nicht an. Du beginnst jedes Spiel mit einer Rüstung von 50%."
 
 TacticalMovement="Kriegsmarsch"
-TacticalMovementDescription="Kein Bewegungsnachteil beim Einsatz von Kimme und Korn oder geduckter Bewegung mit Vorteils-Waffen."
+TacticalMovementDescription="Schneller bewegen und sprinten. Kein Bewegungsnachteil beim Einsatz von Kimme und Korn oder geduckter Bewegung mit Vorteils-Waffen."
 
 Backup="Nahkampftraining"
-BackupDescription="Erhöhe den Schaden deiner 9mm-Pistole und deines Messers um 85%. Du beginnst jedes Spiel mit zwei 9mm-Pistolen."
+BackupDescription="Erhöhe den Schaden deiner 9mm-Pistole, deines Messers und deinen Hieb-Angriffen um 100%. Du beginnst jedes Spiel mit zwei 9mm-Pistolen."
 
 TacticalReload="Taktisches Nachladen"
 TacticalReloadDescription="Erhöhe die Nachladegeschwindigkeit mit Vorteils-Waffen"
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="Astronaut | Gefährten-Rucksack | Edel"
 ChanceDropDescriptionStrings[0]="Summer-Schein"
 ChanceDropDescriptionStrings[1]="Summer-Goldschein"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="Ein zeitlich begrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Grauenvolle Manifestationen",DescriptionString="Töte 15 Bosse auf einer beliebigen Karte oder in einem beliebigen Modus")
+SpecialEventObjectiveInfoList[1]=(TitleString="Wöchentlicher Kult",DescriptionString="Schaffe die wöchentliche Unterweltfestung")
+SpecialEventObjectiveInfoList[2]=(TitleString="Ich höre Herzschläge",DescriptionString="Finde das Unterweltherz")
+SpecialEventObjectiveInfoList[3]=(TitleString="Lila Miasma",DescriptionString="Schalte die Kapelle und den Speisesaal frei")
+SpecialEventObjectiveInfoList[4]=(TitleString="Ewige Bestrafung",DescriptionString="Schließe Welle 15 bei Unterweltfestung auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="Astronaut | Gefährten-Rucksack | Edel"
+
+ChanceDropDescriptionStrings[0]="Halloween-Schein"
+ChanceDropDescriptionStrings[1]="Goldener Halloween-Schein"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="Plünderer"
 DescriptionStrings[0]="Improvisieren. Anpassen. Überwinden"
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
 ModifierDescriptions[0]="Die Händler wurden sabotiert und haben keine Waffen mehr auf Lager. Jetzt musst du mit den Waffen zurechtkommen, die du auf dem Boden findest. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="Wild-West-London"
+DescriptionStrings[0]="Es ist High Noon, Baby!"
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Howdy Cowboys und Cowgirls! Seid bereit, eure Revolver in dieser Western-Horrorgeschichte im Feuerfächer-Stil zu entladen. Nur für Revolverhelden und Scharfschützen. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="Hoffnungslos"
+DescriptionStrings[0]="Die ultimative Herausforderung"
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="WARNUNG: Dieser Modus ist extrem schwierig! Nur für die, die Hölle auf Erden als Kinderspiel betrachten. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3491,6 +3526,9 @@ DisplayName="Dystopia 2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="Mondbasis"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="Unterweltfestung"
 
 [KFMapInfo]
 ; defaults

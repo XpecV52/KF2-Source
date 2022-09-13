@@ -179,21 +179,27 @@ private static final event bool CheckCustomizationOwnership(KFPlayerReplicationI
 
         if(I < 3)
         {
-            if(PRI.RepCustomizationInfo.AttachmentSkinIndices[I] == -1)
+            if(((I == 2) && PRI.WorldInfo.GRI.IsA('KFGameReplicationInfo_WeeklySurvival')) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12)
             {                
             }
             else
             {
-                Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[I]];
-                if(Attachment.AttachmentItem == none)
-                {
-                    return false;
+                if(PRI.RepCustomizationInfo.AttachmentSkinIndices[I] == -1)
+                {                    
                 }
-                Skin = Attachment.AttachmentItem.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[I]];
-                if(!GetIDAvailable(Skin.UnlockAssetID))
+                else
                 {
-                    ClearCharacterCustomization(PRI);
-                    return false;
+                    Attachment = CharArch.CosmeticVariants[PRI.RepCustomizationInfo.AttachmentMeshIndices[I]];
+                    if(Attachment.AttachmentItem == none)
+                    {
+                        return false;
+                    }
+                    Skin = Attachment.AttachmentItem.SkinVariations[PRI.RepCustomizationInfo.AttachmentSkinIndices[I]];
+                    if(!GetIDAvailable(Skin.UnlockAssetID))
+                    {
+                        ClearCharacterCustomization(PRI);
+                        return false;
+                    }
                 }
             }
             ++ I;

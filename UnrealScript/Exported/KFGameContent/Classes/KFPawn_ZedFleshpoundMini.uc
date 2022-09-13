@@ -37,6 +37,7 @@ defaultproperties
    XPValues(1)=22.000000
    XPValues(2)=30.000000
    XPValues(3)=34.000000
+   ZEDCowboyHatAttachName="Head_Attach"
    DamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.620000))
    DamageTypeModifiers(16)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.620000))
    DamageTypeModifiers(17)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.750000))

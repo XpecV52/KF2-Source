@@ -195,6 +195,8 @@ var(FirstPerson) string ArmSkinPackageName;
 var(FaveWeapons) editconst name FavoriteWeaponClassNames[8];
 var(FaveWeapons) editoronly class<KFWeaponDefinition> FavoriteWeaponClassDefs[8]<AllowAbstract=>;
 var AnimSet EmoteAnimset;
+var transient LinearColor WWLHatMonoChromeValue;
+var transient LinearColor WWLHatColorValue;
 
 function int GetAssetId()
 {
@@ -661,11 +663,39 @@ protected simulated function SetAttachmentSkinMaterial(int PawnAttachmentIndex, 
     }
 }
 
+protected simulated function SetWeeklyCowboyAttachmentSkinMaterial(int PawnAttachmentIndex, const out AttachmentVariants CurrentVariant, byte NewSkinIndex, KFPawn KFP, optional bool bIsFirstPerson)
+{
+    local MaterialInstanceConstant MIC;
+
+    if(KFP.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        if(bIsFirstPerson)
+        {
+            if(KFP.FirstPersonAttachments[PawnAttachmentIndex] != none)
+            {
+                KFP.FirstPersonAttachments[PawnAttachmentIndex].SetMaterial(CurrentVariant.AttachmentItem.SkinMaterialID, CurrentVariant.AttachmentItem.SkinVariations[0].Skin1p);
+                MIC = MaterialInstanceConstant(KFP.FirstPersonAttachments[PawnAttachmentIndex].GetMaterial(0));
+            }            
+        }
+        else
+        {
+            KFP.ThirdPersonAttachments[PawnAttachmentIndex].SetMaterial(CurrentVariant.AttachmentItem.SkinMaterialID, CurrentVariant.AttachmentItem.SkinVariations[0].Skin);
+            MIC = MaterialInstanceConstant(KFP.ThirdPersonAttachments[PawnAttachmentIndex].GetMaterial(0));
+        }
+        if(MIC != none)
+        {
+            MIC.SetVectorParameterValue('color_monochrome', WWLHatMonoChromeValue);
+            MIC.SetVectorParameterValue('Black_White_switcher', WWLHatColorValue);
+        }
+    }
+}
+
 private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, int CurrentAttachmentSkinIndex, KFPawn KFP, KFPlayerReplicationInfo KFPRI)
 {
     local string CharAttachmentMeshName;
     local name CharAttachmentSocketName;
     local int AttachmentSlotIndex;
+    local KFGameReplicationInfo KFGRI;
 
     if(KFP.WorldInfo.NetMode == NM_DedicatedServer)
     {
@@ -695,7 +725,15 @@ private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, 
                 }
             }
             SetAttachmentMesh(CurrentAttachmentMeshIndex, AttachmentSlotIndex, CharAttachmentMeshName, CharAttachmentSocketName, KFP.ArmsMesh, KFP, true);
-            SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], byte(CurrentAttachmentSkinIndex), KFP, true);            
+            KFGRI = KFGameReplicationInfo(KFP.WorldInfo.GRI);
+            if((((AttachmentSlotIndex == 2) && KFP != none) && KFGRI.bIsWeeklyMode) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12)
+            {
+                SetWeeklyCowboyAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], byte(CurrentAttachmentSkinIndex), KFP, true);                
+            }
+            else
+            {
+                SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], byte(CurrentAttachmentSkinIndex), KFP, true);
+            }            
         }
         else
         {
@@ -715,7 +753,15 @@ private final function SetAttachmentMeshAndSkin(int CurrentAttachmentMeshIndex, 
                 }
             }
             SetAttachmentMesh(CurrentAttachmentMeshIndex, AttachmentSlotIndex, CharAttachmentMeshName, CharAttachmentSocketName, KFP.Mesh, KFP, false);
-            SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], byte(CurrentAttachmentSkinIndex), KFP, false);
+            KFGRI = KFGameReplicationInfo(KFP.WorldInfo.GRI);
+            if((((AttachmentSlotIndex == 2) && KFP != none) && KFGRI.bIsWeeklyMode) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12)
+            {
+                SetWeeklyCowboyAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], byte(CurrentAttachmentSkinIndex), KFP, false);                
+            }
+            else
+            {
+                SetAttachmentSkinMaterial(AttachmentSlotIndex, CosmeticVariants[CurrentAttachmentMeshIndex], byte(CurrentAttachmentSkinIndex), KFP, false);
+            }
         }
     }
     if(CurrentAttachmentMeshIndex == -1)
@@ -962,5 +1008,7 @@ simulated function SetCharacterAnimFromArch(KFPawn Pawn)
 defaultproperties
 {
     EmoteAnimset=AnimSet'ECON_emote.ECON_Emotes'
+    WWLHatMonoChromeValue=(R=1,G=0,B=0,A=1)
+    WWLHatColorValue=(R=0,G=0,B=0,A=1)
     SoundGroupArch=KFPawnSoundGroup'FX_Pawn_Sounds_ARCH.HumanPawnSounds'
 }

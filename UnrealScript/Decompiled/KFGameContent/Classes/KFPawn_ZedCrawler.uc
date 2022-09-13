@@ -184,6 +184,7 @@ defaultproperties
     XPValues[1]=10
     XPValues[2]=10
     XPValues[3]=10
+    ZEDCowboyHatAttachName=Hat_Attach
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Crawler'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedCrawler.SprintAkComponent0'

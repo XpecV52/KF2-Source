@@ -436,6 +436,7 @@ defaultproperties
     XPValues[2]=27
     XPValues[3]=31
     WeakSpotSocketNames=/* Array type was not detected. */
+    ZEDCowboyHatAttachName=Hat_Attach
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Husk'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedHusk.SprintAkComponent0'

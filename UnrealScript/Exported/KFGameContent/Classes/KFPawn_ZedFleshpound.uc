@@ -449,6 +449,7 @@ defaultproperties
    XPValues(2)=63.000000
    XPValues(3)=72.000000
    WeakSpotSocketNames(1)="WeakPointSocket1"
+   ZEDCowboyHatAttachName="Hat_Attach"
    DamageTypeModifiers(0)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Submachinegun',DamageScale=(0.500000))
    DamageTypeModifiers(1)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_AssaultRifle',DamageScale=(0.500000))
    DamageTypeModifiers(2)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_Shotgun',DamageScale=(0.750000))

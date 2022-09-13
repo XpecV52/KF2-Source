@@ -44,6 +44,7 @@ var private const array<name> AdditionalOnPerkWeaponNames;
 var private const array<name> AdditionalOnPerkDTNames;
 var float SkillZedTimeChance;
 var private transient bool bWasHeadshot;
+var private float FanFareModifier;
 
 static simulated function GetPassiveStrings(out array<string> PassiveValues, out array<string> Increments, byte Level)
 {
@@ -285,7 +286,7 @@ simulated function bool IsAmmoPouchActive()
 
 simulated function bool IsZTKnockdownActive()
 {
-    return PerkSkills[8].bActive && IsPerkLevelAllowed(8);
+    return (PerkSkills[8].bActive && IsPerkLevelAllowed(8)) && !ShouldDisableZedTimeSkillsForWildWest();
 }
 
 simulated function bool GetZTKnockdownActive()
@@ -295,7 +296,7 @@ simulated function bool GetZTKnockdownActive()
 
 simulated function bool IsZTStunActive()
 {
-    return PerkSkills[9].bActive && IsPerkLevelAllowed(9);
+    return (PerkSkills[9].bActive && IsPerkLevelAllowed(9)) && !ShouldDisableZedTimeSkillsForWildWest();
 }
 
 simulated function bool GetZTStunActive()
@@ -452,6 +453,49 @@ static simulated function bool IsWeaponOnPerk(KFWeapon W, optional array< class<
     return super.IsWeaponOnPerk(W, WeaponPerkClass, InstigatorPerkClass, WeaponClassName);
 }
 
+simulated function float GetZedTimeModifier(KFWeapon W)
+{
+    local name StateName;
+
+    if((IsFanfareActiveForWildWest()) && IsWeaponOnPerk(W,, self.Class))
+    {
+        StateName = W.GetStateName();
+        if(ZedTimeModifyingStates.Find(StateName != -1)
+        {
+            return FanFareModifier;
+        }
+        if(StateName == 'Reloading')
+        {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+function bool ShouldDisableZedTimeSkillsForWildWest()
+{
+    if(WorldInfo.NetMode == NM_Client)
+    {
+        return MyKFGRI.bIsWeeklyMode && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12;        
+    }
+    else
+    {
+        return ((MyKFGI != none) && MyKFGI.OutbreakEvent != none) && MyKFGI.OutbreakEvent.ActiveEvent.bWildWestSkillConditionsActive;
+    }
+}
+
+simulated function bool IsFanfareActiveForWildWest()
+{
+    if(WorldInfo.NetMode == NM_Client)
+    {
+        return MyKFGRI.bIsWeeklyMode && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12;        
+    }
+    else
+    {
+        return ((MyKFGI != none) && MyKFGI.OutbreakEvent != none) && MyKFGI.OutbreakEvent.ActiveEvent.bWildWestSkillConditionsActive;
+    }
+}
+
 defaultproperties
 {
     HeadshotDamage=(Name="Headshot Damage",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
@@ -475,6 +519,7 @@ defaultproperties
     AdditionalOnPerkDTNames(1)=KFDT_Ballistic_SW500
     AdditionalOnPerkDTNames(2)=KFDT_Ballistic_Rem1858
     SkillZedTimeChance=0.05
+    FanFareModifier=1
     ProgressStatID=50
     PerkBuildStatID=51
     SecondaryXPModifier[1]=1

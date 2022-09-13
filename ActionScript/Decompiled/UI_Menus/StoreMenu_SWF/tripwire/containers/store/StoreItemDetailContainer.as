@@ -4,6 +4,7 @@ package tripwire.containers.store
     import com.greensock.easing.Cubic;
     import com.greensock.events.TweenEvent;
     import flash.display.InteractiveObject;
+    import flash.display.MovieClip;
     import flash.events.Event;
     import flash.external.ExternalInterface;
     import flash.text.TextField;
@@ -28,7 +29,11 @@ package tripwire.containers.store
         
         public var itemDescText:TextField;
         
-        public var itemPriceText:TextField;
+        public var itemPriceLayer:MovieClip;
+        
+        public var featuredTagMC:MovieClip;
+        
+        public var featuredTagOnlySaleMC:MovieClip;
         
         public var imageLoader:TripUILoader;
         
@@ -89,7 +94,6 @@ package tripwire.containers.store
             this.currentItemDataObject = param1;
             this.itemNameText.text = param1.label;
             this.itemDescText.htmlText = param1.description;
-            this.itemPriceText.text = param1.price;
             if(param1.imageURLLarge && param1.imageURLLarge != "")
             {
                 this.imageLoader.source = param1.imageURLLarge;
@@ -97,6 +101,47 @@ package tripwire.containers.store
             if(bManagerConsoleBuild)
             {
                 this.addCartButton.visible = param1.price != undefined && param1.price != "";
+            }
+            if(param1.price)
+            {
+                this.itemPriceLayer.visible = true;
+                this.itemPriceLayer.itemPriceText.text = param1.price;
+                if(param1.itemPriceBase)
+                {
+                    this.itemPriceLayer.itemBasePriceText.text = param1.itemPriceBase;
+                    this.itemPriceLayer.itemBasePriceText.visible = true;
+                    this.itemPriceLayer.ItemBasePriceCrossout.visible = true;
+                }
+                else
+                {
+                    this.itemPriceLayer.itemBasePriceText.visible = false;
+                    this.itemPriceLayer.ItemBasePriceCrossout.visible = false;
+                }
+            }
+            else
+            {
+                this.itemPriceLayer.visible = false;
+            }
+            if(param1.itemOnSale && param1.itemOnSale != "0")
+            {
+                if(param1.discountRate && param1.discountRate != "")
+                {
+                    this.featuredTagMC.visible = true;
+                    this.featuredTagMC.textField.visible = true;
+                    this.featuredTagMC.textField.text = "-" + param1.discountRate + "%";
+                    this.featuredTagOnlySaleMC.visible = false;
+                }
+                else
+                {
+                    this.featuredTagOnlySaleMC.visible = true;
+                    this.featuredTagMC.visible = false;
+                    this.featuredTagMC.textField.visible = false;
+                }
+            }
+            else
+            {
+                this.featuredTagMC.visible = false;
+                this.featuredTagOnlySaleMC.visible = false;
             }
         }
         

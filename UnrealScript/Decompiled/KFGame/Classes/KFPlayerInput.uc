@@ -37,6 +37,7 @@ var(AutoTarget) bool bAutoTargetEnabled;
 /** @name  Force Feedback */
 var(ForceFeedback) bool bForceFeedbackEnabled;
 var bool bToggleToRun;
+var bool bAllowSwapTo9mm;
 var bool bVersusInput;
 var bool bUsingVersusGamepadScheme;
 var transient float PressedJumpTime;

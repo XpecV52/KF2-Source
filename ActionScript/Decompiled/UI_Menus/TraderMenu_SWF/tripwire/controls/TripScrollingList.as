@@ -5,6 +5,7 @@ package tripwire.controls
     import flash.display.MovieClip;
     import flash.events.Event;
     import flash.events.FocusEvent;
+    import flash.events.MouseEvent;
     import scaleform.clik.constants.InputValue;
     import scaleform.clik.constants.NavigationCode;
     import scaleform.clik.controls.ScrollingList;
@@ -47,6 +48,8 @@ package tripwire.controls
         public var Owner:Object;
         
         public var bDropDown:Boolean = false;
+        
+        private var _lastScrollPosition:int = 0;
         
         public function TripScrollingList()
         {
@@ -112,6 +115,17 @@ package tripwire.controls
                 scrollBar.visible = dataProvider.length > _totalRenderers;
             }
             super.updateScrollBar();
+        }
+        
+        override protected function handleMouseWheel(param1:MouseEvent) : void
+        {
+            super.handleMouseWheel(param1);
+            if(selectedIndex != -1)
+            {
+                selectedIndex += scrollPosition - this._lastScrollPosition;
+                updateSelectedIndex();
+            }
+            this._lastScrollPosition = scrollPosition;
         }
         
         protected function open(param1:Boolean = true) : void

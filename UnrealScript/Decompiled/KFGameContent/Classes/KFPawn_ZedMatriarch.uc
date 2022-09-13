@@ -1254,7 +1254,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '0_4663' was not found.
+System.ArgumentException: Requested value '0_4742' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1268,7 +1268,7 @@ System.ArgumentException: Requested value '0_1067030937' was not found.
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,Cooldown=15,ChildAfflictionCooldown=0,Vulnerability=/* Array type was not detected. */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '0_4152' was not found.
+System.ArgumentException: Requested value '0_4226' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1447,6 +1447,8 @@ System.ArgumentException: Requested value '__Delegate_OnHealDamage__Delegate' wa
         ImpactFXArray[17]=(Type=EEffectDamageGroup.FXG_MicrowaveProj,DefaultParticle=ParticleSystem'ZED_Matriarch_EMIT.FX_Matriarch_Shield_Hit',DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
         ImpactFXArray[18]=(Type=EEffectDamageGroup.FXG_Electricity,DefaultParticle=ParticleSystem'ZED_Matriarch_EMIT.FX_Matriarch_Shield_Hit',DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
         ImpactFXArray[19]=(Type=EEffectDamageGroup.FXG_Slashing_Ion,DefaultParticle=ParticleSystem'ZED_Matriarch_EMIT.FX_Matriarch_Shield_Hit',DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+        ImpactFXArray[20]=(Type=EEffectDamageGroup.FXG_Energy_Yellow)
+        ImpactFXArray[21]=(Type=EEffectDamageGroup.FXG_Energy_Magenta)
     object end
     // Reference: KFSkinTypeEffects_InvulnerabilityShield'Default__KFPawn_ZedMatriarch.ShieldEffects'
     ShieldImpactEffects=ShieldEffects
@@ -1512,6 +1514,7 @@ System.ArgumentException: Requested value '__Delegate_OnHealDamage__Delegate' wa
     XPValues[2]=1790
     XPValues[3]=1843
     WeakSpotSocketNames=/* Array type was not detected. */
+    ZEDCowboyHatAttachName=Hat_Attach
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_Matriarch'
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'

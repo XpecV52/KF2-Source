@@ -26,6 +26,7 @@ defaultproperties
     XPValues[1]=22
     XPValues[2]=30
     XPValues[3]=34
+    ZEDCowboyHatAttachName=Head_Attach
     DamageTypeModifiers=/* Array type was not detected. */
     ZedBumpDamageScale=0.25
     DifficultySettings=Class'KFDifficulty_FleshpoundMini'

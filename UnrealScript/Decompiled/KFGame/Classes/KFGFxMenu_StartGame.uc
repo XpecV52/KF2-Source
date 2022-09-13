@@ -76,6 +76,7 @@ const KFID_VOIPMicVolumeMultiplier = 174;
 const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
+const KFID_AllowSwapTo9mm = 178;
 
 var string WhatsNewPS;
 var string WhatsNewMS;
@@ -219,7 +220,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 2:
             return Class'KFGFxSpecialEventObjectivesContainer_Summer2021';
         case 3:
-            return Class'KFGFXSpecialEventObjectivesContainer_Fall2020';
+            return Class'KFGFXSpecialEventObjectivesContainer_Fall2021';
         case 4:
             return Class'KFGFXSpecialEventObjectivesContainer_Xmas2020';
         default:
@@ -1835,5 +1836,6 @@ defaultproperties
     StockMaps(32)="kf-elysium"
     StockMaps(33)="kf-dystopia2029"
     StockMaps(34)="kf-moonbase"
+    StockMaps(35)="kf-netherhold"
     SubWidgetBindings=/* Array type was not detected. */
 }

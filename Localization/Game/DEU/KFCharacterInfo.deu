@@ -12,6 +12,8 @@ BodySkin2="Braune Feige"
 BodySkin3="Zuckerstange"
 BodySkin4="Tannengrün"
 BodySkin5="Vintage-Creme"
+BodySkin6="TdZ-Festlich"
+BodySkin7="TdZ-Leuchtend"
 
 [CHR_BadSanta_archetype.BodyMesh1]
 BodySkin0="Gebraucht"
@@ -54,6 +56,8 @@ BodySkin2="Rot"
 BodySkin3="Blau"
 BodySkin4="Rosa"
 BodySkin5="Schwarz"
+BodySkin6="TdZ-Festlich"
+BodySkin7="TdZ-Leuchtend"
 
 [CHR_MrsFoster_archetype.BodyMesh1]
 BodySkin0="Blau"
@@ -183,6 +187,8 @@ BodySkin0="Endo 800"
 BodySkin1="Klassisches Grau"
 BodySkin2="Plastik"
 BodySkin3="Edel"
+BodySkin4="TdZ-Festlich"
+BodySkin5="TdZ-Leuchtend"
 
 [CHR_DAR_archetype.HeadMesh0]
 HeadSkin0="Nichts"
@@ -259,6 +265,8 @@ BodySkin8="Cyberpunk | Grün"
 BodySkin9="Cyberpunk | Edel"
 BodySkin10="Cyberpunk | Rot"
 BodySkin11="Cyberpunk | Blau"
+BodySkin12="TdZ-Festlich"
+BodySkin13="TdZ-Leuchtend"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="Klassisch"
@@ -478,6 +486,8 @@ BodySkin7="Cyberpunk | Grün"
 BodySkin8="Cyberpunk | Edel"
 BodySkin9="Cyberpunk | Rot"
 BodySkin10="Cyberpunk | Blau"
+BodySkin11="TdZ-Festlich"
+BodySkin12="TdZ-Leuchtend"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="Klassisch"
@@ -643,6 +653,8 @@ BodySkin6="Cyberpunk | Grün"
 BodySkin7="Cyberpunk | Edel"
 BodySkin8="Cyberpunk | Rot"
 BodySkin9="Cyberpunk | Blau"
+BodySkin10="TdZ-Festlich"
+BodySkin11="TdZ-Leuchtend"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="Metro"
@@ -806,6 +818,8 @@ BodySkin3="Pure Klasse"
 BodySkin4="Magma-Rot"
 BodySkin5="Kammer – Edel"
 BodySkin6="Kammer-Fliese"
+BodySkin7="TdZ-Festlich"
+BodySkin8="TdZ-Leuchtend"
 
 [CHR_MrFoster_archetype.BodyMesh1]
 BodySkin0="Klassisch"
@@ -1099,6 +1113,8 @@ BodySkin5="Cyberpunk | Grün"
 BodySkin6="Cyberpunk | Edel"
 BodySkin7="Cyberpunk | Rot"
 BodySkin8="Cyberpunk | Blau"
+BodySkin9="TdZ-Festlich"
+BodySkin10="TdZ-Leuchtend"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="Klassisch"
@@ -1258,6 +1274,8 @@ BodySkin7="Cyberpunk | Grün"
 BodySkin8="Cyberpunk | Edel"
 BodySkin9="Cyberpunk | Rot"
 BodySkin10="Cyberpunk | Blau"
+BodySkin11="TdZ-Festlich"
+BodySkin12="TdZ-Leuchtend"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="Klassisch"
@@ -2286,6 +2304,8 @@ BodySkin8="Cyberpunk | Grün"
 BodySkin9="Cyberpunk | Edel"
 BodySkin10="Cyberpunk | Rot"
 BodySkin11="Cyberpunk | Blau"
+BodySkin12="TdZ-Festlich"
+BodySkin13="TdZ-Leuchtend"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="Klassisch"
@@ -2430,6 +2450,8 @@ BodySkin7="Cyberpunk | Grün"
 BodySkin8="Cyberpunk | Edel"
 BodySkin9="Cyberpunk | Rot"
 BodySkin10="Cyberpunk | Blau"
+BodySkin11="TdZ-Festlich"
+BodySkin12="TdZ-Leuchtend"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="Rot und Schwarz"
@@ -2611,6 +2633,8 @@ BodySkin6="Cyberpunk | Grün"
 BodySkin7="Cyberpunk | Edel"
 BodySkin8="Cyberpunk | Rot"
 BodySkin9="Cyberpunk | Blau"
+BodySkin10="TdZ-Festlich"
+BodySkin11="TdZ-Leuchtend"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="Elite-Blau"
@@ -2759,6 +2783,8 @@ BodySkin6="Cyberpunk | Grün"
 BodySkin7="Cyberpunk | Edel"
 BodySkin8="Cyberpunk | Rot"
 BodySkin9="Cyberpunk | Blau"
+BodySkin10="TdZ-Festlich"
+BodySkin11="TdZ-Leuchtend"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="Metro"
@@ -2913,6 +2939,8 @@ BodySkin8="Cyberpunk | Grün"
 BodySkin9="Cyberpunk | Edel"
 BodySkin10="Cyberpunk | Rot"
 BodySkin11="Cyberpunk | Blau"
+BodySkin12="TdZ-Festlich"
+BodySkin13="TdZ-Leuchtend"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="Klassisch"
@@ -3064,6 +3092,8 @@ BodySkin5="Cyberpunk | Grün"
 BodySkin6="Cyberpunk | Edel"
 BodySkin7="Cyberpunk | Rot"
 BodySkin8="Cyberpunk | Blau"
+BodySkin9="TdZ-Festlich"
+BodySkin10="TdZ-Leuchtend"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="Klassisch"
@@ -3208,6 +3238,8 @@ BodySkin5="Cyberpunk | Grün"
 BodySkin6="Cyberpunk | Edel"
 BodySkin7="Cyberpunk | Rot"
 BodySkin8="Cyberpunk | Blau"
+BodySkin9="TdZ-Festlich"
+BodySkin10="TdZ-Leuchtend"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="Klassisch"
@@ -3361,6 +3393,8 @@ BodySkin9="Cyberpunk | Grün"
 BodySkin10="Cyberpunk | Edel"
 BodySkin11="Cyberpunk | Rot"
 BodySkin12="Cyberpunk | Blau"
+BodySkin13="TdZ-Festlich"
+BodySkin14="TdZ-Leuchtend"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="Elite-Blau"
@@ -4770,6 +4804,8 @@ AttachmentSkin1="Lader"
 AttachmentSkin2="Standard"
 AttachmentSkin3="Edel"
 AttachmentSkin4="Skully"
+AttachmentSkin5="TdZ-Festlich"
+AttachmentSkin6="TdZ-Leuchtend"
 
 [Cosmetic_DAR_AssaultArmor_ARCH]
 Attachment="Angriffsrüstung"
@@ -6615,7 +6651,7 @@ AttachmentSkin5="Tech"
 AttachmentSkin6="Edel"
 
 [Cosmetic_Foundry_HardHatShield_ARCH]
-Attachment="Gießerei-Schutzhelm & -Schild"
+Attachment="Schutzhelm & -Schild"
 AttachmentSkin0="Achtung"
 AttachmentSkin1="Schwarz"
 AttachmentSkin2="Weiß"
@@ -6625,7 +6661,7 @@ AttachmentSkin5="Tech"
 AttachmentSkin6="Edel"
 
 [Cosmetic_Foundry_CastingBucket_ARCH]
-Attachment="Gießerei-Gusseimer-Rucksack"
+Attachment="Gusseimer-Rucksack"
 AttachmentSkin0="Achtung"
 AttachmentSkin1="Schwarz"
 AttachmentSkin2="Weiß"
@@ -6645,7 +6681,7 @@ AttachmentSkin5="Tech"
 AttachmentSkin6="Edel"
 
 [Cosmetic_Foundry_WeldingTank_ARCH]
-Attachment="Gießerei-Schweißflaschen-Rucksack"
+Attachment="Schweißflaschen-Rucksack"
 AttachmentSkin0="Achtung"
 AttachmentSkin1="Schwarz"
 AttachmentSkin2="Weiß"
@@ -6707,7 +6743,7 @@ AttachmentSkin3="Galaxie"
 AttachmentSkin4="Edel"
 
 [Cosmetic_Astronaut_CompanionBackpack_ARCH]
-Attachment="Astronauten-Gefährten-Rucksack"
+Attachment="Astronauten-Comp.-Rucksack"
 AttachmentSkin0="Edel"
 
 [Cosmetic_Astronaut_Helmet_ARCH]
@@ -6830,3 +6866,159 @@ BodySkin1="Singularität"
 BodySkin2="Sternenausbruch"
 BodySkin3="Galaxie"
 BodySkin4="Edel"
+
+[Cosmetic_Vietnam_USHelmet_ARCH]
+Attachment="Vietnam-US-Helm"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Dschungel"
+AttachmentSkin3="Waldland"
+AttachmentSkin4="Savanne"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Vietnam_USHelmetGoggles_ARCH]
+Attachment="Vietnam-US-Brillenhelm"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Dschungel"
+AttachmentSkin3="Waldland"
+AttachmentSkin4="Savanne"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Vietnam_USRadio_ARCH]
+Attachment="Vietnam-US-Funkgerät"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Grau"
+AttachmentSkin3="Kämpfer"
+AttachmentSkin4="Napalm"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Vietnam_USPilotHelmet_ARCH]
+Attachment="Vietnam-Pilot-Helm"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Weiß"
+AttachmentSkin3="Napalm"
+AttachmentSkin4="Himmel"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Vietnam_USPilotHelmetGoggles_ARCH]
+Attachment="Vietnam-Pilot-Schildhelm"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Weiß"
+AttachmentSkin3="Napalm"
+AttachmentSkin4="Himmel"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Vietnam_USPilotHelmetGogglesMask_ARCH]
+Attachment="Vietnam-Pilot-Maskenhelm"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Weiß"
+AttachmentSkin3="Napalm"
+AttachmentSkin4="Himmel"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Vietnam_Beret_ARCH]
+Attachment="Vietnam-Barett"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Weiß"
+AttachmentSkin3="Rot"
+AttachmentSkin4="Blau"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Vietnam_Bandana_ARCH]
+Attachment="Vietnam-Bandana"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Dschungel"
+AttachmentSkin3="Waldland"
+AttachmentSkin4="Savanne"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Vietnam_Hat_ARCH]
+Attachment="Vietnam-Boonie"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Dschungel"
+AttachmentSkin3="Waldland"
+AttachmentSkin4="Savanne"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Edel"
+
+[Cosmetic_Vietnam_VCHelmet_ARCH]
+Attachment="Vietnam-VC-Helm"
+AttachmentSkin0="Oliv"
+AttachmentSkin1="Schwarz"
+AttachmentSkin2="Weiß"
+AttachmentSkin3="Grau"
+AttachmentSkin4="Braun"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Edel"
+
+[Cosmetic_DiaDeLosMuertos_TopHat_ARCH]
+Attachment="TdZ-Zylinder"
+AttachmentSkin0="Festlich"
+AttachmentSkin1="Ringelblume"
+AttachmentSkin2="Hoffnung"
+AttachmentSkin3="Leuchtend"
+AttachmentSkin4="Edel"
+
+[Cosmetic_DiaDeLosMuertos_SkullHead_ARCH]
+Attachment="TdZ-Schädel"
+AttachmentSkin0="Festlich"
+AttachmentSkin1="Ringelblume"
+AttachmentSkin2="Hoffnung"
+AttachmentSkin3="Leuchtend"
+AttachmentSkin4="Edel"
+
+[Cosmetic_DiaDeLosMuertos_Coffin_ARCH]
+Attachment="TdZ-Sarg"
+AttachmentSkin0="Festlich"
+AttachmentSkin1="Ringelblume"
+AttachmentSkin2="Hoffnung"
+AttachmentSkin3="Leuchtend"
+AttachmentSkin4="Edel"
+
+[Cosmetic_DiaDeLosMuertos_Headband_ARCH]
+Attachment="TdZ-Stirnband"
+AttachmentSkin0="Festlich"
+AttachmentSkin1="Ringelblume"
+AttachmentSkin2="Hoffnung"
+AttachmentSkin3="Leuchtend"
+AttachmentSkin4="Edel"
+
+[Cosmetic_DiaDeLosMuertos_Armband_ARCH]
+Attachment="TdZ-Armband"
+AttachmentSkin0="Festlich"
+AttachmentSkin1="Ringelblume"
+AttachmentSkin2="Hoffnung"
+AttachmentSkin3="Leuchtend"
+AttachmentSkin4="Edel"
+
+[Cosmetic_DiaDeLosMuertos_CowSkull_ARCH]
+Attachment="TdZ-Kuhschädel"
+AttachmentSkin0="Festlich"
+AttachmentSkin1="Ringelblume"
+AttachmentSkin2="Hoffnung"
+AttachmentSkin3="Leuchtend"
+AttachmentSkin4="Edel"
+
+[Cosmetic_DiaDeLosMuertos_Companion_ARCH]
+Attachment="TdZ-Gefährte"
+AttachmentSkin0="Edel"
+
+[Cosmetic_WildWest_CowboyHat_ARCH]
+Attachment="Wild-West-London-Hut"
+AttachmentSkin0="Edel"

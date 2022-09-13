@@ -739,7 +739,7 @@ GrabbyValue="Схвачено игроков"
 ZedSupportValue="Косвенный урон"
 ZednnihilationValue="Убито за волну"
 ZedStomper="Шагающий по мутанту"
-ZedStomperValue="Шагающий по мутантам"
+ZedStomperValue="Мутантов растоптано"
 
 EPB_Healing="Лечение"
 EPB_Kills="Убито"
@@ -761,7 +761,7 @@ EPB_HeadShotsValue="Попаданий в голову"
 EPB_KnifeKillsValue="Убито"
 EPB_PistolKillsValue="Убито"
 EPB_DoorWeldingValue="Точки сварки"
-EPB_ZedStompsValue="Шаги"
+EPB_ZedStompsValue="Прыжки"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="НАГРАДЫ КОМАНДЫ"
@@ -782,7 +782,7 @@ HeadShotsString="Попаданий в голову:"
 LargeZedKillsString="Убито крупных мутантов:"
 TotalDoshEarnedString="Всего получено денег:"
 TotalKillsString="Всего убито:"
-TotalStompsString="Всего шагов"
+TotalStompsString="Всего прыжков"
 AssistsString="Помощь:"
 DamageDealtString="Нанесено урона:"
 
@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="Отключить автоторговлю"
 HideRemodeHeadshotEffectsString="Откл. эф. попадания в голову других"
 ToggleToRunString="Переключите, чтобы выполнить перебежку"
 ClassicPlayerInfoString="Прежняя версия шкал здоровья"
+AllowSwap9mmString="Разрешить переключение на 9-мм"
 
 EnableMixerString="Переключить интерактивность Mixer"
 DisableMixerString="Отключить Mixer"
@@ -1797,19 +1798,19 @@ Fortitude="Дредноут"
 FortitudeDescription="Общее здоровье растет на 100%."
 
 Ninja="Рубака"
-NinjaDescription="Скорость движения +20%, перебежки +25% при использовании профильного оружия. Каждую секунду восстанавливает 1 очко здоровья."
+NinjaDescription="При использовании профильного оружия скорость движения выше на 20%, перебежек — на 25%. Каждую секунду восстанавливается 1 очко здоровья."
 
 Vampire="Вампир"
-VampireDescription="Восстанавливает 3 очка здоровья за каждого мутанта, убитого профильным оружием. На 20% быстрее атака профильным холодным оружием."
+VampireDescription="За каждого мутанта, убитого профильным оружием, восстанавливается 3 очка здоровья. Атаки профильным оружием ближнего боя быстрее на 20%."
 
 Speed="Мясник"
 SpeedDescription="Атака на 20% быстрее и урон на 20% больше при использовании профильного оружия."
 
 Resistance="Сопротивление"
-ResistanceDescription="+15% к сопротивлению любому урону. +15% к сопротивлению яду и урону звуком."
+ResistanceDescription="Сопротивление всем видам урона выше на 15%. Дополнительно +15% к сопротивлению яду и урону звуком."
 
 Parry="Отбив"
-ParryDescription="Парирование проф. холодным оружием снижает урон на 30% и на 8 с повышает скорость атаки в ближнем бою на 5%, а урон от нее — на 35%."
+ParryDescription="Парирование профильным оружием ближнего боя снижает входящий урон на 30% и на 8 с повышает скорость атаки в ближнем бою на 5%, а урон от нее — на 35%."
 
 Smash="Сносящий удар"
 SmashDescription="Сильные атаки профильным холодным оружием наносят +50% урона, +25% урона при попад. в голову, а их остан. дейст. на 200% сильнее."
@@ -1901,7 +1902,7 @@ DirectHit="Сверхмощные боеприпасы"
 DirectHitDescription="Прямой урон взрывного оружия возрастает на 25%."
 
 Ammo="Дополнительные боеприпасы"
-AmmoDescription="Максимальный боезапас профильного взрывного оружия повышается на 10. Это не касается C4."
+AmmoDescription="Максимальный боезапас профильного взрывного оружия увеличивается на 10. Не относится к C4."
 
 SirenResistance="Звукоустойчивые боеприпасы"
 SirenResistanceDescription="Взрывные устройства устойчивы к крику сирен и всегда взрываются."
@@ -1938,7 +1939,7 @@ Passives[3]=(Title="Скорость движения",Description="Скорос
 Passives[4]=(Title="Бонусная броня",Description="Броня растет на %x% за уровень");
 
 HealingSurge="Симбиотическое здоровье"
-HealingSurgeDescription="Общее здоровье растет на 25%. При лечении бойцов команды восстанавливает 6% общего здоровья."
+HealingSurgeDescription="Общее здоровье повышается на 25%. При лечении бойцов команды восстанавливается 6% общего здоровья."
 
 Survivalist="Стойкость"
 SurvivalistDescription="Сопротивление к урону растет на 1% за каждое потерянное очко здоровья вплоть до 60%."
@@ -2131,7 +2132,7 @@ EXPAction1="Наносит урон оружием бойца поддержки
 EXPAction2="Заваривание дверей"
 
 HighCapMags="Магазины большой емкости"
-HighCapMagsDescription="Емкость магазинов профильного оружия растет на 75%."
+HighCapMagsDescription="Емкость магазинов профильного оружия увеличивается на 75%."
 
 TacticalReload="Тактическое заряжание"
 TacticalReloadDescription="Повышает скорость заряжания профильного оружия."
@@ -2180,10 +2181,10 @@ HeavyArmor="Обучение с тяжелой броней"
 HeavyArmorDescription="В бронежилете вы терпите лишь половинный урон от акустических атак, а зомби не могут вас схватить. Каждую игру вы начинаете с 50% брони."
 
 TacticalMovement="Тактическое перемещение"
-TacticalMovementDescription="Использование металлического прицела и передвижение ползком с профессиональным оружием без штрафов к скорости."
+TacticalMovementDescription="Повышается скорость движения и перебежек. С профильным оружием нет штрафа к скорости при использовании целика и мушки и движении в приседе."
 
 Backup="Обучение ближнему бою"
-BackupDescription="Повышает урон 9-мм пистолета и ножа на 85%. Каждую игру вы начинаете с двумя 9-мм пистолетами."
+BackupDescription="Урон 9-мм пистолета, ножа и ударов щитом повышается на 100%. Каждую игру вы начинаете с парой 9-мм пистолетов."
 
 TacticalReload="Тактическое заряжание"
 TacticalReloadDescription="Повышает скорость заряжания профильного оружия."
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="Космонавт | Рюкзак «Комп
 ChanceDropDescriptionStrings[0]="Летний билет"
 ChanceDropDescriptionStrings[1]="Летний золотой билет"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="Ограниченное по времени особое событие с эксклюзивными предметами"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Ужасающие проявления",DescriptionString="Убить 15 боссов на любой карте в любом режиме")
+SpecialEventObjectiveInfoList[1]=(TitleString="Еженедельный культ",DescriptionString="Выполнить еженедельное задание в «Чертогах отчаяния»")
+SpecialEventObjectiveInfoList[2]=(TitleString="Слышно, как бьется сердце",DescriptionString="Найти адское сердце")
+SpecialEventObjectiveInfoList[3]=(TitleString="Пурпурная скверна",DescriptionString="Открыть молельню и двери столовой")
+SpecialEventObjectiveInfoList[4]=(TitleString="Вечные муки",DescriptionString="Расправиться с волной 15 в бесконечном режиме на уровне «Сложно» или выше в «Чертогах отчаяния»")
+
+AllCompleteRewardDescriptionString="Космонавт | Рюкзак «Компаньон» | Дорогая вещь"
+
+ChanceDropDescriptionStrings[0]="Билет на Хеллоуин"
+ChanceDropDescriptionStrings[1]="Золотой билет на Хеллоуин"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="Мусорщик"
 DescriptionStrings[0]="Импровизируй. Адаптируйся. Преодолевай."
 DescriptionStrings[1]="Длина: средняя (7 волн)"
 ModifierDescriptions[0]="У торговцев проблемы с поставками: оружия у них нет. Что найдете на земле — всё ваше. Выберите режим игры для этой недели на странице подбора игроков. Профессия: +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="Дикий Запад в Лондоне"
+DescriptionStrings[0]="Момент истины, детка!"
+DescriptionStrings[1]="Длина: средняя (7 волн)"
+ModifierDescriptions[0]="Как поживаете, ковбои? Готовьтесь к скоростной стрельбе из револьверов в этом ужастике в стиле вестерн. Доступно только для «Стрелков» и «Метких стрелков». Выберите режим игры для этой недели на странице подбора игроков. Профессия: +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="Оставь надежду"
+DescriptionStrings[0]="Сложнейшее испытание"
+DescriptionStrings[1]="Длина: средняя (7 волн)"
+ModifierDescriptions[0]="ВНИМАНИЕ. Этот режим чрезвычайно трудный! Подойдет лишь тем, кто считает «Ад на земле» детской забавой. Выберите режим игры для этой недели на странице подбора игроков. Профессия: +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3491,6 +3526,9 @@ DisplayName="Антиутопия 2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="Лунная база"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="Чертоги отчаяния"
 
 [KFMapInfo]
 ; defaults

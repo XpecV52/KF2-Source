@@ -33,6 +33,7 @@ var private const float RapidAssaultFiringRate;
 var private const float SnarePower;
 var private const float TacticalMovementBobDamp;
 var private const class<KFWeaponDefinition> BackupSecondaryWeaponDef;
+var private const float TacticalMovementModifier;
 var private const float HeavyArmorAbsorptionPct;
 var float CurrentHealthPenalty;
 var int BumpDamageAmount;
@@ -183,7 +184,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     }
     if(KFW != none)
     {
-        if(IsBackupActive() && (IsBackupWeapon(KFW)) || IsDual9mm(KFW))
+        if(IsBackupActive() && ((IsBackupWeapon(KFW)) || IsDual9mm(KFW)) || ClassIsChildOf(DamageType, Class'KFDT_Bludgeon'))
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[2])));            
         }
@@ -330,6 +331,54 @@ simulated function int GetArmorDamageAmount(int AbsorbedAmt)
     return AbsorbedAmt;
 }
 
+simulated function ModifySpeed(out float Speed)
+{
+    local KFWeapon MyKFWeapon;
+    local KFInventoryManager KFIM;
+
+    if(!IsTacticalMovementActive())
+    {
+        return;
+    }
+    MyKFWeapon = GetOwnerWeapon();
+    if((MyKFWeapon == none) && CheckOwnerPawn())
+    {
+        KFIM = KFInventoryManager(OwnerPawn.InvManager);
+        if((KFIM != none) && KFIM.PendingWeapon != none)
+        {
+            MyKFWeapon = KFWeapon(KFIM.PendingWeapon);
+        }
+    }
+    if((MyKFWeapon != none) && (Is9mm(MyKFWeapon) || IsDual9mm(MyKFWeapon)) || IsWeaponOnPerk(MyKFWeapon,, self.Class))
+    {
+        Speed += (Speed * TacticalMovementModifier);
+    }
+}
+
+simulated function ModifySprintSpeed(out float Speed)
+{
+    local KFWeapon MyKFWeapon;
+    local KFInventoryManager KFIM;
+
+    if(!IsTacticalMovementActive())
+    {
+        return;
+    }
+    MyKFWeapon = GetOwnerWeapon();
+    if((MyKFWeapon == none) && CheckOwnerPawn())
+    {
+        KFIM = KFInventoryManager(OwnerPawn.InvManager);
+        if((KFIM != none) && KFIM.PendingWeapon != none)
+        {
+            MyKFWeapon = KFWeapon(KFIM.PendingWeapon);
+        }
+    }
+    if((MyKFWeapon != none) && (Is9mm(MyKFWeapon) || IsDual9mm(MyKFWeapon)) || IsWeaponOnPerk(MyKFWeapon,, self.Class))
+    {
+        Speed += (Speed * TacticalMovementModifier);
+    }
+}
+
 simulated function bool IsHeavyArmorActive()
 {
     return PerkSkills[0].bActive && IsPerkLevelAllowed(0);
@@ -414,6 +463,7 @@ defaultproperties
     SnarePower=15
     TacticalMovementBobDamp=1.11
     BackupSecondaryWeaponDef=Class'KFWeapDef_9mmDual'
+    TacticalMovementModifier=0.2
     HeavyArmorAbsorptionPct=0.65
     BumpDamageAmount=450
     BumpDamageType=Class'KFDT_SWATBatteringRam'
@@ -442,7 +492,7 @@ defaultproperties
     PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_SWAT'
     PerkSkills(0)=(Name="HeavyArmor",Increment=0,Rank=0,StartingValue=0.5,MaxValue=0.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_HeavyArmor",bActive=false)
     PerkSkills(1)=(Name="TacticalMovement",Increment=0,Rank=0,StartingValue=2.5,MaxValue=2.5,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalMovement",bActive=false)
-    PerkSkills(2)=(Name="Backup",Increment=0,Rank=0,StartingValue=0.85,MaxValue=0.85,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup",bActive=false)
+    PerkSkills(2)=(Name="Backup",Increment=0,Rank=0,StartingValue=1,MaxValue=1,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup",bActive=false)
     PerkSkills(3)=(Name="TacticalReload",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalReload",bActive=false)
     PerkSkills(4)=(Name="SpecialAmmunition",Increment=0,Rank=0,StartingValue=2,MaxValue=2,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition",bActive=false)
     PerkSkills(5)=(Name="AmmoVest",Increment=0,Rank=0,StartingValue=0.3,MaxValue=0.3,ModifierValue=0,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_AmmoVest",bActive=false)

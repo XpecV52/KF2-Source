@@ -799,6 +799,9 @@ var transient bool bCheckBoltLockPostReload;
 /** array of bones to lock when out of ammo */
 var array<name> BonesToLockOnEmpty;
 
+/** Handle impact effects on impact manager */
+var bool bForceHandleImpacts;
+
 /*********************************************************************************************
  * @name	Sounds
 ********************************************************************************************* */

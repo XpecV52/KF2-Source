@@ -399,6 +399,10 @@ var() array<name> WeakSpotSocketNames;
 var int	HealByKill;
 var int	HealByAssistance;
 
+/** WWL Hat attach name*/
+var name ZEDCowboyHatAttachName;
+
+
 /**
  * Information on resistant or vulnerable damage types
  * @todo: This is all static data so we should consider moving to the archetype
@@ -846,6 +850,14 @@ var byte PreviousArmorZoneStatus;
 
 //Hit FX overrides for hitting armor
 var const int OverrideArmorFXIndex;
+
+/*********************************************************************************************
+ * @name	Parasite Weapon
+********************************************************************************************* */
+var array<KFProjectile> ParasiteSeeds;
+
+// Max num of seeds in this character
+var byte MaxNumSeeds;
 
 /*********************************************************************************************
  * @name	Delegates
@@ -2880,6 +2892,7 @@ function bool Died(Controller Killer, class<DamageType> DamageType, vector HitLo
 {
 	local KFPlayerController KFPC;
 	local KFPerk InstigatorPerk;
+	local int i;
 
 	if ( super.Died(Killer, damageType, HitLocation) )
 	{
@@ -2918,6 +2931,16 @@ function bool Died(Controller Killer, class<DamageType> DamageType, vector HitLo
 					}
 				}
 			}
+		}
+
+		if (ParasiteSeeds.Length > 0)
+		{
+			for (i = 0; i < ParasiteSeeds.Length; ++i)
+			{
+				ParasiteSeeds[i].Explode(Location - (vect(0,0,1) * GetCollisionHeight()), vect(0,0,1) >> ParasiteSeeds[i].Rotation);
+			}
+
+			ParasiteSeeds.Remove(0, ParasiteSeeds.Length);
 		}
 
         OnZedDied(Killer);
@@ -5040,6 +5063,30 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
 }
 
 /*********************************************************************************************
+* @name   Armor
+********************************************************************************************* */
+server reliable function AddParasiteSeed(KFProjectile Proj)
+{
+	local int i;
+
+	if (Role < ROLE_AUTHORITY)
+		return;
+
+	if (ParasiteSeeds.Length >= MaxNumSeeds)
+	{
+		for (i = 0; i < ParasiteSeeds.Length - (MaxNumSeeds-1); ++i)
+		{
+			ParasiteSeeds[i].Detonate();
+		}
+
+		ParasiteSeeds.Remove(0, ParasiteSeeds.Length - (MaxNumSeeds-1));	
+	}
+
+	ParasiteSeeds.AddItem(Proj);
+}
+
+
+/*********************************************************************************************
  * @name   Achievements
  ********************************************************************************************* */
 
@@ -5058,6 +5105,7 @@ defaultproperties
    HeadlessBleedOutTime=5.000000
    ParryResistance=1
    MinSpawnSquadSizeType=EST_Small
+   MaxNumSeeds=1
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0
       BaseDamage=6.000000
       MaxHitRange=180.000000
@@ -5066,6 +5114,7 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
    WeakSpotSocketNames(0)="FX_Dazed"
+   ZEDCowboyHatAttachName="Head_Attach"
    ZedBumpDamageScale=1.000000
    DifficultySettings=Class'KFGame.KFMonsterDifficultyInfo'
    DamageInflationRate=1.000000

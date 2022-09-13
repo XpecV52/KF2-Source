@@ -600,6 +600,8 @@ defaultproperties
         ImpactFXArray[17]=(Type=EEffectDamageGroup.FXG_MicrowaveProj,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
         ImpactFXArray[18]=(Type=EEffectDamageGroup.FXG_Electricity,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
         ImpactFXArray[19]=(Type=EEffectDamageGroup.FXG_Slashing_Ion,DefaultParticle=ParticleSystem'ZED_Hans_EMIT.FX_Hans_invulnerable_Hit',DefaultSound=AkEvent'WW_Skin_Impacts.Play_IMP_Ballistic_Machine_Local')
+        ImpactFXArray[20]=(Type=EEffectDamageGroup.FXG_Energy_Yellow)
+        ImpactFXArray[21]=(Type=EEffectDamageGroup.FXG_Energy_Magenta)
     object end
     // Reference: KFSkinTypeEffects_InvulnerabilityShield'Default__KFPawn_ZedFleshpoundKing.ShieldEffects'
     ShieldImpactEffects=ShieldEffects

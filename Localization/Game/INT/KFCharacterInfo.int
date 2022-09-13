@@ -12,6 +12,8 @@ BodySkin2="Brown Fig"
 BodySkin3="Candycane"
 BodySkin4="Jolly Green"
 BodySkin5="Cream Vintage"
+BodySkin6="DoZ Festive"
+BodySkin7="DoZ Luminescent"
 
 [CHR_BadSanta_archetype.BodyMesh1]
 BodySkin0="Used"
@@ -54,6 +56,8 @@ BodySkin2="Red"
 BodySkin3="Blue"
 BodySkin4="Pink"
 BodySkin5="Black"
+BodySkin6="DoZ Festive"
+BodySkin7="DoZ Luminescent"
 
 [CHR_MrsFoster_archetype.BodyMesh1]
 BodySkin0="Blue"
@@ -183,6 +187,8 @@ BodySkin0="Endo 800"
 BodySkin1="Classic Grey"
 BodySkin2="Plastic"
 BodySkin3="Precious"
+BodySkin4="DoZ Festive"
+BodySkin5="DoZ Luminescent"
 
 [CHR_DAR_archetype.HeadMesh0]
 HeadSkin0="None"
@@ -259,6 +265,8 @@ BodySkin8="Cyberpunk Green"
 BodySkin9="Cyberpunk Precious"
 BodySkin10="Cyberpunk Red"
 BodySkin11="Cyberpunk Blue"
+BodySkin12="DoZ Festive"
+BodySkin13="DoZ Luminescent"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -478,6 +486,8 @@ BodySkin7="Cyberpunk Green"
 BodySkin8="Cyberpunk Precious"
 BodySkin9="Cyberpunk Red"
 BodySkin10="Cyberpunk Blue"
+BodySkin11="DoZ Festive"
+BodySkin12="DoZ Luminescent"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -643,6 +653,8 @@ BodySkin6="Cyberpunk Green"
 BodySkin7="Cyberpunk Precious"
 BodySkin8="Cyberpunk Red"
 BodySkin9="Cyberpunk Blue"
+BodySkin10="DoZ Festive"
+BodySkin11="DoZ Luminescent"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="Metro"
@@ -806,6 +818,8 @@ BodySkin3="Just Class"
 BodySkin4="Magma Red"
 BodySkin5="Vault Precious"
 BodySkin6="Vault Tile"
+BodySkin7="DoZ Festive"
+BodySkin8="DoZ Luminescent"
 
 [CHR_MrFoster_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -1099,6 +1113,8 @@ BodySkin5="Cyberpunk Green"
 BodySkin6="Cyberpunk Precious"
 BodySkin7="Cyberpunk Red"
 BodySkin8="Cyberpunk Blue"
+BodySkin9="DoZ Festive"
+BodySkin10="DoZ Luminescent"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -1258,6 +1274,8 @@ BodySkin7="Cyberpunk Green"
 BodySkin8="Cyberpunk Precious"
 BodySkin9="Cyberpunk Red"
 BodySkin10="Cyberpunk Blue"
+BodySkin11="DoZ Festive"
+BodySkin12="DoZ Luminescent"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -2286,6 +2304,8 @@ BodySkin8="Cyberpunk Green"
 BodySkin9="Cyberpunk Precious"
 BodySkin10="Cyberpunk Red"
 BodySkin11="Cyberpunk Blue"
+BodySkin12="DoZ Festive"
+BodySkin13="DoZ Luminescent"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -2430,6 +2450,8 @@ BodySkin7="Cyberpunk Green"
 BodySkin8="Cyberpunk Precious"
 BodySkin9="Cyberpunk Red"
 BodySkin10="Cyberpunk Blue"
+BodySkin11="DoZ Festive"
+BodySkin12="DoZ Luminescent"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="Red and Black"
@@ -2611,6 +2633,8 @@ BodySkin6="Cyberpunk Green"
 BodySkin7="Cyberpunk Precious"
 BodySkin8="Cyberpunk Red"
 BodySkin9="Cyberpunk Blue"
+BodySkin10="DoZ Festive"
+BodySkin11="DoZ Luminescent"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="Elite Blue"
@@ -2759,6 +2783,8 @@ BodySkin6="Cyberpunk Green"
 BodySkin7="Cyberpunk Precious"
 BodySkin8="Cyberpunk Red"
 BodySkin9="Cyberpunk Blue"
+BodySkin10="DoZ Festive"
+BodySkin11="DoZ Luminescent"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="Metro"
@@ -2913,6 +2939,8 @@ BodySkin8="Cyberpunk Green"
 BodySkin9="Cyberpunk Precious"
 BodySkin10="Cyberpunk Red"
 BodySkin11="Cyberpunk Blue"
+BodySkin12="DoZ Festive"
+BodySkin13="DoZ Luminescent"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -3064,6 +3092,8 @@ BodySkin5="Cyberpunk Green"
 BodySkin6="Cyberpunk Precious"
 BodySkin7="Cyberpunk Red"
 BodySkin8="Cyberpunk Blue"
+BodySkin9="DoZ Festive"
+BodySkin10="DoZ Luminescent"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -3208,6 +3238,8 @@ BodySkin5="Cyberpunk Green"
 BodySkin6="Cyberpunk Precious"
 BodySkin7="Cyberpunk Red"
 BodySkin8="Cyberpunk Blue"
+BodySkin9="DoZ Festive"
+BodySkin10="DoZ Luminescent"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="Classic"
@@ -3361,6 +3393,8 @@ BodySkin9="Cyberpunk Green"
 BodySkin10="Cyberpunk Precious"
 BodySkin11="Cyberpunk Red"
 BodySkin12="Cyberpunk Blue"
+BodySkin13="DoZ Festive"
+BodySkin14="DoZ Luminescent"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="Elite Blue"
@@ -4770,6 +4804,8 @@ AttachmentSkin1="Loader"
 AttachmentSkin2="Standard"
 AttachmentSkin3="Precious"
 AttachmentSkin4="Skully"
+AttachmentSkin5="DoZ Festive"
+AttachmentSkin6="DoZ Luminescent"
 
 [Cosmetic_DAR_AssaultArmor_ARCH]
 Attachment="Assault Armor"
@@ -6830,3 +6866,159 @@ BodySkin1="Singularity"
 BodySkin2="Starburst"
 BodySkin3="Galaxy"
 BodySkin4="Precious"
+
+[Cosmetic_Vietnam_USHelmet_ARCH]
+Attachment="Vietnam US Helmet"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Black"
+AttachmentSkin2="Jungle"
+AttachmentSkin3="Woodland"
+AttachmentSkin4="Savannah"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Vietnam_USHelmetGoggles_ARCH]
+Attachment="Vietnam US Goggles Helmet"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Black"
+AttachmentSkin2="Jungle"
+AttachmentSkin3="Woodland"
+AttachmentSkin4="Savannah"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Vietnam_USRadio_ARCH]
+Attachment="Vietnam US Radio"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Black"
+AttachmentSkin2="Grey"
+AttachmentSkin3="Fighter"
+AttachmentSkin4="Napalm"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Vietnam_USPilotHelmet_ARCH]
+Attachment="Vietnam Pilot Helmet"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Napalm"
+AttachmentSkin4="Sky"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Vietnam_USPilotHelmetGoggles_ARCH]
+Attachment="Vietnam Pilot Shield Helmet"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Napalm"
+AttachmentSkin4="Sky"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Vietnam_USPilotHelmetGogglesMask_ARCH]
+Attachment="Vietnam Pilot Mask Helmet"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Napalm"
+AttachmentSkin4="Sky"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Vietnam_Beret_ARCH]
+Attachment="Vietnam Beret"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Red"
+AttachmentSkin4="Blue"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Vietnam_Bandana_ARCH]
+Attachment="Vietnam Bandana"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Black"
+AttachmentSkin2="Jungle"
+AttachmentSkin3="Woodland"
+AttachmentSkin4="Savannah"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Vietnam_Hat_ARCH]
+Attachment="Vietnam Boonie"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Black"
+AttachmentSkin2="Jungle"
+AttachmentSkin3="Woodland"
+AttachmentSkin4="Savannah"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Precious"
+
+[Cosmetic_Vietnam_VCHelmet_ARCH]
+Attachment="Vietnam VC Helmet"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Black"
+AttachmentSkin2="White"
+AttachmentSkin3="Grey"
+AttachmentSkin4="Brown"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Precious"
+
+[Cosmetic_DiaDeLosMuertos_TopHat_ARCH]
+Attachment="DoZ Top Hat"
+AttachmentSkin0="Festive"
+AttachmentSkin1="Marigold"
+AttachmentSkin2="Hope"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Precious"
+
+[Cosmetic_DiaDeLosMuertos_SkullHead_ARCH]
+Attachment="DoZ Skull Head"
+AttachmentSkin0="Festive"
+AttachmentSkin1="Marigold"
+AttachmentSkin2="Hope"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Precious"
+
+[Cosmetic_DiaDeLosMuertos_Coffin_ARCH]
+Attachment="DoZ Coffin"
+AttachmentSkin0="Festive"
+AttachmentSkin1="Marigold"
+AttachmentSkin2="Hope"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Precious"
+
+[Cosmetic_DiaDeLosMuertos_Headband_ARCH]
+Attachment="DoZ Headband"
+AttachmentSkin0="Festive"
+AttachmentSkin1="Marigold"
+AttachmentSkin2="Hope"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Precious"
+
+[Cosmetic_DiaDeLosMuertos_Armband_ARCH]
+Attachment="DoZ Armband"
+AttachmentSkin0="Festive"
+AttachmentSkin1="Marigold"
+AttachmentSkin2="Hope"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Precious"
+
+[Cosmetic_DiaDeLosMuertos_CowSkull_ARCH]
+Attachment="DoZ Cow Skull"
+AttachmentSkin0="Festive"
+AttachmentSkin1="Marigold"
+AttachmentSkin2="Hope"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Precious"
+
+[Cosmetic_DiaDeLosMuertos_Companion_ARCH]
+Attachment="DoZ Companion"
+AttachmentSkin0="Precious"
+
+[Cosmetic_WildWest_CowboyHat_ARCH]
+Attachment="Wild West London Hat"
+AttachmentSkin0="Precious"

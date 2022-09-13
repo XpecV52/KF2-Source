@@ -219,7 +219,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
 
 simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
 {
-    return ((IsWeaponOnPerk(KFW,, self.Class)) && IsUberAmmoActive()) && WorldInfo.TimeDilation < 1;
+    return (((IsWeaponOnPerk(KFW,, self.Class)) && IsUberAmmoActive()) && WorldInfo.TimeDilation < 1) && !ShouldDisableZedTimeSkillsForWildWest();
 }
 
 function AddToHeadShotCombo(class<KFDamageType> KFDT, KFPawn_Monster KFPM)
@@ -431,7 +431,7 @@ simulated function bool IsFanfareActive()
 
 simulated function bool GetFanfareActive()
 {
-    return IsFanfareActive();
+    return (IsFanfareActive()) || IsFanfareActiveForWildWest();
 }
 
 simulated function bool IsUberAmmoActive()
@@ -531,6 +531,23 @@ simulated function LogPerkSkills()
     }
 }
 
+simulated function bool ShouldDisableZedTimeSkillsForWildWest()
+{
+    if(WorldInfo.NetMode == NM_Client)
+    {
+        return MyKFGRI.bIsWeeklyMode && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12;        
+    }
+    else
+    {
+        return ((MyKFGI != none) && MyKFGI.OutbreakEvent != none) && MyKFGI.OutbreakEvent.ActiveEvent.bWildWestSkillConditionsActive;
+    }
+}
+
+function bool IsFanfareActiveForWildWest()
+{
+    return ((MyKFGI != none) && MyKFGI.OutbreakEvent != none) && MyKFGI.OutbreakEvent.ActiveEvent.bWildWestSkillConditionsActive;
+}
+
 defaultproperties
 {
     WeaponDamage=(Name="Weapon Damage",Increment=0.01,Rank=0,StartingValue=0,MaxValue=0.25,ModifierValue=0,IconPath="",bActive=false)
@@ -561,7 +578,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BoneBreakerBodyParts(1)=.!=_10030
+    BoneBreakerBodyParts(1)=.!=_10069
     BoneBreakerBodyParts(2)=.!=_3
     BoneBreakerBodyParts(3)=.!=_1050253721
     BoneBreakerDamage=0.3
@@ -612,7 +629,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BodyPartsCanStumble(1)=.!=_1228
+    BodyPartsCanStumble(1)=.!=_1234
     BodyPartsCanStumble(2)=.!=_5
     BodyPartsCanStumble(3)=.!=_1
     BodyPartsCanKnockDown(0)=4

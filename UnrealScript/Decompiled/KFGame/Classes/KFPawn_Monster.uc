@@ -207,6 +207,7 @@ var() KFSpawnVolume.ESquadType MinSpawnSquadSizeType;
 var repnotify byte RepArmorPct[3];
 var repnotify byte ArmorZoneStatus;
 var byte PreviousArmorZoneStatus;
+var byte MaxNumSeeds;
 /** Object that manages melee attacks, and stores default damage */
 var(Weapon) export editinline KFMeleeHelperAI MeleeAttackHelper;
 var private const int DoshValue;
@@ -215,6 +216,7 @@ var private const float XPValues[4];
 var() array<name> WeakSpotSocketNames;
 var int HealByKill;
 var int HealByAssistance;
+var name ZEDCowboyHatAttachName;
 var array<DamageModifierInfo> DamageTypeModifiers;
 var array<DamageModifierInfo> LiveDamageTypeModifiers;
 var float ZedBumpDamageScale;
@@ -289,6 +291,7 @@ var protected const int OnDeathAchievementID;
 var class<KFZedArmorInfo> ArmorInfoClass;
 var KFZedArmorInfo ArmorInfo;
 var const int OverrideArmorFXIndex;
+var array<KFProjectile> ParasiteSeeds;
 var delegate<GoreChunkAttachmentCriteria> __GoreChunkAttachmentCriteria__Delegate;
 var delegate<GoreChunkDetachmentCriteria> __GoreChunkDetachmentCriteria__Delegate;
 
@@ -1935,6 +1938,7 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
 {
     local KFPlayerController KFPC;
     local KFPerk InstigatorPerk;
+    local int I;
 
     if(super.Died(Killer, DamageType, HitLocation))
     {
@@ -1974,6 +1978,19 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
                     }
                 }
             }
+        }
+        if(ParasiteSeeds.Length > 0)
+        {
+            I = 0;
+            J0x359:
+
+            if(I < ParasiteSeeds.Length)
+            {
+                ParasiteSeeds[I].Explode(Location - (vect(0, 0, 1) * (GetCollisionHeight())), vect(0, 0, 1) >> ParasiteSeeds[I].Rotation);
+                ++ I;
+                goto J0x359;
+            }
+            ParasiteSeeds.Remove(0, ParasiteSeeds.Length;
         }
         OnZedDied(Killer);
         return true;
@@ -3751,6 +3768,30 @@ function ZedExplodeArmor(int ArmorZoneIdx, name ArmorZoneName)
     }
 }
 
+reliable server function AddParasiteSeed(KFProjectile Proj)
+{
+    local int I;
+
+    if(Role < ROLE_Authority)
+    {
+        return;
+    }
+    if(ParasiteSeeds.Length >= MaxNumSeeds)
+    {
+        I = 0;
+        J0x3B:
+
+        if(I < (ParasiteSeeds.Length - (MaxNumSeeds - 1)))
+        {
+            ParasiteSeeds[I].Detonate();
+            ++ I;
+            goto J0x3B;
+        }
+        ParasiteSeeds.Remove(0, ParasiteSeeds.Length - (MaxNumSeeds - 1);
+    }
+    ParasiteSeeds.AddItem(Proj;
+}
+
 // Export UKFPawn_Monster::execShouldGrandOnDeathAchievement(FFrame&, void* const)
 protected native function bool ShouldGrandOnDeathAchievement();
 
@@ -3832,6 +3873,7 @@ defaultproperties
     HeadlessBleedOutTime=5
     ParryResistance=1
     MinSpawnSquadSizeType=ESquadType.EST_Small
+    MaxNumSeeds=1
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=6
         MaxHitRange=180
@@ -3839,6 +3881,7 @@ defaultproperties
     // Reference: KFMeleeHelperAI'Default__KFPawn_Monster.MeleeHelper'
     MeleeAttackHelper=MeleeHelper
     WeakSpotSocketNames(0)=FX_Dazed
+    ZEDCowboyHatAttachName=Head_Attach
     LiveDamageTypeModifiers(0)=(DamageType=none,DamageScale=(1))
     LiveDamageTypeModifiers(1)=(DamageType=none,DamageScale=(1))
     LiveDamageTypeModifiers(2)=(DamageType=none,DamageScale=(1))

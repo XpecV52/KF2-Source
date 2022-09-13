@@ -738,8 +738,8 @@ ComboMakerValue="Asysty przy zetach"
 GrabbyValue="Złapani gracze"
 ZedSupportValue="Pośrednie obrażenia"
 ZednnihilationValue="Zabójstwa w fali"
-ZedStomper="Zet tupacz"
-ZedStomperValue="Zety tupacze"
+ZedStomper="Deptacz zeta"
+ZedStomperValue="Zdeptane zety"
 
 EPB_Healing="Leczenie"
 EPB_Kills="Zabójstwa"
@@ -750,7 +750,7 @@ EPB_HeadShots="Strzały w głowę"
 EPB_KnifeKills="Zabójstwa nożem"
 EPB_PistolKills="Zabójstwa pistoletem"
 EPB_DoorWelding="Spawanie drzwi"
-EPB_ZedStomps="Tupnięcia zeta"
+EPB_ZedStomps="Zdeptane zety"
 
 EPB_HealingValue="Zdrowie"
 EPB_KillsValue="Zabójstwa"
@@ -761,7 +761,7 @@ EPB_HeadShotsValue="Strzały w głowę"
 EPB_KnifeKillsValue="Zabójstwa"
 EPB_PistolKillsValue="Zabójstwa"
 EPB_DoorWeldingValue="Punkty za spawanie"
-EPB_ZedStompsValue="Tupnięcia"
+EPB_ZedStompsValue="Zdeptania"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="NAGRODY DRUŻYNY"
@@ -782,7 +782,7 @@ HeadShotsString="Strzały w głowę:"
 LargeZedKillsString="Zabójstwa dużych zetów:"
 TotalDoshEarnedString="Zarobiona forsa łącznie:"
 TotalKillsString="Zabójstwa łącznie:"
-TotalStompsString="Łącznie tupnięć"
+TotalStompsString="Suma zdeptań"
 AssistsString="Asysty:"
 DamageDealtString="Zadane obrażenia:"
 
@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="Wyłącz aut. wymianę"
 HideRemodeHeadshotEffectsString="Wył. efekty odl. strzałów w głowę"
 ToggleToRunString="Przełącz bieg"
 ClassicPlayerInfoString="Tradycyjne paski zdrowia"
+AllowSwap9mmString="Dopuść zmianę na 9 mm"
 
 EnableMixerString="Wł./Wył. Mixer"
 DisableMixerString="Wyłącz Mixer"
@@ -2180,10 +2181,10 @@ HeavyArmor="Znajomość ciężkiego pancerza"
 HeavyArmorDescription="Nosząc pancerz, tracisz zdrowie tylko od ataków sonicznych, a skrzepy nie mogą cię schwytać. Każdą grę rozpoczynasz z pancerzem o wartości 50%."
 
 TacticalMovement="Ruch taktyczny"
-TacticalMovementDescription="Brak kary do ruchu podczas używania celownika mechanicznego lub kucania przy używaniu broni specjalizacji."
+TacticalMovementDescription="Szybszy ruch i bieg. Brak kary do ruchu podczas używania celownika mechanicznego lub kucania przy używaniu broni specjalizacji."
 
 Backup="Wyszkolenie w walce w zwarciu"
-BackupDescription="Obrażenia pistoletu 9 mm i noża zwiększone o 85%. Każdą grę rozpoczynasz z dwoma pistoletami 9 mm."
+BackupDescription="Obrażenia pistoletu 9 mm, noża i ataków tarczą zwiększone o 100%. Każdą grę rozpoczynasz z dwoma pistoletami 9 mm."
 
 TacticalReload="Taktyczne przeładowanie"
 TacticalReloadDescription="Zwiększenie szybkości przeładowywania broni specjalizacji."
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="Astronauta | Plecak: towarzysz | Cenne"
 ChanceDropDescriptionStrings[0]="Kupon letni"
 ChanceDropDescriptionStrings[1]="Złoty kupon letni"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Straszne manifestacje",DescriptionString="Zabij 15 bossów na dowolnej mapie i w dowolnym trybie")
+SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowy kult",DescriptionString="Ukończ tygodniowy incydent na mapie Twierdza Zaświatów")
+SpecialEventObjectiveInfoList[2]=(TitleString="Słyszę bicia serc",DescriptionString="Znajdź serce z zaświatów")
+SpecialEventObjectiveInfoList[3]=(TitleString="Fioletowe wyziewy",DescriptionString="Odblokuj drzwi kaplicy i jadalni")
+SpecialEventObjectiveInfoList[4]=(TitleString="Wieczne potępienie",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności na mapie Twierdza Zaświatów")
+
+AllCompleteRewardDescriptionString="Astronauta | Plecak: towarzysz | Cenne"
+
+ChanceDropDescriptionStrings[0]="Kupon halloweenowy"
+ChanceDropDescriptionStrings[1]="Złoty kupon halloweenowy"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="Zbieracz"
 DescriptionStrings[0]="Improwizuj. Przystosuj się. Zwycięż."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
 ModifierDescriptions[0]="Handlarze zostali zaatakowani. Nie mają teraz broni. Musisz skorzystać z broni, które znajdziesz na ziemi. Wybierz tygodniowy tryb gry na stronie Matchmaking. Specjalizacja 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="Dziki Zachód w Londynie"
+DescriptionStrings[0]="Wybiło południe!"
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="Witajcie, kowboje i kowbojki! Przygotujcie się na ostrzał w stylu dzikiego ognia dzięki temu horrorowi na Dzikim Zachodzie. Wstęp tylko dla rewolwerowców i strzelców wyborowych. Wybierzcie tygodniowy tryb gry na stronie matchmakingu. Specjalizacja 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="Porzućcie Wszelką Nadzieję"
+DescriptionStrings[0]="Wyzwanie ostateczne"
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="UWAGA: Ten tryb gry jest niezwykle trudny! Przeznaczony jest dla tych, którzy uważają, że Piekło na Ziemi to zabawa dla dzieci. Wybierz tygodniowy tryb gry na stronie matchmakingu. Specjalizacja 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3491,6 +3526,9 @@ DisplayName="Dystopia 2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="Baza Księżycowa"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="Twierdza Zaświatów"
 
 [KFMapInfo]
 ; defaults

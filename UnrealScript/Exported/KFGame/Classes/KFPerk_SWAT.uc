@@ -23,6 +23,7 @@ var private const float						RapidAssaultFiringRate;    			// Faster firing rate
 var private const float 					SnarePower;
 var private const float 					TacticalMovementBobDamp;
 var private const class<KFWeaponDefinition>	BackupSecondaryWeaponDef;
+var private const float 				    TacticalMovementModifier;           // QoL: Tactical movement - Added modifier to move and sprint speed.  
 
 /** Percentage of how much armor should be damaged when the heavy armor skill is active */
 var private const float 					HeavyArmorAbsorptionPct;
@@ -277,7 +278,7 @@ simulated function ModifyDamageGiven( out int InDamage, optional Actor DamageCau
 
 	if( KFW != none )
 	{
-		if( IsBackupActive() && (IsBackupWeapon( KFW ) || IsDual9mm( KFW )) ) 
+		if( IsBackupActive() && (IsBackupWeapon( KFW ) || IsDual9mm( KFW ) || ClassIsChildOf(DamageType, class'KFDT_Bludgeon')) ) 
 		{
 			;
 			TempDamage += InDamage * GetSkillValue( PerkSkills[ESWAT_Backup] );
@@ -467,6 +468,68 @@ simulated function int GetArmorDamageAmount( int AbsorbedAmt )
 	return AbsorbedAmt;
 }
 
+/**
+ * @brief Weapons and perk skills can affect the jog/sprint speed
+ *
+ * @param Speed jog speed
+ */
+simulated function ModifySpeed( out float Speed )
+{
+	local KFWeapon MyKFWeapon;
+	local KFInventoryManager KFIM;
+
+	if( !IsTacticalMovementActive() )
+	{
+		return;
+	}
+
+	MyKFWeapon = GetOwnerWeapon();
+	if( MyKFWeapon == none && CheckOwnerPawn() )
+	{
+		KFIM = KFInventoryManager(OwnerPawn.InvManager);
+		if( KFIM != none && KFIM.PendingWeapon != none )
+		{
+			MyKFWeapon = KFWeapon(KFIM.PendingWeapon);
+		}
+	}
+
+	if (MyKFWeapon != none && (Is9mm(MyKFWeapon) || IsDual9mm( MyKFWeapon ) || IsWeaponOnPerk(MyKFWeapon,, self.class)))
+	{
+		Speed += Speed * TacticalMovementModifier;
+	}
+}
+
+/**
+ * @brief Weapons and perk skills can affect the jog/sprint speed
+ *
+ * @param Speed sprint speed
+ */
+simulated function ModifySprintSpeed( out float Speed )
+{
+	local KFWeapon MyKFWeapon;
+	local KFInventoryManager KFIM;
+
+	if( !IsTacticalMovementActive() )
+	{
+		return;
+	}
+
+	MyKFWeapon = GetOwnerWeapon();
+	if( MyKFWeapon == none && CheckOwnerPawn() )
+	{
+		KFIM = KFInventoryManager(OwnerPawn.InvManager);
+		if( KFIM != none && KFIM.PendingWeapon != none )
+		{
+			MyKFWeapon = KFWeapon(KFIM.PendingWeapon);
+		}
+	}
+
+	if (MyKFWeapon != none && (Is9mm(MyKFWeapon) || IsDual9mm( MyKFWeapon ) || IsWeaponOnPerk(MyKFWeapon,, self.class)))
+	{
+		Speed += Speed * TacticalMovementModifier;
+	}
+}
+
 /*********************************************************************************************
 * @name	 Getters etc
 ********************************************************************************************* */
@@ -623,6 +686,7 @@ defaultproperties
    SnarePower=15.000000
    TacticalMovementBobDamp=1.110000
    BackupSecondaryWeaponDef=Class'KFGame.KFWeapDef_9mmDual'
+   TacticalMovementModifier=0.200000
    HeavyArmorAbsorptionPct=0.650000
    BumpDamageAmount=450
    BumpDamageType=Class'KFGame.KFDT_SWATBatteringRam'
@@ -651,7 +715,7 @@ defaultproperties
    PerkIcon=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_SWAT'
    PerkSkills(0)=(Name="HeavyArmor",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_HeavyArmor")
    PerkSkills(1)=(Name="TacticalMovement",StartingValue=2.500000,MaxValue=2.500000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalMovement")
-   PerkSkills(2)=(Name="Backup",StartingValue=0.850000,MaxValue=0.850000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup")
+   PerkSkills(2)=(Name="Backup",StartingValue=1.000000,MaxValue=1.000000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_Backup")
    PerkSkills(3)=(Name="TacticalReload",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_TacticalReload")
    PerkSkills(4)=(Name="SpecialAmmunition",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_SpecialAmmunition")
    PerkSkills(5)=(Name="AmmoVest",StartingValue=0.300000,MaxValue=0.300000,IconPath="UI_PerkTalent_TEX.SWAT.UI_Talents_SWAT_AmmoVest")

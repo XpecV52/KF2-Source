@@ -38,6 +38,7 @@ enum EForcedMusicType
     EFM_Boss3,
     EFM_Boss4,
     EFM_Boss5,
+    EFM_WWL,
     EFM_MAX
 };
 
@@ -681,6 +682,8 @@ event PostLogin(PlayerController NewPlayer)
     KFPC = KFPlayerController(NewPlayer);
     if(KFPC != none)
     {
+        KFPC.UpdatePerkOnInit();
+        KFPC.InitGameplayPostProcessFX();
         if(KFPC.PlayerReplicationInfo.bOnlySpectator)
         {
             KFPC.ClientSetFrontEnd(KFGFxManagerClass, true);            
@@ -2329,6 +2332,11 @@ simulated function ForceAbominationMusicTrack()
     MyKFGRI.ForceNewMusicTrack(default.ForcedMusicTracks[6]);
 }
 
+simulated function ForceWWLMusicTrack()
+{
+    MyKFGRI.ForceNewMusicTrack(default.ForcedMusicTracks[7]);
+}
+
 function string GetNextMap()
 {
     local array<string> MapList;
@@ -3315,7 +3323,7 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Moonbase","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Moonbase","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Netherhold","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'
@@ -3325,6 +3333,7 @@ defaultproperties
     ForcedMusicTracks(4)=KFMusicTrackInfo'WW_MACT_Default.TI_Boss_Matriarch'
     ForcedMusicTracks(5)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_KingFP'
     ForcedMusicTracks(6)=KFMusicTrackInfo'WW_MACT_Default.TI_RG_Abomination'
+    ForcedMusicTracks(7)=KFMusicTrackInfo'WW_MACT_Default.TI_WWL'
     DebugForcedOutbreakIdx=-1
     DebugForceSpecialWaveZedType=-1
     ReservationTimeout=32

@@ -739,7 +739,7 @@ GrabbyValue="Jogadores pegos"
 ZedSupportValue="Dano indireto"
 ZednnihilationValue="Abates na leva"
 ZedStomper="Zed Pisoteador"
-ZedStomperValue="Zeds Pisoteadores"
+ZedStomperValue="Zeds Pisoteados"
 
 EPB_Healing="Cura"
 EPB_Kills="Abates"
@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="Desativar Loja Auto."
 HideRemodeHeadshotEffectsString="Desativar ef. remoto tiro na cabeça"
 ToggleToRunString="Alternar para correr"
 ClassicPlayerInfoString="Barras de vida antigas"
+AllowSwap9mmString="Permite trocar para 9mm"
 
 EnableMixerString="Ativar/desativar interatividade do Mixer"
 DisableMixerString="Desativar mixer"
@@ -1797,7 +1798,7 @@ Fortitude="Couraçado"
 FortitudeDescription="Aumenta em 100% o total de vida."
 
 Ninja="Guerrilheiro"
-NinjaDescription="Movimenta-se 20% mais rápido, corre 25% mais rápido ao usar uma arma de classe. Você também regenera 1 ponto de vida a cada segundo."
+NinjaDescription="Mova-se 20% mais rápido, corre 25% mais rápido ao usar uma arma de classe. Você também regenera 1 ponto de vida por segundo."
 
 Vampire="Vampiro"
 VampireDescription="Cura 3 pontos de vida para cada Zed que abater com arma da classe. Ataca 20% mais rápido com armas corpo a corpo da classe."
@@ -1809,7 +1810,7 @@ Resistance="Resistência"
 ResistanceDescription="Ganha 15% de resistência a todo tipo de dano. Ganha 15% de resistência adicional a veneno e dano sônico."
 
 Parry="Aparar"
-ParryDescription="Aparos uma arma corpo a corpo da classe diminuem em 30% o dano recebido, aumentam em 5% a vel. de ataque e em 35% o dano corpo a corpo por 8 s."
+ParryDescription="Aparos uma arma corpo a corpo da classe diminuem em 30% o dano recebido, aumentam em 5% a velocidade de ataque e em 35% o dano corpo a corpo por 8 s."
 
 Smash="Esmagar"
 SmashDescription="Ataques fortes com armas corpo a corpo da classe causam 50% mais dano, 25% mais dano em acertos na cabeça e têm 200% mais poder de derrubar."
@@ -2180,10 +2181,10 @@ HeavyArmor="Treinamento de armadura pesada"
 HeavyArmorDescription="Enquanto usar armadura, só recebe dano de vida de ataques sônicos e fica imune a coágulos. Você começa cada jogo com 50% de armadura."
 
 TacticalMovement="Movimento tático"
-TacticalMovementDescription="Sem penalidade de movimento por usar miras metálicas ou por agachar com armas de classe."
+TacticalMovementDescription="Anda e corre mais rápido. Sem penalidade de movimento por usar miras metálicas ou por agachar com armas de classe."
 
 Backup="Treinamento de combate próximo"
-BackupDescription="Aumenta em 85% o dano da pistola 9 mm e da faca. Você começa cada jogo com duas pistolas 9 mm."
+BackupDescription="Aumenta em 100% o dano da pistola 9mm, da faca e dos seus ataques de pancada. Você começa cada jogo com duas pistolas 9mm."
 
 TacticalReload="Recarga tática"
 TacticalReloadDescription="Aumenta a velocidade de recarga com armas de classe."
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="Astronauta | Mochila Acompanhante | Precioso
 ChanceDropDescriptionStrings[0]="Bilhete de Verão"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado de Verão"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Manifestações Horrendas",DescriptionString="Mate 15 chefes em qualquer mapa ou modo")
+SpecialEventObjectiveInfoList[1]=(TitleString="Culto Semanal",DescriptionString="Conclua o semanal em Netherhold")
+SpecialEventObjectiveInfoList[2]=(TitleString="Escuto um batimento cardíaco",DescriptionString="Encontre o coração nether")
+SpecialEventObjectiveInfoList[3]=(TitleString="Miasma Roxo",DescriptionString="Destranque as portas da capela e do refeitório")
+SpecialEventObjectiveInfoList[4]=(TitleString="Punição Eterna",DescriptionString="Conclua a 15ª leva no modo Difícil Infinito ou maior em Netherhold")
+
+AllCompleteRewardDescriptionString="Astronauta | Mochila Acompanhante | Precioso"
+
+ChanceDropDescriptionStrings[0]="Bilhete de Halloween"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado de Halloween"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="Vasculhador"
 DescriptionStrings[0]="Improvise. Adapte-se. Supere-se."
 DescriptionStrings[1]="Duração: média (7 levas)"
 ModifierDescriptions[0]="Os comerciantes foram sabotados e estão sem armas. Você deve usar as armas que encontrar no chão. Selecione o modo de jogo Semanal na página Organizar Partida. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="Londrino do Velho Oeste"
+DescriptionStrings[0]="É meio-dia, meu bem!"
+DescriptionStrings[1]="Duração: média (7 levas)"
+ModifierDescriptions[0]="Fala, cauboizada! Pode se preparar pra descarregar o revólver no estilo Sopro de Fogo nessa história de terror do velho oeste. Permitidos somente pistoleiros e atiradores exímios. Escolha o modo de jogo semanal na página “Organizar partida”. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="Abandone toda esperança"
+DescriptionStrings[0]="O desafio supremo"
+DescriptionStrings[1]="Duração: média (7 levas)"
+ModifierDescriptions[0]="AVISO: este modo é extremamente difícil — somente para quem vê o Inferno na Terra como um parque de diversões. Escolha o modo de jogo semanal na página “Organizar partida”. Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3491,6 +3526,9 @@ DisplayName="Distopia 2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="Base Lunar"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="Netherhold"
 
 [KFMapInfo]
 ; defaults

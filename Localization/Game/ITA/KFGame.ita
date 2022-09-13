@@ -738,8 +738,8 @@ ComboMakerValue="Assist Zed"
 GrabbyValue="Giocatori presi"
 ZedSupportValue="Danno indiretto"
 ZednnihilationValue="Uccisioni nell'ondata"
-ZedStomper="Calpestatore Zed"
-ZedStomperValue="Calpestatore Zed"
+ZedStomper="Calpestatore di Zed"
+ZedStomperValue="Zed Calpestati"
 
 EPB_Healing="Cure"
 EPB_Kills="Uccisioni"
@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="Disattiva auto-scambio"
 HideRemodeHeadshotEffectsString="Disattiva effetti headshot remoto"
 ToggleToRunString="Attiva per Sprint"
 ClassicPlayerInfoString="Barre della salute del Passato"
+AllowSwap9mmString="Permetti cambio a 9mm"
 
 EnableMixerString="Attiva/disattiva interattività Mixer"
 DisableMixerString="Disattiva Mixer"
@@ -1797,7 +1798,7 @@ Fortitude="Corazzato"
 FortitudeDescription="Aumento salute totale del 100%."
 
 Ninja="Soldato prima linea"
-NinjaDescription="Movimenti più veloci del 20%, sprint più veloce del 25%, 1 punto salute rigenerati ogni secondo utilizzando un'arma classe."
+NinjaDescription="Movimenti più veloci del 20%, sprint più veloce del 25%, 1 punto salute rigenerato ogni secondo utilizzando un'arma classe."
 
 Vampire="Vampiro"
 VampireDescription="Recupera 3 punti salute per ogni Zed ucciso con armi di classe. Attacco più veloce del 20% con armi di classe da mischia."
@@ -1809,7 +1810,7 @@ Resistance="Resistenza"
 ResistanceDescription="Resistenza a tutti i danni maggiore del 15%. Aumenta di un altro 15% la resistenza a danni Veleno e Sonoro."
 
 Parry="Parata"
-ParryDescription="La parata con arma classe da mischia riduce il danno del 30% e aumenta per 8 sec velocità att. da mischia del 5% e danno da mischia del 35%."
+ParryDescription="La parata con arma di classe da mischia riduce il danno del 30% e aumenta per 8 sec velocità att. da mischia del 5% e danno da mischia del 35%."
 
 Smash="Scontro"
 SmashDescription="Con attacchi duri con armi classe da mischia, danni maggiori del 50%, danni colpi alla testa maggiori del 25% e forza urto maggiore del 200%"
@@ -2180,10 +2181,10 @@ HeavyArmor="Addestramento armatura pesante"
 HeavyArmorDescription="Mentre indossi l'armatura, subisci danni alla salute solo da attacchi sonori e i Clot non possono afferrarti. Ogni partita inizia con armatura al 50%."
 
 TacticalMovement="Movimento tattico"
-TacticalMovementDescription="Con armi di classe, nessuna penalità di movimento se si usa il mirino o se ci si muove accovacciati."
+TacticalMovementDescription="Movimento e sprint più veloce. Con armi di classe, nessuna penalità di movimento se si usa il mirino o se ci si muove accovacciati."
 
 Backup="Addest. combattimento ravvicinato"
-BackupDescription="Aumenta i danni da pistola 9mm e coltello del 85%. Ogni partita inizia con pistole 9mm doppie."
+BackupDescription="Aumenta i danni da pistola 9mm, coltello e colpo del 100%. Ogni partita inizia con pistole 9mm doppie."
 
 TacticalReload="Ricarica tattica"
 TacticalReloadDescription="Aumenta la velocità di ricarica con armi di classe."
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="Astronauta | Zaino Compagno | Prezioso"
 ChanceDropDescriptionStrings[0]="Biglietto Estivo"
 ChanceDropDescriptionStrings[1]="Biglietto Estivo Oro"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Manifestazione orribile",DescriptionString="Uccidi 15 boss in qualsiasi mappa o modalità")
+SpecialEventObjectiveInfoList[1]=(TitleString="Culto settimanale",DescriptionString="Completa il Settimanale in Netherhold")
+SpecialEventObjectiveInfoList[2]=(TitleString="Sento dei battiti",DescriptionString="Trova il cuore sepolto")
+SpecialEventObjectiveInfoList[3]=(TitleString="Miasma viola",DescriptionString="Sblocca la cappella e le porte della sala da pranzo")
+SpecialEventObjectiveInfoList[4]=(TitleString="Punizione eterna",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Netherhold")
+
+AllCompleteRewardDescriptionString="Astronauta | Zaino Compagno | Prezioso"
+
+ChanceDropDescriptionStrings[0]="Biglietto Halloween"
+ChanceDropDescriptionStrings[1]="Biglietto Oro Halloween"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="Saccheggiatore"
 DescriptionStrings[0]="Improvvisazione. Adattamento. Vittoria."
 DescriptionStrings[1]="Lunghezza: Media (7 ondate)"
 ModifierDescriptions[0]="I commercianti sono stati sabotati e privati delle armi. Devi utilizzare le armi che trovi a terra. Seleziona la modalità Epidemia settimanale sulla pagina del Matchmaking. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="Londra Selvaggio West"
+DescriptionStrings[0]="È mezzogiorno bambola!"
+DescriptionStrings[1]="Lunghezza: Media (7 ondate)"
+ModifierDescriptions[0]="Salve cowboy e cowgirl! Preparatevi a scaricare i vostri revolver con una Pioggia di Fuoco in questa storia horror western. Sono ammessi solo Pistoleri e Cecchini. Seleziona la modalità Epidemia settimanale sulla pagina del Matchmaking. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="Lasciate ogni speranza"
+DescriptionStrings[0]="La sfida definitiva"
+DescriptionStrings[1]="Lunghezza: Media (7 ondate)"
+ModifierDescriptions[0]="ATTENZIONE: questa modalità è estremamente difficile! Solo per coloro che considerano Inferno in Terra una cosa per bambini. Seleziona la modalità Epidemia settimanale sulla pagina del Matchmaking. Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3491,6 +3526,9 @@ DisplayName="Distopia 2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="Base lunare"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="Netherhold"
 
 [KFMapInfo]
 ; defaults

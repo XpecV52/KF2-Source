@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_Blunt_MedicBat"
    ImagePath="WEP_UI_Medic_Bat_TEX.UI_WeaponSelect_MedicBat"
    BuyPrice=1200
-   AmmoPricePerMag=85
+   AmmoPricePerMag=75
    UpgradePrice(0)=700
    UpgradePrice(1)=1500
    UpgradeSellPrice(0)=525

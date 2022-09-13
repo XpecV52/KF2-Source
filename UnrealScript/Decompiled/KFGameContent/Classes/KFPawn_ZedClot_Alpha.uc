@@ -25,6 +25,7 @@ defaultproperties
     XPValues[1]=11
     XPValues[2]=11
     XPValues[3]=11
+    ZEDCowboyHatAttachName=Hat_Attach
     DamageTypeModifiers=/* Array type was not detected. */
     DifficultySettings=Class'KFDifficulty_ClotAlpha'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha.SprintAkComponent0'

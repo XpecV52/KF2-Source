@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="Disable Auto-Trade"
 HideRemodeHeadshotEffectsString="Disable Remote Headshot effects"
 ToggleToRunString="Toggle to Sprint"
 ClassicPlayerInfoString="Legacy Health Bars"
+AllowSwap9mmString="Allow Swap to 9mm"
 
 EnableMixerString="Enable Mixer"
 DisableMixerString="Disable Mixer"
@@ -2180,10 +2181,10 @@ HeavyArmor="Heavy Armor Training"
 HeavyArmorDescription="While you have body armor, you only take Health damage from sonic attacks and clots can’t grab you. You begin each game with 50% Armor."
 
 TacticalMovement="Tactical Movement"
-TacticalMovementDescription="No movement penalty for using iron sights or crouch movement with perk weapons."
+TacticalMovementDescription="Move and sprint faster. No movement penalty for using iron sights or crouch movement with perk weapon."
 
 Backup="Close Combat Training"
-BackupDescription="Increase damage with your 9mm pistol and knife 85%. You begin each game with dual 9mm pistols."
+BackupDescription="Increase damage with your 9mm pistol, your knife and your bash attacks 100%. You begin each game with dual 9mm pistols."
 
 TacticalReload="Tactical Reload"
 TacticalReloadDescription="Increase reload speed with perk weapons."
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="Astronaut | Companion Backpack | Precious"
 ChanceDropDescriptionStrings[0]="Summer Ticket"
 ChanceDropDescriptionStrings[1]="Summer Golden Ticket"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="A time-limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Horrific Manifestations",DescriptionString="Kill 15 Bosses on any map or mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Weekly Cult",DescriptionString="Complete the Weekly on Netherhold")
+SpecialEventObjectiveInfoList[2]=(TitleString="I’m hearing heartbeats",DescriptionString="Find the nether heart")
+SpecialEventObjectiveInfoList[3]=(TitleString="Purple Miasma",DescriptionString="Unlock the chapel and the dining hall doors")
+SpecialEventObjectiveInfoList[4]=(TitleString="Eternal Punishment",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Netherhold")
+
+AllCompleteRewardDescriptionString="DoZ | Companion | Precious"
+
+ChanceDropDescriptionStrings[0]="Halloween Ticket"
+ChanceDropDescriptionStrings[1]="Halloween Golden Ticket"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="Scavenger"
 DescriptionStrings[0]="Improvise. Adapt. Overcome."
 DescriptionStrings[1]="Length: Medium (7 waves)"
 ModifierDescriptions[0]="Traders have been sabotaged and are empty of weapons. You must make use of the weapons that you find on the ground. Select the Weekly game mode on the Matchmaking page. Perk 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="Wild West London"
+DescriptionStrings[0]="It’s high noon baby!"
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="Howdy cowboys and cowgirls! Prepare to unload your revolvers with a Fan Fire style in this western horror story. Only Gunslinger and Sharpshooters allowed. Select the Weekly game mode on the Matchmaking page. Perk 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="Abandon All Hope"
+DescriptionStrings[0]="The ultimate challenge"
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="WARNING: This mode is extremely difficult! Only for those who see Hell on Earth as child’s play. Select the Weekly game mode on the Matchmaking page. Perk 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3491,6 +3526,9 @@ DisplayName="Dystopia 2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="Moonbase"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="Netherhold"
 
 [KFMapInfo]
 ; defaults

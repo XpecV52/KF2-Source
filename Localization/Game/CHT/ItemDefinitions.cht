@@ -27,6 +27,8 @@ CyberpunkOutfitBundleName="賽博龐克服飾同捆包"
 CyberpunkOutfitObjectiveBundleName="賽博龐克服飾目標同捆包"
 HalloweenOutfitBundleName="女巫獵人服飾同捆包"
 SpacePirateOutfitBundleName="太空海盜服飾同捆包"
+DayOfTheZedOutfitSetName="喪屍之日角色服飾套裝"
+DayOfTheZedFullGearBundleName="喪屍之日全套裝備同捆包"
 SpacePirateFullGearBundleName="太空海盜全套裝備同捆包"
 ReaperOutfitBundleName="死神服裝同捆包"
 AstronautOutfitBundleName="太空人服飾同捆包"
@@ -34,6 +36,7 @@ Halloween2020FullGearBundleName="2020年萬聖節全套裝備同捆包"
 Christmas2020FullGearBundleName="2020 年聖誕節全套裝備同捆包"
 DystopianDevastationFullGearBundleName="反烏托邦破壞全套裝備同捆包"
 InterstellarInsanityFullGearBundleName="星際瘋狂全裝備同捆包"
+HellmarkWeaponSkinPackName="地獄印記武器造型同捆包"
 HeadshotFXBundle1Name="爆頭 FX 同捆包 1"
 HeadshotFXBundle2Name="爆頭 FX 同捆包2"
 RhinoRevolverBundleName="犀牛左輪同捆包"
@@ -49,6 +52,8 @@ FrostFangBundleName="冰霜尖牙武器同捆包"
 GravityImploderBundleName="重力內爆器武器同捆包"
 FAMASMasterkeyBundleName="FAMAS萬能鑰匙武器同捆包"
 ThermiteBoreBundleName="鋁熱槍膛武器同捆包"
+PiranhaPistolBundleName="食人魚手槍武器同捆包"
+CorrupterCarbineBundleName="腐蝕者卡賓槍武器同捆包"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackName="Horzine 補給妝容箱子 | #4系列青銅包"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackName="Horzine 補給妝容箱子 | #4系列白銀包"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackName="Horzine 補給妝容箱子 | #4系列黃金包"
@@ -186,6 +191,7 @@ InfernalInsurrectionWeaponBundleName="地獄暴動武器同捆包"
 InterstellarInsanityWeaponBundleName="星際瘋狂武器同捆包"
 GrimTreatmentsWeaponBundleName="嚴酷處理武器同捆包"
 YuletideHorrorWeaponBundleName="聖誕季節的恐怖武器同捆包"
+DayOfTheDeadWeaponBundleName="喪屍之日武器同捆包"
 JaegerWeaponSkinDoublePackBundleName="獵人武器飾品雙倍同捆包"
 HorzineSupplyCrateSeries12BronzeBundlePackName="Horzine 補給箱子 | #12 系列青銅包"
 HorzineSupplyCrateSeries12SilverBundlePackName="Horzine 補給箱子 | #12 系列白銀包"
@@ -221,6 +227,8 @@ NeonMKVIIWeaponSkinPackName="霓虹MKVII武器飾品同捆包"
 ParatrooperGearCosmeticBundleName="傘兵裝備妝容同捆包"
 ChemicalWarriorGearCosmeticBundleName="化學戰兵裝備妝容同捆包"
 FoundryGearCosmeticBundleName="鑄造裝備妝容同捆包"
+VietnamGearCosmeticBundleName="越南裝備妝容同捆包"
+ArmorySeasonPassName="KF2武器庫季票"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="內含布萊爾的倫敦制服（5 種配色）以及警官帽妝容配件（3 種配色）"
@@ -247,11 +255,12 @@ SpacePirateOutfitBundleDescription="包括太空海盜服飾（含6種造型樣�
 SpacePirateFullGearBundleDescription="一個同捆包中含有6款太空海盜主題妝容配件，每款皆有5種材質變種。大部分角色皆可使用。"
 ReaperOutfitBundleDescription="包括死神服飾（含6種造型樣式）。大部分角色皆可使用。"
 AstronautOutfitBundleDescription="包括太空人服飾、頭盔、和背包（含6種造型樣式）。適用於大部分的角色。"
+DayOfTheZedOutfitSetDescription="隨附死亡之日主題材質變化，適用於所有角色的預設服飾。"
 Halloween2020FullGearBundleDescription="一個同捆包中含有6款死神主題妝容配件，每款皆有5種材質變種。大部分角色皆可使用。"
 Christmas2020FullGearBundleDescription="一個同捆包中含有 6 款聖誕節主題妝容配件，每款皆有 5 種材質的款式。大部分角色皆可使用。"
 DystopianDevastationFullGearBundleDescription="一個同捆包中含有6款生化人主題妝容配件，每款皆有5種材質的款式。大部分角色皆可使用。"
 InterstellarInsanityFullGearBundleDescription="每一同捆包有6種太空人主題妝容配件，每種配件有5種材質變化。適用於大部分的角色。"
-HeadshotFXBundle1Description="伴隨 5 次爆頭 FX財源滾滾、搞笑動作、派對時間、一見鐘情以及恐怖幽靈"
+DayOfTheZedFullGearBundleDescription="每一同捆包有6種死亡之日主題妝容配件，每種配件有5種材質變化。適用於大部分的角色。"
 HeadshotFXBundle2Description="包括 5 個爆頭 FX。卡通飛濺、煙火、花瓣、干擾以及 Horzine 電路板。"
 RhinoRevolverBundleDescription="削 Zed 如泥。犀牛左輪專為槍砲工職業設計，含 5 種獨特武器飾品可供選擇。"
 IonThrusterBundleDescription="烤肉的絕佳工具。離子推進器的設計，專為狂戰士職業而設，並附帶有 5 種獨特飾品變種可選。"
@@ -260,12 +269,15 @@ MosinNagantBundleDescription="藉助這款經典來福槍，阻擋、戳刺，�
 CompoundBowBundleDescription="改良古代武器的現代版。複合弓專為神射手職業設計，附帶5種獨特飾品變種可選。"
 BlunderbussBundleDescription="木腿和鸚鵡單獨販售。手銃專為殲滅者和支援職業設計，附有5款獨特的造型變種。"
 Glock18cBundleDescription="注意：使用時會無法受控地認同法律。單手和雙持格洛克18C專為槍手職業設計，附有5款獨特的造型變種。"
+
 MinigunBundleDescription="歡樂要用每分鐘發射的子彈數來衡量。小槍專為突擊隊職業而設，並附帶有 5 種獨特飾品變種可選。"
 MineReconstructorBundleDescription="由於衛生守則方面的問題，其基本素材的來源屬於保密資訊。地雷重構者專為戰地軍醫職業而設，並附帶有 5 種獨特飾品變種可選。"
 FrostFangBundleDescription="斧頭非常適合做冰雕！冰霜尖牙針對支援隊和狂戰士職業而設計，隨附 5 種獨特飾品款式。"
 GravityImploderBundleDescription="使用這種武器不用耗費51年的時間，但是能讓你遠離黑洞邊緣，避免被拉成麵條狀。重力內爆器專為殲滅者職業設計，附有5款獨特的造型款式。"
 FAMASMasterkeyBundleDescription="突擊步槍？霰彈槍？兩樣都很棒。FAMAS萬能鑰匙專為突擊隊與支援職業而設計，含有5種獨特的飾品變化。"
 ThermiteBoreBundleDescription="就像光之於昆蟲，火之於Zed一樣；鋁熱槍膛專為縱火狂職業設計，含有5種獨特的造型變化。"
+PiranhaPistolBundleDescription="尖牙利齒，緊咬不放。專為槍手和狂戰士設計的食人魚手槍，隨附5種獨特造型變化。"
+CorrupterCarbineBundleDescription="精準打造的步槍，擊殺Zed時能將其變成行動治療和劇毒陷阱。腐蝕者卡賓槍專為戰地軍醫和神射手職業設計，隨附5種獨特造型變化。"
 HorzineSupplyCosmeticCrateSeries4BronzeBundlePackDescription="包含5個 Horzine 補給妝容箱子 | #4系列，及5把相應的鑰匙。"
 HorzineSupplyCosmeticCrateSeries4SilverBundlePackDescription="包含10個 Horzine 補給妝容箱子 | #4系列，及10把相應的鑰匙。"
 HorzineSupplyCosmeticCrateSeries4GoldBundlePackDescription="包含20個 Horzine 補給妝容箱子 | #4系列，及20把相應的鑰匙。"
@@ -402,6 +414,7 @@ InfernalInsurrectionWeaponBundleDescription="包含來自「地獄暴動」更�
 InterstellarInsanityWeaponBundleDescription="包含來自「星際瘋狂」更新的FAMAS萬能鑰匙和鋁熱槍膛武器。每種武器附帶有5種獨特飾品變化。"
 GrimTreatmentsWeaponBundleDescription="包含來自「嚴酷處理」更新的犀牛左輪與離子推進器武器。每種武器附帶有 5 種獨特飾品變種可選。"
 YuletideHorrorWeaponBundleDescription="包含來自「聖誕季節的恐怖」更新的防護盾牌與 G18 和莫辛納甘武器。每種武器附帶有 5 種獨特飾品變種可選。"
+DayOfTheZedWeaponBundleDescription="包含來自「喪屍之日」更新的食人魚手槍與腐蝕者卡賓槍武器。每種武器附帶5種獨特造型變化。"
 JaegerWeaponSkinDoublePackBundleDescription="包含用於沙漠之鷹與 P90 的獵人主題動態與標準武器飾品。"
 FostersFavoritesWeaponSkinBundleDescription="包含 8 款佛斯特主題武器飾品，包括 AK12、AA12、M14EBR、M4、沙漠之鷹、散彈槍、P90 以及克里斯。"
 EmoteCrateSeries3BronzeBundlePackDescription="包含 5 個表情箱子 | #3 系列，及 5 把相應的鑰匙。"
@@ -441,6 +454,9 @@ NeonMKVIIWeaponSkinBundleDescription="內含32款霓虹主題武器造型（10�
 ParatrooperGearCosmeticBundleDescription="一個同捆包中含有4款傘兵主題妝容配件，每款皆有8種材質的款式。大部分角色皆可使用。"
 ChemicalWarriorGearCosmeticBundleDescription="一個同捆包中含有3款化學戰兵主題妝容配件，每款皆有8種材質的款式。大部分角色皆可使用。"
 FoundryGearCosmeticBundleDescription="每一同捆包有8種鑄造主題妝容配件，每種配件有7種材質變化。適用於大部分的角色。"
+ArmorySeasonPassDescription="《Killing Floor 2》的首個武器庫季票通行證，可供玩家使用全系列武器DLC，包括2021全年度推出的所有武器。與單獨購買相比，可享大量折扣。"
+HellmarkWeaponSkinBundleDescription="包含20個地獄印記主題武器造型 (10個岩漿和10個雷霆) 此套件的武器有：日本刀、戰斧、火斧、碎骨者、粉碎器、龍息、500馬格南左輪、RPG-7、末日預言者和血腥痛擊者。"
+VietnamGearCosmeticBundleDescription="每一同捆包有10種越南主題妝容配件，每種配件有7種材質變化。適用於大部分的角色。"
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="取得遊戲角色 PC 羅伯布萊爾的經典倫敦警察制服內含布萊爾的倫敦制服（5 種配色）以及警官帽妝容配件（3 種配色）"
@@ -602,7 +618,43 @@ RaeCyberPunkPreciousName="蕾 | 賽博龐克 | 珍貴"
 StrasserCyberPunkPreciousName="史特拉什 | 賽博龐克 | 珍貴"
 TanakaCyberPunkPreciousName="田中 | 賽博龐克 | 珍貴"
 
-
+;Halloween 2021 Uniform Names
+MrFosterDoZFestiveName="佛斯特先生 | DoZ | 節慶"
+MrFosterDoZLuminescentName="佛斯特先生 | DoZ | 螢光"
+MrsFosterDoZFestiveName="佛斯特夫人 | DoZ | 節慶"
+MrsFosterDoZLuminescentName="佛斯特夫人 | DoZ | 螢光"
+AlbertsDoZFestiveName="亞伯 | DoZ | 節慶"
+AlbertsDoZLuminescentName="亞伯 | DoZ | 螢光"
+BriarDoZFestiveName="布萊爾 | DoZ | 節慶"
+BriarDoZLuminescentName="布萊爾 | DoZ | 螢光"
+AnaDoZFestiveName="安娜 | DoZ | 節慶"
+AnaDoZLuminescentName="安娜 | DoZ | 螢光"
+MastersonDoZFestiveName="麥斯特森 | DoZ | 節慶"
+MastersonDoZLuminescentName="麥斯特森 | DoZ | 螢光"
+DonovanDoZFestiveName="唐納文 | DoZ | 節慶"
+DonovanDoZLuminescentName="唐納文 | DoZ | 螢光"
+TanakaDoZFestiveName="田中 | DoZ | 節慶"
+TanakaDoZLuminescentName="田中 | DoZ | 螢光"
+RaeDoZFestiveName="蕾 | DoZ | 節慶"
+RaeDoZLuminescentName="蕾 | DoZ | 螢光"
+ClassicBriarDoZFestiveName="經典布萊爾 | DoZ | 節慶"
+ClassicBriarDoZLuminescentName="經典布萊爾 | DoZ | 螢光"
+JagerhornDoZFestiveName="傑格爾霍姆 | DoZ | 節慶"
+JagerhornDoZLuminescentName="傑格爾霍姆 | DoZ | 螢光"
+ClassicMastersonDoZFestiveName="經典麥斯特森 | DoZ | 節慶"
+ClassicMastersonDoZLuminescentName="經典麥斯特森 | DoZ | 螢光"
+DJScullyDoZFestiveName="DJ 史骷利 | DoZ | 節慶"
+DJScullyDoZLuminescentName="DJ 史骷利 | DoZ | 螢光"
+StrasserDoZFestiveName="史特拉什 | DoZ | 節慶"
+StrasserDoZLuminescentName="史特拉什 | DoZ | 螢光"
+BadassSantaDoZFestiveName="壞聖誕老人 | DoZ | 節慶"
+BadassSantaDoZLuminescentName="壞聖誕老人 | DoZ | 螢光"
+TomBannerDoZFestiveName="湯姆班納 | DoZ | 節慶"
+TomBannerDoZLuminescentName="湯姆班納 | DoZ | 螢光"
+DARClassicArmorDoZName="D.A.R. | 經典護甲 | DoZ | 節慶"
+DARClassicArmorDoZName="D.A.R. | 經典護甲 | DoZ | 螢光"
+DAREndoskeletonDoZName="D.A.R. | 內部骨架 | DoZ | 節慶"
+DAREndoskeletonDoZName="D.A.R. | 內部骨架 | DoZ | 螢光"
 
 ;bundle item descriptions
 BriarsLondonUniformDescription="獨領風騷。布萊爾與典型布萊爾適用。 "
@@ -684,6 +736,10 @@ CyberPunkPaintoverDescription="當你穿上這身令人驚奇的賽博龐克制�
 ;steampunk head variant description
 SteampunkHeadVariantDescription="用維多利亞時代蒸汽龐克風的造夢機器來替代你平凡的容貌。"
 
+;Halloween 2021 Uniform Description
+DoZFestivePaintoverDescription="趕快用這個喪屍之日造型，嚇嚇Zed吧。"
+DoZLuminescentPaintoverDescription="趕快用這個發光的喪屍之日造型，嚇嚇Zed吧。"
+
 [KeyCrates]
 ;Key and Crate Type Section
 WeaponSkinKeyType="武器飾品藍圖解碼鑰匙"
@@ -726,57 +782,57 @@ HorzineSupplyCrateSeriesBoneyardName="Horzine 補給箱 | 墓地系列"
 
 ;Crate Descriptions
 
-HorzineSupplyCrateSeries1Description="需要系列 1 的 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">醫生面具</font><br><font color="#4b69cd">飛行員</font><br><font color="#4b69cd">防彈面具</font><br><font color="#4b69cd">棒球帽</font><br><font color="#4b69cd">眼罩</font><br><font color="#4b69cd">扁帽</font><br><font color="#4b69cd">焊接面具</font><br><font color="#6600a1">廚師帽</font><br><font color="#6600a1">化學防毒面具</font><br><font color="#6600a1">拳擊頭盔</font><br><font color="#6600a1">德國防毒面具</font><br><font color="#8847ff">范亞伯披肩</font><br><font color="#8847ff">范亞伯帽</font><br><font color="#8847ff">骷髏破壞者面罩</font><br><font color="#8847ff">骷髏破壞者頭盔</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries1Description="需要系列1的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">醫生面具</font><br><font color="#4b69cd">飛行員</font><br><font color="#4b69cd">防彈面具</font><br><font color="#4b69cd">棒球帽</font><br><font color="#4b69cd">眼罩</font><br><font color="#4b69cd">扁帽</font><br><font color="#4b69cd">焊接面具</font><br><font color="#6600a1">廚師帽</font><br><font color="#6600a1">化學防毒面具</font><br><font color="#6600a1">拳擊頭盔</font><br><font color="#6600a1">德國防毒面具</font><br><font color="#8847ff">范亞伯披肩</font><br><font color="#8847ff">范亞伯帽</font><br><font color="#8847ff">骷髏破壞者面罩</font><br><font color="#8847ff">骷髏破壞者頭盔</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries2Description="需要系列 2 的 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">頭帶</font><br><font color="#4b69cd">曼波</font><br><font color="#4b69cd">復古墨鏡</font><br><font color="#4b69cd">滑雪面罩</font><br><font color="#4b69cd">英國克維拉頭盔</font><br><font color="#6600a1">德國警察帽</font><br><font color="#6600a1">神聖眼鏡</font><br><font color="#6600a1">英國夜視頭盔</font><br><font color="#6600a1">前排保護</font><br><font color="#6600a1">飛行面罩</font><br><font color="#6600a1">飛行安全帽</font><br><font color="#8847ff">精神病罪犯用面具</font><br><font color="#8847ff">強化頭盔</font><br><font color="#caab05">或是超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries2Description="需要系列2的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">頭帶</font><br><font color="#4b69cd">武士面罩</font><br><font color="#4b69cd">復古墨鏡</font><br><font color="#4b69cd">滑雪面罩</font><br><font color="#4b69cd">英國克維拉頭盔</font><br><font color="#6600a1">德國警察帽</font><br><font color="#6600a1">神聖眼鏡</font><br><font color="#6600a1">英國夜視頭盔</font><br><font color="#6600a1">前排保護頭盔</font><br><font color="#6600a1">飛行面罩</font><br><font color="#6600a1"></font><br><font color="#8847ff">精神病罪犯用面具</font><br><font color="#8847ff">強化頭盔</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries3Description="需要系列 3 的 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">EMS手帶</font><br><font color="#4b69cd">飛行護目鏡</font><br><font color="#4b69cd">軍隊扁帽</font><br><font color="#4b69cd">長角牛</font><br><font color="#4b69cd">豬肉派帽</font><br><font color="#6600a1">檢察官</font><br><font color="#6600a1">壞掉的面具</font><br><font color="#8847ff">血腥遊戲頭盔</font><br><font color="#8847ff">EMS背包</font><br><font color="#caab05">或是超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries3Description="需要系列3的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">Precious：珍貴10%</font><br><font color="#4b69cd">EMS手帶</font><br><font color="#4b69cd">飛行護目鏡</font><br><font color="#4b69cd">軍隊扁帽</font><br><font color="#4b69cd">長角牛</font><br><font color="#4b69cd">豬肉派帽</font><br><font color="#6600a1">檢察官</font><br><font color="#6600a1">壞掉的面具</font><br><font color="#8847ff">血腥遊戲頭盔</font><br><font color="#8847ff">EMS背包</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries4Description="需要系列 4 的 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">護目鏡</font><br><font color="#4b69cd">街頭混混護目鏡</font><br><font color="#4b69cd">街頭混混方巾</font><br><font color="#4b69cd">鴨舌棒球帽</font><br><font color="#4b69cd">漁夫帽</font><br><font color="#6600a1">拓荒護目鏡</font><br><font color="#6600a1">鋸條作戰頭盔</font><br><font color="#6600a1">鋸齒面具</font><br><font color="#8847ff">打折的暴龍面具</font><br><font color="#8847ff">滲透者頭盔</font><br><font color="#caab05">或是超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries4Description="需要系列4的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">護目鏡</font><br><font color="#4b69cd">街頭混混護目鏡</font><br><font color="#4b69cd">街頭混混方巾</font><br><font color="#4b69cd">鴨舌棒球帽</font><br><font color="#4b69cd">漁夫帽</font><br><font color="#6600a1">拓荒護目鏡</font><br><font color="#6600a1">鋸條作戰頭盔</font><br><font color="#6600a1">鋸齒面具</font><br><font color="#8847ff">打折的暴龍面具</font><br><font color="#8847ff">滲透者頭盔</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries5Description="需要系列 5 的 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">娃娃臉</font><br><font color="#4b69cd">正義頭盔</font><br><font color="#4b69cd">正義護目鏡</font><br><font color="#4b69cd">機車安全帽</font><br><font color="#4b69cd">可穿戴空氣過濾器</font><br><font color="#6600a1">人體工學防毒面具</font><br><font color="#6600a1">破損機車安全帽</font><br><font color="#6600a1">正義面具</font><br><font color="#8847ff">深淵面具</font><br><font color="#8847ff">武士面具</font><br><font color="#caab05">或是超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries5Description="需要系列5的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">娃娃臉</font><br><font color="#4b69cd">正義頭盔</font><br><font color="#4b69cd">正義護目鏡</font><br><font color="#4b69cd">機車安全帽</font><br><font color="#4b69cd">可穿戴空氣過濾器</font><br><font color="#6600a1">人體工學防毒面具</font><br><font color="#6600a1">破損機車安全帽</font><br><font color="#6600a1">正義面具</font><br><font color="#8847ff">深淵面具</font><br><font color="#8847ff">武士面具</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries6Description="需要系列 6 的 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">美國防毒面具</font><br><font color="#4b69cd">俄羅斯防毒面具 PMK-2</font><br><font color="#4b69cd">特勤護目鏡</font><br><font color="#4b69cd">特勤頭盔</font><br><font color="#6600a1">RPG-7 背包</font><br><font color="#6600a1">戰術背包</font><br><font color="#8847ff">特勤面罩</font><br><font color="#8847ff">M2 噴火坦克</font><br><font color="#caab05">或是超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries6Description="需要系列6的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">美國防毒面具</font><br><font color="#4b69cd">俄羅斯防毒面具PMK-2</font><br><font color="#4b69cd">特勤護目鏡</font><br><font color="#4b69cd">特勤頭盔</font><br><font color="#6600a1">RPG-7背包</font><br><font color="#6600a1">戰術背包</font><br><font color="#8847ff">特勤面罩</font><br><font color="#8847ff">M2噴火坦克</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries7Description="需要系列 7 的 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">防毒面具</font><br><font color="#4b69cd">防毒護目鏡</font><br><font color="#4b69cd">拉下的防毒護目鏡</font><br><font color="#4b69cd">防毒耳機</font><br><font color="#6600a1">防毒面具濾鏡</font><br><font color="#6600a1">拉起的防毒護目鏡</font><br><font color="#6600a1">折磨者面具</font><br><font color="#8847ff">折磨者頭罩</font><br><font color="#8847ff">折磨者帶管面具</font><br><font color="#caab05">或是超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries7Description="需要系列7的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">防毒面具</font><br><font color="#4b69cd">防毒護目鏡</font><br><font color="#4b69cd">拉下的防毒護目鏡</font><br><font color="#4b69cd">防毒耳機</font><br><font color="#6600a1">防毒面具濾鏡</font><br><font color="#6600a1">拉起的防毒護目鏡</font><br><font color="#6600a1">折磨者面具</font><br><font color="#8847ff">折磨者頭罩</font><br><font color="#8847ff">折磨者帶管面具</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries8Description="需要系列 8 的 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">戰略帽</font><br><font color="#4b69cd">戰略面具</font><br><font color="#4b69cd">戰略耳機MK1 / MK2</font><br><font color="#6600a1">GS9 頭盔</font><br><font color="#6600a1">GS9 面罩</font><br><font color="#8847ff">俄羅斯軍盔</font><br><font color="#8847ff">俄羅斯軍用面具</font><br><font color="#8847ff">俄羅斯軍用眼鏡</font><br><font color="#caab05">或是超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries8Description="需要系列8的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">戰略帽</font><br><font color="#4b69cd">戰略面具</font><br><font color="#4b69cd">戰略耳機MK1/MK2</font><br><font color="#6600a1">GS9頭盔</font><br><font color="#6600a1">GS9面罩</font><br><font color="#8847ff">俄羅斯軍盔</font><br><font color="#8847ff">俄羅斯軍用面具</font><br><font color="#8847ff">俄羅斯軍用眼鏡</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries9Description="需要系列 9 的 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">狂人護目鏡</font><br><font color="#4b69cd">關閉的狂人面具</font><br><font color="#4b69cd">開啟的狂人面具</font><br><font color="#4b69cd">微笑的狂人面具</font><br><font color="#6600a1">染血狂人面具</font><br><font color="#6600a1">關閉的狂人面具染血</font><br><font color="#6600a1">開啟的染血狂人面具</font><br><font color="#6600a1">微笑的染血狂人面具</font><br><font color="#8847ff">關閉的狂人痛苦護目鏡</font><br><font color="#8847ff">開啟的狂人痛苦護目鏡</font><br><font color="#8847ff">關閉的狂人痛苦面具</font><br><font color="#8847ff">開啟的狂人痛苦面具</font><br><font color="#8847ff">微笑的狂人痛苦面具</font><br><font color="#caab05">或是超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries9Description="需要系列9的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">稀有：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">狂人護目鏡</font><br><font color="#4b69cd">關閉的狂人面具</font><br><font color="#4b69cd">開啟的狂人面具</font><br><font color="#4b69cd">微笑的狂人面具</font><br><font color="#6600a1">染血狂人面具</font><br><font color="#6600a1">關閉的染血狂人面具</font><br><font color="#6600a1">開啟的染血狂人面具</font><br><font color="#6600a1">微笑的染血狂人面具</font><br><font color="#8847ff">關閉的狂人痛苦護目鏡</font><br><font color="#8847ff">開啟的狂人痛苦護目鏡</font><br><font color="#8847ff">關閉的狂人痛苦面具</font><br><font color="#8847ff">開啟的狂人痛苦面具</font><br><font color="#8847ff">微笑的狂人痛苦面具</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries10Description="需要系列 10 的 Horzine 補給箱子鑰匙才能開啟。內含一個下列稀有或更好的項目：<br><font color="#4b69cd">反叛者頭盔</font><br><font color="#4b69cd">反叛者面具</font><br><font color="#4b69cd">反叛者脖套</font><br><font color="#6600a1">反叛者頭盔放下護目鏡</font><br><font color="#6600a1">反叛者頭盔掀起護目鏡</font><br><font color="#6600a1">蒸汽龐克防毒面具基本狀態</font><br><font color="#8847ff">蒸汽龐克防毒面具開啟</font><br><font color="#8847ff">蒸汽龐克防毒面具關閉</font><br><font color="#8847ff">過濾式蒸汽龐克防毒面具</font><br><font color="#8847ff">過濾式蒸汽龐克防毒面具開啟</font><br><font color="#8847ff">過濾式蒸汽龐克防毒面具關閉</font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
+HorzineSupplyCrateSeries10Description="需要系列10的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">反叛者頭盔</font><br><font color="#4b69cd">反叛者面具</font><br><font color="#4b69cd">反叛者脖套</font><br><font color="#6600a1">放下的反叛者頭盔護目鏡</font><br><font color="#6600a1">掀起的反叛者頭盔護目鏡</font><br><font color="#6600a1">基本的蒸汽龐克防毒面具</font><br><font color="#8847ff">開啟的蒸汽龐克防毒面具</font><br><font color="#8847ff">關閉的蒸汽龐克防毒面具</font><br><font color="#8847ff">開啟的過濾式蒸汽龐克防毒面具</font><br><font color="#8847ff">開啟的過濾式蒸汽龐克防毒面具</font><br><font color="#8847ff">關閉的過濾式蒸汽龐克防毒面具</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries11Description="需要系列 11 的 Horzine 補給箱子鑰匙才能開啟。內含一個下列稀有或更好的項目：<br><font color="#4b69cd">收割者面甲</font><br><font color="#4b69cd">收割者死亡雙眼</font><br><font color="#4b69cd">收割者死亡頭罩</font><br><font color="#4b69cd">收割者死亡面具</font><br><font color="#6600a1">收割者尖喙</font><br><font color="#6600a1">收割者之眼</font><br><font color="#6600a1">收割者帽</font><br><font color="#8847ff">收割者烏鴉尖喙</font><br><font color="#8847ff">收割者烏鴉之眼</font><br><font color="#8847ff">收割者烏鴉帽</font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
+HorzineSupplyCrateSeries11Description="需要系列11的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">收割者面甲</font><br><font color="#4b69cd">收割者死亡雙眼</font><br><font color="#4b69cd">收割者死亡頭罩</font><br><font color="#4b69cd">收割者死亡面具</font><br><font color="#6600a1">收割者尖喙</font><br><font color="#6600a1">收割者之眼</font><br><font color="#6600a1">收割者帽</font><br><font color="#8847ff">收割者烏鴉尖喙</font><br><font color="#8847ff">收割者烏鴉之眼</font><br><font color="#8847ff">收割者烏鴉帽</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries12Description="需要系列 12 的 Horzine 補給箱子鑰匙才能開啟。內含一個下列稀有或更好的項目：<br><font color="#4b69cd">遠程突擊頭盔</font><br><font color="#4b69cd">遠程突擊護目鏡</font><br><font color="#4b69cd">遠程突擊面具</font><br><font color="#6600a1">遠程突擊頭盔面罩</font><br><font color="#8847ff">遠程突擊戰略背包</font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
+HorzineSupplyCrateSeries12Description="需要系列12的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">遠程突擊頭盔</font><br><font color="#4b69cd">遠程突擊護目鏡</font><br><font color="#4b69cd">遠程突擊面具</font><br><font color="#6600a1">遠程突擊頭盔面罩</font><br><font color="#8847ff">遠程突擊戰略背包</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries13Description="需要系列 13 的 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">關閉的蟲人頭盔</font><br><font color="#4b69cd">Robo Scully</font><br><font color="#4b69cd">開啟的蟲人頭盔</font><br><font color="#6600a1">拉上的蟲人頭盔</font><br><font color="#6600a1">D屠魔者頭盔</font><br><font color="#8847ff">拉下的蟲人頭盔</font><br><font color="#8847ff">牛頭人頭盔</font><br><font color="#caab05">超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries13Description="需要系列13的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">關閉的蟲人頭盔</font><br><font color="#4b69cd">機器史骷利</font><br><font color="#4b69cd">開啟的蟲人頭盔</font><br><font color="#6600a1">拉上的蟲人頭盔</font><br><font color="#6600a1">屠魔者頭盔</font><br><font color="#8847ff">拉下的蟲人頭盔</font><br><font color="#8847ff">牛頭人頭盔</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries14Description="需要#14系列的Horzine補給箱鑰匙才能開啟。包含一個珍貴或更高級的下列物品：<br><font color="#4b69cd">消防隊頭盔</font><br><font color="#4b69cd">全罩消防隊頭盔</font><br><font color="#4b69cd">半罩消防隊頭盔</font><br><font color="#4b69cd">消防隊防毒面具</font><br><font color="#6600a1">消防隊頭盔</font><br><font color="#6600a1">全罩消防隊頭盔</font><br><font color="#6600a1">半罩消防隊頭盔</font><br><font color="#6600a1">消防隊防毒面具</font><br><font color="#6600a1">消防隊氧氣瓶</font><br><font color="#8847ff">消防隊氧氣瓶</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries14Description="需要系列14的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">消防隊頭盔</font><br><font color="#4b69cd">全罩消防隊頭盔</font><br><font color="#4b69cd">半罩消防隊頭盔</font><br><font color="#4b69cd">消防隊防毒面具</font><br><font color="#6600a1">消防隊頭盔</font><br><font color="#6600a1">全罩消防隊頭盔</font><br><font color="#6600a1">半罩消防隊頭盔</font><br><font color="#6600a1">消防隊防毒面具</font><br><font color="#6600a1">消防隊氧氣瓶</font><br><font color="#8847ff">消防隊氧氣瓶</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries15Description="需要#15系列的Horzine補給箱鑰匙才能開啟。包含一個珍貴或更高級的下列物品：<br><font color="#4b69cd">日本武將面具</font><br><font color="#4b69cd">般若面具</font><br><font color="#4b69cd">龍防毒面具</font><br><font color="#4b69cd">帝國頭盔</font><br><font color="#4b69cd">奔尼帽</font><br><font color="#4b69cd">兔面具</font><br><font color="#4b69cd">維多利亞人的秘密</font><br><font color="#6600a1">骷髏頭面具</font><br><font color="#6600a1">瘟疫醫生面具</font><br><font color="#caab05">武士防毒呼吸吹嘴</font><br><font color="#caab05">武士防毒頭盔</font><br><font color="#caab05">武士防毒面具</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries15Description="需要系列15的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">日本武將面具</font><br><font color="#4b69cd">般若面具</font><br><font color="#4b69cd">龍防毒面具</font><br><font color="#4b69cd">帝國頭盔</font><br><font color="#4b69cd">漁夫帽</font><br><font color="#4b69cd">兔面具</font><br><font color="#4b69cd">維多利亞人的秘密</font><br><font color="#6600a1">骷髏頭面具</font><br><font color="#6600a1">瘟疫醫生面具</font><br><font color="#caab05">武士防毒呼吸吹嘴</font><br><font color="#caab05">武士防毒頭盔</font><br><font color="#caab05">武士防毒面具</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeries16Description="需要#16系列的Horzine補給箱鑰匙才能開啟。包含一個珍貴或更高級的下列物品：<br><font color="#4b69cd">熊</font><br><font color="#4b69cd">乳牛</font><br><font color="#4b69cd">狗</font><br><font color="#4b69cd">狐狸</font><br><font color="#4b69cd">馬</font><br><font color="#4b69cd">豬</font><br><font color="#4b69cd">雞</font><br><font color="#6600a1">雞</font><br><font color="#6600a1">貓</font><br><font color="#6600a1">山羊</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeries16Description="需要系列16的Horzine補給箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">熊</font><br><font color="#4b69cd">乳牛</font><br><font color="#4b69cd">狗</font><br><font color="#4b69cd">狐狸</font><br><font color="#4b69cd">馬</font><br><font color="#4b69cd">豬</font><br><font color="#4b69cd">雞</font><br><font color="#6600a1">雞</font><br><font color="#6600a1">貓</font><br><font color="#6600a1">山羊</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-EmoteCrateSeries1Description="需要系列 #1 的 Emote 箱子鑰匙才能開啟。包含下列物品中的一個：<br><font color="#4b69cd">瘋狂放縱吧</font><br><font color="#4b69cd">電臀舞</font><br><font color="#4b69cd">查理叔叔</font><br><font color="#4b69cd">海帶舞</font><br><font color="#6600a1">下錢雨</font><br><font color="#6600a1">獅子上鉤拳</font><br><font color="#6600a1">交配儀式</font><br><font color="#8847ff">給它踢下去</font><br><font color="#8847ff">火球</font><br><font color="#8847ff">快拿錢砸我</font><br><font color="#caab05">或超珍貴的豪華版 表情動作指令！</font>"
+EmoteCrateSeries1Description="需要系列1的Emote箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">瘋狂放縱吧</font><br><font color="#4b69cd">電臀舞</font><br><font color="#4b69cd">查理叔叔</font><br><font color="#4b69cd">海帶舞</font><br><font color="#6600a1">下錢雨</font><br><font color="#6600a1"> 獅子上鉤拳</font><br><font color="#6600a1">交配儀式</font><br><font color="#8847ff"> 給它踢下去</font><br><font color="#8847ff">火球</font><br><font color="#8847ff">快拿錢砸我</font><br><font color="#caab05">或超珍貴的豪華版表情動作指令！</font>"
 
-EmoteCrateSeries2Description="需要系列 #2 的 Emote 箱子鑰匙才能開啟。包含以下表情動作指令中的一個：<br><font color="#4b69cd">哥薩克</font><br><font color="#4b69cd">攻擊波數</font><br><font color="#4b69cd">霹靂舞</font><br><font color="#4b69cd">兩手空空</font><br><font color="#6600a1">療傷點擊</font><br><font color="#6600a1">灑水器</font><br><font color="#6600a1">狂人</font><br><font color="#8847ff">跑跑人</font><br><font color="#8847ff">機器人</font><br><font color="#8847ff">空氣金屬</font><br><font color="#caab05">或超珍貴的珍貴豪華版表情動作指令！</font>"
+EmoteCrateSeries2Description="需要系列2的Emote箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">哥薩克</font><br><font color="#4b69cd">攻擊波數</font><br><font color="#4b69cd">霹靂舞</font><br><font color="#4b69cd">兩手空空</font><br><font color="#6600a1">療傷點擊</font><br><font color="#6600a1">灑水器</font><br><font color="#6600a1">狂人</font><br><font color="#8847ff">跑跑人</font><br><font color="#8847ff">機器人</font><br><font color="#8847ff">空氣金屬</font><br><font color="#caab05">或超珍貴的豪華版表情動作指令！</font>"
 
-EmoteCrateSeries3Description="需要一把 #3 系列的 Emote 箱子鑰匙才能開啟。內含其中一樣珍貴級以上物品：<br><font color="#4b69cd">鶴形拳</font><br><font color="#4b69cd">通用精通</font><br><font color="#4b69cd">Zed 時間</font><br><font color="#4b69cd">截能</font><br><font color="#4b69cd">最終形態</font><br><font color="#4b69cd">西部最快之槍</font><br><font color="#4b69cd">靈魂之指</font><br><font color="#4b69cd">本壘打</font><br><font color="#4b69cd">硬幣魔術</font><br><font color="#4b69cd">魔法佛斯特</font><br><font color="#caab05">或一件極度珍貴的豪華表情動作指令！</font>"
+EmoteCrateSeries3Description="需要系列3的Emote箱子鑰匙才能開啟。每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">鶴形拳</font><br><font color="#4b69cd">通用精通</font><br><font color="#4b69cd">Zed時間</font><br><font color="#4b69cd">截能</font><br><font color="#4b69cd">最終形態</font><br><font color="#4b69cd">西部最快之槍</font><br><font color="#4b69cd">靈魂之指</font><br><font color="#4b69cd">本壘打</font><br><font color="#4b69cd">硬幣魔術</font><br><font color="#4b69cd">魔法佛斯特</font><br><font color="#caab05">或超珍貴的豪華版表情動作指令！</font>"
 
-DoshVaultUnlockedCrate1Description="包含一個下列物品：<br>玩家配件<br>臉部彩繪<br>制服版本<br>武器飾品<br><font color="#caab05">或超珍貴的珍貴配件！</font>"
+DoshVaultUnlockedCrate1Description="每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br>玩家配件<br>臉部彩繪<br>制服版本<br>武器飾品<br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeriesDARDescription="需要D.A.R.  Horzine 補給箱子密鑰才能開啟。內含其中一樣珍貴級以上的 D.A.R. 配件：<br><font color="#4b69cd">Flight P51 護甲或頭盔</font><br><font color="#4b69cd">CHONNE-E 5 健身或時間魔方護甲</font><br><font color="#4b69cd">CHONNE-E 5 兄弟或鋼鐵頭盔</font><br><font color="#4b69cd">C3HZ 碰撞護甲或頭盔</font><br><font color="#4b69cd">C3HZ 反光藍護甲或頭盔</font><br><font color="#6600a1">飛行銀河護甲或頭盔</font><br><font color="#6600a1">飛行尖叫護甲或頭盔</font><br><font color="#6600a1">CHONNE-E 5 蝙蝠貓護甲</font><br><font color="#6600a1">CHONNE-E 5 蒸汽頭盔</font><br><font color="#6600a1">C3HZ 黑曜石護甲或頭盔</font><br><font color="#6600a1">C3HZ 太空護甲或頭盔</font><br><font color="#8847ff">飛行藍色天使護甲或頭盔</font><br><font color="#8847ff">飛行火槍護甲或頭盔</font><br><font color="#8847ff">CHONNE-E 5 Horzine 護甲或頭盔</font><br><font color="#8847ff">CHONNE-E 5 激進護甲</font><br><font color="#8847ff">CHONNE-E 5 日落頭盔</font><br><font color="#8847ff">C3HZ 大理石護甲或頭盔</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeriesDARDescription="需要D.A.R. Horzine補給箱子鑰匙才能開啟，內含其中一樣稀有級以上的 D.A.R.配件，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">Flight P51護甲或頭盔</font><br><font color="#4b69cd">CHONNE-E 5健身或時間魔方護甲</font><br><font color="#4b69cd">CHONNE-E 5兄弟或鋼鐵頭盔</font><br><font color="#4b69cd">C3HZ碰撞護甲或頭盔</font><br><font color="#4b69cd">C3HZ反光藍護甲或頭盔</font><br><font color="#6600a1">飛行銀河護甲或頭盔</font><br><font color="#6600a1">飛行尖叫護甲或頭盔</font><br><font color="#6600a1">CHONNE-E 5蝙蝠貓護甲</font><br><font color="#6600a1">CHONNE-E 5蒸汽頭盔</font><br><font color="#6600a1">C3HZ黑曜石護甲或頭盔</font><br><font color="#6600a1">C3HZ太空護甲或頭盔</font><br><font color="#8847ff">飛行藍色天使護甲或頭盔</font><br><font color="#8847ff">飛行火槍護甲或頭盔</font><br><font color="#8847ff">CHONNE-E 5 Horzine護甲或頭盔</font><br><font color="#8847ff">CHONNE-E 5激進護甲</font><br><font color="#8847ff">CHONNE-E 5日落頭盔</font><br><font color="#8847ff">C3HZ大理石護甲或頭盔</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeriesLocoDescription="需要機車 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">機車部落面具 | 野獸 | 光</font><br><font color="#4b69cd">機車部落面具 | 舞者 | 水</font><br><font color="#4b69cd">機車部落面具 | 惡魔 | 水</font><br><font color="#4b69cd">機車部落面具 | 醫生 | 光</font><br><font color="#4b69cd">機車部落面具 | 夢想家 | 水</font><br><font color="#4b69cd">機車部落面具 | 小丑 | 光</font><br><font color="#4b69cd">機車部落面具 | 領主 | 水</font><br><font color="#4b69cd">機車部落面具 | 沉睡者 | 水</font><br><font color="#4b69cd">機車部落面具 | 不死者 | 水</font><br><font color="#4b69cd">機車部落面具 | 戰士 | 水</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 安娜</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 亞伯</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 布萊爾</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 史特拉什</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 麥斯特森</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 唐納文</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 蕾</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 史骷利</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 經典布萊爾</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 經典麥斯特森</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 傑格爾霍姆</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 佛斯特先生</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 佛斯特夫人</font><br><font color="#8847ff">機車部落面具 | 野獸 | 暗</font><br><font color="#8847ff">機車部落面具 | 舞者 | 火</font><br><font color="#8847ff">機車部落面具 | 惡魔 | 火</font><br><font color="#8847ff">機車部落面具 | 醫生 | 暗</font><br><font color="#8847ff">機車部落面具 | 夢想家 | 火</font><br><font color="#8847ff">機車部落面具 | 小丑 | 暗</font><br><font color="#8847ff">機車部落面具 | 領主 | 火</font><br><font color="#8847ff">機車部落面具 | 沉睡者 | 火</font><br><font color="#8847ff">機車部落面具 | 不死者 | 火</font><br><font color="#8847ff">機車部落面具 | 戰士 | 火</font><br><font color="#8847ff">萬聖節 2018 臉部彩繪 | 田中</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeriesLocoDescription="需要機車Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">機車部落面具 | 野獸 | 光</font><br><font color="#4b69cd">機車部落面具 | 舞者 | 水</font><br><font color="#4b69cd">機車部落面具 | 惡魔 | 水</font><br><font color="#4b69cd">機車部落面具 | 醫生 | 光</font><br><font color="#4b69cd">機車部落面具 | 夢想家 | 水</font><br><font color="#4b69cd">機車部落面具 | 小丑 | 光</font><br><font color="#4b69cd">機車部落面具 | 領主 | 水</font><br><font color="#4b69cd">機車部落面具 | 沉睡者 | 水</font><br><font color="#4b69cd">機車部落面具 | 不死者 | 水</font><br><font color="#4b69cd">機車部落面具 | 戰士 | 水</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 安娜</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 亞伯</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 布萊爾</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 史特拉什</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 麥斯特森</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 唐納文</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 蕾</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 史骷利</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 經典布萊爾</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 經典麥斯特森</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 傑格爾霍姆</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 佛斯特先生</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 佛斯特夫人</font><br><font color="#8847ff">機車部落面具 | 野獸 | 暗</font><br><font color="#8847ff">機車部落面具 | 舞者 | 火</font><br><font color="#8847ff">機車部落面具 | 惡魔 | 火</font><br><font color="#8847ff">機車部落面具 | 醫生 | 暗</font><br><font color="#8847ff">機車部落面具 | 夢想家 | 火</font><br><font color="#8847ff">機車部落面具 | 小丑 | 暗</font><br><font color="#8847ff">機車部落面具 | 領主 | 火</font><br><font color="#8847ff">機車部落面具 | 沉睡者 | 火</font><br><font color="#8847ff">機車部落面具 | 不死者 | 火</font><br><font color="#8847ff">機車部落面具 | 戰士 | 火</font><br><font color="#8847ff">萬聖節 2018 臉部彩繪 | 田中</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeriesCyberSamuraiDescription="需要賽博武士 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">科幻號角頭盔 | 綠</font><br><font color="#4b69cd">科幻號角頭盔 | 紫</font><br><font color="#4b69cd">科幻無臉頭盔 | 綠</font><br><font color="#4b69cd">科幻無臉頭盔 | 紫</font><br><font color="#4b69cd">科幻呼吸頭盔A | 綠</font><br><font color="#4b69cd">科幻呼吸頭盔A | 紫</font><br><font color="#4b69cd">科幻呼吸頭盔B | 綠</font><br><font color="#4b69cd">科幻呼吸頭盔B | 紫</font><br><font color="#4b69cd">科幻面無表情頭盔 | 綠</font><br><font color="#4b69cd">科幻面無表情頭盔 | 紫</font><br><font color="#4b69cd">科幻武士頭盔 | 綠</font><br><font color="#4b69cd">科幻武士頭盔 | 紫</font><br><font color="#4b69cd">武士腿甲 | 綠</font><br><font color="#4b69cd">武士腿甲 | 紫</font><br><font color="#4b69cd">武士胸甲 | 藍</font><br><font color="#4b69cd">武士胸甲 | 綠</font><br><font color="#4b69cd">浪人帽 | 綠</font><br><font color="#4b69cd">浪人帽 | 黃</font><br><font color="#4b69cd">浪人護目鏡 | 綠</font><br><font color="#4b69cd">浪人護目鏡 | 黃</font><br><font color="#4b69cd">浪人面具 | 綠</font><br><font color="#4b69cd">浪人面具 | 黃</font><br><font color="#6600a1">科幻號角頭盔 | 黑</font><br><font color="#6600a1">科幻號角頭盔 | 藍</font><br><font color="#6600a1">科幻無臉頭盔 | 藍</font><br><font color="#6600a1">科幻呼吸頭盔A | 藍</font><br><font color="#6600a1">科幻呼吸頭盔B | 藍</font><br><font color="#6600a1">科幻面無表情頭盔 | 藍</font><br><font color="#6600a1">科幻武士頭盔 | 藍</font><br><font color="#6600a1">武士腿甲 | 黑</font><br><font color="#6600a1">武士腿甲 | 藍</font><br><font color="#6600a1">武士胸甲 | 藍</font><br><font color="#6600a1">武士胸甲 | 綠</font><br><font color="#6600a1">浪人帽 | 白</font><br><font color="#6600a1">浪人護目鏡 | 白</font><br><font color="#6600a1">浪人面具 | 白</font><br><font color="#8847ff">科幻號角頭盔 | 紅</font><br><font color="#8847ff">科幻無臉頭盔 | 紅</font><br><font color="#8847ff">科幻呼吸頭盔A | 紅</font><br><font color="#8847ff">科幻呼吸頭盔B | 紅</font><br><font color="#8847ff">科幻面無表情頭盔 | 紅</font><br><font color="#8847ff">科幻武士頭盔 | 紅</font><br><font color="#8847ff">武士腿甲 | 紅</font><br><font color="#8847ff">武士胸甲 | 紅</font><br><font color="#8847ff">浪人帽 | 紅</font><br><font color="#8847ff">浪人護目鏡 | 紅</font><br><font color="#8847ff">浪人面具 | 紅</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeriesCyberSamuraiDescription="需要賽博武士Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">科幻號角頭盔 | 綠</font><br><font color="#4b69cd">科幻號角頭盔 | 紫</font><br><font color="#4b69cd">科幻無臉頭盔 | 綠</font><br><font color="#4b69cd">科幻無臉頭盔 | 紫</font><br><font color="#4b69cd">科幻呼吸頭盔A | 綠</font><br><font color="#4b69cd">科幻呼吸頭盔A | 紫</font><br><font color="#4b69cd">科幻呼吸頭盔B | 綠</font><br><font color="#4b69cd">科幻呼吸頭盔B | 紫</font><br><font color="#4b69cd">科幻面無表情頭盔 | 綠</font><br><font color="#4b69cd">科幻面無表情頭盔 | 紫</font><br><font color="#4b69cd">科幻武士頭盔 | 綠</font><br><font color="#4b69cd">科幻武士頭盔 | 紫</font><br><font color="#4b69cd">武士腿甲 | 綠</font><br><font color="#4b69cd">武士腿甲 | 紫</font><br><font color="#4b69cd">武士胸甲 | 藍</font><br><font color="#4b69cd">武士胸甲 | 綠</font><br><font color="#4b69cd">浪人帽 | 綠</font><br><font color="#4b69cd"> 浪人帽 | 黃</font><br><font color="#4b69cd">浪人護目鏡 | 綠</font><br><font color="#4b69cd">浪人護目鏡 | 黃</font><br><font color="#4b69cd">浪人面具 | 綠</font><br><font color="#4b69cd">浪人面具 | 黃</font><br><font color="#6600a1">科幻號角頭盔 | 黑</font><br><font color="#6600a1">科幻號角頭盔 | 藍</font><br><font color="#6600a1">科幻無臉頭盔 | 藍</font><br><font color="#6600a1">科幻呼吸頭盔A | 藍</font><br><font color="#6600a1">科幻呼吸頭盔B | 藍</font><br><font color="#6600a1">科幻面無表情頭盔 | 藍</font><br><font color="#6600a1">科幻武士頭盔 | 藍</font><br><font color="#6600a1">武士腿甲 | 黑</font><br><font color="#6600a1">武士腿甲 | 藍</font><br><font color="#6600a1">武士胸甲 | 藍</font><br><font color="#6600a1">武士胸甲 | 綠</font><br><font color="#6600a1">浪人帽 | 白 </font><br><font color="#6600a1">浪人護目鏡 | 白</font><br><font color="#6600a1">浪人面具 | 白</font><br><font color="#8847ff">科幻號角頭盔 | 紅</font><br><font color="#8847ff">科幻無臉頭盔 | 紅 </font><br><font color="#8847ff">科幻呼吸頭盔A | 紅</font><br><font color="#8847ff">科幻呼吸頭盔B | 紅</font><br><font color="#8847ff">科幻面無表情頭盔 | 紅</font><br><font color="#8847ff">科幻武士頭盔 | 紅</font><br><font color="#8847ff">武士腿甲 | 紅</font><br><font color="#8847ff">武士胸甲 | 紅</font><br><font color="#8847ff">浪人帽 | 紅</font><br><font color="#8847ff">浪人護目鏡 | 紅</font><br><font color="#8847ff">浪人面具 | 紅</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeriesDeityDescription="需要 Horzine 補給箱鑰匙才能打開。內含下列其中一個稀有或更好的<br><font color="#4b69cd">護甲頭罩 | 藍</font><br><font color="#4b69cd">護甲頭罩 | 綠</font><br><font color="#4b69cd">無臉面具 | 藍</font><br><font color="#4b69cd">無臉面具 | 綠</font><br><font color="#4b69cd">科幻頭罩 | 藍</font><br><font color="#4b69cd">科幻頭罩 | 綠</font><br><font color="#4b69cd">無表情面具 | 藍</font><br><font color="#4b69cd">無表情面具 | 綠</font><br><font color="#6600a1">護甲頭罩 | 紅</font><br><font color="#6600a1">無臉面具 | 紅</font><br><font color="#6600a1">科幻頭罩 | 紅</font><br><font color="#6600a1">無表情面具 | 紅</font><br><font color="#6600a1">芭斯特 | 紅</font><br><font color="#6600a1">芭斯特 | 黃</font><br><font color="#6600a1">芭斯特 | 綠</font><br><font color="#6600a1">芭斯特 | 藍</font><br><font color="#6600a1">索貝克 | 紅</font><br><font color="#6600a1">索貝克 | 黃</font><br><font color="#6600a1">索貝克 | 綠</font><br><font color="#6600a1">索貝克 | 藍</font><br><font color="#8847ff">護甲頭罩 | 黑</font><br><font color="#8847ff">無臉面具 | 黑</font><br><font color="#8847ff">無臉面具 | 白</font><br><font color="#8847ff">科幻頭罩 | 黑</font><br><font color="#8847ff">無表情面具 | 黑</font><br><font color="#8847ff">無表情面具 | 白</font><br><font color="#8847ff">阿努比斯 | 紅</font><br><font color="#8847ff">阿努比斯 | 藍</font><br><font color="#8847ff">阿努比斯 | 綠</font><br><font color="#8847ff">阿努比斯 | 黃</font><br><font color="#8847ff">拉 | 紅</font><br><font color="#8847ff">拉 | 藍</font><br><font color="#8847ff">拉 | 綠</font><br><font color="#8847ff">拉 | 黃</font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
+HorzineSupplyCrateSeriesDeityDescription="需要Horzine補給箱鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">護甲頭罩 | 藍</font><br><font color="#4b69cd">護甲頭罩 | 綠</font><br><font color="#4b69cd">無臉面具 | 藍</font><br><font color="#4b69cd">無臉面具 | 綠</font><br><font color="#4b69cd">科幻頭罩 | 藍</font><br><font color="#4b69cd">科幻頭罩 | 綠</font><br><font color="#4b69cd">無表情面具 | 藍</font><br><font color="#4b69cd">無表情面具 | 綠</font><br><font color="#6600a1">護甲頭罩 | 紅</font><br><font color="#6600a1">無表情面具 | 紅</font><br><font color="#6600a1">科幻頭罩 | 紅</font><br><font color="#6600a1">無表情面具 | 紅</font><br><font color="#6600a1"> 芭斯特 | 紅</font><br><font color="#6600a1">芭斯特 | 黃</font><br><font color="#6600a1">芭斯特 | 綠</font><br><font color="#6600a1">芭斯特 | 藍</font><br><font color="#6600a1">索貝克 | 紅</font><br><font color="#6600a1">索貝克 | 黃</font><br><font color="#6600a1">索貝克 | 綠</font><br><font color="#6600a1">索貝克 | 藍</font><br><font color="#8847ff">護甲頭罩 | 黑</font><br><font color="#8847ff">無臉面具 | 黑</font><br><font color="#8847ff">無臉面具 | 白</font><br><font color="#8847ff">科幻頭罩 | 黑</font><br><font color="#8847ff"> 無表情面具 | 黑</font><br><font color="#8847ff">無表情面具 | 白</font><br><font color="#8847ff">阿努比斯 | 紅</font><br><font color="#8847ff">阿努比斯 | 藍</font><br><font color="#8847ff">阿努比斯 | 綠</font><br><font color="#8847ff">阿努比斯 | 黃</font><br><font color="#8847ff">拉 | 紅</font><br><font color="#8847ff">拉 | 藍</font><br><font color="#8847ff">拉 | 綠</font><br><font color="#8847ff">拉 | 黃</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeriesProjectHDescription="需要計畫 H #1系列 Horzine 補給箱鑰匙才能開啟。包含下列一樣稀有級以上的物品：<br><font color="#4b69cd">計畫 H-01 | 計畫 </font><br><font color="#4b69cd">計畫 H-01 | 開心 </font><br><font color="#4b69cd">計畫 H-01 | 開心開啟 </font><br><font color="#4b69cd">計畫 H-01 | 臭臉 </font><br><font color="#4b69cd">計畫 H-01 | 臭臉開啟 </font><br><font color="#4b69cd">計畫 H-01 | 不開心 </font><br><font color="#4b69cd">計畫 H-01 | 不開心開啟 </font><br><font color="#4b69cd">計畫 H-02 | 基本 </font><br><font color="#4b69cd">計畫 H-02 | 開心 </font><br><font color="#4b69cd">計畫 H-02 | 開心開啟 </font><br><font color="#4b69cd">計畫 H-02 | 臭臉 </font><br><font color="#4b69cd">計畫 H-02 | 臭臉開啟 </font><br><font color="#4b69cd">計劃 H-02 | 不開心 </font><br><font color="#4b69cd">計畫 H-02 | 不開心開啟 </font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
+HorzineSupplyCrateSeriesProjectHDescription="需要計畫H系列1 Horzine補給箱鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">計畫 H-01 | 基本</font><br><font color="#4b69cd">計畫 H-01 | 開心</font><br><font color="#4b69cd">計畫 H-01 | 開心開啟</font><br><font color="#4b69cd">計畫 H-01 | 臭臉</font><br><font color="#4b69cd">計畫 H-01 | 臭臉開啟</font><br><font color="#4b69cd">計畫 H-01 | 不開心</font><br><font color="#4b69cd">計畫 H-01 | 不開心開啟</font><br><font color="#4b69cd">計畫 H-02 | 基本</font><br><font color="#4b69cd">計畫 H-02 | 開心</font><br><font color="#4b69cd">計畫 H-02 | 開心開啟</font><br><font color="#4b69cd">計畫 H-02 | 臭臉</font><br><font color="#4b69cd">計畫 H-02 | 臭臉開啟</font><br><font color="#4b69cd">計畫 H-02 | 不開心</font><br><font color="#4b69cd">計畫 H-02 | 不開心開啟</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-HorzineSupplyCrateSeriesBoneyardDescription="需要墓地系列的Horzine補給箱鑰匙才能開啟。包含一個珍貴或更高級的下列物品：<br><font color="#4b69cd">激痛 </font><br><font color="#4b69cd">痛苦 </font><br><font color="#4b69cd">絕望  </font><br><font color="#4b69cd">憂難 </font><br><font color="#4b69cd">悲難 </font><br><font color="#4b69cd">激情 </font><br><font color="#4b69cd">久痛 </font><br><font color="#4b69cd">折磨 </font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
+HorzineSupplyCrateSeriesBoneyardDescription="需要墓地系列的Horzine補給箱鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">激痛</font><br><font color="#4b69cd">痛苦</font><br><font color="#4b69cd">絕望</font><br><font color="#4b69cd">憂難</font><br><font color="#4b69cd">悲難</font><br><font color="#4b69cd">激情</font><br><font color="#4b69cd">久痛</font><br><font color="#4b69cd">折磨</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
 ;Key Names
 HorzineSupplyCrateKeySeries1Name="Horzine 補給箱子鑰匙｜系列 1"
@@ -867,69 +923,69 @@ BeyondHorizonEncryptedUSBName="超越地平線加密 USB"
 JaegerEncryptedUSBName="獵人加密USB"
 
 ;Usb descriptions
-CyberboneEncryptedUSBDescription="需要生化骨藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">AR15 | 生化骨</font><br><font color="#4b69cd">AK-12 | 生化骨</font><br><font color="#4b69cd">AA-12 | 生化骨</font><br><font color="#4b69cd">日本刀 | 生化骨</font><br><font color="#8847ff">M79 | 爛膽</font><br><font color="#8847ff">AR15 | 控制</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+CyberboneEncryptedUSBDescription="需要生化骨藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">AR15 | 生化骨</font><br><font color="#4b69cd">AK-12 | 生化骨</font><br><font color="#4b69cd">AA-12 | 生化骨</font><br><font color="#4b69cd">日本刀 | 生化骨</font><br><font color="#8847ff">M79 | 爛膽</font><br><font color="#8847ff">AR15 | 控制</font><br><font color="#caab05">或超稀有的珍貴造型！</font>"
 
-DragonfireEncryptedUSBDescription="需要龍火藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">裝了就燒 | 龍火</font><br><font color="#4b69cd">火焰噴射器 | 龍火</font><br><font color="#4b69cd">龍的呼吸 | 龍火</font><br><font color="#4b69cd">縱火狂刀 | 龍火</font><br><font color="#8847ff">龍的呼吸 | 熱浪</font><br><font color="#8847ff">散彈槍 | 熱浪</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+DragonfireEncryptedUSBDescription="需要龍火藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">裝了就燒 | 龍火</font><br><font color="#4b69cd">火焰噴射器 | 龍火</font><br><font color="#4b69cd">龍的呼吸 | 龍火</font><br><font color="#4b69cd">縱火狂刀 | 龍火</font><br><font color="#8847ff">龍的呼吸 | 熱浪</font><br><font color="#8847ff">霰彈槍 | 熱浪</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-EmergencyIssueEncryptedUSBDescription="需要緊急事件藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">9 釐米 | 緊急事件</font><br><font color="#4b69cd">裝了就燒 | 緊急事件</font><br><font color="#4b69cd">沙漠之鷹 | 緊急事件</font><br><font color="#4b69cd">SG500 | 緊急事件</font><br><font color="#4b69cd">VLAD - 1000 釘槍 | 緊急事件</font><br><font color="#6600a1">火焰噴射器 | 緊急事件</font><br><font color="#8847ff">微波槍 | 緊急事件</font><br><font color="#8847ff">剔骨器 | 緊急事件</font><br><font color="#caab05">或是超珍貴的突擊部隊珍貴飾品！</font>"
+EmergencyIssueEncryptedUSBDescription="需要緊急事件藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">9釐米 | 緊急事件</font><br><font color="#4b69cd">裝了就燒 | 緊急事件</font><br><font color="#4b69cd">沙漠之鷹 | 緊急事件</font><br><font color="#4b69cd">SG500 | 緊急事件</font><br><font color="#4b69cd"> VLAD - 1000 釘槍 | 緊急事件</font><br><font color="#6600a1">火焰噴射器 | 緊急事件</font><br><font color="#8847ff">微波槍 | 緊急事件</font><br><font color="#8847ff"> 剔骨器 | 緊急事件</font><br><font color="#caab05">或超稀有的珍貴突擊部隊造型！</font>"
 
-HorzineFirstEncounterEncryptedUSBDescription="需要Horzine 初遇藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">SG500 | Horzine 初遇</font><br><font color="#4b69cd">AA-12 | Horzine 初遇</font><br><font color="#4b69cd">Healer | Horzine 初遇</font><br><font color="#4b69cd">Welder | Horzine 初遇</font><br><font color="#6600a1">AK-12 | 精英 AK-12 綠</font><br><font color="#6600a1">AK-12 | 精英 AK-12 白</font><br><font color="#8847ff">AK-12 | 精英 AK-12 紅</font><br><font color="#8847ff">AK-12 | 精英 AK-12 藍</font><br><font color="#caab05">或是超珍貴的破壞部隊珍貴飾品！</font>"
+HorzineFirstEncounterEncryptedUSBDescription="需要Horzine初遇藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">SG500 | Horzine初遇</font><br><font color="#4b69cd">AA-12 | Horzine初遇</font><br><font color="#4b69cd">治療者 | Horzine初遇</font><br><font color="#4b69cd">焊槍 | Horzine初遇</font><br><font color="#6600a1">AK-12 | 精英 AK-12 綠</font><br><font color="#6600a1">AK-12 | 精英 AK-12 白</font><br><font color="#8847ff">AK-12 | 精英 AK-12 紅</font><br><font color="#8847ff">AK-12 | 精英 AK-12 藍</font><br><font color="#caab05">或超稀有的珍貴破壞部隊造型！</font>"
 
-HorzineIssueEncryptedUSBDescription="需要 Horzine 配給藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">M4 | 怪物殺手</font><br><font color="#4b69cd">9 釐米 | 空氣鎖</font><br><font color="#4b69cd">L85A2 | 飛行員</font><br><font color="#4b69cd">散彈槍 | 鯊魚牙</font><br><font color="#8847ff">Scar | Horzine 精英紅</font><br><font color="#8847ff">Scar | Horzine 精英藍</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+HorzineIssueEncryptedUSBDescription="需要Horzine配給藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">M4 | 怪物殺手</font><br><font color="#4b69cd">9釐米 | 空氣鎖</font><br><font color="#4b69cd">L85A2 | 飛行員</font><br><font color="#4b69cd">霰彈槍 | 鯊魚牙</font><br><font color="#8847ff">傷疤 | Horzine精英紅</font><br><font color="#8847ff">傷疤 | Horzine精英藍</font><br><font color="#caab05">或超稀有的珍貴配件！</font>"
 
-MedicEncryptedUSBDescription="需要醫療藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">HMTech-101 手槍 | 精英部隊</font><br><font color="#4b69cd">HMTech-201 突擊步槍 | 精英部隊</font><br><font color="#4b69cd">HMTech-301 霰彈槍 | 精英部隊</font><br><font color="#4b69cd">HMTech-401 突擊步槍 | 精英部隊</font><br><font color="#6600a1">HMTech-001 手術刀 | 精英部隊</font><br><font color="#6600a1">HMTech 治療道具 | 精英部隊</font><br><font color="#6600a1">HMTech-101 手槍 | 精英部隊Green</font><br><font color="#6600a1">HMTech-201 突擊步槍 | 精英部隊Green</font><br><font color="#8847ff">HMTech-301 霰彈槍 | 精英部隊Red</font><br><font color="#8847ff">HMTech-401 突擊步槍 | 精英部隊Red</font><br><font color="#caab05">或是超珍貴的珍貴醫療飾品！</font>"
+MedicEncryptedUSBDescription="需要醫療藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">HMTech-101 手槍 | 精英部隊</font><br><font color="#4b69cd">HMTech-201 突擊步槍 | 精英部隊</font><br><font color="#4b69cd">HMTech-301 霰彈槍 | 精英部隊 </font><br><font color="#4b69cd">HMTech-401 突擊步槍 | 精英部隊</font><br><font color="#6600a1">HMTech-001 手術刀 | 精英部隊</font><br><font color="#6600a1">HMTech 治療道具 | 精英部隊</font><br><font color="#6600a1"> HMTech-101 手槍 | 精英部隊綠</font><br><font color="#6600a1">HMTech-201 突擊步槍 | 精英部隊綠</font><br><font color="#8847ff">HMTech-301 霰彈槍 | 精英部隊紅</font><br><font color="#8847ff">HMTech-401 突擊步槍 | 精英部隊紅</font><br><font color="#caab05">或超稀有的珍貴醫療飾品！</font>"
 
-OlExhibitEncryptedUSBDescription="需要 Ol' Exhibit 藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">L85A2 | 地下車手</font><br><font color="#4b69cd">1858 Revolver | J 地下車手</font><br><font color="#4b69cd">溫徹斯特 1984 | 地下車手</font><br><font color="#4b69cd">9 釐米 | 經典槍手</font><br><font color="#6600a1">9 釐米 | 埋伏槍手</font><br><font color="#6600a1">治療道具 | 舊式</font><br><font color="#8847ff">AA-12 | 凝塊可樂</font><br><font color="#8847ff">微波槍 | 人肉爆米花</font><br><font color="#caab05">或是超珍貴的珍貴 9 釐米飾品！</font>"
+OlExhibitEncryptedUSBDescription="需要Ol' Exhibit藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">L85A2 | 地下車手</font><br><font color="#4b69cd">1858左輪 | 地下車手</font><br><font color="#4b69cd">溫徹斯特1894 | 地下車手</font><br><font color="#4b69cd">9釐米 | 經典槍手</font><br><font color="#6600a1">9釐米 | 埋伏槍手</font><br><font color="#6600a1">治療道具 | 舊式</font><br><font color="#8847ff">AA-12 | 凝塊可樂</font><br><font color="#8847ff">微波槍 | 人肉爆米花</font><br><font color="#caab05">或超稀有的珍貴9釐米飾品！</font>"
 
-PredatorEncryptedUSBDescription="需要掠食者藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">AK-12 | 掠食者</font><br><font color="#4b69cd">HX25 | 掠食者</font><br><font color="#4b69cd">L85A2 | 掠食者</font><br><font color="#4b69cd">SG500 | 掠食者</font><br><font color="#6600a1">粉碎器 | 肉</font><br><font color="#8847ff">AA-12 | 屍體</font><br><font color="#8847ff">HX25 | 椎骨</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+PredatorEncryptedUSBDescription="需要掠食者藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">AK-12 | 掠食者</font><br><font color="#4b69cd">HX25 | 掠食者</font><br><font color="#4b69cd">L85A2 | 掠食者</font><br><font color="#4b69cd">SG500 | 掠食者</font><br><font color="#6600a1">粉碎器 | 肉</font><br><font color="#8847ff">AA-12 | 屍體</font><br><font color="#8847ff">HX25 | 椎骨</font><br><font color="#caab05">或超稀有的珍貴輔助飾品！</font>"
 
-StoriesofWarEncryptedUSBDescription="需要戰爭往事藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品<br><font color="#4b69cd">M4 | 戰爭往事</font><br><font color="#4b69cd">Scar | 戰爭往事</font><br><font color="#4b69cd">龍的呼吸 | 戰爭往事</font><br><font color="#4b69cd">M79 | 戰爭往事</font><br><font color="#6600a1">M79 | Peace Maker</font><br><font color="#8847ff">AA-12 | 戰爭往事</font><br><font color="#8847ff">RPG-7 | 戰爭往事</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+StoriesofWarEncryptedUSBDescription="需要戰爭往事藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">M4 | 戰爭往事</font><br><font color="#4b69cd">傷疤 | 戰爭往事</font><br><font color="#4b69cd">龍的呼吸 | 戰爭往事</font><br><font color="#4b69cd">M79 | 戰爭往事</font><br><font color="#6600a1">M79 | 和平主義者</font><br><font color="#8847ff">AA-12 | 戰爭往事</font><br><font color="#8847ff">RPG-7 | 戰爭往事</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-StreetPunksEncryptedUSBDescription="需要街頭混混藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">9MM | 街頭混混</font><br><font color="#4b69cd">AK-12 | 街頭混混</font><br><font color="#4b69cd">AR15 | 街頭混混</font><br><font color="#4b69cd">裝了就燒 | 街頭混混</font><br><font color="#4b69cd">沙漠之鷹 | 街頭混混</font><br><font color="#4b69cd">KF-BAR | 街頭混混</font><br><font color="#4b69cd">SG500 | 街頭混混</font><br><font color="#6600a1">Scar | 噴漆罐</font><br><font color="#8847ff">AK-12 | 利維坦</font><br><font color="#caab05">或是超珍貴的縱火狂珍貴飾品！</font>"
+StreetPunksEncryptedUSBDescription="需要街頭混混藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">9釐米 | 街頭混混</font><br><font color="#4b69cd">AK-12 | 街頭混混</font><br><font color="#4b69cd">AR15 | 街頭混混</font><br><font color="#4b69cd">裝了就燒 | 街頭混混</font><br><font color="#4b69cd">沙漠之鷹 | 街頭混混</font><br><font color="#4b69cd">KF-BAR | 街頭混混</font><br><font color="#4b69cd">SG500 | 街頭混混</font><br><font color="#6600a1">傷疤 | 噴漆罐</font><br><font color="#8847ff"> AK-12 | 利維坦</font><br><font color="#caab05">或是超稀有的縱火狂珍貴飾品！</font>"
 
-SWATEncryptedUSBDescription="需要 SWAT 藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">9MM | SWAT</font><br><font color="#4b69cd">MB500 | SWAT</font><br><font color="#4b69cd">粉碎器 | SWAT</font><br><font color="#4b69cd">AK-12 | SWAT</font><br><font color="#6600a1">AK-12 | SWAT</font><br><font color="#8847ff">SCAR | SWAT</font><br><font color="#caab05">或是超珍貴的突擊部隊珍貴飾品！</font>"
+SWATEncryptedUSBDescription="需要SWAT藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">9釐米 | SWAT</font><br><font color="#4b69cd">MB500 | SWAT</font><br><font color="#4b69cd">粉碎器 | SWAT</font><br><font color="#4b69cd">AK-12 | SWAT</font><br><font color="#6600a1">AA-12 | SWAT</font><br><font color="#8847ff">傷疤 | SWAT</font><br><font color="#caab05">或是超稀有的突擊部隊飾品！</font>"
 
-TacticalHorzineEncryptedUSBDescription="需要 Horzine 戰略藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">500 馬格南左輪 | 戰略</font><br><font color="#4b69cd">9 釐米 | 戰略</font><br><font color="#4b69cd">AR15 | 戰略</font><br><font color="#4b69cd">沙漠之鷹 | 戰略</font><br><font color="#4b69cd">M1911 | 戰略</font><br><font color="#6600a1">L85A2 | 精英 L85A2 綠</font><br><font color="#6600a1">L85A2 | 精英 L85A2 綠</font><br><font color="#8847ff">L85A2 | 精英 L85A2 紅</font><br><font color="#8847ff">L85A2 | 精英 L85A2 藍</font><br><font color="#caab05">或是超珍貴的槍手珍貴飾品！</font>"
+TacticalHorzineEncryptedUSBDescription="需要Horzine戰略藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">500馬格南左輪 | 戰略</font><br><font color="#4b69cd">9釐米 | 戰略</font><br><font color="#4b69cd">AR15 | 戰略</font><br><font color="#4b69cd">沙漠之鷹 | 戰略</font><br><font color="#4b69cd">M1911 | 戰略</font><br><font color="#6600a1">L85A2 | 精英 L85A2綠</font><br><font color="#6600a1">L85A2 | 精英 L85A2白</font><br><font color="#8847ff">L85A2 | 精英 L85A2紅</font><br><font color="#8847ff">L85A2 | 精英 L85A2藍</font><br><font color="#caab05">或是超稀有的槍手飾品！</font>"
 
-VictorianEncryptedUSBDescription="需要維多利亞藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">小刀 | 維多利亞</font><br><font color="#4b69cd">SG 500 | 維多利亞</font><br><font color="#4b69cd">雙管槍 | 維多利亞</font><br><font color="#4b69cd">M4 | 維多利亞</font><br><font color="#6600a1">AA-12 | 維多利亞</font><br><font color="#8847ff">Scar | 富裕</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+VictorianEncryptedUSBDescription="需要維多利亞鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">輔助刀 | 維多利亞</font><br><font color="#4b69cd">SG 500 | 維多利亞</font><br><font color="#4b69cd">雙管槍 | 維多利亞</font><br><font color="#4b69cd">M4 | 維多利亞</font><br><font color="#6600a1">AA-12 | 維多利亞</font><br><font color="#8847ff">傷疤 | 富裕</font><br><font color="#caab05">或超稀有的珍貴輔助飾品！</font>"
 
-ZedKillerEncryptedUSBDescription="需要 Zed 殺手藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">Scar | 凝塊突擊隊</font><br><font color="#4b69cd">9 釐米 | 腫胖</font><br><font color="#4b69cd">AA-12 | 打肉器</font><br><font color="#4b69cd">VLAD - 1000 釘槍 | 毒蜘蛛</font><br><font color="#6600a1">改造鏟子 | 掘墓人</font><br><font color="#8847ff">SG 500 | 鐵鏽之死</font><br><font color="#8847ff">粉碎器 | 頭骨破壞器</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+ZedKillerEncryptedUSBDescription="需要Zed殺手藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">傷疤 | 凝塊突擊隊</font><br><font color="#4b69cd">9釐米 | 腫胖</font><br><font color="#4b69cd">AA-12 | 打肉器</font><br><font color="#4b69cd">VLAD-1000釘槍 | 毒蜘蛛</font><br><font color="#6600a1">改造鏟子 | 掘墓人</font><br><font color="#8847ff">SG 500 | 鐵鏽之死</font><br><font color="#8847ff">粉碎器 | 頭骨破壞器</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-TacticalMKIIEncryptedUSBDescription="需要戰略MK II藍圖鑰匙才能開啟。內含一個下列稀有或更好的武器塗裝：<br><font color="#4b69cd">AA12 | 戰略</font><br><font color="#4b69cd">AK12 | 戰略</font><br><font color="#4b69cd">L85A2 | 戰略</font><br><font color="#4b69cd">SG500 | 戰略</font><br><font color="#4b69cd">HMTech-401 突擊步槍 | 戰略</font><br><font color="#4b69cd">Scar | 戰略</font><br><font color="#6600a1">沙漠之鷹 | Horzine 精英綠</font><br><font color="#6600a1">沙漠之鷹 | Horzine 精英白</font><br><font color="#8847ff">沙漠之鷹 | Horzine 精英藍</font><br><font color="#8847ff">沙漠之鷹 | Horzine 精英紅</font><br><font color="#caab05">或者極為稀有的珍貴武器塗裝！</font>"
+TacticalMKIIEncryptedUSBDescription="需要戰略MK II藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">AA12 | 戰略</font><br><font color="#4b69cd">AK12 | 戰略</font><br><font color="#4b69cd">L85A2 | 戰略</font><br><font color="#4b69cd">SG500 | 戰略</font><br><font color="#4b69cd">HMTech-401 突擊步槍 | 戰略</font><br><font color="#4b69cd">傷疤 | 戰略</font><br><font color="#6600a1">沙漠之鷹 | Horzine 精英綠</font><br><font color="#6600a1">沙漠之鷹 | Horzine 精英白</font><br><font color="#8847ff">沙漠之鷹 | Horzine 精英綠藍</font><br><font color="#8847ff">沙漠之鷹 | Horzine 精英紅</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-MaceAndShieldEncryptedUSBDescription="需要碎骨者藍圖鑰匙才能開啟。內含一個下列稀有或更好的武器塗裝：<br><font color="#4b69cd">碎骨者 | 巡迴</font><br><font color="#4b69cd">碎骨者 | USA</font><br><font color="#4b69cd">碎骨者 | 僵屍危機</font><br><font color="#4b69cd">碎骨者 | 警示</font><br><font color="#6600a1">碎骨者 | Batcat</font><br><font color="#8847ff">碎骨者 | 斷頭台</font><br><font color="#caab05">或者極為稀有的珍貴武器塗裝！</font>"
+MaceAndShieldEncryptedUSBDescription="需要碎骨者藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">碎骨者 | 巡迴</font><br><font color="#4b69cd">碎骨者 | USA</font><br><font color="#4b69cd">碎骨者 | 僵屍危機</font><br><font color="#4b69cd">碎骨者 | 警示</font><br><font color="#6600a1">碎骨者 | 蝙蝠貓</font><br><font color="#8847ff">碎骨者 | 斷頭台</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-DeepstrikeEncryptedUSBDescription="需要遠程突擊藍圖鑰匙才能開啟。內含一個下列稀有或更好的武器塗裝：<br><font color="#4b69cd">9MM | 遠程突擊</font><br><font color="#4b69cd">十字弓 | 遠程突擊</font><br><font color="#4b69cd">Scar | 遠程突擊</font><br><font color="#4b69cd">沙漠之鷹 | 遠程突擊</font><br><font color="#6600a1">溫徹斯特 1894 | 遠程突擊</font><br><font color="#6600a1">M79 | 遠程突擊</font><br><font color="#6600a1">RPG-7 | 遠程突擊</font><br><font color="#6600a1">Kriss SMG | Horzine 精英綠</font><br><font color="#6600a1">Kriss SMG | Horzine 精英白</font><br><font color="#8847ff">Kriss SMG | Horzine 精英紅</font><br><font color="#8847ff">Kriss SMG | Horzine 精英藍</font><br><font color="#caab05">或者極為稀有的珍貴武器塗裝！</font>"
+DeepstrikeEncryptedUSBDescription="需要遠程突擊藍圖鑰匙才能開啟每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">9釐米 | 遠程突擊</font><br><font color="#4b69cd">十字弓 | 遠程突擊</font><br><font color="#4b69cd">傷疤 | 遠程突擊</font><br><font color="#4b69cd">沙漠之鷹 | 遠程突擊</font><br><font color="#6600a1">溫徹斯特1894 | 遠程突擊</font><br><font color="#6600a1">M79 | 遠程突擊</font><br><font color="#6600a1">RPG-7 | 遠程突擊</font><br><font color="#6600a1">Kriss SMG | Horzine精英綠</font><br><font color="#6600a1">Kriss SMG | Horzine 精英白</font><br><font color="#8847ff">Kriss SMG | Horzine 精英紅</font><br><font color="#8847ff">Kriss SMG | Horzine 精英藍</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-HighVoltageEncryptedUSBDescription="需要高電壓藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">十字弓 | 工業</font><br><font color="#4b69cd">500 馬格南左輪 | 工業</font><br><font color="#4b69cd">M14 EBR | 工業</font><br><font color="#4b69cd">MP5RAS | 工業</font><br><font color="#6600a1">MP7 | 電鑽</font><br><font color="#6600a1">Kriss SMG | Shredder</font><br><font color="#8847ff">P90 | 齒輪鋸</font><br><font color="#8847ff">軌道槍 | 高電壓</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+HighVoltageEncryptedUSBDescription="需要高電壓藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">十字弓 | 工業</font><br><font color="#4b69cd">500馬格南左輪 | 工業</font><br><font color="#4b69cd">M14EBR | 工業</font><br><font color="#4b69cd">MP5RAS | 工業</font><br><font color="#6600a1">MP7 | 電鑽</font><br><font color="#6600a1">克里斯突擊步槍 | 碎紙機</font><br><font color="#8847ff">P90 | 齒輪鋸</font><br><font color="#8847ff">軌道槍 | 高電壓</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-FlarePistolEncryptedUSBDescription="需要火槍藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">火槍 | 藍焰</font><br><font color="#4b69cd">火槍 | 橘焰</font><br><font color="#4b69cd">火槍 | 紅焰</font><br><font color="#4b69cd">火槍 | 數位相機橘</font><br><font color="#6600a1">火槍 | 斷頭台</font><br><font color="#6600a1">火槍 | 鯉魚</font><br><font color="#8847ff">火槍 | 陶瓷</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+FlarePistolEncryptedUSBDescription="需要火槍藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">火槍 | 藍焰</font><br><font color="#4b69cd">火槍 | 橘焰</font><br><font color="#4b69cd">火槍 | 紅焰</font><br><font color="#4b69cd">火槍 | 數位相機橘</font><br><font color="#6600a1">火槍 | 斷頭台</font><br><font color="#6600a1">火槍 | 鯉魚</font><br><font color="#8847ff">火槍 | 陶瓷</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-VietnamEncryptedUSBDescription="需要越南藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">溫徹斯特1894 | 越南</font><br><font color="#4b69cd">RPG-7 | 越南</font><br><font color="#4b69cd">M1911 | 越南</font><br><font color="#4b69cd">L85A2 | 越南</font><br><font color="#4b69cd">M4 | 越南</font><br><font color="#6600a1">AK12 | V越南</font><br><font color="#6600a1">M14EBR | 越南</font><br><font color="#8847ff">M16 M203 | 越南</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+VietnamEncryptedUSBDescription="需要越南藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">溫徹斯特1894 | 越南</font><br><font color="#4b69cd">RPG-7 | 越南</font><br><font color="#4b69cd">M1911 | 越南</font><br><font color="#4b69cd">L85A2 | 越南</font><br><font color="#4b69cd">M4 | 越南</font><br><font color="#6600a1">AK12 | V越南</font><br><font color="#6600a1">M14EBR | 越南</font><br><font color="#8847ff">M16 M203 | 越南</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-JunkyardEncryptedUSBDescription="需要垃圾場藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">M4 | 垃圾場</font><br><font color="#4b69cd">AK12 | 垃圾場</font><br><font color="#4b69cd">Kriss SMG | 垃圾場</font><br><font color="#4b69cd">MP5RAS | 垃圾場</font><br><font color="#4b69cd">溫徹斯特 1894 | 垃圾場</font><br><font color="#4b69cd">L85A2 | 垃圾場</font><br><font color="#6600a1">M14EBR | 垃圾場</font><br><font color="#6600a1">AA12 | 垃圾場</font><br><font color="#8847ff">M16 M203 | 垃圾場</font><br><font color="#8847ff">Scar | 垃圾場</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+JunkyardEncryptedUSBDescription="需要垃圾場藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">M4 | 垃圾場</font><br><font color="#4b69cd">AK12 | 垃圾場</font><br><font color="#4b69cd">克里斯突擊步槍 | 垃圾場</font><br><font color="#4b69cd">MP5RAS | 垃圾場</font><br><font color="#4b69cd">溫徹斯特1894 | 垃圾場</font><br><font color="#4b69cd">L85A2 | 垃圾場</font><br><font color="#6600a1">M14EBR | 垃圾場</font><br><font color="#6600a1">AA12 | 垃圾場</font><br><font color="#8847ff">M16 M203 | 垃圾場</font><br><font color="#8847ff">傷疤 | 垃圾場</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-NeonEncryptedUSBDescription="需要 Neon 藍圖鑰匙才能開啟。包含一個珍貴或更高級的下列武器飾品：<br><font color="#4b69cd">SG 500 | 霓虹n</font><br><font color="#4b69cd">軌道槍 | 霓虹</font><br><font color="#4b69cd">RPG-7 | 霓虹</font><br><font color="#4b69cd">Scar | 霓虹</font><br><font color="#4b69cd">M1911 | 霓虹</font><br><font color="#4b69cd">日本刀 | 霓虹</font><br><font color="#4b69cd">龍的呼吸 | 霓虹</font><br><font color="#4b69cd">克里斯突擊步槍 | 霓虹</font><br><font color="#6600a1">MP5RAS | Horzine 精英白</font><br><font color="#6600a1">MP5RAS | Horzine 精英綠</font><br><font color="#8847ff">MP5RAS | Horzine 精英黑</font><br><font color="#8847ff">MP5RAS | Horzine 精英藍</font><br><font color="#8847ff">MP5RAS | Horzine 精英紅</font><br><font color="#caab05">或超珍貴的珍貴武器飾品！</font>"
+NeonEncryptedUSBDescription="需要霓虹藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">SG 500 | 霓虹</font><br><font color="#4b69cd">軌道槍 | 霓虹</font><br><font color="#4b69cd">RPG-7 | 霓虹</font><br><font color="#4b69cd">傷疤 | 霓虹</font><br><font color="#4b69cd">M1911 | 霓虹</font><br><font color="#4b69cd">日本刀 | 霓虹</font><br><font color="#4b69cd">龍息 | 霓虹</font><br><font color="#4b69cd">克里斯突擊步槍 | 霓虹</font><br><font color="#6600a1">MP5RAS | Horzine精英白</font><br><font color="#6600a1">MP5RAS | Horzine精英綠</font><br><font color="#8847ff">MP5RAS | Horzine精英黑</font><br><font color="#8847ff">MP5RAS | Horzine精英藍</font><br><font color="#8847ff">MP5RAS | Horzine精英紅</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-WeaponCollectorPack1EncryptedUSBDescription="需要武器收集者包 1 藍圖鑰匙才能打開。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">改造鏟子 | 黑金</font><br><font color="#4b69cd">9MM | 黑金</font><br><font color="#4b69cd">VLAD-1000 釘槍 | 黑金</font><br><font color="#4b69cd">龍的呼吸 | Heirloom</font><br><font color="#4b69cd">火槍 | Heirloom</font><br><font color="#4b69cd">M1911 | Heirloom</font><br><font color="#4b69cd">1858 左輪 | Heirloom</font><br><font color="#4b69cd">RPG-7 | Heirloom</font><br><font color="#4b69cd">溫徹斯特1894 | Heirloom</font><br><font color="#6600a1">日本刀 | 黑金</font><br><font color="#6600a1">剔骨器 | 黑金</font><br><font color="#6600a1">雙手劍 | 黑金</font><br><font color="#6600a1">粉碎器 | 黑金</font><br><font color="#8847ff">HMTech 治療道具 | 黑金</font><br><font color="#8847ff">焊槍 | 黑金</font><br><font color="#8847ff">戰士刀 | 黑金</font><br><font color="#caab05">超珍貴的珍貴的飾品！</font>"
+WeaponCollectorPack1EncryptedUSBDescription="需要武器收集者包1藍圖鑰匙才能打開，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">改造鏟子 | 黑金</font><br><font color="#4b69cd">9釐米 | 黑金</font><br><font color="#4b69cd">VLAD-1000釘槍 | 黑金</font><br><font color="#4b69cd">龍息 | 傳世</font><br><font color="#4b69cd">火槍 | 傳世</font><br><font color="#4b69cd">M1911 | 傳世</font><br><font color="#4b69cd">1858左輪 | 傳世</font><br><font color="#4b69cd">RPG-7 | 傳世</font><br><font color="#4b69cd">溫徹斯特1894 | 傳世</font><br><font color="#6600a1">日本刀 | 黑金</font><br><font color="#6600a1">剔骨器 | 黑金</font><br><font color="#6600a1">雙手劍 | 黑金</font><br><font color="#6600a1">粉碎器 | 黑金</font><br><font color="#8847ff">HMTech 治療道具 | 黑金</font><br><font color="#8847ff">焊槍 | 黑金</font><br><font color="#8847ff">戰士刀 | 黑金</font><br><font color="#caab05">或超稀有的珍貴！</font>"
 
-NeonMKIIEncryptedUSBDescription="需要霓虹燈 MKII 藍圖密鑰才能打開。包含以下一種稀有或更佳品質武器造型：<br><font color="#4b69cd">血紅蛋白|霓虹燈</font><br><font color="#4b69cd">M14EBR| 霓虹燈</font><br><font color="#4b69cd">追尋著六號|霓虹燈</font><br><font color="#4b69cd">斯通納63A| 霓虹燈</font><br><font color="#4b69cd">黑克勒&科赫 UMP|霓虹燈</font><br><font color="#4b69cd">HMTech-101 手槍|Horzine 精英藍</font><br><font color="#4b69cd">HMTech-101 手槍|Horzine 精英綠</font><br><font color="#4b69cd">HMTech-101 手槍|Horzine 精英白</font><br><font color="#6600a1">火焰噴射器 |霓虹燈</font><br><font color="#6600a1">微波砲| 霓虹燈</font><br><font color="#8847ff">AA12 | 霓虹燈</font><br><font color="#8847ff">HMTech-101 手槍 | Horzine 精英黑</font><br><font color="#8847ff">HMTech-101 手槍| Horzine 精英紅</font><br><font color="#caab05">或者一款極其罕見的珍貴造型!</font>"
+NeonMKIIEncryptedUSBDescription="需要霓虹MKII藍圖密鑰才能打開，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">血紅蛋白 | 霓虹</font><br><font color="#4b69cd">M14EBR | 霓虹</font><br><font color="#4b69cd">追尋著六號 | 霓虹</font><br><font color="#4b69cd">斯通納63A | 霓虹</font><br><font color="#4b69cd">黑克勒&科赫 UMP | 霓虹</font><br><font color="#4b69cd">HMTech-101手槍 | Horzine 精英藍</font><br><font color="#4b69cd">HMTech-101手槍 | Horzine 精英綠</font><br><font color="#4b69cd">HMTech-101手槍 | Horzine 精英白</font><br><font color="#6600a1">火焰噴射器 | 霓虹</font><br><font color="#6600a1">微波砲| 霓虹</font><br><font color="#8847ff">AA12 | 霓虹</font><br><font color="#8847ff">HMTech-101手槍 | Horzine 精英黑</font><br><font color="#8847ff">HMTech-101手槍 | Horzine 精英紅</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-BluefireEncryptedUSBDescription="需要藍焰藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">AK12 | 藍焰</font><br><font color="#4b69cd">M1911 | 藍焰</font><br><font color="#4b69cd">M4 | 藍焰</font><br><font color="#4b69cd">M79 | 藍焰</font><br><font color="#4b69cd">MP7 | 藍焰</font><br><font color="#4b69cd">VLAD-1000 釘槍 | 藍焰</font><br><font color="#4b69cd">短管霰彈槍 | Horzine 初次相遇</font><br><font color="#4b69cd">HZ12 | Horzine 初次相遇</font><br><font color="#4b69cd">M79 | Horzine 初次相遇</font><br><font color="#4b69cd">MP5RAS | Horzine 初次相遇</font><br><font color="#6600a1">冰凍噴射器 | 藍焰</font><br><font color="#6600a1">軌道槍 | 藍焰</font><br><font color="#6600a1">追尋者六號 | 藍焰</font><br><font color="#6600a1">Kriss 衝鋒槍 | Horzine 初次相遇</font><br><font color="#6600a1">RPG-7 | Horzine 初次相遇</font><br><font color="#6600a1">傷疤 | Horzine 初次相遇</font><br><font color="#8847ff">中心底火 | 藍焰</font><br><font color="#8847ff">血紅蛋白 | 藍焰</font><br><font color="#8847ff">RPG-7 | 藍焰</font><br><font color="#8847ff">AK12 | Horzine 初次相遇</font><br><font color="#8847ff">中心底火 | Horzine 初次相遇</font><br><font color="#8847ff">M14EBR | Horzine 初次相遇</font><br><font color="#8847ff">MAC 10 | Horzine 初次相遇</font><br><font color="#8847ff">黑克勒&科赫 UMP | Horzine 初次相遇</font><br><font color="#caab05">或者一件非常稀有的飾品！</font>"
+BluefireEncryptedUSBDescription="需要藍焰藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">AK12 | 藍焰</font><br><font color="#4b69cd">M1911 | 藍焰</font><br><font color="#4b69cd">M4 | 藍焰</font><br><font color="#4b69cd">M79 | 藍焰</font><br><font color="#4b69cd">MP7 | 藍焰</font><br><font color="#4b69cd">VLAD-1000釘槍 | 藍焰</font><br><font color="#4b69cd">短管霰彈槍 | Horzine初次相遇</font><br><font color="#4b69cd">HZ12 | Horzine初次相遇</font><br><font color="#4b69cd">M79 | Horzine初次相遇</font><br><font color="#4b69cd">MP5RAS | Horzine初次相遇</font><br><font color="#6600a1">冰凍噴射器 | 藍焰</font><br><font color="#6600a1">軌道槍 | 藍焰</font><br><font color="#6600a1">追尋者六號 | 藍焰</font><br><font color="#6600a1">克里斯突擊步槍 | Horzine初次相遇</font><br><font color="#6600a1">RPG-7 | Horzine初次相遇</font><br><font color="#6600a1">傷疤 | Horzine初次相遇</font><br><font color="#8847ff">中心底火 | 藍焰</font><br><font color="#8847ff">血紅蛋白 | 藍焰</font><br><font color="#8847ff">RPG-7 | 藍焰</font><br><font color="#8847ff">AK12 | Horzine初次相遇</font><br><font color="#8847ff">中心底火 | Horzine初次相遇</font><br><font color="#8847ff">M14EBR | Horzine初次相遇</font><br><font color="#8847ff">MAC 10 | Horzine初次相遇</font><br><font color="#8847ff">黑克勒&科赫 UMP | Horzine初次相遇</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-NeonMKIIIEncryptedUSBDescription="需要 Neon MKIII藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">9MM | 霓虹</font><br><font color="#4b69cd"> 中心底火| 霓虹</font><br><font color="#4b69cd"> 焦驅砲 | 霓虹</font><br><font color="#6600a1"> AF2011-A1| 霓虹</font><br><font color="#6600a1">末日預言者| 霓虹</font><br><font color="#6600a1"> M99 | 霓虹</font><br><font color="#8847ff"> AK-12 | 霓虹</font><br><font color="#8847ff">M16 M203  | 霓虹</font><br><font color="#8847ff">P90 | 霓虹</font><br><font color="#8847ff">靜電打擊者 | 霓虹</font><br><font color="#caab05">或者一件非常稀有的飾品！</font>"
+NeonMKIIIEncryptedUSBDescription="需要霓虹MKIII藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">9釐米 | 霓虹</font><br><font color="#4b69cd">中心底火| 霓虹</font><br><font color="#4b69cd">焦驅砲 | 霓虹</font><br><font color="#6600a1">AF2011-A1| 霓虹</font><br><font color="#6600a1">末日預言者| 霓虹</font><br><font color="#6600a1">M99 | 霓虹</font><br><font color="#8847ff">AK12 | 霓虹</font><br><font color="#8847ff">M16 M203 | 霓虹</font><br><font color="#8847ff">P90 | 霓虹</font><br><font color="#8847ff">靜電打擊者 | 霓虹</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-NeonMKIVEncryptedUSBDescription="需要 霓虹 MKIV 藍圖鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">HMTech-101 手槍｜霓虹</font><br><font color="#4b69cd">M4｜霓虹</font><br><font color="#6600a1">HMTech-301 霰彈槍｜霓虹</font><br><font color="#6600a1">HMTech-401 突擊步槍｜霓虹</font><br><font color="#6600a1">HMTech-501 榴彈步槍｜霓虹</font><br><font color="#6600a1">碎骨者｜霓虹</font><br><font color="#8847ff">HMTech-201 衝鋒槍｜霓虹</font><br><font color="#8847ff">Mkb.42｜霓虹</font><br><font color="#8847ff">點 500 馬格南左輪｜霓虹</font><br><font color="#8847ff">冰凍噴射器｜霓虹</font><br><font color="#caab05">或是一樣超珍貴的飾品！</font>"
+NeonMKIVEncryptedUSBDescription="需要霓虹MKIV藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">HMTech-101手槍 | 霓虹</font><br><font color="#4b69cd">M4 | 霓虹</font><br><font color="#6600a1">HMTech-301霰彈槍 | 霓虹</font><br><font color="#6600a1">HMTech-401突擊步槍 | 霓虹</font><br><font color="#6600a1">HMTech-501榴彈步槍 | 霓虹</font><br><font color="#6600a1">碎骨者｜霓虹</font><br><font color="#8847ff">HMTech-201衝鋒槍｜霓虹</font><br><font color="#8847ff">Mkb.42 | 霓虹</font><br><font color="#8847ff">500馬格南左輪｜霓虹</font><br><font color="#8847ff">冰凍噴射器｜霓虹</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-DragonwaveEncryptedUSBDescription="需要龍波藍圖鑰匙才能打開。內含下列其中一個稀有或更好的武器飾品：<br><font color="#4b69cd">9mm | 合成器浪潮</font><br><font color="#4b69cd">HMTech 治療道具 | 合成器浪潮</font><br><font color="#4b69cd">粉碎器 | 合成器浪潮</font><br><font color="#4b69cd">9mm | 太極 </font><br><font color="#6600a1">Ak12 | 合成器浪潮</font><br><font color="#6600a1">沙漠之鷹 | 合成器浪潮</font><br><font color="#6600a1">Scar | 合成器浪潮</font><br><font color="#6600a1">短管霰彈槍 | 太極 </font><br><font color="#6600a1">龍的呼吸 | 太極 </font><br><font color="#6600a1">日本刀 | 太極 </font><br><font color="#6600a1">M79 | 太極 </font><br><font color="#6600a1">500 馬格南左輪 | 太極</font><br><font color="#8847ff">克里斯衝鋒槍 | 合成器浪潮</font><br><font color="#8847ff">M1911 | 太極 </font><br><font color="#8847ff">溫徹斯特 1894 | 太極</font>"
+DragonwaveEncryptedUSBDescription="需要龍波藍圖鑰匙才能打開，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">9釐米 | 合成器浪潮</font><br><font color="#4b69cd">HMTech治療道具 | 合成器浪潮</font><br><font color="#4b69cd">粉碎器 | 合成器浪潮</font><br><font color="#4b69cd">9釐米 | 太極</font><br><font color="#6600a1">Ak12 | 合成器浪潮</font><br><font color="#6600a1">沙漠之鷹 | 合成器浪潮</font><br><font color="#6600a1">傷疤 | 合成器浪潮</font><br><font color="#6600a1">短管霰彈槍 | 太極</font><br><font color="#6600a1">龍息 | 太極</font><br><font color="#6600a1">日本刀 | 太極</font><br><font color="#6600a1">M79 | 太極</font><br><font color="#6600a1">500馬格南左輪 | 太極</font><br><font color="#8847ff">克里斯衝鋒槍 | 合成器浪潮</font><br><font color="#8847ff">M1911 | 太極</font><br><font color="#8847ff">溫徹斯特1894 | 太極</font>"
 
-NeonMKVEncryptedUSBDescription="需要霓虹 MKV 藍圖鑰匙才能打開。內含下列其中一個稀有或更好的武器飾品：<br><font color="#4b69cd">AR15 | 霓虹</font><br><font color="#4b69cd">C4 | 霓虹</font><br><font color="#4b69cd">火斧 | 霓虹</font><br><font color="#4b69cd">MP7| 霓虹</font><br><font color="#6600a1">十字弓 | 霓虹</font><br><font color="#6600a1">沙漠之鷹 | 霓虹</font><br><font color="#8847ff">戰斧 | 霓虹</font><br><font color="#8847ff">FN FAL | 霓虹</font><br><font color="#8847ff">湯普森衝鋒槍 | 霓虹</font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
+NeonMKVEncryptedUSBDescription="需要霓虹MKV藍圖鑰匙才能打開，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">AR15 | 霓虹</font><br><font color="#4b69cd">C4 | 霓虹</font><br><font color="#4b69cd">火斧 | 霓虹</font><br><font color="#4b69cd">MP7| 霓虹</font><br><font color="#6600a1">十字弓 | 霓虹</font><br><font color="#6600a1">沙漠之鷹 | 霓虹</font><br><font color="#8847ff">戰斧 | 霓虹</font><br><font color="#8847ff">FN FAL | 霓虹</font><br><font color="#8847ff">湯普森衝鋒槍 | 霓虹</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-SteampunkEncryptedUSBDescription="需要蒸汽龐克藍圖鑰匙才能開啟。包含下列一樣稀有級以上的武器飾品：<br><font color="#4b69cd">湯普森衝鋒槍 | 蒸汽龐克</font><br><font color="#4b69cd">溫徹斯特 1894 | 蒸汽龐克</font><br><font color="#4b69cd">MP5RAS | 蒸汽龐克</font><br><font color="#6600a1">龍息 | 蒸汽龐克</font><br><font color="#6600a1">M79 | 蒸汽龐克</font><br><font color="#6600a1">雙手劍 | 蒸汽龐克</font><br><font color="#6600A1">MAC 10 | 蒸汽龐克</font><br><font color="#8847ff">500 馬格南左輪 | 蒸汽龐克</font><br><font color="#8847ff">AA12 | 蒸汽龐克</font><br><font color="#8847ff">M99 | 蒸汽龐克</font><br><font color="#8847ff">沙漠之鷹 | 蒸汽龐克</font><br><font color="#caab05">或者一款極其罕見的珍貴飾品！</font>"
+SteampunkEncryptedUSBDescription="需要蒸汽龐克藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">湯普森衝鋒槍 | 蒸汽龐克</font><br><font color="#4b69cd">溫徹斯特1894 | 蒸汽龐克</font><br><font color="#4b69cd">MP5RAS | 蒸汽龐克</font><br><font color="#6600a1">龍息 | 蒸汽龐克</font><br><font color="#6600a1">M79 | 蒸汽龐克</font><br><font color="#6600a1">雙手劍 | 蒸汽龐克</font><br><font color="#6600A1">MAC10 | 蒸汽龐克</font><br><font color="#8847ff">500馬格南左輪 | 蒸汽龐克</font><br><font color="#8847ff">AA12 | 蒸汽龐克</font><br><font color="#8847ff">M99 | 蒸汽龐克</font><br><font color="#8847ff">沙漠之鷹 | 蒸汽龐克</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-BeyondHorizonEncryptedUSBDescription="需要超越地平線藍圖鑰匙才能開啟。包含以下珍貴或更好的武器飾品：<br><font color="#4b69cd">靜電打擊者 | 超越地平線</font><br><font color="#4b69cd">HMTech-101手槍 | 超越地平線 </font><br><font color="#4b69cd">HMTech-201衝鋒槍 | 超越地平線</font><br><font color="#4b69cd">HMTech-301散彈槍 | 超越地平線 </font><br><font color="#4b69cd">HMTech-401突擊步槍 | 超越地平線 </font><br><font color="#6600a1">RPG-7 | 超越地平線 </font><br><font color="#6600a1">火焰噴射器 | 超越地平線 </font><br><font color="#6600a1">Scar突擊步槍 | 超越地平線</font><br><font color="#8847ff">克里斯衝鋒槍 | 超越地平線</font><br><font color="#8847ff">M99 | 超越地平線</font><br><font color="#8847ff">赫利奧斯步槍 | 超越地平線 </font><br><font color="#8847ff">雷霆殺手 | 超越地平線 </font><br><font color="#8847ff">粉碎器 | 超越地平線 </font><br><font color="#caab05">或1件特別珍貴的飾品！</font>"
+BeyondHorizonEncryptedUSBDescription="需要超越地平線藍圖鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font> <br><font color="#4b69cd">靜電打擊者 | 超越地平線</font><br><font color="#4b69cd">HMTech-101手槍 | 超越地平線 </font><br><font color="#4b69cd">HMTech-201衝鋒槍 | 超越地平線 </font><br><font color="#4b69cd">HMTech-301霰彈槍 | 超越地平線</font><br><font color="#4b69cd">HMTech-401突擊步槍 | 超越地平線</font><br><font color="#6600a1">RPG-7 | 超越地平線</font><br><font color="#6600a1">火焰噴射器 | 超越地平線</font><br><font color="#6600a1">傷疤突擊步槍 | 超越地平線</font><br><font color="#8847ff">克里斯衝鋒槍 | 超越地平線</font><br><font color="#8847ff">M99 | 超越地平線</font><br><font color="#8847ff">赫利奧斯步槍 | 超越地平線</font><br><font color="#8847ff">雷霆殺手 | 超越地平線</font><br><font color="#8847ff">粉碎器 | 超越地平線</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-JaegerEncryptedUSBDescription="需要獵人藍圖鑰匙才能打開。內含下列其中一個稀有或更好的武器飾品：<br><font color="#4b69cd">克里斯 | 獵人</font><br><font color="#4b69cd">P90 | 獵人</font><br><font color="#4b69cd">粉碎器 | 獵人</font><br><font color="#4b69cd">血紅蛋白 | 獵人</font><br><font color="#6600a1">Scar | 獵人</font><br><font color="#6600a1">沙漠之鷹| 獵人</font><br><font color="#6600A1">FN FAL | 獵人</font><br><font color="#6600A1">微波砲 | 獵人</font><br><font color="#8847ff">末日預言者 | 獵人</font><br><font color="#8847ff">赫利奧斯步槍 | 獵人</font><br><font color="#8847ff">雷霆殺手 | 獵人</font><br><font color="#caab05">或者極為稀有的珍貴飾品！</font>"
+JaegerEncryptedUSBDescription="需要獵人藍圖鑰匙才能打開，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font> <br><font color="#4b69cd">克里斯突擊步槍 | 獵人</font><br><font color="#4b69cd">P90 | 獵人</font><br><font color="#4b69cd">粉碎器 | 獵人</font><br><font color="#4b69cd">血紅蛋白 | 獵人</font><br><font color="#6600a1">傷疤 | 獵人</font><br><font color="#6600a1">沙漠之鷹| 獵人</font><br><font color="#6600A1">FN FAL | 獵人</font><br><font color="#6600A1">微波砲 | 獵人</font><br><font color="#8847ff"> 末日預言者 | 獵人</font><br><font color="#8847ff">赫利奧斯步槍 | 獵人</font><br><font color="#8847ff">雷霆殺手 | 獵人</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
 
 ;usb key names
@@ -1035,15 +1091,15 @@ HorzineSupplyCosmeticCrateSeries1Description="需要 Horzine 補給箱子鑰匙�
 
 HorzineSupplyCosmeticCrateSeries2Description="需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">戰略帽</font><br><font color="#4b69cd">戰略面具</font><br><font color="#4b69cd">戰略耳機 MK1 / MK2</font><br><font color="#6600a1">頭帶</font><br><font color="#4b69cd">GS9 頭盔</font><br><font color="#6600a1">GS9 面罩</font><br><font color="#8847ff">俄羅斯軍用眼鏡</font><br><font color="#caab05">俄羅斯軍盔</font><br><font color="#8847ff">俄羅斯軍用面具</font><br><font color="#8847ff">或是超珍貴的珍貴配件！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries1Description="需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">Scar | 凝塊突擊隊</font><br><font color="#4b69cd">9 釐米 | 腫胖</font><br><font color="#4b69cd">AA-12 | 打肉器</font><br><font color="#4b69cd">VLAD - 1000 釘槍 | 毒蜘蛛</font><br><font color="#6600a1">改造鏟子 | 掘墓人</font><br><font color="#8847ff">SG 500 | 鐵鏽之死</font><br><font color="#8847ff">粉碎器 | 頭骨破壞器</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries1Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">傷疤 | 凝塊突擊隊</font><br><font color="#4b69cd">9釐米 | 腫胖</font><br><font color="#4b69cd">AA-12 | 打肉器</font><br><font color="#4b69cd">VLAD-1000釘槍 | 毒蜘蛛</font><br><font color="#6600a1">改造鏟子 | 掘墓人</font><br><font color="#8847ff">SG 500 | 鐵鏽之死</font><br><font color="#8847ff">粉碎器 | 頭骨破壞器</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries2Description="需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">L85A2 | 地下車手</font><br><font color="#4b69cd">1858 Revolver | J 地下車手</font><br><font color="#4b69cd">溫徹斯特 1984 | 地下車手</font><br><font color="#4b69cd">9 釐米 | 經典槍手</font><br><font color="#6600a1">9 釐米 | 埋伏槍手</font><br><font color="#6600a1">治療道具 | 舊式</font><br><font color="#8847ff">AA-12 | 凝塊可樂</font><br><font color="#8847ff">微波槍 | 人肉爆米花</font><br><font color="#caab05">或是超珍貴的珍貴 9 釐米飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries2Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">L85A2 | 地下車手</font><br><font color="#4b69cd">1858左輪 | 地下車手</font><br><font color="#4b69cd">溫徹斯特1894 | 地下車手</font><br><font color="#4b69cd">9釐米 | 經典槍手</font><br><font color="#6600a1"> 9釐米 | 埋伏槍手</font><br><font color="#6600a1">治療道具 | 舊式</font><br><font color="#8847ff">AA-12 | 凝塊可樂</font><br><font color="#8847ff">微波槍 | 人肉爆米花</font><br><font color="#caab05">或超稀有的珍貴 9 釐米飾品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries3Description="需要 Horzine 補給箱子鑰匙才能開啟。內含一個下列稀有或更好的武器塗裝：<br><font color="#4b69cd">碎骨者 | 巡迴</font><br><font color="#4b69cd">碎骨者 | USA</font><br><font color="#4b69cd">碎骨者 | 僵屍危機</font><br><font color="#4b69cd">碎骨者 | 警示</font><br><font color="#6600a1">碎骨者 | Batcat</font><br><font color="#8847ff">碎骨者 | 斷頭台</font><br><font color="#caab05">或者極為稀有的珍貴武器塗裝！</font>"
+HorzineSupplyWeaponSkinCrateSeries3Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">碎骨者 | 巡迴</font><br><font color="#4b69cd">碎骨者 | USA</font><br><font color="#4b69cd">碎骨者 | 僵屍危機</font><br><font color="#4b69cd">碎骨者 | 警示</font><br><font color="#6600a1">碎骨者 | 蝙蝠貓</font><br><font color="#8847ff">碎骨者 | 斷頭台</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries4Description="需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">火槍 | 藍焰</font><br><font color="#4b69cd">火槍 | 橘焰</font><br><font color="#4b69cd">火槍 | 紅焰</font><br><font color="#4b69cd">火槍 | 數位相機橘</font><br><font color="#6600a1">火槍 | 斷頭台</font><br><font color="#6600a1">火槍 | 鯉魚</font><br><font color="#8847ff">火槍 | 陶瓷</font><br><font color="#caab05">或是超珍貴的珍貴飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries4Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">火槍 | 藍焰</font><br><font color="#4b69cd">火槍 | 橘焰</font><br><font color="#4b69cd">火槍 | 紅焰</font><br><font color="#4b69cd">火槍 | 數位相機橘</font><br><font color="#6600a1">火槍 | 斷頭台</font><br><font color="#6600a1">火槍 | 鯉魚</font><br><font color="#8847ff">火槍 | 陶瓷</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries5Description="需要 Horzine 補給箱子鑰匙才能開啟。包含一個珍貴或更高級的下列武器飾品：<br><font color="#4b69cd">SG 500 | 霓虹n</font><br><font color="#4b69cd">軌道槍 | 霓虹</font><br><font color="#4b69cd">RPG-7 | 霓虹</font><br><font color="#4b69cd">Scar | 霓虹</font><br><font color="#4b69cd">M1911 | 霓虹</font><br><font color="#4b69cd">日本刀 | 霓虹</font><br><font color="#4b69cd">龍的呼吸 | 霓虹</font><br><font color="#4b69cd">克里斯突擊步槍 | 霓虹</font><br><font color="#6600a1">MP5RAS | Horzine 精英白</font><br><font color="#6600a1">MP5RAS | Horzine 精英綠</font><br><font color="#8847ff">MP5RAS | Horzine 精英黑</font><br><font color="#8847ff">MP5RAS | Horzine 精英藍</font><br><font color="#8847ff">MP5RAS | Horzine 精英紅</font><br><font color="#caab05">或超珍貴的珍貴武器飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries5Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">SG 500 | 霓虹</font><br><font color="#4b69cd">軌道槍 | 霓虹</font><br><font color="#4b69cd">RPG-7 | 霓虹</font><br><font color="#4b69cd">傷疤 | 霓虹</font><br><font color="#4b69cd">M1911 | 霓虹</font><br><font color="#4b69cd">日本刀 | 霓虹</font><br><font color="#4b69cd">龍息 | 霓虹</font><br><font color="#4b69cd">克里斯突擊步槍 | 霓虹</font><br><font color="#6600a1">MP5RAS | Horzine精英白</font><br><font color="#6600a1">MP5RAS | Horzine精英綠</font><br><font color="#8847ff">MP5RAS | Horzine精英黑</font><br><font color="#8847ff">MP5RAS | Horzine精英藍</font><br><font color="#8847ff">MP5RAS | Horzine精英紅</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
 HorzineSupplyCosmeticCrateSeries3Description="需要 Horzine 補給箱子鑰匙才能開啟。包含一個珍貴或更高級的下列物品：<br><font color="#4b69cd">熊</font><br><font color="#4b69cd">乳牛</font><br><font color="#4b69cd">狗</font><br><font color="#4b69cd">狐狸</font><br><font color="#4b69cd">馬</font><br><font color="#4b69cd">豬</font><br><font color="#4b69cd">雞</font><br><font color="#6600a1">雞</font><br><font color="#6600a1">貓</font><br><font color="#6600a1">山羊</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
 
@@ -1057,21 +1113,21 @@ HorzineSupplyCosmeticCrateSeries4Description="需要 Horzine 補給箱子鑰匙�
 
 HorzineSupplyCosmeticCrateSeries5Description="需要Horzine 補給箱子密鑰才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">遠程突擊頭盔</font><br><font color="#4b69cd">遠程突擊護目鏡</font><br><font color="#4b69cd">遠程突擊面罩</font><br><font color="#6600a1">遠程突擊頭盔面罩</font><br><font color="#8847ff">遠程突擊戰略背包</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries6Description="需要Horzine 補給箱子密鑰才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">9MM | 遠程突擊</font><br><font color="#4b69cd">十字弓 | 遠程突擊</font><br><font color="#4b69cd">Scar | 遠程突擊</font><br><font color="#4b69cd">沙漠之鷹手槍 | 遠程突擊</font><br><font color="#6600a1">溫徹斯特 1894 | 遠程突擊</font><br><font color="#6600a1">M79 | 遠程突擊</font><br><font color="#6600a1">RPG-7 | 遠程突擊</font><br><font color="#6600a1">Kriss 衝鋒槍 | Horzine 精英綠</font><br><font color="#6600a1">Kriss SMG | Horzine 精英白</font><br><font color="#8847ff">Kriss SMG | Horzine 精英紅</font><br><font color="#8847ff">Kriss SMG | Horzine 精英藍 Kriss SMG</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
+HorzineSupplyWeaponSkinCrateSeries6Description="需要Horzine 補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">9釐米 | 遠程突擊</font><br><font color="#4b69cd">十字弓 | 遠程突擊</font><br><font color="#4b69cd">傷疤 | 遠程突擊</font><br><font color="#4b69cd">沙漠之鷹 | 遠程突擊</font><br><font color="#6600a1">溫徹斯特1894 | 遠程突擊</font><br><font color="#6600a1">M79 | 遠程突擊</font><br><font color="#6600a1">RPG-7 | 遠程突擊</font><br><font color="#6600a1">克里斯突擊步槍 | Horzine精英綠</font><br><font color="#6600a1">克里斯突擊步槍 | Horzine精英白</font><br><font color="#8847ff">克里斯突擊步槍 | Horzine精英紅</font><br><font color="#8847ff">克里斯突擊步槍 | Horzine精英藍</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
 HorzineSupplyCosmeticCrateSeries6Description="需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的 D.A.R. 配件：<br><font color="#4b69cd">Flight P51 護甲或頭盔</font><br><font color="#4b69cd">CHONNE-E 5 健身或時間魔方護甲</font><br><font color="#4b69cd">CHONNE-E 5 兄弟或鋼鐵頭盔</font><br><font color="#4b69cd">C3HZ 碰撞護甲或頭盔</font><br><font color="#4b69cd">C3HZ 反光藍護甲或頭盔</font><br><font color="#6600a1">飛行銀河護甲或頭盔</font><br><font color="#6600a1">飛行尖叫護甲或頭盔</font><br><font color="#6600a1">CHONNE-E 5 蝙蝠貓護甲</font><br><font color="#6600a1">CHONNE-E 5 蒸汽頭盔</font><br><font color="#6600a1">C3HZ 黑曜石護甲或頭盔</font><br><font color="#6600a1">C3HZ 太空護甲或頭盔</font><br><font color="#8847ff">飛行藍色天使護甲或頭盔</font><br><font color="#8847ff">飛行火槍護甲或頭盔</font><br><font color="#8847ff">CHONNE-E 5 Horzine 護甲或頭盔</font><br><font color="#8847ff">CHONNE-E 5 激進護甲</font><br><font color="#8847ff">CHONNE-E 5 日落頭盔</font><br><font color="#8847ff">C3HZ 大理石護甲或頭盔</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries7Description="需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">改造鏟子 | 黑金</font><br><font color="#4b69cd">9MM | 黑金</font><br><font color="#4b69cd">VLAD-1000 釘槍 | 黑金</font><br><font color="#4b69cd">龍的呼吸 | Heirloom</font><br><font color="#4b69cd">火槍 | Heirloom</font><br><font color="#4b69cd">M1911 | Heirloom</font><br><font color="#4b69cd">1858 左輪 | Heirloom</font><br><font color="#4b69cd">RPG-7 | Heirloom</font><br><font color="#4b69cd">溫徹斯特1894 | Heirloom</font><br><font color="#6600a1">日本刀 | 黑金</font><br><font color="#6600a1">剔骨器 | 黑金</font><br><font color="#6600a1">雙手劍 | 黑金</font><br><font color="#6600a1">粉碎器 | 黑金</font><br><font color="#8847ff">HMTech 治療道具 | 黑金</font><br><font color="#8847ff">焊槍 | 黑金</font><br><font color="#8847ff">戰士刀 | 黑金</font><br><font color="#caab05">超珍貴的珍貴的飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries7Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">改造鏟子 | 黑金</font><br><font color="#4b69cd">9釐米 | 黑金</font><br><font color="#4b69cd">VLAD-1000釘槍 | 黑金</font><br><font color="#4b69cd">龍息 | 傳世</font><br><font color="#4b69cd">火槍 | 傳世</font><br><font color="#4b69cd">M1911 | 傳世</font><br><font color="#4b69cd">1858左輪 | 傳世</font><br><font color="#4b69cd">RPG-7 | 傳世</font><br><font color="#4b69cd">溫徹斯特1894 | 傳世</font><br><font color="#6600a1">日本刀 | 黑金</font><br><font color="#6600a1">剔骨器 | 黑金</font><br><font color="#6600a1">雙手劍 | 黑金</font><br><font color="#6600a1">粉碎器 | 黑金</font><br><font color="#8847ff">HMTech治療道具 | 黑金</font><br><font color="#8847ff">焊槍 | 黑金</font><br><font color="#8847ff">戰士刀 | 黑金</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries8Description="需要Horzine 補給箱子密鑰才能開啟。包含以下一種稀有或更佳品質武器造型：<br><font color="#4b69cd">血紅蛋白|霓虹燈</font><br><font color="#4b69cd">M14EBR| 霓虹燈</font><br><font color="#4b69cd">追尋著六號|霓虹燈</font><br><font color="#4b69cd">斯通納63A| 霓虹燈</font><br><font color="#4b69cd">黑克勒&科赫 UMP|霓虹燈</font><br><font color="#4b69cd">HMTech-101 手槍|Horzine 精英藍</font><br><font color="#4b69cd">HMTech-101 手槍|Horzine 精英綠</font><br><font color="#4b69cd">HMTech-101 手槍|Horzine 精英白</font><br><font color="#6600a1">火焰噴射器 |霓虹燈</font><br><font color="#6600a1">微波砲| 霓虹燈</font><br><font color="#8847ff">AA12 | 霓虹燈</font><br><font color="#8847ff">HMTech-101 手槍 | Horzine 精英黑</font><br><font color="#8847ff">HMTech-101 手槍| Horzine 精英紅</font><br><font color="#caab05">或者一款極其罕見的珍貴造型!</font>"
+HorzineSupplyWeaponSkinCrateSeries8Description="需要Horzine補給箱子密鑰才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">血紅蛋白 | 霓虹</font><br><font color="#4b69cd">M14EBR | 霓虹</font><br><font color="#4b69cd">追尋著六號 | 霓虹</font><br><font color="#4b69cd">斯通納63A| 霓虹</font><br><font color="#4b69cd">黑克勒&科赫UMP | 霓虹</font><br><font color="#4b69cd">HMTech-101手槍|Horzine 精英藍</font><br><font color="#4b69cd">HMTech-101手槍|Horzine 精英綠</font><br><font color="#4b69cd">HMTech-101手槍|Horzine 精英白</font><br><font color="#6600a1">火焰噴射器 |霓虹</font><br><font color="#6600a1">微波砲| 霓虹</font><br><font color="#8847ff">AA12 | 霓虹</font><br><font color="#8847ff">HMTech-101手槍 | Horzine精英黑</font><br><font color="#8847ff">HMTech-101手槍| Horzine精英紅</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries9Description="需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">AK12 | 藍焰</font><br><font color="#4b69cd">M1911 | 藍焰</font><br><font color="#4b69cd">M4 | 藍焰</font><br><font color="#4b69cd">M79 | 藍焰</font><br><font color="#4b69cd">MP7 | 藍焰</font><br><font color="#4b69cd">VLAD-1000 釘槍 | 藍焰</font><br><font color="#4b69cd">短管霰彈槍 | Horzine 初次相遇</font><br><font color="#4b69cd">HZ12 | Horzine 初次相遇</font><br><font color="#4b69cd">M79 | Horzine 初次相遇</font><br><font color="#4b69cd">MP5RAS | Horzine 初次相遇</font><br><font color="#6600a1">冰凍噴射器 | 藍焰</font><br><font color="#6600a1">軌道槍 | 藍焰</font><br><font color="#6600a1">追尋者六號 | 藍焰</font><br><font color="#6600a1">Kriss 衝鋒槍 | Horzine 初次相遇</font><br><font color="#6600a1">RPG-7 | Horzine 初次相遇</font><br><font color="#6600a1">傷疤 | Horzine 初次相遇</font><br><font color="#8847ff">中心底火 | 藍焰</font><br><font color="#8847ff">血紅蛋白 | 藍焰</font><br><font color="#8847ff">RPG-7 | 藍焰</font><br><font color="#8847ff">AK12 | Horzine 初次相遇</font><br><font color="#8847ff">中心底火 | Horzine 初次相遇</font><br><font color="#8847ff">M14EBR | Horzine 初次相遇</font><br><font color="#8847ff">MAC 10 | Horzine 初次相遇</font><br><font color="#8847ff">黑克勒&科赫 UMP | Horzine 初次相遇</font><br><font color="#caab05">或者一件非常稀有的飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries9Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">AK12 | 藍焰</font><br><font color="#4b69cd">M1911 | 藍焰</font><br><font color="#4b69cd">M4 | 藍焰</font><br><font color="#4b69cd">M79 | 藍焰</font><br><font color="#4b69cd">MP7 | 藍焰</font><br><font color="#4b69cd">VLAD-1000釘槍 | 藍焰</font><br><font color="#4b69cd">短管霰彈槍 | Horzine初次相遇</font><br><font color="#4b69cd">HZ12 | Horzine初次相遇</font><br><font color="#4b69cd">M79 | Horzine初次相遇</font><br><font color="#4b69cd">MP5RAS | Horzine初次相遇</font><br><font color="#6600a1">冰凍噴射器 | 藍焰</font><br><font color="#6600a1">軌道槍 | 藍焰</font><br><font color="#6600a1">追尋者六號 | 藍焰</font><br><font color="#6600a1">克里斯突擊步槍 | Horzine初次相遇</font><br><font color="#6600a1">RPG-7 | Horzine初次相遇</font><br><font color="#6600a1">傷疤 | Horzine初次相遇</font><br><font color="#8847ff">中心底火 | 藍焰</font><br><font color="#8847ff">血紅蛋白 | 藍焰</font><br><font color="#8847ff">RPG-7 | 藍焰</font><br><font color="#8847ff">AK12 | Horzine初次相遇</font><br><font color="#8847ff">中心底火 | Horzine初次相遇</font><br><font color="#8847ff">M14EBR | Horzine初次相遇</font><br><font color="#8847ff">MAC 10 | Horzine初次相遇</font><br><font color="#8847ff">黑克勒&科赫UMP | Horzine初次相遇</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries10Description="需要Horzine 補給箱子密鑰才能開啟。包含以下一種稀有或更好的武器造型：<br><font color="#4b69cd">AA12 | 戰略</font><br><font color="#4b69cd">AK12 | 戰略</font><br><font color="#4b69cd">L85A2 | 戰略</font><br><font color="#4b69cd">SG500 | 戰略</font><br><font color="#4b69cd">HMTech-401 突擊步槍 | 戰略</font><br><font color="#4b69cd">傷疤 | 戰略</font><br><font color="#6600a1">沙漠之鷹 | 綠色Horzine 精英</font><br><font color="#6600a1">沙漠之鷹 | 白色Horzine 精英</font><br><font color="#8847ff">沙漠之鷹 | 藍色Horzine 精英</font><br><font color="#8847ff">沙漠之鷹 | 紅色Horzine 精英</font><br><font color="#caab05">或一款極其稀有珍貴的造型！</font>"
+HorzineSupplyWeaponSkinCrateSeries10Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">AA12 | 戰略</font><br><font color="#4b69cd">AK12 | 戰略</font><br><font color="#4b69cd">L85A2 | 戰略</font><br><font color="#4b69cd">SG500 | 戰略</font><br><font color="#4b69cd">HMTech-401突擊步槍 | 戰略</font><br><font color="#4b69cd">傷疤 | 戰略</font><br><font color="#6600a1">沙漠之鷹 | 綠色Horzine精英綠</font><br><font color="#6600a1">沙漠之鷹 | 綠色Horzine精英白</font><br><font color="#8847ff">沙漠之鷹 | 綠色Horzine精英藍</font><br><font color="#8847ff">沙漠之鷹 | 綠色Horzine精英紅</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries11Description="需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">9MM | 霓虹</font><br><font color="#4b69cd"> 中心底火| 霓虹</font><br><font color="#4b69cd"> 焦驅砲 | 霓虹</font><br><font color="#6600a1"> AF2011-A1| 霓虹</font><br><font color="#6600a1">末日預言者| 霓虹</font><br><font color="#6600a1"> M99 | 霓虹</font><br><font color="#8847ff"> AK-12 | 霓虹</font><br><font color="#8847ff">M16 M203  | 霓虹</font><br><font color="#8847ff">P90 | 霓虹</font><br><font color="#8847ff">靜電打擊者 | 霓虹</font><br><font color="#caab05">或者一件非常稀有的飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries11Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">9霓虹 | 霓虹</font><br><font color="#4b69cd">中心底火| 霓虹</font><br><font color="#4b69cd">焦驅砲 | 霓虹</font><br><font color="#6600a1">AF2011-A1 | 霓虹</font><br><font color="#6600a1">末日預言者| 霓虹</font><br><font color="#6600a1">M99 | 霓虹</font><br><font color="#8847ff">AK12 | 霓虹</font><br><font color="#8847ff">M16 M203 | 霓虹</font><br><font color="#8847ff">P90 | 霓虹</font><br><font color="#8847ff">靜電打擊者 | 霓虹</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries12Description="需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的武器飾品：<br><font color="#4b69cd">HMTech-101 手槍｜霓虹</font><br><font color="#4b69cd">M4｜霓虹</font><br><font color="#6600a1">HMTech-301 霰彈槍｜霓虹</font><br><font color="#6600a1">HMTech-401 突擊步槍｜霓虹</font><br><font color="#6600a1">HMTech-501 榴彈步槍｜霓虹</font><br><font color="#6600a1">碎骨者｜霓虹</font><br><font color="#8847ff">HMTech-201 衝鋒槍｜霓虹</font><br><font color="#8847ff">Mkb.42｜霓虹</font><br><font color="#8847ff">點 500 馬格南左輪｜霓虹</font><br><font color="#8847ff">冰凍噴射器｜霓虹</font><br><font color="#caab05">或是一樣超珍貴的飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries12Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">HMTech-101手槍｜霓虹</font><br><font color="#4b69cd">M4｜霓虹</font><br><font color="#6600a1">HMTech-301霰彈槍｜霓虹</font><br><font color="#6600a1">HMTech-401突擊步槍｜霓虹</font><br><font color="#6600a1">HMTech-501榴彈步槍｜霓虹</font><br><font color="#6600a1">碎骨者｜霓虹</font><br><font color="#8847ff">HMTech-201衝鋒槍｜霓虹</font><br><font color="#8847ff">Mkb.42 | 霓虹</font><br><font color="#8847ff">500馬格南左輪｜霓虹</font><br><font color="#8847ff">冰凍噴射器｜霓虹</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
 HorzineSupplyCosmeticCrateSeries7Description="需要 Horzine 補給箱子鑰匙才能開啟。內含其中一樣珍貴級以上的物品：<br><font color="#4b69cd">機車部落面具 | 野獸 | 光</font><br><font color="#4b69cd">機車部落面具 | 舞者 | 水</font><br><font color="#4b69cd">機車部落面具 | 惡魔 | 水</font><br><font color="#4b69cd">機車部落面具 | 醫生 | 光</font><br><font color="#4b69cd">機車部落面具 | 夢想家 | 水</font><br><font color="#4b69cd">機車部落面具 | 小丑 | 光</font><br><font color="#4b69cd">機車部落面具 | 領主 | 水</font><br><font color="#4b69cd">機車部落面具 | 沉睡者 | 水</font><br><font color="#4b69cd">機車部落面具 | 不死者 | 水</font><br><font color="#4b69cd">機車部落面具 | 戰士 | 水</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 安娜</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 亞伯</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 布萊爾</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 史特拉什</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 麥斯特森</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 唐納文</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 蕾</font><br><font color="#4b69cd">萬聖節 2018 臉部彩繪 | 史骷利</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 經典布萊爾</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 經典麥斯特森</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 傑格爾霍姆</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 佛斯特先生</font><br><font color="#6600a1">萬聖節 2018 臉部彩繪 | 佛斯特夫人</font><br><font color="#8847ff">機車部落面具 | 野獸 | 暗</font><br><font color="#8847ff">機車部落面具 | 舞者 | 火</font><br><font color="#8847ff">機車部落面具 | 惡魔 | 火</font><br><font color="#8847ff">機車部落面具 | 醫生 | 暗</font><br><font color="#8847ff">機車部落面具 | 夢想家 | 火</font><br><font color="#8847ff">機車部落面具 | 小丑 | 暗</font><br><font color="#8847ff">機車部落面具 | 領主 | 火</font><br><font color="#8847ff">機車部落面具 | 沉睡者 | 火</font><br><font color="#8847ff">機車部落面具 | 不死者 | 火</font><br><font color="#8847ff">機車部落面具 | 戰士 | 火</font><br><font color="#8847ff">萬聖節 2018 臉部彩繪 | 田中</font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
 
@@ -1085,13 +1141,13 @@ HorzineSupplyCosmeticCrateSeries9Description="需要 Horzine 補給箱鑰匙才�
 
 HorzineSupplyCosmeticCrateSeries10Description="需要 Horzine 補給箱鑰匙才能開啟。包含下列一樣稀有級以上的物品：<br><font color="#4b69cd">計畫 H-01 | 計畫 </font><br><font color="#4b69cd">計畫 H-01 | 開心 </font><br><font color="#4b69cd">計畫 H-01 | 開心開啟 </font><br><font color="#4b69cd">計畫 H-01 | 臭臉 </font><br><font color="#4b69cd">計畫 H-01 | 臭臉開啟 </font><br><font color="#4b69cd">計畫 H-01 | 不開心 </font><br><font color="#4b69cd">計畫 H-01 | 不開心開啟 </font><br><font color="#4b69cd">計畫 H-02 | 基本 </font><br><font color="#4b69cd">計畫 H-02 | 開心 </font><br><font color="#4b69cd">計畫 H-02 | 開心開啟 </font><br><font color="#4b69cd">計畫 H-02 | 臭臉 </font><br><font color="#4b69cd">計畫 H-02 | 臭臉開啟 </font><br><font color="#4b69cd">計劃 H-02 | 不開心 </font><br><font color="#4b69cd">計畫 H-02 | 不開心開啟 </font><br><font color="#caab05">或者極為稀有的珍貴配件！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries15Description="需要 Horzine 補給箱鑰匙才能開啟。包含下列一樣稀有級以上的武器飾品：<br><font color="#4b69cd">湯普森衝鋒槍 | 蒸汽龐克</font><br><font color="#4b69cd">溫徹斯特 1894 | 蒸汽龐克</font><br><font color="#4b69cd">MP5RAS | 蒸汽龐克</font><br><font color="#6600a1">龍息 | 蒸汽龐克</font><br><font color="#6600a1">M79 | 蒸汽龐克</font><br><font color="#6600a1">雙手劍 | 蒸汽龐克</font><br><font color="#6600A1">MAC 10 | 蒸汽龐克</font><br><font color="#8847ff">500 馬格南左輪 | 蒸汽龐克</font><br><font color="#8847ff">AA12 | 蒸汽龐克</font><br><font color="#8847ff">M99 | 蒸汽龐克</font><br><font color="#8847ff">沙漠之鷹 | 蒸汽龐克</font><br><font color="#caab05">或者一款極其罕見的珍貴飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries15Description="需要Horzine補給箱鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font><br><font color="#4b69cd">湯普森衝鋒槍 | 蒸汽龐克</font><br><font color="#4b69cd">溫徹斯特 1894 | 蒸汽龐克</font><br><font color="#4b69cd">MP5RAS | 蒸汽龐克</font><br><font color="#6600a1">龍息 | 蒸汽龐克</font><br><font color="#6600a1">M79 | 蒸汽龐克</font><br><font color="#6600a1">雙手劍 | 蒸汽龐克</font><br><font color="#6600A1">MAC 10 | 蒸汽龐克</font><br><font color="#8847ff">500馬格南左輪 | 蒸汽龐克</font><br><font color="#8847ff">AA12 | 蒸汽龐克</font><br><font color="#8847ff">M99 | 蒸汽龐克</font><br><font color="#8847ff">沙漠之鷹 | 蒸汽龐克</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries16Description="需要Horzine補給箱子鑰匙才能開啟。包含以下珍貴或更好的武器飾品：<br><font color="#4b69cd">靜電打擊者 | 超越地平線</font><br><font color="#4b69cd">HMTech-101手槍 | 超越地平線 </font><br><font color="#4b69cd">HMTech-201衝鋒槍 | 超越地平線</font><br><font color="#4b69cd">HMTech-301散彈槍 | 超越地平線 </font><br><font color="#4b69cd">HMTech-401突擊步槍 | 超越地平線 </font><br><font color="#6600a1">RPG-7 | 超越地平線 </font><br><font color="#6600a1">火焰噴射器 | 超越地平線 </font><br><font color="#6600a1">Scar突擊步槍 | 超越地平線</font><br><font color="#8847ff">克里斯衝鋒槍 | 超越地平線</font><br><font color="#8847ff">M99 | 超越地平線</font><br><font color="#8847ff">赫利奧斯步槍 | 超越地平線 </font><br><font color="#8847ff">雷霆殺手 | 超越地平線 </font><br><font color="#8847ff">粉碎器 | 超越地平線 </font><br><font color="#caab05">或1件特別珍貴的飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries16Description="需要Horzine補給箱子鑰匙才能開啟，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font> <br><font color="#4b69cd">靜電打擊者 | 超越地平線</font><br><font color="#4b69cd">HMTech-101手槍 | 超越地平線</font><br><font color="#4b69cd">HMTech-201衝鋒槍 | 超越地平線</font><br><font color="#4b69cd">HMTech-301霰彈槍 | 超越地平線</font><br><font color="#4b69cd">HMTech-401突擊步槍 | 超越地平線</font><br><font color="#6600a1">RPG-7 | 超越地平線</font><br><font color="#6600a1">火焰噴射器 | 超越地平線</font><br><font color="#6600a1">傷疤 | 超越地平線</font><br><font color="#8847ff">克里斯衝鋒槍 | 超越地平線</font><br><font color="#8847ff">M99 | 超越地平線</font><br><font color="#8847ff">赫利奧斯步槍 | 超越地平線</font><br><font color="#8847ff">雷霆殺手 | 超越地平線</font><br><font color="#8847ff">粉碎器 | 超越地平線</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
 HorzineSupplyCosmeticCrateSeries11Description="需要 Horzine 補給箱鑰匙才能開啟。包含一個珍貴或更高級的下列物品：<br><font color="#4b69cd">激痛 </font><br><font color="#4b69cd">痛苦 </font><br><font color="#4b69cd">絕望  </font><br><font color="#4b69cd">憂難 </font><br><font color="#4b69cd">悲難 </font><br><font color="#4b69cd">激情 </font><br><font color="#4b69cd">久痛 </font><br><font color="#4b69cd">折磨 </font><br><font color="#caab05">或超珍貴的珍貴配件！</font>"
 
-HorzineSupplyWeaponSkinCrateSeries17Description="需要 Horzine 補給箱鑰匙才能打開。內含下列其中一個稀有或更好的武器飾品：<br><font color="#4b69cd">克里斯 | 獵人</font><br><font color="#4b69cd">P90 | 獵人</font><br><font color="#4b69cd">粉碎器 | 獵人</font><br><font color="#4b69cd">血紅蛋白 | 獵人</font><br><font color="#6600a1">Scar | 獵人</font><br><font color="#6600a1">沙漠之鷹| 獵人</font><br><font color="#6600A1">FN FAL | 獵人</font><br><font color="#6600A1">微波砲 | 獵人</font><br><font color="#8847ff">末日預言者 | 獵人</font><br><font color="#8847ff">赫利奧斯步槍 | 獵人</font><br><font color="#8847ff">雷霆殺手 | 獵人</font><br><font color="#caab05">或者極為稀有的珍貴飾品！</font>"
+HorzineSupplyWeaponSkinCrateSeries17Description="需要Horzine補給箱鑰匙才能打開，每種稀有度的掉落機率如下：<br><font color="#4b69cd">稀有：40%</font> <font color="#bf2600">超凡：30%</font"> <font color="#6554c0">大師級：20%</font> <font color="#caab05">珍貴：10%</font> <br><font color="#4b69cd">克里斯突擊步槍 | 獵人</font><br><font color="#4b69cd">P90 | 獵人</font><br><font color="#4b69cd">粉碎器 | 獵人</font><br><font color="#4b69cd">血紅蛋白 | 獵人</font><br><font color="#6600a1">傷疤 | 獵人</font><br><font color="#6600a1">沙漠之鷹 | 獵人</font><br><font color="#6600A1">FN FAL | 獵人</font><br><font color="#6600A1">微波砲 | 獵人</font><br><font color="#8847ff">末日預言者 | 獵人</font><br><font color="#8847ff">赫利奧斯步槍 | 獵人</font><br><font color="#8847ff">雷霆殺手 | 獵人</font><br><font color="#caab05">或超稀有的珍貴飾品！</font>"
 
 ;PSN Key Names
 HorzineSupplyCrateKeyName="Horzine 補給箱子鑰匙"
@@ -1298,6 +1354,8 @@ HMTechHealerSynthwaveBattleScarredName="HMTech 治療道具 | 合成器浪潮 | 
 500MagnumRevolverJaegerDynamicRGBName="500馬格南左輪 | 獵人 | 動態RGB"
 500MagnumRevolverSpectreHRGDynamicName="500馬格南左輪 | 鬼影HRG | 動態"
 500MagnumRevolverSpectreHRGDynamicChromaName="500馬格南左輪 | 鬼影HRG | 動態炫彩"
+500MagnumRevolverHellmarkMagmaName=".500 馬格南左輪 | 地獄印記 | 岩漿"
+500MagnumRevolverHellmarkThunderName=".500 馬格南左輪 | 地獄印記 | 雷霆"
 
 ;HRG Buckshot Revolvers Names
 HRGBuckshotRevolversSpectreHRGDynamicName="HRG鹿彈左輪手槍 | 鬼影HRG | 動態"
@@ -1598,6 +1656,8 @@ BattleAxeNeonFieldTestedName="戰斧 | 霓虹 | 中古"
 BattleAxeNeonBattleScarredName="戰斧 | 霓虹 | 破舊"
 BattleAxeNeonRGBPreciousName="戰斧 | 霓虹 RGB | 珍貴"
 BattleAxeVaultVoshPreciousName="戰斧 | 金庫 | V 字 | 珍貴"
+BattleAxeHellmarkMagmaName="戰斧 | 地獄印記 | 岩漿"
+BattleAxeHellmarkThunderName="戰斧 | 地獄印記 | 雷霆"
 
 ;Berserker Knife Descriptions
 BerserkerKnifeMintDescription="外觀：全新 | 沒錯，其實它是除草機刀片。好好享受吧！"
@@ -1832,6 +1892,8 @@ DoomstickJaegerDynamicName="末日預言者 | 獵人 | 動態"
 DoomstickVaultVoshPreciousName="末日預言者 | 金庫 | V 字 | 珍貴"
 DoomstickBeyondHorizonMintName="末日預言者 | 超越地平線 | 全新"
 DoomstickBeyondHorizonSpaceEliteName="末日預言者 | 超越地平線 | 太空菁英"
+DoomstickHellmarkMagmaName="末日預言者 | 地獄印記 | 岩漿"
+DoomstickHellmarkThunderName="末日預言者 | 地獄印記 | 雷霆"
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="外觀：全新 | 會像龍一樣噴出火焰的霰彈槍。除了很致命之外，外型也很讚。"
@@ -1870,6 +1932,8 @@ DragonsbreathJaegerDynamicName="龍息 | 獵人 | 動態"
 DragonsbreathJaegerDynamicRGBName="龍息 | 獵人 | 動態 RGB"
 DragonsbreathIceBreakerDynamicName="龍息 | 破冰者 | 動態"
 DragonsbreathIceBreakerDynamicPreciousName="龍息 | 破冰者 | 動態珍貴"
+DragonsbreathHellmarkMagmaName="龍息 | 地獄印記 | 岩漿"
+DragonsbreathHellmarkThunderName="龍息 | 地獄印記 | 雷霆"
 
 ;Eviscerator Descriptions
 EvisceratorMintDescription="外觀：全新 | 原本是 Horzine 的 SDS 團隊設計的，這是頭粗魯的野獸。"
@@ -2383,6 +2447,8 @@ KatanaBlackGoldenBattleScarredName="日本刀 | 黑金 | 破舊"
 KatanaPrestigePreciousName="日本刀 | 聲望 | 珍貴"
 KatanaVaultVoshPreciousName="日本刀 | 金庫 | V 字 | 珍貴"
 KatanaDragonKoiPreciousName="日本刀 | 龍鯉 | 珍貴"
+KatanaHellmarkMagmaName="日本刀 | 地獄印記 | 岩漿"
+KatanaHellmarkThunderName="日本刀 | 地獄印記 | 雷霆"
 
 ;KF-BAR Descriptions
 KFBARMintDescription="外觀：全新 | Horzine 改造的突擊部隊用刀。"
@@ -2452,6 +2518,7 @@ KrissJaegerDynamicName="克里斯 | 獵人 | 動態"
 KrissFostersFavoritesPreciousName="克里斯 | 佛斯特最愛 | 珍貴"
 KrissIceBreakerDynamicName="克里斯 | 破冰者 | 動態"
 KrissIceBreakerDynamicPreciousName="克里斯 | 破冰者 | 動態珍貴"
+KrissInfernalElitePreciousName="克里斯突擊步槍 | 地獄精英 | 珍貴"
 
 ;L85A2 Descriptions
 L85A2MintDescription="外觀：全新 | SA80是英國陸軍的標準配備，直到陸軍，呃，被吃掉。"
@@ -2732,6 +2799,8 @@ MaceAndShieldNeonFieldTestedName="碎骨者 | 霓虹 | 中古"
 MaceAndShieldNeonBattleScarredName="碎骨者 | 霓虹 | 破舊"
 MaceAndShieldNeonRGBPreciousName="碎骨者 | 霓虹RGB | 珍貴"
 MaceAndShieldVaultVoshPreciousName="碎骨者 | 金庫 | V 字 | 珍貴"
+MaceAndShieldHellmarkMagmaName="碎骨者 | 地獄印記 | 岩漿"
+MaceAndShieldHellmarkThunderName="碎骨者 | 地獄印記 | 雷霆"
 
 ;Mac 10 Descriptions
 Mac10MintDescription="外觀：全新 | 特征是速射燃燒彈藥。懂了嗎？速射？因為它是衝鋒槍？哦，忘了那吧。"
@@ -2773,6 +2842,8 @@ MedicBatIceBreakerDynamicName="血腥痛擊者 | 破冰者 | 動態"
 MedicBatIceBreakerDynamicPreciousName="血腥痛擊者 | 破冰者 | 動態珍貴"
 MedicBatBeyondHorizonMintName="血腥痛擊者 | 超越地平線 | 全新"
 MedicBatBeyondHorizonSpaceEliteName="血腥痛擊者 | 超越地平線 | 太空菁英"
+MedicBatHellmarkMagmaName="血腥痛擊者 | 地獄印記 | 岩漿"
+MedicBatHellmarkThunderName="血腥痛擊者 | 地獄印記 | 雷霆"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="外觀：全新 | 高科技的好產物：手拿式 Zed 料理工具。"
@@ -2940,6 +3011,8 @@ PulverizerNeonMintName="粉碎器 | 霓虹 | 全新"
 PulverizerNeonRGBPreciousName="粉碎器 | 霓虹RGB | 珍貴"
 PulverizerIceBreakerDynamicName="粉碎器 | 破冰者 | 動態"
 PulverizerIceBreakerDynamicPreciousName="粉碎器 | 破冰者 | 動態珍貴"
+PulverizerHellmarkMagmaName="粉碎器 | 地獄印記 | 岩漿"
+PulverizerHellmarkThunderName="粉碎器 | 地獄印記 | 雷霆"
 
 ;Railgun Descriptions
 RailgunMintDescription="外觀：全新 | 這項武器利用磁力發射鋼製子彈，可以像穿過衛生紙一樣打穿 Zed。"
@@ -3014,6 +3087,8 @@ RPG7JaegerDynamicName="RPG-7 | 獵人 | 動態"
 RPG7JaegerDynamicRGBName="RPG-7 | 獵人 | 動態 RGB"
 RPG7IceBreakerDynamicName="RPG-7 | 破冰者 | 動態"
 RPG7IceBreakerDynamicPreciousName="RPG-7 | 破冰者 | 動態珍貴"
+RPG7HellmarkMagmaName="RPG-7 | 地獄印記 | 岩漿"
+RPG7HellmarkThunderName="RPG-7 | 地獄印記 | 雷霆"
 
 ;Scar Descriptions
 ScarMintDescription="外觀：全新 | 本來是設計給美國特種部隊使用的，真的很特別！"
@@ -3486,6 +3561,8 @@ FireAxeNeonFieldTestedName="火斧 | 霓虹 | 中古"
 FireAxeNeonBattleScarredName="火斧 | 霓虹 | 破舊"
 FireAxeNeonRGBPreciousName="火斧 | 霓虹 RGB | 珍貴"
 FireAxeVaultVoshPreciousName="火斧 | 金庫 | V 字 | 珍貴"
+FireAxeHellmarkMagmaName="火斧 | 地獄印記 | 岩漿"
+FireAxeHellmarkThunderName="火斧 | 地獄印記 | 雷霆"
 
 ;M32 Descriptions
 M32MintDescription="外觀：全新 | 總比用膠帶把六把 M79 手榴彈發射器黏在一起更好看一點。"
@@ -3730,6 +3807,35 @@ ThermiteRedHotName="鋁熱槍膛 | 赤熱"
 ThermiteBubblegumName="鋁熱槍膛 | 泡泡糖"
 ThermiteThunderJawsName="鋁熱槍膛 | 雷霆鉗"
 ThermiteRustName="鋁熱槍膛 | 赭"
+
+;Corrupter Descriptions
+CorrupterMintDescription="外觀：全新 | 被腐蝕的Zed死亡後爆炸，傷害其他Zed並治療玩家。"
+CorrupterFieldTestedDescription="外觀：久經沙場 | 被腐蝕的Zed死亡後爆炸，傷害其他Zed並治療玩家。"
+CorrupterBattleScarredDescription="外觀：身經百戰 | 被腐蝕的Zed死亡後爆炸，傷害其他Zed並治療玩家。"
+CorrupterPreciousDescription="外觀：珍貴 | 被腐蝕的Zed死亡後爆炸，傷害其他Zed並治療玩家。"
+
+;Corrupter Names
+CorrupterStandardName="腐蝕者卡賓槍 | 標準"
+CorrupterRadioactiveName="腐蝕者卡賓槍 | 放射性"
+CorrupterIcyName="腐蝕者卡賓槍 | 冰霜"
+CorrupterDangerName="腐蝕者卡賓槍 | 危險"
+CorrupterLushName="腐蝕者卡賓槍 | 茂盛"
+CorrupterLightningName="腐蝕者卡賓槍 | 閃電"
+
+;Pirahna Descriptions
+PirahnaMintDescription="外觀：全新 | 尖牙利齒，緊咬不放。"
+PirahnaFieldTestedDescription="外觀：久經沙場 | 尖牙利齒，緊咬不放。。"
+PirahnaBattleScarredDescription="外觀：身經百戰 | 尖牙利齒，緊咬不放。"
+PirahnaPreciousDescription="外觀：珍貴 | 尖牙利齒，緊咬不放。"
+
+;Pirahna Names
+PirahnaStandardName="食人魚手槍 | 標準"
+PirahnaReptilianName="食人魚手槍 | 爬蟲"
+PirahnaPhoenixName="食人魚手槍 | 鳳凰"
+PirahnaCopperName="食人魚手槍 | 銅色"
+PirahnaBladeName="食人魚手槍 | 刀刃"
+PirahnaRustyName="食人魚手槍 | 鏽蝕"
+
 
 [CosmeticSection]
 
@@ -4572,7 +4678,7 @@ SamuraiGasMouthpiecePreciousName="武士防毒呼吸吹嘴 | 珍貴"
 ;Halloween Cosmetic Names
 BearBrownName="熊 | 屠宰場 | 棕"
 BearPandaName="熊 | 屠宰場 | 熊貓"
-BearPreciousName="熊 | 屠宰場 | 珍貴"	
+BearPreciousName="熊 | 屠宰場 | 珍貴"
 CatGrayName="貓 | 屠宰場 | 灰"
 CatBrownName="貓 | 屠宰場 | 棕"
 CatWhiteName="貓 | 屠宰場 | 白"
@@ -5917,6 +6023,114 @@ AstronautRadarArmbandGalaxyName="太空人 | 雷達臂環 | 銀河"
 AstronautRadarArmbandPreciousName="太空人 | 雷達臂環 | 珍貴"
 AstronautCompanionBackpackPreciousName="太空人 | 同伴背包 | 珍貴"
 
+;Vietnam Cosmetic Names
+VietnamUSHelmetOliveName="越南 | 美國頭盔 | 橄欖綠"
+VietnamUSHelmetBlackName="越南 | 美國頭盔 | 黑色"
+VietnamUSHelmetJungleName="越南 | 美國頭盔 | 叢林"
+VietnamUSHelmetWoodlandName="越南 | 美國頭盔 | 林地"
+VietnamUSHelmetSavannahName="越南 | 美國頭盔 | 熱帶草原"
+VietnamUSHelmetHalloweenName="越南 | 美國頭盔 | 萬聖節"
+VietnamUSHelmetPreciousName="越南 | 美國頭盔 | 珍貴"
+VietnamUSHelmet&GogglesOliveName="越南 | 美國護目鏡頭盔 | 橄欖綠"
+VietnamUSHelmet&GogglesBlackName="越南 | 美國護目鏡頭盔 | 黑色"
+VietnamUSHelmet&GogglesJungleName="越南 | 美國護目鏡頭盔 | 叢林"
+VietnamUSHelmet&GogglesWoodlandName="越南 | 美國護目鏡頭盔 | 林地"
+VietnamUSHelmet&GogglesSavannahName="越南 | 美國護目鏡頭盔 | 熱帶草原"
+VietnamUSHelmet&GogglesHalloweenName="越南 | 美國護目鏡頭盔 | 萬聖節"
+VietnamUSHelmet&GogglesPreciousName="越南 | 美國護目鏡頭盔 | 珍貴"
+VietnamUSRadioOliveName="越南 | 美國無線電 | 橄欖綠"
+VietnamUSRadioBlackName="越南 | 美國無線電 | 黑色"
+VietnamUSRadioGreyName="越南 | 美國無線電 | 灰色"
+VietnamUSRadioFighterName="越南 | 美國無線電 | 鬥士"
+VietnamUSRadioNapalmName="越南 | 美國無線電 | 凝固汽油"
+VietnamUSRadioHalloweenName="越南 | 美國無線電 | 萬聖節"
+VietnamUSRadioPreciousName="越南 | 美國無線電 | 珍貴"
+VietnamUSPilotHelmetOliveName="越南 | 美國飛行員頭盔 | 橄欖綠"
+VietnamUSPilotHelmetBlackName="越南 | 美國飛行員頭盔 | 黑色"
+VietnamUSPilotHelmetWhiteName="越南 | 美國飛行員頭盔 | 白色"
+VietnamUSPilotHelmetNapalmName="越南 | 美國飛行員頭盔 | 凝固汽油"
+VietnamUSPilotHelmetSkyName="越南 | 美國飛行員頭盔 | 天空"
+VietnamUSPilotHelmetHalloweenName="越南 | 美國飛行員頭盔 | 萬聖節"
+VietnamUSPilotHelmetPreciousName="越南 | 美國飛行員頭盔 | 珍貴"
+VietnamUSPilotHelmet&ShieldOliveName="越南 | 美國飛行員盾牌頭盔 | 橄欖綠"
+VietnamUSPilotHelmet&ShieldBlackName="越南 | 美國飛行員盾牌頭盔 | 黑色"
+VietnamUSPilotHelmet&ShieldWhiteName="越南 | 美國飛行員盾牌頭盔 | 白色"
+VietnamUSPilotHelmet&ShieldNapalmName="越南 | 美國飛行員盾牌頭盔 | 凝固汽油"
+VietnamUSPilotHelmet&ShieldSkyName="越南 | 美國飛行員盾牌頭盔 | 天空"
+VietnamUSPilotHelmet&ShieldHalloweenName="越南 | 美國飛行員盾牌頭盔 | 萬聖節"
+VietnamUSPilotHelmet&ShieldPreciousName="越南 | 美國飛行員盾牌頭盔 | 珍貴"
+VietnamUSPilotHelmet&Shield&MaskOliveName="越南 | 美國飛行員面罩頭盔 | 橄欖綠"
+VietnamUSPilotHelmet&Shield&MaskBlackName="越南 | 美國飛行員面罩頭盔 | 黑色"
+VietnamUSPilotHelmet&Shield&MaskWhiteName="越南 | 美國飛行員面罩頭盔 | 白色"
+VietnamUSPilotHelmet&Shield&MaskNapalmName="越南 | 美國飛行員面罩頭盔 | 凝固汽油"
+VietnamUSPilotHelmet&Shield&MaskSkyName="越南 | 美國飛行員面罩頭盔 | 天空"
+VietnamUSPilotHelmet&Shield&MaskHalloweenName="越南 | 美國飛行員面罩頭盔 | 萬聖節"
+VietnamUSPilotHelmet&Shield&MaskPreciousName="越南 | 美國飛行員面罩頭盔 | 珍貴"
+VietnamBeretOliveName="越南 | 貝雷帽 | 橄欖綠"
+VietnamBeretBlackName="越南 | 貝雷帽 | 黑色"
+VietnamBeretWhiteName="越南 | 貝雷帽 | 白色"
+VietnamBeretRedName="越南 | 貝雷帽 | 紅色"
+VietnamBeretBlueName="越南 | 貝雷帽 | 藍色"
+VietnamBeretHalloweenName="越南 | 貝雷帽 | 萬聖節"
+VietnamBeretPreciousName="越南 | 貝雷帽 | 珍貴"
+VietnamBandanaOliveName="越南 | 方巾 | 橄欖綠"
+VietnamBandanaBlackName="越南 | 方巾 | 黑色"
+VietnamBandanaJungleName="越南 | 方巾 | 叢林"
+VietnamBandanaWoodlandName="越南 | 方巾 | 林地"
+VietnamBandanaSavannahName="越南 | 方巾 | 熱帶草原"
+VietnamBandanaHalloweenName="越南 | 方巾 | 萬聖節"
+VietnamBandanaPreciousName="越南 | 方巾 | 珍貴"
+VietnamBoonieOliveName="越南 | 漁夫帽 | 橄欖綠"
+VietnamBoonieBlackName="越南 | 漁夫帽 | 黑色"
+VietnamBoonieJungleName="越南 | 漁夫帽 | 叢林"
+VietnamBoonieWoodlandName="越南 | 漁夫帽 | 林地"
+VietnamBoonieSavannahName="越南 | 漁夫帽 | 熱帶草原"
+VietnamBoonieHalloweenName="越南 | 漁夫帽 | 萬聖節"
+VietnamBooniePreciousName="越南 | 漁夫帽 | 珍貴"
+VietnamVCHelmetOliveName="越南 | VC頭盔 | 橄欖綠"
+VietnamVCHelmetBlackName="越南 | VC頭盔 | 黑色"
+VietnamVCHelmetWhiteName="越南 | VC頭盔 | 白色"
+VietnamVCHelmetGreyName="越南 | VC頭盔 | 灰色"
+VietnamVCHelmetBrownName="越南 | VC頭盔 | 棕色"
+VietnamVCHelmetHalloweenName="越南 | VC頭盔 | 萬聖節"
+VietnamVCHelmetPreciousName="越南 | VC頭盔 | 珍貴"
+
+;Halloween 2021 Cosmetic Names
+DoZTopHatFestiveName="DoZ | 大禮帽 | 節慶"
+DoZTopHatMarigoldName="DoZ | 大禮帽 | 金盞花"
+DoZTopHatHopeName="DoZ | 大禮帽 | 希望"
+DoZTopHatLuminescentName="DoZ | 大禮帽 | 螢光"
+DoZTopHatPreciousName="DoZ | 大禮帽 | 珍貴"
+DoZSkullHeadFestiveName="DoZ | 骷髏頭 | 節慶"
+DoZSkullHeadMarigoldName="DoZ | 骷髏頭 | 金盞花"
+DoZSkullHeadHopeName="DoZ | 骷髏頭 | 希望"
+DoZSkullHeadLuminescentName="DoZ | 骷髏頭 | 螢光"
+DoZSkullHeadPreciousName="DoZ | 骷髏頭 | 珍貴"
+DoZCoffinFestiveName="DoZ | 棺材 | 節慶"
+DoZCoffinMarigoldName="DoZ | 棺材 | 金盞花"
+DoZCoffinHopeName="DoZ | 棺材 | 希望"
+DoZCoffinLuminescentName="DoZ | 棺材 | 螢光"
+DoZCoffinPreciousName="DoZ | 棺材 | 珍貴"
+DoZHeadbandFestiveName="DoZ | 頭帶 | 節慶"
+DoZHeadbandMarigoldName="DoZ | 頭帶 | 金盞花"
+DoZHeadbandHopeName="DoZ | 頭帶 | 希望"
+DoZHeadbandLuminescentName="DoZ | 頭帶 | 螢光"
+DoZHeadbandPreciousName="DoZ | 頭帶 | 珍貴"
+DoZArmbandFestiveName="DoZ | 臂環 | 節慶"
+DoZArmbandMarigoldName="DoZ | 臂環 | 金盞花"
+DoZArmbandHopeName="DoZ | 臂環 | 希望"
+DoZArmbandLuminescentName="DoZ | 臂環 | 螢光"
+DoZArmbandPreciousName="DoZ | 臂環 | 珍貴"
+DoZCowSkullFestiveName="DoZ | 骷髏牛頭 | 節慶"
+DoZCowSkullMarigoldName="DoZ | 骷髏牛頭 | 金盞花"
+DoZCowSkullHopeName="DoZ | 骷髏牛頭 | 希望"
+DoZCowSkullLuminescentName="DoZ | 骷髏牛頭 | 螢光"
+DoZCowSkullPreciousName="DoZ | 骷髏牛頭 | 珍貴"
+DoZCompanionPreciousName="DoZ | 同伴 | 珍貴"
+
+;Weekly Wild West London Cosmetic Name
+WildWestLondonHatPreciousName="西部荒野倫敦帽 | 珍貴"
+
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="可從裝備選單裝備；適用於大部分的角色。這是「夏日餘興節目」季節性活動的特有未解鎖道具。回收換為 1 張餘興節目獎券。"
 SummerSideshowFacePaintDescription="可從裝備選單裝備。這是夏日餘興節目季節性活動的特有道具。回收換為 1 張餘興節目獎券。"
@@ -6225,3 +6439,4 @@ CartoonSplatFXDeluxeDescription="用卡通飛濺代替頭部流血的爆頭 FX�
 GameOverFXDeluxeDescription="用煙火代替頭部流血的爆頭 FX。"
 GlitchFXDeluxeDescription="用數位平衡代替頭部流血的爆頭 FX。"
 HorzineFXDeluxeDescription="用駭客的呼叫卡代替頭部流血的爆頭 FX。"
+

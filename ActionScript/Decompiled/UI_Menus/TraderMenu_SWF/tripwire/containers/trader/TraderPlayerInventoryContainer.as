@@ -162,6 +162,7 @@ package tripwire.containers.trader
             this.grenadeItem.addEventListener(MouseEvent.MOUSE_OVER,this.grenadeMouseOver,false,0,true);
             this.grenadeItem.magButton.addEventListener(MouseEvent.MOUSE_OVER,this.grenadeMouseOver,false,0,true);
             this.grenadeItem.fillButton.addEventListener(MouseEvent.MOUSE_OVER,this.grenadeMouseOver,false,0,true);
+            this.armorItem.magButton.addEventListener(ButtonEvent.PRESS,this.buyArmor,false,0,true);
             this.armorItem.fillButton.addEventListener(ButtonEvent.PRESS,this.fillArmor,false,0,true);
             this.grenadeItem.magButton.addEventListener(ButtonEvent.PRESS,this.buyGrenade,false,0,true);
             this.grenadeItem.fillButton.addEventListener(ButtonEvent.PRESS,this.fillGrenades,false,0,true);
@@ -302,6 +303,7 @@ package tripwire.containers.trader
         {
             this.autoFillButton.label = !!param1.autoFill ? param1.autoFill : "";
             this.changePerkButton.label = !!param1.changePerk ? param1.changePerk : "";
+            this.armorItem.magButton.label = !!param1.armorBuyLabel ? param1.armorBuyLabel : "";
             this.armorItem.fillTitle = !!param1.armorLabel ? param1.armorLabel : "";
             this.grenadeItem.magButton.label = !!param1.grenadeLabel ? param1.grenadeLabel : "";
             this.grenadeItem.fillButton.label = !!param1.fillLabel ? param1.fillLabel : "";
@@ -449,6 +451,15 @@ package tripwire.containers.trader
                                     Extensions.gfxProcessSound(this,"UI",this.magFillSoundEffect);
                                 }
                                 ExternalInterface.call("Callback_BuyGrenade");
+                                param1.handled = true;
+                            }
+                            else if(currentElement == this.armorItem && this.armorItem.magButton.enabled)
+                            {
+                                if(Extensions.gfxProcessSound != null)
+                                {
+                                    Extensions.gfxProcessSound(this,"UI",this.magFillSoundEffect);
+                                }
+                                ExternalInterface.call("Callback_BuyArmor");
                                 param1.handled = true;
                             }
                         }
@@ -710,6 +721,14 @@ package tripwire.containers.trader
             {
                 if(bManagerUsingGamepad)
                 {
+                    if(currentElement == this.armorItem && this.armorItem.magButton.enabled)
+                    {
+                        if(Extensions.gfxProcessSound != null)
+                        {
+                            Extensions.gfxProcessSound(this,"UI",this.magFillSoundEffect);
+                        }
+                        ExternalInterface.call("Callback_BuyArmor");
+                    }
                     if(currentElement == this.grenadeItem && this.grenadeItem.magButton.enabled)
                     {
                         if(Extensions.gfxProcessSound != null)
@@ -793,6 +812,14 @@ package tripwire.containers.trader
             if(this.bCanUseMenu)
             {
                 ExternalInterface.call("Callback_FillArmor");
+            }
+        }
+        
+        protected function buyArmor(param1:ButtonEvent) : void
+        {
+            if(this.bCanUseMenu)
+            {
+                ExternalInterface.call("Callback_BuyArmor");
             }
         }
         

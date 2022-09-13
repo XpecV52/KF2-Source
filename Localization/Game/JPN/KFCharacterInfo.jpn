@@ -12,6 +12,8 @@ BodySkin2="茶色のイチジク"
 BodySkin3="キャンディケイン"
 BodySkin4="ジョリーグリーン"
 BodySkin5="クリームビンテージ"
+BodySkin6="DoZ ホリデー"
+BodySkin7="DoZ 発光性"
 
 [CHR_BadSanta_archetype.BodyMesh1]
 BodySkin0="中古"
@@ -54,6 +56,8 @@ BodySkin2="レッド"
 BodySkin3="ブルー"
 BodySkin4="ピンク"
 BodySkin5="ブラック"
+BodySkin6="DoZ ホリデー"
+BodySkin7="DoZ 発光性"
 
 [CHR_MrsFoster_archetype.BodyMesh1]
 BodySkin0="ブルー"
@@ -183,6 +187,8 @@ BodySkin0="Endo 800"
 BodySkin1="クラシックグレー"
 BodySkin2="プラスチック"
 BodySkin3="希少"
+BodySkin4="DoZ ホリデー"
+BodySkin5="DoZ 発光性"
 
 [CHR_DAR_archetype.HeadMesh0]
 HeadSkin0="なし"
@@ -259,6 +265,8 @@ BodySkin8="サイバーパンク | グリーン"
 BodySkin9="サイバーパンク | 希少"
 BodySkin10="サイバーパンク | レッド"
 BodySkin11="サイバーパンク | ブルー"
+BodySkin12="DoZ ホリデー"
+BodySkin13="DoZ 発光性"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -478,6 +486,8 @@ BodySkin7="サイバーパンク | グリーン"
 BodySkin8="サイバーパンク | 希少"
 BodySkin9="サイバーパンク | レッド"
 BodySkin10="サイバーパンク | ブルー"
+BodySkin11="DoZ ホリデー"
+BodySkin12="DoZ 発光性"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -643,6 +653,8 @@ BodySkin6="サイバーパンク | グリーン"
 BodySkin7="サイバーパンク | 希少"
 BodySkin8="サイバーパンク | レッド"
 BodySkin9="サイバーパンク | ブルー"
+BodySkin10="DoZ ホリデー"
+BodySkin11="DoZ 発光性"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="メトロ"
@@ -806,6 +818,8 @@ BodySkin3="上品"
 BodySkin4="マグマレッド"
 BodySkin5="希少Vault"
 BodySkin6="Vaultタイル"
+BodySkin7="DoZ ホリデー"
+BodySkin8="DoZ 発光性"
 
 [CHR_MrFoster_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -1099,6 +1113,8 @@ BodySkin5="サイバーパンク | グリーン"
 BodySkin6="サイバーパンク | 希少"
 BodySkin7="サイバーパンク | レッド"
 BodySkin8="サイバーパンク | ブルー"
+BodySkin9="DoZ ホリデー"
+BodySkin10="DoZ 発光性"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -1258,6 +1274,8 @@ BodySkin7="サイバーパンク | グリーン"
 BodySkin8="サイバーパンク | 希少"
 BodySkin9="サイバーパンク | レッド"
 BodySkin10="サイバーパンク | ブルー"
+BodySkin11="DoZ ホリデー"
+BodySkin12="DoZ 発光性"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -2286,6 +2304,8 @@ BodySkin8="サイバーパンク | グリーン"
 BodySkin9="サイバーパンク | 希少"
 BodySkin10="サイバーパンク | レッド"
 BodySkin11="サイバーパンク | ブルー"
+BodySkin12="DoZ ホリデー"
+BodySkin13="DoZ 発光性"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -2430,6 +2450,8 @@ BodySkin7="サイバーパンク | グリーン"
 BodySkin8="サイバーパンク | 希少"
 BodySkin9="サイバーパンク | レッド"
 BodySkin10="サイバーパンク | ブルー"
+BodySkin11="DoZ ホリデー"
+BodySkin12="DoZ 発光性"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="レッド&ブラック"
@@ -2611,6 +2633,8 @@ BodySkin6="サイバーパンク | グリーン"
 BodySkin7="サイバーパンク | 希少"
 BodySkin8="サイバーパンク | レッド"
 BodySkin9="サイバーパンク | ブルー"
+BodySkin10="DoZ ホリデー"
+BodySkin11="DoZ 発光性"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="エリートブルー"
@@ -2759,6 +2783,8 @@ BodySkin6="サイバーパンク | グリーン"
 BodySkin7="サイバーパンク | 希少"
 BodySkin8="サイバーパンク | レッド"
 BodySkin9="サイバーパンク | ブルー"
+BodySkin10="DoZ ホリデー"
+BodySkin11="DoZ 発光性"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="メトロ"
@@ -2913,6 +2939,8 @@ BodySkin8="サイバーパンク | グリーン"
 BodySkin9="サイバーパンク | 希少"
 BodySkin10="サイバーパンク | レッド"
 BodySkin11="サイバーパンク | ブルー"
+BodySkin12="DoZ ホリデー"
+BodySkin13="DoZ 発光性"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -3064,6 +3092,8 @@ BodySkin5="サイバーパンク | グリーン"
 BodySkin6="サイバーパンク | 希少"
 BodySkin7="サイバーパンク | レッド"
 BodySkin8="サイバーパンク | ブルー"
+BodySkin9="DoZ ホリデー"
+BodySkin10="DoZ 発光性"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -3208,6 +3238,8 @@ BodySkin5="サイバーパンク | グリーン"
 BodySkin6="サイバーパンク | 希少"
 BodySkin7="サイバーパンク | レッド"
 BodySkin8="サイバーパンク | ブルー"
+BodySkin9="DoZ ホリデー"
+BodySkin10="DoZ 発光性"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="クラシック"
@@ -3361,6 +3393,8 @@ BodySkin9="サイバーパンク | グリーン"
 BodySkin10="サイバーパンク | 希少"
 BodySkin11="サイバーパンク | レッド"
 BodySkin12="サイバーパンク | ブルー"
+BodySkin13="DoZ ホリデー"
+BodySkin14="DoZ 発光性"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="エリートブルー"
@@ -4770,6 +4804,8 @@ AttachmentSkin1="ローダー"
 AttachmentSkin2="スタンダード"
 AttachmentSkin3="希少"
 AttachmentSkin4="ドクロ"
+AttachmentSkin5="DoZ ホリデー"
+AttachmentSkin6="DoZ 発光性"
 
 [Cosmetic_DAR_AssaultArmor_ARCH]
 Attachment="アサルトアーマー"
@@ -6615,7 +6651,7 @@ AttachmentSkin5="テック"
 AttachmentSkin6="希少"
 
 [Cosmetic_Foundry_HardHatShield_ARCH]
-Attachment="ファウンドリー保護ヘルメット&シールド"
+Attachment="保護ヘルメット&シールド"
 AttachmentSkin0="注意"
 AttachmentSkin1="黒"
 AttachmentSkin2="白"
@@ -6625,7 +6661,7 @@ AttachmentSkin5="テック"
 AttachmentSkin6="希少"
 
 [Cosmetic_Foundry_CastingBucket_ARCH]
-Attachment="ファウンドリーキャストバケツリュック"
+Attachment="キャストバケツリュック"
 AttachmentSkin0="注意"
 AttachmentSkin1="黒"
 AttachmentSkin2="白"
@@ -6645,7 +6681,7 @@ AttachmentSkin5="テック"
 AttachmentSkin6="希少"
 
 [Cosmetic_Foundry_WeldingTank_ARCH]
-Attachment="ファウンドリー溶接用タンクリュック"
+Attachment="溶接用タンクリュック"
 AttachmentSkin0="注意"
 AttachmentSkin1="黒"
 AttachmentSkin2="白"
@@ -6707,7 +6743,7 @@ AttachmentSkin3="銀河系"
 AttachmentSkin4="希少"
 
 [Cosmetic_Astronaut_CompanionBackpack_ARCH]
-Attachment="宇宙飛行士仲間リュック "
+Attachment="宇宙飛行士コンプのリュック"
 AttachmentSkin0="希少"
 
 [Cosmetic_Astronaut_Helmet_ARCH]
@@ -6830,3 +6866,159 @@ BodySkin1="特異点"
 BodySkin2="星形"
 BodySkin3="銀河系"
 BodySkin4="希少"
+
+[Cosmetic_Vietnam_USHelmet_ARCH]
+Attachment="ベトナムUSヘルメット"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="黒"
+AttachmentSkin2="ジャングル"
+AttachmentSkin3="森林"
+AttachmentSkin4="サバンナ"
+AttachmentSkin5="ハロウィーン"
+AttachmentSkin6="希少"
+
+[Cosmetic_Vietnam_USHelmetGoggles_ARCH]
+Attachment="ベトナムUSゴーグルヘルメット"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="黒"
+AttachmentSkin2="ジャングル"
+AttachmentSkin3="森林"
+AttachmentSkin4="サバンナ"
+AttachmentSkin5="ハロウィーン"
+AttachmentSkin6="希少"
+
+[Cosmetic_Vietnam_USRadio_ARCH]
+Attachment="ベトナムUS無線"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="黒"
+AttachmentSkin2="グレー"
+AttachmentSkin3="ファイター"
+AttachmentSkin4="ナパーム"
+AttachmentSkin5="ハロウィーン"
+AttachmentSkin6="希少"
+
+[Cosmetic_Vietnam_USPilotHelmet_ARCH]
+Attachment="ベトナムパイロットヘルメット"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="黒"
+AttachmentSkin2="白"
+AttachmentSkin3="ナパーム"
+AttachmentSkin4="スカイ"
+AttachmentSkin5="ハロウィーン"
+AttachmentSkin6="希少"
+
+[Cosmetic_Vietnam_USPilotHelmetGoggles_ARCH]
+Attachment="ベトナムパイロットシールドヘルメット"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="黒"
+AttachmentSkin2="白"
+AttachmentSkin3="ナパーム"
+AttachmentSkin4="スカイ"
+AttachmentSkin5="ハロウィーン"
+AttachmentSkin6="希少"
+
+[Cosmetic_Vietnam_USPilotHelmetGogglesMask_ARCH]
+Attachment="ベトナムパイロットマスクヘルメット"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="黒"
+AttachmentSkin2="白"
+AttachmentSkin3="ナパーム"
+AttachmentSkin4="スカイ"
+AttachmentSkin5="ハロウィーン"
+AttachmentSkin6="希少"
+
+[Cosmetic_Vietnam_Beret_ARCH]
+Attachment="ベトナムベレー"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="黒"
+AttachmentSkin2="白"
+AttachmentSkin3="レッド"
+AttachmentSkin4="ブルー"
+AttachmentSkin5="ハロウィーン"
+AttachmentSkin6="希少"
+
+[Cosmetic_Vietnam_Bandana_ARCH]
+Attachment="ベトナムバンダナ"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="黒"
+AttachmentSkin2="ジャングル"
+AttachmentSkin3="森林"
+AttachmentSkin4="サバンナ"
+AttachmentSkin5="ハロウィーン"
+AttachmentSkin6="希少"
+
+[Cosmetic_Vietnam_Hat_ARCH]
+Attachment="ベトナムブーニー"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="黒"
+AttachmentSkin2="ジャングル"
+AttachmentSkin3="森林"
+AttachmentSkin4="サバンナ"
+AttachmentSkin5="ハロウィーン"
+AttachmentSkin6="希少"
+
+[Cosmetic_Vietnam_VCHelmet_ARCH]
+Attachment="ベトナムVCヘルメット"
+AttachmentSkin0="オリーブ"
+AttachmentSkin1="黒"
+AttachmentSkin2="白"
+AttachmentSkin3="グレー"
+AttachmentSkin4="茶"
+AttachmentSkin5="ハロウィーン"
+AttachmentSkin6="希少"
+
+[Cosmetic_DiaDeLosMuertos_TopHat_ARCH]
+Attachment="DoZ シルクハット"
+AttachmentSkin0="ホリデー"
+AttachmentSkin1="マリーゴールド"
+AttachmentSkin2="ホープ"
+AttachmentSkin3="発光性"
+AttachmentSkin4="希少"
+
+[Cosmetic_DiaDeLosMuertos_SkullHead_ARCH]
+Attachment="DoZ スカルヘッド"
+AttachmentSkin0="ホリデー"
+AttachmentSkin1="マリーゴールド"
+AttachmentSkin2="ホープ"
+AttachmentSkin3="発光性"
+AttachmentSkin4="希少"
+
+[Cosmetic_DiaDeLosMuertos_Coffin_ARCH]
+Attachment="DoZ 棺"
+AttachmentSkin0="ホリデー"
+AttachmentSkin1="マリーゴールド"
+AttachmentSkin2="ホープ"
+AttachmentSkin3="発光性"
+AttachmentSkin4="希少"
+
+[Cosmetic_DiaDeLosMuertos_Headband_ARCH]
+Attachment="DoZ ヘッドバンド"
+AttachmentSkin0="ホリデー"
+AttachmentSkin1="マリーゴールド"
+AttachmentSkin2="ホープ"
+AttachmentSkin3="発光性"
+AttachmentSkin4="希少"
+
+[Cosmetic_DiaDeLosMuertos_Armband_ARCH]
+Attachment="DoZ アームバンド"
+AttachmentSkin0="ホリデー"
+AttachmentSkin1="マリーゴールド"
+AttachmentSkin2="ホープ"
+AttachmentSkin3="発光性"
+AttachmentSkin4="希少"
+
+[Cosmetic_DiaDeLosMuertos_CowSkull_ARCH]
+Attachment="DoZ カウスカル"
+AttachmentSkin0="ホリデー"
+AttachmentSkin1="マリーゴールド"
+AttachmentSkin2="ホープ"
+AttachmentSkin3="発光性"
+AttachmentSkin4="希少"
+
+[Cosmetic_DiaDeLosMuertos_Companion_ARCH]
+Attachment="DoZ 仲間"
+AttachmentSkin0="希少"
+
+[Cosmetic_WildWest_CowboyHat_ARCH]
+Attachment="ワイルドウェストロンドンハット"
+AttachmentSkin0="希少"

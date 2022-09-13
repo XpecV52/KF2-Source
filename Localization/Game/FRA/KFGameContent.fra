@@ -794,6 +794,30 @@ ItemCategory="Incendiaire"
 ItemDescription="• Le tir principal lance des grenades en thermite qui explosent après 4 secondes.\n• Le tir alternatif déclenche manuellement toutes les thermites.\n• La lumière attire les mouches et le feu les Zeds."
 SharedUnlockSource="Pack d'arme Foreuse en thermite"
 
+[KFWeap_HRG_Boomy]
+ItemName="GRH Tommy Boom"
+ItemCategory="Fusil d'assaut"
+ItemDescription="• Modes automatique et semi-automatique.\n• Tir alternatif pour passer d'un mode à l'autre.\n• Le top du top pour un max d'explosions !"
+
+[KFWeap_HRG_Energy]
+ItemName="GRH Perturbateur"
+ItemCategory="Arme de poing"
+ItemDescription="• Principal : tir semi-auto uniquement\n• Tir alternatif pour passer d'un tir rapide à une explosion plus lente.\n• Sa propension à faire fondre la chair est perturbante au possible, oui..."
+
+[KFWeap_Pistol_Bladed]
+ItemName="Pistolet piranha"
+ItemCategory="Arme de poing"
+ItemDescription="• Le tir principal lance des scies circulaires.\n• Alt - bloquer/parer.\n• Des dents aiguisées et une bonne poignée."
+
+[KFWeap_Pistol_DualBladed]
+ItemName="Double pistolet piranha"
+ItemCategory="Arme de poing"
+ItemDescription="• Le tir principal lance des scies circulaires.\n• Alt - bloquer/parer.\n• A suffisamment de mordant pour vous déchiqueter."
+
+[KFWeap_Rifle_ParasiteImplanter]
+ItemName="Carabine de corruption"
+ItemCategory="Fusil"
+ItemDescription="• Tir principal manuel uniquement.\n• Le tir alternatif corrompt les Zeds pendant quelques secondes.\n• Si un Zed corrompu meurt, il explose en blessant d'autres Zeds et en soignant les joueurs."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

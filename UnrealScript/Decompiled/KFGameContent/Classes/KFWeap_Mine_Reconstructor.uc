@@ -661,8 +661,8 @@ defaultproperties
     FullChargedTimerInterval=2
     MinScale=0.5
     MaxScale=1.5
-    MaxDamageByCharge=250
-    MinDamageByCharge=25
+    MaxDamageByCharge=300
+    MinDamageByCharge=30
     MAX_ACTIVE_MINE_RECONSTRUCTOR_MINES=12
     PackageKey="Mine_Reconstructor"
     FirstPersonMeshName="WEP_1P_Mine_Reconstructor_MESH.Wep_1stP_HMTech_Mine_Reconstructor_Rig"
@@ -686,8 +686,8 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Mine_Reconstructor_TEX.UI_WeaponSelect_HMTechMineReconstructor'
     MagazineCapacity=12
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=108
-    InitialSpareMags=2
+    SpareAmmoCapacity=132
+    InitialSpareMags=3
     AmmoPickupScale=1.5
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Weak_Recoil'
     bLoopingFireAnim=/* Array type was not detected. */

@@ -12,6 +12,8 @@ BodySkin2="Marron figue"
 BodySkin3="Sucre d'orge"
 BodySkin4="Vert joyeux"
 BodySkin5="Vintage crème"
+BodySkin6="JdZ Festif"
+BodySkin7="JdZ Luminescent"
 
 [CHR_BadSanta_archetype.BodyMesh1]
 BodySkin0="Usé"
@@ -54,6 +56,8 @@ BodySkin2="Rouge"
 BodySkin3="Bleu"
 BodySkin4="Rose"
 BodySkin5="Noir"
+BodySkin6="JdZ Festif"
+BodySkin7="JdZ Luminescent"
 
 [CHR_MrsFoster_archetype.BodyMesh1]
 BodySkin0="Bleu"
@@ -183,6 +187,8 @@ BodySkin0="Endo 800"
 BodySkin1="Gris classique"
 BodySkin2="Plastique"
 BodySkin3="Doré"
+BodySkin4="JdZ Festif"
+BodySkin5="JdZ Luminescent"
 
 [CHR_DAR_archetype.HeadMesh0]
 HeadSkin0="Aucun"
@@ -259,6 +265,8 @@ BodySkin8="Cyberpunk | Vert"
 BodySkin9="Cyberpunk | Doré"
 BodySkin10="Cyberpunk | Rouge"
 BodySkin11="Cyberpunk | Bleu"
+BodySkin12="JdZ Festif"
+BodySkin13="JdZ Luminescent"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="Classique"
@@ -478,6 +486,8 @@ BodySkin7="Cyberpunk | Vert"
 BodySkin8="Cyberpunk | Doré"
 BodySkin9="Cyberpunk | Rouge"
 BodySkin10="Cyberpunk | Bleu"
+BodySkin11="JdZ Festif"
+BodySkin12="JdZ Luminescent"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="Classique"
@@ -643,6 +653,8 @@ BodySkin6="Cyberpunk | Vert"
 BodySkin7="Cyberpunk | Doré"
 BodySkin8="Cyberpunk | Rouge"
 BodySkin9="Cyberpunk | Bleu"
+BodySkin10="JdZ Festif"
+BodySkin11="JdZ Luminescent"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="Métro"
@@ -806,6 +818,8 @@ BodySkin3="Classe juste"
 BodySkin4="Rouge magma"
 BodySkin5="Coffre doré"
 BodySkin6="Style coffre"
+BodySkin7="JdZ Festif"
+BodySkin8="JdZ Luminescent"
 
 [CHR_MrFoster_archetype.BodyMesh1]
 BodySkin0="Classique"
@@ -1099,6 +1113,8 @@ BodySkin5="Cyberpunk | Vert"
 BodySkin6="Cyberpunk | Doré"
 BodySkin7="Cyberpunk | Rouge"
 BodySkin8="Cyberpunk | Bleu"
+BodySkin9="JdZ Festif"
+BodySkin10="JdZ Luminescent"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="Classique"
@@ -1258,6 +1274,8 @@ BodySkin7="Cyberpunk | Vert"
 BodySkin8="Cyberpunk | Doré"
 BodySkin9="Cyberpunk | Rouge"
 BodySkin10="Cyberpunk | Bleu"
+BodySkin11="JdZ Festif"
+BodySkin12="JdZ Luminescent"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="Classique"
@@ -2286,6 +2304,8 @@ BodySkin8="Cyberpunk | Vert"
 BodySkin9="Cyberpunk | Doré"
 BodySkin10="Cyberpunk | Rouge"
 BodySkin11="Cyberpunk | Bleu"
+BodySkin12="JdZ Festif"
+BodySkin13="JdZ Luminescent"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="Classique"
@@ -2430,6 +2450,8 @@ BodySkin7="Cyberpunk | Vert"
 BodySkin8="Cyberpunk | Doré"
 BodySkin9="Cyberpunk | Rouge"
 BodySkin10="Cyberpunk | Bleu"
+BodySkin11="JdZ Festif"
+BodySkin12="JdZ Luminescent"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="Rouge et noir"
@@ -2611,6 +2633,8 @@ BodySkin6="Cyberpunk | Vert"
 BodySkin7="Cyberpunk | Doré"
 BodySkin8="Cyberpunk | Rouge"
 BodySkin9="Cyberpunk | Bleu"
+BodySkin10="JdZ Festif"
+BodySkin11="JdZ Luminescent"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="Élite bleu"
@@ -2759,6 +2783,8 @@ BodySkin6="Cyberpunk | Vert"
 BodySkin7="Cyberpunk | Doré"
 BodySkin8="Cyberpunk | Rouge"
 BodySkin9="Cyberpunk | Bleu"
+BodySkin10="JdZ Festif"
+BodySkin11="JdZ Luminescent"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="Métro"
@@ -2913,6 +2939,8 @@ BodySkin8="Cyberpunk | Vert"
 BodySkin9="Cyberpunk | Doré"
 BodySkin10="Cyberpunk | Rouge"
 BodySkin11="Cyberpunk | Bleu"
+BodySkin12="JdZ Festif"
+BodySkin13="JdZ Luminescent"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="Classique"
@@ -3064,6 +3092,8 @@ BodySkin5="Cyberpunk | Vert"
 BodySkin6="Cyberpunk | Doré"
 BodySkin7="Cyberpunk | Rouge"
 BodySkin8="Cyberpunk | Bleu"
+BodySkin9="JdZ Festif"
+BodySkin10="JdZ Luminescent"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="Classique"
@@ -3208,6 +3238,8 @@ BodySkin5="Cyberpunk | Vert"
 BodySkin6="Cyberpunk | Doré"
 BodySkin7="Cyberpunk | Rouge"
 BodySkin8="Cyberpunk | Bleu"
+BodySkin9="JdZ Festif"
+BodySkin10="JdZ Luminescent"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="Classique"
@@ -3361,6 +3393,8 @@ BodySkin9="Cyberpunk | Vert"
 BodySkin10="Cyberpunk | Doré"
 BodySkin11="Cyberpunk | Rouge"
 BodySkin12="Cyberpunk | Bleu"
+BodySkin13="JdZ Festif"
+BodySkin14="JdZ Luminescent"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="Élite bleu"
@@ -4770,6 +4804,8 @@ AttachmentSkin1="Chargeur"
 AttachmentSkin2="Standard"
 AttachmentSkin3="Doré"
 AttachmentSkin4="Crânien"
+AttachmentSkin5="JdZ Festif"
+AttachmentSkin6="JdZ Luminescent"
 
 [Cosmetic_DAR_AssaultArmor_ARCH]
 Attachment="Armure d'assaut"
@@ -6615,7 +6651,7 @@ AttachmentSkin5="Technologie"
 AttachmentSkin6="Doré"
 
 [Cosmetic_Foundry_HardHatShield_ARCH]
-Attachment="Casque de chantier et bouclier de fonderie"
+Attachment="Casque de chantier et bouclier"
 AttachmentSkin0="Précaution"
 AttachmentSkin1="Noir"
 AttachmentSkin2="Blanc"
@@ -6625,7 +6661,7 @@ AttachmentSkin5="Technologie"
 AttachmentSkin6="Doré"
 
 [Cosmetic_Foundry_CastingBucket_ARCH]
-Attachment="Sac à dos creuset de fonderie"
+Attachment="Sac à dos creuset"
 AttachmentSkin0="Précaution"
 AttachmentSkin1="Noir"
 AttachmentSkin2="Blanc"
@@ -6645,7 +6681,7 @@ AttachmentSkin5="Technologie"
 AttachmentSkin6="Doré"
 
 [Cosmetic_Foundry_WeldingTank_ARCH]
-Attachment="Sac à dos bouteille de gaz de soudure de fonderie"
+Attachment="Sac à dos bouteille de gaz de soudure"
 AttachmentSkin0="Précaution"
 AttachmentSkin1="Noir"
 AttachmentSkin2="Blanc"
@@ -6707,7 +6743,7 @@ AttachmentSkin3="Galaxie"
 AttachmentSkin4="Doré"
 
 [Cosmetic_Astronaut_CompanionBackpack_ARCH]
-Attachment="Sac à dos compagnon d'astronaute"
+Attachment="Sac à dos comp. d'astronaute"
 AttachmentSkin0="Doré"
 
 [Cosmetic_Astronaut_Helmet_ARCH]
@@ -6830,3 +6866,159 @@ BodySkin1="Singularité"
 BodySkin2="Étoile rayonnante"
 BodySkin3="Galaxie"
 BodySkin4="Doré"
+
+[Cosmetic_Vietnam_USHelmet_ARCH]
+Attachment="Casque U.S. du Vietnam"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Jungle"
+AttachmentSkin3="Bois"
+AttachmentSkin4="Savanne"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Vietnam_USHelmetGoggles_ARCH]
+Attachment="Casque à lunettes U.S. du Vietnam"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Jungle"
+AttachmentSkin3="Bois"
+AttachmentSkin4="Savanne"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Vietnam_USRadio_ARCH]
+Attachment="Radio U.S. du Vietnam"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Gris"
+AttachmentSkin3="Combattant"
+AttachmentSkin4="Napalm"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Vietnam_USPilotHelmet_ARCH]
+Attachment="Casque de pilote du Vietnam"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Napalm"
+AttachmentSkin4="Ciel"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Vietnam_USPilotHelmetGoggles_ARCH]
+Attachment="Casque protecteur de pilote du Vietnam"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Napalm"
+AttachmentSkin4="Ciel"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Vietnam_USPilotHelmetGogglesMask_ARCH]
+Attachment="Casque à masque de pilote du Vietnam"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Napalm"
+AttachmentSkin4="Ciel"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Vietnam_Beret_ARCH]
+Attachment="Béret du Vietnam"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Rouge"
+AttachmentSkin4="Bleu"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Vietnam_Bandana_ARCH]
+Attachment="Bandana du Vietnam"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Jungle"
+AttachmentSkin3="Bois"
+AttachmentSkin4="Savanne"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Vietnam_Hat_ARCH]
+Attachment="Chapeau militaire du Vietnam"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Jungle"
+AttachmentSkin3="Bois"
+AttachmentSkin4="Savanne"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Doré"
+
+[Cosmetic_Vietnam_VCHelmet_ARCH]
+Attachment="Casque VC du Vietnam"
+AttachmentSkin0="Olive"
+AttachmentSkin1="Noir"
+AttachmentSkin2="Blanc"
+AttachmentSkin3="Gris"
+AttachmentSkin4="Marron"
+AttachmentSkin5="Halloween"
+AttachmentSkin6="Doré"
+
+[Cosmetic_DiaDeLosMuertos_TopHat_ARCH]
+Attachment="Haut-de-forme JdZ"
+AttachmentSkin0="Festif"
+AttachmentSkin1="Souci"
+AttachmentSkin2="Espoir"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Doré"
+
+[Cosmetic_DiaDeLosMuertos_SkullHead_ARCH]
+Attachment="Crâne JdZ"
+AttachmentSkin0="Festif"
+AttachmentSkin1="Souci"
+AttachmentSkin2="Espoir"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Doré"
+
+[Cosmetic_DiaDeLosMuertos_Coffin_ARCH]
+Attachment="Cercueil JdZ"
+AttachmentSkin0="Festif"
+AttachmentSkin1="Souci"
+AttachmentSkin2="Espoir"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Doré"
+
+[Cosmetic_DiaDeLosMuertos_Headband_ARCH]
+Attachment="Bandeau JdZ"
+AttachmentSkin0="Festif"
+AttachmentSkin1="Souci"
+AttachmentSkin2="Espoir"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Doré"
+
+[Cosmetic_DiaDeLosMuertos_Armband_ARCH]
+Attachment="Brassard JdZ"
+AttachmentSkin0="Festif"
+AttachmentSkin1="Souci"
+AttachmentSkin2="Espoir"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Doré"
+
+[Cosmetic_DiaDeLosMuertos_CowSkull_ARCH]
+Attachment="Crâne de vache JdZ"
+AttachmentSkin0="Festif"
+AttachmentSkin1="Souci"
+AttachmentSkin2="Espoir"
+AttachmentSkin3="Luminescent"
+AttachmentSkin4="Doré"
+
+[Cosmetic_DiaDeLosMuertos_Companion_ARCH]
+Attachment="Compagnon JdZ"
+AttachmentSkin0="Doré"
+
+[Cosmetic_WildWest_CowboyHat_ARCH]
+Attachment="Chapeau londonien du Far West"
+AttachmentSkin0="Doré"

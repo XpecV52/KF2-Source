@@ -123,6 +123,7 @@ const STATID_ACHIEVE_HellmarkStationCollectibles = 4056;
 const STATID_ACHIEVE_ElysiumEndlessWaveFifteen = 4057;
 const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
 const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
+const STATID_ACHIEVE_NetherholdCollectibles = 4060;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -190,6 +191,7 @@ const KFID_VOIPMicVolumeMultiplier = 174;
 const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
+const KFID_AllowSwapTo9mm = 178;
 const MapObjectiveIndex = 4;
 const MAX_AIM_CORRECTION_SIZE = 35.f;
 
@@ -521,6 +523,7 @@ var MaterialInstanceConstant GameplayPostProcessEffectMIC;
 var name EffectPainParamName;
 var name EffectLowHealthParamName;
 var name EffectZedTimeParamName;
+var name EffectZedTimeSepiaParamName;
 var name EffectNightVisionParamName;
 var name EffectSirenScreamParamName;
 var name EffectBloatsPukeParamName;
@@ -1304,7 +1307,6 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
     local KFProfileSettings Profile;
     local KFPlayerInput KFInput;
     local KFGameInfo KFGI;
-    local KFGameReplicationInfo KFGRI;
     local KFGameEngine KFEngine;
     local KFPlayerReplicationInfo KFPRI;
     local string MatchmakingRegion;
@@ -1342,6 +1344,7 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
             KFInput.GamepadAccelerationJumpScale = Profile.GetProfileFloat(176);
             KFInput.SetGamepadLayout(Profile.GetProfileInt(101));
             KFInput.bToggleToRun = Profile.GetProfileBool(172);
+            KFInput.bAllowSwapTo9mm = Profile.GetProfileBool(178);
             KFInput.ReInitializeControlsUI();
         }
         KFGI = KFGameInfo(WorldInfo.Game);
@@ -1414,31 +1417,15 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
     {
         OnlineSub.GetLobbyInterface().LobbyInvite(LobbyId, Zero, true);
     }
-    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
-    if((KFGRI != none) && !KFGRI.IsPerkAllowed(PerkList[SavedPerkIndex].PerkClass))
-    {
-        SavedPerkIndex = 0;
-        SavedPerkIndex = 0;
-        J0xF60:
-
-        if(SavedPerkIndex < PerkList.Length)
-        {
-            if(KFGRI.IsPerkAllowed(PerkList[SavedPerkIndex].PerkClass))
-            {                
-            }
-            ++ SavedPerkIndex;
-            goto J0xF60;
-        }
-        Profile.SetProfileSettingValueInt(105, SavedPerkIndex);
-    }
+    SavedPerkIndex = CheckCurrentPerkAllowed();
+    Profile.SetProfileSettingValueInt(105, SavedPerkIndex);
     Class'KFEmoteList'.static.RefreshCachedEmoteId();
     Class'KFHeadShotEffectList'.static.RefreshCachedHeadShotEffectId();
 }
 
-function UpdatePerkOnInit()
+simulated function byte CheckCurrentPerkAllowed()
 {
     local KFGameReplicationInfo KFGRI;
-    local KFProfileSettings Profile;
 
     KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if((KFGRI != none) && !KFGRI.IsPerkAllowed(PerkList[SavedPerkIndex].PerkClass))
@@ -1450,16 +1437,27 @@ function UpdatePerkOnInit()
         if(SavedPerkIndex < PerkList.Length)
         {
             if(KFGRI.IsPerkAllowed(PerkList[SavedPerkIndex].PerkClass))
-            {                
+            {
+                goto J0x11B;
             }
             ++ SavedPerkIndex;
             goto J0xA6;
         }
-        Profile = KFProfileSettings(OnlineSub.PlayerInterface.GetProfileSettings(StoredLocalUserNum));
-        if(Profile != none)
-        {
-            Profile.SetProfileSettingValueInt(105, SavedPerkIndex);
-        }
+    }
+    J0x11B:
+
+    return SavedPerkIndex;
+}
+
+function UpdatePerkOnInit()
+{
+    local KFProfileSettings Profile;
+
+    SavedPerkIndex = CheckCurrentPerkAllowed();
+    Profile = KFProfileSettings(OnlineSub.PlayerInterface.GetProfileSettings(StoredLocalUserNum));
+    if(Profile != none)
+    {
+        Profile.SetProfileSettingValueInt(105, SavedPerkIndex);
     }
 }
 
@@ -4333,6 +4331,7 @@ function ResetGameplayPostProcessFX()
         GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectPainParamName, 0);
         GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectLowHealthParamName, 0);
         GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectZedTimeParamName, 0);
+        GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectZedTimeSepiaParamName, 0);
         GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectNightVisionParamName, 0);
         GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectSirenScreamParamName, 0);
         GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectBloatsPukeParamName, 0);
@@ -4351,7 +4350,7 @@ function ResetGameplayPostProcessFX()
 
 function bool ShouldDisplayGameplayPostProcessFX()
 {
-    return (((((((((bPerkEffectIsActive || bGrabEffectIsActive) || PainEffectTimeRemaining > 0) || (Pawn != none) && Pawn.Health <= default.LowHealthThreshold) || HealEffectTimeRemaining > 0) || CurrentZEDTimeEffectIntensity > 0) || bNightVisionActive) || SirenScreamEffectTimeRemaining > 0) || BloatPukeEffectTimeRemaining > 0) || FlashBangEffectTimeRemaining > 0) || HellishRagePowerUpEffectTimeRemaining > 0;
+    return ((((((((((bPerkEffectIsActive || bGrabEffectIsActive) || PainEffectTimeRemaining > 0) || (Pawn != none) && Pawn.Health <= default.LowHealthThreshold) || HealEffectTimeRemaining > 0) || CurrentZEDTimeEffectIntensity > 0) || Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12) || bNightVisionActive) || SirenScreamEffectTimeRemaining > 0) || BloatPukeEffectTimeRemaining > 0) || FlashBangEffectTimeRemaining > 0) || HellishRagePowerUpEffectTimeRemaining > 0;
 }
 
 function UpdateScreenEffect(float DeltaTime, name EffectName, out float TimeRemaining, float Duration)
@@ -8929,6 +8928,7 @@ defaultproperties
     EffectPainParamName=Effect_Pain
     EffectLowHealthParamName=Effect_LowHealth
     EffectZedTimeParamName=Effect_ZEDTIME
+    EffectZedTimeSepiaParamName=Effect_ZEDSEPIA
     EffectNightVisionParamName=Effect_NightVision
     EffectSirenScreamParamName=Effect_Siren
     EffectBloatsPukeParamName=Effect_Puke

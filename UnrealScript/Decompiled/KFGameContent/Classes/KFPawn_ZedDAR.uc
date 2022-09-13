@@ -280,6 +280,7 @@ defaultproperties
     XPValues[2]=27
     XPValues[3]=31
     WeakSpotSocketNames=/* Array type was not detected. */
+    ZEDCowboyHatAttachName=Hat_Attach
     DamageTypeModifiers=/* Array type was not detected. */
     SprintAkComponent=AkComponent'Default__KFPawn_ZedDAR.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedDAR.HeadshotAkComponent0'

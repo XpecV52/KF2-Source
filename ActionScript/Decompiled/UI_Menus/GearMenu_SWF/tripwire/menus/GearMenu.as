@@ -117,6 +117,8 @@ package tripwire.menus
         
         private var _bRotating:Boolean;
         
+        private var _bThirdAttachmentBlocked:Boolean = false;
+        
         public var headCameraSoundEffect:String = "GEAR_CHAR_ZOOMIN";
         
         public var bodyCameraSoundEffect:String = "GEAR_CHAR_ZOOMOUT";
@@ -197,7 +199,7 @@ package tripwire.menus
             this._attachments = param1;
             this.attachmentButton0.enabled = this.GetCanCustomize(this._attachments);
             this.attachmentButton1.enabled = this.GetCanCustomize(this._attachments);
-            this.attachmentButton2.enabled = this.GetCanCustomize(this._attachments);
+            this.attachmentButton2.enabled = this.GetCanCustomize(this._attachments) && !this._bThirdAttachmentBlocked;
         }
         
         public function set listButton(param1:String) : void
@@ -482,10 +484,13 @@ package tripwire.menus
             }
             if(this._selectedButton == this.headButton || this._selectedButton == this.attachmentButton0 || this._selectedButton == this.attachmentButton1 || this._selectedButton == this.attachmentButton2)
             {
-                ExternalInterface.call("Callback_HeadCamera");
-                if(Extensions.gfxProcessSound != null && enabled == true)
+                if(this._selectedButton != this.attachmentButton2 || !this._bThirdAttachmentBlocked)
                 {
-                    Extensions.gfxProcessSound(this,"UI",this.headCameraSoundEffect);
+                    ExternalInterface.call("Callback_HeadCamera");
+                    if(Extensions.gfxProcessSound != null && enabled == true)
+                    {
+                        Extensions.gfxProcessSound(this,"UI",this.headCameraSoundEffect);
+                    }
                 }
             }
             else
@@ -541,10 +546,13 @@ package tripwire.menus
                     }
                     break;
                 case this.attachmentButton2:
-                    this.buttonPressed(this._attachments,this._attachment2String);
-                    if(bManagerUsingGamepad)
+                    if(!this._bThirdAttachmentBlocked)
                     {
-                        this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex2;
+                        this.buttonPressed(this._attachments,this._attachment2String);
+                        if(bManagerUsingGamepad)
+                        {
+                            this.gearList.tileList.selectedIndex = this._selectedAttachmentIndex2;
+                        }
                     }
             }
         }
@@ -841,6 +849,12 @@ package tripwire.menus
             {
                 param1.selected = true;
             }
+        }
+        
+        public function set ThirdAttachmentBlocked(param1:Boolean) : *
+        {
+            this._bThirdAttachmentBlocked = param1;
+            this.attachmentButton2.enabled = !param1;
         }
     }
 }

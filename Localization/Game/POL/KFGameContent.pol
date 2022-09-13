@@ -794,6 +794,30 @@ ItemCategory="Ogień"
 ItemDescription="• Główny atak wystrzeliwuje granaty termitowe, które eksplodują po 4 sekundach.\n• Alternatywny atak ręcznie detonuje cały termit.\n• Jak światło dla much, tak ogień dla zetów."
 SharedUnlockSource="Zestaw broni wiertła termitowego"
 
+[KFWeap_HRG_Boomy]
+ItemName="HRG Tommy Boom"
+ItemCategory="Karabin szturmowy"
+ItemDescription="•Tryb strzelania: ogień ciągły albo powtarzalny.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Rekord eksplozji na minutę zadowoli każdego maniaka!"
+
+[KFWeap_HRG_Energy]
+ItemName="HRG Zakłucacz"
+ItemCategory="Broń krótka"
+ItemDescription="•Tryb podstawowy: tylko ogień powtarzalny.\n•Tryb alternatywny przełącza między szybkimi strzałami i powolnymi wybuchami.\n•Zakłóca działania przez topienie substancji organicznych..."
+
+[KFWeap_Pistol_Bladed]
+ItemName="Pistolet Pirania"
+ItemCategory="Broń krótka"
+ItemDescription="•Ogień podstawowy wystrzeliwuje ostrza piły.\n•Alternatywny: blok/parada.\n•Uchwyt, zęby – jest ostro."
+
+[KFWeap_Pistol_DualBladed]
+ItemName="Dwa pistolety Pirania"
+ItemCategory="Broń krótka"
+ItemDescription="•Ogień podstawowy wystrzeliwuje ostrza piły.\n•Alternatywny: blok/parada.\n•Rozerwij wrogów potężnymi kęsami."
+
+[KFWeap_Rifle_ParasiteImplanter]
+ItemName="Karabinek plugawiący"
+ItemCategory="Karabin"
+ItemDescription="•Ogień podstawowy to pojedyncze strzały.\n•Ogień alternatywny plugawi na parę sekund zety.\n•Jeśli splugawiony zet eksploduje, zada obrażenia innym zetom i uzdrowi graczy."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

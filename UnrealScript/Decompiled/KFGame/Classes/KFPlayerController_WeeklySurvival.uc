@@ -163,6 +163,15 @@ reliable client simulated function GoompaStompMessage(byte StompNum)
     }
 }
 
+function ResetGameplayPostProcessFX()
+{
+    super.ResetGameplayPostProcessFX();
+    if((GameplayPostProcessEffectMIC != none) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12)
+    {
+        GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectZedTimeSepiaParamName, 1);
+    }
+}
+
 defaultproperties
 {
     MaxGoompaStreak=-1

@@ -739,7 +739,7 @@ GrabbyValue="플레이어 붙잡힘"
 ZedSupportValue="간접 데미지"
 ZednnihilationValue="웨이브 킬"
 ZedStomper="제드 스톰퍼"
-ZedStomperValue="제드 스톰퍼"
+ZedStomperValue="짓밟힌 제드"
 
 EPB_Healing="치료"
 EPB_Kills="킬"
@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="자동 거래 비활성화"
 HideRemodeHeadshotEffectsString="원격 헤드샷 이펙트 비활성화"
 ToggleToRunString="토글하여 스프린트"
 ClassicPlayerInfoString="기존 체력 막대"
+AllowSwap9mmString="9mm 교체 허용"
 
 EnableMixerString="토글 Mixer 상호작용"
 DisableMixerString="Mixer 비활성화"
@@ -2180,10 +2181,10 @@ HeavyArmor="중장갑 훈련"
 HeavyArmorDescription="장갑을 착용한 경우, 음파 공격에 체력 데미지만 받으며 클롯이 플레이어를 붙잡을 수 없음 각 게임을 50% 장갑으로 시작"
 
 TacticalMovement="전술 이동"
-TacticalMovementDescription="병과 무기 이용 시 가늠좌를 사용하거나 웅크린 상태에서도 이동 페널티가 없음"
+TacticalMovementDescription="이동과 스프린트가 더 빨라짐. 병과 무기 이용 시 가늠좌를 사용하거나 웅크린 상태에서도 이동 페널티가 없음"
 
 Backup="근접전 훈련"
-BackupDescription="9mm 권총과 나이프 데미지 85% 향상 각 게임을 9mm 권총 두 자루로 시작"
+BackupDescription="9mm 권총과 나이프, 충돌 공격 데미지 100% 향상. 각 게임을 9mm 권총 두 자루로 시작"
 
 TacticalReload="전술 재장전"
 TacticalReloadDescription="병과 무기 이용 시 재장전 속도 향상"
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="우주인 | 동반자 백팩 | 프레셔스"
 ChanceDropDescriptionStrings[0]="여름 티켓"
 ChanceDropDescriptionStrings[1]="여름 골든 티켓"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특별 이벤트입니다"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="끔찍한 존재",DescriptionString="아무 지도 혹은 모드에서 보스 15마리 처치하기")
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 컬트",DescriptionString="네더홀드에서 주간 게임 모드 완료하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="심장 소리가 들려",DescriptionString="네더 하트 찾기")
+SpecialEventObjectiveInfoList[3]=(TitleString="보라색 독기",DescriptionString="예배당과 다이닝홀 문 잠금 해제하기")
+SpecialEventObjectiveInfoList[4]=(TitleString="영원한 징벌",DescriptionString="네더홀드에서 끝없는 도전 어려움 이상으로 15 웨이브 완료하기")
+
+AllCompleteRewardDescriptionString="우주인 | 동반자 백팩 | 프레셔스"
+
+ChanceDropDescriptionStrings[0]="할로윈 티켓"
+ChanceDropDescriptionStrings[1]="할로윈 골든 티켓"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="스캐빈저"
 DescriptionStrings[0]="임기응변. 적응. 극복."
 DescriptionStrings[1]="길이: 중간 (7웨이브)"
 ModifierDescriptions[0]="상점이 공격을 받아 무기가 모두 사라졌습니다. 현장에서 떨어져 있는 무기를 찾아 사용해야 합니다. 매치 메이킹 페이지에서 주간 게임 모드를 선택하십시오. 병과 15 이상."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="서부 황야 런던"
+DescriptionStrings[0]="하이눈이군요, 베이비!"
+DescriptionStrings[1]="길이: 중간 (7웨이브)"
+ModifierDescriptions[0]="매치 메이킹카우보이, 카우걸 여러분 안녕하십니까! 서부 호러극에서 리볼버로 불을 뿜어보시죠. 건슬링거와 명사수만 입장 가능합니다. 매치 메이킹 페이지에서 주간 게임 모드를 선택하십시오. 병과 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="모든 희망을 버려라"
+DescriptionStrings[0]="최강의 도전"
+DescriptionStrings[1]="길이: 중간 (7웨이브)"
+ModifierDescriptions[0]="경고: 이 모드는 매우 어렵습니다! 생지옥 난이도는 어린애 장난 수준입니다. 매치 메이킹 페이지에서 주간 게임 모드를 선택하십시오. 병과 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3491,6 +3526,9 @@ DisplayName="디스토피아 2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="달 기지"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="네더홀드"
 
 [KFMapInfo]
 ; defaults

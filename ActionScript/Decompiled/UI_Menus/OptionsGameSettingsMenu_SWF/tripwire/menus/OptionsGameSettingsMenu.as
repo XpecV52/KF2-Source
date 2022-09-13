@@ -78,6 +78,8 @@ package tripwire.menus
         
         public var enableClassicPlayerInfoCheckbox:TripCheckBox;
         
+        public var enableAllowSwap9mmCheckbox:TripCheckBox;
+        
         public var toggleMixerButton:TripButton;
         
         public var defaultButton:TripButton;
@@ -139,6 +141,10 @@ package tripwire.menus
             {
                 this.enableClassicPlayerInfoCheckbox.tabIndex = _loc1_++;
             }
+            if(this.enableAllowSwap9mmCheckbox)
+            {
+                this.enableAllowSwap9mmCheckbox.tabIndex = _loc1_++;
+            }
             this.closeButton.tabIndex = _loc1_++;
             if(!_loc2_)
             {
@@ -190,6 +196,10 @@ package tripwire.menus
             {
                 this.enableClassicPlayerInfoCheckbox.label = !!param1.enableClassicPlayerInfo ? param1.enableClassicPlayerInfo : "";
             }
+            if(this.enableAllowSwap9mmCheckbox != null)
+            {
+                this.enableAllowSwap9mmCheckbox.label = !!param1.allowSwap9mmLabel ? param1.allowSwap9mmLabel : "";
+            }
         }
         
         public function set dataValues(param1:Object) : void
@@ -230,6 +240,10 @@ package tripwire.menus
             if(this.enableClassicPlayerInfoCheckbox != null)
             {
                 this.enableClassicPlayerInfoCheckbox.selected = !!param1.enableClassicPlayerInfo ? Boolean(param1.enableClassicPlayerInfo) : false;
+            }
+            if(this.enableAllowSwap9mmCheckbox != null)
+            {
+                this.enableAllowSwap9mmCheckbox.selected = !!param1.allowSwapTo9mm ? Boolean(param1.allowSwapTo9mm) : false;
             }
         }
         
@@ -276,6 +290,10 @@ package tripwire.menus
             if(this.toggleMixerButton)
             {
                 this.toggleMixerButton.addEventListener(ButtonEvent.PRESS,this.onCheckBoxClicked,false,0,true);
+            }
+            if(this.enableAllowSwap9mmCheckbox)
+            {
+                this.enableAllowSwap9mmCheckbox.addEventListener(Event.SELECT,this.onCheckBoxClicked,false,0,true);
             }
             this.closeButton.addEventListener(ButtonEvent.PRESS,this.onButtonClick,false,0,true);
         }
@@ -327,6 +345,9 @@ package tripwire.menus
                     break;
                 case this.enableClassicPlayerInfoCheckbox:
                     ExternalInterface.call("Callback_ClassicPlayerInfoChanged",this.enableClassicPlayerInfoCheckbox.selected);
+                    break;
+                case this.enableAllowSwap9mmCheckbox:
+                    ExternalInterface.call("Callback_AllowSwapTo9mm",this.enableAllowSwap9mmCheckbox.selected);
             }
         }
         
@@ -369,6 +390,10 @@ package tripwire.menus
             if(this.enableClassicPlayerInfoCheckbox != null)
             {
                 this.enableClassicPlayerInfoCheckbox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
+            }
+            if(this.enableAllowSwap9mmCheckbox)
+            {
+                this.enableAllowSwap9mmCheckbox.removeEventListener(Event.SELECT,this.onCheckBoxClicked);
             }
             this.closeButton.removeEventListener(ButtonEvent.PRESS,this.onButtonClick);
         }

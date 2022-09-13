@@ -794,6 +794,30 @@ ItemCategory="Flames"
 ItemDescription="•Primary fire launches thermite grenades that explode after 4 seconds.\n•Alt-fire manually detonates all thermites.\n•Like light to the flies, fire to the Zeds."
 SharedUnlockSource="Thermite Bore Weapon Bundle"
 
+[KFWeap_HRG_Boomy]
+ItemName="HRG Tommy Boom"
+ItemCategory="Assault Rifle"
+ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Highest ‘explosion per minute’ for your manic delight!"
+
+[KFWeap_HRG_Energy]
+ItemName="HRG Disrupter"
+ItemCategory="Hand Gun"
+ItemDescription="•Primary: Fire mode is semi-auto only.\n•Alt-fire to toggle between fast shoots and slow blasts.\n•It disrupts by melting the organic material, among other things..."
+
+[KFWeap_Pistol_Bladed]
+ItemName="Piranha Pistol"
+ItemCategory="Hand Gun"
+ItemDescription="•Primary fire shoots saw-blades.\n•Alt - block/parry.\n•Teeth, grip, razor sharp."
+
+[KFWeap_Pistol_DualBladed]
+ItemName="Dual Piranha Pistols"
+ItemCategory="Hand Gun"
+ItemDescription="•Primary fire shoots saw-blades.\n•Alt - block/parry.\n•Bites hi-power, tear you apart."
+
+[KFWeap_Rifle_ParasiteImplanter]
+ItemName="Corrupter Carbine"
+ItemCategory="Rifle"
+ItemDescription="•Primary fire is single shot.\n•Alt fire corrupts the Zeds for some seconds.\n•If a corrupted Zed dies, it explodes damaging other Zeds and healing players."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

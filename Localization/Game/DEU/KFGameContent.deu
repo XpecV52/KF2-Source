@@ -794,6 +794,30 @@ ItemCategory="Flammen"
 ItemDescription="• Primärer Feuer-Modus verschießt Thermit-Granaten, die nach 4 Sekunden explodieren.\n• Alt-Feuer detoniert alle Granaten manuell.\n• Wie die Motten zum Licht, auch die Zeds sollen brennen."
 SharedUnlockSource="Thermit-Werfer-Waffen-Paket"
 
+[KFWeap_HRG_Boomy]
+ItemName="HRG-Tommy-Bumm"
+ItemCategory="Sturmgewehr"
+ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Alt-Feuer, um zwischen den Feuer-Modi zu wechseln.\n•Höchste „Explosionen pro Minute“-Rate, für ein wahnsinniges Vergnügen!"
+
+[KFWeap_HRG_Energy]
+ItemName="HRG-Zerreißer"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Primär: Ein ausschließlich halbautomatischer Feuer-Modus.\n•Alt-Feuer, um zwischen schnellen Schüssen und langsamen Explosionen zu wechseln.\n•Er zerreißt, indem er unter anderem organisches Material schmilzt …"
+
+[KFWeap_Pistol_Bladed]
+ItemName="Piranhapistole"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Das Primär-Feuer schießt Sägeblätter.\n•Alt – blocken/parieren.\n•Zähne, Griff, rasiermesserscharf."
+
+[KFWeap_Pistol_DualBladed]
+ItemName="Zwei Piranhapistolen"
+ItemCategory="Handfeuerwaffe"
+ItemDescription="•Das Primär-Feuer schießt Sägeblätter.\n•Alt – blocken/parieren.\n•Du wirst komplett zerrissen, von megastarken Bissen."
+
+[KFWeap_Rifle_ParasiteImplanter]
+ItemName="Verderber-Karabiner"
+ItemCategory="Gewehr"
+ItemDescription="•Das Primär-Feuer gibt einzelne Schüsse ab.\n•Alt-Feuer verdirbt die Zeds für einige Sekunden.\n•Wenn ein verdorbener Zed stirbt, explodiert er, was anderen Zeds Schaden zufügt und Spieler heilt."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

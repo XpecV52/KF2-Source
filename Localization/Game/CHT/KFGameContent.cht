@@ -794,6 +794,30 @@ ItemCategory="火焰"
 ItemDescription="•主要攻擊是發射鋁熱手榴彈，手榴彈於4秒後爆炸。\n•Alt-主要攻擊以手動引爆所有鋁熱劑。\n•就像光之於昆蟲，火之於Zed。"
 SharedUnlockSource="鋁熱槍膛武器同捆包"
 
+[KFWeap_HRG_Boomy]
+ItemName="HRG湯米．布姆"
+ItemCategory="突擊步槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•次要：射擊可切換為射擊模式。\n•每分鐘享受最大爆破感，滿足你的瘋狂渴望！"
+
+[KFWeap_HRG_Energy]
+ItemName="HRG破壞者"
+ItemCategory="手槍"
+ItemDescription="•主要：射擊模式只有半自動。\n•次要：射擊可切換為快速射擊和慢速連射。\n•除了其他功用，它的破壞力還能融化有機材質…"
+
+[KFWeap_Pistol_Bladed]
+ItemName="食人魚手槍"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊射擊鋸片。\n•次要：格擋/招架。\n•尖牙利齒，緊咬不放。"
+
+[KFWeap_Pistol_DualBladed]
+ItemName="食人魚雙槍"
+ItemCategory="手槍"
+ItemDescription="•主要攻擊射擊鋸片。\n•次要：格擋/招架。\n•具超強咬合力，將你大卸八塊。"
+
+[KFWeap_Rifle_ParasiteImplanter]
+ItemName="腐蝕者卡賓槍"
+ItemCategory="來福槍"
+ItemDescription="•主要攻擊為單發射擊。\n•次要射擊能腐蝕Zed數秒。\n•被腐蝕的Zed死亡後爆炸，傷害其他Zed並治療玩家。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -12,6 +12,8 @@ BodySkin2="棕裝"
 BodySkin3="拐杖糖"
 BodySkin4="愉悅青綠"
 BodySkin5="淡黃復古"
+BodySkin6="Doz節慶"
+BodySkin7="DoZ螢光"
 
 [CHR_BadSanta_archetype.BodyMesh1]
 BodySkin0="已使用"
@@ -54,6 +56,8 @@ BodySkin2="紅色"
 BodySkin3="藍色"
 BodySkin4="粉紅"
 BodySkin5="黑色"
+BodySkin6="Doz節慶"
+BodySkin7="DoZ螢光"
 
 [CHR_MrsFoster_archetype.BodyMesh1]
 BodySkin0="藍色"
@@ -183,6 +187,8 @@ BodySkin0="Endo 800"
 BodySkin1="經典灰"
 BodySkin2="塑料"
 BodySkin3="珍貴"
+BodySkin4="Doz節慶"
+BodySkin5="DoZ螢光"
 
 [CHR_DAR_archetype.HeadMesh0]
 HeadSkin0="無"
@@ -259,6 +265,8 @@ BodySkin8="賽博龐克 | 綠色"
 BodySkin9="賽博龐克 | 珍貴"
 BodySkin10="賽博龐克 | 紅色"
 BodySkin11="賽博龐克 | 藍色"
+BodySkin12="Doz節慶"
+BodySkin13="DoZ螢光"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="經典"
@@ -478,6 +486,8 @@ BodySkin7="賽博龐克 | 綠色"
 BodySkin8="賽博龐克 | 珍貴"
 BodySkin9="賽博龐克 | 紅色"
 BodySkin10="賽博龐克 | 藍色"
+BodySkin11="Doz節慶"
+BodySkin12="DoZ螢光"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -643,6 +653,8 @@ BodySkin6="賽博龐克 | 綠色"
 BodySkin7="賽博龐克 | 珍貴"
 BodySkin8="賽博龐克 | 紅色"
 BodySkin9="賽博龐克 | 藍色"
+BodySkin10="Doz節慶"
+BodySkin11="DoZ螢光"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="地鐵"
@@ -806,6 +818,8 @@ BodySkin3="就是高檔"
 BodySkin4="岩漿紅"
 BodySkin5="金庫珍貴"
 BodySkin6="金庫地磚"
+BodySkin7="Doz節慶"
+BodySkin8="DoZ螢光"
 
 [CHR_MrFoster_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -1099,6 +1113,8 @@ BodySkin5="賽博龐克 | 綠色"
 BodySkin6="賽博龐克 | 珍貴"
 BodySkin7="賽博龐克 | 紅色"
 BodySkin8="賽博龐克 | 藍色"
+BodySkin9="Doz節慶"
+BodySkin10="DoZ螢光"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -1258,6 +1274,8 @@ BodySkin7="賽博龐克 | 綠色"
 BodySkin8="賽博龐克 | 珍貴"
 BodySkin9="賽博龐克 | 紅色"
 BodySkin10="賽博龐克 | 藍色"
+BodySkin11="Doz節慶"
+BodySkin12="DoZ螢光"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -2286,6 +2304,8 @@ BodySkin8="賽博龐克 | 綠色"
 BodySkin9="賽博龐克 | 珍貴"
 BodySkin10="賽博龐克 | 紅色"
 BodySkin11="賽博龐克 | 藍色"
+BodySkin12="Doz節慶"
+BodySkin13="DoZ螢光"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -2430,6 +2450,8 @@ BodySkin7="賽博龐克 | 綠色"
 BodySkin8="賽博龐克 | 珍貴"
 BodySkin9="賽博龐克 | 紅色"
 BodySkin10="賽博龐克 | 藍色"
+BodySkin11="Doz節慶"
+BodySkin12="DoZ螢光"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="紅黑"
@@ -2611,6 +2633,8 @@ BodySkin6="賽博龐克 | 綠色"
 BodySkin7="賽博龐克 | 珍貴"
 BodySkin8="賽博龐克 | 紅色"
 BodySkin9="賽博龐克 | 藍色"
+BodySkin10="Doz節慶"
+BodySkin11="DoZ螢光"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="精英藍"
@@ -2759,6 +2783,8 @@ BodySkin6="賽博龐克 | 綠色"
 BodySkin7="賽博龐克 | 珍貴"
 BodySkin8="賽博龐克 | 紅色"
 BodySkin9="賽博龐克 | 藍色"
+BodySkin10="Doz節慶"
+BodySkin11="DoZ螢光"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="地鐵"
@@ -2913,6 +2939,8 @@ BodySkin8="賽博龐克 | 綠色"
 BodySkin9="賽博龐克 | 珍貴"
 BodySkin10="賽博龐克 | 紅色"
 BodySkin11="賽博龐克 | 藍色"
+BodySkin12="Doz節慶"
+BodySkin13="DoZ螢光"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -3064,6 +3092,8 @@ BodySkin5="賽博龐克 | 綠色"
 BodySkin6="賽博龐克 | 珍貴"
 BodySkin7="賽博龐克 | 紅色"
 BodySkin8="賽博龐克 | 藍色"
+BodySkin9="Doz節慶"
+BodySkin10="DoZ螢光"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -3208,6 +3238,8 @@ BodySkin5="賽博龐克 | 綠色"
 BodySkin6="賽博龐克 | 珍貴"
 BodySkin7="賽博龐克 | 紅色"
 BodySkin8="賽博龐克 | 藍色"
+BodySkin9="Doz節慶"
+BodySkin10="DoZ螢光"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="經典"
@@ -3361,6 +3393,8 @@ BodySkin9="賽博龐克 | 綠色"
 BodySkin10="賽博龐克 | 珍貴"
 BodySkin11="賽博龐克 | 紅色"
 BodySkin12="賽博龐克 | 藍色"
+BodySkin13="Doz節慶"
+BodySkin14="DoZ螢光"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="精英藍"
@@ -4770,6 +4804,8 @@ AttachmentSkin1="裝彈手"
 AttachmentSkin2="標準"
 AttachmentSkin3="珍貴"
 AttachmentSkin4="頭骨"
+AttachmentSkin5="Doz節慶"
+AttachmentSkin6="DoZ螢光"
 
 [Cosmetic_DAR_AssaultArmor_ARCH]
 Attachment="突擊護甲"
@@ -6615,7 +6651,7 @@ AttachmentSkin5="科技"
 AttachmentSkin6="珍貴"
 
 [Cosmetic_Foundry_HardHatShield_ARCH]
-Attachment="鑄造硬帽與護盾"
+Attachment="硬帽與護盾"
 AttachmentSkin0="注意"
 AttachmentSkin1="黑"
 AttachmentSkin2="白"
@@ -6625,7 +6661,7 @@ AttachmentSkin5="科技"
 AttachmentSkin6="珍貴"
 
 [Cosmetic_Foundry_CastingBucket_ARCH]
-Attachment="鑄造鑄桶背包"
+Attachment="鑄桶背包"
 AttachmentSkin0="注意"
 AttachmentSkin1="黑"
 AttachmentSkin2="白"
@@ -6645,7 +6681,7 @@ AttachmentSkin5="科技"
 AttachmentSkin6="珍貴"
 
 [Cosmetic_Foundry_WeldingTank_ARCH]
-Attachment="鑄造焊接罐背包"
+Attachment="焊接罐背包"
 AttachmentSkin0="注意"
 AttachmentSkin1="黑"
 AttachmentSkin2="白"
@@ -6830,3 +6866,159 @@ BodySkin1="奇點"
 BodySkin2="星爆"
 BodySkin3="銀河"
 BodySkin4="珍貴"
+
+[Cosmetic_Vietnam_USHelmet_ARCH]
+Attachment="越南美國頭盔"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="叢林"
+AttachmentSkin3="林地"
+AttachmentSkin4="熱帶草原"
+AttachmentSkin5="萬聖節"
+AttachmentSkin6="珍貴"
+
+[Cosmetic_Vietnam_USHelmetGoggles_ARCH]
+Attachment="越南美國護目鏡頭盔"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="叢林"
+AttachmentSkin3="林地"
+AttachmentSkin4="熱帶草原"
+AttachmentSkin5="萬聖節"
+AttachmentSkin6="珍貴"
+
+[Cosmetic_Vietnam_USRadio_ARCH]
+Attachment="越南美國無線電"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="灰"
+AttachmentSkin3="鬥士"
+AttachmentSkin4="凝固汽油"
+AttachmentSkin5="萬聖節"
+AttachmentSkin6="珍貴"
+
+[Cosmetic_Vietnam_USPilotHelmet_ARCH]
+Attachment="越南飛行員頭盔"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="白"
+AttachmentSkin3="凝固汽油"
+AttachmentSkin4="天空"
+AttachmentSkin5="萬聖節"
+AttachmentSkin6="珍貴"
+
+[Cosmetic_Vietnam_USPilotHelmetGoggles_ARCH]
+Attachment="越南飛行員盾牌頭盔"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="白"
+AttachmentSkin3="凝固汽油"
+AttachmentSkin4="天空"
+AttachmentSkin5="萬聖節"
+AttachmentSkin6="珍貴"
+
+[Cosmetic_Vietnam_USPilotHelmetGogglesMask_ARCH]
+Attachment="越南飛行員面罩頭盔"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="白"
+AttachmentSkin3="凝固汽油"
+AttachmentSkin4="天空"
+AttachmentSkin5="萬聖節"
+AttachmentSkin6="珍貴"
+
+[Cosmetic_Vietnam_Beret_ARCH]
+Attachment="越南貝雷帽"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="白"
+AttachmentSkin3="紅"
+AttachmentSkin4="藍"
+AttachmentSkin5="萬聖節"
+AttachmentSkin6="珍貴"
+
+[Cosmetic_Vietnam_Bandana_ARCH]
+Attachment="越南方巾"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="叢林"
+AttachmentSkin3="林地"
+AttachmentSkin4="熱帶草原"
+AttachmentSkin5="萬聖節"
+AttachmentSkin6="珍貴"
+
+[Cosmetic_Vietnam_Hat_ARCH]
+Attachment="越南漁夫帽"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="叢林"
+AttachmentSkin3="林地"
+AttachmentSkin4="熱帶草原"
+AttachmentSkin5="萬聖節"
+AttachmentSkin6="珍貴"
+
+[Cosmetic_Vietnam_VCHelmet_ARCH]
+Attachment="越南VC頭盔"
+AttachmentSkin0="橄欖綠"
+AttachmentSkin1="黑"
+AttachmentSkin2="白"
+AttachmentSkin3="灰"
+AttachmentSkin4="棕"
+AttachmentSkin5="萬聖節"
+AttachmentSkin6="珍貴"
+
+[Cosmetic_DiaDeLosMuertos_TopHat_ARCH]
+Attachment="DoZ大禮帽"
+AttachmentSkin0="節慶"
+AttachmentSkin1="金盞花"
+AttachmentSkin2="希望"
+AttachmentSkin3="螢光"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_DiaDeLosMuertos_SkullHead_ARCH]
+Attachment="DoZ骷髏頭"
+AttachmentSkin0="節慶"
+AttachmentSkin1="金盞花"
+AttachmentSkin2="希望"
+AttachmentSkin3="螢光"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_DiaDeLosMuertos_Coffin_ARCH]
+Attachment="Doz棺材"
+AttachmentSkin0="節慶"
+AttachmentSkin1="金盞花"
+AttachmentSkin2="希望"
+AttachmentSkin3="螢光"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_DiaDeLosMuertos_Headband_ARCH]
+Attachment="DoZ頭帶"
+AttachmentSkin0="節慶"
+AttachmentSkin1="金盞花"
+AttachmentSkin2="希望"
+AttachmentSkin3="螢光"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_DiaDeLosMuertos_Armband_ARCH]
+Attachment="Doz臂環"
+AttachmentSkin0="節慶"
+AttachmentSkin1="金盞花"
+AttachmentSkin2="希望"
+AttachmentSkin3="螢光"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_DiaDeLosMuertos_CowSkull_ARCH]
+Attachment="DoZ骷髏牛頭"
+AttachmentSkin0="節慶"
+AttachmentSkin1="金盞花"
+AttachmentSkin2="希望"
+AttachmentSkin3="螢光"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_DiaDeLosMuertos_Companion_ARCH]
+Attachment="DoZ同伴"
+AttachmentSkin0="珍貴"
+
+[Cosmetic_WildWest_CowboyHat_ARCH]
+Attachment="西部荒野倫敦帽"
+AttachmentSkin0="珍貴"

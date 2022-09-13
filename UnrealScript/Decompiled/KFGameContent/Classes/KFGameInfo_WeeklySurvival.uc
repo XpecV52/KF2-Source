@@ -208,12 +208,22 @@ protected function ScoreMonsterKill(Controller Killer, Controller Monster, KFPaw
     {
         if((MonsterPawn != none) && MonsterPawn.DamageHistory.Length > 0)
         {
-            HealAfterKilling(MonsterPawn, Killer);
+            if(OutbreakEvent.ActiveEvent.bHealWithHeadshot)
+            {
+                if(MonsterPawn.LastHitZoneIndex == 0)
+                {
+                    HealAfterKilling(MonsterPawn, Killer, false);
+                }                
+            }
+            else
+            {
+                HealAfterKilling(MonsterPawn, Killer);
+            }
         }
     }
 }
 
-function HealAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer)
+function HealAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer, optional bool bGivePowerUp)
 {
     local int I, J;
     local KFPlayerController KFPC;
@@ -223,10 +233,11 @@ function HealAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer)
     local KFPawn_Human PawnHuman;
     local KFGameInfo KFGI;
 
+    bGivePowerUp = true;
     DamageHistory = MonsterPawn.DamageHistory;
     KFGI = KFGameInfo(WorldInfo.Game);
     I = 0;
-    J0x64:
+    J0x69:
 
     if(I < DamageHistory.Length)
     {
@@ -245,7 +256,7 @@ function HealAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer)
                         if(((KFPC == Killer) && KFGI != none) && KFGI.OutbreakEvent.ActiveEvent.bGoompaJumpEnabled)
                         {
                             J = 0;
-                            J0x2CA:
+                            J0x2CF:
 
                             if(J < DamageHistory[I].DamageTypes.Length)
                             {
@@ -255,7 +266,7 @@ function HealAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer)
                                     return;
                                 }
                                 ++ J;
-                                goto J0x2CA;
+                                goto J0x2CF;
                             }
                             PawnHuman.HealDamageForce(MonsterPawn.HealByKill, KFPC, Class'KFDT_Healing', false, false);
                             return;
@@ -263,7 +274,7 @@ function HealAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer)
                         if(KFPC == Killer)
                         {
                             PawnHuman.HealDamageForce(MonsterPawn.HealByKill, KFPC, Class'KFDT_Healing', false, false);
-                            if((KFPawn_ZedFleshpound(MonsterPawn) != none) || KFPawn_ZedScrake(MonsterPawn) != none)
+                            if(bGivePowerUp && (KFPawn_ZedFleshpound(MonsterPawn) != none) || KFPawn_ZedScrake(MonsterPawn) != none)
                             {
                                 KFPC.ReceivePowerUp(Class'KFPowerUp_HellishRage_NoCostHeal');
                             }                            
@@ -277,13 +288,17 @@ function HealAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer)
             }
         }
         ++ I;
-        goto J0x64;
+        goto J0x69;
     }
 }
 
 function StartMatch()
 {
     super.StartMatch();
+    if(OutbreakEvent.ActiveEvent.bForceWWLMusic)
+    {
+        ForceWWLMusicTrack();
+    }
 }
 
 function CreateDifficultyInfo(string Options)

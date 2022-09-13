@@ -86,6 +86,7 @@ const KFID_VOIPMicVolumeMultiplier = 174;
 const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
+const KFID_AllowSwapTo9mm = 178; 
 #linenumber 14
 
 var localized string ExitKF2;
@@ -345,6 +346,17 @@ function GFxObject CreateStoreItem(ItemProperties DesiredStoreItem)
 	DataObject.SetString("imageURL", "img://"$DesiredStoreItem.IconURL);
 	DataObject.SetString("imageURLLarge", "img://"$DesiredStoreItem.IconURLLarge);
 	DataObject.SetInt("SKU", DesiredStoreItem.Definition);
+
+	if( DesiredStoreItem.ItemOnSale && DesiredStoreItem.BasePrice != DesiredStoreItem.Price)
+	{
+		DataObject.SetString("itemOnSale", DesiredStoreItem.ItemOnSale ? "1" : "0");
+		DataObject.SetString("itemPriceBase", DesiredStoreItem.BasePrice);
+		
+		if(DesiredStoreItem.DiscountRate != "" && DesiredStoreItem.DiscountRate != "0")
+		{
+			DataObject.SetString("discountRate", DesiredStoreItem.DiscountRate);
+		}
+	}
 
 	return DataObject;
 }

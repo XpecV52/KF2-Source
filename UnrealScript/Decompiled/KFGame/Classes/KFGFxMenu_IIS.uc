@@ -165,11 +165,7 @@ function OnConfirmPlayOffline()
     ProfileSettings.SetToDefaults();
     ProfileSettings.ExpandExtraFromProfileSettings();
     OnlineSub.SetCachedProfile(ProfileSettings);
-    KFPlayerController(Outer.GetPC()).DynamicCastToken(NullReferenceException);
-    ReturnValue
-    @NULL
-    @NULL    
-    assert((@NULL != (true != )) != KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus = 1);
+    KFPlayerController(Outer.GetPC()).NativeFunctionToken(ArgumentOutOfRangeException);
 }
 
 function OnLoginStatusChanged(Engine.OnlineSubsystem.ELoginStatus NewStatus, UniqueNetId NewId)

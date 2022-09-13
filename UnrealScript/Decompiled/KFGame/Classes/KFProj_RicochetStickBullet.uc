@@ -64,7 +64,7 @@ event PreBeginPlay()
     if((Role == ROLE_Authority) && PickupRadius > float(0))
     {
         WeaponClass = Instigator.Weapon.Class;
-        if(WeaponClass.Name != WeaponClassName)
+        if((WeaponClass.Name != WeaponClassName) && (class<KFWeap_DualBase>(WeaponClass) == none) || class<KFWeap_DualBase>(WeaponClass).default.SingleClass.Name != WeaponClassName)
         {
             WarnInternal((("Projectile pickup mismatch class:" $ string(WeaponClass)) @ "name:") $ string(WeaponClassName));
         }
@@ -299,10 +299,14 @@ state Pickup
     function GiveTo(Pawn P)
     {
         local KFWeapon W;
+        local class<KFWeapon> KFWeaponClass;
+        local class<KFWeap_DualBase> DualWeaponClass;
 
+        KFWeaponClass = class<KFWeapon>(WeaponClass);
+        DualWeaponClass = class<KFWeap_DualBase>(WeaponClass);
         foreach P.InvManager.InventoryActors(Class'KFWeapon', W)
         {
-            if(W.Class == WeaponClass)
+            if((W.Class == WeaponClass) || ((DualWeaponClass != none) ? DualWeaponClass.default.SingleClass == W.Class : KFWeaponClass.default.DualClass == W.Class))
             {
                 W.AddAmmo(1);
                 PlayerController(P.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 13,,, WeaponClass);

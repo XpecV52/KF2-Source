@@ -45,6 +45,7 @@ simulated function PlayImpactEffects(const Vector HitLocation, const Pawn Effect
     local KFImpactEffectInfo ImpactEffectInfo;
     local KFFracturedMeshActor FracturedMeshActor;
     local int I;
+    local bool bIsWeaponHandlingEffects;
 
     ImpactEffectInfo = ((CustomImpactEffects != none) ? CustomImpactEffects : DefaultImpactEffects);
     if(IsZero(HitNormal) && EffectInstigator != none)
@@ -66,8 +67,9 @@ simulated function PlayImpactEffects(const Vector HitLocation, const Pawn Effect
                 WorldInfo.MyEmitterPool.SpawnEmitter(ImpactEffectInfo.SplashEffectTemplate, NewHitLoc, rotator(vect(0, 0, 1)));
             }
         }
+        bIsWeaponHandlingEffects = KFPawn(EffectInstigator).MyKFWeapon.bForceHandleImpacts;
         HitActor = EffectInstigator.Trace(NewHitLoc, HitNormal, HitLocation - (HitNormal * float(32)), HitLocation + (HitNormal * float(32)), !bWorldImpactsOnly,, HitInfo, 1);
-        if(((HitActor != none) && HitActor.bCanBeDamaged) && HitActor.IsA('Pawn'))
+        if((((HitActor != none) && HitActor.bCanBeDamaged) && HitActor.IsA('Pawn')) && !bIsWeaponHandlingEffects)
         {
             return;
         }
@@ -91,7 +93,7 @@ simulated function PlayImpactEffects(const Vector HitLocation, const Pawn Effect
                 ImpactEffect.Sound = HitInfo.PhysMaterial.ImpactSound;
             }
         }
-        if(((HitActor != none) && (Pawn(HitActor) == none) || Vehicle(HitActor) != none) && AllowImpactEffects(HitActor, HitLocation, HitNormal))
+        if(((HitActor != none) && ((Pawn(HitActor) == none) || bIsWeaponHandlingEffects) || Vehicle(HitActor) != none) && AllowImpactEffects(HitActor, HitLocation, HitNormal))
         {
             if(ImpactEffect.ParticleTemplate != none)
             {
@@ -102,13 +104,13 @@ simulated function PlayImpactEffects(const Vector HitLocation, const Pawn Effect
                 WorldInfo.MyEmitterPool.SpawnEmitter(ImpactEffect.ParticleTemplate, HitLocation, rotator(HitNormal), HitActor);
             }
             I = 0;
-            J0x77A:
+            J0x7E2:
 
             if(I < ImpactEffectInfo.GlobalImpactEffectEffects.Length)
             {
                 WorldInfo.MyEmitterPool.SpawnEmitter(ImpactEffectInfo.GlobalImpactEffectEffects[I], HitLocation, rotator(HitNormal), HitActor);
                 ++ I;
-                goto J0x77A;
+                goto J0x7E2;
             }
             if(((!WorldInfo.bDropDetail && Pawn(HitActor) == none) && (EffectInstigator != none) && VSizeSq(EffectInstigator.Location - HitLocation) < MaxDecalRangeSq) && ((WorldInfo.GetDetailMode() != 0) && !Class'Engine'.static.IsSplitScreen()) || EffectInstigator.IsLocallyControlled() && EffectInstigator.IsHumanControlled())
             {

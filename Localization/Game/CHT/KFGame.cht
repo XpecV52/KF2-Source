@@ -739,7 +739,7 @@ GrabbyValue="抓到的玩家"
 ZedSupportValue="間接傷害"
 ZednnihilationValue="一波攻擊中殺敵數"
 ZedStomper="Zed踐踏者"
-ZedStomperValue="Zed踐踏者"
+ZedStomperValue="Zed踐踏"
 
 EPB_Healing="療傷"
 EPB_Kills="殺敵數"
@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="禁用「自動交易」功能"
 HideRemodeHeadshotEffectsString="禁用遠距離爆頭特效"
 ToggleToRunString="切換至衝刺"
 ClassicPlayerInfoString="剩餘血量"
+AllowSwap9mmString="允許切換至9釐米"
 
 EnableMixerString="啟動Mixer互動功能"
 DisableMixerString="禁用「Mixer」功能"
@@ -1800,7 +1801,7 @@ Ninja="散兵"
 NinjaDescription="使用職業武器時移動速度加快20%，衝刺速度加快25%並每秒回復1點生命值。"
 
 Vampire="吸血鬼"
-VampireDescription="每次使用近身武器殺死 Zed 可回復 3 點血量。使用職業近身武器攻擊時速度增加 20%。"
+VampireDescription="每次使用近身武器殺死Zed可回復3點血量。使用職業近身武器攻擊時速度增加20%。"
 
 Speed="屠夫"
 SpeedDescription="使用職業武器時攻擊速度增加 20%，傷害增加 20%。"
@@ -1809,7 +1810,7 @@ Resistance="抗性"
 ResistanceDescription="對所有傷害抵抗增加15%；毒害與超音波傷害抵抗再增加15%。"
 
 Parry="格檔"
-ParryDescription="以職業近身武器進行格檔可減少 30% 即將受到的傷害，且增加 5% 近身攻速與 35% 近身攻擊傷害，效果持續 8 秒。"
+ParryDescription="以職業近身武器進行格檔可減少30% 即將受到的傷害，且增加5%近身攻速與 35%近身攻擊傷害，效果持續8秒。"
 
 Smash="猛擊"
 SmashDescription="以職業近身武器重擊可增加 50% 傷害，擊中頭部時增加 25 %傷害，並增加 200% 踉蹌力量。"
@@ -1901,7 +1902,7 @@ DirectHit="高衝擊回合"
 DirectHitDescription="爆炸性武器直接擊中時，傷害增加 25%。"
 
 Ammo="加分回合"
-AmmoDescription="爆炸性職業武器彈藥上限增加 10。C4 不適用。"
+AmmoDescription="爆炸性職業武器彈藥上限增加10。C4不適用。"
 
 SirenResistance="防超音回合"
 SirenResistanceDescription="你的炸藥不受海妖的叫聲影響，一定會爆炸"
@@ -1938,7 +1939,7 @@ Passives[3]=(Title="移動速度",Description="每 5 級增加移動速度 %x%")
 Passives[4]=(Title="護甲值加成",Description="每級增加護甲值 %x%");
 
 HealingSurge="共同生命"
-HealingSurgeDescription="增加 25% 血量。治療隊友也會治療你 6% 的血量"
+HealingSurgeDescription="增加25%血量。治療隊友也會治療你6%的血量。"
 
 Survivalist="恢復力"
 SurvivalistDescription="每失去1點血量就增加傷害抵抗1%，最多增加60%。"
@@ -2131,7 +2132,7 @@ EXPAction1="造成協助武器傷害"
 EXPAction2="焊接門"
 
 HighCapMags="高容量彈匣"
-HighCapMagsDescription="職業武器彈匣容量增加 75%"
+HighCapMagsDescription="職業武器彈匣容量增加75%"
 
 TacticalReload="戰略裝填"
 TacticalReloadDescription="職業武器裝填速度增加"
@@ -2180,10 +2181,10 @@ HeavyArmor="重護甲訓練"
 HeavyArmorDescription="若你穿著身體護甲，你只會受到超音波攻擊傷害，而凝塊抓不住你。你在每次遊戲開始時會擁有 50% 的護甲值。"
 
 TacticalMovement="戰略性移動"
-TacticalMovementDescription="手持職業武器時，使用瞄具或匍匐前進都不會受到移動懲罰。"
+TacticalMovementDescription="提高移動和衝刺速度。透過職業武器使用瞄具或匍匐前進都不會受到移動懲罰。"
 
 Backup="近身戰鬥訓練"
-BackupDescription="9 毫米手槍與刀類的傷害增加 85%。你在每個遊戲開始時會擁有兩把 9 毫米手槍。"
+BackupDescription="9釐米手槍、刀類與重擊攻擊的傷害增加100%。你在每場賽局開始時會擁有兩把9釐米手槍。"
 
 TacticalReload="戰略裝填"
 TacticalReloadDescription="職業武器裝填速度增加"
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="太空人 | 同伴背包 | 珍貴"
 ChanceDropDescriptionStrings[0]="夏日票券"
 ChanceDropDescriptionStrings[1]="夏日金色票券"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="附有獨特道具的限時特別活動"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="恐怖表現",DescriptionString="在任何地圖或模式中擊殺15個頭目")
+SpecialEventObjectiveInfoList[1]=(TitleString="每週邪教",DescriptionString="完成每週地獄要塞任務")
+SpecialEventObjectiveInfoList[2]=(TitleString="我聽到心跳聲",DescriptionString="找到地獄之心")
+SpecialEventObjectiveInfoList[3]=(TitleString="紫色瘴氣",DescriptionString="解鎖禮拜堂和宴會廳的門")
+SpecialEventObjectiveInfoList[4]=(TitleString="無盡懲罰",DescriptionString="在地獄要塞以無盡模式困難或更高難度完成第15波攻勢")
+
+AllCompleteRewardDescriptionString="太空人 | 同伴背包 | 珍貴"
+
+ChanceDropDescriptionStrings[0]="萬聖節票券"
+ChanceDropDescriptionStrings[1]="萬聖節金色票券"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="清道夫"
 DescriptionStrings[0]="湊合。適應。克服。"
 DescriptionStrings[1]="長度：中（7波攻勢）"
 ModifierDescriptions[0]="商人已遭到破壞，手無寸鐵。你必須使用在地上找到的武器。在配對頁面中選擇每週活動遊戲模式。職業等級15以上。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="西部荒野倫敦"
+DescriptionStrings[0]="寶貝，日正當中！"
+DescriptionStrings[1]="長度：中（7波攻勢）"
+ModifierDescriptions[0]="牛仔男孩女孩們，大家好！準備好加入這個西部恐怖故事，替左輪手槍裝上子彈，展開猛烈攻勢吧。只有槍手和神射手可以參加。在配對頁面選擇每週遊戲模式。職業等級15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="斷棄希望"
+DescriptionStrings[0]="終極挑戰"
+DescriptionStrings[1]="長度：中（7波攻勢）"
+ModifierDescriptions[0]="警告：此模式極度困難！只適合將生存人間煉獄難度視為兒戲的玩家。在配對頁面選擇每週遊戲模式。職業等級15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3491,6 +3526,9 @@ DisplayName="反烏托邦2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="月球基地"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="地獄要塞"
 
 [KFMapInfo]
 ; defaults

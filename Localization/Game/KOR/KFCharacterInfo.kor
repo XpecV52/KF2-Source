@@ -12,6 +12,8 @@ BodySkin2="갈색 무화과"
 BodySkin3="사탕 지팡이"
 BodySkin4="즐거운 그린"
 BodySkin5="크림 빈티지"
+BodySkin6="제드의 날 축제"
+BodySkin7="제드의 날 빛"
 
 [CHR_BadSanta_archetype.BodyMesh1]
 BodySkin0="사용됨"
@@ -54,6 +56,8 @@ BodySkin2="레드"
 BodySkin3="블루"
 BodySkin4="핑크"
 BodySkin5="블랙"
+BodySkin6="제드의 날 축제"
+BodySkin7="제드의 날 빛"
 
 [CHR_MrsFoster_archetype.BodyMesh1]
 BodySkin0="블루"
@@ -183,6 +187,8 @@ BodySkin0="Endo 800"
 BodySkin1="클래식 그레이"
 BodySkin2="플라스틱"
 BodySkin3="프레셔스"
+BodySkin4="제드의 날 축제"
+BodySkin5="제드의 날 빛"
 
 [CHR_DAR_archetype.HeadMesh0]
 HeadSkin0="없음"
@@ -259,6 +265,8 @@ BodySkin8="사이버펑크 | 그린"
 BodySkin9="사이버펑크 | 프레셔스"
 BodySkin10="사이버펑크 | 레드"
 BodySkin11="사이버펑크 | 블루"
+BodySkin12="제드의 날 축제"
+BodySkin13="제드의 날 빛"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -478,6 +486,8 @@ BodySkin7="사이버펑크 | 그린"
 BodySkin8="사이버펑크 | 프레셔스"
 BodySkin9="사이버펑크 | 레드"
 BodySkin10="사이버펑크 | 블루"
+BodySkin11="제드의 날 축제"
+BodySkin12="제드의 날 빛"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -643,6 +653,8 @@ BodySkin6="사이버펑크 | 그린"
 BodySkin7="사이버펑크 | 프레셔스"
 BodySkin8="사이버펑크 | 레드"
 BodySkin9="사이버펑크 | 블루"
+BodySkin10="제드의 날 축제"
+BodySkin11="제드의 날 빛"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="메트로"
@@ -806,6 +818,8 @@ BodySkin3="저스트 클래스"
 BodySkin4="마그마 레드"
 BodySkin5="볼트 프레셔스"
 BodySkin6="볼트 타일"
+BodySkin7="제드의 날 축제"
+BodySkin8="제드의 날 빛"
 
 [CHR_MrFoster_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -1099,6 +1113,8 @@ BodySkin5="사이버펑크 | 그린"
 BodySkin6="사이버펑크 | 프레셔스"
 BodySkin7="사이버펑크 | 레드"
 BodySkin8="사이버펑크 | 블루"
+BodySkin9="제드의 날 축제"
+BodySkin10="제드의 날 빛"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -1258,6 +1274,8 @@ BodySkin7="사이버펑크 | 그린"
 BodySkin8="사이버펑크 | 프레셔스"
 BodySkin9="사이버펑크 | 레드"
 BodySkin10="사이버펑크 | 블루"
+BodySkin11="제드의 날 축제"
+BodySkin12="제드의 날 빛"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -2286,6 +2304,8 @@ BodySkin8="사이버펑크 | 그린"
 BodySkin9="사이버펑크 | 프레셔스"
 BodySkin10="사이버펑크 | 레드"
 BodySkin11="사이버펑크 | 블루"
+BodySkin12="제드의 날 축제"
+BodySkin13="제드의 날 빛"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -2430,6 +2450,8 @@ BodySkin7="사이버펑크 | 그린"
 BodySkin8="사이버펑크 | 프레셔스"
 BodySkin9="사이버펑크 | 레드"
 BodySkin10="사이버펑크 | 블루"
+BodySkin11="제드의 날 축제"
+BodySkin12="제드의 날 빛"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="레드와 블랙"
@@ -2611,6 +2633,8 @@ BodySkin6="사이버펑크 | 그린"
 BodySkin7="사이버펑크 | 프레셔스"
 BodySkin8="사이버펑크 | 레드"
 BodySkin9="사이버펑크 | 블루"
+BodySkin10="제드의 날 축제"
+BodySkin11="제드의 날 빛"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="엘리트 블루"
@@ -2759,6 +2783,8 @@ BodySkin6="사이버펑크 | 그린"
 BodySkin7="사이버펑크 | 프레셔스"
 BodySkin8="사이버펑크 | 레드"
 BodySkin9="사이버펑크 | 블루"
+BodySkin10="제드의 날 축제"
+BodySkin11="제드의 날 빛"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="메트로"
@@ -2913,6 +2939,8 @@ BodySkin8="사이버펑크 | 그린"
 BodySkin9="사이버펑크 | 프레셔스"
 BodySkin10="사이버펑크 | 레드"
 BodySkin11="사이버펑크 | 블루"
+BodySkin12="제드의 날 축제"
+BodySkin13="제드의 날 빛"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -3064,6 +3092,8 @@ BodySkin5="사이버펑크 | 그린"
 BodySkin6="사이버펑크 | 프레셔스"
 BodySkin7="사이버펑크 | 레드"
 BodySkin8="사이버펑크 | 블루"
+BodySkin9="제드의 날 축제"
+BodySkin10="제드의 날 빛"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -3208,6 +3238,8 @@ BodySkin5="사이버펑크 | 그린"
 BodySkin6="사이버펑크 | 프레셔스"
 BodySkin7="사이버펑크 | 레드"
 BodySkin8="사이버펑크 | 블루"
+BodySkin9="제드의 날 축제"
+BodySkin10="제드의 날 빛"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="클래식"
@@ -3361,6 +3393,8 @@ BodySkin9="사이버펑크 | 그린"
 BodySkin10="사이버펑크 | 프레셔스"
 BodySkin11="사이버펑크 | 레드"
 BodySkin12="사이버펑크 | 블루"
+BodySkin13="제드의 날 축제"
+BodySkin14="제드의 날 빛"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="엘리트 블루"
@@ -4770,6 +4804,8 @@ AttachmentSkin1="로더"
 AttachmentSkin2="표준"
 AttachmentSkin3="프레셔스"
 AttachmentSkin4="스컬리"
+AttachmentSkin5="제드의 날 축제"
+AttachmentSkin6="제드의 날 빛"
 
 [Cosmetic_DAR_AssaultArmor_ARCH]
 Attachment="돌격 장갑"
@@ -6615,7 +6651,7 @@ AttachmentSkin5="테크"
 AttachmentSkin6="프레셔스"
 
 [Cosmetic_Foundry_HardHatShield_ARCH]
-Attachment="파운드리 안전모 및 실드"
+Attachment="안전모 및 실드"
 AttachmentSkin0="주의"
 AttachmentSkin1="블랙"
 AttachmentSkin2="화이트"
@@ -6625,7 +6661,7 @@ AttachmentSkin5="테크"
 AttachmentSkin6="프레셔스"
 
 [Cosmetic_Foundry_CastingBucket_ARCH]
-Attachment="파운드리 주조 버켓 백팩"
+Attachment="주조 버켓 백팩"
 AttachmentSkin0="주의"
 AttachmentSkin1="블랙"
 AttachmentSkin2="화이트"
@@ -6645,7 +6681,7 @@ AttachmentSkin5="테크"
 AttachmentSkin6="프레셔스"
 
 [Cosmetic_Foundry_WeldingTank_ARCH]
-Attachment="파운드리 용접 탱크 백팩"
+Attachment="용접 탱크 백팩"
 AttachmentSkin0="주의"
 AttachmentSkin1="블랙"
 AttachmentSkin2="화이트"
@@ -6707,7 +6743,7 @@ AttachmentSkin3="갤럭시"
 AttachmentSkin4="프레셔스"
 
 [Cosmetic_Astronaut_CompanionBackpack_ARCH]
-Attachment="우주인 동반자 백팩"
+Attachment="우주인 콤프레셔 백팩"
 AttachmentSkin0="프레셔스"
 
 [Cosmetic_Astronaut_Helmet_ARCH]
@@ -6830,3 +6866,159 @@ BodySkin1="특이점"
 BodySkin2="스타버스트"
 BodySkin3="갤럭시"
 BodySkin4="프레셔스"
+
+[Cosmetic_Vietnam_USHelmet_ARCH]
+Attachment="베트남 미국 헬멧"
+AttachmentSkin0="올리브"
+AttachmentSkin1="블랙"
+AttachmentSkin2="정글"
+AttachmentSkin3="삼림"
+AttachmentSkin4="초원"
+AttachmentSkin5="핼러윈"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Vietnam_USHelmetGoggles_ARCH]
+Attachment="베트남 미국 고글 헬멧"
+AttachmentSkin0="올리브"
+AttachmentSkin1="블랙"
+AttachmentSkin2="정글"
+AttachmentSkin3="삼림"
+AttachmentSkin4="초원"
+AttachmentSkin5="핼러윈"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Vietnam_USRadio_ARCH]
+Attachment="베트남 미국 무전기"
+AttachmentSkin0="올리브"
+AttachmentSkin1="블랙"
+AttachmentSkin2="그레이"
+AttachmentSkin3="전사"
+AttachmentSkin4="네이팜"
+AttachmentSkin5="핼러윈"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Vietnam_USPilotHelmet_ARCH]
+Attachment="베트남 파일럿 헬멧"
+AttachmentSkin0="올리브"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="네이팜"
+AttachmentSkin4="스카이"
+AttachmentSkin5="핼러윈"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Vietnam_USPilotHelmetGoggles_ARCH]
+Attachment="베트남 파일럿 실드 헬멧"
+AttachmentSkin0="올리브"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="네이팜"
+AttachmentSkin4="스카이"
+AttachmentSkin5="핼러윈"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Vietnam_USPilotHelmetGogglesMask_ARCH]
+Attachment="베트남 파일럿 마스크 헬멧"
+AttachmentSkin0="올리브"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="네이팜"
+AttachmentSkin4="스카이"
+AttachmentSkin5="핼러윈"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Vietnam_Beret_ARCH]
+Attachment="베트남 베레"
+AttachmentSkin0="올리브"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="레드"
+AttachmentSkin4="블루"
+AttachmentSkin5="핼러윈"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Vietnam_Bandana_ARCH]
+Attachment="베트남 반다나"
+AttachmentSkin0="올리브"
+AttachmentSkin1="블랙"
+AttachmentSkin2="정글"
+AttachmentSkin3="삼림"
+AttachmentSkin4="초원"
+AttachmentSkin5="핼러윈"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Vietnam_Hat_ARCH]
+Attachment="베트남 부니"
+AttachmentSkin0="올리브"
+AttachmentSkin1="블랙"
+AttachmentSkin2="정글"
+AttachmentSkin3="삼림"
+AttachmentSkin4="초원"
+AttachmentSkin5="핼러윈"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_Vietnam_VCHelmet_ARCH]
+Attachment="베트남 VC 헬멧"
+AttachmentSkin0="올리브"
+AttachmentSkin1="블랙"
+AttachmentSkin2="화이트"
+AttachmentSkin3="그레이"
+AttachmentSkin4="브라운"
+AttachmentSkin5="핼러윈"
+AttachmentSkin6="프레셔스"
+
+[Cosmetic_DiaDeLosMuertos_TopHat_ARCH]
+Attachment="제드의 날 신사 모자"
+AttachmentSkin0="축제"
+AttachmentSkin1="매리골드"
+AttachmentSkin2="희망"
+AttachmentSkin3="빛"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_DiaDeLosMuertos_SkullHead_ARCH]
+Attachment="제드의 날 스컬 머리"
+AttachmentSkin0="축제"
+AttachmentSkin1="매리골드"
+AttachmentSkin2="희망"
+AttachmentSkin3="빛"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_DiaDeLosMuertos_Coffin_ARCH]
+Attachment="제드의 날 관"
+AttachmentSkin0="축제"
+AttachmentSkin1="매리골드"
+AttachmentSkin2="희망"
+AttachmentSkin3="빛"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_DiaDeLosMuertos_Headband_ARCH]
+Attachment="제드의 날 헤드밴드"
+AttachmentSkin0="축제"
+AttachmentSkin1="매리골드"
+AttachmentSkin2="희망"
+AttachmentSkin3="빛"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_DiaDeLosMuertos_Armband_ARCH]
+Attachment="제드의 날 암밴드"
+AttachmentSkin0="축제"
+AttachmentSkin1="매리골드"
+AttachmentSkin2="희망"
+AttachmentSkin3="빛"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_DiaDeLosMuertos_CowSkull_ARCH]
+Attachment="제드의 날 소 해골"
+AttachmentSkin0="축제"
+AttachmentSkin1="매리골드"
+AttachmentSkin2="희망"
+AttachmentSkin3="빛"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_DiaDeLosMuertos_Companion_ARCH]
+Attachment="제드의 날 동반자"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_WildWest_CowboyHat_ARCH]
+Attachment="서부 황야 런던 모자"
+AttachmentSkin0="프레셔스"

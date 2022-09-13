@@ -175,7 +175,7 @@ static function PlayImpactHitEffects(KFPawn P, Vector HitLocation, Vector HitDir
 {
     local KFSkinTypeEffects SkinType;
 
-    if((P.CharacterArch != none) && default.EffectGroup < 20)
+    if((P.CharacterArch != none) && default.EffectGroup < 22)
     {
         SkinType = P.GetHitZoneSkinTypeEffects(HitZoneIndex);
         if(SkinType != none)

@@ -10,7 +10,7 @@ class KFSkinTypeEffects extends Object
     config(Engine)
     hidecategories(Object);
 
-const FXG_MAX = 20;
+const FXG_MAX = 22;
 
 enum EEffectDamageGroup
 {
@@ -34,6 +34,8 @@ enum EEffectDamageGroup
     FXG_MicrowaveProj,
     FXG_Electricity,
     FXG_Slashing_Ion,
+    FXG_Energy_Yellow,
+    FXG_Energy_Magenta,
     FXG_MAX
 };
 
@@ -67,7 +69,7 @@ struct native SkinEffectInfo
 };
 
 /** Container for effects per type of damage/weapon */
-var() SkinEffectInfo ImpactFXArray[20];
+var() SkinEffectInfo ImpactFXArray[22];
 /** Dynamic container for additional modability */
 var() array<SkinEffectInfo> CustomEffects;
 var config float ImpactParticleEffectInterval;

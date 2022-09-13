@@ -739,7 +739,7 @@ GrabbyValue="被抓的玩家"
 ZedSupportValue="间接伤害"
 ZednnihilationValue="波杀敌数"
 ZedStomper="丧尸践踏者"
-ZedStomperValue="丧尸践踏者"
+ZedStomperValue="践踏丧尸"
 
 EPB_Healing="治愈"
 EPB_Kills="杀敌数"
@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="禁用“自动交易”功能"
 HideRemodeHeadshotEffectsString="关闭远程爆头特效"
 ToggleToRunString="切换为冲刺"
 ClassicPlayerInfoString="遗赠血条"
+AllowSwap9mmString="可交换为 9mm"
 
 EnableMixerString="切换Mixer互动功能"
 DisableMixerString="禁用“Mixer”功能"
@@ -2180,10 +2181,10 @@ HeavyArmor="重护甲训练"
 HeavyArmorDescription="当你装备身体护甲时，你的生命只会受到音波攻击的伤害，血凝丧尸抓不到你。每次游戏开始时，你都有 50% 的护甲。"
 
 TacticalMovement="策略移动"
-TacticalMovementDescription="使用机械瞄准或手握神射武器蹲伏都不会有移动惩罚。"
+TacticalMovementDescription="移动和冲刺速度加快。使用机械瞄准或手握神射武器蹲伏都不会有移动惩罚。"
 
 Backup="近战训练"
-BackupDescription="提升 9 毫米手枪和匕首的伤害 85%。每次游戏开始时，你都有两把 9 毫米手枪。"
+BackupDescription="使你的 9 毫米手枪、匕首和猛击的伤害提高 100%。每次游戏开始时，你都有两把 9 毫米手枪。"
 
 TacticalReload="策略填弹"
 TacticalReloadDescription="提升神射武器的填弹速度。"
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="宇航员 | 同伴背包 | 宝物"
 ChanceDropDescriptionStrings[0]="夏季奖劵"
 ChanceDropDescriptionStrings[1]="夏季金奖券"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="恐怖具象",DescriptionString="在任意地图或模式击杀15名首领")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周邪教",DescriptionString="完成每周的地狱要塞任务")
+SpecialEventObjectiveInfoList[2]=(TitleString="我听到了心跳",DescriptionString="找到地狱之心")
+SpecialEventObjectiveInfoList[3]=(TitleString="紫色烟瘴",DescriptionString="打开礼拜堂和餐厅的门")
+SpecialEventObjectiveInfoList[4]=(TitleString="永恒惩罚",DescriptionString="在困难无尽或以上难度的地狱要塞中成功抵御15波丧尸")
+
+AllCompleteRewardDescriptionString="宇航员 | 同伴背包 | 宝物"
+
+ChanceDropDescriptionStrings[0]="万圣节奖券"
+ChanceDropDescriptionStrings[1]="万圣节金奖券"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="拾荒者"
 DescriptionStrings[0]="即兴。适应。克服。"
 DescriptionStrings[1]="长度：中（7波）"
 ModifierDescriptions[0]="商人的武器被抢劫一空。你必须充分利用自己找到的武器。在“比赛匹配”页面选择每周游戏模式。神射15+。"
+ModifierDescriptions[1]="测试2"
+ModifierDescriptions[2]="测试3"
+
+ModifierDescriptions[3]="测试4"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="伦敦西大荒"
+DescriptionStrings[0]="正午时分到了，宝贝儿！"
+DescriptionStrings[1]="长度：中（7波）"
+ModifierDescriptions[0]="牛仔男孩女孩们，大家好！准备好加入这个西部恐怖故事，用你们的手枪尽情喷洒弹药吧。只有枪手和神射手允许参加。请在“比赛匹配”页面选择每周游戏模式。神射15+。"
+ModifierDescriptions[1]="测试2"
+ModifierDescriptions[2]="测试3"
+ModifierDescriptions[3]="测试4"
+ModifierDescriptions[4]="测试5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="尽弃希望"
+DescriptionStrings[0]="终极挑战"
+DescriptionStrings[1]="长度：中（7波）"
+ModifierDescriptions[0]="警告：此模式极度困难！仅面向将人间炼狱模式视为儿戏的玩家。请在“比赛匹配”页面选择每周游戏模式。神射15+。"
 ModifierDescriptions[1]="测试2"
 ModifierDescriptions[2]="测试3"
 ModifierDescriptions[3]="测试4"
@@ -3491,6 +3526,9 @@ DisplayName="竞技场 2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="月球基地"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="地狱要塞"
 
 [KFMapInfo]
 ; defaults

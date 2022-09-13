@@ -77,6 +77,7 @@ const KFID_VOIPMicVolumeMultiplier = 174;
 const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
+const KFID_AllowSwapTo9mm = 178;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -176,6 +177,9 @@ native function bool StartLoadCosmeticContent(KFCharacterInfo_Human CharArch, in
 
 // Export UKFPlayerReplicationInfo::execStartLoadHeadshotFxContent(FFrame&, void* const)
 native function StartLoadHeadshotFxContent();
+
+// Export UKFPlayerReplicationInfo::execSetWeeklyCharacterAttachment(FFrame&, void* const)
+native function SetWeeklyCharacterAttachment(int AttachmentIndex, int AttachmentSkin);
 
 simulated event ReplicatedEvent(name VarName)
 {

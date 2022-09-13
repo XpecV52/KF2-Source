@@ -12,6 +12,8 @@ BodySkin2="Коричневый наряд"
 BodySkin3="Конфета в виде трости"
 BodySkin4="Веселый и зеленый"
 BodySkin5="Кремовый винтаж"
+BodySkin6="ДМ Праздничный вариант"
+BodySkin7="ДМ Светящийся вариант"
 
 [CHR_BadSanta_archetype.BodyMesh1]
 BodySkin0="Потрепанный вид"
@@ -54,6 +56,8 @@ BodySkin2="Красный цвет"
 BodySkin3="Синий цвет"
 BodySkin4="Розовый цвет"
 BodySkin5="Черный цвет"
+BodySkin6="ДМ Праздничный вариант"
+BodySkin7="ДМ Светящийся вариант"
 
 [CHR_MrsFoster_archetype.BodyMesh1]
 BodySkin0="Синий цвет"
@@ -183,6 +187,8 @@ BodySkin0="Эндо 800"
 BodySkin1="Классический серый"
 BodySkin2="Пластиковый"
 BodySkin3="Дор. вещь"
+BodySkin4="ДМ Праздничный вариант"
+BodySkin5="ДМ Светящийся вариант"
 
 [CHR_DAR_archetype.HeadMesh0]
 HeadSkin0="Нет"
@@ -259,6 +265,8 @@ BodySkin8="Киберпанк | зеленый"
 BodySkin9="Киберпанк | дорогая вещь"
 BodySkin10="Киберпанк | красный"
 BodySkin11="Киберпанк | синий"
+BodySkin12="ДМ Праздничный вариант"
+BodySkin13="ДМ Светящийся вариант"
 
 [CHR_Jagerhorn_Archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -478,6 +486,8 @@ BodySkin7="Киберпанк | зеленый"
 BodySkin8="Киберпанк | дорогая вещь"
 BodySkin9="Киберпанк | красный"
 BodySkin10="Киберпанк | синий"
+BodySkin11="ДМ Праздничный вариант"
+BodySkin12="ДМ Светящийся вариант"
 
 [chr_DJSkully_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -643,6 +653,8 @@ BodySkin6="Киберпанк | зеленый"
 BodySkin7="Киберпанк | дорогая вещь"
 BodySkin8="Киберпанк | красный"
 BodySkin9="Киберпанк | синий"
+BodySkin10="ДМ Праздничный вариант"
+BodySkin11="ДМ Светящийся вариант"
 
 [chr_briar_archetype.BodyMesh1]
 BodySkin0="Метро"
@@ -806,6 +818,8 @@ BodySkin3="Просто класс"
 BodySkin4="Вулканический красный"
 BodySkin5="Сокровища хранилища"
 BodySkin6="Значки денег"
+BodySkin7="ДМ Праздничный вариант"
+BodySkin8="ДМ Светящийся вариант"
 
 [CHR_MrFoster_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -1099,6 +1113,8 @@ BodySkin5="Киберпанк | зеленый"
 BodySkin6="Киберпанк | дорогая вещь"
 BodySkin7="Киберпанк | красный"
 BodySkin8="Киберпанк | синий"
+BodySkin9="ДМ Праздничный вариант"
+BodySkin10="ДМ Светящийся вариант"
 
 [CHR_Coleman_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -1258,6 +1274,8 @@ BodySkin7="Киберпанк | зеленый"
 BodySkin8="Киберпанк | дорогая вещь"
 BodySkin9="Киберпанк | красный"
 BodySkin10="Киберпанк | синий"
+BodySkin11="ДМ Праздничный вариант"
+BodySkin12="ДМ Светящийся вариант"
 
 [CHR_Alberts_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -2286,6 +2304,8 @@ BodySkin8="Киберпанк | зеленый"
 BodySkin9="Киберпанк | дорогая вещь"
 BodySkin10="Киберпанк | красный"
 BodySkin11="Киберпанк | синий"
+BodySkin12="ДМ Праздничный вариант"
+BodySkin13="ДМ Светящийся вариант"
 
 [CHR_Masterson_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -2430,6 +2450,8 @@ BodySkin7="Киберпанк | зеленый"
 BodySkin8="Киберпанк | дорогая вещь"
 BodySkin9="Киберпанк | красный"
 BodySkin10="Киберпанк | синий"
+BodySkin11="ДМ Праздничный вариант"
+BodySkin12="ДМ Светящийся вариант"
 
 [CHR_Tanaka_Archetype.BodyMesh1]
 BodySkin0="Красный с черным"
@@ -2611,6 +2633,8 @@ BodySkin6="Киберпанк | зеленый"
 BodySkin7="Киберпанк | дорогая вещь"
 BodySkin8="Киберпанк | красный"
 BodySkin9="Киберпанк | синий"
+BodySkin10="ДМ Праздничный вариант"
+BodySkin11="ДМ Светящийся вариант"
 
 [CHR_Ana_Archetype.BodyMesh1]
 BodySkin0="Элитный синий"
@@ -2759,6 +2783,8 @@ BodySkin6="Киберпанк | зеленый"
 BodySkin7="Киберпанк | дорогая вещь"
 BodySkin8="Киберпанк | красный"
 BodySkin9="Киберпанк | синий"
+BodySkin10="ДМ Праздничный вариант"
+BodySkin11="ДМ Светящийся вариант"
 
 [chr_mark_archetype.BodyMesh1]
 BodySkin0="Метро"
@@ -2913,6 +2939,8 @@ BodySkin8="Киберпанк | зеленый"
 BodySkin9="Киберпанк | дорогая вещь"
 BodySkin10="Киберпанк | красный"
 BodySkin11="Киберпанк | синий"
+BodySkin12="ДМ Праздничный вариант"
+BodySkin13="ДМ Светящийся вариант"
 
 [CHR_alan_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -3064,6 +3092,8 @@ BodySkin5="Киберпанк | зеленый"
 BodySkin6="Киберпанк | дорогая вещь"
 BodySkin7="Киберпанк | красный"
 BodySkin8="Киберпанк | синий"
+BodySkin9="ДМ Праздничный вариант"
+BodySkin10="ДМ Светящийся вариант"
 
 [CHR_strasser_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -3208,6 +3238,8 @@ BodySkin5="Киберпанк | зеленый"
 BodySkin6="Киберпанк | дорогая вещь"
 BodySkin7="Киберпанк | красный"
 BodySkin8="Киберпанк | синий"
+BodySkin9="ДМ Праздничный вариант"
+BodySkin10="ДМ Светящийся вариант"
 
 [CHR_knight_archetype.BodyMesh1]
 BodySkin0="Классика"
@@ -3361,6 +3393,8 @@ BodySkin9="Киберпанк | зеленый"
 BodySkin10="Киберпанк | дорогая вещь"
 BodySkin11="Киберпанк | красный"
 BodySkin12="Киберпанк | синий"
+BodySkin13="ДМ Праздничный вариант"
+BodySkin14="ДМ Светящийся вариант"
 
 [chr_rockabilly_archetype.BodyMesh1]
 BodySkin0="Элитный синий"
@@ -4770,6 +4804,8 @@ AttachmentSkin1="Погрузчик"
 AttachmentSkin2="Стандартный"
 AttachmentSkin3="Дор. вещь"
 AttachmentSkin4="Вязаная шапка"
+AttachmentSkin5="ДМ Праздничный вариант"
+AttachmentSkin6="ДМ Светящийся вариант"
 
 [Cosmetic_DAR_AssaultArmor_ARCH]
 Attachment="Штурмовой бронежилет"
@@ -6615,7 +6651,7 @@ AttachmentSkin5="Технологичн."
 AttachmentSkin6="Дорогая вещь"
 
 [Cosmetic_Foundry_HardHatShield_ARCH]
-Attachment="Цех: каска и щит"
+Attachment="Каска и щит"
 AttachmentSkin0="Предупреждение"
 AttachmentSkin1="Черный цвет"
 AttachmentSkin2="Белый цвет"
@@ -6625,7 +6661,7 @@ AttachmentSkin5="Технологичн."
 AttachmentSkin6="Дорогая вещь"
 
 [Cosmetic_Foundry_CastingBucket_ARCH]
-Attachment="Цех: рюкзак «Отливочное ведро»"
+Attachment="Рюкзак «Отливочное ведро»"
 AttachmentSkin0="Предупреждение"
 AttachmentSkin1="Черный цвет"
 AttachmentSkin2="Белый цвет"
@@ -6645,7 +6681,7 @@ AttachmentSkin5="Технологичн."
 AttachmentSkin6="Дорогая вещь"
 
 [Cosmetic_Foundry_WeldingTank_ARCH]
-Attachment="Цех: рюкзак «Сварочный баллон»"
+Attachment="Рюкзак «Сварочный баллон»"
 AttachmentSkin0="Предупреждение"
 AttachmentSkin1="Черный цвет"
 AttachmentSkin2="Белый цвет"
@@ -6830,3 +6866,159 @@ BodySkin1="Сингулярность"
 BodySkin2="Символ звезды"
 BodySkin3="Галактика"
 BodySkin4="Дорогая вещь"
+
+[Cosmetic_Vietnam_USHelmet_ARCH]
+Attachment="Американский шлем «Вьетнам»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Джунгли"
+AttachmentSkin3="Лес"
+AttachmentSkin4="Саванна"
+AttachmentSkin5="Хеллоуин"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Vietnam_USHelmetGoggles_ARCH]
+Attachment="Американский шлем с очками «Вьетнам»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Джунгли"
+AttachmentSkin3="Лес"
+AttachmentSkin4="Саванна"
+AttachmentSkin5="Хеллоуин"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Vietnam_USRadio_ARCH]
+Attachment="Американская рация «Вьетнам»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Серый цвет"
+AttachmentSkin3="Боец"
+AttachmentSkin4="Напалм"
+AttachmentSkin5="Хеллоуин"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Vietnam_USPilotHelmet_ARCH]
+Attachment="Американский летный шлем «Вьетнам»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Напалм"
+AttachmentSkin4="Небо"
+AttachmentSkin5="Хеллоуин"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Vietnam_USPilotHelmetGoggles_ARCH]
+Attachment="Американский закр. летный шлем «Вьетнам»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Напалм"
+AttachmentSkin4="Небо"
+AttachmentSkin5="Хеллоуин"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Vietnam_USPilotHelmetGogglesMask_ARCH]
+Attachment="Американский летный шлем-маска «Вьетнам»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Напалм"
+AttachmentSkin4="Небо"
+AttachmentSkin5="Хеллоуин"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Vietnam_Beret_ARCH]
+Attachment="Берет «Вьетнам»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Красный цвет"
+AttachmentSkin4="Синий цвет"
+AttachmentSkin5="Хеллоуин"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Vietnam_Bandana_ARCH]
+Attachment="Бандана «Вьетнам»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Джунгли"
+AttachmentSkin3="Лес"
+AttachmentSkin4="Саванна"
+AttachmentSkin5="Хеллоуин"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Vietnam_Hat_ARCH]
+Attachment="Панама «Вьетнам»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Джунгли"
+AttachmentSkin3="Лес"
+AttachmentSkin4="Саванна"
+AttachmentSkin5="Хеллоуин"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_Vietnam_VCHelmet_ARCH]
+Attachment="Вьетконговский шлем «Вьетнам»"
+AttachmentSkin0="Оливковый цвет"
+AttachmentSkin1="Черный цвет"
+AttachmentSkin2="Белый цвет"
+AttachmentSkin3="Серый цвет"
+AttachmentSkin4="Коричневый цвет"
+AttachmentSkin5="Хеллоуин"
+AttachmentSkin6="Дорогая вещь"
+
+[Cosmetic_DiaDeLosMuertos_TopHat_ARCH]
+Attachment="Цилиндр «ДМ»"
+AttachmentSkin0="Праздничный вариант"
+AttachmentSkin1="Бархатцы"
+AttachmentSkin2="Надежда"
+AttachmentSkin3="Светящийся вариант"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_DiaDeLosMuertos_SkullHead_ARCH]
+Attachment="Череп «ДМ»"
+AttachmentSkin0="Праздничный вариант"
+AttachmentSkin1="Бархатцы"
+AttachmentSkin2="Надежда"
+AttachmentSkin3="Светящийся вариант"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_DiaDeLosMuertos_Coffin_ARCH]
+Attachment="Гроб «ДМ»"
+AttachmentSkin0="Праздничный вариант"
+AttachmentSkin1="Бархатцы"
+AttachmentSkin2="Надежда"
+AttachmentSkin3="Светящийся вариант"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_DiaDeLosMuertos_Headband_ARCH]
+Attachment="Головная повязка «ДМ»"
+AttachmentSkin0="Праздничный вариант"
+AttachmentSkin1="Бархатцы"
+AttachmentSkin2="Надежда"
+AttachmentSkin3="Светящийся вариант"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_DiaDeLosMuertos_Armband_ARCH]
+Attachment="Повязка на руку «ДМ»"
+AttachmentSkin0="Праздничный вариант"
+AttachmentSkin1="Бархатцы"
+AttachmentSkin2="Надежда"
+AttachmentSkin3="Светящийся вариант"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_DiaDeLosMuertos_CowSkull_ARCH]
+Attachment="Коровий череп «ДМ»"
+AttachmentSkin0="Праздничный вариант"
+AttachmentSkin1="Бархатцы"
+AttachmentSkin2="Надежда"
+AttachmentSkin3="Светящийся вариант"
+AttachmentSkin4="Дорогая вещь"
+
+[Cosmetic_DiaDeLosMuertos_Companion_ARCH]
+Attachment="Компаньон «ДМ»"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_WildWest_CowboyHat_ARCH]
+Attachment="Шляпа «Дикий Запад в Лондоне»"
+AttachmentSkin0="Дорогая вещь"

@@ -661,7 +661,7 @@ defaultproperties
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Medic_Bat_TEX.UI_WeaponSelect_MedicBat'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-   MagazineCapacity(0)=3
+   MagazineCapacity(0)=2
    MagazineCapacity(1)=100
    AmmoCost(0)=40
    AmmoCost(1)=()
@@ -670,7 +670,7 @@ defaultproperties
    AmmoCost(4)=()
    AmmoCost(5)=()
    AmmoCost(6)=1
-   SpareAmmoCapacity(0)=12
+   SpareAmmoCapacity(0)=10
    InitialSpareMags(0)=1
    PlayerViewOffset=(X=3.000000,Y=1.000000,Z=-3.000000)
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_MeleeBase:MeleeHelper_0'
@@ -729,7 +729,7 @@ defaultproperties
    InstantHitDamage(2)=()
    InstantHitDamage(3)=40.000000
    InstantHitDamage(4)=()
-   InstantHitDamage(5)=130.000000
+   InstantHitDamage(5)=140.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Bludgeon_MedicBatLight'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()

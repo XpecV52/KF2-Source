@@ -143,6 +143,11 @@ struct WeeklyOverrides
      *               1) Disables Berserker lvl25 skills  2) Enables lvl25 battery ram skill of the swat
      */
     var() bool bColliseumSkillConditionsActive;
+    /**  
+     *Activates the special conditions for the Wild West Weekly Mode
+     *               1) Disables Berserker lvl25 skills  2) Enables lvl25 battery ram skill of the swat
+     */
+    var() bool bWildWestSkillConditionsActive;
     /** If this array is not empty, replaces AIClassList entries with a new spawn class */
     var() array<SpawnReplacement> SpawnReplacementList;
     /** Whether or not to use the spawn replacement list in the boss wave */
@@ -249,6 +254,8 @@ struct WeeklyOverrides
     var() int MaxBoomsPerFrame;
     /** Heal after kill */
     var() bool bHealAfterKill;
+    /** Only heal with headshots */
+    var() bool bHealWithHeadshot;
     /** Cannot be Healed */
     var() bool bCannotBeHealed;
     /** Global Damage affects shield or ignores it */
@@ -281,6 +288,8 @@ struct WeeklyOverrides
     var() bool bUnlimitedWeaponPickups;
     /** If another outbreak mode shares the same events, this will link the two to quicker UI lookup */
     var() int WeeklyOutbreakId;
+    /** If WWL music should be forced */
+    var() bool bForceWWLMusic;
 
     structdefaultproperties
     {
@@ -298,6 +307,7 @@ struct WeeklyOverrides
         bDisableGrenades=false
         PerksAvailableList=none
         bColliseumSkillConditionsActive=false
+        bWildWestSkillConditionsActive=false
         SpawnReplacementList=none
         bAllowSpawnReplacementDuringBossWave=true
         BossSpawnReplacementList=none
@@ -351,6 +361,7 @@ struct WeeklyOverrides
         MaxPerkLevel=4
         MaxBoomsPerFrame=0
         bHealAfterKill=false
+        bHealWithHeadshot=false
         bCannotBeHealed=false
         bGlobalDamageAffectsShield=true
         bApplyGlobalDamageBossWave=true
@@ -367,6 +378,7 @@ struct WeeklyOverrides
         DamageDelayAfterWaveStarted=10
         bUnlimitedWeaponPickups=false
         WeeklyOutbreakId=-1
+        bForceWWLMusic=false
     }
 };
 
@@ -845,6 +857,6 @@ static function int GetOutbreakId(int SetEventsIndex);
 
 defaultproperties
 {
-    ActiveEvent=(EventDifficulty=0,GameLength=0,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,bAddSpawnListToLoadout=false,bSpawnWeaponListAffectsSecondaryWeapons=false,TraderWeaponList=none,bDisableGrenades=false,PerksAvailableList=none,bColliseumSkillConditionsActive=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bModifyZedTimeOnANearZedKill=false,ZedTimeOnANearZedKill=0.05,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0,bHealAfterKill=false,bCannotBeHealed=false,bGlobalDamageAffectsShield=true,bApplyGlobalDamageBossWave=true,bHealPlayerAfterWave=false,bGoompaJumpEnabled=false,GoompaJumpDamage=0,GoompaStreakDamage=0,GoompaStreakMax=0,GoompaJumpImpulse=0,GoompaBonusDuration=0,JumpZ=-1,DroppedItemLifespan=-1,DoshOnKillGlobalModifier=1,DamageDelayAfterWaveStarted=10,bUnlimitedWeaponPickups=false,WeeklyOutbreakId=-1)
+    ActiveEvent=(EventDifficulty=0,GameLength=0,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,bAddSpawnListToLoadout=false,bSpawnWeaponListAffectsSecondaryWeapons=false,TraderWeaponList=none,bDisableGrenades=false,PerksAvailableList=none,bColliseumSkillConditionsActive=false,bWildWestSkillConditionsActive=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bModifyZedTimeOnANearZedKill=false,ZedTimeOnANearZedKill=0.05,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0,bHealAfterKill=false,bHealWithHeadshot=false,bCannotBeHealed=false,bGlobalDamageAffectsShield=true,bApplyGlobalDamageBossWave=true,bHealPlayerAfterWave=false,bGoompaJumpEnabled=false,GoompaJumpDamage=0,GoompaStreakDamage=0,GoompaStreakMax=0,GoompaJumpImpulse=0,GoompaBonusDuration=0,JumpZ=-1,DroppedItemLifespan=-1,DoshOnKillGlobalModifier=1,DamageDelayAfterWaveStarted=10,bUnlimitedWeaponPickups=false,WeeklyOutbreakId=-1,bForceWWLMusic=false)
     CachedItems=(TraderItems=none,GameAmmoCostScale=1,bAllowGrenadePurchase=true,bTradersEnabled=true,MaxPerkLevel=0,CachedWorldGravityZ=0,CachedGlobalGravityZ=0,PerksAvailableData=(bPerksAvailableLimited=false,bBerserkerAvailable=false,bCommandoAvailable=false,bSupportAvailable=false,bFieldMedicAvailable=false,bDemolitionistAvailable=false,bFirebugAvailable=false,bGunslingerAvailable=false,bSharpshooterAvailable=false,bSwatAvailable=false,bSurvivalistAvailable=false))
 }

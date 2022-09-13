@@ -401,6 +401,7 @@ const KFID_VOIPMicVolumeMultiplier = 174;
 const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
+const KFID_AllowSwapTo9mm = 178; 
 #linenumber 22;
 
 /** The time at which this PRI left the game */
@@ -580,6 +581,7 @@ var bool bCarryingCollectible;
 
 native function bool StartLoadCosmeticContent(KFCharacterInfo_Human CharArch, INT CosmeticType, INT CosmeticIdx);
 native function StartLoadHeadshotFxContent();
+native function SetWeeklyCharacterAttachment(INT AttachmentIndex, int AttachmentSkin);
 
 replication
 {

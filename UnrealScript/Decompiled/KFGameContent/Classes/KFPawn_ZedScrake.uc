@@ -247,6 +247,7 @@ defaultproperties
     XPValues[1]=45
     XPValues[2]=60
     XPValues[3]=69
+    ZEDCowboyHatAttachName=Hat_Attach
     DamageTypeModifiers=/* Array type was not detected. */
     ZedBumpDamageScale=0.1
     DifficultySettings=Class'KFDifficulty_Scrake'

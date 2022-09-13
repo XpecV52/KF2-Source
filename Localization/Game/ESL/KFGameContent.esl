@@ -794,6 +794,30 @@ ItemCategory="Llamaradas"
 ItemDescription="•Principal: lanza granadas de termita que explotan a los 4 segundos.\n•Alternativo: hace estallar manualmente las termitas.\n•Fuego a los zeds como la luz a las moscas."
 SharedUnlockSource="Paquete de armas Taladro de termita"
 
+[KFWeap_HRG_Boomy]
+ItemName="Tommy Boom HRG"
+ItemCategory="Rifle de asalto"
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•¡La tasa de "explosión por minuto" más alta para satisfacer tus deseos maniacos!"
+
+[KFWeap_HRG_Energy]
+ItemName="Disruptor HRG"
+ItemCategory="Arma corta"
+ItemDescription="•Principal: solo disparo semiautomático.\n•Disparo alternativo para alternar entre disparos rápidos y lentos.\n•Interrumpe al derretir el material orgánico, entre otras cosas..."
+
+[KFWeap_Pistol_Bladed]
+ItemName="Pistola piraña"
+ItemCategory="Arma corta"
+ItemDescription="•Principal: dispara hojas de sierra.\n•Alternativo: bloquear/parar.\n•Dentadas, afiladas y desgarradoras."
+
+[KFWeap_Pistol_DualBladed]
+ItemName="Pistolas piraña duales"
+ItemCategory="Arma corta"
+ItemDescription="•Principal: dispara hojas de sierra.\n•Alternativo: bloquear/parar.\n•Gran potencia de mordisco, te desgarran."
+
+[KFWeap_Rifle_ParasiteImplanter]
+ItemName="Carabina corruptora"
+ItemCategory="Rifle"
+ItemDescription="•Principal: solo tiro único.\n•Alternativo: corrompe a los zeds unos segundos.\n•Si un zed corrompido muere, explota y daña a los demás zeds, a la vez que cura a los jugadores."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

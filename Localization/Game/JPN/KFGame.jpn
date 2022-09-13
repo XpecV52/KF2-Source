@@ -739,7 +739,7 @@ GrabbyValue="回収したプレイヤー"
 ZedSupportValue="間接ダメージ"
 ZednnihilationValue="ウェーブでのキル数"
 ZedStomper="Zedストンパー"
-ZedStomperValue="Zedストンパー"
+ZedStomperValue="Zed踏みつけ数"
 
 EPB_Healing="回復中"
 EPB_Kills="キル数"
@@ -761,7 +761,7 @@ EPB_HeadShotsValue="ヘッドショット数"
 EPB_KnifeKillsValue="キル数"
 EPB_PistolKillsValue="キル数"
 EPB_DoorWeldingValue="溶接ポイント"
-EPB_ZedStompsValue="ストンプ"
+EPB_ZedStompsValue="踏みつけ"
 
 [KFGFxPostGameContainer_TeamAwards]
 TeamAwardsString="チームアワード"
@@ -782,7 +782,7 @@ HeadShotsString="ヘッドショット数："
 LargeZedKillsString="大型zedキル数："
 TotalDoshEarnedString="獲得dosh合計："
 TotalKillsString="キル数合計："
-TotalStompsString="ストンプ合計"
+TotalStompsString="踏みつけ合計"
 AssistsString="アシスト数："
 DamageDealtString="与えたダメージ："
 
@@ -1291,6 +1291,7 @@ DisableAutoUpgradeString="オートトレードを無効化"
 HideRemodeHeadshotEffectsString="遠隔ヘッドショットエフェクトを無効化"
 ToggleToRunString="切り替えてダッシュ"
 ClassicPlayerInfoString="以前のヘルスバー"
+AllowSwap9mmString="9mmに切り替え可能"
 
 EnableMixerString="Mixer設定"
 DisableMixerString="Mixerを無効化"
@@ -2180,10 +2181,10 @@ HeavyArmor="ヘビーアーマー訓練"
 HeavyArmorDescription="ボディーアーマーを着用すると、ソニックアタックによるヘルスダメージだけを受け、クロトにつかみかかられなくなります。 アーマーが50%で各ゲームが始まります。"
 
 TacticalMovement="戦術的移動"
-TacticalMovementDescription="Perk武器でアイアンサイトやしゃがみ動作を使用することによる動作ペナルティはありません。"
+TacticalMovementDescription="より速く動いてダッシュします。Perk武器でアイアンサイトやしゃがみ動作を使用することによる動作ペナルティはありません。"
 
 Backup="接近戦訓練"
-BackupDescription="9mmピストルおよびナイフによるダメージが85%増加する。各ゲームをデュアル9mmピストルで開始する。"
+BackupDescription="9mmピストル、ナイフ、および強打攻撃によるダメージが100%増加する。各ゲームをデュアル9mmピストルで開始する。"
 
 TacticalReload="戦術的リロード"
 TacticalReloadDescription="Perk武器のリロード速度が上昇する。"
@@ -2842,6 +2843,20 @@ AllCompleteRewardDescriptionString="宇宙飛行士 | 仲間リュック | 希�
 ChanceDropDescriptionStrings[0]="サマーチケット"
 ChanceDropDescriptionStrings[1]="サマー・ゴールデン・チケット"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2021]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="恐ろしい発現",DescriptionString="マップやモードを問わず、ボスを15人殺す")
+SpecialEventObjectiveInfoList[1]=(TitleString="毎週の礼拝",DescriptionString="Netherholdでウィークリーをクリア")
+SpecialEventObjectiveInfoList[2]=(TitleString="心拍音が聞こえる",DescriptionString="冥界の心を見つける")
+SpecialEventObjectiveInfoList[3]=(TitleString="パープルミアズマ",DescriptionString="礼拝堂と食堂の扉をアンロック")
+SpecialEventObjectiveInfoList[4]=(TitleString="永遠の罰",DescriptionString="エンドレスHardかそれ以上の難易度で、Netherholdのウェーブ15をクリアする")
+
+AllCompleteRewardDescriptionString="宇宙飛行士 | 仲間リュック | 希少"
+
+ChanceDropDescriptionStrings[0]="ハロウィーンチケット"
+ChanceDropDescriptionStrings[1]="ハロウィーンゴールデンチケット"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -2967,6 +2982,26 @@ FriendlyName="スカベンジャー"
 DescriptionStrings[0]="即興で。順応。そして克服。"
 DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
 ModifierDescriptions[0]="トレーダーが妨害され、武器が完全になくなってしまいました。地面に落ちている武器を利用しなければなりません。マッチメイキングページでウィークリーゲームモードを選択してください。Perk 15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[WildWest KFWeeklyOutBreakInformation]
+FriendlyName="ワイルドウェストロンドン"
+DescriptionStrings[0]="絶頂期だぜ、ベイビー！"
+DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
+ModifierDescriptions[0]="カウボーイやカウガールの皆さん、ハウディ！この西部風ホラーストーリーで、ファンファイアースタイルのリボルバーを撃ちまくる準備をしましょう。ガンスリンガーとシャープシューターのみが使用可能です。マッチメイキングページでこのウィークリーゲームモードを選択してください。Perk 15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[Infernal KFWeeklyOutBreakInformation]
+FriendlyName="絶体絶命"
+DescriptionStrings[0]="究極の挑戦"
+DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
+ModifierDescriptions[0]="警告：このモードは非常に難しいモードです！Hell on Earthなんてお遊び程度だと思える人しかプレイできないでしょう。マッチメイキングページでこのウィークリーゲームモードを選択してください。Perk 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3491,6 +3526,9 @@ DisplayName="ディストピア2029"
 
 [KF-Moonbase KFMapSummary]
 DisplayName="Moonbase"
+
+[KF-Netherhold KFMapSummary]
+DisplayName="Netherhold"
 
 [KFMapInfo]
 ; defaults

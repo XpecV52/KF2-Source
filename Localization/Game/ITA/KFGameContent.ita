@@ -794,6 +794,30 @@ ItemCategory="Fiamme"
 ItemDescription="•Il fuoco primario lancia granate di termite che esplodono dopo 4 secondi.\n•Il fuoco alternativo fa esplodere tutta la termite.\n•Quello che la luce è per gli insetti, il fuoco lo è per gli Zed."
 SharedUnlockSource="Bundle armi Lanciatermite"
 
+[KFWeap_HRG_Boomy]
+ItemName="HRG Thompson Boom"
+ItemCategory="Fucile d'assalto"
+ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.\n•Miglior tasso di “esplosioni al minuto” per soddisfare la tua pazzia!"
+
+[KFWeap_HRG_Energy]
+ItemName="HRG Disgregatore"
+ItemCategory="Pistola"
+ItemDescription="•Primario: la modalità di fuoco è solo semiautomatica.\n•Usa il fuoco alternativo per cambiare tra colpi veloci e scariche lente.\n• Disgrega fondendo la materia organica, tra le altre cose..."
+
+[KFWeap_Pistol_Bladed]
+ItemName="Pistola Piranha"
+ItemCategory="Pistola"
+ItemDescription="•Il fuoco primario spara lame da sega.\n•Alt. - blocca/para.\n•Denti, morsa, taglienti come rasoi."
+
+[KFWeap_Pistol_DualBladed]
+ItemName="Pistola Piranha doppia"
+ItemCategory="Pistola"
+ItemDescription="•Il fuoco primario spara lame da sega.\n•Alt. - blocca/para.\n•Morde ad alta potenza, ti fa a brandelli."
+
+[KFWeap_Rifle_ParasiteImplanter]
+ItemName="Carabina del Corrotto"
+ItemCategory="Fucile da caccia"
+ItemDescription="•Il fuoco primario è un colpo singolo.\n•Usa il fuoco alternativo per corrompere gli Zed per qualche secondo.\n•Se uno Zed corrotto muore, esplode danneggiando gli altri Zed e curando i giocatori."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

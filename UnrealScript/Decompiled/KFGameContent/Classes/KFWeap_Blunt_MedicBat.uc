@@ -490,7 +490,8 @@ defaultproperties
     ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'
     begin object name=HeavyAttackHealingExplosion class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_Medic_Bat_ARCH.Medic_Bat_Explosion'
-        HealingAmount=30
+        HealingAmount=20
+        Damage=225
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_MedicBatGas'
         KnockDownStrength=0
@@ -550,10 +551,10 @@ defaultproperties
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_Medic_Bat_TEX.UI_WeaponSelect_MedicBat'
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
-    MagazineCapacity[0]=3
+    MagazineCapacity[0]=2
     MagazineCapacity[1]=100
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=12
+    SpareAmmoCapacity=10
     InitialSpareMags=1
     PlayerViewOffset=(X=3,Y=1,Z=-3)
     begin object name=MeleeHelper class=KFMeleeHelperWeapon

@@ -794,6 +794,30 @@ ItemCategory="Chamas"
 ItemDescription="•O tiro principal lança granadas termites que explodem após 4 segundos.\n•O tiro alternativo detona manualmente todas as termites.\n•Como a luz é para as mariposas, o fogo é para os Zeds."
 SharedUnlockSource="Conjunto de Armas Furo de Termite"
 
+[KFWeap_HRG_Boomy]
+ItemName="Tommy Boom HRG"
+ItemCategory="Fuzil de assalto"
+ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Maior “explosão por minuto” para quem gosta de loucura!"
+
+[KFWeap_HRG_Energy]
+ItemName="Rebentador HRG"
+ItemCategory="Pistola de mão"
+ItemDescription="•Principal: o modo de disparo é somente semiautomático.\n•Tiro alt. para alternar entre disparos rápidos e explosões lentas.\n•Derrete materiais orgânicos, dentre outras coisas..."
+
+[KFWeap_Pistol_Bladed]
+ItemName="Pistola Piranha"
+ItemCategory="Pistola de mão"
+ItemDescription="•O tiro principal dispara lâminas de serrote.\n•Alt. - bloqueio/aparo.\n•Dentes afiadíssimos."
+
+[KFWeap_Pistol_DualBladed]
+ItemName="Pistolas Piranha Duplas"
+ItemCategory="Pistola de mão"
+ItemDescription="•O tiro principal dispara lâminas de serrote.\n•Alt. - bloqueio/aparo.\n•Mordidas potentes que rasgam tudo."
+
+[KFWeap_Rifle_ParasiteImplanter]
+ItemName="Carabina Corruptora"
+ItemCategory="Fuzil"
+ItemDescription="•Tiro principal de disparo único.\n•Tiro alt. corrompe os Zeds por alguns segundos.\n•Se um Zed corrompido morrer, ele explode, causa dano a outros Zeds e cura jogadores."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

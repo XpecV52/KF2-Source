@@ -149,6 +149,7 @@ function SetFrozenParameter(float FreezeAmount)
 {
     local MaterialInstanceConstant MIC;
     local int I;
+    local bool bIsWWLMode;
 
     if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -171,17 +172,18 @@ function SetFrozenParameter(float FreezeAmount)
         }
         if(KFPawn_Monster(KFPOwner) != none)
         {
+            bIsWWLMode = ((Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12) && KFGameReplicationInfo(PawnOwner.WorldInfo.GRI) != none) && KFGameReplicationInfo(PawnOwner.WorldInfo.GRI).bIsWeeklyMode;
             I = 0;
-            J0x15C:
+            J0x225:
 
             if(I < KFPawn_Monster(KFPOwner).StaticAttachList.Length)
             {
-                if(KFPawn_Monster(KFPOwner).StaticAttachList[I] != none)
+                if((KFPawn_Monster(KFPOwner).StaticAttachList[I] != none) && !bIsWWLMode || KFPawn_Monster(KFPOwner).StaticAttachList[I].StaticMesh.Name != 'CHR_CowboyHat_Alberts_Cosmetic')
                 {
                     ApplyFreeze(KFPawn_Monster(KFPOwner).StaticAttachList[I]);
                 }
                 ++ I;
-                goto J0x15C;
+                goto J0x225;
             }
         }
     }

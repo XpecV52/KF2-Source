@@ -155,6 +155,7 @@ var bool bTradersEnabled;
 var bool bWaveIsEndless;
 var bool bEndlessMode;
 var bool bObjectiveMode;
+var bool bIsWeeklyMode;
 var bool bCustom;
 var bool bCurrentSMFinishedSpawning;
 var bool bDebugSpawnManager;
@@ -245,9 +246,9 @@ replication
         TraderVolumeCheckType, WaveNum, 
         WaveTotalAICount, bGlobalDamage, 
         bHidePawnIcons, bIsBrokenTrader, 
-        bIsUnrankedGame, bTraderIsOpen, 
-        bWaveIsActive, bWaveIsEndless, 
-        bWaveStarted;
+        bIsUnrankedGame, bIsWeeklyMode, 
+        bTraderIsOpen, bWaveIsActive, 
+        bWaveIsEndless, bWaveStarted;
 
      if(bNetInitial)
         GameAmmoCostScale, GameLength, 
@@ -995,6 +996,21 @@ function SetWaveActive(bool bWaveActive, optional byte NewMusicIntensity)
     }
 }
 
+simulated function bool CanOverrideWeeklyMusic()
+{
+    local KFGameInfo KFGI;
+
+    if(WorldInfo.NetMode == NM_Client)
+    {
+        return !bIsWeeklyMode || Class'KFGameEngine'.static.GetWeeklyEventIndexMod() != 12;        
+    }
+    else
+    {
+        KFGI = KFGameInfo(WorldInfo.Game);
+        return ((KFGI == none) || KFGI.OutbreakEvent == none) || !KFGI.OutbreakEvent.ActiveEvent.bForceWWLMusic;
+    }
+}
+
 simulated function bool IsFinalWave()
 {
     return WaveNum == (WaveMax - 1);
@@ -1567,6 +1583,10 @@ simulated function PlayNewMusicTrack(optional bool bGameStateChanged, optional b
     }
     KFGameClass = class<KFGameInfo>(GameClass);
     if(KFGameClass == none)
+    {
+        return;
+    }
+    if(!CanOverrideWeeklyMusic())
     {
         return;
     }

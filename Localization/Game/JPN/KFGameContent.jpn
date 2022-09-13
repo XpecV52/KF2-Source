@@ -794,6 +794,30 @@ ItemCategory="火炎"
 ItemDescription="•プライマリファイアは4秒後に爆発するテルミット手榴弾を発射します。\n•織るとファイアはすべてのテルミットを手動で起爆させます。\n•ハエのように軽く、Zedに火を点けます。"
 SharedUnlockSource="テルミットボア武器バンドル"
 
+[KFWeap_HRG_Boomy]
+ItemName="HRG トミー・ブーム"
+ItemCategory="アサルトライフル"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•最高の「1分あたりの爆発率」を、熱狂的な喜びのために！"
+
+[KFWeap_HRG_Energy]
+ItemName="HRG ディスラプター"
+ItemCategory="ハンドガン"
+ItemDescription="•第一：ファイアモードはセミオートのみ。\n•オルトファイアで高速発射と低速ブラストを切り替えます。\n•有機物質やその他のものを溶かすことで破壊を行います…"
+
+[KFWeap_Pistol_Bladed]
+ItemName="ピラニアピストル"
+ItemCategory="ハンドガン"
+ItemDescription="•プライマリファイアはソーブレードを発射します。\n•オルト - ブロック/パリィ。\n•歯も、グリップも、物凄い鋭さ。"
+
+[KFWeap_Pistol_DualBladed]
+ItemName="デュアル・ピラニアピストル"
+ItemCategory="ハンドガン"
+ItemDescription="•プライマリファイアはソーブレードを発射します。\n•オルト - ブロック/パリィ。\n•ハイパワーで噛んで、あなたを引き裂きます。"
+
+[KFWeap_Rifle_ParasiteImplanter]
+ItemName="コラプター・カービン"
+ItemCategory="ライフル"
+ItemDescription="•プライマリファイアは単発のみ。\n•オルトファイアは数秒間Zedを腐敗させます。\n•腐敗したZedが死亡すると、爆発して他のZedにダメージを与えてプレイヤーを回復します。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
