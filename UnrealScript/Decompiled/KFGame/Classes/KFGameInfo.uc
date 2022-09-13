@@ -189,7 +189,6 @@ var bool bNVBlockDramatic;
 var bool bNVAlwaysHeadshot;
 var bool bNVDebugDamage;
 var bool bLogGroupTeamBalance;
-var bool bForceMapSorting;
 var int HumanDeaths;
 var class<KFGFxMoviePlayer_Manager> KFGFxManagerClass;
 var globalconfig int GameLength;
@@ -2352,11 +2351,11 @@ function string GetNextMap()
         if(I < GameMapCycles[ActiveMapCycle].Maps.Length)
         {
             MapCycleIndex = (((MapCycleIndex + 1) < GameMapCycles[ActiveMapCycle].Maps.Length) ? MapCycleIndex + 1 : 0);
-            if(Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11)
+            if(((Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11) || OutbreakEvent.ActiveEvent == OutbreakEvent.SetEvents[11]) && MyKFGRI.IsA('KFGameReplicationInfo_WeeklySurvival'))
             {
-                if(((((MyKFGRI.IsA('KFGameReplicationInfo_WeeklySurvival') && GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Biolapse") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Nightmare") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-PowerCore_Holdout") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-TheDescent") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-KrampusLair")
+                if(((((GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Biolapse") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Nightmare") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-PowerCore_Holdout") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-TheDescent") || GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-KrampusLair")
                 {
-                    goto J0x34E;
+                    goto J0x39B;
                 }
             }
             if(IsMapAllowedInCycle(GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex]))
@@ -2364,7 +2363,7 @@ function string GetNextMap()
                 SaveConfig();
                 return GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex];
             }
-            J0x34E:
+            J0x39B:
 
             ++ I;
             goto J0xA8;
@@ -3279,7 +3278,6 @@ defaultproperties
     bUseMapList=true
     bLogReservations=true
     bLogGroupTeamBalance=true
-    bForceMapSorting=true
     KFGFxManagerClass=Class'KFGFxMoviePlayer_Manager'
     GameLength=1
     MinNetPlayers=1

@@ -94,10 +94,10 @@ simulated function UpdateThirdPersonWeaponAction(KFGame.KFWeaponAttachment.EWeap
     super.UpdateThirdPersonWeaponAction(NewWeaponState, P, ThirdPersonAnimRateByte);
     switch(NewWeaponState)
     {
-        case 28:
+        case 30:
             SetArrowVisbility(false);
             break;
-        case 26:
+        case 28:
         case 0:
             if(P.IsLocallyControlled())
             {

@@ -5236,7 +5236,7 @@ simulated state WeaponEquipping
 {
     simulated function byte GetWeaponStateId()
     {
-        return 26;
+        return 28;
     }
 
     simulated function bool TryPutDown()
@@ -5307,7 +5307,7 @@ simulated state WeaponPuttingDown
 
     simulated function byte GetWeaponStateId()
     {
-        return 27;
+        return 29;
     }
 
     simulated function BeginState(name PreviousStateName)
@@ -5641,7 +5641,7 @@ simulated state GrenadeFiring extends WeaponSingleFiring
 {
     simulated function byte GetWeaponStateId()
     {
-        return 28;
+        return 30;
     }
 
     simulated event BeginState(name PreviousStateName)
@@ -5982,7 +5982,7 @@ simulated state MeleeAttackBasic
 
     simulated function byte GetWeaponStateId()
     {
-        return 13;
+        return 15;
     }
 
     simulated function float GetThirdPersonAnimRate()

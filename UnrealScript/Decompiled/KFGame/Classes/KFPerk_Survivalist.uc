@@ -313,7 +313,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     {
         StateName = W.GetStateName();
         WarnInternal(string(StateName));
-        if((ZedTimeModifyingStates.Find(StateName != -1) || (StateName == 'MeleeChainAttacking') && IsBlastBrawlers(W))
+        if(((ZedTimeModifyingStates.Find(StateName != -1) || (StateName == 'MeleeChainAttacking') && IsBlastBrawlers(W)) || (StateName == 'FiringSecondaryState') && IsFAMAS(W))
         {
             return GetSkillValue(PerkSkills[8]);
         }

@@ -681,7 +681,7 @@ simulated state Reloading
         bTacticalReload = (Perk != none) && Perk.GetUsingTactialReload(self);
         if(AmmoCount[0] == 1)
         {
-            return byte(((bTacticalReload) ? 12 : 11));
+            return byte(((bTacticalReload) ? 14 : 13));
         }
         return super.GetWeaponStateId();
     }

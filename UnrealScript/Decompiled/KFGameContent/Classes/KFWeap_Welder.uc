@@ -545,7 +545,7 @@ simulated state WeaponWelding extends WeaponFiring
 {
     simulated function byte GetWeaponStateId()
     {
-        return 31;
+        return 33;
     }
 
     simulated function BeginState(name PrevStateName)

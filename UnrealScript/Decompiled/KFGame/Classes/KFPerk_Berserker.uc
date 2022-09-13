@@ -114,7 +114,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
                 MyKFWeapon = KFWeapon(DamageCauser.Owner);
             }
         }
-        if(((MyKFWeapon != none) && IsWeaponOnPerk(MyKFWeapon,, self.Class)) || IsDamageTypeOnPerk(DamageType))
+        if((((MyKFWeapon != none) && IsWeaponOnPerk(MyKFWeapon,, self.Class)) || IsDamageTypeOnPerk(DamageType)) && !IsBlastBrawlers(MyKFWeapon))
         {
             TempDamage += (float(InDamage) * (GetPassiveValue(BerserkerDamage, CurrentLevel)));
             if(IsSpeedActive())

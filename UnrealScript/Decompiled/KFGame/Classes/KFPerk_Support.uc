@@ -410,7 +410,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     local name StateName;
 
     StateName = W.GetStateName();
-    if(((IsWeaponOnPerk(W,, self.Class)) && CouldBarrageActive()) && (ZedTimeModifyingStates.Find(StateName != -1) || (StateName == 'MeleeChainAttacking') && IsBlastBrawlers(W))
+    if(((IsWeaponOnPerk(W,, self.Class)) && CouldBarrageActive()) && ((ZedTimeModifyingStates.Find(StateName != -1) || (StateName == 'MeleeChainAttacking') && IsBlastBrawlers(W)) || (IsFAMAS(W)) && StateName == 'FiringSecondaryState')
     {
         return BarrageFiringRate;
     }

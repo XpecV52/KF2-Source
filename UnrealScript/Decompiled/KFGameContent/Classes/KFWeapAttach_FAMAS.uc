@@ -9,16 +9,19 @@ class KFWeapAttach_FAMAS extends KFWeaponAttachment
     hidecategories(Navigation,Object,Movement,Attachment,Collision,Physics,Advanced,Debug,Mobile);
 
 const SecondaryFireAnim = 'Shoot_Secondary';
+const SecondaryFireAnimCrouch = 'Shoot_Secondary_CH';
 const SecondaryFireIronAnim = 'Shoot_Secondary_Iron';
-const SecondaryFireAnimLast = 'Shoot_Secondary_Last';
-const SecondaryFireIronAnimLast = 'Shoot_Secondary_Iron_Last';
 const SecondaryFireBodyAnim = 'ADD_Shoot_Secondary';
 const SecondaryFireBodyAnimCH = 'ADD_Shoot_Secondary_CH';
 const SecondaryFireBodyAnimIron = 'ADD_Shoot_Secondary_Iron';
 const SecondaryReloadAnimEmpty = 'Reload_Secondary_Empty';
+const SecondaryReloadAnimEmptyCrouch = 'Reload_Secondary_Empty_CH';
 const SecondaryReloadAnimHalf = 'Reload_Secondary_Half';
+const SecondaryReloadAnimHalfCrouch = 'Reload_Secondary_Half_CH';
 const SecondaryReloadAnimEliteEmpty = 'Reload_Secondary_Elite_Empty';
+const SecondaryReloadAnimEliteEmptyCrouch = 'Reload_Secondary_Elite_Empty_CH';
 const SecondaryReloadAnimEliteHalf = 'Reload_Secondary_Elite_Half';
+const SecondaryReloadAnimEliteHalfCrouch = 'Reload_Secondary_Elite_Half_CH';
 const ShotgunMuzzleSocket = 'ShotgunMuzzleFlash';
 
 var protected transient KFMuzzleFlash ShotgunMuzzleFlash;
@@ -27,19 +30,25 @@ simulated function PlayReloadMagazineAnim(KFGame.KFWeaponAttachment.EWeaponState
 {
     local name AnimName;
 
-    if((NewWeaponState == 9) || NewWeaponState == 10)
+    switch(NewWeaponState)
     {
-        switch(NewWeaponState)
-        {
-            case 9:
-                AnimName = ((P.MyKFWeapon.AmmoCount[1] == 0) ? 'Reload_Secondary_Empty' : 'Reload_Secondary_Half');
-                break;
-            case 10:
-                AnimName = ((P.MyKFWeapon.AmmoCount[1] == 0) ? 'Reload_Secondary_Elite_Empty' : 'Reload_Secondary_Elite_Half');
-                break;
-            default:
-                break;
-        }
+        case 9:
+            AnimName = ((P.bIsCrouched) ? 'Reload_Secondary_Half_CH' : 'Reload_Secondary_Half');
+            break;
+        case 11:
+            AnimName = ((P.bIsCrouched) ? 'Reload_Secondary_Empty_CH' : 'Reload_Secondary_Empty');
+            break;
+        case 10:
+            AnimName = ((P.bIsCrouched) ? 'Reload_Secondary_Elite_Half_CH' : 'Reload_Secondary_Elite_Half');
+            break;
+        case 12:
+            AnimName = ((P.bIsCrouched) ? 'Reload_Secondary_Elite_Empty_CH' : 'Reload_Secondary_Elite_Empty');
+            break;
+        default:
+            break;
+    }
+    if(AnimName != 'None')
+    {
         PlayCharacterMeshAnim(P, AnimName, true);        
     }
     else
@@ -104,15 +113,15 @@ simulated function PlayFireAnim(KFPawn P)
     }
     else
     {
-        if(Pawn(Owner).FiringMode == 0)
+        if(OwnerPawn.FiringMode == 0)
         {
             Anim = 'Shoot';            
         }
         else
         {
-            if(Pawn(Owner).FiringMode == 1)
+            if(OwnerPawn.FiringMode == 1)
             {
-                Anim = 'Shoot_Secondary';
+                Anim = ((OwnerPawn.bIsCrouched) ? 'Shoot_Secondary_CH' : 'Shoot_Secondary');
             }
         }
     }

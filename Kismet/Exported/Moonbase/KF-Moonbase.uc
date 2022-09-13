@@ -8623,9 +8623,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_151
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         CutTrack(0)=(TargetCamGroup="Camera",ShotNumber=10)
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=115,G=209,R=0,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -8642,16 +8649,9 @@ Begin Object Class=InterpData Name=InterpData_0
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
-         CutTrack(0)=(TargetCamGroup="Camera",ShotNumber=10)
-         Name="InterpTrackDirector_0"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
-      GroupColor=(B=115,G=209,R=0,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1099.500000
    InterpGroups(0)=InterpGroup'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
@@ -12259,7 +12259,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_291
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_290
-   ObjValue=PointLight'KF-MOONBASE.TheWorld:PersistentLevel.PointLight_12'
+   ObjValue=PointLight'KF-MOONBASE.TheWorld:PersistentLevel.PointLight_260'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-2000
@@ -12295,7 +12295,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_503
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_504
-   ObjValue=PointLight'KF-MOONBASE.TheWorld:PersistentLevel.PointLight_23'
+   ObjValue=PointLight'KF-MOONBASE.TheWorld:PersistentLevel.PointLight_252'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1624
@@ -12349,7 +12349,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_39
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_507
-   ObjValue=PointLight'KF-MOONBASE.TheWorld:PersistentLevel.PointLight_17'
+   ObjValue=PointLight'KF-MOONBASE.TheWorld:PersistentLevel.PointLight_247'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-MOONBASE.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-1736

@@ -193,6 +193,28 @@ function Vector CalculateResidualFlameVelocity(Vector HitNormal, Vector HitVelDi
     return SpawnDir * ResidualFlameForceMultiplier;
 }
 
+protected simulated function PrepareExplosionTemplate()
+{
+    local Weapon OwnerWeapon;
+    local Pawn OwnerPawn;
+    local KFPerk_Survivalist Perk;
+
+    super.PrepareExplosionTemplate();
+    OwnerWeapon = Weapon(Owner);
+    if(OwnerWeapon != none)
+    {
+        OwnerPawn = Pawn(OwnerWeapon.Owner);
+        if(OwnerPawn != none)
+        {
+            Perk = KFPerk_Survivalist(KFPawn(OwnerPawn).GetPerk());
+            if(Perk != none)
+            {
+                ExplosionTemplate.DamageRadius *= Perk.GetAoERadiusModifier();
+            }
+        }
+    }
+}
+
 defaultproperties
 {
     FuseTime=4

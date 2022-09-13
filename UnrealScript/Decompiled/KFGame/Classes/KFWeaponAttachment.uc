@@ -110,6 +110,8 @@ enum EWeaponState
     WEP_ReloadSingleEmpty_Elite,
     WEP_ReloadSecondary,
     WEP_ReloadSecondary_Elite,
+    WEP_ReloadSecondaryEmpty,
+    WEP_ReloadSecondaryEmpty_Elite,
     WEP_ReloadDualsOneEmpty,
     WEP_ReloadDualsOneEmpty_Elite,
     WEP_MeleeBasic,
@@ -592,42 +594,42 @@ simulated function UpdateThirdPersonWeaponAction(KFWeaponAttachment.EWeaponState
     }
     switch(NewWeaponState)
     {
-        case 26:
+        case 28:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Equip_CH' : 'Equip'));
             break;
-        case 27:
+        case 29:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'PutAway_CH' : 'PutAway'));
             break;
-        case 28:
+        case 30:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Nade_Throw_CH' : 'Nade_Throw'));
             break;
-        case 29:
+        case 31:
             PlayHealAnim(P);
             break;
-        case 30:
+        case 32:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Heal_Quick_CH' : 'Heal_Quick'));
             break;
-        case 31:
+        case 33:
             PlayWeldAnim(P);
             break;
-        case 25:
+        case 27:
             PlayCharacterMeshAnim(P, ((P.bIsCrouched) ? 'Clean_NoBlood_CH' : 'Clean_NoBlood'));
             break;
-        case 13:
-        case 19:
-        case 18:
-        case 16:
-        case 17:
-        case 23:
-        case 22:
-        case 20:
+        case 15:
         case 21:
+        case 20:
+        case 18:
+        case 19:
+        case 25:
+        case 24:
+        case 22:
+        case 23:
             PlayMeleeAtkAnim(NewWeaponState, P);
             break;
-        case 15:
+        case 17:
             PlayMeleeSustainedAnim(P);
             break;
-        case 24:
+        case 26:
             PlayMeleeBlockAnim(P);
             break;
         case 1:
@@ -636,6 +638,8 @@ simulated function UpdateThirdPersonWeaponAction(KFWeaponAttachment.EWeaponState
         case 4:
         case 9:
         case 10:
+        case 13:
+        case 14:
         case 11:
         case 12:
             bIsReloading = true;
@@ -664,31 +668,31 @@ simulated function float PlayMeleeAtkAnim(KFWeaponAttachment.EWeaponState NewWea
     }
     switch(NewWeaponState)
     {
-        case 13:
+        case 15:
             AnimName = ((P.bIsCrouched) ? 'Melee_CH' : 'Melee');
             break;
-        case 23:
+        case 25:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_B_CH' : 'Atk_H_B');
             break;
-        case 22:
+        case 24:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_F_CH' : 'Atk_H_F');
             break;
-        case 20:
+        case 22:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_L_CH' : 'Atk_H_L');
             break;
-        case 21:
+        case 23:
             AnimName = ((P.bIsCrouched) ? 'Atk_H_R_CH' : 'Atk_H_R');
             break;
-        case 19:
+        case 21:
             AnimName = ((P.bIsCrouched) ? 'Atk_B_CH' : 'Atk_B');
             break;
-        case 18:
+        case 20:
             AnimName = ((P.bIsCrouched) ? 'Atk_F_CH' : 'Atk_F');
             break;
-        case 16:
+        case 18:
             AnimName = ((P.bIsCrouched) ? 'Atk_L_CH' : 'Atk_L');
             break;
-        case 17:
+        case 19:
             AnimName = ((P.bIsCrouched) ? 'Atk_R_CH' : 'Atk_R');
             break;
         default:
@@ -733,7 +737,7 @@ simulated function LoopWeaponMeleeAnim()
     P = KFPawn(Owner);
     if((P != none) && !P.IsDoingSpecialMove())
     {
-        UpdateThirdPersonWeaponAction(14, P, P.GetWeaponAttachmentAnimRateByte());
+        UpdateThirdPersonWeaponAction(16, P, P.GetWeaponAttachmentAnimRateByte());
     }
 }
 
@@ -773,7 +777,7 @@ simulated function PlayReloadMagazineAnim(KFWeaponAttachment.EWeaponState NewWea
         case 2:
             AnimName = ((!P.bIsCrouched) ? 'Reload_Empty' : 'Reload_Empty_CH');
             break;
-        case 11:
+        case 13:
             AnimName = ((!P.bIsCrouched) ? 'Reload_Empty_Half' : 'Reload_Empty_Half_CH');
             break;
         case 3:
@@ -782,7 +786,7 @@ simulated function PlayReloadMagazineAnim(KFWeaponAttachment.EWeaponState NewWea
         case 4:
             AnimName = ((!P.bIsCrouched) ? 'Reload_Empty_Elite' : 'Reload_Empty_Elite_CH');
             break;
-        case 12:
+        case 14:
             AnimName = ((!P.bIsCrouched) ? 'Reload_Empty_Half_Elite' : 'Reload_Empty_Half_Elite_CH');
             break;
         default:

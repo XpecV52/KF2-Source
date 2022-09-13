@@ -241,7 +241,19 @@ simulated function float GetReloadRateScale()
 
 simulated function bool HasAnyAmmo()
 {
-    return (AmmoCount[0] != 0) && SpareAmmoCount[0] != 0;
+    return (AmmoCount[0] > 0) || SpareAmmoCount[0] > 0;
+}
+
+simulated function int GetMeleeDamage(byte FireModeNum, optional Vector RayDir)
+{
+    local int Damage;
+
+    Damage = GetModifiedDamage(FireModeNum, RayDir);
+    if(!IsZero(RayDir))
+    {
+        Damage = Round(float(Damage) * FMin(VSize(RayDir), 1));
+    }
+    return Damage;
 }
 
 simulated state Active

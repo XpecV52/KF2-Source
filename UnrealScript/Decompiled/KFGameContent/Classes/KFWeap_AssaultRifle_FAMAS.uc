@@ -406,7 +406,14 @@ simulated state AltReloading extends Reloading
 
         Perk = GetPerk();
         bTacticalReload = (Perk != none) && Perk.GetUsingTactialReload(self);
-        return byte(((bTacticalReload) ? 10 : 9));
+        if(AmmoCount[1] == 0)
+        {
+            return byte(((bTacticalReload) ? 12 : 11));            
+        }
+        else
+        {
+            return byte(((bTacticalReload) ? 10 : 9));
+        }
     }
 
     simulated event BeginState(name PreviousStateName)

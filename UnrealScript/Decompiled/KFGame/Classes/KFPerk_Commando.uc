@@ -212,6 +212,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     local name StateName;
 
     StateName = W.GetStateName();
+    LogInternal("STATE NAME: " $ string(StateName));
     if(IsProfessionalActive() && ((IsWeaponOnPerk(W,, self.Class)) || IsBackupWeapon(W)) || IsDual9mm(W))
     {
         if((StateName == 'Reloading') || StateName == 'AltReloading')
@@ -226,7 +227,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
             }
         }
     }
-    if(((CouldRapidFireActive()) && (Is9mm(W) || IsDual9mm(W)) || IsWeaponOnPerk(W,, self.Class)) && ZedTimeModifyingStates.Find(StateName != -1)
+    if(((CouldRapidFireActive()) && (Is9mm(W) || IsDual9mm(W)) || IsWeaponOnPerk(W,, self.Class)) && (ZedTimeModifyingStates.Find(StateName != -1) || (IsFAMAS(W)) && StateName == 'FiringSecondaryState')
     {
         return RapidFireFiringRate;
     }

@@ -514,7 +514,7 @@ simulated state WeaponUpkeep
 {
     simulated function byte GetWeaponStateId()
     {
-        return 25;
+        return 27;
     }
 
     simulated function BeginState(name PreviousStateName)
@@ -577,23 +577,23 @@ simulated state MeleeChainAttacking extends MeleeAttackBasic
         switch(MeleeAttackHelper.CurrentAttackDir)
         {
             case 0:
-                return 18;
+                return 20;
             case 4:
-                return 18;
+                return 20;
             case 5:
-                return 18;
+                return 20;
             case 1:
-                return 19;
+                return 21;
             case 6:
-                return 19;
+                return 21;
             case 7:
-                return 19;
+                return 21;
             case 2:
-                return 16;
+                return 18;
             case 3:
-                return 17;
+                return 19;
             default:
-                return 14;
+                return 16;
                 break;
         }
     }
@@ -702,21 +702,21 @@ simulated state MeleeHeavyAttacking extends MeleeAttackBasic
         switch(MeleeAttackHelper.CurrentAttackDir)
         {
             case 0:
-                return 22;
+                return 24;
             case 4:
-                return 22;
+                return 24;
             case 5:
-                return 22;
+                return 24;
             case 1:
-                return 23;
+                return 25;
             case 6:
-                return 23;
+                return 25;
             case 7:
-                return 23;
+                return 25;
             case 2:
-                return 20;
+                return 22;
             case 3:
-                return 21;
+                return 23;
             default:
                 return 0;
                 break;
@@ -854,7 +854,7 @@ simulated state MeleeSustained extends WeaponFiring
 
     simulated function byte GetWeaponStateId()
     {
-        return 15;
+        return 17;
     }
     stop;    
 }
@@ -865,7 +865,7 @@ simulated state MeleeBlocking
 
     simulated function byte GetWeaponStateId()
     {
-        return 24;
+        return 26;
     }
 
     simulated function BeginState(name PreviousStateName)

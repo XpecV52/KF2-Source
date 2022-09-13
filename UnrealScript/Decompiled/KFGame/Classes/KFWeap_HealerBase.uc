@@ -482,7 +482,7 @@ simulated state WeaponHealing extends WeaponSingleFiring
 {
     simulated function byte GetWeaponStateId()
     {
-        return 29;
+        return 31;
     }
 
     simulated event BeginState(name PreviousStateName)
@@ -527,7 +527,7 @@ simulated state WeaponQuickHeal extends WeaponHealing
 {
     simulated function byte GetWeaponStateId()
     {
-        return 30;
+        return 32;
     }
 
     simulated event BeginState(name PreviousStateName)

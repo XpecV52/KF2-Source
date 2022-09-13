@@ -744,11 +744,6 @@ enum EMonsterProperties
 var int SpawnedMonsterProperties[EMonsterProperties];
 
 /************************************************************************************
-* @name		Force to sort maps by name
-***********************************************************************************/
-var bool bForceMapSorting;
-
-/************************************************************************************
  * @name		Native
  ***********************************************************************************/
 
@@ -3203,10 +3198,10 @@ function string GetNextMap()
 			{
 				MapCycleIndex = MapCycleIndex + 1 < GameMapCycles[ActiveMapCycle].Maps.length ? (MapCycleIndex + 1) : 0;
 
-				if (class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11)
+				if ((class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11 || OutbreakEvent.ActiveEvent == OutbreakEvent.SetEvents[11])
+				      && MyKFGRI.IsA('KFGameReplicationInfo_WeeklySurvival'))
 				{
-					if (MyKFGRI.IsA('KFGameReplicationInfo_WeeklySurvival') && 
-						GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Biolapse"          || 
+					if (GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Biolapse"          || 
 						GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Nightmare"         ||
 						GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-PowerCore_Holdout" ||
 						GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-TheDescent"        ||
@@ -4138,7 +4133,6 @@ defaultproperties
    bUseMapList=True
    bLogReservations=True
    bLogGroupTeamBalance=True
-   bForceMapSorting=True
    KFGFxManagerClass=Class'KFGame.KFGFxMoviePlayer_Manager'
    GameLength=1
    MinNetPlayers=1
