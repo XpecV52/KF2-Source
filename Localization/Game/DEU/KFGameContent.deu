@@ -808,16 +808,19 @@ ItemDescription="•Primär: Ein ausschließlich halbautomatischer Feuer-Modus.\
 ItemName="Piranhapistole"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Das Primär-Feuer schießt Sägeblätter.\n•Alt – blocken/parieren.\n•Zähne, Griff, rasiermesserscharf."
+SharedUnlockSource="Piranhapistol-Waffen-Paket"
 
 [KFWeap_Pistol_DualBladed]
 ItemName="Zwei Piranhapistolen"
 ItemCategory="Handfeuerwaffe"
 ItemDescription="•Das Primär-Feuer schießt Sägeblätter.\n•Alt – blocken/parieren.\n•Du wirst komplett zerrissen, von megastarken Bissen."
+SharedUnlockSource="Zwei Piranhapistolen-Waffen-Paket"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="Verderber-Karabiner"
 ItemCategory="Gewehr"
 ItemDescription="•Das Primär-Feuer gibt einzelne Schüsse ab.\n•Alt-Feuer verdirbt die Zeds für einige Sekunden.\n•Wenn ein verdorbener Zed stirbt, explodiert er, was anderen Zeds Schaden zufügt und Spieler heilt."
+SharedUnlockSource="Verderber-Karabiner-Waffen-Paket"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

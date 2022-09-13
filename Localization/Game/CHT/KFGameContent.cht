@@ -808,16 +808,19 @@ ItemDescription="•主要：射擊模式只有半自動。\n•次要：射擊�
 ItemName="食人魚手槍"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊射擊鋸片。\n•次要：格擋/招架。\n•尖牙利齒，緊咬不放。"
+SharedUnlockSource="食人魚手槍武器同捆包"
 
 [KFWeap_Pistol_DualBladed]
 ItemName="食人魚雙槍"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊射擊鋸片。\n•次要：格擋/招架。\n•具超強咬合力，將你大卸八塊。"
+SharedUnlockSource="食人魚雙槍武器同捆包"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="腐蝕者卡賓槍"
 ItemCategory="來福槍"
 ItemDescription="•主要攻擊為單發射擊。\n•次要射擊能腐蝕Zed數秒。\n•被腐蝕的Zed死亡後爆炸，傷害其他Zed並治療玩家。"
+SharedUnlockSource="腐蝕者卡賓槍武器同捆包"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

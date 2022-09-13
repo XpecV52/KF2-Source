@@ -808,16 +808,19 @@ ItemDescription="•기본: 반자동 발사 모드만 지원합니다.\n•보�
 ItemName="피라냐 권총"
 ItemCategory="권총"
 ItemDescription="•기본적으로 톱날을 발사합니다.\n•보조 - 차단/회피.\n•면도날처럼 날카로운 이빨과 그립."
+SharedUnlockSource="피라냐 권총 무기 번들"
 
 [KFWeap_Pistol_DualBladed]
 ItemName="듀얼 피라냐 권총"
 ItemCategory="권총"
 ItemDescription="•기본적으로 톱날을 발사합니다.\n•보조 - 차단/회피.\n•강력한 턱으로 물어 뜯습니다."
+SharedUnlockSource="듀얼 피라냐 권총 무기 번들"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="부패 카빈"
 ItemCategory="소총"
 ItemDescription="•기본적으로 단발입니다.\n•보조 - 발사로 제드를 몇 초 동안 오염시킬 수 있습니다.\n•오염된 제드 사망 시 폭발로 주변 제드에게 대미지, 플레이어는 회복합니다."
+SharedUnlockSource="부패 카빈 무기 번들"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

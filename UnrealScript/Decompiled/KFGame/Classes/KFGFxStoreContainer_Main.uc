@@ -481,6 +481,7 @@ defaultproperties
     FeaturedItemIDs(4)=9122
     FeaturedItemIDs(5)=9123
     FeaturedItemIDs(6)=9124
+    FeaturedItemIDs(7)=9125
     ConsoleFeaturedItemIDs(0)=7783
     ConsoleFeaturedItemIDs(1)=9119
     ConsoleFeaturedItemIDs(2)=9120
@@ -488,6 +489,7 @@ defaultproperties
     ConsoleFeaturedItemIDs(4)=9122
     ConsoleFeaturedItemIDs(5)=9123
     ConsoleFeaturedItemIDs(6)=9124
+    ConsoleFeaturedItemIDs(7)=9125
     MaxFeaturedItems=5
     CurrentStoreFilter=EStore_Filter.EStore_Featured
 }

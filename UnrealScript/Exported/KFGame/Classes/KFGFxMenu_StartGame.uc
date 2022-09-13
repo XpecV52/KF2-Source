@@ -1642,6 +1642,8 @@ function bool ShouldUseDifficultyFilter(int GameModeIndex)
     {
     //Weekly
     case 1:
+	//VSSurvival
+	case 2:
         return false;
     }
 
@@ -1654,6 +1656,8 @@ function bool ShouldUseLengthFilter(int GameModeIndex)
     {
     //Weekly
     case 1:
+	//VSSurvival
+	case 2:
 	//Endless
 	case 3:
 	// Objective Mode

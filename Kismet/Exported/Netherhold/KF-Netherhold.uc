@@ -544,38 +544,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
 End Object
 
 Begin Object Class=InterpData Name=InterpData_1
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.006153,OutVal=(X=0.000244,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.006153,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=3.006153)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
+         Name="InterpTrackMove_5"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2.InterpTrackMove_1'
-      GroupName="Cath_Door_Left_L"
-      GroupColor=(B=179,G=159,R=0,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.006153,OutVal=(X=-0.000244,Y=0.000122,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.006153,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=3.006153)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_3.InterpTrackMove_2'
-      GroupName="Cath_Door_Left_R"
-      GroupColor=(B=0,G=115,R=209,A=255)
-      Name="InterpGroup_3"
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_6.InterpTrackMove_5'
+      GroupName="Cath_Door_Right_L"
+      GroupColor=(B=231,G=0,R=42,A=255)
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_5
@@ -593,20 +574,39 @@ Begin Object Class=InterpData Name=InterpData_1
       Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.006153,OutVal=(X=-0.000244,Y=0.000122,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.006153,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=3.006153)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_3.InterpTrackMove_2'
+      GroupName="Cath_Door_Left_R"
+      GroupColor=(B=0,G=115,R=209,A=255)
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.006153,OutVal=(X=0.000244,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.006153,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=3.006153)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_6.InterpTrackMove_5'
-      GroupName="Cath_Door_Right_L"
-      GroupColor=(B=231,G=0,R=42,A=255)
-      Name="InterpGroup_6"
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2.InterpTrackMove_1'
+      GroupName="Cath_Door_Left_L"
+      GroupColor=(B=179,G=159,R=0,A=255)
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.006153
    InterpGroups(0)=InterpGroup'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_2'
@@ -695,42 +695,14 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
 End Object
 
 Begin Object Class=InterpData Name=InterpData_2
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Tabs(0)=(Curves=((CurveObject=InterpTrackMoveAxis'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_9.InterpTrackMove_1.InterpTrackMoveAxis_9',CurveColor=(B=217,G=0,R=99,A=255),CurveName="Secret_Lever_RX")),ViewStartInput=-0.055692,ViewEndInput=0.789745,ViewStartOutput=-0.105261,ViewEndOutput=0.178186)
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_9
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_10
-            MoveAxis=AXIS_RotationY
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_9
+            MoveAxis=AXIS_RotationX
             LookupTrack=(Points=(,(Time=0.700000)))
-            FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.700000,OutVal=-0.142822,InterpMode=CIM_CurveAutoClamped)))
-            TrackTitle="Y"
-            Name="InterpTrackMoveAxis_10"
-            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
-         End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_11
-            MoveAxis=AXIS_RotationZ
-            LookupTrack=(Points=(,(Time=0.700000)))
-            FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.700000,OutVal=0.153809,InterpMode=CIM_CurveAutoClamped)))
-            TrackTitle="Z"
-            Name="InterpTrackMoveAxis_11"
-            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
-         End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_6
-            LookupTrack=(Points=())
-            FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
+            FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.700000,OutVal=-129.418945,InterpMode=CIM_CurveAutoClamped)))
             TrackTitle="X"
-            Name="InterpTrackMoveAxis_6"
-            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
-         End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_7
-            MoveAxis=AXIS_TranslationY
-            LookupTrack=(Points=())
-            FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
-            TrackTitle="Y"
-            Name="InterpTrackMoveAxis_7"
+            Name="InterpTrackMoveAxis_9"
             ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
          End Object
          Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_8
@@ -741,12 +713,35 @@ Begin Object Class=InterpData Name=InterpData_2
             Name="InterpTrackMoveAxis_8"
             ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
          End Object
-         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_9
-            MoveAxis=AXIS_RotationX
-            LookupTrack=(Points=(,(Time=0.700000)))
-            FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.700000,OutVal=-129.418945,InterpMode=CIM_CurveAutoClamped)))
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_7
+            MoveAxis=AXIS_TranslationY
+            LookupTrack=(Points=())
+            FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
+            TrackTitle="Y"
+            Name="InterpTrackMoveAxis_7"
+            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
+         End Object
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_6
+            LookupTrack=(Points=())
+            FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
             TrackTitle="X"
-            Name="InterpTrackMoveAxis_9"
+            Name="InterpTrackMoveAxis_6"
+            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
+         End Object
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_11
+            MoveAxis=AXIS_RotationZ
+            LookupTrack=(Points=(,(Time=0.700000)))
+            FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.700000,OutVal=0.153809,InterpMode=CIM_CurveAutoClamped)))
+            TrackTitle="Z"
+            Name="InterpTrackMoveAxis_11"
+            ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
+         End Object
+         Begin Object Class=InterpTrackMoveAxis Name=InterpTrackMoveAxis_10
+            MoveAxis=AXIS_RotationY
+            LookupTrack=(Points=(,(Time=0.700000)))
+            FloatTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.700000,OutVal=-0.142822,InterpMode=CIM_CurveAutoClamped)))
+            TrackTitle="Y"
+            Name="InterpTrackMoveAxis_10"
             ObjectArchetype=InterpTrackMoveAxis'Engine.Default__InterpTrackMoveAxis'
          End Object
          MoveFrame=IMF_RelativeToInitial
@@ -766,6 +761,11 @@ Begin Object Class=InterpData Name=InterpData_2
       GroupColor=(B=217,G=0,R=99,A=255)
       Name="InterpGroup_9"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Tabs(0)=(Curves=((CurveObject=InterpTrackMoveAxis'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_9.InterpTrackMove_1.InterpTrackMoveAxis_9',CurveColor=(B=217,G=0,R=99,A=255),CurveName="Secret_Lever_RX")),ViewStartInput=-0.055692,ViewEndInput=0.789745,ViewStartOutput=-0.105261,ViewEndOutput=0.178186)
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.700000
    InterpGroups(0)=InterpGroup'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_9'
@@ -1744,38 +1744,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_3
 End Object
 
 Begin Object Class=InterpData Name=InterpData_3
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.397780,InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.397780,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.397780)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Forge_Door_L"
-      GroupColor=(B=0,G=217,R=95,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.397780,InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.397780,OutVal=(X=-0.001953,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.397780,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=1.397780)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
+         Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackMove_1'
-      GroupName="Forge_Door_R"
-      GroupColor=(B=163,G=176,R=0,A=255)
-      Name="InterpGroup_1"
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackMove_3'
+      GroupName="Forge_Door_C_R"
+      GroupColor=(B=0,G=191,R=145,A=255)
+      Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
@@ -1793,20 +1774,39 @@ Begin Object Class=InterpData Name=InterpData_3
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.397780,OutVal=(X=-0.001953,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.397780,InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.397780,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=1.397780)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackMove_3'
-      GroupName="Forge_Door_C_R"
-      GroupColor=(B=0,G=191,R=145,A=255)
-      Name="InterpGroup_4"
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackMove_1'
+      GroupName="Forge_Door_R"
+      GroupColor=(B=163,G=176,R=0,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.397780,InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.397780,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.397780)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Forge_Door_L"
+      GroupColor=(B=0,G=217,R=95,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.417016
    InterpGroups(0)=InterpGroup'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0'
@@ -2341,9 +2341,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         CutTrack(0)=(TargetCamGroup="Camera",ShotNumber=10)
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=115,G=209,R=0,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
@@ -2360,16 +2367,9 @@ Begin Object Class=InterpData Name=InterpData_0
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
-         CutTrack(0)=(TargetCamGroup="Camera",ShotNumber=10)
-         Name="InterpTrackDirector_0"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
-      GroupColor=(B=115,G=209,R=0,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1105.000000
    InterpGroups(0)=InterpGroup'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
@@ -4502,121 +4502,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_5
 End Object
 
 Begin Object Class=InterpData Name=InterpData_5
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(ViewStartInput=-0.889188,ViewEndInput=8.258521,ViewStartOutput=-2.680021,ViewEndOutput=0.979063)
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-0.000732,Y=0.000000,Z=0.000732),ArriveTangent=(X=-0.000159,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000159,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000977,Y=0.000031,Z=-79.999023),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Magic_Circle_Letters"
-      GroupColor=(B=213,G=105,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-160.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1.InterpTrackMove_1'
-      GroupName="Magic_Circle_2ndStage"
-      GroupColor=(B=149,G=188,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-160.000000),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_9
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_9
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-320.000000),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=5.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
+         Name="InterpTrackMove_9"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_2.InterpTrackMove_2'
-      GroupName="Magic_Circle_3rdStage"
-      GroupColor=(B=226,G=0,R=69,A=255)
-      bCollapsed=True
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-160.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_3.InterpTrackMove_3'
-      GroupName="Magic_Circle_4thStage"
-      GroupColor=(B=70,G=0,R=225,A=255)
-      bCollapsed=True
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-240.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_5.InterpTrackMove_5'
-      GroupName="Magic_Circle_5thStage"
-      GroupColor=(B=0,G=207,R=118,A=255)
-      bCollapsed=True
-      Name="InterpGroup_5"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-240.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_6"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_6.InterpTrackMove_6'
-      GroupName="Magic_Circle_6thStage"
-      GroupColor=(B=153,G=184,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_6"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_7
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_7
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-240.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_7"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_7.InterpTrackMove_7'
-      GroupName="Magic_Circle_7thStage"
-      GroupColor=(B=115,G=209,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_7"
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_9.InterpTrackMove_9'
+      GroupName="Magic_Circle_9thStage"
+      GroupColor=(B=0,G=176,R=163,A=255)
+      Name="InterpGroup_9"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_8
@@ -4635,20 +4533,122 @@ Begin Object Class=InterpData Name=InterpData_5
       Name="InterpGroup_8"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_9
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_9
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-320.000000),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_7
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_7
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-240.000000),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=5.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_9"
+         Name="InterpTrackMove_7"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_9.InterpTrackMove_9'
-      GroupName="Magic_Circle_9thStage"
-      GroupColor=(B=0,G=176,R=163,A=255)
-      Name="InterpGroup_9"
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_7.InterpTrackMove_7'
+      GroupName="Magic_Circle_7thStage"
+      GroupColor=(B=115,G=209,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_7"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-240.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_6"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_6.InterpTrackMove_6'
+      GroupName="Magic_Circle_6thStage"
+      GroupColor=(B=153,G=184,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_6"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_5
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-240.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_5.InterpTrackMove_5'
+      GroupName="Magic_Circle_5thStage"
+      GroupColor=(B=0,G=207,R=118,A=255)
+      bCollapsed=True
+      Name="InterpGroup_5"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-160.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_3.InterpTrackMove_3'
+      GroupName="Magic_Circle_4thStage"
+      GroupColor=(B=70,G=0,R=225,A=255)
+      bCollapsed=True
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-160.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_2.InterpTrackMove_2'
+      GroupName="Magic_Circle_3rdStage"
+      GroupColor=(B=226,G=0,R=69,A=255)
+      bCollapsed=True
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000244,Y=0.000031,Z=-160.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1.InterpTrackMove_1'
+      GroupName="Magic_Circle_2ndStage"
+      GroupColor=(B=149,G=188,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(OutVal=(X=-0.000732,Y=0.000000,Z=0.000732),ArriveTangent=(X=-0.000159,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000159,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=-0.000977,Y=0.000031,Z=-79.999023),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,,(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Magic_Circle_Letters"
+      GroupColor=(B=213,G=105,R=0,A=255)
+      bCollapsed=True
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(ViewStartInput=-0.889188,ViewEndInput=8.258521,ViewStartOutput=-2.680021,ViewEndOutput=0.979063)
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_1'
@@ -6172,10 +6172,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_97
 End Object
 
 Begin Object Class=InterpData Name=InterpData_4
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InterpMode=CIM_CurveAutoClamped),(InVal=0.200000,OutVal=(X=-224.000244,Y=0.000000,Z=0.000061),InterpMode=CIM_CurveAutoClamped)))
@@ -6190,6 +6186,10 @@ Begin Object Class=InterpData Name=InterpData_4
       GroupColor=(B=217,G=0,R=99,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_1'
    CurveEdSetup=InterpCurveEdSetup'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpCurveEdSetup_1'
@@ -6242,20 +6242,8 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_4
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_137
-   ObjValue=KFPickupFactory_ItemDefault'KF-NETHERHOLD.TheWorld:PersistentLevel.KFPickupFactory_ItemDefault_15'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9024
-   ObjPosY=-7136
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_137"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_138
-   ObjValue=KFPickupFactory_Ammo'KF-NETHERHOLD.TheWorld:PersistentLevel.KFPickupFactory_Ammo_1'
+   ObjValue=KFPickupFactory_Ammo'KF-NETHERHOLD.TheWorld:PersistentLevel.KFPickupFactory_Ammo_16'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8856
@@ -6278,24 +6266,12 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_139
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_142
-   ObjValue=KFPickupFactory_ItemDefault'KF-NETHERHOLD.TheWorld:PersistentLevel.KFPickupFactory_ItemDefault_13'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8952
-   ObjPosY=-7096
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_142"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_40
    InputLinks(0)=(DrawY=-7219,OverrideDelta=14)
    InputLinks(1)=(DrawY=-7198,OverrideDelta=35)
    InputLinks(2)=(DrawY=-7177,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-7198,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_137',SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_138',SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_142',SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_139'),DrawX=-8922,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_138',SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_139',SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_70',SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_72'),DrawX=-8922,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-8871,OverrideDelta=76)
    EventLinks(0)=(DrawX=-8822,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -6313,7 +6289,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_39
    InputLinks(1)=(DrawY=-5118,OverrideDelta=35)
    InputLinks(2)=(DrawY=-5097,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-5118,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_135',SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_136'),DrawX=-9002,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_136',SeqVar_Object'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_61'),DrawX=-9002,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-8951,OverrideDelta=76)
    EventLinks(0)=(DrawX=-8902,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -6327,7 +6303,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_39
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_136
-   ObjValue=KFPickupFactory_Ammo'KF-NETHERHOLD.TheWorld:PersistentLevel.KFPickupFactory_Ammo_9'
+   ObjValue=KFPickupFactory_Ammo'KF-NETHERHOLD.TheWorld:PersistentLevel.KFPickupFactory_Ammo_15'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8960
@@ -6335,18 +6311,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_136
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_136"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_135
-   ObjValue=KFPickupFactory_ItemDefault'KF-NETHERHOLD.TheWorld:PersistentLevel.KFPickupFactory_ItemDefault_20'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9120
-   ObjPosY=-5032
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_135"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -7777,4 +7741,40 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_34
    DrawHeight=109
    Name="SeqAct_Delay_34"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
+   ObjValue=KFPickupFactory_Ammo'KF-NETHERHOLD.TheWorld:PersistentLevel.KFPickupFactory_Ammo_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9120
+   ObjPosY=-5024
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_61"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_70
+   ObjValue=KFPickupFactory_Ammo'KF-NETHERHOLD.TheWorld:PersistentLevel.KFPickupFactory_Ammo_17'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9008
+   ObjPosY=-7104
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_70"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_72
+   ObjValue=KFPickupFactory_Ammo'KF-NETHERHOLD.TheWorld:PersistentLevel.KFPickupFactory_Ammo_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9072
+   ObjPosY=-7128
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_72"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object

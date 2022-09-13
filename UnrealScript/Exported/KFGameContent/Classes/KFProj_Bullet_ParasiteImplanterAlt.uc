@@ -291,7 +291,7 @@ defaultproperties
    TerminalVelocity=15000.000000
    ExplosionActorClass=Class'kfgamecontent.KFExplosion_ParasiteSeed'
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
-      Damage=400.000000
+      Damage=300.000000
       DamageRadius=450.000000
       DamageFalloffExponent=0.500000
       MyDamageType=Class'kfgamecontent.KFDT_Toxic_ParasiteSeedExplosion'

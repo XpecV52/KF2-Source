@@ -96,10 +96,11 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
 
 defaultproperties
 {
+   ParryStrength=3
    BlockTypes(2)=(dmgType=Class'KFGame.KFDT_Bludgeon')
    BlockTypes(3)=(dmgType=Class'KFGame.KFDT_Slashing')
-   BlockDamageMitigation=0.600000
-   ParryDamageMitigationPercent=0.500000
+   BlockDamageMitigation=0.700000
+   ParryDamageMitigationPercent=0.600000
    BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Crovel'
    ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
    PackageKey="BladedPistol"
@@ -125,7 +126,7 @@ defaultproperties
    MeshFOV=96.000000
    MeshIronSightFOV=77.000000
    PlayerIronSightFOV=77.000000
-   IronSightPosition=(X=0.000000,Y=0.000000,Z=1.000000)
+   IronSightPosition=(X=0.000000,Y=0.050000,Z=-1.200000)
    DOF_FG_FocalRadius=40.000000
    DOF_FG_MaxNearBlurSize=3.500000
    GroupPriority=25.000000
@@ -138,7 +139,7 @@ defaultproperties
    AmmoCost(3)=()
    AmmoCost(4)=()
    AmmoCost(5)=()
-   SpareAmmoCapacity(0)=72
+   SpareAmmoCapacity(0)=66
    InitialSpareMags(0)=2
    BonesToLockOnEmpty(0)="RW_FrontPivot"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_BladedPistol.Play_WEP_BladedPistol_Fire_3P',FirstPersonCue=AkEvent'WW_WEP_BladedPistol.Play_WEP_BladedPistol_Fire_1P')

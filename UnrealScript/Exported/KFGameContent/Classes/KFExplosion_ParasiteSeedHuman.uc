@@ -12,7 +12,7 @@ class KFExplosion_ParasiteSeedHuman extends KFExplosion_MedicGrenade;
 defaultproperties
 {
    HealingDamageType=Class'kfgamecontent.KFDT_Healing_ParasiteSeed'
-   HealingAmount=30.000000
+   HealingAmount=25.000000
    maxTime=0.500000
    bDoFullDamage=False
    LoopStartEvent=AkEvent'WW_WEP_Medic_GrenadeLauncher.Play_WEP_Medic_GrenadeLauncher_Grenade_Smoke_Loop'

@@ -23,7 +23,7 @@ defaultproperties
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_HRG_Boomy_ARCH.WEB_HRG_Boomy_Impacts'
       Damage=35.000000
-      DamageRadius=150.000000
+      DamageRadius=200.000000
       MyDamageType=Class'kfgamecontent.KFDT_Explosive_HRG_Boomy'
       KnockDownStrength=150.000000
       MomentumTransferScale=10000.000000

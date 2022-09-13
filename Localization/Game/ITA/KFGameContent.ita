@@ -808,16 +808,19 @@ ItemDescription="•Primario: la modalità di fuoco è solo semiautomatica.\n•
 ItemName="Pistola Piranha"
 ItemCategory="Pistola"
 ItemDescription="•Il fuoco primario spara lame da sega.\n•Alt. - blocca/para.\n•Denti, morsa, taglienti come rasoi."
+SharedUnlockSource="Bundle armi Pistola Piranha"
 
 [KFWeap_Pistol_DualBladed]
 ItemName="Pistola Piranha doppia"
 ItemCategory="Pistola"
 ItemDescription="•Il fuoco primario spara lame da sega.\n•Alt. - blocca/para.\n•Morde ad alta potenza, ti fa a brandelli."
+SharedUnlockSource="Bundle armi Pistola Piranha doppia"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="Carabina del Corrotto"
 ItemCategory="Fucile da caccia"
 ItemDescription="•Il fuoco primario è un colpo singolo.\n•Usa il fuoco alternativo per corrompere gli Zed per qualche secondo.\n•Se uno Zed corrotto muore, esplode danneggiando gli altri Zed e curando i giocatori."
+SharedUnlockSource="Bundle armi Carabina del Corrotto"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

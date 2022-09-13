@@ -17,6 +17,7 @@ defaultproperties
    AmmoPricePerMag=42
    UpgradePrice(0)=1500
    UpgradeSellPrice(0)=1125
+   SharedUnlockId=SCU_ParasiteImplanter
    EffectiveRange=90
    Name="Default__KFWeapDef_ParasiteImplanter"
    ObjectArchetype=KFWeaponDefinition'KFGame.Default__KFWeaponDefinition'

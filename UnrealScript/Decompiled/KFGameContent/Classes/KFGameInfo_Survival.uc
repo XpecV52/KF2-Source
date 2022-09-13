@@ -418,7 +418,7 @@ function UpdateGameSettings()
 
                         if(I < GameReplicationInfo.PRIArray.Length)
                         {
-                            if(!GameReplicationInfo.PRIArray[I].bBot)
+                            if((!GameReplicationInfo.PRIArray[I].bBot && !GameReplicationInfo.PRIArray[I].bOnlySpectator) && PlayerController(GameReplicationInfo.PRIArray[I].Owner) != none)
                             {
                                 ++ NumHumanPlayers;
                             }

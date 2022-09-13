@@ -342,7 +342,7 @@ defaultproperties
     SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
     MagazineCapacity=15
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=135
+    SpareAmmoCapacity=120
     InitialSpareMags=2
     FireSightedAnims=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

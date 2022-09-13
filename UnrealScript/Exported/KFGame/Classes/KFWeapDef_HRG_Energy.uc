@@ -15,7 +15,7 @@ defaultproperties
    WeaponClassPath="KFGameContent.KFWeap_HRG_Energy"
    ImagePath="WEP_UI_HRG_Energy_TEX.UI_WeaponSelect_HRG_Energy"
    BuyPrice=1500
-   AmmoPricePerMag=65
+   AmmoPricePerMag=70
    UpgradePrice(0)=1500
    UpgradeSellPrice(0)=1125
    EffectiveRange=50

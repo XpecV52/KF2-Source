@@ -257,8 +257,8 @@ protected simulated function ExplodeFractures()
 defaultproperties
 {
    HealingDamageType=Class'KFGame.KFDT_Healing'
-   fMinAmmoutHealing=4.000000
-   fMaxAmmoutHealing=40.000000
+   fMinAmmoutHealing=5.000000
+   fMaxAmmoutHealing=50.000000
    fAltMinAmmoutHealing=1.000000
    fAltMaxAmmoutHealing=5.000000
    bAllowFractureDamage=True

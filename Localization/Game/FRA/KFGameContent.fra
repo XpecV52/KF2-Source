@@ -808,16 +808,19 @@ ItemDescription="• Principal : tir semi-auto uniquement\n• Tir alternatif p
 ItemName="Pistolet piranha"
 ItemCategory="Arme de poing"
 ItemDescription="• Le tir principal lance des scies circulaires.\n• Alt - bloquer/parer.\n• Des dents aiguisées et une bonne poignée."
+SharedUnlockSource="Pack d'arme Pistolet piranha"
 
 [KFWeap_Pistol_DualBladed]
 ItemName="Double pistolet piranha"
 ItemCategory="Arme de poing"
 ItemDescription="• Le tir principal lance des scies circulaires.\n• Alt - bloquer/parer.\n• A suffisamment de mordant pour vous déchiqueter."
+SharedUnlockSource="Pack d'arme Double pistolet piranha"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="Carabine de corruption"
 ItemCategory="Fusil"
 ItemDescription="• Tir principal manuel uniquement.\n• Le tir alternatif corrompt les Zeds pendant quelques secondes.\n• Si un Zed corrompu meurt, il explose en blessant d'autres Zeds et en soignant les joueurs."
+SharedUnlockSource="Pack d'arme Carabine de corruption"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

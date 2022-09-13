@@ -543,6 +543,17 @@ simulated function ANIMNOTIFY_UnLockBolt()
 	BuildEmptyMagNodeWeightList( EmptyMagBlendNode, BonesToLockOnEmpty);
 }
 
+/**
+	This weapon only supports akimbo anims. 
+	Overriding bUseAltFireMode that comes from gameplay options by the user
+ */
+simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
+{
+	super.PostInitAnimTree(SkelComp);
+
+	bUseAltFireMode = false;
+}
+
 defaultproperties
 {
    BlockTypes(0)=(dmgType=Class'KFGame.KFDT_Bludgeon')
@@ -590,7 +601,7 @@ defaultproperties
    WeaponSelectTexture=Texture2D'WEP_UI_Dual_BladedPistol_TEX.UI_WeaponSelect_Dual_BladedPistol'
    MagazineCapacity(0)=12
    AmmoCost(1)=0
-   SpareAmmoCapacity(0)=72
+   SpareAmmoCapacity(0)=66
    InitialSpareMags(0)=1
    AmmoPickupScale(0)=0.500000
    BonesToLockOnEmpty(0)="RW_FrontPivot"

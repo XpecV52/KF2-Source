@@ -17,7 +17,7 @@ defaultproperties
     CurrentSpecialEventString="A time-limited special event with exclusive items"
     SpecialEventObjectiveInfoList(0)=(TitleString="Horrific Manifestations",DescriptionString="Kill 15 Bosses on any map or mode",TierEventRewardName="")
     SpecialEventObjectiveInfoList(1)=(TitleString="Weekly Cult",DescriptionString="Complete the Weekly on Netherhold",TierEventRewardName="")
-    SpecialEventObjectiveInfoList(2)=(TitleString="I?m hearing heartbeats",DescriptionString="Find the nether heart",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(2)=(TitleString="It's coming from the walls",DescriptionString="Find the nether heart",TierEventRewardName="")
     SpecialEventObjectiveInfoList(3)=(TitleString="Purple Miasma",DescriptionString="Unlock the chapel and the dining hall doors",TierEventRewardName="")
     SpecialEventObjectiveInfoList(4)=(TitleString="Eternal Punishment",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Netherhold",TierEventRewardName="")
     ObjectiveIconURLs(0)="Xmas_UI.UI_Objectives_Xmas_BossKill02"

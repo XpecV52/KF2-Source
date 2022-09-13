@@ -16,5 +16,6 @@ defaultproperties
     AmmoPricePerMag=42
     UpgradePrice(0)=1500
     UpgradeSellPrice(0)=1125
+    SharedUnlockId=ESharedContentUnlock.SCU_ParasiteImplanter
     EffectiveRange=90
 }

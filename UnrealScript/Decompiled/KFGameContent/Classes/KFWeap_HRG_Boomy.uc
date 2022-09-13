@@ -70,7 +70,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_HRG_Boomy_TEX.UI_WeaponSelect_HRG_Boomy'
     MagazineCapacity=24
     SpareAmmoCapacity=192
-    InitialSpareMags=1
+    InitialSpareMags=2
     bLoopingFireAnim=/* Array type was not detected. */
     bLoopingFireSnd=/* Array type was not detected. */
     FireSightedAnims=/* Array type was not detected. */

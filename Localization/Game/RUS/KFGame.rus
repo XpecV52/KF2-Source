@@ -2850,7 +2850,7 @@ SpecialEventObjectiveInfoList[0]=(TitleString="Ужасающие проявле
 SpecialEventObjectiveInfoList[1]=(TitleString="Еженедельный культ",DescriptionString="Выполнить еженедельное задание в «Чертогах отчаяния»")
 SpecialEventObjectiveInfoList[2]=(TitleString="Слышно, как бьется сердце",DescriptionString="Найти адское сердце")
 SpecialEventObjectiveInfoList[3]=(TitleString="Пурпурная скверна",DescriptionString="Открыть молельню и двери столовой")
-SpecialEventObjectiveInfoList[4]=(TitleString="Вечные муки",DescriptionString="Расправиться с волной 15 в бесконечном режиме на уровне «Сложно» или выше в «Чертогах отчаяния»")
+SpecialEventObjectiveInfoList[4]=(TitleString="Вечные муки",DescriptionString="Пройдите 15 волн в «Чертогах отчаяния» в бесконечном режиме на «Сложно» или выше")
 
 AllCompleteRewardDescriptionString="Космонавт | Рюкзак «Компаньон» | Дорогая вещь"
 

@@ -1477,6 +1477,7 @@ function bool ShouldUseDifficultyFilter(int GameModeIndex)
     switch(GameModeIndex)
     {
         case 1:
+        case 2:
             return false;
         default:
             return true;
@@ -1489,6 +1490,7 @@ function bool ShouldUseLengthFilter(int GameModeIndex)
     switch(GameModeIndex)
     {
         case 1:
+        case 2:
         case 3:
         case 4:
             return false;

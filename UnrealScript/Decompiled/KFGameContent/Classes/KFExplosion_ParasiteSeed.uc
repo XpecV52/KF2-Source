@@ -75,7 +75,7 @@ defaultproperties
     FirstExplosion=true
     HealingDamageType=Class'KFDT_Healing_ParasiteSeed'
     interval=0.5
-    maxTime=5.5
+    maxTime=5
     bDoFullDamage=false
     LoopStartEvent=AkEvent'WW_WEP_Medic_GrenadeLauncher.Play_WEP_Medic_GrenadeLauncher_Grenade_Smoke_Loop'
     LoopStopEvent=AkEvent'WW_WEP_Medic_GrenadeLauncher.Stop_WEP_Medic_GrenadeLauncher_Grenade_Smoke_Loop'

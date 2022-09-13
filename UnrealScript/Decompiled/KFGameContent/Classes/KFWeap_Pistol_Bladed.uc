@@ -82,9 +82,10 @@ simulated state MeleeBlocking
 
 defaultproperties
 {
+    ParryStrength=3
     BlockTypes=/* Array type was not detected. */
-    BlockDamageMitigation=0.6
-    ParryDamageMitigationPercent=0.5
+    BlockDamageMitigation=0.7
+    ParryDamageMitigationPercent=0.6
     BlockSound=AkEvent'WW_WEP_Bullet_Impacts.Play_Block_MEL_Crovel'
     ParrySound=AkEvent'WW_WEP_Bullet_Impacts.Play_Parry_Metal'
     PackageKey="BladedPistol"
@@ -104,7 +105,7 @@ defaultproperties
     MeshFOV=96
     MeshIronSightFOV=77
     PlayerIronSightFOV=77
-    IronSightPosition=(X=0,Y=0,Z=1)
+    IronSightPosition=(X=0,Y=0.05,Z=-1.2)
     DOF_FG_FocalRadius=40
     DOF_FG_MaxNearBlurSize=3.5
     GroupPriority=25
@@ -112,7 +113,7 @@ defaultproperties
     DualClass=Class'KFWeap_Pistol_DualBladed'
     MagazineCapacity=6
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=72
+    SpareAmmoCapacity=66
     InitialSpareMags=2
     BonesToLockOnEmpty=/* Array type was not detected. */
     WeaponFireSnd=/* Array type was not detected. */

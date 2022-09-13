@@ -808,16 +808,19 @@ ItemDescription="•Principal: o modo de disparo é somente semiautomático.\n�
 ItemName="Pistola Piranha"
 ItemCategory="Pistola de mão"
 ItemDescription="•O tiro principal dispara lâminas de serrote.\n•Alt. - bloqueio/aparo.\n•Dentes afiadíssimos."
+SharedUnlockSource="Conjunto de Armas Pistola Piranha"
 
 [KFWeap_Pistol_DualBladed]
 ItemName="Pistolas Piranha Duplas"
 ItemCategory="Pistola de mão"
 ItemDescription="•O tiro principal dispara lâminas de serrote.\n•Alt. - bloqueio/aparo.\n•Mordidas potentes que rasgam tudo."
+SharedUnlockSource="Conjunto de Armas Pistolas Piranha Duplas"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="Carabina Corruptora"
 ItemCategory="Fuzil"
 ItemDescription="•Tiro principal de disparo único.\n•Tiro alt. corrompe os Zeds por alguns segundos.\n•Se um Zed corrompido morrer, ele explode, causa dano a outros Zeds e cura jogadores."
+SharedUnlockSource="Conjunto de Armas Carabina Corruptora"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

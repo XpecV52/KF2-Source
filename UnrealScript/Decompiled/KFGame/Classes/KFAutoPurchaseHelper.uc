@@ -502,7 +502,7 @@ function bool AttemptBuyArmorChunk(out int InAutoFillDosh)
         }
         InAutoFillDosh -= ChunkCost;
         PercentArmorBought = (((PercentArmorBought > 0) && PercentArmorBought < 1) ? 1 : PercentArmorBought);
-        ArmorItem.SpareAmmoCount = int(FMin(float(ArmorItem.SpareAmmoCount) + ((PercentArmorBought / 100) * float(ArmorItem.MaxSpareAmmo)), float(ArmorItem.MaxSpareAmmo)));
+        ArmorItem.SpareAmmoCount = int(FMin(float(ArmorItem.SpareAmmoCount) + PercentArmorBought, float(ArmorItem.MaxSpareAmmo)));
         BoughtAmmo(PercentArmorBought, ChunkCost, 1);
     }
     return PercentArmorBought > float(0);

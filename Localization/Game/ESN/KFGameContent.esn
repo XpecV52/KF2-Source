@@ -808,16 +808,19 @@ ItemDescription="• Principal: solo disparo semiautomático.\n• Disparo alter
 ItemName="Pistola piraña"
 ItemCategory="Arma corta"
 ItemDescription="• Principal: dispara hojas de sierra.\n• Alternativo: bloquear/parar.\n• Dentadas, afiladas y desgarradoras."
+SharedUnlockSource="Paquete de armas Pistola piraña"
 
 [KFWeap_Pistol_DualBladed]
 ItemName="Pistolas piraña duales"
 ItemCategory="Arma corta"
 ItemDescription="• Principal: dispara hojas de sierra.\n• Alternativo: bloquear/parar.\n• Gran potencia de mordisco, te desgarran."
+SharedUnlockSource="Paquete de armas Pistolas piraña duales"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="Carabina corruptora"
 ItemCategory="Rifle"
 ItemDescription="• Principal: solo tiro único.\n• Alternativo: corrompe a los zeds unos segundos.\n• Si un zed corrompido muere, explota y daña a los demás zeds, a la vez que cura a los jugadores."
+SharedUnlockSource="Paquete de armas Carabina corruptora"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

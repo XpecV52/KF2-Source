@@ -105,7 +105,7 @@ defaultproperties
    WeaponSelectTexture=Texture2D'WEP_UI_HRG_Boomy_TEX.UI_WeaponSelect_HRG_Boomy'
    MagazineCapacity(0)=24
    SpareAmmoCapacity(0)=192
-   InitialSpareMags(0)=1
+   InitialSpareMags(0)=2
    bLoopingFireAnim(0)=True
    bLoopingFireSnd(0)=True
    FireSightedAnims(1)="Shoot_Iron2"
@@ -140,9 +140,9 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Demolitionist'
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Stat=EWUS_Damage1,Scale=1.150000),(Add=1)))
-   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.300000),(Stat=EWUS_Damage1,Scale=1.300000),(Add=2)))
-   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.450000),(Stat=EWUS_Damage1,Scale=1.450000),(Add=3)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Stat=EWUS_Damage1,Scale=1.150000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Stat=EWUS_Damage1,Scale=1.300000),(Add=2)))
+   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.600000),(Stat=EWUS_Damage1,Scale=1.450000),(Add=3)))
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -161,8 +161,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.010000
    Spread(1)=0.010000
-   InstantHitDamage(0)=25.000000
-   InstantHitDamage(1)=25.000000
+   InstantHitDamage(0)=30.000000
+   InstantHitDamage(1)=30.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_HRG_Boomy'

@@ -258,6 +258,12 @@ simulated function ANIMNOTIFY_UnLockBolt()
     BuildEmptyMagNodeWeightList(EmptyMagBlendNode, BonesToLockOnEmpty);
 }
 
+simulated event PostInitAnimTree(SkeletalMeshComponent SkelComp)
+{
+    super.PostInitAnimTree(SkelComp);
+    bUseAltFireMode = false;
+}
+
 simulated state MeleeBlocking
 {
     ignores ForceReload, ShouldAutoReload;
@@ -494,7 +500,7 @@ defaultproperties
     WeaponSelectTexture=Texture2D'WEP_UI_Dual_BladedPistol_TEX.UI_WeaponSelect_Dual_BladedPistol'
     MagazineCapacity=12
     AmmoCost=/* Array type was not detected. */
-    SpareAmmoCapacity=72
+    SpareAmmoCapacity=66
     InitialSpareMags=1
     AmmoPickupScale=0.5
     BonesToLockOnEmpty=/* Array type was not detected. */

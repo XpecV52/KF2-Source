@@ -490,7 +490,7 @@ defaultproperties
     ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'
     begin object name=HeavyAttackHealingExplosion class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_Medic_Bat_ARCH.Medic_Bat_Explosion'
-        HealingAmount=20
+        HealingAmount=15
         Damage=225
         DamageFalloffExponent=0
         MyDamageType=Class'KFDT_Toxic_MedicBatGas'

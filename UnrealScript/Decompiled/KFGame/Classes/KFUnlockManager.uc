@@ -27,6 +27,8 @@ enum ESharedContentUnlock
     SCU_GravityImploder,
     SCU_FAMAS,
     SCU_Thermite,
+    SCU_BladedPistol,
+    SCU_ParasiteImplanter,
     SCU_MAX
 };
 
@@ -233,4 +235,6 @@ defaultproperties
     SharedContentList(13)=(Name=KFWeap_GravityImploder,IconPath="WEP_UI_Gravity_Imploder_TEX.UI_WeaponSelect_Gravity_Imploder",Id=8778)
     SharedContentList(14)=(Name=KFWeap_AssaultRifle_FAMAS,IconPath="WEP_UI_Famas_TEX.UI_WeaponSelect_Famas",Id=8934)
     SharedContentList(15)=(Name=KFWeap_RocketLauncher_ThermiteBore,IconPath="WEP_UI_Thermite_TEX.UI_WeaponSelect_Thermite",Id=8940)
+    SharedContentList(16)=(Name=KFWeap_Pistol_Bladed,IconPath="WEP_UI_BladedPistol_TEX.UI_WeaponSelect_BladedPistol",Id=9126)
+    SharedContentList(17)=(Name=KFWeap_Rifle_ParasiteImplanter,IconPath="WEP_UI_ParasiteImplanter_TEX.UI_WeaponSelect_ParasiteImplanter",Id=9132)
 }

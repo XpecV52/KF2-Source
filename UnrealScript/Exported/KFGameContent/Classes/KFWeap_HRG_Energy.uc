@@ -422,7 +422,7 @@ defaultproperties
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'
    MagazineCapacity(0)=15
    AmmoCost(1)=3
-   SpareAmmoCapacity(0)=135
+   SpareAmmoCapacity(0)=120
    InitialSpareMags(0)=2
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
@@ -466,8 +466,8 @@ defaultproperties
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.015000
-   InstantHitDamage(0)=90.000000
-   InstantHitDamage(1)=300.000000
+   InstantHitDamage(0)=80.000000
+   InstantHitDamage(1)=120.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Ballistic_HRG_Energy_Primary'
