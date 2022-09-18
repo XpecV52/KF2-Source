@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti escl
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Manifestazione orribile",DescriptionString="Uccidi 15 boss in qualsiasi mappa o modalità")
 SpecialEventObjectiveInfoList[1]=(TitleString="Culto settimanale",DescriptionString="Completa il Settimanale in Netherhold")
-SpecialEventObjectiveInfoList[2]=(TitleString="Sento dei battiti",DescriptionString="Trova il cuore sepolto")
+SpecialEventObjectiveInfoList[2]=(TitleString="Proviene dalle pareti",DescriptionString="Trova il cuore sepolto")
 SpecialEventObjectiveInfoList[3]=(TitleString="Miasma viola",DescriptionString="Sblocca la cappella e le porte della sala da pranzo")
 SpecialEventObjectiveInfoList[4]=(TitleString="Punizione eterna",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Netherhold")
 

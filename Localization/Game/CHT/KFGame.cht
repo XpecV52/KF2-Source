@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="附有獨特道具的限時特別活動"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="恐怖表現",DescriptionString="在任何地圖或模式中擊殺15個頭目")
 SpecialEventObjectiveInfoList[1]=(TitleString="每週邪教",DescriptionString="完成每週地獄要塞任務")
-SpecialEventObjectiveInfoList[2]=(TitleString="我聽到心跳聲",DescriptionString="找到地獄之心")
+SpecialEventObjectiveInfoList[2]=(TitleString="聲音從牆壁里傳來",DescriptionString="找到地獄之心")
 SpecialEventObjectiveInfoList[3]=(TitleString="紫色瘴氣",DescriptionString="解鎖禮拜堂和宴會廳的門")
 SpecialEventObjectiveInfoList[4]=(TitleString="無盡懲罰",DescriptionString="在地獄要塞以無盡模式困難或更高難度完成第15波攻勢")
 

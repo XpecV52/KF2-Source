@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedm
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Straszne manifestacje",DescriptionString="Zabij 15 bossów na dowolnej mapie i w dowolnym trybie")
 SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowy kult",DescriptionString="Ukończ tygodniowy incydent na mapie Netherhold")
-SpecialEventObjectiveInfoList[2]=(TitleString="Słyszę bicia serc",DescriptionString="Znajdź serce z zaświatów")
+SpecialEventObjectiveInfoList[2]=(TitleString="Dobiega zza ścian",DescriptionString="Znajdź Serce z Zaświatów")
 SpecialEventObjectiveInfoList[3]=(TitleString="Fioletowe wyziewy",DescriptionString="Odblokuj drzwi kaplicy i jadalni")
 SpecialEventObjectiveInfoList[4]=(TitleString="Wieczne potępienie",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności na mapie Netherhold")
 

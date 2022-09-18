@@ -593,32 +593,44 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
 End Object
 
 Begin Object Class=InterpData Name=InterpData_2
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_0.InterpTrackMove_2',CurveColor=(B=0,G=199,R=133,A=255),CurveName="Gieatine_Trap_Movement")),ViewStartInput=-0.053412,ViewEndInput=1.946588,ViewStartOutput=-0.991453,ViewEndOutput=1.008547)
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
-         AkEvents(0)=(Time=2.976855,Event=AkEvent'WW_ENV_MonsterBall.Play_ENV_MonsterBall_BellToll')
-         Name="InterpTrackAkEvent_1"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-0.000122,Y=0.000977,Z=0.000000),ArriveTangent=(X=-0.000081,Y=0.000651,Z=0.000000),LeaveTangent=(X=-0.000081,Y=0.000651,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-0.000244,Y=0.001953,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-180.000000,Y=-11.250000,Z=180.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-0.000977,Y=0.000000,Z=-0.000244),ArriveTangent=(X=-0.000651,Y=0.000000,Z=-0.000163),LeaveTangent=(X=-0.000651,Y=0.000000,Z=-0.000163),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-0.001953,Y=0.000000,Z=-0.000488),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=0.000000,Y=0.000000,Z=-168.750000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=1.500000),(Time=3.000000)))
          bUseQuatInterpolation=True
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_0.InterpTrackMove_2'
-      InterpTracks(1)=InterpTrackAkEvent'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_0.InterpTrackAkEvent_1'
-      GroupName="Bell_Trap"
-      GroupColor=(B=0,G=199,R=133,A=255)
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_3.InterpTrackMove_1'
+      GroupName="Gear2"
+      GroupColor=(B=213,G=105,R=0,A=255)
       bCollapsed=True
-      Name="InterpGroup_0"
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-0.000122,Y=-0.000977,Z=0.000000),ArriveTangent=(X=-0.000081,Y=-0.000651,Z=0.000000),LeaveTangent=(X=-0.000081,Y=-0.000651,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-0.000244,Y=-0.001953,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=180.000000,Y=-11.250000,Z=180.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.500000),(Time=3.000000)))
+         bUseQuatInterpolation=True
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_3"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Time=1.503320,Event=AkEvent'WW_ENV_MonsterBall.Play_ENV_MonsterBall_BellToll')
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2.InterpTrackMove_3'
+      InterpTracks(1)=InterpTrackAkEvent'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2.InterpTrackAkEvent_0'
+      GroupName="NewGroup"
+      GroupColor=(B=204,G=0,R=126,A=255)
+      bCollapsed=True
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
@@ -638,45 +650,33 @@ Begin Object Class=InterpData Name=InterpData_2
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Time=1.503320,Event=AkEvent'WW_ENV_MonsterBall.Play_ENV_MonsterBall_BellToll')
-         Name="InterpTrackAkEvent_0"
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-0.000122,Y=0.000977,Z=0.000000),ArriveTangent=(X=-0.000081,Y=0.000651,Z=0.000000),LeaveTangent=(X=-0.000081,Y=0.000651,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-0.000244,Y=0.001953,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-180.000000,Y=-11.250000,Z=180.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.500000),(Time=3.000000)))
+         bUseQuatInterpolation=True
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_1
+         AkEvents(0)=(Time=2.976855,Event=AkEvent'WW_ENV_MonsterBall.Play_ENV_MonsterBall_BellToll')
+         Name="InterpTrackAkEvent_1"
          ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
       End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-0.000122,Y=-0.000977,Z=0.000000),ArriveTangent=(X=-0.000081,Y=-0.000651,Z=0.000000),LeaveTangent=(X=-0.000081,Y=-0.000651,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-0.000244,Y=-0.001953,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=180.000000,Y=-11.250000,Z=180.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.500000),(Time=3.000000)))
-         bUseQuatInterpolation=True
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2.InterpTrackMove_3'
-      InterpTracks(1)=InterpTrackAkEvent'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_2.InterpTrackAkEvent_0'
-      GroupName="NewGroup"
-      GroupColor=(B=204,G=0,R=126,A=255)
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_0.InterpTrackMove_2'
+      InterpTracks(1)=InterpTrackAkEvent'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_0.InterpTrackAkEvent_1'
+      GroupName="Bell_Trap"
+      GroupColor=(B=0,G=199,R=133,A=255)
       bCollapsed=True
-      Name="InterpGroup_2"
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-0.000977,Y=0.000000,Z=-0.000244),ArriveTangent=(X=-0.000651,Y=0.000000,Z=-0.000163),LeaveTangent=(X=-0.000651,Y=0.000000,Z=-0.000163),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-0.001953,Y=0.000000,Z=-0.000488),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=0.000000,Y=0.000000,Z=-168.750000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.500000),(Time=3.000000)))
-         bUseQuatInterpolation=True
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_3.InterpTrackMove_1'
-      GroupName="Gear2"
-      GroupColor=(B=213,G=105,R=0,A=255)
-      bCollapsed=True
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_0.InterpTrackMove_2',CurveColor=(B=0,G=199,R=133,A=255),CurveName="Gieatine_Trap_Movement")),ViewStartInput=-0.053412,ViewEndInput=1.946588,ViewStartOutput=-0.991453,ViewEndOutput=1.008547)
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_2.InterpGroup_0'
@@ -1310,10 +1310,6 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_18
 End Object
 
 Begin Object Class=InterpData Name=InterpData_14
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -1328,6 +1324,10 @@ Begin Object Class=InterpData Name=InterpData_14
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_14.InterpGroup_1'
@@ -1764,10 +1764,6 @@ Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_11
 End Object
 
 Begin Object Class=InterpData Name=InterpData_19
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_8
-      Name="InterpCurveEdSetup_8"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -1782,6 +1778,10 @@ Begin Object Class=InterpData Name=InterpData_19
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_8
+      Name="InterpCurveEdSetup_8"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_19.InterpGroup_1'
@@ -1833,10 +1833,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
 End Object
 
 Begin Object Class=InterpData Name=InterpData_11
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
-      Name="InterpCurveEdSetup_5"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -1851,6 +1847,10 @@ Begin Object Class=InterpData Name=InterpData_11
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
+      Name="InterpCurveEdSetup_5"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_11.InterpGroup_1'
@@ -1890,10 +1890,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_11
 End Object
 
 Begin Object Class=InterpData Name=InterpData_13
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_6
-      Name="InterpCurveEdSetup_6"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -1908,6 +1904,10 @@ Begin Object Class=InterpData Name=InterpData_13
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_6
+      Name="InterpCurveEdSetup_6"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_13.InterpGroup_1'
@@ -1993,10 +1993,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_17
 End Object
 
 Begin Object Class=InterpData Name=InterpData_17
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
-      Name="InterpCurveEdSetup_4"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -2011,6 +2007,10 @@ Begin Object Class=InterpData Name=InterpData_17
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_4
+      Name="InterpCurveEdSetup_4"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_17.InterpGroup_1'
@@ -2040,10 +2040,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_98
 End Object
 
 Begin Object Class=InterpData Name=InterpData_16
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -2058,6 +2054,10 @@ Begin Object Class=InterpData Name=InterpData_16
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_16.InterpGroup_1'
@@ -2131,10 +2131,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
 End Object
 
 Begin Object Class=InterpData Name=InterpData_7
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -2149,6 +2145,10 @@ Begin Object Class=InterpData Name=InterpData_7
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_7.InterpGroup_1'
@@ -2375,10 +2375,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_8
 End Object
 
 Begin Object Class=InterpData Name=InterpData_8
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_7
-      Name="InterpCurveEdSetup_7"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -2393,6 +2389,10 @@ Begin Object Class=InterpData Name=InterpData_8
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_7
+      Name="InterpCurveEdSetup_7"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_8.InterpGroup_1'
@@ -2471,10 +2471,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_21
 End Object
 
 Begin Object Class=InterpData Name=InterpData_21
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
-      Name="InterpCurveEdSetup_3"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -2489,6 +2485,10 @@ Begin Object Class=InterpData Name=InterpData_21
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_3
+      Name="InterpCurveEdSetup_3"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_21.InterpGroup_1'
@@ -2506,10 +2506,6 @@ Begin Object Class=InterpData Name=InterpData_21
 End Object
 
 Begin Object Class=InterpData Name=InterpData_18
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=13.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000003),InterpMode=CIM_CurveAutoClamped),(InVal=14.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.300000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=14.800000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=15.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -2524,6 +2520,10 @@ Begin Object Class=InterpData Name=InterpData_18
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=15.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_18.InterpGroup_1'
@@ -3072,10 +3072,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_286
 End Object
 
 Begin Object Class=InterpData Name=InterpData_15
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.700000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.200000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=9.700000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -3090,6 +3086,10 @@ Begin Object Class=InterpData Name=InterpData_15
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_15.InterpGroup_1'
@@ -3151,10 +3151,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_20
 End Object
 
 Begin Object Class=InterpData Name=InterpData_20
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000076),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000006),InterpMode=CIM_CurveAutoClamped),(InVal=8.700000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000107),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000122),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.200000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000153),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000091),InterpMode=CIM_CurveAutoClamped),(InVal=9.500000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000168),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000090),InterpMode=CIM_CurveAutoClamped),(InVal=9.700000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000198),InterpMode=CIM_CurveAutoClamped)))
@@ -3169,6 +3165,10 @@ Begin Object Class=InterpData Name=InterpData_20
       GroupColor=(B=193,G=0,R=143,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=10.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_20.InterpGroup_1'
@@ -3750,9 +3750,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_29
 End Object
 
 Begin Object Class=InterpData Name=InterpData_29
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=())
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_1.InterpTrackMove_1'
+      GroupName="Hand_Right"
+      GroupColor=(B=0,G=165,R=174,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -3769,20 +3780,9 @@ Begin Object Class=InterpData Name=InterpData_29
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=())
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_1.InterpTrackMove_1'
-      GroupName="Hand_Right"
-      GroupColor=(B=0,G=165,R=174,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_29.InterpGroup_1'
@@ -3860,9 +3860,20 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_5
 End Object
 
 Begin Object Class=InterpData Name=InterpData_3
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.200000,OutVal=(X=0.000000,Y=0.000031,Z=-0.000031),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.200000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=5.200000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackMove_1'
+      GroupName="Right"
+      GroupColor=(B=162,G=0,R=178,A=255)
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -3879,20 +3890,9 @@ Begin Object Class=InterpData Name=InterpData_3
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.200000,OutVal=(X=0.000000,Y=0.000031,Z=-0.000031),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5.200000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=5.200000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackMove_1'
-      GroupName="Right"
-      GroupColor=(B=162,G=0,R=178,A=255)
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=5.200000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2'
@@ -3997,9 +3997,16 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         CutTrack(0)=(TargetCamGroup="Camera",ShotNumber=10)
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=115,G=209,R=0,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -4016,16 +4023,9 @@ Begin Object Class=InterpData Name=InterpData_0
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
-         CutTrack(0)=(TargetCamGroup="Camera",ShotNumber=10)
-         Name="InterpTrackDirector_0"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
-      GroupColor=(B=115,G=209,R=0,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=249.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
@@ -4185,10 +4185,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_28
 End Object
 
 Begin Object Class=InterpData Name=InterpData_28
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=-0.000244,Y=-0.000183,Z=-0.000977),ArriveTangent=(X=0.000000,Y=-0.000366,Z=-0.001953),LeaveTangent=(X=0.000000,Y=-0.000366,Z=-0.001953),InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-0.000244,Y=-0.000366,Z=-0.001953),ArriveTangent=(X=0.000000,Y=-0.000427,Z=-0.001465),LeaveTangent=(X=0.000000,Y=-0.000427,Z=-0.001465),InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-0.000244,Y=-0.000610,Z=-0.002441),ArriveTangent=(X=0.000000,Y=-0.000488,Z=0.000000),LeaveTangent=(X=0.000000,Y=-0.000488,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=-0.000854,Z=-0.002441),InterpMode=CIM_CurveAutoClamped)))
@@ -4204,6 +4200,10 @@ Begin Object Class=InterpData Name=InterpData_28
       GroupColor=(B=123,G=204,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_28.InterpGroup_0'
@@ -4242,10 +4242,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_30
 End Object
 
 Begin Object Class=InterpData Name=InterpData_30
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=-0.000488,Y=-0.000061,Z=-0.000977),ArriveTangent=(X=-0.000977,Y=-0.000122,Z=-0.001953),LeaveTangent=(X=-0.000977,Y=-0.000122,Z=-0.001953),InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-0.000977,Y=-0.000122,Z=-0.001953),ArriveTangent=(X=-0.000732,Y=-0.000122,Z=-0.001953),LeaveTangent=(X=-0.000732,Y=-0.000122,Z=-0.001953),InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-0.001221,Y=-0.000183,Z=-0.002930),ArriveTangent=(X=-0.000488,Y=-0.000232,Z=0.000000),LeaveTangent=(X=-0.000488,Y=-0.000232,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.001465,Y=-0.000427,Z=-0.002930),InterpMode=CIM_CurveAutoClamped)))
@@ -4261,6 +4257,10 @@ Begin Object Class=InterpData Name=InterpData_30
       GroupColor=(B=146,G=0,R=191,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_30.InterpGroup_1'
@@ -4817,10 +4817,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_31
 End Object
 
 Begin Object Class=InterpData Name=InterpData_31
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((OutVal=(X=-0.000488,Y=0.000122,Z=-0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=900.000000,OutVal=(X=-0.000977,Y=0.000244,Z=-0.000977),ArriveTangent=(X=-0.000001,Y=0.000000,Z=-0.000001),LeaveTangent=(X=-0.000001,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=1800.000000,OutVal=(X=-0.001953,Y=0.000488,Z=-0.001953),ArriveTangent=(X=-0.000001,Y=0.000000,Z=-0.000001),LeaveTangent=(X=-0.000001,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=2700.000000,OutVal=(X=-0.002930,Y=0.000732,Z=-0.002930),ArriveTangent=(X=-0.000001,Y=0.000000,Z=-0.000001),LeaveTangent=(X=-0.000001,Y=0.000000,Z=-0.000001),InterpMode=CIM_CurveAutoClamped),(InVal=3600.000000,OutVal=(X=-0.003906,Y=0.000977,Z=-0.003906),InterpMode=CIM_CurveAutoClamped)))
@@ -4836,6 +4832,10 @@ Begin Object Class=InterpData Name=InterpData_31
       GroupColor=(B=0,G=202,R=128,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3600.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_31.InterpGroup_0'
@@ -4887,10 +4887,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_32
 End Object
 
 Begin Object Class=InterpData Name=InterpData_32
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=5400.000000,OutVal=(X=-0.001465,Y=0.000366,Z=-0.001465),ArriveTangent=(X=-0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=-0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10800.000000,OutVal=(X=-0.002441,Y=0.000610,Z=-0.002441),ArriveTangent=(X=-0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=-0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=16200.500000,OutVal=(X=-0.003418,Y=0.000854,Z=-0.003418),ArriveTangent=(X=-0.000000,Y=0.000000,Z=-0.000000),LeaveTangent=(X=-0.000000,Y=0.000000,Z=-0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=21600.000000,OutVal=(X=-0.004395,Y=0.001099,Z=-0.004395),InterpMode=CIM_CurveAutoClamped)))
@@ -4906,6 +4902,10 @@ Begin Object Class=InterpData Name=InterpData_32
       GroupColor=(B=158,G=0,R=181,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=21600.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_32.InterpGroup_1'
@@ -4957,9 +4957,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_33
 End Object
 
 Begin Object Class=InterpData Name=InterpData_33
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=-608.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000012),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=0.000000,Y=-608.000000,Z=-0.000076),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000046),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=0.500000),(Time=4.500000),(Time=5.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_1.InterpTrackMove_1'
+      GroupName="Plank_2"
+      GroupColor=(B=198,G=0,R=136,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -4976,20 +4987,9 @@ Begin Object Class=InterpData Name=InterpData_33
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,OutVal=(X=0.000000,Y=-608.000000,Z=-0.000061),ArriveTangent=(X=0.000000,Y=0.000000,Z=-0.000012),LeaveTangent=(X=0.000000,Y=0.000000,Z=-0.000012),InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,OutVal=(X=0.000000,Y=-608.000000,Z=-0.000076),InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000046),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=0.500000,InterpMode=CIM_CurveAutoClamped),(InVal=4.500000,InterpMode=CIM_CurveAutoClamped),(InVal=5.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=0.500000),(Time=4.500000),(Time=5.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_1.InterpTrackMove_1'
-      GroupName="Plank_2"
-      GroupColor=(B=198,G=0,R=136,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_0'
    InterpGroups(1)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_33.InterpGroup_1'
@@ -5178,10 +5178,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_34
 End Object
 
 Begin Object Class=InterpData Name=InterpData_34
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=20.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -5196,6 +5192,10 @@ Begin Object Class=InterpData Name=InterpData_34
       GroupColor=(B=147,G=189,R=0,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_34.InterpGroup_0'
@@ -5246,9 +5246,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_35
 End Object
 
 Begin Object Class=InterpData Name=InterpData_35
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=-0.000488,Z=-64.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=3.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_1.InterpTrackMove_1'
+      GroupName="panel_2"
+      GroupColor=(B=165,G=174,R=0,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -5265,20 +5276,9 @@ Begin Object Class=InterpData Name=InterpData_35
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=-0.000488,Z=-64.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=3.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_1.InterpTrackMove_1'
-      GroupName="panel_2"
-      GroupColor=(B=165,G=174,R=0,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_35.InterpGroup_0'
@@ -5546,10 +5546,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_36
 End Object
 
 Begin Object Class=InterpData Name=InterpData_36
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-3.999512,Y=0.000000,Z=5.000031),InterpMode=CIM_CurveAutoClamped)))
@@ -5564,6 +5560,10 @@ Begin Object Class=InterpData Name=InterpData_36
       GroupColor=(B=0,G=126,R=203,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_36.InterpGroup_0'
@@ -5706,10 +5706,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_37
 End Object
 
 Begin Object Class=InterpData Name=InterpData_37
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=-15.000488,Y=0.000244,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
@@ -5724,6 +5720,10 @@ Begin Object Class=InterpData Name=InterpData_37
       GroupColor=(B=0,G=224,R=74,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.500000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_37.InterpGroup_0'
@@ -6013,9 +6013,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_25
 End Object
 
 Begin Object Class=InterpData Name=InterpData_25
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-4.000244,Y=0.000000,Z=-0.000031),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=2.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_4.InterpTrackMove_2'
+      GroupName="Door_two"
+      GroupColor=(B=197,G=136,R=0,A=255)
+      Name="InterpGroup_4"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -6032,20 +6043,9 @@ Begin Object Class=InterpData Name=InterpData_25
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-4.000244,Y=0.000000,Z=-0.000031),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=2.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_4.InterpTrackMove_2'
-      GroupName="Door_two"
-      GroupColor=(B=197,G=136,R=0,A=255)
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_25.InterpGroup_0'
@@ -6222,9 +6222,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_24
 End Object
 
 Begin Object Class=InterpData Name=InterpData_24
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000031),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=2.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_4"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_8.InterpTrackMove_4'
+      GroupName="door_2"
+      GroupColor=(B=231,G=0,R=42,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_5
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
@@ -6241,20 +6252,9 @@ Begin Object Class=InterpData Name=InterpData_24
       Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=-0.000031),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=-90.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=2.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_4"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_8.InterpTrackMove_4'
-      GroupName="door_2"
-      GroupColor=(B=231,G=0,R=42,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_24.InterpGroup_5'
@@ -6333,9 +6333,20 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_181
 End Object
 
 Begin Object Class=InterpData Name=InterpData_23
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-4.000244,Y=0.000000,Z=-0.000031),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=2.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_23.InterpGroup_4.InterpTrackMove_2'
+      GroupName="Door_two"
+      GroupColor=(B=197,G=136,R=0,A=255)
+      Name="InterpGroup_4"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
@@ -6352,20 +6363,9 @@ Begin Object Class=InterpData Name=InterpData_23
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-4.000244,Y=0.000000,Z=-0.000031),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=90.000000),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=2.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_23.InterpGroup_4.InterpTrackMove_2'
-      GroupName="Door_two"
-      GroupColor=(B=197,G=136,R=0,A=255)
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_23.InterpGroup_0'
@@ -6851,38 +6851,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_38
 End Object
 
 Begin Object Class=InterpData Name=InterpData_38
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.000488,Y=0.000488,Z=-0.000061),ArriveTangent=(X=-0.000244,Y=0.000183,Z=-0.000058),LeaveTangent=(X=-0.000244,Y=0.000183,Z=-0.000058),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-0.000977,Y=0.000732,Z=-0.000305),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=67.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=2.000000),(Time=4.000000)))
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_10
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.900000,OutVal=(X=0.000488,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000488,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000488,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000977,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.004883,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.004883,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.100000,OutVal=(X=0.001465,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000488,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000488,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.001953,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.900000,OutVal=(X=-67.153931,Y=4.345093,Z=-169.584961),ArriveTangent=(X=-10.355919,Y=0.000000,Z=-80.928757),LeaveTangent=(X=-10.355919,Y=0.000000,Z=-80.928757),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-68.087769,Y=-3.554077,Z=-177.555542),ArriveTangent=(X=0.000000,Y=-79.238823,Z=-79.843071),LeaveTangent=(X=0.000000,Y=-79.238823,Z=-79.843071),InterpMode=CIM_CurveAutoClamped),(InVal=2.100000,OutVal=(X=-67.911987,Y=-11.502686,Z=-185.553589),ArriveTangent=(X=2.008005,Y=0.000000,Z=-81.592407),LeaveTangent=(X=2.008005,Y=0.000000,Z=-81.592407),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-0.549316,Y=-3.619995,Z=-362.318115),InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.900000),(Time=2.000000),(Time=2.100000),(Time=4.000000)))
+         bUseQuatInterpolation=True
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_10"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_0.InterpTrackMove_0'
-      GroupName="L1"
-      GroupColor=(B=0,G=206,R=120,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.000488,Y=0.000488,Z=0.000977),ArriveTangent=(X=-0.000244,Y=0.000244,Z=0.000488),LeaveTangent=(X=-0.000244,Y=0.000244,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-0.000977,Y=0.000977,Z=0.001953),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-67.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=2.000000),(Time=4.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_1.InterpTrackMove_1'
-      GroupName="r1"
-      GroupColor=(B=0,G=123,R=204,A=255)
-      Name="InterpGroup_1"
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_6.InterpTrackMove_10'
+      GroupName="C_2"
+      GroupColor=(B=105,G=213,R=0,A=255)
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
@@ -6901,21 +6883,39 @@ Begin Object Class=InterpData Name=InterpData_38
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_10
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.900000,OutVal=(X=0.000488,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000488,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000488,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000977,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.004883,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.004883,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.100000,OutVal=(X=0.001465,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000488,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000488,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.001953,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.900000,OutVal=(X=-67.153931,Y=4.345093,Z=-169.584961),ArriveTangent=(X=-10.355919,Y=0.000000,Z=-80.928757),LeaveTangent=(X=-10.355919,Y=0.000000,Z=-80.928757),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-68.087769,Y=-3.554077,Z=-177.555542),ArriveTangent=(X=0.000000,Y=-79.238823,Z=-79.843071),LeaveTangent=(X=0.000000,Y=-79.238823,Z=-79.843071),InterpMode=CIM_CurveAutoClamped),(InVal=2.100000,OutVal=(X=-67.911987,Y=-11.502686,Z=-185.553589),ArriveTangent=(X=2.008005,Y=0.000000,Z=-81.592407),LeaveTangent=(X=2.008005,Y=0.000000,Z=-81.592407),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-0.549316,Y=-3.619995,Z=-362.318115),InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.900000),(Time=2.000000),(Time=2.100000),(Time=4.000000)))
-         bUseQuatInterpolation=True
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.000488,Y=0.000488,Z=0.000977),ArriveTangent=(X=-0.000244,Y=0.000244,Z=0.000488),LeaveTangent=(X=-0.000244,Y=0.000244,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-0.000977,Y=0.000977,Z=0.001953),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-67.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=2.000000),(Time=4.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_10"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_6.InterpTrackMove_10'
-      GroupName="C_2"
-      GroupColor=(B=105,G=213,R=0,A=255)
-      Name="InterpGroup_6"
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_1.InterpTrackMove_1'
+      GroupName="r1"
+      GroupColor=(B=0,G=123,R=204,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.000488,Y=0.000488,Z=-0.000061),ArriveTangent=(X=-0.000244,Y=0.000183,Z=-0.000058),LeaveTangent=(X=-0.000244,Y=0.000183,Z=-0.000058),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-0.000977,Y=0.000732,Z=-0.000305),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=67.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=2.000000),(Time=4.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_0.InterpTrackMove_0'
+      GroupName="L1"
+      GroupColor=(B=0,G=206,R=120,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_38.InterpGroup_0'
@@ -7032,38 +7032,20 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_122
 End Object
 
 Begin Object Class=InterpData Name=InterpData_39
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.000488,Y=0.000488,Z=-0.000061),ArriveTangent=(X=-0.000244,Y=0.000183,Z=-0.000058),LeaveTangent=(X=-0.000244,Y=0.000183,Z=-0.000058),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-0.000977,Y=0.000732,Z=-0.000305),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_10
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000488,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000244,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000244,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000977,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=2.000000),(Time=4.000000)))
+         bUseQuatInterpolation=True
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_10"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0.InterpTrackMove_0'
-      GroupName="L1"
-      GroupColor=(B=0,G=206,R=120,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.000488,Y=0.000488,Z=0.000977),ArriveTangent=(X=-0.000244,Y=0.000244,Z=0.000488),LeaveTangent=(X=-0.000244,Y=0.000244,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-0.000977,Y=0.000977,Z=0.001953),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=2.000000),(Time=4.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_1.InterpTrackMove_1'
-      GroupName="r1"
-      GroupColor=(B=0,G=123,R=204,A=255)
-      Name="InterpGroup_1"
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_6.InterpTrackMove_10'
+      GroupName="C_2"
+      GroupColor=(B=105,G=213,R=0,A=255)
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
@@ -7082,21 +7064,39 @@ Begin Object Class=InterpData Name=InterpData_39
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_10
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000488,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000244,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000244,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=0.000977,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.000488,Y=0.000488,Z=0.000977),ArriveTangent=(X=-0.000244,Y=0.000244,Z=0.000488),LeaveTangent=(X=-0.000244,Y=0.000244,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-0.000977,Y=0.000977,Z=0.001953),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=2.000000),(Time=4.000000)))
-         bUseQuatInterpolation=True
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_10"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_6.InterpTrackMove_10'
-      GroupName="C_2"
-      GroupColor=(B=105,G=213,R=0,A=255)
-      Name="InterpGroup_6"
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_1.InterpTrackMove_1'
+      GroupName="r1"
+      GroupColor=(B=0,G=123,R=204,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.000488,Y=0.000488,Z=-0.000061),ArriveTangent=(X=-0.000244,Y=0.000183,Z=-0.000058),LeaveTangent=(X=-0.000244,Y=0.000183,Z=-0.000058),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,OutVal=(X=-0.000977,Y=0.000732,Z=-0.000305),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=4.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=2.000000),(Time=4.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0.InterpTrackMove_0'
+      GroupName="L1"
+      GroupColor=(B=0,G=206,R=120,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=4.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_39.InterpGroup_0'
@@ -7184,38 +7184,20 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_26
 End Object
 
 Begin Object Class=InterpData Name=InterpData_4
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-0.000732,Y=0.000732,Z=-0.000183),ArriveTangent=(X=-0.000610,Y=0.000000,Z=-0.000153),LeaveTangent=(X=-0.000610,Y=0.000000,Z=-0.000153),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.001221,Y=0.000732,Z=-0.000305),ArriveTangent=(X=-0.000610,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000610,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-0.001953,Y=0.000732,Z=-0.000305),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=22.500000,Y=0.000000,Z=0.000000),ArriveTangent=(X=22.500000,Y=0.000000,Z=0.000000),LeaveTangent=(X=22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000)))
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_10
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000488,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000651,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000651,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=0.000977,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000977,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000977,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.001465,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000651,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000651,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.001953,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=33.750000,Y=0.000000,Z=0.000000),ArriveTangent=(X=28.130630,Y=0.000000,Z=0.000000),LeaveTangent=(X=28.130630,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=33.750000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-28.130630,Y=0.000000,Z=0.000000),LeaveTangent=(X=-28.130630,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=1.500000),(Time=2.000000),(Time=3.000000)))
+         bUseQuatInterpolation=True
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_10"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0.InterpTrackMove_0'
-      GroupName="L1"
-      GroupColor=(B=0,G=206,R=120,A=255)
-      Name="InterpGroup_0"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-0.000732,Y=0.001465,Z=0.001465),ArriveTangent=(X=-0.000610,Y=0.001221,Z=0.000855),LeaveTangent=(X=-0.000610,Y=0.001221,Z=0.000855),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.001221,Y=0.002441,Z=0.001953),ArriveTangent=(X=-0.000488,Y=0.000977,Z=0.000488),LeaveTangent=(X=-0.000488,Y=0.000977,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-0.001709,Y=0.003418,Z=0.002441),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-22.500000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-22.500000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000)))
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_1.InterpTrackMove_1'
-      GroupName="r1"
-      GroupColor=(B=0,G=123,R=204,A=255)
-      Name="InterpGroup_1"
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_6.InterpTrackMove_10'
+      GroupName="C_2"
+      GroupColor=(B=105,G=213,R=0,A=255)
+      Name="InterpGroup_6"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
@@ -7234,21 +7216,39 @@ Begin Object Class=InterpData Name=InterpData_4
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_10
-         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=0.000488,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000651,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000651,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=0.000977,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000977,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000977,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.001465,Y=0.000000,Z=0.000000),ArriveTangent=(X=0.000651,Y=0.000000,Z=0.000000),LeaveTangent=(X=0.000651,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.001953,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=33.750000,Y=0.000000,Z=0.000000),ArriveTangent=(X=28.130630,Y=0.000000,Z=0.000000),LeaveTangent=(X=28.130630,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=1.500000,OutVal=(X=45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=33.750000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-28.130630,Y=0.000000,Z=0.000000),LeaveTangent=(X=-28.130630,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
-         LookupTrack=(Points=(,(Time=1.000000),(Time=1.500000),(Time=2.000000),(Time=3.000000)))
-         bUseQuatInterpolation=True
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-0.000732,Y=0.001465,Z=0.001465),ArriveTangent=(X=-0.000610,Y=0.001221,Z=0.000855),LeaveTangent=(X=-0.000610,Y=0.001221,Z=0.000855),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.001221,Y=0.002441,Z=0.001953),ArriveTangent=(X=-0.000488,Y=0.000977,Z=0.000488),LeaveTangent=(X=-0.000488,Y=0.000977,Z=0.000488),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-0.001709,Y=0.003418,Z=0.002441),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-22.500000,Y=0.000000,Z=0.000000),ArriveTangent=(X=-22.500000,Y=0.000000,Z=0.000000),LeaveTangent=(X=-22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_10"
+         Name="InterpTrackMove_1"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_6.InterpTrackMove_10'
-      GroupName="C_2"
-      GroupColor=(B=105,G=213,R=0,A=255)
-      Name="InterpGroup_6"
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_1.InterpTrackMove_1'
+      GroupName="r1"
+      GroupColor=(B=0,G=123,R=204,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=-0.000732,Y=0.000732,Z=-0.000183),ArriveTangent=(X=-0.000610,Y=0.000000,Z=-0.000153),LeaveTangent=(X=-0.000610,Y=0.000000,Z=-0.000153),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=-0.001221,Y=0.000732,Z=-0.000305),ArriveTangent=(X=-0.000610,Y=0.000000,Z=0.000000),LeaveTangent=(X=-0.000610,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=-0.001953,Y=0.000732,Z=-0.000305),InterpMode=CIM_CurveAutoClamped)))
+         EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=1.000000,OutVal=(X=22.500000,Y=0.000000,Z=0.000000),ArriveTangent=(X=22.500000,Y=0.000000,Z=0.000000),LeaveTangent=(X=22.500000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=45.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,InterpMode=CIM_CurveAutoClamped)))
+         LookupTrack=(Points=(,(Time=1.000000),(Time=2.000000),(Time=3.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0.InterpTrackMove_0'
+      GroupName="L1"
+      GroupColor=(B=0,G=206,R=120,A=255)
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=3.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_4.InterpGroup_0'
@@ -10238,10 +10238,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_41
 End Object
 
 Begin Object Class=InterpData Name=InterpData_41
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InVal=0.010000,InterpMode=CIM_CurveAutoClamped),(InVal=0.100000,OutVal=(X=-0.000977,Y=0.000000,Z=-0.000061),ArriveTangent=(X=-0.002483,Y=0.000000,Z=-0.000977),LeaveTangent=(X=-0.002483,Y=0.000000,Z=-0.000977),InterpMode=CIM_CurveAutoClamped),(InVal=0.600000,OutVal=(X=-0.001465,Y=0.000000,Z=-448.000153),InterpMode=CIM_CurveAutoClamped)))
@@ -10256,6 +10252,10 @@ Begin Object Class=InterpData Name=InterpData_41
       GroupColor=(B=0,G=123,R=204,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=0.600000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_41.InterpGroup_0'
@@ -13871,10 +13871,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
 End Object
 
 Begin Object Class=InterpData Name=InterpData_1
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_4
       Begin Object Class=InterpTrackAnimControl Name=InterpTrackAnimControl_2
          AnimSeqs(0)=(AnimSeqName="DJ_Hans",AnimPlayRate=1.000000)
@@ -13887,6 +13883,10 @@ Begin Object Class=InterpData Name=InterpData_1
       GroupAnimSets(0)=AnimSet'HALLOWEEN_ZED_Hans_ANIM.MMMAP_anim'
       Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=26.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_4'
@@ -14010,10 +14010,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_9
 End Object
 
 Begin Object Class=InterpData Name=InterpData_9
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((OutVal=(X=0.000000,Y=0.000000,Z=0.000004),InterpMode=CIM_CurveAutoClamped),(InVal=3.000000,OutVal=(X=0.000000,Y=0.000000,Z=32.000015),InterpMode=CIM_CurveAutoClamped)))
@@ -14028,6 +14024,10 @@ Begin Object Class=InterpData Name=InterpData_9
       GroupColor=(B=0,G=186,R=151,A=255)
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpGroup_0'
    CurveEdSetup=InterpCurveEdSetup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_9.InterpCurveEdSetup_0'
@@ -14076,10 +14076,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_22
 End Object
 
 Begin Object Class=InterpData Name=InterpData_26
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
-      Name="InterpCurveEdSetup_1"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
          PropertyName="SpotLightComponent0.LightColor"
@@ -14093,6 +14089,10 @@ Begin Object Class=InterpData Name=InterpData_26
       GroupColor=(B=163,G=176,R=0,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_1
+      Name="InterpCurveEdSetup_1"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpGroup_1'
    CurveEdSetup=InterpCurveEdSetup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_26.InterpCurveEdSetup_1'
@@ -14285,10 +14285,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_43
 End Object
 
 Begin Object Class=InterpData Name=InterpData_43
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
-      Name="InterpCurveEdSetup_2"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_1
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
          PropertyName="SpotLightComponent0.LightColor"
@@ -14302,6 +14298,10 @@ Begin Object Class=InterpData Name=InterpData_43
       GroupColor=(B=163,G=176,R=0,A=255)
       Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_2
+      Name="InterpCurveEdSetup_2"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpGroup_1'
    CurveEdSetup=InterpCurveEdSetup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_43.InterpCurveEdSetup_2'
@@ -14775,58 +14775,46 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_204
 End Object
 
 Begin Object Class=InterpData Name=InterpData_12
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
-         PropertyName="HeightFogComponent0.OppositeLightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.212044,Y=0.280124,Z=0.425905),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.409826,Y=0.054592,Z=0.019918),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="OppositeLightColor"
-         Name="InterpTrackColorProp_0"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackVectorMaterialParam Name=InterpTrackVectorMaterialParam_0
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_MonsterBall_THREE_MAT.dome.ENV_MonsterBall_Dome_Glass_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-MONSTERBALL.TheWorld:PersistentLevel.StaticMeshActor_1602.StaticMeshComponent_210')))
+         ParamName="Scalar_Glow_color"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=1.002211,Y=0.997249,Z=0.997250),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=9.967286,Y=0.500113,Z=0.500113),InterpMode=CIM_CurveAutoClamped)))
+         Name="InterpTrackVectorMaterialParam_0"
+         ObjectArchetype=InterpTrackVectorMaterialParam'Engine.Default__InterpTrackVectorMaterialParam'
       End Object
+      InterpTracks(0)=InterpTrackVectorMaterialParam'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_8.InterpTrackVectorMaterialParam_0'
+      GroupName="dome"
+      GroupColor=(B=0,G=203,R=126,A=255)
+      Name="InterpGroup_8"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_5
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
-         PropertyName="HeightFogComponent0.LightInscatteringColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.147998,Y=0.238828,Z=0.425905),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="LightInscatteringColor"
+         PropertyName="PointLightComponent0.LightColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.453456,Y=0.708298,Z=1.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.618686,Y=0.044553,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="LightColor"
          Name="InterpTrackColorProp_1"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0.InterpTrackColorProp_0'
-      InterpTracks(1)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0.InterpTrackColorProp_1'
-      GroupName="Fog"
-      GroupColor=(B=105,G=213,R=0,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_5.InterpTrackColorProp_1'
+      GroupName="Ball_Room_PointLight"
+      GroupColor=(B=0,G=84,R=221,A=255)
+      Name="InterpGroup_5"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
+   Begin Object Class=InterpGroup Name=InterpGroup_4
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
          PropertyName="SpotLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.394083,Y=0.592438,Z=0.796917),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1.000000,Y=0.060032,Z=0.019918),InterpMode=CIM_CurveAutoClamped)))
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.453456,Y=0.708298,Z=1.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.744530,Y=0.127530,Z=0.108711),InterpMode=CIM_CurveAutoClamped)))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_0"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_1.InterpTrackColorProp_0'
-      GroupName="Light"
-      GroupColor=(B=231,G=30,R=0,A=255)
-      Name="InterpGroup_1"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
-         PropertyName="DominantDirectionalLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.297653,Y=0.547993,Z=0.796917),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.481952,Y=0.119264,Z=0.044553),InterpMode=CIM_CurveAutoClamped)))
-         TrackTitle="LightColor"
-         Name="InterpTrackColorProp_0"
-         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
-      End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackColorProp_0'
-      GroupName="DominantDir"
-      GroupColor=(B=159,G=179,R=0,A=255)
-      Name="InterpGroup_2"
+      InterpTracks(0)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_4.InterpTrackColorProp_0'
+      GroupName="Ball_Room_Light_Spotlight"
+      GroupColor=(B=187,G=0,R=151,A=255)
+      Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
@@ -14844,47 +14832,59 @@ Begin Object Class=InterpData Name=InterpData_12
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
+   Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
-         PropertyName="SpotLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.453456,Y=0.708298,Z=1.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.744530,Y=0.127530,Z=0.108711),InterpMode=CIM_CurveAutoClamped)))
+         PropertyName="DominantDirectionalLightComponent0.LightColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.297653,Y=0.547993,Z=0.796917),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.481952,Y=0.119264,Z=0.044553),InterpMode=CIM_CurveAutoClamped)))
          TrackTitle="LightColor"
          Name="InterpTrackColorProp_0"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_4.InterpTrackColorProp_0'
-      GroupName="Ball_Room_Light_Spotlight"
-      GroupColor=(B=187,G=0,R=151,A=255)
-      Name="InterpGroup_4"
+      InterpTracks(0)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_2.InterpTrackColorProp_0'
+      GroupName="DominantDir"
+      GroupColor=(B=159,G=179,R=0,A=255)
+      Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
-         PropertyName="PointLightComponent0.LightColor"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.453456,Y=0.708298,Z=1.000000),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.618686,Y=0.044553,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
+         PropertyName="SpotLightComponent0.LightColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.394083,Y=0.592438,Z=0.796917),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1.000000,Y=0.060032,Z=0.019918),InterpMode=CIM_CurveAutoClamped)))
          TrackTitle="LightColor"
+         Name="InterpTrackColorProp_0"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_1.InterpTrackColorProp_0'
+      GroupName="Light"
+      GroupColor=(B=231,G=30,R=0,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
+         PropertyName="HeightFogComponent0.LightInscatteringColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.147998,Y=0.238828,Z=0.425905),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=1.000000,Y=0.000000,Z=0.000000),InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="LightInscatteringColor"
          Name="InterpTrackColorProp_1"
          ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
       End Object
-      InterpTracks(0)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_5.InterpTrackColorProp_1'
-      GroupName="Ball_Room_PointLight"
-      GroupColor=(B=0,G=84,R=221,A=255)
-      Name="InterpGroup_5"
+      Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_0
+         PropertyName="HeightFogComponent0.OppositeLightColor"
+         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=0.212044,Y=0.280124,Z=0.425905),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=0.409826,Y=0.054592,Z=0.019918),InterpMode=CIM_CurveAutoClamped)))
+         TrackTitle="OppositeLightColor"
+         Name="InterpTrackColorProp_0"
+         ObjectArchetype=InterpTrackColorProp'Engine.Default__InterpTrackColorProp'
+      End Object
+      InterpTracks(0)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0.InterpTrackColorProp_0'
+      InterpTracks(1)=InterpTrackColorProp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0.InterpTrackColorProp_1'
+      GroupName="Fog"
+      GroupColor=(B=105,G=213,R=0,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackVectorMaterialParam Name=InterpTrackVectorMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_MonsterBall_THREE_MAT.dome.ENV_MonsterBall_Dome_Glass_MIC',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-MONSTERBALL.TheWorld:PersistentLevel.StaticMeshActor_1602.StaticMeshComponent_210')))
-         ParamName="Scalar_Glow_color"
-         VectorTrack=(Points=((InVal=5.000000,OutVal=(X=1.002211,Y=0.997249,Z=0.997250),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,OutVal=(X=9.967286,Y=0.500113,Z=0.500113),InterpMode=CIM_CurveAutoClamped)))
-         Name="InterpTrackVectorMaterialParam_0"
-         ObjectArchetype=InterpTrackVectorMaterialParam'Engine.Default__InterpTrackVectorMaterialParam'
-      End Object
-      InterpTracks(0)=InterpTrackVectorMaterialParam'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_8.InterpTrackVectorMaterialParam_0'
-      GroupName="dome"
-      GroupColor=(B=0,G=203,R=126,A=255)
-      Name="InterpGroup_8"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1200.599976
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_12.InterpGroup_0'
@@ -15461,23 +15461,19 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_3
 End Object
 
 Begin Object Class=InterpData Name=InterpData_5
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=8.000000,Y=-0.000008,Z=-0.000244),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=84.375000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=2.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
+         Name="InterpTrackMove_3"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0.InterpTrackMove_0'
-      GroupName="Platform"
-      GroupColor=(B=88,G=220,R=0,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_4.InterpTrackMove_3'
+      GroupName="P4"
+      GroupColor=(B=206,G=0,R=123,A=255)
+      Name="InterpGroup_4"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
@@ -15495,20 +15491,24 @@ Begin Object Class=InterpData Name=InterpData_5
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_3
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
          PosTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=8.000000,Y=-0.000008,Z=-0.000244),InterpMode=CIM_CurveAutoClamped)))
          EulerTrack=(Points=((InterpMode=CIM_CurveAutoClamped),(InVal=2.000000,OutVal=(X=0.000000,Y=0.000000,Z=84.375000),InterpMode=CIM_CurveAutoClamped)))
          LookupTrack=(Points=(,(Time=2.000000)))
          MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_3"
+         Name="InterpTrackMove_0"
          ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
       End Object
-      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_4.InterpTrackMove_3'
-      GroupName="P4"
-      GroupColor=(B=206,G=0,R=123,A=255)
-      Name="InterpGroup_4"
+      InterpTracks(0)=InterpTrackMove'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0.InterpTrackMove_0'
+      GroupName="Platform"
+      GroupColor=(B=88,G=220,R=0,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2.000000
    InterpGroups(0)=InterpGroup'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.InterpData_5.InterpGroup_0'

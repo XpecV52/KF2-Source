@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="Ein zeitlich begrenztes Spezial-Event mit exklusiven 
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Grauenvolle Manifestationen",DescriptionString="Töte 15 Bosse auf einer beliebigen Karte oder in einem beliebigen Modus")
 SpecialEventObjectiveInfoList[1]=(TitleString="Wöchentlicher Kult",DescriptionString="Schaffe die wöchentliche Unterweltfestung")
-SpecialEventObjectiveInfoList[2]=(TitleString="Ich höre Herzschläge",DescriptionString="Finde das Unterweltherz")
+SpecialEventObjectiveInfoList[2]=(TitleString="Es kommt von den Wänden",DescriptionString="Finde das Unterweltherz")
 SpecialEventObjectiveInfoList[3]=(TitleString="Lila Miasma",DescriptionString="Schalte die Kapelle und den Speisesaal frei")
 SpecialEventObjectiveInfoList[4]=(TitleString="Ewige Bestrafung",DescriptionString="Schließe Welle 15 bei Unterweltfestung auf mindestens Schwer ab")
 

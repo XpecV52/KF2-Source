@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="限定版アイテム付きの期間限定スペシ�
 
 SpecialEventObjectiveInfoList[0]=(TitleString="恐ろしい発現",DescriptionString="マップやモードを問わず、ボスを15人殺す")
 SpecialEventObjectiveInfoList[1]=(TitleString="毎週の礼拝",DescriptionString="Netherholdでウィークリーをクリア")
-SpecialEventObjectiveInfoList[2]=(TitleString="心拍音が聞こえる",DescriptionString="冥界の心を見つける")
+SpecialEventObjectiveInfoList[2]=(TitleString="奴らは壁から出て来る！",DescriptionString="冥界の心を見つけよう")
 SpecialEventObjectiveInfoList[3]=(TitleString="パープルミアズマ",DescriptionString="礼拝堂と食堂の扉をアンロック")
 SpecialEventObjectiveInfoList[4]=(TitleString="永遠の罰",DescriptionString="エンドレスHardかそれ以上の難易度で、Netherholdのウェーブ15をクリアする")
 

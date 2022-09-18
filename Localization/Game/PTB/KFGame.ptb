@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusiv
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Manifestações Horrendas",DescriptionString="Mate 15 chefes em qualquer mapa ou modo")
 SpecialEventObjectiveInfoList[1]=(TitleString="Culto Semanal",DescriptionString="Conclua o semanal em Netherhold")
-SpecialEventObjectiveInfoList[2]=(TitleString="Escuto um batimento cardíaco",DescriptionString="Encontre o coração nether")
+SpecialEventObjectiveInfoList[2]=(TitleString="Está vindo das paredes",DescriptionString="Encontre o coração nether")
 SpecialEventObjectiveInfoList[3]=(TitleString="Miasma Roxo",DescriptionString="Destranque as portas da capela e do refeitório")
 SpecialEventObjectiveInfoList[4]=(TitleString="Punição Eterna",DescriptionString="Conclua a 15ª leva no modo Difícil Infinito ou maior em Netherhold")
 

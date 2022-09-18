@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특
 
 SpecialEventObjectiveInfoList[0]=(TitleString="끔찍한 존재",DescriptionString="아무 지도 혹은 모드에서 보스 15마리 처치하기")
 SpecialEventObjectiveInfoList[1]=(TitleString="주간 컬트",DescriptionString="네더홀드에서 주간 게임 모드 완료하기")
-SpecialEventObjectiveInfoList[2]=(TitleString="심장 소리가 들려",DescriptionString="네더 하트 찾기")
+SpecialEventObjectiveInfoList[2]=(TitleString="벽에서 오고 있어",DescriptionString="네더하트 찾기")
 SpecialEventObjectiveInfoList[3]=(TitleString="보라색 독기",DescriptionString="예배당과 다이닝홀 문 잠금 해제하기")
 SpecialEventObjectiveInfoList[4]=(TitleString="영원한 징벌",DescriptionString="네더홀드에서 끝없는 도전 어려움 이상으로 15 웨이브 완료하기")
 

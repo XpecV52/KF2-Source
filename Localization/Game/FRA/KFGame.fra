@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="Un événement spécial temporaire avec des objets ex
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Manifestations terrifiantes",DescriptionString="Tuer 15 boss sur n'importe quelle carte ou dans n'importe quel mode")
 SpecialEventObjectiveInfoList[1]=(TitleString="Culte hebdomadaire",DescriptionString="Terminer le mode hebdomadaire dans le Néant")
-SpecialEventObjectiveInfoList[2]=(TitleString="J'entends un cœur qui bat",DescriptionString="Trouver le cœur du néant")
+SpecialEventObjectiveInfoList[2]=(TitleString="On l'aperçoit à travers des murs",DescriptionString="Trouver le cœur du néant")
 SpecialEventObjectiveInfoList[3]=(TitleString="Miasme violet",DescriptionString="Déverrouiller les portes de la salle à manger et de la chapelle")
 SpecialEventObjectiveInfoList[4]=(TitleString="Punition éternelle",DescriptionString="Terminer 15 vagues en mode Infini Difficile ou supérieur dans le Néant")
 

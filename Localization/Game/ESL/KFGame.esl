@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="Un evento especial de tiempo limitado con objetos exc
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Manifestaciones terroríficas",DescriptionString="Mata a 15 jefes en cualquiera de los mapas y modos")
 SpecialEventObjectiveInfoList[1]=(TitleString="Culto semanal",DescriptionString="Completa la semana en el Fuerte del más allá")
-SpecialEventObjectiveInfoList[2]=(TitleString="Oigo latidos de corazón",DescriptionString="Encuentra el corazón del más allá")
+SpecialEventObjectiveInfoList[2]=(TitleString="Sale de las paredes",DescriptionString="Encuentra el Netherheart")
 SpecialEventObjectiveInfoList[3]=(TitleString="Miasma morado",DescriptionString="Desbloquea la capilla y las puertas del comedor")
 SpecialEventObjectiveInfoList[4]=(TitleString="Castigo eterno",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior el Fuerte del más allá")
 

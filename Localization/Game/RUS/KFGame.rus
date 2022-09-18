@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="Ограниченное по времени особ
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Ужасающие проявления",DescriptionString="Убить 15 боссов на любой карте в любом режиме")
 SpecialEventObjectiveInfoList[1]=(TitleString="Еженедельный культ",DescriptionString="Выполнить еженедельное задание в «Чертогах отчаяния»")
-SpecialEventObjectiveInfoList[2]=(TitleString="Слышно, как бьется сердце",DescriptionString="Найти адское сердце")
+SpecialEventObjectiveInfoList[2]=(TitleString="Это исходит из стены",DescriptionString="Найдите Адское сердце")
 SpecialEventObjectiveInfoList[3]=(TitleString="Пурпурная скверна",DescriptionString="Открыть молельню и двери столовой")
 SpecialEventObjectiveInfoList[4]=(TitleString="Вечные муки",DescriptionString="Пройдите 15 волн в «Чертогах отчаяния» в бесконечном режиме на «Сложно» или выше")
 

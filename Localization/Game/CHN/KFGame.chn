@@ -2848,7 +2848,7 @@ CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="恐怖具象",DescriptionString="在任意地图或模式击杀15名首领")
 SpecialEventObjectiveInfoList[1]=(TitleString="每周邪教",DescriptionString="完成每周的地狱要塞任务")
-SpecialEventObjectiveInfoList[2]=(TitleString="我听到了心跳",DescriptionString="找到地狱之心")
+SpecialEventObjectiveInfoList[2]=(TitleString="声音从墙壁里传来",DescriptionString="找到地狱之心")
 SpecialEventObjectiveInfoList[3]=(TitleString="紫色烟瘴",DescriptionString="打开礼拜堂和餐厅的门")
 SpecialEventObjectiveInfoList[4]=(TitleString="永恒惩罚",DescriptionString="在困难无尽或以上难度的地狱要塞中成功抵御15波丧尸")
 
