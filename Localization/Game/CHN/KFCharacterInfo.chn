@@ -46,7 +46,7 @@ BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
-BodyMesh14="宇航员套装"
+BodyMesh14="节日购物服装"
 HeadMesh0="防毒面具"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -162,6 +162,13 @@ BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
 
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="白色"
 HeadSkin1="绿色"
@@ -249,7 +256,7 @@ BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
-BodyMesh14="宇航员套装"
+BodyMesh14="节日购物服装"
 HeadMesh0="胡子的力量！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -371,6 +378,13 @@ BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
 
+[CHR_Jagerhorn_archetype.BodyMesh14]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="瑞典金发"
 HeadSkin1="黑唱片"
@@ -471,7 +485,7 @@ BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗"
 BodyMesh13="死神服装"
-BodyMesh14="宇航员套装"
+BodyMesh14="节日购物服装"
 HeadMesh0="斯库利面具"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -592,6 +606,13 @@ BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
 
+[CHR_DJSkully_archetype.BodyMesh14]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="乌黑"
 HeadSkin1="超红"
@@ -639,7 +660,7 @@ BodyMesh11="巫师猎人"
 BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
 BodyMesh14="死神服装"
-BodyMesh15="宇航员套装"
+BodyMesh15="节日购物服装"
 HeadMesh0="头发"
 
 [chr_briar_archetype.BodyMesh0]
@@ -766,6 +787,13 @@ BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
 
+[CHR_briar_archetype.BodyMesh15]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
 HeadSkin1="亮点"
@@ -807,7 +835,7 @@ BodyMesh11="巫师猎人"
 BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
 BodyMesh14="死神服装"
-BodyMesh15="宇航员套装"
+BodyMesh15="节日购物服装"
 HeadMesh0="防毒面具"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -938,6 +966,13 @@ BodySkin2="饥荒"
 BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
@@ -1100,7 +1135,7 @@ BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
-BodyMesh15="宇航员套装"
+BodyMesh14="节日购物服装"
 HeadMesh0="面部"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1219,6 +1254,13 @@ BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
 
+[CHR_Coleman_archetype.BodyMesh14]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="多诺万"
 HeadSkin1="梭织"
@@ -1259,7 +1301,7 @@ BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
-BodyMesh14="宇航员套装"
+BodyMesh14="节日购物服装"
 HeadMesh0="头发"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1379,6 +1421,13 @@ BodySkin2="饥荒"
 BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰色"
@@ -2280,7 +2329,7 @@ BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
-BodyMesh14="宇航员套装"
+BodyMesh14="节日购物服装"
 HeadMesh0="面部"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2410,6 +2459,13 @@ BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
 
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
+
 [CHR_Tanaka_Archetype]
 CharacterName="田中勇人"
 Description="田中是一个矛盾的个体，因为他有着严重的自杀倾向。他在日本冲绳县出生，在美国军队中长大。和家人搬到日本大陆后，习惯美国文化的田中无法融入社会，于是参加了戏剧班。大学毕业后，他搬到了洛杉矶，在三流电影中演一些小角色，后来搬到欧洲尝试寻找更加“正式”的工作。他总是在法国匪徒电影中演坏人和流氓。现在，在灾难中，他似乎把实际和所扮演的角色搞混了。他觉得自己是在好莱坞电影中扮演一个有着武士道精神的黑帮、恶棍。"
@@ -2428,7 +2484,7 @@ BodyMesh11="巫师猎人"
 BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
 BodyMesh14="死神服装"
-BodyMesh15="宇航员套装"
+BodyMesh15="节日购物服装"
 HeadMesh0="头发"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2565,6 +2621,13 @@ BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
 
+[CHR_Tanaka_archetype.BodyMesh15]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="头盔"
 AttachmentSkin0="升起的太阳"
@@ -2609,7 +2672,7 @@ BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
-BodyMesh14="宇航员套装"
+BodyMesh14="节日购物服装"
 HeadMesh0="莫霍克族"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2739,6 +2802,13 @@ BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
 
+[CHR_Ana_archetype.BodyMesh14]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 眼镜"
 AttachmentSkin0="3D 浮雕装饰"
@@ -2769,7 +2839,7 @@ BodyMesh11="巫师猎人"
 BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
 BodyMesh14="死神服装"
-BodyMesh15="宇航员套装"
+BodyMesh15="节日购物服装"
 HeadMesh0="头发"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2896,6 +2966,13 @@ BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
 
+
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="如假包换"
 HeadSkin1="血腥 5 点钟"
@@ -2923,7 +3000,7 @@ BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
-BodyMesh14="宇航员套装"
+BodyMesh14="节日购物服装"
 HeadMesh0="面部"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3045,6 +3122,13 @@ BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
 
+[CHR_alan_archetype.BodyMesh14]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="如假包换"
 HeadSkin1="姜！真的吗？"
@@ -3079,7 +3163,7 @@ BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
-BodyMesh14="宇航员套装"
+BodyMesh14="节日购物服装"
 HeadMesh0="头发"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3197,6 +3281,13 @@ BodySkin2="饥荒"
 BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
+
+[CHR_strasser_archetype.BodyMesh14]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑钢"
@@ -3376,7 +3467,7 @@ BodyMesh10="巫师猎人"
 BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
-BodyMesh14="宇航员套装"
+BodyMesh14="节日购物服装"
 HeadMesh0="默认头部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3498,6 +3589,13 @@ BodySkin2="饥荒"
 BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
+
+[CHR_rockabilly_archetype.BodyMesh14]
+BodySkin0="圣诞老人"
+BodySkin1="精灵"
+BodySkin2="北极点"
+BodySkin3="混乱圣诞节"
+BodySkin4="宝物"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑色"
@@ -6762,111 +6860,6 @@ AttachmentSkin2="星爆"
 AttachmentSkin3="星系"
 AttachmentSkin4="宝物"
 
-[CHR_Tanaka_Archetype.BodyMesh15]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[CHR_Alberts_archetype.BodyMesh14]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[CHR_Ana_Archetype.BodyMesh14]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[CHR_BadSanta_Archetype.BodyMesh14]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[chr_briar_archetype.BodyMesh15]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[CHR_Coleman_archetype.BodyMesh15]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[chr_DJSkully_archetype.BodyMesh14]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[CHR_Jagerhorn_Archetype.BodyMesh14]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[chr_mark_archetype.BodyMesh15]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[CHR_Masterson_archetype.BodyMesh14]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[CHR_MrFoster_archetype.BodyMesh15]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[CHR_MrsFoster_archetype.BodyMesh14]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[chr_rockabilly_archetype.BodyMesh14]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[chr_strasser_archetype.BodyMesh14]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
-[chr_alan_archetype.BodyMesh14]
-BodySkin0="深空"
-BodySkin1="奇点"
-BodySkin2="星爆"
-BodySkin3="星系"
-BodySkin4="宝物"
-
 [Cosmetic_Vietnam_USHelmet_ARCH]
 Attachment="越南美国头盔"
 AttachmentSkin0="橄榄色"
@@ -7023,3 +7016,125 @@ AttachmentSkin0="宝物"
 Attachment="伦敦西大荒帽子"
 AttachmentSkin0="宝物"
 
+[Cosmetic_XMAS2021_Cart_ARCH]
+Attachment="节日购物车"
+AttachmentSkin0="圣诞老人"
+AttachmentSkin1="精灵"
+AttachmentSkin2="北极点"
+AttachmentSkin3="混乱圣诞节"
+AttachmentSkin4="宝物"
+
+[Cosmetic_XMAS2021_Hat_ARCH]
+Attachment="节日购物帽"
+AttachmentSkin0="圣诞老人"
+AttachmentSkin1="精灵"
+AttachmentSkin2="北极点"
+AttachmentSkin3="混乱圣诞节"
+AttachmentSkin4="宝物"
+
+[Cosmetic_XMAS2021_Helmet_ARCH]
+Attachment="节日购物头盔"
+AttachmentSkin0="圣诞老人"
+AttachmentSkin1="精灵"
+AttachmentSkin2="北极点"
+AttachmentSkin3="混乱圣诞节"
+AttachmentSkin4="宝物"
+
+[Cosmetic_XMAS2021_Armband_ARCH]
+Attachment="节日购物臂环"
+AttachmentSkin0="圣诞老人"
+AttachmentSkin1="精灵"
+AttachmentSkin2="北极点"
+AttachmentSkin3="混乱圣诞节"
+AttachmentSkin4="宝物"
+
+[Cosmetic_XMAS2021_Mask_ARCH]
+Attachment="节日购物面具"
+AttachmentSkin0="圣诞老人"
+AttachmentSkin1="精灵"
+AttachmentSkin2="北极点"
+AttachmentSkin3="混乱圣诞节"
+AttachmentSkin4="宝物"
+
+[Cosmetic_XMAS2021_Goggles_ARCH]
+Attachment="节日购物护目镜"
+AttachmentSkin0="圣诞老人"
+AttachmentSkin1="精灵"
+AttachmentSkin2="北极点"
+AttachmentSkin3="混乱圣诞节"
+AttachmentSkin4="宝物"
+
+[Cosmetic_XMAS2021_Companion_ARCH]
+Attachment="节日购物同伴"
+AttachmentSkin0="宝物"
+
+[Cosmetic_Alchemist_Armband_ARCH]
+Attachment="炼金术士臂环"
+AttachmentSkin0="剧毒"
+AttachmentSkin1="烈焰"
+AttachmentSkin2="电浆"
+AttachmentSkin3="电压"
+AttachmentSkin4="黑视"
+AttachmentSkin5="宝物"
+
+[Cosmetic_Alchemist_Bomb_ARCH]
+Attachment="炼金术士炸弹"
+AttachmentSkin0="剧毒"
+AttachmentSkin1="烈焰"
+AttachmentSkin2="电浆"
+AttachmentSkin3="电压"
+AttachmentSkin4="黑视"
+AttachmentSkin5="宝物"
+
+[Cosmetic_Alchemist_Goggles_ARCH]
+Attachment="炼金术士护目镜"
+AttachmentSkin0="剧毒"
+AttachmentSkin1="烈焰"
+AttachmentSkin2="电浆"
+AttachmentSkin3="电压"
+AttachmentSkin4="黑视"
+AttachmentSkin5="宝物"
+
+[Cosmetic_Alchemist_Helmet_ARCH]
+Attachment="炼金术士头盔"
+AttachmentSkin0="剧毒"
+AttachmentSkin1="烈焰"
+AttachmentSkin2="电浆"
+AttachmentSkin3="电压"
+AttachmentSkin4="黑视"
+AttachmentSkin5="宝物"
+
+[Cosmetic_Alchemist_Mask_ARCH]
+Attachment="炼金术士面具"
+AttachmentSkin0="剧毒"
+AttachmentSkin1="烈焰"
+AttachmentSkin2="电浆"
+AttachmentSkin3="电压"
+AttachmentSkin4="黑视"
+AttachmentSkin5="宝物"
+
+[Cosmetic_Alchemist_PressureVessel_ARCH]
+Attachment="炼金术士压力容器"
+AttachmentSkin0="剧毒"
+AttachmentSkin1="烈焰"
+AttachmentSkin2="电浆"
+AttachmentSkin3="电压"
+AttachmentSkin4="黑视"
+AttachmentSkin5="宝物"
+
+[Cosmetic_Alchemist_Vials_ARCH]
+Attachment="炼金术士小瓶"
+AttachmentSkin0="剧毒"
+AttachmentSkin1="烈焰"
+AttachmentSkin2="电浆"
+AttachmentSkin3="电压"
+AttachmentSkin4="黑视"
+AttachmentSkin5="宝物"
+
+[Cosmetic_PracticeTarget_Backpack_ARCH]
+Attachment="练习目标背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_BossTrophy_Backpack_ARCH]
+Attachment="首领奖品背包"
+AttachmentSkin0="宝物"

@@ -626,7 +626,7 @@ defaultproperties
    ShieldHealthMaxDefaults(1)=2700.000000
    ShieldHealthMaxDefaults(2)=4000.000000
    ShieldHealthMaxDefaults(3)=5000.000000
-   ShieldHealthScale=1.000000
+   ShieldHealthScale=1.100000
    InvulnerableShieldFX=ParticleSystem'zed_fleshpound_king_emit.FX_King_Fleshpound_Shield'
    ShieldSocketName="hips"
    ShieldImpactEffects=KFSkinTypeEffects_InvulnerabilityShield'kfgamecontent.Default__KFPawn_ZedFleshpoundKing:ShieldEffects'
@@ -771,7 +771,7 @@ defaultproperties
    IncapSettings(9)=(Cooldown=10.000000,Vulnerability=(0.370000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.060000))
    IncapSettings(11)=(Cooldown=10.000000,Vulnerability=(0.200000))
-   SprintSpeed=700.000000
+   SprintSpeed=805.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True
       bOverrideAttachmentOwnerVisibility=True
@@ -872,7 +872,7 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:PowerUpAkSoundComponent'
    End Object
    PowerUpAkComponent=PowerUpAkSoundComponent
-   GroundSpeed=300.000000
+   GroundSpeed=345.000000
    Health=8750
    ControllerClass=Class'kfgamecontent.KFAIController_ZedFleshpoundKing'
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:KFPawnSkeletalMeshComponent'

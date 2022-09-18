@@ -800,6 +800,8 @@ LeaveString="ABBANDONA IL PARTY"
 SquadString="SQUAD"
 SoloString="SQUAD"
 DefaultPlayerName="Giocatore"
+PauseGameString="METTI IN PAUSA"
+ResumeGameString="RIPRENDI"
 
 PartyLeaderSearchingForMatchString="sta cercando un incontro..."
 PartyLeaderIsUpdatingMatchOptionsString="sta configurando l'incontro..."
@@ -1057,6 +1059,10 @@ ThrowString="GETTA ARMA"
 VoteKickString="Cacciare giocatore?"
 VoteSkipTraderString="Vuoi saltare il commerciante?"
 VoteSkipTraderDetailString="vuole saltare il conto alla rovescia"
+VotePauseGameString="Mettere in pausa la partita?"
+VotePauseGameDetailString="vuole mettere in pausa la partita"
+VoteResumeGameString="Riprendere la partita?"
+VoteResumeGameDetailString="vuole riprendere la partita"
 
 [KFLocalMessage_PlayerKills]
 KilledString="uccisi"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="Hai votato per non saltare il commerciante"
 SkipTraderNoEnoughTimeString="Non c'è tempo per iniziare una votazione salta commerciante"
 SkipTraderThisUserAlreadyStartedAVoteString="Non puoi iniziare una votazione salta commerciante fino alla prossima fase commerciante"
 SkipTraderVersusZedPlayerVotes="I giocatori della squadra degli Zed non possono votare per saltare il commerciante"
+PauseVoteStartedString="Ha iniziato una votazione per mettere in pausa"
+PauseVoteInProgressString="Impossibile iniziare una votazione per mettere in pausa la partita, una è già attiva"
+PauseVoteYesReceivedString="Hai votato per mettere in pausa la partita"
+PauseVoteNoReceivedString="Hai votato per non mettere in pausa la partita"
+PauseVoteNoEnoughTimeString="Non c'è tempo per iniziare una votazione per mettere in pausa"
+PauseVoteNoSpectatorsString="Gli spettatori non possono iniziare una votazione per mettere in pausa"
+PauseVoteTimeString="METTI IN PAUSA attivo. Scegli 'METTI IN PAUSA' nel menu per votare. Devono accettare tutti."
+PauseVoteSuccessString="Voto 'Metti in pausa' approvato!"
+PauseVoteFailedString="Voto 'Metti in pausa' fallito!"
+PauseVoteWaveActiveString="Impossibile iniziare una votazione per mettere in pausa la partita, l'ondata è già attiva"
+PauseVoteWrongModeString="Questa opzione è disponibile solo in modalità Infinito"
+ResumeVoteStartedString="Ha iniziato una votazione per riprendere la partita"
+ResumeVoteInProgressString="Impossibile iniziare una votazione per riprendere la partita, una è già attiva"
+ResumeVoteYesReceivedString="Hai votato per riprendere la partita"
+ResumeVoteNoReceivedString="Hai votato per non riprendere la partita"
+ResumeVoteNoEnoughTimeString="Non c'è tempo per iniziare una votazione per riprendere la partita"
+ResumeVoteNoSpectatorsString="Gli spettatori non possono iniziare una votazione per riprendere la partita"
+ResumeVoteTimeString="RIPRENDI attivo. Scegli 'RIPRENDI' nel menu per votare. Devono accettare tutti."
+ResumeVoteSuccessString="Voto 'Riprendi' approvato!"
+ResumeVoteFailedString="Voto 'Riprendi' fallito!"
+ResumeVoteWaveActiveString="Impossibile iniziare una votazione per riprendere la partita, l'ondata è attiva"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Hai ricevuto munizioni da"
@@ -2247,7 +2274,7 @@ ZedShrapnel="Esplosione spontanea Zed"
 ZedShrapnelDescription="Gli Zed che uccidi hanno il 30% di possibilità di esplodere, danneggiando e stordendo gli Zed vicini."
 
 MakeThingsGoBoom="Che botto"
-MakeThingsGoBoomDescription="Aumenta la resistenza esplosivo del 40% e l'area di effetto di tutti gli esplosivi del 40%."
+MakeThingsGoBoomDescription="Aumenta la resistenza esplosivo del 50% e l'area di effetto di tutti gli esplosivi del 50%."
 
 Madman="ZED TIME - Follia"
 MadmanDescription="Durante gli Zed time, tutte le tue armi sparano 3 volte più veloci."
@@ -2852,10 +2879,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Proviene dalle pareti",Descriptio
 SpecialEventObjectiveInfoList[3]=(TitleString="Miasma viola",DescriptionString="Sblocca la cappella e le porte della sala da pranzo")
 SpecialEventObjectiveInfoList[4]=(TitleString="Punizione eterna",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Netherhold")
 
-AllCompleteRewardDescriptionString="Astronauta | Zaino Compagno | Prezioso"
+AllCompleteRewardDescriptionString="GdZ | Compagno | Prezioso"
 
 ChanceDropDescriptionStrings[0]="Biglietto Halloween"
 ChanceDropDescriptionStrings[1]="Biglietto Oro Halloween"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2021]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Teste in sconto!",DescriptionString="Decapita 1000 Zed in qualsiasi mappa o modalità")
+SpecialEventObjectiveInfoList[1]=(TitleString="Settimanale nero",DescriptionString="Completa il Settimanale in Carillon Hamlet")
+SpecialEventObjectiveInfoList[2]=(TitleString="Schifosamente ricco",DescriptionString="Guadagna 75.000 denari da uccisioni, ricompense e cure in Carillon Hamlet")
+SpecialEventObjectiveInfoList[3]=(TitleString="Pagamenti dolorosi",DescriptionString="Usa il commerciante per comprare 20 armi che costano 1500 Denaro o più in Carillon Hamlet")
+SpecialEventObjectiveInfoList[4]=(TitleString="Sfoggio continuo",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Carillon Hamlet")
+
+AllCompleteRewardDescriptionString="Shopping di Natale | Compagno | Prezioso"
+
+ChanceDropDescriptionStrings[0]="Biglietto Krampus"
+ChanceDropDescriptionStrings[1]="Biglietto Oro del Krampus"
 
 ;============================================
 ; Daily Localization
@@ -3002,6 +3043,26 @@ FriendlyName="Lasciate ogni speranza"
 DescriptionStrings[0]="La sfida definitiva"
 DescriptionStrings[1]="Lunghezza: Media (7 ondate)"
 ModifierDescriptions[0]="ATTENZIONE: questa modalità è estremamente difficile! Solo per coloro che considerano Inferno in Terra una cosa per bambini. Seleziona la modalità Epidemia settimanale sulla pagina del Matchmaking. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="Assalto ai Boss"
+DescriptionStrings[0]="Sconfiggili tutti"
+DescriptionStrings[1]="Lunghezza: Corto (5 ondate)"
+ModifierDescriptions[0]="Cinque ondate per cinque boss. Pronto a sconfiggerli uno a uno? AVVISO: la difficoltà aumenta a ogni boss sconfitto. Seleziona la modalità di gioco Settimanale sulla pagina del Matchmaking. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="Teste rimpicciolite"
+DescriptionStrings[0]="Cercare di infliggere colpi alla testa è inutile..."
+DescriptionStrings[1]="Lunghezza: Media (7 ondate)"
+ModifierDescriptions[0]="Forse stanno cercando di proteggersi dai giocatori con l'abitudine dei colpi alla testa. A ogni modo, sembrerebbero avere dei nuovi punti deboli. Seleziona la modalità di gioco Settimanale sulla pagina del Matchmaking. Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3529,6 +3590,9 @@ DisplayName="Base lunare"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="Netherhold"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="Carillon Hamlet"
 
 [KFMapInfo]
 ; defaults

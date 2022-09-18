@@ -289,17 +289,24 @@ function InitializeGameOptions()
 
 function FilterWeeklyMaps(out array<string> List)
 {
+    local int WeeklyIndex;
+
     if(ParentMenu.Manager.GetModeIndex(false) != 1)
     {
         return;
     }
-    if(Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11)
+    WeeklyIndex = Class'KFGameEngine'.static.GetWeeklyEventIndexMod();
+    if((WeeklyIndex == 11) || WeeklyIndex == 14)
     {
         List.RemoveItem("KF-Biolapse";
         List.RemoveItem("KF-Nightmare";
         List.RemoveItem("KF-PowerCore_Holdout";
         List.RemoveItem("KF-TheDescent";
         List.RemoveItem("KF-KrampusLair";
+    }
+    if(WeeklyIndex == 14)
+    {
+        List.RemoveItem("KF-SteamFortress";
     }
 }
 

@@ -142,6 +142,7 @@ package tripwire.widgets
                 this.AmmoContainer.AmmoInfo.AmmoGaugeConnector.visible = true;
                 this.AmmoContainer.AmmoInfo.AmmoMelee.visible = false;
                 this.AmmoContainer.AmmoInfo.AmmoSpecial.visible = false;
+                this.AmmoContainer.AmmoInfo.DoshAmmoIcon.visible = false;
             }
             else
             {
@@ -150,6 +151,7 @@ package tripwire.widgets
                 this.AmmoContainer.AmmoInfo.AmmoGaugeConnector.visible = false;
                 this.AmmoContainer.AmmoInfo.AmmoMelee.visible = true;
                 this.AmmoContainer.AmmoInfo.AmmoSpecial.visible = false;
+                this.AmmoContainer.AmmoInfo.DoshAmmoIcon.visible = false;
             }
         }
         
@@ -171,6 +173,15 @@ package tripwire.widgets
         public function set secondaryAltSpareAmmo(param1:int) : *
         {
             this._secondaryAltSpareTF.text = param1.toString();
+        }
+        
+        public function set doshAmmoIcon(param1:Boolean) : *
+        {
+            this.AmmoContainer.AmmoInfo.DoshAmmoIcon.visible = param1;
+            this.AmmoContainer.AmmoInfo.AmmoGaugeConnector.visible = true;
+            this.AmmoContainer.AmmoInfo.AmmoMelee.visible = false;
+            this.AmmoContainer.AmmoInfo.AmmoSpecial.visible = false;
+            this._storedAmmoTF.visible = false;
         }
         
         public function set bUsesSecondaryAmmo(param1:Boolean) : void

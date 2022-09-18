@@ -61,11 +61,15 @@ package tripwire.widgets
         
         public var readyArrows:MovieClip;
         
+        public var endlessIcon:MovieClip;
+        
         public var createPartyButton:TripButton;
         
         public var leaveButton:TripButton;
         
         public var readyButton:TripButton;
+        
+        public var endlessPauseButton:TripButton;
         
         public var waitSpinner:MovieClip;
         
@@ -156,6 +160,7 @@ package tripwire.widgets
             this.backPromptString = !!param1.backPromptString ? param1.backPromptString : "";
             this.leaveButton.label = !!param1.leaveString ? param1.leaveString : "";
             this.matchOverNotification.text = !!param1.matchOver ? param1.matchOver : "";
+            this.endlessPauseButton.label = !!param1.endlessPauseString ? param1.endlessPauseString : "";
         }
         
         public function set matchOver(param1:Boolean) : void
@@ -219,6 +224,7 @@ package tripwire.widgets
             this.leaveButton.addEventListener(ButtonEvent.CLICK,this.leaveParty,false,0,true);
             this.readyButton.addEventListener(ButtonEvent.CLICK,this.readyUp,false,0,true);
             this.createPartyButton.addEventListener(ButtonEvent.CLICK,this.createParty,false,0,true);
+            this.endlessPauseButton.addEventListener(ButtonEvent.CLICK,this.endlessPause,false,0,true);
             this.readyButton.focused = 0;
             this.ChatBoxWidget.InitializeAsPartyChat();
             this.updateControllerIconVisibility();
@@ -344,15 +350,21 @@ package tripwire.widgets
             {
                 this.readyArrows.visible = !bManagerUsingGamepad && this.readyButton.visible;
             }
+            if(this.endlessIcon)
+            {
+                this.endlessIcon.visible = bManagerUsingGamepad && this.endlessPauseButton.visible;
+            }
             if(!bManagerUsingGamepad)
             {
                 this.readyButton.focused = 0;
                 this.leaveButton.focused = 0;
                 this.createPartyButton.focused = 0;
+                this.endlessPauseButton.focused = 0;
             }
             this.readyButton.focusable = bManagerUsingGamepad;
             this.leaveButton.focusable = bManagerUsingGamepad;
             this.createPartyButton.focusable = bManagerUsingGamepad;
+            this.endlessPauseButton.focusable = bManagerUsingGamepad;
         }
         
         public function set bInParty(param1:Boolean) : void
@@ -449,6 +461,12 @@ package tripwire.widgets
             {
                 this.bShowWaitingSpinner = false;
             }
+        }
+        
+        public function set endlessPauseButtonVisible(param1:Boolean) : void
+        {
+            this.endlessPauseButton.visible = param1;
+            this.endlessIcon.visible = bManagerUsingGamepad && param1;
         }
         
         override public function selectContainer() : void
@@ -673,6 +691,12 @@ package tripwire.widgets
                     Extensions.gfxProcessSound(this,"UI",this.readySoundEffect);
                 }
             }
+        }
+        
+        private function endlessPause(param1:ButtonEvent) : void
+        {
+            ExternalInterface.call("Callback_RequestEndlessPause");
+            this.endlessPauseButton.selected = false;
         }
         
         protected function onPopupChanged(param1:Event) : *

@@ -35,34 +35,42 @@ function SetMapOptions()
     local int I, Counter;
     local array<string> ServerMapList;
     local KFGameReplicationInfo KFGRI;
-    local bool IsBrokenTrader;
+    local bool IsWeeklyMode, IsBrokenTrader, IsBossRush;
 
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
     Counter = 0;
     if((KFGRI != none) && KFGRI.VoteCollector != none)
     {
         ServerMapList = KFGRI.VoteCollector.MapList;
-        IsBrokenTrader = KFGRI.IsA('KFGameReplicationInfo_WeeklySurvival') && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11;
+        IsWeeklyMode = KFGRI.bIsWeeklyMode;
+        IsBrokenTrader = KFGRI.CurrentWeeklyIndex == 11;
+        IsBossRush = KFGRI.CurrentWeeklyIndex == 14;
         MapList = Outer.CreateArray();
         I = 0;
-        J0x160:
+        J0x191:
 
         if(I < ServerMapList.Length)
         {
-            if(IsBrokenTrader && ((((ServerMapList[I] == "KF-Biolapse") || ServerMapList[I] == "KF-Nightmare") || ServerMapList[I] == "KF-PowerCore_Holdout") || ServerMapList[I] == "KF-TheDescent") || ServerMapList[I] == "KF-KrampusLair")
+            if((IsWeeklyMode && IsBrokenTrader || IsBossRush) && ((((ServerMapList[I] == "KF-Biolapse") || ServerMapList[I] == "KF-Nightmare") || ServerMapList[I] == "KF-PowerCore_Holdout") || ServerMapList[I] == "KF-TheDescent") || ServerMapList[I] == "KF-KrampusLair")
             {                
             }
             else
             {
-                MapObject = Outer.CreateObject("Object");
-                MapObject.SetString("label", Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(ServerMapList[I]));
-                MapObject.SetString("mapSource", GetMapSource(ServerMapList[I]));
-                MapObject.SetInt("mapindex", I);
-                MapList.SetElementObject(Counter, MapObject);
-                ++ Counter;
+                if((IsWeeklyMode && IsBossRush) && ServerMapList[I] == "KF-SteamFortress")
+                {                    
+                }
+                else
+                {
+                    MapObject = Outer.CreateObject("Object");
+                    MapObject.SetString("label", Class'KFCommon_LocalizedStrings'.static.GetFriendlyMapName(ServerMapList[I]));
+                    MapObject.SetString("mapSource", GetMapSource(ServerMapList[I]));
+                    MapObject.SetInt("mapindex", I);
+                    MapList.SetElementObject(Counter, MapObject);
+                    ++ Counter;
+                }
             }
             ++ I;
-            goto J0x160;
+            goto J0x191;
         }
     }
     SetObject("mapChoices", MapList);

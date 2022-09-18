@@ -63,20 +63,25 @@ var byte LastKickVoteNoValue;
 var byte LastSkipTraderYesVoteValue;
 var byte LastSkipTraderNoVoteValue;
 var byte CurrentVoteTime;
+var byte LastPauseGameYesVoteValue;
+var byte LastPauseGameNoVoteValue;
 var sVoteInfo CurrentKickVote;
 var bool bIsKickVoteInProgress;
 var bool bIsFailedVoteTimerActive;
 var bool bIsSkipTraderVoteInProgress;
 var bool bAllPlayersVotedOnMap;
+var bool bIsPauseGameVoteInProgress;
 var const int TopResultsToShow;
 var const int ActiveTimeUntilVoteEnabled;
 var array<PlayerReplicationInfo> PlayersThatHaveVoted;
 var sVoteInfo CurrentSkipTraderVote;
 var int TimeAfterSkipTrader;
 var int SkipTraderVoteLimit;
+var int PauseGameVoteLimit;
 var TopVotes TopVotesObject;
 var array<MapVote> MapVoteList;
 var array<string> MapList;
+var sVoteInfo CurrentPauseGameVote;
 
 function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplicationInfo PRI_Kicker)
 {
@@ -121,7 +126,7 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
         KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 9);
         return;
     }
-    if(bIsSkipTraderVoteInProgress)
+    if(bIsSkipTraderVoteInProgress || bIsPauseGameVoteInProgress)
     {
         KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 5);
         return;
@@ -135,13 +140,13 @@ function ServerStartVoteKick(PlayerReplicationInfo PRI_Kickee, PlayerReplication
         bIsKickVoteInProgress = true;
         Outer.GetKFPRIArray(PRIs);
         I = 0;
-        J0x3E5:
+        J0x3F4:
 
         if(I < PRIs.Length)
         {
             PRIs[I].ShowKickVote(PRI_Kickee, VoteTime, !(PRIs[I] == PRI_Kicker) || PRIs[I] == PRI_Kickee);
             ++ I;
-            goto J0x3E5;
+            goto J0x3F4;
         }
         KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 6, CurrentKickVote.PlayerPRI);
         Outer.SetTimer(float(VoteTime), false, 'ConcludeVoteKick', self);
@@ -800,6 +805,258 @@ function int MapVoteSort(MapVote A, MapVote B)
     return Result;
 }
 
+function ServerStartVotePauseGame(PlayerReplicationInfo PRI)
+{
+    local int I;
+    local array<KFPlayerReplicationInfo> PRIs;
+    local KFGameInfo KFGI;
+    local KFPlayerController KFPC;
+    local KFGameReplicationInfo KFGRI;
+    local byte WaveTimeRemaining;
+
+    KFGRI = KFGameReplicationInfo(Outer.WorldInfo.GRI);
+    KFGI = KFGameInfo(Outer.WorldInfo.Game);
+    KFPC = KFPlayerController(PRI.Owner);
+    if(PRI.bOnlySpectator)
+    {
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', ((KFGRI.bIsEndlessPaused) ? 47 : 36));
+        return;
+    }
+    if(KFGRI.bWaveIsActive)
+    {
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', ((KFGRI.bIsEndlessPaused) ? 51 : 40));
+        return;
+    }
+    if(!KFGRI.bEndlessMode)
+    {
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 41);
+        return;
+    }
+    if(bIsKickVoteInProgress || bIsSkipTraderVoteInProgress)
+    {
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 5);
+        return;
+    }
+    WaveTimeRemaining = byte(KFGRI.GetTraderTimeRemaining());
+    if(WaveTimeRemaining <= PauseGameVoteLimit)
+    {
+        KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', ((KFGRI.bIsEndlessPaused) ? 46 : 35));
+        return;
+    }
+    if(!bIsPauseGameVoteInProgress)
+    {
+        PlayersThatHaveVoted.Length = 0;
+        CurrentPauseGameVote.PlayerID = PRI.UniqueId;
+        CurrentPauseGameVote.PlayerPRI = PRI;
+        CurrentPauseGameVote.PlayerIPAddress = KFPC.GetPlayerNetworkAddress();
+        bIsPauseGameVoteInProgress = true;
+        CurrentVoteTime = byte(Min(VoteTime, WaveTimeRemaining - PauseGameVoteLimit));
+        Outer.GetKFPRIArray(PRIs);
+        I = 0;
+        J0x40A:
+
+        if(I < PRIs.Length)
+        {
+            PRIs[I].ShowPauseGameVote(PRI, CurrentVoteTime, !PRIs[I] == PRI);
+            ++ I;
+            goto J0x40A;
+        }
+        KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', ((KFGRI.bIsEndlessPaused) ? 42 : 31), CurrentPauseGameVote.PlayerPRI);
+        Outer.SetTimer(float(CurrentVoteTime), false, 'ConcludeVotePauseGame', self);
+        Outer.SetTimer(1, true, 'UpdatePauseGameTimer', self);
+        ReceiveVotePauseGame(PRI, true);
+        KFPlayerReplicationInfo(PRI).bAlreadyStartedAPauseGameVote = true;        
+    }
+    else
+    {
+        KFPlayerController(PRI.Owner).ReceiveLocalizedMessage(Class'KFLocalMessage', ((KFGRI.bIsEndlessPaused) ? 43 : 32));
+    }
+}
+
+reliable server function UpdatePauseGameTimer()
+{
+    local array<KFPlayerReplicationInfo> PRIs;
+    local int I;
+
+    CurrentVoteTime -= 1;
+    Outer.GetKFPRIArray(PRIs);
+    I = 0;
+    J0x42:
+
+    if(I < PRIs.Length)
+    {
+        PRIs[I].UpdatePauseGameTime(CurrentVoteTime);
+        ++ I;
+        goto J0x42;
+    }
+}
+
+reliable server function ReceiveVotePauseGame(PlayerReplicationInfo PRI, bool bSkip)
+{
+    local KFPlayerController KFPC;
+    local KFGameReplicationInfo KFGRI;
+
+    if(PlayersThatHaveVoted.Find(PRI == -1)
+    {
+        PlayersThatHaveVoted.AddItem(PRI;
+        if(bSkip)
+        {
+            ++ YesVotes;            
+        }
+        else
+        {
+            ++ NoVotes;
+        }
+        KFPC = KFPlayerController(PRI.Owner);
+        if(KFPC != none)
+        {
+            KFGRI = KFGameReplicationInfo(Outer.WorldInfo.GRI);
+            if(bSkip)
+            {
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', ((KFGRI.bIsEndlessPaused) ? 44 : 33));                
+            }
+            else
+            {
+                KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', ((KFGRI.bIsEndlessPaused) ? 45 : 34));
+            }
+        }
+        if(ShouldConcludePauseGameVote())
+        {
+            ConcludeVotePauseGame();            
+        }
+        else
+        {
+            ReplicatePauseGameVotes();
+        }
+    }
+}
+
+function ReplicatePauseGameVotes()
+{
+    local KFGameReplicationInfo KFGRI;
+
+    Outer.RepPauseGameYesVotes = YesVotes;
+    Outer.RepPauseGameNoVotes = NoVotes;
+    KFGRI = Outer;
+    KFGRI.bForceNetUpdate = true;
+    if((Outer.Role == ROLE_Authority) && Outer.WorldInfo.NetMode != NM_DedicatedServer)
+    {
+        UnPackPauseGameVotes();
+    }
+}
+
+function UnPackPauseGameVotes()
+{
+    local KFPlayerController KFPC;
+
+    if((LastPauseGameYesVoteValue != Outer.RepPauseGameYesVotes) || LastPauseGameNoVoteValue != Outer.RepPauseGameNoVotes)
+    {
+        NoVotes = Outer.RepPauseGameNoVotes;
+        YesVotes = Outer.RepPauseGameYesVotes;
+        KFPC = KFPlayerController(Outer.GetALocalPlayerController());
+        if((KFPC != none) && KFPC.myGfxHUD != none)
+        {
+            KFPC.myGfxHUD.UpdatePauseGameVoteCount(YesVotes, NoVotes);
+        }
+        LastPauseGameYesVoteValue = Outer.RepPauseGameYesVotes;
+        LastPauseGameNoVoteValue = Outer.RepPauseGameNoVotes;
+    }
+}
+
+function bool ShouldConcludePauseGameVote()
+{
+    local array<KFPlayerReplicationInfo> PRIs;
+    local int NumPRIs;
+
+    Outer.GetKFPRIArray(PRIs);
+    NumPRIs = PRIs.Length;
+    if(((YesVotes + NoVotes) >= NumPRIs) || NoVotes > 0)
+    {
+        return true;
+    }
+    return false;
+}
+
+reliable server function ConcludeVotePauseGame()
+{
+    local array<KFPlayerReplicationInfo> PRIs;
+    local int I, NumPRIs;
+    local KFGameInfo KFGI;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(Outer.WorldInfo.GRI);
+    KFGI = KFGameInfo(Outer.WorldInfo.Game);
+    if(bIsPauseGameVoteInProgress)
+    {
+        Outer.GetKFPRIArray(PRIs);
+        I = 0;
+        J0xCE:
+
+        if(I < PRIs.Length)
+        {
+            PRIs[I].HidePauseGameVote();
+            ++ I;
+            goto J0xCE;
+        }
+        NumPRIs = PRIs.Length;
+        Outer.SetTimer(0, true, 'UpdatePauseGameTimer', self);
+        if(NoVotes > 0)
+        {
+            bIsFailedVoteTimerActive = true;
+            Outer.SetTimer(KFGI.TimeBetweenFailedVotes, false, 'ClearFailedVoteFlag', self);
+            KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', ((KFGRI.bIsEndlessPaused) ? 50 : 39));            
+        }
+        else
+        {
+            if(YesVotes >= NumPRIs)
+            {
+                if(KFGRI.bIsEndlessPaused)
+                {
+                    KFGRI.bIsEndlessPaused = false;
+                    KFGRI.bStopCountDown = false;
+                    KFGI.ResumeEndlessGame();                    
+                }
+                else
+                {
+                    KFGRI.bIsEndlessPaused = true;
+                    KFGRI.bStopCountDown = true;
+                    KFGI.PauseEndlessGame();
+                }
+                ResetPauseGameVote();
+                KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', ((KFGRI.bIsEndlessPaused) ? 38 : 49));                
+            }
+            else
+            {
+                bIsFailedVoteTimerActive = true;
+                Outer.SetTimer(KFGI.TimeBetweenFailedVotes, false, 'ClearFailedVoteFlag', self);
+                KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', ((KFGRI.bIsEndlessPaused) ? 50 : 39));
+            }
+        }
+        bIsPauseGameVoteInProgress = false;
+        CurrentPauseGameVote.PlayerPRI = none;
+        CurrentPauseGameVote.PlayerID = Class'PlayerReplicationInfo'.default.UniqueId;
+        YesVotes = 0;
+        NoVotes = 0;
+    }
+}
+
+reliable server function ResetPauseGameVote()
+{
+    local array<KFPlayerReplicationInfo> PRIs;
+    local int I;
+
+    Outer.GetKFPRIArray(PRIs);
+    I = 0;
+    J0x35:
+
+    if(I < PRIs.Length)
+    {
+        PRIs[I].bAlreadyStartedASkipTraderVote = false;
+        ++ I;
+        goto J0x35;
+    }
+}
+
 defaultproperties
 {
     VoteTime=30
@@ -808,5 +1065,6 @@ defaultproperties
     ActiveTimeUntilVoteEnabled=30
     TimeAfterSkipTrader=5
     SkipTraderVoteLimit=5
+    PauseGameVoteLimit=1
     TopVotesObject=(Map1Name="",Map1Votes=255,Map2Name="",Map2Votes=255,Map3Name="",Map3Votes=255)
 }

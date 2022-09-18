@@ -310,7 +310,7 @@ defaultproperties
    Mass=50.000000
    GroundSpeed=450.000000
    MaxFallSpeed=6000.000000
-   Health=250
+   Health=150
    ControllerClass=Class'kfgamecontent.KFAIController_ZedBloatKingSubspawn'
    Begin Object Class=KFSkeletalMeshComponent Name=KFPawnSkeletalMeshComponent Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:KFPawnSkeletalMeshComponent'
       WireframeColor=(B=0,G=255,R=255,A=255)

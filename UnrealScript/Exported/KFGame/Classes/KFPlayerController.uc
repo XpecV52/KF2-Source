@@ -169,6 +169,7 @@ const STATID_ACHIEVE_ElysiumEndlessWaveFifteen	    = 4057;
 const STATID_ACHIEVE_Dystopia2029Collectibles       = 4058;
 const STATID_ACHIEVE_MoonbaseCollectibles           = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles         = 4060;
+const STATID_ACHIEVE_CarillonHamletCollectibles     = 4061;
  
 #linenumber 15
 
@@ -1492,6 +1493,7 @@ simulated event name GetSeasonalStateName()
 {
 	local int EventId;
 	local KFMapInfo KFMI;
+	local bool bIsWWLWeekly; // WWL Weekly should not allow seasonal overrides
 
 	EventId = class'KFGameEngine'.static.GetSeasonalEventID();
 	KFMI = KFMapInfo(WorldInfo.GetMapInfo());
@@ -1500,20 +1502,24 @@ simulated event name GetSeasonalStateName()
 		KFMI.ModifySeasonalEventId(EventId);
 	}
 
+	bIsWWLWeekly = class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12 && KFGameReplicationInfo(WorldInfo.GRI) != none && KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode;
+	if (bIsWWLWeekly)
+		return 'No_Event'; 
+
     //Remove any year information, just get 1s digit
-    switch (EventId % 10)
-    {
-	case SEI_Summer:
-		return 'Summer_Sideshow';
-	case SEI_Fall:
-		return 'Fall';
-	case SEI_Winter:
-		return 'Winter';
-	case SEI_Spring:
-		return 'Spring';
-    default:
-        return 'No_Event';
-    }
+	switch (EventId % 10)
+	{
+		case SEI_Summer:
+			return 'Summer_Sideshow';
+		case SEI_Fall:
+			return 'Fall';
+		case SEI_Winter:
+			return 'Winter';
+		case SEI_Spring:
+			return 'Spring';
+		default:
+			return 'No_Event';
+	}
 
     return 'No_Event';
 }
@@ -4137,7 +4143,7 @@ simulated function SetBossCamera( KFInterface_MonsterBoss Boss )
 // overridden because to view a dying boss as a client
 event ResetCameraMode()
 {
-	if( PlayerCamera != none && PlayerCamera.CameraStyle != 'Boss' )
+	if( PlayerCamera != none && PlayerCamera.CameraStyle != 'Boss')
 	{
 		super.ResetCameraMode();
 	}
@@ -5080,7 +5086,7 @@ simulated function StartAutoTargeting()
 
     if( !PlayerInput.bUsingGamepad )
     {
-        return;
+       return;
     }
 
 	KFInput = KFPlayerInput(PlayerInput);
@@ -5113,10 +5119,20 @@ static simulated function KFInterface_Usable GetCurrentUsableActor( Pawn P, opti
 	local KFInterface_Usable BestUsableActor;
 	local int InteractionIndex, BestInteractionIndex;
 
+	local KFGameReplicationInfo KFGRI;
+
 	BestInteractionIndex = -1;
 
 	if ( P != None )
 	{
+		/* On endless mode, if game is paused players can move but not interact with objects. */
+		KFGRI = KFGameReplicationInfo(P.WorldInfo.GRI);
+		if(KFGRI != none && KFGRI.bIsEndlessPaused)
+		{
+			return none;
+		}
+		/* */
+
 		// Check touching -- Useful when UsedBy() is implemented by subclass instead of kismet
 		ForEach P.TouchingActors(class'Actor', A)
 		{
@@ -5174,8 +5190,15 @@ function GetTriggerUseList(float interactDistanceToCheck, float crosshairDist, f
 	local Trigger checkTrigger;
 	local SeqEvent_Used	UseSeq;
 	local float aimEpsilon;
+	local KFGameReplicationInfo KFGRI;
 
 	if (Pawn == None)
+	{
+		return;
+	}
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if(KFGRI != none && KFGRI.bIsEndlessPaused)
 	{
 		return;
 	}
@@ -7348,6 +7371,8 @@ reliable server function ServerPause()
 
 function bool PerformedUseAction()
 {
+	local KFGameReplicationInfo KFGRI;
+
 	// Intentionally do not trigger Super Class so that we do not close the menu
 
 	if(WorldInfo.NetMode != NM_StandAlone)
@@ -7363,6 +7388,12 @@ function bool PerformedUseAction()
 
 	// below is only on server
 	if( Role < Role_Authority )
+	{
+		return false;
+	}
+
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	if(KFGRI != none && KFGRI.bIsEndlessPaused)
 	{
 		return false;
 	}
@@ -7928,6 +7959,12 @@ function AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
     ClientAddNonZedKill(KilledClass, Difficulty);
 }
 native reliable client private function ClientAddNonZedKill(class<Pawn> KilledClass, byte Difficulty);
+
+function AddWeaponPurchased( class<KFWeaponDefinition> WeaponDef, int Price )
+{
+	ClientAddWeaponPurchased( WeaponDef, Price );
+}
+native reliable client private function ClientAddWeaponPurchased( class<KFWeaponDefinition> WeaponDef, int Price );
 
 function AddZedAssist(class<KFPawn_Monster> MonsterClass)
 {
@@ -10573,6 +10610,34 @@ exec function RequestSkipTrader()
 			if (KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
 			{
 				KFPRI.RequestSkiptTrader(KFPRI);
+				if (MyGFxManager != none)
+				{
+					MyGFxManager.CloseMenus();
+					if (MyGFxManager.PartyWidget != none)
+					{
+						MyGFxManager.PartyWidget.SetReadyButtonVisibility(false);
+					}
+				}
+			}
+		}
+	}
+}
+
+exec function RequestPauseGame()
+{
+	local KFGameReplicationInfo KFGRI;
+	local KFPlayerReplicationInfo KFPRI;
+
+	KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+	KFGRI = KFGameReplicationInfo(KFPRI.WorldInfo.GRI);
+
+	if (KFPRI != none)
+	{
+		if (KFGRI.bMatchHasBegun)
+		{
+			if (KFGRI.bEndlessMode && KFPRI.bHasSpawnedIn)
+			{
+				KFPRI.RequestPauseGame(KFPRI);
 				if (MyGFxManager != none)
 				{
 					MyGFxManager.CloseMenus();

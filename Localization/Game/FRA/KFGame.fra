@@ -800,6 +800,8 @@ LeaveString="QUITTER LE GROUPE"
 SquadString="ESCOUADE"
 SoloString="ESCOUADE"
 DefaultPlayerName="Joueur"
+PauseGameString="METTRE LE JEU EN PAUSE"
+ResumeGameString="REPRENDRE LE JEU"
 
 PartyLeaderSearchingForMatchString="recherche un match..."
 PartyLeaderIsUpdatingMatchOptionsString="règle les options du match..."
@@ -1057,6 +1059,10 @@ ThrowString="LANCER ARME"
 VoteKickString="Exclure joueur ?"
 VoteSkipTraderString="Passer la marchande ?"
 VoteSkipTraderDetailString="veut passer le décompte"
+VotePauseGameString="Mettre le jeu en pause ?"
+VotePauseGameDetailString="veut mettre le jeu en pause"
+VoteResumeGameString="Reprendre le jeu ?"
+VoteResumeGameDetailString="veut reprendre le jeu"
 
 [KFLocalMessage_PlayerKills]
 KilledString="tués"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="Vous avez voté pour ne pas passer la marchande.
 SkipTraderNoEnoughTimeString="Temps insuffisant pour lancer un vote pour passer la marchande."
 SkipTraderThisUserAlreadyStartedAVoteString="Vous ne pouvez pas lancer un nouveau vote pour passer la marchande avant la prochaine phase de la marchande."
 SkipTraderVersusZedPlayerVotes="Les joueurs de l'équipe Zed ne peuvent pas voter pour passer la marchande."
+PauseVoteStartedString="A lancé un vote pour mettre le jeu en pause"
+PauseVoteInProgressString="Impossible de lancer un vote de mise en pause du jeu car il y en a déjà un en cours"
+PauseVoteYesReceivedString="Vous avez voté pour mettre le jeu en pause"
+PauseVoteNoReceivedString="Vous avez voté pour ne pas mettre le jeu en pause"
+PauseVoteNoEnoughTimeString="Temps insuffisant pour lancer un vote de mise en pause du jeu"
+PauseVoteNoSpectatorsString="Les spectateurs ne peuvent pas demander un vote pour mettre le jeu en pause"
+PauseVoteTimeString="METTRE LE JEU EN PAUSE activé. Choisissez METTRE LE JEU EN PAUSE pour voter.  Unanimité requise."
+PauseVoteSuccessString="Vote pour mettre le jeu en pause réussi !"
+PauseVoteFailedString="Le vote pour mettre le jeu en pause a échoué !"
+PauseVoteWaveActiveString="Impossible de lancer un vote de mise en pause du jeu car la vague est en cours"
+PauseVoteWrongModeString="Cette option est uniquement disponible en mode Infini"
+ResumeVoteStartedString="A lancé un vote pour reprendre le jeu"
+ResumeVoteInProgressString="Impossible de lancer un vote de reprise du jeu car il y en a déjà un en cours"
+ResumeVoteYesReceivedString="Vous avez voté pour reprendre le jeu"
+ResumeVoteNoReceivedString="Vous avez voté pour ne pas reprendre le jeu"
+ResumeVoteNoEnoughTimeString="Temps insuffisant pour lancer un vote de reprise du jeu"
+ResumeVoteNoSpectatorsString="Les spectateurs ne peuvent pas demander un vote pour reprendre le jeu"
+ResumeVoteTimeString="REPRENDRE LE JEU activé. Choisissez REPRENDRE LE JEU pour voter.  Unanimité requise."
+ResumeVoteSuccessString="Vote pour reprendre le jeu réussi !"
+ResumeVoteFailedString="Le vote pour reprendre le jeu a échoué !"
+ResumeVoteWaveActiveString="Impossible de lancer un vote de reprise du jeu car la vague est en cours"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Vous avez reçu des munitions de"
@@ -2247,7 +2274,7 @@ ZedShrapnel="Zed-splosion spontanée"
 ZedShrapnelDescription="Les Zeds que vous tuez ont 30 % de chances d'exploser, infligeant des dommages et étourdissant les Zeds à proximité."
 
 MakeThingsGoBoom="Tout faire péter"
-MakeThingsGoBoomDescription="Augmente la résistance aux explosifs et la zone d'effet de tous les explosifs de 40 %."
+MakeThingsGoBoomDescription="Augmente la résistance aux explosifs de 50 % et la zone d'effet de tous les explosifs de 50 %."
 
 Madman="ZED TIME - Malade mental"
 MadmanDescription="Pendant le Zed time, toutes vos armes tirent 3x plus vite."
@@ -2848,14 +2875,28 @@ CurrentSpecialEventString="Un événement spécial temporaire avec des objets ex
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Manifestations terrifiantes",DescriptionString="Tuer 15 boss sur n'importe quelle carte ou dans n'importe quel mode")
 SpecialEventObjectiveInfoList[1]=(TitleString="Culte hebdomadaire",DescriptionString="Terminer le mode hebdomadaire dans le Néant")
-SpecialEventObjectiveInfoList[2]=(TitleString="On l'aperçoit à travers des murs",DescriptionString="Trouver le cœur du néant")
+SpecialEventObjectiveInfoList[2]=(TitleString="Ça vient des murs",DescriptionString="Trouver le cœur du néant")
 SpecialEventObjectiveInfoList[3]=(TitleString="Miasme violet",DescriptionString="Déverrouiller les portes de la salle à manger et de la chapelle")
 SpecialEventObjectiveInfoList[4]=(TitleString="Punition éternelle",DescriptionString="Terminer 15 vagues en mode Infini Difficile ou supérieur dans le Néant")
 
-AllCompleteRewardDescriptionString="Astronaute | Sac à dos compagnon | Doré"
+AllCompleteRewardDescriptionString="JdZ | Compagnon | Doré"
 
 ChanceDropDescriptionStrings[0]="Ticket d'Halloween"
 ChanceDropDescriptionStrings[1]="Ticket doré d'Halloween"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2021]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Têtes en promo !",DescriptionString="Décapiter 1 000 Zeds sur n'importe quelle carte ou dans n'importe quel mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Hebdomadaire noir",DescriptionString="Terminer le mode hebdomadaire de Carillon Hamlet")
+SpecialEventObjectiveInfoList[2]=(TitleString="Plein aux as",DescriptionString="Gagner 75 000 balles avec des éliminations,  récompenses et soins sur Carillon Hamlet")
+SpecialEventObjectiveInfoList[3]=(TitleString="La douloureuse",DescriptionString="Chez la marchande, acheter 20 armes qui coûtent du fric (1 500 balles ou plus) sur Carillon Hamlet")
+SpecialEventObjectiveInfoList[4]=(TitleString="Folie non-stop",DescriptionString="Terminer 15 vagues en mode Infini Difficile ou supérieur sur Carillon Hamlet")
+
+AllCompleteRewardDescriptionString="Shopping de Noël | Compagnon | Doré"
+
+ChanceDropDescriptionStrings[0]="Ticket de Krampus"
+ChanceDropDescriptionStrings[1]="Ticket doré de Krampus"
 
 ;============================================
 ; Daily Localization
@@ -3002,6 +3043,26 @@ FriendlyName="Sans espoir"
 DescriptionStrings[0]="L'ultime défi"
 DescriptionStrings[1]="Durée : moyenne (7 vagues)"
 ModifierDescriptions[0]="ATTENTION : ce mode est extrêmement difficile ! Seulement pour ceux qui considèrent le mode Enfer sur Terre comme un jeu d'enfant. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="Boss en folie"
+DescriptionStrings[0]="Faut tous les écraser"
+DescriptionStrings[1]="Durée : courte (5 vagues)"
+ModifierDescriptions[0]="Cinq vagues pour cinq boss. Pourrez-vous les battre un par un ? ATTENTION : la difficulté augmentera après chaque boss battu. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="Têtes réduites"
+DescriptionStrings[0]="Les tirs à la tête ne valent rien..."
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Peut-être qu'ils essaient de se protéger des tirs à la tête habituels. En tout cas, il semble avoir de nouveaux points faibles. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3529,6 +3590,9 @@ DisplayName="Base lunaire"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="Néant"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="Carillon Hamlet"
 
 [KFMapInfo]
 ; defaults

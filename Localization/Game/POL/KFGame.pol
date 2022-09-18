@@ -800,6 +800,8 @@ LeaveString="OPUŚĆ IMPREZĘ"
 SquadString="ODDZIAŁ"
 SoloString="ODDZIAŁ"
 DefaultPlayerName="Gracz"
+PauseGameString="SPAUZUJ GRĘ"
+ResumeGameString="WZNÓW GRĘ"
 
 PartyLeaderSearchingForMatchString="wyszukuje rozgrywkę…"
 PartyLeaderIsUpdatingMatchOptionsString="ustawia opcje rozgrywki…"
@@ -1057,6 +1059,10 @@ ThrowString="UPUŚĆ BROŃ"
 VoteKickString="Wyrzucić gracza?"
 VoteSkipTraderString="Pominąć handlarkę?"
 VoteSkipTraderDetailString="chce pominąć odliczanie"
+VotePauseGameString="Spauzować grę?"
+VotePauseGameDetailString="chce spauzować grę"
+VoteResumeGameString="Wznowić grę?"
+VoteResumeGameDetailString="chce wznowić grę"
 
 [KFLocalMessage_PlayerKills]
 KilledString="zabija"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="Głosujesz, aby nie pomijać handlarki"
 SkipTraderNoEnoughTimeString="Za mało czasu na rozpoczęcie głosowania nad pominięciem handlarki"
 SkipTraderThisUserAlreadyStartedAVoteString="Nie możesz rozpocząć nowego głosowania nad pominięciem handlarki aż do następnej fazy handlarki"
 SkipTraderVersusZedPlayerVotes="Gracze w drużynie zetów nie mogą głosować za pominięciem handlarki"
+PauseVoteStartedString="Rozpoczęto głosowanie o spauzowanie gry"
+PauseVoteInProgressString="Nie można rozpocząć głosowania o spauzowanie gry, ponieważ jest już aktywne"
+PauseVoteYesReceivedString="Głosujesz, aby spauzować grę"
+PauseVoteNoReceivedString="Głosujesz, aby nie pauzować gry"
+PauseVoteNoEnoughTimeString="Za mało czasu na rozpoczęcie głosowania o spauzowanie gry"
+PauseVoteNoSpectatorsString="Widzowie nie mogą inicjować głosowania o spauzowanie gry"
+PauseVoteTimeString="Spauzowanie gry aktywne. Wybierz „Spauzuj grę” w menu gry, aby zagłosować. Wszyscy gracze muszą się zgodzić."
+PauseVoteSuccessString="Głosowanie o spauzowanie gry udane!"
+PauseVoteFailedString="Głosowanie o spauzowanie gry nieudane!"
+PauseVoteWaveActiveString="Nie można rozpocząć głosowania o spauzowanie gry w trakcie fali"
+PauseVoteWrongModeString="Ta opcja jest dostępna tylko w trybie Bez Końca"
+ResumeVoteStartedString="Rozpoczęto głosowanie o wznowienie gry"
+ResumeVoteInProgressString="Nie można rozpocząć głosowania o wznowienie gry, ponieważ jest już aktywne"
+ResumeVoteYesReceivedString="Głosujesz, aby wznowić grę"
+ResumeVoteNoReceivedString="Głosujesz, by nie wznawiać gry"
+ResumeVoteNoEnoughTimeString="Za mało czasu na rozpoczęcie głosowania o wznowienie gry"
+ResumeVoteNoSpectatorsString="Widzowie nie mogą inicjować głosowania o wznowienie gry"
+ResumeVoteTimeString="Wznowienie gry aktywne. Wybierz „Wznów grę” w menu gry, aby zagłosować. Wszyscy gracze muszą się zgodzić."
+ResumeVoteSuccessString="Głosowanie o wznowienie gry udane!"
+ResumeVoteFailedString="Głosowanie o wznowienie gry nieudane!"
+ResumeVoteWaveActiveString="Nie można rozpocząć głosowania o wznowienie gry w trakcie fali"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Otrzymujesz amunicję od gracza"
@@ -2247,7 +2274,7 @@ ZedShrapnel="Spontaniczna zetsplozja"
 ZedShrapnelDescription="30% szans, że zabite przez ciebie zety eksplodują, ogłuszając inne, pobliskie zety i zadając im obrażenia."
 
 MakeThingsGoBoom="Wybuchowa natura"
-MakeThingsGoBoomDescription="Odporność na wybuchy i pole rażenia wszystkich ładunków wybuchowych wzrasta o 40%."
+MakeThingsGoBoomDescription="Odporność na wybuchy i pole rażenia wszystkich ładunków wybuchowych wzrasta o 50%."
 
 Madman="CZAS ZET – Szaleniec"
 MadmanDescription="W czasie zet każda twoja broń strzela 3 razy szybciej."
@@ -2848,14 +2875,28 @@ CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedm
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Straszne manifestacje",DescriptionString="Zabij 15 bossów na dowolnej mapie i w dowolnym trybie")
 SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowy kult",DescriptionString="Ukończ tygodniowy incydent na mapie Netherhold")
-SpecialEventObjectiveInfoList[2]=(TitleString="Dobiega zza ścian",DescriptionString="Znajdź Serce z Zaświatów")
+SpecialEventObjectiveInfoList[2]=(TitleString="Dobiega zza ścian",DescriptionString="Znajdź serce z zaświatów")
 SpecialEventObjectiveInfoList[3]=(TitleString="Fioletowe wyziewy",DescriptionString="Odblokuj drzwi kaplicy i jadalni")
 SpecialEventObjectiveInfoList[4]=(TitleString="Wieczne potępienie",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności na mapie Netherhold")
 
-AllCompleteRewardDescriptionString="Astronauta | Plecak: towarzysz | Cenne"
+AllCompleteRewardDescriptionString="DZ | Towarzysz | Cenne"
 
 ChanceDropDescriptionStrings[0]="Kupon halloweenowy"
 ChanceDropDescriptionStrings[1]="Złoty kupon halloweenowy"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2021]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Wielka wyprzedaż!",DescriptionString="Zetnij głowę 1000 zetom – dowolna mapa/tryb")
+SpecialEventObjectiveInfoList[1]=(TitleString="Czarne Tygodniowe",DescriptionString="Ukończ tygodniowy incydent na mapie Wioska Dzwonków")
+SpecialEventObjectiveInfoList[2]=(TitleString="Straszni Bogacze",DescriptionString="Zdobądź 75 000 forsy poprzez zabicia, nagrody i leczenie na mapie Wioska Dzwonków")
+SpecialEventObjectiveInfoList[3]=(TitleString="Trudne Płatności",DescriptionString="Skorzystaj z usług handlarki, aby kupić łącznie 20 broni za min. 1500 gotówki – na mapie Wioska D.")
+SpecialEventObjectiveInfoList[4]=(TitleString="Nieustająca Rozrzutność",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie na mapie Wioska D.")
+
+AllCompleteRewardDescriptionString="Holiday Shopping | Companion | Precious"
+
+ChanceDropDescriptionStrings[0]="Kupon Krampusa"
+ChanceDropDescriptionStrings[1]="Złoty kupon Krampusa"
 
 ;============================================
 ; Daily Localization
@@ -3002,6 +3043,26 @@ FriendlyName="Porzućcie Wszelką Nadzieję"
 DescriptionStrings[0]="Wyzwanie ostateczne"
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
 ModifierDescriptions[0]="UWAGA: Ten tryb gry jest niezwykle trudny! Przeznaczony jest dla tych, którzy uważają, że Piekło na Ziemi to zabawa dla dzieci. Wybierz tygodniowy tryb gry na stronie matchmakingu. Specjalizacja 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="Szarża na bossów"
+DescriptionStrings[0]="Trzeba wszystkich pokonać"
+DescriptionStrings[1]="Długość: Krótka (5 fal)"
+ModifierDescriptions[0]="Pięć fal dla pięciu bossów. Czy zdołasz ich kolejno pokonać? UWAGA: Poziom trudności wzrasta wraz z każdym pokonanym bossem. Wybierz tygodniowy tryb gry na stronie Matchmakingu. Specjalizacja 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="Skurczone Głowy"
+DescriptionStrings[0]="Próby trafienia w głowę są bezcelowe..."
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="Może próbują się chronić przed nawykami graczy dotyczącymi strzelania w głowę. No, przynajmniej mają teraz nowe czułe punkty. Wybierz tygodniowy tryb gry na stronie Matchmakingu. Specjalizacja 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3529,6 +3590,9 @@ DisplayName="Baza Księżycowa"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="Netherhold"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="Wioska Dzwonków"
 
 [KFMapInfo]
 ; defaults

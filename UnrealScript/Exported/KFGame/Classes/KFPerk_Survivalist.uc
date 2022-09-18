@@ -801,7 +801,7 @@ defaultproperties
    PrimaryWeaponPaths(8)=Class'KFGame.KFWeapDef_MP7'
    StartingWeaponClassIndex=-1
    TacticalReloadAsReloadRateClassNames(0)="KFWeap_GrenadeLauncher_M32"
-   MakeThingsGoBoomExplosiveResistance=0.400000
+   MakeThingsGoBoomExplosiveResistance=0.500000
    ProgressStatID=70
    PerkBuildStatID=71
    SecondaryXPModifier(0)=2
@@ -829,7 +829,7 @@ defaultproperties
    PerkSkills(4)=(Name="AmmoVest",StartingValue=0.150000,MaxValue=0.150000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_AmmoVest")
    PerkSkills(5)=(Name="BigPockets",StartingValue=5.000000,MaxValue=5.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_BigPockets")
    PerkSkills(6)=(Name="ZedShrapnel",StartingValue=2.000000,MaxValue=2.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Shrapnel")
-   PerkSkills(7)=(Name="MakeThingsGoBoom",StartingValue=1.400000,MaxValue=1.400000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom")
+   PerkSkills(7)=(Name="MakeThingsGoBoom",StartingValue=1.500000,MaxValue=1.500000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Boom")
    PerkSkills(8)=(Name="MadMan",StartingValue=0.500000,MaxValue=0.500000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_Madman")
    PerkSkills(9)=(Name="IncapMaster",StartingValue=5000.000000,MaxValue=5000.000000,IconPath="UI_PerkTalent_TEX.Survivalist.UI_Talents_Survivalist_IncapMaster")
    ZedTimeModifyingStates(0)="WeaponFiring"

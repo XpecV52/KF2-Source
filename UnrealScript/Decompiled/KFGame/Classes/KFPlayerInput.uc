@@ -124,6 +124,8 @@ var(AutoTarget) float ForceLookAtPawnMinAngle;
 var(AutoTarget) float ForceLookAtPawnRotationRate;
 /** How fast to rotate towards ForceLookAtPawn location dampened for closer rotation */
 var(AutoTarget) float ForceLookAtPawnDampenedRotationRate;
+/** Aim distance of autoaim to set head as target. */
+var(AutoTarget) float WeakBoneDistance;
 var const float DoubleTapDelay;
 
 // Export UKFPlayerInput::execGetKeyBindFromCommand(FFrame&, void* const)
@@ -1564,7 +1566,7 @@ function Vector GetBestAutoTargetLocation(Pawn CheckTarget, out name OutBoneName
         if(I < WeakBones.Length)
         {
             TestLoc = KFP.Mesh.GetBoneLocation(WeakBones[I]);
-            if(!IsAutoTargetWithinCone(TestLoc, CamLoc, CamDir, AutoTargetWeakspotCurve))
+            if(!IsAutoTargetWithinCone(TestLoc, CamLoc, CamDir, AutoTargetWeakspotCurve, WeakBoneDistance))
             {                
             }
             else
@@ -1584,7 +1586,7 @@ function Vector GetBestAutoTargetLocation(Pawn CheckTarget, out name OutBoneName
             goto J0xF4;
         }
         I = 0;
-        J0x2E4:
+        J0x2ED:
 
         if(I < NormalBones.Length)
         {
@@ -1600,14 +1602,14 @@ function Vector GetBestAutoTargetLocation(Pawn CheckTarget, out name OutBoneName
                 return TestLoc;
             }
             ++ I;
-            goto J0x2E4;
+            goto J0x2ED;
         }
     }
     OutBoneName = 'None';
     return CheckTarget.Location + (CheckTarget.BaseEyeHeight * vect(0, 0, 0.5));
 }
 
-function bool IsAutoTargetWithinCone(Vector TargetLoc, Vector CamLoc, Vector CamDir, const out InterpCurveFloat Curve)
+function bool IsAutoTargetWithinCone(Vector TargetLoc, Vector CamLoc, Vector CamDir, const out InterpCurveFloat Curve, optional float Margin)
 {
     local float DistToTarget, TargetRadius, TargetHeight, DotDiffToTarget, UsedTargetAngle;
 
@@ -1631,7 +1633,7 @@ function bool IsAutoTargetWithinCone(Vector TargetLoc, Vector CamLoc, Vector Cam
         Outer.DrawDebugCylinder(AutoTargetInitialLocation + vect(0, 0, 5), AutoTargetInitialLocation - vect(0, 0, 5), 10, 12, 255, 0, 0);
         Outer.DrawDebugCylinder(CurrentAutoTarget.Location + (vect(0, 0, 1) * TargetHeight), CurrentAutoTarget.Location - (vect(0, 0, 1) * TargetHeight), TargetRadius, 12, 0, 255, 0);
     }
-    if(UsedTargetAngle > DotDiffToTarget)
+    if(UsedTargetAngle > (DotDiffToTarget + Margin))
     {
         if(Outer.bDebugAutoTarget)
         {
@@ -2307,6 +2309,7 @@ defaultproperties
     ForceLookAtPawnMinAngle=0.9
     ForceLookAtPawnRotationRate=22
     ForceLookAtPawnDampenedRotationRate=8
+    WeakBoneDistance=0.02
     DoubleTapDelay=0.25
     bEnableFOVScaling=true
 }

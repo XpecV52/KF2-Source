@@ -822,6 +822,17 @@ ItemCategory="Fucile da caccia"
 ItemDescription="•Il fuoco primario è un colpo singolo.\n•Usa il fuoco alternativo per corrompere gli Zed per qualche secondo.\n•Se uno Zed corrotto muore, esplode danneggiando gli altri Zed e curando i giocatori."
 SharedUnlockSource="Bundle armi Carabina del Corrotto"
 
+[KFWeap_HRG_Stunner]
+ItemName="HRG Stordente"
+ItemCategory="Mitra"
+ItemDescription="•Solo automatica.\n•La modalità Fuoco alternativo spara un colpo concentrato che esplode come una versione in piccolo della flashbang.\n•L'arma perfetta per quando finisci le flashbang."
+
+[KFWeap_AssaultRifle_Doshinegun]
+ItemName="Doshinegun"
+ItemCategory="Fucile da caccia"
+ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.\n•Nuovi livelli di corruzione."
+SharedUnlockSource="Bundle armi Doshinegun"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

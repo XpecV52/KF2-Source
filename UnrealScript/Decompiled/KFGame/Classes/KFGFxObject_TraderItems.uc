@@ -75,6 +75,7 @@ struct native STraderItem
     var KFGFxObject_TraderItems.EFilterTypeUI AltTraderFilter;
     var byte InventoryGroup;
     var int ItemId;
+    var bool bCanBuyAmmo;
 
     structdefaultproperties
     {
@@ -108,6 +109,7 @@ struct native STraderItem
         AltTraderFilter=EFilterTypeUI.FT_None
         InventoryGroup=0
         ItemId=-1
+        bCanBuyAmmo=false
     }
 };
 

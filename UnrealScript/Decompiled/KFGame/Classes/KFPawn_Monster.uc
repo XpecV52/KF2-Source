@@ -62,6 +62,18 @@ struct native SpecialMoveCooldownInfo
     }
 };
 
+struct native WeakPoint
+{
+    var name BoneName;
+    var Vector Offset;
+
+    structdefaultproperties
+    {
+        BoneName=None
+        Offset=(X=0,Y=0,Z=0)
+    }
+};
+
 struct native RepInflateParams
 {
     var byte RepInflateMatParam;
@@ -292,6 +304,9 @@ var class<KFZedArmorInfo> ArmorInfoClass;
 var KFZedArmorInfo ArmorInfo;
 var const int OverrideArmorFXIndex;
 var array<KFProjectile> ParasiteSeeds;
+var export editinline transient array<export editinline ParticleSystemComponent> WeakPointVFXComponents;
+var repnotify WeakPoint WeakPoints_TS[10];
+var ParticleSystem WeakPointParticleTemplate;
 var delegate<GoreChunkAttachmentCriteria> __GoreChunkAttachmentCriteria__Delegate;
 var delegate<GoreChunkDetachmentCriteria> __GoreChunkDetachmentCriteria__Delegate;
 
@@ -301,11 +316,11 @@ replication
         InflateDeathGravity, InflationExplosionTimer, 
         MaxHeadChunkGoreWhileAlive, RepBleedInflateMatParam, 
         RepDamageInflateParam, RepInflateMatParam, 
-        RepInflateMatParams, bDisableGoreMeshWhileAlive, 
-        bDisableHeadless, bIsHeadless, 
-        bIsPoisoned, bPlayPanicked, 
-        bPlayShambling, bUseDamageInflation, 
-        bUseExplosiveDeath;
+        RepInflateMatParams, WeakPoints_TS, 
+        bDisableGoreMeshWhileAlive, bDisableHeadless, 
+        bIsHeadless, bIsPoisoned, 
+        bPlayPanicked, bPlayShambling, 
+        bUseDamageInflation, bUseExplosiveDeath;
 
      if(bNetDirty && bCanCloak)
         bIsCloakingSpottedByTeam;
@@ -379,6 +394,9 @@ simulated event ReplicatedEvent(name VarName)
             break;
         case 'bIsEnraged':
             SetEnraged(bIsEnraged);
+            break;
+        case 'WeakPoints_TS':
+            SpawnWeakPointVFX();
             break;
         default:
             break;
@@ -1355,6 +1373,7 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
 {
     local KFPlayerController KFPC;
     local string ClassName;
+    local editinline ParticleSystemComponent WeakPointPSC;
 
     Timer_EndRallyBoost();
     super.PlayDying(DamageType, HitLoc);
@@ -1379,6 +1398,14 @@ simulated function PlayDying(class<DamageType> DamageType, Vector HitLoc)
     }
     UpdateBleedIncapFX();
     StopExtraVFX('None');
+    if(WeakPointVFXComponents.Length > 0)
+    {
+        foreach WeakPointVFXComponents(WeakPointPSC,)
+        {
+            WeakPointPSC.DeactivateSystem();            
+        }        
+        WeakPointVFXComponents.Length = 0;
+    }
 }
 
 simulated function PlayInflationDeath()
@@ -3792,6 +3819,60 @@ reliable server function AddParasiteSeed(KFProjectile Proj)
     ParasiteSeeds.AddItem(Proj;
 }
 
+simulated function SpawnWeakPointVFX()
+{
+    local int I;
+    local editinline ParticleSystemComponent VFXComponent;
+
+    if((WeakPointParticleTemplate != none) && WeakPointVFXComponents.Length == 0)
+    {
+        I = 0;
+        J0x2C:
+
+        if(I < 10)
+        {
+            if(WeakPoints_TS[I].BoneName == 'None')
+            {
+                return;
+            }
+            VFXComponent = new (self) Class'ParticleSystemComponent';
+            VFXComponent.SetTemplate(WeakPointParticleTemplate);
+            Mesh.AttachComponent(VFXComponent, WeakPoints_TS[I].BoneName, WeakPoints_TS[I].Offset);
+            VFXComponent.ActivateSystem();
+            WeakPointVFXComponents.AddItem(VFXComponent;
+            ++ I;
+            goto J0x2C;
+        }
+    }
+}
+
+simulated function ServerSpawnWeakPointVFX(array<WeakPoint> WeakPoints)
+{
+    local int I;
+
+    if(WeakPoints.Length == 0)
+    {
+        return;
+    }
+    I = 0;
+    J0x1D:
+
+    if(I < WeakPoints.Length)
+    {
+        WeakPoints_TS[I] = WeakPoints[I];
+        ++ I;
+        goto J0x1D;
+    }
+    if(WorldInfo.NetMode == NM_Standalone)
+    {
+        SpawnWeakPointVFX();        
+    }
+    else
+    {
+        bNetDirty = true;
+    }
+}
+
 // Export UKFPawn_Monster::execShouldGrandOnDeathAchievement(FFrame&, void* const)
 protected native function bool ShouldGrandOnDeathAchievement();
 
@@ -3928,6 +4009,7 @@ defaultproperties
     HeadShotAkComponent=AkComponent'Default__KFPawn_Monster.HeadshotAkComponent0'
     CollisionRadiusForReducedZedOnZedPinchPointCollisionState=1
     OnDeathAchievementID=-1
+    WeakPointParticleTemplate=ParticleSystem'FX_Gameplay_EMIT.FX_Weak_Indicator'
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

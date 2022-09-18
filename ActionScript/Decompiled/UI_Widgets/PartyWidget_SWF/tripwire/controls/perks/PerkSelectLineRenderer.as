@@ -21,6 +21,8 @@ package tripwire.controls.perks
         
         public var bTierUnlocked:Boolean;
         
+        public var bPerkAllowed:Boolean;
+        
         public var alertBG:MovieClip;
         
         private var _perkLevelStr:String;
@@ -84,6 +86,7 @@ package tripwire.controls.perks
                 }
                 this.enabled = !!param1.unlocked ? Boolean(param1.unlocked) : true;
                 this.bTierUnlocked = !!param1.bTierUnlocked ? Boolean(param1.bTierUnlocked) : false;
+                this.bPerkAllowed = !!param1.bPerkAllowed ? Boolean(param1.bPerkAllowed) : false;
                 this.glowActive = this.bTierUnlocked;
                 if(param1.iconSource != null && param1.iconSource != "")
                 {
@@ -91,6 +94,9 @@ package tripwire.controls.perks
                     {
                         this.iconLoader.source = param1.iconSource;
                     }
+                }
+                if(this.bPerkAllowed)
+                {
                 }
             }
             else

@@ -122,7 +122,7 @@ defaultproperties
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
    MagazineCapacity(0)=42
-   SpareAmmoCapacity(0)=336
+   SpareAmmoCapacity(0)=378
    InitialSpareMags(0)=3
    WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
    FireSightedAnims(1)="Shoot_Iron2"
@@ -181,8 +181,8 @@ defaultproperties
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
-   Spread(0)=0.160000
-   Spread(1)=0.020000
+   Spread(0)=0.130000
+   Spread(1)=0.010000
    InstantHitDamage(0)=35.000000
    InstantHitDamage(1)=35.000000
    InstantHitDamage(2)=()

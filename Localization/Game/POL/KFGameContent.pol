@@ -808,19 +808,30 @@ ItemDescription="•Tryb podstawowy: tylko ogień powtarzalny.\n•Tryb alternat
 ItemName="Pistolet Pirania"
 ItemCategory="Broń krótka"
 ItemDescription="•Ogień podstawowy wystrzeliwuje ostrza piły.\n•Alternatywny: blok/parada.\n•Uchwyt, zęby – jest ostro."
-SharedUnlockSource="Zestaw broni Pistolet Pirania"
+SharedUnlockSource="Zestaw broni pistoletu Pirania"
 
 [KFWeap_Pistol_DualBladed]
 ItemName="Dwa pistolety Pirania"
 ItemCategory="Broń krótka"
 ItemDescription="•Ogień podstawowy wystrzeliwuje ostrza piły.\n•Alternatywny: blok/parada.\n•Rozerwij wrogów potężnymi kęsami."
-SharedUnlockSource="Zestaw broni Dwa pistolety Pirania"
+SharedUnlockSource="Zestaw broni dwóch pistoletów Pirania"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="Karabinek plugawiący"
 ItemCategory="Karabin"
 ItemDescription="•Ogień podstawowy to pojedyncze strzały.\n•Ogień alternatywny plugawi na parę sekund zety.\n•Jeśli splugawiony zet eksploduje, zada obrażenia innym zetom i uzdrowi graczy."
-SharedUnlockSource="Zestaw broni Karabinek plugawiący"
+SharedUnlockSource="Zestaw broni karabinka plugawiącego"
+
+
+ItemName="Ogłuszacz HRG"
+ItemCategory="Sub Machine Gun"
+ItemDescription="•Tryb strzelania: tylko ogień ciągły.\n•Tryb alternatywny: wystrzelenie kilku pocisków w skoncentrowanym strzale, który wybucha jak mała wersja granatu ogłuszającego.\n•Idealna broń, gdy skończą ci się granaty ogłuszające."
+
+
+ItemName="Forsownica"
+ItemCategory="Karabin"
+ItemDescription="•Tryb strzelania: ogień ciągły albo samopowtarzalny.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Nowy rodzaj łapówek."
+SharedUnlockSource="Zestaw broni Forsownicy"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

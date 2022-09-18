@@ -340,13 +340,17 @@ function InitializeGameOptions()
 
 function FilterWeeklyMaps(out array<string> List)
 {
+	local int WeeklyIndex;
+
 	if (ParentMenu.Manager.GetModeIndex(false) != EGameMode_Weekly)
 	{
 		return;
 	}
 
 	// Scavenger index = 11
-	if (class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11)
+	// BossRush index = 14
+	WeeklyIndex = class'KFGameEngine'.static.GetWeeklyEventIndexMod();
+	if (WeeklyIndex == 11 ||  WeeklyIndex == 14)
 	{
 		List.RemoveItem("KF-Biolapse");
 		List.RemoveItem("KF-Nightmare");
@@ -354,6 +358,14 @@ function FilterWeeklyMaps(out array<string> List)
 		List.RemoveItem("KF-TheDescent");
 		List.RemoveItem("KF-KrampusLair");
 	}
+
+	/* Temporary removal of SteamFrotress for BossRush */
+	if (WeeklyIndex == 14)
+	{
+		List.RemoveItem("KF-SteamFortress");
+	}
+	/**/
+	
 }
 
 function GFxObject CreateList( array<string> TextArray, byte SelectedIndex, bool bAddNoPrefString, optional bool bIsMapList, optional byte MaxLength)

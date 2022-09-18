@@ -822,6 +822,17 @@ ItemCategory="소총"
 ItemDescription="•기본적으로 단발입니다.\n•보조 - 발사로 제드를 몇 초 동안 오염시킬 수 있습니다.\n•오염된 제드 사망 시 폭발로 주변 제드에게 대미지, 플레이어는 회복합니다."
 SharedUnlockSource="부패 카빈 무기 번들"
 
+[KFWeap_HRG_Stunner]
+ItemName="HRG 스터너"
+ItemCategory="서브머신건"
+ItemDescription="•전자동만 지원합니다.\n•여러 발을 집중 사격하며 섬광탄의 소형 버전과 같은 폭발이 발생합니다.\n•섬광탄 떨어졌을 때 딱 좋습니다."
+
+[KFWeap_AssaultRifle_Doshinegun]
+ItemName="도신건"
+ItemCategory="소총"
+ItemDescription="•전자동 및 반자동 사격 모드를 선택할 수 있습니다.\n•사격 모드를 변경할 수 있습니다.\n•뇌물을 새로운 수준으로 끌어올립니다."
+SharedUnlockSource="도신건 무기 번들"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

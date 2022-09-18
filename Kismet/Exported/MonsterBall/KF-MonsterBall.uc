@@ -3825,8 +3825,8 @@ End Object
 
 Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_3
    MaxWidth=248
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_5')),DrawY=-2652,OverrideDelta=13)
-   OutputLinks(1)=(DrawY=-2632,OverrideDelta=33)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_39')),DrawY=-2652,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Delay'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_5')),DrawY=-2632,OverrideDelta=33)
    VariableLinks(0)=(DrawX=-9669,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-9608,OverrideDelta=86)
    VariableLinks(2)=(DrawX=-9527,OverrideDelta=139)
@@ -3841,7 +3841,7 @@ Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_3
    ObjectArchetype=KFSeqEvent_WaveStart'KFGame.Default__KFSeqEvent_WaveStart'
 End Object
 
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_5
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_39
    Duration=8.000000
    InputLinks(0)=(DrawY=-2731,OverrideDelta=14)
    InputLinks(1)=(DrawY=-2710,OverrideDelta=35)
@@ -3855,7 +3855,7 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_5
    ObjPosY=-2768
    DrawWidth=106
    DrawHeight=109
-   Name="SeqAct_Delay_5"
+   Name="SeqAct_Delay_39"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
@@ -16725,4 +16725,22 @@ Begin Object Class=KFSeqCond_IsWeeklyEvent Name=KFSeqCond_IsWeeklyEvent_2
    DrawHeight=69
    Name="KFSeqCond_IsWeeklyEvent_2"
    ObjectArchetype=KFSeqCond_IsWeeklyEvent'kfgamecontent.Default__KFSeqCond_IsWeeklyEvent'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_5
+   Duration=8.000000
+   InputLinks(0)=(DrawY=-2540,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-2519,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-2498,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4',InputLinkIdx=1)),DrawY=-2535,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-2503,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-9240,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-MONSTERBALL.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9292
+   ObjPosY=-2577
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_5"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object

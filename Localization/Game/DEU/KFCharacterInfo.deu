@@ -46,7 +46,7 @@ BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
-BodyMesh14="Astronauten-Anzug-Outfit"
+BodyMesh14="Feiertagsshopper-Outfit"
 HeadMesh0="Gasmaske"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -162,6 +162,13 @@ BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Weiß"
 HeadSkin1="Grün"
@@ -249,7 +256,7 @@ BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
-BodyMesh14="Astronauten-Anzug-Outfit"
+BodyMesh14="Feiertagsshopper-Outfit"
 HeadMesh0="Bart-Power!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -371,6 +378,13 @@ BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
+[CHR_Jagerhorn_archetype.BodyMesh14]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Blonder Schwede"
 HeadSkin1="Das schwarze Album"
@@ -471,7 +485,7 @@ BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat"
 BodyMesh13="Sensenmann-Outfit"
-BodyMesh14="Astronauten-Anzug-Outfit"
+BodyMesh14="Feiertagsshopper-Outfit"
 HeadMesh0="Schädel-Maske"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -592,6 +606,13 @@ BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
+[CHR_DJSkully_archetype.BodyMesh14]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Schwärzestes Schwarz"
 HeadSkin1="Xtra-Rot"
@@ -639,7 +660,7 @@ BodyMesh11="Hexenjäger"
 BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
 BodyMesh14="Sensenmann-Outfit"
-BodyMesh15="Astronauten-Anzug-Outfit"
+BodyMesh15="Feiertagsshopper-Outfit"
 HeadMesh0="Haar"
 
 [chr_briar_archetype.BodyMesh0]
@@ -766,6 +787,13 @@ BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
+[CHR_briar_archetype.BodyMesh15]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Strähnchen"
@@ -807,7 +835,7 @@ BodyMesh11="Hexenjäger"
 BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
 BodyMesh14="Sensenmann-Outfit"
-BodyMesh15="Astronauten-Anzug-Outfit"
+BodyMesh15="Feiertagsshopper-Outfit"
 HeadMesh0="Gasmaske"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -938,6 +966,13 @@ BodySkin2="Hunger"
 BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Original-Weiß"
@@ -1100,7 +1135,7 @@ BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
-BodyMesh15="Astronauten-Anzug-Outfit"
+BodyMesh14="Feiertagsshopper-Outfit"
 HeadMesh0="Gesicht"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1219,6 +1254,13 @@ BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
+[CHR_Coleman_archetype.BodyMesh14]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tattoo"
@@ -1259,7 +1301,7 @@ BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
-BodyMesh14="Astronauten-Anzug-Outfit"
+BodyMesh14="Feiertagsshopper-Outfit"
 HeadMesh0="Haar"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1379,6 +1421,13 @@ BodySkin2="Hunger"
 BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grau"
@@ -2280,7 +2329,7 @@ BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
-BodyMesh14="Astronauten-Anzug-Outfit"
+BodyMesh14="Feiertagsshopper-Outfit"
 HeadMesh0="Gesicht"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2410,6 +2459,13 @@ BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka ist ein zerrissenes Individuum mit einem ernsthaften Todeswunsch-Problem. Geboren in Okinawa, wuchs er zwischen amerikanischen Militärs auf. Als er mit seiner Familie aufs japanische Festland zog, konnte sich der amerikanisierte Tanaka nicht in die Gesellschaft einfügen und nahm Schauspielunterricht. Nach dem College zog er nach LA und spielte klischeehafte Kleinrollen in schlechten Filmen, bevor er nach Europa zog, in einem Versuch ‚ seriösere‘ Arbeit zu finden. Alles, war er dort bekam, waren Bösewicht-Rollen in französischen Gangsterfilmen und ein paar Tattoos. Jetzt, inmitten der Apokalypse, scheint er seine eigene Realität mit einigen der Filmrollen, die er gespielt hat, zu verwechseln. Dies scheint Vorstellungen von den Yakuza, Dämonen und eine Hollywood-Interpretation von Bushido zu beinhalten."
@@ -2428,7 +2484,7 @@ BodyMesh11="Hexenjäger"
 BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
 BodyMesh14="Sensenmann-Outfit"
-BodyMesh15="Astronauten-Anzug-Outfit"
+BodyMesh15="Feiertagsshopper-Outfit"
 HeadMesh0="Haar"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2565,6 +2621,13 @@ BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
+[CHR_Tanaka_archetype.BodyMesh15]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Helm"
 AttachmentSkin0="Aufgehende Sonne"
@@ -2609,7 +2672,7 @@ BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
-BodyMesh14="Astronauten-Anzug-Outfit"
+BodyMesh14="Feiertagsshopper-Outfit"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2739,6 +2802,13 @@ BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
+[CHR_Ana_archetype.BodyMesh14]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D-Brille"
 AttachmentSkin0="Anaglyph 3D"
@@ -2769,7 +2839,7 @@ BodyMesh11="Hexenjäger"
 BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
 BodyMesh14="Sensenmann-Outfit"
-BodyMesh15="Astronauten-Anzug-Outfit"
+BodyMesh15="Feiertagsshopper-Outfit"
 HeadMesh0="Haar"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2896,6 +2966,13 @@ BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
+
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Das einzig Wahre"
 HeadSkin1="Blutige Teezeit"
@@ -2923,7 +3000,7 @@ BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
-BodyMesh14="Astronauten-Anzug-Outfit"
+BodyMesh14="Feiertagsshopper-Outfit"
 HeadMesh0="Gesicht"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3045,6 +3122,13 @@ BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
+[CHR_alan_archetype.BodyMesh14]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Das einzig Wahre"
 HeadSkin1="Fuchsrot? Wirklich?"
@@ -3079,7 +3163,7 @@ BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
-BodyMesh14="Astronauten-Anzug-Outfit"
+BodyMesh14="Feiertagsshopper-Outfit"
 HeadMesh0="Haar"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3197,6 +3281,13 @@ BodySkin2="Hunger"
 BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
+
+[CHR_strasser_archetype.BodyMesh14]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Dunkler Stahl"
@@ -3376,7 +3467,7 @@ BodyMesh10="Hexenjäger"
 BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
-BodyMesh14="Astronauten-Anzug-Outfit"
+BodyMesh14="Feiertagsshopper-Outfit"
 HeadMesh0="Standard-Kopf"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3498,6 +3589,13 @@ BodySkin2="Hunger"
 BodySkin3="Pestilenz"
 BodySkin4="Krieg"
 BodySkin5="Anarchie"
+
+[CHR_rockabilly_archetype.BodyMesh14]
+BodySkin0="Santa"
+BodySkin1="Elf"
+BodySkin2="Nordpol"
+BodySkin3="Auweihnachten"
+BodySkin4="Edel"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Schwarz"
@@ -6762,111 +6860,6 @@ AttachmentSkin2="Sternenausbruch"
 AttachmentSkin3="Galaxie"
 AttachmentSkin4="Edel"
 
-[CHR_Tanaka_Archetype.BodyMesh15]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[CHR_Alberts_archetype.BodyMesh14]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[CHR_Ana_Archetype.BodyMesh14]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[CHR_BadSanta_Archetype.BodyMesh14]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[chr_briar_archetype.BodyMesh15]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[CHR_Coleman_archetype.BodyMesh15]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[chr_DJSkully_archetype.BodyMesh14]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[CHR_Jagerhorn_Archetype.BodyMesh14]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[chr_mark_archetype.BodyMesh15]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[CHR_Masterson_archetype.BodyMesh14]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[CHR_MrFoster_archetype.BodyMesh15]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[CHR_MrsFoster_archetype.BodyMesh14]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[chr_rockabilly_archetype.BodyMesh14]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[chr_strasser_archetype.BodyMesh14]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
-[chr_alan_archetype.BodyMesh14]
-BodySkin0="Weltraum"
-BodySkin1="Singularität"
-BodySkin2="Sternenausbruch"
-BodySkin3="Galaxie"
-BodySkin4="Edel"
-
 [Cosmetic_Vietnam_USHelmet_ARCH]
 Attachment="Vietnam-US-Helm"
 AttachmentSkin0="Oliv"
@@ -7021,4 +7014,127 @@ AttachmentSkin0="Edel"
 
 [Cosmetic_WildWest_CowboyHat_ARCH]
 Attachment="Wild-West-London-Hut"
+AttachmentSkin0="Edel"
+
+[Cosmetic_XMAS2021_Cart_ARCH]
+Attachment="Feiertags-Einkaufswagen"
+AttachmentSkin0="Santa"
+AttachmentSkin1="Elf"
+AttachmentSkin2="Nordpol"
+AttachmentSkin3="Auweihnachten"
+AttachmentSkin4="Edel"
+
+[Cosmetic_XMAS2021_Hat_ARCH]
+Attachment="Feiertags-Shopping-Hut"
+AttachmentSkin0="Santa"
+AttachmentSkin1="Elf"
+AttachmentSkin2="Nordpol"
+AttachmentSkin3="Auweihnachten"
+AttachmentSkin4="Edel"
+
+[Cosmetic_XMAS2021_Helmet_ARCH]
+Attachment="Feiertags-Shopping-Helm"
+AttachmentSkin0="Santa"
+AttachmentSkin1="Elf"
+AttachmentSkin2="Nordpol"
+AttachmentSkin3="Auweihnachten"
+AttachmentSkin4="Edel"
+
+[Cosmetic_XMAS2021_Armband_ARCH]
+Attachment="Feiertags-Shopping-Armband"
+AttachmentSkin0="Santa"
+AttachmentSkin1="Elf"
+AttachmentSkin2="Nordpol"
+AttachmentSkin3="Auweihnachten"
+AttachmentSkin4="Edel"
+
+[Cosmetic_XMAS2021_Mask_ARCH]
+Attachment="Feiertags-Shopping-Maske"
+AttachmentSkin0="Santa"
+AttachmentSkin1="Elf"
+AttachmentSkin2="Nordpol"
+AttachmentSkin3="Auweihnachten"
+AttachmentSkin4="Edel"
+
+[Cosmetic_XMAS2021_Goggles_ARCH]
+Attachment="Feiertags-Shopping-Brille"
+AttachmentSkin0="Santa"
+AttachmentSkin1="Elf"
+AttachmentSkin2="Nordpol"
+AttachmentSkin3="Auweihnachten"
+AttachmentSkin4="Edel"
+
+[Cosmetic_XMAS2021_Companion_ARCH]
+Attachment="Feiertags-Shopping-Gefährte"
+AttachmentSkin0="Edel"
+
+[Cosmetic_Alchemist_Armband_ARCH]
+Attachment="Alchemistenarmband"
+AttachmentSkin0="Giftig"
+AttachmentSkin1="Feuer"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Hochspannung"
+AttachmentSkin4="Blackout"
+AttachmentSkin5="Edel"
+
+[Cosmetic_Alchemist_Bomb_ARCH]
+Attachment="Alchemistenbombe"
+AttachmentSkin0="Giftig"
+AttachmentSkin1="Feuer"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Hochspannung"
+AttachmentSkin4="Blackout"
+AttachmentSkin5="Edel"
+
+[Cosmetic_Alchemist_Goggles_ARCH]
+Attachment="Alchemistenbrille"
+AttachmentSkin0="Giftig"
+AttachmentSkin1="Feuer"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Hochspannung"
+AttachmentSkin4="Blackout"
+AttachmentSkin5="Edel"
+
+[Cosmetic_Alchemist_Helmet_ARCH]
+Attachment="Alchemistenhelm"
+AttachmentSkin0="Giftig"
+AttachmentSkin1="Feuer"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Hochspannung"
+AttachmentSkin4="Blackout"
+AttachmentSkin5="Edel"
+
+[Cosmetic_Alchemist_Mask_ARCH]
+Attachment="Alchemistenmaske"
+AttachmentSkin0="Giftig"
+AttachmentSkin1="Feuer"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Hochspannung"
+AttachmentSkin4="Blackout"
+AttachmentSkin5="Edel"
+
+[Cosmetic_Alchemist_PressureVessel_ARCH]
+Attachment="Alchemisten-Druckbehälter"
+AttachmentSkin0="Giftig"
+AttachmentSkin1="Feuer"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Hochspannung"
+AttachmentSkin4="Blackout"
+AttachmentSkin5="Edel"
+
+[Cosmetic_Alchemist_Vials_ARCH]
+Attachment="Alchemistenfläschchen"
+AttachmentSkin0="Giftig"
+AttachmentSkin1="Feuer"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Hochspannung"
+AttachmentSkin4="Blackout"
+AttachmentSkin5="Edel"
+
+[Cosmetic_PracticeTarget_Backpack_ARCH]
+Attachment="Übungsziel-Rucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_BossTrophy_Backpack_ARCH]
+Attachment="Boss-Trophäe-Rucksack"
 AttachmentSkin0="Edel"

@@ -9,9 +9,27 @@ class KFOutbreakEvent_Weekly extends KFOutbreakEvent within KFGameInfo;
 
 function OnScoreKill(Pawn KilledPawn)
 {
+    local int WaveNum;
+
+    if(!ActiveEvent.bBossRushMode)
+    {
+        AdjustScoreKill(KilledPawn, ActiveEvent.ZedsToAdjust);        
+    }
+    else
+    {
+        WaveNum = KFGameInfo_WeeklySurvival(Outer).WaveNum - 1;
+        if(WaveNum < ActiveEvent.BossRushOverrideParams.PerWaves.Length)
+        {
+            AdjustScoreKill(KilledPawn, ActiveEvent.BossRushOverrideParams.PerWaves[WaveNum].ZedsToAdjust);
+        }
+    }
+}
+
+function AdjustScoreKill(Pawn KilledPawn, array<StatAdjustments> Adjustments)
+{
     local StatAdjustments ToAdjust;
 
-    foreach ActiveEvent.ZedsToAdjust(ToAdjust,)
+    foreach Adjustments(ToAdjust,)
     {
         if(ClassIsChildOf(KilledPawn.Class, ToAdjust.ClassToAdjust))
         {

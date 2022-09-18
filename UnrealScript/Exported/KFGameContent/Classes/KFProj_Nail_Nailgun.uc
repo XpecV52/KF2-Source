@@ -134,8 +134,8 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFProj_PinningBullet:AmbientAkSoundComponent'
    End Object
    AmbientComponent=AmbientAkSoundComponent
-   Speed=14000.000000
-   MaxSpeed=14000.000000
+   Speed=17500.000000
+   MaxSpeed=17500.000000
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProj_PinningBullet:CollisionCylinder'
       CollisionHeight=0.000000
       CollisionRadius=0.000000

@@ -101,8 +101,8 @@ defaultproperties
     ProjFlightTemplate=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer'
     ProjFlightTemplateZedTime=ParticleSystem'WEP_1P_Nail_Shotgun_EMIT.FX_Nail_Shotgun_Tracer_ZEDTime'
     AmbientComponent=AkComponent'Default__KFProj_Nail_Nailgun.AmbientAkSoundComponent'
-    Speed=14000
-    MaxSpeed=14000
+    Speed=17500
+    MaxSpeed=17500
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none
     object end

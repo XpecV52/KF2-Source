@@ -68,6 +68,7 @@ defaultproperties
    ColumnIds(104)=4058
    ColumnIds(105)=4059
    ColumnIds(106)=4060
+   ColumnIds(107)=4061
    ColumnMappings(51)=(Id=4001,Name="AchievementMrPerky5")
    ColumnMappings(52)=(Id=4002,Name="AchievementMrPerky10")
    ColumnMappings(53)=(Id=4003,Name="AchievementMrPerky15")
@@ -124,6 +125,7 @@ defaultproperties
    ColumnMappings(104)=(Id=4058,Name="AchievementCollectDystopia2029")
    ColumnMappings(105)=(Id=4059,Name="AchievementCollectMoonbase")
    ColumnMappings(106)=(Id=4060,Name="AchievementCollectNetherhold")
+   ColumnMappings(107)=(Id=4061,Name="AchievementCollectCarillonHamlet")
    Name="Default__KFOnlineStatsReadDingo"
    ObjectArchetype=KFOnlineStatsRead'KFGame.Default__KFOnlineStatsRead'
 }

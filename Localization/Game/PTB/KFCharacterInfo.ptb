@@ -46,7 +46,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
-BodyMesh14="Traje Uniforme de Astronauta"
+BodyMesh14="Traje de Compras de Feriado"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -162,6 +162,13 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Branca"
 HeadSkin1="Verde"
@@ -249,7 +256,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
-BodyMesh14="Traje Uniforme de Astronauta"
+BodyMesh14="Traje de Compras de Feriado"
 HeadMesh0="Poder da Barba!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -371,6 +378,13 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
+[CHR_Jagerhorn_archetype.BodyMesh14]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Loira Sueca"
 HeadSkin1="O Disco Preto"
@@ -471,7 +485,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
-BodyMesh14="Traje Uniforme de Astronauta"
+BodyMesh14="Traje de Compras de Feriado"
 HeadMesh0="Máscara do Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -592,6 +606,13 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
+[CHR_DJSkully_archetype.BodyMesh14]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Preto Total"
 HeadSkin1="Vermelho Extra"
@@ -639,7 +660,7 @@ BodyMesh11="Caçador de Bruxas"
 BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
-BodyMesh15="Traje Uniforme de Astronauta"
+BodyMesh15="Traje de Compras de Feriado"
 HeadMesh0="Cabelo"
 
 [chr_briar_archetype.BodyMesh0]
@@ -766,6 +787,13 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
+[CHR_briar_archetype.BodyMesh15]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Destaques"
@@ -807,7 +835,7 @@ BodyMesh11="Caçador de Bruxas"
 BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
-BodyMesh15="Traje Uniforme de Astronauta"
+BodyMesh15="Traje de Compras de Feriado"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -938,6 +966,13 @@ BodySkin2="Fome"
 BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Branco Original"
@@ -1100,7 +1135,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
-BodyMesh15="Traje Uniforme de Astronauta"
+BodyMesh14="Traje de Compras de Feriado"
 HeadMesh0="Rosto"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1219,6 +1254,13 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
+[CHR_Coleman_archetype.BodyMesh14]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
@@ -1259,7 +1301,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
-BodyMesh14="Traje Uniforme de Astronauta"
+BodyMesh14="Traje de Compras de Feriado"
 HeadMesh0="Cabelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1379,6 +1421,13 @@ BodySkin2="Fome"
 BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Cinza"
@@ -2280,7 +2329,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
-BodyMesh14="Traje Uniforme de Astronauta"
+BodyMesh14="Traje de Compras de Feriado"
 HeadMesh0="Rosto"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2410,6 +2459,13 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka é um rapaz com sérios problemas pessoais e sério desejo de suicídio. Nascido em Okinawa, ele foi criado em meio a militares norte-americanos. Ao se mudar para a ilha central de Honshu com a família, o americanizado Tanaka não se adequou à nova vida e começou a fazer aulas de teatro. Depois do colegial, mudou-se para Los Angeles e começou a fazer pequenos papéis em filmes ruins até que se mudou para a Europa à procura de um trabalho mais “sério”. Porém, conseguiu apenas alguns papéis de vilão em filmes franceses de gângster e algumas tatuagens. Agora, no apocalipse, ele parece estar confundindo sua própria realidade com a dramaturgia. Com direito a visões de Yakuza, demônios e bushido em Hollywood."
@@ -2428,7 +2484,7 @@ BodyMesh11="Caçador de Bruxas"
 BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
-BodyMesh15="Traje Uniforme de Astronauta"
+BodyMesh15="Traje de Compras de Feriado"
 HeadMesh0="Cabelo"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2565,6 +2621,13 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
+[CHR_Tanaka_archetype.BodyMesh15]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Capacete"
 AttachmentSkin0="Sol Nascente"
@@ -2609,7 +2672,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
-BodyMesh14="Traje Uniforme de Astronauta"
+BodyMesh14="Traje de Compras de Feriado"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2739,6 +2802,13 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
+[CHR_Ana_archetype.BodyMesh14]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Óculos 3D"
 AttachmentSkin0="Anaglifo 3D"
@@ -2769,7 +2839,7 @@ BodyMesh11="Caçador de Bruxas"
 BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
-BodyMesh15="Traje Uniforme de Astronauta"
+BodyMesh15="Traje de Compras de Feriado"
 HeadMesh0="Cabelo"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2896,6 +2966,13 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
+
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
 HeadSkin1="5 Horas Sangrentas"
@@ -2923,7 +3000,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
-BodyMesh14="Traje Uniforme de Astronauta"
+BodyMesh14="Traje de Compras de Feriado"
 HeadMesh0="Rosto"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3045,6 +3122,13 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
+[CHR_alan_archetype.BodyMesh14]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
 HeadSkin1="Ruivo! Sério?"
@@ -3079,7 +3163,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
-BodyMesh14="Traje Uniforme de Astronauta"
+BodyMesh14="Traje de Compras de Feriado"
 HeadMesh0="Cabelo"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3197,6 +3281,13 @@ BodySkin2="Fome"
 BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
+
+[CHR_strasser_archetype.BodyMesh14]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Aço Escuro"
@@ -3376,7 +3467,7 @@ BodyMesh10="Caçador de Bruxas"
 BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
-BodyMesh14="Traje Uniforme de Astronauta"
+BodyMesh14="Traje de Compras de Feriado"
 HeadMesh0="Cabeça Padrão"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3498,6 +3589,13 @@ BodySkin2="Fome"
 BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
+
+[CHR_rockabilly_archetype.BodyMesh14]
+BodySkin0="Noel"
+BodySkin1="Elfo"
+BodySkin2="Polo Norte"
+BodySkin3="Natal do Caos"
+BodySkin4="Precioso"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Pretas"
@@ -6762,111 +6860,6 @@ AttachmentSkin2="Explosão Estelar"
 AttachmentSkin3="Galáxia"
 AttachmentSkin4="Precioso"
 
-[CHR_Tanaka_Archetype.BodyMesh15]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[CHR_Alberts_archetype.BodyMesh14]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[CHR_Ana_Archetype.BodyMesh14]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[CHR_BadSanta_Archetype.BodyMesh14]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[chr_briar_archetype.BodyMesh15]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[CHR_Coleman_archetype.BodyMesh15]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[chr_DJSkully_archetype.BodyMesh14]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[CHR_Jagerhorn_Archetype.BodyMesh14]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[chr_mark_archetype.BodyMesh15]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[CHR_Masterson_archetype.BodyMesh14]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[CHR_MrFoster_archetype.BodyMesh15]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[CHR_MrsFoster_archetype.BodyMesh14]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[chr_rockabilly_archetype.BodyMesh14]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[chr_strasser_archetype.BodyMesh14]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
-[chr_alan_archetype.BodyMesh14]
-BodySkin0="Espaço Sideral"
-BodySkin1="Singularidade"
-BodySkin2="Explosão Estelar"
-BodySkin3="Galáxia"
-BodySkin4="Precioso"
-
 [Cosmetic_Vietnam_USHelmet_ARCH]
 Attachment="Capacete EUA Vietnã"
 AttachmentSkin0="Verde-oliva"
@@ -7021,4 +7014,127 @@ AttachmentSkin0="Precioso"
 
 [Cosmetic_WildWest_CowboyHat_ARCH]
 Attachment="Chapéu londrino do Velho Oeste"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_XMAS2021_Cart_ARCH]
+Attachment="Carrinho de Compras de Feriado"
+AttachmentSkin0="Noel"
+AttachmentSkin1="Elfo"
+AttachmentSkin2="Polo Norte"
+AttachmentSkin3="Natal do Caos"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_XMAS2021_Hat_ARCH]
+Attachment="Chapéu de Compras de Feriado"
+AttachmentSkin0="Noel"
+AttachmentSkin1="Elfo"
+AttachmentSkin2="Polo Norte"
+AttachmentSkin3="Natal do Caos"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_XMAS2021_Helmet_ARCH]
+Attachment="Capacete de Compras de Feriado"
+AttachmentSkin0="Noel"
+AttachmentSkin1="Elfo"
+AttachmentSkin2="Polo Norte"
+AttachmentSkin3="Natal do Caos"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_XMAS2021_Armband_ARCH]
+Attachment="Braçadeira de Compras de Feriado"
+AttachmentSkin0="Noel"
+AttachmentSkin1="Elfo"
+AttachmentSkin2="Polo Norte"
+AttachmentSkin3="Natal do Caos"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_XMAS2021_Mask_ARCH]
+Attachment="Máscara de Compras de Feriado"
+AttachmentSkin0="Noel"
+AttachmentSkin1="Elfo"
+AttachmentSkin2="Polo Norte"
+AttachmentSkin3="Natal do Caos"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_XMAS2021_Goggles_ARCH]
+Attachment="Óculos de Compras de Feriado"
+AttachmentSkin0="Noel"
+AttachmentSkin1="Elfo"
+AttachmentSkin2="Polo Norte"
+AttachmentSkin3="Natal do Caos"
+AttachmentSkin4="Precioso"
+
+[Cosmetic_XMAS2021_Companion_ARCH]
+Attachment="Acompanhante de Compras de Feriado"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_Alchemist_Armband_ARCH]
+Attachment="Braçadeira de Alquimista"
+AttachmentSkin0="Tóxico"
+AttachmentSkin1="Chama"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Blecaute"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_Alchemist_Bomb_ARCH]
+Attachment="Bomba de Alquimista"
+AttachmentSkin0="Tóxico"
+AttachmentSkin1="Chama"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Blecaute"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_Alchemist_Goggles_ARCH]
+Attachment="Óculos de Alquimista"
+AttachmentSkin0="Tóxico"
+AttachmentSkin1="Chama"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Blecaute"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_Alchemist_Helmet_ARCH]
+Attachment="Capacete de Alquimista"
+AttachmentSkin0="Tóxico"
+AttachmentSkin1="Chama"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Blecaute"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_Alchemist_Mask_ARCH]
+Attachment="Máscara de Alquimista"
+AttachmentSkin0="Tóxico"
+AttachmentSkin1="Chama"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Blecaute"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_Alchemist_PressureVessel_ARCH]
+Attachment="Vaso de Pressão de Alquimista"
+AttachmentSkin0="Tóxico"
+AttachmentSkin1="Chama"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Blecaute"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_Alchemist_Vials_ARCH]
+Attachment="Recipientes de Alquimista"
+AttachmentSkin0="Tóxico"
+AttachmentSkin1="Chama"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Eletricidade"
+AttachmentSkin4="Blecaute"
+AttachmentSkin5="Precioso"
+
+[Cosmetic_PracticeTarget_Backpack_ARCH]
+Attachment="Mochila de Tiro ao Alvo"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_BossTrophy_Backpack_ARCH]
+Attachment="Mochila de Troféu de Chefe"
 AttachmentSkin0="Precioso"

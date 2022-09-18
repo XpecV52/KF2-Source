@@ -800,6 +800,8 @@ LeaveString="離開隊伍"
 SquadString="小隊"
 SoloString="小隊"
 DefaultPlayerName="玩家"
+PauseGameString="暫停遊戲"
+ResumeGameString="繼續遊戲"
 
 PartyLeaderSearchingForMatchString="正在尋找配對…"
 PartyLeaderIsUpdatingMatchOptionsString="正在設定配對選項…"
@@ -1057,6 +1059,10 @@ ThrowString="投擲武器"
 VoteKickString="將玩家踢出遊戲？"
 VoteSkipTraderString="跳過商人？"
 VoteSkipTraderDetailString="想要跳過倒數計時"
+VotePauseGameString="是否暫停遊戲？"
+VotePauseGameDetailString="想要暫停遊戲"
+VoteResumeGameString="是否繼續遊戲？"
+VoteResumeGameDetailString="想要繼續遊戲"
 
 [KFLocalMessage_PlayerKills]
 KilledString="殺敵數"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="你投票不跳過商人"
 SkipTraderNoEnoughTimeString="發起跳過商人投票的時間不足"
 SkipTraderThisUserAlreadyStartedAVoteString="下次商人階段前無法發起跳過新的跳過商人投票"
 SkipTraderVersusZedPlayerVotes="Zed 隊伍的玩家無法投票跳過商人"
+PauseVoteStartedString="發起暫停遊戲的投票"
+PauseVoteInProgressString="無法發起暫停遊戲的投票，已有投票在進行"
+PauseVoteYesReceivedString="你投票同意暫停遊戲"
+PauseVoteNoReceivedString="你投票不同意暫停遊戲"
+PauseVoteNoEnoughTimeString="發起暫停遊戲投票的時間不足"
+PauseVoteNoSpectatorsString="觀戰者無法發起暫停遊戲的投票"
+PauseVoteTimeString="暫停遊戲投票開始。在遊戲選單中選擇「暫停遊戲」進行投票。需要所有玩家的同意。"
+PauseVoteSuccessString="暫停遊戲投票成功！"
+PauseVoteFailedString="暫停遊戲投票失敗！"
+PauseVoteWaveActiveString="無法發起暫停遊戲的投票，攻擊波數已經開始"
+PauseVoteWrongModeString="此選項僅在無盡模式中有效"
+ResumeVoteStartedString="發起繼續遊戲的投票"
+ResumeVoteInProgressString="無法發起繼續遊戲的投票，已有投票在進行"
+ResumeVoteYesReceivedString="你投票同意繼續遊戲"
+ResumeVoteNoReceivedString="你投票不同意繼續遊戲"
+ResumeVoteNoEnoughTimeString="發起繼續遊戲投票的時間不足"
+ResumeVoteNoSpectatorsString="觀戰者無法發起繼續遊戲的投票"
+ResumeVoteTimeString="繼續遊戲投票開始。在遊戲選單中選擇「繼續遊戲」進行投票。需要所有玩家的同意。"
+ResumeVoteSuccessString="繼續遊戲投票成功！"
+ResumeVoteFailedString="繼續遊戲投票失敗！"
+ResumeVoteWaveActiveString="無法發起繼續遊戲的投票，攻擊波數已經開始"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="你收到的彈藥來自"
@@ -2247,7 +2274,7 @@ ZedShrapnel="同時 Z 爆"
 ZedShrapnelDescription="你殺害的 Zed 有 30% 可能性會爆炸，對附近其他 Zed 造成傷害並使其暈眩。"
 
 MakeThingsGoBoom="四處炸裂"
-MakeThingsGoBoomDescription="炸藥抗性增加 40%，所有炸藥影響區域增加 40%。"
+MakeThingsGoBoomDescription="炸藥抗性增加50%，所有炸藥影響區域增加50%。"
 
 Madman="ZED 時間 - 狂人"
 MadmanDescription="Zed 時間發動時，你的所有武器射速變為 3 倍。"
@@ -2848,14 +2875,28 @@ CurrentSpecialEventString="附有獨特道具的限時特別活動"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="恐怖表現",DescriptionString="在任何地圖或模式中擊殺15個頭目")
 SpecialEventObjectiveInfoList[1]=(TitleString="每週邪教",DescriptionString="完成每週地獄要塞任務")
-SpecialEventObjectiveInfoList[2]=(TitleString="聲音從牆壁里傳來",DescriptionString="找到地獄之心")
+SpecialEventObjectiveInfoList[2]=(TitleString="聲音從牆壁裡傳來",DescriptionString="找到地獄之心")
 SpecialEventObjectiveInfoList[3]=(TitleString="紫色瘴氣",DescriptionString="解鎖禮拜堂和宴會廳的門")
 SpecialEventObjectiveInfoList[4]=(TitleString="無盡懲罰",DescriptionString="在地獄要塞以無盡模式困難或更高難度完成第15波攻勢")
 
-AllCompleteRewardDescriptionString="太空人 | 同伴背包 | 珍貴"
+AllCompleteRewardDescriptionString="DoZ | 同伴 | 珍貴"
 
 ChanceDropDescriptionStrings[0]="萬聖節票券"
 ChanceDropDescriptionStrings[1]="萬聖節金色票券"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2021] 
+CurrentSpecialEventString="附有獨特道具的限時特別活動"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="跳樓大拍賣！",DescriptionString="在任何地圖或模式斬首1000個Zed")
+SpecialEventObjectiveInfoList[1]=(TitleString="黑色特賣週",DescriptionString="完成每週鐘琴村莊任務")
+SpecialEventObjectiveInfoList[2]=(TitleString="富到流油",DescriptionString="在鐘琴村莊透過擊殺、獎勵和治療賺取75,000金錢")
+SpecialEventObjectiveInfoList[3]=(TitleString="慘痛代價",DescriptionString="在鐘琴村莊透過商人購買總共20件超過1500金錢的武器")
+SpecialEventObjectiveInfoList[4]=(TitleString="揮霍無度",DescriptionString="在鐘琴村莊以無盡模式困難或更高難度完成第15波攻勢")
+
+AllCompleteRewardDescriptionString="假期購物 | 同伴 | 珍貴"
+
+ChanceDropDescriptionStrings[0]="坎普斯票券"
+ChanceDropDescriptionStrings[1]="坎普斯金色票券"
 
 ;============================================
 ; Daily Localization
@@ -3002,6 +3043,26 @@ FriendlyName="斷棄希望"
 DescriptionStrings[0]="終極挑戰"
 DescriptionStrings[1]="長度：中（7波攻勢）"
 ModifierDescriptions[0]="警告：此模式極度困難！只適合將生存人間煉獄難度視為兒戲的玩家。在配對頁面選擇每週遊戲模式。職業等級15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="頭目連戰"
+DescriptionStrings[0]="打倒所有人"
+DescriptionStrings[1]="長度：短（5波攻擊）"
+ModifierDescriptions[0]="五波攻擊、五個頭目。你準備好接連擊敗敵人了嗎？警告：每擊敗一個頭目，遊戲難度都會上升。在配對頁面中選擇每週活動遊戲模式。職業15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="縮小頭顱"
+DescriptionStrings[0]="嘗試爆頭是沒用的……"
+DescriptionStrings[1]="長度：中（7波攻勢）"
+ModifierDescriptions[0]="對方似乎知道玩家有瞄準頭部的習慣，因此針對頭部的部分採取了保護措施。不過，看起來對方還是有其他弱點。在配對頁面中選擇每週活動遊戲模式。職業15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3529,6 +3590,9 @@ DisplayName="月球基地"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="地獄要塞"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="Carillon Hamlet"
 
 [KFMapInfo]
 ; defaults

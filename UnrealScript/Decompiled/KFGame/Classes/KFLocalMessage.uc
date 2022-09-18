@@ -41,6 +41,27 @@ enum ELocalMessageType
     LMT_SkipTraderVoteNoReceived,
     LMT_SkipTraderNoEnoughTime,
     LMT_SkipTraderThisUserAlreadyStartedAVote,
+    LMT_PauseVoteStarted,
+    LMT_PauseVoteInProgress,
+    LMT_PauseVoteYesReceived,
+    LMT_PauseVoteNoReceived,
+    LMT_PauseVoteNoEnoughTime,
+    LMT_PauseVoteNoSpectators,
+    LMT_PauseVoteTime,
+    LMT_PauseVoteSuccess,
+    LMT_PauseVoteFailed,
+    LMT_PauseVoteWaveActive,
+    LMT_PauseVoteWrongMode,
+    LMT_ResumeVoteStarted,
+    LMT_ResumeVoteInProgress,
+    LMT_ResumeVoteYesReceived,
+    LMT_ResumeVoteNoReceived,
+    LMT_ResumeVoteNoEnoughTime,
+    LMT_ResumeVoteNoSpectators,
+    LMT_ResumeVoteTime,
+    LMT_ResumeVoteSuccess,
+    LMT_ResumeVoteFailed,
+    LMT_ResumeVoteWaveActive,
     LMT_MAX
 };
 
@@ -80,6 +101,27 @@ var const localized string SkipTraderNoEnoughTimeString;
 var const localized string SkipTraderThisUserAlreadyStartedAVoteString;
 var const localized string SkipTraderVoteYesReceivedString;
 var const localized string SkipTraderVoteNoReceivedString;
+var const localized string PauseVoteStartedString;
+var const localized string PauseVoteInProgressString;
+var const localized string PauseVoteYesReceivedString;
+var const localized string PauseVoteNoReceivedString;
+var const localized string PauseVoteNoEnoughTimeString;
+var const localized string PauseVoteNoSpectatorsString;
+var const localized string PauseVoteTimeString;
+var const localized string PauseVoteSuccessString;
+var const localized string PauseVoteFailedString;
+var const localized string PauseVoteWaveActiveString;
+var const localized string PauseVoteWrongModeString;
+var const localized string ResumeVoteStartedString;
+var const localized string ResumeVoteInProgressString;
+var const localized string ResumeVoteYesReceivedString;
+var const localized string ResumeVoteNoReceivedString;
+var const localized string ResumeVoteNoEnoughTimeString;
+var const localized string ResumeVoteNoSpectatorsString;
+var const localized string ResumeVoteTimeString;
+var const localized string ResumeVoteSuccessString;
+var const localized string ResumeVoteFailedString;
+var const localized string ResumeVoteWaveActiveString;
 var int MessageArea;
 var int AnnouncementPriority;
 var bool bShowPortrait;
@@ -129,6 +171,48 @@ static function string GetString(optional int Switch, optional bool bPRI1HUD, op
     }
     switch(Switch)
     {
+        case 42:
+            return RelatedPRI_1.PlayerName @ default.ResumeVoteStartedString;
+        case 43:
+            return default.ResumeVoteInProgressString;
+        case 44:
+            return default.ResumeVoteYesReceivedString;
+        case 45:
+            return default.ResumeVoteNoReceivedString;
+        case 46:
+            return default.ResumeVoteNoEnoughTimeString;
+        case 47:
+            return default.ResumeVoteNoSpectatorsString;
+        case 48:
+            return default.ResumeVoteTimeString;
+        case 49:
+            return default.ResumeVoteSuccessString;
+        case 50:
+            return default.ResumeVoteFailedString;
+        case 51:
+            return default.ResumeVoteWaveActiveString;
+        case 31:
+            return RelatedPRI_1.PlayerName @ default.PauseVoteStartedString;
+        case 32:
+            return default.PauseVoteInProgressString;
+        case 33:
+            return default.PauseVoteYesReceivedString;
+        case 34:
+            return default.PauseVoteNoReceivedString;
+        case 35:
+            return default.PauseVoteNoEnoughTimeString;
+        case 36:
+            return default.PauseVoteNoSpectatorsString;
+        case 37:
+            return default.PauseVoteTimeString;
+        case 38:
+            return default.PauseVoteSuccessString;
+        case 39:
+            return default.PauseVoteFailedString;
+        case 40:
+            return default.PauseVoteWaveActiveString;
+        case 41:
+            return default.PauseVoteWrongModeString;
         case 5:
             return default.OtherVoteInProgressString;
         case 20:
@@ -304,6 +388,27 @@ defaultproperties
     SkipTraderThisUserAlreadyStartedAVoteString="You can't start a new skip trader vote until the next trader phase"
     SkipTraderVoteYesReceivedString="You have voted to skip trader"
     SkipTraderVoteNoReceivedString="You have voted to not skip trader"
+    PauseVoteStartedString="Initiated a Pause Game vote"
+    PauseVoteInProgressString="Cannot start a Pause Game vote, one is already active"
+    PauseVoteYesReceivedString="You have voted to pause the game"
+    PauseVoteNoReceivedString="You have voted to not pause the game"
+    PauseVoteNoEnoughTimeString="Not enough time to start a Pause Game vote"
+    PauseVoteNoSpectatorsString="Spectators may not initiate a Pause Game vote"
+    PauseVoteTimeString="PAUSE GAME activated. Select 'PAUSE GAME' on the game menu to vote.  All players must agree."
+    PauseVoteSuccessString="Pause Game vote successful!"
+    PauseVoteFailedString="Pause Game vote failed!"
+    PauseVoteWaveActiveString="Cannot start a Pause Game vote, the wave is active"
+    PauseVoteWrongModeString="This option is only available on Endless mode"
+    ResumeVoteStartedString="Initiated a Resume Game vote"
+    ResumeVoteInProgressString="Cannot start a Resume Game vote, one is already active"
+    ResumeVoteYesReceivedString="You have voted to resume the game"
+    ResumeVoteNoReceivedString="You have voted to not resume the game"
+    ResumeVoteNoEnoughTimeString="Not enough time to start a Resume Game vote"
+    ResumeVoteNoSpectatorsString="Spectators may not initiate a Resume Game vote"
+    ResumeVoteTimeString="RESUME GAME activated. Select 'RESUME GAME' on the game menu to vote.  All players must agree."
+    ResumeVoteSuccessString="Resume Game vote successful!"
+    ResumeVoteFailedString="Resume Game vote failed!"
+    ResumeVoteWaveActiveString="Cannot start a Resume Game vote, the wave is active"
     MessageArea=1
     AnnouncementVolume=2
     SayColor="FFFFFF"

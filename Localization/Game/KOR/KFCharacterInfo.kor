@@ -46,7 +46,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
-BodyMesh14="우주인 수트 의상"
+BodyMesh14="연휴 쇼핑 의상"
 HeadMesh0="가스 마스크"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -162,6 +162,13 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="화이트"
 HeadSkin1="그린"
@@ -249,7 +256,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
-BodyMesh14="우주인 수트 의상"
+BodyMesh14="연휴 쇼핑 의상"
 HeadMesh0="수염의 힘!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -371,6 +378,13 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
+[CHR_Jagerhorn_archetype.BodyMesh14]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="스웨덴 금발"
 HeadSkin1="블랙 앨범"
@@ -471,7 +485,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적"
 BodyMesh13="리퍼 복장"
-BodyMesh14="우주인 수트 의상"
+BodyMesh14="연휴 쇼핑 의상"
 HeadMesh0="스컬리 마스크"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -592,6 +606,13 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
+[CHR_DJSkully_archetype.BodyMesh14]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="가장 어두운 블랙"
 HeadSkin1="엑스트라 레드"
@@ -639,7 +660,7 @@ BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
-BodyMesh15="우주인 수트 의상"
+BodyMesh15="연휴 쇼핑 의상"
 HeadMesh0="헤어"
 
 [chr_briar_archetype.BodyMesh0]
@@ -766,6 +787,13 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
+[CHR_briar_archetype.BodyMesh15]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="오리지널"
 HeadSkin1="하이라이트"
@@ -807,7 +835,7 @@ BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
-BodyMesh15="우주인 수트 의상"
+BodyMesh15="연휴 쇼핑 의상"
 HeadMesh0="가스 마스크"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -938,6 +966,13 @@ BodySkin2="기근"
 BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="오리지널 화이트"
@@ -1100,7 +1135,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
-BodyMesh15="우주인 수트 의상"
+BodyMesh14="연휴 쇼핑 의상"
 HeadMesh0="페이스"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1219,6 +1254,13 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
+[CHR_Coleman_archetype.BodyMesh14]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="도노반"
 HeadSkin1="탯"
@@ -1259,7 +1301,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
-BodyMesh14="우주인 수트 의상"
+BodyMesh14="연휴 쇼핑 의상"
 HeadMesh0="헤어"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1379,6 +1421,13 @@ BodySkin2="기근"
 BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="그레이"
@@ -2280,7 +2329,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
-BodyMesh14="우주인 수트 의상"
+BodyMesh14="연휴 쇼핑 의상"
 HeadMesh0="페이스"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2410,6 +2459,13 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
+
 [CHR_Tanaka_Archetype]
 CharacterName="하야토 타나카"
 Description="타나카는 죽음에 대한 동경으로 어려움을 겪고 있습니다. 오키나와에서 태어난 그는 미군 가정에서 자랍니다. 가족과 함께 일본으로 이주한 타나카는 미국 문화에 젖어 연기 수업을 받지 못합니다. 대학을 졸업한 후 LA로 이주하여 형편없는 영화에 단역으로 출연하던 그는 보다 ‘진지한’ 작업을 위해 유럽으로 옮깁니다. 그가 맡게 된 역할은 고작 프랑스 갱스터 영화의 악역이었습니다. 이제 세계가 멸망하자 그는 현실과 영화 속에서 자신이 맡았던 역할을 혼동하게 되었습니다. 여기에는 야쿠자와 악마, 할리우드판 무사도의 환상이 섞여 있는 것처럼 보입니다."
@@ -2428,7 +2484,7 @@ BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
-BodyMesh15="우주인 수트 의상"
+BodyMesh15="연휴 쇼핑 의상"
 HeadMesh0="헤어"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2565,6 +2621,13 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
+[CHR_Tanaka_archetype.BodyMesh15]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="헬멧"
 AttachmentSkin0="라이징 선"
@@ -2609,7 +2672,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
-BodyMesh14="우주인 수트 의상"
+BodyMesh14="연휴 쇼핑 의상"
 HeadMesh0="모호크"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2739,6 +2802,13 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
+[CHR_Ana_archetype.BodyMesh14]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 안경"
 AttachmentSkin0="애너그리프 3D"
@@ -2769,7 +2839,7 @@ BodyMesh11="위치 헌터"
 BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
-BodyMesh15="우주인 수트 의상"
+BodyMesh15="연휴 쇼핑 의상"
 HeadMesh0="헤어"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2896,6 +2966,13 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
+
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
 HeadSkin1="피바다 5시"
@@ -2923,7 +3000,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
-BodyMesh14="우주인 수트 의상"
+BodyMesh14="연휴 쇼핑 의상"
 HeadMesh0="페이스"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3045,6 +3122,13 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
+[CHR_alan_archetype.BodyMesh14]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
 HeadSkin1="진저! 정말?"
@@ -3079,7 +3163,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
-BodyMesh14="우주인 수트 의상"
+BodyMesh14="연휴 쇼핑 의상"
 HeadMesh0="헤어"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3197,6 +3281,13 @@ BodySkin2="기근"
 BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
+
+[CHR_strasser_archetype.BodyMesh14]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="다크 스틸"
@@ -3376,7 +3467,7 @@ BodyMesh10="위치 헌터"
 BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
-BodyMesh14="우주인 수트 의상"
+BodyMesh14="연휴 쇼핑 의상"
 HeadMesh0="기본 머리"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3498,6 +3589,13 @@ BodySkin2="기근"
 BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
+
+[CHR_rockabilly_archetype.BodyMesh14]
+BodySkin0="산타"
+BodySkin1="엘프"
+BodySkin2="북극"
+BodySkin3="크리스메스"
+BodySkin4="프레셔스"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="블랙"
@@ -6762,111 +6860,6 @@ AttachmentSkin2="스타버스트"
 AttachmentSkin3="갤럭시"
 AttachmentSkin4="프레셔스"
 
-[CHR_Tanaka_Archetype.BodyMesh15]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[CHR_Alberts_archetype.BodyMesh14]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[CHR_Ana_Archetype.BodyMesh14]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[CHR_BadSanta_Archetype.BodyMesh14]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[chr_briar_archetype.BodyMesh15]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[CHR_Coleman_archetype.BodyMesh15]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[chr_DJSkully_archetype.BodyMesh14]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[CHR_Jagerhorn_Archetype.BodyMesh14]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[chr_mark_archetype.BodyMesh15]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[CHR_Masterson_archetype.BodyMesh14]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[CHR_MrFoster_archetype.BodyMesh15]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[CHR_MrsFoster_archetype.BodyMesh14]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[chr_rockabilly_archetype.BodyMesh14]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[chr_strasser_archetype.BodyMesh14]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
-[chr_alan_archetype.BodyMesh14]
-BodySkin0="심우주"
-BodySkin1="특이점"
-BodySkin2="스타버스트"
-BodySkin3="갤럭시"
-BodySkin4="프레셔스"
-
 [Cosmetic_Vietnam_USHelmet_ARCH]
 Attachment="베트남 미국 헬멧"
 AttachmentSkin0="올리브"
@@ -7021,4 +7014,127 @@ AttachmentSkin0="프레셔스"
 
 [Cosmetic_WildWest_CowboyHat_ARCH]
 Attachment="서부 황야 런던 모자"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_XMAS2021_Cart_ARCH]
+Attachment="연휴 쇼핑 카트"
+AttachmentSkin0="산타"
+AttachmentSkin1="엘프"
+AttachmentSkin2="북극"
+AttachmentSkin3="크리스메스"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_XMAS2021_Hat_ARCH]
+Attachment="연휴 쇼핑 모자"
+AttachmentSkin0="산타"
+AttachmentSkin1="엘프"
+AttachmentSkin2="북극"
+AttachmentSkin3="크리스메스"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_XMAS2021_Helmet_ARCH]
+Attachment="연휴 쇼핑 헬멧"
+AttachmentSkin0="산타"
+AttachmentSkin1="엘프"
+AttachmentSkin2="북극"
+AttachmentSkin3="크리스메스"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_XMAS2021_Armband_ARCH]
+Attachment="연휴 쇼핑 암밴드"
+AttachmentSkin0="산타"
+AttachmentSkin1="엘프"
+AttachmentSkin2="북극"
+AttachmentSkin3="크리스메스"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_XMAS2021_Mask_ARCH]
+Attachment="연휴 쇼핑 마스크"
+AttachmentSkin0="산타"
+AttachmentSkin1="엘프"
+AttachmentSkin2="북극"
+AttachmentSkin3="크리스메스"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_XMAS2021_Goggles_ARCH]
+Attachment="연휴 쇼핑 고글"
+AttachmentSkin0="산타"
+AttachmentSkin1="엘프"
+AttachmentSkin2="북극"
+AttachmentSkin3="크리스메스"
+AttachmentSkin4="프레셔스"
+
+[Cosmetic_XMAS2021_Companion_ARCH]
+Attachment="연휴 쇼핑 동반자"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_Alchemist_Armband_ARCH]
+Attachment="연금술사 암밴드"
+AttachmentSkin0="중독"
+AttachmentSkin1="블레이즈"
+AttachmentSkin2="플라즈마"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="블랙아웃"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_Alchemist_Bomb_ARCH]
+Attachment="연금술사 폭탄"
+AttachmentSkin0="중독"
+AttachmentSkin1="블레이즈"
+AttachmentSkin2="플라즈마"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="블랙아웃"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_Alchemist_Goggles_ARCH]
+Attachment="연금술사 고글"
+AttachmentSkin0="중독"
+AttachmentSkin1="블레이즈"
+AttachmentSkin2="플라즈마"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="블랙아웃"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_Alchemist_Helmet_ARCH]
+Attachment="연금술사 헬멧"
+AttachmentSkin0="중독"
+AttachmentSkin1="블레이즈"
+AttachmentSkin2="플라즈마"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="블랙아웃"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_Alchemist_Mask_ARCH]
+Attachment="연금술사 마스크"
+AttachmentSkin0="중독"
+AttachmentSkin1="블레이즈"
+AttachmentSkin2="플라즈마"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="블랙아웃"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_Alchemist_PressureVessel_ARCH]
+Attachment="연금술사 압력솥"
+AttachmentSkin0="중독"
+AttachmentSkin1="블레이즈"
+AttachmentSkin2="플라즈마"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="블랙아웃"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_Alchemist_Vials_ARCH]
+Attachment="연금술사 보관용기"
+AttachmentSkin0="중독"
+AttachmentSkin1="블레이즈"
+AttachmentSkin2="플라즈마"
+AttachmentSkin3="볼티지"
+AttachmentSkin4="블랙아웃"
+AttachmentSkin5="프레셔스"
+
+[Cosmetic_PracticeTarget_Backpack_ARCH]
+Attachment="연습용 표적 백팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_BossTrophy_Backpack_ARCH]
+Attachment="보스 트로피 백팩"
 AttachmentSkin0="프레셔스"

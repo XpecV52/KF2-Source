@@ -93,7 +93,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     {
         KFW = GetWeaponFromDamageCauser(DamageCauser);
     }
-    if(((KFW != none) && IsWeaponOnPerk(KFW,, self.Class)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
+    if(((KFW != none) && (IsWeaponOnPerk(KFW,, self.Class)) || IsDoshinegun(KFW)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
     {
         if((MyKFPM != none) && HitZoneIdx == 0)
         {

@@ -11,6 +11,7 @@ package
             super();
             this.__setProp_promptsDisplay_SquadContainerMC_prompts_0();
             this.__setProp_leaveButton_SquadContainerMC_LeaveButton_0();
+            this.__setProp_endlessPauseButton_SquadContainerMC_EndlessButton_0();
             this.__setProp_readyButton_SquadContainerMC_ReadyButton_0();
             this.__setProp_createPartyButton_SquadContainerMC_CreatePartyButton_0();
             this.__setProp_optionsList0_SquadContainerMC_optionList0_0();
@@ -61,6 +62,35 @@ package
             try
             {
                 leaveButton["componentInspectorSetting"] = false;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        function __setProp_endlessPauseButton_SquadContainerMC_EndlessButton_0() : *
+        {
+            try
+            {
+                endlessPauseButton["componentInspectorSetting"] = true;
+            }
+            catch(e:Error)
+            {
+            }
+            endlessPauseButton.autoRepeat = false;
+            endlessPauseButton.autoSize = "none";
+            endlessPauseButton.clickSoundEffect = "ReadyButton_Selected";
+            endlessPauseButton.data = "";
+            endlessPauseButton.enabled = true;
+            endlessPauseButton.enableInitCallback = false;
+            endlessPauseButton.focusable = true;
+            endlessPauseButton.label = "READY UP";
+            endlessPauseButton.selected = false;
+            endlessPauseButton.toggle = true;
+            endlessPauseButton.visible = true;
+            try
+            {
+                endlessPauseButton["componentInspectorSetting"] = false;
             }
             catch(e:Error)
             {

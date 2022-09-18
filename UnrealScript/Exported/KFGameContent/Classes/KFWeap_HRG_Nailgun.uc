@@ -135,6 +135,7 @@ defaultproperties
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_NailsBurst'
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_HRG_Nailgun_PDW_TEX.UI_WeaponSelect_HRG_Nailgun_PDW'
+   SpareAmmoCapacity(0)=336
    InitialSpareMags(0)=2
    bLoopingFireAnim(0)=True
    bLoopingFireAnim(1)=True

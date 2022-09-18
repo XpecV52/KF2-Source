@@ -95,7 +95,7 @@ defaultproperties
     GroupPriority=50
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_NailShotgun'
     MagazineCapacity=42
-    SpareAmmoCapacity=336
+    SpareAmmoCapacity=378
     InitialSpareMags=3
     WeaponFireWaveForm=ForceFeedbackWaveform'FX_ForceFeedback_ARCH.Gunfire.Heavy_Recoil_SingleShot'
     FireSightedAnims=/* Array type was not detected. */

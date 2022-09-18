@@ -800,6 +800,8 @@ LeaveString="ABAND. GRUPO"
 SquadString="ESCUADRÓN"
 SoloString="ESCUADRÓN"
 DefaultPlayerName="Jugador"
+PauseGameString="PAUSAR PARTIDA"
+ResumeGameString="REANUDAR PARTIDA"
 
 PartyLeaderSearchingForMatchString="está buscando una partida..."
 PartyLeaderIsUpdatingMatchOptionsString="está ajustando la partida..."
@@ -1057,6 +1059,10 @@ ThrowString="LANZAR ARMA"
 VoteKickString="¿Expulsar jugador?"
 VoteSkipTraderString="¿Saltar mercader?"
 VoteSkipTraderDetailString="quiere saltar la cuenta regresiva"
+VotePauseGameString="¿Quieres pausar la partida?"
+VotePauseGameDetailString="quiere pausar la partida"
+VoteResumeGameString="¿Quieres reanudar la partida?"
+VoteResumeGameDetailString="quiere reanudar la partida"
 
 [KFLocalMessage_PlayerKills]
 KilledString="muerto"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="Has votado en contra de Saltar mercader"
 SkipTraderNoEnoughTimeString="No queda tiempo suficiente para una votación de Saltar mercader"
 SkipTraderThisUserAlreadyStartedAVoteString="No puedes iniciar una votación de Saltar mercader hasta la siguiente fase de mercader"
 SkipTraderVersusZedPlayerVotes="Los jugadores del equipo Zed no pueden votar para saltar el mercader"
+PauseVoteStartedString="Ha iniciado una votación para pausar la partida"
+PauseVoteInProgressString="No se puede iniciar una votación para pausar la partida, ya hay una activa."
+PauseVoteYesReceivedString="Has votado a favor de pausar la partida"
+PauseVoteNoReceivedString="Has votado en contra de pausar la partida"
+PauseVoteNoEnoughTimeString="No queda tiempo suficiente para una votación para pausar la partida"
+PauseVoteNoSpectatorsString="Los espectadores no pueden iniciar una votación para pausar la partida"
+PauseVoteTimeString="PAUSAR PARTIDA activado. Selecciona "PAUSAR PARTIDA" para votar.  Todos deben aceptar."
+PauseVoteSuccessString="¡Votación para pausar partida realizada!"
+PauseVoteFailedString="¡Votación para pausar partida fallida!"
+PauseVoteWaveActiveString="No se puede iniciar una votación para pausar la partida, hay una oleada activa."
+PauseVoteWrongModeString="Esta opción solo está disponible en el modo sin fin"
+ResumeVoteStartedString="Ha iniciado una votación para reanudar la partida"
+ResumeVoteInProgressString="No se puede iniciar una votación para reanudar la partida, ya hay una activa."
+ResumeVoteYesReceivedString="Has votado a favor de reanudar la partida"
+ResumeVoteNoReceivedString="Has votado en contra de reanudar la partida"
+ResumeVoteNoEnoughTimeString="No queda tiempo suficiente para una votación para reanudar la partida"
+ResumeVoteNoSpectatorsString="Los espectadores no pueden iniciar una votación para reanudar la partida"
+ResumeVoteTimeString="REANUDAR PARTIDA activado. Selecciona "REANUDAR PARTIDA" para votar.  Todos deben aceptar."
+ResumeVoteSuccessString="¡Votación para reanudar partida realizada!"
+ResumeVoteFailedString="¡Votación para reanudar partida fallida!"
+ResumeVoteWaveActiveString="No se puede iniciar una votación para reanudar la partida, hay una oleada activa."
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Has recibido munición de"
@@ -2247,7 +2274,7 @@ ZedShrapnel="Zedbustión espontánea"
 ZedShrapnelDescription="Los zeds que mates tienen un 30 % de posibilidades de explotar, infligiendo daño y aturdimiento a otros zeds cercanos."
 
 MakeThingsGoBoom="Que haga bum"
-MakeThingsGoBoomDescription="Aumenta un 40 % la resistencia a explosiones y el área de efecto de todos los explosivos."
+MakeThingsGoBoomDescription="Aumenta un 50 % la resistencia a explosiones y el área de efecto de todos los explosivos."
 
 Madman="MOMENTO ZED - Demencia"
 MadmanDescription="En el momento zed, todas tus armas disparan 3 veces más rápido."
@@ -2848,14 +2875,28 @@ CurrentSpecialEventString="Un evento especial de tiempo limitado con objetos exc
 
 SpecialEventObjectiveInfoList[0]=(TitleString="Manifestaciones terroríficas",DescriptionString="Mata a 15 jefes en cualquiera de los mapas y modos")
 SpecialEventObjectiveInfoList[1]=(TitleString="Culto semanal",DescriptionString="Completa la semana en el Fuerte del más allá")
-SpecialEventObjectiveInfoList[2]=(TitleString="Sale de las paredes",DescriptionString="Encuentra el Netherheart")
+SpecialEventObjectiveInfoList[2]=(TitleString="Viene de las paredes",DescriptionString="Encuentra el corazón del más allá")
 SpecialEventObjectiveInfoList[3]=(TitleString="Miasma morado",DescriptionString="Desbloquea la capilla y las puertas del comedor")
-SpecialEventObjectiveInfoList[4]=(TitleString="Castigo eterno",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior el Fuerte del más allá")
+SpecialEventObjectiveInfoList[4]=(TitleString="Castigo eterno",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior en el Fuerte del más allá")
 
-AllCompleteRewardDescriptionString="Astronauta | Mochila de acompañante | Preciosa"
+AllCompleteRewardDescriptionString="Ddz | Camarada | Precioso"
 
 ChanceDropDescriptionStrings[0]="Boleto de Halloween"
 ChanceDropDescriptionStrings[1]="Boleto dorado de Halloween"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2021] 
+CurrentSpecialEventString="Un evento especial de tiempo limitado con objetos exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="¡Cabezas de oferta!",DescriptionString="Decapita a 1000 Zeds en cualquiera de los mapas y modos")
+SpecialEventObjectiveInfoList[1]=(TitleString="Semanal negro",DescriptionString="Completa la semana en el Caserío del carillón")
+SpecialEventObjectiveInfoList[2]=(TitleString="Asquerosamente rico",DescriptionString="Consigue 75 000 de dinero con muertes, recompensas y curaciones en el Caserío del carillón")
+SpecialEventObjectiveInfoList[3]=(TitleString="Pagos dolorosos",DescriptionString="Usa al mercader para comprar un total de 20 armas que cuestan 1500 de dinero o más en el Caserío del carillón")
+SpecialEventObjectiveInfoList[4]=(TitleString="Despilfarro incesante",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior en el Caserío del carillón")
+
+AllCompleteRewardDescriptionString="Compras festivas | Camarada | Precioso"
+
+ChanceDropDescriptionStrings[0]="Boleto Krampus"
+ChanceDropDescriptionStrings[1]="Boleto dorado Krampus"
 
 ;============================================
 ; Daily Localization
@@ -3002,6 +3043,26 @@ FriendlyName="Abandona toda esperanza"
 DescriptionStrings[0]="El desafío definitivo"
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
 ModifierDescriptions[0]="AVISO: ¡este modo es muy difícil! Solo para aquellos que piensen que el infierno es cosa de niños. Selecciona el modo de juego semanal en la página de matchmaking. Especialización +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="Ataque rápido al jefe"
+DescriptionStrings[0]="Acaba con todos"
+DescriptionStrings[1]="Duración: Corta (5 oleadas)"
+ModifierDescriptions[0]="Cinco oleadas para cinco jefes. ¿Todo listo para derrotarlos uno a uno? AVISO: La dificultad subirá con cada jefe que derrotes. Selecciona el modo de juego semanal en la página de matchmaking. Especialización +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="Cabezas encogidas"
+DescriptionStrings[0]="De nada sirve intentar disparar a la cabeza..."
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="Quizá tratan de protegerse frente a la manía del jugador con disparar a la cabeza. En cualquier caso, parece que tienen nuevos puntos débiles. Selecciona el modo de juego semanal en la página de matchmaking. Especialización +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3529,6 +3590,9 @@ DisplayName="Base lunar"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="Fuerte del más allá"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="Caserío del carillón"
 
 [KFMapInfo]
 ; defaults

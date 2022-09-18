@@ -822,6 +822,17 @@ exec function DebugShowVoteSkipTrader()
     }
 }
 
+exec function DebugShowVotePauseGame()
+{
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPRI = KFPlayerReplicationInfo(Outer.PlayerReplicationInfo);
+    if((KFPlayerController(Outer).myGfxHUD != none) && KFPRI != none)
+    {
+        KFPlayerController(Outer).RequestPauseGame();
+    }
+}
+
 exec function ToggleForceCrosshair()
 {
     KFHUDBase(Outer.myHUD).bForceDrawCrosshair = !KFHUDBase(Outer.myHUD).bForceDrawCrosshair;

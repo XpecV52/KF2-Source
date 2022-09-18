@@ -15,6 +15,8 @@ package InGameHUD_SWF_fla
         
         public var CurrentAmmoTextField:TextField;
         
+        public var DoshAmmoIcon:MovieClip;
+        
         public var StoredAmmoTextField:TextField;
         
         public function AmmoContainerMC_73()

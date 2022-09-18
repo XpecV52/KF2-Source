@@ -50,9 +50,13 @@ event PreBeginPlay()
 {
     super.PreBeginPlay();
     OutbreakEvent.UpdateGRI();
-    if(((Role == ROLE_Authority) && MyKFGRI != none) && OutbreakEvent.ActiveEvent.bUnlimitedWeaponPickups)
+    if((Role == ROLE_Authority) && MyKFGRI != none)
     {
-        MyKFGRI.NotifyBrokenTrader();
+        MyKFGRI.NotifyWeeklyEventIndex(ActiveEventIdx);
+        if(OutbreakEvent.ActiveEvent.bUnlimitedWeaponPickups)
+        {
+            MyKFGRI.NotifyBrokenTrader();
+        }
     }
 }
 
@@ -198,7 +202,18 @@ function ResetPermanentZed()
 
 function float GetAdjustedAIDoshValue(class<KFPawn_Monster> MonsterClass)
 {
-    return super(KFGameInfo).GetAdjustedAIDoshValue(MonsterClass) * OutbreakEvent.ActiveEvent.DoshOnKillGlobalModifier;
+    if(!OutbreakEvent.ActiveEvent.bBossRushMode)
+    {
+        return super(KFGameInfo).GetAdjustedAIDoshValue(MonsterClass) * OutbreakEvent.ActiveEvent.DoshOnKillGlobalModifier;        
+    }
+    else
+    {
+        if((WaveNum - 1) < OutbreakEvent.ActiveEvent.BossRushOverrideParams.PerWaves.Length)
+        {
+            return super(KFGameInfo).GetAdjustedAIDoshValue(MonsterClass) * OutbreakEvent.ActiveEvent.BossRushOverrideParams.PerWaves[WaveNum - 1].DoshOnKillGlobalModifier;
+        }
+    }
+    return super(KFGameInfo).GetAdjustedAIDoshValue(MonsterClass);
 }
 
 protected function ScoreMonsterKill(Controller Killer, Controller Monster, KFPawn_Monster MonsterPawn)
@@ -340,8 +355,23 @@ event PostLogin(PlayerController NewPlayer)
 function SetBossIndex()
 {
     local BossSpawnReplacement Replacement;
-    local int ReplaceIdx;
+    local int ReplaceIdx, I;
 
+    if(OutbreakEvent.ActiveEvent.bBossRushMode)
+    {
+        if(BossRushEnemies.Length == 0)
+        {
+            I = 0;
+            J0x50:
+
+            if(I < default.AIBossClassList.Length)
+            {
+                BossRushEnemies.AddItem(byte(I);
+                ++ I;
+                goto J0x50;
+            }
+        }
+    }
     BossIndex = Rand(default.AIBossClassList.Length);
     foreach OutbreakEvent.ActiveEvent.BossSpawnReplacementList(Replacement,)
     {
@@ -351,11 +381,11 @@ function SetBossIndex()
             if(ReplaceIdx != -1)
             {
                 BossIndex = ReplaceIdx;
-                goto J0xDE;
+                goto J0x16C;
             }
         }        
     }
-    J0xDE:
+    J0x16C:
     
     MyKFGRI.CacheSelectedBoss(BossIndex);
 }
@@ -389,7 +419,9 @@ function TickZedTime(float DeltaTime)
 function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
 {
     local KFPawn_Human Pawn;
+    local bool bWasFirstTime;
 
+    bWasFirstTime = bWaveStarted;
     super.WaveEnded(WinCondition);
     if(OutbreakEvent.ActiveEvent.bPermanentZedTime && ZedTimeRemaining > ZedTimeBlendOutTime)
     {
@@ -403,7 +435,26 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
             Pawn.Health = Pawn.HealthMax;            
         }        
     }
+    if((WinCondition == 0) && bWasFirstTime)
+    {
+        GrantExtraDoshOnWaveWon();
+    }
     DisableGlobalDamage();
+}
+
+function GrantExtraDoshOnWaveWon()
+{
+    local KFPlayerController KFPC;
+    local int ExtraDosh;
+
+    if(OutbreakEvent.ActiveEvent.bBossRushMode && (WaveNum - 1) < OutbreakEvent.ActiveEvent.BossRushOverrideParams.PerWaves.Length)
+    {
+        ExtraDosh = OutbreakEvent.ActiveEvent.BossRushOverrideParams.PerWaves[WaveNum - 1].ExtraDoshGrantedonWaveWon;
+        foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+        {
+            KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo).AddDosh(ExtraDosh, true);            
+        }        
+    }
 }
 
 function ClearZedTimePCTimers()

@@ -7,19 +7,33 @@
  *******************************************************************************/
 class KFGFxWidget_KickVote extends GFxObject within GFxMoviePlayer;
 
+enum EVoteType
+{
+    VT_NONE,
+    VT_KICK,
+    VT_SKIP_TRADER,
+    VT_PAUSE_GAME,
+    VT_RESUME_GAME,
+    VT_MAX
+};
+
 var const localized string VoteKickString;
 var const localized string VoteSkipTraderString;
 var const localized string VoteSkipTraderDetailString;
+var const localized string VotePauseGameString;
+var const localized string VotePauseGameDetailString;
+var const localized string VoteResumeGameString;
+var const localized string VoteResumeGameDetailString;
 var bool bIsVoteActive;
-var bool bIsSkipTraderVoteActive;
 var bool bShowChoicesOnTimerUpdate;
 var const string GBA_VoteYes;
 var const string GBA_VoteNo;
 var GFxObject KickVoteData;
+var KFGFxWidget_KickVote.EVoteType CurrentActiveVote;
 
 function InitializeHUD();
 
-function LocalizeText(bool bIsSkipTraderVote)
+function LocalizeText(KFGFxWidget_KickVote.EVoteType Type)
 {
     local GFxObject TempObject;
     local KFPlayerInput KFInput;
@@ -33,14 +47,7 @@ function LocalizeText(bool bIsSkipTraderVote)
     TempObject.SetString("noKey", string(TempKeyBind.Name));
     TempObject.SetString("yes", Class'KFCommon_LocalizedStrings'.default.YesString);
     TempObject.SetString("no", Class'KFCommon_LocalizedStrings'.default.NoString);
-    if(bIsSkipTraderVote)
-    {
-        TempObject.SetString("voteKick", VoteSkipTraderString);        
-    }
-    else
-    {
-        TempObject.SetString("voteKick", VoteKickString);
-    }
+    TempObject.SetString("voteKick", GetVoteString(Type));
     SetObject("localizedText", TempObject);
 }
 
@@ -51,19 +58,19 @@ function ResetVote()
     ActionScriptVoid("onNoReleased");
 }
 
-function ShowVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices, bool bIsSkipTraderVote)
+function ShowVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices, KFGFxWidget_KickVote.EVoteType Type)
 {
     if(PRI != none)
     {
-        LocalizeText(bIsSkipTraderVote);
+        LocalizeText(Type);
         bIsVoteActive = true;
-        bIsSkipTraderVoteActive = bIsSkipTraderVote;
+        CurrentActiveVote = Type;
         SendVoteToAS3(PRI.PlayerName, VoteDuration, bShowChoices);        
     }
     else
     {
         bIsVoteActive = false;
-        bIsSkipTraderVoteActive = false;
+        CurrentActiveVote = 0;
     }
 }
 
@@ -73,14 +80,7 @@ function SendVoteToAS3(string PlayerName, byte VoteDuration, bool bShowChoices)
     {
         KickVoteData = Outer.CreateObject("Object");
     }
-    if(bIsSkipTraderVoteActive)
-    {
-        KickVoteData.SetString("playerName", PlayerName @ VoteSkipTraderDetailString);        
-    }
-    else
-    {
-        KickVoteData.SetString("playerName", PlayerName);
-    }
+    KickVoteData.SetString("playerName", GetVotePlayerDataString(PlayerName, CurrentActiveVote));
     KickVoteData.SetInt("voteDuration", VoteDuration);
     KickVoteData.SetBool("bShowChoices", bShowChoices);
     bShowChoicesOnTimerUpdate = bShowChoices;
@@ -104,7 +104,7 @@ function UpdateUsingGamePad(bool bIsUsingGamepad)
     SetBool("bUsingGamepad", bIsUsingGamepad);
     if(!bIsUsingGamepad)
     {
-        LocalizeText(bIsSkipTraderVoteActive);
+        LocalizeText(CurrentActiveVote);
     }
 }
 
@@ -151,11 +151,59 @@ function OnNoReleased()
     }
 }
 
+function string GetVoteString(KFGFxWidget_KickVote.EVoteType Type)
+{
+    switch(Type)
+    {
+        case 1:
+            return VoteKickString;
+        case 2:
+            return VoteSkipTraderString;
+        case 3:
+            return VotePauseGameString;
+        case 4:
+            return VoteResumeGameString;
+        case 0:
+            LogInternal("None vote type");
+            return VoteKickString;
+        default:
+            LogInternal("Unkown vote type");
+            return VoteKickString;
+            break;
+    }
+}
+
+function string GetVotePlayerDataString(string PlayerName, KFGFxWidget_KickVote.EVoteType Type)
+{
+    switch(Type)
+    {
+        case 2:
+            return PlayerName @ VoteSkipTraderDetailString;
+        case 3:
+            return PlayerName @ VotePauseGameDetailString;
+        case 4:
+            return PlayerName @ VoteResumeGameDetailString;
+        case 1:
+            return PlayerName;
+        case 0:
+            LogInternal("None vote type");
+            return PlayerName;
+        default:
+            LogInternal("Unkown vote type");
+            return PlayerName;
+            break;
+    }
+}
+
 defaultproperties
 {
     VoteKickString="Kick Player?"
     VoteSkipTraderString="Skip Trader?"
     VoteSkipTraderDetailString="wants to skip the countdown"
+    VotePauseGameString="Pause Game?"
+    VotePauseGameDetailString="wants to pause the game"
+    VoteResumeGameString="Resume Game?"
+    VoteResumeGameDetailString="wants to resume the game"
     GBA_VoteYes="GBA_VoteYes"
     GBA_VoteNo="GBA_VoteNo"
 }

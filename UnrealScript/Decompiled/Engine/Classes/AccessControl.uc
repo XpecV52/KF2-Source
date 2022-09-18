@@ -687,15 +687,18 @@ function PendingAuthTimer()
                     {
                         if(ClientsPendingAuth[I].AuthRetryCount < MaxAuthRetryCount)
                         {
+                            LogInternal((("RETRYING CONNECTION - AuthRetryCount: " $ string(ClientsPendingAuth[I].AuthRetryCount)) $ " WHEN MAX CONNECTIONS ARE ") $ string(MaxAuthRetryCount));
                             CachedAuthInt.EndRemoteClientAuthSession(CurClientSession.EndPointUID, CurClientSession.EndPointIP);
                             CachedAuthInt.SendClientAuthEndSessionRequest(ClientsPendingAuth[I].ClientConnection);
                             if(CachedAuthInt.SendClientAuthRequest(ClientsPendingAuth[I].ClientConnection, CurClientSession.EndPointUID))
                             {
+                                LogInternal("NEW CLIENT AUTH REQUEST SENT - SUCCESS");
                                 ClientsPendingAuth[I].AuthTimestamp = WorldInfo.RealTimeSeconds;
                                 ++ ClientsPendingAuth[I].AuthRetryCount;                                
                             }
                             else
                             {
+                                LogInternal("NEW CLIENT AUTH REQUEST SENT - FAIL");
                                 bFailed = true;
                             }                            
                         }
@@ -890,6 +893,7 @@ function OnClientAuthComplete(bool bSuccess, UniqueNetId ClientUID, Player Clien
             else
             {
                 LogInternal(("Client failed authentication (unauthenticated UID:" @ Class'OnlineSubsystem'.static.UniqueNetIdToString(ClientUID)) $ "), kicking");
+                LogInternal("Client Auth failure info: " $ ExtraInfo);
                 WorldInfo.Game.RejectLogin(ClientConnection, "Authentication failed");
             }
         }
@@ -949,6 +953,7 @@ function ProcessServerAuthRetryRequest(Player ClientConnection)
     local AuthSession CurClientSession;
     local LocalAuthSession CurServerSession;
 
+    LogInternal((("PROCESS SERVER AUTH RETRY REQUEST - " $ string(bAuthenticateServer)) $ " - ") $ string(ClientConnection != none));
     if(bAuthenticateServer && ClientConnection != none)
     {
         bFoundAndAuthenticated = CachedAuthInt.FindClientAuthSession(ClientConnection, CurClientSession) && CurClientSession.AuthStatus == 2;
@@ -959,19 +964,19 @@ function ProcessServerAuthRetryRequest(Player ClientConnection)
             ClientPort = CurClientSession.EndPointPort;
             CurRetryIdx = -1;
             I = 0;
-            J0x11D:
+            J0x16B:
 
             if(I < ServerAuthRetries.Length)
             {
                 if(ServerAuthRetries[I].ClientUID == ClientUID)
                 {
                     CurRetryIdx = I;
-                    goto J0x194;
+                    goto J0x1E2;
                 }
                 ++ I;
-                goto J0x11D;
+                goto J0x16B;
             }
-            J0x194:
+            J0x1E2:
 
             if(CurRetryIdx == -1)
             {
@@ -1092,6 +1097,7 @@ function EndListenHostAuth()
     local IpAddr ServerIP;
     local int ServerPort;
 
+    LogInternal("EndListenHostAuth");
     if(NotEqual_InterfaceInterface(OnlineSub.PlayerInterface, (none)))
     {
         bGotHostInfo = (CachedAuthInt.GetServerUniqueId(ServerUID) && CachedAuthInt.GetServerAddr(ServerIP, ServerPort)) && OnlineSub.PlayerInterface.GetUniquePlayerId(0, HostUID);
@@ -1168,6 +1174,7 @@ static final function StaticOnClientConnectionClose(Player ClientConnection)
     }
     if(NotEqual_InterfaceInterface(CurAuthInt, (none)) && ClientConnection != none)
     {
+        LogInternal("StaticOnClientConnectionClose");
         if(CurAuthInt.FindClientAuthSession(ClientConnection, CurClientSession) && CurClientSession.AuthStatus == 2)
         {
             CurAuthInt.EndRemoteClientAuthSession(CurClientSession.EndPointUID, CurClientSession.EndPointIP);
@@ -1179,22 +1186,22 @@ static final function StaticOnClientConnectionClose(Player ClientConnection)
             if(((WI != none) && WI.Game != none) && WI.Game.AccessControl != none)
             {
                 I = 0;
-                J0x278:
+                J0x29A:
 
                 if(I < WI.Game.AccessControl.ServerAuthRetries.Length)
                 {
                     if(WI.Game.AccessControl.ServerAuthRetries[I].ClientUID == CurServerSession.EndPointUID)
                     {
                         WI.Game.AccessControl.ServerAuthRetries.Remove(I, 1;
-                        goto J0x3C1;
+                        goto J0x3E3;
                     }
                     ++ I;
-                    goto J0x278;
+                    goto J0x29A;
                 }
             }
         }
     }
-    J0x3C1:
+    J0x3E3:
 
 }
 
@@ -1213,6 +1220,7 @@ function OnDestroyOnlineGameComplete(name SessionName, bool bWasSuccessful)
     {
         if(CurClientSession.AuthStatus == 2)
         {
+            LogInternal("OnDestroyOnlineGameComplete");
             CachedAuthInt.EndRemoteClientAuthSession(CurClientSession.EndPointUID, CurClientSession.EndPointIP);
             foreach WorldInfo.AllClientConnections(CurConn, CurIP, CurPort)
             {
@@ -1272,6 +1280,7 @@ function Cleanup(optional bool bExit)
         ClearAuthDelegates(bExit);
         if(bExit)
         {
+            LogInternal("AccessControl CLEAN UP");
             CachedAuthInt.EndAllRemoteClientAuthSessions();
             CachedAuthInt.EndAllLocalServerAuthSessions();
             ServerAuthRetries.Length = 0;

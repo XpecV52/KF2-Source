@@ -814,13 +814,24 @@ SharedUnlockSource="食人鱼手枪武器包"
 ItemName="两把食人鱼手枪"
 ItemCategory="手枪"
 ItemDescription="•主要攻击发射锯片。\n•备用：格挡/招架。\n•高强度咬合力，将你大卸八块。"
-SharedUnlockSource="两把食人鱼手枪武器包"
+SharedUnlockSource="双持食人鱼手枪武器包"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="腐蚀者卡宾枪"
 ItemCategory="步枪"
 ItemDescription="•主要攻击为单发射击。\n•备用射击腐蚀丧尸，持续数秒。\n•被腐蚀的丧尸死亡后爆炸，伤害其他丧尸并治疗玩家。"
 SharedUnlockSource="腐蚀者卡宾枪武器包"
+
+[KFWeap_HRG_Stunner]
+ItemName="HRG 击晕者"
+ItemCategory="冲锋枪"
+ItemDescription="•只有全自动开火模式。\n•备用射击可将数发子弹以集中方式射出并爆开，如同较小形式的闪光弹。\n•用尽闪光弹时的完美武器。"
+
+[KFWeap_AssaultRifle_Doshinegun]
+ItemName="钱币枪"
+ItemCategory="步枪"
+ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•将塞钱提升到新的层次。"
+SharedUnlockSource="钱币枪武器包"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

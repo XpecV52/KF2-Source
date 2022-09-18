@@ -800,6 +800,8 @@ LeaveString="パーティーから離れる"
 SquadString="隊"
 SoloString="隊"
 DefaultPlayerName="プレイヤー"
+PauseGameString="ゲームを一旦停止"
+ResumeGameString="ゲームを再開"
 
 PartyLeaderSearchingForMatchString="はマッチを検索中です..."
 PartyLeaderIsUpdatingMatchOptionsString="はマッチオプションを設定中です..."
@@ -1057,6 +1059,10 @@ ThrowString="投てき武器"
 VoteKickString="プレイヤー追放しますか？"
 VoteSkipTraderString="トレーダーをスキップしますか？"
 VoteSkipTraderDetailString="がカウントダウンをスキップしたがっています"
+VotePauseGameString="一旦停止しますか？"
+VotePauseGameDetailString="がゲームを一旦停止したがっています"
+VoteResumeGameString="ゲームを再開しますか？"
+VoteResumeGameDetailString="がゲームを再開したがっています"
 
 [KFLocalMessage_PlayerKills]
 KilledString="キルした"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="トレーダースキップしないに投票し
 SkipTraderNoEnoughTimeString="トレーダースキップ投票を開始するには時間が足りません"
 SkipTraderThisUserAlreadyStartedAVoteString="次にトレーダーが利用可能になるまで新しいトレーダースキップ投票を始めることはできません"
 SkipTraderVersusZedPlayerVotes="Zedチームにいるプレイヤーはトレーダースキップに投票できません"
+PauseVoteStartedString="がゲーム一旦停止の投票を始めました"
+PauseVoteInProgressString="すでに進行中のものがあるため、ゲーム一旦停止の投票を開始できません"
+PauseVoteYesReceivedString="「ゲームを一旦停止する」に投票しました"
+PauseVoteNoReceivedString="「ゲームを一旦停止しない」に投票しました"
+PauseVoteNoEnoughTimeString="ゲーム一旦停止投票を開始するには時間が足りません"
+PauseVoteNoSpectatorsString="観覧者はゲーム一旦停止の投票を始めることができません"
+PauseVoteTimeString="「ゲーム一旦停止」を有効にしました。ゲームメニューの「ゲーム一旦停止」をオンにして投票できるようにします。 すべてのプレイヤーが同意する必要があります。"
+PauseVoteSuccessString="ゲーム一旦停止の投票が成功しました！"
+PauseVoteFailedString="ゲーム一旦停止の投票が失敗しました！"
+PauseVoteWaveActiveString="ウェーブがアクティブなため、ゲーム一旦停止の投票を開始できません"
+PauseVoteWrongModeString="このオプションは、エンドレスモードでのみ利用可能です"
+ResumeVoteStartedString="ゲーム再開の投票を始めました"
+ResumeVoteInProgressString="すでに進行中のものがあるため、ゲーム再開の投票を開始できません"
+ResumeVoteYesReceivedString="「ゲームを再開する」に投票しました"
+ResumeVoteNoReceivedString="「ゲームを再開しない」に投票しました"
+ResumeVoteNoEnoughTimeString="ゲーム再開投票を開始するには時間が足りません"
+ResumeVoteNoSpectatorsString="観覧者はゲーム再開の投票を始めることができません"
+ResumeVoteTimeString="「ゲーム再開」を有効にしました。ゲームメニューの「ゲーム再開」をオンにして投票できるようにします。 すべてのプレイヤーが同意する必要があります。"
+ResumeVoteSuccessString="ゲーム再開の投票が成功しました！"
+ResumeVoteFailedString="ゲーム再開の投票が失敗しました！"
+ResumeVoteWaveActiveString="ウェーブがアクティブなため、ゲーム再開の投票を開始できません"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="弾薬を受け取りました："
@@ -2247,7 +2274,7 @@ ZedShrapnel="自発的zed爆発"
 ZedShrapnelDescription="キルしたzedは30%の確率で爆発し、近くのzedにダメージを与えてスタンする。"
 
 MakeThingsGoBoom="ドカンと一発"
-MakeThingsGoBoomDescription="爆発物耐性を40%増加し、全爆発物の影響範囲が40%増加する。"
+MakeThingsGoBoomDescription="爆発物耐性を50%増加し、全爆発物の影響範囲が50%増加する。"
 
 Madman="Zed-Time―狂人"
 MadmanDescription="Zed-Time中、全武器の発射速度が3倍になる。"
@@ -2848,14 +2875,28 @@ CurrentSpecialEventString="限定版アイテム付きの期間限定スペシ�
 
 SpecialEventObjectiveInfoList[0]=(TitleString="恐ろしい発現",DescriptionString="マップやモードを問わず、ボスを15人殺す")
 SpecialEventObjectiveInfoList[1]=(TitleString="毎週の礼拝",DescriptionString="Netherholdでウィークリーをクリア")
-SpecialEventObjectiveInfoList[2]=(TitleString="奴らは壁から出て来る！",DescriptionString="冥界の心を見つけよう")
+SpecialEventObjectiveInfoList[2]=(TitleString="壁から出て来る！",DescriptionString="冥界の心を見つける")
 SpecialEventObjectiveInfoList[3]=(TitleString="パープルミアズマ",DescriptionString="礼拝堂と食堂の扉をアンロック")
 SpecialEventObjectiveInfoList[4]=(TitleString="永遠の罰",DescriptionString="エンドレスHardかそれ以上の難易度で、Netherholdのウェーブ15をクリアする")
 
-AllCompleteRewardDescriptionString="宇宙飛行士 | 仲間リュック | 希少"
+AllCompleteRewardDescriptionString="DoZ | 仲間 | 希少"
 
 ChanceDropDescriptionStrings[0]="ハロウィーンチケット"
 ChanceDropDescriptionStrings[1]="ハロウィーンゴールデンチケット"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2021] 
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="真っ向からのセール！",DescriptionString="マップやモードを問わず、Zed 1000の頭を切り落とす")
+SpecialEventObjectiveInfoList[1]=(TitleString="ブラックウィークリー",DescriptionString="Carillon Hamletでウィークリーをクリア")
+SpecialEventObjectiveInfoList[2]=(TitleString="億万長者",DescriptionString="Carillon Hamletでのキル、報酬、回復から75,000 Doshを獲得する")
+SpecialEventObjectiveInfoList[3]=(TitleString="痛々しい支払い",DescriptionString="トレーダーを使って、1500 Dosh以上費用がかかる合計20種類の武器をCarillon Hamletで購入する")
+SpecialEventObjectiveInfoList[4]=(TitleString="無限の散財",DescriptionString="エンドレスHardかそれ以上の難易度で、Carillon Hamletのウェーブ15をクリアする")
+
+AllCompleteRewardDescriptionString="ホリデーショッピング | 仲間 | 希少"
+
+ChanceDropDescriptionStrings[0]="クランプス・チケット"
+ChanceDropDescriptionStrings[1]="クランプス・ゴールデン・チケット"
 
 ;============================================
 ; Daily Localization
@@ -3002,6 +3043,26 @@ FriendlyName="絶体絶命"
 DescriptionStrings[0]="究極の挑戦"
 DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
 ModifierDescriptions[0]="警告：このモードは非常に難しいモードです！Hell on Earthなんてお遊び程度だと思える人しかプレイできないでしょう。マッチメイキングページでこのウィークリーゲームモードを選択してください。Perk 15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="ボスラッシュ"
+DescriptionStrings[0]="全滅"
+DescriptionStrings[1]="長さ：ショート（5ウェーブ）"
+ModifierDescriptions[0]="5人のボスとの5つのウェーブ。1人ひとり倒していく準備はいいですか？警告：ボスを1人倒すごとに難易度が上がっていきます。マッチメイキングページでウィークリーゲームモードを選択してください。Perk 15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="縮む頭"
+DescriptionStrings[0]="ヘッドショットを決めようなんて無駄だ…"
+DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
+ModifierDescriptions[0]="ひょっとすると、プレイヤーのヘッドショットの癖から自分たちを守ろうとしているのかもしれません。とにかく、少なくとも奴らには新しい弱点ができたようです。マッチメイキングページでウィークリーゲームモードを選択してください。Perk 15+。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3529,6 +3590,9 @@ DisplayName="Moonbase"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="Netherhold"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="Carillon Hamlet"
 
 [KFMapInfo]
 ; defaults

@@ -124,6 +124,7 @@ const STATID_ACHIEVE_ElysiumEndlessWaveFifteen = 4057;
 const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
 const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles = 4060;
+const STATID_ACHIEVE_CarillonHamletCollectibles = 4061;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -838,12 +839,18 @@ simulated event name GetSeasonalStateName()
 {
     local int EventID;
     local KFMapInfo KFMI;
+    local bool bIsWWLWeekly;
 
     EventID = Class'KFGameEngine'.static.GetSeasonalEventID();
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
     if(KFMI != none)
     {
         KFMI.ModifySeasonalEventId(EventID);
+    }
+    bIsWWLWeekly = ((Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12) && KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode;
+    if(bIsWWLWeekly)
+    {
+        return 'No_Event';
     }
     switch(EventID % 10)
     {
@@ -3729,11 +3736,17 @@ static simulated function KFInterface_Usable GetCurrentUsableActor(Pawn P, optio
     local Actor A, BestActor;
     local KFInterface_Usable BestUsableActor;
     local int InteractionIndex, BestInteractionIndex;
+    local KFGameReplicationInfo KFGRI;
 
     bUseOnFind = false;
     BestInteractionIndex = -1;
     if(P != none)
     {
+        KFGRI = KFGameReplicationInfo(P.WorldInfo.GRI);
+        if((KFGRI != none) && KFGRI.bIsEndlessPaused)
+        {
+            return none;
+        }
         foreach P.TouchingActors(Class'Actor', A)
         {
             UsableActor = KFInterface_Usable(A);
@@ -3781,15 +3794,21 @@ function GetTriggerUseList(float interactDistanceToCheck, float crosshairDist, f
     local Trigger checkTrigger;
     local SeqEvent_Used UseSeq;
     local float aimEpsilon;
+    local KFGameReplicationInfo KFGRI;
 
     if(Pawn == none)
+    {
+        return;
+    }
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.bIsEndlessPaused)
     {
         return;
     }
     foreach Pawn.CollidingActors(Class'Trigger', checkTrigger, interactDistanceToCheck)
     {
         Idx = 0;
-        J0x56:
+        J0xBC:
 
         if(Idx < checkTrigger.GeneratedEvents.Length)
         {
@@ -3812,7 +3831,7 @@ function GetTriggerUseList(float interactDistanceToCheck, float crosshairDist, f
                 }
             }
             ++ Idx;
-            goto J0x56;
+            goto J0xBC;
         }        
     }    
 }
@@ -5653,6 +5672,8 @@ reliable server function ServerPause()
 
 function bool PerformedUseAction()
 {
+    local KFGameReplicationInfo KFGRI;
+
     if(WorldInfo.NetMode != NM_Standalone)
     {
         return super(PlayerController).PerformedUseAction();
@@ -5662,6 +5683,11 @@ function bool PerformedUseAction()
         return true;
     }
     if(Role < ROLE_Authority)
+    {
+        return false;
+    }
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.bIsEndlessPaused)
     {
         return false;
     }
@@ -6198,6 +6224,14 @@ function AddNonZedKill(class<Pawn> KilledClass, byte Difficulty)
 
 // Export UKFPlayerController::execClientAddNonZedKill(FFrame&, void* const)
 private reliable client native final simulated function ClientAddNonZedKill(class<Pawn> KilledClass, byte Difficulty);
+
+function AddWeaponPurchased(class<KFWeaponDefinition> WeaponDef, int Price)
+{
+    ClientAddWeaponPurchased(WeaponDef, Price);
+}
+
+// Export UKFPlayerController::execClientAddWeaponPurchased(FFrame&, void* const)
+private reliable client native final simulated function ClientAddWeaponPurchased(class<KFWeaponDefinition> WeaponDef, int Price);
 
 function AddZedAssist(class<KFPawn_Monster> MonsterClass)
 {
@@ -7132,6 +7166,33 @@ exec function RequestSkipTrader()
             if(KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
             {
                 KFPRI.RequestSkiptTrader(KFPRI);
+                if(MyGFxManager != none)
+                {
+                    MyGFxManager.CloseMenus();
+                    if(MyGFxManager.PartyWidget != none)
+                    {
+                        MyGFxManager.PartyWidget.SetReadyButtonVisibility(false);
+                    }
+                }
+            }
+        }
+    }
+}
+
+exec function RequestPauseGame()
+{
+    local KFGameReplicationInfo KFGRI;
+    local KFPlayerReplicationInfo KFPRI;
+
+    KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
+    KFGRI = KFGameReplicationInfo(KFPRI.WorldInfo.GRI);
+    if(KFPRI != none)
+    {
+        if(KFGRI.bMatchHasBegun)
+        {
+            if(KFGRI.bEndlessMode && KFPRI.bHasSpawnedIn)
+            {
+                KFPRI.RequestPauseGame(KFPRI);
                 if(MyGFxManager != none)
                 {
                     MyGFxManager.CloseMenus();

@@ -744,6 +744,11 @@ enum EMonsterProperties
 
 var int SpawnedMonsterProperties[EMonsterProperties];
 
+/**
+	Boss Rush
+ */
+var transient array< byte > BossRushEnemies; 
+
 /************************************************************************************
  * @name		Native
  ***********************************************************************************/
@@ -1943,7 +1948,14 @@ function float GetGameInfoSpawnRateMod()
 
 	if (OutbreakEvent != none)
 	{
-		SpawnRateMod *= 1.f / OutbreakEvent.ActiveEvent.SpawnRateMultiplier;
+		if (OutbreakEvent.ActiveEvent.SpawnRateMultiplier > 0.0f)
+		{
+			SpawnRateMod *= 1.f / OutbreakEvent.ActiveEvent.SpawnRateMultiplier;
+		}
+		else
+		{
+			SpawnRateMod = 0.0f;
+		}
 	}
 
 	if (MyKFGRI != none)
@@ -3208,19 +3220,29 @@ function string GetNextMap()
 			{
 				MapCycleIndex = MapCycleIndex + 1 < GameMapCycles[ActiveMapCycle].Maps.length ? (MapCycleIndex + 1) : 0;
 
-				if ((class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11 || OutbreakEvent.ActiveEvent == OutbreakEvent.SetEvents[11])
-				      && MyKFGRI.IsA('KFGameReplicationInfo_WeeklySurvival'))
+				if (MyKFGRI.IsA('KFGameReplicationInfo_WeeklySurvival'))
 				{
-					if (GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Biolapse"          || 
-						GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Nightmare"         ||
-						GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-PowerCore_Holdout" ||
-						GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-TheDescent"        ||
-						GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-KrampusLair")
+					if ((class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 11 || OutbreakEvent.ActiveEvent == OutbreakEvent.SetEvents[11]) || // Scavenger
+					    (class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 14 || OutbreakEvent.ActiveEvent == OutbreakEvent.SetEvents[14]))   // Boss Rush
 					{
+						if (GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Biolapse"          || 
+							GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-Nightmare"         ||
+							GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-PowerCore_Holdout" ||
+							GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-TheDescent"        ||
+							GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-KrampusLair")
+						{
 							continue;
+						}
 					}
+
+					/* Temporary removal of SteamFrotress for BossRush */
+					if (class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 14 || OutbreakEvent.ActiveEvent == OutbreakEvent.SetEvents[14] &&
+						GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex] == "KF-SteamFortress")
+					{
+						continue;
+					}
+					/**/
 				}
-				
 
 				if ( IsMapAllowedInCycle(GameMapCycles[ActiveMapCycle].Maps[MapCycleIndex]) )
 				{
@@ -3569,6 +3591,7 @@ function TimeReservations()
 				if (bLogReservations)
 				{
 					if (bLogReservations) LogInternal("KFGameInfo.TimeReservations player" @ i @ class'OnlineSubsystem'.static.UniqueNetIdToString(stupid)@"="@string(PlayerReservations[i].Timer));
+					LogInternal("KFGameInfo.TimeReservations Timeout reservations: " $ReservationTimeout);
 				}
 			}
 			++i;
@@ -4078,6 +4101,37 @@ function float GetTraderTime()
 
 function SkipTrader(int TimeAfterSkipTrader);
 
+function ResumeEndlessGame()
+{
+	local KFPawn_Human KFPH;
+
+    foreach WorldInfo.AllPawns( class'KFPawn_Human', KFPH )
+    {
+		if( KFPH.GetTeamNum() != 0 )
+		{
+			KFPH.bCanPickupInventory = true;
+		}
+	}
+	WorldInfo.bPlayersOnly        = false;
+	WorldInfo.bPlayersOnlyPending = false;
+}
+
+function PauseEndlessGame()
+{
+	local KFPawn_Human KFPH;
+
+	foreach WorldInfo.AllPawns( class'KFPawn_Human', KFPH )
+    {
+		if( KFPH.GetTeamNum() != 0 )
+		{
+			KFPH.bCanPickupInventory = false;
+		}
+	}
+
+	// Pause game but allow players to move around.
+	WorldInfo.bPlayersOnlyPending = true;
+}
+
 function bool ShouldOverrideDoshOnKill(class<KFPawn_Monster> KilledPawn, out float DoshGiven)
 {
 	return false;
@@ -4180,7 +4234,7 @@ defaultproperties
    BossIndex=-1
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Moonbase","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Netherhold","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-CarillonHamlet","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Moonbase","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Netherhold","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

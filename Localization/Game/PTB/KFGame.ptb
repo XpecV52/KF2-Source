@@ -800,6 +800,8 @@ LeaveString="DEIXAR GRUPO"
 SquadString="PELOTÃO"
 SoloString="PELOTÃO"
 DefaultPlayerName="Jogador"
+PauseGameString="PAUSAR JOGO"
+ResumeGameString="RETOMAR JOGO"
 
 PartyLeaderSearchingForMatchString="está procurando uma partida..."
 PartyLeaderIsUpdatingMatchOptionsString="está configurando opções..."
@@ -1057,6 +1059,10 @@ ThrowString="ARMA DE LANÇAMENTO"
 VoteKickString="Expulsar jogador?"
 VoteSkipTraderString="Ignorar comerciante?"
 VoteSkipTraderDetailString="quer ignorar a contagem regressiva"
+VotePauseGameString="Pausar jogo?"
+VotePauseGameDetailString="quer pausar o jogo"
+VoteResumeGameString="Retomar jogo?"
+VoteResumeGameDetailString="quer retomar o jogo"
 
 [KFLocalMessage_PlayerKills]
 KilledString="abateu"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="Você votou para não ignorar o comerciante"
 SkipTraderNoEnoughTimeString="Tempo insuficiente para iniciar uma votação para ignorar o comerciante"
 SkipTraderThisUserAlreadyStartedAVoteString="Não é possível iniciar uma nova votação para ignorar o comerciante até a próxima fase do comerciante"
 SkipTraderVersusZedPlayerVotes="Jogadores na equipe Zed não podem votar para ignorar o comerciante"
+PauseVoteStartedString="Iniciou uma votação de pausa de jogo"
+PauseVoteInProgressString="Impossível iniciar votação de pausa porque há outra em andamento"
+PauseVoteYesReceivedString="Você votou para pausar o jogo"
+PauseVoteNoReceivedString="Você votou para não pausar o jogo"
+PauseVoteNoEnoughTimeString="Tempo insuficiente para iniciar votação para pausar o jogo"
+PauseVoteNoSpectatorsString="Espectadores não podem iniciar uma votação de pausar de jogo"
+PauseVoteTimeString="PAUSAR JOGO ativado. Selecione “PAUSAR JOGO” no menu de jogo para votar. Todos os jogadores devem aceitar."
+PauseVoteSuccessString="Votação de pausa de jogo aprovada!"
+PauseVoteFailedString="Votação de pausa de jogo recusada!"
+PauseVoteWaveActiveString="Impossível iniciar votação de pausa de jogo, a leva está ativa"
+PauseVoteWrongModeString="Esta opção só está disponível no modo infinito"
+ResumeVoteStartedString="Votação de retomar jogo iniciada"
+ResumeVoteInProgressString="Impossível iniciar votação de retomada de jogo porque há uma em andamento."
+ResumeVoteYesReceivedString="Você votou para retomar o jogo"
+ResumeVoteNoReceivedString="Você votou para não retomar o jogo"
+ResumeVoteNoEnoughTimeString="Tempo insuficiente para iniciar votação de retomada de jogo"
+ResumeVoteNoSpectatorsString="Espectadores não podem iniciar uma votação de retomada de jogo"
+ResumeVoteTimeString="RETOMAR JOGO ativado. Selecione “RETOMAR JOGO” no menu de jogo para votar. Todos os jogadores devem aceitar."
+ResumeVoteSuccessString="Votação de retomada de jogo aprovada!"
+ResumeVoteFailedString="Votação de retomada de jogo recusada!"
+ResumeVoteWaveActiveString="Impossível iniciar votação de retomada de jogo — a leva está ativa"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Você recebeu munição de"
@@ -2247,7 +2274,7 @@ ZedShrapnel="Explozeds espontâneas"
 ZedShrapnelDescription="Zeds abatidos têm 30% de chance de explodir, causando dano e atordoando os Zeds próximos."
 
 MakeThingsGoBoom="Explode Tudo"
-MakeThingsGoBoomDescription="Aumenta em 40% a resistência a explosivos e o dano em área de todos os explosivos."
+MakeThingsGoBoomDescription="Aumenta em 50% a resistência a explosivos e o dano em área de todos os explosivos."
 
 Madman="HORA DOS ZEDS - Maluco"
 MadmanDescription="Durante a hora dos Zeds, todas as armas atiram 3x mais rápido."
@@ -2852,10 +2879,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Está vindo das paredes",Descript
 SpecialEventObjectiveInfoList[3]=(TitleString="Miasma Roxo",DescriptionString="Destranque as portas da capela e do refeitório")
 SpecialEventObjectiveInfoList[4]=(TitleString="Punição Eterna",DescriptionString="Conclua a 15ª leva no modo Difícil Infinito ou maior em Netherhold")
 
-AllCompleteRewardDescriptionString="Astronauta | Mochila Acompanhante | Precioso"
+AllCompleteRewardDescriptionString="DZ | Companheiro | Precioso"
 
 ChanceDropDescriptionStrings[0]="Bilhete de Halloween"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado de Halloween"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2021] 
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Atenção às ofertas!",DescriptionString="Decapite 1.000 Zeds em qualquer mapa ou modo")
+SpecialEventObjectiveInfoList[1]=(TitleString="Black Weekly",DescriptionString="Conclua o semanal em Carillon Hamlet")
+SpecialEventObjectiveInfoList[2]=(TitleString="Podre de Rico",DescriptionString="Ganhe 75.000 de grana em abates, recompensas e curas em Carillon Hamlet")
+SpecialEventObjectiveInfoList[3]=(TitleString="Pagamentos Dolorosos",DescriptionString="Compre no comerciante 20 armas que custem 1.500 de grana ou mais em Carillon Hamlet")
+SpecialEventObjectiveInfoList[4]=(TitleString="Ostentação sem Fim",DescriptionString="Conclua a 15ª leva no modo Difícil Infinito ou mais em Carillon Hamlet")
+
+AllCompleteRewardDescriptionString="Compras de Feriado | Companheiro | Precioso"
+
+ChanceDropDescriptionStrings[0]="Bilhete do Krampus"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado do Krampus"
 
 ;============================================
 ; Daily Localization
@@ -3002,6 +3043,26 @@ FriendlyName="Abandone toda esperança"
 DescriptionStrings[0]="O desafio supremo"
 DescriptionStrings[1]="Duração: média (7 levas)"
 ModifierDescriptions[0]="AVISO: este modo é extremamente difícil — somente para quem vê o Inferno na Terra como um parque de diversões. Escolha o modo de jogo semanal na página “Organizar partida”. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="Tumulto de Chefes"
+DescriptionStrings[0]="É pra vencer geral"
+DescriptionStrings[1]="Duração: curta (5 levas)"
+ModifierDescriptions[0]="Cinco levas para cinco chefes. Está preparado para derrotá-los um por um? AVISO: a dificuldade aumentará após cada chefe. Selecione o modo de jogo Semanal na página de “Organizar partida”. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="Cabeças Encolhidas"
+DescriptionStrings[0]="Tentar atirar na cabeça é inútil..."
+DescriptionStrings[1]="Duração: média (7 levas)"
+ModifierDescriptions[0]="É possível que estejam tentando se proteger do hábito de atirar na cabeça. Enfim, parece que eles têm outros pontos fracos. Selecione o modo de jogo Semanal na página “Organizar partida”. Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3529,6 +3590,9 @@ DisplayName="Base Lunar"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="Netherhold"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="Carillon Hamlet"
 
 [KFMapInfo]
 ; defaults

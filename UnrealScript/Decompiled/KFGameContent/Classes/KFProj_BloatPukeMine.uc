@@ -452,8 +452,8 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFProj_BloatPukeMine.AmbientAkSoundComponent'
     AmbientComponent=AmbientAkSoundComponent
-    Speed=1000
-    MaxSpeed=1000
+    Speed=1500
+    MaxSpeed=1500
     bBlockedByInstigator=false
     begin object name=CollisionCylinder class=CylinderComponent
         CollisionHeight=10

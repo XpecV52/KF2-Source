@@ -247,10 +247,10 @@ defaultproperties
     ChestBeamSocketName=ChestBeamSocket
     TimeUntilTargetChange=0.75
     BeamDamageType=Class'KFDT_FleshpoundKing_ChestBeam'
-    MaxBeamLength=2500
+    MaxBeamLength=3000
     BeamExtent=(X=15,Y=15,Z=15)
     DamageInterval=0.1
-    DamagePerTick=10
+    DamagePerTick=12
     DamageMomentumImpulse=100
     AnimName=Atk_ChestBeam
     bUseCustomRotationRate=true

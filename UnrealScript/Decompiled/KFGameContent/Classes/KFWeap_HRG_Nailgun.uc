@@ -108,6 +108,7 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_HRG_Nailgun_PDW_TEX.UI_WeaponSelect_HRG_Nailgun_PDW'
+    SpareAmmoCapacity=336
     InitialSpareMags=2
     bLoopingFireAnim=/* Array type was not detected. */
     FireLoopAnim=HRG_ShootLoop

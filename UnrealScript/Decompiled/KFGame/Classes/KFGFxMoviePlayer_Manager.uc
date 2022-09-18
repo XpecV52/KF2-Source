@@ -210,6 +210,7 @@ var bool bPostGameState;
 var bool bStatsInitialized;
 var bool bKickVotePopupActive;
 var bool bSkipTraderVotePopupActive;
+var bool bPauseGameVotePopupActive;
 var bool bUsingGamepad;
 var bool bAfterLobby;
 var bool bMenusOpen;
@@ -264,6 +265,7 @@ var KFGFxWidget_BackendStatusIndicatorWidget BackendStatusIndicatorWidget;
 var array<string> WidgetPaths;
 var PlayerReplicationInfo KickVotePRI;
 var PlayerReplicationInfo SkipTraderVotePRI;
+var PlayerReplicationInfo PauseGameVotePRI;
 var TWOnlineLobby OnlineLobby;
 var UniqueNetId CurrentInviteLobbyId;
 var const UniqueNetId ZeroUniqueId;
@@ -1040,6 +1042,10 @@ function OpenMenu(byte NewMenuIndex, optional bool bShowWidgets)
     if((SkipTraderVotePRI != none) && NewMenuIndex != 15)
     {
         ShowSkipTraderVote(SkipTraderVotePRI);
+    }
+    if((PauseGameVotePRI != none) && NewMenuIndex != 15)
+    {
+        ShowPauseGameVote(PauseGameVotePRI);
     }
     if((bMenusOpen && NewMenuIndex != CurrentMenuIndex) && CurrentMenu != none)
     {
@@ -1840,6 +1846,61 @@ function CastNoVoteSkipTrader()
         if(KFPRI != none)
         {
             KFPRI.CastSkipTraderVote(KFPRI, false);
+        }
+    }
+}
+
+function ShowPauseGameVote(PlayerReplicationInfo PRI)
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(GetPC().WorldInfo.GRI);
+    PauseGameVotePRI = PRI;
+    if(bMenusOpen && CurrentMenu != TraderMenu)
+    {
+        bPauseGameVotePopupActive = true;
+        DelayedOpenPopup(0, 0, (((KFGRI != none) && KFGRI.bIsEndlessPaused) ? Class'KFGFxWidget_KickVote'.default.VoteResumeGameString : Class'KFGFxWidget_KickVote'.default.VotePauseGameString), PauseGameVotePRI.PlayerName @ Class'KFGFxWidget_KickVote'.default.VotePauseGameDetailString, Class'KFCommon_LocalizedStrings'.default.YesString, Class'KFCommon_LocalizedStrings'.default.NoString, CastYesVotePauseGame, CastNoVotePauseGame);
+    }
+}
+
+simulated function HidePauseGameVote()
+{
+    if(bSkipTraderVotePopupActive)
+    {
+        bSkipTraderVotePopupActive = false;
+        UnloadCurrentPopup();
+    }
+    SkipTraderVotePRI = none;
+}
+
+function CastYesVotePauseGame()
+{
+    local KFPlayerReplicationInfo KFPRI;
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(GetPC());
+    if(KFPC != none)
+    {
+        KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+        if(KFPRI != none)
+        {
+            KFPRI.CastPauseGameVote(KFPRI, true);
+        }
+    }
+}
+
+function CastNoVotePauseGame()
+{
+    local KFPlayerReplicationInfo KFPRI;
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(GetPC());
+    if(KFPC != none)
+    {
+        KFPRI = KFPlayerReplicationInfo(KFPC.PlayerReplicationInfo);
+        if(KFPRI != none)
+        {
+            KFPRI.CastPauseGameVote(KFPRI, false);
         }
     }
 }

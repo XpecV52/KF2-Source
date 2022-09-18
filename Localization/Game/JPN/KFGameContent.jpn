@@ -814,13 +814,24 @@ SharedUnlockSource="ピラニアピストル武器バンドル"
 ItemName="デュアル・ピラニアピストル"
 ItemCategory="ハンドガン"
 ItemDescription="•プライマリファイアはソーブレードを発射します。\n•オルト - ブロック/パリィ。\n•ハイパワーで噛んで、あなたを引き裂きます。"
-SharedUnlockSource="デュアル・ピラニアピストル武器バンドル"
+SharedUnlockSource="デュアルピラニアピストル武器バンドル"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="コラプター・カービン"
 ItemCategory="ライフル"
 ItemDescription="•プライマリファイアは単発のみ。\n•オルトファイアは数秒間Zedを腐敗させます。\n•腐敗したZedが死亡すると、爆発して他のZedにダメージを与えてプレイヤーを回復します。"
 SharedUnlockSource="コラプター・カービン武器バンドル"
+
+[KFWeap_HRG_Stunner]
+ItemName="HRG スタナー"
+ItemCategory="サブマシンガン"
+ItemDescription="•ファイアモードはフルオートのみ。\n•オルトファイアで、フラッシュバンのミニ版のように爆発する集中射撃で複数の弾丸を発射する。\n•フラッシュバンがなくなった時に最適な武器。"
+
+[KFWeap_AssaultRifle_Doshinegun]
+ItemName="ドーシャインガン"
+ItemCategory="ライフル"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•贈賄を新たな高みへ。"
+SharedUnlockSource="ドーシャインガンの武器バンドル"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

@@ -317,7 +317,7 @@ package tripwire.managers
         public function __setPerspectiveProjection_(param1:Event) : void
         {
             root.transform.perspectiveProjection.fieldOfView = 32;
-            root.transform.perspectiveProjection.projectionCenter = new Point(960,540);
+            root.transform.perspectiveProjection.projectionCenter = new Point(960,537);
         }
         
         public function CreateBitMapData() : void

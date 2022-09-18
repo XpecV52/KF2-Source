@@ -800,6 +800,8 @@ LeaveString="离开小队"
 SquadString="小队"
 SoloString="小队"
 DefaultPlayerName="玩家"
+PauseGameString="暂停游戏"
+ResumeGameString="继续游戏"
 
 PartyLeaderSearchingForMatchString="正在搜索比赛…"
 PartyLeaderIsUpdatingMatchOptionsString="正在设置比赛选项…"
@@ -1057,6 +1059,10 @@ ThrowString="投掷武器"
 VoteKickString="踢除玩家？"
 VoteSkipTraderString="跳过商人？"
 VoteSkipTraderDetailString="想要跳过倒计时"
+VotePauseGameString="要暂停游戏吗？"
+VotePauseGameDetailString="想要暂停游戏"
+VoteResumeGameString="要继续游戏吗？"
+VoteResumeGameDetailString="想要继续游戏"
 
 [KFLocalMessage_PlayerKills]
 KilledString="杀死了"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="你投票不跳过商人"
 SkipTraderNoEnoughTimeString="发起跳过商人投票的时间不足"
 SkipTraderThisUserAlreadyStartedAVoteString="下次商人阶段前无法发起新的跳过商人投票"
 SkipTraderVersusZedPlayerVotes="丧尸团队的玩家不能投票跳过商人"
+PauseVoteStartedString="发起暂停游戏投票"
+PauseVoteInProgressString="不能发起暂停游戏投票，因为已有一个正在进行的投票"
+PauseVoteYesReceivedString="你投票暂停游戏"
+PauseVoteNoReceivedString="你投票不暂停游戏"
+PauseVoteNoEnoughTimeString="发起暂停游戏投票的时间不足"
+PauseVoteNoSpectatorsString="旁观者不能发起暂停游戏投票"
+PauseVoteTimeString="暂停游戏激活。在游戏菜单中选择“暂停游戏”进行投票。  必须征得所有玩家同意。"
+PauseVoteSuccessString="暂停游戏投票成功！"
+PauseVoteFailedString="暂停游戏投票失败！"
+PauseVoteWaveActiveString="不能发起暂停游戏投票，因为本波已在进行中"
+PauseVoteWrongModeString="此选项仅在无尽模式中可用"
+ResumeVoteStartedString="发起了继续游戏投票"
+ResumeVoteInProgressString="不能发起继续游戏投票，因为已有一个正在进行的投票"
+ResumeVoteYesReceivedString="你投票继续游戏"
+ResumeVoteNoReceivedString="你投票不继续游戏"
+ResumeVoteNoEnoughTimeString="发起继续游戏投票的时间不足"
+ResumeVoteNoSpectatorsString="旁观者不能发起继续游戏投票"
+ResumeVoteTimeString="继续游戏激活。在游戏菜单中选择“继续游戏”进行投票。  必须征得所有玩家同意。"
+ResumeVoteSuccessString="继续游戏投票成功！"
+ResumeVoteFailedString="继续游戏投票失败！"
+ResumeVoteWaveActiveString="不能发起继续游戏投票，因为本波已在进行中"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="你收到了来自此人的弹药："
@@ -2247,7 +2274,7 @@ ZedShrapnel="自发性丧尸爆炸"
 ZedShrapnelDescription="你杀死的丧尸有30%的几率爆炸，进而伤害和击倒附近的丧尸。"
 
 MakeThingsGoBoom="欣欣向荣"
-MakeThingsGoBoomDescription="爆炸抗性提升 40%，所有爆炸物的效果范围提升 40%。"
+MakeThingsGoBoomDescription="爆炸抗性提升 50%，所有爆炸物的效果范围提升 50%。"
 
 Madman="丧尸时间 - 狂人"
 MadmanDescription="在丧尸时间中，你的所有武器射击速度提升 3 倍。"
@@ -2848,14 +2875,28 @@ CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
 
 SpecialEventObjectiveInfoList[0]=(TitleString="恐怖具象",DescriptionString="在任意地图或模式击杀15名首领")
 SpecialEventObjectiveInfoList[1]=(TitleString="每周邪教",DescriptionString="完成每周的地狱要塞任务")
-SpecialEventObjectiveInfoList[2]=(TitleString="声音从墙壁里传来",DescriptionString="找到地狱之心")
+SpecialEventObjectiveInfoList[2]=(TitleString="声音从墙壁里传来",DescriptionString="@SpecialEventObjectiveInfoList[2]=(TitleString="声音从墙壁里传来",DescriptionString="找到地狱之心")")
 SpecialEventObjectiveInfoList[3]=(TitleString="紫色烟瘴",DescriptionString="打开礼拜堂和餐厅的门")
 SpecialEventObjectiveInfoList[4]=(TitleString="永恒惩罚",DescriptionString="在困难无尽或以上难度的地狱要塞中成功抵御15波丧尸")
 
-AllCompleteRewardDescriptionString="宇航员 | 同伴背包 | 宝物"
+AllCompleteRewardDescriptionString="丧尸之日 | 同伴 | 宝物"
 
 ChanceDropDescriptionStrings[0]="万圣节奖券"
 ChanceDropDescriptionStrings[1]="万圣节金奖券"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2021] 
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="头部大减价！",DescriptionString="在任意地图或模式中斩首 1000 个丧尸")
+SpecialEventObjectiveInfoList[1]=(TitleString="黑色周常",DescriptionString="完成每周的卡利永村庄任务")
+SpecialEventObjectiveInfoList[2]=(TitleString="铜臭满身",DescriptionString="在卡利永村庄通过杀敌、奖励和治疗赚取 75,000 金钱")
+SpecialEventObjectiveInfoList[3]=(TitleString="痛苦的支付",DescriptionString="在卡利永村庄使用商人购买总共 20 款花费 1500 金钱以上（含）的武器")
+SpecialEventObjectiveInfoList[4]=(TitleString="挥霍不停",DescriptionString="在困难无尽或以上难度的卡利永村庄中成功抵御15波丧尸")
+
+AllCompleteRewardDescriptionString="节日购物 | 同伴 | 宝物"
+
+ChanceDropDescriptionStrings[0]="坎卜斯券"
+ChanceDropDescriptionStrings[1]="坎卜斯金奖券"
 
 ;============================================
 ; Daily Localization
@@ -2982,10 +3023,10 @@ FriendlyName="拾荒者"
 DescriptionStrings[0]="即兴。适应。克服。"
 DescriptionStrings[1]="长度：中（7波）"
 ModifierDescriptions[0]="商人的武器被抢劫一空。你必须充分利用自己找到的武器。在“比赛匹配”页面选择每周游戏模式。神射15+。"
-ModifierDescriptions[1]="测试2"
-ModifierDescriptions[2]="测试3"
-
-ModifierDescriptions[3]="测试4"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
 
 [WildWest KFWeeklyOutBreakInformation]
 FriendlyName="伦敦西大荒"
@@ -3002,6 +3043,26 @@ FriendlyName="尽弃希望"
 DescriptionStrings[0]="终极挑战"
 DescriptionStrings[1]="长度：中（7波）"
 ModifierDescriptions[0]="警告：此模式极度困难！仅面向将人间炼狱模式视为儿戏的玩家。请在“比赛匹配”页面选择每周游戏模式。神射15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="首领突袭"
+DescriptionStrings[0]="把它们都打败"
+DescriptionStrings[1]="长度：短（5 波）"
+ModifierDescriptions[0]="5个首领，5波。你是否已经做好了准备，把它们逐一击倒？警告：每击倒一个首领，难度便会逐阶上升。请在“比赛匹配”页面选择每周游戏模式。天赋15+。"
+ModifierDescriptions[1]="测试2"
+ModifierDescriptions[2]="测试3"
+ModifierDescriptions[3]="测试4"
+ModifierDescriptions[4]="测试5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="皱缩的头部"
+DescriptionStrings[0]="尝试爆头是无益的..."
+DescriptionStrings[1]="长度：中（7波）"
+ModifierDescriptions[0]="或许它们是在尝试抵抗玩家的爆头恶习。不过，至少看起来它们有了新的弱点。请在“比赛匹配”页面选择每周游戏模式。天赋15+。"
 ModifierDescriptions[1]="测试2"
 ModifierDescriptions[2]="测试3"
 ModifierDescriptions[3]="测试4"
@@ -3529,6 +3590,9 @@ DisplayName="月球基地"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="地狱要塞"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="卡利永村庄"
 
 [KFMapInfo]
 ; defaults

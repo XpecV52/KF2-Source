@@ -172,6 +172,25 @@ function ResetGameplayPostProcessFX()
     }
 }
 
+simulated function SetBossCamera(KFInterface_MonsterBoss Boss)
+{
+    local KFGameReplicationInfo KFGRI;
+    local bool bIsBossRush;
+
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    bIsBossRush = KFGRI.bIsWeeklyMode && KFGRI.CurrentWeeklyIndex == 14;
+    if((bIsBossRush && Boss.GetHealthPercent() <= 0) && KFGRI.WaveNum != KFGRI.WaveMax)
+    {
+        SetTimer(5, false, 'ResetBossCamera');
+    }
+    super.SetBossCamera(Boss);
+}
+
+simulated function ResetBossCamera()
+{
+    ResetCameraMode();
+}
+
 defaultproperties
 {
     MaxGoompaStreak=-1

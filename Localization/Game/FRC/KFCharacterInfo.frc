@@ -46,7 +46,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de Père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
-BodyMesh14="Tenue d'astronaute"
+BodyMesh14="Tenue d'acheteur des fêtes"
 HeadMesh0="Masque à gaz"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -162,6 +162,13 @@ BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
 
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Blanc"
 HeadSkin1="Vert"
@@ -249,7 +256,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de Père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
-BodyMesh14="Tenue d'astronaute"
+BodyMesh14="Tenue d'acheteur des fêtes"
 HeadMesh0="Pouvoir aux barbus !"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -371,6 +378,13 @@ BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
 
+[CHR_Jagerhorn_archetype.BodyMesh14]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Blond suédois"
 HeadSkin1="Le Black Album"
@@ -471,7 +485,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de Père Noël"
 BodyMesh12="Pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
-BodyMesh14="Tenue d'astronaute"
+BodyMesh14="Tenue d'acheteur des fêtes"
 HeadMesh0="Masque de Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -592,6 +606,13 @@ BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
 
+[CHR_DJSkully_archetype.BodyMesh14]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Noir ultime"
 HeadSkin1="Rouge Xtra"
@@ -639,7 +660,7 @@ BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de Père Noël"
 BodyMesh13="Tenue de pirate de l'espace"
 BodyMesh14="Tenue de faucheuse"
-BodyMesh15="Tenue d'astronaute"
+BodyMesh15="Tenue d'acheteur des fêtes"
 HeadMesh0="Cheveux"
 
 [chr_briar_archetype.BodyMesh0]
@@ -766,6 +787,13 @@ BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
 
+[CHR_briar_archetype.BodyMesh15]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Faits marquants"
@@ -807,7 +835,7 @@ BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de Père Noël"
 BodyMesh13="Tenue de pirate de l'espace"
 BodyMesh14="Tenue de faucheuse"
-BodyMesh15="Tenue d'astronaute"
+BodyMesh15="Tenue d'acheteur des fêtes"
 HeadMesh0="Masque à gaz"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -938,6 +966,13 @@ BodySkin2="Famine"
 BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Blanc original"
@@ -1100,7 +1135,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de Père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
-BodyMesh15="Tenue d'astronaute"
+BodyMesh14="Tenue d'acheteur des fêtes"
 HeadMesh0="Visage"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1219,6 +1254,13 @@ BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
 
+[CHR_Coleman_archetype.BodyMesh14]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Camelote"
@@ -1259,7 +1301,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de Père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
-BodyMesh14="Tenue d'astronaute"
+BodyMesh14="Tenue d'acheteur des fêtes"
 HeadMesh0="Cheveux"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1379,6 +1421,13 @@ BodySkin2="Famine"
 BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Gris"
@@ -2280,7 +2329,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de Père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
-BodyMesh14="Tenue d'astronaute"
+BodyMesh14="Tenue d'acheteur des fêtes"
 HeadMesh0="Visage"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2410,6 +2459,13 @@ BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
 
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka est un individu en plein doute souffrant d'un sérieux penchant suicidaire. Né à Okinawa, il fut élevé parmi des Américains dans l'armée. Après un déménagement sur l'île principale du Japon avec sa famille, le jeune Tanaka, trop emprunt de culture américaine, ne parvint pas à s'intégrer et commença à suivre des cours de théâtre. Après le lycée, il s'installa à Los Angeles, où il joua des rôles de figurant clichés dans de mauvais films, avant de partir pour l'Europe où il se mit en quête d'un travail plus « sérieux ». Il n'eut droit qu'à des rôles de méchants dans des films de gangsters français et à quelques camelotes. Aujourd'hui, en plein apocalypse, il semble confondre la réalité et quelques-uns des rôles qu'il a interprétés. On y trouve pèle-mêle ses visions des Yakuzas, des démons, et l'interprétation hollywoodienne du bushido."
@@ -2428,7 +2484,7 @@ BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de Père Noël"
 BodyMesh13="Tenue de pirate de l'espace"
 BodyMesh14="Tenue de faucheuse"
-BodyMesh15="Tenue d'astronaute"
+BodyMesh15="Tenue d'acheteur des fêtes"
 HeadMesh0="Cheveux"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2565,6 +2621,13 @@ BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
 
+[CHR_Tanaka_archetype.BodyMesh15]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Casque"
 AttachmentSkin0="Soleil levant"
@@ -2609,7 +2672,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de Père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
-BodyMesh14="Tenue d'astronaute"
+BodyMesh14="Tenue d'acheteur des fêtes"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2739,6 +2802,13 @@ BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
 
+[CHR_Ana_archetype.BodyMesh14]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Lunettes 3D"
 AttachmentSkin0="Anaglyphes 3D"
@@ -2769,7 +2839,7 @@ BodyMesh11="Chasseur de sorcières"
 BodyMesh12="Costume de Père Noël"
 BodyMesh13="Tenue de pirate de l'espace"
 BodyMesh14="Tenue de faucheuse"
-BodyMesh15="Tenue d'astronaute"
+BodyMesh15="Tenue d'acheteur des fêtes"
 HeadMesh0="Cheveux"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2896,6 +2966,13 @@ BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
 
+
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Le seul et unique"
 HeadSkin1="Foutues 5h du mat'"
@@ -2923,7 +3000,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de Père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
-BodyMesh14="Tenue d'astronaute"
+BodyMesh14="Tenue d'acheteur des fêtes"
 HeadMesh0="Visage"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3045,6 +3122,13 @@ BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
 
+[CHR_alan_archetype.BodyMesh14]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Le seul et unique"
 HeadSkin1="Roux ! Vraiment ?"
@@ -3079,7 +3163,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de Père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
-BodyMesh14="Tenue d'astronaute"
+BodyMesh14="Tenue d'acheteur des fêtes"
 HeadMesh0="Cheveux"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3197,6 +3281,13 @@ BodySkin2="Famine"
 BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
+
+[CHR_strasser_archetype.BodyMesh14]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acier sombre"
@@ -3376,7 +3467,7 @@ BodyMesh10="Chasseur de sorcières"
 BodyMesh11="Costume de Père Noël"
 BodyMesh12="Tenue de pirate de l'espace"
 BodyMesh13="Tenue de faucheuse"
-BodyMesh14="Tenue d'astronaute"
+BodyMesh14="Tenue d'acheteur des fêtes"
 HeadMesh0="Tête par défaut"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3498,6 +3589,13 @@ BodySkin2="Famine"
 BodySkin3="Épidémie"
 BodySkin4="Guerre"
 BodySkin5="Anarchie"
+
+[CHR_rockabilly_archetype.BodyMesh14]
+BodySkin0="Père Noël"
+BodySkin1="Elfe"
+BodySkin2="Pôle Nord"
+BodySkin3="Bordel de Noël"
+BodySkin4="Doré"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Noir"
@@ -6762,111 +6860,6 @@ AttachmentSkin2="Étoile rayonnante"
 AttachmentSkin3="Galaxie"
 AttachmentSkin4="Doré"
 
-[CHR_Tanaka_Archetype.BodyMesh15]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[CHR_Alberts_archetype.BodyMesh14]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[CHR_Ana_Archetype.BodyMesh14]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[CHR_BadSanta_Archetype.BodyMesh14]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[chr_briar_archetype.BodyMesh15]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[CHR_Coleman_archetype.BodyMesh15]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[chr_DJSkully_archetype.BodyMesh14]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[CHR_Jagerhorn_Archetype.BodyMesh14]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[chr_mark_archetype.BodyMesh15]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[CHR_Masterson_archetype.BodyMesh14]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[CHR_MrFoster_archetype.BodyMesh15]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[CHR_MrsFoster_archetype.BodyMesh14]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[chr_rockabilly_archetype.BodyMesh14]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[chr_strasser_archetype.BodyMesh14]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
-[chr_alan_archetype.BodyMesh14]
-BodySkin0="Espace lointain"
-BodySkin1="Singularité"
-BodySkin2="Étoile rayonnante"
-BodySkin3="Galaxie"
-BodySkin4="Doré"
-
 [Cosmetic_Vietnam_USHelmet_ARCH]
 Attachment="Casque U.S. du Vietnam"
 AttachmentSkin0="Olive"
@@ -7021,4 +7014,127 @@ AttachmentSkin0="Doré"
 
 [Cosmetic_WildWest_CowboyHat_ARCH]
 Attachment="Chapeau londonien du Far West"
+AttachmentSkin0="Doré"
+
+[Cosmetic_XMAS2021_Cart_ARCH]
+Attachment="Chariot de Noël"
+AttachmentSkin0="Père Noël"
+AttachmentSkin1="Elfe"
+AttachmentSkin2="Pôle Nord"
+AttachmentSkin3="Bordel de Noël"
+AttachmentSkin4="Doré"
+
+[Cosmetic_XMAS2021_Hat_ARCH]
+Attachment="Chapeau de Noël"
+AttachmentSkin0="Père Noël"
+AttachmentSkin1="Elfe"
+AttachmentSkin2="Pôle Nord"
+AttachmentSkin3="Bordel de Noël"
+AttachmentSkin4="Doré"
+
+[Cosmetic_XMAS2021_Helmet_ARCH]
+Attachment="Casque de Noël"
+AttachmentSkin0="Père Noël"
+AttachmentSkin1="Elfe"
+AttachmentSkin2="Pôle Nord"
+AttachmentSkin3="Bordel de Noël"
+AttachmentSkin4="Doré"
+
+[Cosmetic_XMAS2021_Armband_ARCH]
+Attachment="Brassard de Noël"
+AttachmentSkin0="Père Noël"
+AttachmentSkin1="Elfe"
+AttachmentSkin2="Pôle Nord"
+AttachmentSkin3="Bordel de Noël"
+AttachmentSkin4="Doré"
+
+[Cosmetic_XMAS2021_Mask_ARCH]
+Attachment="Masque de Noël"
+AttachmentSkin0="Père Noël"
+AttachmentSkin1="Elfe"
+AttachmentSkin2="Pôle Nord"
+AttachmentSkin3="Bordel de Noël"
+AttachmentSkin4="Doré"
+
+[Cosmetic_XMAS2021_Goggles_ARCH]
+Attachment="Lunettes de Noël"
+AttachmentSkin0="Père Noël"
+AttachmentSkin1="Elfe"
+AttachmentSkin2="Pôle Nord"
+AttachmentSkin3="Bordel de Noël"
+AttachmentSkin4="Doré"
+
+[Cosmetic_XMAS2021_Companion_ARCH]
+Attachment="Compagnon de Noël"
+AttachmentSkin0="Doré"
+
+[Cosmetic_Alchemist_Armband_ARCH]
+Attachment="Brassard d'alchimiste"
+AttachmentSkin0="Toxique"
+AttachmentSkin1="Brasier"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Panne"
+AttachmentSkin5="Doré"
+
+[Cosmetic_Alchemist_Bomb_ARCH]
+Attachment="Bombe d'alchimiste"
+AttachmentSkin0="Toxique"
+AttachmentSkin1="Brasier"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Panne"
+AttachmentSkin5="Doré"
+
+[Cosmetic_Alchemist_Goggles_ARCH]
+Attachment="Lunettes d'alchimiste"
+AttachmentSkin0="Toxique"
+AttachmentSkin1="Brasier"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Panne"
+AttachmentSkin5="Doré"
+
+[Cosmetic_Alchemist_Helmet_ARCH]
+Attachment="Casque d'alchimiste"
+AttachmentSkin0="Toxique"
+AttachmentSkin1="Brasier"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Panne"
+AttachmentSkin5="Doré"
+
+[Cosmetic_Alchemist_Mask_ARCH]
+Attachment="Masque d'alchimiste"
+AttachmentSkin0="Toxique"
+AttachmentSkin1="Brasier"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Panne"
+AttachmentSkin5="Doré"
+
+[Cosmetic_Alchemist_PressureVessel_ARCH]
+Attachment="Récipient sous pression d'alchimiste"
+AttachmentSkin0="Toxique"
+AttachmentSkin1="Brasier"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Panne"
+AttachmentSkin5="Doré"
+
+[Cosmetic_Alchemist_Vials_ARCH]
+Attachment="Fioles d'alchimiste"
+AttachmentSkin0="Toxique"
+AttachmentSkin1="Brasier"
+AttachmentSkin2="Plasma"
+AttachmentSkin3="Tension"
+AttachmentSkin4="Panne"
+AttachmentSkin5="Doré"
+
+[Cosmetic_PracticeTarget_Backpack_ARCH]
+Attachment="Sac à dos cible d'entraînement"
+AttachmentSkin0="Doré"
+
+[Cosmetic_BossTrophy_Backpack_ARCH]
+Attachment="Sac à dos trophée de boss"
 AttachmentSkin0="Doré"

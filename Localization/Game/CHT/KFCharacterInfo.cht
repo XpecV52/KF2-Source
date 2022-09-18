@@ -46,7 +46,7 @@ BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
 BodyMesh12="太空海盜服飾"
 BodyMesh13="死神服飾"
-BodyMesh14="太空人套裝"
+BodyMesh14="假期購物狂服"
 HeadMesh0="防毒面具"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -162,6 +162,13 @@ BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
 
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="白"
 HeadSkin1="綠色"
@@ -249,7 +256,7 @@ BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
 BodyMesh12="太空海盜服飾"
 BodyMesh13="死神服飾"
-BodyMesh14="太空人套裝"
+BodyMesh14="假期購物狂服"
 HeadMesh0="鬍子的力量！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -371,6 +378,13 @@ BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
 
+[CHR_Jagerhorn_archetype.BodyMesh14]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="金髮瑞典人"
 HeadSkin1="黑色相簿"
@@ -471,7 +485,7 @@ BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
 BodyMesh12="太空海盜"
 BodyMesh13="死神服飾"
-BodyMesh14="太空人套裝"
+BodyMesh14="假期購物狂服"
 HeadMesh0="史骷利面具"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -592,6 +606,13 @@ BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
 
+[CHR_DJSkully_archetype.BodyMesh14]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="黑中之黑"
 HeadSkin1="超級紅"
@@ -639,7 +660,7 @@ BodyMesh11="女巫獵人"
 BodyMesh12="聖誕老人套裝"
 BodyMesh13="太空海盜服飾"
 BodyMesh14="死神服飾"
-BodyMesh15="太空人套裝"
+BodyMesh15="假期購物狂服"
 HeadMesh0="頭髮"
 
 [chr_briar_archetype.BodyMesh0]
@@ -766,6 +787,13 @@ BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
 
+[CHR_briar_archetype.BodyMesh15]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
 HeadSkin1="亮光"
@@ -807,7 +835,7 @@ BodyMesh11="女巫獵人"
 BodyMesh12="聖誕老人套裝"
 BodyMesh13="太空海盜服飾"
 BodyMesh14="死神服飾"
-BodyMesh15="太空人套裝"
+BodyMesh15="假期購物狂服"
 HeadMesh0="防毒面具"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -938,6 +966,13 @@ BodySkin2="饑荒"
 BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
@@ -1100,7 +1135,7 @@ BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
 BodyMesh12="太空海盜服飾"
 BodyMesh13="死神服飾"
-BodyMesh15="太空人套裝"
+BodyMesh14="假期購物狂服"
 HeadMesh0="臉"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1219,6 +1254,13 @@ BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
 
+[CHR_Coleman_archetype.BodyMesh14]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="唐納文"
 HeadSkin1="麻布"
@@ -1259,7 +1301,7 @@ BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
 BodyMesh12="太空海盜服飾"
 BodyMesh13="死神服飾"
-BodyMesh14="太空人套裝"
+BodyMesh14="假期購物狂服"
 HeadMesh0="頭髮"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1379,6 +1421,13 @@ BodySkin2="饑荒"
 BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰"
@@ -2280,7 +2329,7 @@ BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
 BodyMesh12="太空海盜服飾"
 BodyMesh13="死神服飾"
-BodyMesh14="太空人套裝"
+BodyMesh14="假期購物狂服"
 HeadMesh0="臉"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2410,6 +2459,13 @@ BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
 
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
+
 [CHR_Tanaka_Archetype]
 CharacterName="田中隼人"
 Description="田中性格複雜，有時還有求死慾望。出生在沖繩，他從小就跟軍隊裡的美國人相處。後來跟父母搬到本州後，美國化的田中無法適應，開始對戲劇產生興趣。大學畢業後他搬到洛杉磯，在爛電影裡演了些小角色，後來又到歐洲找尋一些更好的機會。不過他還是只得到法國幫派電影的反派角色和一些跑龍套。天啟發生後，他似乎把現實跟一些之前扮演過的角色混淆了。這些角色包含黑社會、惡魔，還有好萊塢版的武士道。"
@@ -2428,7 +2484,7 @@ BodyMesh11="女巫獵人"
 BodyMesh12="聖誕老人套裝"
 BodyMesh13="太空海盜服飾"
 BodyMesh14="死神服飾"
-BodyMesh15="太空人套裝"
+BodyMesh15="假期購物狂服"
 HeadMesh0="頭髮"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2565,6 +2621,13 @@ BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
 
+[CHR_Tanaka_archetype.BodyMesh15]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="頭盔"
 AttachmentSkin0="太陽"
@@ -2609,7 +2672,7 @@ BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
 BodyMesh12="太空海盜服飾"
 BodyMesh13="死神服飾"
-BodyMesh14="太空人套裝"
+BodyMesh14="假期購物狂服"
 HeadMesh0="莫霍克"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2739,6 +2802,13 @@ BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
 
+[CHR_Ana_archetype.BodyMesh14]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 眼鏡"
 AttachmentSkin0="浮雕 3D"
@@ -2769,7 +2839,7 @@ BodyMesh11="女巫獵人"
 BodyMesh12="聖誕老人套裝"
 BodyMesh13="太空海盜服飾"
 BodyMesh14="死神服飾"
-BodyMesh15="太空人套裝"
+BodyMesh15="假期購物狂服"
 HeadMesh0="頭髮"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2896,6 +2966,13 @@ BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
 
+
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="真品"
 HeadSkin1="血腥 5 點鐘"
@@ -2923,7 +3000,7 @@ BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
 BodyMesh12="太空海盜服飾"
 BodyMesh13="死神服飾"
-BodyMesh14="太空人套裝"
+BodyMesh14="假期購物狂服"
 HeadMesh0="臉"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3045,6 +3122,13 @@ BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
 
+[CHR_alan_archetype.BodyMesh14]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="真品"
 HeadSkin1="打起精神！真的？"
@@ -3079,7 +3163,7 @@ BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
 BodyMesh12="太空海盜服飾"
 BodyMesh13="死神服飾"
-BodyMesh14="太空人套裝"
+BodyMesh14="假期購物狂服"
 HeadMesh0="頭髮"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3197,6 +3281,13 @@ BodySkin2="饑荒"
 BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
+
+[CHR_strasser_archetype.BodyMesh14]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑鋼"
@@ -3376,7 +3467,7 @@ BodyMesh10="女巫獵人"
 BodyMesh11="聖誕老人套裝"
 BodyMesh12="太空海盜服飾"
 BodyMesh13="死神服飾"
-BodyMesh14="太空人套裝"
+BodyMesh14="假期購物狂服"
 HeadMesh0="預設頭部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3498,6 +3589,13 @@ BodySkin2="饑荒"
 BodySkin3="鼠疫"
 BodySkin4="戰爭"
 BodySkin5="混亂"
+
+[CHR_rockabilly_archetype.BodyMesh14]
+BodySkin0="聖誕老人"
+BodySkin1="精靈"
+BodySkin2="北極"
+BodySkin3="亂鬥聖誕"
+BodySkin4="珍貴"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑"
@@ -6762,111 +6860,6 @@ AttachmentSkin2="星爆"
 AttachmentSkin3="銀河"
 AttachmentSkin4="珍貴"
 
-[CHR_Tanaka_Archetype.BodyMesh15]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[CHR_Alberts_archetype.BodyMesh14]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[CHR_Ana_Archetype.BodyMesh14]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[CHR_BadSanta_Archetype.BodyMesh14]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[chr_briar_archetype.BodyMesh15]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[CHR_Coleman_archetype.BodyMesh15]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[chr_DJSkully_archetype.BodyMesh14]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[CHR_Jagerhorn_Archetype.BodyMesh14]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[chr_mark_archetype.BodyMesh15]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[CHR_Masterson_archetype.BodyMesh14]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[CHR_MrFoster_archetype.BodyMesh15]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[CHR_MrsFoster_archetype.BodyMesh14]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[chr_rockabilly_archetype.BodyMesh14]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[chr_strasser_archetype.BodyMesh14]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
-[chr_alan_archetype.BodyMesh14]
-BodySkin0="深太空"
-BodySkin1="奇點"
-BodySkin2="星爆"
-BodySkin3="銀河"
-BodySkin4="珍貴"
-
 [Cosmetic_Vietnam_USHelmet_ARCH]
 Attachment="越南美國頭盔"
 AttachmentSkin0="橄欖綠"
@@ -7021,4 +7014,127 @@ AttachmentSkin0="珍貴"
 
 [Cosmetic_WildWest_CowboyHat_ARCH]
 Attachment="西部荒野倫敦帽"
+AttachmentSkin0="珍貴"
+
+[Cosmetic_XMAS2021_Cart_ARCH]
+Attachment="假期購物車"
+AttachmentSkin0="聖誕老人"
+AttachmentSkin1="精靈"
+AttachmentSkin2="北極"
+AttachmentSkin3="亂鬥聖誕"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_XMAS2021_Hat_ARCH]
+Attachment="假期購物帽"
+AttachmentSkin0="聖誕老人"
+AttachmentSkin1="精靈"
+AttachmentSkin2="北極"
+AttachmentSkin3="亂鬥聖誕"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_XMAS2021_Helmet_ARCH]
+Attachment="假期購物頭盔"
+AttachmentSkin0="聖誕老人"
+AttachmentSkin1="精靈"
+AttachmentSkin2="北極"
+AttachmentSkin3="亂鬥聖誕"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_XMAS2021_Armband_ARCH]
+Attachment="假期購物臂環"
+AttachmentSkin0="聖誕老人"
+AttachmentSkin1="精靈"
+AttachmentSkin2="北極"
+AttachmentSkin3="亂鬥聖誕"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_XMAS2021_Mask_ARCH]
+Attachment="假期購物面具"
+AttachmentSkin0="聖誕老人"
+AttachmentSkin1="精靈"
+AttachmentSkin2="北極"
+AttachmentSkin3="亂鬥聖誕"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_XMAS2021_Goggles_ARCH]
+Attachment="假期購物目鏡"
+AttachmentSkin0="聖誕老人"
+AttachmentSkin1="精靈"
+AttachmentSkin2="北極"
+AttachmentSkin3="亂鬥聖誕"
+AttachmentSkin4="珍貴"
+
+[Cosmetic_XMAS2021_Companion_ARCH]
+Attachment="假期購物同伴"
+AttachmentSkin0="珍貴"
+
+[Cosmetic_Alchemist_Armband_ARCH]
+Attachment="煉金術師臂環"
+AttachmentSkin0="劇毒"
+AttachmentSkin1="火焰"
+AttachmentSkin2="電漿"
+AttachmentSkin3="電壓"
+AttachmentSkin4="黑暗"
+AttachmentSkin5="珍貴"
+
+[Cosmetic_Alchemist_Bomb_ARCH]
+Attachment="煉金術師炸彈"
+AttachmentSkin0="劇毒"
+AttachmentSkin1="火焰"
+AttachmentSkin2="電漿"
+AttachmentSkin3="電壓"
+AttachmentSkin4="黑暗"
+AttachmentSkin5="珍貴"
+
+[Cosmetic_Alchemist_Goggles_ARCH]
+Attachment="煉金術師目鏡"
+AttachmentSkin0="劇毒"
+AttachmentSkin1="火焰"
+AttachmentSkin2="電漿"
+AttachmentSkin3="電壓"
+AttachmentSkin4="黑暗"
+AttachmentSkin5="珍貴"
+
+[Cosmetic_Alchemist_Helmet_ARCH]
+Attachment="煉金術師頭盔"
+AttachmentSkin0="劇毒"
+AttachmentSkin1="火焰"
+AttachmentSkin2="電漿"
+AttachmentSkin3="電壓"
+AttachmentSkin4="黑暗"
+AttachmentSkin5="珍貴"
+
+[Cosmetic_Alchemist_Mask_ARCH]
+Attachment="煉金術師面具"
+AttachmentSkin0="劇毒"
+AttachmentSkin1="火焰"
+AttachmentSkin2="電漿"
+AttachmentSkin3="電壓"
+AttachmentSkin4="黑暗"
+AttachmentSkin5="珍貴"
+
+[Cosmetic_Alchemist_PressureVessel_ARCH]
+Attachment="煉金術師壓力容器"
+AttachmentSkin0="劇毒"
+AttachmentSkin1="火焰"
+AttachmentSkin2="電漿"
+AttachmentSkin3="電壓"
+AttachmentSkin4="黑暗"
+AttachmentSkin5="珍貴"
+
+[Cosmetic_Alchemist_Vials_ARCH]
+Attachment="煉金術師燒瓶"
+AttachmentSkin0="劇毒"
+AttachmentSkin1="火焰"
+AttachmentSkin2="電漿"
+AttachmentSkin3="電壓"
+AttachmentSkin4="黑暗"
+AttachmentSkin5="珍貴"
+
+[Cosmetic_PracticeTarget_Backpack_ARCH]
+Attachment="打靶練習背包"
+AttachmentSkin0="珍貴"
+
+[Cosmetic_BossTrophy_Backpack_ARCH]
+Attachment="頭目獎盃背包"
 AttachmentSkin0="珍貴"

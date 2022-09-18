@@ -135,6 +135,7 @@ var(Gore) float ExplosionImpulseScale<DisplayName=Gib Impulse Scale|UIMin=0|Clam
 var string ZEDCowboyHatMeshPath;
 var transient LinearColor WWLHatMonoChromeValue;
 var transient LinearColor WWLHatColorValue;
+var float TinySkullPitchAudio;
 
 simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplicationInfo KFPRI)
 {
@@ -155,9 +156,10 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
     }
     if(CharacterMesh != none)
     {
+        KFGRI = KFGameReplicationInfo(KFP.WorldInfo.GRI);
         KFP.DetachComponent(KFP.ThirdPersonHeadMeshComponent);
         I = 0;
-        J0xD2:
+        J0x118:
 
         if(I < 3)
         {
@@ -167,7 +169,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 KFP.DetachComponent(KFP.FirstPersonAttachments[I]);
             }
             ++ I;
-            goto J0xD2;
+            goto J0x118;
         }
         if((KFP.WorldInfo.NetMode == NM_DedicatedServer) && ServerMesh != none)
         {
@@ -178,17 +180,24 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             KFP.Mesh.SetSkeletalMesh(CharacterMesh);
         }
         KFP.Mesh.SetScale(DefaultMeshScale);
-        KFP.PitchAudio(DefaultMeshScale);
+        if(((KFP != none) && KFGRI.bIsWeeklyMode) && KFGRI.CurrentWeeklyIndex == 15)
+        {
+            KFP.PitchAudio(TinySkullPitchAudio);            
+        }
+        else
+        {
+            KFP.PitchAudio(DefaultMeshScale);
+        }
         if(KFP.UsePlayerControlledZedSkin())
         {
             I = 0;
-            J0x30C:
+            J0x3D7:
 
             if(I < PlayerControlledSkins.Length)
             {
                 KFP.Mesh.SetMaterial(I, PlayerControlledSkins[I]);
                 ++ I;
-                goto J0x30C;
+                goto J0x3D7;
             }            
         }
         else
@@ -196,18 +205,18 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             if(Skins.Length > 0)
             {
                 I = 0;
-                J0x3A0:
+                J0x46B:
 
                 if(I < Skins.Length)
                 {
                     KFP.Mesh.SetMaterial(I, Skins[I]);
                     ++ I;
-                    goto J0x3A0;
+                    goto J0x46B;
                 }
             }
         }
         I = 0;
-        J0x421:
+        J0x4EC:
 
         if((I < PACMeshList.Length) && I < 3)
         {
@@ -225,10 +234,10 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 KFP.AttachComponent(PACAttachment);
             }
             ++ I;
-            goto J0x421;
+            goto J0x4EC;
         }
         I = 0;
-        J0x663:
+        J0x72E:
 
         if(I < StaticAttachList.Length)
         {
@@ -252,9 +261,8 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 }
             }
             ++ I;
-            goto J0x663;
+            goto J0x72E;
         }
-        KFGRI = KFGameReplicationInfo(KFP.WorldInfo.GRI);
         if(((KFP != none) && KFGRI.bIsWeeklyMode) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12)
         {
             NewAttachment.StaticAttachment = StaticMesh(DynamicLoadObject(ZEDCowboyHatMeshPath, Class'StaticMesh'));
@@ -292,7 +300,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
     if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFPawn_Monster(KFP) != none)
     {
         I = 0;
-        J0xEC8:
+        J0xF4D:
 
         if(I < KFP.CharacterMICs.Length)
         {
@@ -306,7 +314,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 KFP.CharacterMICs[I].SetVectorParameterValue('vector_TrimColor', AppliedColor);
             }
             ++ I;
-            goto J0xEC8;
+            goto J0xF4D;
         }
     }
 }
@@ -318,4 +326,5 @@ defaultproperties
     ZEDCowboyHatMeshPath="CHR_CosmeticSet01_MESH.cowboyhat.CHR_CowboyHat_Alberts_Cosmetic"
     WWLHatMonoChromeValue=(R=1,G=0,B=0,A=1)
     WWLHatColorValue=(R=1,G=0,B=0,A=1)
+    TinySkullPitchAudio=0.5
 }

@@ -822,6 +822,17 @@ ItemCategory="Rifle"
 ItemDescription="• Principal: solo tiro único.\n• Alternativo: corrompe a los zeds unos segundos.\n• Si un zed corrompido muere, explota y daña a los demás zeds, a la vez que cura a los jugadores."
 SharedUnlockSource="Paquete de armas Carabina corruptora"
 
+[KFWeap_HRG_Stunner]
+ItemName="Arma eléctrica HRG"
+ItemCategory="Subfusil"
+ItemDescription="•Modo de disparo: solo automático.\n•Alternativo: dispara varias balas concentradas en un solo disparo que estalla como una versión más pequeña de la granada cegadora.\n•El arma perfecta para cuando te quedas sin granadas cegadoras."
+
+[KFWeap_AssaultRifle_Doshinegun]
+ItemName="Metraguita"
+ItemCategory="Rifle"
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•Lleva los sobornos a otro nivel."
+SharedUnlockSource="Paquete de armas Metraguita"
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

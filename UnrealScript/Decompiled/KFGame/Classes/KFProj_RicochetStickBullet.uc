@@ -36,6 +36,7 @@ var class<Weapon> WeaponClass;
 var() AkEvent AmmoPickupSound;
 var Vector LastLocation;
 var bool bStuck;
+var bool bPickupCanBeDenied;
 /** This is the effect that is played while in flight */
 var(Projectile) ParticleSystem ProjPickupTemplate;
 var float LifeSpanAfterStick;
@@ -387,6 +388,7 @@ defaultproperties
 {
     PickupRadius=250
     PickupHeight=250
+    bPickupCanBeDenied=true
     AmbientComponent=AkComponent'Default__KFProj_RicochetStickBullet.AmbientAkSoundComponent'
     begin object name=CollisionCylinder class=CylinderComponent
         ReplacementPrimitive=none

@@ -814,13 +814,24 @@ SharedUnlockSource="食人魚手槍武器同捆包"
 ItemName="食人魚雙槍"
 ItemCategory="手槍"
 ItemDescription="•主要攻擊射擊鋸片。\n•次要：格擋/招架。\n•具超強咬合力，將你大卸八塊。"
-SharedUnlockSource="食人魚雙槍武器同捆包"
+SharedUnlockSource="雙持食人魚手槍武器同捆包"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="腐蝕者卡賓槍"
 ItemCategory="來福槍"
 ItemDescription="•主要攻擊為單發射擊。\n•次要射擊能腐蝕Zed數秒。\n•被腐蝕的Zed死亡後爆炸，傷害其他Zed並治療玩家。"
 SharedUnlockSource="腐蝕者卡賓槍武器同捆包"
+
+[KFWeap_HRG_Stunner]
+ItemName="HRG擊暈者"
+ItemCategory="衝鋒槍"
+ItemDescription="•射擊模式僅限全自動。\n•次要射擊會接連發射好幾發子彈，並像小型閃光彈那樣爆炸。\n•閃光彈用光時，這種武器特別管用。"
+
+[KFWeap_AssaultRifle_Doshinegun]
+ItemName="土豪槍"
+ItemCategory="來福槍"
+ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•賄賂一詞有了新的定義。"
+SharedUnlockSource="土豪槍武器同捆包"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

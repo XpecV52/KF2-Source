@@ -15,6 +15,7 @@ var bool bObjectiveQueued;
 var bool bIsSkipTraderVoteActive;
 var bool bIsKickVoteActive;
 var bool bUserAlreadyStartASkipTraderVote;
+var bool bIsPauseGameVoteActive;
 var bool bIsSpectating;
 var bool bIsVisible;
 var bool bUsingGamepad;
@@ -1000,8 +1001,9 @@ function ShowKickVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowCh
     if(KickVoteWidget != none)
     {
         bIsSkipTraderVoteActive = false;
+        bIsPauseGameVoteActive = false;
         bIsKickVoteActive = true;
-        KickVoteWidget.ShowVote(PRI, VoteDuration, bShowChoices, bIsSkipTraderVoteActive);
+        KickVoteWidget.ShowVote(PRI, VoteDuration, bShowChoices, 1);
     }
 }
 
@@ -1011,6 +1013,7 @@ simulated function HideKickVote()
     {
         bIsSkipTraderVoteActive = false;
         bIsKickVoteActive = false;
+        bIsPauseGameVoteActive = false;
         KickVoteWidget.VoteClosed();
     }
 }
@@ -1029,7 +1032,8 @@ function ShowSkipTraderVote(PlayerReplicationInfo PRI, byte VoteDuration, bool b
     {
         bIsSkipTraderVoteActive = true;
         bIsKickVoteActive = false;
-        KickVoteWidget.ShowVote(PRI, VoteDuration, bShowChoices, bIsSkipTraderVoteActive);
+        bIsPauseGameVoteActive = false;
+        KickVoteWidget.ShowVote(PRI, VoteDuration, bShowChoices, 2);
     }
 }
 
@@ -1047,6 +1051,7 @@ simulated function HideSkipTraderVote()
     {
         bIsSkipTraderVoteActive = false;
         bIsKickVoteActive = false;
+        bIsPauseGameVoteActive = false;
         KickVoteWidget.VoteClosed();
     }
 }
@@ -1055,6 +1060,49 @@ function UpdateSkipTraderVoteCount(byte YesVotes, byte NoVotes)
 {
     if(KickVoteWidget != none)
     {
+        KickVoteWidget.UpdateVoteCount(YesVotes, NoVotes);
+    }
+}
+
+function ShowPauseGameVote(PlayerReplicationInfo PRI, byte VoteDuration, bool bShowChoices)
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+    if(KickVoteWidget != none)
+    {
+        bIsPauseGameVoteActive = true;
+        bIsKickVoteActive = false;
+        bIsSkipTraderVoteActive = false;
+        KickVoteWidget.ShowVote(PRI, VoteDuration, bShowChoices, (((KFGRI != none) && KFGRI.bIsEndlessPaused) ? 4 : 3));
+    }
+}
+
+function UpdatePauseGameTime(byte VoteDuration)
+{
+    if(KickVoteWidget != none)
+    {
+        KickVoteWidget.UpdateVoteDuration(VoteDuration);
+    }
+}
+
+simulated function HidePauseGameVote()
+{
+    if(KickVoteWidget != none)
+    {
+        bIsPauseGameVoteActive = false;
+        bIsKickVoteActive = false;
+        bIsSkipTraderVoteActive = false;
+        KickVoteWidget.VoteClosed();
+    }
+}
+
+function UpdatePauseGameVoteCount(byte YesVotes, byte NoVotes)
+{
+    if(KickVoteWidget != none)
+    {
+        LogInternal("UPDATING PAUSE GAME VOTE COUNT - YES: " $ string(YesVotes));
+        LogInternal("UPDATING PAUSE GAME VOTE COUNT - NO: " $ string(NoVotes));
         KickVoteWidget.UpdateVoteCount(YesVotes, NoVotes);
     }
 }
@@ -1187,18 +1235,25 @@ function Callback_VoiceCommsSelection(int CommsIndex)
     }
 }
 
-function Callback_VoteKick(bool bKickOrSkip)
+function Callback_VoteKick(bool Vote)
 {
     local KFPlayerReplicationInfo KFPRI;
 
     KFPRI = KFPlayerReplicationInfo(GetPC().PlayerReplicationInfo);
     if(bIsSkipTraderVoteActive)
     {
-        KFPRI.CastSkipTraderVote(KFPRI, bKickOrSkip);        
+        KFPRI.CastSkipTraderVote(KFPRI, Vote);        
     }
     else
     {
-        KFPRI.CastKickVote(KFPRI, bKickOrSkip);
+        if(bIsPauseGameVoteActive)
+        {
+            KFPRI.CastPauseGameVote(KFPRI, Vote);            
+        }
+        else
+        {
+            KFPRI.CastKickVote(KFPRI, Vote);
+        }
     }
     if(KickVoteWidget != none)
     {

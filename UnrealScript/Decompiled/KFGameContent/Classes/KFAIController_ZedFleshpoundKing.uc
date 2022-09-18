@@ -220,9 +220,9 @@ defaultproperties
     MinChestBeamTargetAngle=0.77
     MaxChestBeamHeightOffset=64
     PhaseThresholds[0]=1
-    PhaseThresholds[1]=0.65
-    PhaseThresholds[2]=0.5
-    PhaseThresholds[3]=0.2
+    PhaseThresholds[1]=0.75
+    PhaseThresholds[2]=0.6
+    PhaseThresholds[3]=0.3
     ChestBeamMinPhase=2
     SpawnRagedChance=/* Array type was not detected. */
 }

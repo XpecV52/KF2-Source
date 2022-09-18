@@ -591,18 +591,18 @@ defaultproperties
    FartExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFPawn_ZedBloatKing:ExploTemplate0'
    FartFXTemplate=ParticleSystem'ZED_BloatKing_EMIT.FX_Bloatking_Fart_01'
    FartFXSocket="Poop_Attach"
-   DifficultyFartAttackTimers(0)=(X=5.000000,Y=9.000000)
-   DifficultyFartAttackTimers(1)=(X=4.500000,Y=8.500000)
-   DifficultyFartAttackTimers(2)=(X=4.000000,Y=8.000000)
-   DifficultyFartAttackTimers(3)=(X=4.000000,Y=7.000000)
-   DifficultyVarianceFartTimers(0)=(X=3.000000,Y=4.000000)
-   DifficultyVarianceFartTimers(1)=(X=2.500000,Y=3.500000)
-   DifficultyVarianceFartTimers(2)=(X=2.000000,Y=3.000000)
-   DifficultyVarianceFartTimers(3)=(X=2.000000,Y=3.000000)
-   DifficultyRageFartTimers(0)=(X=1.750000,Y=2.500000)
-   DifficultyRageFartTimers(1)=(X=1.250000,Y=2.000000)
-   DifficultyRageFartTimers(2)=(X=0.750000,Y=1.500000)
-   DifficultyRageFartTimers(3)=(X=0.750000,Y=1.500000)
+   DifficultyFartAttackTimers(0)=(X=4.000000,Y=7.000000)
+   DifficultyFartAttackTimers(1)=(X=3.500000,Y=6.000000)
+   DifficultyFartAttackTimers(2)=(X=3.000000,Y=5.500000)
+   DifficultyFartAttackTimers(3)=(X=3.000000,Y=5.000000)
+   DifficultyVarianceFartTimers(0)=(X=2.500000,Y=3.500000)
+   DifficultyVarianceFartTimers(1)=(X=2.000000,Y=3.000000)
+   DifficultyVarianceFartTimers(2)=(X=1.500000,Y=2.500000)
+   DifficultyVarianceFartTimers(3)=(X=1.500000,Y=2.500000)
+   DifficultyRageFartTimers(0)=(X=1.500000,Y=2.250000)
+   DifficultyRageFartTimers(1)=(X=1.000000,Y=1.750000)
+   DifficultyRageFartTimers(2)=(X=0.500000,Y=1.250000)
+   DifficultyRageFartTimers(3)=(X=0.500000,Y=1.250000)
    DifficultyVarianceRageFartTimers(0)=(X=1.650000,Y=2.100000)
    DifficultyVarianceRageFartTimers(1)=(X=1.150000,Y=1.600000)
    DifficultyVarianceRageFartTimers(2)=(X=0.650000,Y=1.100000)
@@ -611,15 +611,15 @@ defaultproperties
    PoopMonsterFXTemplate=ParticleSystem'CHR_Bile_EMIT.FX_Bile_Birth_01'
    PoopMonsterSFXTemplate=AkEvent'WW_ZED_Abomination.Play_Abomination_Bile_Spawn'
    PoopMonsterFXSocket="Poop_Attach"
-   PoopMonsterSpawnDelay=2.000000
-   RageSprintSpeedMultiplier=1.300000
+   PoopMonsterSpawnDelay=1.500000
+   RageSprintSpeedMultiplier=1.500000
    EnrageHealthThresholds(0)=0.800000
    EnrageHealthThresholds(1)=0.600000
    EnrageHealthThresholds(2)=0.400000
    EnrageHealthThresholds(3)=0.200000
    FootstepCameraShakePitchAmplitude=120.000000
    FootstepCameraShakeRollAmplitude=60.000000
-   VomitRange=400.000000
+   VomitRange=440.000000
    VomitDamage=20
    PukeMineProjectileClass=Class'kfgamecontent.KFProj_BloatKingPukeMine'
    bCanRage=True

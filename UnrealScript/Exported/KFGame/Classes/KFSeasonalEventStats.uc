@@ -74,6 +74,7 @@ simulated event OnTriggerUsed(class<Trigger_PawnsOnly> TriggerClass);
 simulated event OnTryCompleteObjective(int ObjectiveIndex, int EventIndex);
 simulated function OnHitTaken();
 simulated function OnHitGiven(class<DamageType> DT);
+simulated function OnWeaponPurchased(class<KFWeaponDefinition> WeaponDef, int Price);
 
 defaultproperties
 {

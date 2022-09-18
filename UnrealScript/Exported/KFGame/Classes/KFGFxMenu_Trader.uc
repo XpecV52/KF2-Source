@@ -117,7 +117,7 @@ struct native SItemInformation
 	var STraderItem DefaultItem;
 
 	var int ItemUpgradeLevel;
-
+	
 	StructDefaultProperties
 	{
 		ItemUpgradeLevel=0;

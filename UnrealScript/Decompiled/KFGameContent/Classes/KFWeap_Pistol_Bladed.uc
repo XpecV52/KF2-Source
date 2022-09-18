@@ -56,7 +56,7 @@ simulated function StartFire(byte FireModeNum)
             return;
         }
     }
-    super.StartFire(FireModeNum);
+    super(KFWeapon).StartFire(FireModeNum);
 }
 
 simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optional int NumHits, optional out float out_PenetrationVal, optional int ImpactNum)
@@ -69,6 +69,11 @@ simulated function ProcessInstantHitEx(byte FiringMode, ImpactInfo Impact, optio
         InstigatorPerk.UpdatePerkHeadShots(Impact, InstantHitDamageTypes[FiringMode], ImpactNum);
     }
     super(KFWeapon).ProcessInstantHitEx(FiringMode, Impact, NumHits, out_PenetrationVal, ImpactNum);
+}
+
+event RecieveClientImpact(byte FiringMode, const out ImpactInfo Impact, optional out float PenetrationValue, optional int ImpactNum)
+{
+    super(KFWeapon).RecieveClientImpact(FiringMode, Impact, PenetrationValue, ImpactNum);
 }
 
 simulated state MeleeBlocking

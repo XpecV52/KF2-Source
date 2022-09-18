@@ -46,7 +46,7 @@ BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
 BodyMesh13="リーパー服"
-BodyMesh14="宇宙飛行士衣装"
+BodyMesh14="ホリデーショッパー服"
 HeadMesh0="ガスマスク"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -162,6 +162,13 @@ BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
 
+[CHR_MrsFoster_archetype.BodyMesh14]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="ホワイト"
 HeadSkin1="グリーン"
@@ -249,7 +256,7 @@ BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
 BodyMesh13="リーパー服"
-BodyMesh14="宇宙飛行士衣装"
+BodyMesh14="ホリデーショッパー服"
 HeadMesh0="髭パワー！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -371,6 +378,13 @@ BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
 
+[CHR_Jagerhorn_archetype.BodyMesh14]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="スウェーデンのブロンド"
 HeadSkin1="ブラックアルバム"
@@ -471,7 +485,7 @@ BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ"
 BodyMesh13="リーパー服"
-BodyMesh14="宇宙飛行士衣装"
+BodyMesh14="ホリデーショッパー服"
 HeadMesh0="スカリーマスク"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -592,6 +606,13 @@ BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
 
+[CHR_DJSkully_archetype.BodyMesh14]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="ブラッケストブラック"
 HeadSkin1="エクストラレッド"
@@ -639,7 +660,7 @@ BodyMesh11="ウィッチハンター"
 BodyMesh12="サンタスーツ"
 BodyMesh13="スペースパイレーツ衣装"
 BodyMesh14="リーパー服"
-BodyMesh15="宇宙飛行士衣装"
+BodyMesh15="ホリデーショッパー服"
 HeadMesh0="髪"
 
 [chr_briar_archetype.BodyMesh0]
@@ -766,6 +787,13 @@ BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
 
+[CHR_briar_archetype.BodyMesh15]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="オリジナル"
 HeadSkin1="ハイライト"
@@ -807,7 +835,7 @@ BodyMesh11="ウィッチハンター"
 BodyMesh12="サンタスーツ"
 BodyMesh13="スペースパイレーツ衣装"
 BodyMesh14="リーパー服"
-BodyMesh15="宇宙飛行士衣装"
+BodyMesh15="ホリデーショッパー服"
 HeadMesh0="ガスマスク"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -938,6 +966,13 @@ BodySkin2="飢餓"
 BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
+
+[CHR_MrFoster_archetype.BodyMesh15]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="オリジナルホワイト"
@@ -1100,7 +1135,7 @@ BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
 BodyMesh13="リーパー服"
-BodyMesh15="宇宙飛行士衣装"
+BodyMesh14="ホリデーショッパー服"
 HeadMesh0="顔"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1219,6 +1254,13 @@ BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
 
+[CHR_Coleman_archetype.BodyMesh14]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="ドノヴァン"
 HeadSkin1="タトゥー"
@@ -1259,7 +1301,7 @@ BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
 BodyMesh13="リーパー服"
-BodyMesh14="宇宙飛行士衣装"
+BodyMesh14="ホリデーショッパー服"
 HeadMesh0="髪"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1379,6 +1421,13 @@ BodySkin2="飢餓"
 BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
+
+[CHR_Alberts_archetype.BodyMesh14]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="グレー"
@@ -2280,7 +2329,7 @@ BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
 BodyMesh13="リーパー服"
-BodyMesh14="宇宙飛行士衣装"
+BodyMesh14="ホリデーショッパー服"
 HeadMesh0="顔"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2410,6 +2459,13 @@ BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
 
+[CHR_Masterson_archetype.BodyMesh14]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
+
 [CHR_Tanaka_Archetype]
 CharacterName="ハヤト・タナカ"
 Description="タナカは、強い希死念慮を抱えた、葛藤する一人の人間だ。沖縄で生まれ、軍隊のアメリカ人が周りにいる中、育てられた。家族と共に本州に引っ越し、アメリカナイズされたタナカは周囲に馴染めず、演技のクラスに参加した。大学卒業後LAに引っ越し、いくつかの三流映画でありふれた端役をやり、その後ヨーロッパに渡ってもっと「本物の」仕事を探した。そこで得たものは、フランスのギャングスター映画での悪役と、いくつかの刺青だけだった。今、黙示録の最中において、自身の現実と、過去に演じた役とを混同しているようだ。これには、ヤクザに関する幻、悪魔、そしてハリウッドによる武士道についての見解が関わっているようだ。"
@@ -2428,7 +2484,7 @@ BodyMesh11="ウィッチハンター"
 BodyMesh12="サンタスーツ"
 BodyMesh13="スペースパイレーツ衣装"
 BodyMesh14="リーパー服"
-BodyMesh15="宇宙飛行士衣装"
+BodyMesh15="ホリデーショッパー服"
 HeadMesh0="髪"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2565,6 +2621,13 @@ BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
 
+[CHR_Tanaka_archetype.BodyMesh15]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="ヘルメット"
 AttachmentSkin0="ライジングサン"
@@ -2609,7 +2672,7 @@ BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
 BodyMesh13="リーパー服"
-BodyMesh14="宇宙飛行士衣装"
+BodyMesh14="ホリデーショッパー服"
 HeadMesh0="モヒカン"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2739,6 +2802,13 @@ BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
 
+[CHR_Ana_archetype.BodyMesh14]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3Dメガネ"
 AttachmentSkin0="アナグリフ3D"
@@ -2769,7 +2839,7 @@ BodyMesh11="ウィッチハンター"
 BodyMesh12="サンタスーツ"
 BodyMesh13="スペースパイレーツ衣装"
 BodyMesh14="リーパー服"
-BodyMesh15="宇宙飛行士衣装"
+BodyMesh15="ホリデーショッパー服"
 HeadMesh0="髪"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2896,6 +2966,13 @@ BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
 
+
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="ホンモノ"
 HeadSkin1="クソ5時"
@@ -2923,7 +3000,7 @@ BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
 BodyMesh13="リーパー服"
-BodyMesh14="宇宙飛行士衣装"
+BodyMesh14="ホリデーショッパー服"
 HeadMesh0="顔"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3045,6 +3122,13 @@ BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
 
+[CHR_alan_archetype.BodyMesh14]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="ホンモノ"
 HeadSkin1="ジンジャー！本当に？"
@@ -3079,7 +3163,7 @@ BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
 BodyMesh13="リーパー服"
-BodyMesh14="宇宙飛行士衣装"
+BodyMesh14="ホリデーショッパー服"
 HeadMesh0="髪"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3197,6 +3281,13 @@ BodySkin2="飢餓"
 BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
+
+[CHR_strasser_archetype.BodyMesh14]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="ダークスチール"
@@ -3376,7 +3467,7 @@ BodyMesh10="ウィッチハンター"
 BodyMesh11="サンタスーツ"
 BodyMesh12="スペースパイレーツ衣装"
 BodyMesh13="リーパー服"
-BodyMesh14="宇宙飛行士衣装"
+BodyMesh14="ホリデーショッパー服"
 HeadMesh0="デフォルト頭部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3498,6 +3589,13 @@ BodySkin2="飢餓"
 BodySkin3="悪疫"
 BodySkin4="戦争"
 BodySkin5="無秩序"
+
+[CHR_rockabilly_archetype.BodyMesh14]
+BodySkin0="サンタ"
+BodySkin1="エルフ"
+BodySkin2="北極"
+BodySkin3="Xマスの混乱"
+BodySkin4="希少"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="ブラック"
@@ -6762,111 +6860,6 @@ AttachmentSkin2="星形"
 AttachmentSkin3="銀河系"
 AttachmentSkin4="希少"
 
-[CHR_Tanaka_Archetype.BodyMesh15]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[CHR_Alberts_archetype.BodyMesh14]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[CHR_Ana_Archetype.BodyMesh14]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[CHR_BadSanta_Archetype.BodyMesh14]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[chr_briar_archetype.BodyMesh15]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[CHR_Coleman_archetype.BodyMesh15]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[chr_DJSkully_archetype.BodyMesh14]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[CHR_Jagerhorn_Archetype.BodyMesh14]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[chr_mark_archetype.BodyMesh15]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[CHR_Masterson_archetype.BodyMesh14]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[CHR_MrFoster_archetype.BodyMesh15]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[CHR_MrsFoster_archetype.BodyMesh14]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[chr_rockabilly_archetype.BodyMesh14]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[chr_strasser_archetype.BodyMesh14]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
-[chr_alan_archetype.BodyMesh14]
-BodySkin0="深宇宙"
-BodySkin1="特異点"
-BodySkin2="星形"
-BodySkin3="銀河系"
-BodySkin4="希少"
-
 [Cosmetic_Vietnam_USHelmet_ARCH]
 Attachment="ベトナムUSヘルメット"
 AttachmentSkin0="オリーブ"
@@ -7021,4 +7014,127 @@ AttachmentSkin0="希少"
 
 [Cosmetic_WildWest_CowboyHat_ARCH]
 Attachment="ワイルドウェストロンドンハット"
+AttachmentSkin0="希少"
+
+[Cosmetic_XMAS2021_Cart_ARCH]
+Attachment="ホリデーショッピングカート"
+AttachmentSkin0="サンタ"
+AttachmentSkin1="エルフ"
+AttachmentSkin2="北極"
+AttachmentSkin3="Xマスの混乱"
+AttachmentSkin4="希少"
+
+[Cosmetic_XMAS2021_Hat_ARCH]
+Attachment="ホリデーショッピングの帽子"
+AttachmentSkin0="サンタ"
+AttachmentSkin1="エルフ"
+AttachmentSkin2="北極"
+AttachmentSkin3="Xマスの混乱"
+AttachmentSkin4="希少"
+
+[Cosmetic_XMAS2021_Helmet_ARCH]
+Attachment="ホリデーショッピングのヘルメット"
+AttachmentSkin0="サンタ"
+AttachmentSkin1="エルフ"
+AttachmentSkin2="北極"
+AttachmentSkin3="Xマスの混乱"
+AttachmentSkin4="希少"
+
+[Cosmetic_XMAS2021_Armband_ARCH]
+Attachment="ホリデーショッピングのアームバンド"
+AttachmentSkin0="サンタ"
+AttachmentSkin1="エルフ"
+AttachmentSkin2="北極"
+AttachmentSkin3="Xマスの混乱"
+AttachmentSkin4="希少"
+
+[Cosmetic_XMAS2021_Mask_ARCH]
+Attachment="ホリデーショッピングのマスク"
+AttachmentSkin0="サンタ"
+AttachmentSkin1="エルフ"
+AttachmentSkin2="北極"
+AttachmentSkin3="Xマスの混乱"
+AttachmentSkin4="希少"
+
+[Cosmetic_XMAS2021_Goggles_ARCH]
+Attachment="ホリデーショッピングのゴーグル"
+AttachmentSkin0="サンタ"
+AttachmentSkin1="エルフ"
+AttachmentSkin2="北極"
+AttachmentSkin3="Xマスの混乱"
+AttachmentSkin4="希少"
+
+[Cosmetic_XMAS2021_Companion_ARCH]
+Attachment="ホリデーショッピングの仲間"
+AttachmentSkin0="希少"
+
+[Cosmetic_Alchemist_Armband_ARCH]
+Attachment="錬金術師のアームバンド"
+AttachmentSkin0="猛毒"
+AttachmentSkin1="火炎"
+AttachmentSkin2="プラズマ"
+AttachmentSkin3="ボルテージ"
+AttachmentSkin4="ブラックアウト"
+AttachmentSkin5="希少"
+
+[Cosmetic_Alchemist_Bomb_ARCH]
+Attachment="錬金術師の爆弾"
+AttachmentSkin0="猛毒"
+AttachmentSkin1="火炎"
+AttachmentSkin2="プラズマ"
+AttachmentSkin3="ボルテージ"
+AttachmentSkin4="ブラックアウト"
+AttachmentSkin5="希少"
+
+[Cosmetic_Alchemist_Goggles_ARCH]
+Attachment="錬金術師のゴーグル"
+AttachmentSkin0="猛毒"
+AttachmentSkin1="火炎"
+AttachmentSkin2="プラズマ"
+AttachmentSkin3="ボルテージ"
+AttachmentSkin4="ブラックアウト"
+AttachmentSkin5="希少"
+
+[Cosmetic_Alchemist_Helmet_ARCH]
+Attachment="錬金術師のヘルメット"
+AttachmentSkin0="猛毒"
+AttachmentSkin1="火炎"
+AttachmentSkin2="プラズマ"
+AttachmentSkin3="ボルテージ"
+AttachmentSkin4="ブラックアウト"
+AttachmentSkin5="希少"
+
+[Cosmetic_Alchemist_Mask_ARCH]
+Attachment="錬金術師のマスク"
+AttachmentSkin0="猛毒"
+AttachmentSkin1="火炎"
+AttachmentSkin2="プラズマ"
+AttachmentSkin3="ボルテージ"
+AttachmentSkin4="ブラックアウト"
+AttachmentSkin5="希少"
+
+[Cosmetic_Alchemist_PressureVessel_ARCH]
+Attachment="錬金術師の圧力容器"
+AttachmentSkin0="猛毒"
+AttachmentSkin1="火炎"
+AttachmentSkin2="プラズマ"
+AttachmentSkin3="ボルテージ"
+AttachmentSkin4="ブラックアウト"
+AttachmentSkin5="希少"
+
+[Cosmetic_Alchemist_Vials_ARCH]
+Attachment="錬金術師の小びん"
+AttachmentSkin0="猛毒"
+AttachmentSkin1="火炎"
+AttachmentSkin2="プラズマ"
+AttachmentSkin3="ボルテージ"
+AttachmentSkin4="ブラックアウト"
+AttachmentSkin5="希少"
+
+[Cosmetic_PracticeTarget_Backpack_ARCH]
+Attachment="射撃練習リュック"
+AttachmentSkin0="希少"
+
+[Cosmetic_BossTrophy_Backpack_ARCH]
+Attachment="ボストロフィーリュック"
 AttachmentSkin0="希少"

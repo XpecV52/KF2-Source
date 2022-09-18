@@ -3352,7 +3352,7 @@ function class<KFPerk> GetUsedWeaponPerk( Controller DamagerController, Actor Da
 		}
 	}
 
-	if( WeaponPerk == none && KFW != none && class'KFPerk'.static.IsBackupWeapon( KFW ) )
+	if( WeaponPerk == none && KFW != none && ( class'KFPerk'.static.IsBackupWeapon( KFW ) || class'KFPerk'.static.IsDoshinegun( KFW ) ))
 	{
 		WeaponPerk = InstigatorPerkClass;
 	}

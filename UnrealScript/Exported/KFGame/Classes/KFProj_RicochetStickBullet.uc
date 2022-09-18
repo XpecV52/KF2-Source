@@ -55,6 +55,9 @@ var(Projectile) ParticleSystem ProjPickupTemplate;
 	Allows us to set a much shorter LifeSpan to prevent fly-away projectiles living a long time. */
 var float LifeSpanAfterStick;
 
+/** Wether this object can be denied as a pickup or must be always picked. */
+var bool bPickupCanBeDenied;
+
 replication
 {
 	if ( bNetDirty )
@@ -501,6 +504,7 @@ defaultproperties
 {
    PickupRadius=250.000000
    PickupHeight=250.000000
+   bPickupCanBeDenied=True
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'KFGame.Default__KFProj_RicochetBullet:AmbientAkSoundComponent'
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True

@@ -59,7 +59,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     {
         KFW = GetWeaponFromDamageCauser(DamageCauser);
     }
-    if(((KFW != none) && ((IsWeaponOnPerk(KFW,, self.Class)) || IsDual9mm(KFW)) || Is9mm(KFW)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
+    if((((KFW != none) && ((IsWeaponOnPerk(KFW,, self.Class)) || IsDual9mm(KFW)) || Is9mm(KFW)) || IsDoshinegun(KFW)) || (DamageType != none) && IsDamageTypeOnPerk(DamageType))
     {
         TempDamage += (float(InDamage) * (GetPassiveValue(WeaponDamage, CurrentLevel)));
         if(IsRapidFireActive())
@@ -212,7 +212,6 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     local name StateName;
 
     StateName = W.GetStateName();
-    LogInternal("STATE NAME: " $ string(StateName));
     if(IsProfessionalActive() && ((IsWeaponOnPerk(W,, self.Class)) || IsBackupWeapon(W)) || IsDual9mm(W))
     {
         if((StateName == 'Reloading') || StateName == 'AltReloading')
@@ -227,7 +226,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
             }
         }
     }
-    if(((CouldRapidFireActive()) && (Is9mm(W) || IsDual9mm(W)) || IsWeaponOnPerk(W,, self.Class)) && (ZedTimeModifyingStates.Find(StateName != -1) || (IsFAMAS(W)) && StateName == 'FiringSecondaryState')
+    if(((CouldRapidFireActive()) && ((Is9mm(W) || IsDual9mm(W)) || IsDoshinegun(W)) || IsWeaponOnPerk(W,, self.Class)) && (ZedTimeModifyingStates.Find(StateName != -1) || (IsFAMAS(W)) && StateName == 'FiringSecondaryState')
     {
         return RapidFireFiringRate;
     }

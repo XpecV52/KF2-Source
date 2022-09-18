@@ -151,6 +151,10 @@ function UpdateWeapon()
                 {
                     SetInt("backpackStoredAmmo", CurrentSpareAmmo);
                     LastSpareAmmo = CurrentSpareAmmo;
+                }
+                if(!bUsesSecondaryAmmo && CurrentWeapon.bUsesSecondaryAmmoAltHUD)
+                {
+                    SetBool("doshAmmoIcon", true);
                 }                
             }
             else

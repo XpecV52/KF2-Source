@@ -11859,7 +11859,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_40
    EventName="Level Loaded All"
    MaxWidth=223
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_60',InputLinkIdx=1),(LinkedOp=SeqAct_ToggleHidden'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_7'),(LinkedOp=SeqAct_ChangeCollision'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_1'),(LinkedOp=SeqAct_ToggleHidden'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_6'),(LinkedOp=SeqAct_Toggle'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_90',InputLinkIdx=1)),DrawY=-8310,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_60',InputLinkIdx=1),(LinkedOp=SeqAct_ToggleHidden'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_7'),(LinkedOp=SeqAct_ChangeCollision'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ChangeCollision_1'),(LinkedOp=SeqAct_ToggleHidden'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ToggleHidden_6'),(LinkedOp=SeqAct_Toggle'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_90',InputLinkIdx=1),(LinkedOp=KFSeqCond_IsWeeklyEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqCond_IsWeeklyEvent_2')),DrawY=-8310,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-9737,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
@@ -12230,8 +12230,8 @@ End Object
 Begin Object Class=KFSeqEvent_WaveEnd Name=KFSeqEvent_WaveEnd_5
    MaxTriggerCount=0
    MaxWidth=248
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_9')),DrawY=-6756,OverrideDelta=13)
-   OutputLinks(1)=(DrawY=-6736,OverrideDelta=33)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqCond_IsWeeklyEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqCond_IsWeeklyEvent_1')),DrawY=-6756,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=KFSeqCond_IsWeeklyEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqCond_IsWeeklyEvent_1')),DrawY=-6736,OverrideDelta=33)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Int'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Int_14'),DrawX=-9885,OverrideDelta=16)
    VariableLinks(1)=(LinkedVariables=(SeqVar_Int'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Int_6'),DrawX=-9824,OverrideDelta=86)
    VariableLinks(2)=(DrawX=-9743,OverrideDelta=139)
@@ -12567,8 +12567,8 @@ End Object
 Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_3
    MaxTriggerCount=0
    MaxWidth=248
-   OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_14')),DrawY=-6116,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_14')),DrawY=-6096,OverrideDelta=33)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqCond_IsWeeklyEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqCond_IsWeeklyEvent_0')),DrawY=-6116,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=KFSeqCond_IsWeeklyEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.KFSeqCond_IsWeeklyEvent_0')),DrawY=-6096,OverrideDelta=33)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Int'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Int_14'),DrawX=-9861,OverrideDelta=16)
    VariableLinks(1)=(LinkedVariables=(SeqVar_Int'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Int_6'),DrawX=-9800,OverrideDelta=86)
    VariableLinks(2)=(DrawX=-9719,OverrideDelta=139)
@@ -21013,6 +21013,68 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_27
    DrawHeight=109
    Name="SeqAct_Delay_27"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=KFSeqCond_IsWeeklyEvent Name=KFSeqCond_IsWeeklyEvent_0
+   WeeklyIndex=14
+   InputLinks(0)=(DrawY=-6258,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_0')),DrawY=-6268,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_14')),DrawY=-6248,OverrideDelta=33)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9608
+   ObjPosY=-6304
+   DrawWidth=107
+   DrawHeight=69
+   Name="KFSeqCond_IsWeeklyEvent_0"
+   ObjectArchetype=KFSeqCond_IsWeeklyEvent'kfgamecontent.Default__KFSeqCond_IsWeeklyEvent'
+End Object
+
+Begin Object Class=KFSeqCond_IsWeeklyEvent Name=KFSeqCond_IsWeeklyEvent_1
+   InputLinks(0)=(DrawY=-6922,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_SetBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_SetBool_11'),(LinkedOp=SeqAct_Delay'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_15'),(LinkedOp=SeqAct_Delay'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_27'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_34')),DrawY=-6932,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqCond_CompareBool'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqCond_CompareBool_9')),DrawY=-6912,OverrideDelta=33)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9704
+   ObjPosY=-6968
+   DrawWidth=107
+   DrawHeight=69
+   Name="KFSeqCond_IsWeeklyEvent_1"
+   ObjectArchetype=KFSeqCond_IsWeeklyEvent'kfgamecontent.Default__KFSeqCond_IsWeeklyEvent'
+End Object
+
+Begin Object Class=KFSeqCond_IsWeeklyEvent Name=KFSeqCond_IsWeeklyEvent_2
+   WeeklyIndex=14
+   InputLinks(0)=(DrawY=-8354,OverrideDelta=23)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_35')),DrawY=-8364,OverrideDelta=13)
+   OutputLinks(1)=(DrawY=-8344,OverrideDelta=33)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9456
+   ObjPosY=-8400
+   DrawWidth=107
+   DrawHeight=69
+   Name="KFSeqCond_IsWeeklyEvent_2"
+   ObjectArchetype=KFSeqCond_IsWeeklyEvent'kfgamecontent.Default__KFSeqCond_IsWeeklyEvent'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_35
+   InputLinks(0)=(DrawY=-8331,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-8310,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-8289,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-8310,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_271',SeqVar_Object'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_285',SeqVar_Object'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_286',SeqVar_Object'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_287',SeqVar_Object'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_322'),DrawX=-9178,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-9127,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-9078,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-STEAMFORTRESS.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9216
+   ObjPosY=-8368
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_35"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
 Begin Object Class=CameraShake Name=CameraShake_10 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'

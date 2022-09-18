@@ -653,6 +653,9 @@ replication
 // Export UKFWeapon::execEnsureWeaponOverlayComponentLast(FFrame&, void* const)
 native function EnsureWeaponOverlayComponentLast();
 
+// Export UKFWeapon::execCanBuyAmmo(FFrame&, void* const)
+native function bool CanBuyAmmo();
+
 // Export UKFWeapon::execWeaponProcessViewRotation(FFrame&, void* const)
 native function WeaponProcessViewRotation(PlayerController PC, float DeltaTime, out Rotator DeltaRot);
 
@@ -1295,7 +1298,14 @@ function bool DenyPickupQuery(class<Inventory> ItemClass, Actor Pickup)
             }
             else
             {
-                bDenyPickUp = (SpareAmmoCount[0] + AmmoCount[0]) >= (GetMaxAmmoAmount(0));
+                if((KFProj_RicochetStickBullet(Pickup) == none) || KFProj_RicochetStickBullet(Pickup).bPickupCanBeDenied)
+                {
+                    bDenyPickUp = (SpareAmmoCount[0] + AmmoCount[0]) >= (GetMaxAmmoAmount(0));                    
+                }
+                else
+                {
+                    bDenyPickUp = false;
+                }
             }
         }
         if(bDenyPickUp)

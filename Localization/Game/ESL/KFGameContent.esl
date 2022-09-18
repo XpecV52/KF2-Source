@@ -814,13 +814,24 @@ SharedUnlockSource="Paquete de armas Pistola piraña"
 ItemName="Pistolas piraña duales"
 ItemCategory="Arma corta"
 ItemDescription="•Principal: dispara hojas de sierra.\n•Alternativo: bloquear/parar.\n•Gran potencia de mordisco, te desgarran."
-SharedUnlockSource="Paquete de armas Pistolas piraña duales"
+SharedUnlockSource="Paquete de armas Pistola piraña dual"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="Carabina corruptora"
 ItemCategory="Rifle"
 ItemDescription="•Principal: solo tiro único.\n•Alternativo: corrompe a los zeds unos segundos.\n•Si un zed corrompido muere, explota y daña a los demás zeds, a la vez que cura a los jugadores."
 SharedUnlockSource="Paquete de armas Carabina corruptora"
+
+[KFWeap_HRG_Stunner]
+ItemName="Arma aturdidora HRG"
+ItemCategory="Subfusil"
+ItemDescription="•Modo de disparo: solo automático.\n•Alternativo: dispara varias rondas concentradas en un solo disparo que estalla como una versión más pequeña de la granada cegadora.\n•El arma perfecta para cuando te quedas sin granadas cegadoras."
+
+[KFWeap_AssaultRifle_Doshinegun]
+ItemName="Ametralladólar"
+ItemCategory="Rifle"
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Disparo alternativo para alternar entre los modos de disparo.\n•Lleva los sobornos a otro nivel."
+SharedUnlockSource="Paquete de armas Ametralladólar"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

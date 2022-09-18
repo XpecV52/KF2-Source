@@ -380,13 +380,19 @@ function bool CanUpgrade(STraderItem SelectedItem, out int CanCarryIndex, out in
 function PurchaseWeapon(STraderItem ShopItem)
 {
     local int ItemUpgradeLevel;
+    local KFPlayerController KFPC;
+    local int Price;
 
     if(!bCanPurchase(ShopItem, true))
     {
         return;
     }
+    Price = GetAdjustedBuyPriceFor(ShopItem);
+    KFPC = Outer;
+    LogInternal("ADDING WEAPON PURCHASED");
+    KFPC.AddWeaponPurchased(ShopItem.WeaponDef, Price);
     ItemUpgradeLevel = ((ShopItem.SingleClassName != 'None') ? GetItemUpgradeLevelByClassName(ShopItem.SingleClassName) : -1);
-    AddDosh(-GetAdjustedBuyPriceFor(ShopItem));
+    AddDosh(-Price);
     AddBlocks(MyKFIM.GetWeaponBlocks(ShopItem, ItemUpgradeLevel));
     AddWeaponToOwnedItemList(ShopItem);
 }
@@ -1105,6 +1111,7 @@ function SetWeaponInfo(const KFWeapon KFW, STraderItem DefaultItem)
     WeaponInfo.ItemUpgradeLevel = KFW.CurrentWeaponUpgradeIndex;
     WeaponInfo.AmmoPricePerMagazine = int(AmmoCostScale * float(DefaultItem.WeaponDef.default.AmmoPricePerMag));
     WeaponInfo.SellPrice = GetAdjustedSellPriceFor(DefaultItem);
+    WeaponInfo.DefaultItem.bCanBuyAmmo = KFW.CanBuyAmmo();
     AddItemByPriority(WeaponInfo);
     if(DefaultItem.SingleClassName != 'None')
     {
@@ -1364,8 +1371,8 @@ private native final function AddTransactionAmmo(byte ItemIndex, int Amount, boo
 
 defaultproperties
 {
-    GrenadeItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,WeaponUpgradeWeight=0,WeaponUpgradeWeight[1]=0,WeaponUpgradeWeight[2]=0,WeaponUpgradeWeight[3]=0,WeaponUpgradeWeight[4]=0,WeaponUpgradeWeight[5]=0,WeaponUpgradeDmgMultiplier=0,WeaponUpgradeDmgMultiplier[1]=0,WeaponUpgradeDmgMultiplier[2]=0,WeaponUpgradeDmgMultiplier[3]=0,WeaponUpgradeDmgMultiplier[4]=0,WeaponUpgradeDmgMultiplier[5]=0,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1),ItemUpgradeLevel=0)
-    ArmorItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,WeaponUpgradeWeight=0,WeaponUpgradeWeight[1]=0,WeaponUpgradeWeight[2]=0,WeaponUpgradeWeight[3]=0,WeaponUpgradeWeight[4]=0,WeaponUpgradeWeight[5]=0,WeaponUpgradeDmgMultiplier=0,WeaponUpgradeDmgMultiplier[1]=0,WeaponUpgradeDmgMultiplier[2]=0,WeaponUpgradeDmgMultiplier[3]=0,WeaponUpgradeDmgMultiplier[4]=0,WeaponUpgradeDmgMultiplier[5]=0,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1),ItemUpgradeLevel=0)
+    GrenadeItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,WeaponUpgradeWeight=0,WeaponUpgradeWeight[1]=0,WeaponUpgradeWeight[2]=0,WeaponUpgradeWeight[3]=0,WeaponUpgradeWeight[4]=0,WeaponUpgradeWeight[5]=0,WeaponUpgradeDmgMultiplier=0,WeaponUpgradeDmgMultiplier[1]=0,WeaponUpgradeDmgMultiplier[2]=0,WeaponUpgradeDmgMultiplier[3]=0,WeaponUpgradeDmgMultiplier[4]=0,WeaponUpgradeDmgMultiplier[5]=0,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1,bCanBuyAmmo=false),ItemUpgradeLevel=0)
+    ArmorItem=(bIsSecondaryAmmo=false,SpareAmmoCount=0,MaxSpareAmmo=0,MaxSecondaryAmmo=0,SellPrice=0,SecondaryAmmoCount=0,MagazineCapacity=0,AutoFillDosh=0,AmmoPricePerMagazine=0,DefaultItem=(WeaponDef=none,ClassName=None,SingleClassName=None,DualClassName=None,AssociatedPerkClasses=none,MaxSpareAmmo=0,SecondaryAmmoImagePath="",GroupPriority=0,WeaponStats=none,WeaponUpgradeWeight=0,WeaponUpgradeWeight[1]=0,WeaponUpgradeWeight[2]=0,WeaponUpgradeWeight[3]=0,WeaponUpgradeWeight[4]=0,WeaponUpgradeWeight[5]=0,WeaponUpgradeDmgMultiplier=0,WeaponUpgradeDmgMultiplier[1]=0,WeaponUpgradeDmgMultiplier[2]=0,WeaponUpgradeDmgMultiplier[3]=0,WeaponUpgradeDmgMultiplier[4]=0,WeaponUpgradeDmgMultiplier[5]=0,InitialSpareMags=0,MagazineCapacity=0,BlocksRequired=0,InitialSecondaryAmmo=0,MaxSecondaryAmmo=0,TraderFilter=EFilterTypeUI.FT_Pistol,AltTraderFilter=EFilterTypeUI.FT_None,InventoryGroup=0,ItemId=-1,bCanBuyAmmo=false),ItemUpgradeLevel=0)
     CostPerAutofillCycle=10
     DoshBuffer=150
     ArmorMagSize=25

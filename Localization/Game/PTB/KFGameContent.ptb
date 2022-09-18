@@ -808,19 +808,30 @@ ItemDescription="•Principal: o modo de disparo é somente semiautomático.\n�
 ItemName="Pistola Piranha"
 ItemCategory="Pistola de mão"
 ItemDescription="•O tiro principal dispara lâminas de serrote.\n•Alt. - bloqueio/aparo.\n•Dentes afiadíssimos."
-SharedUnlockSource="Conjunto de Armas Pistola Piranha"
+SharedUnlockSource="Conjunto de Armas de Pistola Piranha"
 
 [KFWeap_Pistol_DualBladed]
 ItemName="Pistolas Piranha Duplas"
 ItemCategory="Pistola de mão"
 ItemDescription="•O tiro principal dispara lâminas de serrote.\n•Alt. - bloqueio/aparo.\n•Mordidas potentes que rasgam tudo."
-SharedUnlockSource="Conjunto de Armas Pistolas Piranha Duplas"
+SharedUnlockSource="Conjunto de Armas de Pistolas Piranha Duplas"
 
 [KFWeap_Rifle_ParasiteImplanter]
 ItemName="Carabina Corruptora"
 ItemCategory="Fuzil"
 ItemDescription="•Tiro principal de disparo único.\n•Tiro alt. corrompe os Zeds por alguns segundos.\n•Se um Zed corrompido morrer, ele explode, causa dano a outros Zeds e cura jogadores."
-SharedUnlockSource="Conjunto de Armas Carabina Corruptora"
+SharedUnlockSource="Conjunto de Armas de Carabina Corruptora"
+
+[KFWeap_HRG_Stunner]
+ItemName="Atordoador HRG"
+ItemCategory="Submetralhadora"
+ItemDescription="•Modo de tiro automático, somente.\n•Disparo alternativo que atira diversas balas em um tiro concentrado que explode como uma versão menor de uma granada de luz.\n•Uma arma perfeita quando você está sem granadas de luz."
+
+[KFWeap_AssaultRifle_Doshinegun]
+ItemName="Metralhadosh"
+ItemCategory="Fuzil"
+ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Levando o suborno a outro nível."
+SharedUnlockSource="Conjunto de Armas Metralhadosh"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

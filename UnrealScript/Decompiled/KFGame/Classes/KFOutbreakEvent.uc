@@ -80,6 +80,10 @@ struct StatAdjustments
     var() int DoshGiven;
     /** Speed modifier */
     var() float InitialGroundSpeedModifierScale;
+    /** Override HitZones Information */
+    var() array<HitZoneInfo> HitZonesOverride;
+    /** WeakPoints to show special VFX */
+    var() array<WeakPoint> WeakPoints;
 
     structdefaultproperties
     {
@@ -104,6 +108,34 @@ struct StatAdjustments
         HealByAssistance=0
         DoshGiven=-1
         InitialGroundSpeedModifierScale=1
+        HitZonesOverride=none
+        WeakPoints=none
+    }
+};
+
+struct BossRushOverridesPerWave
+{
+    var() array<StatAdjustments> ZedsToAdjust;
+    var() array<SpawnReplacement> SpawnReplacementList;
+    var() float DoshOnKillGlobalModifier;
+    var() int ExtraDoshGrantedonWaveWon;
+
+    structdefaultproperties
+    {
+        ZedsToAdjust=none
+        SpawnReplacementList=none
+        DoshOnKillGlobalModifier=1
+        ExtraDoshGrantedonWaveWon=0
+    }
+};
+
+struct BossRushOverrides
+{
+    var() array<BossRushOverridesPerWave> PerWaves;
+
+    structdefaultproperties
+    {
+        PerWaves=none
     }
 };
 
@@ -290,6 +322,12 @@ struct WeeklyOverrides
     var() int WeeklyOutbreakId;
     /** If WWL music should be forced */
     var() bool bForceWWLMusic;
+    /** Boss classes availabled for boss rush mode */
+    var() bool bBossRushMode;
+    /** Boss classes availabled for boss rush mode */
+    var() BossRushOverrides BossRushOverrideParams;
+    /** Ignores damage caused by headshots. */
+    var() bool bInvulnerableHeads;
 
     structdefaultproperties
     {
@@ -379,6 +417,9 @@ struct WeeklyOverrides
         bUnlimitedWeaponPickups=false
         WeeklyOutbreakId=-1
         bForceWWLMusic=false
+        bBossRushMode=false
+        BossRushOverrideParams=(PerWaves=none)
+        bInvulnerableHeads=false
     }
 };
 
@@ -598,9 +639,8 @@ function ModifyGroundSpeed(KFPawn PlayerPawn, out float GroundSpeed)
 
 function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, class<DamageType> DamageType, TraceHitInfo HitInfo)
 {
-    local int HitZoneIdx;
+    local int HitZoneIdx, WaveNum;
     local KFPawn InstigatorPawn;
-    local StatAdjustments ToAdjust;
 
     if((ActiveEvent.bHeadshotsOnly && KFPawn_Monster(injured) != none) && ClassIsChildOf(DamageType, Class'KFDamageType'))
     {
@@ -608,6 +648,17 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, cla
         if(HitZoneIdx != 0)
         {
             Damage = 0;
+        }        
+    }
+    else
+    {
+        if((ActiveEvent.bInvulnerableHeads && KFPawn_Monster(injured) != none) && ClassIsChildOf(DamageType, Class'KFDamageType'))
+        {
+            HitZoneIdx = KFPawn_Monster(injured).HitZones.Find('ZoneName', HitInfo.BoneName;
+            if((HitZoneIdx == 0) && !bool(KFPawn_Monster(injured).ArmorZoneStatus & 1))
+            {
+                Damage = 0;
+            }
         }
     }
     if(InstigatedBy != none)
@@ -621,7 +672,25 @@ function ReduceDamage(out int Damage, Pawn injured, Controller InstigatedBy, cla
             }
         }
     }
-    foreach ActiveEvent.ZedsToAdjust(ToAdjust,)
+    if(!ActiveEvent.bBossRushMode)
+    {
+        AdjustDamageReduction(Damage, injured, InstigatedBy, InstigatorPawn, ActiveEvent.ZedsToAdjust);        
+    }
+    else
+    {
+        WaveNum = Outer.MyKFGRI.WaveNum - 1;
+        if(WaveNum < ActiveEvent.BossRushOverrideParams.PerWaves.Length)
+        {
+            AdjustDamageReduction(Damage, injured, InstigatedBy, InstigatorPawn, ActiveEvent.BossRushOverrideParams.PerWaves[WaveNum].ZedsToAdjust);
+        }
+    }
+}
+
+function AdjustDamageReduction(out int Damage, Pawn injured, Controller InstigatedBy, KFPawn InstigatorPawn, array<StatAdjustments> Adjustments)
+{
+    local StatAdjustments ToAdjust;
+
+    foreach Adjustments(ToAdjust,)
     {
         if(injured.Class == ToAdjust.ClassToAdjust)
         {
@@ -718,7 +787,7 @@ function AdjustPawnScale(Pawn Pawn)
 
 function AdjustMonsterDefaults(out KFPawn_Monster P)
 {
-    local StatAdjustments ToAdjust;
+    local int WaveNum;
 
     if(P == none)
     {
@@ -737,7 +806,29 @@ function AdjustMonsterDefaults(out KFPawn_Monster P)
         P.InflationExplosionTimer = ActiveEvent.InflationExplosionTimer;
         P.InflateDeathGravity = ActiveEvent.InflationDeathGravity;
     }
-    foreach ActiveEvent.ZedsToAdjust(ToAdjust,)
+    if(!ActiveEvent.bBossRushMode)
+    {
+        AdjustDefaults(P, ActiveEvent.ZedsToAdjust);        
+    }
+    else
+    {
+        WaveNum = Outer.MyKFGRI.WaveNum - 1;
+        if(WaveNum < ActiveEvent.BossRushOverrideParams.PerWaves.Length)
+        {
+            AdjustDefaults(P, ActiveEvent.BossRushOverrideParams.PerWaves[WaveNum].ZedsToAdjust);
+        }
+    }
+}
+
+function AdjustDefaults(out KFPawn_Monster P, array<StatAdjustments> Adjustments)
+{
+    local StatAdjustments ToAdjust;
+    local HitZoneInfo OverrideHitZone;
+    local array<WeakPoint> OverridenBones;
+    local WeakPoint WeakPoint;
+    local int I;
+
+    foreach Adjustments(ToAdjust,)
     {
         if(P.Class == ToAdjust.ClassToAdjust)
         {
@@ -767,6 +858,41 @@ function AdjustMonsterDefaults(out KFPawn_Monster P)
             if(ToAdjust.AdditionalSubSpawns != none)
             {
                 Outer.SpawnManager.SummonBossMinions(ToAdjust.AdditionalSubSpawns.Squads, int(Lerp(ToAdjust.AdditionalSubSpawnCount.X, ToAdjust.AdditionalSubSpawnCount.Y, FMax(float(Outer.NumPlayers), 1) / float(Outer.MaxPlayers))));
+            }
+            if(ToAdjust.HitZonesOverride.Length > 0)
+            {
+                foreach ToAdjust.HitZonesOverride(OverrideHitZone,)
+                {
+                    I = 0;
+                    J0x672:
+
+                    if(I < P.HitZones.Length)
+                    {
+                        if(OverrideHitZone.ZoneName == P.HitZones[I].ZoneName)
+                        {
+                            P.HitZones[I].DmgScale = OverrideHitZone.DmgScale;
+                            P.HitZones[I].GoreHealth = OverrideHitZone.GoreHealth;
+                            P.HitZones[I].MaxGoreHealth = OverrideHitZone.MaxGoreHealth;
+                            goto J0x814;
+                        }
+                        ++ I;
+                        goto J0x672;
+                    }
+                    J0x814:
+                    
+                }                
+            }
+            if(ToAdjust.WeakPoints.Length > 0)
+            {
+                OverridenBones.Length = 0;
+                foreach ToAdjust.WeakPoints(WeakPoint,)
+                {
+                    OverridenBones.AddItem(WeakPoint;                    
+                }                
+                if(OverridenBones.Length > 0)
+                {
+                    P.ServerSpawnWeakPointVFX(OverridenBones);
+                }
             }
         }        
     }    
@@ -826,10 +952,29 @@ function SetWorldInfoOverrides()
 
 function class<KFPawn_Monster> GetAISpawnOverrirde(KFAISpawnManager.EAIType AIType)
 {
+    local int WaveNum;
+
+    if(!ActiveEvent.bBossRushMode)
+    {
+        return GetAISpawnOverrideInner(ActiveEvent.SpawnReplacementList, AIType);        
+    }
+    else
+    {
+        WaveNum = Outer.MyKFGRI.WaveNum - 1;
+        if(WaveNum < ActiveEvent.BossRushOverrideParams.PerWaves.Length)
+        {
+            return GetAISpawnOverrideInner(ActiveEvent.BossRushOverrideParams.PerWaves[WaveNum].SpawnReplacementList, AIType);
+        }
+    }
+    return Outer.AIClassList[AIType];
+}
+
+function class<KFPawn_Monster> GetAISpawnOverrideInner(array<SpawnReplacement> SpawnReplacementList, KFAISpawnManager.EAIType AIType)
+{
     local SpawnReplacement Replacement;
     local float RandF;
 
-    foreach ActiveEvent.SpawnReplacementList(Replacement,)
+    foreach SpawnReplacementList(Replacement,)
     {
         if(Replacement.SpawnEntry == AIType)
         {
@@ -839,7 +984,7 @@ function class<KFPawn_Monster> GetAISpawnOverrirde(KFAISpawnManager.EAIType AITy
                 if(RandF > Replacement.PercentChance)
                 {
                     continue;
-                    goto J0x11A;
+                    goto J0x107;
                 }
             }
             if(Replacement.NewClass.Length > 0)
@@ -848,7 +993,7 @@ function class<KFPawn_Monster> GetAISpawnOverrirde(KFAISpawnManager.EAIType AITy
             }
         }        
     }
-    J0x11A:
+    J0x107:
     
     return Outer.AIClassList[AIType];
 }
@@ -857,6 +1002,6 @@ static function int GetOutbreakId(int SetEventsIndex);
 
 defaultproperties
 {
-    ActiveEvent=(EventDifficulty=0,GameLength=0,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,bAddSpawnListToLoadout=false,bSpawnWeaponListAffectsSecondaryWeapons=false,TraderWeaponList=none,bDisableGrenades=false,PerksAvailableList=none,bColliseumSkillConditionsActive=false,bWildWestSkillConditionsActive=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bModifyZedTimeOnANearZedKill=false,ZedTimeOnANearZedKill=0.05,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0,bHealAfterKill=false,bHealWithHeadshot=false,bCannotBeHealed=false,bGlobalDamageAffectsShield=true,bApplyGlobalDamageBossWave=true,bHealPlayerAfterWave=false,bGoompaJumpEnabled=false,GoompaJumpDamage=0,GoompaStreakDamage=0,GoompaStreakMax=0,GoompaJumpImpulse=0,GoompaBonusDuration=0,JumpZ=-1,DroppedItemLifespan=-1,DoshOnKillGlobalModifier=1,DamageDelayAfterWaveStarted=10,bUnlimitedWeaponPickups=false,WeeklyOutbreakId=-1,bForceWWLMusic=false)
+    ActiveEvent=(EventDifficulty=0,GameLength=0,bHeadshotsOnly=false,SpawnRateMultiplier=1,GlobalDamageTickRate=0,GlobalDamageTickAmount=0,GlobalAmmoCostScale=1,SpawnWeaponList=none,bAddSpawnListToLoadout=false,bSpawnWeaponListAffectsSecondaryWeapons=false,TraderWeaponList=none,bDisableGrenades=false,PerksAvailableList=none,bColliseumSkillConditionsActive=false,bWildWestSkillConditionsActive=false,SpawnReplacementList=none,bAllowSpawnReplacementDuringBossWave=true,BossSpawnReplacementList=none,ZedsToAdjust=none,bDisableTraders=false,PickupResetTime=PickupResetTime.PRS_Wave,OverrideItemPickupModifier=-1,OverrideAmmoPickupModifier=-1,WaveItemPickupModifiers=none,WaveAmmoPickupModifiers=none,bUseOverrideItemRespawnTime=false,OverrideItemRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bUseOverrideAmmoRespawnTime=false,OverrideAmmoRespawnTime=(PlayersMod=1,PlayersMod[1]=1,PlayersMod[2]=1,PlayersMod[3]=1,PlayersMod[4]=1,PlayersMod[5]=1,ModCap=2),bPermanentZedTime=false,PermanentZedTimeCutoff=0,PermanentZedResetTime=1,OverrideZedTimeSlomoScale=0.2,ZedTimeRadius=0,ZedTimeBossRadius=0,ZedTimeHeight=0,bModifyZedTimeOnANearZedKill=false,ZedTimeOnANearZedKill=0.05,bScaleOnHealth=false,StartingDamageSizeScale=1,DeadDamageSizeScale=0.1,OverrideSpawnDerateTime=-1,OverrideTeleportDerateTime=-1,GlobalGravityZ=-1150,bUseBeefcakeRules=false,WaveAICountScale=none,ZedSpawnHeadScale=1,PlayerSpawnHeadScale=1,bHumanSprintEnabled=true,OffPerkCostScale=1,bBackupMeleeSprintSpeed=false,AdditionalBossWaveInfo=none,AdditionalBossWaveFrequency=0,AdditionalBossWaveStartDelay=15,AdditionalBossSpawnCount=(X=0,Y=0),bContinuousAdditionalBossWave=true,CrushScale=1,JumpDamageScale=1,NumJumpsAllowed=1,bUseZedDamageInflation=false,ZeroHealthInflation=1,GlobalDeflationRate=0.1,InflationDeathGravity=-0.1,InflationExplosionTimer=3,bDisableHeadless=false,MaxPerkLevel=4,MaxBoomsPerFrame=0,bHealAfterKill=false,bHealWithHeadshot=false,bCannotBeHealed=false,bGlobalDamageAffectsShield=true,bApplyGlobalDamageBossWave=true,bHealPlayerAfterWave=false,bGoompaJumpEnabled=false,GoompaJumpDamage=0,GoompaStreakDamage=0,GoompaStreakMax=0,GoompaJumpImpulse=0,GoompaBonusDuration=0,JumpZ=-1,DroppedItemLifespan=-1,DoshOnKillGlobalModifier=1,DamageDelayAfterWaveStarted=10,bUnlimitedWeaponPickups=false,WeeklyOutbreakId=-1,bForceWWLMusic=false,bBossRushMode=false,BossRushOverrideParams=(PerWaves=none),bInvulnerableHeads=false)
     CachedItems=(TraderItems=none,GameAmmoCostScale=1,bAllowGrenadePurchase=true,bTradersEnabled=true,MaxPerkLevel=0,CachedWorldGravityZ=0,CachedGlobalGravityZ=0,PerksAvailableData=(bPerksAvailableLimited=false,bBerserkerAvailable=false,bCommandoAvailable=false,bSupportAvailable=false,bFieldMedicAvailable=false,bDemolitionistAvailable=false,bFirebugAvailable=false,bGunslingerAvailable=false,bSharpshooterAvailable=false,bSwatAvailable=false,bSurvivalistAvailable=false))
 }

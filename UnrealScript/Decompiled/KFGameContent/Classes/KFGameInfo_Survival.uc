@@ -80,6 +80,10 @@ function StartMatch()
 
 function PlayWaveStartDialog()
 {
+    if((OutbreakEvent != none) && OutbreakEvent.ActiveEvent.bBossRushMode)
+    {
+        return;
+    }
     if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
     {
         KFGameInfo(WorldInfo.Game).DialogManager.PlayWaveStartDialog(MyKFGRI.IsBossWave());

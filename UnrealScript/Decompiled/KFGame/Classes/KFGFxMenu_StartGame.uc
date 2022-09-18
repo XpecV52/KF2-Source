@@ -222,7 +222,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 3:
             return Class'KFGFXSpecialEventObjectivesContainer_Fall2021';
         case 4:
-            return Class'KFGFXSpecialEventObjectivesContainer_Xmas2020';
+            return Class'KFGFXSpecialEventObjectivesContainer_Xmas2021';
         default:
             return Class'KFGFxSpecialEventObjectivesContainer';
             break;
@@ -1839,5 +1839,6 @@ defaultproperties
     StockMaps(33)="kf-dystopia2029"
     StockMaps(34)="kf-moonbase"
     StockMaps(35)="kf-netherhold"
+    StockMaps(36)="kf-carillonhamlet"
     SubWidgetBindings=/* Array type was not detected. */
 }

@@ -157,6 +157,10 @@ function SetupNextWave(byte NextWaveIndex, optional int TimeToNextWaveBuffer)
     local KFGameReplicationInfo KFGRI;
 
     TimeToNextWaveBuffer = 0;
+    if(Outer.OutbreakEvent.ActiveEvent.bBossRushMode)
+    {
+        NextWaveIndex = byte(Outer.MyKFGRI.WaveMax - 1);
+    }
     if(NextWaveIndex < WaveSettings.Waves.Length)
     {
         if(Outer.GameDifficulty < float(RecycleSpecialSquad.Length))
@@ -170,7 +174,7 @@ function SetupNextWave(byte NextWaveIndex, optional int TimeToNextWaveBuffer)
         LeftoverSpawnSquad.Length = 0;
         NumSpawnListCycles = 1;
         NumSpecialSquadRecycles = 0;
-        if(Outer.MyKFGRI.IsBossWave())
+        if(Outer.MyKFGRI.IsBossWave() || Outer.OutbreakEvent.ActiveEvent.bBossRushMode)
         {
             WaveTotalAI = 1;            
         }
@@ -307,6 +311,7 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
     local KFSpawnVolume.ESquadType LargestMonsterSquadType;
     local array< class<KFPawn_Monster> > TempSpawnList;
     local class<KFPawn_Monster> ForcedPawnClass;
+    local int RandBossIndex;
 
     Squad = SquadsList[SquadIdx];
     LargestMonsterSquadType = 4;
@@ -329,7 +334,16 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
                 AIType = Squad.MonsterList[I].Type;
                 if(AIType == 12)
                 {
-                    TempSpawnList.AddItem(Outer.GetBossAISpawnType();
+                    if(Outer.OutbreakEvent.ActiveEvent.bBossRushMode)
+                    {
+                        RandBossIndex = Rand(Outer.BossRushEnemies.Length);
+                        TempSpawnList.AddItem(Outer.default.AIBossClassList[Outer.BossRushEnemies[RandBossIndex]];
+                        Outer.BossRushEnemies.Remove(RandBossIndex, 1;                        
+                    }
+                    else
+                    {
+                        TempSpawnList.AddItem(Outer.GetBossAISpawnType();
+                    }
                     LargestMonsterSquadType = 0;                    
                 }
                 else
@@ -349,14 +363,14 @@ function GetSpawnListFromSquad(byte SquadIdx, out array<KFAISpawnSquad> SquadsLi
     }
     if(TempSpawnList.Length > 0)
     {
-        J0x2AE:
+        J0x3A6:
 
         if(TempSpawnList.Length > 0)
         {
             RandNum = Rand(TempSpawnList.Length);
             AISpawnList.AddItem(TempSpawnList[RandNum];
             TempSpawnList.Remove(RandNum, 1;
-            goto J0x2AE;
+            goto J0x3A6;
         }
         DesiredSquadType = Squad.MinVolumeType;
         if(LargestMonsterSquadType < DesiredSquadType)

@@ -123,6 +123,7 @@ const STATID_ACHIEVE_ElysiumEndlessWaveFifteen = 4057;
 const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
 const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles = 4060;
+const STATID_ACHIEVE_CarillonHamletCollectibles = 4061;
 
 enum RealTimeActivityConnectionStatus
 {

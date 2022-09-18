@@ -61,6 +61,8 @@ var const localized string PartyLeaderChangedString;
 var const localized string DownloadingString;
 var const localized string RemainingString;
 var const localized string MatchOverString;
+var const localized string PauseGameString;
+var const localized string ResumeGameString;
 var OnlineSubsystem OnlineSub;
 var TWOnlineLobby OnlineLobby;
 var bool bInLobby;
@@ -88,6 +90,7 @@ var GFxObject CreatePartyButton;
 var GFxObject SquadHeader;
 var GFxObject Notification;
 var GFxObject MatchStartContainer;
+var GFxObject EndlessPauseButton;
 var int PlayerSlots;
 var const UniqueNetId ZeroUniqueId;
 var SMemberSlot MemberSlots[12];
@@ -117,16 +120,20 @@ function InitializeWidget()
     ReadyButton = GetObject("readyButton");
     SquadHeader = GetObject("squadHeader");
     MatchStartContainer = GetObject("matchStartContainer");
+    EndlessPauseButton = GetObject("endlessPauseButton");
     InitNotificationUI();
     LocalizeText();
     UpdateInLobby(Manager.IsInLobby());
     RefreshParty();
     SetBool("matchOver", false);
+    SetBool("endlessPauseButtonVisible", false);
 }
 
 function LocalizeText()
 {
     local GFxObject TextObject;
+    local KFGameReplicationInfo KFGRI;
+    local WorldInfo TempWorldInfo;
 
     TextObject = Outer.CreateObject("Object");
     TextObject.SetString("readyString", ReadyString);
@@ -137,6 +144,15 @@ function LocalizeText()
     TextObject.SetString("selectPromptString", Localize("KFGFxWidget_ButtonPrompt", "ConfirmString", "KFGame"));
     TextObject.SetString("backPromptString", Localize("KFGFxWidget_ButtonPrompt", "CancelString", "KFGame"));
     TextObject.SetString("matchOver", MatchOverString);
+    TempWorldInfo = Class'WorldInfo'.static.GetWorldInfo();
+    if((TempWorldInfo != none) && TempWorldInfo.GRI != none)
+    {
+        KFGRI = KFGameReplicationInfo(TempWorldInfo.GRI);
+        if(KFGRI != none)
+        {
+            SetString("endlessPauseString", ((KFGRI.bIsEndlessPaused) ? ResumeGameString : PauseGameString));
+        }
+    }
     SetObject("localizedText", TextObject);
 }
 
@@ -487,6 +503,8 @@ defaultproperties
     RemainingString="Remaining:"
     MatchOverString="MATCH OVER 
  Please stand by..."
+    PauseGameString="PAUSE GAME"
+    ResumeGameString="RESUME GAME"
     bReadyButtonVisible=true
     bCreatePartyVisible=true
     PerkPrefix="%&1&%"

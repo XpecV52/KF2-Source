@@ -800,6 +800,8 @@ LeaveString="GRUPPE VERLASSEN"
 SquadString="TRUPP"
 SoloString="TRUPP"
 DefaultPlayerName="Spieler"
+PauseGameString="SPIELPAUSE"
+ResumeGameString="SPIEL FORTSETZEN"
 
 PartyLeaderSearchingForMatchString="sucht ein Spiel …"
 PartyLeaderIsUpdatingMatchOptionsString="stellt Spieloptionen ein …"
@@ -1057,6 +1059,10 @@ ThrowString="WAFFE ABWERFEN"
 VoteKickString="Spieler kicken?"
 VoteSkipTraderString="Händlerin überspringen?"
 VoteSkipTraderDetailString="will den Countdown überspringen"
+VotePauseGameString="Spiel pausieren?"
+VotePauseGameDetailString="möchte das Spiel pausieren"
+VoteResumeGameString="Spiel fortsetzen?"
+VoteResumeGameDetailString="möchte das Spiel fortsetzen"
 
 [KFLocalMessage_PlayerKills]
 KilledString="getötet"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="Du hast dagegen gestimmt, die Händlerin zu übe
 SkipTraderNoEnoughTimeString="Nicht genug Zeit, die Abstimmung „Händlerin überspringen“ zu starten"
 SkipTraderThisUserAlreadyStartedAVoteString="Du kannst bis zur nächsten Händlerin keine neue Abstimmung zum Überspringen der Händlerin starten"
 SkipTraderVersusZedPlayerVotes="Spieler im Zed-Team können nicht über das Überspringen der Händlerin abstimmen"
+PauseVoteStartedString="Hat eine Spielpause-Abstimmung gestartet"
+PauseVoteInProgressString="Es kann keine Spielpause-Abstimmung gestartet werden, weil schon eine aktiv ist"
+PauseVoteYesReceivedString="Du hast dafür gestimmt, das Spiel zu pausieren"
+PauseVoteNoReceivedString="Du hast dagegen gestimmt, das Spiel zu pausieren"
+PauseVoteNoEnoughTimeString="Nicht genug Zeit, die Spielpause-Abstimmung zu starten"
+PauseVoteNoSpectatorsString="Zuschauer können keine Spielpause-Abstimmung starten"
+PauseVoteTimeString="SPIELPAUSE aktiv. Wähle zum Abstimmen im Menü „SPIELPAUSE“. Alle müssen zustimmen."
+PauseVoteSuccessString="Spielpause-Abstimmung erfolgreich!"
+PauseVoteFailedString="Spielpause-Abstimmung fehlgeschlagen!"
+PauseVoteWaveActiveString="Es kann keine Spielpause-Abstimmung gestartet werden, weil die Welle aktiv ist"
+PauseVoteWrongModeString="Diese Option ist nur im Endlosmodus verfügbar."
+ResumeVoteStartedString="Hat eine „Spiel fortsetzen“-Abstimmung gestartet"
+ResumeVoteInProgressString="Es kann keine „Spiel fortsetzen“-Abstimmung gestartet werden, weil schon eine aktiv ist"
+ResumeVoteYesReceivedString="Du hast dafür gestimmt, das Spiel fortzusetzen"
+ResumeVoteNoReceivedString="Du hast dagegen gestimmt, das Spiel fortzusetzen"
+ResumeVoteNoEnoughTimeString="Nicht genug Zeit, die „Spiel fortsetzen“-Abstimmung zu starten"
+ResumeVoteNoSpectatorsString="Zuschauer können keine „Spiel fortsetzen“-Abstimmung starten"
+ResumeVoteTimeString="SPIEL FORTSETZEN aktiv. Wähle zum Abstimmen im Menü „SPIEL FORTSETZEN“. Alle müssen zustimmen."
+ResumeVoteSuccessString="„Spiel fortsetzen“-Abstimmung erfolgreich!"
+ResumeVoteFailedString="„Spiel fortsetzen“-Abstimmung fehlgeschlagen!"
+ResumeVoteWaveActiveString="Es kann keine „Spiel fortsetzen“-Abstimmung gestartet werden, weil die Welle aktiv ist"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="Du hast Munition erhalten von"
@@ -2247,7 +2274,7 @@ ZedShrapnel="Spontane Zed-plosion"
 ZedShrapnelDescription="Von dir getötete Zeds haben eine Chance von 30%, zu explodieren, Zeds in der Nähe Schaden zuzufügen und sie zu betäuben."
 
 MakeThingsGoBoom="Bringe Dinge zum Explodieren"
-MakeThingsGoBoomDescription="Erhöhe die Sprengstoff-Resistenz um 40% und den Wirkungsbereich aller Sprengstoffe um 40%."
+MakeThingsGoBoomDescription="Erhöhe die Sprengstoff-Resistenz um 50% und den Wirkungsbereich aller Sprengstoffe um 50%."
 
 Madman="ZED-ZEIT – Irrer"
 MadmanDescription="Während der Zed-Zeit schießen alle deine Waffen 3x schneller."
@@ -2852,10 +2879,24 @@ SpecialEventObjectiveInfoList[2]=(TitleString="Es kommt von den Wänden",Descrip
 SpecialEventObjectiveInfoList[3]=(TitleString="Lila Miasma",DescriptionString="Schalte die Kapelle und den Speisesaal frei")
 SpecialEventObjectiveInfoList[4]=(TitleString="Ewige Bestrafung",DescriptionString="Schließe Welle 15 bei Unterweltfestung auf mindestens Schwer ab")
 
-AllCompleteRewardDescriptionString="Astronaut | Gefährten-Rucksack | Edel"
+AllCompleteRewardDescriptionString="TdZ | Gefährte | Edel"
 
 ChanceDropDescriptionStrings[0]="Halloween-Schein"
 ChanceDropDescriptionStrings[1]="Goldener Halloween-Schein"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2021] 
+CurrentSpecialEventString="Ein zeitlich begrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Köpfe im Angebot!",DescriptionString="Köpfe 1000 Zeds auf einer beliebigen Karte oder in einem beliebigen Modus")
+SpecialEventObjectiveInfoList[1]=(TitleString="Black Weekly",DescriptionString="Schaffe das wöchentliche Carillon Hamlet")
+SpecialEventObjectiveInfoList[2]=(TitleString="Dreckig reich",DescriptionString="Verdiene 75.000 Kohle durch Kills, Belohnungen und Heilung in Carillon Hamlet")
+SpecialEventObjectiveInfoList[3]=(TitleString="Schmerzhafte Ausgaben",DescriptionString="Nutze den Händler, um in Carillon Hamlet für 1.500 Dosh oder mehr 20 Waffen zu kaufen")
+SpecialEventObjectiveInfoList[4]=(TitleString="Nonstop-Blutspritzer",DescriptionString="Schließe Welle 15 in Carillon Hamlet auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="Feiertags-Shopping | Gefährte | Edel"
+
+ChanceDropDescriptionStrings[0]="Schein „Krampus“"
+ChanceDropDescriptionStrings[1]="Goldener Schein „Krampus“"
 
 ;============================================
 ; Daily Localization
@@ -3002,6 +3043,26 @@ FriendlyName="Hoffnungslos"
 DescriptionStrings[0]="Die ultimative Herausforderung"
 DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
 ModifierDescriptions[0]="WARNUNG: Dieser Modus ist extrem schwierig! Nur für die, die Hölle auf Erden als Kinderspiel betrachten. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="Bossansturm"
+DescriptionStrings[0]="Keinen übrig lassen"
+DescriptionStrings[1]="Länge: Kurz (5 Wellen)"
+ModifierDescriptions[0]="Fünf Wellen für fünf Bosse. Bist du bereit, sie eine nach der anderen zu besiegen? WARNUNG: Der Schwierigkeitsgrad steigt mit jedem besiegten Boss. Wähle in der Spielersuche den wöchentlichen Spielmodus. Vorteil 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="Schrumpfköpfe"
+DescriptionStrings[0]="Kopfschuss-Versuche sind zwecklos …"
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Möglicherweise versuchen sie, sich gegen die Kopfschussgewohnheiten der Spieler zu schützen. Jedenfalls scheint es so, als hätten sie neue Schwachstellen. Wähle in der Spielersuche den wöchentlichen Spielmodus. Vorteil 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3529,6 +3590,9 @@ DisplayName="Mondbasis"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="Unterweltfestung"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="Carillon Hamlet"
 
 [KFMapInfo]
 ; defaults

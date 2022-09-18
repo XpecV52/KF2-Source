@@ -124,6 +124,7 @@ const STATID_ACHIEVE_ElysiumEndlessWaveFifteen = 4057;
 const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
 const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles = 4060;
+const STATID_ACHIEVE_CarillonHamletCollectibles = 4061;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -494,6 +495,11 @@ static function bool IsFAMAS(KFWeapon KFW)
 static function bool IsBlastBrawlers(KFWeapon KFW)
 {
     return (KFW != none) && KFW.Class.Name == 'KFWeap_HRG_BlastBrawlers';
+}
+
+static function bool IsDoshinegun(KFWeapon KFW)
+{
+    return (KFW != none) && KFW.Class.Name == 'KFWeap_AssaultRifle_Doshinegun';
 }
 
 simulated function int GetCurrentPrestigeLevel()

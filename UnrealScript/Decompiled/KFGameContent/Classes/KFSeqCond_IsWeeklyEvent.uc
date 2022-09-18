@@ -20,13 +20,11 @@ function Activated()
     {
         if(((KFGI.MyKFGRI != none) && KFGI.MyKFGRI.bIsWeeklyMode) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == WeeklyIndex)
         {
-            OutputLinks[0].bHasImpulse = true;
-            OutputLinks[0].bHasImpulse = false;            
+            OutputLinks[0].bHasImpulse = true;            
         }
         else
         {
-            OutputLinks[0].bHasImpulse = false;
-            OutputLinks[0].bHasImpulse = true;
+            OutputLinks[1].bHasImpulse = true;
         }
     }
 }

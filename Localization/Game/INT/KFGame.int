@@ -800,6 +800,8 @@ LeaveString="LEAVE PARTY"
 SquadString="SQUAD"
 SoloString="SQUAD"
 DefaultPlayerName="Player"
+PauseGameString="PAUSE GAME"
+ResumeGameString="RESUME GAME"
 
 PartyLeaderSearchingForMatchString="is searching for a match..."
 PartyLeaderIsUpdatingMatchOptionsString="is setting match options..."
@@ -1057,6 +1059,10 @@ ThrowString="THROW WEAPON"
 VoteKickString="Kick Player?"
 VoteSkipTraderString="Skip Trader?"
 VoteSkipTraderDetailString="wants to skip the countdown"
+VotePauseGameString="Pause Game?"
+VotePauseGameDetailString="wants to pause the game"
+VoteResumeGameString="Resume Game?"
+VoteResumeGameDetailString="wants to resume the game"
 
 [KFLocalMessage_PlayerKills]
 KilledString="killed"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="You have voted to not skip trader"
 SkipTraderNoEnoughTimeString="Not enough time to start a skip trader vote"
 SkipTraderThisUserAlreadyStartedAVoteString="You can't start a new skip trader vote until the next trader phase"
 SkipTraderVersusZedPlayerVotes="Players in Zed Team can’t vote to skip trader"
+PauseVoteStartedString="Initiated a Pause Game vote"
+PauseVoteInProgressString="Cannot start a Pause Game vote, one is already active"
+PauseVoteYesReceivedString="You have voted to pause the game"
+PauseVoteNoReceivedString="You have voted to not pause the game"
+PauseVoteNoEnoughTimeString="Not enough time to start a Pause Game vote"
+PauseVoteNoSpectatorsString="Spectators may not initiate a Pause Game vote"
+PauseVoteTimeString="PAUSE GAME activated. Select 'PAUSE GAME' on the game menu to vote.  All players must agree."
+PauseVoteSuccessString="Pause Game vote successful!"
+PauseVoteFailedString="Pause Game vote failed!"
+PauseVoteWaveActiveString="Cannot start a Pause Game vote, the wave is active"
+PauseVoteWrongModeString="This option is only available on Endless mode"
+ResumeVoteStartedString="Initiated a Resume Game vote"
+ResumeVoteInProgressString="Cannot start a Resume Game vote, one is already active"
+ResumeVoteYesReceivedString="You have voted to resume the game"
+ResumeVoteNoReceivedString="You have voted to not resume the game"
+ResumeVoteNoEnoughTimeString="Not enough time to start a Resume Game vote"
+ResumeVoteNoSpectatorsString="Spectators may not initiate a Resume Game vote"
+ResumeVoteTimeString="RESUME GAME activated. Select 'RESUME GAME' on the game menu to vote.  All players must agree."
+ResumeVoteSuccessString="Resume Game vote successful!"
+ResumeVoteFailedString="Resume Game vote failed!"
+ResumeVoteWaveActiveString="Cannot start a Resume Game vote, the wave is active"
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="You received ammo from"
@@ -2247,7 +2274,7 @@ ZedShrapnel="Spontaneous Zed-plosion"
 ZedShrapnelDescription="Zeds you kill have a 30% chance to explode, damaging and stunning nearby Zeds."
 
 MakeThingsGoBoom="Make Things go Boom"
-MakeThingsGoBoomDescription="Increase explosive resistance 40% and area of effect of all explosives 40%."
+MakeThingsGoBoomDescription="Increase explosive resistance 50% and area of effect of all explosives 50%."
 
 Madman="ZED TIME - Madman"
 MadmanDescription="During Zed time, all your weapons shoot 3x faster."
@@ -2857,6 +2884,20 @@ AllCompleteRewardDescriptionString="DoZ | Companion | Precious"
 ChanceDropDescriptionStrings[0]="Halloween Ticket"
 ChanceDropDescriptionStrings[1]="Halloween Golden Ticket"
 
+[KFGFxSpecialEventObjectivesContainer_Xmas2021]
+CurrentSpecialEventString="A time-limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Heads on sale!",DescriptionString="Decapitate 1000 Zeds on any map or mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Black Weekly",DescriptionString="Complete the Weekly on Carillon Hamlet")
+SpecialEventObjectiveInfoList[2]=(TitleString="Filthy Rich",DescriptionString="Earn 75,000 Dosh through kills, rewards and healing on Carillon Hamlet")
+SpecialEventObjectiveInfoList[3]=(TitleString="Painful Payments",DescriptionString="Use the trader to purchase a total of 20 weapons that cost 1500 Dosh or more on Carrion Hamlet")
+SpecialEventObjectiveInfoList[4]=(TitleString="Nonstop Splurge",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Carillon Hamlet")
+
+AllCompleteRewardDescriptionString="Holiday Shopping | Companion | Precious"
+
+ChanceDropDescriptionStrings[0]="Krampus Ticket"
+ChanceDropDescriptionStrings[1]="Krampus Golden Ticket"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3007,6 +3048,25 @@ ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
 
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="Boss Rush"
+DescriptionStrings[0]="Gotta beat ‘em all"
+DescriptionStrings[1]="Length: Short (5 waves)"
+ModifierDescriptions[0]="Five waves for five bosses. Are you prepared to beat them one by one? WARNING: The difficulty will scale with each boss defeated. Select the Weekly game mode on the Matchmaking page. Perk 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="Shrunken Heads"
+DescriptionStrings[0]="Trying to headshot is worthless..."
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="Maybe they are trying to protect themselves against the player headshot habits. Anyway, at least it seems that they got new weak spots. Select the Weekly game mode on the Matchmaking page. Perk 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
 
 ;============================================
 ; Map Localization
@@ -3530,6 +3590,9 @@ DisplayName="Moonbase"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="Netherhold"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="Carillon Hamlet"
 
 [KFMapInfo]
 ; defaults

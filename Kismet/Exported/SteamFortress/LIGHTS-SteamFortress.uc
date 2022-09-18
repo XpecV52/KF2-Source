@@ -116,6 +116,10 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
 End Object
 
 Begin Object Class=InterpData Name=InterpData_0
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_2
       Begin Object Class=InterpTrackColorProp Name=InterpTrackColorProp_1
          PropertyName="PointLightComponent0.LightColor"
@@ -129,10 +133,6 @@ Begin Object Class=InterpData Name=InterpData_0
       GroupColor=(B=213,G=0,R=109,A=255)
       Name="InterpGroup_2"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=27.000000
    InterpGroups(0)=InterpGroup'LIGHTS-SteamFortress.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_2'

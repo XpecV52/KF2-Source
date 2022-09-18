@@ -576,8 +576,8 @@ defaultproperties
       ObjectArchetype=AkComponent'AkAudio.Default__AkComponent'
    End Object
    AmbientComponent=AmbientAkSoundComponent
-   Speed=1000.000000
-   MaxSpeed=1000.000000
+   Speed=1500.000000
+   MaxSpeed=1500.000000
    bBlockedByInstigator=False
    Begin Object Class=CylinderComponent Name=CollisionCylinder Archetype=CylinderComponent'KFGame.Default__KFProjectile:CollisionCylinder'
       CollisionHeight=10.000000

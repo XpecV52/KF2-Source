@@ -522,7 +522,7 @@ defaultproperties
 {
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'zed_fleshpound_king_emit.King_Pound_Explosion_Light'
-        Damage=40
+        Damage=44
         DamageRadius=900
         DamageFalloffExponent=2
         MyDamageType=Class'KFDT_Explosive_FleshpoundKingRage_Light'
@@ -537,7 +537,7 @@ defaultproperties
     RagePoundExplosionTemplate=ExploTemplate0
     begin object name=ExploTemplate1 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'zed_fleshpound_king_emit.King_Pound_Explosion_Heavy'
-        Damage=50
+        Damage=55
         DamageRadius=900
         DamageFalloffExponent=2
         MyDamageType=Class'KFDT_Explosive_FleshpoundKingRage_Heavy'
@@ -576,7 +576,7 @@ defaultproperties
     ShieldHealthMaxDefaults(1)=2700
     ShieldHealthMaxDefaults(2)=4000
     ShieldHealthMaxDefaults(3)=5000
-    ShieldHealthScale=1
+    ShieldHealthScale=1.1
     InvulnerableShieldFX=ParticleSystem'zed_fleshpound_king_emit.FX_King_Fleshpound_Shield'
     ShieldSocketName=hips
     begin object name=ShieldEffects class=KFSkinTypeEffects_InvulnerabilityShield
@@ -661,7 +661,7 @@ defaultproperties
     HitZones=/* Array type was not detected. */
     AfflictionHandler=KFAfflictionManager'Default__KFPawn_ZedFleshpoundKing.Afflictions'
     IncapSettings=/* Array type was not detected. */
-    SprintSpeed=700
+    SprintSpeed=805
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -683,7 +683,7 @@ defaultproperties
     FootstepAkComponent=BeamHitAC0
     DialogAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.DialogAkSoundComponent'
     PowerUpAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.PowerUpAkSoundComponent'
-    GroundSpeed=300
+    GroundSpeed=345
     Health=8750
     ControllerClass=Class'KFAIController_ZedFleshpoundKing'
     begin object name=KFPawnSkeletalMeshComponent class=KFSkeletalMeshComponent

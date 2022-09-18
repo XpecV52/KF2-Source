@@ -344,6 +344,25 @@ reliable server function ServerSendToReload(byte ClientReloadAmount)
     bZoomActive = false;
 }
 
+simulated function DetachWeapon()
+{
+    local KFPawn_Human KFPH;
+    local KFPlayerController KFPC;
+
+    super.DetachWeapon();
+    KFPH = KFPawn_Human(Instigator);
+    if(KFPH != none)
+    {
+        MovementSpeedMod = 1;
+        KFPH.UpdateGroundSpeed();
+    }
+    KFPC = KFPlayerController(Instigator.Controller);
+    if(KFPC != none)
+    {
+        KFPC.RotationSpeedLimit = Class'KFPlayerController'.default.RotationSpeedLimit;
+    }
+}
+
 simulated state WeaponWindingUp
 {
     ignores AllowSprinting;

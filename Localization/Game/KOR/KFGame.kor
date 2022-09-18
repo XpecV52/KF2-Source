@@ -800,6 +800,8 @@ LeaveString="부대에서 나가기"
 SquadString="스쿼드"
 SoloString="스쿼드"
 DefaultPlayerName="플레이어"
+PauseGameString="게임 일시 정지"
+ResumeGameString="게임 계속하기"
 
 PartyLeaderSearchingForMatchString="님이 대전을 검색하고 있습니다..."
 PartyLeaderIsUpdatingMatchOptionsString="님이 대전 옵션을 설정 중입니다..."
@@ -1057,6 +1059,10 @@ ThrowString="무기 던지기"
 VoteKickString="플레이어를 추방하시겠습니까?"
 VoteSkipTraderString="상인을 건너뛰겠습니까?"
 VoteSkipTraderDetailString="카운트다운을 건너뛰려 합니다"
+VotePauseGameString="게임을 일시 정지할까요?"
+VotePauseGameDetailString="님이 게임을 일시 정지하길 원합니다"
+VoteResumeGameString="게임을 계속할까요?"
+VoteResumeGameDetailString="님이 게임을 계속하길 원합니다"
 
 [KFLocalMessage_PlayerKills]
 KilledString="킬"
@@ -1478,6 +1484,27 @@ SkipTraderVoteNoReceivedString="상인 건너뛰기 반대에 투표하셨습니
 SkipTraderNoEnoughTimeString="상인 건너뛰기 투표를 시작하기까지 시간이 충분하지 않습니다."
 SkipTraderThisUserAlreadyStartedAVoteString="다음 상인 단계까지 새로운 상인 건너뛰기 투표를 시작할 수 없습니다."
 SkipTraderVersusZedPlayerVotes="제드 팀 플레이어는 상인 건너뛰기 투표를 할 수 없습니다"
+PauseVoteStartedString="게임 일시 정지 투표를 시작했습니다."
+PauseVoteInProgressString="이미 진행 중인 투표가 있기 때문에 게임 일시 정지 투표를 시작할 수 없습니다."
+PauseVoteYesReceivedString="게임을 일시 정지하는 데 투표했습니다."
+PauseVoteNoReceivedString="게임을 일시 정지하지 않는 데 투표했습니다."
+PauseVoteNoEnoughTimeString="게임 일시 정지 투표를 시작하기까지 시간이 충분하지 않습니다."
+PauseVoteNoSpectatorsString="참관자는 게임 일시 정지 투표를 시작할 수 없습니다."
+PauseVoteTimeString="게임 일지 정지를 활성화했습니다. 게임 메뉴에서 '게임 일시 정지'를 선택하여 투표하세요. 모두가 동의해야 합니다."
+PauseVoteSuccessString="게임 일시 정지 투표에 성공했습니다!"
+PauseVoteFailedString="게임 일시 정지 투표에 실패했습니다!"
+PauseVoteWaveActiveString="웨이브가 활성화되어 게임 일시 정지 투표를 시작할 수 없습니다."
+PauseVoteWrongModeString="이 옵션은 무한 모드에서만 사용할 수 있습니다"
+ResumeVoteStartedString="게임 계속하기 투표를 시작했습니다."
+ResumeVoteInProgressString="이미 진행 중인 투표가 있기 때문에 게임 계속하기 투표를 시작할 수 없습니다."
+ResumeVoteYesReceivedString="게임을 계속하는 데 투표했습니다."
+ResumeVoteNoReceivedString="게임을 계속하지 않는 데 투표했습니다."
+ResumeVoteNoEnoughTimeString="게임 계속하기 투표를 시작하기까지 시간이 충분하지 않습니다."
+ResumeVoteNoSpectatorsString="참관자는 게임 계속하기 투표를 시작할 수 없습니다."
+ResumeVoteTimeString="게임 계속하기를 활성화했습니다. 게임 메뉴에서 '게임 계속하기'를 선택하여 투표하세요. 모두가 동의해야 합니다."
+ResumeVoteSuccessString="게임 계속하기 투표에 성공했습니다!"
+ResumeVoteFailedString="게임 계속하기 투표에 실패했습니다!"
+ResumeVoteWaveActiveString="웨이브가 활성화되어 게임 계속하기 투표를 시작할 수 없습니다."
 
 [KFLocalMessage_Game]
 ReceivedAmmoFromMessage="다음 플레이어에게 탄약을 받았습니다."
@@ -2247,7 +2274,7 @@ ZedShrapnel="제드 자연 폭발"
 ZedShrapnelDescription="플레이어가 불로 처치한 Zed가 30%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 기절시킴"
 
 MakeThingsGoBoom="온 세상에 폭발을"
-MakeThingsGoBoomDescription="폭발물 저항력 40% 증가 및 모든 폭발물의 영향 영역 40% 증가"
+MakeThingsGoBoomDescription="폭탄 저항력과 모든 폭탄의 영향 영역이 50% 증가합니다."
 
 Madman="제드 타임 - 미치광이"
 MadmanDescription="제드 타임 동안 모든 무기가 3배 빠르게 발사"
@@ -2848,14 +2875,28 @@ CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특
 
 SpecialEventObjectiveInfoList[0]=(TitleString="끔찍한 존재",DescriptionString="아무 지도 혹은 모드에서 보스 15마리 처치하기")
 SpecialEventObjectiveInfoList[1]=(TitleString="주간 컬트",DescriptionString="네더홀드에서 주간 게임 모드 완료하기")
-SpecialEventObjectiveInfoList[2]=(TitleString="벽에서 오고 있어",DescriptionString="네더하트 찾기")
+SpecialEventObjectiveInfoList[2]=(TitleString="벽에서 오고 있어",DescriptionString="네더 하트 찾기")
 SpecialEventObjectiveInfoList[3]=(TitleString="보라색 독기",DescriptionString="예배당과 다이닝홀 문 잠금 해제하기")
 SpecialEventObjectiveInfoList[4]=(TitleString="영원한 징벌",DescriptionString="네더홀드에서 끝없는 도전 어려움 이상으로 15 웨이브 완료하기")
 
-AllCompleteRewardDescriptionString="우주인 | 동반자 백팩 | 프레셔스"
+AllCompleteRewardDescriptionString="제드의 날 | 동반자 | 프레셔스"
 
 ChanceDropDescriptionStrings[0]="할로윈 티켓"
 ChanceDropDescriptionStrings[1]="할로윈 골든 티켓"
+
+[KFGFxSpecialEventObjectivesContainer_Xmas2021] 
+CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특별 이벤트입니다."
+
+SpecialEventObjectiveInfoList[0]=(TitleString="할인이 다가온다!",DescriptionString="아무 지도나 모드에서 제드 1000마리를 참수하기")
+SpecialEventObjectiveInfoList[1]=(TitleString="블랙 위클리",DescriptionString="카릴리온 거주지에서 주간 게임 모드 완료하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="더럽게 부자",DescriptionString="카릴리온 거주지에서 적 처치, 보상과 치유를 통해 75,000 도쉬를 획득하기")
+SpecialEventObjectiveInfoList[3]=(TitleString="고통스러운 결제",DescriptionString="카릴리온 거주지에서 상점을 통해 1500 도쉬 이상 가격 무기 20개를 구매하기")
+SpecialEventObjectiveInfoList[4]=(TitleString="멈추지 않는 지름신",DescriptionString="카릴리온 거주지에서 끝없는 도전 어려움 이상으로 15 웨이브 완료하기"))
+
+AllCompleteRewardDescriptionString="연휴 쇼핑 | 동반자 | 프레셔스"
+
+ChanceDropDescriptionStrings[0]="크램퍼스 티켓"
+ChanceDropDescriptionStrings[1]="크램퍼스 황금 티켓"
 
 ;============================================
 ; Daily Localization
@@ -3002,6 +3043,26 @@ FriendlyName="모든 희망을 버려라"
 DescriptionStrings[0]="최강의 도전"
 DescriptionStrings[1]="길이: 중간 (7웨이브)"
 ModifierDescriptions[0]="경고: 이 모드는 매우 어렵습니다! 생지옥 난이도는 어린애 장난 수준입니다. 매치 메이킹 페이지에서 주간 게임 모드를 선택하십시오. 병과 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[BossRush KFWeeklyOutBreakInformation]
+FriendlyName="보스 러시"
+DescriptionStrings[0]="모두 물리치기"
+DescriptionStrings[1]="길이: 짧음(5 웨이브)"
+ModifierDescriptions[0]="다섯 명의 보스, 다섯 개의 웨이브. 격파할 준비 되었나요? 경고: 보스를 물리칠 때마다 난이도가 올라갑니다. 대전상대 찾기 페이지에서 주간 게임 모드를 선택하십시오. 병과 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[TinySkulls KFWeeklyOutBreakInformation]
+FriendlyName="작아진 머리"
+DescriptionStrings[0]="헤드샷 시도가 소용 없어집니다..."
+DescriptionStrings[1]="길이: 중간(7웨이브)"
+ModifierDescriptions[0]="플레이어의 헤드샷을 피하려는 걸까요? 어쨌든, 덕분에 새로운 약점이 생긴 것 같습니다. 대전상대 찾기 페이지에서 주간 게임 모드를 선택하십시오. 병과 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3529,6 +3590,9 @@ DisplayName="달 기지"
 
 [KF-Netherhold KFMapSummary]
 DisplayName="네더홀드"
+
+[KF-CarillonHamlet KFMapSummary]
+DisplayName="카릴리온 거주지"
 
 [KFMapInfo]
 ; defaults
