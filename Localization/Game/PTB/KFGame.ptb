@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="Bilhete Dourado de Halloween"
 [KFGFxSpecialEventObjectivesContainer_Xmas2021] 
 CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Atenção às ofertas!",DescriptionString="Decapite 1.000 Zeds em qualquer mapa ou modo")
+SpecialEventObjectiveInfoList[0]=(TitleString="Atenção às ofertas!",DescriptionString="Mate 1.000 Zeds com tiros na cabeça em qualquer mapa ou modo")
 SpecialEventObjectiveInfoList[1]=(TitleString="Black Weekly",DescriptionString="Conclua o semanal em Carillon Hamlet")
 SpecialEventObjectiveInfoList[2]=(TitleString="Podre de Rico",DescriptionString="Ganhe 75.000 de grana em abates, recompensas e curas em Carillon Hamlet")
 SpecialEventObjectiveInfoList[3]=(TitleString="Pagamentos Dolorosos",DescriptionString="Compre no comerciante 20 armas que custem 1.500 de grana ou mais em Carillon Hamlet")

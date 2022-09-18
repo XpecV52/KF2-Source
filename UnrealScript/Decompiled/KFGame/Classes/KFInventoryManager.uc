@@ -52,6 +52,7 @@ var float LastCreatedWeaponTime;
 var array<GFxMoviePlayer> OpticsUIMovies;
 var const float StartedWithWeaponPriceModifier;
 var const float SellPriceModifier;
+var const float DoshinegunSellModifier;
 var float OffPerkCostScale;
 var array<TransactionItem> TransactionItems;
 var int SelectedGroupIndicies[4];
@@ -2219,11 +2220,13 @@ simulated function int GetAdjustedSellPriceFor(const out STraderItem OwnedItem, 
     local KFWeapon OwnedWeapon;
     local TransactionItem TransactionWeapon;
     local int OwnedItemIdx, ItemUpgradeLevel;
+    local float OverridenSellPriceModifier;
 
     if(OwnedItem.WeaponDef == Class'KFWeapDef_9mm')
     {
         return 0;
     }
+    OverridenSellPriceModifier = ((OwnedItem.WeaponDef == Class'KFWeapDef_Doshinegun') ? DoshinegunSellModifier : SellPriceModifier);
     GetWeaponFromClass(OwnedWeapon, OwnedItem.ClassName);
     if((OwnedWeapon != none) && OwnedWeapon.bGivenAtStart)
     {
@@ -2231,7 +2234,7 @@ simulated function int GetAdjustedSellPriceFor(const out STraderItem OwnedItem, 
     }
     else
     {
-        AdjustedSellPrice = int(float(OwnedItem.WeaponDef.default.BuyPrice) * SellPriceModifier);
+        AdjustedSellPrice = int(float(OwnedItem.WeaponDef.default.BuyPrice) * OverridenSellPriceModifier);
     }
     OwnedItemIdx = TraderOwnedItems.Find('DefaultItem', OwnedItem;
     if(OwnedItemIdx != -1)
@@ -2380,6 +2383,7 @@ defaultproperties
     SwitchFireModeEvent=AkEvent'WW_UI_PlayerCharacter.Play_WEP_ModeSwitch'
     StartedWithWeaponPriceModifier=0.5
     SellPriceModifier=0.75
+    DoshinegunSellModifier=0.167
     OffPerkCostScale=1
     bMustHoldWeapon=true
     PendingFire=/* Array type was not detected. */

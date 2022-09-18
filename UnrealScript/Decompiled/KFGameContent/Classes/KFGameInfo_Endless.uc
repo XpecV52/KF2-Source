@@ -630,6 +630,15 @@ function SetMonsterDefaults(KFPawn_Monster P)
     super(KFGameInfo).SetMonsterDefaults(P);
 }
 
+function UnregisterPlayer(PlayerController PC)
+{
+    super(KFGameInfo).UnregisterPlayer(PC);
+    if(((GetNumPlayers()) == 0) && MyKFGRI.bIsEndlessPaused)
+    {
+        ResumeEndlessGame();
+    }
+}
+
 defaultproperties
 {
     SpecialWaveTypes(0)=6

@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="萬聖節金色票券"
 [KFGFxSpecialEventObjectivesContainer_Xmas2021] 
 CurrentSpecialEventString="附有獨特道具的限時特別活動"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="跳樓大拍賣！",DescriptionString="在任何地圖或模式斬首1000個Zed")
+SpecialEventObjectiveInfoList[0]=(TitleString="跳樓大拍賣！",DescriptionString="何地圖或模式中爆頭殺死1000個Zed")
 SpecialEventObjectiveInfoList[1]=(TitleString="黑色特賣週",DescriptionString="完成每週鐘琴村莊任務")
 SpecialEventObjectiveInfoList[2]=(TitleString="富到流油",DescriptionString="在鐘琴村莊透過擊殺、獎勵和治療賺取75,000金錢")
 SpecialEventObjectiveInfoList[3]=(TitleString="慘痛代價",DescriptionString="在鐘琴村莊透過商人購買總共20件超過1500金錢的武器")
@@ -3592,7 +3592,7 @@ DisplayName="月球基地"
 DisplayName="地獄要塞"
 
 [KF-CarillonHamlet KFMapSummary]
-DisplayName="Carillon Hamlet"
+DisplayName="鐘琴村"
 
 [KFMapInfo]
 ; defaults

@@ -11,22 +11,26 @@ class KFWeap_AssaultRifle_Doshinegun extends KFWeap_RifleBase
 
 var int DoshCost;
 var transient KFPlayerReplicationInfo KFPRI;
+var transient bool bIsBeingDropped;
 
 simulated function Activate()
 {
     local KFPawn KFP;
 
     super(KFWeapon).Activate();
-    KFP = KFPawn(Instigator);
-    if(KFP != none)
+    if(KFPRI == none)
     {
-        KFPRI = KFPlayerReplicationInfo(KFP.PlayerReplicationInfo);
+        KFP = KFPawn(Instigator);
+        if(KFP != none)
+        {
+            KFPRI = KFPlayerReplicationInfo(KFP.PlayerReplicationInfo);
+        }
     }
 }
 
 simulated function bool HasAnyAmmo()
 {
-    return (AmmoCount[0] > 0) || KFPRI.Score >= float(DoshCost);
+    return ((bIsBeingDropped) ? AmmoCount[0] > 0 : (AmmoCount[0] > 0) || KFPRI.Score >= float(DoshCost));
 }
 
 simulated function bool CanReload(optional byte FireModeNum)
@@ -70,6 +74,25 @@ static simulated event bool UsesAmmo()
     return true;
 }
 
+function DropFrom(Vector StartLocation, Vector StartVelocity)
+{
+    bIsBeingDropped = true;
+    super(KFWeapon).DropFrom(StartLocation, StartVelocity);
+}
+
+function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
+{
+    local KFPawn KFP;
+
+    bIsBeingDropped = false;
+    KFP = KFPawn(Instigator);
+    if(KFP != none)
+    {
+        KFPRI = KFPlayerReplicationInfo(KFP.PlayerReplicationInfo);
+    }
+    super(KFWeapon).SetOriginalValuesFromPickup(PickedUpWeapon);
+}
+
 simulated state Reloading
 {
     simulated function EndState(name NextStateName)
@@ -95,7 +118,7 @@ simulated state Reloading
 
 defaultproperties
 {
-    DoshCost=25
+    DoshCost=20
     PackageKey="Doshinegun"
     FirstPersonMeshName="WEP_1P_Doshinegun_MESH.Wep_1stP_Doshinegun_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */
@@ -113,7 +136,7 @@ defaultproperties
     MeshFOV=65
     MeshIronSightFOV=45
     PlayerIronSightFOV=70
-    IronSightPosition=(X=5,Y=-0.1,Z=-1.5)
+    IronSightPosition=(X=5,Y=0.05,Z=-1.2)
     DOF_FG_FocalRadius=150
     DOF_FG_MaxNearBlurSize=1
     GroupPriority=50

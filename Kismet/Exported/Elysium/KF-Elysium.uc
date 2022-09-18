@@ -4159,7 +4159,7 @@ Begin Object Class=SeqAct_ActivateRemoteEvent Name=SeqAct_ActivateRemoteEvent_35
    ObjectArchetype=SeqAct_ActivateRemoteEvent'Engine.Default__SeqAct_ActivateRemoteEvent'
 End Object
 
-Begin Object Class=KFSeqEvent_WaveEnd Name=KFSeqEvent_WaveEnd_5
+Begin Object Class=KFSeqEvent_WaveEnd Name=KFSeqEvent_WaveEnd_0
    MaxTriggerCount=0
    MaxWidth=248
    OutputLinks(0)=(Links=((LinkedOp=SeqCond_CompareBool'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqCond_CompareBool_17'),(LinkedOp=SeqAct_ActivateRemoteEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_ActivateRemoteEvent_35')),DrawY=-9764,OverrideDelta=13)
@@ -4174,7 +4174,7 @@ Begin Object Class=KFSeqEvent_WaveEnd Name=KFSeqEvent_WaveEnd_5
    ObjComment="At the end of current wave..."
    DrawWidth=175
    DrawHeight=168
-   Name="KFSeqEvent_WaveEnd_5"
+   Name="KFSeqEvent_WaveEnd_0"
    ObjectArchetype=KFSeqEvent_WaveEnd'KFGame.Default__KFSeqEvent_WaveEnd'
 End Object
 
@@ -14363,7 +14363,7 @@ Begin Object Class=InterpData Name=InterpData_9
          CutTrack(0)=(TargetCamGroup="MainArea",ShotNumber=10)
          CutTrack(1)=(Time=57.914223,TargetCamGroup="Swamp",ShotNumber=20)
          CutTrack(2)=(Time=115.273476,TargetCamGroup="forest",ShotNumber=30)
-         CutTrack(3)=(Time=435.079895,TargetCamGroup="Castle",ShotNumber=32)
+         CutTrack(3)=(Time=435.079895,TargetCamGroup="castle",ShotNumber=32)
          CutTrack(4)=(Time=492.381226,TargetCamGroup="Desert",ShotNumber=42)
          CutTrack(5)=(Time=592.845764,TargetCamGroup="computer",ShotNumber=50)
          CutTrack(6)=(Time=593.249451,TransitionTime=521.299988,TargetCamGroup="computer",ShotNumber=52)
@@ -14484,7 +14484,7 @@ Begin Object Class=InterpData Name=InterpData_9
       End Object
       InterpTracks(0)=InterpTrackMove'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_3.InterpTrackMove_0'
       InterpTracks(1)=InterpTrackFloatProp'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.InterpData_9.InterpGroup_3.InterpTrackFloatProp_0'
-      GroupName="Castle"
+      GroupName="castle"
       GroupColor=(B=162,G=0,R=178,A=255)
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
@@ -16126,19 +16126,19 @@ End Object
 Begin Object Class=KFSeqEvent_LevelLoaded Name=KFSeqEvent_LevelLoaded_1
    MaxTriggerCount=0
    MaxWidth=216
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9873,OverrideDelta=15)
-   OutputLinks(1)=(DrawY=-9850,OverrideDelta=38)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9827,OverrideDelta=61)
-   OutputLinks(3)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9804,OverrideDelta=84)
-   OutputLinks(4)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9781,OverrideDelta=107)
-   OutputLinks(5)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9758,OverrideDelta=130)
-   OutputLinks(6)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9735,OverrideDelta=153)
-   OutputLinks(7)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9712,OverrideDelta=176)
-   OutputLinks(8)=(DrawY=-9689,OverrideDelta=199)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9906,OverrideDelta=15)
+   OutputLinks(1)=(DrawY=-9883,OverrideDelta=38)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9860,OverrideDelta=61)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9837,OverrideDelta=84)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9814,OverrideDelta=107)
+   OutputLinks(5)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9791,OverrideDelta=130)
+   OutputLinks(6)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9768,OverrideDelta=153)
+   OutputLinks(7)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_AkStartAmbientSound_1')),DrawY=-9745,OverrideDelta=176)
+   OutputLinks(8)=(DrawY=-9722,OverrideDelta=199)
    ObjInstanceVersion=5
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-9776
-   ObjPosY=-9943
+   ObjPosX=-9768
+   ObjPosY=-9976
    DrawWidth=217
    Name="KFSeqEvent_LevelLoaded_1"
    ObjectArchetype=KFSeqEvent_LevelLoaded'KFGame.Default__KFSeqEvent_LevelLoaded'
@@ -20375,7 +20375,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_725
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_11'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -20383,16 +20383,16 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
    ObjPosY=-7680
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_52"
+   Name="SeqVar_Object_41"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
    InputLinks(0)=(DrawY=-7811,OverrideDelta=14)
    InputLinks(1)=(DrawY=-7790,OverrideDelta=35)
    InputLinks(2)=(DrawY=-7769,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-7790,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_54',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_52',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_53'),DrawX=-3250,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_54',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_41',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_53',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_52'),DrawX=-3250,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3199,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3150,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -20401,7 +20401,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
    ObjPosY=-7848
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_13"
+   Name="SeqAct_Toggle_6"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
@@ -20508,7 +20508,7 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_5
    bAutoDisableLinks=True
    InputLinks(0)=(DrawY=-7818,OverrideDelta=19)
    InputLinks(1)=(DrawY=-7786,OverrideDelta=51)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_13')),DrawY=-7823,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_6')),DrawY=-7823,OverrideDelta=14)
    OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_14')),LinkDesc="Link 2",DrawY=-7802,OverrideDelta=35)
    OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_15')),LinkDesc="Link 3",DrawY=-7781,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-3498,OverrideDelta=23)
@@ -21830,5 +21830,70 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_19"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_17
+   InputLinks(0)=(DrawY=-7883,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7862,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7841,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7862,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_54',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_53',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_41',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_56',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_55',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_57',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_59',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_58',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_60',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_52'),DrawX=-4115,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-4064,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-4015,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4153
+   ObjPosY=-7920
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_17"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
+   InputLinks(0)=(DrawY=-7867,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7846,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7825,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_5')),DrawY=-7846,OverrideDelta=35)
+   VariableLinks(0)=(DrawX=-3842,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3791,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3742,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3880
+   ObjPosY=-7904
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_13"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_0
+   MaxWidth=248
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_17',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_13')),DrawY=-7884,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_17'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_13',InputLinkIdx=1)),DrawY=-7864,OverrideDelta=33)
+   VariableLinks(0)=(DrawX=-4413,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-4352,OverrideDelta=86)
+   VariableLinks(2)=(DrawX=-4271,OverrideDelta=139)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4456
+   ObjPosY=-7952
+   DrawWidth=175
+   DrawHeight=168
+   Name="KFSeqEvent_WaveStart_0"
+   ObjectArchetype=KFSeqEvent_WaveStart'KFGame.Default__KFSeqEvent_WaveStart'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3224
+   ObjPosY=-7616
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_52"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object

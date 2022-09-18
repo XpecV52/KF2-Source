@@ -1993,7 +1993,7 @@ AirborneAgent="ZED TIME - Agent aéroporté"
 AirborneAgentDescription="Vous libérez un gaz soignant pendant le Zed time qui soigne vos équipiers à proximité."
 
 Sedative="ZED TIME - Zédatif"
-SedativeDescription="Pendant le Zed time, les dégâts des armes de votre classe sont augmentés de 30% et les tués génèrent une expl. toxique qui inflige des dégâts aux Zeds et soigne les joueurs."
+SedativeDescription="Pendant le Zed time, les armes de votre classe infligent +30 % de dégâts et les tués génèrent une explosion toxique qui inflige des dégâts aux Zeds et soigne les joueurs."
 
 
 EXPAction1="Infliger des dégâts d'arme de Médecin"
@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="Ticket doré d'Halloween"
 [KFGFxSpecialEventObjectivesContainer_Xmas2021]
 CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Têtes en promo !",DescriptionString="Décapiter 1 000 Zeds sur n'importe quelle carte ou dans n'importe quel mode")
+SpecialEventObjectiveInfoList[0]=(TitleString="Têtes en promo !",DescriptionString="Tuer 1 000 Zeds avec tirs à la tête sur n'importe quelle carte ou dans n'importe quel mode")
 SpecialEventObjectiveInfoList[1]=(TitleString="Hebdomadaire noir",DescriptionString="Terminer le mode hebdomadaire de Carillon Hamlet")
 SpecialEventObjectiveInfoList[2]=(TitleString="Plein aux as",DescriptionString="Gagner 75 000 balles avec des éliminations,  récompenses et soins sur Carillon Hamlet")
 SpecialEventObjectiveInfoList[3]=(TitleString="La douloureuse",DescriptionString="Chez la marchande, acheter 20 armes qui coûtent du fric (1 500 balles ou plus) sur Carillon Hamlet")

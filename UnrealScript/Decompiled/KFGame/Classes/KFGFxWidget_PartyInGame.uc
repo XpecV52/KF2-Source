@@ -130,10 +130,7 @@ function UpdateEndlessPauseButtonVisibility()
     if(((((Outer.GetPC().WorldInfo.NetMode != NM_Standalone) && KFGRI.bMatchHasBegun) && ((MyKFPRI != none) && MyKFPRI.bHasSpawnedIn) && !KFGRI.bWaveIsActive) && !KFGRI.bMatchIsOver) && KFGRI.bEndlessMode)
     {
         UpdateEndlessPauseButtonText();
-        if(!MyKFPRI.bVotedToPauseGame)
-        {
-            SetBool("endlessPauseButtonVisible", true);
-        }        
+        SetBool("endlessPauseButtonVisible", true);        
     }
     else
     {

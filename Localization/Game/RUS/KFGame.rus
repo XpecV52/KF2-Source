@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="Золотой билет на Хеллоуин
 [KFGFxSpecialEventObjectivesContainer_Xmas2021] 
 CurrentSpecialEventString="Ограниченное по времени особое событие с эксклюзивными предметами"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Головы со скидкой!",DescriptionString="Обезглавить 1000 мутантов на любой карте в любом режиме")
+SpecialEventObjectiveInfoList[0]=(TitleString="Головы со скидкой!",DescriptionString="Убейте 1000 мутантов с Попадание в голову  на любой карте в любом режиме")
 SpecialEventObjectiveInfoList[1]=(TitleString="Черный еженедельный",DescriptionString="Выполнить еженедельное задание в деревне «Карильон»")
 SpecialEventObjectiveInfoList[2]=(TitleString="Неприличное богатство",DescriptionString="Заработать 75 000 тугриков в качестве наград за убийства и исцеление в деревне «Карильон»")
 SpecialEventObjectiveInfoList[3]=(TitleString="Больно много денег",DescriptionString="Купить у торговца 20 единиц оружия стоимостью 1500 тугриков или больше в деревне «Карильон»")

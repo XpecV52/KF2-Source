@@ -12,7 +12,7 @@ class KFDT_Bludgeon_HRG_Vampire extends KFDT_Bludgeon_RifleButt
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_HRG_Vampire'
-   ModifierPerkList(0)=Class'KFGame.KFPerk_FieldMedic'
+   ModifierPerkList(1)=Class'KFGame.KFPerk_FieldMedic'
    Name="Default__KFDT_Bludgeon_HRG_Vampire"
    ObjectArchetype=KFDT_Bludgeon_RifleButt'kfgamecontent.Default__KFDT_Bludgeon_RifleButt'
 }

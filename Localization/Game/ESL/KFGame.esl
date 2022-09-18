@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="Boleto dorado de Halloween"
 [KFGFxSpecialEventObjectivesContainer_Xmas2021] 
 CurrentSpecialEventString="Un evento especial de tiempo limitado con objetos exclusivos"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="¡Cabezas de oferta!",DescriptionString="Decapita a 1000 Zeds en cualquiera de los mapas y modos")
+SpecialEventObjectiveInfoList[0]=(TitleString="¡Cabezas de oferta!",DescriptionString="Mata a 1000 Zeds con disparos a la cabeza en cualquiera de los mapas y modos")
 SpecialEventObjectiveInfoList[1]=(TitleString="Semanal negro",DescriptionString="Completa la semana en el Caserío del carillón")
 SpecialEventObjectiveInfoList[2]=(TitleString="Asquerosamente rico",DescriptionString="Consigue 75 000 de dinero con muertes, recompensas y curaciones en el Caserío del carillón")
 SpecialEventObjectiveInfoList[3]=(TitleString="Pagos dolorosos",DescriptionString="Usa al mercader para comprar un total de 20 armas que cuestan 1500 de dinero o más en el Caserío del carillón")

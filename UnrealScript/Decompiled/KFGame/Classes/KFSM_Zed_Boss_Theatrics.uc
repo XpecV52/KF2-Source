@@ -119,6 +119,8 @@ function PlayAnimation()
     switch(CurrentTheatricType)
     {
         case 0:
+            KFPOwner.SpecialMoveFlags = PackSMFlags(KFPOwner, 0);
+            Variant = byte(KFPOwner.SpecialMoveFlags >> 4);
             AnimName = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].AnimationName;
             CameraAnim = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimation;
             CameraAnimOffset = KFPOwner.PawnAnimInfo.TheatricBossEntranceAnimInfos[Variant].CameraAnimOffset;

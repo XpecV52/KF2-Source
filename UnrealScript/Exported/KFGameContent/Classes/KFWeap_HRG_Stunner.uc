@@ -81,7 +81,7 @@ defaultproperties
    bHasFireLastAnims=False
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunAuto'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_ShotgunSingle'
-   InventorySize=6
+   InventorySize=7
    PenetrationPower(0)=2.000000
    PenetrationPower(1)=()
    MeshIronSightFOV=52.000000
@@ -143,7 +143,7 @@ defaultproperties
    WeaponFireTypes(2)=()
    WeaponFireTypes(3)=()
    WeaponFireTypes(4)=()
-   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_Pellet'
+   WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_HRG_Stunner'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_HRG_Stunner_Alt'
    FireInterval(0)=0.150000
    FireInterval(1)=0.500000

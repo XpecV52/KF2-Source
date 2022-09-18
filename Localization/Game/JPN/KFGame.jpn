@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="ハロウィーンゴールデンチケット"
 [KFGFxSpecialEventObjectivesContainer_Xmas2021] 
 CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="真っ向からのセール！",DescriptionString="マップやモードを問わず、Zed 1000の頭を切り落とす")
+SpecialEventObjectiveInfoList[0]=(TitleString="真っ向からのセール！",DescriptionString="マップやモードを問わず、よるヘッドショットで Zed 1000 体をキル")
 SpecialEventObjectiveInfoList[1]=(TitleString="ブラックウィークリー",DescriptionString="Carillon Hamletでウィークリーをクリア")
 SpecialEventObjectiveInfoList[2]=(TitleString="億万長者",DescriptionString="Carillon Hamletでのキル、報酬、回復から75,000 Doshを獲得する")
 SpecialEventObjectiveInfoList[3]=(TitleString="痛々しい支払い",DescriptionString="トレーダーを使って、1500 Dosh以上費用がかかる合計20種類の武器をCarillon Hamletで購入する")

@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="Biglietto Oro Halloween"
 [KFGFxSpecialEventObjectivesContainer_Xmas2021]
 CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Teste in sconto!",DescriptionString="Decapita 1000 Zed in qualsiasi mappa o modalità")
+SpecialEventObjectiveInfoList[0]=(TitleString="Teste in sconto!",DescriptionString="Uccidi 1000 Zed con I colpi alla testa in qualsiasi mappa o modalità")
 SpecialEventObjectiveInfoList[1]=(TitleString="Settimanale nero",DescriptionString="Completa il Settimanale in Carillon Hamlet")
 SpecialEventObjectiveInfoList[2]=(TitleString="Schifosamente ricco",DescriptionString="Guadagna 75.000 denari da uccisioni, ricompense e cure in Carillon Hamlet")
 SpecialEventObjectiveInfoList[3]=(TitleString="Pagamenti dolorosi",DescriptionString="Usa il commerciante per comprare 20 armi che costano 1500 Denaro o più in Carillon Hamlet")

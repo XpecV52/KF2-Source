@@ -11,6 +11,7 @@ class KFWeap_AssaultRifle_Doshinegun extends KFWeap_RifleBase;
 
 var int DoshCost;
 var transient KFPlayerReplicationInfo KFPRI;
+var transient bool bIsBeingDropped;
 
 simulated function Activate()
 {
@@ -18,16 +19,19 @@ simulated function Activate()
 
 	super.Activate();
 
-	KFP = KFPawn(Instigator);
-	if (KFP != none)
+	if (KFPRI == none)
 	{
-		KFPRI = KFPlayerReplicationInfo(KFP.PlayerReplicationInfo);
+		KFP = KFPawn(Instigator);
+		if (KFP != none)
+		{
+			KFPRI = KFPlayerReplicationInfo(KFP.PlayerReplicationInfo);
+		}
 	}
 }
 
 simulated function bool HasAnyAmmo()
 {
-    return AmmoCount[0] > 0 || KFPRI.Score >= DoshCost;
+    return bIsBeingDropped ? AmmoCount[0] > 0 : (AmmoCount[0] > 0 || KFPRI.Score >= DoshCost);
 }
 
 /** Returns true if weapon can potentially be reloaded */
@@ -105,9 +109,32 @@ simulated state Reloading
 	}
 }
 
+/**
+ * Drop this item out in to the world
+ */
+function DropFrom(vector StartLocation, vector StartVelocity)
+{
+	bIsBeingDropped=true;
+	super.DropFrom(StartLocation, StartVelocity);
+}
+
+function SetOriginalValuesFromPickup( KFWeapon PickedUpWeapon )
+{
+	local KFPawn KFP;
+
+	bIsBeingDropped=false;
+	// Reset the replication info
+	KFP = KFPawn(Instigator);
+	if (KFP != none)
+	{
+		KFPRI = KFPlayerReplicationInfo(KFP.PlayerReplicationInfo);
+	}
+	super.SetOriginalValuesFromPickup(PickedUpWeapon);
+}
+
 defaultproperties
 {
-   DoshCost=25
+   DoshCost=20
    PackageKey="Doshinegun"
    FirstPersonMeshName="WEP_1P_Doshinegun_MESH.Wep_1stP_Doshinegun_Rig"
    FirstPersonAnimSetNames(0)="WEP_1P_Doshinegun_ANIM.Wep_1st_Doshinegun_Anim"
@@ -126,7 +153,7 @@ defaultproperties
    MeshFOV=65.000000
    MeshIronSightFOV=45.000000
    PlayerIronSightFOV=70.000000
-   IronSightPosition=(X=5.000000,Y=-0.100000,Z=-1.500000)
+   IronSightPosition=(X=5.000000,Y=0.050000,Z=-1.200000)
    DOF_FG_FocalRadius=150.000000
    DOF_FG_MaxNearBlurSize=1.000000
    GroupPriority=50.000000
@@ -164,9 +191,9 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=None
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.200000),(Stat=EWUS_Damage1,Scale=1.150000),(Add=1)))
-   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.400000),(Stat=EWUS_Damage1,Scale=1.300000),(Add=2)))
-   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.600000),(Stat=EWUS_Damage1,Scale=1.450000),(Add=3)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.230000),(Stat=EWUS_Damage1,Scale=1.200000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.470000),(Stat=EWUS_Damage1,Scale=1.400000),(Add=2)))
+   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.700000),(Stat=EWUS_Damage1,Scale=1.600000),(Add=3)))
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()
@@ -185,8 +212,8 @@ defaultproperties
    FireInterval(4)=()
    Spread(0)=0.015000
    Spread(1)=0.015000
-   InstantHitDamage(0)=55.000000
-   InstantHitDamage(1)=55.000000
+   InstantHitDamage(0)=60.000000
+   InstantHitDamage(1)=60.000000
    InstantHitDamage(2)=()
    InstantHitDamage(3)=26.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Bludgeon_Doshinegun_Shot'

@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="Ticket d'Halloween or"
 [KFGFxSpecialEventObjectivesContainer_Xmas2021] 
 CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Têtes en solde!",DescriptionString="Décapiter 1 000 Zeds sur n'importe quelle carte ou dans n'importe quel mode")
+SpecialEventObjectiveInfoList[0]=(TitleString="Têtes en solde!",DescriptionString="Tuer 1 000 Zeds avec tirs à la tête sur n'importe quelle carte ou dans n'importe quel mode")
 SpecialEventObjectiveInfoList[1]=(TitleString="Hebdomadaire noir",DescriptionString="Terminer le mode hebdomadaire sur Carillon Hamlet")
 SpecialEventObjectiveInfoList[2]=(TitleString="Plein aux as",DescriptionString="Gagner 75 000 Dosh grâce à des éliminations, des récompenses et du soin sur Carillon Hamlet.")
 SpecialEventObjectiveInfoList[3]=(TitleString="La douloureuse",DescriptionString="Acheter à la marchande un total de 20 armes qui coûtent 1 500 Dosh ou plus sur Carillon Hamlet")

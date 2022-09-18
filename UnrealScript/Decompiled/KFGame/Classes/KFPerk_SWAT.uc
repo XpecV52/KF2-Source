@@ -184,7 +184,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     }
     if(KFW != none)
     {
-        if(IsBackupActive() && ((IsBackupWeapon(KFW)) || IsDual9mm(KFW)) || ClassIsChildOf(DamageType, Class'KFDT_Bludgeon'))
+        if((IsBackupActive() && ((IsBackupWeapon(KFW)) || IsDual9mm(KFW)) || ClassIsChildOf(DamageType, Class'KFDT_Bludgeon')) && (IsDoshinegun(KFW)) && DamageType.Name != 'KFDT_Bludgeon_Doshinegun_Shot')
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[2])));            
         }

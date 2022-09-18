@@ -825,7 +825,7 @@ SharedUnlockSource="Corrupter Carbine Weapon Bundle"
 [KFWeap_HRG_Stunner]
 ItemName="HRG Stunner"
 ItemCategory="Sub Machine Gun"
-ItemDescription="•Firemode is full-auto only.\n•Alt-fire to fire several rounds in a concentrated shoot that explode like a minor version of a flashbang.\n•A perfect weapon when you run out of flashbangs."
+ItemDescription="•Firemode is full-auto only.\n•Alt-fire to fire several rounds in a concentrated shoot that explodes like a minor version of a flashbang.\n•A perfect weapon when you run out of flashbangs."
 
 [KFWeap_AssaultRifle_Doshinegun]
 ItemName="Doshinegun"

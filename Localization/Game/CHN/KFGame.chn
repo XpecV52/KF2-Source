@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="万圣节金奖券"
 [KFGFxSpecialEventObjectivesContainer_Xmas2021] 
 CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="头部大减价！",DescriptionString="在任意地图或模式中斩首 1000 个丧尸")
+SpecialEventObjectiveInfoList[0]=(TitleString="头部大减价！",DescriptionString="在任意地图或模式中器爆头爆头杀死 1000 个丧尸")
 SpecialEventObjectiveInfoList[1]=(TitleString="黑色周常",DescriptionString="完成每周的卡利永村庄任务")
 SpecialEventObjectiveInfoList[2]=(TitleString="铜臭满身",DescriptionString="在卡利永村庄通过杀敌、奖励和治疗赚取 75,000 金钱")
 SpecialEventObjectiveInfoList[3]=(TitleString="痛苦的支付",DescriptionString="在卡利永村庄使用商人购买总共 20 款花费 1500 金钱以上（含）的武器")

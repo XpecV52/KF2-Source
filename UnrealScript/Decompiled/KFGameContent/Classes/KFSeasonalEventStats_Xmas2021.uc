@@ -70,25 +70,6 @@ simulated event OnGameWon(class<GameInfo> GameClass, int Difficulty, int GameLen
     }
 }
 
-simulated event OnGameEnd(class<GameInfo> GameClass)
-{
-    local int ObjIdx, TotalDoshEarned;
-
-    ObjIdx = 2;
-    if(bObjectiveIsValidForMap[ObjIdx] != 0)
-    {
-        TotalDoshEarned = Outer.MyKFPC.MatchStats.TotalDoshEarned + Outer.MyKFPC.MatchStats.GetDoshEarnedInWave();
-        if(TotalDoshEarned > 0)
-        {
-            IncrementSeasonalEventStat(ObjIdx, TotalDoshEarned);
-            if(Outer.GetSeasonalEventStatValue(ObjIdx) >= DoshRequired)
-            {
-                FinishedObjective(4, ObjIdx);
-            }
-        }
-    }
-}
-
 simulated event OnWeaponPurchased(class<KFWeaponDefinition> WeaponDef, int Price)
 {
     local int ObjIdx;
@@ -106,8 +87,21 @@ simulated event OnWeaponPurchased(class<KFWeaponDefinition> WeaponDef, int Price
 
 simulated event OnWaveCompleted(class<GameInfo> GameClass, int Difficulty, int WaveNum)
 {
-    local int ObjIdx;
+    local int ObjIdx, TotalDoshEarned;
 
+    ObjIdx = 2;
+    if(bObjectiveIsValidForMap[ObjIdx] != 0)
+    {
+        TotalDoshEarned = Outer.MyKFPC.MatchStats.TotalDoshEarned + Outer.MyKFPC.MatchStats.GetDoshEarnedInWave();
+        if(TotalDoshEarned > 0)
+        {
+            IncrementSeasonalEventStat(ObjIdx, TotalDoshEarned);
+            if(Outer.GetSeasonalEventStatValue(ObjIdx) >= DoshRequired)
+            {
+                FinishedObjective(4, ObjIdx);
+            }
+        }
+    }
     ObjIdx = 4;
     if(bObjectiveIsValidForMap[ObjIdx] != 0)
     {

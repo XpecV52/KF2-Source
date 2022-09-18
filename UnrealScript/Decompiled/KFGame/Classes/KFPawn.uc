@@ -1807,13 +1807,16 @@ function PostTeleport(Teleporter OutTeleporter)
 
 simulated function SetMeshVisibility(bool bVisible)
 {
+    local bool bIsPlayingEmote;
+
     if(Mesh != none)
     {
         Mesh.SetOwnerNoSee(!bVisible);
         Mesh.CastShadow = bVisible;
     }
     HideHead(!bVisible);
-    SetWeaponAttachmentVisibility(bVisible);
+    bIsPlayingEmote = (KFPlayerController(Controller) != none) && KFPlayerController(Controller).PlayerCamera.CameraStyle == 'Emote';
+    SetWeaponAttachmentVisibility(bVisible && !bIsPlayingEmote);
     SetFirstPersonVisibility(!bVisible);
     SetEnableFleXCollision(bVisible);
 }

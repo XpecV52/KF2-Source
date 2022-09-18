@@ -822,12 +822,12 @@ ItemCategory="Karabin"
 ItemDescription="•Ogień podstawowy to pojedyncze strzały.\n•Ogień alternatywny plugawi na parę sekund zety.\n•Jeśli splugawiony zet eksploduje, zada obrażenia innym zetom i uzdrowi graczy."
 SharedUnlockSource="Zestaw broni karabinka plugawiącego"
 
-
+[KFWeap_HRG_Stunner]
 ItemName="Ogłuszacz HRG"
 ItemCategory="Sub Machine Gun"
 ItemDescription="•Tryb strzelania: tylko ogień ciągły.\n•Tryb alternatywny: wystrzelenie kilku pocisków w skoncentrowanym strzale, który wybucha jak mała wersja granatu ogłuszającego.\n•Idealna broń, gdy skończą ci się granaty ogłuszające."
 
-
+[KFWeap_AssaultRifle_Doshinegun]
 ItemName="Forsownica"
 ItemCategory="Karabin"
 ItemDescription="•Tryb strzelania: ogień ciągły albo samopowtarzalny.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Nowy rodzaj łapówek."

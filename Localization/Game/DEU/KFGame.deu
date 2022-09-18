@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="Goldener Halloween-Schein"
 [KFGFxSpecialEventObjectivesContainer_Xmas2021] 
 CurrentSpecialEventString="Ein zeitlich begrenztes Spezial-Event mit exklusiven Gegenständen"
 
-SpecialEventObjectiveInfoList[0]=(TitleString="Köpfe im Angebot!",DescriptionString="Köpfe 1000 Zeds auf einer beliebigen Karte oder in einem beliebigen Modus")
+SpecialEventObjectiveInfoList[0]=(TitleString="Köpfe im Angebot!",DescriptionString="Töte 1000 Zed mit Kopfschüsse auf einer beliebigen Karte oder in einem beliebigen Modus")
 SpecialEventObjectiveInfoList[1]=(TitleString="Black Weekly",DescriptionString="Schaffe das wöchentliche Carillon Hamlet")
 SpecialEventObjectiveInfoList[2]=(TitleString="Dreckig reich",DescriptionString="Verdiene 75.000 Kohle durch Kills, Belohnungen und Heilung in Carillon Hamlet")
 SpecialEventObjectiveInfoList[3]=(TitleString="Schmerzhafte Ausgaben",DescriptionString="Nutze den Händler, um in Carillon Hamlet für 1.500 Dosh oder mehr 20 Waffen zu kaufen")

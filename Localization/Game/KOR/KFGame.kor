@@ -2887,7 +2887,7 @@ ChanceDropDescriptionStrings[1]="할로윈 골든 티켓"
 [KFGFxSpecialEventObjectivesContainer_Xmas2021] 
 CurrentSpecialEventString="특별한 아이템이 제공되는 기간 한정 특별 이벤트입니다."
 
-SpecialEventObjectiveInfoList[0]=(TitleString="할인이 다가온다!",DescriptionString="아무 지도나 모드에서 제드 1000마리를 참수하기")
+SpecialEventObjectiveInfoList[0]=(TitleString="할인이 다가온다!",DescriptionString="아무 지도나 모드에서  헤드샷을 제드 1000 마리 죽이기")
 SpecialEventObjectiveInfoList[1]=(TitleString="블랙 위클리",DescriptionString="카릴리온 거주지에서 주간 게임 모드 완료하기")
 SpecialEventObjectiveInfoList[2]=(TitleString="더럽게 부자",DescriptionString="카릴리온 거주지에서 적 처치, 보상과 치유를 통해 75,000 도쉬를 획득하기")
 SpecialEventObjectiveInfoList[3]=(TitleString="고통스러운 결제",DescriptionString="카릴리온 거주지에서 상점을 통해 1500 도쉬 이상 가격 무기 20개를 구매하기")

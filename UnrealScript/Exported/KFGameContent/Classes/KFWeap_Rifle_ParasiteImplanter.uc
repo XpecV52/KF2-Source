@@ -333,7 +333,7 @@ defaultproperties
    MeshFOV=70.000000
    MeshIronSightFOV=27.000000
    PlayerIronSightFOV=70.000000
-   IronSightPosition=(X=0.000000,Y=-0.115000,Z=1.042500)
+   IronSightPosition=(X=0.000000,Y=-0.090000,Z=1.042000)
    DOF_BlendInSpeed=3.000000
    DOF_FG_FocalRadius=0.000000
    DOF_FG_MaxNearBlurSize=3.500000

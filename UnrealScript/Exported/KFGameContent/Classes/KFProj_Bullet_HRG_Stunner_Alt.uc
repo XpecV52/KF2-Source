@@ -38,6 +38,14 @@ simulated protected function PrepareExplosionTemplate()
 	ExplosionTemplate.bIgnoreInstigator = true;
 }
 
+simulated function AdjustCanDisintigrate() {}
+
+/** Can be overridden in subclasses to exclude specific projectiles from nuking */
+simulated function bool AllowNuke()
+{
+    return false;
+}
+
 defaultproperties
 {
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
@@ -60,7 +68,8 @@ defaultproperties
    End Object
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_Bullet_HRG_Stunner_Alt:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
-   ProjFlightTemplateZedTime=ParticleSystem'WEP_HRG_Boomy_EMIT.FX_Boomy_Tracer_ZEDTime'
+   ProjFlightTemplate=ParticleSystem'WEP_HRG_Stunner_EMIT.FX_HRG_Stunner_ALT_Tracer_ZEDTime'
+   ProjFlightTemplateZedTime=ParticleSystem'WEP_HRG_Stunner_EMIT.FX_HRG_Stunner_ALT_Tracer_ZEDTime'
    Begin Object Class=AkComponent Name=AmbientAkSoundComponent Archetype=AkComponent'KFGame.Default__KFProj_BallisticExplosive:AmbientAkSoundComponent'
       bStopWhenOwnerDestroyed=True
       bForceOcclusionUpdateInterval=True

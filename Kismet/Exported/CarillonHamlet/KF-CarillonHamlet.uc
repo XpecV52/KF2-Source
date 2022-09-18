@@ -1,12 +1,12 @@
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_1
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_6')),DrawY=861,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=882,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=903,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_6')),DrawY=1029,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=1050,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=1071,OverrideDelta=56)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=96
-   ObjPosY=792
+   ObjPosX=-944
+   ObjPosY=960
    DrawWidth=137
    Name="SeqEvent_LevelLoaded_1"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
@@ -15,19 +15,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_6
    bLooping=True
    bClientSideOnly=True
-   InputLinks(0)=(DrawY=950,OverrideDelta=15)
-   InputLinks(1)=(DrawY=972,OverrideDelta=37)
-   InputLinks(2)=(DrawY=994,OverrideDelta=59)
-   InputLinks(3)=(DrawY=1016,OverrideDelta=81)
-   InputLinks(4)=(DrawY=1038,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=966,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=1022,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_6'),DrawX=584,OverrideDelta=41)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6',SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2',SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),LinkDesc="Fan",MinVars=0,DrawX=628,OverrideDelta=88)
+   InputLinks(0)=(DrawY=1006,OverrideDelta=15)
+   InputLinks(1)=(DrawY=1028,OverrideDelta=37)
+   InputLinks(2)=(DrawY=1050,OverrideDelta=59)
+   InputLinks(3)=(DrawY=1072,OverrideDelta=81)
+   InputLinks(4)=(DrawY=1094,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=1022,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=1078,OverrideDelta=87)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_6'),DrawX=-648,OverrideDelta=41)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_6',SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2',SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),LinkDesc="Fan",MinVars=0,DrawX=-604,OverrideDelta=88)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=528
-   ObjPosY=912
+   ObjPosX=-704
+   ObjPosY=968
    DrawWidth=154
    DrawHeight=157
    Name="SeqAct_Interp_6"
@@ -61,8 +61,8 @@ Begin Object Class=InterpData Name=InterpData_6
    SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=528
-   ObjPosY=1112
+   ObjPosX=-704
+   ObjPosY=1168
    DrawWidth=32
    DrawHeight=32
    Name="InterpData_6"
@@ -73,8 +73,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_6
    ObjValue=InterpActor'KF-CARILLONHAMLET.TheWorld:PersistentLevel.InterpActor_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=678
-   ObjPosY=1069
+   ObjPosX=-560
+   ObjPosY=1120
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_6"
@@ -84,14 +84,14 @@ End Object
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_0
    Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_6'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=1301,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=1322,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=1343,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=186,OverrideDelta=50)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_0')),DrawY=2309,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=2330,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=2351,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1246,OverrideDelta=50)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=104
-   ObjPosY=1232
+   ObjPosX=-1328
+   ObjPosY=2240
    ObjName="TriggerVolume_6 Touch"
    DrawWidth=127
    DrawHeight=176
@@ -103,8 +103,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
    ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=400
-   ObjPosY=1496
+   ObjPosX=-1128
+   ObjPosY=2416
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_0"
@@ -112,17 +112,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_0
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
-   InputLinks(0)=(DrawY=1309,OverrideDelta=14)
-   InputLinks(1)=(DrawY=1330,OverrideDelta=35)
-   InputLinks(2)=(DrawY=1351,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=1330,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0',SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),DrawX=510,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=561,OverrideDelta=76)
-   EventLinks(0)=(DrawX=610,OverrideDelta=119)
+   InputLinks(0)=(DrawY=2309,OverrideDelta=14)
+   InputLinks(1)=(DrawY=2330,OverrideDelta=35)
+   InputLinks(2)=(DrawY=2351,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=2330,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_0',SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),DrawX=-1042,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-991,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-942,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=472
-   ObjPosY=1272
+   ObjPosX=-1080
+   ObjPosY=2272
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_0"
@@ -133,8 +133,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
    ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=568
-   ObjPosY=1496
+   ObjPosX=-1032
+   ObjPosY=2408
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_1"
@@ -145,8 +145,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
    ObjValue=InterpActor'KF-CARILLONHAMLET.TheWorld:PersistentLevel.InterpActor_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=704
-   ObjPosY=1144
+   ObjPosX=-536
+   ObjPosY=1184
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_2"
@@ -157,8 +157,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
    ObjValue=InterpActor'KF-CARILLONHAMLET.TheWorld:PersistentLevel.InterpActor_2'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=632
-   ObjPosY=1168
+   ObjPosX=-600
+   ObjPosY=1224
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_3"
@@ -167,13 +167,13 @@ End Object
 
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_0
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_1')),DrawY=909,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=930,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=951,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_1')),DrawY=493,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=514,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=535,OverrideDelta=56)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1152
-   ObjPosY=840
+   ObjPosX=240
+   ObjPosY=424
    DrawWidth=137
    Name="SeqEvent_LevelLoaded_0"
    ObjectArchetype=SeqEvent_LevelLoaded'Engine.Default__SeqEvent_LevelLoaded'
@@ -181,13 +181,13 @@ End Object
 
 Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_1
    Bank=AkBank'WW_ENV_EvacuationPoint.WwiseDefaultBank_WW_ENV_EvacuationPoint'
-   InputLinks(0)=(DrawY=932,OverrideDelta=13)
-   InputLinks(1)=(DrawY=952,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_0')),DrawY=942,OverrideDelta=23)
+   InputLinks(0)=(DrawY=516,OverrideDelta=13)
+   InputLinks(1)=(DrawY=536,OverrideDelta=33)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkLoadBank'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkLoadBank_0')),DrawY=526,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1432
-   ObjPosY=896
+   ObjPosX=520
+   ObjPosY=480
    DrawWidth=111
    DrawHeight=69
    Name="SeqAct_AkLoadBank_1"
@@ -195,16 +195,16 @@ Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_1
 End Object
 
 Begin Object Class=SeqAct_AkStartAmbientSound Name=SeqAct_AkStartAmbientSound_0
-   InputLinks(0)=(DrawY=949,OverrideDelta=14)
-   InputLinks(1)=(DrawY=971,OverrideDelta=36)
-   InputLinks(2)=(DrawY=993,OverrideDelta=58)
-   InputLinks(3)=(DrawY=1015,OverrideDelta=80)
-   OutputLinks(0)=(DrawY=982,OverrideDelta=47)
-   VariableLinks(0)=(DrawX=1781,OverrideDelta=55)
+   InputLinks(0)=(DrawY=533,OverrideDelta=14)
+   InputLinks(1)=(DrawY=555,OverrideDelta=36)
+   InputLinks(2)=(DrawY=577,OverrideDelta=58)
+   InputLinks(3)=(DrawY=599,OverrideDelta=80)
+   OutputLinks(0)=(DrawY=566,OverrideDelta=47)
+   VariableLinks(0)=(DrawX=869,OverrideDelta=55)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1704
-   ObjPosY=912
+   ObjPosX=792
+   ObjPosY=496
    DrawWidth=154
    DrawHeight=133
    Name="SeqAct_AkStartAmbientSound_0"
@@ -215,8 +215,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
    ObjValue=TargetPoint'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TargetPoint_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1352
-   ObjPosY=1832
+   ObjPosX=640
+   ObjPosY=1264
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_4"
@@ -224,46 +224,47 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
-   ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_30'
+   ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_9'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=440
-   ObjPosY=1832
+   ObjPosX=-1680
+   ObjPosY=2384
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_7"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
-   InputLinks(0)=(DrawY=1677,OverrideDelta=14)
-   InputLinks(1)=(DrawY=1698,OverrideDelta=35)
-   InputLinks(2)=(DrawY=1719,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=1698,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=422,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=473,OverrideDelta=76)
-   EventLinks(0)=(DrawX=522,OverrideDelta=119)
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
+   InputLinks(0)=(DrawY=2277,OverrideDelta=14)
+   InputLinks(1)=(DrawY=2298,OverrideDelta=35)
+   InputLinks(2)=(DrawY=2319,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=2298,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=-1658,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1607,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1558,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=384
-   ObjPosY=1640
+   ObjPosX=-1696
+   ObjPosY=2240
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_1"
+   Name="SeqAct_Toggle_5"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
-   Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_4'
+   Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_9'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=1709,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=1730,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=1751,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=82,OverrideDelta=50)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_5')),DrawY=2293,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=2314,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=2335,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1830,OverrideDelta=50)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosY=1640
-   ObjName="TriggerVolume_4 Touch"
+   ObjPosX=-1912
+   ObjPosY=2224
+   ObjName="TriggerVolume_9 Touch"
    DrawWidth=127
    DrawHeight=176
    Name="SeqEvent_Touch_2"
@@ -272,13 +273,13 @@ End Object
 
 Begin Object Class=SeqAct_AkLoadBank Name=SeqAct_AkLoadBank_0
    Bank=AkBank'WW_ENV_Destruction.WwiseDefaultBank_WW_ENV_Destruction'
-   InputLinks(0)=(DrawY=1044,OverrideDelta=13)
-   InputLinks(1)=(DrawY=1064,OverrideDelta=33)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),DrawY=1054,OverrideDelta=23)
+   InputLinks(0)=(DrawY=620,OverrideDelta=13)
+   InputLinks(1)=(DrawY=640,OverrideDelta=33)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkStartAmbientSound'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkStartAmbientSound_0')),DrawY=630,OverrideDelta=23)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1432
-   ObjPosY=1008
+   ObjPosX=520
+   ObjPosY=584
    DrawWidth=111
    DrawHeight=69
    Name="SeqAct_AkLoadBank_0"
@@ -288,14 +289,14 @@ End Object
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
    Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_1'
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_0')),DrawY=1701,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=1722,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=1743,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=1194,OverrideDelta=50)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_0')),DrawY=1133,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=1154,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=1175,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=482,OverrideDelta=50)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1112
-   ObjPosY=1632
+   ObjPosX=400
+   ObjPosY=1064
    ObjName="TriggerVolume_1 Touch"
    DrawWidth=127
    DrawHeight=176
@@ -305,13 +306,13 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_0
    Event=AkEvent'WW_ENV_EvacuationPoint.EvacPoint_ENV_RandomMetalCreaksLP'
-   InputLinks(0)=(DrawY=1706,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=1706,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=1440,OverrideDelta=26)
+   InputLinks(0)=(DrawY=1138,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=1138,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=728,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=1392
-   ObjPosY=1672
+   ObjPosX=680
+   ObjPosY=1104
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_0"
@@ -324,8 +325,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_2
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-448
-   ObjPosY=-360
+   ObjPosX=-2552
+   ObjPosY=768
    ObjComment="Benchmark"
    DrawWidth=1156
    DrawHeight=655
@@ -336,8 +337,8 @@ End Object
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_1
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=424
-   ObjPosY=56
+   ObjPosX=-1680
+   ObjPosY=1184
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Player_1"
@@ -347,12 +348,12 @@ End Object
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
    ConsoleEventName="Benchmark"
    MaxWidth=190
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=-238,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-321,OverrideDelta=63)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=890,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-2425,OverrideDelta=63)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-416
-   ObjPosY=-304
+   ObjPosX=-2520
+   ObjPosY=824
    DrawWidth=115
    DrawHeight=128
    Name="SeqEvent_Console_0"
@@ -362,8 +363,8 @@ End Object
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_0
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-88
-   ObjPosY=-152
+   ObjPosX=-2192
+   ObjPosY=976
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Player_0"
@@ -372,13 +373,13 @@ End Object
 
 Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_2
    Commands(0)="endbenchmark"
-   InputLinks(0)=(DrawY=-222,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-222,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=464,OverrideDelta=42)
+   InputLinks(0)=(DrawY=906,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=906,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=-1640,OverrideDelta=42)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=400
-   ObjPosY=-256
+   ObjPosX=-1704
+   ObjPosY=872
    ObjComment="endbenchmark"
    DrawWidth=129
    DrawHeight=61
@@ -388,13 +389,13 @@ End Object
 
 Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
    Commands(0)="startbenchmark"
-   InputLinks(0)=(DrawY=-238,OverrideDelta=11)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1')),DrawY=-238,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=-64,OverrideDelta=42)
+   InputLinks(0)=(DrawY=890,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1')),DrawY=890,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=-2168,OverrideDelta=42)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-128
-   ObjPosY=-272
+   ObjPosX=-2232
+   ObjPosY=856
    ObjComment="startbenchmark"
    DrawWidth=129
    DrawHeight=61
@@ -442,8 +443,8 @@ Begin Object Class=InterpData Name=InterpData_1
    EdSectionEnd=2185.342529
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=72
-   ObjPosY=-24
+   ObjPosX=-2032
+   ObjPosY=1104
    DrawWidth=32
    DrawHeight=32
    Name="InterpData_1"
@@ -453,19 +454,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_1
    PlayRate=4.000000
    ConstantCameraAnimRate=3.700000
-   InputLinks(0)=(DrawY=-242,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-220,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-198,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-176,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-154,OverrideDelta=103)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_2')),DrawY=-226,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-170,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=148,OverrideDelta=29)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_8'),LinkDesc="Camera",MinVars=0,DrawX=204,OverrideDelta=76)
+   InputLinks(0)=(DrawY=886,OverrideDelta=15)
+   InputLinks(1)=(DrawY=908,OverrideDelta=37)
+   InputLinks(2)=(DrawY=930,OverrideDelta=59)
+   InputLinks(3)=(DrawY=952,OverrideDelta=81)
+   InputLinks(4)=(DrawY=974,OverrideDelta=103)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_2')),DrawY=902,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=958,OverrideDelta=87)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_1'),DrawX=-1956,OverrideDelta=29)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_8'),LinkDesc="Camera",MinVars=0,DrawX=-1900,OverrideDelta=76)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=104
-   ObjPosY=-280
+   ObjPosX=-2000
+   ObjPosY=848
    DrawWidth=154
    DrawHeight=157
    Name="SeqAct_Interp_1"
@@ -474,13 +475,13 @@ End Object
 
 Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_0
    Commands(0)="startbenchmark"
-   InputLinks(0)=(DrawY=138,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=138,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=-24,OverrideDelta=42)
+   InputLinks(0)=(DrawY=1266,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=1266,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_1'),DrawX=-2128,OverrideDelta=42)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-88
-   ObjPosY=104
+   ObjPosX=-2192
+   ObjPosY=1232
    ObjComment="startbenchmark"
    DrawWidth=129
    DrawHeight=61
@@ -492,8 +493,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_8
    ObjValue=CameraActor'KF-CARILLONHAMLET.TheWorld:PersistentLevel.CameraActor_0'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=216
-   ObjPosY=-24
+   ObjPosX=-1888
+   ObjPosY=1104
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_8"
@@ -504,8 +505,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
    ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_7'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=240
-   ObjPosY=2208
+   ObjPosX=-1008
+   ObjPosY=2056
    ObjComment="PARENT - floor spawner"
    DrawWidth=32
    DrawHeight=32
@@ -513,72 +514,18 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_22
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
-   InputLinks(0)=(DrawY=2077,OverrideDelta=14)
-   InputLinks(1)=(DrawY=2098,OverrideDelta=35)
-   InputLinks(2)=(DrawY=2119,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=2098,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22'),DrawX=286,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=337,OverrideDelta=76)
-   EventLinks(0)=(DrawX=386,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=248
-   ObjPosY=2040
-   ObjComment="...activate this portal spawner."
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_9"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
-Begin Object Class=SequenceFrame Name=SequenceFrame_7
-   SizeX=561
-   SizeY=324
-   bDrawBox=True
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-40
-   ObjPosY=1968
-   ObjComment="Portal spawn: floor"
-   DrawWidth=561
-   DrawHeight=324
-   Name="SequenceFrame_7"
-   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
-End Object
-
-Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_10
-   Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_7'
-   MaxTriggerCount=0
-   MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_9')),DrawY=2069,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=2090,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=2111,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=74,OverrideDelta=50)
-   ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8
-   ObjPosY=2000
-   ObjName="TriggerVolume_7 Touch"
-   ObjComment="When a player touches this volume..."
-   DrawWidth=127
-   DrawHeight=176
-   Name="SeqEvent_Touch_10"
-   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
-End Object
-
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_4
    Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_2'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=2496,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=2517,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=2538,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=76,OverrideDelta=50)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_3')),DrawY=2349,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=2370,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=2391,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-670,OverrideDelta=50)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6
-   ObjPosY=2427
+   ObjPosX=-752
+   ObjPosY=2280
    ObjName="TriggerVolume_2 Touch"
    ObjComment="When a player touches this volume..."
    DrawWidth=127
@@ -593,8 +540,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_3
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-38
-   ObjPosY=2395
+   ObjPosX=-784
+   ObjPosY=2248
    ObjComment="Portal spawn: floor"
    DrawWidth=561
    DrawHeight=324
@@ -603,17 +550,17 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_3
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
-   InputLinks(0)=(DrawY=2504,OverrideDelta=14)
-   InputLinks(1)=(DrawY=2525,OverrideDelta=35)
-   InputLinks(2)=(DrawY=2546,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=2525,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_13'),DrawX=280,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=331,OverrideDelta=76)
-   EventLinks(0)=(DrawX=380,OverrideDelta=119)
+   InputLinks(0)=(DrawY=2357,OverrideDelta=14)
+   InputLinks(1)=(DrawY=2378,OverrideDelta=35)
+   InputLinks(2)=(DrawY=2399,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=2378,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_13'),DrawX=-466,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-415,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-366,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=242
-   ObjPosY=2467
+   ObjPosX=-504
+   ObjPosY=2320
    ObjComment="...activate this portal spawner."
    DrawWidth=173
    DrawHeight=109
@@ -625,8 +572,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_13
    ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_5'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=234
-   ObjPosY=2635
+   ObjPosX=-512
+   ObjPosY=2488
    ObjComment="PARENT - floor spawner"
    DrawWidth=32
    DrawHeight=32
@@ -638,8 +585,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
    ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_6'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=907
-   ObjPosY=2207
+   ObjPosX=152
+   ObjPosY=2064
    ObjComment="PARENT - floor spawner"
    DrawWidth=32
    DrawHeight=32
@@ -648,17 +595,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_14
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
-   InputLinks(0)=(DrawY=2076,OverrideDelta=14)
-   InputLinks(1)=(DrawY=2097,OverrideDelta=35)
-   InputLinks(2)=(DrawY=2118,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=2097,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14'),DrawX=953,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=1004,OverrideDelta=76)
-   EventLinks(0)=(DrawX=1053,OverrideDelta=119)
+   InputLinks(0)=(DrawY=1933,OverrideDelta=14)
+   InputLinks(1)=(DrawY=1954,OverrideDelta=35)
+   InputLinks(2)=(DrawY=1975,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=1954,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_14'),DrawX=198,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=249,OverrideDelta=76)
+   EventLinks(0)=(DrawX=298,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=915
-   ObjPosY=2039
+   ObjPosX=160
+   ObjPosY=1896
    ObjComment="...activate this portal spawner."
    DrawWidth=173
    DrawHeight=109
@@ -672,8 +619,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_4
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=635
-   ObjPosY=1967
+   ObjPosX=-112
+   ObjPosY=1824
    ObjComment="Portal spawn: floor"
    DrawWidth=561
    DrawHeight=324
@@ -685,14 +632,14 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_5
    Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_3'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),DrawY=2068,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=2089,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=2110,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=749,OverrideDelta=50)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_4')),DrawY=1925,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=1946,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=1967,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=2,OverrideDelta=50)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=667
-   ObjPosY=1999
+   ObjPosX=-80
+   ObjPosY=1856
    ObjName="TriggerVolume_3 Touch"
    ObjComment="When a player touches this volume..."
    DrawWidth=127
@@ -705,8 +652,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
    ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_4'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=920
-   ObjPosY=2648
+   ObjPosX=168
+   ObjPosY=2504
    ObjComment="PARENT - floor spawner"
    DrawWidth=32
    DrawHeight=32
@@ -715,17 +662,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_16
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
-   InputLinks(0)=(DrawY=2517,OverrideDelta=14)
-   InputLinks(1)=(DrawY=2538,OverrideDelta=35)
-   InputLinks(2)=(DrawY=2559,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=2538,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),DrawX=966,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=1017,OverrideDelta=76)
-   EventLinks(0)=(DrawX=1066,OverrideDelta=119)
+   InputLinks(0)=(DrawY=2373,OverrideDelta=14)
+   InputLinks(1)=(DrawY=2394,OverrideDelta=35)
+   InputLinks(2)=(DrawY=2415,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=2394,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_16'),DrawX=214,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=265,OverrideDelta=76)
+   EventLinks(0)=(DrawX=314,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=928
-   ObjPosY=2480
+   ObjPosX=176
+   ObjPosY=2336
    ObjComment="...activate this portal spawner."
    DrawWidth=173
    DrawHeight=109
@@ -739,8 +686,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_5
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=648
-   ObjPosY=2408
+   ObjPosX=-96
+   ObjPosY=2264
    ObjComment="Portal spawn: floor"
    DrawWidth=561
    DrawHeight=324
@@ -752,14 +699,14 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
    Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_0'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=2509,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=2530,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=2551,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=762,OverrideDelta=50)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_6')),DrawY=2365,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=2386,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=2407,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=18,OverrideDelta=50)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=680
-   ObjPosY=2440
+   ObjPosX=-64
+   ObjPosY=2296
    ObjName="TriggerVolume_0 Touch"
    ObjComment="When a player touches this volume..."
    DrawWidth=127
@@ -772,14 +719,14 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_9
    Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_5'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=2917,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=2938,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=2959,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=738,OverrideDelta=50)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_8')),DrawY=2773,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=2794,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=2815,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-6,OverrideDelta=50)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=656
-   ObjPosY=2848
+   ObjPosX=-88
+   ObjPosY=2704
    ObjName="TriggerVolume_5 Touch"
    ObjComment="When a player touches this volume..."
    DrawWidth=127
@@ -794,8 +741,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=624
-   ObjPosY=2816
+   ObjPosX=-120
+   ObjPosY=2672
    ObjComment="Portal spawn: floor"
    DrawWidth=561
    DrawHeight=324
@@ -804,17 +751,17 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_6
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
-   InputLinks(0)=(DrawY=2925,OverrideDelta=14)
-   InputLinks(1)=(DrawY=2946,OverrideDelta=35)
-   InputLinks(2)=(DrawY=2967,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=2946,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21'),DrawX=942,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=993,OverrideDelta=76)
-   EventLinks(0)=(DrawX=1042,OverrideDelta=119)
+   InputLinks(0)=(DrawY=2781,OverrideDelta=14)
+   InputLinks(1)=(DrawY=2802,OverrideDelta=35)
+   InputLinks(2)=(DrawY=2823,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=2802,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_21'),DrawX=190,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=241,OverrideDelta=76)
+   EventLinks(0)=(DrawX=290,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=904
-   ObjPosY=2888
+   ObjPosX=152
+   ObjPosY=2744
    ObjComment="...activate this portal spawner."
    DrawWidth=173
    DrawHeight=109
@@ -826,8 +773,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_21
    ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_1'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=928
-   ObjPosY=3056
+   ObjPosX=176
+   ObjPosY=2912
    ObjComment="PARENT - floor spawner"
    DrawWidth=32
    DrawHeight=32
@@ -839,8 +786,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
    ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_8'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=232
-   ObjPosY=3032
+   ObjPosX=-512
+   ObjPosY=2888
    ObjComment="PARENT - floor spawner"
    DrawWidth=32
    DrawHeight=32
@@ -849,17 +796,17 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_18
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
-   InputLinks(0)=(DrawY=2909,OverrideDelta=14)
-   InputLinks(1)=(DrawY=2930,OverrideDelta=35)
-   InputLinks(2)=(DrawY=2951,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=2930,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18'),DrawX=262,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=313,OverrideDelta=76)
-   EventLinks(0)=(DrawX=362,OverrideDelta=119)
+   InputLinks(0)=(DrawY=2765,OverrideDelta=14)
+   InputLinks(1)=(DrawY=2786,OverrideDelta=35)
+   InputLinks(2)=(DrawY=2807,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=2786,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_18'),DrawX=-482,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-431,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-382,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=224
-   ObjPosY=2872
+   ObjPosX=-520
+   ObjPosY=2728
    ObjComment="...activate this portal spawner."
    DrawWidth=173
    DrawHeight=109
@@ -873,8 +820,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_33
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-48
-   ObjPosY=2800
+   ObjPosX=-792
+   ObjPosY=2656
    ObjComment="Portal spawn: floor"
    DrawWidth=561
    DrawHeight=324
@@ -886,14 +833,14 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_8
    Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_8'
    MaxTriggerCount=0
    MaxWidth=165
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=2901,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=2922,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=2943,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=66,OverrideDelta=50)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_7')),DrawY=2757,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=2778,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=2799,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-678,OverrideDelta=50)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-16
-   ObjPosY=2832
+   ObjPosX=-760
+   ObjPosY=2688
    ObjName="TriggerVolume_8 Touch"
    ObjComment="When a player touches this volume..."
    DrawWidth=127
@@ -906,8 +853,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
    ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_3'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-360
-   ObjPosY=2200
+   ObjPosX=-1104
+   ObjPosY=2056
    ObjComment="PARENT - floor spawner"
    DrawWidth=32
    DrawHeight=32
@@ -919,14 +866,14 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_1
    Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_16'
    MaxTriggerCount=0
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=2053,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=2074,OverrideDelta=35)
-   OutputLinks(2)=(DrawY=2095,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=-538,OverrideDelta=54)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_2')),DrawY=1909,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=1930,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=1951,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1282,OverrideDelta=54)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-624
-   ObjPosY=1984
+   ObjPosX=-1368
+   ObjPosY=1840
    ObjName="TriggerVolume_16 Touch"
    ObjComment="When a player touches this volume..."
    DrawWidth=131
@@ -941,8 +888,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-656
-   ObjPosY=1952
+   ObjPosX=-1400
+   ObjPosY=1808
    ObjComment="Portal spawn: floor"
    DrawWidth=561
    DrawHeight=324
@@ -951,20 +898,167 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_1
 End Object
 
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
-   InputLinks(0)=(DrawY=2061,OverrideDelta=14)
-   InputLinks(1)=(DrawY=2082,OverrideDelta=35)
-   InputLinks(2)=(DrawY=2103,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=2082,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28'),DrawX=-330,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-279,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-230,OverrideDelta=119)
+   InputLinks(0)=(DrawY=1917,OverrideDelta=14)
+   InputLinks(1)=(DrawY=1938,OverrideDelta=35)
+   InputLinks(2)=(DrawY=1959,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=1938,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28',SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_22'),DrawX=-1074,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1023,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-974,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-368
-   ObjPosY=2024
+   ObjPosX=-1112
+   ObjPosY=1880
    ObjComment="...activate this portal spawner."
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_2"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_6
+   Originator=TriggerVolume'KF-CARILLONHAMLET.TheWorld:PersistentLevel.TriggerVolume_4'
+   MaxWidth=165
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Toggle_1')),DrawY=1893,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=1914,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=1935,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1846,OverrideDelta=50)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1928
+   ObjPosY=1824
+   ObjName="TriggerVolume_4 Touch"
+   DrawWidth=127
+   DrawHeight=176
+   Name="SeqEvent_Touch_6"
+   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
+   InputLinks(0)=(DrawY=1893,OverrideDelta=14)
+   InputLinks(1)=(DrawY=1914,OverrideDelta=35)
+   InputLinks(2)=(DrawY=1935,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=1914,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_5'),DrawX=-1658,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1607,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1558,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1696
+   ObjPosY=1856
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_1"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_5
+   ObjValue=KFSpawner'KF-CARILLONHAMLET.TheWorld:PersistentLevel.KFSpawner_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1664
+   ObjPosY=2048
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_5"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_0
+   SizeX=465
+   SizeY=348
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1952
+   ObjPosY=1792
+   ObjComment="Portal spawn: Bridge"
+   DrawWidth=465
+   DrawHeight=348
+   Name="SequenceFrame_0"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_8
+   SizeX=481
+   SizeY=300
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1352
+   ObjPosY=2208
+   ObjComment="Portal spawn: Sewers"
+   DrawWidth=481
+   DrawHeight=300
+   Name="SequenceFrame_8"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_9
+   SizeX=449
+   SizeY=284
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-1944
+   ObjPosY=2192
+   ObjComment="Portal spawn: Factory"
+   DrawWidth=449
+   DrawHeight=284
+   Name="SequenceFrame_9"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_10
+   SizeX=532
+   SizeY=388
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-968
+   ObjPosY=928
+   ObjComment="Interp Actor Animations"
+   DrawWidth=532
+   DrawHeight=388
+   Name="SequenceFrame_10"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_11
+   SizeX=935
+   SizeY=1118
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=128
+   ObjPosY=312
+   ObjComment="Sounds"
+   DrawWidth=935
+   DrawHeight=1118
+   Name="SequenceFrame_11"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_2
+   SizeX=826
+   SizeY=349
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=176
+   ObjPosY=368
+   ObjComment="Ambient Sounds"
+   Name="SequenceFrameWrapped_2"
+   ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
+End Object
+
+Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_3
+   SizeX=496
+   SizeY=384
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=336
+   ObjPosY=1000
+   ObjComment="Ambient Sound Station"
+   Name="SequenceFrameWrapped_3"
+   ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
 End Object

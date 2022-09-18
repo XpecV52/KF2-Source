@@ -197,9 +197,9 @@ function FillWhatsNew()
     WhatsNewItems.AddItem(Item;
     Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Christmas_PremiumTicket", "FeaturedEventItem", "https://store.steampowered.com/buyitem/232090/5588");
     WhatsNewItems.AddItem(Item;
-    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Halloween_FullGearBundle_DoZ", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/9119");
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Xmas_Holiday_Shopper", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/9262");
     WhatsNewItems.AddItem(Item;
-    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Xmas_Holiday_Shopper", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/9263");
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Christmas_Shopping_Uniforms", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/9263");
     WhatsNewItems.AddItem(Item;
     Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Xmas_Christmas", "FeaturedItemBundle", "https://store.steampowered.com/buyitem/232090/9264");
     WhatsNewItems.AddItem(Item;

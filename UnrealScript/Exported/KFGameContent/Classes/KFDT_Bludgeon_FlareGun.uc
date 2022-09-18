@@ -12,8 +12,8 @@ class KFDT_Bludgeon_FlareGun extends KFDT_Bludgeon_RifleButt
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_FlareGun'
-   ModifierPerkList(0)=Class'KFGame.KFPerk_Gunslinger'
-   ModifierPerkList(1)=Class'KFGame.KFPerk_Sharpshooter'
+   ModifierPerkList(1)=Class'KFGame.KFPerk_Gunslinger'
+   ModifierPerkList(2)=Class'KFGame.KFPerk_Sharpshooter'
    Name="Default__KFDT_Bludgeon_FlareGun"
    ObjectArchetype=KFDT_Bludgeon_RifleButt'kfgamecontent.Default__KFDT_Bludgeon_RifleButt'
 }

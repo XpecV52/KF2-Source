@@ -31,6 +31,13 @@ protected simulated function PrepareExplosionTemplate()
     ExplosionTemplate.bIgnoreInstigator = true;
 }
 
+simulated function AdjustCanDisintigrate();
+
+simulated function bool AllowNuke()
+{
+    return false;
+}
+
 defaultproperties
 {
     begin object name=ExploTemplate0 class=KFGameExplosion
@@ -52,7 +59,8 @@ defaultproperties
     // Reference: KFGameExplosion'Default__KFProj_Bullet_HRG_Stunner_Alt.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0
     ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
-    ProjFlightTemplateZedTime=ParticleSystem'WEP_HRG_Boomy_EMIT.FX_Boomy_Tracer_ZEDTime'
+    ProjFlightTemplate=ParticleSystem'WEP_HRG_Stunner_EMIT.FX_HRG_Stunner_ALT_Tracer_ZEDTime'
+    ProjFlightTemplateZedTime=ParticleSystem'WEP_HRG_Stunner_EMIT.FX_HRG_Stunner_ALT_Tracer_ZEDTime'
     AmbientComponent=AkComponent'Default__KFProj_Bullet_HRG_Stunner_Alt.AmbientAkSoundComponent'
     Speed=22500
     MaxSpeed=22500

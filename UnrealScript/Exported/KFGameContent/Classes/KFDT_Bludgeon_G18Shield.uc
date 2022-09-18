@@ -14,7 +14,8 @@ defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_G18'
    MeleeHitPower=100.000000
-   ModifierPerkList(0)=Class'KFGame.KFPerk_SWAT'
+   ModifierPerkList(0)=None
+   ModifierPerkList(1)=Class'KFGame.KFPerk_SWAT'
    KDamageImpulse=2000.000000
    KDeathVel=500.000000
    KDeathUpKick=750.000000
