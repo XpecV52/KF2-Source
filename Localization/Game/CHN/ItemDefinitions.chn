@@ -3897,12 +3897,12 @@ DoshinegunBattleScarredDescription="外部：身经百战 | 将塞钱提升到�
 DoshinegunPreciousDescription="外部：宝物 | 将塞钱提升到新的层次。"
 
 ;Doshinegun Names
-DoshinegunStandardName="Doshinegun | Standard"
-DoshinegunKoiDreamName="Doshinegun | Koi Dream"
-DoshinegunDiamondName="Doshinegun | Diamond"
-DoshinegunDoshName="Doshinegun | Dosh"
-DoshinegunGoldenTigerName="Doshinegun | Golden Tiger"
-DoshinegunBaroqueName="Doshinegun | Baroque"
+DoshinegunStandardName="钱币枪 | 标准"
+DoshinegunKoiDreamName="钱币枪 | 锦鲤梦"
+DoshinegunDiamondName="钱币枪 | 钻石"
+DoshinegunDoshName="钱币枪 | 金钱"
+DoshinegunGoldenTigerName="钱币枪 | 金色老虎"
+DoshinegunBaroqueName="钱币枪 | 巴洛克"
 
 [CosmeticSection]
 

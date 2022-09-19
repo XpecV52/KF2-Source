@@ -18,7 +18,7 @@ defaultproperties
     SpecialEventObjectiveInfoList(0)=(TitleString="Heads on sale!",DescriptionString="Kill 1000 Zeds with headshots on any map or mode",TierEventRewardName="")
     SpecialEventObjectiveInfoList(1)=(TitleString="Black Weekly",DescriptionString="Complete the Weekly on Carillon Hamlet",TierEventRewardName="")
     SpecialEventObjectiveInfoList(2)=(TitleString="Filthy Rich",DescriptionString="Earn 75,000 Dosh through kills, rewards and healing on Carillon Hamlet",TierEventRewardName="")
-    SpecialEventObjectiveInfoList(3)=(TitleString="Painful Payments",DescriptionString="Use the trader to purchase a total of 20 weapons that cost 1500 Dosh or more on Carrion Hamlet",TierEventRewardName="")
+    SpecialEventObjectiveInfoList(3)=(TitleString="Painful Payments",DescriptionString="Use the trader to purchase a total of 20 weapons that cost 1500 Dosh or more on Carrion H.",TierEventRewardName="")
     SpecialEventObjectiveInfoList(4)=(TitleString="Nonstop Splurge",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Carillon Hamlet",TierEventRewardName="")
     ObjectiveIconURLs(0)="Xmas2021_UI.Heads_For_Sale"
     ObjectiveIconURLs(1)="Xmas2021_UI.Black_Weekly"
