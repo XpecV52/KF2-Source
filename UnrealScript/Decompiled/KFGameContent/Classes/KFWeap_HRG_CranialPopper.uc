@@ -213,7 +213,7 @@ simulated function DetachWeapon()
 
 defaultproperties
 {
-    AltAmmoFullRechargeSeconds=5
+    AltAmmoFullRechargeSeconds=3.5
     AltAmmo=100
     OpticsUIClass=Class'KFGame.KFGFxWorld_MedicOptics'
     begin object name=SceneCapture2DComponent0 class=TWSceneCapture2DDPGComponent

@@ -487,7 +487,7 @@ defaultproperties
    End Object
    HeadShotAkComponent=HeadshotAkComponent0
    OnDeathAchievementID=131
-   ShrinkEffectModifier=0.200000
+   ShrinkEffectModifier=0.100000
    PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
    LocalizationKey="KFPawn_ZedFleshpound"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'

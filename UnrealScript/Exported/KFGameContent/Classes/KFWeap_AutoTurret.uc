@@ -38,6 +38,8 @@ var repnotify float CurrentAmmoPercentage;
 const TransitionParamName = 'transition_full_to_empty';
 const EmptyParamName = 'Blinking_0_off___1_on';
 
+var transient bool bDetonateLocked;
+
 replication
 {
     if( bNetDirty )
@@ -270,9 +272,14 @@ simulated function BeginFire( byte FireModeNum )
 		ClearPendingFire(DETONATE_FIREMODE);
 	}
 
-	if (FireModeNum == DETONATE_FIREMODE && NumDeployedTurrets > 0)
+	if (FireModeNum == DETONATE_FIREMODE )
 	{
-		if (bTurretReadyToUse)
+		if (bDetonateLocked)
+		{
+			return;
+		}
+
+		if (NumDeployedTurrets > 0 && bTurretReadyToUse)
 		{
 			PrepareAndDetonate();
 		}
@@ -567,6 +574,55 @@ simulated function SetWeaponUpgradeLevel(int WeaponUpgradeLevel)
 	}
 }
 
+/**
+ *	GRENADE FIRING
+ *  There's a bug that alt fire interrupts the grenade anim at any moment,
+ *  This avoids being able to altfire until the throw animation ends or the
+ *  interrupt notify is reached.
+ */
+
+simulated state GrenadeFiring 
+{
+	simulated function EndState(Name NextStateName)
+	{
+		ClearDetonateLock();
+		Super.EndState(NextStateName);
+	}
+}
+
+
+/** Play animation at the start of the GrenadeFiring state */
+simulated function PlayGrenadeThrow()
+{
+    local name WeaponFireAnimName;
+	local float InterruptTime;
+
+    PlayFiringSound(CurrentFireMode);
+
+    if( Instigator != none && Instigator.IsFirstPerson() )
+    {
+    	WeaponFireAnimName = GetGrenadeThrowAnim();
+
+    	if ( WeaponFireAnimName != '' )
+    	{
+			InterruptTime = MySkelMesh.GetAnimInterruptTime(WeaponFireAnimName);
+    		PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),,FireTweenTime);
+    	
+			bDetonateLocked = true;
+			SetTimer(InterruptTime, false, nameof(ClearDetonateLock));
+		}
+    }
+}
+
+simulated function ClearDetonateLock()
+{
+	bDetonateLocked = false;
+	ClearTimer(nameof(ClearDetonateLock));
+}
+
+/***/
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 //
 // Trader
@@ -599,7 +655,6 @@ defaultproperties
    DetonateAnim="Detonate"
    DetonateLastAnim="Detonate_Last"
    DetonateAkEvent=AkEvent'WW_WEP_Autoturret.Play_WEP_AutoTurret_Detonate_Trigger'
-   DryFireAkEvent=AkEvent'WW_WEP_Autoturret.Play_WEP_AutoTurret_Dry_Fire'
    ThrowStrength=1350.000000
    MaxTurretsDeployed=1
    TurretSpawnOffset=(X=0.000000,Y=15.000000,Z=-50.000000)

@@ -358,7 +358,7 @@ defaultproperties
 	WeaponProjectiles(DEFAULT_FIREMODE)=class'KFProj_Bullet_Pistol9mm'
 	InstantHitDamageTypes(DEFAULT_FIREMODE)=class'KFDT_Ballistic_AutoTurret'
 	FireInterval(DEFAULT_FIREMODE)=+0.12 // 500 rpm
-	InstantHitDamage(DEFAULT_FIREMODE)=8
+	InstantHitDamage(DEFAULT_FIREMODE)=10
 	Spread(DEFAULT_FIREMODE)=0.01
 	FireOffset=(X=30,Y=4.5,Z=-4)
 

@@ -136,11 +136,11 @@ Begin Object Class=InterpData Name=InterpData_1
    ObjectArchetype=InterpData'Engine.Default__InterpData'
 End Object
 
-Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
+Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_3
    Commands(0)="startbenchmark"
    InputLinks(0)=(DrawY=-9622,OverrideDelta=11)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_1')),DrawY=-9622,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=-9408,OverrideDelta=42)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_2'),DrawX=-9408,OverrideDelta=42)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9472
@@ -148,7 +148,7 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
    ObjComment="startbenchmark"
    DrawWidth=129
    DrawHeight=61
-   Name="SeqAct_ConsoleCommand_1"
+   Name="SeqAct_ConsoleCommand_3"
    ObjectArchetype=SeqAct_ConsoleCommand'Engine.Default__SeqAct_ConsoleCommand'
 End Object
 
@@ -168,21 +168,21 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_2
    ObjectArchetype=SeqAct_ConsoleCommand'Engine.Default__SeqAct_ConsoleCommand'
 End Object
 
-Begin Object Class=SeqVar_Player Name=SeqVar_Player_0
+Begin Object Class=SeqVar_Player Name=SeqVar_Player_2
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9432
    ObjPosY=-9536
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Player_0"
+   Name="SeqVar_Player_2"
    ObjectArchetype=SeqVar_Player'Engine.Default__SeqVar_Player'
 End Object
 
 Begin Object Class=SeqEvent_Console Name=SeqEvent_Console_0
    ConsoleEventName="Benchmark"
    MaxWidth=190
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1'),(LinkedOp=SeqAct_ConsoleCommand'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=-9622,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_ConsoleCommand'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_3'),(LinkedOp=SeqAct_ConsoleCommand'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_0')),DrawY=-9622,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-9665,OverrideDelta=63)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
@@ -2633,7 +2633,7 @@ End Object
 Begin Object Class=SeqEvent_LevelLoaded Name=SeqEvent_LevelLoaded_3
    MaxTriggerCount=2
    MaxWidth=136
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_2')),DrawY=-8603,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_2'),(LinkedOp=SeqAct_ConsoleCommand'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ConsoleCommand_1')),DrawY=-8603,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-8582,OverrideDelta=35)
    OutputLinks(2)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_ActivateRemoteEvent_1')),DrawY=-8561,OverrideDelta=56)
    ObjInstanceVersion=3
@@ -3294,7 +3294,7 @@ End Object
 Begin Object Class=SeqEvent_SequenceActivated Name=SeqEvent_SequenceActivated_1
    bClientSideOnly=True
    MaxWidth=283
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=-7670,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-7670,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-9643,OverrideDelta=109)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
@@ -3321,20 +3321,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_8
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-2791,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2769,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2747,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2725,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2703,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2775,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2719,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-2793,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2771,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2749,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2727,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2705,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2777,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2721,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-9465,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_81'),LinkDesc="Door_Open0",MinVars=0,DrawX=-9412,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9512
-   ObjPosY=-2829
+   ObjPosY=-2831
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_8"
@@ -3497,20 +3496,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_7
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-2791,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2769,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2747,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2725,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2703,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2775,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2719,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-2793,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2771,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2749,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2727,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2705,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2777,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2721,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-8745,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_82'),LinkDesc="Door_Open0",MinVars=0,DrawX=-8692,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8792
-   ObjPosY=-2829
+   ObjPosY=-2831
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_7"
@@ -3564,20 +3562,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_17
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-1796,OverrideDelta=37)
-   InputLinks(1)=(DrawY=-1774,OverrideDelta=59)
-   InputLinks(2)=(DrawY=-1752,OverrideDelta=81)
-   InputLinks(3)=(DrawY=-1730,OverrideDelta=103)
-   InputLinks(4)=(DrawY=-1818,OverrideDelta=15)
-   OutputLinks(0)=(DrawY=-1802,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-1746,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-1798,OverrideDelta=37)
+   InputLinks(1)=(DrawY=-1776,OverrideDelta=59)
+   InputLinks(2)=(DrawY=-1754,OverrideDelta=81)
+   InputLinks(3)=(DrawY=-1732,OverrideDelta=103)
+   InputLinks(4)=(DrawY=-1820,OverrideDelta=15)
+   OutputLinks(0)=(DrawY=-1804,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-1748,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-7681,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_87',SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_88'),LinkDesc="Door_Open0",MinVars=0,DrawX=-7628,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-7728
-   ObjPosY=-1856
+   ObjPosY=-1858
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_17"
@@ -3591,7 +3588,7 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_34
    ReTriggerDelay=2.500000
    bPlayerOnly=False
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4'),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_17',InputLinkIdx=1)),DrawY=-2972,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4'),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_17',InputLinkIdx=1),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_39',InputLinkIdx=1),(LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2',InputLinkIdx=2),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_35',InputLinkIdx=1)),DrawY=-2972,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-2951,OverrideDelta=35)
    OutputLinks(2)=(Links=((LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_17')),DrawY=-2930,OverrideDelta=56)
    VariableLinks(0)=(DrawX=-7842,OverrideDelta=54)
@@ -3609,20 +3606,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_4
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-2794,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2772,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2750,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2728,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2706,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2778,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2722,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-2796,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2774,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2752,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2730,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2708,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2780,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2724,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-7865,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_86'),LinkDesc="Door_Open0",MinVars=0,DrawX=-7812,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-7912
-   ObjPosY=-2832
+   ObjPosY=-2834
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_4"
@@ -3690,20 +3686,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_9
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-2255,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2233,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2211,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2189,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2167,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2239,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2183,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-2257,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2235,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2213,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2191,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2169,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2241,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2185,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-9465,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_96'),LinkDesc="Door_Open0",MinVars=0,DrawX=-9412,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9512
-   ObjPosY=-2293
+   ObjPosY=-2295
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_9"
@@ -3735,20 +3730,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_11
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-1743,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-1721,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-1699,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-1677,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-1655,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-1727,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-1671,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-1745,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-1723,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-1701,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-1679,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-1657,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-1729,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-1673,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-9449,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_97'),LinkDesc="Door_Open0",MinVars=0,DrawX=-9396,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9496
-   ObjPosY=-1781
+   ObjPosY=-1783
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_11"
@@ -3780,20 +3774,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_6
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-2287,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2265,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2243,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2221,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2199,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2271,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2215,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-2289,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2267,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2245,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2223,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2201,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2273,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2217,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-8729,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_99'),LinkDesc="Door_Open0",MinVars=0,DrawX=-8676,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8776
-   ObjPosY=-2325
+   ObjPosY=-2327
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_6"
@@ -3869,20 +3862,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_12
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-2791,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2769,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2747,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2725,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2703,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2775,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2719,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-2793,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2771,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2749,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2727,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2705,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2777,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2721,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-8553,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_98'),LinkDesc="Door_Open0",MinVars=0,DrawX=-8500,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8600
-   ObjPosY=-2829
+   ObjPosY=-2831
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_12"
@@ -3892,20 +3884,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_13
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-2290,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2268,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2246,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2224,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2202,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2274,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2218,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-2292,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2270,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2248,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2226,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2204,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2276,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2220,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-8537,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_100'),LinkDesc="Door_Open0",MinVars=0,DrawX=-8484,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8584
-   ObjPosY=-2328
+   ObjPosY=-2330
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_13"
@@ -3915,20 +3906,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_14
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-1770,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-1748,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-1726,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-1704,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-1682,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-1754,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-1698,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-1772,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-1750,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-1728,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-1706,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-1684,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-1756,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-1700,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-8513,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_101'),LinkDesc="Door_Open0",MinVars=0,DrawX=-8460,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8560
-   ObjPosY=-1808
+   ObjPosY=-1810
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_14"
@@ -3937,20 +3927,21 @@ End Object
 
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_41
    bForceOverlapping=False
-   Originator=TriggerVolume'KF-RIG.TheWorld:PersistentLevel.TriggerVolume_39'
+   Originator=TriggerVolume'KF-RIG.TheWorld:PersistentLevel.TriggerVolume_64'
    MaxTriggerCount=0
    ReTriggerDelay=2.500000
    bPlayerOnly=False
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_15'),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_21',InputLinkIdx=1)),DrawY=-2972,OverrideDelta=14)
-   OutputLinks(1)=(DrawY=-2951,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_21')),DrawY=-2930,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=-7666,OverrideDelta=54)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_37',InputLinkIdx=1),(LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0'),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_40',InputLinkIdx=1),(LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3',InputLinkIdx=2),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_41',InputLinkIdx=1)),DrawY=-3379,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-3358,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_37')),DrawY=-3337,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-7866,OverrideDelta=54)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7752
-   ObjPosY=-3041
-   ObjName="TriggerVolume_39 Touch"
+   ObjPosX=-7952
+   ObjPosY=-3448
+   ObjName="TriggerVolume_64 Touch"
+   ObjComment="Room Trigger"
    DrawWidth=131
    DrawHeight=176
    Name="SeqEvent_Touch_41"
@@ -4001,46 +3992,45 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_43
    ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
 End Object
 
-Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_15
+Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_0
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-2794,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2772,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2750,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2728,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2706,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2778,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2722,OverrideDelta=87)
-   VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-7665,OverrideDelta=32)
-   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_102'),LinkDesc="Door_Open0",MinVars=0,DrawX=-7612,OverrideDelta=79)
+   InputLinks(0)=(DrawY=-3202,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-3180,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-3158,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-3136,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-3114,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-3186,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-3130,OverrideDelta=87)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-7865,OverrideDelta=32)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_102'),LinkDesc="Door_Open0",MinVars=0,DrawX=-7812,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7712
-   ObjPosY=-2832
+   ObjPosX=-7912
+   ObjPosY=-3240
+   ObjComment="Door Opening Animation"
    DrawWidth=154
    DrawHeight=173
-   Name="SeqAct_Interp_15"
+   Name="SeqAct_Interp_0"
    ObjectArchetype=SeqAct_Interp'Engine.Default__SeqAct_Interp'
 End Object
 
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_16
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-2306,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2284,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2262,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2240,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2218,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2290,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2234,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-2308,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2286,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2264,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2242,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2220,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2292,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2236,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-7857,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_103'),LinkDesc="Door_Open0",MinVars=0,DrawX=-7804,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-7904
-   ObjPosY=-2344
+   ObjPosY=-2346
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_16"
@@ -4050,20 +4040,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_10
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-2306,OverrideDelta=15)
-   InputLinks(1)=(DrawY=-2284,OverrideDelta=37)
-   InputLinks(2)=(DrawY=-2262,OverrideDelta=59)
-   InputLinks(3)=(DrawY=-2240,OverrideDelta=81)
-   InputLinks(4)=(DrawY=-2218,OverrideDelta=103)
-   OutputLinks(0)=(DrawY=-2290,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-2234,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-2308,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2286,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2264,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2242,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2220,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2292,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2236,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-7681,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_104'),LinkDesc="Door_Open0",MinVars=0,DrawX=-7628,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-7728
-   ObjPosY=-2344
+   ObjPosY=-2346
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_10"
@@ -4095,20 +4084,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_19
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-1132,OverrideDelta=37)
-   InputLinks(1)=(DrawY=-1110,OverrideDelta=59)
-   InputLinks(2)=(DrawY=-1088,OverrideDelta=81)
-   InputLinks(3)=(DrawY=-1066,OverrideDelta=103)
-   InputLinks(4)=(DrawY=-1154,OverrideDelta=15)
-   OutputLinks(0)=(DrawY=-1138,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-1082,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-1134,OverrideDelta=37)
+   InputLinks(1)=(DrawY=-1112,OverrideDelta=59)
+   InputLinks(2)=(DrawY=-1090,OverrideDelta=81)
+   InputLinks(3)=(DrawY=-1068,OverrideDelta=103)
+   InputLinks(4)=(DrawY=-1156,OverrideDelta=15)
+   OutputLinks(0)=(DrawY=-1140,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-1084,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-9433,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_83',SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_84'),LinkDesc="Door_Open0",MinVars=0,DrawX=-9380,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9480
-   ObjPosY=-1192
+   ObjPosY=-1194
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_19"
@@ -4142,20 +4130,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_5
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-1132,OverrideDelta=37)
-   InputLinks(1)=(DrawY=-1110,OverrideDelta=59)
-   InputLinks(2)=(DrawY=-1088,OverrideDelta=81)
-   InputLinks(3)=(DrawY=-1066,OverrideDelta=103)
-   InputLinks(4)=(DrawY=-1154,OverrideDelta=15)
-   OutputLinks(0)=(DrawY=-1138,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-1082,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-1134,OverrideDelta=37)
+   InputLinks(1)=(DrawY=-1112,OverrideDelta=59)
+   InputLinks(2)=(DrawY=-1090,OverrideDelta=81)
+   InputLinks(3)=(DrawY=-1068,OverrideDelta=103)
+   InputLinks(4)=(DrawY=-1156,OverrideDelta=15)
+   OutputLinks(0)=(DrawY=-1140,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-1084,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-9225,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_85'),LinkDesc="Door_Open0",MinVars=0,DrawX=-9172,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-9272
-   ObjPosY=-1192
+   ObjPosY=-1194
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_5"
@@ -4309,7 +4296,6 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_20
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
    InputLinks(0)=(DrawY=-348,OverrideDelta=37)
    InputLinks(1)=(DrawY=-326,OverrideDelta=59)
    InputLinks(2)=(DrawY=-304,OverrideDelta=81)
@@ -4332,7 +4318,6 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_21
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
    InputLinks(0)=(DrawY=-348,OverrideDelta=37)
    InputLinks(1)=(DrawY=-326,OverrideDelta=59)
    InputLinks(2)=(DrawY=-304,OverrideDelta=81)
@@ -4355,7 +4340,6 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_22
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
    InputLinks(0)=(DrawY=-340,OverrideDelta=37)
    InputLinks(1)=(DrawY=-318,OverrideDelta=59)
    InputLinks(2)=(DrawY=-296,OverrideDelta=81)
@@ -4378,7 +4362,6 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_23
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
    InputLinks(0)=(DrawY=-348,OverrideDelta=37)
    InputLinks(1)=(DrawY=-326,OverrideDelta=59)
    InputLinks(2)=(DrawY=-304,OverrideDelta=81)
@@ -4401,7 +4384,6 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_25
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
    InputLinks(0)=(DrawY=-348,OverrideDelta=37)
    InputLinks(1)=(DrawY=-326,OverrideDelta=59)
    InputLinks(2)=(DrawY=-304,OverrideDelta=81)
@@ -4581,8 +4563,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_102
    ObjValue=InterpActor'KF-RIG.TheWorld:PersistentLevel.InterpActor_12'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7640
-   ObjPosY=-2632
+   ObjPosX=-7728
+   ObjPosY=-3064
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_102"
@@ -4638,20 +4620,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_26
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-1124,OverrideDelta=37)
-   InputLinks(1)=(DrawY=-1102,OverrideDelta=59)
-   InputLinks(2)=(DrawY=-1080,OverrideDelta=81)
-   InputLinks(3)=(DrawY=-1058,OverrideDelta=103)
-   InputLinks(4)=(DrawY=-1146,OverrideDelta=15)
-   OutputLinks(0)=(DrawY=-1130,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-1074,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-1126,OverrideDelta=37)
+   InputLinks(1)=(DrawY=-1104,OverrideDelta=59)
+   InputLinks(2)=(DrawY=-1082,OverrideDelta=81)
+   InputLinks(3)=(DrawY=-1060,OverrideDelta=103)
+   InputLinks(4)=(DrawY=-1148,OverrideDelta=15)
+   OutputLinks(0)=(DrawY=-1132,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-1076,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-8177,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_106'),LinkDesc="Door_Open0",MinVars=0,DrawX=-8124,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-8224
-   ObjPosY=-1184
+   ObjPosY=-1186
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_26"
@@ -4676,8 +4657,8 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_35
    bDrawBox=True
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-9552
-   ObjPosY=-3080
+   ObjPosX=-9600
+   ObjPosY=-3088
    ObjComment="Doors - Automatic Opening for Zeds"
    DrawWidth=2610
    DrawHeight=3018
@@ -4763,7 +4744,6 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_24
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
    InputLinks(0)=(DrawY=-348,OverrideDelta=37)
    InputLinks(1)=(DrawY=-326,OverrideDelta=59)
    InputLinks(2)=(DrawY=-304,OverrideDelta=81)
@@ -5313,20 +5293,19 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_27
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
-   InputLinks(0)=(DrawY=-924,OverrideDelta=37)
-   InputLinks(1)=(DrawY=-902,OverrideDelta=59)
-   InputLinks(2)=(DrawY=-880,OverrideDelta=81)
-   InputLinks(3)=(DrawY=-858,OverrideDelta=103)
-   InputLinks(4)=(DrawY=-946,OverrideDelta=15)
-   OutputLinks(0)=(DrawY=-930,OverrideDelta=31)
-   OutputLinks(1)=(DrawY=-874,OverrideDelta=87)
+   InputLinks(0)=(DrawY=-926,OverrideDelta=37)
+   InputLinks(1)=(DrawY=-904,OverrideDelta=59)
+   InputLinks(2)=(DrawY=-882,OverrideDelta=81)
+   InputLinks(3)=(DrawY=-860,OverrideDelta=103)
+   InputLinks(4)=(DrawY=-948,OverrideDelta=15)
+   OutputLinks(0)=(DrawY=-932,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-876,OverrideDelta=87)
    VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_4'),DrawX=-7137,OverrideDelta=32)
    VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_161'),LinkDesc="Door_Open0",MinVars=0,DrawX=-7084,OverrideDelta=79)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
    ObjPosX=-7184
-   ObjPosY=-984
+   ObjPosY=-986
    DrawWidth=154
    DrawHeight=173
    Name="SeqAct_Interp_27"
@@ -5348,7 +5327,6 @@ End Object
 Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_18
    PlayRate=2.000000
    bRewindOnPlay=True
-   bNoResetOnRewind=True
    InputLinks(0)=(DrawY=-356,OverrideDelta=37)
    InputLinks(1)=(DrawY=-334,OverrideDelta=59)
    InputLinks(2)=(DrawY=-312,OverrideDelta=81)
@@ -5938,16 +5916,16 @@ End Object
 
 Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_17
    Duration=2.000000
-   InputLinks(0)=(DrawY=-2971,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-2950,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-2929,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4',InputLinkIdx=1)),DrawY=-2966,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-2934,OverrideDelta=51)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_33'),DrawX=-8028,OverrideDelta=25)
+   InputLinks(0)=(DrawY=-2859,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-2838,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-2817,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4',InputLinkIdx=1),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_39')),DrawY=-2854,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-2822,OverrideDelta=51)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_33'),DrawX=-7612,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8080
-   ObjPosY=-3008
+   ObjPosX=-7664
+   ObjPosY=-2896
    DrawWidth=106
    DrawHeight=109
    Name="SeqAct_Delay_17"
@@ -6008,21 +5986,22 @@ Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_20
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
-Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_21
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_37
    Duration=2.000000
-   InputLinks(0)=(DrawY=-2971,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-2950,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-2929,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_15',InputLinkIdx=1)),DrawY=-2966,OverrideDelta=19)
-   OutputLinks(1)=(DrawY=-2934,OverrideDelta=51)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_34'),DrawX=-7468,OverrideDelta=25)
+   InputLinks(0)=(DrawY=-3315,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-3294,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-3273,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=1),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_40')),DrawY=-3310,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-3278,OverrideDelta=51)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Named_34'),DrawX=-7604,OverrideDelta=25)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7520
-   ObjPosY=-3008
+   ObjPosX=-7656
+   ObjPosY=-3352
+   ObjComment="Room Trigger Delay Action"
    DrawWidth=106
    DrawHeight=109
-   Name="SeqAct_Delay_21"
+   Name="SeqAct_Delay_37"
    ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
 End Object
 
@@ -6332,8 +6311,8 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_33
    FindVarName="timer_zed_spawn_doors_delay"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8056
-   ObjPosY=-2856
+   ObjPosX=-7640
+   ObjPosY=-2744
    ObjColor=(B=255,G=0,R=0,A=255)
    DrawWidth=32
    DrawHeight=32
@@ -6346,8 +6325,8 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_34
    FindVarName="timer_zed_spawn_doors_delay"
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7496
-   ObjPosY=-2864
+   ObjPosX=-7632
+   ObjPosY=-3208
    ObjColor=(B=255,G=0,R=0,A=255)
    DrawWidth=32
    DrawHeight=32
@@ -7041,18 +7020,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_64
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
-   ObjValue=AmbientSound'KF-RIG.TheWorld:PersistentLevel.AmbientSound_4'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5584
-   ObjPosY=-3672
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_63"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_62
    ObjValue=Emitter'KF-RIG.TheWorld:PersistentLevel.Emitter_31'
    ObjInstanceVersion=1
@@ -7206,31 +7173,19 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_4
    Event=AkEvent'WW_ENV_BioticsLab.ENV_Steam_Clean_Blasts'
-   InputLinks(0)=(DrawY=-3710,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-3710,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_63'),DrawX=-5504,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-3766,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-3766,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_4'),DrawX=-5448,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5552
-   ObjPosY=-3744
+   ObjPosX=-5496
+   ObjPosY=-3800
    ObjComment="playsound"
    bDrawLast=True
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_4"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
-   ObjValue=AmbientSound'KF-RIG.TheWorld:PersistentLevel.AmbientSound_5'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5504
-   ObjPosY=-4128
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_61"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
@@ -7290,13 +7245,13 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_6
    Event=AkEvent'WW_ENV_BioticsLab.ENV_Steam_Clean_Blasts'
-   InputLinks(0)=(DrawY=-4198,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-4198,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_61'),DrawX=-5496,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-4254,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-4254,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_1'),DrawX=-5440,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-5544
-   ObjPosY=-4232
+   ObjPosX=-5488
+   ObjPosY=-4288
    ObjComment="playsound"
    bDrawLast=True
    DrawWidth=96
@@ -7449,18 +7404,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_47
-   ObjValue=AmbientSound'KF-RIG.TheWorld:PersistentLevel.AmbientSound_3'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6984
-   ObjPosY=-3568
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_47"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
    ObjValue=Emitter'KF-RIG.TheWorld:PersistentLevel.Emitter_69'
    ObjInstanceVersion=1
@@ -7494,13 +7437,13 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_1
    Event=AkEvent'WW_ENV_BioticsLab.ENV_Steam_Clean_Blasts'
-   InputLinks(0)=(DrawY=-3574,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-3574,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_47'),DrawX=-7072,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-3646,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-3646,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_11'),DrawX=-6992,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7120
-   ObjPosY=-3608
+   ObjPosX=-7040
+   ObjPosY=-3680
    ObjComment="playsound"
    bDrawLast=True
    DrawWidth=96
@@ -7684,18 +7627,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_51
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_50
-   ObjValue=AmbientSound'KF-RIG.TheWorld:PersistentLevel.AmbientSound_1'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-6976
-   ObjPosY=-4120
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_50"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
    InputLinks(0)=(DrawY=-4411,OverrideDelta=14)
    InputLinks(1)=(DrawY=-4390,OverrideDelta=35)
@@ -7818,31 +7749,19 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_5
    Event=AkEvent'WW_ENV_BioticsLab.ENV_Steam_Clean_Blasts'
-   InputLinks(0)=(DrawY=-4166,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-4166,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_50'),DrawX=-7040,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-4238,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-4238,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_10'),DrawX=-6960,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7088
-   ObjPosY=-4200
+   ObjPosX=-7008
+   ObjPosY=-4272
    ObjComment="playsound"
    bDrawLast=True
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_5"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_36
-   ObjValue=AmbientSound'KF-RIG.TheWorld:PersistentLevel.AmbientSound_2'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8528
-   ObjPosY=-3568
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_36"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_35
@@ -7883,13 +7802,13 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_3
    Event=AkEvent'WW_ENV_BioticsLab.ENV_Steam_Clean_Blasts'
-   InputLinks(0)=(DrawY=-3622,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-3622,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_36'),DrawX=-8584,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-3702,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-3702,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_9'),DrawX=-8504,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8632
-   ObjPosY=-3656
+   ObjPosX=-8552
+   ObjPosY=-3736
    ObjComment="playsound"
    bDrawLast=True
    DrawWidth=96
@@ -8159,31 +8078,19 @@ End Object
 
 Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_2
    Event=AkEvent'WW_ENV_BioticsLab.ENV_Steam_Clean_Blasts'
-   InputLinks(0)=(DrawY=-4182,OverrideDelta=11)
-   OutputLinks(0)=(DrawY=-4182,OverrideDelta=11)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_28'),DrawX=-8584,OverrideDelta=26)
+   InputLinks(0)=(DrawY=-4270,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-4270,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_7'),DrawX=-8504,OverrideDelta=26)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8632
-   ObjPosY=-4216
+   ObjPosX=-8552
+   ObjPosY=-4304
    ObjComment="playsound"
    bDrawLast=True
    DrawWidth=96
    DrawHeight=61
    Name="SeqAct_AkPostEvent_2"
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_28
-   ObjValue=AmbientSound'KF-RIG.TheWorld:PersistentLevel.AmbientSound_0'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8416
-   ObjPosY=-4176
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_28"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_27
@@ -8239,4 +8146,407 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
    DrawHeight=176
    Name="SeqEvent_Touch_2"
    ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqVar_Player Name=SeqVar_Player_0
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9448
+   ObjPosY=-8272
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Player_0"
+   ObjectArchetype=SeqVar_Player'Engine.Default__SeqVar_Player'
+End Object
+
+Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
+   Commands(0)="disableallscreenmessages"
+   InputLinks(0)=(DrawY=-8358,OverrideDelta=11)
+   OutputLinks(0)=(DrawY=-8358,OverrideDelta=11)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Player_0'),DrawX=-9424,OverrideDelta=42)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9488
+   ObjPosY=-8392
+   ObjComment="Disable All Screen Messages"
+   DrawWidth=129
+   DrawHeight=61
+   Name="SeqAct_ConsoleCommand_1"
+   ObjectArchetype=SeqAct_ConsoleCommand'Engine.Default__SeqAct_ConsoleCommand'
+End Object
+
+Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_1
+   SizeX=249
+   SizeY=304
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9544
+   ObjPosY=-8448
+   ObjComment="Disable All Screen Messages"
+   Name="SequenceFrameWrapped_1"
+   ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
+End Object
+
+Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_3
+   bLooping=True
+   InputLinks(0)=(DrawY=-3226,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-3204,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-3182,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-3160,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-3138,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-3210,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-3154,OverrideDelta=87)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_0'),DrawX=-7099,OverrideDelta=30)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_2'),LinkDesc="Trigger",MinVars=0,DrawX=-7044,OverrideDelta=77)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7144
+   ObjPosY=-3264
+   ObjComment="Scan Trigger Scan Animation"
+   DrawWidth=154
+   DrawHeight=157
+   Name="SeqAct_Interp_3"
+   ObjectArchetype=SeqAct_Interp'Engine.Default__SeqAct_Interp'
+End Object
+
+Begin Object Class=InterpData Name=InterpData_0
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=31,G=0,R=231,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         PosTrack=(Points=((OutVal=(X=-80.000000,Y=0.000244,Z=-0.000244)),(InVal=1.000000,OutVal=(X=480.000000,Y=0.000366,Z=-0.000366))))
+         EulerTrack=(Points=(,(InVal=1.000000)))
+         LookupTrack=(Points=(,(Time=1.000000)))
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      InterpTracks(0)=InterpTrackMove'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1.InterpTrackMove_0'
+      GroupName="Trigger"
+      GroupColor=(B=228,G=58,R=0,A=255)
+      Name="InterpGroup_1"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      GroupName="Trigger_Scan"
+      GroupColor=(B=0,G=172,R=167,A=255)
+      bIsFolder=True
+      Name="InterpGroup_0"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   InterpLength=1.000000
+   InterpGroups(0)=InterpGroupDirector'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroupDirector_0'
+   InterpGroups(1)=InterpGroup'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_0'
+   InterpGroups(2)=InterpGroup'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpGroup_1'
+   CurveEdSetup=InterpCurveEdSetup'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_0.InterpCurveEdSetup_0'
+   SelectedFilter=InterpFilter'Engine.Default__InterpData:FilterAll'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7144
+   ObjPosY=-3064
+   DrawWidth=32
+   DrawHeight=32
+   Name="InterpData_0"
+   ObjectArchetype=InterpData'Engine.Default__InterpData'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
+   ObjValue=DynamicTriggerVolume'KF-RIG.TheWorld:PersistentLevel.DynamicTriggerVolume_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7032
+   ObjPosY=-3072
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_2"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_66
+   bForceOverlapping=False
+   Originator=DynamicTriggerVolume'KF-RIG.TheWorld:PersistentLevel.DynamicTriggerVolume_1'
+   MaxTriggerCount=0
+   ReTriggerDelay=10.000000
+   bPlayerOnly=False
+   MaxWidth=220
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0'),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_41'),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_42',InputLinkIdx=1)),DrawY=-3387,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-3366,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-3345,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-7370,OverrideDelta=78)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7480
+   ObjPosY=-3456
+   ObjName="DynamicTriggerVolume_1 Touch"
+   ObjComment="Scan Trigger"
+   DrawWidth=155
+   DrawHeight=176
+   Name="SeqEvent_Touch_66"
+   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_40
+   Duration=10.000000
+   InputLinks(0)=(DrawY=-3211,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-3190,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-3169,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3'),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_42')),DrawY=-3206,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-3174,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-7420,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7472
+   ObjPosY=-3248
+   ObjComment="Scan Trigger Activation Delay If Room Trigger is Empty"
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_40"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_41
+   Duration=10.000000
+   InputLinks(0)=(DrawY=-3387,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-3366,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-3345,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3',InputLinkIdx=2),(LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_0',InputLinkIdx=1)),DrawY=-3382,OverrideDelta=19)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3',InputLinkIdx=2)),DrawY=-3350,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-7076,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7128
+   ObjPosY=-3424
+   ObjComment="Scan Trigger Disconnection After Finding a Presence in the Room"
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_41"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_42
+   Duration=30.000000
+   InputLinks(0)=(DrawY=-3203,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-3182,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-3161,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3',InputLinkIdx=2)),DrawY=-3198,OverrideDelta=19)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_3',InputLinkIdx=2)),DrawY=-3166,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-7252,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7304
+   ObjPosY=-3240
+   ObjComment="Scan Trigger Shut Down if Nothing is Detected"
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_42"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
+   ObjValue=DynamicTriggerVolume'KF-RIG.TheWorld:PersistentLevel.DynamicTriggerVolume_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7056
+   ObjPosY=-2640
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_3"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_67
+   bForceOverlapping=False
+   Originator=DynamicTriggerVolume'KF-RIG.TheWorld:PersistentLevel.DynamicTriggerVolume_0'
+   MaxTriggerCount=0
+   ReTriggerDelay=10.000000
+   bPlayerOnly=False
+   MaxWidth=220
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_35'),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_38',InputLinkIdx=1),(LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4')),DrawY=-2947,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-2926,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-2905,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-7378,OverrideDelta=78)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7488
+   ObjPosY=-3016
+   ObjName="DynamicTriggerVolume_0 Touch"
+   DrawWidth=155
+   DrawHeight=176
+   Name="SeqEvent_Touch_67"
+   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_2
+   bLooping=True
+   InputLinks(0)=(DrawY=-2802,OverrideDelta=15)
+   InputLinks(1)=(DrawY=-2780,OverrideDelta=37)
+   InputLinks(2)=(DrawY=-2758,OverrideDelta=59)
+   InputLinks(3)=(DrawY=-2736,OverrideDelta=81)
+   InputLinks(4)=(DrawY=-2714,OverrideDelta=103)
+   OutputLinks(0)=(DrawY=-2786,OverrideDelta=31)
+   OutputLinks(1)=(DrawY=-2730,OverrideDelta=87)
+   VariableLinks(0)=(LinkedVariables=(InterpData'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.InterpData_0'),DrawX=-7099,OverrideDelta=30)
+   VariableLinks(1)=(ExpectedType=Class'Engine.SeqVar_Object',LinkedVariables=(SeqVar_Object'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqVar_Object_3'),LinkDesc="Trigger",MinVars=0,DrawX=-7044,OverrideDelta=77)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7144
+   ObjPosY=-2840
+   DrawWidth=154
+   DrawHeight=157
+   Name="SeqAct_Interp_2"
+   ObjectArchetype=SeqAct_Interp'Engine.Default__SeqAct_Interp'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_38
+   Duration=30.000000
+   InputLinks(0)=(DrawY=-2771,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-2750,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-2729,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2',InputLinkIdx=2)),DrawY=-2766,OverrideDelta=19)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2',InputLinkIdx=2)),DrawY=-2734,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-7292,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7344
+   ObjPosY=-2808
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_38"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_35
+   Duration=10.000000
+   InputLinks(0)=(DrawY=-2955,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-2934,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-2913,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2',InputLinkIdx=2),(LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_4',InputLinkIdx=1)),DrawY=-2950,OverrideDelta=19)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2',InputLinkIdx=2)),DrawY=-2918,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-7076,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7128
+   ObjPosY=-2992
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_35"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqAct_Delay Name=SeqAct_Delay_39
+   Duration=10.000000
+   InputLinks(0)=(DrawY=-2779,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-2758,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-2737,OverrideDelta=56)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Interp'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Interp_2'),(LinkedOp=SeqAct_Delay'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_Delay_38')),DrawY=-2774,OverrideDelta=19)
+   OutputLinks(1)=(DrawY=-2742,OverrideDelta=51)
+   VariableLinks(0)=(DrawX=-7452,OverrideDelta=25)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7504
+   ObjPosY=-2816
+   DrawWidth=106
+   DrawHeight=109
+   Name="SeqAct_Delay_39"
+   ObjectArchetype=SeqAct_Delay'Engine.Default__SeqAct_Delay'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_1
+   ObjValue=TargetPoint'KF-RIG.TheWorld:PersistentLevel.TargetPoint_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5456
+   ObjPosY=-4168
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_1"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_4
+   ObjValue=TargetPoint'KF-RIG.TheWorld:PersistentLevel.TargetPoint_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-5472
+   ObjPosY=-3672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_4"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_7
+   ObjValue=TargetPoint'KF-RIG.TheWorld:PersistentLevel.TargetPoint_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8536
+   ObjPosY=-4192
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_7"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_9
+   ObjValue=TargetPoint'KF-RIG.TheWorld:PersistentLevel.TargetPoint_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8536
+   ObjPosY=-3632
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_9"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
+   ObjValue=TargetPoint'KF-RIG.TheWorld:PersistentLevel.TargetPoint_4'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-6984
+   ObjPosY=-4168
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_10"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_11
+   ObjValue=TargetPoint'KF-RIG.TheWorld:PersistentLevel.TargetPoint_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7024
+   ObjPosY=-3576
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_11"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=TWSeqEvent_LightFlicker Name=TWSeqEvent_LightFlicker_0
+   Originator=DominantDirectionalLight'KF-RIG.TheWorld:PersistentLevel.DominantDirectionalLight_1'
+   MaxWidth=383
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-RIG.TheWorld:PersistentLevel.Main_Sequence.SeqAct_RandomSwitch_0')),DrawY=-7502,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-9601,OverrideDelta=159)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-RIG.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-9792
+   ObjPosY=-7568
+   ObjName="DominantDirectionalLight_1 Light Flicker"
+   DrawWidth=211
+   DrawHeight=128
+   Name="TWSeqEvent_LightFlicker_0"
+   ObjectArchetype=TWSeqEvent_LightFlicker'Engine.Default__TWSeqEvent_LightFlicker'
 End Object

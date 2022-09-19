@@ -23,7 +23,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_0
    ObjPosX=584
    ObjPosY=-1888
    ObjComment="Lightning_System_"
-   bOutputObjCommentToScreen=True
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_0"
@@ -161,7 +160,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_1
    ObjPosX=1280
    ObjPosY=-1864
    ObjComment="Lightning_System_"
-   bOutputObjCommentToScreen=True
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_1"
@@ -221,7 +219,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_2
    ObjPosX=1896
    ObjPosY=-1864
    ObjComment="Lightning_System_"
-   bOutputObjCommentToScreen=True
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_2"
@@ -281,7 +278,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
    ObjPosX=648
    ObjPosY=-1568
    ObjComment="Lightning_System_"
-   bOutputObjCommentToScreen=True
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_3"
@@ -341,7 +337,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
    ObjPosX=1232
    ObjPosY=-1560
    ObjComment="Lightning_System_"
-   bOutputObjCommentToScreen=True
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_4"
@@ -401,7 +396,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_5
    ObjPosX=1888
    ObjPosY=-1536
    ObjComment="Lightning_System_"
-   bOutputObjCommentToScreen=True
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_5"
@@ -461,7 +455,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
    ObjPosX=648
    ObjPosY=-1248
    ObjComment="Lightning_System_"
-   bOutputObjCommentToScreen=True
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_6"
@@ -521,7 +514,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_8
    ObjPosX=1240
    ObjPosY=-1256
    ObjComment="Lightning_System_"
-   bOutputObjCommentToScreen=True
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_8"
@@ -581,7 +573,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_9
    ObjPosX=1872
    ObjPosY=-1248
    ObjComment="Lightning_System_"
-   bOutputObjCommentToScreen=True
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_9"
@@ -641,7 +632,6 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_25
    ObjPosX=1152
    ObjPosY=-912
    ObjComment="Lightning_System_"
-   bOutputObjCommentToScreen=True
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_25"

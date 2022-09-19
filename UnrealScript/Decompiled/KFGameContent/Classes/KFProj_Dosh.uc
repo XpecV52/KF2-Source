@@ -145,6 +145,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
     local KFPawn KFP;
     local KFPawn_Human KFPH;
     local KFPlayerReplicationInfo KFPRI;
+    local TraceHitInfo HitInfo;
 
     KFPH = KFPawn_Human(Other);
     if((KFPH != none) && KFPH != Instigator)
@@ -159,7 +160,7 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
     }
     else
     {
-        if(((Other != Instigator) && Other.bCanBeDamaged) && !Other.bWorldGeometry || !Other.bStatic)
+        if((Other != Instigator) && Other.bCanBeDamaged)
         {
             KFP = KFPawn(Other);
             if(KFP != none)
@@ -174,7 +175,9 @@ simulated function ProcessTouch(Actor Other, Vector HitLocation, Vector HitNorma
             }
             else
             {
-                ProcessDestructibleTouchOnBounce(Other, HitLocation, HitNormal);
+                HitInfo.HitComponent = LastTouchComponent;
+                HitInfo.Item = -1;
+                Other.TakeDamage(int(Damage), InstigatorController, HitLocation, MomentumTransfer * Normal(Velocity), MyDamageType, HitInfo, self);
                 return;
             }
         }

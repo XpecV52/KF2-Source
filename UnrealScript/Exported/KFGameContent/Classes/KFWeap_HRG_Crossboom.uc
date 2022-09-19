@@ -95,7 +95,7 @@ defaultproperties
    bReloadFromMagazine=True
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletArrow'
    FireModeIconPaths(1)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletArrow'
-   InventorySize=7
+   InventorySize=6
    MeshFOV=70.000000
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=70.000000

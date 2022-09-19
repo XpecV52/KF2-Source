@@ -72,7 +72,7 @@ defaultproperties
     bCanBeReloaded=true
     bReloadFromMagazine=true
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=7
+    InventorySize=6
     MeshFOV=70
     MeshIronSightFOV=52
     PlayerIronSightFOV=70

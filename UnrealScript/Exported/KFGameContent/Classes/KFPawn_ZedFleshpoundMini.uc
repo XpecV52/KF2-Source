@@ -70,7 +70,7 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:HeadshotAkComponent0'
    End Object
    HeadShotAkComponent=HeadshotAkComponent0
-   ShrinkEffectModifier=0.300000
+   ShrinkEffectModifier=0.200000
    LocalizationKey="KFPawn_ZedFleshpoundMini"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:ThirdPersonHead0'
       ReplacementPrimitive=None

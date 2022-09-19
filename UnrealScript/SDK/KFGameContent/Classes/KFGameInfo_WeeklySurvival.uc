@@ -600,8 +600,6 @@ function EndOfMatch(bool bVictory)
 {
     local KFPlayerController KFPC;
 
-    super.EndOfMatch(bVictory);
-
     if (bVictory)
     {
         foreach WorldInfo.AllControllers(class'KFPlayerController', KFPC)
@@ -609,6 +607,8 @@ function EndOfMatch(bool bVictory)
 			KFPC.CompletedWeeklySurvival();
 		}
     }
+	
+    super.EndOfMatch(bVictory);
 }
 
 function StartWave()

@@ -26,6 +26,7 @@ var transient byte NumDeployedTurrets;
 var const Vector TurretSpawnOffset;
 var transient KFPlayerController KFPC;
 var transient bool bTurretReadyToUse;
+var transient bool bDetonateLocked;
 var repnotify float CurrentAmmoPercentage;
 
 replication
@@ -223,9 +224,13 @@ simulated function BeginFire(byte FireModeNum)
     {
         ClearPendingFire(5);
     }
-    if((FireModeNum == 5) && NumDeployedTurrets > 0)
+    if(FireModeNum == 5)
     {
-        if(bTurretReadyToUse)
+        if(bDetonateLocked)
+        {
+            return;
+        }
+        if((NumDeployedTurrets > 0) && bTurretReadyToUse)
         {
             PrepareAndDetonate();
         }        
@@ -395,6 +400,31 @@ simulated function SetWeaponUpgradeLevel(int WeaponUpgradeLevel)
     }
 }
 
+simulated function PlayGrenadeThrow()
+{
+    local name WeaponFireAnimName;
+    local float InterruptTime;
+
+    PlayFiringSound(CurrentFireMode);
+    if((Instigator != none) && Instigator.IsFirstPerson())
+    {
+        WeaponFireAnimName = GetGrenadeThrowAnim();
+        if(WeaponFireAnimName != 'None')
+        {
+            InterruptTime = MySkelMesh.GetAnimInterruptTime(WeaponFireAnimName);
+            PlayAnimation(WeaponFireAnimName, MySkelMesh.GetAnimLength(WeaponFireAnimName),, FireTweenTime);
+            bDetonateLocked = true;
+            SetTimer(InterruptTime, false, 'ClearDetonateLock');
+        }
+    }
+}
+
+simulated function ClearDetonateLock()
+{
+    bDetonateLocked = false;
+    ClearTimer('ClearDetonateLock');
+}
+
 static simulated event SetTraderWeaponStats(out array<STraderItemWeaponStats> WeaponStats)
 {
     super(KFWeapon).SetTraderWeaponStats(WeaponStats);
@@ -484,12 +514,21 @@ simulated state WeaponPuttingDown
     stop;    
 }
 
+simulated state GrenadeFiring
+{
+    simulated function EndState(name NextStateName)
+    {
+        ClearDetonateLock();
+        super.EndState(NextStateName);
+    }
+    stop;    
+}
+
 defaultproperties
 {
     DetonateAnim=Detonate
     DetonateLastAnim=Detonate_Last
     DetonateAkEvent=AkEvent'WW_WEP_Autoturret.Play_WEP_AutoTurret_Detonate_Trigger'
-    DryFireAkEvent=AkEvent'WW_WEP_Autoturret.Play_WEP_AutoTurret_Dry_Fire'
     ThrowStrength=1350
     MaxTurretsDeployed=1
     TurretSpawnOffset=(X=0,Y=15,Z=-50)
