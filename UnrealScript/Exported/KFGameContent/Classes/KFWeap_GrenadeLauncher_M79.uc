@@ -27,6 +27,7 @@ defaultproperties
    InventorySize=6
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=73.000000
+   IronSightPosition=(X=0.000000,Y=0.050000,Z=0.200000)
    FastZoomOutTime=0.200000
    GroupPriority=75.000000
    WeaponSelectTexture=Texture2D'WEP_UI_M79_TEX.UI_WeaponSelect_M79'

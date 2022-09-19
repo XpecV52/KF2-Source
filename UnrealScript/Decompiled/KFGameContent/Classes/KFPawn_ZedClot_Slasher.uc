@@ -29,6 +29,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_ClotSlasher'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedClot_Slasher.HeadshotAkComponent0'
+    ShrinkEffectModifier=2
     PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.SlasherClot_AnimGroup'
     LocalizationKey=KFPawn_ZedClot_Slasher
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

@@ -236,6 +236,16 @@ AlchemistWeaponSkinBundleName="Alchemist Weapon Skin Bundle Pack"
 ChopTilYouDropFullGearBundleName="Chop Til You Drop Full Gear Bundle"
 ChristmasWeaponSkinBundleName="Christmas Weapon Skin Bundle Pack"
 HolidayShopperOutfitName="Holiday Shopper Outfit Bundle"
+NeonMKVIIIWeaponSkinBundleName="Neon MKVIII Weapon Skin Bundle Pack"
+ClassicWeaponSkinBundleName="Classic Weapon Skin Bundle Pack"
+DeepSeaSkinWeaponSkinPackName="Deep Sea Skin Weapon Skin Bundle Pack"
+ChameleonWeaponSkinBundleName="Chameleon Weapon Skin Bundle Pack"
+DeepSeaExplorerOutfitName="Deep Sea Explorer Outfit Bundle"
+ReductoRayBundleName="Reducto Ray Weapon Bundle"
+SentinelBundleName="Sentinel Weapon Bundle"
+TidalTerrorBundleName="Tidal Terror Weapon Bundle"
+ArmorySeasonPass2022Name="Killing Floor 2 - Armory Season Pass 2"
+UltimateUpgradeName="Killing Floor 2 - Ultimate Edition Upgrade"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles)."
@@ -470,6 +480,16 @@ AlchemistWeaponSkinBundleDescription="Contains 20 Alchemist themed weapon skins 
 ChopTilYouDropFullGearBundleDescription="Contains 6 Holiday Shopper themed cosmetic accessories each with 5 texture variants in a single bundle. Compatible with most characters."
 ChristmasWeaponSkinBundleDescription="Contains 20 Christmas themed weapon skins (10 Sweet and 10 Sour) Weapons featured in this set are: Boomstick, Chaulk N'Burn, Desert Eagle, Flamethrower, HMTech-501 Grenade Rifle, M32, P90, RPG-7, Scar, and Spitfires"
 HolidayShopperOutfitBundleDescription="Comes with the Holiday Shopper Outfit (includes 6 of skin styles). Compatible with most characters."
+NeonMKVIIIWeaponSkinBundleDescription="Contains 8 Neon themed weapon skins (4 Neon and 4 Neon RGB) Weapons featured in this set are: Boomstick, HZ12, HRG Beluga Beat, Zweihander."
+ClassicWeaponSkinBundleDescription="Contains 8 Classic themed weapon skins (4 Mint and 4 Precious) Weapons featured in this set are: Boomstick, 9MM, AA12, M1911."
+DeepSeaSkinWeaponSkinBundleDescription="Contains 36 Deep Sea themed weapon skins (6 Antique, 6 Aqua, 6 Coral, 6 Pearl, 6 Black Seal, and 6 Precious). Weapons Featured in this set are: AA12, FN FAL, M14EBR, Mac 10, MP5RAS, RPG-7."
+ChameleonWeaponSkinBundleDescription="Contains 8 Chameleon themed weapon skins (4 Dynamic and 4 Dynamic RBG) Weapons featured in this set are: Desert Eagle, Katana. Kriss SMG, RPG-7."
+DeepSeaExplorerOutfitDescription="Comes with the Deep Sea Explorer Outfit and Helmet (includes 6 of skin styles). Compatible with most characters."
+ReductoRayBundleDescription="The power to bring your enemies down to size within the palm of your hand. The Reducto Ray is designed for the Survivalist perk and comes with 5 unique skin variants."
+SentinelBundleDescription="Everyone needs a friend, particularly one that's an autonomous AI with an auto-targeting machine gun. The Sentinel is designed for the Commando perk comes with 5 unique skin variants."
+TidalTerrorBundleDescription="Includes the Sentinel and Reducto Ray Weapons from the Tidal Terror update. Each weapon comes with 5 unique skin variants."
+ArmorySeasonPass2022Description="Expand your repertoire of Zed destruction in Killing Floor 2 with this year’s Armory Season Pass! The most dosh-efficient way to gain immediate access to all 6 upcoming 2022 weapons as they release throughout the year. Purchase immediately includes 2 brand new weapons released with the Summer 2022 Update (Reducto Ray WeaponBundle, Sentinel Weapon Bundle) Both weapon bundles come with 5 unique weapon skins each Additionally, the Killing Floor 2 Armory Season Pass 2 includes access to the upcoming Weapon Bundles scheduled as follows: 2 Weapons for Fall 2022, 2 Weapons for Winter 2022"
+UltimateUpgradeDescription="For existing Killing Floor 2 Owners that want to upgrade to the most comprehensive experience of the game at one low price. This upgrade bundle includes: Armory Season Pass 1 & 2, as well as the following cosmetic upgrades. and following standalone Add-ons: Mrs. Foster, Cyberpunk Outfit Bundle, Headshot FX Pack 1 & 2, Wasteland Bundle, Foster Classic Bundle, Briar’s Bobby Bundle, Tanaka’s Biker Bundle, Horzine Mark 7 Bundle, Hazmat Suit Bundle,  DAR Assault Armor Bundle, Commando Chicken Bundle, Pajama Bundle, Clot Backpack Bundle, Dragon & Koi Complete Weapon Skin Set, Badass Santa Bundle, Cardboard Knight Bundle, Witch Hunter Outfit Bundle, Santa’s Helper Outfit Bundle, Foster’s Favorites Weapon Skin Pack, Space Pirate Outfit Bundle, Space Pirate Full Gear Bundle,  Reaper Outfit Bundle, Halloween 2020 Full Gear Bundle, Christmas 2020 Full Gear Bundle, Winter 2020 Gear Cosmetic Bundle"
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Get a new classic London Bobby uniform for playable character PC Rob Briar. Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles)."
@@ -581,6 +601,7 @@ AstronautHelmetName="Astronaut Helmet"
 AstronautO2BackpackName="Astronaut O2 Backpack"
 AstronautSuitName="Astronaut Suit Uniform"
 HolidayShoppingSuitName="Holiday Shopper Outfit"
+DeepSeeExplorerSuitName="Deep Sea Explorer Outfit"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="Lt. Bill Masterson | Cyberpunk | Green"
@@ -1446,6 +1467,8 @@ HRGBuckshotRevolversSpectreHRGDynamicChromaName="HRG Buckshot Revolvers | Spectr
 9MMSynthwaveFieldTestedName="9MM | Synthwave | Field-Tested"
 9MMSynthwaveBattleScarredName="9MM | Synthwave | Battle-Scarred"
 9MMDragonKoiPreciousName="9MM | Dragon & Koi | Precious"
+9MMClassicMintName="9MM | Classic | Mint"
+9MMClassicPreciousName="9MM | Classic | Precious"
 
 ;AA12 Descriptions
 AA12MintDescription="Exterior: Mint | The AA-12 is an automatic shotgun. It has devastating firepower at close to medium range, but eats ammunition on full auto!"
@@ -1511,6 +1534,14 @@ AA12JaegerDynamicRGBName="AA12 | Jaeger | Dynamic RGB"
 AA12StarsName="AA12 | Vault | Stars"
 AA12BeyondHorizonMintName="AA12 | Beyond Horizon | Mint"
 AA12BeyondHorizonSpaceEliteName="AA12 | Beyond Horizon | Space Elite"
+AA12DeepSeaAntiqueName="AA12 | Deep Sea | Antique"
+AA12DeepSeaAquaName="AA12 | Deep Sea | Aqua"
+AA12DeepSeaCoralName="AA12 | Deep Sea | Coral"
+AA12DeepSeaPearlName="AA12 | Deep Sea | Pearl"
+AA12DeepSeaBlackSealName="AA12 | Deep Sea | Black Seal"
+AA12DeepSeaPreciousName="AA12 | Deep Sea | Precious"
+AA12ClassicMintName="AA12 | Classic | Mint"
+AA12ClassicPreciousName="AA12 | Classic | Precious"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Exterior: Mint | Everything is better when you put more barrels on it. It's like adding more bacon."
@@ -1731,6 +1762,10 @@ BoomstickXMasSweetName="Boomstick | XMas | Sweet"
 BoomstickXMasSourName="Boomstick | XMas | Sour"
 BoomstickAlchemistToxicName="Boomstick | Alchemist | Toxic"
 BoomstickAlchemistBlazeName="Boomstick | Alchemist | Blaze"
+BoomstickNeonMintName="Boomstick | Neon | Mint"
+BoomstickNeonRGBPreciousName="Boomstick | Neon RGB | Precious"
+BoomstickClassicMintName="Boomstick | Classic | Mint"
+BoomstickClassicPreciousName="Boomstick | Classic | Precious"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="Exterior: Mint | Hand-held, home-made flamethrower. Please do NOT try this at home."
@@ -1899,6 +1934,8 @@ DesertEagleXMasSweetName="Desert Eagle | XMas | Sweet"
 DesertEagleXMasSourName="Desert Eagle | XMas | Sour"
 DesertEagleAlchemistToxicName="Desert Eagle | Alchemist | Toxic"
 DesertEagleAlchemistBlazeName="Desert Eagle | Alchemist | Blaze"
+DesertEagleChameleonDynamicName="Desert Eagle | Chameleon | Dynamic"
+DesertEagleChameleonDynamicRGBName="Desert Eagle | Chameleon | Dynamic RGB"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Exterior: Mint | When having twice the fun is not enough...let's make it four!"
@@ -2452,6 +2489,8 @@ HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Horzine First Encounter | Bat
 HZ12VaultVoshPreciousName="HZ12 | Vault | Vosh | Precious"
 HZ12JaegerDynamicName="HZ12 | Jaeger | Dynamic"
 HZ12JaegerDynamicRGBName="HZ12 | Jaeger | Dynamic RGB"
+HZ12NeonMintName="HZ12 | Neon | Mint"
+HZ12NeonRGBPreciousName="HZ12 | Neon RGB | Precious"
 
 ;Katana Descriptions
 KatanaMintDescription="Exterior: Mint | Try and show a little respect for its class."
@@ -2487,6 +2526,8 @@ KatanaVaultVoshPreciousName="Katana | Vault | Vosh | Precious"
 KatanaDragonKoiPreciousName="Katana | Dragon & Koi | Precious"
 KatanaHellmarkMagmaName="Katana | Hellmark | Magma"
 KatanaHellmarkThunderName="Katana | Hellmark | Thunder"
+KatanaChameleonDynamicName="Katana | Chameleon | Dynamic"
+KatanaChameleonDynamicRGBName="Katana | Chameleon | Dynamic RGB"
 
 ;KF-BAR Descriptions
 KFBARMintDescription="Exterior: Mint | Horzine's version of the classic commando knife."
@@ -2557,6 +2598,8 @@ KrissFostersFavoritesPreciousName="Kriss | Foster's Favorites | Precious"
 KrissIceBreakerDynamicName="Kriss | Ice Breaker | Dynamic"
 KrissIceBreakerDynamicPreciousName="Kriss | Ice Breaker | Dynamic Precious"
 KrissInfernalElitePreciousName="Kriss | Infernal Elite | Precious"
+KrissChameleonDynamicName="Kriss SMG | Chameleon | Dynamic"
+KrissChameleonDynamicRGBName="Kriss SMG | Chameleon | Dynamic RGB"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Exterior: Mint | The SA80 was the British Army's standard weapon, before the Army was, well, eaten."
@@ -2637,6 +2680,12 @@ M14EBRVaultVoshPreciousName="M14EBR | Vault | Vosh | Precious"
 M14EBRPrestigePreciousName="M14EBR | Prestige | Precious"
 M14EBRDragonKoiPreciousName="M14EBR | Dragon & Koi | Precious"
 M14EBRFostersFavoritesPreciousName="M14EBR | Foster's Favorites | Precious"
+M14EBRDeepSeaAntiqueName="M14EBR | Deep Sea | Antique"
+M14EBRDeepSeaAquaName="M14EBR | Deep Sea | Aqua"
+M14EBRDeepSeaCoralName="M14EBR | Deep Sea | Coral"
+M14EBRDeepSeaPearlName="M14EBR | Deep Sea | Pearl"
+M14EBRDeepSeaBlackSealName="M14EBR | Deep Sea | Black Seal"
+M14EBRDeepSeaPreciousName="M14EBR | Deep Sea | Precious"
 
 ;M16M203 Descriptions
 M16M203MintDescription="Exterior: Mint | For those who can't decide between bullets and explosives."
@@ -2697,6 +2746,8 @@ M1911DragonKoiPreciousName="M1911 | Dragon & Koi | Precious"
 M1911JaegerDynamicName="M1911 | Jaeger | Dynamic"
 M1911JaegerDynamicRGBName="M1911 | Jaeger | Dynamic RGB"
 M1911StarsName="M1911 | Vault | Stars"
+M1911ClassicMintName="M1911 | Classic | Mint"
+M1911ClassicPreciousName="M1911 | Classic | Precious"
 
 ;M4 Descriptions
 M4MintDescription="Exterior: Mint | Benelli designed the M4 Combat Shotgun for the US military. It is semi-automatic, allowing for a good, steady rate of fire."
@@ -2864,6 +2915,12 @@ Mac10JaegerDynamicName="MAC 10 | Jaeger | Dynamic"
 Mac10JaegerDynamicRGBName="MAC 10 | Jaeger | Dynamic RGB"
 Mac10BeyondHorizonMintName="MAC 10 | Beyond Horizon | Mint"
 Mac10BeyondHorizonSpaceEliteName="MAC 10 | Beyond Horizon | Space Elite"
+Mac10DeepSeaAntiqueName="MAC 10 | Deep Sea | Antique"
+Mac10DeepSeaAquaName="MAC 10 | Deep Sea | Aqua"
+Mac10DeepSeaCoralName="MAC 10 | Deep Sea | Coral"
+Mac10DeepSeaPearlName="MAC 10 | Deep Sea | Pearl"
+Mac10DeepSeaBlackSealName="MAC 10 | Deep Sea | Black Seal"
+Mac10DeepSeaPreciousName="MAC 10 | Deep Sea | Precious"
 
 ;Medic Bat Descriptions
 MedicBatMintDescription="Exterior: Mint | For people that wouldn't know good healing if it hit them upside the head"
@@ -2953,6 +3010,12 @@ MP5RASSteampunkPreciousName="MP5RAS | Steampunk | Precious"
 MP5RASStarsName="MP5RAS | Vault | Stars"
 MP5RASNeonMintName="MP5RAS | Neon | Mint"
 MP5RASNeonRGBPreciousName="MP5RAS | Neon RGB | Precious"
+MP5RASDeepSeaAntiqueName="MP5RAS | Deep Sea | Antique"
+MP5RASDeepSeaAquaName="MP5RAS | Deep Sea | Aqua"
+MP5RASDeepSeaCoralName="MP5RAS | Deep Sea | Coral"
+MP5RASDeepSeaPearlName="MP5RAS | Deep Sea | Pearl"
+MP5RASDeepSeaBlackSealName="MP5RAS | Deep Sea | Black Seal"
+MP5RASDeepSeaPreciousName="MP5RAS | Deep Sea | Precious"
 
 ;MP7 Descriptions
 MP7MintDescription="Exterior: Mint | Used by alphabet soup agencies and special forces units the world over."
@@ -3135,6 +3198,14 @@ RPG7XMasSweetName="RPG-7 | XMas | Sweet"
 RPG7XMasSourName="RPG-7 | XMas | Sour"
 RPG7AlchemistToxicName="RPG-7 | Alchemist | Toxic"
 RPG7AlchemistBlazeName="RPG-7 | Alchemist | Blaze"
+RPG7DeepSeaAntiqueName="RPG-7 | Deep Sea | Antique"
+RPG7DeepSeaAquaName="RPG-7 | Deep Sea | Aqua"
+RPG7DeepSeaCoralName="RPG-7 | Deep Sea | Coral"
+RPG7DeepSeaPearlName="RPG-7 | Deep Sea | Pearl"
+RPG7DeepSeaBlackSealName="RPG-7 | Deep Sea | Black Seal"
+RPG7DeepSeaPreciousName="RPG-7 | Deep Sea | Precious"
+RPG7ChameleonDynamicName="RPG-7 | Chameleon | Dynamic"
+RPG7ChameleonDynamicRGBName="RPG-7 | Chameleon | Dynamic RGB"
 
 ;Scar Descriptions
 ScarMintDescription="Exterior: Mint | Designed originally for the US Special Operations Command, it is, indeed, special!"
@@ -3441,7 +3512,9 @@ ZweihanderSteampunkFieldTestedName="Zweihander | Steampunk | Field-Tested"
 ZweihanderSteampunkMintName="Zweihander | Steampunk | Mint"
 ZweihanderSteampunkPreciousName="Zweihander | Steampunk | Precious"
 ZweihanderVaultVoshPreciousName="Zweihander | Vault | Vosh | Precious" 
-ZweihanderColiseumPreciousName="Zweihander | Coliseum | Precious" 
+ZweihanderColiseumPreciousName="Zweihander | Coliseum | Precious"
+ZweihanderNeonMintName="Zweihander | Neon | Mint"
+ZweihanderNeonRGBPreciousName="Zweihander | Neon RGB | Precious" 
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="Exterior: Mint | The over-sized knife of the Old West. Perfect for slicing and dicing Zeds in the here and now."
@@ -3598,6 +3671,12 @@ FNFALJaegerMintName="FN FAL | Jaeger | Mint"
 FNFALJaegerFieldTestedName="FN FAL | Jaeger | Field-Tested"
 FNFALJaegerBattleScarredName="FN FAL | Jaeger | Battle-Scarred"
 FNFALJaegerDynamicName="FN FAL | Jaeger | Dynamic"
+FNFALDeepSeaAntiqueName="FN FAL | Deep Sea | Antique"
+FNFALDeepSeaAquaName="FN FAL | Deep Sea | Aqua"
+FNFALDeepSeaCoralName="FN FAL | Deep Sea | Coral"
+FNFALDeepSeaPearlName="FN FAL | Deep Sea | Pearl"
+FNFALDeepSeaBlackSealName="FN FAL | Deep Sea | Black Seal"
+FNFALDeepSeaPreciousName="FN FAL | Deep Sea | Precious"
 
 ;FireAxe Descriptions
 FireAxeMintDescription="Exterior: Mint | Why is it called a fire axe if it's not on fire?"
@@ -3662,6 +3741,14 @@ SealSquealNeonMintName="Seal Squeal | Neon | Mint"
 SealSquealNeonRGBPreciousName="Seal Squeal | Neon RGB | Precious"
 SealSquealJaegerDynamicName="Seal Squeal | Jaeger | Dynamic"
 SealSquealJaegerDynamicRGBName="Seal Squeal | Jaeger | Dynamic RGB"
+
+;HRG Beluga Beat Descriptions
+HRGBelugaBeatMintDescription = "Exterior: Mint | It will boost the decibels of any party."
+HRGBelugaBeatPreciousDescription = "Exterior: Precious | It will boost the decibels of any party."
+
+;HRG Beluga Beat Names
+HRGBelugaBeatNeonMintName="HRG Beluga Beat | Neon | Mint"
+HRGBelugaBeatNeonRGBPreciousName="HRG Beluga Beat | Neon RGB | Precious"
 
 ;MIcrowaveAssault Descriptions
 MIcrowaveAssaultMintDescription="Exterior: Mint | May the fire be with you."
@@ -3903,6 +3990,34 @@ DoshinegunDiamondName="Doshinegun | Diamond"
 DoshinegunDoshName="Doshinegun | Dosh"
 DoshinegunGoldenTigerName="Doshinegun | Golden Tiger"
 DoshinegunBaroqueName="Doshinegun | Baroque"
+
+;Sentinel Descriptions
+SentinelMintDescription="Exterior: Mint | A drone that watches over a position and shoots at enemies."
+SentinelFieldTestedDescription="Exterior: Field-Tested | A drone that watches over a position and shoots at enemies."
+SentinelBattleScarredDescription="Exterior: Battle-Scarred | A drone that watches over a position and shoots at enemies."
+SentinelPreciousDescription="Exterior: Precious | A drone that watches over a position and shoots at enemies."
+
+;Sentinel Names
+SentinelStandardName="Sentinel | Standard"
+Sentinel1942Name="Sentinel | 1942"
+SentinelBlackBirdName="Sentinel | Black Bird"
+SentinelHadesName="Sentinel | Hades"
+SentinelIceStormName="Sentinel | Ice Storm"
+SentinelShockName="Sentinel | Shock"
+
+;Reducto Ray Descriptions
+ReductoRayMintDescription="Exterior: Mint | Honey, I shrunk the ZEDs."
+ReductoRayFieldTestedDescription="Exterior: Field-Tested | Honey, I shrunk the ZEDs."
+ReductoRayBattleScarredDescription="Exterior: Battle-Scarred | Honey, I shrunk the ZEDs."
+ReductoRayPreciousDescription="Exterior: Precious | Honey, I shrunk the ZEDs."
+
+;Reducto Ray Names
+ReductoRayStandardName="Reducto Ray | Standard"
+ReductoRayHellsFuryName="Reducto Ray | Hell's Fury"
+ReductoRayAtomicLoveName="Reducto Ray | Atomic Love"
+ReductoRayLuckyStrikeName="Reducto Ray | Lucky Strike"
+ReductoRayHeavyMetalName="Reducto Ray | Heavy Metal"
+ReductoRayDestructorName="Reducto Ray | Destructor"
 
 [CosmeticSection]
 
@@ -6281,6 +6396,18 @@ PracticeTargetBackpackPreciousName="Practice Target Backpack | Precious"
 ;Weekly Boss Rush Cosmetic Name
 BossTrophyBackpackPreciousName="Boss Trophy Backpack | Precious"
 
+;Weekly Gun Game Cosmetic Name
+SupplyBackpackPreciousName = "Supply Backpack | Precious"
+
+;Summer 2022 Cosmetic Names
+DeepSeaTridentPreciousName = "Deep Sea | Trident | Precious"
+DeepSeaHelmetAntiqueName="Deep Sea | Helmet | Antique"
+DeepSeaHelmetAquaName="Deep Sea | Helmet | Aqua"
+DeepSeaHelmetCoralName="Deep Sea | Helmet | Coral"
+DeepSeaHelmetPearlName="Deep Sea | Helmet | Pearl"
+DeepSeaHelmetBlackSealName="Deep Sea | Helmet | Black Seal"
+DeepSeaHelmetPreciousName="Deep Sea | Helmet | Precious"
+
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Equippable from the gear menu; Compatible with most characters. This is an exclusive item from the "Summer Sideshow" seasonal event. Recycles into 1 Sideshow Ticket."
 SummerSideshowFacePaintDescription="Equippable from the gear menu. This is an exclusive item from the Summer Sideshow seasonal event. Recycles into a 1 Sideshow Ticket."
@@ -6494,7 +6621,7 @@ ZedTimeDeluxeEmoteName="Zed Time Deluxe | Emote"
 NeedYourEnergyDeluxeEmoteName="Need Your Energy Deluxe | Emote"
 FinalFormDeluxeEmoteName="Final Form Deluxe | Emote"
 FastestGunInTheWestDeluxeEmoteName="Fastest Gun in the West Deluxe | Emote"
-SpiritFingersDeluxeEmoteName="Spriit Fingers Deluxe | Emote"
+SpiritFingersDeluxeEmoteName="Spirit Fingers Deluxe | Emote"
 HomerunDeluxeEmoteName="Home Run Deluxe | Emote"
 CointTrickDeluxeEmoteName="Coin Trick Deluxe | Emote"
 MagicFosterDeluxeEmoteName="Magic Foster Deluxe | Emote"

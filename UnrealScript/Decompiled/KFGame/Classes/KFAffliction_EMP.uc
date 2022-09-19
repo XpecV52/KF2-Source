@@ -15,8 +15,9 @@ var protected name EMPDisruptSocketName;
 var protected AkEvent OnEMPSound;
 var protected AkEvent OnEMPEndSound;
 
-function Activate()
+function Activate(optional class<KFDamageType> DamageType)
 {
+    DamageType = none;
     super.Activate();
     SetEMPPanicked(true);
 }

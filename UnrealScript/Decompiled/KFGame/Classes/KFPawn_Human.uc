@@ -329,6 +329,13 @@ function AddDefaultInventory()
     DefaultInventory.AddItem(class<Weapon>(DynamicLoadObject("KFGameContent.KFWeap_Welder", Class'Class'));
     DefaultInventory.AddItem(class<Inventory>(DynamicLoadObject("KFGameContent.KFInventory_Money", Class'Class'));
     super.AddDefaultInventory();
+    if((GameInfo.OutbreakEvent != none) && GameInfo.OutbreakEvent.ActiveEvent.bGunGameMode)
+    {
+        if(KFPlayerController_WeeklySurvival(Controller) != none)
+        {
+            KFPlayerController_WeeklySurvival(Controller).UpdateInitialHeldWeapon();
+        }
+    }
 }
 
 simulated function PlayWeaponSwitch(Weapon OldWeapon, Weapon NewWeapon)
@@ -348,6 +355,10 @@ simulated function bool CanThrowWeapon()
 {
     local KFPlayerController KFPC;
 
+    if((KFGameInfo(WorldInfo.Game).OutbreakEvent != none) && KFGameInfo(WorldInfo.Game).OutbreakEvent.ActiveEvent.bDisableThrowWeapon)
+    {
+        return false;
+    }
     KFPC = KFPlayerController(Controller);
     if((((KFPC != none) && KFPC.MyGFxManager != none) && KFPC.MyGFxManager.TraderMenu != none) && KFPC.MyGFxManager.CurrentMenu == KFPC.MyGFxManager.TraderMenu)
     {

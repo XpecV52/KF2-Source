@@ -47,6 +47,7 @@ BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
 BodyMesh14="Strój Świąteczne Zakupy"
+BodyMesh15="Strój odkrywcy głębin"
 HeadMesh0="Maska gazowa"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -169,6 +170,13 @@ BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
 
+[CHR_MrsFoster_archetype.BodyMesh15]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Biel"
 HeadSkin1="Zielona"
@@ -257,6 +265,7 @@ BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
 BodyMesh14="Strój Świąteczne Zakupy"
+BodyMesh15="Strój odkrywcy głębin"
 HeadMesh0="Moc brody!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -385,6 +394,14 @@ BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
 
+[CHR_Jagerhorn_archetype.BodyMesh15]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Szwedzki blondyn"
 HeadSkin1="Czarny album"
@@ -486,6 +503,7 @@ BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Kosmiczny pirat"
 BodyMesh13="Strój Reaper"
 BodyMesh14="Strój Świąteczne Zakupy"
+BodyMesh15="Strój odkrywcy głębin"
 HeadMesh0="Maska Scully'ego"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -613,6 +631,14 @@ BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
 
+[CHR_DJSkully_archetype.BodyMesh15]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Najczarniejsza czerń"
 HeadSkin1="Ekstra czerwień"
@@ -661,6 +687,7 @@ BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
 BodyMesh14="Strój Reaper"
 BodyMesh15="Strój Świąteczne Zakupy"
+BodyMesh16="Strój odkrywcy głębin"
 HeadMesh0="Włosy"
 
 [chr_briar_archetype.BodyMesh0]
@@ -794,6 +821,13 @@ BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
 
+[CHR_briar_archetype.BodyMesh16]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Oryginalny"
 HeadSkin1="Pasemka"
@@ -836,6 +870,7 @@ BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
 BodyMesh14="Strój Reaper"
 BodyMesh15="Strój Świąteczne Zakupy"
+BodyMesh16="Strój odkrywcy głębin"
 HeadMesh0="Maska gazowa"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -973,6 +1008,14 @@ BodySkin1="Elf"
 BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
+
+[CHR_MrFoster_archetype.BodyMesh16]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Oryginalny Biały"
@@ -1136,6 +1179,7 @@ BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
 BodyMesh14="Strój Świąteczne Zakupy"
+BodyMesh15="Strój odkrywcy głębin"
 HeadMesh0="Twarz"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1261,6 +1305,13 @@ BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
 
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Dziara"
@@ -1302,6 +1353,7 @@ BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
 BodyMesh14="Strój Świąteczne Zakupy"
+BodyMesh15="Strój odkrywcy głębin"
 HeadMesh0="Włosy"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1428,6 +1480,14 @@ BodySkin1="Elf"
 BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
+
+[CHR_Alberts_archetype.BodyMesh15]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Szary"
@@ -2330,6 +2390,7 @@ BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
 BodyMesh14="Strój Świąteczne Zakupy"
+BodyMesh15="Strój odkrywcy głębin"
 HeadMesh0="Twarz"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2466,6 +2527,13 @@ BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
 
+[CHR_Masterson_archetype.BodyMesh15]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka to pełen wewnętrznych sprzeczności osobnik, który najwyraźniej szuka okazji, by umrzeć. Urodził się na Okinawie i dorastał pośród amerykańskich żołnierzy. Po przeprowadzce wraz z rodziną do Japonii właściwej zamerykanizowany Tanaka nie mógł się odnaleźć w nowym otoczeniu i zapisał się do szkoły aktorskiej. Po ukończeniu koledżu przeniósł się do LA i grał oklepane rólki w nędznych filmach, po czym udał się do Europy w poszukiwaniu „poważniejszej” pracy. Angażowano go jednak tylko do ról przestępców we francuskich filmach gangsterskich i drugorzędnych produkcjach. Teraz, gdy nastała apokalipsa, otaczająca go rzeczywistość nierzadko myli mu się z zagranymi niegdyś rolami. Wizje te obejmują yakuzę, demony i bushido w wydaniu hollywoodzkim."
@@ -2485,6 +2553,7 @@ BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
 BodyMesh14="Strój Reaper"
 BodyMesh15="Strój Świąteczne Zakupy"
+BodyMesh16="Strój odkrywcy głębin"
 HeadMesh0="Włosy"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2628,6 +2697,13 @@ BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
 
+[CHR_Tanaka_archetype.BodyMesh16]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Hełm"
 AttachmentSkin0="Wschodzące słońce"
@@ -2673,6 +2749,7 @@ BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
 BodyMesh14="Strój Świąteczne Zakupy"
+BodyMesh15="Strój odkrywcy głębin"
 HeadMesh0="Irokez"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2808,6 +2885,13 @@ BodySkin1="Elf"
 BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
+[CHR_Ana_archetype.BodyMesh15]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Okulary 3D"
@@ -2840,6 +2924,7 @@ BodyMesh12="Kostium Mikołaja"
 BodyMesh13="Strój kosmicznego pirata"
 BodyMesh14="Strój Reaper"
 BodyMesh15="Strój Świąteczne Zakupy"
+BodyMesh16="Strój odkrywcy głębin"
 HeadMesh0="Włosy"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2972,6 +3057,13 @@ BodySkin1="Elf"
 BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
+[CHR_mark_archetype.BodyMesh16]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
@@ -3001,6 +3093,7 @@ BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
 BodyMesh14="Strój Świąteczne Zakupy"
+BodyMesh15="Strój odkrywcy głębin"
 HeadMesh0="Twarz"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3129,6 +3222,13 @@ BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
 
+[CHR_alan_archetype.BodyMesh15]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Bez upiększeń"
 HeadSkin1="Rudy! Serio?"
@@ -3164,6 +3264,7 @@ BodyMesh11="Kostium Mikołaja"
 BodyMesh12="Strój kosmicznego pirata"
 BodyMesh13="Strój Reaper"
 BodyMesh14="Strój Świąteczne Zakupy"
+BodyMesh15="Strój odkrywcy głębin"
 HeadMesh0="Włosy"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3289,6 +3390,13 @@ BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
 
+[CHR_strasser_archetype.BodyMesh15]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Ciemny stalowy"
 HeadSkin1="Stalowy blond"
@@ -3596,6 +3704,13 @@ BodySkin1="Elf"
 BodySkin2="Biegun północny"
 BodySkin3="Świąteczny bałagan"
 BodySkin4="Cenne"
+[CHR_rockabilly_archetype.BodyMesh15]
+BodySkin0="Antyczne"
+BodySkin1="Akwamaryn"
+BodySkin2="Koral"
+BodySkin3="Perła"
+BodySkin4="Czarna foka"
+BodySkin5="Cenne"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Czerń"
@@ -7138,3 +7253,19 @@ AttachmentSkin0="Cenne"
 [Cosmetic_BossTrophy_Backpack_ARCH]
 Attachment="Plecak: trofeum bossa"
 AttachmentSkin0="Cenne"
+[Cosmetic_Supply_Backpack_ARCH]
+Attachment="Plecak zaopatrzenia"
+AttachmentSkin0="Cenne"
+
+[Cosmetic_DeepSea_Trident_ARCH]
+Attachment="Głębokie morze Trójząb"
+AttachmentSkin0="Cenne"
+
+[Cosmetic_DeepSea_Helmet_ARCH]
+Attachment="Hełm głębokiego morza"
+AttachmentSkin0="Antyczne"
+AttachmentSkin1="Akwamaryn"
+AttachmentSkin2="Koral"
+AttachmentSkin3="Perła"
+AttachmentSkin4="Czarna foka"
+AttachmentSkin5="Cenne"

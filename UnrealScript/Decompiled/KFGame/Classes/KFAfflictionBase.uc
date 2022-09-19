@@ -33,8 +33,9 @@ function Init(KFPawn P, KFAfflictionManager.EAfflictionType Type, KFPerk Instiga
     }
 }
 
-function Accrue(float InPower)
+function Accrue(float InPower, optional class<KFDamageType> DamageType)
 {
+    DamageType = none;
     if((LastActivationTime > float(0)) && (PawnOwner.WorldInfo.TimeSeconds - LastActivationTime) < Cooldown)
     {
         if(bDebug)
@@ -54,7 +55,7 @@ function Accrue(float InPower)
     CurrentStrength = FClamp(CurrentStrength + InPower, InPower, 100);
     if(CurrentStrength >= 100)
     {
-        Activate();
+        Activate(DamageType);
     }
     if(bDebug)
     {
@@ -62,8 +63,9 @@ function Accrue(float InPower)
     }
 }
 
-function Activate()
+function Activate(optional class<KFDamageType> DamageType)
 {
+    DamageType = none;
     if(SpecialMove != 0)
     {
         if(PawnOwner.IsAliveAndWell())
@@ -123,6 +125,11 @@ function float GetSpeedModifier()
 function float GetAttackSpeedModifier()
 {
     return 1;
+}
+
+function float GetDamageTakenModifier()
+{
+    return 0;
 }
 
 defaultproperties

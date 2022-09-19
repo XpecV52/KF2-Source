@@ -386,7 +386,6 @@ function PurchaseWeapon(STraderItem ShopItem)
 	Price = GetAdjustedBuyPriceFor(ShopItem);
 	// XMAS 2021 Seasonal Objective
 	KFPC = Outer;
-	LogInternal("ADDING WEAPON PURCHASED");
 	KFPC.AddWeaponPurchased(ShopItem.WeaponDef, Price);
 	//
 

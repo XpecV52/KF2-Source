@@ -58,6 +58,11 @@ simulated function PlayActivationSoundEvent()
     }
 }
 
+simulated function bool CanActivateObjectiveByWeekly()
+{
+    return true;
+}
+
 simulated function ActivateObjective()
 {
     local KFSeqEvent_MapObjectiveActivated ActivationEvent;

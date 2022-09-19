@@ -33,6 +33,7 @@ defaultproperties
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshpoundMini.FootstepCameraShake0'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundMini.HeadshotAkComponent0'
+    ShrinkEffectModifier=0.3
     LocalizationKey=KFPawn_ZedFleshpoundMini
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

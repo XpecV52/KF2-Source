@@ -7,6 +7,8 @@
  *******************************************************************************/
 class KFGFxMenu_Inventory extends KFGFxObject_Menu within GFxMoviePlayer;
 
+const CrcPolynomial = 0xedb88320;
+
 enum EINventory_Filter
 {
     EInv_WeaponSkins,
@@ -41,14 +43,26 @@ struct InventoryHelper
     var int ItemDefinition;
     var int ItemIndex;
     var int ItemCount;
+    var Engine.OnlineSubsystem.ItemType Type;
     var GFxObject GfxItemObject;
+    var int WeaponDef;
+    var int Price;
+    var int SkinType;
+    var Engine.OnlineSubsystem.ItemRarity Rarity;
+    var int Quality;
 
     structdefaultproperties
     {
         ItemDefinition=0
         ItemIndex=0
         ItemCount=0
+        Type=ItemType.ITP_WeaponSkin
         GfxItemObject=none
+        WeaponDef=0
+        Price=0
+        SkinType=0
+        Rarity=ItemRarity.ITR_Common
+        Quality=0
     }
 };
 
@@ -101,6 +115,7 @@ var OnlineSubsystem OnlineSub;
 var PlayfabInterface PlayfabInter;
 var KFPawn_Customization KFPH;
 var bool bInitialInventoryPassComplete;
+var bool NeedToRegenerateSkinList;
 var int TempItemIdHolder;
 var int UncommonCosmeticID;
 var int RareCosmeticID;
@@ -122,15 +137,25 @@ var int ValueToPromptDuplicateRecycle;
 var array<int> SpecialEventItemIDs;
 var array<int> KeylessCrateIDs;
 var AkEvent KillThatDangSoundEvent;
+var array<InventoryHelper> SkinListWeaponsSearchCache;
+var array<InventoryHelper> SkinListOrderedCache;
 var KFGFxMenu_Inventory.EInventoryWeaponType_Filter CurrentWeaponTypeFilter;
 var Engine.OnlineSubsystem.ItemRarity CurrentRarityFilter;
 var KFGFxMenu_Inventory.EINventory_Filter CurrentInventoryFilter;
 var int CurrentPerkIndexFilter;
 var ExchangeRuleSets RuleToExchange;
+var private int CrcTable[256];
+var delegate<SortByWeaponTypeDefinition> __SortByWeaponTypeDefinition__Delegate;
+var delegate<SortByPrice> __SortByPrice__Delegate;
+var delegate<SortByRarity> __SortByRarity__Delegate;
+var delegate<SortBySkinType> __SortBySkinType__Delegate;
+var delegate<SortByQuality> __SortByQuality__Delegate;
+var delegate<SortByAll> __SortByAll__Delegate;
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
     super.InitializeMenu(InManager);
+    CrcInit();
     KFPC = KFPlayerController(Outer.GetPC());
     CurrentPerkIndexFilter = KFPC.PerkList.Length;
     LocalizeText();
@@ -210,15 +235,98 @@ function OnClose()
     }
 }
 
+final function CrcInit()
+{
+    local int CrcValue, IndexBit, IndexEntry;
+
+    IndexEntry = 0;
+    J0x0B:
+
+    if(IndexEntry < 256)
+    {
+        CrcValue = IndexEntry;
+        IndexBit = 8;
+        J0x3D:
+
+        if(IndexBit > 0)
+        {
+            if((CrcValue & 1) != 0)
+            {
+                CrcValue = (CrcValue >>> 1) ^ -306674912;                
+            }
+            else
+            {
+                CrcValue = CrcValue >>> 1;
+            }
+            -- IndexBit;
+            goto J0x3D;
+        }
+        CrcTable[IndexEntry] = CrcValue;
+        ++ IndexEntry;
+        goto J0x0B;
+    }
+}
+
+final function int Crc(coerce string Text)
+{
+    local int CrcValue, IndexChar, StrLen;
+
+    CrcValue = -1;
+    StrLen = Len(Text);
+    IndexChar = 0;
+    J0x2F:
+
+    if(IndexChar < StrLen)
+    {
+        CrcValue = (CrcValue >>> 8) ^ CrcTable[(Asc(Mid(Text, IndexChar, 1)) ^ CrcValue) & 255];
+        ++ IndexChar;
+        goto J0x2F;
+    }
+    return CrcValue;
+}
+
+delegate int SortByWeaponTypeDefinition(InventoryHelper A, InventoryHelper B)
+{
+    return ((A.WeaponDef < B.WeaponDef) ? -1 : 1);
+}
+
+delegate int SortByPrice(InventoryHelper A, InventoryHelper B)
+{
+    return ((A.Price > B.Price) ? -1 : 1);
+}
+
+delegate int SortByRarity(InventoryHelper A, InventoryHelper B)
+{
+    return ((A.Rarity > B.Rarity) ? -1 : 1);
+}
+
+delegate int SortBySkinType(InventoryHelper A, InventoryHelper B)
+{
+    return ((A.SkinType > B.SkinType) ? -1 : 1);
+}
+
+delegate int SortByQuality(InventoryHelper A, InventoryHelper B)
+{
+    return ((A.Quality < B.Quality) ? -1 : 1);
+}
+
+delegate int SortByAll(InventoryHelper A, InventoryHelper B)
+{
+    return ((A.Price > B.Price) ? -1 : ((A.Price < B.Price) ? 1 : ((A.WeaponDef < B.WeaponDef) ? -1 : ((A.WeaponDef > B.WeaponDef) ? 1 : ((A.Rarity > B.Rarity) ? -1 : ((A.Rarity < B.Rarity) ? 1 : ((A.SkinType > B.SkinType) ? -1 : ((A.SkinType < B.SkinType) ? 1 : ((A.Quality < B.Quality) ? -1 : 1)))))))));
+}
+
 function InitInventory()
 {
-    local int I, ItemIndex, HelperIndex;
+    local int I, ItemIndex, HelperIndex, WeaponItemID, SearchWeaponSkinIndex;
+
     local ItemProperties TempItemDetailsHolder;
     local GFxObject ItemArray, ItemObject;
     local bool bActiveItem;
-    local array<InventoryHelper> ActiveItems;
+    local array<InventoryHelper> ActiveItems, ValidSkinItems, FailedSkinItems;
     local InventoryHelper HelperItem;
     local array<ExchangeRuleSets> ExchangeRules;
+    local class<KFWeaponDefinition> WeaponDef;
+    local string SkinType;
     local GFxObject PendingItem;
 
     ItemArray = Outer.CreateArray();
@@ -244,6 +352,42 @@ function InitInventory()
                 {
                     HelperItem.ItemDefinition = OnlineSub.CurrentInventory[I].Definition;
                     HelperItem.ItemCount = OnlineSub.CurrentInventory[I].Quantity;
+                    if(TempItemDetailsHolder.Type == 0)
+                    {
+                        HelperItem.Rarity = TempItemDetailsHolder.Rarity;
+                        HelperItem.Quality = TempItemDetailsHolder.Quality;
+                        if(bool(OnlineSub.CurrentInventory[I].NewlyAdded))
+                        {
+                            NeedToRegenerateSkinList = true;
+                        }
+                        WeaponItemID = SkinListWeaponsSearchCache.Find('ItemDefinition', HelperItem.ItemDefinition;
+                        if(WeaponItemID != -1)
+                        {
+                            HelperItem.WeaponDef = SkinListWeaponsSearchCache[WeaponItemID].WeaponDef;
+                            HelperItem.Price = SkinListWeaponsSearchCache[WeaponItemID].Price;
+                            HelperItem.SkinType = SkinListWeaponsSearchCache[WeaponItemID].SkinType;                            
+                        }
+                        else
+                        {
+                            SearchWeaponSkinIndex = InStr(TempItemDetailsHolder.Name, "|");
+                            SkinType = Right(TempItemDetailsHolder.Name, (Len(TempItemDetailsHolder.Name) - SearchWeaponSkinIndex) - 2);
+                            SearchWeaponSkinIndex = InStr(SkinType, "|");
+                            HelperItem.SkinType = Crc(Left(SkinType, SearchWeaponSkinIndex));
+                            WeaponItemID = Class'KFWeaponSkinList'.default.Skins.Find('Id', HelperItem.ItemDefinition;
+                            if(WeaponItemID != -1)
+                            {
+                                WeaponDef = Class'KFWeaponSkinList'.default.Skins[WeaponItemID].WeaponDef;
+                                HelperItem.WeaponDef = Crc(Mid(WeaponDef.default.WeaponClassPath, 21));
+                                HelperItem.Price = WeaponDef.default.BuyPrice;                                
+                            }
+                            else
+                            {
+                                HelperItem.WeaponDef = -1;
+                                HelperItem.Price = 0;
+                            }
+                            SkinListWeaponsSearchCache.AddItem(HelperItem;
+                        }
+                    }
                     ActiveItems.AddItem(HelperItem;
                     HelperIndex = ActiveItems.Length - 1;                    
                 }
@@ -284,14 +428,61 @@ function InitInventory()
         goto J0x67;
     }
     OnlineSub.ClearNewlyAdded();
-    I = 0;
-    J0xAF9:
-
-    if(I < ActiveItems.Length)
+    if(CurrentInventoryFilter == 0)
     {
-        ItemArray.SetElementObject(I, ActiveItems[I].GfxItemObject);
-        ++ I;
-        goto J0xAF9;
+        NeedToRegenerateSkinList = NeedToRegenerateSkinList || ActiveItems.Length != SkinListOrderedCache.Length;
+        if(NeedToRegenerateSkinList)
+        {
+            NeedToRegenerateSkinList = false;
+            I = 0;
+            J0xFB6:
+
+            if(I < ActiveItems.Length)
+            {
+                if(ActiveItems[I].WeaponDef != -1)
+                {
+                    ValidSkinItems.AddItem(ActiveItems[I];                    
+                }
+                else
+                {
+                    FailedSkinItems.AddItem(ActiveItems[I];
+                }
+                ++ I;
+                goto J0xFB6;
+            }
+            ValidSkinItems.Sort(SortByAll;
+            SkinListOrderedCache = ValidSkinItems;
+            I = 0;
+            J0x108B:
+
+            if(I < FailedSkinItems.Length)
+            {
+                SkinListOrderedCache.AddItem(FailedSkinItems[I];
+                ++ I;
+                goto J0x108B;
+            }            
+        }
+        I = 0;
+        J0x10DF:
+
+        if(I < SkinListOrderedCache.Length)
+        {
+            ItemArray.SetElementObject(I, SkinListOrderedCache[I].GfxItemObject);
+            ++ I;
+            goto J0x10DF;
+        }        
+    }
+    else
+    {
+        I = 0;
+        J0x1161:
+
+        if(I < ActiveItems.Length)
+        {
+            ItemArray.SetElementObject(I, ActiveItems[I].GfxItemObject);
+            ++ I;
+            goto J0x1161;
+        }
     }
     SetObject("inventoryList", ItemArray);
     if(Manager.SelectIDOnOpen != -1)
@@ -343,6 +534,8 @@ function OnItemExhangeTimeOut()
 function FinishCraft()
 {
     SetVisible(true);
+    LogInternal("FinishCraft");
+    NeedToRegenerateSkinList = true;
 }
 
 function SetMatineeColor(int ItemRarity)
@@ -459,7 +652,10 @@ function bool IsItemActive(int ItemDefinition)
     WeaponDef = Class'KFWeaponSkinList'.default.Skins[ItemIndex].WeaponDef;
     if(WeaponDef != none)
     {
-        return Class'KFWeaponSkinList'.static.IsSkinEquip(WeaponDef, ItemDefinition);
+        if(Class'KFWeaponSkinList'.static.IsSkinEquip(WeaponDef, ItemDefinition))
+        {
+            return true;
+        }
     }
     return false;
 }
@@ -911,6 +1107,7 @@ function Callback_Equip(int ItemDefinition)
             }
         }
     }
+    NeedToRegenerateSkinList = true;
     InitInventory();
 }
 

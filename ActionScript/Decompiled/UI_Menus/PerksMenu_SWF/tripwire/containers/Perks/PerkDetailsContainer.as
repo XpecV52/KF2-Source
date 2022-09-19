@@ -1,10 +1,12 @@
 package tripwire.containers.Perks
 {
     import flash.display.MovieClip;
+    import flash.external.ExternalInterface;
     import flash.text.TextField;
     import scaleform.clik.controls.ScrollingList;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.data.DataProvider;
+    import scaleform.clik.events.ButtonEvent;
     import scaleform.gfx.TextFieldEx;
     import tripwire.controls.TripUILoaderQueue;
     import tripwire.controls.perks.PerksPassiveDataLineRenderer;
@@ -46,6 +48,10 @@ package tripwire.containers.Perks
         
         public var weaponIcon3:TripUILoaderQueue;
         
+        public var loadoutPrimarySelector:MovieClip;
+        
+        public var loadoutGrenadeSelector:MovieClip;
+        
         public var passivesList:ScrollingList;
         
         private var _passiveObjects:Vector.<PerksPassiveDataLineRenderer>;
@@ -58,6 +64,20 @@ package tripwire.containers.Perks
         {
             super();
             ANIM_OFFSET_X = 0;
+            this.loadoutPrimarySelector.loadoutPrimaryPrev.addEventListener(ButtonEvent.CLICK,this.OnLoadoutPrimaryPrevClicked,false,0,true);
+            this.loadoutPrimarySelector.loadoutPrimaryPrev.clickSoundEffect = "SHARED_BUTTON_CLICK";
+            this.loadoutPrimarySelector.loadoutPrimaryNext.addEventListener(ButtonEvent.CLICK,this.OnLoadoutPrimaryNextClicked,false,0,true);
+            this.loadoutPrimarySelector.loadoutPrimaryNext.clickSoundEffect = "SHARED_BUTTON_CLICK";
+            this.loadoutGrenadeSelector.loadoutGrenadePrev.addEventListener(ButtonEvent.CLICK,this.OnLoadoutGrenadePrevClicked,false,0,true);
+            this.loadoutGrenadeSelector.loadoutGrenadePrev.clickSoundEffect = "SHARED_BUTTON_CLICK";
+            this.loadoutGrenadeSelector.loadoutGrenadeNext.addEventListener(ButtonEvent.CLICK,this.OnLoadoutGrenadeNextClicked,false,0,true);
+            this.loadoutGrenadeSelector.loadoutGrenadeNext.clickSoundEffect = "SHARED_BUTTON_CLICK";
+            this.loadoutPrimarySelector.loadoutPrimaryPrev.visible = false;
+            this.loadoutPrimarySelector.loadoutPrimaryNext.visible = false;
+            this.loadoutGrenadeSelector.loadoutGrenadePrev.visible = false;
+            this.loadoutGrenadeSelector.loadoutGrenadeNext.visible = false;
+            this.loadoutPrimarySelector.ControllerIcon.visible = false;
+            this.loadoutGrenadeSelector.ControllerIcon.visible = false;
         }
         
         public function set passivesData(param1:Array) : *
@@ -70,6 +90,8 @@ package tripwire.containers.Perks
         
         public function set detailsData(param1:Object) : *
         {
+            var _loc2_:Boolean = false;
+            var _loc3_:Boolean = false;
             if(param1 != null)
             {
                 this.weaponIconTextField0.text = !!param1.WeaponName0 ? param1.WeaponName0 : "";
@@ -91,6 +113,36 @@ package tripwire.containers.Perks
                 this.objectiveLine.width = this.XP_TITLE_WIDTH - this.objectivesTitleTextField.textWidth;
                 this.bonusLine.width = this.SUB_TITLE_WIDTH - this.perkBonusTextField.textWidth;
                 this.loadoutLine.width = this.SUB_TITLE_WIDTH - this.basicLoadoutTextField.textWidth;
+                _loc2_ = !!param1.ShowPrimaryWeaponSelectors ? true : false;
+                this.loadoutPrimarySelector.visible = _loc2_;
+                this.loadoutPrimarySelector.loadoutPrimaryPrev.focused = 0;
+                this.loadoutPrimarySelector.loadoutPrimaryNext.focused = 0;
+                this.loadoutPrimarySelector.loadoutPrimaryPrev.focusable = true;
+                this.loadoutPrimarySelector.loadoutPrimaryNext.focusable = true;
+                _loc3_ = !!param1.ShowGrenadeSelectors ? true : false;
+                this.loadoutGrenadeSelector.visible = _loc3_;
+                this.loadoutGrenadeSelector.loadoutGrenadePrev.focused = 0;
+                this.loadoutGrenadeSelector.loadoutGrenadeNext.focused = 0;
+                this.loadoutGrenadeSelector.loadoutGrenadePrev.focusable = true;
+                this.loadoutGrenadeSelector.loadoutGrenadeNext.focusable = true;
+                if(bManagerUsingGamepad)
+                {
+                    this.loadoutPrimarySelector.loadoutPrimaryPrev.visible = false;
+                    this.loadoutPrimarySelector.loadoutPrimaryNext.visible = false;
+                    this.loadoutGrenadeSelector.loadoutGrenadePrev.visible = false;
+                    this.loadoutGrenadeSelector.loadoutGrenadeNext.visible = false;
+                    this.loadoutPrimarySelector.ControllerIcon.visible = true;
+                    this.loadoutGrenadeSelector.ControllerIcon.visible = true;
+                }
+                else
+                {
+                    this.loadoutPrimarySelector.loadoutPrimaryPrev.visible = true;
+                    this.loadoutPrimarySelector.loadoutPrimaryNext.visible = true;
+                    this.loadoutGrenadeSelector.loadoutGrenadePrev.visible = true;
+                    this.loadoutGrenadeSelector.loadoutGrenadeNext.visible = true;
+                    this.loadoutPrimarySelector.ControllerIcon.visible = false;
+                    this.loadoutGrenadeSelector.ControllerIcon.visible = false;
+                }
             }
         }
         
@@ -114,6 +166,30 @@ package tripwire.containers.Perks
                 defaultNumPrompts = !!MenuManager.manager.bOpenedInGame ? 5 : 4;
             }
             super.selectContainer();
+        }
+        
+        public function OnLoadoutPrimaryPrevClicked(param1:ButtonEvent) : void
+        {
+            ExternalInterface.call("Callback_OnLoadoutPrevWeaponPressed");
+            this.loadoutPrimarySelector.loadoutPrimaryPrev.selected = false;
+        }
+        
+        public function OnLoadoutPrimaryNextClicked(param1:ButtonEvent) : void
+        {
+            ExternalInterface.call("Callback_OnLoadoutNextWeaponPressed");
+            this.loadoutPrimarySelector.loadoutPrimaryNext.selected = false;
+        }
+        
+        public function OnLoadoutGrenadePrevClicked(param1:ButtonEvent) : void
+        {
+            ExternalInterface.call("Callback_OnLoadoutPrevGrenadePressed");
+            this.loadoutPrimarySelector.loadoutGrenadePrev.selected = false;
+        }
+        
+        public function OnLoadoutGrenadeNextClicked(param1:ButtonEvent) : void
+        {
+            ExternalInterface.call("Callback_OnLoadoutNextGrenadePressed");
+            this.loadoutPrimarySelector.loadoutGrenadeNext.selected = false;
         }
     }
 }

@@ -897,14 +897,16 @@ native final simulated function UpdateMeshForBrokenConstraints();
 // Export USkeletalMeshComponent::execShowMaterialSection(FFrame&, void* const)
 native final simulated function ShowMaterialSection(int MaterialID, bool bShow, int LODIndex);
 
-function PlayAnim(name AnimName, optional float Duration, optional bool bLoop, optional bool bRestartIfAlreadyPlaying, optional float StartTime, optional bool bPlayBackwards)
+function bool PlayAnim(name AnimName, optional float Duration, optional bool bLoop, optional bool bRestartIfAlreadyPlaying, optional float StartTime, optional bool bPlayBackwards)
 {
     local AnimNodeSequence AnimNode;
     local float DesiredRate;
+    local bool bIsAnimPlayed;
 
     bRestartIfAlreadyPlaying = true;
     StartTime = 0;
     bPlayBackwards = false;
+    bIsAnimPlayed = false;
     AnimNode = AnimNodeSequence(Animations);
     if((AnimNode == none) && Animations.IsA('AnimTree'))
     {
@@ -922,7 +924,8 @@ function PlayAnim(name AnimName, optional float Duration, optional bool bLoop, o
             DesiredRate = ((bPlayBackwards) ? -DesiredRate : DesiredRate);
             if(bRestartIfAlreadyPlaying || !AnimNode.bPlaying)
             {
-                AnimNode.PlayAnim(bLoop, DesiredRate, StartTime);                
+                AnimNode.PlayAnim(bLoop, DesiredRate, StartTime);
+                bIsAnimPlayed = true;                
             }
             else
             {
@@ -938,9 +941,11 @@ function PlayAnim(name AnimName, optional float Duration, optional bool bLoop, o
                 DesiredRate = ((Duration > 0) ? AnimNode.AnimSeq.SequenceLength / (Duration * AnimNode.AnimSeq.RateScale) : 1);
                 DesiredRate = ((bPlayBackwards) ? -DesiredRate : DesiredRate);
                 AnimNode.PlayAnim(bLoop, DesiredRate, StartTime);
+                bIsAnimPlayed = true;
             }
         }
     }
+    return bIsAnimPlayed;
 }
 
 function StopAnim()

@@ -1187,6 +1187,12 @@ var repnotify byte WeaponSpecialAction;
 ********************************************************************************************* */
 var transient byte LastHitZoneIndex;
 
+/**
+	AutoTurret
+ */
+var const bool bIsTurret;
+
+
 replication
 {
     // Replicated to ALL
@@ -1194,7 +1200,7 @@ replication
 		AmbientSound, WeaponClassForAttachmentTemplate, bIsSprinting, InjuredHitZones,
 		KnockdownImpulse, ReplicatedSpecialMove, bEmpDisrupted, bEmpPanicked, bFirePanicked,
         RepFireBurnedAmount, bUnaffectedByZedTime, bMovesFastInZedTime, IntendedBodyScale,
-		IntendedHeadScale, AttackSpeedModifier, bHasStartedFire, PowerUpAmbientSound;
+		IntendedHeadScale, AttackSpeedModifier, bHasStartedFire, PowerUpAmbientSound, BodyScaleChangePerSecond;
 	if ( bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout )
 		HitFxInfo, HitFxRadialInfo, HitFxInstigator, HitFxAddedRelativeLocs, HitFxAddedHitCount;
 	if ( Physics == PHYS_RigidBody && !bTearOff )
@@ -3003,6 +3009,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, vector HitLocation, vector
 
 
 
+
 	// NVCHANGE_BEGIN - RLS - Debugging Effects
 	bAllowHeadshot = CanCountHeadshots();
 	OldHealth = Health;
@@ -3085,6 +3092,12 @@ function AdjustDamage(out int InDamage, out vector Momentum, Controller Instigat
 	}
 
     InstigatorMonster = InstigatedBy == none ? none : KFPawn_Monster(InstigatedBy.Pawn);
+
+	if (InDamage > 0 && InstigatedBy != none && InstigatedBy.Pawn.IsA('KFPawn_Human'))
+	{
+		InDamage = InDamage * AfflictionHandler.GetAfflictionDamageTakenModifier();
+	}
+
     if( InDamage > 0 && InstigatorMonster != None )
 	{
         // Increase AI damage by AI Damage modifiers
@@ -5699,6 +5712,8 @@ simulated function StopExtraVFX(Name FXLabel)
 		}
 	}
 }
+
+simulated function SetTurretWeaponAttachment(class<KFWeapon> WeaponClass) {}
 
 defaultproperties
 {

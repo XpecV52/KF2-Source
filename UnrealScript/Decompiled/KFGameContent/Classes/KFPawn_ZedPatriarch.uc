@@ -1763,7 +1763,7 @@ System.InvalidOperationException: Nullable object must have a value.
    at System.ThrowHelper.ThrowInvalidOperationException(ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '0_503' was not found.
+System.ArgumentException: Requested value '0_510' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1844,6 +1844,7 @@ Parameter name: index
     SprintAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedPatriarch.HeadshotAkComponent0'
     OnDeathAchievementID=130
+    ShrinkEffectModifier=0.15
     PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
     LocalizationKey=KFPawn_ZedPatriarch
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

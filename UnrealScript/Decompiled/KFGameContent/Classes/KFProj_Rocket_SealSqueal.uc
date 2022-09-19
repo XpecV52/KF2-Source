@@ -132,6 +132,24 @@ protected simulated function PrepareExplosionTemplate()
     super.PrepareExplosionTemplate();
 }
 
+protected simulated function SetExplosionActorClass()
+{
+    local KFPlayerReplicationInfo InstigatorPRI;
+
+    if((WorldInfo.TimeDilation < 1) && Instigator != none)
+    {
+        InstigatorPRI = KFPlayerReplicationInfo(Instigator.PlayerReplicationInfo);
+        if(InstigatorPRI != none)
+        {
+            if(InstigatorPRI.bNukeActive && Class'KFPerk_Demolitionist'.static.ProjectileShouldNuke(self))
+            {
+                ExplosionActorClass = Class'KFPerk_Demolitionist'.static.GetNukeExplosionActorClass();
+            }
+        }
+    }
+    super.SetExplosionActorClass();
+}
+
 simulated function SyncOriginalLocation()
 {
     local Actor HitActor;

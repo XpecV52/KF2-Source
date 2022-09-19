@@ -62,6 +62,7 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedClot:HeadshotAkComponent0'
    End Object
    HeadShotAkComponent=HeadshotAkComponent0
+   ShrinkEffectModifier=2.000000
    PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.UnDevClot_AnimGroup'
    LocalizationKey="KFPawn_ZedClot_Cyst"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:ThirdPersonHead0'
@@ -90,6 +91,8 @@ defaultproperties
    IncapSettings(9)=(Cooldown=1.500000,Vulnerability=(2.500000))
    IncapSettings(10)=(Duration=4.500000,Cooldown=8.000000,Vulnerability=(0.500000))
    IncapSettings(11)=(Vulnerability=(2.000000))
+   IncapSettings(12)=()
+   IncapSettings(13)=(Vulnerability=(1.000000))
    KnockdownImpulseScale=1.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedClot:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True

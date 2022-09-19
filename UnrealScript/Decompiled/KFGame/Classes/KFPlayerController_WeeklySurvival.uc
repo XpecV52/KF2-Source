@@ -10,6 +10,24 @@ class KFPlayerController_WeeklySurvival extends KFPlayerController
     config(Game)
     hidecategories(Navigation);
 
+struct native GunGameInfo
+{
+    var transient byte Level;
+    var transient int Score;
+    var array<byte> GunGamePreselectedWeapons;
+    var byte WaveToUseForRestart;
+    var bool GiveWeaponMaster;
+
+    structdefaultproperties
+    {
+        Level=0
+        Score=0
+        GunGamePreselectedWeapons=none
+        WaveToUseForRestart=0
+        GiveWeaponMaster=false
+    }
+};
+
 var bool bUsingPermanentZedTime;
 var float ZedTimeRadius;
 var float ZedTimeBossRadius;
@@ -23,13 +41,16 @@ var protected const AkEvent RhythmMethodSoundReset;
 var protected const AkEvent RhythmMethodSoundHit;
 var protected const AkEvent RhythmMethodSoundTop;
 var protected const AkEvent AracnoStompSoundEvent;
+var protected const AkEvent GunGameLevelUpSoundEvent;
+var protected const AkEvent GunGameLevelUpFinalWeaponSoundEvent;
+var transient GunGameInfo GunGameData;
 
 replication
 {
      if(bNetDirty)
-        GoompaStreak, ZedTimeBossRadius, 
-        ZedTimeHeight, ZedTimeRadius, 
-        bUsingPermanentZedTime;
+        GoompaStreak, GunGameData, 
+        ZedTimeBossRadius, ZedTimeHeight, 
+        ZedTimeRadius, bUsingPermanentZedTime;
 }
 
 simulated event PostBeginPlay()
@@ -82,6 +103,22 @@ function EnterZedTime()
 function RecheckZedTime()
 {
     EnterZedTime();
+}
+
+reliable client simulated function UpdateWaveCount()
+{
+    if(myGfxHUD != none)
+    {
+        myGfxHUD.UpdateWaveCount();
+    }
+}
+
+reliable client simulated function UpdateGunGameWidget(int Score, int max_score, int Level, int max_level)
+{
+    if(myGfxHUD != none)
+    {
+        myGfxHUD.UpdateGunGameWidget(Score, max_score, Level, max_level);
+    }
 }
 
 function UpdateGoompaStreak()
@@ -163,10 +200,31 @@ reliable client simulated function GoompaStompMessage(byte StompNum)
     }
 }
 
+reliable client simulated function PlayGunGameMessage(bool isLastLevel)
+{
+    if(isLastLevel)
+    {
+        if(GunGameLevelUpFinalWeaponSoundEvent != none)
+        {
+            PlaySoundBase(GunGameLevelUpFinalWeaponSoundEvent);
+        }        
+    }
+    else
+    {
+        if(GunGameLevelUpSoundEvent != none)
+        {
+            PlaySoundBase(GunGameLevelUpSoundEvent);
+        }
+    }
+}
+
 function ResetGameplayPostProcessFX()
 {
+    local KFGameReplicationInfo KFGRI;
+
     super.ResetGameplayPostProcessFX();
-    if((GameplayPostProcessEffectMIC != none) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12)
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((((KFGRI != none) && KFGRI.bIsWeeklyMode) && KFGRI.CurrentWeeklyIndex == 12) && GameplayPostProcessEffectMIC != none)
     {
         GameplayPostProcessEffectMIC.SetScalarParameterValue(EffectZedTimeSepiaParamName, 1);
     }
@@ -191,6 +249,40 @@ simulated function ResetBossCamera()
     ResetCameraMode();
 }
 
+function RestartGunGame()
+{
+    local KFGameInfo KFGI;
+    local KFGameReplicationInfo KFGRI;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGI != none) && KFGRI != none)
+    {
+        KFGI.RestartGunGamePlayerWeapon(self, GunGameData.WaveToUseForRestart);
+    }
+}
+
+function UpdateInitialHeldWeapon()
+{
+    local KFPawn_Human KFPH;
+    local KFGameInfo KFGI;
+    local KFGameReplicationInfo KFGRI;
+
+    KFPH = KFPawn_Human(Pawn);
+    if((KFPH == none) || KFPH.InvManager == none)
+    {
+        return;
+    }
+    KFGI = KFGameInfo(WorldInfo.Game);
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGI != none) && KFGRI != none)
+    {
+        KFGI.ResetGunGame(self);
+        GunGameData.WaveToUseForRestart = KFGRI.WaveNum;
+        SetTimer(1, false, 'RestartGunGame');
+    }
+}
+
 defaultproperties
 {
     MaxGoompaStreak=-1
@@ -199,6 +291,8 @@ defaultproperties
     RhythmMethodSoundHit=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Hit'
     RhythmMethodSoundTop=AkEvent'WW_UI_PlayerCharacter.Play_R_Method_Top'
     AracnoStompSoundEvent=AkEvent'WW_GLO_Runtime.WeeklyArcno'
+    GunGameLevelUpSoundEvent=AkEvent'WW_GLO_Runtime.WeeklyAALevelUp'
+    GunGameLevelUpFinalWeaponSoundEvent=AkEvent'WW_GLO_Runtime.WeeklyAALevelFinal'
     StingerAkComponent=AkComponent'Default__KFPlayerController_WeeklySurvival.AkComponent'
     AmplificationLightTemplate=PointLightComponent'Default__KFPlayerController_WeeklySurvival.AmplificationLightTemplate'
     NVGLightTemplate=PointLightComponent'Default__KFPlayerController_WeeklySurvival.NVGLightTemplate'

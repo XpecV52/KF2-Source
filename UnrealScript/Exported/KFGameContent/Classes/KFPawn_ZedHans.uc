@@ -1244,11 +1244,12 @@ defaultproperties
    DamageTypeModifiers(20)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGeneratorSphereImpact',DamageScale=(2.000000))
    DamageTypeModifiers(21)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_DefaultFiremodeZapDamage',DamageScale=(1.500000))
    DamageTypeModifiers(22)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',DamageScale=(1.500000))
-   DamageTypeModifiers(23)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGScorcherLightingImpact',DamageScale=(0.600000))
-   DamageTypeModifiers(24)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGScorcherDoT',DamageScale=(0.900000))
-   DamageTypeModifiers(25)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallImpact',DamageScale=(0.400000))
-   DamageTypeModifiers(26)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallHeavyImpact',DamageScale=(0.400000))
-   DamageTypeModifiers(27)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_HRG_Vampire_BloodSuck',DamageScale=(0.700000))
+   DamageTypeModifiers(23)=(DamageType=Class'kfgamecontent.KFDT_Shrink_ShrinkRayGun',DamageScale=(3.000000))
+   DamageTypeModifiers(24)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGScorcherLightingImpact',DamageScale=(0.600000))
+   DamageTypeModifiers(25)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGScorcherDoT',DamageScale=(0.900000))
+   DamageTypeModifiers(26)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(27)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallHeavyImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(28)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_HRG_Vampire_BloodSuck',DamageScale=(0.700000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Hans'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    Begin Object Class=AkComponent Name=SprintAkComponent0 Archetype=AkComponent'KFGame.Default__KFPawn_ZedHansBase:SprintAkComponent0'
@@ -1266,6 +1267,7 @@ defaultproperties
    End Object
    HeadShotAkComponent=HeadshotAkComponent0
    OnDeathAchievementID=133
+   ShrinkEffectModifier=0.150000
    PawnAnimInfo=KFPawnAnimInfo'ZED_Hans_ANIM.Hans_AnimGroup'
    LocalizationKey="KFPawn_ZedHans"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_ZedHansBase:ThirdPersonHead0'
@@ -1315,6 +1317,8 @@ defaultproperties
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.500000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
    IncapSettings(11)=(Cooldown=10.000000,Vulnerability=(0.200000))
+   IncapSettings(12)=()
+   IncapSettings(13)=(Vulnerability=(1.000000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=675.000000
    DefaultInventory(0)=Class'kfgamecontent.KFWeap_AssaultRifle_DualMKb42_Hans'

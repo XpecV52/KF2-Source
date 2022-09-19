@@ -15,11 +15,13 @@ BonusDoshString="BELOHNUNGEN"
 LengthStrings[0]="Kurz (4 Wellen)"
 LengthStrings[1]="Mittel (7 Wellen)"
 LengthStrings[2]="Lang (10 Wellen)"
-
+SpecialLengthString="Spezial"
 ServerTypeStrings[0]="Gewertet"
 ServerTypeStrings[1]="Gewertet – Standard"
 ServerTypeStrings[2]="Gewertet – Benutzerdef."
 ServerTypeStrings[3]="Ungewertet"
+WeaponLevelString="WAFFENLEVEL"
+GunPointsString="WAFFENPUNKTE"							   
 
 PermissionStrings[0]="Öffentlich"
 PermissionStrings[1]="Privat: Passwort erf."
@@ -740,6 +742,8 @@ ZedSupportValue="Indirekter Schaden"
 ZednnihilationValue="Kills in der Welle"
 ZedStomper="Zed-Stampfer"
 ZedStomperValue="Gestampfte Zeds"
+WeaponMaster="Waffenmeister"
+WeaponMasterValue="Erster Spieler mit der finalen Waffe"													 
 
 EPB_Healing="Heilung"
 EPB_Kills="Kills"
@@ -2041,7 +2045,7 @@ SplashDamage="Hitzewelle"
 SplashDamageDescription="Auf Kernschussweite mit Feuer getroffene Zeds taumeln nach hinten."
 
 Inferno="ZED-ZEIT – Inferno"
-InfernoDescription="Während der Zed-Zeit mit Feuer getroffene Zeds sind um 30% verlangsamt und erleiden 50% mehr Brandschaden."
+InfernoDescription="Dein Feuerschaden über Zeit wirkt sich während der Zed-Zeit auf alle Zeds um dich herum aus."
 
 Scorch="ZED-ZEIT – Pyromane"
 ScorchDescription="Während der Zed-Zeit greifst du mit Vorteils-Waffen in Fast-Echtzeit an und deine Munition geht nie aus."
@@ -2265,10 +2269,10 @@ MeleeExpert="Nahkampfexperte"
 MeleeExpertDescription="Erhöhe Nahkampf-Angriffsgeschwindigkeit um 20%, verursache 75% mehr Schaden und bewege dich 25% schneller, wenn du Nahkampfwaffen benutzt."
 
 AmmoVest="Munitionsweste"
-AmmoVestDescription="Trage bis zu 15% mehr Munition für alle Waffen und deine Granate wird zur Heilgranate."
+AmmoVestDescription="Du kannst bis zu 15% mehr Munition für alle Waffen tragen und eine Heilgranate auswählen."
 
 BigPockets="Waffengurt"
-BigPocketsDescription="Erhöhe die Tragekapazität um 5 und deine Granate wird zum Molotowcocktail."
+BigPocketsDescription="Erhöht die Tragekapazität um 5 und du kannst einen Molotowcocktail auswählen."
 
 ZedShrapnel="Spontane Zed-plosion"
 ZedShrapnelDescription="Von dir getötete Zeds haben eine Chance von 30%, zu explodieren, Zeds in der Nähe Schaden zuzufügen und sie zu betäuben."
@@ -2897,7 +2901,19 @@ AllCompleteRewardDescriptionString="Feiertags-Shopping | Gefährte | Edel"
 
 ChanceDropDescriptionStrings[0]="Schein „Krampus“"
 ChanceDropDescriptionStrings[1]="Goldener Schein „Krampus“"
+[KFGFxSpecialEventObjectivesContainer_Summer2022]
+CurrentSpecialEventString="Ein zeitlich begrenztes Spezial-Event mit exklusiven Gegenständen"
 
+SpecialEventObjectiveInfoList[0]=(TitleString="Nicht die besten Touristen",DescriptionString="Töte 1.500 Zeds auf einer beliebigen Karte oder in einem beliebigen Modus")
+SpecialEventObjectiveInfoList[1]=(TitleString="Wöchentliche Wasserlandung",DescriptionString="Schaffe die wöchentliche Bohrinsel")
+SpecialEventObjectiveInfoList[2]=(TitleString="Top-Surfer",DescriptionString="Schaffe 100 Wellen auf der Bohrinsel")
+SpecialEventObjectiveInfoList[3]=(TitleString="Über Bord!",DescriptionString="Wirf 50 Zeds von der Bohrinsel ins Meer")
+SpecialEventObjectiveInfoList[4]=(TitleString="WGroßes weites Meer",DescriptionString="Schließe Welle 15 auf der Bohrinsel auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="Tiefsee | Dreizack | Edel"
+
+ChanceDropDescriptionStrings[0]="Summer-Schein"
+ChanceDropDescriptionStrings[1]="Summer-Goldschein"								  
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3068,6 +3084,15 @@ ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
 
+[GunGame KFWeeklyOutBreakInformation]
+FriendlyName="Arsenalaufstieg"
+DescriptionStrings[0]="Erhöhe das Level deiner Waffe!"
+DescriptionStrings[1]="Dauer: Spezial"
+ModifierDescriptions[0]="Händler sind inaktiv. Beginne mit nichts als einem Messer. Verdiene Waffenpunkte durchs Töten, um bessere Waffen zu erhalten. Nur Überlebenskünstler erlaubt. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"							   
 ;============================================
 ; Map Localization
 ;============================================
@@ -3594,6 +3619,8 @@ DisplayName="Unterweltfestung"
 [KF-CarillonHamlet KFMapSummary]
 DisplayName="Carillon Hamlet"
 
+[KF-Rig KFMapSummary]
+DisplayName="Bohrinsel"				 
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% hat ein Sammelstück gefunden. %y% sind noch zu finden …"

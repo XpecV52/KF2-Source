@@ -243,7 +243,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     DeathPukeMineRotations(2)=
 /* Exception thrown while deserializing DeathPukeMineRotations
-System.ArgumentException: Requested value '0_1203' was not found.
+System.ArgumentException: Requested value '0_1232' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -272,6 +272,7 @@ System.ArgumentException: Requested value '0_1203' was not found.
     BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedBloat.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedBloat.HeadshotAkComponent0'
+    ShrinkEffectModifier=0.25
     PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
     LocalizationKey=KFPawn_ZedBloat
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

@@ -125,6 +125,7 @@ const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
 const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles = 4060;
 const STATID_ACHIEVE_CarillonHamletCollectibles = 4061;
+const STATID_ACHIEVE_RigCollectibles = 4062;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -193,6 +194,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178;
+const KFID_SurvivalStartingWeapIdx = 179;
+const KFID_SurvivalStartingGrenIdx = 180;
 const MapObjectiveIndex = 4;
 const MAX_AIM_CORRECTION_SIZE = 35.f;
 
@@ -417,6 +420,8 @@ struct native PostWaveReplicationInfo
 var KFPlayerController.ETextChatChannel CurrentTextChatChannel;
 var KFPlayerController.EVoiceChannel CurrentVoiceChannel;
 var byte SavedPerkIndex;
+var byte SurvivalPerkWeapIndex;
+var byte SurvivalPerkGrenIndex;
 var transient KFPlayerController.KFSpectateModes CurrentSpectateMode;
 var transient KFPlayerController.ETrackingRangeMode CurrentTrackerRangeMode;
 var transient KFPlayerController.ETrackingMode CurrentTrackingMode;
@@ -479,6 +484,9 @@ var class<KFPowerUp> CurrentPowerUpClass;
 var protected float UnmodifiedFOV;
 var protected transient int BenefactorDosh;
 var private const int BenefactorDoshReq;
+var array<KFPawn_Monster> KilledZeds;
+var array<float> KilledZedsLastZPosition;
+var KFSeaTrigger SeaTrigger;
 var PostProcessSettings PostProcessModifier;
 var float NextAdminCmdTime;
 var float RefreshObjectiveUITime;
@@ -660,6 +668,7 @@ var int DebugCurrentDoshVaultValue;
 var int DebugCurrentDoshVaultTier;
 var int BeginningRoundVaultAmount;
 var transient float NoGoStartTime;
+var transient array<Actor> DeployedTurrets;
 var delegate<LoginCompleteCallback> __LoginCompleteCallback__Delegate;
 
 replication
@@ -712,6 +721,8 @@ private native final function ShowPreClientTravelMovie(string URLString);
 
 simulated event PostBeginPlay()
 {
+    local KFSeaTrigger actor_search;
+
     super(PlayerController).PostBeginPlay();
     PostAkEvent(ResetFiltersEvent);
     UpdateSeasonalState();
@@ -729,6 +740,15 @@ simulated event PostBeginPlay()
         OnlineSub.AddOnReadOnlineAvatarCompleteDelegate(OnAvatarReceived);
         OnlineSub.AddOnReadOnlineAvatarByNameCompleteDelegate(OnAvatarURLPS4Received);
     }
+    foreach AllActors(Class'KFSeaTrigger', actor_search)
+    {
+        SeaTrigger = actor_search;
+        if((WorldInfo.NetMode == NM_Client) || WorldInfo.NetMode == NM_Standalone)
+        {
+            SetTimer(1, true, 'ZedKillsSeaDetection');
+        }
+        break;        
+    }    
 }
 
 function UpdateVOIP()
@@ -840,6 +860,7 @@ simulated event name GetSeasonalStateName()
     local int EventID;
     local KFMapInfo KFMI;
     local bool bIsWWLWeekly;
+    local KFGameReplicationInfo KFGRI;
 
     EventID = Class'KFGameEngine'.static.GetSeasonalEventID();
     KFMI = KFMapInfo(WorldInfo.GetMapInfo());
@@ -847,7 +868,8 @@ simulated event name GetSeasonalStateName()
     {
         KFMI.ModifySeasonalEventId(EventID);
     }
-    bIsWWLWeekly = ((Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12) && KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode;
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    bIsWWLWeekly = ((KFGRI != none) && KFGRI.bIsWeeklyMode) && KFGRI.CurrentWeeklyIndex == 12;
     if(bIsWWLWeekly)
     {
         return 'No_Event';
@@ -1331,6 +1353,8 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
         bHideBossHealthBar = Profile.GetProfileBool(158);
         bDisableAutoUpgrade = Profile.GetProfileBool(167);
         bHideRemotePlayerHeadshotEffects = Profile.GetProfileBool(170);
+        SurvivalPerkWeapIndex = byte(Profile.GetProfileInt(179));
+        SurvivalPerkGrenIndex = byte(Profile.GetProfileInt(180));
         KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
         if(KFPRI != none)
         {
@@ -2139,6 +2163,19 @@ function NotifyPlayTogetherFailed(optional string LocKey)
     MyGFxManager.DelayedOpenPopup(2, 0, Localize("Notifications", LocKey $ "Title", "KFGameConsole"), Localize("Notifications", LocKey $ "Message", "KFGameConsole"), Class'KFCommon_LocalizedStrings'.default.OKString);
 }
 
+function bool CanUseDosh()
+{
+    if(Role == ROLE_Authority)
+    {
+        return (KFGameInfo(WorldInfo.Game).OutbreakEvent == none) || !KFGameInfo(WorldInfo.Game).OutbreakEvent.ActiveEvent.bDisableAddDosh;        
+    }
+    else
+    {
+        return ((KFGameReplicationInfo(WorldInfo.GRI) == none) || !KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode) || KFGameReplicationInfo(WorldInfo.GRI).CurrentWeeklyIndex != 16;
+    }
+    return true;
+}
+
 function int GetPreStigeValueDoshRewardValue()
 {
     if(StatsWrite != none)
@@ -2227,6 +2264,19 @@ function CheckHasViewedDoshVault()
     {
         StatsWrite.super(KFPlayerController).CheckHasViewedDoshVault();
     }
+}
+
+function bool CanUseGunGame()
+{
+    if(Role == ROLE_Authority)
+    {
+        return (KFGameInfo(WorldInfo.Game).OutbreakEvent != none) && KFGameInfo(WorldInfo.Game).OutbreakEvent.ActiveEvent.bGunGameMode;        
+    }
+    else
+    {
+        return ((KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode) && KFGameReplicationInfo(WorldInfo.GRI).CurrentWeeklyIndex == 16;
+    }
+    return false;
 }
 
 function AddShotsFired(int AddedShots)
@@ -2598,6 +2648,7 @@ function RecievedNewPerkClass()
     {
         MyGFxManager.TraderMenu.UpdatePlayerInfo();
     }
+    InitPerkLoadout();
 }
 
 function ReceivePowerUp(class<KFPowerUp> PowerUpClass)
@@ -3338,8 +3389,9 @@ final simulated function Pawn GetPickedAimAtTarget(out float bestAim, out float 
     return PickAimAtTarget(bestAim, bestDist, FireDir, projStart, MaxRange, bTargetTeammates);
 }
 
-exec function SwitchToBestWeapon(optional bool bForceNewWeapon)
+exec function SwitchToBestWeapon(optional bool bForceNewWeapon, optional bool check_9mm_logic)
 {
+    check_9mm_logic = false;
     if(((Pawn != none) && Pawn.Weapon != none) && KFWeapon(Pawn.Weapon) != none)
     {
         if(!KFWeapon(Pawn.Weapon).CanSwitchWeapons())
@@ -3347,7 +3399,7 @@ exec function SwitchToBestWeapon(optional bool bForceNewWeapon)
             return;
         }
     }
-    super(Controller).SwitchToBestWeapon(bForceNewWeapon);
+    super(Controller).SwitchToBestWeapon(bForceNewWeapon, check_9mm_logic);
 }
 
 function Rotator GetAdjustedAimFor(Weapon W, Vector StartFireLoc)
@@ -3474,6 +3526,7 @@ simulated event OnWeaponAsyncContentLoaded(class<KFWeapon> WeaponClass)
 {
     local KFPawn_Human KFPH;
     local KFDroppedPickup KFDP;
+    local KFPawn KFP;
 
     foreach WorldInfo.AllPawns(Class'KFPawn_Human', KFPH)
     {
@@ -3487,6 +3540,13 @@ simulated event OnWeaponAsyncContentLoaded(class<KFWeapon> WeaponClass)
         if((WeaponClass == KFDP.InventoryClass) && KFDP.MyMeshComp == none)
         {
             KFDP.SetPickupMesh(WeaponClass.default.DroppedPickupMesh);
+        }        
+    }    
+    foreach WorldInfo.AllPawns(Class'KFPawn', KFP)
+    {
+        if(KFP.bIsTurret && WeaponClass == KFP.WeaponClassForAttachmentTemplate)
+        {
+            KFP.SetTurretWeaponAttachment(WeaponClass);
         }        
     }    
 }
@@ -4369,7 +4429,7 @@ function ResetGameplayPostProcessFX()
 
 function bool ShouldDisplayGameplayPostProcessFX()
 {
-    return ((((((((((bPerkEffectIsActive || bGrabEffectIsActive) || PainEffectTimeRemaining > 0) || (Pawn != none) && Pawn.Health <= default.LowHealthThreshold) || HealEffectTimeRemaining > 0) || CurrentZEDTimeEffectIntensity > 0) || Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12) || bNightVisionActive) || SirenScreamEffectTimeRemaining > 0) || BloatPukeEffectTimeRemaining > 0) || FlashBangEffectTimeRemaining > 0) || HellishRagePowerUpEffectTimeRemaining > 0;
+    return ((((((((((bPerkEffectIsActive || bGrabEffectIsActive) || PainEffectTimeRemaining > 0) || (Pawn != none) && Pawn.Health <= default.LowHealthThreshold) || HealEffectTimeRemaining > 0) || CurrentZEDTimeEffectIntensity > 0) || ((KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode) && KFGameReplicationInfo(WorldInfo.GRI).CurrentWeeklyIndex == 12) || bNightVisionActive) || SirenScreamEffectTimeRemaining > 0) || BloatPukeEffectTimeRemaining > 0) || FlashBangEffectTimeRemaining > 0) || HellishRagePowerUpEffectTimeRemaining > 0;
 }
 
 function UpdateScreenEffect(float DeltaTime, name EffectName, out float TimeRemaining, float Duration)
@@ -5958,12 +6018,13 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
     }
     LoadAllPerkLevels();
     ClientInitializePerks();
+    InitPerkLoadout();
     if((MyGFxManager != none) && MyGFxManager.PerksMenu != none)
     {
         MyGFxManager.PerksMenu.UpdateContainers(PerkList[SavedPerkIndex].PerkClass);
     }
     I = 0;
-    J0x409:
+    J0x413:
 
     if(I < PerkList.Length)
     {
@@ -5972,7 +6033,7 @@ simulated function OnStatsInitialized(bool bWasSuccessful)
             self.MatchStats.RecordPerkXPGain(PerkList[I].PerkClass, 0, 0);
         }
         ++ I;
-        goto J0x409;
+        goto J0x413;
     }
 }
 
@@ -6645,6 +6706,13 @@ event Destroyed()
     {
         StingerAkComponent.StopEvents();
     }
+    J0x2E:
+
+    if(DeployedTurrets.Length > 0)
+    {
+        DeployedTurrets[0].Destroy();
+        goto J0x2E;
+    }
     SetRTPCValue('Health', 100, true);
     PostAkEvent(LowHealthStopEvent);
     bPlayingLowHealthSFX = false;
@@ -6678,6 +6746,42 @@ event Exit()
     if((LEDEffectsManager != none) && WorldInfo.NetMode != NM_DedicatedServer)
     {
         LEDEffectsManager.LedStopEffects();
+    }
+}
+
+simulated function ZedKillsSeaDetection()
+{
+    local int I;
+    local KFPawn_Monster Monster;
+    local float LastMonsterZPosition;
+
+    I = KilledZeds.Length - 1;
+    J0x17:
+
+    if(I >= 0)
+    {
+        Monster = KilledZeds[I];
+        if((Monster == none) || Monster.Health > 0)
+        {
+            KilledZeds.Remove(I, 1;
+            KilledZedsLastZPosition.Remove(I, 1;            
+        }
+        else
+        {
+            LastMonsterZPosition = KilledZedsLastZPosition[I];
+            KilledZedsLastZPosition[I] = Monster.Location.Z;
+            if(LastMonsterZPosition > Monster.Location.Z)
+            {
+                if(Monster.Location.Z < SeaTrigger.Location.Z)
+                {
+                    ClientOnTriggerUsed(Class'KFSeaTrigger');
+                    KilledZeds.Remove(I, 1;
+                    KilledZedsLastZPosition.Remove(I, 1;
+                }
+            }
+        }
+        -- I;
+        goto J0x17;
     }
 }
 
@@ -7008,6 +7112,15 @@ unreliable client simulated event ClientHearDialog(Actor DialogSpeaker, AkEvent 
     }
 }
 
+reliable client simulated function NotifyKilledForTracking(KFPawn_Monster KilledMonster)
+{
+    if((KilledMonster != none) && KilledZeds.Find(KilledMonster == -1)
+    {
+        KilledZeds.AddItem(KilledMonster;
+        KilledZedsLastZPosition.AddItem(KilledMonster.Location.Z;
+    }
+}
+
 function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, class<DamageType> DamageType)
 {
     local KFPawn_Monster MonsterPawn;
@@ -7028,7 +7141,11 @@ function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, cla
             }
         }
         ++ MatchStats.ZedsKilledLastWave;
-        CheckForZedOnDeathAchievements(MonsterPawn);        
+        CheckForZedOnDeathAchievements(MonsterPawn);
+        if(SeaTrigger != none)
+        {
+            NotifyKilledForTracking(MonsterPawn);
+        }        
     }
     else
     {
@@ -7163,7 +7280,7 @@ exec function RequestSkipTrader()
     {
         if(KFGRI.bMatchHasBegun)
         {
-            if(KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
+            if((KFGRI.bTraderIsOpen || KFGRI.bForceSkipTraderUI) && KFPRI.bHasSpawnedIn)
             {
                 KFPRI.RequestSkiptTrader(KFPRI);
                 if(MyGFxManager != none)
@@ -8662,6 +8779,24 @@ event OnServerTakeoverResponseRecieved()
     if(MyGFxManager != none)
     {
         MyGFxManager.OnServerTakeoverResponseRecieved();
+    }
+}
+
+reliable client simulated function ForceMonsterHeadExplode(KFPawn_Monster Victim)
+{
+    if(Victim != none)
+    {
+        Victim.bIsHeadless = true;
+        Victim.PlayHeadAsplode();
+    }
+}
+
+simulated function InitPerkLoadout()
+{
+    if(CurrentPerk.IsA('KFPerk_Survivalist'))
+    {
+        CurrentPerk.SetWeaponSelectedIndex(SurvivalPerkWeapIndex);
+        CurrentPerk.SetGrenadeSelectedIndex(SurvivalPerkGrenIndex);
     }
 }
 

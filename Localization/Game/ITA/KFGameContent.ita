@@ -833,6 +833,30 @@ ItemCategory="Fucile da caccia"
 ItemDescription="•Scelta fra modalità di fuoco automatico o semiautomatico\n•Usa il fuoco alternativo per cambiare modalità.\n•Nuovi livelli di corruzione."
 SharedUnlockSource="Bundle armi Doshinegun"
 
+[KFWeap_HRG_Crossboom]
+ItemName="Bombalestra HRG"
+ItemCategory="Esplosivi"
+ItemDescription="•Il fuoco primario spara un dardo che esplode all'impatto.\n•Il dardo del fuoco secondario crea anch'esso un'esplosione che infligge danni minori, ma in un raggio maggiore.\n•Attenzione: trafigge ed esplode."
+
+
+[KFWeap_HRG_CranialPopper]
+ItemName="Capo cacciatore HRG"
+ItemCategory="Fucile"
+ItemDescription="•Il fuoco primario spara dardi infetti che gonfiano la testa degli Zed.\n•Il fuoco alternativo attiva un'emorragia cerebrale in tutti gli Zed infetti vicino al giocatore.\n•L'arma migliore quando non si riesce a venirne a capo."
+
+
+[KFWeap_ShrinkRayGun]
+ItemName="Raggio rimpicciolente"
+ItemCategory="Pistola"
+ItemDescription="•La modalità di fuoco emette un raggio energetico che danneggia e fa rimpicciolire i nemici.\n•I nemici rimpiccioliti sono più vulnerabili.\n•Tesoro, mi si sono ristretti gli ZED."
+SharedUnlockSource="Bundle armi Raggio rimpicciolente"
+
+
+[KFWeap_AutoTurret]
+ItemName="Sentinella"
+ItemCategory="Speciale"
+ItemDescription="•Un drone che osserva una postazione e spara ai nemici.\n•Il fuoco alternativo fa esplodere il drone.\n•Attiva la modalità di autodistruzione se finisce le munizioni ed è circondato dagli ZED."
+SharedUnlockSource="Bundle armi Sentinella"
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
@@ -1008,3 +1032,7 @@ PerkSwitchAllowedString="TEMPO RIMANENTE PER SCEGLIERE LA CLASSE: %x% secondo(i)
 ItemName="Arma casuale"
 ItemCategory="Casuale"
 ItemDescription="• Arma casuale.\n•"
+[KFWeap_RandomGrenade]
+ItemName="Granata casuale"
+ItemCategory="Casuale"
+ItemDescription="•Una granata casuale.\n•"										  

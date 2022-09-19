@@ -19,8 +19,9 @@ function Init(KFPawn P, KFAfflictionManager.EAfflictionType Type, KFPerk Instiga
     }
 }
 
-function Activate()
+function Activate(optional class<KFDamageType> DamageType)
 {
+    DamageType = none;
     if(!bIsActive)
     {
         super.Activate();

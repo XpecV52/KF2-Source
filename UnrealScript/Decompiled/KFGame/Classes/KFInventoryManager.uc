@@ -460,6 +460,100 @@ function bool ClassNameIsInInventory(name ItemClassName, out Inventory out_Inven
     return false;
 }
 
+simulated function Weapon GetBestWeapon(optional bool bForceADifferentWeapon, optional bool allow9mm)
+{
+    local KFWeapon W, BestWeapon;
+    local float Rating, BestRating;
+
+    foreach InventoryActors(Class'KFWeapon', W)
+    {
+        if(W.HasAnyAmmo())
+        {
+            if(bForceADifferentWeapon && W == Instigator.Weapon)
+            {
+                continue;                
+            }
+            Rating = W.GetWeaponRating();
+            if((BestWeapon == none) || Rating > BestRating)
+            {
+                if(allow9mm == false)
+                {
+                    if(W.bIsBackupWeapon && !W.IsMeleeWeapon())
+                    {
+                        continue;                        
+                    }
+                }
+                BestWeapon = W;
+                BestRating = Rating;
+            }
+        }        
+    }    
+    if((BestWeapon == none) && allow9mm == false)
+    {
+        foreach InventoryActors(Class'KFWeapon', W)
+        {
+            if(W.HasAnyAmmo())
+            {
+                if(bForceADifferentWeapon && W == Instigator.Weapon)
+                {
+                    continue;                    
+                }
+                Rating = W.GetWeaponRating();
+                if((BestWeapon == none) || Rating > BestRating)
+                {
+                    BestWeapon = W;
+                    BestRating = Rating;
+                }
+            }            
+        }        
+    }
+    return BestWeapon;
+}
+
+simulated function SwitchToBestWeapon(optional bool bForceADifferentWeapon, optional bool check_9mm_logic)
+{
+    local Weapon BestWeapon;
+    local PlayerController PC;
+    local KFPlayerInput KFPI;
+    local bool bCanSwapTo9mm;
+
+    check_9mm_logic = false;
+    if(check_9mm_logic)
+    {
+        bCanSwapTo9mm = false;
+        PC = PlayerController(Instigator.Controller);
+        if(PC != none)
+        {
+            KFPI = KFPlayerInput(PC.PlayerInput);
+            if(KFPI != none)
+            {
+                bCanSwapTo9mm = KFPI.bAllowSwapTo9mm;
+            }
+        }        
+    }
+    else
+    {
+        bCanSwapTo9mm = true;
+    }
+    LogInternal(((((((((string(WorldInfo.TimeSeconds) @ "Self:") @ string(self)) @ "Instigator:") @ string(Instigator)) @ string(GetStateName())) $ "::") $ string(GetFuncName())) @ "bForceADifferentWeapon:") @ string(bForceADifferentWeapon), 'Inventory');
+    if((bForceADifferentWeapon || PendingWeapon == none) || AIController(Instigator.Controller) != none)
+    {
+        BestWeapon = GetBestWeapon(bForceADifferentWeapon, bCanSwapTo9mm);
+        if(BestWeapon == none)
+        {
+            return;
+        }
+        if(BestWeapon == Instigator.Weapon)
+        {
+            BestWeapon = none;
+            PendingWeapon = none;
+            Instigator.Weapon.Activate();
+        }
+    }
+    Instigator.Controller.StopFiring();
+    SetCurrentWeapon(BestWeapon);
+}
+
 simulated function SwitchToLastWeapon()
 {
     local Weapon CurrentWeapon, DesiredWeapon;
@@ -815,7 +909,7 @@ reliable client simulated function SetCurrentWeapon(Weapon DesiredWeapon)
     local bool bCurrentWeaponUsingSights;
     local KFWeapon DesiredKFW, PendingKFW;
 
-    CurrentKFW = KFWeapon(Instigator.Weapon);
+    CurrentKFW = ((Instigator != none) ? KFWeapon(Instigator.Weapon) : none);
     if(CurrentKFW != none)
     {
         bCurrentWeaponUsingSights = CurrentKFW.bUsingSights;
@@ -829,7 +923,7 @@ reliable client simulated function SetCurrentWeapon(Weapon DesiredWeapon)
         }
     }
     DesiredKFW = KFWeapon(DesiredWeapon);
-    if((DesiredKFW != none) && (DesiredKFW != Instigator.Weapon) || Instigator.Weapon.IsInState('WeaponPuttingDown'))
+    if(((DesiredKFW != none) && Instigator != none) && (DesiredKFW != Instigator.Weapon) || Instigator.Weapon.IsInState('WeaponPuttingDown'))
     {
         if(DesiredKFW.bHasIronSights)
         {

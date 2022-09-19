@@ -236,6 +236,16 @@ AlchemistWeaponSkinBundleName="Caja de apariencias de arma Alquimista"
 ChopTilYouDropFullGearBundleName="Paquete completo de equipamiento Cortador compulsivo"
 ChristmasWeaponSkinBundleName="Caja de apariencias de arma Navidad"
 HolidayShopperOutfitName="Paquete de atuendo Compras festivas"
+NeonMKVIIIWeaponSkinBundleName="Caja de apariencias de arma Neón MKVIII"
+ClassicWeaponSkinBundleName="Caja de apariencias de arma clásicas"
+DeepSeaSkinWeaponSkinPackName="Caja de apariencias de arma Fondo marino"
+ChameleonWeaponSkinBundleName="Caja de apariencias de arma Camaleón"
+DeepSeaExplorerOutfitName="Paquete de atuendo de explorador submarino"
+ReductoRayBundleName="Paquete de armas Rayo reductor"
+SentinelBundleName="Paquete de armas Centinela"
+TidalTerrorBundleName="Paquete de armas Horror marino"
+ArmorySeasonPass2022Name="Killing Floor 2 - Pase temporada armería 2"
+UltimateUpgradeName="Mejora a la Ultimate Edition de Killing Floor 2"																
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Incluye el uniforme londinense de Briar (con 5 apariencias distintas) y el accesorio cosmético Casco guardián (con 3 apariencias distintas)."
@@ -470,6 +480,16 @@ AlchemistWeaponSkinBundleDescription="Incluye 20 apariencias de arma de temátic
 ChopTilYouDropFullGearBundleDescription="Incluye 6 accesorios cosméticos de temática Compras festivas, cada uno con 5 variantes de texturas, en un solo paquete. Compatible con la mayoría de los personajes."
 ChristmasWeaponSkinBundleDescription="Incluye 20 apariencias de arma de temática Navidad (10 dulces y 10 agrias). Las armas del conjunto son: Trabuco, Sellar y quemar, Desert Eagle, Lanzallamas, Rifle lanzagranadas HMTech-501, M32, P90, RPG-7, Scar y Escupefuego."
 HolidayShopperOutfitBundleDescription="Incluye el atuendo Compras festivas (con 6 apariencias distintas). Compatible con la mayoría de los personajes."
+NeonMKVIIIWeaponSkinBundleDescription="Incluye 8 apariencias de arma Neón (4 Neón normal y 4 Neón RGB). Las armas de este paquete son: Trabuco, HZ12, Canto de beluga HRG, Zweihander."																																											   
+ClassicWeaponSkinBundleDescription="Incluye 8 apariencias de arma clásicas (4 impecables y 4 preciosas). Las armas de este paquete son: Trabuco, 9 mm, AA12, M1911."																																								  
+DeepSeaSkinWeaponSkinBundleDescription="Contiene 36 apariencias de arma Fondo marino (6 Antiguas, 6 Agua, 6 Coral, 6 Perla, 6 Foca negra y 6 Preciosas). Las armas de este paquete son: AA12, FN FAL, rifle de combate M14, Mac 10, MP5RAS, RPG-7."																																																									 
+ChameleonWeaponSkinBundleDescription="Incluye 8 apariencias de arma Camaleón (4 Dinámicas y 4 Dinámicas RGB). Las armas de este paquete son: Desert Eagle, katana, subfusil Kriss, RPG-7."																																													   
+DeepSeaExplorerOutfitDescription="Incluye el atuendo de explorador submarino y el casco (con 6 apariencias distintas). Compatible con la mayoría de los personajes."																																				   
+ReductoRayBundleDescription="El poder de reducir a los enemigos al tamaño de la palma de tu mano. El rayo reductor está diseñado para la especialización Superviviente y contiene 5 apariencias únicas."																																																	
+SentinelBundleDescription="Todo el mundo se merece un amigo, sobre todo si se trata de una IA autónoma con una escopeta automática. El Centinela está diseñado para la especialización Comando incluye 5 apariencias únicas distintas."																																																				   
+TidalTerrorBundleDescription="Incluye las armas Centinela y Rayo reductor de la actualización de Horror marino. Cada arma contiene 5 apariencias únicas."																																						 
+ArmorySeasonPass2022Description="¡Amplía tu arsenal de destrucción zed ya con el pase de temporada de armería de este año en Killing Floor 2! Es la forma más económica de acceder de inmediato a las 6 armas que se lanzarán a lo largo de 2022. Al comprar el pase, conseguirás al instante 2 nuevas armas, lanzadas en la actualización de verano de 2022 (paquete de armas Rayo reductor, paquete de armas Centinela). Ambos paquetes incluyen 5 apariencias de armas únicas. Además, el pase de temporada de armería 2 de Killing Floor 2 dará acceso a los siguientes paquetes de armas, programados así: 2 armas en otoño de 2022, 2 armas en invierno de 2022."																																																																																																																																																												
+UltimateUpgradeDescription="Para quienes tengan Killing Floor 2 que quieran mejorar su experiencia de juego a un módico precio. Este paquete de mejora incluye: Pases de temporada de armería 1 y 2, y estas mejoras cosméticas y añadidos: Sra. Foster, paq. de atuendos ciberpunk, paq. de efectos de disparo en la cabeza 1 y 2, paq. de páramo, paq. clásico de Foster, paq. de policía Briar, paq. de motero Tanaka, paq. de Mark 7 de Horzine, paq. de traje NBQ, paq. de armadura de asalto de D. A. R., paq. de pollo de comando, paq. de pijama, paq. de mochilas Clot, paq. completo de apariencia de armas Dragón y Koi, paq. Papá Noel brutal, paq. de Caballero de cartón, paq. de atuendos Cazador de brujas, paq. de atuendos de ayudante de Papá Noel, paq. apariencias favoritas Foster, paq. de atuendos Pirata espacial, paq. completo de equipamiento Pirata espacial, paq. de atuendo Parca, paq. completo de equipamiento Halloween 2020, paq. completo de equipamiento Navidad 2020, paq. cosmético de equipamiento de invierno 2020."																																																																																																																																																																																																																																									   
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Consigue un uniforme de policía londinense para el personaje jugable Agente Rob Briar. Incluye el uniforme londinense de Briar (con 5 apariencias distintas) y el accesorio cosmético Casco guardián (con 3 apariencias distintas)."
@@ -1445,7 +1465,9 @@ HRGBuckshotRevolversSpectreHRGDynamicChromaName="Revólveres perdigonazo HRG | S
 9MMSynthwaveMintName="9 mm | Synthwave | Impecable"
 9MMSynthwaveFieldTestedName="9 mm | Synthwave | Usado"
 9MMSynthwaveBattleScarredName="9 mm | Synthwave | Ajado"
-9MMDragonKoiPreciousName="9MM | Dragón y Koi | Precioso"
+9MMDragonKoiPreciousName="9 mm | Dragón y Koi | Precioso"
+9MMClassicMintName="9 mm | Clásico | Impecable"
+9MMClassicPreciousName="9 mm | Clásico | Precioso"
 
 ;AA12 Descriptions
 AA12MintDescription="Exterior: Impecable | La AA-12 es una escopeta automática. Su potencia de fuego es devastadora a media y corta distancia, pero en modo automático consume mucha munición."
@@ -1511,6 +1533,14 @@ AA12JaegerDynamicRGBName="AA12 | Jaeger | Dinámico RGB"
 AA12StarsName="AA12 | Cámara | Estrellas"
 AA12BeyondHorizonMintName="AA12 | Más allá del horizonte | Impecable"
 AA12BeyondHorizonSpaceEliteName="AA12 | Más allá del horizonte | Élite espacial"
+AA12DeepSeaAntiqueName="AA12 | Fondo marino | Antigua"
+AA12DeepSeaAquaName="AA12 | Fondo marino | Agua"
+AA12DeepSeaCoralName="AA12 | Fondo marino | Coral"
+AA12DeepSeaPearlName="AA12 | Fondo marino | Perla"
+AA12DeepSeaBlackSealName="AA12 | Fondo marino | Negro foca"
+AA12DeepSeaPreciousName="AA12 | Fondo marino | Precioso"
+AA12ClassicMintName="AA12 | Clásico | Impecable"
+AA12ClassicPreciousName="AA12 | Clásico | Precioso"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Exterior: Impecable | Todo mejora cuando le añades más cañones. Es como añadirle más bacón."
@@ -1731,6 +1761,10 @@ BoomstickXMasSweetName="Trabuco | Navidad | Dulce"
 BoomstickXMasSourName="Trabuco | Navidad | Agrio"
 BoomstickAlchemistToxicName="Trabuco | Alquimista | Tóxico"
 BoomstickAlchemistBlazeName="Trabuco | Alquimista | Llama"
+BoomstickNeonMintName="Trabuco | Neón | Impecable"
+BoomstickNeonRGBPreciousName="Trabuco | Neón RGB | Precioso"
+BoomstickClassicMintName="Trabuco | Clásico | Impecable"
+BoomstickClassicPreciousName="Trabuco | Clásico | Precioso"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="Exterior: Impecable | Lanzallamas casero manual. NO intentes esto en casa."
@@ -1899,6 +1933,8 @@ DesertEagleXMasSweetName="Desert Eagle | Navidad | Dulce"
 DesertEagleXMasSourName="Desert Eagle | Navidad | Agrio"
 DesertEagleAlchemistToxicName="Desert Eagle | Alquimista | Tóxico"
 DesertEagleAlchemistBlazeName="Desert Eagle | Alquimista | Llama"
+DesertEagleChameleonDynamicName="Desert Eagle | Camaleón | Dinámico"
+DesertEagleChameleonDynamicRGBName="Desert Eagle | Camaleón | Dinámico RGB"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Exterior: Impecable | Si no te basta con duplicar la diversión... ¡multiplícala por cuatro!"
@@ -2452,6 +2488,8 @@ HZ12HorzineFirstEncounterBattleScarredName="HZ12 | 1.º enc. de Ho. | Ajado"
 HZ12VaultVoshPreciousName="HZ12 | Cámara | Vosh | Precioso"
 HZ12JaegerDynamicName="HZ12 | Jaeger | Dinámico"
 HZ12JaegerDynamicRGBName="HZ12 | Jaeger | Dinámico RGB"
+HZ12NeonMintName="HHZ12 | Neón | Impecable"
+HZ12NeonRGBPreciousName="HZ12 | Neón RGB | Precioso"
 
 ;Katana Descriptions
 KatanaMintDescription="Exterior: Impecable | Procura mostrar un poco de respeto por su clase."
@@ -2487,6 +2525,8 @@ KatanaVaultVoshPreciousName="Katana | Cámara | Vosh | Precioso"
 KatanaDragonKoiPreciousName="Katana | Dragón y Koi | Precioso"
 KatanaHellmarkMagmaName="Katana | Hellmark | Magma"
 KatanaHellmarkThunderName="Katana | Hellmark | Trueno"
+KatanaChameleonDynamicName="Katana | Camaleón | Dinámico"
+KatanaChameleonDynamicRGBName="Katana | Camaleón | Dinámico RGB"
 
 ;KF-BAR Descriptions
 KFBARMintDescription="Exterior: Impecable| Versión de Horzine del cuchillo de comando clásico."
@@ -2557,6 +2597,8 @@ KrissFostersFavoritesPreciousName="Kriss | Favoritos de Foster | Precioso"
 KrissIceBreakerDynamicName="Kriss | Rompehielos | Dinámica"
 KrissIceBreakerDynamicPreciousName="Kriss | Rompehielos | Cromadinámica"
 KrissInfernalElitePreciousName="Kriss | Élite infernal | Precioso"
+KrissChameleonDynamicName="Kriss SMG | Chameleon | Dynamic"
+KrissChameleonDynamicRGBName="Kriss SMG | Chameleon | Dynamic RGB"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Exterior: Impecable | El SA80 era el arma estándar del ejército británico antes de acabar... bueno... devorado."
@@ -2637,6 +2679,12 @@ M14EBRVaultVoshPreciousName="M14EBR | Cámara | Vosh | Precioso"
 M14EBRPrestigePreciousName="M14EBR | Prestigio | Precioso"
 M14EBRDragonKoiPreciousName="M14EBR | Dragón y Koi | Precioso"
 M14EBRFostersFavoritesPreciousName="M14EBR | Favoritos de Foster | Precioso"
+M14EBRDeepSeaAntiqueName="R. de combate M14 | Fondo marino | Antiguo"
+M14EBRDeepSeaAquaName="R. de combate M14 | Fondo marino | Agua"
+M14EBRDeepSeaCoralName="R. de combate M14 | Fondo marino | Coral"
+M14EBRDeepSeaPearlName="R. de combate M14 | Fondo marino | Perla"
+M14EBRDeepSeaBlackSealName="R. de combate M14 | Fondo marino | Foca negra"
+M14EBRDeepSeaPreciousName="R. de combate M14 | Fondo marino | Precioso"
 
 ;M16M203 Descriptions
 M16M203MintDescription="Exterior: Impecable | Para los que no se deciden entre balas y explosivos."
@@ -2697,6 +2745,8 @@ M1911DragonKoiPreciousName="M1911 | Dragón y Koi | Precioso"
 M1911JaegerDynamicName="M1911 | Jaeger | Dinámico"
 M1911JaegerDynamicRGBName="M1911 | Jaeger | Dinámico RGB"
 M1911StarsName="M1911 | Cámara | Estrellas"
+M1911ClassicMintName="M1911 | Clásico | Impecable"
+M1911ClassicPreciousName="M1911 | Clásico | Precioso"
 
 ;M4 Descriptions
 M4MintDescription="Exterior: Impecable | Benelli diseñó la escopeta de combate M4 para el ejército estadounidense. Es semiautomática, así que dispone de una buena y constante cadencia de fuego."
@@ -2864,6 +2914,12 @@ Mac10JaegerDynamicName="MAC 10 | Jaeger | Dinámico"
 Mac10JaegerDynamicRGBName="MAC 10 | Jaeger | Dinámico RGB"
 Mac10BeyondHorizonMintName="MAC 10 | Más allá del horizonte | Impecable"
 Mac10BeyondHorizonSpaceEliteName="MAC 10 | Más allá del horizonte | Élite espacial"
+Mac10DeepSeaAntiqueName="MAC 10 | Fondo marino | Antiguo"
+Mac10DeepSeaAquaName="MAC 10 | Fondo marino | Agua"
+Mac10DeepSeaCoralName="MAC 10 | Fondo marino | Coral"
+Mac10DeepSeaPearlName="MAC 10 | Fondo marino | Perla"
+Mac10DeepSeaBlackSealName="MAC 10 | Fondo marino | Foca negra"
+Mac10DeepSeaPreciousName="MAC 10 | Fondo marino | Precioso"
 
 ;Medic Bat Descriptions
 MedicBatMintDescription="Exterior: Impecable | Para esa gente que no reconocería una buena curación aunque la tuvieran delante"
@@ -2953,6 +3009,12 @@ MP5RASSteampunkPreciousName="MP5RAS | Steampunk | Precioso"
 MP5RASStarsName="MP5RAS | Cámara | Estrellas"
 MP5RASNeonMintName="MP5RAS | Neón | Impecable"
 MP5RASNeonRGBPreciousName="MP5RAS | Neón RGB | Precioso"
+MP5RASDeepSeaAntiqueName="MP5RAS | Fondo marino | Antiguo"
+MP5RASDeepSeaAquaName="MP5RAS | Fondo marino | Agua"
+MP5RASDeepSeaCoralName="MP5RAS | Fondo marino | Coral"
+MP5RASDeepSeaPearlName="MP5RAS | Fondo marino | Perla"
+MP5RASDeepSeaBlackSealName="MP5RAS | Fondo marino | Foca negra"
+MP5RASDeepSeaPreciousName="MP5RAS | Fondo marino | Precioso"
 
 ;MP7 Descriptions
 MP7MintDescription="Exterior: Impecable | Lo usan agencias de sopas de letras y unidades de fuerzas especiales en todo el mundo."
@@ -3135,6 +3197,14 @@ RPG7XMasSweetName="RPG-7 | Navidad | Dulce"
 RPG7XMasSourName="RPG-7 | Navidad | Agrio"
 RPG7AlchemistToxicName="RPG-7 | Alquimista | Tóxico"
 RPG7AlchemistBlazeName="RPG-7 | Alquimista | Llama"
+RPG7DeepSeaAntiqueName="RPG-7 | Fondo marino | Antiguo"
+RPG7DeepSeaAquaName="RPG-7 | Fondo marino | Agua"
+RPG7DeepSeaCoralName="RPG-7 | Fondo marino | Coral"
+RPG7DeepSeaPearlName="RPG-7 | Fondo marino | Perla"
+RPG7DeepSeaBlackSealName="RPG-7 | Fondo marino | Foca negra"
+RPG7DeepSeaPreciousName="RPG-7 | Fondo marino | Foca negra"
+RPG7ChameleonDynamicName="RPG-7 | Camaleón | Dinámico"
+RPG7ChameleonDynamicRGBName="RPG-7 | Camaleón | Dinámico RGB"
 
 ;Scar Descriptions
 ScarMintDescription="Exterior: Impecable | Diseñado originalmente para el Equipo de Operaciones Especiales de los Estados Unidos. ¡Es especial de verdad!"
@@ -3442,6 +3512,8 @@ ZweihanderSteampunkMintName="Zweihander | Steampunk | Impecable"
 ZweihanderSteampunkPreciousName="Zweihander | Steampunk | Precioso"
 ZweihanderVaultVoshPreciousName="Zweihander | Cámara | Vosh | Precioso"
 ZweihanderColiseumPreciousName="Zweihander | Coliseo | Precioso"
+ZweihanderNeonMintName="Zweihander | Neón | Impecable"
+ZweihanderNeonRGBPreciousName="Zweihander | Neón RGB | Precioso" 
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="Exterior: Impecable | El cuchillo descomunal del Viejo Oeste. Perfecto para hacer picadillo a Zeds cuando más hace falta."
@@ -3598,6 +3670,12 @@ FNFALJaegerMintName="FN FAL | Jaeger | Impecable"
 FNFALJaegerFieldTestedName="FN FAL | Jaeger | Usado"
 FNFALJaegerBattleScarredName="FN FAL | Jaeger | Ajado"
 FNFALJaegerDynamicName="FN FAL | Jaeger | Dinámico"
+FNFALDeepSeaAntiqueName="FN FAL | Fondo marino | Antiguo"
+FNFALDeepSeaAquaName="FN FAL | Fondo marino | Agua"
+FNFALDeepSeaCoralName="FN FAL | Fondo marino | Coral"
+FNFALDeepSeaPearlName="FN FAL | Fondo marino | Perla"
+FNFALDeepSeaBlackSealName="FN FAL | Fondo marino | Foca negra"
+FNFALDeepSeaPreciousName="FN FAL | Fondo marino | Precioso"
 
 ;FireAxe Descriptions
 FireAxeMintDescription="Exterior: Impecable | ¿Por qué hacha de fuego si no tiene fuego?"
@@ -3662,6 +3740,14 @@ SealSquealNeonMintName="Chillido de foca | Neón | Impecable"
 SealSquealNeonRGBPreciousName="Chillido de foca | RGB neón | Precioso"
 SealSquealJaegerDynamicName="Chillido de foca | Jaeger | Dinámica"
 SealSquealJaegerDynamicRGBName="Chillido de foca | Jaeger | Dinámica RGB"
+
+;HRG Beluga Beat Descriptions
+HRGBelugaBeatMintDescription = "Exterior: Impecable. | Potencia los decibelios de cualquier fiesta."
+HRGBelugaBeatPreciousDescription = "Exterior: Precioso. | Potencia los decibelios de cualquier fiesta."
+
+;HRG Beluga Beat Names
+HRGBelugaBeatNeonMintName="Canto de beluga HRG | Neón | Impecable"
+HRGBelugaBeatNeonRGBPreciousName="Canto de beluga HRG | Neón RGB | Precioso"
 
 ;MIcrowaveAssault Descriptions
 MIcrowaveAssaultMintDescription="Exterior: Impecable | Que el fuego te acompañe."
@@ -3903,7 +3989,33 @@ DoshinegunDiamondName="Ametralladólar | Diamante"
 DoshinegunDoshName="Ametralladólar | Dinero"
 DoshinegunGoldenTigerName="Ametralladólar | Tigre dorado"
 DoshinegunBaroqueName="Ametralladólar | Barroco"
+;Sentinel Descriptions
+SentinelMintDescription="Exterior: Impecable | Un dron vigila una zona y dispara a los enemigos."
+SentinelFieldTestedDescription="Exterior: Usado | Un dron vigila una zona y dispara a los enemigos."
+SentinelBattleScarredDescription="Exterior: Ajado | Un dron vigila una zona y dispara a los enemigos."
+SentinelPreciousDescription="Exterior: Precioso | Un dron vigila una zona y dispara a los enemigos."
 
+;Sentinel Names
+SentinelStandardName="Centinela | Estándar"
+Sentinel1942Name="Centinela | 1942"
+SentinelBlackBirdName="Centinela | Pájaro negro"
+SentinelHadesName="Centinela | Hades"
+SentinelIceStormName="Centinela | Tormenta de nieve"
+SentinelShockName="Centinela | Choque"
+
+;Reducto Ray Descriptions
+ReductoRayMintDescription="Exterior: Impecable | Cariño, encogí a los zeds."
+ReductoRayFieldTestedDescription="Exterior: Usado | Cariño, encogí a los zeds."
+ReductoRayBattleScarredDescription="Exterior: Ajado | Cariño, encogí a los zeds."
+ReductoRayPreciousDescription="Exterior: Precioso | Cariño, encogí a los zeds."
+
+;Reducto Ray Names
+ReductoRayStandardName="Rayo reductor | Estándar"
+ReductoRayHellsFuryName="Rayo reductor | Furia infernal"
+ReductoRayAtomicLoveName="Rayo reductor | Amor atómico"
+ReductoRayLuckyStrikeName="Rayo reductor | Golpe de suerte"
+ReductoRayHeavyMetalName="Rayo reductor | Metal pesado"
+ReductoRayDestructorName="Rayo reductor | Destructor"												   
 [CosmeticSection]
 
 ;Cosmetic Names
@@ -6275,11 +6387,23 @@ AlchemistVialsVoltageName="Alquimista | Viales | Voltaje"
 AlchemistVialsBlackoutName="Alquimista | Viales | Apagón"
 AlchemistVialsPreciousName="Alquimista | Viales | Preciosos"
 
-
+;Weekly Shrunken Heads Cosmetic Name
 PracticeTargetBackpackPreciousName="Mochila de blanco de práctica | Preciosa"
 
-
+;Weekly Boss Rush Cosmetic Name
 BossTrophyBackpackPreciousName="Mochila de trofeo de jefe | Preciosa"
+
+;Weekly Gun Game Cosmetic Name
+SupplyBackpackPreciousName = "Mochila de suministros | Precioso"
+
+;Summer 2022 Cosmetic Names
+DeepSeaTridentPreciousName = "Fondo marino | Tridente | Precioso"
+DeepSeaHelmetAntiqueName="Fondo marino | Casco | Antiguo"
+DeepSeaHelmetAquaName="Fondo marino | Casco | Agua"
+DeepSeaHelmetCoralName="Fondo marino | Casco | Coral"
+DeepSeaHelmetPearlName="Fondo marino | Casco | Perla"
+DeepSeaHelmetBlackSealName="Fondo marino | Casco | Foca negra"
+DeepSeaHelmetPreciousName="Fondo marino | Casco | Precioso"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Equipable desde el menú de equip., compatible con la mayoría de personajes. Es un objeto exclusivo del evento estacional "Feria de verano". Puede reciclarse para conseguir un 1 boleto de feria."

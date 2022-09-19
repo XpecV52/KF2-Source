@@ -150,6 +150,7 @@ function SetFrozenParameter(float FreezeAmount)
     local MaterialInstanceConstant MIC;
     local int I;
     local bool bIsWWLMode;
+    local KFGameReplicationInfo KFGRI;
 
     if(PawnOwner.WorldInfo.NetMode != NM_DedicatedServer)
     {
@@ -172,9 +173,10 @@ function SetFrozenParameter(float FreezeAmount)
         }
         if(KFPawn_Monster(KFPOwner) != none)
         {
-            bIsWWLMode = ((Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12) && KFGameReplicationInfo(PawnOwner.WorldInfo.GRI) != none) && KFGameReplicationInfo(PawnOwner.WorldInfo.GRI).bIsWeeklyMode;
+            KFGRI = KFGameReplicationInfo(PawnOwner.WorldInfo.GRI);
+            bIsWWLMode = ((KFGRI != none) && KFGRI.bIsWeeklyMode) && KFGRI.CurrentWeeklyIndex == 12;
             I = 0;
-            J0x225:
+            J0x204:
 
             if(I < KFPawn_Monster(KFPOwner).StaticAttachList.Length)
             {
@@ -183,7 +185,7 @@ function SetFrozenParameter(float FreezeAmount)
                     ApplyFreeze(KFPawn_Monster(KFPOwner).StaticAttachList[I]);
                 }
                 ++ I;
-                goto J0x225;
+                goto J0x204;
             }
         }
     }

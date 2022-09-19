@@ -832,7 +832,30 @@ ItemName="土豪槍"
 ItemCategory="來福槍"
 ItemDescription="•可選擇全自動或半自動射擊模式。\n•按下輔助功能鍵變更主要攻擊模式。\n•賄賂一詞有了新的定義。"
 SharedUnlockSource="土豪槍武器同捆包"
+[KFWeap_HRG_Crossboom]
+ItemName="HRG 爆炸十字弓"
+ItemCategory="炸藥"
+ItemDescription="•主要攻擊發射一枚碰撞後爆炸的矢彈。\n•次要攻擊發射矢彈同時會製造爆炸，造成傷害略低但爆炸範圍更廣。\n•小心，它可以穿透了爆炸。"
 
+
+[KFWeap_HRG_CranialPopper]
+ItemName="HRG 獵頭者"
+ItemCategory="來福槍"
+ItemDescription="•主要攻擊發射感染毒鏢，令 Zed 的頭部膨脹。\n•次要射擊在玩家週邊被感染的所有 Zed 身上觸發腦出血。\n•情況危急時的最好武器。"
+
+
+[KFWeap_ShrinkRayGun]
+ItemName="收縮射線"
+ItemCategory="手槍"
+ItemDescription="•開火模式發射一道能量射線，傷害敵人並令敵人收縮。\n•收縮的敵人更加易於受到傷害。\n•寶貝，我把 ZED 縮小了。"
+SharedUnlockSource="收縮射線武器同捆包"
+
+
+[KFWeap_AutoTurret]
+ItemName="哨兵"
+ItemCategory="特殊"
+ItemDescription="•監視一個地點並向敵人射擊的無人機。\n•次要攻擊會引爆無人機。\n•彈藥耗盡且附近有 ZED 時也會自行引爆。"
+SharedUnlockSource="哨兵武器同捆包"										   
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="漢斯華特博士"
@@ -1008,3 +1031,8 @@ PerkSwitchAllowedString="職業選擇剩餘時間：%x% 秒"
 ItemName="隨機武器"
 ItemCategory="隨機"
 ItemDescription="• 隨機武器。\n•"
+
+[KFWeap_RandomGrenade]
+ItemName="隨機手榴彈"
+ItemCategory="隨機"
+ItemDescription="• 隨機手榴彈。\n•"										  

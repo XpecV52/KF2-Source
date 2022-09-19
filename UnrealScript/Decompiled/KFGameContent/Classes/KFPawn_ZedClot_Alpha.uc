@@ -30,6 +30,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_ClotAlpha'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedClot_Alpha.HeadshotAkComponent0'
+    ShrinkEffectModifier=2
     LocalizationKey=KFPawn_ZedClot_Alpha
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

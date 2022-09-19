@@ -2097,12 +2097,13 @@ defaultproperties
    DamageTypeModifiers(18)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGeneratorSphereImpact',DamageScale=(2.000000))
    DamageTypeModifiers(19)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_DefaultFiremodeZapDamage',DamageScale=(1.500000))
    DamageTypeModifiers(20)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',DamageScale=(1.500000))
-   DamageTypeModifiers(21)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGScorcherLightingImpact',DamageScale=(0.400000))
-   DamageTypeModifiers(22)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGScorcherDoT',DamageScale=(0.400000))
-   DamageTypeModifiers(23)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallImpact',DamageScale=(0.400000))
-   DamageTypeModifiers(24)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallHeavyImpact',DamageScale=(0.400000))
-   DamageTypeModifiers(25)=(DamageType=Class'kfgamecontent.KFDT_Piercing_HRG_Vampire_CrystalSpike',DamageScale=(0.300000))
-   DamageTypeModifiers(26)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_HRG_Vampire_BloodSuck',DamageScale=(0.700000))
+   DamageTypeModifiers(21)=(DamageType=Class'kfgamecontent.KFDT_Shrink_ShrinkRayGun',DamageScale=(3.000000))
+   DamageTypeModifiers(22)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGScorcherLightingImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(23)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGScorcherDoT',DamageScale=(0.400000))
+   DamageTypeModifiers(24)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(25)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallHeavyImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(26)=(DamageType=Class'kfgamecontent.KFDT_Piercing_HRG_Vampire_CrystalSpike',DamageScale=(0.300000))
+   DamageTypeModifiers(27)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_HRG_Vampire_BloodSuck',DamageScale=(0.700000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_Patriarch'
    BumpDamageType=Class'KFGame.KFDT_NPCBump_Large'
    FootstepCameraShakeInnerRadius=200.000000
@@ -2123,6 +2124,7 @@ defaultproperties
    End Object
    HeadShotAkComponent=HeadshotAkComponent0
    OnDeathAchievementID=130
+   ShrinkEffectModifier=0.150000
    PawnAnimInfo=KFPawnAnimInfo'ZED_Patriarch_ANIM.Patriarch_AnimGroup'
    LocalizationKey="KFPawn_ZedPatriarch"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_MonsterBoss:ThirdPersonHead0'
@@ -2172,6 +2174,8 @@ defaultproperties
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
       AfflictionClasses(11)=()
+      AfflictionClasses(12)=()
+      AfflictionClasses(13)=()
       FireFullyCharredDuration=50.000000
       FireCharPercentThreshhold=0.350000
       Name="Afflictions_0"
@@ -2190,6 +2194,8 @@ defaultproperties
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.000000,Vulnerability=(0.500000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
    IncapSettings(11)=(Cooldown=10.000000,Vulnerability=(0.150000))
+   IncapSettings(12)=()
+   IncapSettings(13)=(Vulnerability=(1.000000))
    KnockdownImpulseScale=1.000000
    SprintSpeed=650.000000
    DefaultInventory(0)=Class'kfgamecontent.KFWeap_Minigun_Patriarch'

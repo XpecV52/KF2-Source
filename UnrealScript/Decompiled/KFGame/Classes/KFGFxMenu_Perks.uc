@@ -75,6 +75,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178;
+const KFID_SurvivalStartingWeapIdx = 179;
+const KFID_SurvivalStartingGrenIdx = 180;
 
 var KFGFxPerksContainer_Selection SelectionContainer;
 var KFGFxPerksContainer_Header HeaderContainer;
@@ -96,7 +98,12 @@ var KFPlayerReplicationInfo MyKFPRI;
 var bool bModifiedSkills;
 var bool bModifiedPerk;
 var bool bChangesMadeDuringLobby;
+var bool bModifiedWeaponIndexes;
+var transient bool bAxisResetLeft;
+var transient bool bAxisResetRight;
 var name PerkLevelupSound;
+var private const float StickInputThreshold;
+var private const float StickResetThreshold;
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
@@ -130,7 +137,7 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
             {
                 DetailsContainer = KFGFxPerksContainer_Details(Widget);
                 DetailsContainer.Initialize(self);
-                DetailsContainer.UpdateDetails(PerkClass);
+                DetailsContainer.UpdateDetails(PerkClass, SelectedSkillsHolder, false, false);
                 DetailsContainer.UpdatePassives(PerkClass);
             }
             break;
@@ -167,6 +174,7 @@ function OnOpen()
 {
     local KFGameReplicationInfo KFGRI;
 
+    Outer.GetGameViewportClient().__HandleInputAxis__Delegate = OnAxisModified;
     LastPerkIndex = KFPC.SavedPerkIndex;
     MyKFPRI = KFPlayerReplicationInfo(Outer.GetPC().PlayerReplicationInfo);
     if(KFPC == none)
@@ -310,9 +318,10 @@ event OnClose()
 {
     local bool bShouldUpdatePerk;
 
+    Outer.GetGameViewportClient().__HandleInputAxis__Delegate = None;
     if(KFPC != none)
     {
-        if(bModifiedPerk || bModifiedSkills)
+        if((bModifiedPerk || bModifiedSkills) || bModifiedWeaponIndexes)
         {
             bShouldUpdatePerk = bModifiedPerk && LastPerkIndex != KFPC.SavedPerkIndex;
             SavePerkData();
@@ -325,8 +334,14 @@ event OnClose()
                 SelectionContainer.SavePerk(LastPerkIndex);
                 Manager.CachedProfile.SetProfileSettingValueInt(105, LastPerkIndex);
             }
+            if(bModifiedWeaponIndexes)
+            {
+                Manager.CachedProfile.SetProfileSettingValueInt(179, KFPC.SurvivalPerkWeapIndex);
+                Manager.CachedProfile.SetProfileSettingValueInt(180, KFPC.SurvivalPerkGrenIndex);
+            }
             bModifiedPerk = false;
             bModifiedSkills = false;
+            bModifiedWeaponIndexes = false;
         }
     }
     Manager.CachedProfile.Save(byte(Outer.GetLP().ControllerId));
@@ -420,7 +435,7 @@ function UpdateContainers(class<KFPerk> PerkClass, optional bool bClickedIndex)
         }
         if(DetailsContainer != none)
         {
-            DetailsContainer.UpdateDetails(PerkClass);
+            DetailsContainer.UpdateDetails(PerkClass, SelectedSkillsHolder, false, false);
             DetailsContainer.UpdatePassives(PerkClass);
         }
         if((SelectionContainer != none) && bClickedIndex)
@@ -532,6 +547,10 @@ function Callback_SkillSelected(byte TierIndex, byte SkillIndex)
         SelectedSkillsHolder[TierIndex] = SkillIndex;
         UpdateSkillsUI(KFPC.PerkList[LastPerkIndex].PerkClass);
         SavePerkData();
+        if(KFPC.PerkList[LastPerkIndex].PerkClass.Name == 'KFPerk_Survivalist')
+        {
+            DetailsContainer.UpdateDetails(KFPC.CurrentPerk.Class, SelectedSkillsHolder, false, false);
+        }
     }
 }
 
@@ -540,6 +559,112 @@ function Callback_SkillSelectionOpened()
     if(SkillsContainer != none)
     {
         SkillsContainer.UpdateTierUnlockState(KFPC.PerkList[LastPerkIndex].PerkClass);
+    }
+}
+
+function OnPrevWeaponPressed()
+{
+    local byte NewIndex;
+
+    NewIndex = KFPC.CurrentPerk.OnPrevWeaponSelected();
+    KFPC.SurvivalPerkWeapIndex = NewIndex;
+    DetailsContainer.UpdateDetails(KFPC.CurrentPerk.Class, SelectedSkillsHolder, true, false);
+    bModifiedWeaponIndexes = true;
+}
+
+function OnNextWeaponPressed()
+{
+    local byte NewIndex;
+
+    NewIndex = KFPC.CurrentPerk.OnNextWeaponSelected();
+    KFPC.SurvivalPerkWeapIndex = NewIndex;
+    DetailsContainer.UpdateDetails(KFPC.CurrentPerk.Class, SelectedSkillsHolder, false, true);
+    bModifiedWeaponIndexes = true;
+}
+
+function OnPrevGrenadePressed()
+{
+    local byte NewIndex;
+
+    NewIndex = KFPC.CurrentPerk.OnPrevGrenadeSelected();
+    KFPC.SurvivalPerkGrenIndex = NewIndex;
+    DetailsContainer.UpdateDetails(KFPC.CurrentPerk.Class, SelectedSkillsHolder, true, false);
+    bModifiedWeaponIndexes = true;
+}
+
+function OnNextGrenadePressed()
+{
+    local byte NewIndex;
+
+    NewIndex = KFPC.CurrentPerk.OnNextGrenadeSelected();
+    KFPC.SurvivalPerkGrenIndex = NewIndex;
+    DetailsContainer.UpdateDetails(KFPC.CurrentPerk.Class, SelectedSkillsHolder, false, true);
+    bModifiedWeaponIndexes = true;
+}
+
+event bool OnAxisModified(int ControllerId, name Key, float Delta, float DeltaTime, bool bGamepad)
+{
+    if(Outer.GetPC().PlayerInput.bUsingGamepad)
+    {
+        if((DetailsContainer != none) && bGamepad)
+        {
+            OnGamepadAxisModified(ControllerId, Key, Delta, DeltaTime, bGamepad);
+        }
+    }
+    return false;
+}
+
+function OnGamepadAxisModified(int ControllerId, name Key, float Delta, float DeltaTime, bool bGamepad)
+{
+    local float AbsDelta;
+
+    AbsDelta = Abs(Delta);
+    if(KFPC.CurrentPerk.CanChoosePrimaryWeapon() && Key == 'XboxTypeS_LeftX')
+    {
+        if(bAxisResetLeft && AbsDelta > StickInputThreshold)
+        {
+            if(Delta < float(0))
+            {
+                OnPrevWeaponPressed();                
+            }
+            else
+            {
+                OnNextWeaponPressed();
+            }
+            bAxisResetLeft = false;            
+        }
+        else
+        {
+            if(!bAxisResetLeft && AbsDelta < StickResetThreshold)
+            {
+                bAxisResetLeft = true;
+            }
+        }        
+    }
+    else
+    {
+        if(KFPC.CurrentPerk.CanChooseGrenade() && Key == 'XboxTypeS_RightX')
+        {
+            if(bAxisResetRight && AbsDelta > StickInputThreshold)
+            {
+                if(Delta < float(0))
+                {
+                    OnPrevGrenadePressed();                    
+                }
+                else
+                {
+                    OnNextGrenadePressed();
+                }
+                bAxisResetRight = false;                
+            }
+            else
+            {
+                if(!bAxisResetRight && AbsDelta < StickResetThreshold)
+                {
+                    bAxisResetRight = true;
+                }
+            }
+        }
     }
 }
 
@@ -552,6 +677,9 @@ defaultproperties
     TierUnlockedSecondaryText="You have unlocked a new tier for the following perks:"
     CurrentPrestigeLevelString="Current Prestige Rank:"
     PrestigeString="PRESTIGE"
+    bAxisResetLeft=true
     PerkLevelupSound=LevelUp_Popup
+    StickInputThreshold=0.5
+    StickResetThreshold=0.5
     SubWidgetBindings=/* Array type was not detected. */
 }

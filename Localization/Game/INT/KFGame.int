@@ -15,11 +15,13 @@ BonusDoshString="REWARDS"
 LengthStrings[0]="Short (4 Waves)"
 LengthStrings[1]="Medium (7 Waves)"
 LengthStrings[2]="Long (10 Waves)"
-
+SpecialLengthString="Special"
 ServerTypeStrings[0]="Ranked"
 ServerTypeStrings[1]="Ranked - Stock"
 ServerTypeStrings[2]="Ranked - Custom"
 ServerTypeStrings[3]="Unranked"
+WeaponLevelString="WEAPON LEVEL"
+GunPointsString="WEAPON POINTS"
 
 PermissionStrings[0]="Public"
 PermissionStrings[1]="Private: Passworded"
@@ -740,6 +742,8 @@ ZedSupportValue="Indirect Damage"
 ZednnihilationValue="Kills in Wave"
 ZedStomper="Zed Stomper"
 ZedStomperValue="Zeds Stomped"
+WeaponMaster="Weapon Master"
+WeaponMasterValue="First player getting final weapon"
 
 EPB_Healing="Healing"
 EPB_Kills="Kills"
@@ -2041,7 +2045,7 @@ SplashDamage="Heat Wave"
 SplashDamageDescription="Zed struck at point blank range with fire will stumble back."
 
 Inferno="ZED TIME - Inferno"
-InfernoDescription="During Zed time, any Zeds hit with fire are slowed 30% and take 50% more burning damage."
+InfernoDescription="During Zed time, your fire damage over time spreads to all surrounding Zeds."
 
 Scorch="ZED TIME - Pyromaniac"
 ScorchDescription="During Zed time, you attack with perk weapons in close to real time and never run out of ammo."
@@ -2265,10 +2269,10 @@ MeleeExpert="Melee Expert"
 MeleeExpertDescription="Increase melee attack speed 20%, inflict 75% more damage, and move 25% faster when using any melee weapon."
 
 AmmoVest="Ammo Vest"
-AmmoVestDescription="Carry up to 15% more ammo for all weapons and your grenade becomes a healing grenade."
+AmmoVestDescription="Carry up to 15% more ammo for all weapons and you can select a healing grenade."
 
 BigPockets="Weapon Harness"
-BigPocketsDescription="Increase carrying capacity by 5 and your grenade becomes a Molotov cocktail."
+BigPocketsDescription="Increase carrying capacity by 5 and you can select a Molotov cocktail."
 
 ZedShrapnel="Spontaneous Zed-plosion"
 ZedShrapnelDescription="Zeds you kill have a 30% chance to explode, damaging and stunning nearby Zeds."
@@ -2898,6 +2902,20 @@ AllCompleteRewardDescriptionString="Holiday Shopping | Companion | Precious"
 ChanceDropDescriptionStrings[0]="Krampus Ticket"
 ChanceDropDescriptionStrings[1]="Krampus Golden Ticket"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2022]
+CurrentSpecialEventString="A time-limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Not the best tourists",DescriptionString="Kill 1500 Zeds on any map or mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Weekly Splashdown",DescriptionString="Complete the Weekly on Rig")
+SpecialEventObjectiveInfoList[2]=(TitleString="Top Surfer",DescriptionString="Complete 100 waves on Rig")
+SpecialEventObjectiveInfoList[3]=(TitleString="Overboard!",DescriptionString="Throw 50 Zeds to the sea on Rig")
+SpecialEventObjectiveInfoList[4]=(TitleString="Wide wide sea",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Rig")
+
+AllCompleteRewardDescriptionString="Deep Sea | Trident | Precious"
+
+ChanceDropDescriptionStrings[0]="Summer Ticket"
+ChanceDropDescriptionStrings[1]="Summer Golden Ticket"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3063,6 +3081,16 @@ FriendlyName="Shrunken Heads"
 DescriptionStrings[0]="Trying to headshot is worthless..."
 DescriptionStrings[1]="Length: Medium (7 waves)"
 ModifierDescriptions[0]="Maybe they are trying to protect themselves against the player headshot habits. Anyway, at least it seems that they got new weak spots. Select the Weekly game mode on the Matchmaking page. Perk 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[GunGame KFWeeklyOutBreakInformation]
+FriendlyName="Arsenal Ascent"
+DescriptionStrings[0]="Level up your weapon!"
+DescriptionStrings[1]="Length: Special"
+ModifierDescriptions[0]="Traders are not operative. Start only with a knife. Earn weapon points by killing to obtain better weapons. Only Survivalists allowed. Select the Weekly game mode on the Matchmaking page. Perk 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3593,6 +3621,9 @@ DisplayName="Netherhold"
 
 [KF-CarillonHamlet KFMapSummary]
 DisplayName="Carillon Hamlet"
+
+[KF-Rig KFMapSummary]
+DisplayName="Rig"
 
 [KFMapInfo]
 ; defaults

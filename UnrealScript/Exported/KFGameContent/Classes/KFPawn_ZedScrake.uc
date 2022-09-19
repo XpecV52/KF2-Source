@@ -311,6 +311,7 @@ defaultproperties
    End Object
    HeadShotAkComponent=HeadshotAkComponent0
    OnDeathAchievementID=132
+   ShrinkEffectModifier=0.200000
    PawnAnimInfo=KFPawnAnimInfo'ZED_Scrake_ANIM.Scrake_AnimGroup'
    LocalizationKey="KFPawn_ZedScrake"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -354,6 +355,8 @@ defaultproperties
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
       AfflictionClasses(11)=()
+      AfflictionClasses(12)=()
+      AfflictionClasses(13)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -372,6 +375,8 @@ defaultproperties
    IncapSettings(9)=(Duration=1.000000,Cooldown=6.000000,Vulnerability=(0.980000))
    IncapSettings(10)=(Duration=2.500000,Cooldown=10.000000,Vulnerability=(0.500000))
    IncapSettings(11)=(Vulnerability=(0.750000))
+   IncapSettings(12)=()
+   IncapSettings(13)=(Vulnerability=(1.000000))
    KnockdownImpulseScale=2.000000
    SprintSpeed=600.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'

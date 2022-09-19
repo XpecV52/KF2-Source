@@ -77,6 +77,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178;
+const KFID_SurvivalStartingWeapIdx = 179;
+const KFID_SurvivalStartingGrenIdx = 180;
 
 var string WhatsNewPS;
 var string WhatsNewMS;
@@ -218,7 +220,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 1:
             return Class'KFGFxSpecialEventObjectivesContainer_Spring2021';
         case 2:
-            return Class'KFGFxSpecialEventObjectivesContainer_Summer2021';
+            return Class'KFGFxSpecialEventObjectivesContainer_Summer2022';
         case 3:
             return Class'KFGFXSpecialEventObjectivesContainer_Fall2021';
         case 4:
@@ -1840,5 +1842,6 @@ defaultproperties
     StockMaps(34)="kf-moonbase"
     StockMaps(35)="kf-netherhold"
     StockMaps(36)="kf-carillonhamlet"
+    StockMaps(37)="kf-rig"
     SubWidgetBindings=/* Array type was not detected. */
 }

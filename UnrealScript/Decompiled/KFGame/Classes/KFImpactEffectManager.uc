@@ -67,7 +67,7 @@ simulated function PlayImpactEffects(const Vector HitLocation, const Pawn Effect
                 WorldInfo.MyEmitterPool.SpawnEmitter(ImpactEffectInfo.SplashEffectTemplate, NewHitLoc, rotator(vect(0, 0, 1)));
             }
         }
-        bIsWeaponHandlingEffects = KFPawn(EffectInstigator).MyKFWeapon.bForceHandleImpacts;
+        bIsWeaponHandlingEffects = ((KFPawn(EffectInstigator).MyKFWeapon != none) ? KFPawn(EffectInstigator).MyKFWeapon.bForceHandleImpacts : false);
         HitActor = EffectInstigator.Trace(NewHitLoc, HitNormal, HitLocation - (HitNormal * float(32)), HitLocation + (HitNormal * float(32)), !bWorldImpactsOnly,, HitInfo, 1);
         if((((HitActor != none) && HitActor.bCanBeDamaged) && HitActor.IsA('Pawn')) && !bIsWeaponHandlingEffects)
         {
@@ -104,13 +104,13 @@ simulated function PlayImpactEffects(const Vector HitLocation, const Pawn Effect
                 WorldInfo.MyEmitterPool.SpawnEmitter(ImpactEffect.ParticleTemplate, HitLocation, rotator(HitNormal), HitActor);
             }
             I = 0;
-            J0x7E2:
+            J0x812:
 
             if(I < ImpactEffectInfo.GlobalImpactEffectEffects.Length)
             {
                 WorldInfo.MyEmitterPool.SpawnEmitter(ImpactEffectInfo.GlobalImpactEffectEffects[I], HitLocation, rotator(HitNormal), HitActor);
                 ++ I;
-                goto J0x7E2;
+                goto J0x812;
             }
             if(((!WorldInfo.bDropDetail && Pawn(HitActor) == none) && (EffectInstigator != none) && VSizeSq(EffectInstigator.Location - HitLocation) < MaxDecalRangeSq) && ((WorldInfo.GetDetailMode() != 0) && !Class'Engine'.static.IsSplitScreen()) || EffectInstigator.IsLocallyControlled() && EffectInstigator.IsHumanControlled())
             {

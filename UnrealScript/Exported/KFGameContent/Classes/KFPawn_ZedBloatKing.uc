@@ -623,6 +623,7 @@ defaultproperties
    VomitDamage=20
    PukeMineProjectileClass=Class'kfgamecontent.KFProj_BloatKingPukeMine'
    bCanRage=True
+   bCanBeKilledByShrinking=False
    MonsterArchPath="ZED_ARCH.ZED_BloatKing_Archetype"
    ParryResistance=4
    RepArmorPct(0)=255
@@ -668,12 +669,13 @@ defaultproperties
    DamageTypeModifiers(36)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGeneratorSphereImpact',DamageScale=(2.000000))
    DamageTypeModifiers(37)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_DefaultFiremodeZapDamage',DamageScale=(1.500000))
    DamageTypeModifiers(38)=(DamageType=Class'kfgamecontent.KFDT_EMP_ArcGenerator_AltFiremodeZapDamage',DamageScale=(1.500000))
-   DamageTypeModifiers(39)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGScorcherLightingImpact',DamageScale=(0.400000))
-   DamageTypeModifiers(40)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGScorcherDoT',DamageScale=(0.400000))
-   DamageTypeModifiers(41)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallImpact',DamageScale=(0.400000))
-   DamageTypeModifiers(42)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallHeavyImpact',DamageScale=(0.400000))
-   DamageTypeModifiers(43)=(DamageType=Class'kfgamecontent.KFDT_Piercing_HRG_Vampire_CrystalSpike',DamageScale=(0.300000))
-   DamageTypeModifiers(44)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_HRG_Vampire_BloodSuck',DamageScale=(0.700000))
+   DamageTypeModifiers(39)=(DamageType=Class'kfgamecontent.KFDT_Shrink_ShrinkRayGun',DamageScale=(3.000000))
+   DamageTypeModifiers(40)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRGScorcherLightingImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(41)=(DamageType=Class'kfgamecontent.KFDT_Fire_HRGScorcherDoT',DamageScale=(0.400000))
+   DamageTypeModifiers(42)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(43)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_HRG_Vampire_BloodBallHeavyImpact',DamageScale=(0.400000))
+   DamageTypeModifiers(44)=(DamageType=Class'kfgamecontent.KFDT_Piercing_HRG_Vampire_CrystalSpike',DamageScale=(0.300000))
+   DamageTypeModifiers(45)=(DamageType=Class'kfgamecontent.KFDT_Bleeding_HRG_Vampire_BloodSuck',DamageScale=(0.700000))
    DifficultySettings=Class'kfgamecontent.KFDifficulty_BloatKing'
    FootstepCameraShakeInnerRadius=200.000000
    FootstepCameraShakeOuterRadius=900.000000
@@ -694,6 +696,7 @@ defaultproperties
    HeadShotAkComponent=HeadshotAkComponent0
    ArmorInfoClass=Class'kfgamecontent.KFZedArmorInfo_BloatKing'
    OverrideArmorFXIndex=200
+   ShrinkEffectModifier=0.150000
    PawnAnimInfo=KFPawnAnimInfo'ZED_BloatKing_ANIM.BloatKing_AnimGroup'
    LocalizationKey="KFPawn_ZedBloatKing"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedBloat:ThirdPersonHead0'
@@ -744,6 +747,8 @@ defaultproperties
    IncapSettings(9)=(Duration=1.000000,Cooldown=15.000000,Vulnerability=(0.300000))
    IncapSettings(10)=(Duration=3.000000,Cooldown=10.000000,Vulnerability=(0.080000))
    IncapSettings(11)=(Cooldown=10.000000,Vulnerability=(0.150000))
+   IncapSettings(12)=()
+   IncapSettings(13)=()
    SprintSpeed=450.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedBloat:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True

@@ -19,7 +19,7 @@ defaultproperties
     MuzzleFlashTemplateName="WEP_HRG_Kaboomstick_ARCH.Wep_HRG_Kaboomstick_MuzzleFlash"
     InventorySize=6
     PenetrationPower=/* Array type was not detected. */
-    IronSightPosition=(X=7,Y=0,Z=0)
+    IronSightPosition=(X=7,Y=0.22,Z=-0.6)
     GroupPriority=75
     WeaponSelectTexture=Texture2D'WEP_UI_HRG_Kaboomstick_TEX.UI_WeaponSelect_HRG_Kaboomstick'
     InitialSpareMags=9

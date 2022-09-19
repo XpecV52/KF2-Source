@@ -189,6 +189,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_Crawler'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedCrawler.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedCrawler.HeadshotAkComponent0'
+    ShrinkEffectModifier=2
     PawnAnimInfo=KFPawnAnimInfo'ZED_Crawler_ANIM.Crawler_AnimGroup'
     LocalizationKey=KFPawn_ZedCrawler
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

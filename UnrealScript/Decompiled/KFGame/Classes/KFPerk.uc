@@ -125,6 +125,7 @@ const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
 const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles = 4060;
 const STATID_ACHIEVE_CarillonHamletCollectibles = 4061;
+const STATID_ACHIEVE_RigCollectibles = 4062;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -482,6 +483,21 @@ static function bool IsBackupWeapon(KFWeapon KFW)
     return (KFW != none) && KFW.default.bIsBackupWeapon;
 }
 
+static simulated function bool IsKnife(KFWeapon KFW)
+{
+    return ((KFW != none) && KFW.default.bIsBackupWeapon) && KFW.IsMeleeWeapon();
+}
+
+static simulated function bool IsWelder(KFWeapon KFW)
+{
+    return (KFW != none) && KFW.Class.Name == 'KFWeap_Welder';
+}
+
+static simulated function bool IsSyringe(KFWeapon KFW)
+{
+    return (KFW != none) && KFW.Class.Name == 'KFWeap_Healer_Syringe';
+}
+
 static function bool IsDual9mm(KFWeapon KFW)
 {
     return (KFW != none) && KFW.Class.Name == 'KFWeap_Pistol_Dual9mm';
@@ -500,6 +516,16 @@ static function bool IsBlastBrawlers(KFWeapon KFW)
 static function bool IsDoshinegun(KFWeapon KFW)
 {
     return (KFW != none) && KFW.Class.Name == 'KFWeap_AssaultRifle_Doshinegun';
+}
+
+static function bool IsHRGCrossboom(KFWeapon KFW)
+{
+    return (KFW != none) && KFW.Class.Name == 'KFWeap_HRG_Crossboom';
+}
+
+static function bool IsAutoTurret(KFWeapon KFW)
+{
+    return (KFW != none) && KFW.Class.Name == 'KFWeap_AutoTurret';
 }
 
 simulated function int GetCurrentPrestigeLevel()
@@ -725,7 +751,7 @@ final simulated function int GetSavedBuild()
 
 simulated event PreBeginPlay()
 {
-    GrenadeClass = class<KFProj_Grenade>(DynamicLoadObject(GrenadeWeaponDef.default.WeaponClassPath, Class'Class'));
+    GrenadeClass = class<KFProj_Grenade>(DynamicLoadObject(GetGrenadeClassPath(), Class'Class'));
     PerkIcon = Texture2D(DynamicLoadObject(GetPerkIconPath(), Class'Texture2D'));
     MyKFGRI = KFGameReplicationInfo(WorldInfo.GRI);
     if(WorldInfo.Game != none)
@@ -911,6 +937,11 @@ simulated function string GetSecondaryWeaponClassPath()
 simulated function string GetKnifeWeaponClassPath()
 {
     return KnifeWeaponDef.default.WeaponClassPath;
+}
+
+simulated function string GetGrenadeClassPath()
+{
+    return GrenadeWeaponDef.default.WeaponClassPath;
 }
 
 simulated function bool PerkNeedsTick()
@@ -1298,6 +1329,11 @@ function bool CanSpreadNapalm()
     return false;
 }
 
+function bool CanSpreadInferno()
+{
+    return false;
+}
+
 function bool CouldBeZedShrapnel(class<KFDamageType> KFDT)
 {
     return false;
@@ -1483,6 +1519,8 @@ function OnWaveEnded();
 
 function OnWaveStart();
 
+simulated function OnClientWaveEnded();
+
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
     return false;
@@ -1657,6 +1695,69 @@ simulated function LogPerkSkills()
 simulated function FormatPerkSkills();
 
 simulated function PlayerDied();
+
+static simulated function bool CanChoosePrimaryWeapon()
+{
+    return false;
+}
+
+static simulated function bool CanChooseGrenade()
+{
+    return false;
+}
+
+simulated function byte OnPrevWeaponSelected()
+{
+    return 255;
+}
+
+simulated function byte OnNextWeaponSelected()
+{
+    return 255;
+}
+
+simulated function byte OnPrevGrenadeSelected()
+{
+    return 255;
+}
+
+simulated function byte OnNextGrenadeSelected()
+{
+    return 255;
+}
+
+simulated function byte SetWeaponSelectedIndex(byte Idx);
+
+simulated function byte SetGrenadeSelectedIndex(byte Idx);
+
+simulated function byte SetGrenadeSelectedIndexUsingSkills(byte Idx, byte InSelectedSkills[5], bool IsChoosingPrev, bool IsChoosingNext);
+
+simulated function byte GetGrenadeSelectedIndex()
+{
+    return 255;
+}
+
+simulated function InitializeGrenades();
+
+static simulated function string GetPrimaryWeaponName(byte Idx)
+{
+    return default.PrimaryWeaponDef.static.GetItemName();
+}
+
+static simulated function string GetPrimaryWeaponImagePath(byte Idx)
+{
+    return default.PrimaryWeaponDef.static.GetImagePath();
+}
+
+static simulated function string GetGrenadeWeaponName(byte Idx)
+{
+    return default.GrenadeWeaponDef.static.GetItemName();
+}
+
+static simulated function string GetGrenadeWeaponImagePath(byte Idx)
+{
+    return default.GrenadeWeaponDef.static.GetImagePath();
+}
 
 defaultproperties
 {

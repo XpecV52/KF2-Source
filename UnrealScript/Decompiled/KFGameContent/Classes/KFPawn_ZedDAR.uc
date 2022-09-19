@@ -289,6 +289,7 @@ defaultproperties
     StopSprintingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_Stop'
     ArmorInfoClass=Class'KFZedArmorInfo_EvilDAR'
     OverrideArmorFXIndex=200
+    ShrinkEffectModifier=0.7
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end

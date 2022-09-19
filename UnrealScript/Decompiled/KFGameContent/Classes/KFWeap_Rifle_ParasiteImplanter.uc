@@ -245,6 +245,11 @@ simulated function bool ShouldAutoReload(byte FireModeNum)
     return super(KFWeapon).ShouldAutoReload(FireModeNum);
 }
 
+simulated function bool CanOverrideMagReload(byte FireModeNum)
+{
+    return super(KFWeapon).CanOverrideMagReload(FireModeNum) || FireModeNum == 1;
+}
+
 defaultproperties
 {
     LastFireInterval=0.3

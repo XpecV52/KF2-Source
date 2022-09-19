@@ -212,10 +212,11 @@ defaultproperties
    WidgetBindings(19)=(WidgetName="bossHealthBar",WidgetClass=Class'KFGame.KFGFxWidget_BossHealthBar')
    WidgetBindings(20)=(WidgetName="MapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapText')
    WidgetBindings(21)=(WidgetName="counterMapTextWidget",WidgetClass=Class'KFGame.KFGFxWidget_MapCounterText')
-   WidgetBindings(22)=(WidgetName="teamRoster",WidgetClass=Class'KFGame.KFGFxHud_PlayerRosterWidget')
-   WidgetBindings(23)=(WidgetName="MoveListContainer",WidgetClass=Class'KFGame.KFGFxHUD_PlayerMoveList')
-   WidgetBindings(24)=(WidgetName="PlayerStatWidgetMC",WidgetClass=Class'kfgamecontent.KFGFxHUD_PlayerStatusVersus')
-   WidgetBindings(25)=(WidgetName="SpectatorInfoWidget",WidgetClass=Class'KFGame.KFGFxHUD_SpectatorInfo_Versus')
+   WidgetBindings(22)=(WidgetName="GunGameContainer",WidgetClass=Class'KFGame.KFGFxWidget_GunGame')
+   WidgetBindings(23)=(WidgetName="teamRoster",WidgetClass=Class'KFGame.KFGFxHud_PlayerRosterWidget')
+   WidgetBindings(24)=(WidgetName="MoveListContainer",WidgetClass=Class'KFGame.KFGFxHUD_PlayerMoveList')
+   WidgetBindings(25)=(WidgetName="PlayerStatWidgetMC",WidgetClass=Class'kfgamecontent.KFGFxHUD_PlayerStatusVersus')
+   WidgetBindings(26)=(WidgetName="SpectatorInfoWidget",WidgetClass=Class'KFGame.KFGFxHUD_SpectatorInfo_Versus')
    Name="Default__KFGFxMoviePlayer_HUD_Versus"
    ObjectArchetype=KFGFxMoviePlayer_HUD'KFGame.Default__KFGFxMoviePlayer_HUD'
 }

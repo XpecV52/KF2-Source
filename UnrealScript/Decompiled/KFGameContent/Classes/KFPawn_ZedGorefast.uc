@@ -37,6 +37,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_Gorefast'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedGorefast.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedGorefast.HeadshotAkComponent0'
+    ShrinkEffectModifier=0.6
     PawnAnimInfo=KFPawnAnimInfo'ZED_Gorefast_Anim.Gorefast_AnimGroup'
     LocalizationKey=KFPawn_ZedGorefast
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

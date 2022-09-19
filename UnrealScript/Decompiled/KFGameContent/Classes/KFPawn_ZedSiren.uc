@@ -144,6 +144,7 @@ defaultproperties
     SprintAkComponent=AkComponent'Default__KFPawn_ZedSiren.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedSiren.HeadshotAkComponent0'
     OnDeathAchievementID=129
+    ShrinkEffectModifier=0.7
     PawnAnimInfo=KFPawnAnimInfo'ZED_Siren_ANIM.Siren_AnimGroup'
     LocalizationKey=KFPawn_ZedSiren
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

@@ -47,6 +47,7 @@ BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
+BodyMesh15="Traje Explorador do Mar"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -168,6 +169,13 @@ BodySkin1="Elfo"
 BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
+[CHR_MrsFoster_archetype.BodyMesh15]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Branca"
@@ -257,6 +265,7 @@ BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
+BodyMesh15="Traje Explorador do Mar"
 HeadMesh0="Poder da Barba!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -384,6 +393,13 @@ BodySkin1="Elfo"
 BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
+[CHR_Jagerhorn_archetype.BodyMesh15]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Loira Sueca"
@@ -486,6 +502,7 @@ BodyMesh11="Traje de Noel"
 BodyMesh12="Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
+BodyMesh15="Traje Explorador do Mar"
 HeadMesh0="Máscara do Scully"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -613,6 +630,13 @@ BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
 
+[CHR_DJSkully_archetype.BodyMesh15]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Preto Total"
 HeadSkin1="Vermelho Extra"
@@ -661,6 +685,7 @@ BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
 BodyMesh15="Traje de Compras de Feriado"
+BodyMesh16="Traje Explorador do Mar"
 HeadMesh0="Cabelo"
 
 [chr_briar_archetype.BodyMesh0]
@@ -794,6 +819,14 @@ BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
 
+[CHR_briar_archetype.BodyMesh16]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Destaques"
@@ -836,6 +869,7 @@ BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
 BodyMesh15="Traje de Compras de Feriado"
+BodyMesh16="Traje Explorador do Mar"
 HeadMesh0="Máscara de Gás"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -974,6 +1008,13 @@ BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
 
+[CHR_MrFoster_archetype.BodyMesh16]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Branco Original"
 HeadSkin1="Vermelho PCG"
@@ -1136,6 +1177,7 @@ BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
+BodyMesh15="Traje Explorador do Mar"
 HeadMesh0="Rosto"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1261,6 +1303,13 @@ BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
 
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
@@ -1302,6 +1351,7 @@ BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
+BodyMesh15="Traje Explorador do Mar"
 HeadMesh0="Cabelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1429,6 +1479,13 @@ BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
 
+[CHR_Alberts_archetype.BodyMesh15]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Cinza"
 HeadSkin1="Marrom"
@@ -2673,6 +2730,7 @@ BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
+BodyMesh15="Traje Explorador do Mar"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2808,6 +2866,13 @@ BodySkin1="Elfo"
 BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
+[CHR_Ana_archetype.BodyMesh15]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Óculos 3D"
@@ -2840,6 +2905,7 @@ BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
 BodyMesh15="Traje de Compras de Feriado"
+BodyMesh16="Traje Explorador do Mar"
 HeadMesh0="Cabelo"
 
 [chr_mark_archetype.BodyMesh0]
@@ -3001,6 +3067,7 @@ BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
+BodyMesh15="Traje Explorador do Mar"
 HeadMesh0="Rosto"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3164,6 +3231,7 @@ BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
+BodyMesh15="Traje Explorador do Mar"
 HeadMesh0="Cabelo"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3289,6 +3357,13 @@ BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
 
+[CHR_strasser_archetype.BodyMesh15]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Aço Escuro"
 HeadSkin1="Aço Claro"
@@ -3468,6 +3543,7 @@ BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
+BodyMesh15="Traje Explorador do Mar"
 HeadMesh0="Cabeça Padrão"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3597,6 +3673,13 @@ BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
 
+[CHR_rockabilly_archetype.BodyMesh15]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Pretas"
 HeadSkin1="Moreno"
@@ -7138,3 +7221,19 @@ AttachmentSkin0="Precioso"
 [Cosmetic_BossTrophy_Backpack_ARCH]
 Attachment="Mochila de Troféu de Chefe"
 AttachmentSkin0="Precioso"
+
+[Cosmetic_Supply_Backpack_ARCH]
+Attachment="Mochila de Suprimentos"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_DeepSea_Trident_ARCH]
+Attachment="Tridente do Mar Profundo"
+AttachmentSkin0="Precioso"
+[Cosmetic_DeepSea_Helmet_ARCH]
+Attachment="Capacete Mar Profundo"
+AttachmentSkin0="Antigo"
+AttachmentSkin1="Azul-piscina"
+AttachmentSkin2="Coral"
+AttachmentSkin3="Pérola"
+AttachmentSkin4="Foca Preta"
+AttachmentSkin5="Precioso"					   

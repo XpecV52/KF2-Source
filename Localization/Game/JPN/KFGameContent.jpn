@@ -832,6 +832,30 @@ ItemName="ドーシャインガン"
 ItemCategory="ライフル"
 ItemDescription="•フルオートまたはセミオートのファイアモードを選択できます。\n•オルトファイアでファイアモードを切り替えます。\n•贈賄を新たな高みへ。"
 SharedUnlockSource="ドーシャインガンの武器バンドル"
+[KFWeap_HRG_Crossboom]
+ItemName="HRGクロスブーム"
+ItemCategory="爆発物"
+ItemDescription="•プライマリファイアは、衝撃を受けた後に爆発する稲妻を放つ。\n•セカンダリファイアの稲妻も爆発を起こし、ダメージは少なくなるが範囲が大きくなる稲妻を放つ。\n•破裂して爆発を引き起こすので用心しよう。"
+
+
+[KFWeap_HRG_CranialPopper]
+ItemName="HRGヘッドハンター"
+ItemCategory="ライフル"
+ItemDescription="•プライマリファイアは、Zedの頭を膨らませる感染ダーツを放つ。\n•オルトファイアは、プレイヤー周辺で感染しているすべてのZed間で脳内出血を引き起こさせる。\n•頭に危険が迫った時の最高の武器。"
+
+
+[KFWeap_ShrinkRayGun]
+ItemName="縮小光線"
+ItemCategory="ハンドガン"
+ItemDescription="•ファイアモードでは、敵にダメージを与えて敵を縮ませるエネルギー光線が放射される。\n•縮まった敵はより弱くなる。\n•ハニー、Zedを縮ませたよ。"
+SharedUnlockSource="縮小光線の武器バンドル"
+
+
+[KFWeap_AutoTurret]
+ItemName="歩哨"
+ItemCategory="特殊"
+ItemDescription="•ポジションを監視して敵に向かって撃つドローン。\n•オルトファイアがドローンを起爆させる。\n•また、弾薬切れになって近くにZedがいる場合は自爆をする。"
+SharedUnlockSource="歩哨の武器バンドル"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -1008,3 +1032,8 @@ PerkSwitchAllowedString="Perk選択のための残り時間：%x%秒"
 ItemName="ランダム武器"
 ItemCategory="ランダム"
 ItemDescription="•ランダム武器です。\n•"
+
+[KFWeap_RandomGrenade]
+ItemName="ランダムな手榴弾"
+ItemCategory="ランダム"
+ItemDescription="• ランダムな手榴弾。\n•"

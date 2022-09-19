@@ -19,8 +19,9 @@ var bool bHasToSpawnFire;
 var protected AkEvent OnSteamSound;
 var protected AkEvent OnSteamEndSound;
 
-function Activate()
+function Activate(optional class<KFDamageType> DamageType)
 {
+    DamageType = none;
     super.Activate();
     SetMicrowavePanicked(true);
 }

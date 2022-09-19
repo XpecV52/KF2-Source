@@ -832,6 +832,30 @@ ItemName="Metralhadosh"
 ItemCategory="Fuzil"
 ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tiro alt. para alternar entre os modos de tiro.\n•Levando o suborno a outro nível."
 SharedUnlockSource="Conjunto de Armas Metralhadosh"
+[KFWeap_HRG_Crossboom]
+ItemName="Explobesta HRG"
+ItemCategory="Explosivos"
+ItemDescription="•O tiro principal dispara um virote que explode após o impacto.\n• O virote do tiro secundário também causa uma explosão de menor dano mas maior raio.\n•Cuidado: perfura e explode."
+
+
+[KFWeap_HRG_CranialPopper]
+ItemName="Caça-chefes HRG"
+ItemCategory="Fuzil"
+ItemDescription="•O tiro principal dispara dardos infectados que inflam as cabeças do Zed.\n•O tiro alternativo provoca hemorragia cerebral em todos os Zeds infectados ao redor do jogador.\n•A melhor arma para enfrentar o problema de cabeça."
+
+
+[KFWeap_ShrinkRayGun]
+ItemName="Raio redutor"
+ItemCategory="Pistola"
+ItemDescription="• O modo de fogo emite um raio de energia que causa dano e encolhe os inimigos.\n•Os inimigos encolhidos são mais vulneráveis.\n•Querida, encolhi os ZEDs."
+SharedUnlockSource="Conjunto de Armas Raio Redutor"
+
+
+[KFWeap_AutoTurret]
+ItemName="Sentinela"
+ItemCategory="Especial"
+ItemDescription="•Drone que vigia uma posição e atira nos inimigos.\n•O tiro alternativo detona o drone.\n•Ele também se autodetona quando fica sem munição e há ZEDs nas proximidades."
+SharedUnlockSource="Conjunto de Armas Sentinela"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -1008,3 +1032,7 @@ PerkSwitchAllowedString="TEMPO RESTANTE PARA SELECIONAR A CLASSE: %x% s"
 ItemName="Arma aleatória"
 ItemCategory="Aleatório"
 ItemDescription="• Arma aleatória.\n•"
+[KFWeap_RandomGrenade]
+ItemName="Granada aleatória"
+ItemCategory="Aleatório"
+ItemDescription="• Granada aleatória.\n•"

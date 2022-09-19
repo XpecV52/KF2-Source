@@ -7,8 +7,9 @@
  *******************************************************************************/
 class KFAffliction_MediumRecovery extends KFAfflictionBase;
 
-function Activate()
+function Activate(optional class<KFDamageType> DamageType)
 {
+    DamageType = none;
     if(PawnOwner.SpecialMove != 0)
     {
         PawnOwner.SpecialMoves[PawnOwner.SpecialMove].NotifyHitReactionInterrupt();

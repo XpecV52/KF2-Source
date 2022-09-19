@@ -47,6 +47,7 @@ BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
 BodyMesh14="костюмом «Праздничный покупатель»"
+BodyMesh15="Костюм «Исследователь морских глубин»"
 HeadMesh0="Противогаз"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -169,6 +170,14 @@ BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
 
+[CHR_MrsFoster_archetype.BodyMesh15]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Белый"
 HeadSkin1="Зеленый цвет"
@@ -257,6 +266,7 @@ BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
 BodyMesh14="костюмом «Праздничный покупатель»"
+BodyMesh15="Костюм «Исследователь морских глубин»"
 HeadMesh0="Сила бороды!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -385,6 +395,13 @@ BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
 
+[CHR_Jagerhorn_archetype.BodyMesh15]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Швед-блондин"
 HeadSkin1="Черный альбом"
@@ -486,6 +503,7 @@ BodyMesh11="Костюм Санты"
 BodyMesh12="Космический пират"
 BodyMesh13="Костюм смерти"
 BodyMesh14="костюмом «Праздничный покупатель»"
+BodyMesh15="Костюм «Исследователь морских глубин»"
 HeadMesh0="Маска Скалли"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -612,6 +630,13 @@ BodySkin1="Эльф"
 BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
+[CHR_DJSkully_archetype.BodyMesh15]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Черный-черный"
@@ -661,6 +686,7 @@ BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
 BodyMesh14="Костюм смерти"
 BodyMesh15="костюмом «Праздничный покупатель»"
+BodyMesh16="Костюм «Исследователь морских глубин»"
 HeadMesh0="Волосы"
 
 [chr_briar_archetype.BodyMesh0]
@@ -794,6 +820,13 @@ BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
 
+[CHR_briar_archetype.BodyMesh16]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Оригинальный"
 HeadSkin1="Подсветка"
@@ -836,6 +869,7 @@ BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
 BodyMesh14="Костюм смерти"
 BodyMesh15="костюмом «Праздничный покупатель»"
+BodyMesh16="Костюм «Исследователь морских глубин»"
 HeadMesh0="Противогаз"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -974,6 +1008,13 @@ BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
 
+[CHR_MrFoster_archetype.BodyMesh16]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Оригинальный белый"
 HeadSkin1="Красный PCG"
@@ -1261,6 +1302,14 @@ BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
 
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Донован"
 HeadSkin1="Невзрачный"
@@ -1302,6 +1351,7 @@ BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
 BodyMesh14="костюмом «Праздничный покупатель»"
+BodyMesh15="Костюм «Исследователь морских глубин»"
 HeadMesh0="Волосы"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1428,6 +1478,13 @@ BodySkin1="Эльф"
 BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
+[CHR_Alberts_archetype.BodyMesh15]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"		 
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Серый"
@@ -2330,6 +2387,7 @@ BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
 BodyMesh14="костюмом «Праздничный покупатель»"
+BodyMesh15="Костюм «Исследователь морских глубин»"
 HeadMesh0="Лицо"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2465,6 +2523,13 @@ BodySkin1="Эльф"
 BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
+[CHR_Masterson_archetype.BodyMesh15]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"
 
 [CHR_Tanaka_Archetype]
 CharacterName="Хаято Танака"
@@ -2485,6 +2550,7 @@ BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
 BodyMesh14="Костюм смерти"
 BodyMesh15="костюмом «Праздничный покупатель»"
+BodyMesh16="Костюм «Исследователь морских глубин»"
 HeadMesh0="Волосы"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2627,6 +2693,13 @@ BodySkin1="Эльф"
 BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
+[CHR_Tanaka_archetype.BodyMesh16]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"	  
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Шлем"
@@ -2673,6 +2746,7 @@ BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
 BodyMesh14="костюмом «Праздничный покупатель»"
+BodyMesh15="Костюм «Исследователь морских глубин»"
 HeadMesh0="Ирокез"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2808,6 +2882,13 @@ BodySkin1="Эльф"
 BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
+[CHR_Ana_archetype.BodyMesh15]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"		 
 
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D-очки"
@@ -2840,6 +2921,7 @@ BodyMesh12="Костюм Санты"
 BodyMesh13="Костюм космического пирата"
 BodyMesh14="Костюм смерти"
 BodyMesh15="костюмом «Праздничный покупатель»"
+BodyMesh16="Костюм «Исследователь морских глубин»"
 HeadMesh0="Волосы"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2966,12 +3048,19 @@ BodySkin3="Чума"
 BodySkin4="Война"
 BodySkin5="Анархия"
 
-
+[CHR_mark_archetype.BodyMesh15]
 BodySkin0="Санта"
 BodySkin1="Эльф"
 BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
+[CHR_mark_archetype.BodyMesh16]					
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
@@ -3001,6 +3090,7 @@ BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
 BodyMesh14="костюмом «Праздничный покупатель»"
+BodyMesh15="Костюм «Исследователь морских глубин»"
 HeadMesh0="Лицо"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3128,6 +3218,13 @@ BodySkin1="Эльф"
 BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
+[CHR_alan_archetype.BodyMesh15]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"		  
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Реальное дело"
@@ -3164,6 +3261,7 @@ BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
 BodyMesh14="костюмом «Праздничный покупатель»"
+BodyMesh15="Костюм «Исследователь морских глубин»"
 HeadMesh0="Волосы"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3289,6 +3387,13 @@ BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
 
+[CHR_strasser_archetype.BodyMesh15]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Темная сталь"
 HeadSkin1="Светлая сталь"
@@ -3468,6 +3573,7 @@ BodyMesh11="Костюм Санты"
 BodyMesh12="Костюм космического пирата"
 BodyMesh13="Костюм смерти"
 BodyMesh14="костюмом «Праздничный покупатель»"
+BodyMesh15="Костюм «Исследователь морских глубин»"
 HeadMesh0="Обычная голова"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3597,6 +3703,13 @@ BodySkin2="Северный полюс"
 BodySkin3="С новым гадом"
 BodySkin4="Дорогая вещь"
 
+[CHR_rockabilly_archetype.BodyMesh15]
+BodySkin0="Антиквариат"
+BodySkin1="Морская волна"
+BodySkin2="Коралл"
+BodySkin3="Жемчуг"
+BodySkin4="Черный тюлень"
+BodySkin5="Дорогая вещь"
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Черный"
 HeadSkin1="Брюнет"
@@ -7138,3 +7251,19 @@ AttachmentSkin0="Дорогая вещь"
 [Cosmetic_BossTrophy_Backpack_ARCH]
 Attachment="Рюкзак «Босс-трофей»"
 AttachmentSkin0="Дорогая вещь"
+[Cosmetic_Supply_Backpack_ARCH]
+Attachment="Supply Backpack"
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_DeepSea_Trident_ARCH]
+Attachment="Морские глубины Трезубец "
+AttachmentSkin0="Дорогая вещь"
+
+[Cosmetic_DeepSea_Helmet_ARCH]
+Attachment="Шлем «Морские глубины»"
+AttachmentSkin0="Антиквариат"
+AttachmentSkin1="Морская волна"
+AttachmentSkin2="Коралл"
+AttachmentSkin3="Жемчуг"
+AttachmentSkin4="Черный тюлень"
+AttachmentSkin5="Дорогая вещь"

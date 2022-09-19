@@ -75,6 +75,8 @@ var float MicrowavePower;
 var float FreezePower;
 var float SnarePower;
 var float BleedPower;
+var float BigHeadPower;
+var float ShrinkPower;
 var array< class<KFPerk> > ModifierPerkList;
 var array<MaterialInstance> BodyWoundDecalMaterials;
 var float BodyWoundDecalWidth;

@@ -12,6 +12,9 @@ var const localized string PrestigeBonusString;
 var const localized string FailedToReachInventoryServerString;
 var const localized array<localized string> DifficultyStrings;
 var const localized array<localized string> LengthStrings;
+var const localized string SpecialLengthString;
+var const localized string WeaponLevelString;
+var const localized string GunPointsString;
 var const localized array<localized string> ServerTypeStrings;
 var const localized array<localized string> PermissionStrings;
 var const localized array<localized string> ConsolePermissionStrings;
@@ -198,6 +201,9 @@ defaultproperties
     LengthStrings(0)="Short (4 Waves)"
     LengthStrings(1)="Medium (7 Waves)"
     LengthStrings(2)="Long (10 Waves)"
+    SpecialLengthString="Special"
+    WeaponLevelString="WEAPON LEVEL"
+    GunPointsString="WEAPON POINTS"
     ServerTypeStrings(0)="Ranked"
     ServerTypeStrings(1)="Ranked - Stock"
     ServerTypeStrings(2)="Ranked - Custom"

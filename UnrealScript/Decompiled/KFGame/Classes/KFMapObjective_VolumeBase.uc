@@ -186,6 +186,11 @@ simulated function ActivateBoundarySplines()
     }
 }
 
+simulated function bool CanActivateObjectiveByWeekly()
+{
+    return true;
+}
+
 simulated function ActivateObjective()
 {
     local int I;

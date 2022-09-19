@@ -487,6 +487,7 @@ defaultproperties
    End Object
    HeadShotAkComponent=HeadshotAkComponent0
    OnDeathAchievementID=131
+   ShrinkEffectModifier=0.200000
    PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.Fleshpound_AnimGroup'
    LocalizationKey="KFPawn_ZedFleshpound"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -528,6 +529,8 @@ defaultproperties
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
       AfflictionClasses(11)=()
+      AfflictionClasses(12)=()
+      AfflictionClasses(13)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -546,6 +549,8 @@ defaultproperties
    IncapSettings(9)=(Duration=1.000000,Cooldown=10.500000,Vulnerability=(0.950000))
    IncapSettings(10)=(Duration=2.500000,Cooldown=17.000000,Vulnerability=(0.500000))
    IncapSettings(11)=(Vulnerability=(0.750000))
+   IncapSettings(12)=()
+   IncapSettings(13)=(Vulnerability=(1.000000))
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=2.000000
    SprintSpeed=725.000000

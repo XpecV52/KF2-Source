@@ -684,6 +684,7 @@ Parameter name: index
     VomitDamage=20
     PukeMineProjectileClass=Class'KFProj_BloatKingPukeMine'
     bCanRage=true
+    bCanBeKilledByShrinking=false
     MonsterArchPath="ZED_ARCH.ZED_BloatKing_Archetype"
     ParryResistance=4
     RepArmorPct[0]=255
@@ -719,6 +720,7 @@ Parameter name: index
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedBloatKing.HeadshotAkComponent0'
     ArmorInfoClass=Class'KFZedArmorInfo_BloatKing'
     OverrideArmorFXIndex=200
+    ShrinkEffectModifier=0.15
     PawnAnimInfo=KFPawnAnimInfo'ZED_BloatKing_ANIM.BloatKing_AnimGroup'
     LocalizationKey=KFPawn_ZedBloatKing
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

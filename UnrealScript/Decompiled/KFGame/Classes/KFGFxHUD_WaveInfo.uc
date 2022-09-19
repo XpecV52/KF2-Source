@@ -71,17 +71,37 @@ function UpdateWaveCount()
     {
         return;
     }
-    CurrentWaveMax = KFGRI.GetFinalWaveNum();
-    if(LastWaveMax != CurrentWaveMax)
+    if(KFGRI.bIsWeeklyMode && KFGRI.CurrentWeeklyIndex == 16)
     {
-        SetInt("maxWaves", ((KFGRI.default.bEndlessMode) ? -1 : CurrentWaveMax));
+        CurrentWave = KFGRI.GunGameWavesCurrent;
+        CurrentWaveMax = KFGRI.GetFinalWaveNum();
+        if(KFGRI.bWaveGunGameIsFinal)
+        {
+            CurrentWave = CurrentWaveMax + 1;            
+        }
+        else
+        {
+            CurrentWaveMax = -1;
+        }
+        SetInt("maxGunGameWave", CurrentWaveMax);
+        SetInt("currentGunGameWave", CurrentWave);
         LastWaveMax = CurrentWaveMax;
+        LastWave = CurrentWave;        
     }
-    CurrentWave = KFGRI.WaveNum;
-    if(CurrentWave != LastWave)
+    else
     {
-        SetInt("currentWave", CurrentWave);
-        LastWave = CurrentWave;
+        CurrentWave = KFGRI.WaveNum;
+        CurrentWaveMax = KFGRI.GetFinalWaveNum();
+        if(LastWaveMax != CurrentWaveMax)
+        {
+            SetInt("maxWaves", ((KFGRI.default.bEndlessMode) ? -1 : CurrentWaveMax));
+            LastWaveMax = CurrentWaveMax;
+        }
+        if(CurrentWave != LastWave)
+        {
+            SetInt("currentWave", CurrentWave);
+            LastWave = CurrentWave;
+        }
     }
 }
 

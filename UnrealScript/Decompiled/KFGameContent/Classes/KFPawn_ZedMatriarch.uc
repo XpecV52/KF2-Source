@@ -596,7 +596,7 @@ function InitializeCurrentBattlePhase()
     I = 0;
     J0x196:
 
-    if(I < 16)
+    if(I < 18)
     {
         if((I < AfflictionHandler.Afflictions.Length) && AfflictionHandler.Afflictions[I] != none)
         {
@@ -1258,7 +1258,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '0_4778' was not found.
+System.ArgumentException: Requested value '0_4919' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1272,7 +1272,7 @@ System.ArgumentException: Requested value '0_1067030937' was not found.
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,Cooldown=15,ChildAfflictionCooldown=0,Vulnerability=/* Array type was not detected. */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '0_4260' was not found.
+System.ArgumentException: Requested value '0_4383' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1293,7 +1293,7 @@ System.ArgumentException: Requested value 'Cooldown' was not found.
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '__Delegate_OnHealDamage__Delegate' was not found.
+System.ArgumentException: Requested value '__Delegate_OnChangeState__Delegate' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1321,35 +1321,33 @@ System.ArgumentException: Requested value 'Vulnerability' was not found.
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '__Delegate_OnPawnStartedRoute__Delegate' was not found.
+System.ArgumentException: Requested value '__Delegate_OnPawnReachedRouteMarker__Delegate' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,3P_Sawblade_Animtree=/* Unknown default property type! */,
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,0blue_1red=/* Unknown default property type! */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '__Delegate_OnHealDamage__Delegate' was not found.
+System.ArgumentException: Requested value '__Delegate_OnChangeState__Delegate' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
-/* Exception thrown while deserializing BattlePhases
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing IncapSettings
 System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
 Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BattlePhases(1)=
-/* Exception thrown while deserializing BattlePhases
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
+/* Exception thrown while deserializing IncapSettings
 System.ArgumentException: Requested value '0_3' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
-   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BattlePhases(2)=
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */),
 /* Exception thrown while deserializing BattlePhases
 System.ArgumentException: Requested value 'ChildAfflictionCooldown' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
@@ -1357,9 +1355,25 @@ System.ArgumentException: Requested value 'ChildAfflictionCooldown' was not foun
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BattlePhases(3)=
+    BattlePhases(1)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '__Delegate_OnHealDamage__Delegate' was not found.
+System.ArgumentException: Requested value '__Delegate_OnChangeState__Delegate' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    BattlePhases(2)=
+/* Exception thrown while deserializing BattlePhases
+System.ArgumentException: Requested value '0_510' was not found.
+   at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
+   at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
+   at UELib.Core.UDefaultProperty.DeserializeTagUE3()
+   at UELib.Core.UDefaultProperty.Deserialize()
+   at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
+    BattlePhases(3)=0_7[9108]=/* Unknown default property type! */,
+/* Exception thrown while deserializing BattlePhases
+System.ArgumentException: Requested value '0_4919' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1527,6 +1541,7 @@ System.ArgumentException: Requested value '__Delegate_OnHealDamage__Delegate' wa
     OnDeathAchievementID=267
     ArmorInfoClass=Class'KFZedArmorInfo_Matriarch'
     OverrideArmorFXIndex=200
+    ShrinkEffectModifier=0.15
     PawnAnimInfo=KFPawnAnimInfo'ZED_Matriarch_ANIM.Matriarch_AnimGroup'
     LocalizationKey=KFPawn_ZedMatriarch
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

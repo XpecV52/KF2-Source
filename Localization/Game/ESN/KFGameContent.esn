@@ -832,7 +832,30 @@ ItemName="Metraguita"
 ItemCategory="Rifle"
 ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Además de distintos modos de disparo, tiene disparo alternativo.\n•Lleva los sobornos a otro nivel."
 SharedUnlockSource="Paquete de armas Metraguita"
+[KFWeap_HRG_Crossboom]
+ItemName="Ballesta explosiva"
+ItemCategory="Explosivos"
+ItemDescription="•Principal: dispara una flecha que explota al impactar.\n•Secundario: dispara una flecha que provoca una explosión. Inflige menos daño pero tiene más alcance.\n•Ten cuidado, atraviesa y explota."
 
+
+[KFWeap_HRG_CranialPopper]
+ItemName="Cabeza de cazador HRG"
+ItemCategory="Rifle"
+ItemDescription="•Principal: dispara dardos infectados que le inflan la cabeza a los Zeds.\n•Alternativo: desata una hemorragia cerebral en todos los Zeds infectados alrededor del jugador.\n•No hay arma mejor para las cabezas."
+
+
+[KFWeap_ShrinkRayGun]
+ItemName="Rayo reductor"
+ItemCategory="Arma corta"
+ItemDescription="•El modo disparo emite un rayo de energía que inflige daño y encoge a los enemigos.\n•Los enemigos encogidos son más vulnerables.\n•Cariño, creo que he encogido a los Zeds."
+SharedUnlockSource="Paquete de armas Rayo reductor"
+
+
+[KFWeap_AutoTurret]
+ItemName="Centinela"
+ItemCategory="Especial"
+ItemDescription="•Un dron vigila una zona y dispara a los enemigos.\n•Alternativo: detona el dron.\n•También detona automáticamente cuando se queda sin munición y hay zeds cerca."
+SharedUnlockSource="Paquete de armas Centinela"
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
@@ -1008,3 +1031,7 @@ PerkSwitchAllowedString="TIEMPO PARA ELEGIR ESPECIALIZACIÓN: %x% segundo(s)"
 ItemName="Arma aleatoria"
 ItemCategory="Aleatoria"
 ItemDescription="• Arma aleatoria.\n•"
+[KFWeap_RandomGrenade]
+ItemName="Granada aleatoria"
+ItemCategory="Aleatoria"
+ItemDescription="• Granada aleatoria.\n•"

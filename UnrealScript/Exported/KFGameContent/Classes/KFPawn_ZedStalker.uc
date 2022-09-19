@@ -484,6 +484,7 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
    End Object
    HeadShotAkComponent=HeadshotAkComponent0
+   ShrinkEffectModifier=2.000000
    PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
    LocalizationKey="KFPawn_ZedStalker"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -515,6 +516,8 @@ defaultproperties
    IncapSettings(9)=(Duration=4.000000,Cooldown=1.500000,Vulnerability=(2.500000))
    IncapSettings(10)=(Cooldown=20.500000,Vulnerability=(0.500000))
    IncapSettings(11)=(Vulnerability=(2.000000))
+   IncapSettings(12)=()
+   IncapSettings(13)=(Vulnerability=(1.000000))
    PhysRagdollImpulseScale=0.900000
    KnockdownImpulseScale=0.900000
    SprintSpeed=500.000000

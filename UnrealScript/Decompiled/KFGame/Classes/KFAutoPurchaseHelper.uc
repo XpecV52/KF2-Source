@@ -389,7 +389,6 @@ function PurchaseWeapon(STraderItem ShopItem)
     }
     Price = GetAdjustedBuyPriceFor(ShopItem);
     KFPC = Outer;
-    LogInternal("ADDING WEAPON PURCHASED");
     KFPC.AddWeaponPurchased(ShopItem.WeaponDef, Price);
     ItemUpgradeLevel = ((ShopItem.SingleClassName != 'None') ? GetItemUpgradeLevelByClassName(ShopItem.SingleClassName) : -1);
     AddDosh(-Price);

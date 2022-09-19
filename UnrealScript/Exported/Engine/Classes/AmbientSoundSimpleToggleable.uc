@@ -169,6 +169,7 @@ defaultproperties
    End Object
    Components(1)=DrawSoundRadius0
    Components(2)=AudioComponent0
+   CollisionType=COLLIDE_CustomDefault
    bStatic=False
    bNoDelete=True
    Name="Default__AmbientSoundSimpleToggleable"

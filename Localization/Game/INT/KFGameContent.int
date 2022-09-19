@@ -833,6 +833,32 @@ ItemCategory="Rifle"
 ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•Alt-fire to toggle between fire modes.\n•Taking bribery to another level."
 SharedUnlockSource="Doshinegun Weapon Bundle"
 
+[KFWeap_HRG_Crossboom]
+ItemName="HRG Crossboom"
+ItemCategory="Explosives"
+ItemDescription="•Primary fire shoots a bolt that explodes after impacting.\n•Secondary fire bolt also makes an explosion, that makes less damage but has a bigger size.\n•Be careful, it punctures and explodes."
+
+
+[KFWeap_HRG_CranialPopper]
+ItemName="HRG Head Hunter"
+ItemCategory="Rifle"
+ItemDescription="•Primary fire shoots infected darts that inflates the Zed heads.\n•Alt-fire triggers a brain hemorrhage in all infected Zeds around the player.\n•Best weapon when the situation comes to a head."
+
+
+[KFWeap_ShrinkRayGun]
+ItemName="Reducto Ray"
+ItemCategory="Hand Gun"
+ItemDescription="•Fire mode emits an energy ray that damages and shrinks enemies.\n•Shrunken enemies are more vulnerable.\n•Honey, I shrunk the ZEDs."
+SharedUnlockSource="Reducto Ray Weapon Bundle"
+
+
+[KFWeap_AutoTurret]
+ItemName="Sentinel"
+ItemCategory="Special"
+ItemDescription="•A drone that watches over a position and shoots at enemies.\n•Alt-fire detonates the drone.\n•It also self-detonates when it runs out of ammo and there are ZEDs nearby."
+SharedUnlockSource="Sentinel Weapon Bundle"
+
+
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
@@ -1008,3 +1034,8 @@ PerkSwitchAllowedString="TIME REMAINING TO SELECT YOUR PERK: %x% second(s)"
 ItemName="Random Weapon"
 ItemCategory="Random"
 ItemDescription="• Random Weapon.\n•"
+
+[KFWeap_RandomGrenade]
+ItemName="Random Grenade"
+ItemCategory="Random"
+ItemDescription="• Random Grenade.\n•"

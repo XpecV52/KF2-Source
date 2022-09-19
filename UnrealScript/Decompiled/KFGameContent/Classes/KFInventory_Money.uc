@@ -16,8 +16,10 @@ function DropFrom(Vector StartLocation, Vector StartVelocity)
     local KFDroppedPickup_Cash KFDP;
     local PlayerReplicationInfo PRI;
     local int Amount;
+    local KFGameReplicationInfo KFGRI;
 
-    if((DroppedPickupClass == none) || DroppedPickupMesh == none)
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if(((DroppedPickupClass == none) || DroppedPickupMesh == none) || ((KFGRI != none) && KFGRI.bIsWeeklyMode) && KFGRI.CurrentWeeklyIndex == 16)
     {
         return;
     }

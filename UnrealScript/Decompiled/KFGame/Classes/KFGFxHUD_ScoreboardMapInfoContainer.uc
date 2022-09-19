@@ -72,25 +72,39 @@ function UpdateWaveCount()
         return;
     }
     CurrentWaveNum = KFGRI.WaveNum;
-    if(KFGRI.IsBossWave())
+    if(KFGRI.bIsWeeklyMode && KFGRI.CurrentWeeklyIndex == 16)
     {
-        SetString("waveNumber", Class'KFGFxHUD_WaveInfo'.default.BossWaveString);        
-    }
-    else
-    {
-        if(KFGRI.IsFinalWave())
+        if(KFGRI.bWaveGunGameIsFinal)
         {
             SetString("waveNumber", FinalString);            
         }
         else
         {
-            if(KFGRI.default.bEndlessMode)
+            SetString("waveNumber", "" $ string(KFGRI.GunGameWavesCurrent));
+        }        
+    }
+    else
+    {
+        if(KFGRI.IsBossWave())
+        {
+            SetString("waveNumber", Class'KFGFxHUD_WaveInfo'.default.BossWaveString);            
+        }
+        else
+        {
+            if(KFGRI.IsFinalWave())
             {
-                SetString("waveNumber", "" $ string(CurrentWaveNum));                
+                SetString("waveNumber", FinalString);                
             }
             else
             {
-                SetString("waveNumber", (string(CurrentWaveNum) $ "/") $ string(KFGRI.GetFinalWaveNum()));
+                if(KFGRI.default.bEndlessMode)
+                {
+                    SetString("waveNumber", "" $ string(CurrentWaveNum));                    
+                }
+                else
+                {
+                    SetString("waveNumber", (string(CurrentWaveNum) $ "/") $ string(KFGRI.GetFinalWaveNum()));
+                }
             }
         }
     }

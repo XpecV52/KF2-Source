@@ -46,6 +46,9 @@ defaultproperties
    ArmorDamageTypeModifiers(11)=(DamageType=Class'KFGame.KFDT_Toxic',DamageScale=(0.050000))
    ArmorDamageTypeModifiers(12)=(DamageType=Class'kfgamecontent.KFDT_Ballistic_MicrowaveRifle',DamageScale=(0.700000))
    ArmorDamageTypeModifiers(13)=(DamageType=Class'KFGame.KFDT_Toxic_HRGHealthrower',DamageScale=(0.500000))
+   ArmorDamageTypeModifiers(14)=(DamageType=Class'kfgamecontent.KFDT_Shrink_ShrinkRayGun',DamageScale=(5.000000))
+   ArmorDamageTypeModifiers(15)=(DamageType=Class'kfgamecontent.KFDT_Blast_HRG_CranialPopper',DamageScale=(0.000000))
+   ArmorDamageTypeModifiers(16)=(DamageType=Class'kfgamecontent.KFDT_Piercing_HRG_CranialPopper',DamageScale=(2.000000))
    Name="Default__KFZedArmorInfo_Matriarch"
    ObjectArchetype=KFZedArmorInfo'KFGame.Default__KFZedArmorInfo'
 }

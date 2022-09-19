@@ -75,6 +75,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178;
+const KFID_SurvivalStartingWeapIdx = 179;
+const KFID_SurvivalStartingGrenIdx = 180;
 
 var const localized string SectionNameString;
 var const localized string GameSettingsString;

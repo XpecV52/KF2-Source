@@ -832,6 +832,30 @@ ItemName="Forsownica"
 ItemCategory="Karabin"
 ItemDescription="•Tryb strzelania: ogień ciągły albo samopowtarzalny.\n•Tryb alternatywny umożliwia przełączanie trybów ognia.\n•Nowy rodzaj łapówek."
 SharedUnlockSource="Zestaw broni Forsownicy"
+[KFWeap_HRG_Crossboom]
+ItemName="Kusza hukowa HRG"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="•Podstawowy atak wystrzeliwuje pocisk, który eksploduje po uderzeniu.\n•Dodatkowy atak powoduje eksplozję, która zadaje mniejsze obrażenia, ale ma większy rozmiar.\n•Uwaga: przebija się i eksploduje."
+
+
+[KFWeap_HRG_CranialPopper]
+ItemName="Łowca Głów HRG"
+ItemCategory="Karabin"
+ItemDescription="•Podstawowy atak wystrzeliwuje zainfekowane strzałki, które powodują u zetów puchnięcie głowy.\n•Dodatkowy atak wywołuje krwotok mózgu u wszystkich zainfekowanych zetów wokół gracza.\n•Najlepsza broń, gdy jesteś w kropce."
+
+
+[KFWeap_ShrinkRayGun]
+ItemName="Promień Reducto"
+ItemCategory="Broń krótka"
+ItemDescription="•Tryb ataku emituje promień energii, który zadaje obrażenia i zmniejsza wrogów.\n•Zmniejszeni wrogowie są bardziej podatni na ataki.\n•Kochanie, zmniejszyłem zeciaki."
+SharedUnlockSource="Zestaw broni Promień Reducto"
+
+
+[KFWeap_AutoTurret]
+ItemName="Wartownik"
+ItemCategory="Specjalne"
+ItemDescription="•Dron, który czuwa nad wybraną pozycją i strzela do wrogów.\n•Dodatkowy atak detonuje drona.\n•Dron detonuje się samoczynnie, gdy zabraknie mu amunicji, a w pobliżu znajdują się zety."
+SharedUnlockSource="Zestaw broni Wartownika"		   
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
@@ -1008,3 +1032,8 @@ PerkSwitchAllowedString="CZAS POZOSTAŁY DO WYBRANIA SPECJALIZACJI: %x% s"
 ItemName="Losowa broń"
 ItemCategory="Losowo"
 ItemDescription="• Losowa broń.\n•"
+
+[KFWeap_RandomGrenade]
+ItemName="Losowy granat"
+ItemCategory="Losowo"
+ItemDescription="• Losowy granat.\n•"

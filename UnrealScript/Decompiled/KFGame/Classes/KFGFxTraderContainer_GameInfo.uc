@@ -31,13 +31,20 @@ function UpdateGameInfo()
         }
         else
         {
-            if(KFGRI.default.bEndlessMode)
+            if(KFGRI.bIsWeeklyMode && KFGRI.CurrentWeeklyIndex == 16)
             {
-                FinalWaveString = WaveString @ string(KFGRI.WaveNum);                
+                FinalWaveString = (WaveString @ string(KFGRI.GunGameWavesCurrent)) $ "/?";                
             }
             else
             {
-                FinalWaveString = ((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.GetFinalWaveNum());
+                if(KFGRI.default.bEndlessMode)
+                {
+                    FinalWaveString = WaveString @ string(KFGRI.WaveNum);                    
+                }
+                else
+                {
+                    FinalWaveString = ((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.GetFinalWaveNum());
+                }
             }
         }
         SetString("waveValue", FinalWaveString);

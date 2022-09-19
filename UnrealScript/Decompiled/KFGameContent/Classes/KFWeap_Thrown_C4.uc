@@ -363,7 +363,7 @@ defaultproperties
     FireModeIconPaths=/* Array type was not detected. */
     InventoryGroup=EInventoryGroup.IG_Equipment
     InventorySize=3
-    GroupPriority=25
+    GroupPriority=11
     WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
     MagazineCapacity=1
     AmmoCost=/* Array type was not detected. */

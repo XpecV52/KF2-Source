@@ -25,7 +25,7 @@ defaultproperties
     MeshFOV=75
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
-    IronSightPosition=(X=5,Y=0,Z=0)
+    IronSightPosition=(X=5,Y=-0.025,Z=-0.03)
     DOF_FG_FocalRadius=25
     GroupPriority=75
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_Benelli'

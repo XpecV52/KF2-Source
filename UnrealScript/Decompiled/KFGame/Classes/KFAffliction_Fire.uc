@@ -15,16 +15,22 @@ var protected export editinline ParticleSystemComponent BurningEffect;
 var float MicrowaveParamValue;
 var protected AkEvent OnFireSound;
 var protected AkEvent OnFireEndSound;
+var transient KFPlayerController Instigator;
 
 function Init(KFPawn P, KFAfflictionManager.EAfflictionType Type, KFPerk InstigatorPerk)
 {
     super.Init(P, Type, InstigatorPerk);
     FireFullyCharredDuration = P.AfflictionHandler.FireFullyCharredDuration;
     FireCharPercentThreshhold = P.AfflictionHandler.FireCharPercentThreshhold;
+    if(InstigatorPerk != none)
+    {
+        Instigator = InstigatorPerk.OwnerPC;
+    }
 }
 
-function Activate()
+function Activate(optional class<KFDamageType> DamageType)
 {
+    DamageType = none;
     if(!PawnOwner.bPlayedDeath)
     {
         super.Activate();

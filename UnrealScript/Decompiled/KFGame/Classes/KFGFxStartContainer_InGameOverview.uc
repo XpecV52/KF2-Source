@@ -312,17 +312,25 @@ function UpdateOverviewInGame()
             LastDifficultyIndex = byte(CurrentGameDifficulty);
         }
         CurrentLengthIndex = KFGRI.GameLength;
-        if(LastLengthIndex != CurrentLengthIndex)
+        if(KFGRI.bIsWeeklyMode && KFGRI.CurrentWeeklyIndex == 16)
         {
-            if(KFGRI.GameClass.Name == ObjectiveClassName)
+            UpdateLength(Class'KFCommon_LocalizedStrings'.default.SpecialLengthString);
+            LastLengthIndex = byte(CurrentLengthIndex);            
+        }
+        else
+        {
+            if(LastLengthIndex != CurrentLengthIndex)
             {
-                UpdateLength("");                
+                if(KFGRI.GameClass.Name == ObjectiveClassName)
+                {
+                    UpdateLength("");                    
+                }
+                else
+                {
+                    UpdateLength(((bCustomLength) ? Class'KFCommon_LocalizedStrings'.default.CustomString : Class'KFCommon_LocalizedStrings'.static.GetLengthString(float(CurrentLengthIndex))));
+                }
+                LastLengthIndex = byte(CurrentLengthIndex);
             }
-            else
-            {
-                UpdateLength(((bCustomLength) ? Class'KFCommon_LocalizedStrings'.default.CustomString : Class'KFCommon_LocalizedStrings'.static.GetLengthString(float(CurrentLengthIndex))));
-            }
-            LastLengthIndex = byte(CurrentLengthIndex);
         }
         UpdateServerType(Class'KFCommon_LocalizedStrings'.static.GetServerTypeString(float(int(KFGRI.bCustom))));
         if(StartMenu.OptionsComponent != none)

@@ -60,6 +60,15 @@ event PreBeginPlay()
     }
 }
 
+event PostBeginPlay()
+{
+    super.PostBeginPlay();
+    if(OutbreakEvent.ActiveEvent.TimeBetweenWaves >= 0)
+    {
+        TimeBetweenWaves = int(OutbreakEvent.ActiveEvent.TimeBetweenWaves);
+    }
+}
+
 function CreateOutbreakEvent()
 {
     local KFGameEngine KGE;
@@ -70,7 +79,7 @@ function CreateOutbreakEvent()
     {
         ActiveEventIdx = KGE.GetWeeklyEventIndex() % OutbreakEvent.SetEvents.Length;
     }
-    OutbreakEvent.SetActiveEvent(ActiveEventIdx);
+    ActiveEventIdx = OutbreakEvent.SetActiveEvent(ActiveEventIdx);
 }
 
 function bool UsesModifiedDifficulty()
@@ -106,6 +115,25 @@ function SetPickupItemList()
     local KFPickupFactory_Item ItemFactory;
     local int Idx;
 
+    if(OutbreakEvent.ActiveEvent.bOnlyArmorItemPickup)
+    {
+        foreach AllActors(Class'KFPickupFactory_Item', ItemFactory)
+        {
+            Idx = ItemFactory.ItemPickups.Length - 1;
+            J0x7A:
+
+            if(Idx >= 0)
+            {
+                if(ItemFactory.ItemPickups[Idx].ItemClass.Name != 'KFInventory_Armor')
+                {
+                    ItemFactory.ItemPickups.Remove(Idx, 1;
+                }
+                -- Idx;
+                goto J0x7A;
+            }            
+        }        
+        return;
+    }
     if(OutbreakEvent.ActiveEvent.TraderWeaponList != none)
     {
         foreach AllActors(Class'KFPickupFactory_Item', ItemFactory)
@@ -119,7 +147,7 @@ function SetPickupItemList()
             foreach OutbreakEvent.ActiveEvent.TraderWeaponList.SaleItems(TraderItem,)
             {
                 Idx = ItemFactory.ItemPickups.Length - 1;
-                J0x16C:
+                J0x28F:
 
                 if(Idx >= 0)
                 {
@@ -128,7 +156,7 @@ function SetPickupItemList()
                         ItemFactory.ItemPickups.Remove(Idx, 1;
                     }
                     -- Idx;
-                    goto J0x16C;
+                    goto J0x28F;
                 }                
             }                        
         }        
@@ -236,6 +264,10 @@ protected function ScoreMonsterKill(Controller Killer, Controller Monster, KFPaw
             }
         }
     }
+    if(OutbreakEvent.ActiveEvent.bGunGameMode)
+    {
+        GunGameScoreAssistanceAfterKilling(MonsterPawn, Killer);
+    }
 }
 
 function HealAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer, optional bool bGivePowerUp)
@@ -307,6 +339,45 @@ function HealAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer, optiona
     }
 }
 
+function GunGameScoreAssistanceAfterKilling(KFPawn_Monster MonsterPawn, Controller Killer)
+{
+    local int I;
+    local KFPlayerController_WeeklySurvival KFPC_WS;
+    local array<DamageInfo> DamageHistory;
+    local KFPlayerReplicationInfo DamagerKFPRI;
+    local array<KFPlayerController> Attackers;
+
+    DamageHistory = MonsterPawn.DamageHistory;
+    I = 0;
+    J0x33:
+
+    if(I < DamageHistory.Length)
+    {
+        if((((DamageHistory[I].DamagerController != none) && DamageHistory[I].DamagerController.bIsPlayer) && DamageHistory[I].DamagerPRI.GetTeamNum() == 0) && DamageHistory[I].DamagerPRI != none)
+        {
+            DamagerKFPRI = KFPlayerReplicationInfo(DamageHistory[I].DamagerPRI);
+            if(DamagerKFPRI != none)
+            {
+                KFPC_WS = KFPlayerController_WeeklySurvival(DamagerKFPRI.Owner);
+                if((KFPC_WS != none) && KFPC_WS != Killer)
+                {
+                    if(Attackers.Find(KFPC_WS < 0)
+                    {
+                        Attackers.AddItem(KFPC_WS;
+                        if(KFPC_WS.Pawn.Health > 0)
+                        {
+                            KFPC_WS.GunGameData.Score += MonsterPawn.GunGameAssistanceScore;
+                            UpdateGunGameLevel(KFPC_WS);
+                        }
+                    }
+                }
+            }
+        }
+        ++ I;
+        goto J0x33;
+    }
+}
+
 function StartMatch()
 {
     super.StartMatch();
@@ -331,25 +402,26 @@ function CreateDifficultyInfo(string Options)
 
 event PostLogin(PlayerController NewPlayer)
 {
-    local KFPlayerController_WeeklySurvival KFPC;
+    local KFPlayerController_WeeklySurvival KFPC_WS;
     local KFPawn_Customization KFCustomizePawn;
 
     super(KFGameInfo).PostLogin(NewPlayer);
-    KFPC = KFPlayerController_WeeklySurvival(NewPlayer);
-    if(KFPC != none)
+    KFPC_WS = KFPlayerController_WeeklySurvival(NewPlayer);
+    if(KFPC_WS != none)
     {
-        KFPC.bUsingPermanentZedTime = OutbreakEvent.ActiveEvent.bPermanentZedTime;
-        KFPC.ZedTimeRadius = OutbreakEvent.ActiveEvent.ZedTimeRadius * OutbreakEvent.ActiveEvent.ZedTimeRadius;
-        KFPC.ZedTimeBossRadius = OutbreakEvent.ActiveEvent.ZedTimeBossRadius * OutbreakEvent.ActiveEvent.ZedTimeBossRadius;
-        KFPC.ZedTimeHeight = OutbreakEvent.ActiveEvent.ZedTimeHeight;
-        KFPC.ZedRecheckTime = OutbreakEvent.ActiveEvent.PermanentZedResetTime;
-        KFCustomizePawn = KFPawn_Customization(KFPC.Pawn);
+        KFPC_WS.bUsingPermanentZedTime = OutbreakEvent.ActiveEvent.bPermanentZedTime;
+        KFPC_WS.ZedTimeRadius = OutbreakEvent.ActiveEvent.ZedTimeRadius * OutbreakEvent.ActiveEvent.ZedTimeRadius;
+        KFPC_WS.ZedTimeBossRadius = OutbreakEvent.ActiveEvent.ZedTimeBossRadius * OutbreakEvent.ActiveEvent.ZedTimeBossRadius;
+        KFPC_WS.ZedTimeHeight = OutbreakEvent.ActiveEvent.ZedTimeHeight;
+        KFPC_WS.ZedRecheckTime = OutbreakEvent.ActiveEvent.PermanentZedResetTime;
+        KFCustomizePawn = KFPawn_Customization(KFPC_WS.Pawn);
         if(KFCustomizePawn != none)
         {
             KFCustomizePawn.IntendedHeadScale = OutbreakEvent.ActiveEvent.PlayerSpawnHeadScale;
             KFCustomizePawn.SetHeadScale(KFCustomizePawn.IntendedHeadScale, KFCustomizePawn.CurrentHeadScale);
         }
     }
+    LoadGunGameWeapons(NewPlayer);
 }
 
 function SetBossIndex()
@@ -740,7 +812,7 @@ function bool AllowPrimaryWeapon(string ClassPath)
                 return true;
             }            
         }        
-        return true;
+        return false;
     }
     return true;
 }
@@ -795,6 +867,44 @@ function bool IsPerkAllowed(class<KFPerk> PerkClass)
     return false;
 }
 
+function LoadGunGameWeapons(Controller NewPlayer)
+{
+    local int I, RandomNumber;
+    local KFPlayerController_WeeklySurvival KFPC_WS;
+    local class<Inventory> InventoryClass;
+    local Inventory Inv;
+    local KFWeapon Weapon;
+
+    if(OutbreakEvent.ActiveEvent.bGunGameMode && WorldInfo.IsConsoleBuild() == false)
+    {
+        KFPC_WS = KFPlayerController_WeeklySurvival(NewPlayer);
+        if(KFPC_WS == none)
+        {
+            return;
+        }
+        I = 0;
+        J0x95:
+
+        if(I < OutbreakEvent.ActiveEvent.GunGamePerksData.GunGameLevels.Length)
+        {
+            RandomNumber = Rand(OutbreakEvent.ActiveEvent.GunGamePerksData.GunGameLevels[I].GrantedWeapons.Length);
+            KFPC_WS.GunGameData.GunGamePreselectedWeapons.AddItem(byte(RandomNumber);
+            InventoryClass = class<KFWeapon>(DynamicLoadObject(OutbreakEvent.ActiveEvent.GunGamePerksData.GunGameLevels[I].GrantedWeapons[RandomNumber].default.WeaponClassPath, Class'Class'));
+            Inv = KFPC_WS.Pawn.InvManager.CreateInventory(InventoryClass, true);
+            if(Inv != none)
+            {
+                Weapon = KFWeapon(Inv);
+                if(Weapon != none)
+                {
+                    Weapon.GunGameRemove();
+                }
+            }
+            ++ I;
+            goto J0x95;
+        }
+    }
+}
+
 function RestartPlayer(Controller NewPlayer)
 {
     local KFPawn_Human KFPH;
@@ -802,6 +912,33 @@ function RestartPlayer(Controller NewPlayer)
     super.RestartPlayer(NewPlayer);
     KFPH = KFPawn_Human(NewPlayer.Pawn);
     OutbreakEvent.AdjustRestartedPlayer(KFPH);
+}
+
+function RestartGunGamePlayerWeapon(KFPlayerController_WeeklySurvival KFPC_WS, byte WaveToUse)
+{
+    local byte I;
+    local int CurrentGunGameWaveLevel;
+
+    super.RestartGunGamePlayerWeapon(KFPC_WS, WaveToUse);
+    ResetGunGame(KFPC_WS);
+    CurrentGunGameWaveLevel = -1;
+    I = 0;
+    J0x4A:
+
+    if(I < OutbreakEvent.ActiveEvent.GunGamePerksData.GunGameRespawnLevels.Length)
+    {
+        if(WaveToUse >= OutbreakEvent.ActiveEvent.GunGamePerksData.GunGameRespawnLevels[I].Wave)
+        {
+            CurrentGunGameWaveLevel = OutbreakEvent.ActiveEvent.GunGamePerksData.GunGameRespawnLevels[I].Level - 1;
+        }
+        ++ I;
+        goto J0x4A;
+    }
+    if(CurrentGunGameWaveLevel >= 0)
+    {
+        KFPC_WS.GunGameData.Score = OutbreakEvent.ActiveEvent.GunGamePerksData.GunGameLevels[CurrentGunGameWaveLevel].RequiredScore;
+        UpdateGunGameLevel(KFPC_WS);
+    }
 }
 
 function DoDeathExplosion(Pawn DeadPawn, KFGameExplosion ExplosionTemplate, class<KFPawn> ExplosionIgnoreClass)
@@ -857,6 +994,145 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
             Streak = ((KFPC.GoompaStreakBonus < KFPC.MaxGoompaStreak) ? KFPC.GoompaStreakBonus : KFPC.MaxGoompaStreak);
             InDamage *= (float(1) + (OutbreakEvent.ActiveEvent.GoompaStreakDamage * float(Streak)));
         }
+    }
+}
+
+function ResetGunGame(KFPlayerController_WeeklySurvival KFPC_WS)
+{
+    KFPC_WS.GunGameData.Score = 0;
+    KFPC_WS.GunGameData.Level = 0;
+    KFPC_WS.UpdateGunGameWidget(0, OutbreakEvent.ActiveEvent.GunGamePerksData.GunGameLevels[0].RequiredScore, 0, OutbreakEvent.ActiveEvent.GunGamePerksData.GunGameLevels.Length);
+}
+
+function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, class<DamageType> DamageType)
+{
+    local KFPawn_Monster KFPM;
+    local KFPlayerController_WeeklySurvival KFPC_WS;
+
+    super(GameInfo).NotifyKilled(Killer, Killed, KilledPawn, DamageType);
+    if(!OutbreakEvent.ActiveEvent.bGunGameMode)
+    {
+        return;
+    }
+    KFPM = KFPawn_Monster(KilledPawn);
+    KFPC_WS = KFPlayerController_WeeklySurvival(Killer);
+    if((KFPM != none) && KFPC_WS != none)
+    {
+        if(KFPC_WS.Pawn.Health > 0)
+        {
+            KFPC_WS.GunGameData.Score += KFPM.GunGameKilledScore;
+            UpdateGunGameLevel(KFPC_WS);
+        }        
+    }
+    else
+    {
+        KFPC_WS = KFPlayerController_WeeklySurvival(Killed);
+        if(KFPC_WS != none)
+        {
+            ResetGunGame(KFPC_WS);
+        }
+    }
+}
+
+function GunGameLevelGrantWeapon(KFPlayerController_WeeklySurvival KFPC_WS, class<KFWeaponDefinition> ToGrantWeaponDefinition)
+{
+    local class<Inventory> InventoryClass;
+    local Inventory Inv;
+    local KFWeapon KFW;
+
+    InventoryClass = class<KFWeapon>(DynamicLoadObject(ToGrantWeaponDefinition.default.WeaponClassPath, Class'Class'));
+    Inv = KFPC_WS.Pawn.InvManager.CreateInventory(InventoryClass, true);
+    if(Inv != none)
+    {
+        KFW = KFWeapon(Inv);
+        if(KFW != none)
+        {
+            KFW.bDropOnDeath = false;
+            KFW.bGivenAtStart = true;
+            KFW = KFInventoryManager(KFPC_WS.Pawn.InvManager).CombineWeaponsOnPickup(KFW);
+            KFW.NotifyPickedUp();
+            KFW.AmmoCount[0] = KFW.MagazineCapacity[0];
+            KFW.AddAmmo(KFW.GetMaxAmmoAmount(0));
+            KFW.AmmoCount[1] = KFW.MagazineCapacity[1];
+            KFW.AddSecondaryAmmo(KFW.GetMaxAmmoAmount(1));
+            KFPC_WS.Pawn.InvManager.SetCurrentWeapon(KFW);
+        }
+    }
+}
+
+function UpdateGunGameLevel(KFPlayerController_WeeklySurvival KFPC_WS)
+{
+    local byte CurrentLevel, InitialLevel, RandomNumber;
+    local class<KFWeaponDefinition> ToGrantWeaponDefinition;
+    local GunGamePerkData PerkData;
+    local KFWeapon CurrentWeapon;
+    local bool found_base_weapon;
+
+    if(!OutbreakEvent.ActiveEvent.bGunGameMode)
+    {
+        return;
+    }
+    PerkData = OutbreakEvent.ActiveEvent.GunGamePerksData;
+    InitialLevel = KFPC_WS.GunGameData.Level;
+    CurrentLevel = KFPC_WS.GunGameData.Level;
+    J0xEA:
+
+    if((CurrentLevel < PerkData.GunGameLevels.Length) && KFPC_WS.GunGameData.Score >= PerkData.GunGameLevels[CurrentLevel].RequiredScore)
+    {
+        ++ CurrentLevel;
+        goto J0xEA;
+    }
+    if(CurrentLevel > (PerkData.GunGameLevels.Length - 1))
+    {
+        KFPC_WS.UpdateGunGameWidget(KFPC_WS.GunGameData.Score, -1, PerkData.GunGameLevels.Length, PerkData.GunGameLevels.Length);        
+    }
+    else
+    {
+        KFPC_WS.UpdateGunGameWidget(KFPC_WS.GunGameData.Score, PerkData.GunGameLevels[CurrentLevel].RequiredScore, CurrentLevel, PerkData.GunGameLevels.Length);
+    }
+    if(InitialLevel != CurrentLevel)
+    {
+        if(CurrentLevel > (PerkData.GunGameLevels.Length - 1))
+        {
+            if(bGunGamePlayerOnLastGun == false)
+            {
+                KFPC_WS.GunGameData.GiveWeaponMaster = true;
+            }
+            bGunGamePlayerOnLastGun = true;
+            KFPC_WS.PlayGunGameMessage(true);            
+        }
+        else
+        {
+            KFPC_WS.PlayGunGameMessage(false);
+        }
+        KFPC_WS.GunGameData.Level = CurrentLevel;
+        found_base_weapon = false;
+        foreach KFPC_WS.Pawn.InvManager.InventoryActors(Class'KFWeapon', CurrentWeapon)
+        {
+            if(((!Class'KFPerk'.static.IsKnife(CurrentWeapon) && !Class'KFPerk_SWAT'.static.Is9mm(CurrentWeapon)) && !Class'KFPerk'.static.IsSyringe(CurrentWeapon)) && !Class'KFPerk'.static.IsWelder(CurrentWeapon))
+            {
+                CurrentWeapon.GunGameRemove();
+            }
+            if(Class'KFPerk_SWAT'.static.Is9mm(CurrentWeapon))
+            {
+                found_base_weapon = true;
+            }            
+        }        
+        if((CurrentLevel > 1) && found_base_weapon == false)
+        {
+            ToGrantWeaponDefinition = PerkData.GunGameLevels[0].GrantedWeapons[0];
+            GunGameLevelGrantWeapon(KFPC_WS, ToGrantWeaponDefinition);
+        }
+        if(WorldInfo.IsConsoleBuild())
+        {
+            RandomNumber = byte(Rand(PerkData.GunGameLevels[CurrentLevel - 1].GrantedWeapons.Length));            
+        }
+        else
+        {
+            RandomNumber = KFPC_WS.GunGameData.GunGamePreselectedWeapons[CurrentLevel - 1];
+        }
+        ToGrantWeaponDefinition = PerkData.GunGameLevels[CurrentLevel - 1].GrantedWeapons[RandomNumber];
+        GunGameLevelGrantWeapon(KFPC_WS, ToGrantWeaponDefinition);
     }
 }
 

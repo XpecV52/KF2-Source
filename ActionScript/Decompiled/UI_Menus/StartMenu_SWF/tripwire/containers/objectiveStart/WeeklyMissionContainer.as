@@ -89,6 +89,11 @@ package tripwire.containers.objectiveStart
             this.vaultDoshTextField.text = !!param1.vaultDosh ? param1.vaultDosh : "";
         }
         
+        public function set weeklyDescription(param1:String) : *
+        {
+            this.weeklyDescriptionTextField.text = param1;
+        }
+        
         public function set vaultDoshReward(param1:int) : void
         {
             this.vaultDoshValueField.text = param1.toString();

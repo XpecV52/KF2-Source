@@ -15,11 +15,13 @@ BonusDoshString="RECOMPENSAS"
 LengthStrings[0]="Curto (4 levas)"
 LengthStrings[1]="Médio (7 levas)"
 LengthStrings[2]="Longo (10 levas)"
-
+SpecialLengthString="Especial"
 ServerTypeStrings[0]="Ranqueado"
 ServerTypeStrings[1]="Ranqueado - Estoque"
 ServerTypeStrings[2]="Ranqueado - Personalizado"
 ServerTypeStrings[3]="Não ranqueado"
+WeaponLevelString="NÍVEL DE ARMA"
+GunPointsString="PONTOS DE ARMAS"
 
 PermissionStrings[0]="Público"
 PermissionStrings[1]="Particular com senha"
@@ -740,6 +742,8 @@ ZedSupportValue="Dano indireto"
 ZednnihilationValue="Abates na leva"
 ZedStomper="Zed Pisoteador"
 ZedStomperValue="Zeds Pisoteados"
+WeaponMaster="Mestre de armas"
+WeaponMasterValue="Primeiro jogador a receber a arma final"
 
 EPB_Healing="Cura"
 EPB_Kills="Abates"
@@ -2041,7 +2045,7 @@ SplashDamage="Onda de calor"
 SplashDamageDescription="Zeds atingidos à queima-roupa tropeçarão e cairão."
 
 Inferno="HORA DOS ZEDS - Inferno"
-InfernoDescription="Durante a hora dos Zeds, todo Zed atingido por fogo sofre 30% de lentidão e recebe 50% a mais em dano de fogo."
+InfernoDescription="Durante a Hora dos Zeds, seu dano de fogo ao longo do tempo se espalha para todos os Zeds ao redor."
 
 Scorch="HORA DOS ZEDS - Piromaníaco"
 ScorchDescription="Durante a hora dos Zeds, você ataca com armas de classe quase que em tempo real e a munição não acaba."
@@ -2265,10 +2269,10 @@ MeleeExpert="Especialista em corpo a corpo"
 MeleeExpertDescription="Aumenta em 20% a velocidade de ataque corpo a corpo, concede 75% mais dano e movimenta 25% mais rápido ao usar qualquer arma corpo a corpo."
 
 AmmoVest="Colete de munição"
-AmmoVestDescription="Carrega até 15% mais munição de todas as armas e as granadas se tornam granadas de cura."
+AmmoVestDescription="Carrega até 15% mais munição para todas as armas e você pode selecionar uma granada de cura."
 
 BigPockets="Coldre"
-BigPocketsDescription="Aumenta 5 de capacidade de carregamento e suas granadas se tornam coquetéis molotov."
+BigPocketsDescription="Aumenta em 5 a capacidade de carga e você poderá selecionar um coquetel molotov."
 
 ZedShrapnel="Explozeds espontâneas"
 ZedShrapnelDescription="Zeds abatidos têm 30% de chance de explodir, causando dano e atordoando os Zeds próximos."
@@ -2898,6 +2902,20 @@ AllCompleteRewardDescriptionString="Compras de Feriado | Companheiro | Precioso"
 ChanceDropDescriptionStrings[0]="Bilhete do Krampus"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado do Krampus"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2022]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Não são os melhores turistas",DescriptionString="Mate 1.500 Zeds em qualquer mapa ou modo.")
+SpecialEventObjectiveInfoList[1]=(TitleString="Resumo semanal",DescriptionString="Conclua o Semanal na Plataforma")
+SpecialEventObjectiveInfoList[2]=(TitleString="Melhor surfista",DescriptionString="Conclua 100 levas na Plataforma")
+SpecialEventObjectiveInfoList[3]=(TitleString="Ao mar!",DescriptionString="Jogue 50 Zeds ao mar na Plataforma")
+SpecialEventObjectiveInfoList[4]=(TitleString="Mar grande, grande",DescriptionString="Conclua a 15ª leva no modo Difícil Infinito ou maior na Plataforma")
+
+AllCompleteRewardDescriptionString="Mar Profundo | Tridente | Precioso"
+
+ChanceDropDescriptionStrings[0]="Bilhete de Verão"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado de Verão"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3068,6 +3086,15 @@ ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
 
+[GunGame KFWeeklyOutBreakInformation]
+FriendlyName="Ascensão do arsenal"
+DescriptionStrings[0]="Aumente o nível de sua arma!"
+DescriptionStrings[1]="Duração: especial"
+ModifierDescriptions[0]="Os comerciantes não estão operando. Comece apenas com uma faca. Para obter armas melhores, mate e ganhe pontos de armas. Apenas Sobreviventes permitidos. Selecione o modo de jogo Semanal na página Organizar Partida. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
 ;============================================
 ; Map Localization
 ;============================================
@@ -3594,6 +3621,8 @@ DisplayName="Netherhold"
 [KF-CarillonHamlet KFMapSummary]
 DisplayName="Carillon Hamlet"
 
+[KF-Rig KFMapSummary]
+DisplayName="Plataforma"
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% encontrou um item coletável. Faltam %y% para encontrar..."

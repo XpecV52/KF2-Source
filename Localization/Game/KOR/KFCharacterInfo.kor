@@ -47,6 +47,7 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
+BodyMesh15="심해 탐사가 의상"
 HeadMesh0="가스 마스크"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -169,6 +170,14 @@ BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
 
+[CHR_MrsFoster_archetype.BodyMesh15]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="화이트"
 HeadSkin1="그린"
@@ -257,6 +266,7 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
+BodyMesh15="심해 탐사가 의상"
 HeadMesh0="수염의 힘!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -384,6 +394,13 @@ BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+[CHR_Jagerhorn_archetype.BodyMesh15]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="스웨덴 금발"
@@ -486,6 +503,7 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
+BodyMesh15="심해 탐사가 의상"
 HeadMesh0="스컬리 마스크"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -612,6 +630,13 @@ BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+[CHR_DJSkully_archetype.BodyMesh15]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="가장 어두운 블랙"
@@ -661,6 +686,7 @@ BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
 BodyMesh15="연휴 쇼핑 의상"
+BodyMesh16="심해 탐사가 의상"
 HeadMesh0="헤어"
 
 [chr_briar_archetype.BodyMesh0]
@@ -793,6 +819,13 @@ BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+[CHR_briar_archetype.BodyMesh16]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="오리지널"
@@ -836,6 +869,7 @@ BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
 BodyMesh15="연휴 쇼핑 의상"
+BodyMesh16="심해 탐사가 의상"
 HeadMesh0="가스 마스크"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -973,6 +1007,13 @@ BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+[CHR_MrFoster_archetype.BodyMesh16]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="오리지널 화이트"
@@ -1136,6 +1177,7 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
+BodyMesh15="심해 탐사가 의상"
 HeadMesh0="페이스"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1260,6 +1302,13 @@ BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="도노반"
@@ -1302,6 +1351,7 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="헤어"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1428,6 +1478,13 @@ BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+[CHR_Alberts_archetype.BodyMesh15]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="그레이"
@@ -2330,6 +2387,7 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
+BodyMesh15="심해 탐사가 의상"
 HeadMesh0="페이스"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2465,6 +2523,13 @@ BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+[CHR_Masterson_archetype.BodyMesh15]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 
 [CHR_Tanaka_Archetype]
 CharacterName="하야토 타나카"
@@ -2485,6 +2550,7 @@ BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
 BodyMesh15="연휴 쇼핑 의상"
+BodyMesh16="심해 탐사가 의상"
 HeadMesh0="헤어"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2627,6 +2693,13 @@ BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+[CHR_Tanaka_archetype.BodyMesh16]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="헬멧"
@@ -2673,6 +2746,7 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
+BodyMesh15="심해 탐사가 의상"
 HeadMesh0="모호크"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2809,6 +2883,13 @@ BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
 
+[CHR_Ana_archetype.BodyMesh15]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 안경"
 AttachmentSkin0="애너그리프 3D"
@@ -3001,6 +3082,7 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
+BodyMesh15="심해 탐사가 의상"
 HeadMesh0="페이스"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3129,6 +3211,13 @@ BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
 
+[CHR_alan_archetype.BodyMesh15]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
 HeadSkin1="진저! 정말?"
@@ -3164,6 +3253,7 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
+BodyMesh15="심해 탐사가 의상"
 HeadMesh0="헤어"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3288,6 +3378,13 @@ BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+[CHR_strasser_archetype.BodyMesh15]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="다크 스틸"
@@ -3468,6 +3565,7 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
+BodyMesh15="심해 탐사가 의상"
 HeadMesh0="기본 머리"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3596,6 +3694,14 @@ BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+
+[CHR_rockabilly_archetype.BodyMesh15]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="블랙"
@@ -7138,3 +7244,19 @@ AttachmentSkin0="프레셔스"
 [Cosmetic_BossTrophy_Backpack_ARCH]
 Attachment="보스 트로피 백팩"
 AttachmentSkin0="프레셔스"
+[Cosmetic_Supply_Backpack_ARCH]
+Attachment="S물자 백팩"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_DeepSea_Trident_ARCH]
+Attachment="심해 트라이던트"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_DeepSea_Helmet_ARCH]
+Attachment="심해 헬멧"
+AttachmentSkin0="안티크"
+AttachmentSkin1="아쿠아"
+AttachmentSkin2="코랄"
+AttachmentSkin3="펄"
+AttachmentSkin4="블랙 씰"
+AttachmentSkin5="프레셔스"

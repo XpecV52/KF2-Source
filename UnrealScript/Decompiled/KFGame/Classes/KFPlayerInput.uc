@@ -1556,12 +1556,15 @@ function Vector GetBestAutoTargetLocation(Pawn CheckTarget, out name OutBoneName
     KFP = KFPawn(CheckTarget);
     if(KFP != none)
     {
-        KFP.GetAutoTargetBones(WeakBones, NormalBones);
+        if(!KFP.GetAutoTargetBones(WeakBones, NormalBones))
+        {
+            return vect(0, 0, 0);
+        }
         Outer.GetPlayerViewPoint(CamLoc, CamRot);
         CamRot += Outer.WeaponBufferRotation;
         CamDir = vector(CamRot);
         I = 0;
-        J0xF4:
+        J0x107:
 
         if(I < WeakBones.Length)
         {
@@ -1583,10 +1586,10 @@ function Vector GetBestAutoTargetLocation(Pawn CheckTarget, out name OutBoneName
                 }
             }
             ++ I;
-            goto J0xF4;
+            goto J0x107;
         }
         I = 0;
-        J0x2ED:
+        J0x300:
 
         if(I < NormalBones.Length)
         {
@@ -1602,7 +1605,7 @@ function Vector GetBestAutoTargetLocation(Pawn CheckTarget, out name OutBoneName
                 return TestLoc;
             }
             ++ I;
-            goto J0x2ED;
+            goto J0x300;
         }
     }
     OutBoneName = 'None';

@@ -515,18 +515,22 @@ function ReceiveWarning(Pawn shooter, float projSpeed, Vector FireDir);
 
 function ReceiveProjectileWarning(Projectile Proj);
 
-exec function SwitchToBestWeapon(optional bool bForceNewWeapon)
+exec function SwitchToBestWeapon(optional bool bForceNewWeapon, optional bool check_9mm_logic)
 {
+    check_9mm_logic = false;
     if((Pawn == none) || Pawn.InvManager == none)
     {
         return;
     }
-    Pawn.InvManager.SwitchToBestWeapon(bForceNewWeapon);
+    Pawn.InvManager.SwitchToBestWeapon(bForceNewWeapon, check_9mm_logic);
 }
 
 reliable client simulated function ClientSwitchToBestWeapon(optional bool bForceNewWeapon)
 {
-    SwitchToBestWeapon(bForceNewWeapon);
+    local bool check_9mm_logic;
+
+    check_9mm_logic = true;
+    SwitchToBestWeapon(bForceNewWeapon, check_9mm_logic);
 }
 
 function NotifyChangedWeapon(Weapon PrevWeapon, Weapon NewWeapon);

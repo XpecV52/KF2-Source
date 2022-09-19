@@ -70,6 +70,7 @@ defaultproperties
       ObjectArchetype=AkComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:HeadshotAkComponent0'
    End Object
    HeadShotAkComponent=HeadshotAkComponent0
+   ShrinkEffectModifier=0.300000
    LocalizationKey="KFPawn_ZedFleshpoundMini"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:ThirdPersonHead0'
       ReplacementPrimitive=None
@@ -91,6 +92,8 @@ defaultproperties
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
       AfflictionClasses(11)=()
+      AfflictionClasses(12)=()
+      AfflictionClasses(13)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -108,6 +111,8 @@ defaultproperties
    IncapSettings(9)=()
    IncapSettings(10)=(Vulnerability=(0.550000))
    IncapSettings(11)=()
+   IncapSettings(12)=()
+   IncapSettings(13)=()
    SprintSpeed=650.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'kfgamecontent.Default__KFPawn_ZedFleshpound:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True

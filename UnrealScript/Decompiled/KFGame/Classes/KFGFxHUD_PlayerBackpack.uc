@@ -16,6 +16,7 @@ var bool bWasUsingAltFireMode;
 var bool bUsesSecondaryAmmo;
 var bool bUsesGrenadesAsSecondaryAmmo;
 var bool bUsesSecondaryAmmoAltHUD;
+var transient bool bLastDoshVisibility;
 var string LastSpecialAmmo;
 var int LastFlashlightBattery;
 var int LastGrenades;
@@ -23,6 +24,7 @@ var int LastSavedBuild;
 var int LastMaxWeight;
 var int LastWeight;
 var byte LastSecondaryAmmo;
+var transient byte LastGrenadeIndex;
 var int LastSecondarySpareAmmo;
 var class<KFPerk> LastPerkClass;
 var KFWeapon LastWeapon;
@@ -68,7 +70,18 @@ function UpdateWeight()
 function UpdateDosh()
 {
     local int CurrentDosh, DeltaDosh;
+    local bool bCanUseDosh;
 
+    bCanUseDosh = MyKFPC.CanUseDosh();
+    if(bCanUseDosh != bLastDoshVisibility)
+    {
+        UpdateDoshVisibility(bCanUseDosh);
+        bLastDoshVisibility = bCanUseDosh;
+    }
+    if(!bCanUseDosh)
+    {
+        return;
+    }
     if(MyKFPC.PlayerReplicationInfo != none)
     {
         CurrentDosh = int(MyKFPC.PlayerReplicationInfo.Score);
@@ -78,6 +91,18 @@ function UpdateDosh()
             SetInt("backpackDosh", DeltaDosh);
             LastDosh = CurrentDosh;
         }
+    }
+}
+
+function UpdateDoshVisibility(bool Visible)
+{
+    if(Visible)
+    {
+        SetBool("DoshSetVisibility", true);        
+    }
+    else
+    {
+        SetBool("DoshSetVisibility", false);
     }
 }
 
@@ -100,6 +125,15 @@ function UpdateGrenades()
             SetString("backpackGrenadeType", "img://" $ MyKFPC.CurrentPerk.GetGrenadeImagePath());
             LastPerkClass = MyKFPC.CurrentPerk.Class;
             LastSavedBuild = MyKFPC.CurrentPerk.GetSavedBuild();
+            LastGrenadeIndex = MyKFPC.CurrentPerk.GetGrenadeSelectedIndex();            
+        }
+        else
+        {
+            if(MyKFPC.CurrentPerk.GetGrenadeSelectedIndex() != LastGrenadeIndex)
+            {
+                SetString("backpackGrenadeType", "img://" $ MyKFPC.CurrentPerk.GetGrenadeImagePath());
+                LastGrenadeIndex = MyKFPC.CurrentPerk.GetGrenadeSelectedIndex();
+            }
         }
     }
     if(CurrentGrenades != LastGrenades)
@@ -277,6 +311,7 @@ function SetFlashlightBattery(int BatteryCharge, bool bIsOn)
 
 defaultproperties
 {
+    bLastDoshVisibility=true
     LastMaxWeight=-1
     LastWeight=-1
     DefaultColor=(Multiply=(R=1,G=1,B=1,A=1),Add=(R=0,G=0,B=0,A=0))

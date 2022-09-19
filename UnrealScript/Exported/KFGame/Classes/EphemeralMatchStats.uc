@@ -95,7 +95,8 @@ struct AARAward
 var array<AARAward> TeamAwardList;
 
 enum ETeamAwards
-{
+{	
+	ETA_WeaponMaster,
 	ETA_ZedStomper,
 	ETA_MedicineMaster,
 	ETA_ZedSlayer,
@@ -1156,6 +1157,9 @@ static function GetTeamAward(ETeamAwards AwardIndex, out AARAward TempAwardObjec
 		case ETA_ZedStomper:
 			Give_ZedStomper(TempAwardObject, KFPCArray);
 			break;
+		case ETA_WeaponMaster:
+			GiveWeaponMaster(TempAwardObject, KFPCArray);
+			break;
 	}
 }
 
@@ -1469,6 +1473,27 @@ static function Give_ZedStomper(out AARAward outAward, const out Array<KFPlayerC
 	}
 }
 
+static function GiveWeaponMaster(out AARAward outAward, const out Array<KFPlayerController> KFPCArray)
+{
+	local int i;
+	local KFPlayerController_WeeklySurvival KFPC_WS;
+
+	for(i = 0; i < KFPCArray.Length; i++)
+	{
+		KFPC_WS = KFPlayerController_WeeklySurvival(KFPCArray[i]);
+		if (KFPC_WS != none)
+		{
+			if (KFPC_WS.GunGameData.GiveWeaponMaster)
+			{
+				outAward.PRI = KFPCArray[i].PlayerReplicationInfo;
+				outAward.DisplayValue = 1;
+				if (class'EphemeralMatchStats'.default.bShowMatchStatsLogging) LogInternal(KFPCArray[i].PlayerReplicationInfo.PlayerName @"Weapon Master");
+				return;
+			}
+		}
+	}
+}
+
 function ReceiveAwardInfo(byte AwardID, PlayerReplicationInfo PRI, int Value)
 {
 	TeamAwardList[AwardID].PRI = PRI;
@@ -1477,21 +1502,22 @@ function ReceiveAwardInfo(byte AwardID, PlayerReplicationInfo PRI, int Value)
 
 defaultproperties
 {
-   TeamAwardList(0)=(IconPath="UI_Award_Team.UI_Award_Team-ZedStomper",TitleIdentifier="ZedStomper",ValueIdentifier="ZedStomperValue")
-   TeamAwardList(1)=(IconPath="UI_Award_Team.UI_Award_Team-Healing",TitleIdentifier="MedicineMaster",ValueIdentifier="MedicineMasterValue")
-   TeamAwardList(2)=(IconPath="UI_Award_Team.UI_Award_Team-Kills",TitleIdentifier="ZedSlayer",ValueIdentifier="ZedSlayerValue")
-   TeamAwardList(3)=(IconPath="UI_Award_Team.UI_Award_Team-Assists",TitleIdentifier="Enforcer",ValueIdentifier="EnforcerValue")
-   TeamAwardList(4)=(IconPath="UI_Award_Team.UI_Award_Team-Damage",TitleIdentifier="Destroyer",ValueIdentifier="DestroyerValue")
-   TeamAwardList(5)=(IconPath="UI_Award_Team.UI_Award_Team-Giants",TitleIdentifier="GiantSlayer",ValueIdentifier="GiantSlayerValue")
-   TeamAwardList(6)=(IconPath="UI_Award_Team.UI_Award_Team-Dosh",TitleIdentifier="MoneyBags",ValueIdentifier="MoneyBagsValue")
-   TeamAwardList(7)=(IconPath="UI_Award_Team.UI_Award_Team-Headshots",TitleIdentifier="HeadPopper",ValueIdentifier="HeadPopperValue")
-   TeamAwardList(8)=(IconPath="UI_Award_Team.UI_Award_Team-BossKO",TitleIdentifier="Dominator",ValueIdentifier="DominatorValue")
-   TeamAwardList(9)=(IconPath="ui_award_zeds.UI_Award_ZED_RawDmg",TitleIdentifier="Carnage",ValueIdentifier="CarnageValue")
-   TeamAwardList(10)=(IconPath="ui_award_zeds.UI_Award_ZED_Kills",TitleIdentifier="Closer",ValueIdentifier="CloserValue")
-   TeamAwardList(11)=(IconPath="ui_award_zeds.UI_Award_ZED_Assists",TitleIdentifier="ComboMaker",ValueIdentifier="ComboMakerValue")
-   TeamAwardList(12)=(IconPath="ui_award_zeds.UI_Award_ZED_CC",TitleIdentifier="Grabby",ValueIdentifier="GrabbyValue")
-   TeamAwardList(13)=(IconPath="ui_award_zeds.UI_Award_ZED_SupportAoE",TitleIdentifier="ZedSupport",ValueIdentifier="ZedSupportValue")
-   TeamAwardList(14)=(IconPath="ui_award_zeds.UI_Award_ZED_MostKills",TitleIdentifier="Zednnihilation",ValueIdentifier="ZednnihilationValue")
+   TeamAwardList(0)=(IconPath="UI_Award_Team.UI_Award_Team_GunMode",TitleIdentifier="WeaponMaster",ValueIdentifier="WeaponMasterValue")
+   TeamAwardList(1)=(IconPath="UI_Award_Team.UI_Award_Team-ZedStomper",TitleIdentifier="ZedStomper",ValueIdentifier="ZedStomperValue")
+   TeamAwardList(2)=(IconPath="UI_Award_Team.UI_Award_Team-Healing",TitleIdentifier="MedicineMaster",ValueIdentifier="MedicineMasterValue")
+   TeamAwardList(3)=(IconPath="UI_Award_Team.UI_Award_Team-Kills",TitleIdentifier="ZedSlayer",ValueIdentifier="ZedSlayerValue")
+   TeamAwardList(4)=(IconPath="UI_Award_Team.UI_Award_Team-Assists",TitleIdentifier="Enforcer",ValueIdentifier="EnforcerValue")
+   TeamAwardList(5)=(IconPath="UI_Award_Team.UI_Award_Team-Damage",TitleIdentifier="Destroyer",ValueIdentifier="DestroyerValue")
+   TeamAwardList(6)=(IconPath="UI_Award_Team.UI_Award_Team-Giants",TitleIdentifier="GiantSlayer",ValueIdentifier="GiantSlayerValue")
+   TeamAwardList(7)=(IconPath="UI_Award_Team.UI_Award_Team-Dosh",TitleIdentifier="MoneyBags",ValueIdentifier="MoneyBagsValue")
+   TeamAwardList(8)=(IconPath="UI_Award_Team.UI_Award_Team-Headshots",TitleIdentifier="HeadPopper",ValueIdentifier="HeadPopperValue")
+   TeamAwardList(9)=(IconPath="UI_Award_Team.UI_Award_Team-BossKO",TitleIdentifier="Dominator",ValueIdentifier="DominatorValue")
+   TeamAwardList(10)=(IconPath="ui_award_zeds.UI_Award_ZED_RawDmg",TitleIdentifier="Carnage",ValueIdentifier="CarnageValue")
+   TeamAwardList(11)=(IconPath="ui_award_zeds.UI_Award_ZED_Kills",TitleIdentifier="Closer",ValueIdentifier="CloserValue")
+   TeamAwardList(12)=(IconPath="ui_award_zeds.UI_Award_ZED_Assists",TitleIdentifier="ComboMaker",ValueIdentifier="ComboMakerValue")
+   TeamAwardList(13)=(IconPath="ui_award_zeds.UI_Award_ZED_CC",TitleIdentifier="Grabby",ValueIdentifier="GrabbyValue")
+   TeamAwardList(14)=(IconPath="ui_award_zeds.UI_Award_ZED_SupportAoE",TitleIdentifier="ZedSupport",ValueIdentifier="ZedSupportValue")
+   TeamAwardList(15)=(IconPath="ui_award_zeds.UI_Award_ZED_MostKills",TitleIdentifier="Zednnihilation",ValueIdentifier="ZednnihilationValue")
    PersonalBestList(0)=(IconPath="UI_Award_PersonalSolo.UI_Award_PersonalSolo-Knife",TitleIdentifier="EPB_KnifeKills",ValueIdentifier="EPB_KnifeKillsValue")
    PersonalBestList(1)=(IconPath="UI_Award_PersonalSolo.UI_Award_PersonalSolo-Pistol",TitleIdentifier="EPB_PistolKills",ValueIdentifier="EPB_PistolKillsValue")
    PersonalBestList(2)=(IconPath="UI_Award_PersonalMulti.UI_Award_PersonalMulti-Headshots",TitleIdentifier="EPB_HeadShots",ValueIdentifier="EPB_HeadShotsValue")

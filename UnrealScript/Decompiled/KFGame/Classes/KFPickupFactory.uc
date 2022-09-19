@@ -21,16 +21,28 @@ var transient bool bKismetEnabled;
 /** [KISMET ONLY] Time, in seconds, that it will take this pickup to respawn again after being picked up */
 var() float RespawnTime<EditCondition=bUseRespawnTimeOverride|ClampMin=1.0|Multiple=1.0>;
 
+function bool CanUsePickup()
+{
+    return true;
+}
+
 function Reset()
 {
-    if(bKismetDriven)
+    if(CanUsePickup())
     {
-        SetInitialState();        
+        if(bKismetDriven)
+        {
+            SetInitialState();            
+        }
+        else
+        {
+            bToBeActivated = false;
+            GotoState('Pickup');
+        }        
     }
     else
     {
-        bToBeActivated = false;
-        GotoState('Pickup');
+        SetPickupHidden();
     }
 }
 

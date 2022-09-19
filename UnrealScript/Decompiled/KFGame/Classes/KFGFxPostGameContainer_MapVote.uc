@@ -7,6 +7,13 @@
  *******************************************************************************/
 class KFGFxPostGameContainer_MapVote extends KFGFxObject_Container within GFxMoviePlayer;
 
+const MapBiolapse = 'KF-Biolapse';
+const MapNightmare = 'KF-Nightmare';
+const MapPowerCore = 'KF-PowerCore_Holdout';
+const MapDescent = 'KF-TheDescent';
+const MapKrampus = 'KF-KrampusLair';
+const MapSteam = 'KF-SteamFortress';
+
 var const localized string YourVoteString;
 var const localized string TopVotesString;
 var string MapVoteString;
@@ -35,9 +42,12 @@ function SetMapOptions()
     local int I, Counter;
     local array<string> ServerMapList;
     local KFGameReplicationInfo KFGRI;
-    local bool IsWeeklyMode, IsBrokenTrader, IsBossRush;
+    local bool IsWeeklyMode, IsBrokenTrader, IsBossRush, IsGunGame, bShouldSkipMaps;
+
+    local name MapName;
 
     KFGRI = KFGameReplicationInfo(Outer.GetPC().WorldInfo.GRI);
+    bShouldSkipMaps = false;
     Counter = 0;
     if((KFGRI != none) && KFGRI.VoteCollector != none)
     {
@@ -45,18 +55,21 @@ function SetMapOptions()
         IsWeeklyMode = KFGRI.bIsWeeklyMode;
         IsBrokenTrader = KFGRI.CurrentWeeklyIndex == 11;
         IsBossRush = KFGRI.CurrentWeeklyIndex == 14;
+        IsGunGame = KFGRI.CurrentWeeklyIndex == 16;
+        bShouldSkipMaps = IsWeeklyMode && (IsBrokenTrader || IsBossRush) || IsGunGame;
         MapList = Outer.CreateArray();
         I = 0;
-        J0x191:
+        J0x20C:
 
         if(I < ServerMapList.Length)
         {
-            if((IsWeeklyMode && IsBrokenTrader || IsBossRush) && ((((ServerMapList[I] == "KF-Biolapse") || ServerMapList[I] == "KF-Nightmare") || ServerMapList[I] == "KF-PowerCore_Holdout") || ServerMapList[I] == "KF-TheDescent") || ServerMapList[I] == "KF-KrampusLair")
+            MapName = name(ServerMapList[I]);
+            if(bShouldSkipMaps && ((((MapName == 'KF-Biolapse') || MapName == 'KF-Nightmare') || MapName == 'KF-PowerCore_Holdout') || MapName == 'KF-TheDescent') || MapName == 'KF-KrampusLair')
             {                
             }
             else
             {
-                if((IsWeeklyMode && IsBossRush) && ServerMapList[I] == "KF-SteamFortress")
+                if((IsWeeklyMode && IsBossRush) && MapName == 'KF-SteamFortress')
                 {                    
                 }
                 else
@@ -70,7 +83,7 @@ function SetMapOptions()
                 }
             }
             ++ I;
-            goto J0x191;
+            goto J0x20C;
         }
     }
     SetObject("mapChoices", MapList);

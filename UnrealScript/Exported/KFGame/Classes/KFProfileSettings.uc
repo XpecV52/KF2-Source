@@ -85,6 +85,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178; 
+const KFID_SurvivalStartingWeapIdx=179; 
+const KFID_SurvivalStartingGrenIdx=180; 
 #linenumber 12
 
 struct native WeaponSkinPairs
@@ -337,6 +339,8 @@ defaultproperties
    DefaultSettings(64)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=176,Data=(Type=SDT_Float,Value1=1053609165)))
    DefaultSettings(65)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=177,Data=(Type=SDT_Int32)))
    DefaultSettings(66)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=178,Data=(Type=SDT_Int32)))
+   DefaultSettings(67)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=179,Data=(Type=SDT_Int32)))
+   DefaultSettings(68)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=180,Data=(Type=SDT_Int32)))
    VersionNumber=6
    ProfileMappings(0)=(Id=100,Name="Quick Weapon Select",MappingType=PVMT_RawValue,ValueMappings=((Id=0),))
    ProfileMappings(1)=(Id=101,Name="Current Layout Index",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))
@@ -406,6 +410,8 @@ defaultproperties
    ProfileMappings(65)=(Id=177,Name="Has Tabbed To Store")
    ProfileMappings(66)=(Id=177,Name="Has Tabbed To Store")
    ProfileMappings(67)=(Id=178,Name="AllowSwitchTo9mm")
+   ProfileMappings(68)=(Id=179,Name="Survival Starting Weapon Index")
+   ProfileMappings(69)=(Id=180,Name="Survival Starting Grenade Index")
    Name="Default__KFProfileSettings"
    ObjectArchetype=OnlineProfileSettings'Engine.Default__OnlineProfileSettings'
 }

@@ -263,7 +263,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
             ++ I;
             goto J0x72E;
         }
-        if(((KFP != none) && KFGRI.bIsWeeklyMode) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12)
+        if(((KFP != none) && KFGRI.bIsWeeklyMode) && KFGRI.CurrentWeeklyIndex == 12)
         {
             NewAttachment.StaticAttachment = StaticMesh(DynamicLoadObject(ZEDCowboyHatMeshPath, Class'StaticMesh'));
             NewAttachment.AttachSocketName = KFPawn_Monster(KFP).ZEDCowboyHatAttachName;
@@ -300,7 +300,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
     if((KFP.WorldInfo.NetMode != NM_DedicatedServer) && KFPawn_Monster(KFP) != none)
     {
         I = 0;
-        J0xF4D:
+        J0xF4C:
 
         if(I < KFP.CharacterMICs.Length)
         {
@@ -314,7 +314,7 @@ simulated function SetCharacterMeshFromArch(KFPawn KFP, optional KFPlayerReplica
                 KFP.CharacterMICs[I].SetVectorParameterValue('vector_TrimColor', AppliedColor);
             }
             ++ I;
-            goto J0xF4D;
+            goto J0xF4C;
         }
     }
 }

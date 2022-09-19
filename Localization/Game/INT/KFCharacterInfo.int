@@ -47,6 +47,7 @@ BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
 BodyMesh14="Holiday Shopper Outfit"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="Gas Mask"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -169,6 +170,14 @@ BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
 
+[CHR_MrsFoster_archetype.BodyMesh15]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
+
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="White"
 HeadSkin1="Green"
@@ -257,6 +266,7 @@ BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
 BodyMesh14="Holiday Shopper Outfit"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="Beard Power!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -385,6 +395,14 @@ BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
 
+[CHR_Jagerhorn_archetype.BodyMesh15]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
+
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Swedish Blonde"
 HeadSkin1="The Black Album"
@@ -486,6 +504,7 @@ BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate"
 BodyMesh13="Reaper Outfit"
 BodyMesh14="Holiday Shopper Outfit"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="Scully Mask"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -613,6 +632,14 @@ BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
 
+[CHR_DJSkully_archetype.BodyMesh15]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
+
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Blackest Black"
 HeadSkin1="Xtra Red"
@@ -661,6 +688,7 @@ BodyMesh12="Santa Suit"
 BodyMesh13="Space Pirate Outfit"
 BodyMesh14="Reaper Outfit"
 BodyMesh15="Holiday Shopper Outfit"
+BodyMesh16="Deep Sea Explorer Outfit"
 HeadMesh0="Hair"
 
 [chr_briar_archetype.BodyMesh0]
@@ -794,6 +822,14 @@ BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
 
+[CHR_briar_archetype.BodyMesh16]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
+
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
 HeadSkin1="Highlights"
@@ -836,6 +872,7 @@ BodyMesh12="Santa Suit"
 BodyMesh13="Space Pirate Outfit"
 BodyMesh14="Reaper Outfit"
 BodyMesh15="Holiday Shopper Outfit"
+BodyMesh16="Deep Sea Explorer Outfit"
 HeadMesh0="Gas Mask"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -973,6 +1010,14 @@ BodySkin1="Elf"
 BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
+
+[CHR_MrFoster_archetype.BodyMesh16]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Original White"
@@ -1136,6 +1181,7 @@ BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
 BodyMesh14="Holiday Shopper Outfit"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="Face"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1261,6 +1307,14 @@ BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
 
+[CHR_Coleman_archetype.BodyMesh15]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
+
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
@@ -1302,6 +1356,7 @@ BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
 BodyMesh14="Holiday Shopper Outfit"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="Hair"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1428,6 +1483,14 @@ BodySkin1="Elf"
 BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
+
+[CHR_Alberts_archetype.BodyMesh15]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grey"
@@ -2330,6 +2393,7 @@ BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
 BodyMesh14="Holiday Shopper Outfit"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="Face"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2466,6 +2530,14 @@ BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
 
+[CHR_Masterson_archetype.BodyMesh15]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka is a conflicted individual with a serious death-wish problem. Born in Okinawa, he was brought up around Americans in the military. Moving to mainland Japan with his family, the Americanized Tanaka failed to fit in and took up drama classes. After college he moved to LA, playing cliched bit-parts in bad movies, before moving on to Europe trying to find more 'serious' work. All he got there were bad-guy roles in French gangster films and some tats. Now, in the apocalypse, he seems to be confusing his own reality with some of the movie parts he has played. This seems to involve visions of the Yakuza, demon, and a Hollywood take on bushido."
@@ -2485,6 +2557,7 @@ BodyMesh12="Santa Suit"
 BodyMesh13="Space Pirate Outfit"
 BodyMesh14="Reaper Outfit"
 BodyMesh15="Holiday Shopper Outfit"
+BodyMesh16="Deep Sea Explorer Outfit"
 HeadMesh0="Hair"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2628,6 +2701,14 @@ BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
 
+[CHR_Tanaka_archetype.BodyMesh16]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
+
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Helmet"
 AttachmentSkin0="Rising Sun"
@@ -2673,6 +2754,7 @@ BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
 BodyMesh14="Holiday Shopper Outfit"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2809,6 +2891,14 @@ BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
 
+[CHR_Ana_archetype.BodyMesh15]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
+
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D Glasses"
 AttachmentSkin0="Anaglyph 3D"
@@ -2840,6 +2930,7 @@ BodyMesh12="Santa Suit"
 BodyMesh13="Space Pirate Outfit"
 BodyMesh14="Reaper Outfit"
 BodyMesh15="Holiday Shopper Outfit"
+BodyMesh16="Deep Sea Explorer Outfit"
 HeadMesh0="Hair"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2973,6 +3064,14 @@ BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
 
+[CHR_mark_archetype.BodyMesh16]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
+
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
 HeadSkin1="Bloody 5 O'Clock"
@@ -3001,6 +3100,7 @@ BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
 BodyMesh14="Holiday Shopper Outfit"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="Face"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3129,6 +3229,14 @@ BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
 
+[CHR_alan_archetype.BodyMesh15]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
+
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="The Real Deal"
 HeadSkin1="Ginger! Really?"
@@ -3164,6 +3272,7 @@ BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
 BodyMesh14="Holiday Shopper Outfit"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="Hair"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3288,6 +3397,14 @@ BodySkin1="Elf"
 BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
+
+[CHR_strasser_archetype.BodyMesh15]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Dark Steel"
@@ -3468,6 +3585,7 @@ BodyMesh11="Santa Suit"
 BodyMesh12="Space Pirate Outfit"
 BodyMesh13="Reaper Outfit"
 BodyMesh14="Holiday Shopper Outfit"
+BodyMesh15="Deep Sea Explorer Outfit"
 HeadMesh0="Default Head"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3596,6 +3714,14 @@ BodySkin1="Elf"
 BodySkin2="North Pole"
 BodySkin3="Christmess"
 BodySkin4="Precious"
+
+[CHR_rockabilly_archetype.BodyMesh15]
+BodySkin0="Antique"
+BodySkin1="Aqua"
+BodySkin2="Coral"
+BodySkin3="Pearl"
+BodySkin4="Black Seal"
+BodySkin5="Precious"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Black"
@@ -7139,3 +7265,19 @@ AttachmentSkin0="Precious"
 Attachment="Boss Trophy Backpack"
 AttachmentSkin0="Precious"
 
+[Cosmetic_Supply_Backpack_ARCH]
+Attachment="Supply Backpack"
+AttachmentSkin0="Precious"
+
+[Cosmetic_DeepSea_Trident_ARCH]
+Attachment="Deep Sea Trident"
+AttachmentSkin0="Precious"
+
+[Cosmetic_DeepSea_Helmet_ARCH]
+Attachment="Deep Sea Helmet"
+AttachmentSkin0="Antique"
+AttachmentSkin1="Aqua"
+AttachmentSkin2="Coral"
+AttachmentSkin3="Pearl"
+AttachmentSkin4="Black Seal"
+AttachmentSkin5="Precious"

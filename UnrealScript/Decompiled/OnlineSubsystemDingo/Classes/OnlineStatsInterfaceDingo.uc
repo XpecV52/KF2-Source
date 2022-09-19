@@ -124,6 +124,7 @@ const STATID_ACHIEVE_Dystopia2029Collectibles = 4058;
 const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles = 4060;
 const STATID_ACHIEVE_CarillonHamletCollectibles = 4061;
+const STATID_ACHIEVE_RigCollectibles = 4062;
 
 enum RealTimeActivityConnectionStatus
 {

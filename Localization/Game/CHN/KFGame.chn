@@ -15,11 +15,13 @@ BonusDoshString="奖励"
 LengthStrings[0]="短（4 波）"
 LengthStrings[1]="中（7 波）"
 LengthStrings[2]="长（10 波）"
-
+SpecialLengthString="特殊"
 ServerTypeStrings[0]="排名"
 ServerTypeStrings[1]="排名——仓库"
 ServerTypeStrings[2]="排名——自定义"
 ServerTypeStrings[3]="非排名"
+WeaponLevelString="武器等级"
+GunPointsString="武器积分"							   
 
 PermissionStrings[0]="公开"
 PermissionStrings[1]="私人：加密的"
@@ -740,6 +742,8 @@ ZedSupportValue="间接伤害"
 ZednnihilationValue="波杀敌数"
 ZedStomper="丧尸践踏者"
 ZedStomperValue="践踏丧尸"
+WeaponMaster="武器大师"
+WeaponMasterValue="获胜最终武器的首位玩家"													 
 
 EPB_Healing="治愈"
 EPB_Kills="杀敌数"
@@ -2041,7 +2045,7 @@ SplashDamage="热浪"
 SplashDamageDescription="被火焰击中的丧尸将会向后跌倒。"
 
 Inferno="丧尸时间 - 地狱"
-InfernoDescription="在丧尸时间中，丧尸被火焰击中后速度下降 30%，受到的燃烧伤害增加 50%。"
+InfernoDescription="丧尸时间内，你的火力伤害逐渐分散到周围所有丧尸身上。"
 
 Scorch="丧尸时间 - 纵火犯"
 ScorchDescription="在丧尸时间中，你可以使用神射武器发动近乎实时的攻击，而且弹药永远不会用完。"
@@ -2265,10 +2269,10 @@ MeleeExpert="近战专家"
 MeleeExpertDescription="使用任意近战武器时，近战速度提升 20%，造成 75% 的额外伤害，移动速度提升 25%。"
 
 AmmoVest="弹药背心"
-AmmoVestDescription="所有武器可以多携带 15% 弹药，而且手榴弹变成治愈手榴弹。"
+AmmoVestDescription="所有武器可以多携带 15% 弹药，而且可以选择一个治愈手榴弹。"
 
 BigPockets="武器控制"
-BigPocketsDescription="提高携带能力 5 格，而且手榴弹变成燃烧弹。"
+BigPocketsDescription="提高携带能力 5 格，而且可以选择一个燃烧弹。"
 
 ZedShrapnel="自发性丧尸爆炸"
 ZedShrapnelDescription="你杀死的丧尸有30%的几率爆炸，进而伤害和击倒附近的丧尸。"
@@ -2897,7 +2901,19 @@ AllCompleteRewardDescriptionString="节日购物 | 同伴 | 宝物"
 
 ChanceDropDescriptionStrings[0]="坎卜斯券"
 ChanceDropDescriptionStrings[1]="坎卜斯金奖券"
+[KFGFxSpecialEventObjectivesContainer_Summer2022]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
 
+SpecialEventObjectiveInfoList[0]=(TitleString="不是最好的游客",DescriptionString="在任意地图或模式击杀 1500 个丧尸")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周溅落",DescriptionString="完成每周油井")
+SpecialEventObjectiveInfoList[2]=(TitleString="顶级冲浪者",DescriptionString="在油井完成 100 波")
+SpecialEventObjectiveInfoList[3]=(TitleString="有“人”落水！",DescriptionString="在油井上将 50 个丧尸投入海中")
+SpecialEventObjectiveInfoList[4]=(TitleString="宽阔海洋",DescriptionString="在困难无尽或以上难度的油井中成功抵御15波丧尸")
+
+AllCompleteRewardDescriptionString="深海| 三叉戟 |宝物"
+
+ChanceDropDescriptionStrings[0]="夏季奖劵"
+ChanceDropDescriptionStrings[1]="夏季金奖券"									  
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3068,6 +3084,15 @@ ModifierDescriptions[2]="测试3"
 ModifierDescriptions[3]="测试4"
 ModifierDescriptions[4]="测试5"
 
+[GunGame KFWeeklyOutBreakInformation]
+FriendlyName="军械飞升"
+DescriptionStrings[0]="升级你的武器！"
+DescriptionStrings[1]="长度：特殊"
+ModifierDescriptions[0]="商人不是特种部队成员。初始仅持有一把匕首。进行击杀可获得武器积分，从而获取更好的武器。仅允许生存主义者参加。在“比赛匹配”页面选择每周游戏模式。天赋等级 15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"							   
 ;============================================
 ; Map Localization
 ;============================================
@@ -3594,6 +3619,8 @@ DisplayName="地狱要塞"
 [KF-CarillonHamlet KFMapSummary]
 DisplayName="卡利永村庄"
 
+[KF-Rig KFMapSummary]
+DisplayName="油井"				 
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% 找到了一个收藏品。还剩下 %y% 个…"

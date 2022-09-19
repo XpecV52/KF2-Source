@@ -683,12 +683,12 @@ defaultproperties
    WeaponProjectiles(0)=Class'kfgamecontent.KFProj_Bullet_AssaultRifle'
    WeaponProjectiles(1)=Class'kfgamecontent.KFProj_Bullet_Pellet'
    FireInterval(0)=0.066700
-   FireInterval(1)=1.200000
+   FireInterval(1)=0.770000
    FireInterval(2)=()
    FireInterval(3)=()
    FireInterval(4)=()
    Spread(0)=0.005000
-   Spread(1)=0.100000
+   Spread(1)=0.080000
    InstantHitDamage(0)=35.000000
    InstantHitDamage(1)=30.000000
    InstantHitDamage(2)=()

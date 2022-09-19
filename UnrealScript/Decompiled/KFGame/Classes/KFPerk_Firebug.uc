@@ -38,6 +38,7 @@ var private const float SnareSpeedModifier;
 var private const class<DamageType> SnareCausingDmgTypeClass;
 var private const int NapalmDamage;
 var private const float NapalmCheckCollisionScale;
+var private const float InfernoRadius;
 
 function ApplySkillsToPawn()
 {
@@ -186,9 +187,19 @@ function bool CanSpreadNapalm()
     return IsNapalmActive();
 }
 
+function bool CanSpreadInferno()
+{
+    return IsInfernoActive();
+}
+
 static final function float GetNapalmCheckCollisionScale()
 {
     return default.NapalmCheckCollisionScale;
+}
+
+static final function float GetInfernoRadius()
+{
+    return default.InfernoRadius;
 }
 
 function bool CouldBeZedShrapnel(class<KFDamageType> KFDT)
@@ -394,6 +405,7 @@ defaultproperties
     SnareCausingDmgTypeClass=Class'KFDT_Fire_Ground'
     NapalmDamage=7
     NapalmCheckCollisionScale=2
+    InfernoRadius=800
     ProgressStatID=30
     PerkBuildStatID=31
     SecondaryXPModifier[0]=2

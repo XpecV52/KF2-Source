@@ -436,6 +436,7 @@ var bool bLogPhysicsBodyImpact;
 var bool bLogSpecialMove;
 var bool bLogCustomAnim;
 var repnotify bool bHasStartedFire;
+var const bool bIsTurret;
 var transient float LastHeadShotReceivedTime;
 var() array<HitZoneInfo> HitZones;
 var transient float TimeOfDeath;
@@ -608,14 +609,14 @@ replication
 {
      if(bNetDirty)
         AmbientSound, AttackSpeedModifier, 
-        InjuredHitZones, IntendedBodyScale, 
-        IntendedHeadScale, KnockdownImpulse, 
-        PowerUpAmbientSound, RepFireBurnedAmount, 
-        ReplicatedSpecialMove, WeaponClassForAttachmentTemplate, 
-        bEmpDisrupted, bEmpPanicked, 
-        bFirePanicked, bHasStartedFire, 
-        bIsSprinting, bMovesFastInZedTime, 
-        bUnaffectedByZedTime;
+        BodyScaleChangePerSecond, InjuredHitZones, 
+        IntendedBodyScale, IntendedHeadScale, 
+        KnockdownImpulse, PowerUpAmbientSound, 
+        RepFireBurnedAmount, ReplicatedSpecialMove, 
+        WeaponClassForAttachmentTemplate, bEmpDisrupted, 
+        bEmpPanicked, bFirePanicked, 
+        bHasStartedFire, bIsSprinting, 
+        bMovesFastInZedTime, bUnaffectedByZedTime;
 
      if(bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout)
         HitFxAddedHitCount, HitFxAddedRelativeLocs, 
@@ -2080,6 +2081,10 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
         MyKFWeapon.AdjustDamage(InDamage, DamageType, DamageCauser);
     }
     InstigatorMonster = ((InstigatedBy == none) ? none : KFPawn_Monster(InstigatedBy.Pawn));
+    if(((InDamage > 0) && InstigatedBy != none) && InstigatedBy.Pawn.IsA('KFPawn_Human'))
+    {
+        InDamage = int(float(InDamage) * AfflictionHandler.GetAfflictionDamageTakenModifier());
+    }
     if((InDamage > 0) && InstigatorMonster != none)
     {
         if(bLogTakeDamage)
@@ -4050,6 +4055,8 @@ simulated function StopExtraVFX(name FXLabel)
         goto J0x36;
     }
 }
+
+simulated function SetTurretWeaponAttachment(class<KFWeapon> WeaponClass);
 
 state Dying
 {

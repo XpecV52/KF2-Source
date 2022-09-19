@@ -38,6 +38,41 @@ replication
         PickupIndex;
 }
 
+function bool CanUsePickup()
+{
+    local KFGameInfo KFGI;
+    local int I;
+    local bool has_armour;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if((KFGI != none) && KFGI.OutbreakEvent != none)
+    {
+        if(KFGI.OutbreakEvent.ActiveEvent.bOnlyArmorItemPickup)
+        {
+            I = 0;
+            J0xBB:
+
+            if(I < ItemPickups.Length)
+            {
+                if(ItemPickups[I].ItemClass.Name == ArmorClassName)
+                {
+                    has_armour = true;
+                    goto J0x139;
+                }
+                ++ I;
+                goto J0xBB;
+            }
+        }
+        J0x139:
+
+        if(has_armour == false)
+        {
+            return false;
+        }
+    }
+    return super.CanUsePickup();
+}
+
 simulated event PreBeginPlay()
 {
     local KFGameInfo KFGI;
@@ -129,33 +164,48 @@ function int ChooseWeaponPickup()
     local int I, DesiredItemIdx;
     local float Weight, TotalWeight, RandomWeight;
     local array<int> IndexList;
+    local KFGameInfo KFGI;
 
+    KFGI = KFGameInfo(WorldInfo.Game);
+    DesiredItemIdx = 255;
     I = 0;
-    J0x0B:
+    J0x48:
 
     if(I < ItemPickups.Length)
     {
+        if((KFGI != none) && KFGI.OutbreakEvent != none)
+        {
+            if(KFGI.OutbreakEvent.ActiveEvent.bOnlyArmorItemPickup)
+            {
+                if(ItemPickups[I].ItemClass.Name != 'KFInventory_Armor')
+                {
+                    goto J0x1A2;
+                }
+            }
+        }
         if(ItemPickups[I].Priority > 0)
         {
             TotalWeight += ItemPickups[I].Priority;
             IndexList.AddItem(I;
         }
+        J0x1A2:
+
         ++ I;
-        goto J0x0B;
+        goto J0x48;
     }
     if((IndexList.Length > 0) && TotalWeight > 0)
     {
         RandomWeight = FRand();
         DesiredItemIdx = IndexList[0];
         I = 0;
-        J0xF9:
+        J0x201:
 
         if(I < (IndexList.Length - 1))
         {
             Weight = ItemPickups[IndexList[I]].Priority / TotalWeight;
             if(RandomWeight <= Weight)
             {
-                goto J0x1B8;                
+                goto J0x2C0;                
             }
             else
             {
@@ -163,10 +213,10 @@ function int ChooseWeaponPickup()
                 DesiredItemIdx = IndexList[I + 1];
             }
             ++ I;
-            goto J0xF9;
+            goto J0x201;
         }
     }
-    J0x1B8:
+    J0x2C0:
 
     return DesiredItemIdx;
 }
@@ -176,9 +226,22 @@ native simulated function GetPickupMesh(class<KFWeapon> ItemClass);
 
 simulated function SetPickupMesh()
 {
+    local KFGameInfo KFGI;
+
     if(PickupIndex >= ItemPickups.Length)
     {
         return;
+    }
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if((KFGI != none) && KFGI.OutbreakEvent != none)
+    {
+        if(KFGI.OutbreakEvent.ActiveEvent.bOnlyArmorItemPickup)
+        {
+            if(ItemPickups[PickupIndex].ItemClass.Name != ArmorClassName)
+            {
+                return;
+            }
+        }
     }
     if(ItemPickups[PickupIndex].ItemClass.Name == ArmorClassName)
     {
@@ -290,11 +353,21 @@ function ActivateNewPickup(Pawn P)
 {
     local KFGameInfo KFGI;
 
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if((KFGI != none) && KFGI.OutbreakEvent != none)
+    {
+        if(KFGI.OutbreakEvent.ActiveEvent.bOnlyArmorItemPickup)
+        {
+            if(ItemPickups[PickupIndex].ItemClass.Name != ArmorClassName)
+            {
+                return;
+            }
+        }
+    }
     if(bKismetDriven)
     {
         return;
     }
-    KFGI = KFGameInfo(WorldInfo.Game);
     if(KFGI != none)
     {
         KFGI.EnableNewPickup(KFGI.ItemPickups, KFGI.DifficultyInfo.GetWeaponPickupInterval(byte(KFGI.GetLivingPlayerCount())), self);

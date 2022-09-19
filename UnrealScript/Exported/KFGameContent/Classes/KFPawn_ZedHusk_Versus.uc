@@ -305,6 +305,8 @@ defaultproperties
       AfflictionClasses(9)=()
       AfflictionClasses(10)=()
       AfflictionClasses(11)=()
+      AfflictionClasses(12)=()
+      AfflictionClasses(13)=()
       FireFullyCharredDuration=5.000000
       FireCharPercentThreshhold=0.250000
       Name="Afflictions_0"
@@ -322,6 +324,8 @@ defaultproperties
    IncapSettings(9)=(Duration=2.000000,Vulnerability=(0.600000))
    IncapSettings(10)=(Duration=2.000000,Cooldown=5.000000,Vulnerability=(1.000000))
    IncapSettings(11)=()
+   IncapSettings(12)=()
+   IncapSettings(13)=()
    SprintSpeed=550.000000
    SprintStrafeSpeed=425.000000
    TeammateCollisionRadiusPercent=0.300000

@@ -149,6 +149,7 @@ defaultproperties
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedClot_AlphaKing.HeadshotAkComponent0'
     ArmorInfoClass=Class'KFZedArmorInfo_ClotKing'
     OverrideArmorFXIndex=200
+    ShrinkEffectModifier=0.4
     LocalizationKey=KFPawn_ZedClot_AlphaKing
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

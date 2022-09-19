@@ -28,7 +28,7 @@ defaultproperties
     IronSightPosition=(X=10,Y=0,Z=0)
     DOF_FG_FocalRadius=40
     DOF_FG_MaxNearBlurSize=3.5
-    GroupPriority=10
+    GroupPriority=13
     WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_9mm'
     DualClass=Class'KFWeap_Pistol_Dual9mm'
     MagazineCapacity=15

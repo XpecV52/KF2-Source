@@ -35,11 +35,6 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_6
 End Object
 
 Begin Object Class=InterpData Name=InterpData_6
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
-      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_3.InterpTrackMove_1',CurveColor=(B=0,G=42,R=230,A=255),CurveName="Fan_Movement")))
-      Name="InterpCurveEdSetup_5"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
-   End Object
    Begin Object Class=InterpGroup Name=InterpGroup_3
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
          PosTrack=(Points=(,(InVal=0.500000),(InVal=1.000000)))
@@ -54,6 +49,11 @@ Begin Object Class=InterpData Name=InterpData_6
       GroupColor=(B=0,G=42,R=230,A=255)
       Name="InterpGroup_3"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_5
+      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_3.InterpTrackMove_1',CurveColor=(B=0,G=42,R=230,A=255),CurveName="Fan_Movement")))
+      Name="InterpCurveEdSetup_5"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=1.000000
    InterpGroups(0)=InterpGroup'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_6.InterpGroup_3'
@@ -404,10 +404,16 @@ Begin Object Class=SeqAct_ConsoleCommand Name=SeqAct_ConsoleCommand_1
 End Object
 
 Begin Object Class=InterpData Name=InterpData_1
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_2',CurveColor=(B=0,G=191,R=145,A=255),CurveName="Camera_Movement")),ViewStartInput=-13.000000,ViewEndInput=143.000000,ViewStartOutput=-3488.004639,ViewEndOutput=1887.998413)
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
+      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
+         CutTrack(0)=(TargetCamGroup="Camera",ShotNumber=10)
+         Name="InterpTrackDirector_0"
+         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
+      End Object
+      InterpTracks(0)=InterpTrackDirector'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
+      GroupColor=(B=115,G=209,R=0,A=255)
+      Name="InterpGroupDirector_0"
+      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_0
       Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
@@ -424,16 +430,10 @@ Begin Object Class=InterpData Name=InterpData_1
       Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroupDirector Name=InterpGroupDirector_0
-      Begin Object Class=InterpTrackDirector Name=InterpTrackDirector_0
-         CutTrack(0)=(TargetCamGroup="Camera",ShotNumber=10)
-         Name="InterpTrackDirector_0"
-         ObjectArchetype=InterpTrackDirector'Engine.Default__InterpTrackDirector'
-      End Object
-      InterpTracks(0)=InterpTrackDirector'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroupDirector_0.InterpTrackDirector_0'
-      GroupColor=(B=115,G=209,R=0,A=255)
-      Name="InterpGroupDirector_0"
-      ObjectArchetype=InterpGroupDirector'Engine.Default__InterpGroupDirector'
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Tabs(0)=(Curves=((CurveObject=InterpTrackMove'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0.InterpTrackMove_2',CurveColor=(B=0,G=191,R=145,A=255),CurveName="Camera_Movement")),ViewStartInput=-13.000000,ViewEndInput=143.000000,ViewStartOutput=-3488.004639,ViewEndOutput=1887.998413)
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=2185.342529
    InterpGroups(0)=InterpGroup'KF-CARILLONHAMLET.TheWorld:PersistentLevel.Main_Sequence.InterpData_1.InterpGroup_0'

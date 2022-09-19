@@ -47,6 +47,7 @@ BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
 BodyMesh14="Feiertagsshopper-Outfit"
+BodyMesh15="Tiefseetaucher-Outfit"									 
 HeadMesh0="Gasmaske"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -169,6 +170,13 @@ BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
 
+[CHR_MrsFoster_archetype.BodyMesh15]
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Weiß"
 HeadSkin1="Grün"
@@ -257,6 +265,7 @@ BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
 BodyMesh14="Feiertagsshopper-Outfit"
+BodyMesh15="Tiefseetaucher-Outfit"								 
 HeadMesh0="Bart-Power!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -385,6 +394,13 @@ BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
 
+[CHR_Jagerhorn_archetype.BodyMesh15]									
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Blonder Schwede"
 HeadSkin1="Das schwarze Album"
@@ -486,6 +502,7 @@ BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat"
 BodyMesh13="Sensenmann-Outfit"
 BodyMesh14="Feiertagsshopper-Outfit"
+BodyMesh15="Tiefseetaucher-Outfit"									 
 HeadMesh0="Schädel-Maske"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -613,6 +630,13 @@ BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
 
+[CHR_DJSkully_archetype.BodyMesh15]								   
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Schwärzestes Schwarz"
 HeadSkin1="Xtra-Rot"
@@ -661,6 +685,7 @@ BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
 BodyMesh14="Sensenmann-Outfit"
 BodyMesh15="Feiertagsshopper-Outfit"
+BodyMesh16="Tiefseetaucher-Outfit"									 
 HeadMesh0="Haar"
 
 [chr_briar_archetype.BodyMesh0]
@@ -793,6 +818,13 @@ BodySkin1="Elf"
 BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
+[CHR_briar_archetype.BodyMesh16]								
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
@@ -836,6 +868,7 @@ BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
 BodyMesh14="Sensenmann-Outfit"
 BodyMesh15="Feiertagsshopper-Outfit"
+BodyMesh16="Tiefseetaucher-Outfit"									 
 HeadMesh0="Gasmaske"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -973,6 +1006,13 @@ BodySkin1="Elf"
 BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
+[CHR_MrFoster_archetype.BodyMesh16]								   
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Original-Weiß"
@@ -1136,6 +1176,7 @@ BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
 BodyMesh14="Feiertagsshopper-Outfit"
+BodyMesh15="Tiefseetaucher-Outfit"									 
 HeadMesh0="Gesicht"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1260,6 +1301,13 @@ BodySkin1="Elf"
 BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
+[CHR_Coleman_archetype.BodyMesh15]								  
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
@@ -1302,6 +1350,7 @@ BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
 BodyMesh14="Feiertagsshopper-Outfit"
+BodyMesh15="Tiefseetaucher-Outfit"									 
 HeadMesh0="Haar"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1428,6 +1477,13 @@ BodySkin1="Elf"
 BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
+[CHR_Alberts_archetype.BodyMesh15]								  
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grau"
@@ -2330,6 +2386,7 @@ BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
 BodyMesh14="Feiertagsshopper-Outfit"
+BodyMesh15="Tiefseetaucher-Outfit"									 
 HeadMesh0="Gesicht"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2465,6 +2522,13 @@ BodySkin1="Elf"
 BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
+[CHR_Masterson_archetype.BodyMesh15]									
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
@@ -2485,6 +2549,7 @@ BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
 BodyMesh14="Sensenmann-Outfit"
 BodyMesh15="Feiertagsshopper-Outfit"
+BodyMesh16="Tiefseetaucher-Outfit"									 
 HeadMesh0="Haar"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2628,6 +2693,13 @@ BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
 
+[CHR_Tanaka_archetype.BodyMesh16]								 
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Helm"
 AttachmentSkin0="Aufgehende Sonne"
@@ -2673,6 +2745,7 @@ BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
 BodyMesh14="Feiertagsshopper-Outfit"
+BodyMesh15="Tiefseetaucher-Outfit"									 
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2809,6 +2882,13 @@ BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
 
+[CHR_Ana_archetype.BodyMesh15]							  
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D-Brille"
 AttachmentSkin0="Anaglyph 3D"
@@ -2840,6 +2920,7 @@ BodyMesh12="Santa-Anzug"
 BodyMesh13="Weltraumpirat-Outfit"
 BodyMesh14="Sensenmann-Outfit"
 BodyMesh15="Feiertagsshopper-Outfit"
+BodyMesh16="Tiefseetaucher-Outfit"									 
 HeadMesh0="Haar"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2967,12 +3048,20 @@ BodySkin4="Krieg"
 BodySkin5="Anarchie"
 
 
+[CHR_mark_archetype.BodyMesh15]								   
 BodySkin0="Santa"
 BodySkin1="Elf"
 BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
 
+[CHR_mark_archetype.BodyMesh16]							   
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Das einzig Wahre"
 HeadSkin1="Blutige Teezeit"
@@ -3001,6 +3090,7 @@ BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
 BodyMesh14="Feiertagsshopper-Outfit"
+BodyMesh15="Tiefseetaucher-Outfit"									 
 HeadMesh0="Gesicht"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3128,6 +3218,13 @@ BodySkin1="Elf"
 BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
+[CHR_alan_archetype.BodyMesh15]							   
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Das einzig Wahre"
@@ -3164,6 +3261,7 @@ BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
 BodyMesh14="Feiertagsshopper-Outfit"
+BodyMesh15="Tiefseetaucher-Outfit"									 
 HeadMesh0="Haar"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3289,6 +3387,13 @@ BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
 
+[CHR_strasser_archetype.BodyMesh15]								   
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Dunkler Stahl"
 HeadSkin1="Heller Stahl"
@@ -3468,6 +3573,7 @@ BodyMesh11="Santa-Anzug"
 BodyMesh12="Weltraumpirat-Outfit"
 BodyMesh13="Sensenmann-Outfit"
 BodyMesh14="Feiertagsshopper-Outfit"
+BodyMesh15="Tiefseetaucher-Outfit"									 
 HeadMesh0="Standard-Kopf"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3596,6 +3702,13 @@ BodySkin1="Elf"
 BodySkin2="Nordpol"
 BodySkin3="Auweihnachten"
 BodySkin4="Edel"
+[CHR_rockabilly_archetype.BodyMesh15]									 
+BodySkin0="Antik"
+BodySkin1="Türkis"
+BodySkin2="Korallenrot"
+BodySkin3="Perlmutt"
+BodySkin4="Schwarze Robbe"
+BodySkin5="Edel"					
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Schwarz"
@@ -7138,3 +7251,19 @@ AttachmentSkin0="Edel"
 [Cosmetic_BossTrophy_Backpack_ARCH]
 Attachment="Boss-Trophäe-Rucksack"
 AttachmentSkin0="Edel"
+[Cosmetic_Supply_Backpack_ARCH]
+Attachment="Vorratsrucksack"
+AttachmentSkin0="Edel"
+
+[Cosmetic_DeepSea_Trident_ARCH]
+Attachment="Tiefsee Dreizack"
+AttachmentSkin0="Edel"						  
+
+[Cosmetic_DeepSea_Helmet_ARCH]
+Attachment="Tiefseehelm"
+AttachmentSkin0="Antik"
+AttachmentSkin1="Türkis"
+AttachmentSkin2="Korallenrot"
+AttachmentSkin3="Perlmutt"
+AttachmentSkin4="Schwarze Robbe"
+AttachmentSkin5="Edel"

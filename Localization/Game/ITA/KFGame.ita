@@ -15,11 +15,13 @@ BonusDoshString="RICOMPENSE"
 LengthStrings[0]="Corto (4 ondate)"
 LengthStrings[1]="Medio (7 ondate)"
 LengthStrings[2]="Lungo (10 ondate)"
-
+SpecialLengthString="Speciale"
 ServerTypeStrings[0]="Classificato"
 ServerTypeStrings[1]="Classificato - Stock"
 ServerTypeStrings[2]="Classificato - Custom"
 ServerTypeStrings[3]="Non classificato"
+WeaponLevelString="LIVELLO ARMA"
+GunPointsString="PUNTI ARMA"							   
 
 PermissionStrings[0]="Pubblico"
 PermissionStrings[1]="Privacy: Con password"
@@ -740,6 +742,8 @@ ZedSupportValue="Danno indiretto"
 ZednnihilationValue="Uccisioni nell'ondata"
 ZedStomper="Calpestatore di Zed"
 ZedStomperValue="Zed Calpestati"
+WeaponMaster="Esperto di armi"
+WeaponMasterValue="Primo che ottiene l'arma finale"													 
 
 EPB_Healing="Cure"
 EPB_Kills="Uccisioni"
@@ -2041,7 +2045,7 @@ SplashDamage="Ondata di calore"
 SplashDamageDescription="Gli Zed colpiti a bruciapelo con il fuoco verranno spinti dalla forza d'urto."
 
 Inferno="ZED TIME - Inferno"
-InfernoDescription="Durante gli Zed time, gli Zed colpiti dal fuoco sono rallentati del 30% e subiscono il 50% in più di danno da fuoco."
+InfernoDescription="Durante gli Zed time, i tuoi danni da fuoco si diffondono nel tempo verso tutti gli Zed nei dintorni."
 
 Scorch="ZED TIME - Piromania"
 ScorchDescription="Durante gli Zed time, puoi attaccare con le armi di classe quasi in tempo reale senza finire le munizioni."
@@ -2064,7 +2068,7 @@ Passives[3]=(Title="Riduzione Rinculo",Description="Riduzione %x% rinculo arma c
 Passives[4]=(Title="Ricarica Zedtime",Description="Aumento %x% velocità ricarica negli Zed time per livello");
 
 ShootnMove="Stabilizza"
-ShootnMoveDescription="Ignora la penalità della velocità di movimento e aumenta i danni delle armi di classe del 7,5% quando si usa il mirino. Riduce drasticamente l'oscillazione delle armi di classe."
+ShootnMoveDescription="Ignora il rallentamento nel movimento e aumenta i danni delle armi di classe del 7,5% se si usa il mirino. Riduce nettamente l'oscillazione delle armi di classe."
 
 QuickSwitch="Estrazione rapida"
 QuickSwitchDescription="Riduce la penalità del rinculo sparando dal fianco, aumenta la velocità di movimento del 5% e scambia le armi di classe più veloce del 50%."
@@ -2265,10 +2269,10 @@ MeleeExpert="Esperto mischia"
 MeleeExpertDescription="Aumenta la velocità degli attacchi da mischia del 20%, infligge il 75% di danni in più e aumenta la velocità del 25% con armi da mischia."
 
 AmmoVest="Giubbotto munizioni"
-AmmoVestDescription="Trasporta fino al 15% di munizioni in più per tutte le armi, la granata diventa una granata curativa."
+AmmoVestDescription="Trasporta fino al 15% di munizioni in più per tutte le armi e puoi selezionare una granata curativa."
 
 BigPockets="Imbragatura per armi"
-BigPocketsDescription="Aumenta di 5 la capacità di trasporto e la tua granata diventa una Molotov."
+BigPocketsDescription="Aumenta di 5 la capacità di trasporto e puoi selezionare una Bomba molotov."
 
 ZedShrapnel="Esplosione spontanea Zed"
 ZedShrapnelDescription="Gli Zed che uccidi hanno il 30% di possibilità di esplodere, danneggiando e stordendo gli Zed vicini."
@@ -2898,6 +2902,19 @@ AllCompleteRewardDescriptionString="Shopping di Natale | Compagno | Prezioso"
 ChanceDropDescriptionStrings[0]="Biglietto Krampus"
 ChanceDropDescriptionStrings[1]="Biglietto Oro del Krampus"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2022]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Turisti da incubo",DescriptionString="Uccidi 1500 Zed in qualsiasi mappa o modalità")
+SpecialEventObjectiveInfoList[1]=(TitleString="Ammaraggio settimanale",DescriptionString="Completa il Settimanale in Piattaforma petrolifera")
+SpecialEventObjectiveInfoList[2]=(TitleString="Surfista esperto",DescriptionString="Completa 100 ondate in Piattaforma petrolifera")
+SpecialEventObjectiveInfoList[3]=(TitleString="Fuori bordo!",DescriptionString="Getta 50 Zed in mare in Piattaforma petrolifera")
+SpecialEventObjectiveInfoList[4]=(TitleString="In mare aperto",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Piattaforma petrolifera")
+
+AllCompleteRewardDescriptionString="Abissi | Tridente | Prezioso"
+
+ChanceDropDescriptionStrings[0]="Biglietto Estivo"
+ChanceDropDescriptionStrings[1]="Biglietto Estivo Oro"									  
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3068,6 +3085,15 @@ ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
 
+[GunGame KFWeeklyOutBreakInformation]
+FriendlyName="Scalata dell'arsenale"
+DescriptionStrings[0]="Fai salire di livello l'arma!"
+DescriptionStrings[1]="Durata: Speciale"
+ModifierDescriptions[0]="I commercianti non sono disponibili. Inizi con solo un coltello. Guadagna punti arma con le uccisioni per ottenere armi migliori. Disponibile solo per Survivalisti. Seleziona la modalità di gioco Settimanale sulla pagina del matchmaking. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"							   
 ;============================================
 ; Map Localization
 ;============================================
@@ -3594,6 +3620,8 @@ DisplayName="Netherhold"
 [KF-CarillonHamlet KFMapSummary]
 DisplayName="Carillon Hamlet"
 
+[KF-Rig KFMapSummary]
+DisplayName="Piattaforma petrolifera"				 
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% ha trovato un collezionabile. %y% rimasti da trovare..."

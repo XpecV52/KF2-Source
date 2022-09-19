@@ -329,6 +329,7 @@ defaultproperties
       ObjectArchetype=AkComponent'KFGame.Default__KFPawn_Monster:HeadshotAkComponent0'
    End Object
    HeadShotAkComponent=HeadshotAkComponent0
+   ShrinkEffectModifier=0.250000
    PawnAnimInfo=KFPawnAnimInfo'ZED_Bloat_ANIM.Bloat_AnimGroup'
    LocalizationKey="KFPawn_ZedBloat"
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
@@ -378,6 +379,8 @@ defaultproperties
    IncapSettings(9)=(Duration=2.000000,Cooldown=3.000000,Vulnerability=(1.000000))
    IncapSettings(10)=(Duration=8.000000,Vulnerability=(4.000000))
    IncapSettings(11)=(Vulnerability=(1.000000))
+   IncapSettings(12)=()
+   IncapSettings(13)=(Vulnerability=(1.000000))
    PhysRagdollImpulseScale=1.500000
    KnockdownImpulseScale=2.000000
    SprintSpeed=210.000000

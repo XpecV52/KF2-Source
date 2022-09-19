@@ -368,7 +368,7 @@ function ServerStartVoteSkipTrader(PlayerReplicationInfo PRI)
         KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 24);
         return;
     }
-    if(!KFGRI.bTraderIsOpen)
+    if(!KFGRI.bTraderIsOpen && !KFGRI.bForceShowSkipTrader)
     {
         KFPC.ReceiveLocalizedMessage(Class'KFLocalMessage', 25);
         return;
@@ -394,13 +394,13 @@ function ServerStartVoteSkipTrader(PlayerReplicationInfo PRI)
         CurrentVoteTime = byte(Min(VoteTime, TraderTimeRemaining - SkipTraderVoteLimit));
         Outer.GetKFPRIArray(PRIs,, false);
         I = 0;
-        J0x347:
+        J0x36D:
 
         if(I < PRIs.Length)
         {
             PRIs[I].ShowSkipTraderVote(PRI, CurrentVoteTime, !PRIs[I] == PRI && PRI.GetTeamNum() != 255);
             ++ I;
-            goto J0x347;
+            goto J0x36D;
         }
         KFGI.BroadcastLocalized(KFGI, Class'KFLocalMessage', 20, CurrentSkipTraderVote.PlayerPRI);
         Outer.SetTimer(float(CurrentVoteTime), false, 'ConcludeVoteSkipTrader', self);

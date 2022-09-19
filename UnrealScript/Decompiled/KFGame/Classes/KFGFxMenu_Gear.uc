@@ -263,6 +263,7 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
     local string AttachmentName;
     local PlayerController PC;
     local bool bIsWildWest;
+    local KFGameReplicationInfo KFGRI;
 
     bIsWildWest = false;
     ItemIndex = 0;
@@ -276,9 +277,10 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
     DataProvider.SetElementObject(ItemIndex, SlotObject);
     ++ ItemIndex;
     PC = Outer.GetPC();
-    bIsWildWest = ((PC != none) && PC.WorldInfo.GRI.IsA('KFGameReplicationInfo_WeeklySurvival')) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12;
+    KFGRI = ((PC != none) ? KFGameReplicationInfo(PC.WorldInfo.GRI) : none);
+    bIsWildWest = ((KFGRI != none) && KFGRI.bIsWeeklyMode) && KFGRI.CurrentWeeklyIndex == 12;
     I = 0;
-    J0x272:
+    J0x29E:
 
     if(I < Attachments.Length)
     {
@@ -303,7 +305,7 @@ function UpdateAttachmentsList(array<AttachmentVariants> Attachments)
             }
         }
         ++ I;
-        goto J0x272;
+        goto J0x29E;
     }
     SetObject("attachmentsArray", DataProvider);
 }
@@ -687,9 +689,13 @@ function ForceWeeklyCowboyHat()
 {
     local PlayerController PC;
     local int CowboyHatIndex;
+    local bool bIsWildWest;
+    local KFGameReplicationInfo KFGRI;
 
     PC = Outer.GetPC();
-    if(((PC != none) && PC.WorldInfo.GRI.IsA('KFGameReplicationInfo_WeeklySurvival')) && Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12)
+    KFGRI = ((PC != none) ? KFGameReplicationInfo(PC.WorldInfo.GRI) : none);
+    bIsWildWest = ((KFGRI != none) && KFGRI.bIsWeeklyMode) && KFGRI.CurrentWeeklyIndex == 12;
+    if(bIsWildWest)
     {
         CowboyHatIndex = FindCowboyHatAttachmentIndex(CurrentCharInfo);
         if(CowboyHatIndex >= 0)

@@ -15,11 +15,13 @@ BonusDoshString="RÉCOMPENSES"
 LengthStrings[0]="Court (4 vagues)"
 LengthStrings[1]="Moyen (7 vagues)"
 LengthStrings[2]="Long (10 vagues)"
-
+SpecialLengthString="Spécial"
 ServerTypeStrings[0]="Classé"
 ServerTypeStrings[1]="Classé - Série"
 ServerTypeStrings[2]="Classé - Personnalisé"
 ServerTypeStrings[3]="Non classé"
+WeaponLevelString="NIVEAU D'ARME"
+GunPointsString="POINTS D'ARME"							   
 
 PermissionStrings[0]="Public"
 PermissionStrings[1]="Privé : mot de passe"
@@ -740,6 +742,8 @@ ZedSupportValue="Dégâts indirects"
 ZednnihilationValue="Tués par vague"
 ZedStomper="Piétineur zed"
 ZedStomperValue="Zeds piétinés"
+WeaponMaster="Maître d'armes"
+WeaponMasterValue="Premier à obtenir l'arme finale"													 
 
 EPB_Healing="Soins"
 EPB_Kills="Tués"
@@ -2041,7 +2045,7 @@ SplashDamage="Vague de chaleur"
 SplashDamageDescription="Les Zeds touchés à bout portant par le feu sont renversés."
 
 Inferno="ZED TIME - Inferno"
-InfernoDescription="Pendant le Zed time, tous les Zeds touchés par le feu sont ralentis de 30 % et subissent 50 % de dégâts de brûlure en plus."
+InfernoDescription="Pendant le Zed time, vos dégâts de feu sur la durée se propagent aux Zeds à proximité."
 
 Scorch="ZED TIME - Incendiaire"
 ScorchDescription="Pendant le Zed time, vous attaquez quasiment en temps réel avec vos armes de classe et ne tombez jamais à court de munitions."
@@ -2265,10 +2269,10 @@ MeleeExpert="Expert en mêlée"
 MeleeExpertDescription="Augmente la vitesse des attaques de mêlée de 20 %, les dégâts de 75 %, et la vitesse de déplacement de 25 % lorsque vous utilisez une arme de mêlée."
 
 AmmoVest="Veste tactique"
-AmmoVestDescription="Transportez jusqu'à 15 % de munitions en plus. Vos grenades deviennent des grenades soignantes."
+AmmoVestDescription="Transportez jusqu'à 15 % de munitions en plus. Vous pouvez sélectionner une grenade soignante."
 
 BigPockets="Harnais d'armes"
-BigPocketsDescription="Augmente votre capacité de charge de 5 et vos grenades deviennent des cocktails Molotov."
+BigPocketsDescription="Augmente votre capacité de charge de 5. Vous pouvez sélectionner un cocktail Molotov."
 
 ZedShrapnel="Zed-splosion spontanée"
 ZedShrapnelDescription="Les Zeds que vous tuez ont 30 % de chances d'exploser, infligeant des dommages et étourdissant les Zeds à proximité."
@@ -2898,6 +2902,19 @@ AllCompleteRewardDescriptionString="Magasinage de Noël | Compagnon | Doré"
 ChanceDropDescriptionStrings[0]="Ticket de Krampus"
 ChanceDropDescriptionStrings[1]="Ticket doré de Krampus"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2022]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Pas les meilleurs touristes",DescriptionString="Tuer 1 500 Zeds sur n'importe quelle carte ou dans n'importe quel mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Éclaboussure hebdomadaire",DescriptionString="Terminer l'hebdomadaire de la Plateforme")
+SpecialEventObjectiveInfoList[2]=(TitleString="Surfeur professionnel",DescriptionString="Terminer 100 vagues sur la Plateforme")
+SpecialEventObjectiveInfoList[3]=(TitleString="Par-dessus bord!",DescriptionString="Jeter 50 Zeds à la mer sur la Plateforme")
+SpecialEventObjectiveInfoList[4]=(TitleString="Grand large",DescriptionString="Terminer 15 vagues en Infini en mode Difficile ou supérieur dans la Plateforme")
+
+AllCompleteRewardDescriptionString="Tenue d'explorateur en haute mer"
+
+ChanceDropDescriptionStrings[0]="Ticket estival"
+ChanceDropDescriptionStrings[1]="Ticket estival or"								  
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3063,6 +3080,16 @@ FriendlyName="Têtes réduites"
 DescriptionStrings[0]="Les tirs à la tête ne valent rien..."
 DescriptionStrings[1]="Durée : moyenne (7 vagues)"
 ModifierDescriptions[0]="Peut-être qu'ils essaient de se protéger des tirs à la tête habituels. En tout cas, il semble qu'ils aient de nouveaux points faibles. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[GunGame KFWeeklyOutBreakInformation]
+FriendlyName="Amélioration de l'arsenal"
+DescriptionStrings[0]="Améliorez votre arme!"
+DescriptionStrings[1]="Longueur : spéciale"
+ModifierDescriptions[0]="Les marchands ne sont pas opérationnels. Commencez avec un couteau. Gagnez des points d'arme en tuant pour obtenir de meilleures armes. Seuls les Survivants sont acceptés. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Niveau de classe 15+."																																																							   
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3594,6 +3621,8 @@ DisplayName="Néant"
 [KF-CarillonHamlet KFMapSummary]
 DisplayName="Carillon Hamlet"
 
+[KF-Rig KFMapSummary]
+DisplayName="Plateforme"				 
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% a trouvé un objet de collection. Encore %y% à trouver..."

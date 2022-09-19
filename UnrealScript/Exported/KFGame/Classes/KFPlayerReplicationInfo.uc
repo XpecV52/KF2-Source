@@ -402,6 +402,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178; 
+const KFID_SurvivalStartingWeapIdx=179; 
+const KFID_SurvivalStartingGrenIdx=180; 
 #linenumber 22;
 
 /** The time at which this PRI left the game */
@@ -1734,6 +1736,15 @@ reliable server private function ServerSetPlayerReady( bool bReady )
 /** Called on server to +/- dosh.  Do not modify score directly */
 function AddDosh( int DoshAmount, optional bool bEarned )
 {
+	local KFPlayerController KFPC;
+
+	/** Server code: controllers exist */
+	KFPC = KFPlayerController(Owner);
+	if (KFPC != none && !KFPC.CanUseDosh())
+	{
+		return;
+	}
+
     //If the game has turned off dosh earning for this PRI, early out.
     if (!bAllowDoshEarning && bEarned)
     {
@@ -1848,6 +1859,10 @@ simulated function NotifyWaveEnded()
 {
 	bVotedToSkipTraderTime = false;
 	
+	if ( (WorldInfo.NetMode == NM_Standalone || WorldInfo.NetMode == NM_Client) && KFPlayerController(Owner) != none && KFPlayerController(Owner).GetPerk() != none)
+	{
+		KFPlayerController(Owner).GetPerk().OnClientWaveEnded();
+	}
 	/*local KFGameReplicationInfo KFGRI;
 
 	if( Role == ROLE_Authority )
@@ -1858,6 +1873,11 @@ simulated function NotifyWaveEnded()
 			KFGRI.VoteCollector.ResetSkipTraderBeforeWaveStarts();
 		}
 	}*/
+	
+	if ( (WorldInfo.NetMode == NM_Standalone || WorldInfo.NetMode == NM_Client) && KFPlayerController(Owner) != none && KFPlayerController(Owner).GetPerk() != none)
+	{
+		KFPlayerController(Owner).GetPerk().OnClientWaveEnded();
+	}
 }
 
 //reset the icons here

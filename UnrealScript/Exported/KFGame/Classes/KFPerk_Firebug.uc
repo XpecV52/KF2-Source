@@ -32,7 +32,8 @@ var private const class<DamageType> SnareCausingDmgTypeClass;
 var private const int 				NapalmDamage;
 /** Multiplier on CylinderComponent.CollisionRadius to check for infecting other zeds */
 var private const float 			NapalmCheckCollisionScale;
-
+// Radius in cm to check for, this is added to CylinderComponent.CollisionRadius
+var private const float				InfernoRadius;
 
 enum EFirebugSkills
 {
@@ -294,9 +295,19 @@ function bool CanSpreadNapalm()
 	return IsNapalmActive();
 }
 
+function bool CanSpreadInferno()
+{
+	return IsInfernoActive();
+}
+
 static final function float GetNapalmCheckCollisionScale()
 {
 	return default.NapalmCheckCollisionScale;
+}
+
+static final function float GetInfernoRadius()
+{
+	return default.InfernoRadius;
 }
 
 /**
@@ -634,6 +645,7 @@ defaultproperties
    SnareCausingDmgTypeClass=Class'KFGame.KFDT_Fire_Ground'
    NapalmDamage=7
    NapalmCheckCollisionScale=2.000000
+   InfernoRadius=800.000000
    ProgressStatID=30
    PerkBuildStatID=31
    SecondaryXPModifier(0)=2

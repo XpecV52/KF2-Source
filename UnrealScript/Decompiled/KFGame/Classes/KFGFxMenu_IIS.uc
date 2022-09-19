@@ -165,7 +165,13 @@ function OnConfirmPlayOffline()
     ProfileSettings.SetToDefaults();
     ProfileSettings.ExpandExtraFromProfileSettings();
     OnlineSub.SetCachedProfile(ProfileSettings);
-    KFPlayerController(Outer.GetPC()).NativeFunctionToken(ArgumentOutOfRangeException);
+    KFPlayerController(Outer.GetPC()).0;
+    /* Statement decompilation error: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+        
+    */
+
+    /*@Error*/;
 }
 
 function OnLoginStatusChanged(Engine.OnlineSubsystem.ELoginStatus NewStatus, UniqueNetId NewId)

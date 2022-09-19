@@ -88,6 +88,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178; 
+const KFID_SurvivalStartingWeapIdx=179; 
+const KFID_SurvivalStartingGrenIdx=180; 
 #linenumber 15
 
 enum EServerPrivacy
@@ -347,11 +349,16 @@ function FilterWeeklyMaps(out array<string> List)
 		return;
 	}
 
+	LogInternal("OPTIONS: Skipping Maps");
+
 	// Scavenger index = 11
-	// BossRush index = 14
+	// BossRush  index = 14
+	// GunGame   index = 16
 	WeeklyIndex = class'KFGameEngine'.static.GetWeeklyEventIndexMod();
-	if (WeeklyIndex == 11 ||  WeeklyIndex == 14)
+	if (WeeklyIndex == 11 ||  WeeklyIndex == 14 || WeeklyIndex == 16)
 	{
+		LogInternal("OPTIONS: Inside, removing maps");
+
 		List.RemoveItem("KF-Biolapse");
 		List.RemoveItem("KF-Nightmare");
 		List.RemoveItem("KF-PowerCore_Holdout");

@@ -19,6 +19,7 @@ var bool bIsPauseGameVoteActive;
 var bool bIsSpectating;
 var bool bIsVisible;
 var bool bUsingGamepad;
+var transient bool bLastGunGameVisibility;
 var array<string> SpecialWaveIconPath;
 var array<string> SpecialWaveLocKey;
 var KFGFxHUD_SpectatorInfo SpectatorInfoWidget;
@@ -45,6 +46,7 @@ var KFGFxWidget_GoompaCounter GoompaCounterWidget;
 var KFGFxWidget_BossHealthBar bossHealthBar;
 var KFGFxWidget_MapText MapTextWidget;
 var KFGFxWidget_MapCounterText MapCounterTextWidget;
+var KFGFxWidget_GunGame GunGameWidget;
 var KFPlayerController KFPC;
 var config float HUDScale;
 var GFxObject KFGXHUDManager;
@@ -300,6 +302,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 GoompaCounterWidget = KFGFxWidget_GoompaCounter(Widget);
             }
             break;
+        case 'GunGameContainer':
+            if(GunGameWidget == none)
+            {
+                GunGameWidget = KFGFxWidget_GunGame(Widget);
+                SetWidgetPathBinding(Widget, WidgetPath);
+            }
+            break;
         default:
             break;
     }
@@ -328,6 +337,8 @@ function UpdateWeaponSelect()
 
 function TickHud(float DeltaTime)
 {
+    local bool bGunGameVisibility;
+
     if((KFPC == none) || (KFPC.WorldInfo.TimeSeconds - LastUpdateTime) < UpdateInterval)
     {
         return;
@@ -381,6 +392,19 @@ function TickHud(float DeltaTime)
     if(GfxScoreBoardPlayer != none)
     {
         GfxScoreBoardPlayer.TickHud(DeltaTime);
+    }
+    if(GunGameWidget != none)
+    {
+        bGunGameVisibility = KFPC.CanUseGunGame();
+        if(bGunGameVisibility)
+        {
+            bGunGameVisibility = KFPC.Pawn.Health > 0;
+        }
+        if(bGunGameVisibility != bLastGunGameVisibility)
+        {
+            GunGameWidget.UpdateGunGameVisibility(bGunGameVisibility);
+            bLastGunGameVisibility = bGunGameVisibility;
+        }
     }
 }
 
@@ -681,19 +705,33 @@ function DisplayExpandedWaveInfo()
         }
         else
         {
-            if(KFGRI.IsBossWave())
+            if(KFGRI.bIsWeeklyMode && KFGRI.CurrentWeeklyIndex == 16)
             {
-                PriorityMessageObject.SetString("waveNum", Class'KFGFxHUD_WaveInfo'.default.BossWaveString);                
-            }
-            else
-            {
-                if(KFGRI.IsFinalWave())
+                if(KFGRI.bWaveGunGameIsFinal)
                 {
                     PriorityMessageObject.SetString("waveNum", Class'KFGFxHUD_WaveInfo'.default.FinalWaveString);                    
                 }
                 else
                 {
-                    PriorityMessageObject.SetString("waveNum", (string(KFGRI.WaveNum) $ "/") @ string(KFGRI.GetFinalWaveNum()));
+                    PriorityMessageObject.SetString("waveNum", string(KFGRI.GunGameWavesCurrent) $ "/?");
+                }                
+            }
+            else
+            {
+                if(KFGRI.IsBossWave())
+                {
+                    PriorityMessageObject.SetString("waveNum", Class'KFGFxHUD_WaveInfo'.default.BossWaveString);                    
+                }
+                else
+                {
+                    if(KFGRI.IsFinalWave())
+                    {
+                        PriorityMessageObject.SetString("waveNum", Class'KFGFxHUD_WaveInfo'.default.FinalWaveString);                        
+                    }
+                    else
+                    {
+                        PriorityMessageObject.SetString("waveNum", (string(KFGRI.WaveNum) $ "/") @ string(KFGRI.GetFinalWaveNum()));
+                    }
                 }
             }
         }
@@ -957,6 +995,14 @@ function UpdateGoompaCounterWidget(int Value, int Max)
     if(GoompaCounterWidget != none)
     {
         GoompaCounterWidget.SetCount(Value, Max);
+    }
+}
+
+function UpdateGunGameWidget(int Score, int max_score, int Level, int max_level)
+{
+    if(GunGameWidget != none)
+    {
+        GunGameWidget.SetData(Score, max_score, Level, max_level);
     }
 }
 
@@ -1264,6 +1310,7 @@ function Callback_VoteKick(bool Vote)
 defaultproperties
 {
     ScoreBoardClass=Class'KFGFxMoviePlayer_ScoreBoard'
+    bLastGunGameVisibility=true
     SpecialWaveIconPath(0)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Cyst"
     SpecialWaveIconPath(1)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Slasher"
     SpecialWaveIconPath(2)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Clot"

@@ -236,6 +236,16 @@ AlchemistWeaponSkinBundleName="錬金術師武器スキンバンドルパック"
 ChopTilYouDropFullGearBundleName="ドロップするまでチョップ完全装備バンドル"
 ChristmasWeaponSkinBundleName="クリスマス武器スキンバンドルパック"
 HolidayShopperOutfitName="ホリデーショッパー服バンドル"
+NeonMKVIIIWeaponSkinBundleName="ネオン MKVIII 武器スキンバンドルパック"
+ClassicWeaponSkinBundleName="クラシック武器スキンバンドルパック"
+DeepSeaSkinWeaponSkinPackName="深海スキン武器スキンバンドルパック"
+ChameleonWeaponSkinBundleName="カメレオン武器スキンバンドルパック"
+DeepSeaExplorerOutfitName="深海探索者の衣装バンドル"
+ReductoRayBundleName="縮小光線の武器バンドル"
+SentinelBundleName="歩哨の武器バンドル"
+TidalTerrorBundleName="津波のホラー武器バンドル"
+ArmorySeasonPass2022Name="Killing Floor 2 - 武器シーズンパス2"
+UltimateUpgradeName="Killing Floor 2 - Ultimate Edition Upgrade"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="ブライアーの「ロンドン」ユニフォーム（5種類のスキンを含む）と、「守衛ヘルメット」服飾アクセサリー（3種類のスキンを含む）が入っています。"
@@ -470,6 +480,16 @@ AlchemistWeaponSkinBundleDescription="20種類の錬金術師がテーマの武�
 ChopTilYouDropFullGearBundleDescription="ホリデーショッパーがテーマの装飾アクセサリーが6つ入っています。各アクセサリーごとに5種類のテクスチャーバリエーションが含まれたバンドルです。ほとんどのキャラクターが装備できます。"
 ChristmasWeaponSkinBundleDescription="20種類のクリスマスがテーマの武器スキン(10種類のスイートと10種類のサワー)を含む。本セットでフィーチャーされている武器：ブームスティック 、コーク&バーン、デザートイーグル、火炎放射器、HMTech-501 手榴弾ライフル、M32、P90、RPG-7、SCAR、スピットファイア。"
 HolidayShopperOutfitBundleDescription="ホリデーショッパー衣装が含まれています(6種類のスキンスタイルを含む)。ほとんどのキャラクターが装備できます。"
+NeonMKVIIIWeaponSkinBundleDescription="ネオンテーマの武器スキン8種（ネオン4種とネオンRGB4種）を含む。本セットの武器内容：ブームスティック、HZ12, HRG ベルーガビート、ツヴァイヘンダー。"
+ClassicWeaponSkinBundleDescription="クラシックな武器スキン8種（新品4種と希少4種）を含む。本セットの武器内容：ブームスティック、9mm、AA12、M1911。"
+DeepSeaSkinWeaponSkinBundleDescription="深海をテーマにした武器スキン36種（骨董品6種、アクア6種、サンゴ6種、真珠6種、クロアザラシ6種、希少6種）を含む。本セットの武器内容：AA12、FN FAL、M14EBR、Mac 10、MP5RAS、RPG-7。"
+ChameleonWeaponSkinBundleDescription="カメレオンがテーマの武器スキン8種（ダイナミック4種とダイナミックRGB4種）を含む。本セットの武器内容：デザートイーグル、カタナ、クリスSMG、RPG-7。"
+DeepSeaExplorerOutfitDescription="深海探索者の衣装とヘルメットが含まれています（6種類のスキンスタイルを含む）。ほとんどのキャラクターが装備できます。"
+ReductoRayBundleDescription="手に収まる大きさまで敵を小さくする力。縮小光線はサバイバリストperk向けにデザインされており、5種類の独自スキンがついてきます。"
+SentinelBundleDescription="友達を必要としない人はいません。友達が自動照準マシンガンを装備する自立型AIならばなおさら！センチネルはコマンドー perk 向けに設計されており、5種類の独自スキンがついてきます。"
+TidalTerrorBundleDescription="津波のホラーアップデートからのセンチネルと縮小光線武器を含む。それぞれの武器には5種類の独自スキンが付いてきます。"
+ArmorySeasonPass2022Description="今年の武器シーズンパスでKilling Floor 2のZedを破壊するレパートリーを増やそう！ 2022年に発売される全6種類の武器にすぐにアクセスできる、最もdosh効率のいい方法です。購入すると、2022年夏のアップデートでリリースされた2つの新武器（縮小光線武器バンドル、センチネル武器バンドル）がすぐに手に入ります。 両方の武器バンドルには、それぞれ5種類のユニークな武器スキンが付属します。さらに、Killing Floor 2 武器シーズンパス2には、登場予定の武器バンドル-2022年秋の武器2種、2022年冬の武器2種-へのアクセスも含まれています。"
+UltimateUpgradeDescription="Killing Floor 2を既にお持ちの方で、より充実したゲーム体験ができるよう、低価格でアップグレードを希望される方向けです。このアップグレードバンドルには以下が含まれます。武器シーズンパス1＆2、装飾アップグレード、スタンドアロンアドオン（Mrsフォスター、サイバーパンク服バンドル、ヘッドショットFXパック 1 & 2、荒地バンドル、フォスターのクラシックバンドル、ブライアーのボビーバンドル、タナカのバイクバンドル、ボージンMark 7バンドル、防護服バンドル、DARアサルトアーマーバンドル、コマンドーチキンバンドル、パジャマバンドル、Clotリュックバンドル、ドラゴン&鯉 完全武器スキンセット、カッコいいサンタバンドル、ダンボールの騎士バンドル、ウィッチハンター衣装バンドル、サンタのヘルパー衣裳バンドル、フォスターのお気に入り武器スキンパック、スペースパイレーツ衣装バンドル、スペースパイレーツ完全装備バンドル、リーパー服バンドル、ハロウィーン2020完全装備バンドル、クリスマス2020完全装備バンドル、2020冬装備装飾バンドル。"
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="プレイ可能キャラクター、ロブ・ブライアー巡査の新たな定番の「ロンドンボビー」ユニフォームをゲットしよう。ブライアーの「ロンドン」ユニフォーム(5スキンスタイルを含む)と、「守衛ヘルメット」服飾アクセサリー(3スキンスタイルを含む)が入っています。"
@@ -581,6 +601,7 @@ AstronautHelmetName="宇宙飛行士ヘルメット"
 AstronautO2BackpackName="宇宙飛行士O2リュック"
 AstronautSuitName="宇宙飛行士スーツユニフォーム"
 HolidayShoppingSuitName="ホリデーショッピングのユニフォーム"
+DeepSeeExplorerSuitName="深海探索者の衣装"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="マスターソン中尉 | サイバーパンク | 緑"
@@ -1446,6 +1467,8 @@ HRGBuckshotRevolversSpectreHRGDynamicChromaName="HRG バックショットリボ
 9MMSynthwaveFieldTestedName="9MM | シンセウェイブ | 実地試験済み"
 9MMSynthwaveBattleScarredName="9MM | シンセウェイブ | 歴戦"
 9MMDragonKoiPreciousName="9MM | ドラゴン&鯉 | 希少"
+9MMClassicMintName="9MM | クラシック | 新品"
+9MMClassicPreciousName="9MM | クラシック | 希少"
 
 ;AA12 Descriptions
 AA12MintDescription="外観：新品 | AA-12は自動ショットガンです。近距離から中距離で壊滅的な火力を発揮しますが、フルオートでは弾薬が食われます！"
@@ -1511,6 +1534,14 @@ AA12JaegerDynamicRGBName="AA12 | イェーガー | ダイナミック RGB"
 AA12StarsName="AA12 | Vault | スター"
 AA12BeyondHorizonMintName="AA12 | ビヨンドホライゾン | 新品"
 AA12BeyondHorizonSpaceEliteName="AA12 | ビヨンドホライゾン | スペースエリート"
+AA12DeepSeaAntiqueName="AA12 | 深海 | 骨董品"
+AA12DeepSeaAquaName="AA12 | 深海 | アクア"
+AA12DeepSeaCoralName="AA12 | 深海 | サンゴ"
+AA12DeepSeaPearlName="AA12 | 深海 | 真珠"
+AA12DeepSeaBlackSealName="AA12 | 深海 | クロアザラシ"
+AA12DeepSeaPreciousName="AA12 | 深海 | 希少"
+AA12ClassicMintName="AA12 | クラシック | 新品"
+AA12ClassicPreciousName="AA12 | クラシック | 希少"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="外観：新品 | より多くのバレルを取り付けることで全てが改善されます。たくさんのベーコンを付け足すようなものです。"
@@ -1731,6 +1762,10 @@ BoomstickXMasSweetName="ブームスティック | クリスマス | スイー�
 BoomstickXMasSourName="ブームスティック | クリスマス | サワー"
 BoomstickAlchemistToxicName="ブームスティック | 錬金術師 | 猛毒"
 BoomstickAlchemistBlazeName="ブームスティック | 錬金術師 | 火炎"
+BoomstickNeonMintName="ブームスティック | ネオン | 新品"
+BoomstickNeonRGBPreciousName="ブームスティック | ネオンRGB | 希少"
+BoomstickClassicMintName="ブームスティック | クラシック | 新品"
+BoomstickClassicPreciousName="ブームスティック | クラシック | 希少"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="外観：新品 | 手持ちの、ホームメイド火炎放射器です。良い子のみなさんは真似しないでください。"
@@ -1899,6 +1934,8 @@ DesertEagleXMasSweetName="デザートイーグル | クリスマス | スイー
 DesertEagleXMasSourName="デザートイーグル | クリスマス | サワー"
 DesertEagleAlchemistToxicName="デザートイーグル | 錬金術師 | 猛毒"
 DesertEagleAlchemistBlazeName="デザートイーグル | 錬金術師 | 火炎"
+DesertEagleChameleonDynamicName="デザートイーグル | カメレオン | ダイナミック"
+DesertEagleChameleonDynamicRGBName="デザートイーグル | カメレオン | ダイナミックRGB"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="外観：新品 | 楽しみが2倍でも物足りない時は...4倍にしよう！"
@@ -2452,6 +2489,8 @@ HZ12HorzineFirstEncounterBattleScarredName="HZ12 | ホージン初遭遇 | 歴�
 HZ12VaultVoshPreciousName="HZ12 | Vault | Vosh | 希少"
 HZ12JaegerDynamicName="HZ12 | イェーガー | ダイナミック"
 HZ12JaegerDynamicRGBName="HZ12 | イェーガー | ダイナミック RGB"
+HZ12NeonMintName="HZ12 | ネオン | 新品"
+HZ12NeonRGBPreciousName="HZ12 | ネオンRGB | 希少"
 
 ;Katana Descriptions
 KatanaMintDescription="外観：新品 | この上品さに敬意を現してください。"
@@ -2487,6 +2526,8 @@ KatanaVaultVoshPreciousName="カタナ | Vault | Vosh | 希少"
 KatanaDragonKoiPreciousName="カタナ | ドラゴン&鯉 | 希少"
 KatanaHellmarkMagmaName="カタナ | Hellmark | マグマ"
 KatanaHellmarkThunderName="カタナ | Hellmark | 雷"
+KatanaChameleonDynamicName="カタナ | カメレオン | ダイナミック"
+KatanaChameleonDynamicRGBName="カタナ | カメレオン | ダイナミックRGB"
 
 ;KF-BAR Descriptions
 KFBARMintDescription="外観：新品 | 伝統的なコマンドーナイフのホージン版です。"
@@ -2557,6 +2598,8 @@ KrissFostersFavoritesPreciousName="クリス | フォスターのお気に入り
 KrissIceBreakerDynamicName="クリス | 砕氷船 | ダイナミック"
 KrissIceBreakerDynamicPreciousName="クリス | 砕氷船 | ダイナミック希少"
 KrissInfernalElitePreciousName="クリス | 地獄のエリート | 希少"
+KrissChameleonDynamicName="クリスサブマシンガン | カメレオン | ダイナミック"
+KrissChameleonDynamicRGBName="クリスサブマシンガン | カメレオン | ダイナミックRGB"  
 
 ;L85A2 Descriptions
 L85A2MintDescription="外観：新品 | SA80は、軍隊が…食われるまでは、イギリス軍の標準武器でした。"
@@ -2637,6 +2680,12 @@ M14EBRVaultVoshPreciousName="M14EBR | Vault | Vosh | 希少"
 M14EBRPrestigePreciousName="M14EBR | 名声 | 希少"
 M14EBRDragonKoiPreciousName="M14EBR | ドラゴン&鯉 | 希少"
 M14EBRFostersFavoritesPreciousName="M14EBR | フォスターのお気に入り | 希少"
+M14EBRDeepSeaAntiqueName="M14EBR | 深海 | 骨董品"
+M14EBRDeepSeaAquaName="M14EBR | 深海 | アクア"
+M14EBRDeepSeaCoralName="M14EBR | 深海 | サンゴ"
+M14EBRDeepSeaPearlName="M14EBR | 深海 | 真珠"
+M14EBRDeepSeaBlackSealName="M14EBR | 深海 | クロアザラシ"
+M14EBRDeepSeaPreciousName="M14EBR | 深海 | 希少"
 
 ;M16M203 Descriptions
 M16M203MintDescription="外観：新品 | 銃弾か手榴弾か決められない人向け。"
@@ -2697,6 +2746,8 @@ M1911DragonKoiPreciousName="M1911 | ドラゴン&鯉 | 希少"
 M1911JaegerDynamicName="M1911 | イェーガー | ダイナミック"
 M1911JaegerDynamicRGBName="M1911 | イェーガー | ダイナミック RGB"
 M1911StarsName="M1911 | Vault | スター"
+M1911ClassicMintName="M1911 | クラシック | 新品"
+M1911ClassicPreciousName="M1911 | クラシック | 希少"
 
 ;M4 Descriptions
 M4MintDescription="外観：新品 | ベネリがM4コンバットショットガンを米軍のために設計しました。セミオートマチックなので、安定した発射速度を可能にします。"
@@ -2864,6 +2915,12 @@ Mac10JaegerDynamicName="MAC 10 | イェーガー | ダイナミック"
 Mac10JaegerDynamicRGBName="MAC 10 | イェーガー | ダイナミック RGB"
 Mac10BeyondHorizonMintName="MAC 10 | ビヨンドホライゾン | 新品"
 Mac10BeyondHorizonSpaceEliteName="MAC 10 | ビヨンドホライゾン | スペースエリート"
+Mac10DeepSeaAntiqueName="MAC 10 | 深海 | 骨董品"
+Mac10DeepSeaAquaName="MAC 10 | 深海 | アクア"
+Mac10DeepSeaCoralName="MAC 10 | 深海 | サンゴ"
+Mac10DeepSeaPearlName="MAC 10 | 深海 | 真珠"
+Mac10DeepSeaBlackSealName="MAC 10 | 深海 | クロアザラシ"
+Mac10DeepSeaPreciousName="MAC 10 | 深海 | 希少"
 
 ;Medic Bat Descriptions
 MedicBatMintDescription="外観: 新品 | 頭に当たると素晴らしい回復を見せることを知らない人々のために"
@@ -2953,6 +3010,12 @@ MP5RASSteampunkPreciousName="MP5RAS | スチームパンク | 希少"
 MP5RASStarsName="MP5RAS | Vault | スター"
 MP5RASNeonMintName="MP5RAS | ネオン | 新品"
 MP5RASNeonRGBPreciousName="MP5RAS | ネオンRGB | 希少"
+MP5RASDeepSeaAntiqueName="MP5RAS | 深海 | 骨董品"
+MP5RASDeepSeaAquaName="MP5RAS | 深海 | アクア"
+MP5RASDeepSeaCoralName="MP5RAS | 深海 | サンゴ"
+MP5RASDeepSeaPearlName="MP5RAS | 深海 | 真珠"
+MP5RASDeepSeaBlackSealName="MP5RAS | 深海 | クロアザラシ"
+MP5RASDeepSeaPreciousName="MP5RAS | 深海 | 希少"
 
 ;MP7 Descriptions
 MP7MintDescription="外観：新品 | 世界中の政府系機関や特殊部隊に使用されています。"
@@ -3135,6 +3198,14 @@ RPG7XMasSweetName="RPG-7 | クリスマス | スイート"
 RPG7XMasSourName="RPG-7 | クリスマス | サワー"
 RPG7AlchemistToxicName="RPG-7 | 錬金術師 | 猛毒"
 RPG7AlchemistBlazeName="RPG-7 | 錬金術師 | 火炎"
+RPG7DeepSeaAntiqueName="RPG-7 | 深海 | 骨董品"
+RPG7DeepSeaAquaName="RPG-7 | 深海 | アクア"
+RPG7DeepSeaCoralName="RPG-7 | 深海 | サンゴ"
+RPG7DeepSeaPearlName="RPG-7 | 深海 | 真珠"
+RPG7DeepSeaBlackSealName="RPG-7 | 深海 | クロアザラシ"
+RPG7DeepSeaPreciousName="RPG-7 | 深海 | 希少"
+RPG7ChameleonDynamicName="RPG-7 | カメレオン | ダイナミック"
+RPG7ChameleonDynamicRGBName="RPG-7 | カメレオン | ダイナミックRGB"
 
 ;Scar Descriptions
 ScarMintDescription="外観：新品 | 元々はアメリカ特殊作戦群のために設計され、確かに、特殊です！"
@@ -3442,6 +3513,8 @@ ZweihanderSteampunkMintName="ツヴァイヘンダー | スチームパンク | 
 ZweihanderSteampunkPreciousName="ツヴァイヘンダー | スチームパンク | 希少"
 ZweihanderVaultVoshPreciousName="ツヴァイヘンダー | Vault | Vosh | 希少"
 ZweihanderColiseumPreciousName="ツヴァイヘンダー | コロシアム | 希少"
+ZweihanderNeonMintName="ツヴァイヘンダー | ネオン | 新品"
+ZweihanderNeonRGBPreciousName="ツヴァイヘンダー | ネオン RGB | 希少" 
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="外観：新品 | 西部開拓時代の大きすぎるナイフです。今この場でzedを切り裂くのに最適。"
@@ -3598,6 +3671,12 @@ FNFALJaegerMintName="FN FAL | イェーガー | 新品"
 FNFALJaegerFieldTestedName="FN FAL | イェーガー | 実地試験済み"
 FNFALJaegerBattleScarredName="FN FAL | イェーガー | 歴戦"
 FNFALJaegerDynamicName="FN FAL | イェーガー | ダイナミック"
+FNFALDeepSeaAntiqueName="FN FAL | 深海 | 骨董品"
+FNFALDeepSeaAquaName="FN FAL | 深海 | アクア"
+FNFALDeepSeaCoralName="FN FAL | 深海 | サンゴ"
+FNFALDeepSeaPearlName="FN FAL | 深海 | 真珠"
+FNFALDeepSeaBlackSealName="FN FAL | 深海 | クロアザラシ"
+FNFALDeepSeaPreciousName="FN FAL | 深海 | 希少"
 
 ;FireAxe Descriptions
 FireAxeMintDescription="外観：新品 | 燃えている訳でもないのに、なぜ「ファイア」アックスなのか？"
@@ -3662,7 +3741,13 @@ SealSquealNeonMintName="アシカの情報提供者 | ネオン | 新品"
 SealSquealNeonRGBPreciousName="アシカの情報提供者 | ネオン RGB | 希少"
 SealSquealJaegerDynamicName="アシカの情報提供者 | イェーガー | ダイナミック"
 SealSquealJaegerDynamicRGBName="アシカの情報提供者 | イェーガー | ダイナミック RGB"
+;HRG Beluga Beat Descriptions
+HRGBelugaBeatMintDescription = "外観：新品 | 誰にとっても音の強さが高まります。"
+HRGBelugaBeatPreciousDescription = "外観：希少 | 誰にとっても音の強さが高まります。"
 
+;HRG Beluga Beat Names
+HRGBelugaBeatNeonMintName="HRG ベルーガビート | ネオン | 新品"
+HRGBelugaBeatNeonRGBPreciousName="HRG ベルーガビート | ネオン RGB | 希少"
 ;MIcrowaveAssault Descriptions
 MIcrowaveAssaultMintDescription="外観: 新品 | 火と共にあらんことを。"
 MIcrowaveAssaultFieldTestedDescription="外観: 実地検証済み | 火と共にあらんことを。"
@@ -3903,6 +3988,33 @@ DoshinegunDiamondName="ドーシャインガン | ダイヤモンド"
 DoshinegunDoshName="ドーシャインガン | Dosh"
 DoshinegunGoldenTigerName="ドーシャインガン | ゴールデンタイガー"
 DoshinegunBaroqueName="ドーシャインガン | バロック"
+;Sentinel Descriptions
+SentinelMintDescription="外観： 新品 | ポジションを監視して敵に向かって撃つドローン。"
+SentinelFieldTestedDescription="外観： 実地実験済み | ポジションを監視して敵に向かって撃つドローン。"
+SentinelBattleScarredDescription="外観： 歴戦 | ポジションを監視して敵に向かって撃つドローン。"
+SentinelPreciousDescription="外観： 希少 | ポジションを監視して敵に向かって撃つドローン。"
+
+;Sentinel Names
+SentinelStandardName="センチネル | スタンダード"
+Sentinel1942Name="センチネル | 1942"
+SentinelBlackBirdName="センチネル | ブラックバード"
+SentinelHadesName="センチネル | ハーデス"
+SentinelIceStormName="センチネル | アイスストーム"
+SentinelShockName="センチネル | ショック"
+
+;Reducto Ray Descriptions
+ReductoRayMintDescription="外観： 新品 | ハニー、ZEDを縮めてやったよ。"
+ReductoRayFieldTestedDescription="外観： 実地実験済み | ハニー、ZEDを縮めてやったよ。"
+ReductoRayBattleScarredDescription="外観： 歴戦 | ハニー、ZEDを縮めてやったよ。"
+ReductoRayPreciousDescription="外観： 希少 | ハニー、ZEDを縮めてやったよ。"
+
+;Reducto Ray Names
+ReductoRayStandardName="縮小光線 | スタンダード"
+ReductoRayHellsFuryName="縮小光線 | 地獄の激怒"
+ReductoRayAtomicLoveName="縮小光線 | アトミックラブ"
+ReductoRayLuckyStrikeName="縮小光線 | ラッキーストライク"
+ReductoRayHeavyMetalName="縮小光線 | ヘビーメタル"
+ReductoRayDestructorName="縮小光線 | デストラクター"
 
 [CosmeticSection]
 
@@ -6198,7 +6310,7 @@ DoZCompanionPreciousName="DoZ | 仲間 | 希少"
 ;Weekly Wild West London Cosmetic Name
 WildWestLondonHatPreciousName="ワイルドウェストロンドンハット | 希少"
 
-
+;XMAS 2021 Cosmetic Names
 HolidayShoppingCartSantaName="ホリデーショッピング | カート | サンタ"
 HolidayShoppingCartElfName="ホリデーショッピング | カート | エルフ"
 HolidayShoppingCartNorthPoleName="ホリデーショッピング | カート | 北極"
@@ -6231,7 +6343,7 @@ HolidayShoppingGogglesChristmessName="ホリデーショッピング | ゴーグ
 HolidayShoppingGogglesPreciousName="ホリデーショッピング | ゴーグル | 希少"
 HolidayShoppingCompanionPreciousName="ホリデーショッピング | 仲間 | 希少"
 
-
+;Alchemist Cosmetic Names
 AlchemistArmbandToxicName="錬金術師 | アームバンド | 猛毒"
 AlchemistArmbandBlazeName="錬金術師 | アームバンド | 火炎"
 AlchemistArmbandPlasmaName="錬金術師 | アームバンド | プラズマ"
@@ -6274,12 +6386,21 @@ AlchemistVialsPlasmaName="錬金術師 | 小びん | プラズマ"
 AlchemistVialsVoltageName="錬金術師 | 小びん | ボルテージ"
 AlchemistVialsBlackoutName="錬金術師 | 小びん | ブラックアウト"
 AlchemistVialsPreciousName="錬金術師 | 小びん | 希少"
-
-
+;Weekly Shrunken Heads Cosmetic Name
 PracticeTargetBackpackPreciousName="射撃練習リュック | 希少"
-
-
+;Weekly Boss Rush Cosmetic Name
 BossTrophyBackpackPreciousName="ボストロフィーリュック | 希少"
+;Weekly Gun Game Cosmetic Name
+SupplyBackpackPreciousName = "物資リュック | 希少"
+
+;Summer 2022 Cosmetic Names
+DeepSeaTridentPreciousName = "深海 | 三つ又 | 希少"
+DeepSeaHelmetAntiqueName="深海 | ヘルメット | 骨董品"
+DeepSeaHelmetAquaName="深海 | ヘルメット | アクア"
+DeepSeaHelmetCoralName="深海 | ヘルメット | サンゴ"
+DeepSeaHelmetPearlName="深海 | ヘルメット | 真珠"
+DeepSeaHelmetBlackSealName="深海 | ヘルメット | クロアザラシ"
+DeepSeaHelmetPreciousName="深海 | ヘルメット | 希少"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="装備メニューから装備可能です。ほとんどのキャラクターが使用できます。シーズナルイベント「サマーサイドショウ」で手に入る限定アイテムです。サイドショウチケット1枚にリサイクルされます。"

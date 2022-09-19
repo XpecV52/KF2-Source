@@ -15,11 +15,13 @@ BonusDoshString="RECOMPENSAS"
 LengthStrings[0]="Corta (4 oleadas)"
 LengthStrings[1]="Media (7 oleadas)"
 LengthStrings[2]="Larga (10 oleadas)"
-
+SpecialLengthString="Especial"
 ServerTypeStrings[0]="Clasificatoria"
 ServerTypeStrings[1]="Clasificatoria - Base"
 ServerTypeStrings[2]="Clasificatoria - Per."
 ServerTypeStrings[3]="No clasificatoria"
+WeaponLevelString="NIVEL DE ARMA"
+GunPointsString="PUNTOS DE ARMA"
 
 PermissionStrings[0]="Pública"
 PermissionStrings[1]="Privado: contraseña"
@@ -740,6 +742,8 @@ ZedSupportValue="Daño indirecto"
 ZednnihilationValue="Bajas en oleada"
 ZedStomper="Pisoteador de zed"
 ZedStomperValue="Zeds aplastados"
+WeaponMaster="Dominio de arma"
+WeaponMasterValue="Primer jugador en conseguir el arma final"
 
 EPB_Healing="Curación"
 EPB_Kills="Bajas"
@@ -2041,7 +2045,7 @@ SplashDamage="Ola de calor"
 SplashDamageDescription="Los zeds que reciben daño ígneo a quemarropa se tambalean y caen."
 
 Inferno="MOMENTO ZED - Inferno"
-InfernoDescription="Durante el momento zed, los zeds afectados por daño de fuego se ralentizan un 30 % y reciben un 50 % más de daño por quemaduras."
+InfernoDescription="Durante el Momento zed, tu daño de fuego por tiempo se extiende a todos los zeds colindantes."
 
 Scorch="MOMENTO ZED - Pirómano"
 ScorchDescription="Durante el momento zed, atacas con armas de especialización casi en tiempo real. Además, cuentas con munición infinita."
@@ -2265,10 +2269,10 @@ MeleeExpert="Experto cuerpo a cuerpo"
 MeleeExpertDescription="Velocidad de ataque cuerpo a cuerpo: +20 %. Daño infligido: +75 %. Velocidad de movimiento al usar cualquier arma cuerpo a cuerpo: 25 %."
 
 AmmoVest="Chaleco de munición"
-AmmoVestDescription="Puedes llevar hasta un 15 % más de munición de todas las armas y granadas. Además, tu granada se vuelve curativa."
+AmmoVestDescription="Puedes llevar hasta un 15 % más de munición de todas las armas y puedes seleccionar una granada curativa."
 
 BigPockets="Arnés armamentístico"
-BigPocketsDescription="La capacidad de carga aumenta en 5 y tu granada se convierte en un cóctel Molotov."
+BigPocketsDescription="La capacidad de carga aumenta en 5 y puedes seleccionar un cóctel Molotov."
 
 ZedShrapnel="Zedbustión espontánea"
 ZedShrapnelDescription="Los zeds que mates tienen un 30 % de posibilidades de explotar, infligiendo daño y aturdimiento a otros zeds cercanos."
@@ -2898,6 +2902,20 @@ AllCompleteRewardDescriptionString="Compras festivas | Camarada | Precioso"
 ChanceDropDescriptionStrings[0]="Boleto Krampus"
 ChanceDropDescriptionStrings[1]="Boleto dorado Krampus"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2022]
+CurrentSpecialEventString="Un evento especial de tiempo limitado con objetos exclusivos"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Hay turistas mejores",DescriptionString="Mata a 1500 zeds en cualquiera de los mapas y modos")
+SpecialEventObjectiveInfoList[1]=(TitleString="Amerizaje semanal",DescriptionString="Completa la semana en la plataforma petrolífera")
+SpecialEventObjectiveInfoList[2]=(TitleString="Mejor surfista",DescriptionString="Completa 100 oleadas en la plataforma petrolífera")
+SpecialEventObjectiveInfoList[3]=(TitleString="¡Por la borda!",DescriptionString="Lanza a 50 zeds al mar en la plataforma petrolífera")
+SpecialEventObjectiveInfoList[4]=(TitleString="Mar abierto",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior en la plataforma petrolífera")
+
+AllCompleteRewardDescriptionString="Fondo marino | Tridente | Precioso"
+
+ChanceDropDescriptionStrings[0]="Boleto Verano"
+ChanceDropDescriptionStrings[1]="Boleto Verano dorado"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3063,6 +3081,16 @@ FriendlyName="Cabezas encogidas"
 DescriptionStrings[0]="De nada sirve intentar disparar a la cabeza..."
 DescriptionStrings[1]="Duración: Media (7 oleadas)"
 ModifierDescriptions[0]="Quizá tratan de protegerse frente a la manía del jugador con disparar a la cabeza. En cualquier caso, parece que tienen nuevos puntos débiles. Selecciona el modo de juego semanal en la página de matchmaking. Especialización +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[GunGame KFWeeklyOutBreakInformation]
+FriendlyName="Ascenso al arsenal"
+DescriptionStrings[0]="¡Súbele el nivel a tu arma!"
+DescriptionStrings[1]="Duración: especial"
+ModifierDescriptions[0]="Los mercaderes no están operativos. Comienzas solo con un cuchillo. Consigue puntos de arma acabando con los enemigos para conseguir mejores armas. Solo se permiten supervivientes. Selecciona el modo de juego Semanal en la página de matchmaking. Especialización +15."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3593,6 +3621,9 @@ DisplayName="Fuerte del más allá"
 
 [KF-CarillonHamlet KFMapSummary]
 DisplayName="Caserío del carillón"
+
+[KF-Rig KFMapSummary]
+DisplayName="Plataforma petrolífera"
 
 [KFMapInfo]
 ; defaults

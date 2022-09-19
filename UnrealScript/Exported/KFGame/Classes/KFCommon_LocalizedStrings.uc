@@ -18,6 +18,9 @@ var localized string FailedToReachInventoryServerString;
 
 var localized array<string> DifficultyStrings;
 var localized array<string> LengthStrings;
+var localized string SpecialLengthString;
+var localized string WeaponLevelString;
+var localized string GunPointsString;
 var localized array<string> ServerTypeStrings;
 var localized array<string> PermissionStrings;
 var localized array<string> ConsolePermissionStrings;
@@ -229,6 +232,9 @@ defaultproperties
    LengthStrings(0)="Short (4 Waves)"
    LengthStrings(1)="Medium (7 Waves)"
    LengthStrings(2)="Long (10 Waves)"
+   SpecialLengthString="Special"
+   WeaponLevelString="WEAPON LEVEL"
+   GunPointsString="WEAPON POINTS"
    ServerTypeStrings(0)="Ranked"
    ServerTypeStrings(1)="Ranked - Stock"
    ServerTypeStrings(2)="Ranked - Custom"

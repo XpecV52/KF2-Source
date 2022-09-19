@@ -442,7 +442,7 @@ defaultproperties
    FireModeIconPaths(1)=()
    InventoryGroup=IG_Equipment
    InventorySize=3
-   GroupPriority=25.000000
+   GroupPriority=11.000000
    WeaponSelectTexture=Texture2D'WEP_UI_C4_TEX.UI_WeaponSelect_C4'
    MagazineCapacity(0)=1
    AmmoCost(2)=0

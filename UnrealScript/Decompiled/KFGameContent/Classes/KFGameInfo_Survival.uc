@@ -25,6 +25,7 @@ var byte WaveMax;
 var int WaveNum;
 var bool bHumanDeathsLastWave;
 var protected transient bool bWaveStarted;
+var protected bool bGunGamePlayerOnLastGun;
 var int ObjectiveSpawnDelay;
 
 static function bool ShouldPlayMusicAtStart()
@@ -48,6 +49,7 @@ event PostBeginPlay()
 {
     super.PostBeginPlay();
     TimeBetweenWaves = int(GetTraderTime());
+    bGunGamePlayerOnLastGun = false;
 }
 
 function InitSpawnManager()
@@ -265,6 +267,16 @@ function RestartPlayer(Controller NewPlayer)
             }
         }
     }
+}
+
+function ResetGunGame(KFPlayerController_WeeklySurvival KFPC_WS)
+{
+    super.ResetGunGame(KFPC_WS);
+}
+
+function RestartGunGamePlayerWeapon(KFPlayerController_WeeklySurvival KFPC_WS, byte WaveToUse)
+{
+    super.RestartGunGamePlayerWeapon(KFPC_WS, WaveToUse);
 }
 
 function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, class<DamageType> DamageType)
@@ -1022,6 +1034,26 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
                     KFPC.OnWaveComplete(WaveNum);
                 }                
             }            
+            if((OutbreakEvent != none) && OutbreakEvent.ActiveEvent.bGunGameMode)
+            {
+                MyKFGRI.GunGameWavesCurrent += 1;
+                if(bGunGamePlayerOnLastGun)
+                {
+                    MyKFGRI.bWaveGunGameIsFinal = true;
+                    if(WaveNum < WaveMax)
+                    {
+                        WaveNum = WaveMax - 1;
+                    }                    
+                }
+                else
+                {
+                    if(WaveNum >= (WaveMax - 1))
+                    {
+                        WaveNum = WaveMax - 2;
+                    }
+                }
+                MyKFGRI.bNetDirty = true;
+            }
             if(WaveNum < WaveMax)
             {
                 GotoState('TraderOpen', 'Begin');                

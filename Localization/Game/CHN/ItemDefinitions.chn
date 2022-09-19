@@ -236,6 +236,16 @@ AlchemistWeaponSkinBundleName="炼金术士武器皮肤物品包"
 ChopTilYouDropFullGearBundleName="砍到倒全套装备包"
 ChristmasWeaponSkinBundleName="圣诞节武器皮肤物品包"
 HolidayShopperOutfitName="节日购物服装包"
+NeonMKVIIIWeaponSkinBundleName="霓虹灯 MKVIII 武器皮肤物品包"
+ClassicWeaponSkinBundleName="经典武器皮肤物品包"
+DeepSeaSkinWeaponSkinPackName="深海皮肤武器皮肤物品包"
+ChameleonWeaponSkinBundleName="变色龙武器皮肤物品包"
+DeepSeaExplorerOutfitName="深海探险家服装物品包"
+ReductoRayBundleName="收缩光线武器包"
+SentinelBundleName="哨兵武器包"
+TidalTerrorBundleName="潮汐恐惧武器包"
+ArmorySeasonPass2022Name="《Killing Floor 2》 - 军械库季票 2"
+UltimateUpgradeName="《Killing Floor 2》- 终极版升级"																
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="包括布莱尔的伦敦警服（含 5 种皮肤风格）和监护人头盔装饰配件（含 3 种皮肤风格）。"
@@ -470,6 +480,16 @@ AlchemistWeaponSkinBundleDescription="包含20款炼金术士主题武器皮肤�
 ChopTilYouDropFullGearBundleDescription="一个物品包中包含6款节日购物主题装饰品配件，每款均有5种材质变体。大部分角色均可兼容使用。"
 ChristmasWeaponSkinBundleDescription="包含20款圣诞节主题武器皮肤（10款甜蜜和10款酸溜）。本套装中的主打武器有：短管霰弹枪、喷火枪、沙漠之鹰、火焰喷射器、HMTech-501 手榴步枪、M32、P90、RPG-7、Scar、喷火式枪"
 HolidayShopperOutfitBundleDescription="内含节日购物服装（包含 6 款皮肤风格）。大部分角色均可兼容使用。"
+NeonMKVIIIWeaponSkinBundleDescription="包含 8 款霓虹灯主题武器皮肤（4 款霓虹灯和 4 款霓虹灯 RGB） 此套件所含武器：散弹枪、HZ12、HRG 白鲸打击、双手剑。"
+ClassicWeaponSkinBundleDescription="包含 8 款经典主题武器皮肤（4 款崭新和 4 款宝物） 此套件所含武器：散弹枪、9MM、AA12、M1911。"
+DeepSeaSkinWeaponSkinBundleDescription="包含 36 款深海主题武器皮肤（6 款古董、6 款水蓝色、6 款珊瑚、6 款珍珠、6 款黑色海豹、6 款宝物）。此套件所含武器：AA12、FN FAL、M14EBR、Mac 10、MP5RAS、RPG-7。"
+ChameleonWeaponSkinBundleDescription="包含 8 款变色龙主题武器皮肤（4 款动态和 4 款动态 RBG） 此套件所含武器：沙漠之鹰、武士刀、Kriss 冲锋枪、RPG-7。"
+DeepSeaExplorerOutfitDescription="内含深海探险家服装和头盔（包含 6 款皮肤风格）。兼容大部分角色。"
+ReductoRayBundleDescription="将敌人收缩至掌上尺寸的能量。收缩光线针对生存主义者技能设计，包含 5 款独特的皮肤。"
+SentinelBundleDescription="每个人都需要朋友，尤其是拥有自动瞄准机枪的自动人工智能。哨兵武器包专为突击兵技能设计，包含 5 款独特的皮肤。"
+TidalTerrorBundleDescription="包括来自“潮汐恐惧”升级版的哨兵和收缩光线武器。每种武器均有 5 款独特的皮肤。"
+ArmorySeasonPass2022Description="使用今年的军械库季票扩充您在《Killing Floor 2》中的丧尸摧毁技能！这是最省钱的方式，可立即获得 6 种即将到来的 2022 版武器，该等武器会在 2022 年全年发行。立即购买，包括 2 种全新武器，将随 2022 年夏季升级版推出（收缩光线武器包、哨兵武器包）。两种武器包均包含 5 款独特的武器皮肤。此外，《Killing Floor 2》军械库季票 2 包含即将到来的武器包权限，其发行计划如下：2 种武器在 2022 年秋季，2 种武器在 2022 年冬季。"
+UltimateUpgradeDescription="适用于想要低价升级至最全面的游戏体验的《Killing Floor 2》现有玩家。此次升级包包含：军械库季票 1 和 2，以及以下装饰升级和独立附加装备：福斯特夫人、赛博朋克服装包、爆头特效包 1 & 2、荒地物品包、福斯特经典物品包、布莱尔的警察物品包、田中的自行车物品包、霍因标记 7 物品包、防护服物品包、DAR 攻击护甲包、突击兵战斗鸡包、睡衣物品包、血凝背包物品包、龙锦鲤完整武器皮肤套装、坏圣诞老人包、硬纸板骑士物品包、巫师猎人服装包、圣诞老人助手服装包、福斯特最爱武器皮肤包、太空海盗服装包、太空海盗全套装备包、死神服装包、2020 年万圣节全套装备包、2020 年圣诞节全套装备包、2020 年冬季装备装饰品物品包。"
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="为可参加游戏的人物 PC 罗伯-布莱尔获得一套新的经典伦敦警服。包括布莱尔的伦敦警服（含 5 种皮肤风格）和监护人头盔装饰配件（含 3 种皮肤风格）。"
@@ -581,6 +601,7 @@ AstronautHelmetName="宇航员头盔"
 AstronautO2BackpackName="宇航员氧气背包"
 AstronautSuitName="宇航员套装制服"
 HolidayShoppingSuitName="节日购物制服"
+DeepSeeExplorerSuitName="深海探险家服装"												  
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="中将比尔·马斯特森 | 赛博朋克 | 绿色"
@@ -1446,6 +1467,8 @@ HRGBuckshotRevolversSpectreHRGDynamicChromaName="HRG 大号铅弹左轮手枪 | 
 9MMSynthwaveFieldTestedName="9 毫米 | 合成声波 | 久经沙场"
 9MMSynthwaveBattleScarredName="9 毫米 | 合成声波 | 身经百战"
 9MMDragonKoiPreciousName="9MM | 龙锦鲤 | 宝物"
+9MMClassicMintName="9 毫米 | 经典 | 硬币"
+9MMClassicPreciousName="9 毫米 | 经典 | 宝物"										 												 
 
 ;AA12 Descriptions
 AA12MintDescription="外部：硬币 | AA-12 是自动霰弹枪。中至远程威力惊人，但是全自动时非常消耗子弹。"
@@ -1511,6 +1534,14 @@ AA12JaegerDynamicRGBName="AA12 | 贼鸥 | 动态 RGB"
 AA12StarsName="AA12 | 金库 | 星星"
 AA12BeyondHorizonMintName="AA12 | 超越地平线 | 崭新"
 AA12BeyondHorizonSpaceEliteName="AA12 | 超越地平线 | 太空精英"
+AA12DeepSeaAntiqueName="AA12 | 深海 | 古董"
+AA12DeepSeaAquaName="AA12 | 深海 | 水蓝色"
+AA12DeepSeaCoralName="AA12 | 深海 | 珊瑚"
+AA12DeepSeaPearlName="AA12 | 深海 | 珍珠"
+AA12DeepSeaBlackSealName="AA12 | 深海 | 黑色海豹"
+AA12DeepSeaPreciousName="AA12 | 深海 | 宝物"
+AA12ClassicMintName="AA12 | 经典 | 硬币"
+AA12ClassicPreciousName="AA12 | 经典 | 宝物"												  												   
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="外部：硬币 | 你往上面放越多火药桶，世界就会越美好。就像加了更多的培根。"
@@ -1731,6 +1762,10 @@ BoomstickXMasSweetName="短管霰弹枪 | 圣诞节 | 甜蜜"
 BoomstickXMasSourName="短管霰弹枪 | 圣诞节 | 酸溜"
 BoomstickAlchemistToxicName="短管霰弹枪 | 炼金术士 | 剧毒"
 BoomstickAlchemistBlazeName="短管霰弹枪 | 炼金术士 | 烈焰"
+BoomstickNeonMintName="短管霰弹枪 | 霓虹灯 | 硬币"
+BoomstickNeonRGBPreciousName="短管霰弹枪 | 霓虹灯RGB | 宝物"
+BoomstickClassicMintName="短管霰弹枪 | 经典 | 硬币"
+BoomstickClassicPreciousName="短管霰弹枪 | 经典 | 宝物"		 
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="外部：硬币 | 手持式自制喷火器。切勿在家自行尝试。"
@@ -1899,6 +1934,8 @@ DesertEagleXMasSweetName="沙漠之鹰 | 圣诞节 | 甜蜜"
 DesertEagleXMasSourName="沙漠之鹰 | 圣诞节 | 酸溜"
 DesertEagleAlchemistToxicName="沙漠之鹰 | 炼金术士 | 剧毒"
 DesertEagleAlchemistBlazeName="沙漠之鹰 | 炼金术士 | 烈焰"
+DesertEagleChameleonDynamicName="沙漠之鹰 | 变色龙 | 动态"
+DesertEagleChameleonDynamicRGBName="沙漠之鹰 | 变色龙 | 动态RGB"											   
 
 ;Doomstick Descriptions
 DoomstickMintDescription="外部：硬币 | 双倍的快乐还不够……那就来四倍吧！"
@@ -2452,6 +2489,8 @@ HZ12HorzineFirstEncounterBattleScarredName="HZ12 | 霍因初次相遇 | 身经�
 HZ12VaultVoshPreciousName="HZ12 | 金库 | V字 | 宝物"
 HZ12JaegerDynamicName="HZ12 | 贼鸥 | 动态"
 HZ12JaegerDynamicRGBName="HZ12 | 贼鸥 | 动态 RGB"
+HZ12NeonMintName="HZ12 | 霓虹灯 | 硬币"
+HZ12NeonRGBPreciousName="HZ12 | 霓虹灯RGB | 宝物"						
 
 ;Katana Descriptions
 KatanaMintDescription="外部：硬币 | 试挥一下，别忘了礼仪。"
@@ -2487,6 +2526,8 @@ KatanaVaultVoshPreciousName="武士刀 | 金库 | V字 | 宝物"
 KatanaDragonKoiPreciousName="武士刀 | 龙锦鲤 | 宝物"
 KatanaHellmarkMagmaName="武士刀 | 地狱标记 | 熔岩"
 KatanaHellmarkThunderName="武士刀 | 地狱标记 | 雷电"
+KatanaChameleonDynamicName="武士刀 | 变色龙 | 动态"
+KatanaChameleonDynamicRGBName="武士刀 | 变色龙 | 动态RGB"																
 
 ;KF-BAR Descriptions
 KFBARMintDescription="外部：硬币 | 霍因版的经典战斗刀。"
@@ -2557,6 +2598,8 @@ KrissFostersFavoritesPreciousName="Kriss 冲锋枪 | 福斯特的收藏夹 | 宝
 KrissIceBreakerDynamicName="Kriss | 破冰者 | 动态"
 KrissIceBreakerDynamicPreciousName="Kriss | 破冰者 | 动态 宝物"
 KrissInfernalElitePreciousName="Kriss | 地狱精英 | 宝物"
+KrissChameleonDynamicName="Kriss 冲锋枪 | 变色龙 | 动态"
+KrissChameleonDynamicRGBName="Kriss 冲锋枪 | 变色龙 | 动态RGB"																  
 
 ;L85A2 Descriptions
 L85A2MintDescription="外部：硬币 | SA80 是英队的标准武器，呃，是在军队被吃掉之前。"
@@ -2637,6 +2680,12 @@ M14EBRVaultVoshPreciousName="M14EBR | 金库 | V 字 | 宝物"
 M14EBRPrestigePreciousName="M14EBR | 威望 | 宝物"
 M14EBRDragonKoiPreciousName="M14EBR | 龙锦鲤 | 宝物"
 M14EBRFostersFavoritesPreciousName="M14EBR 步枪 | 福斯特的收藏夹 | 宝物"
+M14EBRDeepSeaAntiqueName="M14EBR | 深海 | 古董"
+M14EBRDeepSeaAquaName="M14EBR | 深海 | 水蓝色"
+M14EBRDeepSeaCoralName="M14EBR | 深海 | 珊瑚"
+M14EBRDeepSeaPearlName="M14EBR | 深海 | 珍珠"
+M14EBRDeepSeaBlackSealName="M14EBR | 深海 | 黑色海豹"
+M14EBRDeepSeaPreciousName="M14EBR | 深海 | 宝物"													
 
 ;M16M203 Descriptions
 M16M203MintDescription="外部：硬币 | 适合在子弹和爆炸物之间犹豫不决的人士。"
@@ -2697,6 +2746,8 @@ M1911DragonKoiPreciousName="M1911 | 龙锦鲤 | 宝物"
 M1911JaegerDynamicName="M1911 | 贼鸥 | 动态"
 M1911JaegerDynamicRGBName="M1911 | 贼鸥 | 动态 RGB"
 M1911StarsName="M1911 | 金库 | 星星"
+M1911ClassicMintName="M1911 | 经典 | 硬币"
+M1911ClassicPreciousName="M1911 | 经典 | 硬币"						 
 
 ;M4 Descriptions
 M4MintDescription="外部：硬币 | 贝内利为美国军队设计了 M4 战斗霰弹枪。它是半自动式，可以良好和稳定地射击。"
@@ -2864,6 +2915,12 @@ Mac10JaegerDynamicName="MAC 10 | 贼鸥 | 动态"
 Mac10JaegerDynamicRGBName="MAC 10 | 贼鸥 | 动态 RGB"
 Mac10BeyondHorizonMintName="MAC 10 | 超越地平线 | 崭新"
 Mac10BeyondHorizonSpaceEliteName="MAC 10 | 超越地平线 | 太空精英"
+Mac10DeepSeaAntiqueName="MAC 10 | 深海 | 古董"
+Mac10DeepSeaAquaName="MAC 10 | 深海 | 水蓝色"
+Mac10DeepSeaCoralName="MAC 10 | 深海 | 珊瑚"
+Mac10DeepSeaPearlName="MAC 10 | 深海 | 珍珠"
+Mac10DeepSeaBlackSealName="MAC 10 | 深海 | 黑色海豹"
+Mac10DeepSeaPreciousName="MAC 10 | 深海 | 宝物"													   
 
 ;Medic Bat Descriptions
 MedicBatMintDescription="外部：崭新 | 专为那些就算被优质治疗糊到脸上上也搞不清状况的人量身定做"
@@ -2953,6 +3010,12 @@ MP5RASSteampunkPreciousName="MP5RAS | 蒸汽朋克 | 宝物"
 MP5RASStarsName="MP5RAS | 金库 | 星星"
 MP5RASNeonMintName="MP5RAS | 霓虹灯 | 崭新"
 MP5RASNeonRGBPreciousName="MP5RAS | 霓虹灯RGB | 宝物"
+MP5RASDeepSeaAntiqueName="MP5RAS | 深海 | 古董"
+MP5RASDeepSeaAquaName="MP5RAS | 深海 | 水蓝色"
+MP5RASDeepSeaCoralName="MP5RAS | 深海 | 珊瑚"
+MP5RASDeepSeaPearlName="MP5RAS | 深海 | 珍珠"
+MP5RASDeepSeaBlackSealName="MP5RAS | 深海 | 黑色海豹"
+MP5RASDeepSeaPreciousName="MP5RAS | 深海 | 宝物"														
 
 ;MP7 Descriptions
 MP7MintDescription="外部：硬币 | 全球许多代号机构和特种部队都在使用。"
@@ -3135,6 +3198,14 @@ RPG7XMasSweetName="RPG-7 | 圣诞节 | 甜蜜"
 RPG7XMasSourName="RPG-7 | 圣诞节 | 酸溜"
 RPG7AlchemistToxicName="RPG-7 | 炼金术士 | 剧毒"
 RPG7AlchemistBlazeName="RPG-7 | 炼金术士 | 烈焰"
+RPG7DeepSeaAntiqueName="RPG-7 | 深海 | 古董"
+RPG7DeepSeaAquaName="RPG-7 | 深海 | 水蓝色"
+RPG7DeepSeaCoralName="RPG-7 | 深海 | 珊瑚"
+RPG7DeepSeaPearlName="RPG-7 | 深海 | 珍珠"
+RPG7DeepSeaBlackSealName="RPG-7 | 深海 | 黑色海豹"
+RPG7DeepSeaPreciousName="RPG-7 | 深海 | 宝物"
+RPG7ChameleonDynamicName="RPG-7 | 变色龙 | 动态"
+RPG7ChameleonDynamicRGBName="RPG-7 | 变色龙 | 动态RGB"															 
 
 ;Scar Descriptions
 ScarMintDescription="外部：硬币 | 最初是为美国特种作战司令部设计，所以，真的，很特别！"
@@ -3442,6 +3513,8 @@ ZweihanderSteampunkMintName="双手剑 | 蒸汽朋克 | 崭新"
 ZweihanderSteampunkPreciousName="双手剑 | 蒸汽朋克 | 宝物"
 ZweihanderVaultVoshPreciousName="双手剑 | 金库 | V字 | 宝物"
 ZweihanderColiseumPreciousName="双手剑 | 竞技场 | 宝物"
+ZweihanderNeonMintName="双手剑 | 霓虹灯 | 硬币"
+ZweihanderNeonRGBPreciousName="双手剑 | 霓虹RGB | 宝物" 																 
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="外部：硬币 | 大号的老西部匕首。最适合切碎这里的丧尸。"
@@ -3598,6 +3671,12 @@ FNFALJaegerMintName="FN FAL | 贼鸥 | 硬币"
 FNFALJaegerFieldTestedName="FN FAL | 贼鸥 | 久经沙场"
 FNFALJaegerBattleScarredName="FN FAL | 贼鸥 | 身经百战"
 FNFALJaegerDynamicName="FN FAL | 贼鸥 | 动态"
+FNFALDeepSeaAntiqueName="FFN FAL | 深海 | 古董"
+FNFALDeepSeaAquaName="FN FAL | 深海 | 水蓝色"
+FNFALDeepSeaCoralName="FN FAL | 深海 | 珊瑚"
+FNFALDeepSeaPearlName="FN FAL | 深海 | 珍珠"
+FNFALDeepSeaBlackSealName="FN FAL | 深海 | 黑色海豹"
+FNFALDeepSeaPreciousName="FN FAL | 深海 | 宝物"													   
 
 ;FireAxe Descriptions
 FireAxeMintDescription="外部：崭新 | 如果没有熊熊火焰，又算什么消防斧？"
@@ -3663,6 +3742,13 @@ SealSquealNeonRGBPreciousName="封印尖叫 | 霓虹灯 RGB | 宝物"
 SealSquealJaegerDynamicName="封印尖叫 | 贼鸥 | 动态"
 SealSquealJaegerDynamicRGBName="封印尖叫 | 贼鸥 | 动态 RGB"
 
+;HRG Beluga Beat Descriptions
+HRGBelugaBeatMintDescription = "外部：硬币 | 提高任何派对的响度。"
+HRGBelugaBeatPreciousDescription = "外部：宝物 | 提高任何派对的响度。"
+
+;HRG Beluga Beat Names
+HRGBelugaBeatNeonMintName="HRG 白鲸打击 | 霓虹灯 | 硬币"
+HRGBelugaBeatNeonRGBPreciousName="HRG 白鲸打击 | 霓虹RGB | 宝物"																		
 ;MIcrowaveAssault Descriptions
 MIcrowaveAssaultMintDescription="外部：崭新 | 愿火焰之力与你同在。"
 MIcrowaveAssaultFieldTestedDescription="外部：久经沙场 | 愿火焰之力与你同在。"
@@ -3903,6 +3989,33 @@ DoshinegunDiamondName="钱币枪 | 钻石"
 DoshinegunDoshName="钱币枪 | 金钱"
 DoshinegunGoldenTigerName="钱币枪 | 金色老虎"
 DoshinegunBaroqueName="钱币枪 | 巴洛克"
+;Sentinel Descriptions
+SentinelMintDescription="外部：崭新 | 监视一个地点并向敌人射击的无人机。"
+SentinelFieldTestedDescription="外部：久经沙场 | 监视一个地点并向敌人射击的无人机。"
+SentinelBattleScarredDescription="外部：身经百战 | 监视一个地点并向敌人射击的无人机。"
+SentinelPreciousDescription="外部：宝物 | 监视一个地点并向敌人射击的无人机。"
+
+;Sentinel Names
+SentinelStandardName="哨兵 | 标准"
+Sentinel1942Name="哨兵 | 1942"
+SentinelBlackBirdName="哨兵 | 黑鸟"
+SentinelHadesName="哨兵 | 冥世"
+SentinelIceStormName="哨兵 | 冰暴"
+SentinelShockName="哨兵 | 冲击"
+
+;Reducto Ray Descriptions
+ReductoRayMintDescription="外部：崭新 | 宝贝，我让丧尸收缩了。"
+ReductoRayFieldTestedDescription="外部：久经沙场 | 宝贝，我让丧尸收缩了。"
+ReductoRayBattleScarredDescription="外部：身经百战 | 宝贝，我让丧尸收缩了。"
+ReductoRayPreciousDescription="外部：宝物 | 宝贝，我让丧尸收缩了。"
+
+;Reducto Ray Names
+ReductoRayStandardName="收缩光线 | 标准"
+ReductoRayHellsFuryName="收缩光线 | 地狱之怒"
+ReductoRayAtomicLoveName="收缩光线 | 原子之爱"
+ReductoRayLuckyStrikeName="收缩光线 | 鸿运当头"
+ReductoRayHeavyMetalName="收缩光线 | 重金属"
+ReductoRayDestructorName="收缩光线 | 毁灭者"												   
 
 [CosmeticSection]
 
@@ -4402,7 +4515,7 @@ VenomMaskFilteredWhiteName="过滤式防毒面具 | 白色"
 VisagedePoupeeBloodyName="Visage de Poupee | 血红"
 VisagedePoupeeDollFaceName="Visage de Poupee | 娃娃脸"
 VisagedePoupeeHarlequinName="Visage de Poupee | 丑角"
-VisagedePoupeeMuertoName="Visage de Poupee | Muerto"
+VisagedePoupeeMuertoName="Visage de Poupee | 死亡"
 VisagedePoupeeSkelingtonName="Visage de Poupee | 骨骼"
 VisagedePoupeeSquaresName="Visage de Poupee | 广场"
 VisagedePoupeeZedName="Visage de Poupee | 丧尸"
@@ -6232,6 +6345,7 @@ HolidayShoppingGogglesPreciousName="节日购物 | 护目镜 | 宝物"
 HolidayShoppingCompanionPreciousName="节日购物 | 同伴 | 宝物"
 
 
+;Alchemist Cosmetic Names						 
 AlchemistArmbandToxicName="炼金术士 | 臂环 | 剧毒"
 AlchemistArmbandBlazeName="炼金术士 | 臂环 | 烈焰"
 AlchemistArmbandPlasmaName="炼金术士 | 臂环 | 电浆"
@@ -6275,11 +6389,20 @@ AlchemistVialsVoltageName="炼金术士 | 小瓶 | 电压"
 AlchemistVialsBlackoutName="炼金术士 | 小瓶 | 黑视"
 AlchemistVialsPreciousName="炼金术士 | 小瓶 | 宝物"
 
-
+;Weekly Shrunken Heads Cosmetic Name									
 PracticeTargetBackpackPreciousName="练习目标背包 | 宝物"
-
-
+;Weekly Boss Rush Cosmetic Name
 BossTrophyBackpackPreciousName="首领奖品背包 | 宝物"
+;Weekly Gun Game Cosmetic Name
+SupplyBackpackPreciousName = "补给背包 | 宝物"												
+;Summer 2022 Cosmetic Names
+DeepSeaTridentPreciousName = "深海| 三叉戟 |宝物"														   
+DeepSeaHelmetAntiqueName="深海 | 头盔 | 古董"
+DeepSeaHelmetAquaName="深海 | 头盔 | 水蓝色"
+DeepSeaHelmetCoralName="深海 | 头盔 | 珊瑚"
+DeepSeaHelmetPearlName="深海 | 头盔 | 珍珠"
+DeepSeaHelmetBlackSealName="深海 | 头盔 | 黑色海豹"
+DeepSeaHelmetPreciousName="深海 | 头盔 | 宝物"						   
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="可在装备菜单进行装备；与大部分角色兼容。这是“夏日余兴节目”季节活动专属的一个物品。回收换为 1 张余兴节目奖券"

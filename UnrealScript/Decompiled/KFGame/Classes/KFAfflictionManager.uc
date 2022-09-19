@@ -46,6 +46,8 @@ enum EAfflictionType
     AF_Freeze,
     AF_Microwave,
     AF_Bleed,
+    AF_BigHead,
+    AF_Shrink,
     AF_Custom1,
     AF_Custom2,
     AF_Custom3,
@@ -179,7 +181,7 @@ protected function ProcessSpecialMoveAfflictions(KFPerk InstigatorPerk, Vector H
     }
     if((KnockdownPower > float(0)) && Outer.CanDoSpecialMove(6))
     {
-        AccrueAffliction(8, KnockdownPower, BodyPart, InstigatorPerk);
+        AccrueAffliction(8, KnockdownPower, BodyPart, InstigatorPerk, DamageType);
     }
     if((StunPower > float(0)) && Outer.CanDoSpecialMove(8))
     {
@@ -251,7 +253,8 @@ protected function ProcessHitReactionAfflictions(KFPerk InstigatorPerk, class<KF
 protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KFDamageType> DamageType, Actor DamageCauser)
 {
     local KFWeapon DamageWeapon;
-    local float BurnPower, EMPPower, PoisonPower, MicrowavePower, BleedPower;
+    local float BurnPower, EMPPower, PoisonPower, MicrowavePower, BleedPower, BigHeadPower,
+	    ShrinkPower;
 
     local KFInterface_DamageCauser KFDmgCauser;
 
@@ -262,7 +265,9 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
         EMPPower = DamageWeapon.GetUpgradedAfflictionPower(0, DamageType.default.EMPPower);
         PoisonPower = DamageWeapon.GetUpgradedAfflictionPower(6, DamageType.default.PoisonPower);
         MicrowavePower = DamageWeapon.GetUpgradedAfflictionPower(10, DamageType.default.MicrowavePower);
-        BleedPower = DamageWeapon.GetUpgradedAfflictionPower(11, DamageType.default.BleedPower);        
+        BleedPower = DamageWeapon.GetUpgradedAfflictionPower(11, DamageType.default.BleedPower);
+        ShrinkPower = DamageWeapon.GetUpgradedAfflictionPower(13, DamageType.default.ShrinkPower);
+        BigHeadPower = DamageType.default.BigHeadPower;        
     }
     else
     {
@@ -271,6 +276,8 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
         PoisonPower = DamageType.default.PoisonPower;
         MicrowavePower = DamageType.default.MicrowavePower;
         BleedPower = DamageType.default.BleedPower;
+        BigHeadPower = DamageType.default.BigHeadPower;
+        ShrinkPower = DamageType.default.ShrinkPower;
     }
     KFDmgCauser = KFInterface_DamageCauser(DamageCauser);
     if(NotEqual_InterfaceInterface(KFDmgCauser, (none)))
@@ -303,7 +310,7 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
         }
         if(BurnPower > float(0))
         {
-            AccrueAffliction(1, BurnPower);
+            AccrueAffliction(1, BurnPower,, InstigatorPerk, DamageType);
         }
         if((PoisonPower > float(0)) || DamageType.static.AlwaysPoisons())
         {
@@ -317,11 +324,20 @@ protected function ProcessEffectBasedAfflictions(KFPerk InstigatorPerk, class<KF
         {
             AccrueAffliction(11, BleedPower);
         }
+        if(BigHeadPower > float(0))
+        {
+            AccrueAffliction(12, BigHeadPower);
+        }
+        if(ShrinkPower > float(0))
+        {
+            AccrueAffliction(13, ShrinkPower,, InstigatorPerk);
+        }
     }
 }
 
-function AccrueAffliction(KFAfflictionManager.EAfflictionType Type, float InPower, optional KFAfflictionManager.EHitZoneBodyPart BodyPart, optional KFPerk InstigatorPerk)
+function AccrueAffliction(KFAfflictionManager.EAfflictionType Type, float InPower, optional KFAfflictionManager.EHitZoneBodyPart BodyPart, optional KFPerk InstigatorPerk, optional class<KFDamageType> DamageType)
 {
+    DamageType = none;
     if((InPower <= float(0)) || Type >= Outer.IncapSettings.Length)
     {
         return;
@@ -349,7 +365,7 @@ function AccrueAffliction(KFAfflictionManager.EAfflictionType Type, float InPowe
     Outer.AdjustAffliction(InPower);
     if(InPower > float(0))
     {
-        Afflictions[Type].Accrue(InPower);
+        Afflictions[Type].Accrue(InPower, DamageType);
     }
 }
 
@@ -520,7 +536,34 @@ function float GetAfflictionDamageModifier()
     {
         if(Afflictions[I] != none)
         {
-            DamageModifier += Afflictions[I].GetDamageModifier();
+            if(I == 12)
+            {                
+            }
+            else
+            {
+                DamageModifier += Afflictions[I].GetDamageModifier();
+            }
+        }
+        ++ I;
+        goto J0x1A;
+    }
+    return DamageModifier;
+}
+
+function float GetAfflictionDamageTakenModifier()
+{
+    local float DamageModifier;
+    local int I;
+
+    DamageModifier = 1;
+    I = 0;
+    J0x1A:
+
+    if(I < Afflictions.Length)
+    {
+        if(Afflictions[I] != none)
+        {
+            DamageModifier += Afflictions[I].GetDamageTakenModifier();
         }
         ++ I;
         goto J0x1A;
@@ -568,6 +611,21 @@ function float GetAfflictionAttackSpeedModifier()
         goto J0x1A;
     }
     return SpeedModifier;
+}
+
+function float GetBigHeadAfflictionDamageModifier()
+{
+    local float DamageModifier;
+
+    DamageModifier = 0;
+    if(Afflictions.Length > 12)
+    {
+        if(Afflictions[12] != none)
+        {
+            DamageModifier = Afflictions[12].GetDamageModifier();
+        }
+    }
+    return DamageModifier;
 }
 
 simulated function ShutDown()
@@ -638,4 +696,6 @@ defaultproperties
     AfflictionClasses(9)=class'KFAffliction_Freeze'
     AfflictionClasses(10)=class'KFAffliction_Microwave'
     AfflictionClasses(11)=class'KFAffliction_Bleed'
+    AfflictionClasses(12)=class'KFAffliction_BigHead'
+    AfflictionClasses(13)=class'KFAffliction_Shrink'
 }

@@ -107,6 +107,11 @@ simulated function PlayActivationSoundEvent()
 	}
 }
 
+simulated function bool CanActivateObjectiveByWeekly()
+{
+	return true;
+}
+
 // Status
 simulated function ActivateObjective()
 {

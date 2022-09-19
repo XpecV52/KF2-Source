@@ -441,6 +441,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_Husk'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedHusk.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedHusk.HeadshotAkComponent0'
+    ShrinkEffectModifier=0.7
     LocalizationKey=KFPawn_ZedHusk
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none

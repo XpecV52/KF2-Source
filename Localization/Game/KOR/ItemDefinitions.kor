@@ -236,6 +236,16 @@ AlchemistWeaponSkinBundleName="연금술사 무기 스킨 번들 팩"
 ChopTilYouDropFullGearBundleName="Chop Til You Drop 완전 장비 번들"
 ChristmasWeaponSkinBundleName="크리스마스 무기 스킨 번들 팩"
 HolidayShopperOutfitName="연휴 쇼핑 의상 번들"
+NeonMKVIIIWeaponSkinBundleName="네온 MKVIII 무기 스킨 번들 팩"
+ClassicWeaponSkinBundleName="클래식 무기 스킨 번들 팩"
+DeepSeaSkinWeaponSkinPackName="심해 무기 스킨 번들 팩"
+ChameleonWeaponSkinBundleName="카멜레온 무기 스킨 번들 팩"
+DeepSeaExplorerOutfitName="심해 탐사가 의상 번들"
+ReductoRayBundleName="환원 레이 무기 번들"
+SentinelBundleName="센티넬 무기 번들"
+TidalTerrorBundleName="조수의 공포 무기 번들"
+ArmorySeasonPass2022Name="Killing Floor 2 - 무기고 시즌 패스 2"
+UltimateUpgradeName="Killing Floor 2 - Ultimate Edition 업그레이드"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="브라이어의 런던 유니폼(스킨 스타일 5개 포함), 관리인 헬멧 꾸미기 액세서리(스킨 스타일 3개 포함)가 제공됩니다."
@@ -470,6 +480,16 @@ AlchemistWeaponSkinBundleDescription="이 세트에 포함된 20개의 연금술
 ChopTilYouDropFullGearBundleDescription="싱글 번들 하나에 5가지 텍스처로 제공되는 연휴 쇼핑 꾸미기 액세서리 6종이 포함되어 있습니다. 대부분의 캐릭터가 착용할 수 있습니다."
 ChristmasWeaponSkinBundleDescription="이 세트에 포함된 20개의 크리스마스 테마 무기 스킨(스위트 10종, 사워 10종) 무기는 다음과 같습니다: 붐스틱, 코크 앤 번, 데저트 이글, 화염방사기, HMTech-501 유탄 소총, M32, P90, RPG-7, 스카, 스핏파이어"
 HolidayShopperOutfitBundleDescription="연휴 쇼핑 의상(각각 스킨 6종 포함)이 포함되어 있습니다. 대부분의 캐릭터가 착용할 수 있습니다."
+NeonMKVIIIWeaponSkinBundleDescription="8개의 네온 테마 무기 스킨(4 네온, 4 네온 RGB)를 포함하고 있습니다. 세트 포함 무기: 붐스틱, HZ12, HRG 벨루가 비트, 츠바이한더."
+ClassicWeaponSkinBundleDescription="8개의 클래식 테마 무기 스킨(4 민트, 4 프레셔스)를 포함하고 있습니다. 세트 포함 무기: 붐스틱, 9MM, AA12, M1911."
+DeepSeaSkinWeaponSkinBundleDescription="36개의 심해 테마 무기 스킨(6 안티크, 6 아쿠아, 6 코랄, 6 펄, 6 블랙 씰, 6 프레셔스)를 포함하고 있습니다. 세트 포함 무기: AA12, FN FAL, M14EBR, Mac 10, MP5RAS, RPG-7."
+ChameleonWeaponSkinBundleDescription="8개의 카멜레온 테마 무기 스킨(4 다이나믹, 4 다이나믹 RGB)를 포함하고 있습니다. 세트 포함 무기: 데저트 이글, 카타나, 크리스 SMG, RPG-7."
+DeepSeaExplorerOutfitDescription="심해 탐사가 의상, 헬멧(각각 스킨 6종 포함)이 지급됩니다. 대부분의 캐릭터가 착용할 수 있습니다."
+ReductoRayBundleDescription="적을 작게 만들 능력을 이제 내 손안에 넣으세요. 환원 레이는 서바이벌리스트 병과용이며 5개의 고유 스킨 변형이 포함되어 있습니다."
+SentinelBundleDescription="모두에게는 친구가 필요하죠. 특히 자동 타게팅 머신건 AI는 더욱 그렇습니다. 센티넬은 코만도 병과용이며 5개의 고유 스킨 변형이 포함되어 있습니다."
+TidalTerrorBundleDescription="조수의 공포 업데이트의 센티넬, 환원 레이 무기가 들어 있습니다. 각 무기마다 5개의 고유 스킨이 포함되어 있습니다."
+ArmorySeasonPass2022Description="Killing Floor 2 올해의 무기고 시즌 패스에서 새로운 방법으로 제드를 파괴하세요! 2022년에 등장할 신규 무기를 6 번들을 즉시 사용하는 가장 효율적인 방법입니다. 구매 시 2022년 여름 업데이트에 포함된 2개의 신규 무기 번들을 즉시 이용할 수 있습니다(환원 레이 무기 번들, 센티넬 무기 번들). 두 무기 번들에는 각각 5종의 유니크 무기 스킨이 포함되어 있습니다. 또한 Killing Floor 2 무기고 시즌 패스 2에는 다음에 출시될 무기 번들이 포함되어 있습니다: 2022년 가을 무기 2개, 2022년 겨울 무기 2개."
+UltimateUpgradeDescription="기존 Killing Floor 2 보유자들은 저렴한 가격으로 업그레이드하여 더욱 재미있는 게임을 즐길 수 있습니다. 업그레이드 포함 내역: 무기고 시즌 패스 1, 무기고 시즌 패스 2, 다음 꾸미기 업그레이드: ...및 다음 스탠드얼론 추가 콘텐츠: 포스터 부인, 사이버펑크 의상 번들, 헤드샷 FX 팩 1, 헤드샷 FX 팩 1 & 2, 웨이스트랜드 번들, 포스터의 클래식 번들, 브라이어의 보비 번들, 타나카의 바이커 번들, Horzine 마크 7 번들, 방호복 번들, DAR 돌격 장갑 번들, 코만도 치킨 번들, 파자마 번들, 클롯 백팩 번들, 드래곤 및 코이 전체 무기 스킨 세트, 상남자 산타 번들, 카드보드 기사 번들, 위치 헌터 복장 번들, 산타의 도우미 의상 번들, 포스터가 좋아하는 무기 스킨 팩, 우주 해적 복장 번들, 우주 해적 완전 장비 번들-리퍼 복장 번들, 2020년 할로윈 완전 장비 번들, 2020년 크리스마스 완전 장비 번들, 2020년 겨울 장비 꾸미기 번들."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="플레이가 가능한 캐릭터 PC 롭 브라이어의 새로운 고전적인 런던 보비 유니폼을 받아보세요. 브라이어의 런던 유니폼 (5 스킨 스타일 포함), 관리인 헬멧 꾸미기 액세서리(3 스킨 스타일 포함)가 제공됩니다."
@@ -581,6 +601,7 @@ AstronautHelmetName="우주인 헬멧"
 AstronautO2BackpackName="우주인 산소 백팩"
 AstronautSuitName="우주인 수트 유니폼"
 HolidayShoppingSuitName="연휴 쇼핑 유니폼"
+DeepSeeExplorerSuitName="심해 탐사가 의상"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="빌 마스터슨 중위 | 사이버펑크 | 그린"
@@ -1446,6 +1467,8 @@ HRGBuckshotRevolversSpectreHRGDynamicChromaName="HRG 산탄 리볼버 | 스펙�
 9MMSynthwaveFieldTestedName="9MM | 신스웨이브 | 현장 테스트"
 9MMSynthwaveBattleScarredName="9MM | 신스웨이브 | 전투 흔적"
 9MMDragonKoiPreciousName="9MM | 드래곤 및 코이 | 프레셔스"
+9MMClassicMintName="9MM | 클래식 | 민트급"
+9MMClassicPreciousName="9MM | 클래식 | 프레셔스"
 
 ;AA12 Descriptions
 AA12MintDescription="외관: 민트급 | The AA-12는 자동 샷건입니다. 근거리에서 중거리까지 파괴적인 화력을 발휘하지만 완전 자동으로 탄약을 먹어 치웁니다!"
@@ -1511,6 +1534,14 @@ AA12JaegerDynamicRGBName="AA12 | 예거 | 다이나믹 RGB"
 AA12StarsName="AA12 | 볼트 | 스타"
 AA12BeyondHorizonMintName="AA12 | 비욘드 호라이즌 | 민트급"
 AA12BeyondHorizonSpaceEliteName="AA12 | 비욘드 호라이즌 | 스페이스 엘리트"
+AA12DeepSeaAntiqueName="AA12 | 심해 | 안티크"
+AA12DeepSeaAquaName="AA12 | 심해 | 아쿠아"
+AA12DeepSeaCoralName="AA12 | 심해 | 코랄"
+AA12DeepSeaPearlName="AA12 | 심해 | 펄"
+AA12DeepSeaBlackSealName="AA12 | 심해 | 블랙 씰"
+AA12DeepSeaPreciousName="AA12 | 심해 | 프레셔스"
+AA12ClassicMintName="AA12 | 클래식 | 민트급"
+AA12ClassicPreciousName="AA12 | 클래식 | 프레셔스"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="외관: 민트 | 더 많은 총구를 부착하는 것이 좋습니다. 베이컨을 더 추가하는 거랑 비슷합니다."
@@ -1731,6 +1762,10 @@ BoomstickXMasSweetName="붐스틱 | 크리스마스 | 스위트"
 BoomstickXMasSourName="붐스틱 | 크리스마스 | 사워"
 BoomstickAlchemistToxicName="붐스틱 | 연금술사 | 중독"
 BoomstickAlchemistBlazeName="붐스틱 | 연금술사 | 블레이즈"
+BoomstickNeonMintName="붐스틱 | 네온 | 민트급"
+BoomstickNeonRGBPreciousName="붐스틱 | 네온 RGB | 프레셔스"
+BoomstickClassicMintName="붐스틱 | 클래식 | 민트급"
+BoomstickClassicPreciousName="붐스틱 | 클래식 | 프레셔스"
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="외관: 민트급 | 집에서 만든 휴대용 화염방사기. 집에서는 사용하지 마세요."
@@ -1899,6 +1934,8 @@ DesertEagleXMasSweetName="데저트 이글 | 크리스마스 | 스위트"
 DesertEagleXMasSourName="데저트 이글 | 크리스마스 | 사워"
 DesertEagleAlchemistToxicName="데저트 이글 | 연금술사 | 중독"
 DesertEagleAlchemistBlazeName="데저트 이글 | 연금술사 | 블레이즈"
+DesertEagleChameleonDynamicName="데저트 이글 | 카멜레온| 다이나믹"
+DesertEagleChameleonDynamicRGBName="데저트 이글 | 카멜레온| 다이나믹 RGB"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="외관: 민트급 | 즐거움 두 배는 부족합니다. 네 배로 갑니다!"
@@ -2452,6 +2489,8 @@ HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Horzine 퍼스트 엔카운�
 HZ12VaultVoshPreciousName="HZ12 | 볼트 | 보쉬 | 프레셔스"
 HZ12JaegerDynamicName="HZ12 | 예거 | 다이나믹"
 HZ12JaegerDynamicRGBName="HZ12 | 예거 | 다이나믹 RGB"
+HZ12NeonMintName="HZ12 | 네온 | 민트급"
+HZ12NeonRGBPreciousName="HZ12 | 네온 RGB | 프레셔스"
 
 ;Katana Descriptions
 KatanaMintDescription="외관: 민트급 | 이 무기의 품위를 조금만 존중해주세요."
@@ -2487,6 +2526,8 @@ KatanaVaultVoshPreciousName="카타나 | 볼트 | 보쉬 | 프레셔스"
 KatanaDragonKoiPreciousName="카타나 | 드래곤 및 코이 | 프레셔스"
 KatanaHellmarkMagmaName="카타나 | 헬마크 | 마그마"
 KatanaHellmarkThunderName="카타나 | 헬마크 | 천둥"
+KatanaChameleonDynamicName="카타나 | 카멜레온| 다이나믹"
+KatanaChameleonDynamicRGBName="카타나| 카멜레온| 다이나믹 RGB"
 
 ;KF-BAR Descriptions
 KFBARMintDescription="외관: 민트급 | Horzine 버전의 고전적인 코만도 나이프입니다."
@@ -2557,6 +2598,8 @@ KrissFostersFavoritesPreciousName="크리스 | 포스터가 좋아하는 | 프�
 KrissIceBreakerDynamicName="크리스 | 아이스 브레이커 | 다이나믹"
 KrissIceBreakerDynamicPreciousName="크리스 | 아이스 브레이커 | 다이나믹 프레셔스"
 KrissInfernalElitePreciousName="크리스 | 지옥 엘리트 | 프레셔스"
+KrissChameleonDynamicName="크리스 SMG | 카멜레온| 다이나믹"
+KrissChameleonDynamicRGBName="크리스 SMG | 카멜레온| 다이나믹 RGB"
 
 ;L85A2 Descriptions
 L85A2MintDescription="외관: 민트급 | SA80은 영국군이 잡아 먹히기 전에 표준 무기로 사용하였던 무기입니다."
@@ -2637,6 +2680,12 @@ M14EBRVaultVoshPreciousName="M14EBR | 볼트 | 보쉬 | 프레셔스"
 M14EBRPrestigePreciousName="M14EBR | 프레스티지 | 프레셔스"
 M14EBRDragonKoiPreciousName="M14EBR | 드래곤 및 코이 | 프레셔스"
 M14EBRFostersFavoritesPreciousName="M14EBR | 포스터가 좋아하는 | 프레셔스"
+M14EBRDeepSeaAntiqueName="M14EBR | 심해 | 안티크"
+M14EBRDeepSeaAquaName="M14EBR | 심해 | 아쿠아"
+M14EBRDeepSeaCoralName="M14EBR | 심해 | 코랄"
+M14EBRDeepSeaPearlName="M14EBR | 심해 | 펄"
+M14EBRDeepSeaBlackSealName="M14EBR | 심해 | 블랙 씰"
+M14EBRDeepSeaPreciousName="M14EBR | 심해 | 프레셔스"
 
 ;M16M203 Descriptions
 M16M203MintDescription="외관: 민트급 | 총알과 폭탄 중에 선택을 못하신 분에게 권합니다."
@@ -2697,6 +2746,8 @@ M1911DragonKoiPreciousName="M1911 | 드래곤 및 코이 | 프레셔스"
 M1911JaegerDynamicName="M1911 | 예거 | 다이나믹"
 M1911JaegerDynamicRGBName="M1911 | 예거 | 다이나믹 RGB"
 M1911StarsName="M1911 | 볼트 | 스타"
+M1911ClassicMintName="M1911 | 클래식 | 민트급"
+M1911ClassicPreciousName="M1911 | 클래식 | 프레셔스"
 
 ;M4 Descriptions
 M4MintDescription="외관: 민트급 | 베넬리에서 미군을 위해 M4 전투 샷건을 설계하였습니다. 반자동 샷건으로 지속적인 발사속도를 유지합니다."
@@ -2864,6 +2915,12 @@ Mac10JaegerDynamicName="MAC 10 | 예거 | 다이나믹"
 Mac10JaegerDynamicRGBName="MAC 10 | 예거 | 다이나믹 RGB"
 Mac10BeyondHorizonMintName="MAC 10 | 비욘드 호라이즌 | 민트급"
 Mac10BeyondHorizonSpaceEliteName="MAC 10 | 비욘드 호라이즌 | 스페이스 엘리트"
+Mac10DeepSeaAntiqueName="MAC 10 | 심해 | 안티크"
+Mac10DeepSeaAquaName="MAC 10 | 심해 | 아쿠아"
+Mac10DeepSeaCoralName="MAC 10 | 심해 | 코랄"
+Mac10DeepSeaPearlName="MAC 10 | 심해 | 펄"
+Mac10DeepSeaBlackSealName="MAC 10 | 심해 | 블랙 씰"
+Mac10DeepSeaPreciousName="MAC 10 | 심해 | 프레셔스"
 
 ;Medic Bat Descriptions
 MedicBatMintDescription="외관: 민트급 | 훌륭한 치료에 자신이 명중된 걸 모르는 분들을 위해"
@@ -2953,6 +3010,12 @@ MP5RASSteampunkPreciousName="MP5RAS | 스팀펑크 | 프레셔스"
 MP5RASStarsName="MP5RAS | 볼트 | 스타"
 MP5RASNeonMintName="MP5RAS | 네온 | 민트급"
 MP5RASNeonRGBPreciousName="MP5RAS | 네온 RGB | 프레셔스"
+MP5RASDeepSeaAntiqueName="MP5RAS | 심해 | 안티크"
+MP5RASDeepSeaAquaName="MP5RAS | 심해 | 아쿠아"
+MP5RASDeepSeaCoralName="MP5RAS | 심해 | 코랄"
+MP5RASDeepSeaPearlName="MP5RAS | 심해 | 펄"
+MP5RASDeepSeaBlackSealName="MP5RAS | 심해 | 블랙 씰"
+MP5RASDeepSeaPreciousName="MP5RAS | 심해 | 프레셔스"
 
 ;MP7 Descriptions
 MP7MintDescription="외관: 민트 | 알파벳 수프 에이전시 및 전 세계의 특수부대가 사용하는 총."
@@ -3135,6 +3198,14 @@ RPG7XMasSweetName="RPG-7 | 크리스마스 | 스위트"
 RPG7XMasSourName="RPG-7 | 크리스마스 | 사워"
 RPG7AlchemistToxicName="RPG-7 | 연금술사 | 중독"
 RPG7AlchemistBlazeName="RPG-7 | 연금술사 | 블레이즈"
+RPG7DeepSeaAntiqueName="RPG-7 | 심해 | 안티크"
+RPG7DeepSeaAquaName="RPG-7 | 심해 | 아쿠아"
+RPG7DeepSeaCoralName="RPG-7 | 심해 | 코랄"
+RPG7DeepSeaPearlName="RPG-7 | 심해 | 펄"
+RPG7DeepSeaBlackSealName="RPG-7 | 심해 | 블랙 씰"
+RPG7DeepSeaPreciousName="RPG-7 | 심해 | 프레셔스"
+RPG7ChameleonDynamicName="RPG-7 | 카멜레온| 다이나믹"
+RPG7ChameleonDynamicRGBName="RPG-7 | 카멜레온| 다이나믹 RGB"
 
 ;Scar Descriptions
 ScarMintDescription="외관: 민트급 | 미군 특수전 사령부를 위해 처음 설계된 진정 특별한 무기입니다!"
@@ -3442,6 +3513,8 @@ ZweihanderSteampunkMintName="츠바이한더 | 스팀펑크 | 민트"
 ZweihanderSteampunkPreciousName="츠바이한더 | 스팀펑크 | 프레셔스"
 ZweihanderVaultVoshPreciousName="츠바이한더 | 볼트 | 보쉬 | 프레셔스"
 ZweihanderColiseumPreciousName="츠바이한더 | 콜로세움 | 프레셔스"
+ZweihanderNeonMintName="츠바이한더 | 네온 | 민트급"
+ZweihanderNeonRGBPreciousName="츠바이한더 | 네온 RGB | 프레셔스" 
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="외관: 민트급 | 옛날 서부에서 쓰던 큰 나이프입니다. 여기저기에서 제드를 썰고 다니는데 좋습니다."
@@ -3598,6 +3671,12 @@ FNFALJaegerMintName="FN FAL | 예거 | 민트급"
 FNFALJaegerFieldTestedName="FN FAL | 예거 | 현장 테스트"
 FNFALJaegerBattleScarredName="FN FAL | 예거 | 전투 흔적"
 FNFALJaegerDynamicName="FN FAL | 예거 | 다이나믹"
+FNFALDeepSeaAntiqueName="FN FAL | 심해 | 안티크"
+FNFALDeepSeaAquaName="FN FAL | 심해 | 아쿠아"
+FNFALDeepSeaCoralName="FN FAL | 심해 | 코랄"
+FNFALDeepSeaPearlName="FN FAL | 심해 | 펄"
+FNFALDeepSeaBlackSealName="FN FAL | 심해 | 블랙 씰"
+FNFALDeepSeaPreciousName="FN FAL | 심해 | 프레셔스"
 
 ;FireAxe Descriptions
 FireAxeMintDescription="외관: 민트급 | 불이 난 것도 아닌데 왜 소방 도끼라고 하는 걸까요?"
@@ -3662,7 +3741,13 @@ SealSquealNeonMintName="씰 스퀼 | 네온 | 민트"
 SealSquealNeonRGBPreciousName="씰 스퀼 | 네온 RGB | 프레셔스"
 SealSquealJaegerDynamicName="씰 스퀼 | 예거 | 다이나믹"
 SealSquealJaegerDynamicRGBName="씰 스퀼 | 예거 | 다이나믹 RGB"
+;HRG Beluga Beat Descriptions
+HRGBelugaBeatMintDescription = "외관: 민트급 | 파티의 데시벨을 높입니다."
+HRGBelugaBeatPreciousDescription = "외관: 프레셔스 | 파티의 데시벨을 높입니다."
 
+;HRG Beluga Beat Names
+HRGBelugaBeatNeonMintName="HRG 벨루가 비트 | 네온 | 민트급"
+HRGBelugaBeatNeonRGBPreciousName="HRG 벨루가 비트 | 네온 RGB | 프레셔스"
 ;MIcrowaveAssault Descriptions
 MIcrowaveAssaultMintDescription="외관: 민트급 | 불이 그대와 함께하기를."
 MIcrowaveAssaultFieldTestedDescription="외관: 현장 테스트 | 불이 그대와 함께하기를."
@@ -3903,6 +3988,33 @@ DoshinegunDiamondName="도신건 | 다이아몬드"
 DoshinegunDoshName="도신건 | 도쉬"
 DoshinegunGoldenTigerName="도신건 | 골든 타이거"
 DoshinegunBaroqueName="도신건 | 바로크"
+;Sentinel Descriptions
+SentinelMintDescription="외관: 민트 | 위치를 굽어보고 적을 공격하는 드론입니다."
+SentinelFieldTestedDescription="외관: 현장 테스트 | 위치를 굽어보고 적을 공격하는 드론입니다."
+SentinelBattleScarredDescription="외관: 전투 흔적 | 위치를 굽어보고 적을 공격하는 드론입니다."
+SentinelPreciousDescription="외관: 프레셔스 | 위치를 굽어보고 적을 공격하는 드론입니다."
+
+;Sentinel Names
+SentinelStandardName="센티넬 | 표준"
+Sentinel1942Name="센티넬 | 1942"
+SentinelBlackBirdName="센티넬 | 블랙 버드"
+SentinelHadesName="센티넬 | 하데스"
+SentinelIceStormName="센티넬 | 얼음 폭풍"
+SentinelShockName="센티넬 | 쇼크"
+
+;Reducto Ray Descriptions
+ReductoRayMintDescription="외관: 민트 | 자기야, 나는 제드도 줄일 수 있어."
+ReductoRayFieldTestedDescription="외관: 현장 테스트 | 자기야, 나는 제드도 줄일 수 있어."
+ReductoRayBattleScarredDescription="외관: 전투 흔적 | 자기야, 나는 제드도 줄일 수 있어."
+ReductoRayPreciousDescription="외관: 프레셔스 | 자기야, 나는 제드도 줄일 수 있어."
+
+;Reducto Ray Names
+ReductoRayStandardName="환원 레이 | 표준"
+ReductoRayHellsFuryName="환원 레이 | 지옥의 분노"
+ReductoRayAtomicLoveName="환원 레이 | 아토믹 러브"
+ReductoRayLuckyStrikeName="환원 레이 | 럭키 스트라이크"
+ReductoRayHeavyMetalName="환원 레이 | 헤비 메탈"
+ReductoRayDestructorName="환원 레이 | 디스트럭터"
 
 [CosmeticSection]
 
@@ -6198,7 +6310,7 @@ DoZCompanionPreciousName="제드의 날 | 동반자 | 프레셔스"
 ;Weekly Wild West London Cosmetic Name
 WildWestLondonHatPreciousName="서부 황야 런던 모자 | 프레셔스"
 
-
+;XMAS 2021 Cosmetic Names
 HolidayShoppingCartSantaName="연휴 쇼핑 | 카트 | 산타"
 HolidayShoppingCartElfName="연휴 쇼핑 | 카트 | 엘프"
 HolidayShoppingCartNorthPoleName="연휴 쇼핑 | 카트 | 북극"
@@ -6231,7 +6343,7 @@ HolidayShoppingGogglesChristmessName="연휴 쇼핑 | 고글 | 크리스메스"
 HolidayShoppingGogglesPreciousName="연휴 쇼핑 | 고글 | 프레셔스"
 HolidayShoppingCompanionPreciousName="연휴 쇼핑 | 동반자 | 프레셔스"
 
-
+;Alchemist Cosmetic Names
 AlchemistArmbandToxicName="연금술사 | 암밴드 | 중독"
 AlchemistArmbandBlazeName="연금술사 | 암밴드 | 블레이즈"
 AlchemistArmbandPlasmaName="연금술사 | 암밴드 | 플라즈마"
@@ -6275,11 +6387,21 @@ AlchemistVialsVoltageName="연금술사 | 보관용기 | 볼티지"
 AlchemistVialsBlackoutName="연금술사 | 보관용기 | 블랙아웃"
 AlchemistVialsPreciousName="연금술사 | 보관용기 | 프레셔스"
 
-
+;Weekly Shrunken Heads Cosmetic Name
 PracticeTargetBackpackPreciousName="연습용 표적 백팩 | 프레셔스"
-
-
+;Weekly Boss Rush Cosmetic Name
 BossTrophyBackpackPreciousName="보스 트로피 백팩 | 프레셔스"
+;Weekly Gun Game Cosmetic Name
+SupplyBackpackPreciousName = "物資リュック | 希少"
+
+;Summer 2022 Cosmetic Names
+DeepSeaTridentPreciousName = "심해 | 트라이던트 | 프레셔스"
+DeepSeaHelmetAntiqueName="심해 | 헬멧 | 안티크"
+DeepSeaHelmetAquaName="심해 | 헬멧 | 아쿠아"
+DeepSeaHelmetCoralName="심해 | 헬멧 | 코랄"
+DeepSeaHelmetPearlName="심해 | 헬멧 | 펄"
+DeepSeaHelmetBlackSealName="심해 | 헬멧 | 블랙 씰"
+DeepSeaHelmetPreciousName="심해 | 헬멧 | 프레셔스"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="장비 메뉴에서 장착 가능하며, 대부분의 캐릭터와 호환됩니다. 이것은 '여름 사이드쇼' 시즌 이벤트의 특별한 아이템입니다. 사이드쇼 티켓 1장으로 재활용됩니다."

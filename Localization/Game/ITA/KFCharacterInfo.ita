@@ -47,6 +47,7 @@ BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
+BodyMesh15="Vestito Esploratore degli abissi"									 
 HeadMesh0="Maschera antigas"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -169,6 +170,13 @@ BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
 
+[CHR_MrsFoster_archetype.BodyMesh15]
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Bianca"
 HeadSkin1="Verde"
@@ -257,6 +265,7 @@ BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
+BodyMesh15="Vestito Esploratore degli abissi"										 
 HeadMesh0="Potenza della barba!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -384,6 +393,13 @@ BodySkin1="Elfo"
 BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
+[CHR_Jagerhorn_archetype.BodyMesh15]									
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Bionda Svedese"
@@ -486,8 +502,8 @@ BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
+BodyMesh15="Vestito Esploratore degli abissi"	
 HeadMesh0="Maschera di Scully"
-
 [chr_DJSkully_archetype.BodyMesh0]
 BodySkin0="Nero totale"
 BodySkin1="Extra rosso"
@@ -613,6 +629,13 @@ BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
 
+[CHR_DJSkully_archetype.BodyMesh15]								   
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Nero totale"
 HeadSkin1="Extra rosso"
@@ -661,6 +684,7 @@ BodyMesh12="Vestito di Babbo Natale"
 BodyMesh13="Vestito Pirata spaziale"
 BodyMesh14="Vestito Mietitore"
 BodyMesh15="Vestito Compratore di Natale"
+BodyMesh16="Vestito Esploratore degli abissi"										 
 HeadMesh0="Capelli"
 
 [chr_briar_archetype.BodyMesh0]
@@ -794,6 +818,13 @@ BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
 
+[CHR_briar_archetype.BodyMesh16]								
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Originale"
 HeadSkin1="Colpi di sole"
@@ -836,6 +867,7 @@ BodyMesh12="Vestito di Babbo Natale"
 BodyMesh13="Vestito Pirata spaziale"
 BodyMesh14="Vestito Mietitore"
 BodyMesh15="Vestito Compratore di Natale"
+BodyMesh16="Vestito Esploratore degli abissi"										 
 HeadMesh0="Maschera antigas"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -973,6 +1005,13 @@ BodySkin1="Elfo"
 BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
+[CHR_MrFoster_archetype.BodyMesh16]								   
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Vero bianco"
@@ -1136,6 +1175,7 @@ BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
+BodyMesh15="Vestito Esploratore degli abissi"										 
 HeadMesh0="Viso"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1261,6 +1301,13 @@ BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
 
+[CHR_Coleman_archetype.BodyMesh15]								  
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tatuaggi"
@@ -1302,6 +1349,7 @@ BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
+BodyMesh15="Vestito Esploratore degli abissi"										 
 HeadMesh0="Capelli"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1429,6 +1477,13 @@ BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
 
+[CHR_Alberts_archetype.BodyMesh15]								  
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grigio"
 HeadSkin1="Marrone"
@@ -2330,6 +2385,7 @@ BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
+BodyMesh15="Vestito Esploratore degli abissi"										 
 HeadMesh0="Viso"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2466,6 +2522,14 @@ BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
 
+[CHR_Masterson_archetype.BodyMesh15]									
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"
+
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka è una persona conflittuale con forti desideri suicidi. Nato a Okinawa, è stato cresciuto nell'esercito tra gli Americani. Dopo essere tornato in Giappone con la sua famiglia, Tanaka, ormai americanizzato, non riuscì ad adattarsi e iniziò a prendere lezioni di teatro. Dopo il college si spostò a Los Angeles, recitando in piccole parti stereotipate, per poi partire in Europa per cercare delle opportunità più concrete. Tutto quello che riuscì a ottenere furono ruoli da cattivo in film gangster francesi e un po' di tatuaggi. Ora, durante l'apocalisse, sembra confondere la realtà con le parti di alcuni film in cui ha recitato. Tra questi sembrano esserci visioni della Yakuza, demoni e una versione hollywoodiana del bushido."
@@ -2485,6 +2549,7 @@ BodyMesh12="Vestito di Babbo Natale"
 BodyMesh13="Vestito Pirata spaziale"
 BodyMesh14="Vestito Mietitore"
 BodyMesh15="Vestito Compratore di Natale"
+BodyMesh16="Vestito Esploratore degli abissi"										 
 HeadMesh0="Capelli"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2628,6 +2693,13 @@ BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
 
+[CHR_Tanaka_archetype.BodyMesh16]								 
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Elmetto"
 AttachmentSkin0="Sole nascente"
@@ -2673,6 +2745,7 @@ BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
+BodyMesh15="Vestito Esploratore degli abissi"										 
 HeadMesh0="Moicano"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2809,6 +2882,13 @@ BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
 
+[CHR_Ana_archetype.BodyMesh15]							  
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 [Cosmetic_3dGlasses_ARCH]
 Attachment="Occhiali 3D"
 AttachmentSkin0="Anaglifo 3D"
@@ -2840,6 +2920,7 @@ BodyMesh12="Vestito di Babbo Natale"
 BodyMesh13="Vestito Pirata spaziale"
 BodyMesh14="Vestito Mietitore"
 BodyMesh15="Vestito Compratore di Natale"
+BodyMesh16="Vestito Esploratore degli abissi"										 
 HeadMesh0="Capelli"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2966,12 +3047,19 @@ BodySkin3="Pestilenza"
 BodySkin4="Guerra"
 BodySkin5="Anarchia"
 
-
+[CHR_mark_archetype.BodyMesh15]							   
 BodySkin0="Babbo Natale"
 BodySkin1="Elfo"
 BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
+[CHR_mark_archetype.BodyMesh16]
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Vero duro"
@@ -3001,6 +3089,7 @@ BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
+BodyMesh15="Vestito Esploratore degli abissi"										 
 HeadMesh0="Viso"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3129,6 +3218,13 @@ BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
 
+[CHR_alan_archetype.BodyMesh15]							   
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Vero duro"
 HeadSkin1="Ginger! Davvero?"
@@ -3164,6 +3260,7 @@ BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
+BodyMesh15="Vestito Esploratore degli abissi"									 
 HeadMesh0="Capelli"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3289,6 +3386,13 @@ BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
 
+[CHR_strasser_archetype.BodyMesh15]								   
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acciaio scuro"
 HeadSkin1="Acciaio chiaro"
@@ -3468,6 +3572,7 @@ BodyMesh11="Vestito di Babbo Natale"
 BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
+BodyMesh15="Vestito Esploratore degli abissi"										 
 HeadMesh0="Testa predefinita"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3596,6 +3701,13 @@ BodySkin1="Elfo"
 BodySkin2="Polo Nord"
 BodySkin3="Namale"
 BodySkin4="Prezioso"
+[CHR_rockabilly_archetype.BodyMesh15]									 
+BodySkin0="Antico"
+BodySkin1="Acquamarina"
+BodySkin2="Corallo"
+BodySkin3="Perla"
+BodySkin4="Foca nera"
+BodySkin5="Prezioso"					
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Nera"
@@ -7138,3 +7250,19 @@ AttachmentSkin0="Prezioso"
 [Cosmetic_BossTrophy_Backpack_ARCH]
 Attachment="Zaino Trofeo del boss"
 AttachmentSkin0="Prezioso"
+[Cosmetic_Supply_Backpack_ARCH]
+Attachment="Zaino Rifornimenti"
+AttachmentSkin0="Prezioso"
+
+[Cosmetic_DeepSea_Trident_ARCH]
+Attachment="Tridente degli abissi"
+AttachmentSkin0="Prezioso"							   
+							 						  
+[Cosmetic_DeepSea_Helmet_ARCH]
+Attachment="Elmetto degli abissi"
+AttachmentSkin0="Antico"
+AttachmentSkin1="Acquamarina"
+AttachmentSkin2="Corallo"
+AttachmentSkin3="Perla"
+AttachmentSkin4="Foca nera"
+AttachmentSkin5="Prezioso"							  

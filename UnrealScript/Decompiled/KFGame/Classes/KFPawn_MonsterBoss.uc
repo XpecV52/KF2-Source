@@ -361,6 +361,7 @@ defaultproperties
     SpeedPctIncreasePerMinute=0.2
     BossCaptionStrings(0)="Boss caption 1"
     BossCaptionStrings(1)="Boss caption 2"
+    bCanBeKilledByShrinking=false
     MinSpawnSquadSizeType=ESquadType.EST_Boss
     MeleeAttackHelper=KFMeleeHelperAI'Default__KFPawn_MonsterBoss.MeleeHelper'
     VortexAttracionModifier=0.3

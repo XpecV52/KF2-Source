@@ -80,8 +80,9 @@ function float GetAttackSpeedModifier()
     return 1;
 }
 
-function Accrue(float InPower)
+function Accrue(float InPower, optional class<KFDamageType> DamageType)
 {
+    DamageType = none;
     super(KFAfflictionBase).Accrue(InPower);
     if(PawnOwner != none)
     {

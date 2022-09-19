@@ -236,6 +236,16 @@ AlchemistWeaponSkinBundleName="Alchemist-Waffen-Skin-Paket"
 ChopTilYouDropFullGearBundleName="Ganzes Nonstop-Ausrüstungspaket"
 ChristmasWeaponSkinBundleName="Weihnachten-Waffen-Skin-Paket"
 HolidayShopperOutfitName="Feiertagsshopper-Outfitpaket"
+NeonMKVIIIWeaponSkinBundleName="Neon-MKVIII-Waffen-Skin-Paket"
+ClassicWeaponSkinBundleName="Klassisches Waffen-Skin-Paket"
+DeepSeaSkinWeaponSkinPackName="Tiefsee-Waffen-Skin-Paket"
+ChameleonWeaponSkinBundleName="Chamäleon-Waffen-Skin-Paket"
+DeepSeaExplorerOutfitName="Tiefseetaucher-Outfitpaket"
+ReductoRayBundleName="Reduktostrahl-Waffen-Paket"
+SentinelBundleName="Wächter-Waffen-Paket"
+TidalTerrorBundleName="Gezeitenterror-Waffen-Paket"
+ArmorySeasonPass2022Name="Killing Floor 2 – Waffenkammer-Saisonpass 2"
+UltimateUpgradeName="Killing Floor 2 – Ultimate Edition-Upgrade"																
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Beinhaltet Briars London-Uniform (inklusive 5 Skin-Stilen) und das kosmetische Accessoire Aufseher-Helm (inklusive 3 Skin-Stilen)."
@@ -470,6 +480,16 @@ AlchemistWeaponSkinBundleDescription="Enthält 20 Waffen-Skins im Alchemisten-St
 ChopTilYouDropFullGearBundleDescription="Enthält 6 kosmetische Accessoires im Feiertagsshopper-Stil mit 5 Texturvarianten pro Paket. Mit den meisten Charakteren kompatibel."
 ChristmasWeaponSkinBundleDescription="Enthält 20 Waffen-Skins im Weihnachtsstil (10 Süß und 10 Sauer). Folgende Waffen sind in diesem Set enthalten: Boom-Knüppel, Ausräucherer, Desert Eagle, Flammenwerfer, HMTech-501-Granatgewehr, M32, P90, RPG-7, Scar und Spitfires."
 HolidayShopperOutfitBundleDescription="Beinhaltet Feiertagsshopper-Outfit (inklusive 6 Skin-Stilen). Mit den meisten Charakteren kompatibel."
+NeonMKVIIIWeaponSkinBundleDescription="Enthält 8 Waffen-Skins (4 Neon und 4 Neon-RGB) im Neon-Stil. In diesem Set enthaltene Waffen: Boom-Knüppel, HZ12, HRG-Belugabeat, Zweihänder."																																												   
+ClassicWeaponSkinBundleDescription="Enthält 8 Waffen-Skins (4 Tadellos und 4 Edel) im klassischen Stil. In diesem Set enthaltene Waffen: Boom-Knüppel, 9MM, AA12, M1911."																																								  
+DeepSeaSkinWeaponSkinBundleDescription="Enthält 36 Waffen-Skins (6 Antik, 6 Türkis, 6 Korallenrot, 6 Perlmutt, 6 Schwarze Robbe und 6 Edel) im Tiefsee-Stil. In diesem Set enthaltene Waffen: AA12, FN FAL, M14 EBR, MAC-10, MP5RAS, RPG-7."																																																								 
+ChameleonWeaponSkinBundleDescription="Enthält 8 Waffen-Skins (4 Dynamisch und 4 Dynamisch-RGB) im Chamäleon-Stil. In diesem Set enthaltene Waffen: Desert Eagle, Katana, Kriss-MP, RPG-7."																																													   
+DeepSeaExplorerOutfitDescription="Beinhaltet Tiefseetaucher-Outfit und Helm (inklusive 6 Skin-Stilen). Mit den meisten Charakteren kompatibel."																																				   
+ReductoRayBundleDescription="Die Macht, deine Feinde einen Kopf kürzer zu machen, liegt in deiner Hand. Der Reduktostrahl ist für den Überlebenskünstler-Vorteil ausgelegt und beinhaltet 5 einzigartige Skin-Varianten."																																																	
+SentinelBundleDescription="Wir alle brauchen Freunde, besonders, wenn es sich dabei um eine eigenständige KI handelt, die ein Maschinengewehr mit automatischer Zielerfassung hat. Der für den Kommando-Vorteil ausgelegte Wächter beinhaltet 5 einzigartige Skin-Varianten."																																																				   
+TidalTerrorBundleDescription="Enthält die Wächter- und Reduktostrahl-Waffen aus dem „Gezeitenterror“-Update. Jede Waffe beinhaltet 5 einzigartige Skin-Varianten."																																						 
+ArmorySeasonPass2022Description="Erweitere dein Repertoire zur Zed-Zerstörung in Killing Floor 2 mit dem Waffenkammer-Saisonpass des Jahres! Effizienter kannst du deine Kohle für die 6 Waffen, die über das Jahr 2022 verteilt veröffentlicht werden, nicht ausgeben. Direkt beim Kauf erhältst du sofort 2 brandneue Waffen aus dem Sommer-Update 2022 (Reduktostrahl-Waffen-Paket, Wächter-Waffen-Paket). Beide Waffen-Pakete beinhalten jeweils 5 einzigartige Waffen-Skins. Zusätzlich stellt der Killing Floor 2 – Waffenkammer-Saisonpass 2 auch die Waffen-Pakete zur Verfügung, die später erscheinen, nämlich 2 Waffen im Herbst 2022 und 2 Waffen im Winter 2022."																																																																																																																																																												
+UltimateUpgradeDescription="Für Besitzer von Killing Floor 2, die eine günstige Aufwertung auf die beste Spielerfahrung suchen. Das Upgrade-Paket beinhaltet: Waffenkammer-Saisonpass 1 und 2, sowie folgende kosmetische Upgrades und eigenständige Add-Ons: Mrs. Foster, Cyberpunk-Outfitpaket, Kopfschuss-FX-Paket 1 und 2, Ödland-Paket, Fosters Klassisches Paket, Briars Bullen-Paket, Tanakas Biker-Paket, Horzine Mark-7-Paket, Schutzanzug-Paket, D.A.R. Angriffsrüstung-Paket, Kommando-Huhn-Paket, Pyjama-Paket, Clot-Rucksack-Paket, komplettes „Drache und Koi“-Waffen-Skin-Set, Krasser-Santa-Paket, Papp-Ritter-Paket, Hexenjäger-Outfitpaket, Weihnachtsmann-Helfer-Outfitpaket, „Fosters Lieblinge“-Waffen-Skin-Paket, Weltraumpirat-Outfitpaket, ganzes Weltraumpirat-Ausrüstungspaket, Sensenmann-Outfitpaket, ganzes Halloween-2020-Ausrüstungspaket, ganzes Weihnachten-2020-Ausrüstungspaket, Winter-2020-Ausrüstungs-Kosmetik-Paket."																																																																																																																																																																																																																																									   
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Erhalte eine neue klassische Uniform eines Londoner Polizisten für den spielbaren Charakter Wachtmeister Rob Briar. Beinhaltet Briars London-Uniform (inklusive 5 Skin-Stilen) und das kosmetische Accessoire Aufseher-Helm (inklusive 3 Skin-Stilen)."
@@ -581,6 +601,7 @@ AstronautHelmetName="Astronauten-Helm"
 AstronautO2BackpackName="Astronauten-O2-Rucksack"
 AstronautSuitName="Astronauten-Anzug-Uniform"
 HolidayShoppingSuitName="Feiertags-Shopping-Uniform"
+DeepSeeExplorerSuitName="Tiefseetaucher-Outfit"												  
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="Lt. Masterson | Cyberpunk | Grün"
@@ -1446,6 +1467,8 @@ HRGBuckshotRevolversSpectreHRGDynamicChromaName="HRG-Schrotrevolver | Geister-HR
 9MMSynthwaveFieldTestedName="9MM | Synthwave | Praxisbewährt"
 9MMSynthwaveBattleScarredName="9MM | Synthwave | Kampferprobt"
 9MMDragonKoiPreciousName="9MM | Drache und Koi | Edel"
+9MMClassicMintName="9MM | Klassisch | Tadellos"
+9MMClassicPreciousName="9MM | Klassisch | Edel"												 
 
 ;AA12 Descriptions
 AA12MintDescription="Äußeres: Tadellos | Die AA-12 ist eine automatische Schrotflinte. Auf kurzer bis mittlerer RW strotzt sie nur so vor Zerstörungskraft, jedoch verbraucht ihr Vollautomatik-Modus Unmengen an Munition!"
@@ -1511,6 +1534,14 @@ AA12JaegerDynamicRGBName="AA12 | Jäger | Dynamisch/RGB"
 AA12StarsName="AA12 | Kammer | Sterne"
 AA12BeyondHorizonMintName="AA12 | Beyond Horizon | Tadellos"
 AA12BeyondHorizonSpaceEliteName="AA12 | Beyond Horizon | Weltraum-Elite"
+AA12DeepSeaAntiqueName="AA12 | Tiefsee | Antik"
+AA12DeepSeaAquaName="AA12 | Tiefsee | Türkis"
+AA12DeepSeaCoralName="AA12 | Tiefsee | Korallenrot"
+AA12DeepSeaPearlName="AA12 | Tiefsee | Perlmutt"
+AA12DeepSeaBlackSealName="AA12 | Tiefsee | Schwarze Robbe"
+AA12DeepSeaPreciousName="AA12 | Tiefsee | Edel"
+AA12ClassicMintName="AA12 | Klassisch | Tadellos"
+AA12ClassicPreciousName="AA12 | Klassisch | Edel"												   
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Äußeres: Tadellos | Zusätzliche Läufe machen alles besser. Und toter."
@@ -1731,6 +1762,10 @@ BoomstickXMasSweetName="Boom-Knüppel | Weihnachten | Süß"
 BoomstickXMasSourName="Boom-Knüppel | Weihnachten | Sauer"
 BoomstickAlchemistToxicName="Boom-Knüppel | Alchemist| Giftig"
 BoomstickAlchemistBlazeName="Boom-Knüppel | Alchemist| Feuer"
+BoomstickNeonMintName="Boom-Knüppel | Neon | Tadellos"
+BoomstickNeonRGBPreciousName="Boom-Knüppel | Neon-RGB | Edel"
+BoomstickClassicMintName="Boom-Knüppel | Klassisch | Tadellos"
+BoomstickClassicPreciousName="Boom-Knüppel | Klassisch | Edel"															 
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="Äußeres: Tadellos | Handlicher und selbstgemachter Flammenwerfer. Bitte NICHT zu Hause nachmachen."
@@ -1899,6 +1934,8 @@ DesertEagleXMasSweetName="Desert Eagle | Weihnachten | Süß"
 DesertEagleXMasSourName="Desert Eagle | Weihnachten | Sauer"
 DesertEagleAlchemistToxicName="Desert Eagle | Alchemist | Giftig"
 DesertEagleAlchemistBlazeName="Desert Eagle | Alchemist | Feuer"
+DesertEagleChameleonDynamicName="Desert Eagle | Chamäleon | Dynamisch"
+DesertEagleChameleonDynamicRGBName="Desert Eagle | Chamäleon | Dynamisch-RGB"																		   
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Äußeres: Tadellos | Wenn zwei Mal so viel Spaß nicht reicht … wie wär's mit vier?"
@@ -2452,6 +2489,8 @@ HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Horzine-Erstbegegnung | Kampf
 HZ12VaultVoshPreciousName="HZ12 | Kammer | Vosh | Edel"
 HZ12JaegerDynamicName="HZ12 | Jäger | Dynamisch"
 HZ12JaegerDynamicRGBName="HZ12 | Jäger | Dynamisch/RGB"
+HZ12NeonMintName="HZ12 | Neon | Tadellos"
+HZ12NeonRGBPreciousName="HZ12 | Neon-RGB | Edel"													
 
 ;Katana Descriptions
 KatanaMintDescription="Äußeres: Tadellos | Zeig dieser Waffe gefälligst ein bisschen mehr Respekt!"
@@ -2487,6 +2526,8 @@ KatanaVaultVoshPreciousName="Katana | Kammer | Vosh | Edel"
 KatanaDragonKoiPreciousName="Katana | Drache und Koi | Edel"
 KatanaHellmarkMagmaName="Katana | Hellmark | Magma"
 KatanaHellmarkThunderName="Katana | Hellmark | Donner"
+KatanaChameleonDynamicName="Katana | Chamäleon | Dynamisch"
+KatanaChameleonDynamicRGBName="Katana | Chamäleon | Dynamisch-RGB"																
 
 ;KF-BAR Descriptions
 KFBARMintDescription="Äußeres: Tadellos | Horzines Interpretation des klassischen Kommandomessers."
@@ -2557,6 +2598,8 @@ KrissFostersFavoritesPreciousName="Kriss | Fosters Lieblinge | Edel"
 KrissIceBreakerDynamicName="Kriss | Eisbrecher | Dynamisch"
 KrissIceBreakerDynamicPreciousName="Kriss | Eisbrecher | Dynamisch-edel"
 KrissInfernalElitePreciousName="Kriss | Infernale Elite | Edel"
+KrissChameleonDynamicName="Kriss-MP | Chamäleon | Dynamisch"
+KrissChameleonDynamicRGBName="Kriss-MP | Chamäleon | Dynamisch-RGB"																  
 
 ;L85A2 Descriptions
 L85A2MintDescription="Äußeres: Tadellos | Die SA80 war die Standardwaffe der britischen Armee. Das war, bevor die Armee ... naja ... auf der Speisekarte landete."
@@ -2637,6 +2680,12 @@ M14EBRVaultVoshPreciousName="M14 EBR | Kammer | Vosh | Edel"
 M14EBRPrestigePreciousName="M14 EBR | Ansehen | Edel"
 M14EBRDragonKoiPreciousName="M14 EBR | Drache und Koi | Edel"
 M14EBRFostersFavoritesPreciousName="M14 EBR | Fosters Lieblinge | Edel"
+M14EBRDeepSeaAntiqueName="M14 EBR | Tiefsee | Antik"
+M14EBRDeepSeaAquaName="M14 EBR | Tiefsee | Türkis"
+M14EBRDeepSeaCoralName="M14 EBR | Tiefsee | Korallenrot"
+M14EBRDeepSeaPearlName="M14 EBR | Tiefsee | Perlmutt"
+M14EBRDeepSeaBlackSealName="M14 EBR | Tiefsee | Schwarze Robbe"
+M14EBRDeepSeaPreciousName="M14 EBR | Tiefsee | Edel"														
 
 ;M16M203 Descriptions
 M16M203MintDescription="Äußeres: Tadellos | Für diejenigen, die sich nicht zwischen Kugeln und Sprengstoff entscheiden können."
@@ -2697,6 +2746,8 @@ M1911DragonKoiPreciousName="M1911 | Drache und Koi | Edel"
 M1911JaegerDynamicName="M1911 | Jäger | Dynamisch"
 M1911JaegerDynamicRGBName="M1911 | Jäger | Dynamisch/RGB"
 M1911StarsName="M1911 | Kammer | Sterne"
+M1911ClassicMintName="M1911 | Klassisch | Tadellos"
+M1911ClassicPreciousName="M1911 | Klassisch | Edel"													 
 
 ;M4 Descriptions
 M4MintDescription="Äußeres: Tadellos | Benelli entwarf die M4-Kampfschrotflinte für das US-Militär. Da es sich hierbei um eine halbautomatische Waffe handelt, besticht sie durch eine beeindruckende Schussfolge."
@@ -2864,6 +2915,12 @@ Mac10JaegerDynamicName="MAC-10 | Jäger | Dynamisch"
 Mac10JaegerDynamicRGBName="MAC-10 | Jäger | Dynamisch/RGB"
 Mac10BeyondHorizonMintName="MAC-10 | Beyond Horizon | Tadellos"
 Mac10BeyondHorizonSpaceEliteName="MAC-10 | Beyond Horizon | Weltraum-Elite"
+Mac10DeepSeaAntiqueName="MAC-10 | Tiefsee | Antik"
+Mac10DeepSeaAquaName="MAC-10 | Tiefsee | Türkis"
+Mac10DeepSeaCoralName="MAC-10 | Tiefsee | Korallenrot"
+Mac10DeepSeaPearlName="MAC-10 | Tiefsee | Perlmutt"
+Mac10DeepSeaBlackSealName="MAC-10 | Tiefsee | Schwarze Robbe"
+Mac10DeepSeaPreciousName="MAC-10 | Tiefsee | Edel"													   
 
 ;Medic Bat Descriptions
 MedicBatMintDescription="Äußeres: Tadellos | Für Leute, die gute Heilung nicht erkennen würden, selbst wenn sie sie ins Gesicht schlägt."
@@ -2953,6 +3010,12 @@ MP5RASSteampunkPreciousName="MP5RAS | Steampunk | Edel"
 MP5RASStarsName="MP5RAS | Kammer | Sterne"
 MP5RASNeonMintName="MP5RAS | Neon | Tadellos"
 MP5RASNeonRGBPreciousName="MP5RAS | Neon-RGB | Edel"
+MP5RASDeepSeaAntiqueName="MP5RAS | Tiefsee | Antik"
+MP5RASDeepSeaAquaName="MP5RAS | Tiefsee | Türkis"
+MP5RASDeepSeaCoralName="MP5RAS | Tiefsee | Korallenrot"
+MP5RASDeepSeaPearlName="MP5RAS | Tiefsee | Perlmutt"
+MP5RASDeepSeaBlackSealName="MP5RAS | Tiefsee | Schwarze Robbe"
+MP5RASDeepSeaPreciousName="MP5RAS | Tiefsee | Edel"														
 
 ;MP7 Descriptions
 MP7MintDescription="Äußeres: Tadellos | Wird von Buchstabensuppen-Behörden und Sondereinheiten überall auf der Welt eingesetzt."
@@ -3135,6 +3198,14 @@ RPG7XMasSweetName="RPG-7 | Weihnachten | Süß"
 RPG7XMasSourName="RPG-7 | Weihnachten | Sauer"
 RPG7AlchemistToxicName="RPG-7 | Alchemist| Giftig"
 RPG7AlchemistBlazeName="RPG-7 | Alchemist| Feuer"
+RPG7DeepSeaAntiqueName="RPG-7 | Tiefsee | Antik"
+RPG7DeepSeaAquaName="RPG-7 | Tiefsee | Türkis"
+RPG7DeepSeaCoralName="RPG-7 | Tiefsee | Korallenrot"
+RPG7DeepSeaPearlName="RPG-7 | Tiefsee | Perlmutt"
+RPG7DeepSeaBlackSealName="RPG-7 | Tiefsee | Schwarze Robbe"
+RPG7DeepSeaPreciousName="RPG-7 | Tiefsee | Edel"
+RPG7ChameleonDynamicName="RPG-7 | Chamäleon | Dynamisch"
+RPG7ChameleonDynamicRGBName="RPG-7 | Chamäleon | Dynamisch-RGB"
 
 ;Scar Descriptions
 ScarMintDescription="Äußeres: Tadellos | Wurde ursprünglich für das US-Spezialkommando entwickelt. Normal ist das Ding nämlich ganz bestimmt nicht!"
@@ -3442,6 +3513,8 @@ ZweihanderSteampunkMintName="Zweihänder | Steampunk | Tadellos"
 ZweihanderSteampunkPreciousName="Zweihänder | Steampunk | Edel"
 ZweihanderVaultVoshPreciousName="Zweihänder | Kammer | Vosh | Edel"
 ZweihanderColiseumPreciousName="Zweihänder | Kolosseum | Edel"
+ZweihanderNeonMintName="Zweihänder | Neon | Tadellos"
+ZweihanderNeonRGBPreciousName="Zweihänder | Neon-RGB | Edel" 																 
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="Äußeres: Tadellos | Das übergroße Messer des alten Westens. Eignet sich ganz toll für das Zerstückeln von Zeds im Hier und Jetzt."
@@ -3598,6 +3671,12 @@ FNFALJaegerMintName="FN FAL | Jäger | Tadellos"
 FNFALJaegerFieldTestedName="FN FAL | Jäger | Praxisbewährt"
 FNFALJaegerBattleScarredName="FN FAL | Jäger | Kampferprobt"
 FNFALJaegerDynamicName="FN FAL | Jäger | Dynamisch"
+FNFALDeepSeaAntiqueName="FN FAL | Tiefsee | Antik"
+FNFALDeepSeaAquaName="FN FAL | Tiefsee | Türkis"
+FNFALDeepSeaCoralName="FN FAL | Tiefsee | Korallenrot"
+FNFALDeepSeaPearlName="FN FAL | Tiefsee | Perlmutt"
+FNFALDeepSeaBlackSealName="FN FAL | Tiefsee | Schwarze Robbe"
+FNFALDeepSeaPreciousName="FN FAL | Tiefsee | Edel"													   
 
 ;FireAxe Descriptions
 FireAxeMintDescription="Äußeres: Tadellos | Warum heißt sie Feueraxt, wenn sie nicht brennt?"
@@ -3663,6 +3742,13 @@ SealSquealNeonRGBPreciousName="Heuler | Neon-RGB | Edel"
 SealSquealJaegerDynamicName="Heuler | Jäger | Dynamisch"
 SealSquealJaegerDynamicRGBName="Heuler | Jäger | Dynamisch/RGB"
 
+;HRG Beluga Beat Descriptions
+HRGBelugaBeatMintDescription = "Äußeres: Tadellos | Erhöht die Lautstärke jeder Party."
+HRGBelugaBeatPreciousDescription = "Äußeres: Edel | Erhöht die Lautstärke jeder Party."
+
+;HRG Beluga Beat Names
+HRGBelugaBeatNeonMintName="HRG-Belugabeat | Neon | Tadellos"
+HRGBelugaBeatNeonRGBPreciousName="HRG-Belugabeat | Neon-RGB | Edel"																		
 ;MIcrowaveAssault Descriptions
 MIcrowaveAssaultMintDescription="Äußeres: Tadellos | Möge das Feuer mit dir sein."
 MIcrowaveAssaultFieldTestedDescription="Äußeres: Praxisbewährt | Möge das Feuer mit dir sein."
@@ -3903,6 +3989,33 @@ DoshinegunDiamondName="Kohlepistole | Diamant"
 DoshinegunDoshName="Kohlepistole | Kohle"
 DoshinegunGoldenTigerName="Kohlepistole | Goldener Tiger"
 DoshinegunBaroqueName="Kohlepistole | Barock"
+;Sentinel Descriptions
+SentinelMintDescription="Äußeres: Tadellos | Eine Drohne, die eine Position überwacht und auf Gegner schießt."
+SentinelFieldTestedDescription="Äußeres: Praxisbewährt | Eine Drohne, die eine Position überwacht und auf Gegner schießt."
+SentinelBattleScarredDescription="Äußeres: Kampferprobt | Eine Drohne, die eine Position überwacht und auf Gegner schießt."
+SentinelPreciousDescription="Äußeres: Edel | Eine Drohne, die eine Position überwacht und auf Gegner schießt."
+
+;Sentinel Names
+SentinelStandardName="Wächter | Standard"
+Sentinel1942Name="Wächter | 1942"
+SentinelBlackBirdName="Wächter | Black Bird"
+SentinelHadesName="Wächter | Hades"
+SentinelIceStormName="Wächter | Eissturm"
+SentinelShockName="Wächter | Schock"
+
+;Reducto Ray Descriptions
+ReductoRayMintDescription="Äußeres: Tadellos | Liebling, ich habe die ZEDs geschrumpft."
+ReductoRayFieldTestedDescription="Äußeres: Praxisbewährt | Liebling, ich habe die ZEDs geschrumpft."
+ReductoRayBattleScarredDescription="Äußeres: Kampferprobt | Liebling, ich habe die ZEDs geschrumpft."
+ReductoRayPreciousDescription="Äußeres: Edel | Liebling, ich habe die ZEDs geschrumpft."
+
+;Reducto Ray Names
+ReductoRayStandardName="Reduktostrahl | Standard"
+ReductoRayHellsFuryName="Reduktostrahl | Höllenwut"
+ReductoRayAtomicLoveName="Reduktostrahl | Atomare Liebe"
+ReductoRayLuckyStrikeName="Reduktostrahl | Glückstreffer"
+ReductoRayHeavyMetalName="Reduktostrahl | Schwermetall"
+ReductoRayDestructorName="Reduktostrahl | Zerstörer"												   
 
 [CosmeticSection]
 
@@ -6275,11 +6388,21 @@ AlchemistVialsVoltageName="Alchemist | Fläschchen | Hochspannung"
 AlchemistVialsBlackoutName="Alchemist | Fläschchen | Blackout"
 AlchemistVialsPreciousName="Alchemist | Fläschchen | Edel"
 
-
+;Weekly Shrunken Heads Cosmetic Name
 PracticeTargetBackpackPreciousName="Übungsziel-Rucksack | Edel"
-
-
+;Weekly Boss Rush Cosmetic Name
 BossTrophyBackpackPreciousName="Boss-Trophäe-Rucksack | Edel"
+;Weekly Gun Game Cosmetic Name
+SupplyBackpackPreciousName = "Vorratsrucksack | Edel"
+
+;Summer 2022 Cosmetic Names
+DeepSeaTridentPreciousName = "Tiefsee | Dreizack | Edel"													  
+DeepSeaHelmetAntiqueName="Tiefsee | Helm | Antik"
+DeepSeaHelmetAquaName="Tiefsee | Helm | Türkis"
+DeepSeaHelmetCoralName="Tiefsee | Helm | Korallenrot"
+DeepSeaHelmetPearlName="Tiefsee | Helm | Perlmutt"
+DeepSeaHelmetBlackSealName="Tiefsee | Helm | Schwarze Robbe"
+DeepSeaHelmetPreciousName="Tiefsee | Helm | Edel"														
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Kann im Ausrüstung-Menü angelegt werden. Mit den meisten Charakteren kompatibel. Dies ist ein exklusiver Gegenstand aus dem „Summer Sideshow“-Saison-Event. Kann zu 1 Sideshow-Ticket recycelt werden."

@@ -833,6 +833,30 @@ ItemCategory="Fusil"
 ItemDescription="• Modes automatique et semi-automatique.\n• Tir alternatif pour passer d'un mode à l'autre.\n• Élève la corruption à un autre niveau."
 SharedUnlockSource="Pack d'arme Pistofric"
 
+[KFWeap_HRG_Crossboom]
+ItemName="Arbalète GRH"
+ItemCategory="Explosifs"
+ItemDescription="•Le tir principal tire un carreau qui explose après l'impact.\n•Le tir secondaire produit également une explosion qui fait moins de dégâts, mais de plus grande taille.\n•Faites attention, cette arme transperce et explose."
+
+
+[KFWeap_HRG_CranialPopper]
+ItemName="Chasseur de têtes GRH"
+ItemCategory="Fusil"
+ItemDescription="•Le tir principal lance des fléchettes infectées qui font gonfler la tête des Zeds.\n•Le tir alternatif déclenche une hémorragie cérébrale à tous les Zeds infectés autour du joueur.\n•C'est l'arme idéale quand la situation devient critique."
+
+
+[KFWeap_ShrinkRayGun]
+ItemName="Rayon réducteur"
+ItemCategory="Arme de poing"
+ItemDescription="•Le mode de tir émet un rayon d'énergie qui inflige des dégâts aux ennemis et les rétrécit.\n•Les ennemis rétrécis sont plus vulnérables.\n•Chérie, j'ai rétréci les Zeds."
+SharedUnlockSource="Pack d'arme Rayon réducteur"
+
+
+[KFWeap_AutoTurret]
+ItemName="Sentinelle"
+ItemCategory="Spécial"
+ItemDescription="•Un drone qui surveille une certaine position et tire sur les ennemis.\n•Le tir alternatif fait exploser le drone.\n•Il s'autodétruit également lorsqu'il n'a plus de munitions et que des Zeds se trouvent à proximité."
+SharedUnlockSource="Pack d'arme Sentinelle"										   
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
@@ -1008,3 +1032,7 @@ PerkSwitchAllowedString="TEMPS RESTANT POUR CHOISIR VOTRE CLASSE : %x% seconde(
 ItemName="Arme aléatoire"
 ItemCategory="Aléatoire"
 ItemDescription="• Arme aléatoire.\n•"
+[KFWeap_RandomGrenade]
+ItemName="Grenade aléatoire"
+ItemCategory="Aléatoire"
+ItemDescription="• Grenade aléatoire.\n•"										  

@@ -78,6 +78,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178;
+const KFID_SurvivalStartingWeapIdx = 179;
+const KFID_SurvivalStartingGrenIdx = 180;
 const NUM_COSMETIC_ATTACHMENTS = 3;
 
 struct native CustomizationInfo
@@ -1209,6 +1211,13 @@ private reliable server final function ServerSetPlayerReady(bool bReady)
 
 function AddDosh(int DoshAmount, optional bool bEarned)
 {
+    local KFPlayerController KFPC;
+
+    KFPC = KFPlayerController(Owner);
+    if((KFPC != none) && !KFPC.CanUseDosh())
+    {
+        return;
+    }
     if(!bAllowDoshEarning && bEarned)
     {
         return;
@@ -1310,6 +1319,14 @@ simulated function ResetSupplierUsed()
 simulated function NotifyWaveEnded()
 {
     bVotedToSkipTraderTime = false;
+    if((((WorldInfo.NetMode == NM_Standalone) || WorldInfo.NetMode == NM_Client) && KFPlayerController(Owner) != none) && KFPlayerController(Owner).GetPerk() != none)
+    {
+        KFPlayerController(Owner).GetPerk().OnClientWaveEnded();
+    }
+    if((((WorldInfo.NetMode == NM_Standalone) || WorldInfo.NetMode == NM_Client) && KFPlayerController(Owner) != none) && KFPlayerController(Owner).GetPerk() != none)
+    {
+        KFPlayerController(Owner).GetPerk().OnClientWaveEnded();
+    }
 }
 
 simulated function NotifyWaveStart()

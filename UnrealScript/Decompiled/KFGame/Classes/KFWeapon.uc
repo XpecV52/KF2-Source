@@ -846,7 +846,7 @@ simulated function Timer_UpdateWeaponSkin()
 native static simulated function TriggerAsyncContentLoad(class<KFWeapon> WeaponClass);
 
 // Export UKFWeapon::execStartLoadWeaponContent(FFrame&, void* const)
-private native final function StartLoadWeaponContent();
+protected native function StartLoadWeaponContent();
 
 // Export UKFWeapon::execLoadWeaponContent(FFrame&, void* const)
 private native final function LoadWeaponContent();
@@ -1185,6 +1185,18 @@ simulated function AttachLaserSight()
     }
 }
 
+function GunGameRemove()
+{
+    if((Instigator != none) && Instigator.InvManager != none)
+    {
+        Instigator.InvManager.RemoveFromInventory(self);
+    }
+    Instigator = none;
+    GotoState('None');
+    AIController = none;
+    Destroy();
+}
+
 function DropFrom(Vector StartLocation, Vector StartVelocity)
 {
     local DroppedPickup P;
@@ -1344,9 +1356,21 @@ reliable client simulated function ClientNotifyPickedUp()
     }
 }
 
-static simulated function bool DenyPerkResupply()
+simulated function bool DenyPerkResupply()
 {
-    return default.InventoryGroup >= 3;
+    if(default.InventoryGroup >= 3)
+    {
+        if(Class.Name == 'KFWeap_Thrown_C4')
+        {
+            return false;
+        }
+        if(Class.Name == 'KFWeap_AutoTurret')
+        {
+            return false;
+        }
+        return true;
+    }
+    return false;
 }
 
 static simulated function bool IsMeleeWeapon()
@@ -5547,7 +5571,7 @@ simulated state WeaponFiring
         {
             Instigator.WeaponStoppedFiring(self, false);
         }
-        if(bPlayingLoopingFireAnim || bPlayingLoopingFireAnim)
+        if(bPlayingLoopingFireAnim || bPlayingLoopingFireSnd)
         {
             StopLoopingFireEffects(CurrentFireMode);
         }

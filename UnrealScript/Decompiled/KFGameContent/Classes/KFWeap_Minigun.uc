@@ -173,9 +173,9 @@ defaultproperties
     BarrelStopRotationSound=(DefaultCue=AkEvent'WW_WEP_Minigun.Play_WEP_Minigun_Decelerate_3P',FirstPersonCue=AkEvent'WW_WEP_Minigun.Play_WEP_Minigun_Decelerate_1P')
     WindUpActivationTime=0.7
     WindUpRotationSpeed=1200
-    WindUpPawnMovementSpeed=0.8
-    FiringViewRotationSpeed=488
-    FiringPawnMovementSpeed=0.3
+    WindUpPawnMovementSpeed=0.9
+    FiringViewRotationSpeed=1000
+    FiringPawnMovementSpeed=1.8
     PackageKey="Minigun"
     FirstPersonMeshName="wep_1p_minigun_mesh.Wep_1stP_Minigun_Rig"
     FirstPersonAnimSetNames=/* Array type was not detected. */

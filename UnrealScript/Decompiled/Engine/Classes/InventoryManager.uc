@@ -294,7 +294,7 @@ simulated function float GetWeaponRatingFor(Weapon W)
     return Rating;
 }
 
-simulated function Weapon GetBestWeapon(optional bool bForceADifferentWeapon)
+simulated function Weapon GetBestWeapon(optional bool bForceADifferentWeapon, optional bool allow9mm)
 {
     local Weapon W, BestWeapon;
     local float Rating, BestRating;
@@ -318,10 +318,11 @@ simulated function Weapon GetBestWeapon(optional bool bForceADifferentWeapon)
     return BestWeapon;
 }
 
-simulated function SwitchToBestWeapon(optional bool bForceADifferentWeapon)
+simulated function SwitchToBestWeapon(optional bool bForceADifferentWeapon, optional bool check_9mm_logic)
 {
     local Weapon BestWeapon;
 
+    check_9mm_logic = false;
     LogInternal(((((((((string(WorldInfo.TimeSeconds) @ "Self:") @ string(self)) @ "Instigator:") @ string(Instigator)) @ string(GetStateName())) $ "::") $ string(GetFuncName())) @ "bForceADifferentWeapon:") @ string(bForceADifferentWeapon), 'Inventory');
     if((bForceADifferentWeapon || PendingWeapon == none) || AIController(Instigator.Controller) != none)
     {

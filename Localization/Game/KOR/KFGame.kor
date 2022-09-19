@@ -15,11 +15,13 @@ BonusDoshString="보상"
 LengthStrings[0]="짧음 (4 웨이브)"
 LengthStrings[1]="중간 (7 웨이브)"
 LengthStrings[2]="김 (10 웨이브)"
-
+SpecialLengthString="특수"
 ServerTypeStrings[0]="랭크"
 ServerTypeStrings[1]="랭크 - 스톡"
 ServerTypeStrings[2]="랭크 - 커스텀"
 ServerTypeStrings[3]="언랭크"
+WeaponLevelString="무기 레벨"
+GunPointsString="무기 포인트"
 
 PermissionStrings[0]="공개"
 PermissionStrings[1]="비공개: 암호 있음"
@@ -740,6 +742,8 @@ ZedSupportValue="간접 데미지"
 ZednnihilationValue="웨이브 킬"
 ZedStomper="제드 스톰퍼"
 ZedStomperValue="짓밟힌 제드"
+WeaponMaster="무기 마스터"
+WeaponMasterValue="최종 무기를 받은 첫 플레이어"
 
 EPB_Healing="치료"
 EPB_Kills="킬"
@@ -2041,7 +2045,7 @@ SplashDamage="열파"
 SplashDamageDescription="직사거리에서 화염을 맞은 제드가  뒤로 비틀거림"
 
 Inferno="제드 타임 - 인페르노"
-InfernoDescription="제드 타임 동안 화염을 맞은 모든 제드의 속도가 30% 느려지고 화상 데미지는 50% 높아짐"
+InfernoDescription="제드 타임 동안 주변 제드에게 지속 화염 데미지가 퍼집니다."
 
 Scorch="제드 타임 - 방화범"
 ScorchDescription="제드 타임 동안 병과 무기로 가까이에서 실시간으로 공격하고 탄약이 떨어지지 않음"
@@ -2265,10 +2269,10 @@ MeleeExpert="백병전 전문가"
 MeleeExpertDescription="백병전 공격 속도 20% 향상, 데미지 75% 증가, 백병전 무기 이용 시 이동 속도 25% 향상"
 
 AmmoVest="방탄조끼"
-AmmoVestDescription="모든 무기 및 탄약 15% 추가 운반 및 수류탄은 치료 수류탄으로 변환"
+AmmoVestDescription="모든 무기 및 탄약 15% 추가 운반 및 치료 수류탄을 선택할 수 있습니다."
 
 BigPockets="무기 하니스"
-BigPocketsDescription="운반 용량 5 증가 및 수류탄은 화염병으로 변환"
+BigPocketsDescription="운반 용량 5 증가 및 화염병을 선택할 수 있습니다."
 
 ZedShrapnel="제드 자연 폭발"
 ZedShrapnelDescription="플레이어가 불로 처치한 Zed가 30%의 확률로 폭발하여 가까이 있는 제드에게 데미지를 가하고 기절시킴"
@@ -2898,6 +2902,19 @@ AllCompleteRewardDescriptionString="연휴 쇼핑 | 동반자 | 프레셔스"
 ChanceDropDescriptionStrings[0]="크램퍼스 티켓"
 ChanceDropDescriptionStrings[1]="크램퍼스 황금 티켓"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2022]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="劣悪な観光客",DescriptionString="マップやモードを問わず、Zedを1500体殺す")
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 스플래쉬다운",DescriptionString="리그에서 주간 게임 모드 완료하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="최고의 서퍼",DescriptionString="리그에서 웨이브 100회 완료하기")
+SpecialEventObjectiveInfoList[3]=(TitleString="승선!",DescriptionString="리그에서 제드 50마리 바다에 던지기")
+SpecialEventObjectiveInfoList[4]=(TitleString="넓디 넓은 바다",DescriptionString="리그에서 끝없는 도전 어려움 이상으로 15 웨이브 완료하기")
+
+AllCompleteRewardDescriptionString="심해 | 트라이던트 | 프레셔스"
+
+ChanceDropDescriptionStrings[0]="여름 티켓"
+ChanceDropDescriptionStrings[1]="여름 골든 티켓"
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3062,7 +3079,17 @@ ModifierDescriptions[4]="test5"
 FriendlyName="작아진 머리"
 DescriptionStrings[0]="헤드샷 시도가 소용 없어집니다..."
 DescriptionStrings[1]="길이: 중간(7웨이브)"
-ModifierDescriptions[0]="플레이어의 헤드샷을 피하려는 걸까요? 어쨌든, 덕분에 새로운 약점이 생긴 것 같습니다. 대전상대 찾기 페이지에서 주간 게임 모드를 선택하십시오. 병과 15+."
+ModifierDescriptions[0]="플레이어의 헤드샷을 피하려는 걸까요? 어쨌든, 덕분에 새로운 약점이 생긴 것 같습니다. 대전상대 찾기 페이지에서 주간 게임 모드를 선택하십시오. 병과 15+."																																										   
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[GunGame KFWeeklyOutBreakInformation]
+FriendlyName="貯蔵武器の向上"
+DescriptionStrings[0]="武器をレベルアップしよう！"
+DescriptionStrings[1]="長さ：特殊"
+ModifierDescriptions[0]="トレーダーが稼働していません。ナイフだけで開始してください。キルをして武器ポイントを獲得することで、より良い武器を入手しましょう。サバイバリスト限定です。マッチメイキングページでウィークリーゲームモードを選択してください。Perk15以上。"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3593,6 +3620,8 @@ DisplayName="네더홀드"
 
 [KF-CarillonHamlet KFMapSummary]
 DisplayName="카릴리온 거주지"
+[KF-Rig KFMapSummary]
+DisplayName="리그"
 
 [KFMapInfo]
 ; defaults

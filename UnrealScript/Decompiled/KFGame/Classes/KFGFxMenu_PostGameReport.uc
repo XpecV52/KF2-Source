@@ -173,13 +173,20 @@ function SetSumarryInfo()
         }
         else
         {
-            if(KFGRI.default.bEndlessMode)
+            if(KFGRI.bIsWeeklyMode && KFGRI.CurrentWeeklyIndex == 16)
             {
-                TextObject.SetString("waveTime", ((WaveString @ string(KFGRI.WaveNum)) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));                
+                TextObject.SetString("waveTime", ((WaveString @ string(KFGRI.GunGameWavesCurrent)) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));                
             }
             else
             {
-                TextObject.SetString("waveTime", ((((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.GetFinalWaveNum())) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));
+                if(KFGRI.default.bEndlessMode)
+                {
+                    TextObject.SetString("waveTime", ((WaveString @ string(KFGRI.WaveNum)) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));                    
+                }
+                else
+                {
+                    TextObject.SetString("waveTime", ((((WaveString @ string(KFGRI.WaveNum)) $ "/") $ string(KFGRI.GetFinalWaveNum())) @ "-") @ (FormatTime(KFGRI.ElapsedTime)));
+                }
             }
         }
         TextObject.SetString("winLost", ((KFGRI.bMatchVictory) ? VictoryString : DefeatString));

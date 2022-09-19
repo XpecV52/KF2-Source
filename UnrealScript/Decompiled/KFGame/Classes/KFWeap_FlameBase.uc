@@ -35,6 +35,7 @@ struct PilotLight
 
 var protected transient bool bFireSpraying;
 var protected bool bPilotLightOn;
+var protected bool bInvertPilot;
 /** Whether this weapon should warn AI when it fires */
 var() const bool bWarnAIWhenFiring;
 var globalconfig bool bArePilotLightsAllowed;
@@ -50,6 +51,7 @@ var() protected export editinline KFParticleSystemComponent PSC_PilotLight;
 var() name PilotLightSocketName;
 var float BarrelHeat;
 var float LastBarrelHeat;
+var const float CooldownBarrelModifier;
 var(PilotLights) array<PilotLight> PilotLights;
 /** Emitter to play when firing stops. */
 var() const export editinline KFParticleSystemComponent PSC_EndSpray;
@@ -85,12 +87,27 @@ simulated event Tick(float DeltaTime)
         }
         else
         {
-            if(BarrelHeat > float(0))
+            if(ActiveFlameSpray != none)
             {
-                BarrelHeat -= (DeltaTime * 0.5);
-                if(BarrelHeat < float(0))
+                FlameHeat = ActiveFlameSpray.MaterialHeatRange.X;                
+            }
+            else
+            {
+                if(FlameSprayArchetype != none)
                 {
-                    BarrelHeat = 0;
+                    FlameHeat = FlameSprayArchetype.default.MaterialHeatRange.X;                    
+                }
+                else
+                {
+                    FlameHeat = 0;
+                }
+            }
+            if(BarrelHeat != FlameHeat)
+            {
+                BarrelHeat -= (DeltaTime * CooldownBarrelModifier);
+                if(BarrelHeat < FlameHeat)
+                {
+                    BarrelHeat = FlameHeat;
                 }
             }
         }
@@ -98,7 +115,7 @@ simulated event Tick(float DeltaTime)
         LastBarrelHeat = BarrelHeat;
     }
     Idx = 0;
-    J0x199:
+    J0x256:
 
     if(Idx < PilotLights.Length)
     {
@@ -108,7 +125,7 @@ simulated event Tick(float DeltaTime)
             PilotLights[Idx].Light.SetLightProperties(PilotLights[Idx].LastLightBrightness, PilotLights[Idx].Light.LightColor, PilotLights[Idx].Light.Function);
         }
         ++ Idx;
-        goto J0x199;
+        goto J0x256;
     }
 }
 
@@ -254,19 +271,25 @@ protected simulated function TurnOffPilot()
 simulated function SetPilotDynamicLightEnabled(bool bLightEnabled)
 {
     local int Idx;
+    local bool doEnable;
 
-    if(bLightEnabled && ((Instigator == none) || !Instigator.IsLocallyControlled()) || !Instigator.IsFirstPerson())
+    doEnable = bLightEnabled;
+    if(bInvertPilot)
+    {
+        doEnable = bLightEnabled == false;
+    }
+    if(doEnable && ((Instigator == none) || !Instigator.IsLocallyControlled()) || !Instigator.IsFirstPerson())
     {
         return;
     }
     Idx = 0;
-    J0x77:
+    J0xB1:
 
     if(Idx < PilotLights.Length)
     {
-        PilotLights[Idx].Light.SetEnabled(bLightEnabled);
+        PilotLights[Idx].Light.SetEnabled(doEnable);
         ++ Idx;
-        goto J0x77;
+        goto J0xB1;
     }
 }
 
@@ -588,6 +611,7 @@ defaultproperties
     object end
     // Reference: KFParticleSystemComponent'Default__KFWeap_FlameBase.PilotLight0'
     PSC_PilotLight=PilotLight0
+    CooldownBarrelModifier=0.5
     begin object name=FlameEndSpray0 class=KFParticleSystemComponent
         bAutoActivate=false
         ReplacementPrimitive=none

@@ -34,6 +34,7 @@ struct PilotLight
 
 var protected transient bool bFireSpraying;
 var protected bool bPilotLightOn;
+var protected bool bInvertPilot;
 var protected transient int NextFlamePoolIdx;
 var protected transient KFSprayActor FlamePool[2];
 var protected transient KFSprayActor ActiveFlameSpray;
@@ -184,19 +185,25 @@ simulated function StopPilotSound()
 simulated function SetPilotDynamicLightEnabled(bool bLightEnabled)
 {
     local int Idx;
+    local bool doEnable;
 
-    if(bLightEnabled && (Instigator != none) && Instigator.IsFirstPerson())
+    doEnable = bLightEnabled;
+    if(bInvertPilot)
+    {
+        doEnable = bLightEnabled == false;
+    }
+    if(doEnable && (Instigator != none) && Instigator.IsFirstPerson())
     {
         return;
     }
     Idx = 0;
-    J0x4F:
+    J0x89:
 
     if(Idx < PilotLights.Length)
     {
-        PilotLights[Idx].Light.SetEnabled(bLightEnabled);
+        PilotLights[Idx].Light.SetEnabled(doEnable);
         ++ Idx;
-        goto J0x4F;
+        goto J0x89;
     }
 }
 

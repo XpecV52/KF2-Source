@@ -39,260 +39,73 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_3
 End Object
 
 Begin Object Class=InterpData Name=InterpData_3
-   Begin Object Class=InterpGroup Name=InterpGroup_9
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_9
-         ToggleTrack(0)=(Time=6.737043,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=10.845802)
-         ToggleTrack(2)=(Time=11.548411,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=13.429230)
-         ToggleTrack(4)=(Time=13.726998,ToggleAction=ETTA_On)
-         ToggleTrack(5)=(Time=16.598093)
-         Name="InterpTrackToggle_9"
+   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
+      Name="InterpCurveEdSetup_0"
+      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_0
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
+         ToggleTrack(0)=(Time=9.789106,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=11.289106,ToggleAction=ETTA_On)
+         ToggleTrack(2)=(Time=12.897866,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=14.407598,ToggleAction=ETTA_On)
+         ToggleTrack(4)=(Time=16.798828,ToggleAction=ETTA_On)
+         ToggleTrack(5)=(Time=18.367977,ToggleAction=ETTA_On)
+         Name="InterpTrackToggle_0"
          ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
       End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_2"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_9.InterpTrackToggle_9'
-      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_9.InterpTrackMove_2'
-      GroupName="AA_3"
-      GroupColor=(B=0,G=217,R=95,A=255)
-      Name="InterpGroup_9"
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0.InterpTrackToggle_0'
+      GroupName="Ground_Exp_4"
+      GroupColor=(B=115,G=0,R=209,A=255)
+      Name="InterpGroup_0"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_8
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_1
-         ToggleTrack(0)=(Time=8.412466,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=11.912466,ToggleAction=ETTA_On)
-         ToggleTrack(2)=(Time=14.412466,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=17.412466,ToggleAction=ETTA_On)
-         Name="InterpTrackToggle_1"
+   Begin Object Class=InterpGroup Name=InterpGroup_1
+      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
+         AkEvents(0)=(Time=1.797603,Event=AkEvent'WW_ENV_Nightmare.Play_Nightmare_Planes_Flyover')
+         Name="InterpTrackAkEvent_0"
+         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
+      End Object
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
+         ToggleTrack(0)=(ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=58.000000)
+         Name="InterpTrackToggle_0"
          ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
       End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_8.InterpTrackToggle_1'
-      GroupName="Ground_Exp_6"
-      GroupColor=(B=0,G=189,R=147,A=255)
-      Name="InterpGroup_8"
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackToggle_0'
+      InterpTracks(1)=InterpTrackAkEvent'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackAkEvent_0'
+      GroupName="Planes_01"
+      GroupColor=(B=222,G=0,R=84,A=255)
+      Name="InterpGroup_1"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_7
+   Begin Object Class=InterpGroup Name=InterpGroup_10
+      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
+         EventTrack(0)=(Time=60.000000,EventName="EndSequence")
+         bFireEventsWhenBackwards=False
+         Name="InterpTrackEvent_0"
+         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
+      End Object
+      InterpTracks(0)=InterpTrackEvent'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_10.InterpTrackEvent_0'
+      GroupName="Timer"
+      GroupColor=(B=225,G=0,R=74,A=255)
+      Name="InterpGroup_10"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_11
       Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_3
-         ToggleTrack(0)=(Time=10.789106,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=13.289106,ToggleAction=ETTA_On)
-         ToggleTrack(2)=(Time=14.971874,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=17.471869,ToggleAction=ETTA_On)
+         ToggleTrack(0)=(Time=9.912466,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=12.412466,ToggleAction=ETTA_On)
+         ToggleTrack(2)=(Time=14.412466,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=15.912466,ToggleAction=ETTA_On)
+         ToggleTrack(4)=(Time=17.912466,ToggleAction=ETTA_On)
          Name="InterpTrackToggle_3"
          ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
       End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_7.InterpTrackToggle_3'
-      GroupName="Ground_Exp_3"
-      GroupColor=(B=0,G=136,R=197,A=255)
-      Name="InterpGroup_7"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_6
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_6
-         ToggleTrack(0)=(Time=8.500000,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=11.068853)
-         ToggleTrack(2)=(Time=12.128257,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=13.919783)
-         ToggleTrack(4)=(Time=14.326649,ToggleAction=ETTA_On)
-         ToggleTrack(5)=(Time=16.157795)
-         Name="InterpTrackToggle_6"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_1"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_6.InterpTrackToggle_6'
-      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_6.InterpTrackMove_1'
-      GroupName="AA_2"
-      GroupColor=(B=203,G=126,R=0,A=255)
-      Name="InterpGroup_6"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_5
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_2
-         ToggleTrack(0)=(Time=10.289106,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=12.789106,ToggleAction=ETTA_On)
-         ToggleTrack(2)=(Time=14.377723,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=16.669922,ToggleAction=ETTA_On)
-         Name="InterpTrackToggle_2"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_5.InterpTrackToggle_2'
-      GroupName="Ground_Exp_1"
-      GroupColor=(B=159,G=179,R=0,A=255)
-      Name="InterpGroup_5"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_4
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_4
-         ToggleTrack(0)=(Time=9.673720,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=12.000000)
-         ToggleTrack(2)=(Time=12.771773,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=14.414915)
-         ToggleTrack(4)=(Time=16.198109,ToggleAction=ETTA_On)
-         ToggleTrack(5)=(Time=17.880861)
-         Name="InterpTrackToggle_4"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_0"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackToggle_4'
-      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackMove_0'
-      GroupName="AA_1"
-      GroupColor=(B=0,G=176,R=163,A=255)
-      Name="InterpGroup_4"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_3
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_1
-         ToggleTrack(0)=(Time=9.789106,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=11.483055,ToggleAction=ETTA_On)
-         ToggleTrack(2)=(Time=13.739424,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=15.239422,ToggleAction=ETTA_On)
-         ToggleTrack(4)=(Time=18.289087,ToggleAction=ETTA_On)
-         Name="InterpTrackToggle_1"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackToggle_1'
-      GroupName="Ground_Exp_2"
-      GroupColor=(B=206,G=120,R=0,A=255)
-      Name="InterpGroup_3"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_28
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_29
-         ToggleTrack(0)=(Time=8.000000,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=12.000000)
-         ToggleTrack(2)=(Time=13.063675,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=15.602930)
-         ToggleTrack(4)=(Time=16.252342,ToggleAction=ETTA_On)
-         ToggleTrack(5)=(Time=20.752323)
-         Name="InterpTrackToggle_29"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_6"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_28.InterpTrackToggle_29'
-      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_28.InterpTrackMove_6'
-      GroupName="AA_6"
-      GroupColor=(B=193,G=0,R=143,A=255)
-      Name="InterpGroup_28"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_27
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_28
-         ToggleTrack(0)=(Time=8.782150,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=11.321427)
-         ToggleTrack(2)=(Time=12.439950,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=13.577910)
-         ToggleTrack(4)=(Time=14.578926,ToggleAction=ETTA_On)
-         ToggleTrack(5)=(Time=16.667553)
-         ToggleTrack(6)=(Time=17.054600,ToggleAction=ETTA_On)
-         ToggleTrack(7)=(Time=21.460440)
-         Name="InterpTrackToggle_28"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_5"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_27.InterpTrackToggle_28'
-      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_27.InterpTrackMove_5'
-      GroupName="AA_5"
-      GroupColor=(B=112,G=0,R=210,A=255)
-      Name="InterpGroup_27"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_26
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_27
-         ToggleTrack(0)=(Time=6.000000,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=9.712673)
-         ToggleTrack(2)=(Time=10.113645,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=12.479535)
-         ToggleTrack(4)=(Time=15.164009,ToggleAction=ETTA_On)
-         ToggleTrack(5)=(Time=17.391270)
-         Name="InterpTrackToggle_27"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
-         MoveFrame=IMF_RelativeToInitial
-         Name="InterpTrackMove_4"
-         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_26.InterpTrackToggle_27'
-      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_26.InterpTrackMove_4'
-      GroupName="AA_4"
-      GroupColor=(B=0,G=115,R=209,A=255)
-      Name="InterpGroup_26"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_25
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_25
-         ToggleTrack(0)=(Time=8.961066,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=58.000000)
-         Name="InterpTrackToggle_25"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_25.InterpTrackToggle_25'
-      GroupName="Plane_3"
-      GroupColor=(B=0,G=174,R=165,A=255)
-      Name="InterpGroup_25"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_24
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_24
-         ToggleTrack(0)=(Time=4.817224,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=58.000000)
-         Name="InterpTrackToggle_24"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_24.InterpTrackToggle_24'
-      GroupName="Plane_2"
-      GroupColor=(B=0,G=163,R=176,A=255)
-      Name="InterpGroup_24"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_2
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
-         ToggleTrack(0)=(Time=11.789106,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=13.789106,ToggleAction=ETTA_On)
-         ToggleTrack(2)=(Time=15.917336,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=17.887459,ToggleAction=ETTA_On)
-         Name="InterpTrackToggle_0"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2.InterpTrackToggle_0'
-      GroupName="Ground_Exp_5"
-      GroupColor=(B=131,G=0,R=200,A=255)
-      Name="InterpGroup_2"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_13
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
-         ToggleTrack(0)=(Time=7.735191,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=19.397209)
-         Name="InterpTrackToggle_0"
-         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_13.InterpTrackToggle_0'
-      GroupName="AA_Explosion"
-      GroupColor=(B=0,G=169,R=171,A=255)
-      bCollapsed=True
-      Name="InterpGroup_13"
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_11.InterpTrackToggle_3'
+      GroupName="Ground_Exp_7"
+      GroupColor=(B=0,G=222,R=79,A=255)
+      Name="InterpGroup_11"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
    Begin Object Class=InterpGroup Name=InterpGroup_12
@@ -314,74 +127,261 @@ Begin Object Class=InterpData Name=InterpData_3
       Name="InterpGroup_12"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_11
+   Begin Object Class=InterpGroup Name=InterpGroup_13
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
+         ToggleTrack(0)=(Time=7.735191,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=19.397209)
+         Name="InterpTrackToggle_0"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_13.InterpTrackToggle_0'
+      GroupName="AA_Explosion"
+      GroupColor=(B=0,G=169,R=171,A=255)
+      bCollapsed=True
+      Name="InterpGroup_13"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_2
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
+         ToggleTrack(0)=(Time=11.789106,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=13.789106,ToggleAction=ETTA_On)
+         ToggleTrack(2)=(Time=15.917336,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=17.887459,ToggleAction=ETTA_On)
+         Name="InterpTrackToggle_0"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_2.InterpTrackToggle_0'
+      GroupName="Ground_Exp_5"
+      GroupColor=(B=131,G=0,R=200,A=255)
+      Name="InterpGroup_2"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_24
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_24
+         ToggleTrack(0)=(Time=4.817224,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=58.000000)
+         Name="InterpTrackToggle_24"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_24.InterpTrackToggle_24'
+      GroupName="Plane_2"
+      GroupColor=(B=0,G=163,R=176,A=255)
+      Name="InterpGroup_24"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_25
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_25
+         ToggleTrack(0)=(Time=8.961066,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=58.000000)
+         Name="InterpTrackToggle_25"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_25.InterpTrackToggle_25'
+      GroupName="Plane_3"
+      GroupColor=(B=0,G=174,R=165,A=255)
+      Name="InterpGroup_25"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_26
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_4
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_4"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_27
+         ToggleTrack(0)=(Time=6.000000,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=9.712673)
+         ToggleTrack(2)=(Time=10.113645,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=12.479535)
+         ToggleTrack(4)=(Time=15.164009,ToggleAction=ETTA_On)
+         ToggleTrack(5)=(Time=17.391270)
+         Name="InterpTrackToggle_27"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_26.InterpTrackToggle_27'
+      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_26.InterpTrackMove_4'
+      GroupName="AA_4"
+      GroupColor=(B=0,G=115,R=209,A=255)
+      Name="InterpGroup_26"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_27
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_5
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_5"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_28
+         ToggleTrack(0)=(Time=8.782150,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=11.321427)
+         ToggleTrack(2)=(Time=12.439950,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=13.577910)
+         ToggleTrack(4)=(Time=14.578926,ToggleAction=ETTA_On)
+         ToggleTrack(5)=(Time=16.667553)
+         ToggleTrack(6)=(Time=17.054600,ToggleAction=ETTA_On)
+         ToggleTrack(7)=(Time=21.460440)
+         Name="InterpTrackToggle_28"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_27.InterpTrackToggle_28'
+      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_27.InterpTrackMove_5'
+      GroupName="AA_5"
+      GroupColor=(B=112,G=0,R=210,A=255)
+      Name="InterpGroup_27"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_28
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_6
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_6"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_29
+         ToggleTrack(0)=(Time=8.000000,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=12.000000)
+         ToggleTrack(2)=(Time=13.063675,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=15.602930)
+         ToggleTrack(4)=(Time=16.252342,ToggleAction=ETTA_On)
+         ToggleTrack(5)=(Time=20.752323)
+         Name="InterpTrackToggle_29"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_28.InterpTrackToggle_29'
+      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_28.InterpTrackMove_6'
+      GroupName="AA_6"
+      GroupColor=(B=193,G=0,R=143,A=255)
+      Name="InterpGroup_28"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_3
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_1
+         ToggleTrack(0)=(Time=9.789106,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=11.483055,ToggleAction=ETTA_On)
+         ToggleTrack(2)=(Time=13.739424,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=15.239422,ToggleAction=ETTA_On)
+         ToggleTrack(4)=(Time=18.289087,ToggleAction=ETTA_On)
+         Name="InterpTrackToggle_1"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_3.InterpTrackToggle_1'
+      GroupName="Ground_Exp_2"
+      GroupColor=(B=206,G=120,R=0,A=255)
+      Name="InterpGroup_3"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_4
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_0
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_0"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_4
+         ToggleTrack(0)=(Time=9.673720,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=12.000000)
+         ToggleTrack(2)=(Time=12.771773,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=14.414915)
+         ToggleTrack(4)=(Time=16.198109,ToggleAction=ETTA_On)
+         ToggleTrack(5)=(Time=17.880861)
+         Name="InterpTrackToggle_4"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackToggle_4'
+      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_4.InterpTrackMove_0'
+      GroupName="AA_1"
+      GroupColor=(B=0,G=176,R=163,A=255)
+      Name="InterpGroup_4"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_5
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_2
+         ToggleTrack(0)=(Time=10.289106,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=12.789106,ToggleAction=ETTA_On)
+         ToggleTrack(2)=(Time=14.377723,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=16.669922,ToggleAction=ETTA_On)
+         Name="InterpTrackToggle_2"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_5.InterpTrackToggle_2'
+      GroupName="Ground_Exp_1"
+      GroupColor=(B=159,G=179,R=0,A=255)
+      Name="InterpGroup_5"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_6
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_1
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_1"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_6
+         ToggleTrack(0)=(Time=8.500000,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=11.068853)
+         ToggleTrack(2)=(Time=12.128257,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=13.919783)
+         ToggleTrack(4)=(Time=14.326649,ToggleAction=ETTA_On)
+         ToggleTrack(5)=(Time=16.157795)
+         Name="InterpTrackToggle_6"
+         ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
+      End Object
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_6.InterpTrackToggle_6'
+      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_6.InterpTrackMove_1'
+      GroupName="AA_2"
+      GroupColor=(B=203,G=126,R=0,A=255)
+      Name="InterpGroup_6"
+      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
+   End Object
+   Begin Object Class=InterpGroup Name=InterpGroup_7
       Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_3
-         ToggleTrack(0)=(Time=9.912466,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=12.412466,ToggleAction=ETTA_On)
-         ToggleTrack(2)=(Time=14.412466,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=15.912466,ToggleAction=ETTA_On)
-         ToggleTrack(4)=(Time=17.912466,ToggleAction=ETTA_On)
+         ToggleTrack(0)=(Time=10.789106,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=13.289106,ToggleAction=ETTA_On)
+         ToggleTrack(2)=(Time=14.971874,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=17.471869,ToggleAction=ETTA_On)
          Name="InterpTrackToggle_3"
          ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
       End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_11.InterpTrackToggle_3'
-      GroupName="Ground_Exp_7"
-      GroupColor=(B=0,G=222,R=79,A=255)
-      Name="InterpGroup_11"
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_7.InterpTrackToggle_3'
+      GroupName="Ground_Exp_3"
+      GroupColor=(B=0,G=136,R=197,A=255)
+      Name="InterpGroup_7"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_10
-      Begin Object Class=InterpTrackEvent Name=InterpTrackEvent_0
-         EventTrack(0)=(Time=60.000000,EventName="EndSequence")
-         bFireEventsWhenBackwards=False
-         Name="InterpTrackEvent_0"
-         ObjectArchetype=InterpTrackEvent'Engine.Default__InterpTrackEvent'
-      End Object
-      InterpTracks(0)=InterpTrackEvent'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_10.InterpTrackEvent_0'
-      GroupName="Timer"
-      GroupColor=(B=225,G=0,R=74,A=255)
-      Name="InterpGroup_10"
-      ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_1
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
-         ToggleTrack(0)=(ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=58.000000)
-         Name="InterpTrackToggle_0"
+   Begin Object Class=InterpGroup Name=InterpGroup_8
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_1
+         ToggleTrack(0)=(Time=8.412466,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=11.912466,ToggleAction=ETTA_On)
+         ToggleTrack(2)=(Time=14.412466,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=17.412466,ToggleAction=ETTA_On)
+         Name="InterpTrackToggle_1"
          ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
       End Object
-      Begin Object Class=InterpTrackAkEvent Name=InterpTrackAkEvent_0
-         AkEvents(0)=(Time=1.797603,Event=AkEvent'WW_ENV_Nightmare.Play_Nightmare_Planes_Flyover')
-         Name="InterpTrackAkEvent_0"
-         ObjectArchetype=InterpTrackAkEvent'AkAudio.Default__InterpTrackAkEvent'
-      End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackToggle_0'
-      InterpTracks(1)=InterpTrackAkEvent'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1.InterpTrackAkEvent_0'
-      GroupName="Planes_01"
-      GroupColor=(B=222,G=0,R=84,A=255)
-      Name="InterpGroup_1"
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_8.InterpTrackToggle_1'
+      GroupName="Ground_Exp_6"
+      GroupColor=(B=0,G=189,R=147,A=255)
+      Name="InterpGroup_8"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
    End Object
-   Begin Object Class=InterpGroup Name=InterpGroup_0
-      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_0
-         ToggleTrack(0)=(Time=9.789106,ToggleAction=ETTA_On)
-         ToggleTrack(1)=(Time=11.289106,ToggleAction=ETTA_On)
-         ToggleTrack(2)=(Time=12.897866,ToggleAction=ETTA_On)
-         ToggleTrack(3)=(Time=14.407598,ToggleAction=ETTA_On)
-         ToggleTrack(4)=(Time=16.798828,ToggleAction=ETTA_On)
-         ToggleTrack(5)=(Time=18.367977,ToggleAction=ETTA_On)
-         Name="InterpTrackToggle_0"
+   Begin Object Class=InterpGroup Name=InterpGroup_9
+      Begin Object Class=InterpTrackMove Name=InterpTrackMove_2
+         MoveFrame=IMF_RelativeToInitial
+         Name="InterpTrackMove_2"
+         ObjectArchetype=InterpTrackMove'Engine.Default__InterpTrackMove'
+      End Object
+      Begin Object Class=InterpTrackToggle Name=InterpTrackToggle_9
+         ToggleTrack(0)=(Time=6.737043,ToggleAction=ETTA_On)
+         ToggleTrack(1)=(Time=10.845802)
+         ToggleTrack(2)=(Time=11.548411,ToggleAction=ETTA_On)
+         ToggleTrack(3)=(Time=13.429230)
+         ToggleTrack(4)=(Time=13.726998,ToggleAction=ETTA_On)
+         ToggleTrack(5)=(Time=16.598093)
+         Name="InterpTrackToggle_9"
          ObjectArchetype=InterpTrackToggle'Engine.Default__InterpTrackToggle'
       End Object
-      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_0.InterpTrackToggle_0'
-      GroupName="Ground_Exp_4"
-      GroupColor=(B=115,G=0,R=209,A=255)
-      Name="InterpGroup_0"
+      InterpTracks(0)=InterpTrackToggle'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_9.InterpTrackToggle_9'
+      InterpTracks(1)=InterpTrackMove'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_9.InterpTrackMove_2'
+      GroupName="AA_3"
+      GroupColor=(B=0,G=217,R=95,A=255)
+      Name="InterpGroup_9"
       ObjectArchetype=InterpGroup'Engine.Default__InterpGroup'
-   End Object
-   Begin Object Class=InterpCurveEdSetup Name=InterpCurveEdSetup_0
-      Name="InterpCurveEdSetup_0"
-      ObjectArchetype=InterpCurveEdSetup'Engine.Default__InterpCurveEdSetup'
    End Object
    InterpLength=60.000000
    InterpGroups(0)=InterpGroup'FX_Nightmare.TheWorld:PersistentLevel.Main_Sequence.InterpData_3.InterpGroup_1'

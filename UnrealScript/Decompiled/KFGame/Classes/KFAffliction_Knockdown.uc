@@ -7,9 +7,10 @@
  *******************************************************************************/
 class KFAffliction_Knockdown extends KFAfflictionBase;
 
-function Activate()
+function Activate(optional class<KFDamageType> DamageType)
 {
-    ActivateKnockdown(PawnOwner.HitFxInfo.DamageType, PawnOwner.HitFxInfo.HitLocation, PawnOwner.DecodeUnitVector(PawnOwner.HitFxInfo.EncodedHitDirection), PawnOwner.HitFxInfo.HitBoneIndex);
+    DamageType = none;
+    ActivateKnockdown(DamageType, PawnOwner.HitFxInfo.HitLocation, PawnOwner.DecodeUnitVector(PawnOwner.HitFxInfo.EncodedHitDirection), PawnOwner.HitFxInfo.HitBoneIndex);
     super.Activate();
 }
 

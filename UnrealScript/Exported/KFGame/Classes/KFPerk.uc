@@ -170,6 +170,7 @@ const STATID_ACHIEVE_Dystopia2029Collectibles       = 4058;
 const STATID_ACHIEVE_MoonbaseCollectibles           = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles         = 4060;
 const STATID_ACHIEVE_CarillonHamletCollectibles     = 4061;
+const STATID_ACHIEVE_RigCollectibles     			= 4062;
  
 #linenumber 15
 
@@ -621,6 +622,39 @@ static function bool IsBackupWeapon( KFWeapon KFW )
 }
 
 /**
+ * @brief Return if a weapon is a knife
+ *
+ * @param KFW Weapon to check
+ * @return true if knife weapon
+ */
+static simulated public function bool IsKnife( KFWeapon KFW )
+{
+	return KFW != none && KFW.default.bIsBackupWeapon && KFW.IsMeleeWeapon();
+}
+
+/**
+ * @brief Return if a weapon is a welder
+ *
+ * @param KFW Weapon to check
+ * @return true if knife weapon
+ */
+static simulated public function bool IsWelder( KFWeapon KFW )
+{
+	return KFW != none && KFW.Class.Name == 'KFWeap_Welder';
+}
+
+/**
+ * @brief Return if a weapon is the syringe
+ *
+ * @param KFW Weapon to check
+ * @return true if syringe weapon
+ */
+static simulated public function bool IsSyringe( KFWeapon KFW )
+{
+	return KFW != none && KFW.Class.Name == 'KFWeap_Healer_Syringe';
+}
+
+/**
  * @brief Return if a weapon is Dual 9mm
  *
  * @param KFW Weapon to check
@@ -663,6 +697,29 @@ static function bool IsDoshinegun( KFWeapon KFW )
 {
 	return KFW != none && KFW.Class.Name == 'KFWeap_AssaultRifle_Doshinegun';
 }
+
+/**
+ * @brief Return if a weapon is Crossboom (special case for high rounds perk)
+ *
+ * @param KFW Weapon to check
+ * @return true if backup weapon
+ */
+static function bool IsHRGCrossboom( KFWeapon KFW )
+{
+	return KFW != none && KFW.Class.Name == 'KFWeap_HRG_Crossboom';
+}
+
+/**
+ * @brief Return if a weapon is AutoTurret (should ignore ammo upgrades)
+ *
+ * @param KFW Weapon to check
+ * @return true if backup weapon
+ */
+static function bool IsAutoTurret( KFWeapon KFW )
+{
+	return KFW != none && KFW.Class.Name == 'KFWeap_AutoTurret';
+}
+
 
 /*********************************************************************************************
 * @name	 Build / Level Management - Apply and save the updated build and level
@@ -948,7 +1005,7 @@ simulated final function int GetSavedBuild()
 simulated event PreBeginPlay()
 {
     // Set the grenade class for this perk
-    GrenadeClass = class<KFProj_Grenade>(DynamicLoadObject(GrenadeWeaponDef.default.WeaponClassPath, class'Class'));
+    GrenadeClass = class<KFProj_Grenade>(DynamicLoadObject(GetGrenadeClassPath(), class'Class'));
     PerkIcon = Texture2D(DynamicLoadObject(GetPerkIconPath(), class'Texture2D'));
 
 	MyKFGRI = KFGameReplicationInfo(WorldInfo.GRI);
@@ -1179,6 +1236,12 @@ simulated function string GetKnifeWeaponClassPath()
     return KnifeWeaponDef.default.WeaponClassPath;
 }
 
+/* Returns the primary weapon's class path for this perk */
+simulated function string GetGrenadeClassPath()
+{
+    return GrenadeWeaponDef.default.WeaponClassPath;
+}
+
 simulated function bool PerkNeedsTick(){ return false; }
 
 /**
@@ -1367,6 +1430,7 @@ simulated function bool IsFlarotovActive(){ return false; }
 function float GetDoTScalerAdditions(class<KFDamageType> KFDT);
 function bool GetFireStumble( optional KFPawn KFP, optional class<DamageType> DamageType ){ return false; }
 function bool CanSpreadNapalm(){ return false; }
+function bool CanSpreadInferno(){ return false; }
 function bool CouldBeZedShrapnel( class<KFDamageType> KFDT ){ return false; }
 simulated function bool ShouldShrapnel(){ return  false; }
 simulated function float GetSplashDamageModifier(){ return 1.f; }
@@ -1451,6 +1515,11 @@ simulated function KFWeapon GetOwnerWeapon()
 function OnWaveEnded();
 
 function OnWaveStart();
+
+/**
+ * Notifications for Wave start / end but on client
+ */
+simulated function OnClientWaveEnded();
 
 simulated function bool GetUsingTactialReload( KFWeapon KFW )
 {
@@ -1651,6 +1720,46 @@ simulated function FormatPerkSkills()
 }
 
 simulated function PlayerDied(){}
+
+static simulated function bool CanChoosePrimaryWeapon()
+{
+	return false;
+}
+
+static simulated function bool CanChooseGrenade()
+{
+	return false;
+}
+
+simulated function byte OnPrevWeaponSelected()  { return 255; }
+simulated function byte OnNextWeaponSelected()  { return 255; }
+simulated function byte OnPrevGrenadeSelected() { return 255; }
+simulated function byte OnNextGrenadeSelected() { return 255; }
+simulated function byte SetWeaponSelectedIndex(byte idx);
+simulated function byte SetGrenadeSelectedIndex(byte idx);
+simulated function byte SetGrenadeSelectedIndexUsingSkills(byte idx, byte InSelectedSkills[5], bool IsChoosingPrev, bool IsChoosingNext);
+simulated function byte GetGrenadeSelectedIndex() { return 255;}
+simulated function InitializeGrenades();
+
+static simulated function string GetPrimaryWeaponName(byte Idx)
+{
+	return default.PrimaryWeaponDef.static.GetItemName();
+}
+
+static simulated function string GetPrimaryWeaponImagePath(byte Idx)
+{
+	return default.PrimaryWeaponDef.static.GetImagePath();
+}
+
+static simulated function string GetGrenadeWeaponName(byte Idx)
+{
+	return default.GrenadeWeaponDef.static.GetItemName();
+}
+
+static simulated function string GetGrenadeWeaponImagePath(byte Idx)
+{
+	return default.GrenadeWeaponDef.static.GetImagePath();
+}
 
 defaultproperties
 {

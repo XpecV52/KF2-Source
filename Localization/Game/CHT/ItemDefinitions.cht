@@ -236,6 +236,16 @@ AlchemistWeaponSkinBundleName="煉金術師武器造型同捆包"
 ChopTilYouDropFullGearBundleName="瘋狂砍殺全套裝備同捆包"
 ChristmasWeaponSkinBundleName="聖誕節武器造型同捆包"
 HolidayShopperOutfitName="假期購物狂服裝同捆包"
+NeonMKVIIIWeaponSkinBundleName="霓虹 MKVIII 武器造型組合包"
+ClassicWeaponSkinBundleName="經典武器造型組合包"
+DeepSeaSkinWeaponSkinPackName="深海造型武器造型組合包"
+ChameleonWeaponSkinBundleName="變色龍武器造型組合包"
+DeepSeaExplorerOutfitName="深海探險家服飾組合包"
+ReductoRayBundleName="收縮射線武器組合包"
+SentinelBundleName="哨兵武器組合包"
+TidalTerrorBundleName="潮汐恐攻武器組合包"
+ArmorySeasonPass2022Name="《Killing Floor 2》- 武器庫季票 2"
+UltimateUpgradeName="《Killing Floor 2》-終極版升級"																
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="內含布萊爾的倫敦制服（5 種配色）以及警官帽妝容配件（3 種配色）"
@@ -470,6 +480,16 @@ AlchemistWeaponSkinBundleDescription="包含20個煉金術師主題武器造型 
 ChopTilYouDropFullGearBundleDescription="每一同捆包有6種假期購物狂主題妝容配件，每種配件有5種材質變化。適用於大部分的角色。"
 ChristmasWeaponSkinBundleDescription="包含20個聖誕主題武器造型 (10個甜味和10個酸味)，此套件的武器有：短管霰彈槍、燃料槍、沙漠之鷹、火焰噴射器、HMTech-501榴彈步槍、M32、P90、RPG-7、Scar和火槍"
 HolidayShopperOutfitBundleDescription="包括假期購物狂服飾（含6種造型樣式）。大部分角色皆可使用。"
+NeonMKVIIIWeaponSkinBundleDescription="包含 8 個霓虹主題武器造型（4 個霓虹與 4 個霓虹 RGB）本套裝的武器包括：短管霰彈槍、HZ12、HRG 白鯨之擊、雙手劍。"
+ClassicWeaponSkinBundleDescription="包含 8 個經典主題武器造型（4 個全新與 4 個珍貴）本套裝的武器包括：短管霰彈槍、9 釐米、AA12、M1911。"
+DeepSeaSkinWeaponSkinBundleDescription="包含 36 個深海主題武器造型（6 個古董、6 個水藍、6 個珊瑚、6 個 珍珠、6 個黑海豹與 6 個珍貴）。本套裝的武器包括：AA12、FN FAL、M14EBR、Mac 10、MP5RAS、RPG-7。"
+ChameleonWeaponSkinBundleDescription="包含 8 個變色龍武器造型（4 個動態與 4 個動態 RBG）本套裝的武器包括：沙漠之鷹、日本刀、克里斯突擊步槍、RPG-7。"
+DeepSeaExplorerOutfitDescription="包括深海探險家服飾與頭盔（含 6 種配色）。大部分角色皆可使用。"
+ReductoRayBundleDescription="這個能力可將敵人縮小成你的手掌大小。收縮射線是專為生存者職業而設，並附帶 5 種獨特的造型變化。"
+SentinelBundleDescription="人人都需要有朋友，尤其這位朋友還是帶了自動瞄準機關槍的自動駕駛 AI。哨兵是專為突擊隊職業而設，並附帶 5 種獨特的造型變化。"
+TidalTerrorBundleDescription="包含來自「潮汐恐攻」更新的哨兵與收縮射線武器。每種武器附帶 5 種獨特的造型變化。"
+ArmorySeasonPass2022Description="使用今年的武器庫季票，在《Killing Floor 2》擴展消滅 Zed 的所有技能！利用這個最經濟實惠的方法，就能立即取得將在 2022 年一整年推出的全部 6 種武器。 立即購買包括和 2022 年夏季更新一起推出的 2 種全新武器！（收縮射線武器組合包、哨兵武器組合包）兩種武器組合包各附帶 5 種獨特的武器造型。另外，《Killing Floor 2》武器庫季票 2 包含可以使用下列預計推出的武器組合包：2022 年秋季推出的 2 款武器、2022 年冬季推出的 2 款武器。"
+UltimateUpgradeDescription="適合想以實惠價格升級至最全面遊戲體驗的現有《Killing Floor 2》擁有者。本次升級的組合包內含：武器庫季票 1 與 2，以及下列妝容升級，還有以下的單獨擴充內容：佛斯特夫人、博龐克服飾組合包、爆頭 FX 套組 1 與 2、拓荒組合包、佛斯特經典組合包、布萊爾的警察組合包、田中的機車組合包、Horzine 馬克 7 組合包、災害應變組合包、DAR 突擊護甲組合包、突雞部隊組合包、睡衣組合包、凝塊背包組合包、龍鯉完整武器造型套件、壞聖誕老人組合包、紙板騎士組合包、女巫獵人服飾組合包、聖誕老人助手服飾組合包、佛斯特最愛武器造型組合包、太空海盜服飾組合包、太空海盜全套裝備組合包、死神服飾組合包、2020 年萬聖節全套裝備組合包、2020 年聖誕節全套裝備組合包、2020 年冬季裝備妝容組合包。"																																																																																																																																																																																																																																									   
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="取得遊戲角色 PC 羅伯布萊爾的經典倫敦警察制服內含布萊爾的倫敦制服（5 種配色）以及警官帽妝容配件（3 種配色）"
@@ -581,6 +601,7 @@ AstronautHelmetName="太空人頭盔"
 AstronautO2BackpackName="太空人O2背包"
 AstronautSuitName="太空人制服"
 HolidayShoppingSuitName="假期購物制服"
+DeepSeeExplorerSuitName="深海探險家服裝"												  
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="麥斯特森中尉 | 賽博龐克 | 綠"
@@ -1446,6 +1467,8 @@ HRGBuckshotRevolversSpectreHRGDynamicChromaName="HRG鹿彈左輪手槍 | 鬼影H
 9MMSynthwaveFieldTestedName="9MM | 合成器浪潮 | 中古"
 9MMSynthwaveBattleScarredName="9MM | 合成器浪潮 | 破舊"
 9MMDragonKoiPreciousName="9 毫米 | 龍鯉 | 珍貴"
+9MMClassicMintName="9 釐米 | 經典 | 全新"
+9MMClassicPreciousName="9 釐米 | 經典 | 珍貴"												 
 
 ;AA12 Descriptions
 AA12MintDescription="外觀：全新 | AA-12 是把自動霰彈槍。它在短中程具有強大的火力，但彈藥消耗速度也很可觀。"
@@ -1511,6 +1534,14 @@ AA12JaegerDynamicRGBName="AA12| 獵人 | 動態RGB"
 AA12StarsName="AA12 | 金庫 | 星星"
 AA12BeyondHorizonMintName="AA12 | 超越地平線 | 全新"
 AA12BeyondHorizonSpaceEliteName="AA12 | 超越地平線 | 太空菁英"
+AA12DeepSeaAntiqueName="AA12 | 深海 | 古董"
+AA12DeepSeaAquaName="AA12 | 深海 | 水藍"
+AA12DeepSeaCoralName="AA12 | 深海 | 珊瑚"
+AA12DeepSeaPearlName="AA12 | 深海 | 珍珠"
+AA12DeepSeaBlackSealName="AA12 | 深海 | 黑海豹"
+AA12DeepSeaPreciousName="AA12 | 深海 | 珍貴"
+AA12ClassicMintName="AA12 | 經典 | 全新"
+AA12ClassicPreciousName="AA12 | 經典 | 珍貴"												   
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="外觀：全新 | 你在上面放更多桶，所有事就會變更好。就像加更多培根。"
@@ -1731,6 +1762,10 @@ BoomstickXMasSweetName="霰彈槍 | 聖誕節 | 甜味"
 BoomstickXMasSourName="霰彈槍 | 聖誕節 | 酸味"
 BoomstickAlchemistToxicName="短管霰彈槍 | 煉金術師 | 劇毒"
 BoomstickAlchemistBlazeName="短管霰彈槍 | 煉金術師 | 火焰"
+BoomstickNeonMintName="短管霰彈槍 | 霓虹 | 全新"
+BoomstickNeonRGBPreciousName="短管霰彈槍 | 霓虹 RGB | 珍貴"
+BoomstickClassicMintName="短管霰彈槍 | 經典 | 全新"
+BoomstickClassicPreciousName="短管霰彈槍 | 經典 | 珍貴"															 
 
 ;Caulk n Burn Descriptions
 CaulknBurnMintDescription="外觀：全新 | 自製手持火焰噴射器。請不要在家嘗試。"
@@ -1899,6 +1934,8 @@ DesertEagleXMasSweetName="沙漠之鷹 | 聖誕節 | 甜味"
 DesertEagleXMasSourName="沙漠之鷹 | 聖誕節 | 酸味"
 DesertEagleAlchemistToxicName="沙漠之鷹 | 煉金術師 | 劇毒"
 DesertEagleAlchemistBlazeName="沙漠之鷹 | 煉金術師 | 火焰"
+DesertEagleChameleonDynamicName="沙漠之鷹 | 變色龍 | 動態"
+DesertEagleChameleonDynamicRGBName="沙漠之鷹 | 變色龍 | 動態 RGB"																																			   
 
 ;Doomstick Descriptions
 DoomstickMintDescription="外觀：全新 | 如果雙倍快樂還不夠，那就來四倍的！"
@@ -2452,6 +2489,8 @@ HZ12HorzineFirstEncounterBattleScarredName="HZ12 | Horzine 初遇 | 破舊"
 HZ12VaultVoshPreciousName="HZ12 | 金庫 | V 字 | 珍貴"
 HZ12JaegerDynamicName="HZ12 | 獵人 | 動態"
 HZ12JaegerDynamicRGBName="HZ12 | 獵人 | 動態RGB"
+HZ12NeonMintName="HZ12 | 霓虹 | 全新"
+HZ12NeonRGBPreciousName="HZ12 | 霓虹 RGB | 珍貴"													
 
 ;Katana Descriptions
 KatanaMintDescription="外觀：全新 | 試著給這把刀的水準一點面子。"
@@ -2487,6 +2526,8 @@ KatanaVaultVoshPreciousName="日本刀 | 金庫 | V 字 | 珍貴"
 KatanaDragonKoiPreciousName="日本刀 | 龍鯉 | 珍貴"
 KatanaHellmarkMagmaName="日本刀 | 地獄印記 | 岩漿"
 KatanaHellmarkThunderName="日本刀 | 地獄印記 | 雷霆"
+KatanaChameleonDynamicName="日本刀 | 變色龍 | 動態"
+KatanaChameleonDynamicRGBName="日本刀 | 變色龍 | 動態 RGB"																
 
 ;KF-BAR Descriptions
 KFBARMintDescription="外觀：全新 | Horzine 改造的突擊部隊用刀。"
@@ -2557,6 +2598,8 @@ KrissFostersFavoritesPreciousName="克里斯 | 佛斯特最愛 | 珍貴"
 KrissIceBreakerDynamicName="克里斯 | 破冰者 | 動態"
 KrissIceBreakerDynamicPreciousName="克里斯 | 破冰者 | 動態珍貴"
 KrissInfernalElitePreciousName="克里斯突擊步槍 | 地獄精英 | 珍貴"
+KrissChameleonDynamicName="Kriss 衝鋒槍 | 變色龍 | 動態"
+KrissChameleonDynamicRGBName="Kriss 衝鋒槍 | 變色龍 | 動態 RGB"																  
 
 ;L85A2 Descriptions
 L85A2MintDescription="外觀：全新 | SA80是英國陸軍的標準配備，直到陸軍，呃，被吃掉。"
@@ -2637,6 +2680,12 @@ M14EBRVaultVoshPreciousName="M14EBR | 金庫 | V字 | 珍貴"
 M14EBRPrestigePreciousName="M14EBR | 聲望 | 珍貴"
 M14EBRDragonKoiPreciousName="M14EBR | 龍鯉 | 珍貴"
 M14EBRFostersFavoritesPreciousName="M14EBR | 佛斯特最愛 | 珍貴"
+M14EBRDeepSeaAntiqueName="M14EBR | 深海 | 古董"
+M14EBRDeepSeaAquaName="M14EBR | 深海 | 水藍"
+M14EBRDeepSeaCoralName="M14EBR | 深海 | 珊瑚"
+M14EBRDeepSeaPearlName="M14EBR | 深海 | 珍珠"
+M14EBRDeepSeaBlackSealName="M14EBR | 深海 | 黑海豹"
+M14EBRDeepSeaPreciousName="M14EBR | 深海 | 珍貴"														
 
 ;M16M203 Descriptions
 M16M203MintDescription="外觀：全新|適合難以決定使用子彈還是炸藥的人。"
@@ -2697,6 +2746,8 @@ M1911DragonKoiPreciousName="M1911 | 龍鯉 | 珍貴"
 M1911JaegerDynamicName="M1911 | 獵人 | 動態"
 M1911JaegerDynamicRGBName="M1911 | 獵人 | 動態RGB"
 M1911StarsName="M1911 | 金庫 | 星星"
+M1911ClassicMintName="M1911 | 經典 | 全新"
+M1911ClassicPreciousName="M1911 | 經典 | 珍貴"													 
 
 ;M4 Descriptions
 M4MintDescription="外觀：全新 | Benelli 為美國軍隊設計了 M4 戰鬥霰彈槍。它是半自動發射，能以穩定頻率射出子彈。"
@@ -2864,6 +2915,12 @@ Mac10JaegerDynamicName="MAC 10 | 獵人 | 動態"
 Mac10JaegerDynamicRGBName="MAC 10 | 獵人 | 動態RGB"
 Mac10BeyondHorizonMintName="MAC 10 | 超越地平線 | 全新"
 Mac10BeyondHorizonSpaceEliteName="MAC 10 | 超越地平線 | 太空菁英"
+Mac10DeepSeaAntiqueName="MAC 10 | 深海 | 古董"
+Mac10DeepSeaAquaName="MAC 10 | 深海 | 水藍"
+Mac10DeepSeaCoralName="MAC 10 | 深海 | 珊瑚"
+Mac10DeepSeaPearlName="MAC 10 | 深海 | 珍珠"
+Mac10DeepSeaBlackSealName="MAC 10 | 深海 | 黑海豹"
+Mac10DeepSeaPreciousName="MAC 10 | 深海 | 珍貴"													   
 
 ;Medic Bat Descriptions
 MedicBatMintDescription="外觀：全新 | 對於那些不知道好好治療的人來說，要是用它在他們頭頂上來上一記"
@@ -2953,6 +3010,12 @@ MP5RASSteampunkPreciousName="MP5RAS | 蒸汽龐克 | 珍貴"
 MP5RASStarsName="MP5RAS | 金庫 | 星星"
 MP5RASNeonMintName="MP5RAS | 霓虹 | 全新"
 MP5RASNeonRGBPreciousName="MP5RAS | 霓虹RGB | 珍貴"
+MP5RASDeepSeaAntiqueName="MP5RAS | 深海 | 古董"
+MP5RASDeepSeaAquaName="MP5RAS | 深海 | 水藍"
+MP5RASDeepSeaCoralName="MP5RAS | 深海 | 珊瑚"
+MP5RASDeepSeaPearlName="MP5RAS | 深海 | 珍珠"
+MP5RASDeepSeaBlackSealName="MP5RAS | 深海 | 黑海豹"
+MP5RASDeepSeaPreciousName="MP5RAS | 深海 | 珍貴"														
 
 ;MP7 Descriptions
 MP7MintDescription="外觀：全新 | 全世界的特種部隊和美國聯邦政府都愛用。"
@@ -3135,6 +3198,14 @@ RPG7XMasSweetName="RPG-7 | 聖誕節 | 甜味"
 RPG7XMasSourName="RPG-7 | 聖誕節 | 酸味"
 RPG7AlchemistToxicName="RPG-7 | 煉金術師 | 劇毒"
 RPG7AlchemistBlazeName="RPG-7 | 煉金術師 | 火焰"
+RPG7DeepSeaAntiqueName="RPG-7 | 深海 | 古董"
+RPG7DeepSeaAquaName="RPG-7 | 深海 | 水藍"
+RPG7DeepSeaCoralName="RPG-7 | 深海 | 珊瑚"
+RPG7DeepSeaPearlName="RPG-7 | 深海 | 珍珠"
+RPG7DeepSeaBlackSealName="RPG-7 | 深海 | 黑海豹"
+RPG7DeepSeaPreciousName="RPG-7 | 深海 | 珍貴"
+RPG7ChameleonDynamicName="RPG-7 | 變色龍 | 動態"
+RPG7ChameleonDynamicRGBName="RPG-7 | 變色龍 | 動態 RGB"															 
 
 ;Scar Descriptions
 ScarMintDescription="外觀：全新 | 本來是設計給美國特種部隊使用的，真的很特別！"
@@ -3442,6 +3513,8 @@ ZweihanderSteampunkMintName="雙手劍 | 蒸汽龐克 | 全新"
 ZweihanderSteampunkPreciousName="雙手劍 | 蒸汽龐克 | 珍貴"
 ZweihanderVaultVoshPreciousName="雙手劍 | 金庫 | V字 | 珍貴"
 ZweihanderColiseumPreciousName="雙手劍 | 競技場 | 珍貴"
+ZweihanderNeonMintName="雙手劍 | 霓虹 | 全新"
+ZweihanderNeonRGBPreciousName="雙手劍 | 霓虹 RGB | 珍貴" 																 
 
 ;GunslingerKnife Descriptions
 GunslingerKnifeMintDescription="外觀：全新 | 西部電影中可以看到的那種大刀。適用於切割 Zed。"
@@ -3598,6 +3671,12 @@ FNFALJaegerMintName="FN FAL | 獵人 | 全新"
 FNFALJaegerFieldTestedName="FN FAL | 獵人 | 中古"
 FNFALJaegerBattleScarredName="FN FAL | 獵人 | 破舊"
 FNFALJaegerDynamicName="FN FAL | 獵人 | 動態"
+FNFALDeepSeaAntiqueName="FN FAL | 深海 | 古董"
+FNFALDeepSeaAquaName="FN FAL | 深海 | 水藍"
+FNFALDeepSeaCoralName="FN FAL | 深海 | 珊瑚"
+FNFALDeepSeaPearlName="FN FAL | 深海 | 珍珠"
+FNFALDeepSeaBlackSealName="FN FAL | 深海 | 黑海豹"
+FNFALDeepSeaPreciousName="FN FAL | 深海 | 珍貴"													   
 
 ;FireAxe Descriptions
 FireAxeMintDescription="外觀：全新 | 如果斧頭上沒有火，為什麼又叫做火斧呢？"
@@ -3662,7 +3741,13 @@ SealSquealNeonMintName="魚叉砲槍 | 霓虹 | 全新"
 SealSquealNeonRGBPreciousName="魚叉砲槍 | 霓虹RGB | 珍貴"
 SealSquealJaegerDynamicName="海豹長聲尖叫 | 獵人 | 動態"
 SealSquealJaegerDynamicRGBName="海豹長聲尖叫 | 獵人 | 動態 RGB"
+;HRG Beluga Beat Descriptions
+HRGBelugaBeatMintDescription = "外觀：全新 | 提昇不管什麼派對的音量。"
+HRGBelugaBeatPreciousDescription = "外觀：珍貴 | 提昇不管什麼派對的音量。"
 
+;HRG Beluga Beat Names
+HRGBelugaBeatNeonMintName="HRG 白鯨之擊 | 霓虹 | 全新"
+HRGBelugaBeatNeonRGBPreciousName="HRG 白鯨之擊 | 霓虹 RGB | 珍貴"																		
 ;MIcrowaveAssault Descriptions
 MIcrowaveAssaultMintDescription="外觀：全新 | 愿火焰護佑著你。"
 MIcrowaveAssaultFieldTestedDescription="外觀：中古 | 愿火焰護佑著你。"
@@ -3903,6 +3988,33 @@ DoshinegunDiamondName="土豪槍 | 鑽石"
 DoshinegunDoshName="土豪槍 | 金錢"
 DoshinegunGoldenTigerName="土豪槍 | 金虎斑"
 DoshinegunBaroqueName="土豪槍 | 巴洛克"
+;Sentinel Descriptions
+SentinelMintDescription="外觀：全新 | 監視一個地點並向敵人射擊的無人機。"
+SentinelFieldTestedDescription="外觀：中古 | 監視一個地點並向敵人射擊的無人機。"
+SentinelBattleScarredDescription="外觀：破舊 | 監視一個地點並向敵人射擊的無人機。
+SentinelPreciousDescription="外觀：珍貴 | 監視一個地點並向敵人射擊的無人機。"
+
+;Sentinel Names
+SentinelStandardName="哨兵 | 標準"
+Sentinel1942Name="哨兵 | 1942"
+SentinelBlackBirdName="哨兵 | 黑鳥"
+SentinelHadesName="哨兵 | 黑帝斯"
+SentinelIceStormName="哨兵 | 冰風暴"
+SentinelShockName="哨兵 | 衝擊"
+
+;Reducto Ray Descriptions
+ReductoRayMintDescription="外觀：全新 | 親愛的，我把 Zed 群縮小了。"
+ReductoRayFieldTestedDescription="外觀：中古 | 親愛的，我把 Zed 群縮小了。"
+ReductoRayBattleScarredDescription="外觀：破舊 | 親愛的，我把 Zed 群縮小了。"
+ReductoRayPreciousDescription="外觀：珍貴 | 親愛的，我把 Zed 群縮小了。"
+
+;Reducto Ray Names
+ReductoRayStandardName="收縮射線 | 標準"
+ReductoRayHellsFuryName="收縮射線 | 地獄之怒"
+ReductoRayAtomicLoveName="收縮射線 | 原子之愛"
+ReductoRayLuckyStrikeName="收縮射線 | 幸運出擊"
+ReductoRayHeavyMetalName="收縮射線 | 重金屬"
+ReductoRayDestructorName="收縮射線 | 破壞者"												   
 
 [CosmeticSection]
 
@@ -6198,7 +6310,7 @@ DoZCompanionPreciousName="DoZ | 同伴 | 珍貴"
 ;Weekly Wild West London Cosmetic Name
 WildWestLondonHatPreciousName="西部荒野倫敦帽 | 珍貴"
 
-
+;XMAS 2021 Cosmetic Names
 HolidayShoppingCartSantaName="假期購物 | 購物車 | 聖誕老人"
 HolidayShoppingCartElfName="假期購物 | 購物車 | 精靈"
 HolidayShoppingCartNorthPoleName="假期購物 | 購物車 | 北極"
@@ -6232,6 +6344,7 @@ HolidayShoppingGogglesPreciousName="假期購物 | 目鏡 | 珍貴"
 HolidayShoppingCompanionPreciousName="假期購物 | 同伴 | 珍貴"
 
 
+;Alchemist Cosmetic Names						 
 AlchemistArmbandToxicName="煉金術師 | 臂環 | 劇毒"
 AlchemistArmbandBlazeName="煉金術師 | 臂環 | 火焰"
 AlchemistArmbandPlasmaName="煉金術師 | 臂環 | 電漿"
@@ -6275,11 +6388,22 @@ AlchemistVialsVoltageName="煉金術師 | 燒瓶 | 電壓"
 AlchemistVialsBlackoutName="煉金術師 | 燒瓶 | 黑暗"
 AlchemistVialsPreciousName="煉金術師 | 燒瓶 | 珍貴"
 
-
+;Weekly Shrunken Heads Cosmetic Name
 PracticeTargetBackpackPreciousName="打靶練習背包 | 珍貴"
-
-
+;Weekly Boss Rush Cosmetic Name
 BossTrophyBackpackPreciousName="頭目獎盃背包 | 珍貴"
+;Weekly Gun Game Cosmetic Name
+SupplyBackpackPreciousName = "補給背包 | 珍貴"													  
+;Summer 2022 Cosmetic Names
+DeepSeaTridentPreciousName = "深海 | 三叉戟 | 珍貴"		
+DeepSeaHelmetAntiqueName="深海 | 頭盔 | 古董"
+DeepSeaHelmetAquaName="深海 | 頭盔 | 水藍"
+DeepSeaHelmetCoralName="深海 | 頭盔 | 珊瑚"
+DeepSeaHelmetPearlName="深海 | 頭盔 | 珍珠"
+DeepSeaHelmetBlackSealName="深海 | 頭盔 | 黑海豹"
+DeepSeaHelmetPreciousName="深海 | 頭盔 | 珍貴"							  
+
+												
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="可從裝備選單裝備；適用於大部分的角色。這是「夏日餘興節目」季節性活動的特有未解鎖道具。回收換為 1 張餘興節目獎券。"

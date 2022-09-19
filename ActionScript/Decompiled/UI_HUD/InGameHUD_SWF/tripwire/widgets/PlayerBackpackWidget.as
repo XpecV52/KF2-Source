@@ -40,6 +40,10 @@ package tripwire.widgets
         
         private var _grenadesTF:TextField = null;
         
+        private var _gunGameScoreTF:TextField = null;
+        
+        private var _gunGameLevelTF:TextField = null;
+        
         private var _doshTF:TextField = null;
         
         private var _flashlightBatteryMC:MovieClip = null;
@@ -292,6 +296,11 @@ package tripwire.widgets
             this._barkDosh = 0;
             this._doshBarkMC.visible = false;
             this._doshBarkMC.alpha = 0;
+        }
+        
+        public function set DoshSetVisibility(param1:Boolean) : void
+        {
+            this.DoshContainer.visible = param1;
         }
         
         public function set backpackGrenades(param1:int) : void

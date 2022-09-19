@@ -374,6 +374,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_Stalker'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedStalker.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedStalker.HeadshotAkComponent0'
+    ShrinkEffectModifier=2
     PawnAnimInfo=KFPawnAnimInfo'ZED_Stalker_ANIM.Stalker_AnimGroup'
     LocalizationKey=KFPawn_ZedStalker
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

@@ -8,6 +8,8 @@
 interface KFInterface_MapObjective extends Interface
     abstract;
 
+simulated function bool CanActivateObjectiveByWeekly();
+
 simulated function ActivateObjective();
 
 simulated function DeactivateObjective();

@@ -18,8 +18,9 @@ function Init(KFPawn P, KFAfflictionManager.EAfflictionType Type, KFPerk Instiga
     Duration = P.IncapSettings[Type].Duration;
 }
 
-function Activate()
+function Activate(optional class<KFDamageType> DamageType)
 {
+    DamageType = none;
     if(!bIsActive)
     {
         super.Activate();

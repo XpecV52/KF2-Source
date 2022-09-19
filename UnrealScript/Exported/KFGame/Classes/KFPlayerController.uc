@@ -170,6 +170,7 @@ const STATID_ACHIEVE_Dystopia2029Collectibles       = 4058;
 const STATID_ACHIEVE_MoonbaseCollectibles           = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles         = 4060;
 const STATID_ACHIEVE_CarillonHamletCollectibles     = 4061;
+const STATID_ACHIEVE_RigCollectibles     			= 4062;
  
 #linenumber 15
 
@@ -248,6 +249,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178; 
+const KFID_SurvivalStartingWeapIdx=179; 
+const KFID_SurvivalStartingGrenIdx=180; 
 #linenumber 16
 
 
@@ -655,6 +658,10 @@ var	private const bool	bPerkStatsLoaded;
 
 /** Id of previously selected perk */
 var public byte SavedPerkIndex;
+/** Index of the weapon chosen for the survival perk */
+var public byte SurvivalPerkWeapIndex;
+/** Index of the grenade chosen for the survival perk */
+var public byte SurvivalPerkGrenIndex;
 
 /** Player zed spawn params (Versus) */
 var transient sPlayerZedSpawnInfo PlayerZedSpawnInfo;
@@ -677,6 +684,10 @@ var	protected float		UnmodifiedFOV;
 ********************************************************************************************* */
 var transient protected int BenefactorDosh;
 var private const int BenefactorDoshReq;
+
+var array<KFPawn_Monster> KilledZeds;
+var array<float> KilledZedsLastZPosition;
+var KFSeaTrigger SeaTrigger;
 
 /*********************************************************************************************
  * @name UDK Variables
@@ -1254,6 +1265,14 @@ var transient 	bool	bNoGoActive;
 
 var transient byte StoredLocalUserNum;
 
+/*********************************************************************************************
+ * @name KFWeap_Autoturret
+
+	With the trader you can buy and sell the weapon without exploding the turrets. Add them to
+	the controller to keep track of them rather than the weapon.
+**********************************************************************************************/
+var transient array<Actor> DeployedTurrets;
+
 // (cpptext)
 // (cpptext)
 // (cpptext)
@@ -1353,6 +1372,8 @@ native private function ShowPreClientTravelMovie(string URLString);
 
 simulated event PostBeginPlay()
 {
+	local KFSeaTrigger actor_search;
+
 	super.PostBeginPlay();
 
 	PostAkEvent( ResetFiltersEvent );
@@ -1372,6 +1393,18 @@ simulated event PostBeginPlay()
 	{
 		OnlineSub.AddOnReadOnlineAvatarCompleteDelegate(OnAvatarReceived);
 		OnlineSub.AddOnReadOnlineAvatarByNameCompleteDelegate(OnAvatarURLPS4Received);
+	}
+
+	foreach AllActors(class'KFSeaTrigger', actor_search)
+	{
+		SeaTrigger = actor_search;
+
+		if (WorldInfo.NetMode == NM_Client || WorldInfo.NetMode == NM_Standalone)
+		{
+			SetTimer(1.f, true, nameOf(ZedKillsSeaDetection));
+		}
+
+		break;
 	}
 }
 
@@ -1494,7 +1527,8 @@ simulated event name GetSeasonalStateName()
 	local int EventId;
 	local KFMapInfo KFMI;
 	local bool bIsWWLWeekly; // WWL Weekly should not allow seasonal overrides
-
+	local KFGameReplicationInfo KFGRI;
+	
 	EventId = class'KFGameEngine'.static.GetSeasonalEventID();
 	KFMI = KFMapInfo(WorldInfo.GetMapInfo());
 	if (KFMI != none)
@@ -1502,7 +1536,8 @@ simulated event name GetSeasonalStateName()
 		KFMI.ModifySeasonalEventId(EventId);
 	}
 
-	bIsWWLWeekly = class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12 && KFGameReplicationInfo(WorldInfo.GRI) != none && KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode;
+	KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+	bIsWWLWeekly = KFGRI != none && KFGRI.bIsWeeklyMode && KFGRI.CurrentWeeklyIndex == 12;
 	if (bIsWWLWeekly)
 		return 'No_Event'; 
 
@@ -2108,13 +2143,15 @@ function OnReadProfileSettingsComplete(byte LocalUserNum,bool bWasSuccessful)
 
 	if(Profile != none)
 	{
-		SavedPerkIndex = byte(Profile.GetProfileInt(KFID_SavedPerkIndex));
-		bSkipNonCriticalForceLookAt 	= Profile.GetProfileBool(KFID_AutoTurnOff);
-		bShowKillTicker					= Profile.GetProfileBool(KFID_ShowKillTicker);
-		bNoEarRingingSound				= Profile.GetProfileBool(KFID_ReduceHightPitchSounds);
-		bHideBossHealthBar 				= Profile.GetProfileBool(KFID_HideBossHealthBar);
-		bDisableAutoUpgrade 			= Profile.GetProfileBool(KFID_DisableAutoUpgrade);
+		SavedPerkIndex                   = byte(Profile.GetProfileInt(KFID_SavedPerkIndex));
+		bSkipNonCriticalForceLookAt 	 = Profile.GetProfileBool(KFID_AutoTurnOff);
+		bShowKillTicker					 = Profile.GetProfileBool(KFID_ShowKillTicker);
+		bNoEarRingingSound				 = Profile.GetProfileBool(KFID_ReduceHightPitchSounds);
+		bHideBossHealthBar 				 = Profile.GetProfileBool(KFID_HideBossHealthBar);
+		bDisableAutoUpgrade 			 = Profile.GetProfileBool(KFID_DisableAutoUpgrade);
 		bHideRemotePlayerHeadshotEffects = Profile.GetProfileBool(KFID_HideRemoteHeadshotEffects);
+		SurvivalPerkWeapIndex            = byte(Profile.GetProfileInt(KFID_SurvivalStartingWeapIdx));
+		SurvivalPerkGrenIndex            = byte(Profile.GetProfileInt(KFID_SurvivalStartingGrenIdx));
 
 		KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
 		if(KFPRI != none)
@@ -3123,6 +3160,30 @@ function NotifyPlayTogetherFailed(optional string LocKey = "UnableToPlayTogether
  * @name Dosh Vault
 ********************************************************************************************* */
 
+public function bool CanUseDosh()
+{
+	/** If this is run in Server or Standalone, GameInfo exists so can access to the OutbreakEvent */
+	if (Role == Role_Authority)
+	{
+		return KFGameInfo(WorldInfo.Game).OutbreakEvent == none
+				|| !KFGameInfo(WorldInfo.Game).OutbreakEvent.ActiveEvent.bDisableAddDosh;
+	}
+	/** But in client, GameInfo doesn't exist, so needs to be checked in a different way. */
+	else 
+	{
+		/** 
+			In client there's a kfgame replication info that contains if the mode is a weekly, and the index. 
+		    This way would also work in server, but will need to be in code rather than using the weekly variables. 
+		*/
+		/** Another option is to use instead a variable replicated just with that value */
+		return KFGameReplicationInfo(WorldInfo.GRI) == none
+				|| !KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode
+				|| KFGameReplicationInfo(WorldInfo.GRI).CurrentWeeklyIndex != 16;	
+	}
+
+	return true;
+}
+
 function int GetPreStigeValueDoshRewardValue()
 {
 	if (StatsWrite != none)
@@ -3212,6 +3273,34 @@ function CheckHasViewedDoshVault()
 	{
 		StatsWrite.CheckHasViewedDoshVault();
 	}
+}
+
+/*********************************************************************************************
+ * @name Gun Game
+********************************************************************************************* */
+
+public function bool CanUseGunGame()
+{
+	/** If this is run in Server or Standalone, GameInfo exists so can access to the OutbreakEvent */
+	if (Role == Role_Authority)
+	{
+		return KFGameInfo(WorldInfo.Game).OutbreakEvent != none
+				&& KFGameInfo(WorldInfo.Game).OutbreakEvent.ActiveEvent.bGunGameMode;
+	}
+	/** But in client, GameInfo doesn't exist, so needs to be checked in a different way. */
+	else 
+	{
+		/** 
+			In client there's a kfgame replication info that contains if the mode is a weekly, and the index. 
+		    This way would also work in server, but will need to be in code rather than using the weekly variables. 
+		*/
+		/** Another option is to use instead a variable replicated just with that value */
+		return KFGameReplicationInfo(WorldInfo.GRI) != none
+				&& KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode
+				&& KFGameReplicationInfo(WorldInfo.GRI).CurrentWeeklyIndex == 16;	
+	}
+
+	return false;
 }
 
 /*********************************************************************************************
@@ -3631,6 +3720,8 @@ function RecievedNewPerkClass()
 	{
 		MyGfxManager.TraderMenu.UpdatePlayerInfo();
 	}
+
+	InitPerkLoadout();
 }
 
 /*********************************************************************************************
@@ -4518,7 +4609,7 @@ simulated final function Pawn GetPickedAimAtTarget(out float bestAim, out float 
     return PickAimAtTarget(bestAim, bestDist, FireDir, projStart, MaxRange, bTargetTeammates);
 }
 
-exec function SwitchToBestWeapon(optional bool bForceNewWeapon)
+exec function SwitchToBestWeapon(optional bool bForceNewWeapon, optional bool check_9mm_logic = false)
 {
     // Don't let players use an exec to bring up a weapon if the weapon prevents it
     if( Pawn != none && Pawn.Weapon != none && KFWeapon(Pawn.Weapon) != none )
@@ -4529,7 +4620,7 @@ exec function SwitchToBestWeapon(optional bool bForceNewWeapon)
         }
     }
 
-	super.SwitchToBestWeapon(bForceNewWeapon);
+	super.SwitchToBestWeapon(bForceNewWeapon, check_9mm_logic);
 }
 
 /**
@@ -4690,6 +4781,7 @@ simulated event OnWeaponAsyncContentLoaded(class<KFWeapon> WeaponClass)
 
 	local KFPawn_Human KFPH;
 	local KFDroppedPickup KFDP;
+	local KFPawn KFP;
 
 	// Attempt to set the weapon attachment for any player than might need theirs set. This is a backup
 	// for when content isn't quite ready when WeaponClassForAttachmentTemplate is replicated.
@@ -4709,6 +4801,14 @@ simulated event OnWeaponAsyncContentLoaded(class<KFWeapon> WeaponClass)
 		if (WeaponClass == KFDP.InventoryClass && KFDP.MyMeshComp == none)
 		{
 			KFDP.SetPickupMesh(WeaponClass.default.DroppedPickupMesh);
+		}
+	}
+
+	foreach WorldInfo.AllPawns(class'KFPawn', KFP)
+	{
+		if (KFP.bIsTurret && WeaponClass == KFP.WeaponClassForAttachmentTemplate)
+		{
+			KFP.SetTurretWeaponAttachment(WeaponClass);
 		}
 	}
 }
@@ -5827,7 +5927,9 @@ function bool ShouldDisplayGameplayPostProcessFX()
 			/* ZED time effect is active */
 			CurrentZEDTimeEffectIntensity > 0.f ||
 			/* sepia effect */
-			(class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12) ||
+			(KFGameReplicationInfo(WorldInfo.GRI) != none &&
+			 KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode &&
+			 KFGameReplicationInfo(WorldInfo.GRI).CurrentWeeklyIndex == 12) ||
 			/* Night vision active */
 			bNightVisionActive ||
 			SirenScreamEffectTimeRemaining > 0.f ||
@@ -7695,6 +7797,8 @@ simulated function OnStatsInitialized( bool bWasSuccessful )
 	// Load perk levels after stats are read in
 	LoadAllPerkLevels();
 	ClientInitializePerks();
+
+	InitPerkLoadout();
 
 	// Update the GFX menu if we need to
 	if( MyGFxManager != none && MyGFxManager.PerksMenu != none )
@@ -9728,6 +9832,13 @@ event Destroyed()
         StingerAkComponent.StopEvents();
     }
 
+	// Destroy deployed turrets
+	// Destroyed event on Turret calls the KFPlayer to modify the same list, that's why we use a while loop...
+	while (DeployedTurrets.Length > 0)
+	{
+		DeployedTurrets[0].Destroy();
+	}
+
     SetRTPCValue( 'Health', 100, true );
     PostAkEvent( LowHealthStopEvent );
 	bPlayingLowHealthSFX = false;
@@ -9757,6 +9868,7 @@ event Destroyed()
 		ClearMixerDelegates();
 		ClearDiscord();
 	}
+
     ClientMatchEnded();
 
 	Super.Destroyed();
@@ -9878,6 +9990,43 @@ state Dead
 		if( Role == ROLE_Authority && Pawn != none && !Pawn.bPlayedDeath )
 		{
 			Global.ResetCameraMode();
+		}
+	}
+}
+
+simulated function ZedKillsSeaDetection()
+{
+	local int i;
+	local KFPawn_Monster Monster;
+	local float LastMonsterZPosition;
+
+	for (i = KilledZeds.Length - 1; i >= 0; i--)
+	{
+		Monster = KilledZeds[i];
+
+		// If respawned...
+		if (Monster == None || Monster.Health > 0)
+		{
+			KilledZeds.Remove(i, 1);
+			KilledZedsLastZPosition.Remove(i, 1);
+			continue;
+		}
+
+		LastMonsterZPosition = KilledZedsLastZPosition[i];		 
+
+		KilledZedsLastZPosition[i] = Monster.Location.Z;
+
+		// If we are falling...
+		if (LastMonsterZPosition > Monster.Location.Z)
+		{
+			// If we passed the point of the sea trigger detection
+			if (Monster.Location.Z < SeaTrigger.Location.Z)
+			{
+				ClientOnTriggerUsed(class'KFSeaTrigger');
+
+				KilledZeds.Remove(i, 1);
+				KilledZedsLastZPosition.Remove(i, 1);
+			}
 		}
 	}
 }
@@ -10458,6 +10607,15 @@ unreliable client event ClientHearDialog( Actor DialogSpeaker, AkEvent DialogEve
 	}
 }
 
+reliable client function NotifyKilledForTracking(KFPawn_Monster KilledMonster)
+{
+	if (KilledMonster != None && KilledZeds.Find(KilledMonster) == INDEX_NONE)
+	{
+		KilledZeds.AddItem(KilledMonster);
+		KilledZedsLastZPosition.AddItem(KilledMonster.Location.Z);
+	}
+}
+
 function NotifyKilled( Controller Killer, Controller Killed, pawn KilledPawn, class<DamageType> damageType )
 {
 	local KFPawn_Monster MonsterPawn;
@@ -10479,6 +10637,12 @@ function NotifyKilled( Controller Killer, Controller Killed, pawn KilledPawn, cl
 		MatchStats.ZedsKilledLastWave++;
 
 		CheckForZedOnDeathAchievements( MonsterPawn );
+
+		// If we need to track killed zeds, make the function to be called on client...
+		if (SeaTrigger != none)
+		{
+			NotifyKilledForTracking(MonsterPawn);
+		}
 	}
 	// Own death.  Like PawnDied(), but with more input parameters
 	else if ( self == Killed )
@@ -10607,7 +10771,7 @@ exec function RequestSkipTrader()
 	{
 		if (KFGRI.bMatchHasBegun)
 		{
-			if (KFGRI.bTraderIsOpen && KFPRI.bHasSpawnedIn)
+			if ((KFGRI.bTraderIsOpen || KFGRI.bForceSkipTraderUI) && KFPRI.bHasSpawnedIn)
 			{
 				KFPRI.RequestSkiptTrader(KFPRI);
 				if (MyGFxManager != none)
@@ -12267,6 +12431,24 @@ event OnServerTakeoverResponseRecieved()
 	if (MyGFxManager != none)
 	{
 		MyGFxManager.OnServerTakeoverResponseRecieved();
+	}
+}
+
+reliable client function ForceMonsterHeadExplode(KFPawn_Monster Victim)
+{
+	if (Victim != none)
+	{
+		Victim.bIsHeadless=true;
+		Victim.PlayHeadAsplode();
+	}
+}
+
+simulated function InitPerkLoadout()
+{
+	if (CurrentPerk.IsA('KFPerk_Survivalist'))
+	{
+		CurrentPerk.SetWeaponSelectedIndex(SurvivalPerkWeapIndex);
+		CurrentPerk.SetGrenadeSelectedIndex(SurvivalPerkGrenIndex);
 	}
 }
 

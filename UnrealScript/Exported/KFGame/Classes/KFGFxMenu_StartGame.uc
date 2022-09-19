@@ -89,6 +89,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178; 
+const KFID_SurvivalStartingWeapIdx=179; 
+const KFID_SurvivalStartingGrenIdx=180; 
 #linenumber 16
 
 var string WhatsNewPS;
@@ -280,7 +282,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 		case SEI_Spring:
 			return class'KFGFxSpecialEventObjectivesContainer_Spring2021';
 		case SEI_Summer:
-			return class'KFGFxSpecialEventObjectivesContainer_Summer2021';
+			return class'KFGFxSpecialEventObjectivesContainer_Summer2022';
 		case SEI_Fall:
 			return class'KFGFxSpecialEventObjectivesContainer_Fall2021';
 		case SEI_Winter:
@@ -2056,6 +2058,7 @@ defaultproperties
    StockMaps(34)="kf-moonbase"
    StockMaps(35)="kf-netherhold"
    StockMaps(36)="kf-carillonhamlet"
+   StockMaps(37)="kf-rig"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
    SubWidgetBindings(1)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
    SubWidgetBindings(2)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')

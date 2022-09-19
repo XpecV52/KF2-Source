@@ -95,6 +95,8 @@ const KFID_GamepadDeadzoneScale = 175;
 const KFID_GamepadAccelerationJumpScale = 176;
 const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178; 
+const KFID_SurvivalStartingWeapIdx=179; 
+const KFID_SurvivalStartingGrenIdx=180; 
 #linenumber 22
 
 /** Connects a menu ID with its path */
@@ -1942,7 +1944,7 @@ event bool FilterButtonInput(int ControllerId, name ButtonName, EInputEvent Inpu
 				PartyWidget.ReadyButton.SetBool("selected", KFPRI.bReadyToPlay);
 
 			}
-			else if(KFPRI.bHasSpawnedIn && !KFGRI.bMatchIsOver && KFGRI.bMatchHasBegun && KFGRI.bTraderIsOpen && CurrentMenu != TraderMenu && bMenusOpen)
+			else if(KFPRI.bHasSpawnedIn && !KFGRI.bMatchIsOver && KFGRI.bMatchHasBegun && (KFGRI.bTraderIsOpen || KFGRI.bForceSkipTraderUI) && CurrentMenu != TraderMenu && bMenusOpen)
 			{
 				bForceCloseMenuNextTime = true;
 				CurrentMenu.Callback_ReadyClicked(true);

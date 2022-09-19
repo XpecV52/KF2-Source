@@ -15,11 +15,13 @@ BonusDoshString="報酬"
 LengthStrings[0]="ショート(4ウェーブ)"
 LengthStrings[1]="ショート(7ウェーブ)"
 LengthStrings[2]="ロング(10ウェーブ)"
-
+SpecialLengthString="特殊"
 ServerTypeStrings[0]="ランク"
 ServerTypeStrings[1]="ランク―ストック"
 ServerTypeStrings[2]="ランク―カスタム"
 ServerTypeStrings[3]="非ランク"
+WeaponLevelString="武器レベル"
+GunPointsString="武器ポイント"
 
 PermissionStrings[0]="公開"
 PermissionStrings[1]="プライベート：パスワード保護済み"
@@ -740,6 +742,8 @@ ZedSupportValue="間接ダメージ"
 ZednnihilationValue="ウェーブでのキル数"
 ZedStomper="Zedストンパー"
 ZedStomperValue="Zed踏みつけ数"
+WeaponMaster="武器マスター"
+WeaponMasterValue="最後の武器を最初に獲得したプレイヤー"
 
 EPB_Healing="回復中"
 EPB_Kills="キル数"
@@ -2041,7 +2045,7 @@ SplashDamage="熱波"
 SplashDamageDescription="至近距離から炎で攻撃を受けたzedが後ろによろめく。"
 
 Inferno="Zed-Time―インフェルノ"
-InfernoDescription="Zed-Time 中、炎の攻撃を受けた zed が30%遅くなり、燃焼ダメージが50%増加する。"
+InfernoDescription="Zed-Time中、持続する炎ダメージは周りにいるすべてのZedに拡散する。"
 
 Scorch="Zed-Time―放火魔"
 ScorchDescription="Zed-Time中、Perk武器による攻撃がほぼリアルタイムとなり、弾薬が無限になる。"
@@ -2265,10 +2269,10 @@ MeleeExpert="近接攻撃専門家"
 MeleeExpertDescription="近接武器を使用中、近接攻撃速度が20%、与えるダメージが75%、移動速度が25%増加する。"
 
 AmmoVest="弾薬ベスト"
-AmmoVestDescription="全武器の弾薬を持てる量が最大15%増加し、手榴弾が回復グレネードになる。"
+AmmoVestDescription="全武器の弾薬を持てる量が最大15%増加し、回復グレネードを選択できるようになる。"
 
 BigPockets="武器ハーネス"
-BigPocketsDescription="運搬容量が5増加し、手榴弾がモロトフ火炎手榴弾になる。"
+BigPocketsDescription="運搬容量が5増加し、モロトフ火炎手榴弾を選択できるようになる。"
 
 ZedShrapnel="自発的zed爆発"
 ZedShrapnelDescription="キルしたzedは30%の確率で爆発し、近くのzedにダメージを与えてスタンする。"
@@ -2898,6 +2902,19 @@ AllCompleteRewardDescriptionString="ホリデーショッピング | 仲間 | �
 ChanceDropDescriptionStrings[0]="クランプス・チケット"
 ChanceDropDescriptionStrings[1]="クランプス・ゴールデン・チケット"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2022]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="劣悪な観光客",DescriptionString="マップやモードを問わず、Zedを1500体殺す")
+SpecialEventObjectiveInfoList[1]=(TitleString="ウィークリー着水",DescriptionString="Rigでウィークリーをクリアする")
+SpecialEventObjectiveInfoList[2]=(TitleString="トップサーファー",DescriptionString="Rigでウェーブ100回をクリアする")
+SpecialEventObjectiveInfoList[3]=(TitleString="船外へ！",DescriptionString="Rigで50体のZedを海に投げ込む")
+SpecialEventObjectiveInfoList[4]=(TitleString="広大な海",DescriptionString="エンドレスHardかそれ以上の難易度で、Rigのウェーブ15をクリアする")
+
+AllCompleteRewardDescriptionString="深海 | 三つ又 | 希少"
+
+ChanceDropDescriptionStrings[0]="サマーチケット"
+ChanceDropDescriptionStrings[1]="サマー・ゴールデン・チケット"
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3068,6 +3085,15 @@ ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
 
+[GunGame KFWeeklyOutBreakInformation]
+FriendlyName="貯蔵武器の向上"
+DescriptionStrings[0]="武器をレベルアップしよう！"
+DescriptionStrings[1]="長さ：特殊"
+ModifierDescriptions[0]="トレーダーが稼働していません。ナイフだけで開始してください。キルをして武器ポイントを獲得することで、より良い武器を入手しましょう。サバイバリスト限定です。マッチメイキングページでウィークリーゲームモードを選択してください。Perk15以上。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"							   
 ;============================================
 ; Map Localization
 ;============================================
@@ -3594,6 +3620,8 @@ DisplayName="Netherhold"
 [KF-CarillonHamlet KFMapSummary]
 DisplayName="Carillon Hamlet"
 
+[KF-Rig KFMapSummary]
+DisplayName="Rig"
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x%が収集アイテムを発見。%y%は取り残された..."

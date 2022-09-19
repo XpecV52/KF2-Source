@@ -15,11 +15,13 @@ BonusDoshString="NAGRODY"
 LengthStrings[0]="Krótka (4 fale)"
 LengthStrings[1]="Średnia (7 fal)"
 LengthStrings[2]="Długa (10 fal)"
-
+SpecialLengthString="Specjalne"
 ServerTypeStrings[0]="Rankingowy"
 ServerTypeStrings[1]="Rankingowy – standardowy"
 ServerTypeStrings[2]="Rankingowy – niestand."
 ServerTypeStrings[3]="Nierankingowy"
+WeaponLevelString="POZIOM BRONI"
+GunPointsString="PUNKTY BRONI"
 
 PermissionStrings[0]="Gra publiczna"
 PermissionStrings[1]="Prywatna: z hasłem"
@@ -740,6 +742,8 @@ ZedSupportValue="Pośrednie obrażenia"
 ZednnihilationValue="Zabójstwa w fali"
 ZedStomper="Deptacz zeta"
 ZedStomperValue="Zdeptane zety"
+WeaponMaster="Mistrz broni"
+WeaponMasterValue="Pierwszy zdobywa ostatnią broń"
 
 EPB_Healing="Leczenie"
 EPB_Kills="Zabójstwa"
@@ -2041,7 +2045,7 @@ SplashDamage="Fala gorąca"
 SplashDamageDescription="Zety trafione ogniem z bliska zostają odrzucone."
 
 Inferno="CZAS ZET – Piekło"
-InfernoDescription="W czasie zetów wszystkie zety trafione ogniem zostają spowolnione o 30% i otrzymują 50% więcej obrażeń od podpalenia."
+InfernoDescription="W trakcie czasu zetów twoje stopniowe obrażenia od ognia rozprzestrzeniają się na wszystkie pobliskie zety."
 
 Scorch="CZAS ZET – Piroman"
 ScorchDescription="W czasie zet atakujesz bronią specjalizacji prawie tak szybko, jak w czasie rzeczywistym, i nigdy nie kończy ci się amunicja."
@@ -2064,7 +2068,7 @@ Passives[3]=(Title="Redukcja odrzutu",Description="Odrzut broni specjalizacji wz
 Passives[4]=(Title="Przeładowywanie w czasie zet",Description="Szyb. przeł. w czasie zet wzrasta o %x% na poz.");
 
 ShootnMove="Pewna ręka"
-ShootnMoveDescription="W czasie używania celownika mechanicznego pozwala zignorować karę do szybkości ruchu i zwiększa obrażenia broni specjalizacji o 7,5%. Drastycznie zmniejsza drgania broni specjalizacji."
+ShootnMoveDescription="Z celownikiem mechanicznym ignoruje karę do szybkości ruchu i zwiększa obraż. broni specjalizacji o 7,5%. Drastycznie zmniejsza drgania broni specjalizacji."
 
 QuickSwitch="Szybkie wyjęcie broni"
 QuickSwitchDescription="Zmniejszenie odrzutu przy strzale z biodra, zwiększenie szybkości ruchu o 5% oraz o 50% szybsza zmiana broni klasy."
@@ -2265,10 +2269,10 @@ MeleeExpert="Ekspert od broni białej"
 MeleeExpertDescription="Zwiększenie szybkości ataku o 20%, zadawanych obrażeń o 75% i szybkości ruchu o 25% podczas używania dowolnej broni białej."
 
 AmmoVest="Kamizelka z ładownicami"
-AmmoVestDescription="Możesz nosić 15% więcej amunicji dla każdej broni, a twój granat zmienia się w granat leczący."
+AmmoVestDescription="Możesz nosić 15% więcej amunicji dla każdej broni, możesz wybrać granat uzdrawiający."
 
 BigPockets="Szelki na broń"
-BigPocketsDescription="Zwiększenie udźwigu o 5, a twój granat zmienia się w koktajl Mołotowa."
+BigPocketsDescription="Zwiększa udźwig o 5 i pozwala wybrać koktajl Mołotowa."
 
 ZedShrapnel="Spontaniczna zetsplozja"
 ZedShrapnelDescription="30% szans, że zabite przez ciebie zety eksplodują, ogłuszając inne, pobliskie zety i zadając im obrażenia."
@@ -2898,6 +2902,19 @@ AllCompleteRewardDescriptionString="Holiday Shopping | Companion | Precious"
 ChanceDropDescriptionStrings[0]="Kupon Krampusa"
 ChanceDropDescriptionStrings[1]="Złoty kupon Krampusa"
 
+[KFGFxSpecialEventObjectivesContainer_Summer2022]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Nie najlepsi turyści",DescriptionString="Zabij 1500 zetów – dowolna mapa/tryb")
+SpecialEventObjectiveInfoList[1]=(TitleString="Tygodniowe wodowanie",DescriptionString="Ukończ tygodniowy incydent na Platformie")
+SpecialEventObjectiveInfoList[2]=(TitleString="Najlepszy surfer",DescriptionString="Ukończ 100 fal na Platformie")
+SpecialEventObjectiveInfoList[3]=(TitleString="Za burtę!",DescriptionString="Wyrzuć na Platformie 50 zetów do morza")
+SpecialEventObjectiveInfoList[4]=(TitleString="Szerokie wody",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności na mapie Platforma")
+
+AllCompleteRewardDescriptionString="Głębokie morze | Trójząb | Cenne"
+
+ChanceDropDescriptionStrings[0]="Kupon letni"
+ChanceDropDescriptionStrings[1]="Złoty kupon letni"
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3063,6 +3080,15 @@ FriendlyName="Skurczone Głowy"
 DescriptionStrings[0]="Próby trafienia w głowę są bezcelowe..."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
 ModifierDescriptions[0]="Może próbują się chronić przed nawykami graczy dotyczącymi strzelania w głowę. No, przynajmniej mają teraz nowe czułe punkty. Wybierz tygodniowy tryb gry na stronie Matchmakingu. Specjalizacja 15+."
+[GunGame KFWeeklyOutBreakInformation]
+FriendlyName="Rozwój Arsenału"
+DescriptionStrings[0]="Zwiększ poziom swojej broni!"
+DescriptionStrings[1]="Długość: specjalna"
+ModifierDescriptions[0]="Handlarze nie działają. Zaczynasz z samym nożem. Zdobywaj punkty broni, zabijając wrogów, aby uzyskać lepszą broń. Dozwoleni są tylko survivaliści. Wybierz na stronie matchmakingu tygodniowy tryb gry. Specjalizacja 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3593,6 +3619,8 @@ DisplayName="Netherhold"
 
 [KF-CarillonHamlet KFMapSummary]
 DisplayName="Wioska Dzwonków"
+[KF-Rig KFMapSummary]
+DisplayName="Platforma"
 
 [KFMapInfo]
 ; defaults

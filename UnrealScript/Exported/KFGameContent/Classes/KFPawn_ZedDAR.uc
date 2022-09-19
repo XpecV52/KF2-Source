@@ -365,6 +365,7 @@ defaultproperties
    StopSprintingSound=AkEvent'WW_ZED_Evil_DAR.Play_ZED_EvilDAR_SFX_Thruster_Stop'
    ArmorInfoClass=Class'kfgamecontent.KFZedArmorInfo_EvilDAR'
    OverrideArmorFXIndex=200
+   ShrinkEffectModifier=0.700000
    Begin Object Class=SkeletalMeshComponent Name=ThirdPersonHead0 Archetype=SkeletalMeshComponent'KFGame.Default__KFPawn_Monster:ThirdPersonHead0'
       ReplacementPrimitive=None
       bAcceptsDynamicDecals=True
@@ -410,6 +411,8 @@ defaultproperties
    IncapSettings(9)=(Duration=4.200000,Cooldown=1.000000,Vulnerability=(0.900000))
    IncapSettings(10)=(Duration=4.000000,Cooldown=6.500000,Vulnerability=(3.000000))
    IncapSettings(11)=(Vulnerability=(0.010000))
+   IncapSettings(12)=()
+   IncapSettings(13)=(Vulnerability=(1.000000))
    SprintSpeed=600.000000
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonArms Archetype=KFSkeletalMeshComponent'KFGame.Default__KFPawn_Monster:FirstPersonArms'
       bIgnoreControllersWhenNotRendered=True

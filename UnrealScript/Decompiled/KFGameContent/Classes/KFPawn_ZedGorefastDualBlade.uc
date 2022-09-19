@@ -21,6 +21,7 @@ defaultproperties
     DifficultySettings=Class'KFDifficulty_GorefastDualBlade'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedGorefastDualBlade.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedGorefastDualBlade.HeadshotAkComponent0'
+    ShrinkEffectModifier=0.4
     PawnAnimInfo=KFPawnAnimInfo'ZED_Gorefast2_ANIM.Gorefast2_AnimGroup'
     LocalizationKey=KFPawn_ZedGorefastDualBlade
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

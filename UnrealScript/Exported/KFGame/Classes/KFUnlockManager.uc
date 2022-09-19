@@ -32,7 +32,9 @@ enum ESharedContentUnlock
 	SCU_Thermite,
 	SCU_BladedPistol,
 	SCU_ParasiteImplanter,
-	SCU_Doshinegun
+	SCU_Doshinegun,
+	SCU_AutoTurret,
+	SCU_ShrinkRayGun
 };
 
 
@@ -212,6 +214,7 @@ static private event bool CheckCustomizationOwnership(KFPlayerReplicationInfo PR
 	local SkinVariant Skin;
 	local AttachmentVariants Attachment;
 	local int i;
+	local KFGameReplicationInfo KFGRI;
 
 	CharArch = PRI.CharacterArchetypes[PRI.RepCustomizationInfo.CharacterIndex];
 
@@ -246,10 +249,12 @@ static private event bool CheckCustomizationOwnership(KFPlayerReplicationInfo PR
  			return FALSE;
  		}
 
+
+		KFGRI = KFGameReplicationInfo(PRI.WorldInfo.GRI);
  		// accessory
 		for( i=0; i < 3; i++ )
 		{
-			if (i == 2 && PRI.WorldInfo.GRI.IsA('KFGameReplicationInfo_WeeklySurvival') && (class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12))
+			if (i == 2 && KFGRI != none && KFGRI.bIsWeeklyMode && KFGRI.CurrentWeeklyIndex == 12)
 			{
 				continue;
 			}
@@ -306,6 +311,8 @@ defaultproperties
    SharedContentList(16)=(Name="KFWeap_Pistol_Bladed",IconPath="WEP_UI_BladedPistol_TEX.UI_WeaponSelect_BladedPistol",Id=9126)
    SharedContentList(17)=(Name="KFWeap_Rifle_ParasiteImplanter",IconPath="WEP_UI_ParasiteImplanter_TEX.UI_WeaponSelect_ParasiteImplanter",Id=9132)
    SharedContentList(18)=(Name="KFWeap_AssaultRifle_Doshinegun",IconPath="WEP_UI_Doshinegun_TEX.UI_Weapon_Select_Doshinegun",Id=9275)
+   SharedContentList(19)=(Name="KFWeap_AutoTurret",IconPath="WEP_UI_AutoTurret_TEX.UI_WeaponSelect_AutoTurret",Id=9284)
+   SharedContentList(20)=(Name="KFWeap_ShrinkRayGun",IconPath="WEP_UI_ShrinkRay_Gun_TEX.UI_Weapon_Select_Shrink_Ray_Gun",Id=9290)
    Name="Default__KFUnlockManager"
    ObjectArchetype=Object'Core.Default__Object'
 }

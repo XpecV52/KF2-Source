@@ -633,6 +633,7 @@ defaultproperties
     RageAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.RageAkComponent0'
     BattlePhaseLightTemplateYellow=PointLightComponent'Default__KFPawn_ZedFleshpoundKing.PointLightComponent1'
     BattlePhaseLightTemplateRed=PointLightComponent'Default__KFPawn_ZedFleshpoundKing.PointLightComponent2'
+    bCanBeKilledByShrinking=false
     MonsterArchPath="ZED_ARCH.ZED_FleshpoundKing_Archetype"
     begin object name=MeleeHelper class=KFMeleeHelperAI
         BaseDamage=75
@@ -650,6 +651,7 @@ defaultproperties
     FootstepCameraShake=CameraShake'Default__KFPawn_ZedFleshpoundKing.FootstepCameraShake0'
     SprintAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedFleshpoundKing.HeadshotAkComponent0'
+    ShrinkEffectModifier=0.15
     PawnAnimInfo=KFPawnAnimInfo'ZED_Fleshpound_ANIM.King_Fleshpound_AnimGroup'
     LocalizationKey=KFPawn_ZedFleshpoundKing
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent

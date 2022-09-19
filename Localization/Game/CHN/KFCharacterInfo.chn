@@ -47,6 +47,7 @@ BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
+BodyMesh15="深海探险家服装"									 
 HeadMesh0="防毒面具"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -169,6 +170,13 @@ BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
 
+[CHR_MrsFoster_archetype.BodyMesh15]
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"					
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="白色"
 HeadSkin1="绿色"
@@ -257,6 +265,7 @@ BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
+BodyMesh15="深海探险家服装"										 
 HeadMesh0="胡子的力量！"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -385,6 +394,13 @@ BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
 
+[CHR_Jagerhorn_archetype.BodyMesh15]									
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"					
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="瑞典金发"
 HeadSkin1="黑唱片"
@@ -486,6 +502,7 @@ BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
+BodyMesh15="深海探险家服装"										 
 HeadMesh0="斯库利面具"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -612,6 +629,13 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+[CHR_DJSkully_archetype.BodyMesh15]								   
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"				
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="乌黑"
@@ -661,6 +685,7 @@ BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
 BodyMesh14="死神服装"
 BodyMesh15="节日购物服装"
+BodyMesh16="深海探险家服装"									 
 HeadMesh0="头发"
 
 [chr_briar_archetype.BodyMesh0]
@@ -793,6 +818,13 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+[CHR_briar_archetype.BodyMesh16]
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"					
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
@@ -836,6 +868,7 @@ BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
 BodyMesh14="死神服装"
 BodyMesh15="节日购物服装"
+BodyMesh16="深海探险家服装"										 
 HeadMesh0="防毒面具"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -973,6 +1006,13 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+[CHR_MrFoster_archetype.BodyMesh16]								   
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"					
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
@@ -1136,6 +1176,7 @@ BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
+BodyMesh15="深海探险家服装"										 
 HeadMesh0="面部"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1260,6 +1301,13 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+[CHR_Coleman_archetype.BodyMesh15]								  
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"					
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="多诺万"
@@ -1302,6 +1350,7 @@ BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
+BodyMesh15="深海探险家服装"										 
 HeadMesh0="头发"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1428,6 +1477,13 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+[CHR_Alberts_archetype.BodyMesh15]								  
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"					
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰色"
@@ -2330,6 +2386,7 @@ BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
+BodyMesh15="深海探险家服装"									 
 HeadMesh0="面部"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2465,6 +2522,13 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+[CHR_Masterson_archetype.BodyMesh15]									
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"					
 
 [CHR_Tanaka_Archetype]
 CharacterName="田中勇人"
@@ -2485,6 +2549,7 @@ BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
 BodyMesh14="死神服装"
 BodyMesh15="节日购物服装"
+BodyMesh16="深海探险家服装"										 
 HeadMesh0="头发"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2628,6 +2693,13 @@ BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
 
+[CHR_Tanaka_archetype.BodyMesh16]				   
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"					
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="头盔"
 AttachmentSkin0="升起的太阳"
@@ -2673,6 +2745,7 @@ BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
+BodyMesh15="深海探险家服装"									 
 HeadMesh0="莫霍克族"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2809,6 +2882,13 @@ BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
 
+[CHR_Ana_archetype.BodyMesh15]							  
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"					
 [Cosmetic_3dGlasses_ARCH]
 Attachment="3D 眼镜"
 AttachmentSkin0="3D 浮雕装饰"
@@ -2840,6 +2920,7 @@ BodyMesh12="圣诞衣"
 BodyMesh13="太空海盗服装"
 BodyMesh14="死神服装"
 BodyMesh15="节日购物服装"
+BodyMesh16="深海探险家服装"										 
 HeadMesh0="头发"
 
 [chr_mark_archetype.BodyMesh0]
@@ -2965,13 +3046,21 @@ BodySkin2="饥荒"
 BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
-
-
+					
+[CHR_mark_archetype.BodyMesh15]								   
 BodySkin0="圣诞老人"
 BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+
+[CHR_mark_archetype.BodyMesh16]							   
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="如假包换"
@@ -3001,6 +3090,7 @@ BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
+BodyMesh15="深海探险家服装"									 
 HeadMesh0="面部"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3129,6 +3219,13 @@ BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
 
+[CHR_alan_archetype.BodyMesh15]							   
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"					
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="如假包换"
 HeadSkin1="姜！真的吗？"
@@ -3164,6 +3261,7 @@ BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
+BodyMesh15="深海探险家服装"									 
 HeadMesh0="头发"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3288,7 +3386,13 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
-
+[CHR_strasser_archetype.BodyMesh15]								   
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物"
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑钢"
 HeadSkin1="金钢"
@@ -3468,6 +3572,7 @@ BodyMesh11="圣诞衣"
 BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
+BodyMesh15="深海探险家服装"									 
 HeadMesh0="默认头部"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3596,6 +3701,13 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+[CHR_rockabilly_archetype.BodyMesh15]									 
+BodySkin0="古董"
+BodySkin1="水蓝色"
+BodySkin2="珊瑚"
+BodySkin3="珍珠"
+BodySkin4="黑色海豹"
+BodySkin5="宝物					
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑色"
@@ -7138,3 +7250,18 @@ AttachmentSkin0="宝物"
 [Cosmetic_BossTrophy_Backpack_ARCH]
 Attachment="首领奖品背包"
 AttachmentSkin0="宝物"
+[Cosmetic_Supply_Backpack_ARCH]
+Attachment="补给背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_DeepSea_Trident_ARCH]
+Attachment="深海三叉戟"
+AttachmentSkin0="宝物"							   
+[Cosmetic_DeepSea_Helmet_ARCH]
+Attachment="深海头盔"
+AttachmentSkin0="古董"
+AttachmentSkin1="水蓝色"
+AttachmentSkin2="珊瑚"
+AttachmentSkin3="珍珠"
+AttachmentSkin4="黑色海豹"
+AttachmentSkin5="宝物"						  

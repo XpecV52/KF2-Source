@@ -1063,6 +1063,7 @@ defaultproperties
    SpeedPctIncreasePerMinute=0.200000
    BossCaptionStrings(0)="Boss caption 1"
    BossCaptionStrings(1)="Boss caption 2"
+   bCanBeKilledByShrinking=False
    MinSpawnSquadSizeType=EST_Boss
    Begin Object Class=KFMeleeHelperAI Name=MeleeHelper_0 Archetype=KFMeleeHelperAI'KFGame.Default__KFPawn_Monster:MeleeHelper_0'
       BaseDamage=6.000000

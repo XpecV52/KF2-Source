@@ -833,6 +833,30 @@ ItemCategory="소총"
 ItemDescription="•전자동 및 반자동 사격 모드를 선택할 수 있습니다.\n•사격 모드를 변경할 수 있습니다.\n•뇌물을 새로운 수준으로 끌어올립니다."
 SharedUnlockSource="도신건 무기 번들"
 
+[KFWeap_HRG_Crossboom]
+ItemName="HRG 크로스붐"
+ItemCategory="폭탄"
+ItemDescription="•기본 사격 시 충돌 후 폭발하는 볼트를 발사합니다.\n•보조 사격 볼트 역시 폭발하지만, 범위가 더 넓고 데미지는 낮습니다.\n•조심하세요. 이 볼트는 관통 및 폭발합니다."
+
+
+[KFWeap_HRG_CranialPopper]
+ItemName="HRG 헤드헌터"
+ItemCategory="소총"
+ItemDescription="•기본 사격 시 제드 머리가 커지는 다트를 발사합니다.\n•보조 사격 시 플레이어 주변의 모든 제드에게 뇌출혈을 일으킵니다.\n•머리를 처리해야 할 상황에 최고의 무기입니다."
+
+
+[KFWeap_ShrinkRayGun]
+ItemName="환원 레이"
+ItemCategory="권총"
+ItemDescription="•발사 모드가 데미지를 주고 적을 줄입니다.\n•줄어든 적은 더 약해집니다.\n•얘, 난 제드도 줄일 수 있어."
+SharedUnlockSource="환원 레이 무기 번들"
+
+
+[KFWeap_AutoTurret]
+ItemName="센티넬"
+ItemCategory="특수"
+ItemDescription="•드론이 위치를 굽어보고 적을 공격합니다.\n•보조 사격으로 드론을 터뜨립니다.\n•탄약이 없고 주변에 제드가 있으면 자폭합니다."
+SharedUnlockSource="센티넬 무기 번들"
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"
@@ -1008,3 +1032,8 @@ PerkSwitchAllowedString="병과 선택 남은 시간: %x% 초"
 ItemName="랜덤 무기"
 ItemCategory="랜덤"
 ItemDescription="• 랜덤 무기.\n•"
+
+[KFWeap_RandomGrenade]
+ItemName="랜덤 수류탄"
+ItemCategory="랜덤"
+ItemDescription="• 랜덤 수류탄.\n•"

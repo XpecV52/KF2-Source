@@ -189,6 +189,7 @@ var const bool bDebug_UseIconForShowingSprintingOverheadInfo;
 var bool bDebug_SpawnedThroughCheat;
 var bool bReducedZedOnZedPinchPointCollisionStateActive;
 var protected bool bOnDeathAchivementbDisabled;
+var bool bCanBeKilledByShrinking;
 var const string MonsterArchPath;
 var private const KFCharacterInfo_Monster CharacterMonsterArch;
 var const array< class<KFPawn_Monster> > ElitePawnClass;
@@ -207,6 +208,8 @@ var(Combat) float GameResistancePct;
 /** Time until death after head is taken off */
 var(Combat) float HeadlessBleedOutTime;
 var byte MaxHeadChunkGoreWhileAlive;
+var byte GunGameKilledScore;
+var byte GunGameAssistanceScore;
 var byte ParryResistance;
 var repnotify byte RepInflateMatParam;
 var repnotify byte RepDamageInflateParam;
@@ -307,6 +310,7 @@ var array<KFProjectile> ParasiteSeeds;
 var export editinline transient array<export editinline ParticleSystemComponent> WeakPointVFXComponents;
 var repnotify WeakPoint WeakPoints_TS[10];
 var ParticleSystem WeakPointParticleTemplate;
+var float ShrinkEffectModifier;
 var delegate<GoreChunkAttachmentCriteria> __GoreChunkAttachmentCriteria__Delegate;
 var delegate<GoreChunkDetachmentCriteria> __GoreChunkDetachmentCriteria__Delegate;
 
@@ -1480,7 +1484,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     local KFPlayerReplicationInfo KFPRI;
     local KFAIController KFAIC;
     local KFPawn_Monster KFPM;
-    local float NapalmCheckDist;
+    local float NapalmCheckDist, InfernoRadius;
 
     AIMonster = KFAIController_Monster(InstigatedBy);
     KFDT = class<KFDamageType>(DamageType);
@@ -1515,7 +1519,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
             HumanInstigator.ResetIdleStartTime();
         }
     }
-    if(((((((Damage > 0) && InstigatedBy != none) && DamageCauser != none) && KFDT != none) && KFDT.default.DoT_Type == 1) && KFDT != Class'KFDT_Fire_Napalm') && (WorldInfo.RealTimeSeconds - LastNapalmInfectCheckTime) > 0.25)
+    if((((((Damage > 0) && InstigatedBy != none) && DamageCauser != none) && KFDT != none) && KFDT.default.DoT_Type == 1) && KFDT != Class'KFDT_Fire_Napalm')
     {
         if((((KFPC != none) && KFPC.GetPerk() != none) && KFPC.GetPerk().CanSpreadNapalm()) && Class'KFPerk'.static.IsDamageTypeOnThisPerk(KFDT, Class'KFPerk_Firebug'))
         {
@@ -1537,6 +1541,14 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
                 InfectWithNapalm(self, KFPC);
             }
         }
+    }
+    if(((((((((Damage > 0) && InstigatedBy != none) && KFDT != none) && KFDT.default.DoT_Type == 1) && KFDT != Class'KFDT_Fire_Napalm') && KFPC != none) && KFPC.GetPerk() != none) && KFPC.GetPerk().CanSpreadInferno()) && Class'KFPerk'.static.IsDamageTypeOnThisPerk(KFDT, Class'KFPerk_Firebug'))
+    {
+        InfernoRadius = CylinderComponent.CollisionRadius + Class'KFPerk_Firebug'.static.GetInfernoRadius();
+        foreach CollidingActors(Class'KFPawn_Monster', KFPM, InfernoRadius, Location, true)
+        {
+            KFPM.ApplyDamageOverTime(Damage, KFPC, KFDT);            
+        }        
     }
     KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
     if(KFPRI != none)
@@ -3948,6 +3960,7 @@ defaultproperties
     bCanMeleeAttack=true
     bKnockdownWhenJumpedOn=true
     bDebug_UseIconForShowingSprintingOverheadInfo=true
+    bCanBeKilledByShrinking=true
     RandomColorIdx=-1
     DifficultyDamageMod=1
     GameResistancePct=1
@@ -4010,6 +4023,7 @@ defaultproperties
     CollisionRadiusForReducedZedOnZedPinchPointCollisionState=1
     OnDeathAchievementID=-1
     WeakPointParticleTemplate=ParticleSystem'FX_Gameplay_EMIT.FX_Weak_Indicator'
+    ShrinkEffectModifier=1
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
         ReplacementPrimitive=none
     object end
@@ -4047,6 +4061,9 @@ defaultproperties
     IncapSettings(8)=(Duration=5,Cooldown=0,ChildAfflictionCooldown=0,Vulnerability=none)
     IncapSettings(9)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
     IncapSettings(10)=(Duration=5,Cooldown=5,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(11)=(Duration=5,Cooldown=0,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(12)=(Duration=10,Cooldown=0,ChildAfflictionCooldown=0,Vulnerability=none)
+    IncapSettings(13)=(Duration=10,Cooldown=0,ChildAfflictionCooldown=0,Vulnerability=none)
     begin object name=FirstPersonArms class=KFSkeletalMeshComponent
         ReplacementPrimitive=none
     object end

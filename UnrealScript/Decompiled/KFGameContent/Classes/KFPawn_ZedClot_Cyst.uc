@@ -28,6 +28,7 @@ defaultproperties
     KnockedDownBySonicWaveOdds=0.35
     SprintAkComponent=AkComponent'Default__KFPawn_ZedClot_Cyst.SprintAkComponent0'
     HeadShotAkComponent=AkComponent'Default__KFPawn_ZedClot_Cyst.HeadshotAkComponent0'
+    ShrinkEffectModifier=2
     PawnAnimInfo=KFPawnAnimInfo'ZED_Clot_Anim.UnDevClot_AnimGroup'
     LocalizationKey=KFPawn_ZedClot_Cyst
     begin object name=ThirdPersonHead0 class=SkeletalMeshComponent
