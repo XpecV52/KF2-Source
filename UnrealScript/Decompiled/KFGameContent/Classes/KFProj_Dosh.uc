@@ -15,6 +15,7 @@ var() float DampenFactor;
 var() float DampenFactorParallel;
 var transient Vector PreviousLocations[20];
 var transient Rotator PreviousRotations[20];
+var transient Vector Ceiling;
 
 simulated event PostBeginPlay()
 {
@@ -76,6 +77,8 @@ function SpawnDosh(Actor BouncedOff)
 {
     local KFDroppedPickup_Cash P;
     local int I;
+    local Vector pos;
+    local Rotator Rot;
 
     if(WorldInfo.NetMode == NM_Client)
     {
@@ -83,25 +86,38 @@ function SpawnDosh(Actor BouncedOff)
     }
     if(Pawn(BouncedOff) == none)
     {
-        P = Spawn(Class'KFDroppedPickup_Cash',,, Location, Rotation,, false);
+        pos = Location;
+        Rot = Rotation;
+        P = Spawn(Class'KFDroppedPickup_Cash',,, pos, Rot,, false);
         if(P == none)
         {
             I = 0;
-            J0x90:
+            J0xB6:
 
             if(I < 20)
             {
-                P = Spawn(Class'KFDroppedPickup_Cash',,, PreviousLocations[I], PreviousRotations[I],, false);
+                pos = PreviousLocations[I];
+                Rot = PreviousRotations[I];
+                P = Spawn(Class'KFDroppedPickup_Cash',,, pos, Rot,, false);
                 if(P != none)
                 {
-                    goto J0x107;
+                    goto J0x153;
                 }
                 ++ I;
-                goto J0x90;
+                goto J0xB6;
             }
         }
-        J0x107:
-        
+        J0x153:
+
+        if((P != none) && RelocateFromCeiling(pos))
+        {
+            P.Destroy();
+            if(Ceiling.Z > float(-10000))
+            {
+                P = Spawn(Class'KFDroppedPickup_Cash',,, Ceiling, Rot,, false);
+                Velocity = vect(0, 0, 0);
+            }
+        }        
     }
     else
     {
@@ -181,6 +197,31 @@ simulated function SyncOriginalLocation()
         }
     }
     super(KFProjectile).SyncOriginalLocation();
+}
+
+simulated function bool RelocateFromCeiling(Vector pos)
+{
+    local Actor HitActorVolume, HitActorWorld, HitActorVolumeBack;
+    local Vector HitLocationVolume, HitLocationWorld, HitNormalUnused;
+
+    HitActorWorld = Owner.Trace(HitLocationWorld, HitNormalUnused, pos - vect(0, 0, 10000), pos, false,,, 1);
+    if(HitActorWorld != none)
+    {
+        HitActorVolume = KFWeapon(Owner).DoTraceNative(HitLocationVolume, pos, pos - vect(0, 0, 10000));
+        if(((HitActorVolume == none) || (HitLocationWorld.Z + float(80)) > HitLocationVolume.Z) || IsZero(HitLocationVolume - pos))
+        {
+            return false;
+        }
+        HitLocationWorld += vect(0, 0, 1);
+        HitActorVolumeBack = KFWeapon(Owner).DoTraceNative(HitLocationVolume, HitLocationWorld, HitLocationWorld + vect(0, 0, 10000));
+        if((HitActorVolumeBack != none) && !IsZero(HitLocationVolume - HitLocationWorld))
+        {
+            Ceiling = HitLocationVolume - vect(0, 0, 10);
+            return true;
+        }
+    }
+    Ceiling = vect(0, 0, -10000);
+    return true;
 }
 
 defaultproperties

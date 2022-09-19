@@ -4522,7 +4522,7 @@ simulated protected native function int SendClientProjectileExplosion(vector Exp
 // Compress our fragment impact into a ImpactRepInfo for replication (returns number of impacts sent)
 simulated protected native function int SendClientFragmentImpact(const out ImpactInfo Impact, class<KFProjectile> FragmentClass);
 simulated protected native function vector GetSafeStartTraceLocation();
-
+simulated native function Actor DoTraceNative(out Vector OutLocation, Vector StartLocation, Vector EndLocation);
 /**
  * Allows subclass to perform extra bullet traces
  * Network: Local Player

@@ -27,6 +27,7 @@ var float WindUpViewRotationSpeed;
 var float WindUpPawnMovementSpeed;
 var float FiringViewRotationSpeed;
 var float FiringPawnMovementSpeed;
+var const float EquippedRotationSpeedLimit;
 
 replication
 {
@@ -307,7 +308,14 @@ simulated event Tick(float DeltaTime)
                 }
                 else
                 {
-                    NewRotationSpeedLimit = 2000;
+                    if(!IsInState('Inactive'))
+                    {
+                        NewRotationSpeedLimit = EquippedRotationSpeedLimit;                        
+                    }
+                    else
+                    {
+                        NewRotationSpeedLimit = OwnerController.default.RotationSpeedLimit;
+                    }
                 }
             }
             if(NewRotationSpeedLimit != OwnerController.RotationSpeedLimit)
@@ -503,6 +511,7 @@ defaultproperties
     WindUpPawnMovementSpeed=1
     FiringViewRotationSpeed=2000
     FiringPawnMovementSpeed=0.75
+    EquippedRotationSpeedLimit=2000
     bKeepIronSightsOnJump=true
     bSkipZoomInRotation=true
     FireSightedAnims(0)=Shoot

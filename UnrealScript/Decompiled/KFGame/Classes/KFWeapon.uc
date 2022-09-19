@@ -3263,6 +3263,9 @@ protected native simulated function int SendClientFragmentImpact(const out Impac
 // Export UKFWeapon::execGetSafeStartTraceLocation(FFrame&, void* const)
 protected native simulated function Vector GetSafeStartTraceLocation();
 
+// Export UKFWeapon::execDoTraceNative(FFrame&, void* const)
+native simulated function Actor DoTraceNative(out Vector OutLocation, Vector StartLocation, Vector EndLocation);
+
 simulated function InstantFireClient_AddImpacts(Vector StartTrace, Rotator Aim, out array<ImpactInfo> ImpactList);
 
 simulated function InstantFireClient()

@@ -132,14 +132,14 @@ simulated function bool HasHeavyArmor()
     return IsHeavyArmorActive();
 }
 
-private static final simulated function bool Is9mm(KFWeapon KFW)
+static simulated function bool Is9mm(KFWeapon KFW)
 {
     return ((KFW != none) && KFW.default.bIsBackupWeapon) && !KFW.IsMeleeWeapon();
 }
 
 simulated event float GetIronSightSpeedModifier(KFWeapon KFW)
 {
-    if((IsTacticalMovementActive()) && (Is9mm(KFW) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class))
+    if((IsTacticalMovementActive()) && ((Is9mm(KFW)) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class))
     {
         return GetSkillValue(PerkSkills[1]);
     }
@@ -157,7 +157,7 @@ function FinalizeSpeedVariables()
 
 simulated event float GetCrouchSpeedModifier(KFWeapon KFW)
 {
-    if((IsTacticalMovementActive()) && (Is9mm(KFW) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class))
+    if((IsTacticalMovementActive()) && ((Is9mm(KFW)) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class))
     {
         return (GetSkillValue(PerkSkills[1])) * CurrentHealthPenalty;
     }
@@ -166,7 +166,7 @@ simulated event float GetCrouchSpeedModifier(KFWeapon KFW)
 
 simulated function ModifyWeaponBopDamping(out float BobDamping, KFWeapon PawnWeapon)
 {
-    if((IsTacticalMovementActive()) && Is9mm(PawnWeapon) || IsWeaponOnPerk(PawnWeapon,, self.Class))
+    if((IsTacticalMovementActive()) && (Is9mm(PawnWeapon)) || IsWeaponOnPerk(PawnWeapon,, self.Class))
     {
         BobDamping *= default.TacticalMovementBobDamp;
     }
@@ -184,7 +184,7 @@ simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCaus
     }
     if(KFW != none)
     {
-        if((IsBackupActive() && ((IsBackupWeapon(KFW)) || IsDual9mm(KFW)) || ClassIsChildOf(DamageType, Class'KFDT_Bludgeon')) && (IsDoshinegun(KFW)) && DamageType.Name != 'KFDT_Bludgeon_Doshinegun_Shot')
+        if(IsBackupActive() && ((IsBackupWeapon(KFW)) || IsDual9mm(KFW)) || (!IsDoshinegun(KFW) && ClassIsChildOf(DamageType, Class'KFDT_Bludgeon')) || (IsDoshinegun(KFW)) && DamageType.Name != 'KFDT_Bludgeon_Doshinegun_Shot')
         {
             TempDamage += (float(InDamage) * (GetSkillValue(PerkSkills[2])));            
         }
@@ -243,7 +243,7 @@ simulated function float GetZedTimeModifier(KFWeapon W)
     local name StateName;
 
     StateName = W.GetStateName();
-    if((IsRapidAssaultActive()) && (Is9mm(W) || IsWeaponOnPerk(W,, self.Class)) || IsDual9mm(W))
+    if((IsRapidAssaultActive()) && ((Is9mm(W)) || IsWeaponOnPerk(W,, self.Class)) || IsDual9mm(W))
     {
         if(ZedTimeModifyingStates.Find(StateName != -1)
         {
@@ -260,7 +260,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 
     StumbleModifier = 0;
     KFW = GetOwnerWeapon();
-    if((IsSpecialAmmunitionActive()) && (Is9mm(KFW) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class))
+    if((IsSpecialAmmunitionActive()) && ((Is9mm(KFW)) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class))
     {
         StumbleModifier += (GetSkillValue(PerkSkills[4]));
     }
@@ -273,7 +273,7 @@ function float GetStumblePowerModifier(optional KFPawn KFP, optional class<KFDam
 
 simulated function bool GetIsUberAmmoActive(KFWeapon KFW)
 {
-    return (IsRapidAssaultActive()) && (Is9mm(KFW) || IsWeaponOnPerk(KFW,, self.Class)) || IsDual9mm(KFW);
+    return (IsRapidAssaultActive()) && ((Is9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class)) || IsDual9mm(KFW);
 }
 
 simulated function bool ShouldKnockDownOnBump()
@@ -349,7 +349,7 @@ simulated function ModifySpeed(out float Speed)
             MyKFWeapon = KFWeapon(KFIM.PendingWeapon);
         }
     }
-    if((MyKFWeapon != none) && (Is9mm(MyKFWeapon) || IsDual9mm(MyKFWeapon)) || IsWeaponOnPerk(MyKFWeapon,, self.Class))
+    if((MyKFWeapon != none) && ((Is9mm(MyKFWeapon)) || IsDual9mm(MyKFWeapon)) || IsWeaponOnPerk(MyKFWeapon,, self.Class))
     {
         Speed += (Speed * TacticalMovementModifier);
     }
@@ -373,7 +373,7 @@ simulated function ModifySprintSpeed(out float Speed)
             MyKFWeapon = KFWeapon(KFIM.PendingWeapon);
         }
     }
-    if((MyKFWeapon != none) && (Is9mm(MyKFWeapon) || IsDual9mm(MyKFWeapon)) || IsWeaponOnPerk(MyKFWeapon,, self.Class))
+    if((MyKFWeapon != none) && ((Is9mm(MyKFWeapon)) || IsDual9mm(MyKFWeapon)) || IsWeaponOnPerk(MyKFWeapon,, self.Class))
     {
         Speed += (Speed * TacticalMovementModifier);
     }
@@ -401,7 +401,7 @@ private final simulated function bool IsTacticalReloadActive()
 
 simulated function bool GetUsingTactialReload(KFWeapon KFW)
 {
-    return IsTacticalReloadActive() && (Is9mm(KFW) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class);
+    return IsTacticalReloadActive() && ((Is9mm(KFW)) || IsDual9mm(KFW)) || IsWeaponOnPerk(KFW,, self.Class);
 }
 
 simulated function bool IsSpecialAmmunitionActive()

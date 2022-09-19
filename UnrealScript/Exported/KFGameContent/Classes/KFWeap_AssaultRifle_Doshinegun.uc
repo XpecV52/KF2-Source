@@ -191,9 +191,9 @@ defaultproperties
    HippedRecoilModifier=1.500000
    IronSightMeshFOVCompensationScale=1.500000
    AssociatedPerkClasses(0)=None
-   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.230000),(Stat=EWUS_Damage1,Scale=1.200000),(Add=1)))
-   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.470000),(Stat=EWUS_Damage1,Scale=1.400000),(Add=2)))
-   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.700000),(Stat=EWUS_Damage1,Scale=1.600000),(Add=3)))
+   WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.230000),(Stat=EWUS_Damage1,Scale=1.230000),(Add=1)))
+   WeaponUpgrades(2)=(Stats=((Stat=EWUS_Damage0,Scale=1.470000),(Stat=EWUS_Damage1,Scale=1.470000),(Add=2)))
+   WeaponUpgrades(3)=(Stats=((Stat=EWUS_Damage0,Scale=1.700000),(Stat=EWUS_Damage1,Scale=1.700000),(Add=3)))
    FiringStatesArray(1)="WeaponSingleFiring"
    FiringStatesArray(2)=()
    FiringStatesArray(3)=()

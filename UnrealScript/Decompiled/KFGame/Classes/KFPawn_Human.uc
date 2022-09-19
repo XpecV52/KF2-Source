@@ -1692,6 +1692,7 @@ reliable client simulated function ClientOverrideHumanDefaults()
 {
     local KFPlayerController_WeeklySurvival KFPC_WS;
     local KFPlayerReplicationInfo KFPRI;
+    local KFGameReplicationInfo KFGRI;
     local KFCharacterInfo_Human KFCIH;
     local int CowboyHatIndex;
 
@@ -1700,7 +1701,8 @@ reliable client simulated function ClientOverrideHumanDefaults()
     {
         return;
     }
-    if(Class'KFGameEngine'.static.GetWeeklyEventIndexMod() == 12)
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.CurrentWeeklyIndex == 12)
     {
         KFPRI = KFPlayerReplicationInfo(KFPC_WS.PlayerReplicationInfo);
         if(KFPRI != none)

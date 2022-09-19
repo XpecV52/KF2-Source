@@ -80,7 +80,7 @@ Begin Object Class=KFSeqAct_MovePawnsNotInVolume Name=KFSeqAct_MovePawnsNotInVol
    ObjectArchetype=KFSeqAct_MovePawnsNotInVolume'KFGame.Default__KFSeqAct_MovePawnsNotInVolume'
 End Object
 
-Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_3
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_19
    LinkCount=8
    IncrementAmount=0
    bLooping=True
@@ -102,7 +102,7 @@ Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_3
    ObjPosY=-8352
    DrawWidth=89
    DrawHeight=245
-   Name="SeqAct_RandomSwitch_3"
+   Name="SeqAct_RandomSwitch_19"
    ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
 End Object
 
@@ -561,7 +561,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_78
    EventName="EnableSpawns_Desert"
    MaxWidth=262
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_22')),ActivateDelay=3.000000,DrawY=-7582,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_22'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_6')),ActivateDelay=3.000000,DrawY=-7582,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-5541,OverrideDelta=99)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -891,7 +891,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_805
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_860
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_43
    ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_187'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -899,7 +899,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_860
    ObjPosY=-7232
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_860"
+   Name="SeqVar_Object_43"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -1036,8 +1036,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_883
 End Object
 
 Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_81
-   SizeX=840
-   SizeY=805
+   SizeX=834
+   SizeY=675
    bTileFill=True
    FillColor=(B=255,G=250,R=152,A=32)
    ObjInstanceVersion=1
@@ -1064,7 +1064,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_70
    EventName="EnableSpawns_Center"
    MaxWidth=263
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_7'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_5')),ActivateDelay=3.000000,DrawY=-7598,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_7'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_3')),ActivateDelay=3.000000,DrawY=-7598,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-3813,OverrideDelta=99)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -1097,7 +1097,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_14
    InputLinks(1)=(DrawY=-6126,OverrideDelta=35)
    InputLinks(2)=(DrawY=-6105,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-6126,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_860',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1397',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_911',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_910',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_906',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_901',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_76',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_895',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1044',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_965',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_952',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_940',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_830',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_800',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_918',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_885',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_892',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_887',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_883',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_921',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_805',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_878',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_869',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_856',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_845',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1042',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_804',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_826',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1188',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1164',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1052',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1053',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_747',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_837',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_829',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_814',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_811',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_775',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_769',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_741',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1432',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1202',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1043',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1055',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1054',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1068',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1047',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1045',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1096',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1050',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1109',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1051',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1121',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1083',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1130',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_740',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_755',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1420',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1410',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_815',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1429',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1007',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_729',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_817',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_715',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_871',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1384',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_993',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1004',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_732',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_739',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_723',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1161',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1155',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1156',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_827',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1057',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1112',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1111',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1110',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1074',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_21',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1396',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1067',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1066',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1065',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1064',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1063',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1062',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1061',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1201',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1029',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1123',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1039',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1038',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1036',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1020',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_903',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_955',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_954',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_953',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_951',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_950',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_948',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_947',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_946',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1141',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_842',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_880',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_873',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_868',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_865',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_840',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_824',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_823',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_822',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_821',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_810',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_780',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1389',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_790',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_803',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_789',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_785',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_909',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_916',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_933',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_968',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_944',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_975',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1008',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_956',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_917',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_853',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_984',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1222',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1213',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1212',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_716',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_782',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_937',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_750',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1159',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1270',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1381',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1401',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1412',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_717',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_728',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_849',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_731',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1048',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_793',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1204',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1326',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1182',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1293',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_61',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1402',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1359',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1428',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1430',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1433',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1119',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1431',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1056',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_26',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1073',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_23',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_24',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_25',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_62',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_63',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1393',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_65',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_66',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_67',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_70',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_69',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_73',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_72',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_64',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_27'),DrawX=-3562,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_43',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1397',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_911',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_910',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_906',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_901',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_76',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_895',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1044',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_965',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_952',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_940',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_830',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_800',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_918',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_885',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_892',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_887',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_883',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_921',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_805',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_878',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_869',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_856',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_845',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1042',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_804',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_826',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1188',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1164',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1052',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1053',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_747',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_837',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_829',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_814',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_811',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_775',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_769',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_741',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1432',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1202',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1043',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1055',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1054',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1068',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1047',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1045',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1096',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1050',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1109',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1051',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1121',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1083',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1130',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_740',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_755',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1420',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1410',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_815',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1429',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1007',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_729',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_817',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_715',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_871',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1384',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_993',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1004',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_732',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_739',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_723',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1161',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1155',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1156',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_827',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1057',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1112',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1111',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1110',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1074',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_21',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1396',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1067',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1066',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1065',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1064',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1063',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1062',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1061',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1201',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1029',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1123',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1039',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1038',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1036',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1020',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_903',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_955',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_954',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_953',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_951',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_950',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_948',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_947',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_946',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1141',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_842',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_880',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_873',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_868',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_865',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_840',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_824',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_823',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_822',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_821',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_810',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_780',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1389',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_790',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_789',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_785',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_909',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_916',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_933',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_968',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_944',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_975',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1008',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_956',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_917',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_853',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_984',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_716',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_782',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_937',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_750',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1159',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1270',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1381',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1401',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1412',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_717',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_728',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_849',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_731',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1048',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_793',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_61',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1402',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1359',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1428',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1430',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1433',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1119',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1431',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1056',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_26',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1073',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_23',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_24',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_25',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_62',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_63',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1393',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_65',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_66',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_67',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_70',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_69',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_73',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_72',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_64',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_27',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_46',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_51',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_44',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_2',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_47',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_48',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_49'),DrawX=-3562,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3511,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3462,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -1186,7 +1186,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_68
    EventName="EnableSpawns_Forest"
    MaxWidth=261
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_23')),ActivateDelay=3.000000,DrawY=-7398,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_23'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_12')),ActivateDelay=3.000000,DrawY=-7398,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-2478,OverrideDelta=98)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -1442,8 +1442,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_769
 End Object
 
 Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_70
-   SizeX=946
-   SizeY=262
+   SizeX=952
+   SizeY=429
    bTileFill=True
    FillColor=(B=255,G=250,R=152,A=32)
    ObjInstanceVersion=1
@@ -1487,7 +1487,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_74
    EventName="EnableSpawns_OldTown"
    MaxWidth=276
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_24')),ActivateDelay=3.000000,DrawY=-7566,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_24'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_13')),ActivateDelay=3.000000,DrawY=-7566,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-2182,OverrideDelta=106)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -1784,7 +1784,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_73
    EventName="EnableSpawns_Fallout"
    MaxWidth=263
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_25')),ActivateDelay=3.000000,DrawY=-7558,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_25'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_8')),ActivateDelay=3.000000,DrawY=-7558,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4629,OverrideDelta=99)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -3173,7 +3173,7 @@ End Object
 Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_21
    Originator=TriggerVolume'KF-ELYSIUM.TheWorld:PersistentLevel.TriggerVolume_19'
    MaxWidth=173
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Delay_61'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_3')),DrawY=-4675,OverrideDelta=14)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Delay'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Delay_61'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_11')),DrawY=-4675,OverrideDelta=14)
    OutputLinks(1)=(DrawY=-4654,OverrideDelta=35)
    OutputLinks(2)=(DrawY=-4633,OverrideDelta=56)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Player_26'),DrawX=-6506,OverrideDelta=54)
@@ -3328,7 +3328,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1118
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_11
    InputLinks(0)=(DrawY=-4675,OverrideDelta=14)
    InputLinks(1)=(DrawY=-4654,OverrideDelta=35)
    InputLinks(2)=(DrawY=-4633,OverrideDelta=56)
@@ -3342,7 +3342,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
    ObjPosY=-4712
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_3"
+   Name="SeqAct_Toggle_11"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
@@ -3443,7 +3443,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1124
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1108
-   ObjValue=InterpActor'KF-ELYSIUM.TheWorld:PersistentLevel.InterpActor_64'
+   ObjValue=InterpActor'KF-ELYSIUM.TheWorld:PersistentLevel.InterpActor_5'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-9696
@@ -3623,7 +3623,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1091
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1090
-   ObjValue=InterpActor'KF-ELYSIUM.TheWorld:PersistentLevel.InterpActor_64'
+   ObjValue=InterpActor'KF-ELYSIUM.TheWorld:PersistentLevel.InterpActor_5'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-9232
@@ -3761,7 +3761,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_45
    EventName="SendToSide"
    MaxWidth=195
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_3')),DrawY=-8302,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_19')),DrawY=-8302,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-8439,OverrideDelta=65)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -3931,15 +3931,15 @@ End Object
 Begin Object Class=SeqAct_DrawText Name=SeqAct_DrawText_72
    DisplayTimeSeconds=15.000000
    DrawTextInfo=(MessageText="Debug: Spawns enabled in FOREST",MessageFont=Font'enginefonts.SmallFont',MessageOffset=(X=0.000000,Y=600.000000))
-   InputLinks(0)=(DrawY=-7676,OverrideDelta=13)
-   InputLinks(1)=(DrawY=-7656,OverrideDelta=33)
-   OutputLinks(0)=(DrawY=-7666,OverrideDelta=23)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Player_34'),DrawX=-2361,OverrideDelta=17)
+   InputLinks(0)=(DrawY=-7644,OverrideDelta=13)
+   InputLinks(1)=(DrawY=-7624,OverrideDelta=33)
+   OutputLinks(0)=(DrawY=-7634,OverrideDelta=23)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Player'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Player_34'),DrawX=-2425,OverrideDelta=17)
    VariableLinks(1)=()
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-2400
-   ObjPosY=-7712
+   ObjPosX=-2464
+   ObjPosY=-7680
    ObjComment="Debug message (disabled)"
    DrawWidth=78
    DrawHeight=85
@@ -3950,8 +3950,8 @@ End Object
 Begin Object Class=SeqVar_Player Name=SeqVar_Player_34
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-2392
-   ObjPosY=-7600
+   ObjPosX=-2464
+   ObjPosY=-7568
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Player_34"
@@ -4891,7 +4891,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_71
    EventName="EnableSpawns_VoidZone"
    MaxWidth=280
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_26')),ActivateDelay=3.000000,DrawY=-5014,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_26'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_17')),ActivateDelay=3.000000,DrawY=-5014,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-4420,OverrideDelta=108)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -5737,7 +5737,7 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_44
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_727
-   ObjValue=PointLight'KF-ELYSIUM.TheWorld:PersistentLevel.PointLight_32'
+   ObjValue=PointLight'KF-ELYSIUM.TheWorld:PersistentLevel.PointLight_24'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-9576
@@ -7054,7 +7054,7 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_17
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1151
-   ObjValue=StaticMeshActor'KF-ELYSIUM.TheWorld:PersistentLevel.StaticMeshActor_12833'
+   ObjValue=StaticMeshActor'KF-ELYSIUM.TheWorld:PersistentLevel.StaticMeshActor_14605'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-1496
@@ -7080,7 +7080,7 @@ Begin Object Class=SeqAct_AkPostEvent Name=SeqAct_AkPostEvent_45
    ObjectArchetype=SeqAct_AkPostEvent'AkAudio.Default__SeqAct_AkPostEvent'
 End Object
 
-Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_0
    Originator=TriggerVolume'KF-ELYSIUM.TheWorld:PersistentLevel.TriggerVolume_18'
    MaxTriggerCount=0
    ReTriggerDelay=5.000000
@@ -7097,7 +7097,7 @@ Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
    ObjName="TriggerVolume_18 Touch"
    DrawWidth=187
    DrawHeight=176
-   Name="SeqEvent_Touch_3"
+   Name="SeqEvent_Touch_0"
    ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
 End Object
 
@@ -7146,7 +7146,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_75
    EventName="EnableSpawns_Glitch"
    MaxWidth=256
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_27')),ActivateDelay=3.000000,DrawY=-5023,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_27'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_18')),ActivateDelay=3.000000,DrawY=-5023,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-3200,OverrideDelta=96)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -8582,7 +8582,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_72
    EventName="EnableSpawns_LoreMaster"
    MaxWidth=292
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_28')),ActivateDelay=3.000000,DrawY=-5014,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_28'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_16')),ActivateDelay=3.000000,DrawY=-5014,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-5654,OverrideDelta=114)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -8975,7 +8975,7 @@ End Object
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_15
    InputLinks(0)=(DrawY=-8026,OverrideDelta=23)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_ActivateRemoteEvent_27')),DrawY=-8036,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_3')),DrawY=-8016,OverrideDelta=33)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_19')),DrawY=-8016,OverrideDelta=33)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Named_36'),DrawX=-8475,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-8425,OverrideDelta=59)
    ObjInstanceVersion=2
@@ -9115,7 +9115,7 @@ Begin Object Class=KFSeqAct_ToggleEx Name=KFSeqAct_ToggleEx_29
    InputLinks(1)=(DrawY=-5006,OverrideDelta=35)
    InputLinks(2)=(DrawY=-4985,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-5006,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_810',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_780',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1389',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_790',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_803',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_789',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_785'),DrawX=-2042,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_810',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_780',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1389',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_790',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_789',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_785'),DrawX=-2042,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-1991,OverrideDelta=76)
    EventLinks(0)=(DrawX=-1942,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -9131,7 +9131,7 @@ End Object
 Begin Object Class=SeqEvent_RemoteEvent Name=SeqEvent_RemoteEvent_76
    EventName="EnableSpawns_Botanica"
    MaxWidth=276
-   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_29')),ActivateDelay=3.000000,DrawY=-5022,OverrideDelta=11)
+   OutputLinks(0)=(Links=((LinkedOp=KFSeqAct_ToggleEx'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.KFSeqAct_ToggleEx_29'),(LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_5')),ActivateDelay=3.000000,DrawY=-5022,OverrideDelta=11)
    VariableLinks(0)=(DrawX=-2302,OverrideDelta=106)
    ObjInstanceVersion=2
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -9176,17 +9176,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_790
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_790"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_803
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-1744
-   ObjPosY=-5424
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_803"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -9841,7 +9830,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1419
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1259
-   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_0'
+   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_410'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-720
@@ -9865,7 +9854,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_753
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_752
-   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_14'
+   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_400'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-648
@@ -14633,7 +14622,7 @@ Begin Object Class=SeqAct_Interp Name=SeqAct_Interp_9
    ObjectArchetype=SeqAct_Interp'Engine.Default__SeqAct_Interp'
 End Object
 
-Begin Object Class=SequenceFrame Name=SequenceFrame_2
+Begin Object Class=SequenceFrame Name=SequenceFrame_0
    SizeX=1158
    SizeY=663
    bDrawBox=True
@@ -14645,7 +14634,7 @@ Begin Object Class=SequenceFrame Name=SequenceFrame_2
    ObjComment="Benchmark"
    DrawWidth=1158
    DrawHeight=663
-   Name="SequenceFrame_2"
+   Name="SequenceFrame_0"
    ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
 End Object
 
@@ -16252,7 +16241,7 @@ End Object
 Begin Object Class=SeqCond_CompareBool Name=SeqCond_CompareBool_10
    InputLinks(0)=(DrawY=-6874,OverrideDelta=23)
    OutputLinks(0)=(Links=((LinkedOp=SeqAct_ActivateRemoteEvent'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_ActivateRemoteEvent_57')),DrawY=-6884,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_3')),DrawY=-6864,OverrideDelta=33)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_19')),DrawY=-6864,OverrideDelta=33)
    VariableLinks(0)=(LinkedVariables=(SeqVar_Named'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Named_2'),DrawX=-8299,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-8249,OverrideDelta=59)
    ObjInstanceVersion=2
@@ -16360,45 +16349,6 @@ Begin Object Class=SeqVar_Named Name=SeqVar_Named_1
    DrawHeight=32
    Name="SeqVar_Named_1"
    ObjectArchetype=SeqVar_Named'Engine.Default__SeqVar_Named'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_1212
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_74'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3600
-   ObjPosY=-6672
-   ObjComment="Main area abow spawn"
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_1212"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_1213
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_176'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3864
-   ObjPosY=-6736
-   ObjComment="Main area abow spawn"
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_1213"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_1222
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_183'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3712
-   ObjPosY=-6688
-   ObjComment="Main area abow spawn"
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_1222"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
 Begin Object Class=SeqAct_AkStartAmbientSound Name=SeqAct_AkStartAmbientSound_3
@@ -17229,58 +17179,6 @@ Begin Object Class=SeqVar_Player Name=SeqVar_Player_5
    ObjectArchetype=SeqVar_Player'Engine.Default__SeqVar_Player'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_1204
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_177'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3736
-   ObjPosY=-6608
-   ObjComment="Main area abow spawn"
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_1204"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_1293
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_169'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3880
-   ObjPosY=-6656
-   ObjComment="Main area abow spawn"
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_1293"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_1326
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_190'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3976
-   ObjPosY=-6568
-   ObjComment="Main area abow spawn"
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_1326"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_1182
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_37'
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3328
-   ObjPosY=-6576
-   ObjComment="Main area abow spawn"
-   DrawWidth=32
-   DrawHeight=32
-   Name="SeqVar_Object_1182"
-   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
-End Object
-
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_61
    ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_4'
    ObjInstanceVersion=1
@@ -17625,7 +17523,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1247
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1249
-   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_199'
+   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_408'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-7992
@@ -17637,7 +17535,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1249
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1250
-   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_60'
+   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_407'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-7880
@@ -18657,7 +18555,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1309
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1310
-   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_97'
+   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_405'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-7312
@@ -19487,7 +19385,7 @@ End Object
 Begin Object Class=InterpData Name=InterpData_11
    Begin Object Class=InterpGroup Name=InterpGroup_8
       Begin Object Class=InterpTrackVectorMaterialParam Name=InterpTrackVectorMaterialParam_0
-         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Elysium_Lights_FX.Rim_Clouds')
+         Materials(0)=(TargetMaterial=MaterialInstanceConstant'ENV_Elysium_Lights_FX.Rim_Clouds',AffectedMaterialRefs=((Primitive=StaticMeshComponent'KF-ELYSIUM.TheWorld:PersistentLevel.StaticMeshActor_3395.StaticMeshComponent_29'),(Primitive=StaticMeshComponent'KF-ELYSIUM.TheWorld:PersistentLevel.StaticMeshActor_4560.StaticMeshComponent_29')))
          ParamName="Scalar_Glow_color"
          VectorTrack=(Points=((InVal=5.000000,OutVal=(X=1.002211,Y=0.997249,Z=0.997250),InterpMode=CIM_CurveAutoClamped),(InVal=10.000000,InterpMode=CIM_CurveAutoClamped)))
          Name="InterpTrackVectorMaterialParam_0"
@@ -19613,7 +19511,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1398
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_888
-   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_59'
+   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_404'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=1176
@@ -19673,7 +19571,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_718
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_879
-   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_40'
+   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_411'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-6080
@@ -19697,7 +19595,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_1024
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1383
-   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_42'
+   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_414'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-4478
@@ -19781,7 +19679,7 @@ Begin Object Class=SeqAct_ToggleHidden Name=SeqAct_ToggleHidden_59
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_1426
-   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_148'
+   ObjValue=Emitter'KF-ELYSIUM.TheWorld:PersistentLevel.Emitter_406'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-7416
@@ -19983,7 +19881,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
    InputLinks(1)=(DrawY=-2574,OverrideDelta=35)
    InputLinks(2)=(DrawY=-2553,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-2574,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_29',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_2',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_5',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_4',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_9',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_6',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_7',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_8',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_16',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_14',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_10',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_15',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_12',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_11',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_13',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_722'),DrawX=-7458,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_29',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_42',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_5',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_4',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_9',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_6',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_7',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_8',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_16',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_14',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_10',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_15',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_12',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_11',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_13',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_722'),DrawX=-7458,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-7407,OverrideDelta=76)
    EventLinks(0)=(DrawX=-7358,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -19996,7 +19894,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_4
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_42
    ObjValue=DynamicBlockingVolume'KF-ELYSIUM.TheWorld:PersistentLevel.DynamicBlockingVolume_28'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -20004,7 +19902,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
    ObjPosY=-2496
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_2"
+   Name="SeqVar_Object_42"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
@@ -20189,7 +20087,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_10
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_3
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_122'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-9096
@@ -20295,8 +20192,8 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_25
    ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_59'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-1488
-   ObjPosY=-6776
+   ObjPosX=-1784
+   ObjPosY=-6976
    DrawWidth=32
    DrawHeight=32
    Name="SeqVar_Object_25"
@@ -20332,7 +20229,7 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_7
    InputLinks(1)=(DrawY=-7590,OverrideDelta=35)
    InputLinks(2)=(DrawY=-7569,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-7590,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_76',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_901',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_906',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_910',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_911',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1397',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_860',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_853',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1044',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_965',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_952',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_940',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_830',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_800',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_918',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_984',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1155',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_885',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_892',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_887',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_883',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1156',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_827',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_916',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_909',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_933',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_944',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_805',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_921',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_956',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_917',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_895',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1067',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1008',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1066',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1065',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1064',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_975',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_968',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1061',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1062',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1063',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1396',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1213',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1222',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1212',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1182',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1204',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1293',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1326',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_27'),DrawX=-3610,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_76',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_901',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_906',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_910',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_911',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1397',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_43',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_853',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1044',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_965',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_952',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_940',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_830',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_800',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_918',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_984',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1155',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_885',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_892',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_887',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_883',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1156',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_827',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_916',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_909',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_933',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_944',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_805',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_921',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_956',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_917',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_895',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1067',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1008',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1066',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1065',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1064',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_975',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_968',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1061',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1062',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1063',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_1396',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_27',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_46',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_51',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_44',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_2',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_47',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_48',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_49'),DrawX=-3610,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3559,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3510,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -20375,24 +20272,24 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_725
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_223
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_11'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3272
-   ObjPosY=-7680
+   ObjPosX=-3056
+   ObjPosY=-7688
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_41"
+   Name="SeqVar_Object_223"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_20
    InputLinks(0)=(DrawY=-7811,OverrideDelta=14)
    InputLinks(1)=(DrawY=-7790,OverrideDelta=35)
    InputLinks(2)=(DrawY=-7769,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-7790,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_54',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_41',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_53',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_52'),DrawX=-3250,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_228',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_222',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_230',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_74'),DrawX=-3250,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-3199,OverrideDelta=76)
    EventLinks(0)=(DrawX=-3150,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -20401,11 +20298,11 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
    ObjPosY=-7848
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_6"
+   Name="SeqAct_Toggle_20"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_222
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_28'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -20413,11 +20310,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
    ObjPosY=-7600
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_53"
+   Name="SeqVar_Object_222"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_228
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_75'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -20425,11 +20322,11 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
    ObjPosY=-7680
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_54"
+   Name="SeqVar_Object_228"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_221
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_76'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -20437,47 +20334,47 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
    ObjPosY=-7696
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_55"
+   Name="SeqVar_Object_221"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_74
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_74'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3080
-   ObjPosY=-7696
+   ObjPosX=-3240
+   ObjPosY=-7704
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_56"
+   Name="SeqVar_Object_74"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_57
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_190
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_47'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-2896
-   ObjPosY=-7720
+   ObjPosX=-3016
+   ObjPosY=-7624
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_57"
+   Name="SeqVar_Object_190"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_191
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_12'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-2784
-   ObjPosY=-7616
+   ObjPosX=-2744
+   ObjPosY=-7624
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_58"
+   Name="SeqVar_Object_191"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_220
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_73'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -20485,49 +20382,28 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
    ObjPosY=-7696
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_59"
+   Name="SeqVar_Object_220"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_229
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_46'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-2688
-   ObjPosY=-7648
+   ObjPosX=-2664
+   ObjPosY=-7672
    DrawWidth=32
    DrawHeight=32
-   Name="SeqVar_Object_60"
+   Name="SeqVar_Object_229"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_5
-   LinkCount=3
-   IncrementAmount=0
-   bLooping=True
-   bAutoDisableLinks=True
-   InputLinks(0)=(DrawY=-7818,OverrideDelta=19)
-   InputLinks(1)=(DrawY=-7786,OverrideDelta=51)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_6')),DrawY=-7823,OverrideDelta=14)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_14')),LinkDesc="Link 2",DrawY=-7802,OverrideDelta=35)
-   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_15')),LinkDesc="Link 3",DrawY=-7781,OverrideDelta=56)
-   VariableLinks(0)=(DrawX=-3498,OverrideDelta=23)
-   ObjInstanceVersion=2
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3542
-   ObjPosY=-7860
-   DrawWidth=89
-   DrawHeight=125
-   Name="SeqAct_RandomSwitch_5"
-   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
-End Object
-
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_28
    InputLinks(0)=(DrawY=-7819,OverrideDelta=14)
    InputLinks(1)=(DrawY=-7798,OverrideDelta=35)
    InputLinks(2)=(DrawY=-7777,OverrideDelta=56)
    OutputLinks(0)=(DrawY=-7798,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_56',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_55',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_57'),DrawX=-2962,OverrideDelta=16)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_221',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_223',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_190'),DrawX=-2962,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-2911,OverrideDelta=76)
    EventLinks(0)=(DrawX=-2862,OverrideDelta=119)
    ObjInstanceVersion=1
@@ -20536,25 +20412,25 @@ Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
    ObjPosY=-7856
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_14"
+   Name="SeqAct_Toggle_28"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_15
-   InputLinks(0)=(DrawY=-7775,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-7754,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-7733,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-7754,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_59',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_60',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_58'),DrawX=-2666,OverrideDelta=16)
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_29
+   InputLinks(0)=(DrawY=-7771,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7750,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7729,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7750,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_220',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_191',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_229'),DrawX=-2666,OverrideDelta=16)
    VariableLinks(1)=(DrawX=-2615,OverrideDelta=76)
    EventLinks(0)=(DrawX=-2566,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-2704
-   ObjPosY=-7812
+   ObjPosY=-7808
    DrawWidth=173
    DrawHeight=109
-   Name="SeqAct_Toggle_15"
+   Name="SeqAct_Toggle_29"
    ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object
 
@@ -20727,7 +20603,7 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_63
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_65
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_19'
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_37'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-4096
@@ -21795,7 +21671,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_227
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_123'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-9000
@@ -21808,7 +21683,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_39
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_124'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-9192
@@ -21821,7 +21695,6 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_40
 End Object
 
 Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
-   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_53'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
    ObjPosX=-8904
@@ -21833,36 +21706,18 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_19
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
 End Object
 
-Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_17
-   InputLinks(0)=(DrawY=-7883,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-7862,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-7841,OverrideDelta=56)
-   OutputLinks(0)=(DrawY=-7862,OverrideDelta=35)
-   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_54',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_53',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_41',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_56',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_55',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_57',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_59',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_58',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_60',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_52'),DrawX=-4115,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-4064,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-4015,OverrideDelta=119)
-   ObjInstanceVersion=1
-   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-4153
-   ObjPosY=-7920
-   DrawWidth=173
-   DrawHeight=109
-   Name="SeqAct_Toggle_17"
-   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
-End Object
-
 Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_13
-   InputLinks(0)=(DrawY=-7867,OverrideDelta=14)
-   InputLinks(1)=(DrawY=-7846,OverrideDelta=35)
-   InputLinks(2)=(DrawY=-7825,OverrideDelta=56)
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_5')),DrawY=-7846,OverrideDelta=35)
-   VariableLinks(0)=(DrawX=-3842,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-3791,OverrideDelta=76)
-   EventLinks(0)=(DrawX=-3742,OverrideDelta=119)
+   InputLinks(0)=(DrawY=-7827,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7806,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7785,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7806,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_57',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_41',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_59',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_79',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_52',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_53',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_60',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_80',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_55',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_50',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_233',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_232',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_231',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_860'),DrawX=-4082,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-4031,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3982,OverrideDelta=119)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-3880
-   ObjPosY=-7904
+   ObjPosX=-4120
+   ObjPosY=-7864
    DrawWidth=173
    DrawHeight=109
    Name="SeqAct_Toggle_13"
@@ -21871,22 +21726,22 @@ End Object
 
 Begin Object Class=KFSeqEvent_WaveStart Name=KFSeqEvent_WaveStart_0
    MaxWidth=248
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_17',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_13')),DrawY=-7884,OverrideDelta=13)
-   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_17'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_13',InputLinkIdx=1)),DrawY=-7864,OverrideDelta=33)
-   VariableLinks(0)=(DrawX=-4413,OverrideDelta=16)
-   VariableLinks(1)=(DrawX=-4352,OverrideDelta=86)
-   VariableLinks(2)=(DrawX=-4271,OverrideDelta=139)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_RandomSwitch'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_RandomSwitch_3'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_17',InputLinkIdx=1)),DrawY=-7900,OverrideDelta=13)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_13')),DrawY=-7880,OverrideDelta=33)
+   VariableLinks(0)=(DrawX=-4437,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-4376,OverrideDelta=86)
+   VariableLinks(2)=(DrawX=-4295,OverrideDelta=139)
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
-   ObjPosX=-4456
-   ObjPosY=-7952
+   ObjPosX=-4480
+   ObjPosY=-7968
    DrawWidth=175
    DrawHeight=168
    Name="KFSeqEvent_WaveStart_0"
    ObjectArchetype=KFSeqEvent_WaveStart'KFGame.Default__KFSeqEvent_WaveStart'
 End Object
 
-Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_230
    ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_20'
    ObjInstanceVersion=1
    ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
@@ -21894,6 +21749,2378 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
    ObjPosY=-7616
    DrawWidth=32
    DrawHeight=32
+   Name="SeqVar_Object_230"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_4
+   SizeX=578
+   SizeY=309
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1192
+   ObjPosY=-7672
+   ObjComment="Portal spawn: wall high"
+   DrawWidth=578
+   DrawHeight=309
+   Name="SequenceFrame_4"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_46
+   ObjValue=KFSpawner'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawner_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-832
+   ObjPosY=-7448
+   ObjComment="PARENT - wall high spawner"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_46"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_22
+   InputLinks(0)=(DrawY=-7571,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7550,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7529,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7550,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_46'),DrawX=-802,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-751,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-702,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-840
+   ObjPosY=-7608
+   ObjComment="...activate this portal spawner."
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_22"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_4
+   Originator=TriggerVolume'KF-ELYSIUM.TheWorld:PersistentLevel.TriggerVolume_31'
+   MaxTriggerCount=0
+   MaxWidth=173
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_22')),DrawY=-7571,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-7550,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-7529,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1082,OverrideDelta=54)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1168
+   ObjPosY=-7640
+   ObjName="TriggerVolume_31 Touch"
+   ObjComment="When a player touches this volume..."
+   DrawWidth=131
+   DrawHeight=176
+   Name="SeqEvent_Touch_4"
+   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_2
+   Originator=TriggerVolume'KF-ELYSIUM.TheWorld:PersistentLevel.TriggerVolume_30'
+   MaxTriggerCount=0
+   MaxWidth=173
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_21')),DrawY=-7091,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-7070,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-7049,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1066,OverrideDelta=54)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1152
+   ObjPosY=-7160
+   ObjName="TriggerVolume_30 Touch"
+   ObjComment="When a player touches this volume..."
+   DrawWidth=131
+   DrawHeight=176
+   Name="SeqEvent_Touch_2"
+   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_21
+   InputLinks(0)=(DrawY=-7091,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7070,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7049,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7070,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_44'),DrawX=-786,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-735,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-686,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-824
+   ObjPosY=-7128
+   ObjComment="...activate this portal spawner."
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_21"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_44
+   ObjValue=KFSpawner'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawner_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-816
+   ObjPosY=-6968
+   ObjComment="PARENT - wall high spawner"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_44"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_3
+   SizeX=578
+   SizeY=309
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1176
+   ObjPosY=-7192
+   ObjComment="Portal spawn: wall high"
+   DrawWidth=578
+   DrawHeight=309
+   Name="SequenceFrame_3"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_3
+   Originator=TriggerVolume'KF-ELYSIUM.TheWorld:PersistentLevel.TriggerVolume_1'
+   MaxTriggerCount=0
+   MaxWidth=165
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_3')),DrawY=-6603,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-6582,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-6561,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1070,OverrideDelta=50)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1152
+   ObjPosY=-6672
+   ObjName="TriggerVolume_1 Touch"
+   ObjComment="When a player touches this volume..."
+   DrawWidth=127
+   DrawHeight=176
+   Name="SeqEvent_Touch_3"
+   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_3
+   InputLinks(0)=(DrawY=-6603,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6582,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6561,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6582,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_2'),DrawX=-786,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-735,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-686,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-824
+   ObjPosY=-6640
+   ObjComment="...activate this portal spawner."
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_3"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_2
+   ObjValue=KFSpawner'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawner_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-816
+   ObjPosY=-6480
+   ObjComment="PARENT - wall high spawner"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_2"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_2
+   SizeX=578
+   SizeY=309
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1176
+   ObjPosY=-6704
+   ObjComment="Portal spawn: wall high"
+   DrawWidth=578
+   DrawHeight=309
+   Name="SequenceFrame_2"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_5
+   Originator=TriggerVolume'KF-ELYSIUM.TheWorld:PersistentLevel.TriggerVolume_32'
+   MaxTriggerCount=0
+   MaxWidth=173
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_23')),DrawY=-6195,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-6174,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-6153,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1074,OverrideDelta=54)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1160
+   ObjPosY=-6264
+   ObjName="TriggerVolume_32 Touch"
+   ObjComment="When a player touches this volume..."
+   DrawWidth=131
+   DrawHeight=176
+   Name="SeqEvent_Touch_5"
+   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_23
+   InputLinks(0)=(DrawY=-6195,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6174,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6153,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6174,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_47'),DrawX=-794,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-743,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-694,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-832
+   ObjPosY=-6232
+   ObjComment="...activate this portal spawner."
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_23"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_47
+   ObjValue=KFSpawner'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawner_18'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-824
+   ObjPosY=-6072
+   ObjComment="PARENT - wall high spawner"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_47"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_5
+   SizeX=578
+   SizeY=309
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1184
+   ObjPosY=-6296
+   ObjComment="Portal spawn: wall high"
+   DrawWidth=578
+   DrawHeight=309
+   Name="SequenceFrame_5"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_6
+   SizeX=578
+   SizeY=309
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1176
+   ObjPosY=-5864
+   ObjComment="Portal spawn: wall high"
+   DrawWidth=578
+   DrawHeight=309
+   Name="SequenceFrame_6"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_48
+   ObjValue=KFSpawner'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawner_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-816
+   ObjPosY=-5640
+   ObjComment="PARENT - wall high spawner"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_48"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_24
+   InputLinks(0)=(DrawY=-5763,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5742,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5721,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-5742,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_48'),DrawX=-786,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-735,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-686,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-824
+   ObjPosY=-5800
+   ObjComment="...activate this portal spawner."
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_24"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_6
+   Originator=TriggerVolume'KF-ELYSIUM.TheWorld:PersistentLevel.TriggerVolume_33'
+   MaxTriggerCount=0
+   MaxWidth=173
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_24')),DrawY=-5763,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-5742,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-5721,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1066,OverrideDelta=54)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1152
+   ObjPosY=-5832
+   ObjName="TriggerVolume_33 Touch"
+   ObjComment="When a player touches this volume..."
+   DrawWidth=131
+   DrawHeight=176
+   Name="SeqEvent_Touch_6"
+   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_7
+   Originator=TriggerVolume'KF-ELYSIUM.TheWorld:PersistentLevel.TriggerVolume_34'
+   MaxTriggerCount=0
+   MaxWidth=173
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_25')),DrawY=-5355,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-5334,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-5313,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-1066,OverrideDelta=54)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1152
+   ObjPosY=-5424
+   ObjName="TriggerVolume_34 Touch"
+   ObjComment="When a player touches this volume..."
+   DrawWidth=131
+   DrawHeight=176
+   Name="SeqEvent_Touch_7"
+   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_25
+   InputLinks(0)=(DrawY=-5355,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5334,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5313,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-5334,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_49'),DrawX=-786,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-735,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-686,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-824
+   ObjPosY=-5392
+   ObjComment="...activate this portal spawner."
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_25"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_49
+   ObjValue=KFSpawner'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawner_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-816
+   ObjPosY=-5232
+   ObjComment="PARENT - wall high spawner"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_49"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_7
+   SizeX=583
+   SizeY=309
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1176
+   ObjPosY=-5456
+   ObjComment="Portal spawn: wall high"
+   DrawWidth=583
+   DrawHeight=309
+   Name="SequenceFrame_7"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqEvent_Touch Name=SeqEvent_Touch_9
+   Originator=TriggerVolume'KF-ELYSIUM.TheWorld:PersistentLevel.TriggerVolume_29'
+   MaxTriggerCount=0
+   MaxWidth=173
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_27')),DrawY=-7587,OverrideDelta=14)
+   OutputLinks(1)=(DrawY=-7566,OverrideDelta=35)
+   OutputLinks(2)=(DrawY=-7545,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-362,OverrideDelta=54)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-448
+   ObjPosY=-7656
+   ObjName="TriggerVolume_29 Touch"
+   ObjComment="When a player touches this volume..."
+   DrawWidth=131
+   DrawHeight=176
+   Name="SeqEvent_Touch_9"
+   ObjectArchetype=SeqEvent_Touch'Engine.Default__SeqEvent_Touch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_27
+   InputLinks(0)=(DrawY=-7587,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7566,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7545,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7566,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_51'),DrawX=-82,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-31,OverrideDelta=76)
+   EventLinks(0)=(DrawX=18,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-120
+   ObjPosY=-7624
+   ObjComment="...activate this portal spawner."
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_27"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_51
+   ObjValue=KFSpawner'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawner_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-112
+   ObjPosY=-7464
+   ObjComment="PARENT - wall high spawner"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_51"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SequenceFrame Name=SequenceFrame_9
+   SizeX=578
+   SizeY=309
+   bDrawBox=True
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-472
+   ObjPosY=-7688
+   ObjComment="Portal spawn: wall high"
+   DrawWidth=578
+   DrawHeight=309
+   Name="SequenceFrame_9"
+   ObjectArchetype=SequenceFrame'Engine.Default__SequenceFrame'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_59
+   InputLinks(0)=(DrawY=-6694,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6673,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6652,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6673,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_88',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_83',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_112'),DrawX=-5450,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-5399,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-5350,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5488
+   ObjPosY=-6731
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_59"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_60
+   InputLinks(0)=(DrawY=-6827,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6806,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6785,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6806,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_89',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_126',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_85',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_86'),DrawX=-5663,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-5612,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-5563,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5701
+   ObjPosY=-6864
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_60"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_6
+   LinkCount=3
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-6742,OverrideDelta=19)
+   InputLinks(1)=(DrawY=-6710,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_61')),DrawY=-6747,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_60')),LinkDesc="Link 2",DrawY=-6726,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_59')),LinkDesc="Link 3",DrawY=-6705,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-6105,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6149
+   ObjPosY=-6784
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_6"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_88
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_49'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5512
+   ObjPosY=-6560
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_88"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_89
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_43'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5717
+   ObjPosY=-6616
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_89"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_82
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_44'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5944
+   ObjPosY=-6472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_82"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_61
+   InputLinks(0)=(DrawY=-6659,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6638,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6617,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6638,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_82',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_81',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_90',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_58'),DrawX=-5903,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-5852,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-5803,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5941
+   ObjPosY=-6696
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_61"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_83
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_45'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5384
+   ObjPosY=-6560
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_83"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_81
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_71'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5832
+   ObjPosY=-6488
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_81"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_126
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_13'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5656
+   ObjPosY=-6528
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_126"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_90
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-6037
+   ObjPosY=-6536
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_90"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_85
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_42'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5608
+   ObjPosY=-6608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_85"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_112
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_5'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5408
+   ObjPosY=-6472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_112"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_91
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5535
+   ObjPosY=-5737
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_91"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_62
+   InputLinks(0)=(DrawY=-5860,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5839,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5818,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-5839,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_91'),DrawX=-5401,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-5350,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-5301,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5439
+   ObjPosY=-5897
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_62"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_92
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_43'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5215
+   ObjPosY=-5817
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_92"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_93
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_49'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5010
+   ObjPosY=-5761
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_93"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_7
+   LinkCount=3
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-5943,OverrideDelta=19)
+   InputLinks(1)=(DrawY=-5911,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_62')),DrawY=-5948,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_63')),LinkDesc="Link 2",DrawY=-5927,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_64')),LinkDesc="Link 3",DrawY=-5906,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-5603,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5647
+   ObjPosY=-5985
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_7"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_63
+   InputLinks(0)=(DrawY=-6028,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6007,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5986,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6007,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_92'),DrawX=-5161,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-5110,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-5061,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5199
+   ObjPosY=-6065
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_63"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_64
+   InputLinks(0)=(DrawY=-5895,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-5874,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-5853,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-5874,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_93'),DrawX=-4948,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-4897,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-4848,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4986
+   ObjPosY=-5932
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_64"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_67
+   InputLinks(0)=(DrawY=-6787,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6766,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6745,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6766,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_122',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_96',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_145'),DrawX=-4234,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-4183,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-4134,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4272
+   ObjPosY=-6824
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_67"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_66
+   InputLinks(0)=(DrawY=-6915,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6894,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6873,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6894,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_121',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_95',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_139'),DrawX=-4450,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-4399,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-4350,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4488
+   ObjPosY=-6952
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_66"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_8
+   LinkCount=3
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-6830,OverrideDelta=19)
+   InputLinks(1)=(DrawY=-6798,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_65')),DrawY=-6835,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_66')),LinkDesc="Link 2",DrawY=-6814,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_67')),LinkDesc="Link 3",DrawY=-6793,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-4892,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4936
+   ObjPosY=-6872
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_8"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_122
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_30'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4296
+   ObjPosY=-6648
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_122"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_121
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_18'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4504
+   ObjPosY=-6704
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_121"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_65
+   InputLinks(0)=(DrawY=-6747,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6726,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6705,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6726,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_120',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_131',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_94'),DrawX=-4690,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-4639,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-4590,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4728
+   ObjPosY=-6784
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_65"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_120
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_17'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4824
+   ObjPosY=-6624
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_120"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_70
+   InputLinks(0)=(DrawY=-6747,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6726,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6705,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6726,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_118',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_129',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_99'),DrawX=-2362,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2311,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2262,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2400
+   ObjPosY=-6784
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_70"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_69
+   InputLinks(0)=(DrawY=-6883,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6862,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6841,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6862,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_117',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_127',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_98'),DrawX=-2570,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2519,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2470,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2608
+   ObjPosY=-6920
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_69"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_12
+   LinkCount=3
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-6798,OverrideDelta=19)
+   InputLinks(1)=(DrawY=-6766,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_68')),DrawY=-6803,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_69')),LinkDesc="Link 2",DrawY=-6782,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_70')),LinkDesc="Link 3",DrawY=-6761,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-3012,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3056
+   ObjPosY=-6840
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_12"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_118
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_23'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2424
+   ObjPosY=-6616
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_118"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_117
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_22'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2624
+   ObjPosY=-6672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_117"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_68
+   InputLinks(0)=(DrawY=-6715,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6694,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6673,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6694,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_116',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_125',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_97',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_152'),DrawX=-2810,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2759,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2710,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2848
+   ObjPosY=-6752
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_68"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_116
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_16'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2944
+   ObjPosY=-6592
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_116"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_73
+   InputLinks(0)=(DrawY=-6747,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6726,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6705,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6726,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_128',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_102'),DrawX=-1378,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1327,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1278,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1416
+   ObjPosY=-6784
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_73"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_72
+   InputLinks(0)=(DrawY=-6787,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6766,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6745,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6766,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_124',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_101',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_111'),DrawX=-1610,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1559,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1510,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1648
+   ObjPosY=-6824
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_72"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_13
+   LinkCount=3
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-6790,OverrideDelta=19)
+   InputLinks(1)=(DrawY=-6758,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_71')),DrawY=-6795,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_72')),LinkDesc="Link 2",DrawY=-6774,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_73')),LinkDesc="Link 3",DrawY=-6753,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-2036,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2080
+   ObjPosY=-6832
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_13"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_128
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_41'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1424
+   ObjPosY=-6600
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_128"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_124
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_34'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1648
+   ObjPosY=-6664
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_124"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_71
+   InputLinks(0)=(DrawY=-6707,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-6686,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-6665,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-6686,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_123',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_130',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_100'),DrawX=-1834,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1783,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1734,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1872
+   ObjPosY=-6744
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_71"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_123
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_10'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1968
+   ObjPosY=-6584
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_123"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_76
+   InputLinks(0)=(DrawY=-4739,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4718,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4697,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4718,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_105',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_142',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_146'),DrawX=-4858,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-4807,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-4758,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4896
+   ObjPosY=-4776
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_76"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_75
+   InputLinks(0)=(DrawY=-4875,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4854,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4833,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4854,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_104',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_141',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_144'),DrawX=-5074,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-5023,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-4974,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5112
+   ObjPosY=-4912
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_75"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_16
+   LinkCount=3
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-4790,OverrideDelta=19)
+   InputLinks(1)=(DrawY=-4758,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_74')),DrawY=-4795,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_75')),LinkDesc="Link 2",DrawY=-4774,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_76')),LinkDesc="Link 3",DrawY=-4753,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-5516,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5560
+   ObjPosY=-4832
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_16"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_105
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_64'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4920
+   ObjPosY=-4608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_105"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_104
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_63'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5128
+   ObjPosY=-4664
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_104"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_74
+   InputLinks(0)=(DrawY=-4707,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4686,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4665,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4686,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_103',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_140',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_143'),DrawX=-5314,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-5263,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-5214,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5352
+   ObjPosY=-4744
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_74"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_103
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_62'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5448
+   ObjPosY=-4584
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_103"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_79
+   InputLinks(0)=(DrawY=-4779,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4758,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4737,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4758,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_108'),DrawX=-3594,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3543,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3494,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3632
+   ObjPosY=-4816
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_79"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_78
+   InputLinks(0)=(DrawY=-4915,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4894,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4873,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4894,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_107'),DrawX=-3810,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3759,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3710,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3848
+   ObjPosY=-4952
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_78"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_17
+   LinkCount=3
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-4830,OverrideDelta=19)
+   InputLinks(1)=(DrawY=-4798,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_77')),DrawY=-4835,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_78')),LinkDesc="Link 2",DrawY=-4814,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_79')),LinkDesc="Link 3",DrawY=-4793,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-4252,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4296
+   ObjPosY=-4872
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_17"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_108
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_70'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3656
+   ObjPosY=-4648
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_108"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_107
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_61'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3864
+   ObjPosY=-4704
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_107"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_77
+   InputLinks(0)=(DrawY=-4747,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4726,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4705,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4726,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_106'),DrawX=-4050,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3999,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3950,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4088
+   ObjPosY=-4784
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_77"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_106
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_21'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4184
+   ObjPosY=-4624
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_106"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_82
+   InputLinks(0)=(DrawY=-4643,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4622,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4601,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4622,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_134',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_135',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_138'),DrawX=-2418,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2367,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2318,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2456
+   ObjPosY=-4680
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_82"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_81
+   InputLinks(0)=(DrawY=-4779,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4758,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4737,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4758,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_133',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_110',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_137'),DrawX=-2634,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2583,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2534,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2672
+   ObjPosY=-4816
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_81"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_18
+   LinkCount=3
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-4694,OverrideDelta=19)
+   InputLinks(1)=(DrawY=-4662,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_80')),DrawY=-4699,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_81')),LinkDesc="Link 2",DrawY=-4678,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_82')),LinkDesc="Link 3",DrawY=-4657,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-3076,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3120
+   ObjPosY=-4736
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_18"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_134
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_53'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2480
+   ObjPosY=-4512
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_134"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_133
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_52'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2688
+   ObjPosY=-4568
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_133"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_80
+   InputLinks(0)=(DrawY=-4611,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4590,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4569,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4590,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_132',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_109',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_136'),DrawX=-2874,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2823,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2774,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2912
+   ObjPosY=-4648
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_80"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_132
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_38'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3008
+   ObjPosY=-4488
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_132"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_15
+   InputLinks(0)=(DrawY=-4675,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4654,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4633,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4654,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_115',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_87',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_148'),DrawX=-1370,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1319,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1270,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1408
+   ObjPosY=-4712
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_15"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_14
+   InputLinks(0)=(DrawY=-4803,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4782,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4761,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4782,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_114',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_84',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_147'),DrawX=-1578,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1527,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1478,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1616
+   ObjPosY=-4840
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_14"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_5
+   LinkCount=3
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-4718,OverrideDelta=19)
+   InputLinks(1)=(DrawY=-4686,OverrideDelta=51)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_6')),DrawY=-4723,OverrideDelta=14)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_14')),LinkDesc="Link 2",DrawY=-4702,OverrideDelta=35)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_15')),LinkDesc="Link 3",DrawY=-4681,OverrideDelta=56)
+   VariableLinks(0)=(DrawX=-2020,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2064
+   ObjPosY=-4760
+   DrawWidth=89
+   DrawHeight=125
+   Name="SeqAct_RandomSwitch_5"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_115
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_14'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1432
+   ObjPosY=-4536
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_115"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_114
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_1'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1632
+   ObjPosY=-4592
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_114"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_6
+   InputLinks(0)=(DrawY=-4635,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-4614,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-4593,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-4614,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_119',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_56',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_113'),DrawX=-1818,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1767,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1718,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1856
+   ObjPosY=-4672
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_6"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_119
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_0'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1888
+   ObjPosY=-4496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_119"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_58
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_3'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5840
+   ObjPosY=-6392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_58"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_56
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_15'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1768
+   ObjPosY=-4472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_56"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_84
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_2'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1567
+   ObjPosY=-4649
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_84"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_87
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_24'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1320
+   ObjPosY=-4528
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_87"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_125
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_25'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2824
+   ObjPosY=-6568
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_125"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_127
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_26'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2544
+   ObjPosY=-6616
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_127"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_129
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_27'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2304
+   ObjPosY=-6584
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_129"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_113
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_29'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1824
+   ObjPosY=-4400
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_113"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_131
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_31'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4696
+   ObjPosY=-6600
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_131"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_95
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_32'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4416
+   ObjPosY=-6640
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_95"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_96
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_33'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4216
+   ObjPosY=-6616
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_96"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_130
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_36'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1872
+   ObjPosY=-6584
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_130"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_101
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_37'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1560
+   ObjPosY=-6600
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_101"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_97
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_39'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2706
+   ObjPosY=-6578
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_97"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_86
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_4'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5592
+   ObjPosY=-6440
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_86"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_98
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_6'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2568
+   ObjPosY=-6536
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_98"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_102
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_35'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1336
+   ObjPosY=-6544
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_102"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_99
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_48'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2360
+   ObjPosY=-6512
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_99"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_100
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_50'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1776
+   ObjPosY=-6584
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_100"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_94
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_51'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4579
+   ObjPosY=-6588
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_94"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_109
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_54'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2880
+   ObjPosY=-4464
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_109"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_110
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_55'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2640
+   ObjPosY=-4488
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_110"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_135
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_56'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2352
+   ObjPosY=-4472
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_135"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_136
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_57'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2984
+   ObjPosY=-4392
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_136"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_137
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_58'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2679
+   ObjPosY=-4415
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_137"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_138
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_59'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2411
+   ObjPosY=-4420
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_138"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_139
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_60'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4450
+   ObjPosY=-6558
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_139"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_140
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_65'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5306
+   ObjPosY=-4552
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_140"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_141
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_66'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5050
+   ObjPosY=-4567
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_141"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_142
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_67'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4753
+   ObjPosY=-4528
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_142"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_143
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_68'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5406
+   ObjPosY=-4500
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_143"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_144
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_69'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-5008
+   ObjPosY=-4430
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_144"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_145
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_7'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4239
+   ObjPosY=-6525
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_145"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_146
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_72'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4829
+   ObjPosY=-4489
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_146"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_147
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_77'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1560
+   ObjPosY=-4496
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_147"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_148
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_78'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1360
+   ObjPosY=-4432
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_148"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_152
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_8'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2803
+   ObjPosY=-6468
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_152"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_111
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_9'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1528
+   ObjPosY=-6672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_111"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_RandomSwitch Name=SeqAct_RandomSwitch_3
+   LinkCount=6
+   IncrementAmount=0
+   bLooping=True
+   bAutoDisableLinks=True
+   InputLinks(0)=(DrawY=-7847,OverrideDelta=37)
+   InputLinks(1)=(DrawY=-7779,OverrideDelta=105)
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_20'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_28',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_29',InputLinkIdx=1)),DrawY=-7868,OverrideDelta=16)
+   OutputLinks(1)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_28'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_20',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_29',InputLinkIdx=1)),LinkDesc="Link 2",DrawY=-7846,OverrideDelta=38)
+   OutputLinks(2)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_29'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_20',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_28',InputLinkIdx=1)),LinkDesc="Link 3",DrawY=-7824,OverrideDelta=60)
+   OutputLinks(3)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_26'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_57',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_58',InputLinkIdx=1)),LinkDesc="Link 4",DrawY=-7802,OverrideDelta=82)
+   OutputLinks(4)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_57'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_26',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_58',InputLinkIdx=1)),LinkDesc="Link 5",DrawY=-7780,OverrideDelta=104)
+   OutputLinks(5)=(Links=((LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_58'),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_26',InputLinkIdx=1),(LinkedOp=SeqAct_Toggle'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqAct_Toggle_57',InputLinkIdx=1)),LinkDesc="Link 6",DrawY=-7758,OverrideDelta=126)
+   VariableLinks(0)=(DrawX=-3513,OverrideDelta=23)
+   ObjInstanceVersion=2
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3557
+   ObjPosY=-7907
+   DrawWidth=89
+   DrawHeight=197
+   Name="SeqAct_RandomSwitch_3"
+   ObjectArchetype=SeqAct_RandomSwitch'Engine.Default__SeqAct_RandomSwitch'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_52
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4384
+   ObjPosY=-7696
+   DrawWidth=32
+   DrawHeight=32
    Name="SeqVar_Object_52"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_60
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_46'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4176
+   ObjPosY=-7680
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_60"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_59
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_73'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4296
+   ObjPosY=-7744
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_59"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_80
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_12'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4264
+   ObjPosY=-7672
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_80"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_57
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_47'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4120
+   ObjPosY=-7736
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_57"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_79
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_74'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4376
+   ObjPosY=-7768
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_79"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_55
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_76'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4168
+   ObjPosY=-7608
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_55"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_50
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_75'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4248
+   ObjPosY=-7600
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_50"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_53
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_28'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4464
+   ObjPosY=-7744
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_53"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_41
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4200
+   ObjPosY=-7776
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_41"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_58
+   InputLinks(0)=(DrawY=-7835,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7814,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7793,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7814,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_153',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_77',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_71'),DrawX=-1786,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-1735,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1686,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1824
+   ObjPosY=-7872
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_58"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_57
+   InputLinks(0)=(DrawY=-7883,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7862,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7841,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7862,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_78',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_170',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_68'),DrawX=-2082,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2031,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-1982,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2120
+   ObjPosY=-7920
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_57"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_26
+   InputLinks(0)=(DrawY=-7875,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7854,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7833,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7854,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_75',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_54',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_162'),DrawX=-2370,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-2319,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-2270,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2408
+   ObjPosY=-7912
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_26"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_75
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_47'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2344
+   ObjPosY=-7768
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_75"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_77
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_12'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1840
+   ObjPosY=-7728
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_77"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_78
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_73'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2112
+   ObjPosY=-7768
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_78"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_71
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_76'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1736
+   ObjPosY=-7728
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_71"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_54
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_28'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2256
+   ObjPosY=-7776
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_54"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_170
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_11'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2184
+   ObjPosY=-7728
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_170"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_68
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_75'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2016
+   ObjPosY=-7760
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_68"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_153
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_46'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-1776
+   ObjPosY=-7664
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_153"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_162
+   ObjValue=KFPickupFactory_Ammo'KF-ELYSIUM.TheWorld:PersistentLevel.KFPickupFactory_Ammo_20'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-2440
+   ObjPosY=-7776
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_162"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_231
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_122'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3936
+   ObjPosY=-7368
+   ObjComment="Boss"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_231"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_232
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_127'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-4048
+   ObjPosY=-7384
+   ObjComment="Boss"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_232"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_233
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_146'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3968
+   ObjPosY=-7464
+   ObjComment="Boss"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_233"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqVar_Object Name=SeqVar_Object_860
+   ObjValue=KFSpawnVolume'KF-ELYSIUM.TheWorld:PersistentLevel.KFSpawnVolume_19'
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3840
+   ObjPosY=-7432
+   ObjComment="Boss"
+   DrawWidth=32
+   DrawHeight=32
+   Name="SeqVar_Object_860"
+   ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqAct_Toggle Name=SeqAct_Toggle_17
+   InputLinks(0)=(DrawY=-7875,OverrideDelta=14)
+   InputLinks(1)=(DrawY=-7854,OverrideDelta=35)
+   InputLinks(2)=(DrawY=-7833,OverrideDelta=56)
+   OutputLinks(0)=(DrawY=-7854,OverrideDelta=35)
+   VariableLinks(0)=(LinkedVariables=(SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_233',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_860',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_232',SeqVar_Object'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1.SeqVar_Object_231'),DrawX=-3834,OverrideDelta=16)
+   VariableLinks(1)=(DrawX=-3783,OverrideDelta=76)
+   EventLinks(0)=(DrawX=-3734,OverrideDelta=119)
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-ELYSIUM.TheWorld:PersistentLevel.Sequence_1'
+   ObjPosX=-3872
+   ObjPosY=-7912
+   DrawWidth=173
+   DrawHeight=109
+   Name="SeqAct_Toggle_17"
+   ObjectArchetype=SeqAct_Toggle'Engine.Default__SeqAct_Toggle'
 End Object

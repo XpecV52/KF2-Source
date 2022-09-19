@@ -6672,13 +6672,13 @@ Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_1
    Originator=KFFracturedMeshActor'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshActor_5'
    MaxTriggerCount=0
    MaxWidth=270
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_20')),DrawY=-6606,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-8547,OverrideDelta=69)
-   VariableLinks(1)=(DrawX=-8473,OverrideDelta=149)
+   OutputLinks(0)=(DrawY=-6902,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-8539,OverrideDelta=69)
+   VariableLinks(1)=(DrawX=-8465,OverrideDelta=149)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8648
-   ObjPosY=-6672
+   ObjPosX=-8640
+   ObjPosY=-6968
    ObjName="KFFracturedMeshActor_5 Take Damage"
    ObjComment="Heart Wall Damaged"
    DrawWidth=155
@@ -6691,13 +6691,13 @@ Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_2
    DamageThreshold=250.000000
    Originator=KFFracturedMeshActor'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshActor_5'
    MaxWidth=270
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_8')),DrawY=-6390,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-8547,OverrideDelta=69)
-   VariableLinks(1)=(DrawX=-8473,OverrideDelta=149)
+   OutputLinks(0)=(DrawY=-6902,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-8235,OverrideDelta=69)
+   VariableLinks(1)=(DrawX=-8161,OverrideDelta=149)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-8648
-   ObjPosY=-6456
+   ObjPosX=-8336
+   ObjPosY=-6968
    ObjName="KFFracturedMeshActor_5 Take Damage"
    ObjComment="Heart Wall Destroyed"
    DrawWidth=155
@@ -6867,13 +6867,13 @@ Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_15
    Originator=KFFracturedMeshActor'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshActor_1'
    MaxTriggerCount=0
    MaxWidth=270
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_18')),DrawY=-6254,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-7555,OverrideDelta=69)
-   VariableLinks(1)=(DrawX=-7481,OverrideDelta=149)
+   OutputLinks(0)=(DrawY=-5782,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-7643,OverrideDelta=69)
+   VariableLinks(1)=(DrawX=-7569,OverrideDelta=149)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7656
-   ObjPosY=-6320
+   ObjPosX=-7744
+   ObjPosY=-5848
    ObjName="KFFracturedMeshActor_1 Take Damage"
    ObjComment="Nameless Room Secret Passage South Wall Damaged"
    DrawWidth=155
@@ -6886,13 +6886,13 @@ Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_16
    DamageThreshold=150.000000
    Originator=KFFracturedMeshActor'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshActor_1'
    MaxWidth=270
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_17')),DrawY=-6086,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-7555,OverrideDelta=69)
-   VariableLinks(1)=(DrawX=-7481,OverrideDelta=149)
+   OutputLinks(0)=(DrawY=-5782,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-7331,OverrideDelta=69)
+   VariableLinks(1)=(DrawX=-7257,OverrideDelta=149)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7656
-   ObjPosY=-6152
+   ObjPosX=-7432
+   ObjPosY=-5848
    ObjName="KFFracturedMeshActor_1 Take Damage"
    ObjComment="Nameless Room Secret Passage South Wall Destroyed"
    DrawWidth=155
@@ -6906,13 +6906,13 @@ Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_17
    Originator=KFFracturedMeshActor'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshActor_4'
    MaxTriggerCount=0
    MaxWidth=270
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_5')),DrawY=-6638,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-7019,OverrideDelta=69)
-   VariableLinks(1)=(DrawX=-6945,OverrideDelta=149)
+   OutputLinks(0)=(DrawY=-6622,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-6555,OverrideDelta=69)
+   VariableLinks(1)=(DrawX=-6481,OverrideDelta=149)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7120
-   ObjPosY=-6704
+   ObjPosX=-6656
+   ObjPosY=-6688
    ObjName="KFFracturedMeshActor_4 Take Damage"
    ObjComment="Nameless Room North Wall Damaged"
    DrawWidth=155
@@ -6925,13 +6925,13 @@ Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_18
    DamageThreshold=150.000000
    Originator=KFFracturedMeshActor'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshActor_4'
    MaxWidth=270
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_6')),DrawY=-6470,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-7019,OverrideDelta=69)
-   VariableLinks(1)=(DrawX=-6945,OverrideDelta=149)
+   OutputLinks(0)=(DrawY=-6454,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-6555,OverrideDelta=69)
+   VariableLinks(1)=(DrawX=-6481,OverrideDelta=149)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7120
-   ObjPosY=-6536
+   ObjPosX=-6656
+   ObjPosY=-6520
    ObjName="KFFracturedMeshActor_4 Take Damage"
    ObjComment="Nameless Room North Wall Destroyed"
    DrawWidth=155
@@ -6945,13 +6945,13 @@ Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_19
    Originator=KFFracturedMeshActor'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshActor_3'
    MaxTriggerCount=0
    MaxWidth=270
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_4')),DrawY=-6270,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-7019,OverrideDelta=69)
-   VariableLinks(1)=(DrawX=-6945,OverrideDelta=149)
+   OutputLinks(0)=(DrawY=-6206,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-6555,OverrideDelta=69)
+   VariableLinks(1)=(DrawX=-6481,OverrideDelta=149)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7120
-   ObjPosY=-6336
+   ObjPosX=-6656
+   ObjPosY=-6272
    ObjName="KFFracturedMeshActor_3 Take Damage"
    ObjComment="Nameless Room South Wall Damaged"
    DrawWidth=155
@@ -6964,13 +6964,13 @@ Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_20
    DamageThreshold=150.000000
    Originator=KFFracturedMeshActor'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshActor_3'
    MaxWidth=270
-   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_0')),DrawY=-6094,OverrideDelta=11)
-   VariableLinks(0)=(DrawX=-7019,OverrideDelta=69)
-   VariableLinks(1)=(DrawX=-6945,OverrideDelta=149)
+   OutputLinks(0)=(DrawY=-6030,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-6555,OverrideDelta=69)
+   VariableLinks(1)=(DrawX=-6481,OverrideDelta=149)
    ObjInstanceVersion=3
    ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
-   ObjPosX=-7120
-   ObjPosY=-6160
+   ObjPosX=-6656
+   ObjPosY=-6096
    ObjName="KFFracturedMeshActor_3 Take Damage"
    ObjComment="Nameless Room South Wall Destroyed"
    DrawWidth=155
@@ -7777,4 +7777,208 @@ Begin Object Class=SeqVar_Object Name=SeqVar_Object_72
    DrawHeight=32
    Name="SeqVar_Object_72"
    ObjectArchetype=SeqVar_Object'Engine.Default__SeqVar_Object'
+End Object
+
+Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_7
+   DamageThreshold=0.000000
+   Originator=KFFracturedMeshGlass'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshGlass_6'
+   MaxTriggerCount=0
+   MaxWidth=268
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_20')),DrawY=-6606,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-8532,OverrideDelta=68)
+   VariableLinks(1)=(DrawX=-8458,OverrideDelta=148)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8632
+   ObjPosY=-6672
+   ObjName="KFFracturedMeshGlass_6 Take Damage"
+   ObjComment="Heart Wall Damaged"
+   DrawWidth=154
+   DrawHeight=144
+   Name="SeqEvent_TakeDamage_7"
+   ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
+End Object
+
+Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_22
+   DamageThreshold=250.000000
+   Originator=KFFracturedMeshGlass'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshGlass_6'
+   MaxWidth=268
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_8')),DrawY=-6382,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-8532,OverrideDelta=68)
+   VariableLinks(1)=(DrawX=-8458,OverrideDelta=148)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8632
+   ObjPosY=-6448
+   ObjName="KFFracturedMeshGlass_6 Take Damage"
+   ObjComment="Heart Wall Destroyed"
+   DrawWidth=154
+   DrawHeight=144
+   Name="SeqEvent_TakeDamage_22"
+   ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
+End Object
+
+Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_0
+   SizeX=694
+   SizeY=264
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-8696
+   ObjPosY=-7024
+   ObjComment="Old Heart Wall"
+   Name="SequenceFrameWrapped_0"
+   ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
+End Object
+
+Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_23
+   DamageThreshold=0.000000
+   Originator=KFFracturedMeshGlass'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshGlass_13'
+   MaxTriggerCount=0
+   MaxWidth=276
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_5')),DrawY=-6638,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-6992,OverrideDelta=72)
+   VariableLinks(1)=(DrawX=-6918,OverrideDelta=152)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7096
+   ObjPosY=-6704
+   ObjName="KFFracturedMeshGlass_13 Take Damage"
+   ObjComment="Nameless Room North Wall Damaged"
+   DrawWidth=158
+   DrawHeight=144
+   Name="SeqEvent_TakeDamage_23"
+   ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
+End Object
+
+Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_24
+   DamageThreshold=150.000000
+   Originator=KFFracturedMeshGlass'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshGlass_13'
+   MaxWidth=276
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_6')),DrawY=-6470,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-6992,OverrideDelta=72)
+   VariableLinks(1)=(DrawX=-6918,OverrideDelta=152)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7096
+   ObjPosY=-6536
+   ObjName="KFFracturedMeshGlass_13 Take Damage"
+   ObjComment="Nameless Room North Wall Destroyed"
+   DrawWidth=158
+   DrawHeight=144
+   Name="SeqEvent_TakeDamage_24"
+   ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
+End Object
+
+Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_1
+   SizeX=390
+   SizeY=432
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-6712
+   ObjPosY=-6744
+   ObjComment="Old Nameless Room North Wall"
+   Name="SequenceFrameWrapped_1"
+   ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
+End Object
+
+Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_25
+   DamageThreshold=0.000000
+   Originator=KFFracturedMeshGlass'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshGlass_14'
+   MaxTriggerCount=0
+   MaxWidth=276
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_4')),DrawY=-6270,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-6992,OverrideDelta=72)
+   VariableLinks(1)=(DrawX=-6918,OverrideDelta=152)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7096
+   ObjPosY=-6336
+   ObjName="KFFracturedMeshGlass_14 Take Damage"
+   ObjComment="Nameless Room South Wall Damaged"
+   DrawWidth=158
+   DrawHeight=144
+   Name="SeqEvent_TakeDamage_25"
+   ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
+End Object
+
+Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_26
+   DamageThreshold=150.000000
+   Originator=KFFracturedMeshGlass'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshGlass_14'
+   MaxWidth=276
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_0')),DrawY=-6094,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-6992,OverrideDelta=72)
+   VariableLinks(1)=(DrawX=-6918,OverrideDelta=152)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7096
+   ObjPosY=-6160
+   ObjName="KFFracturedMeshGlass_14 Take Damage"
+   ObjComment="Nameless Room South Wall Destroyed"
+   DrawWidth=158
+   DrawHeight=144
+   Name="SeqEvent_TakeDamage_26"
+   ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
+End Object
+
+Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_2
+   SizeX=390
+   SizeY=440
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-6712
+   ObjPosY=-6328
+   ObjComment="Old Nameless Room South Wall"
+   Name="SequenceFrameWrapped_2"
+   ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
+End Object
+
+Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_27
+   DamageThreshold=0.000000
+   Originator=KFFracturedMeshGlass'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshGlass_11'
+   MaxTriggerCount=0
+   MaxWidth=276
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_18')),DrawY=-6246,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-7552,OverrideDelta=72)
+   VariableLinks(1)=(DrawX=-7478,OverrideDelta=152)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7656
+   ObjPosY=-6312
+   ObjName="KFFracturedMeshGlass_11 Take Damage"
+   ObjComment="Nameless Room Secret Passage South Wall Damaged"
+   DrawWidth=158
+   DrawHeight=144
+   Name="SeqEvent_TakeDamage_27"
+   ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
+End Object
+
+Begin Object Class=SeqEvent_TakeDamage Name=SeqEvent_TakeDamage_28
+   DamageThreshold=150.000000
+   Originator=KFFracturedMeshGlass'KF-NETHERHOLD.TheWorld:PersistentLevel.KFFracturedMeshGlass_11'
+   MaxWidth=276
+   OutputLinks(0)=(Links=((LinkedOp=SeqAct_AkPostEvent'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence.SeqAct_AkPostEvent_17')),DrawY=-6070,OverrideDelta=11)
+   VariableLinks(0)=(DrawX=-7552,OverrideDelta=72)
+   VariableLinks(1)=(DrawX=-7478,OverrideDelta=152)
+   ObjInstanceVersion=3
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7656
+   ObjPosY=-6136
+   ObjName="KFFracturedMeshGlass_11 Take Damage"
+   ObjComment="Nameless Room Secret Passage South Wall Destroyed"
+   DrawWidth=158
+   DrawHeight=144
+   Name="SeqEvent_TakeDamage_28"
+   ObjectArchetype=SeqEvent_TakeDamage'Engine.Default__SeqEvent_TakeDamage'
+End Object
+
+Begin Object Class=SequenceFrameWrapped Name=SequenceFrameWrapped_3
+   SizeX=702
+   SizeY=264
+   ObjInstanceVersion=1
+   ParentSequence=Sequence'KF-NETHERHOLD.TheWorld:PersistentLevel.Main_Sequence'
+   ObjPosX=-7800
+   ObjPosY=-5904
+   ObjComment="Old Nameless Room Secret Passage South Wall"
+   Name="SequenceFrameWrapped_3"
+   ObjectArchetype=SequenceFrameWrapped'Engine.Default__SequenceFrameWrapped'
 End Object

@@ -737,7 +737,7 @@ function UpdateListDataProvider()
     local int I, NewServerCount;
     local GFxObject TempObj;
     local KFOnlineGameSearch LatestGameSearch;
-    local int Ping;
+    local int Ping, PlayerCount;
     local KFOnlineGameSettings TempOnlineGamesSettings;
 
     LatestGameSearch = KFOnlineGameSearch(SearchDataStore.GetActiveGameSearch());
@@ -753,21 +753,26 @@ function UpdateListDataProvider()
                 if(NewServerCount > 10)
                 {
                     Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.01, false, 'UpdateListDataProvider', self);
-                    goto J0xAB4;
+                    goto J0xAC1;
                 }
                 TempOnlineGamesSettings = KFOnlineGameSettings(LatestGameSearch.Results[I].GameSettings);
                 if(Class'WorldInfo'.static.IsEOSBuild() && I >= LatestGameSearch.MaxSearchResults)
                 {
-                    goto J0xAB4;
+                    goto J0xAC1;
                 }
                 if(Class'WorldInfo'.static.IsEOSBuild() && TempOnlineGamesSettings.PingInMs == -1)
                 {
                     Class'WorldInfo'.static.GetWorldInfo().TimerHelper.SetTimer(0.1, false, 'UpdateListDataProvider', self);
-                    goto J0xAB4;
+                    goto J0xAC1;
                 }
                 TempObj = Outer.CreateObject("Object");
                 TempObj.SetString("serverName", TempOnlineGamesSettings.OwningPlayerName);
-                TempObj.SetFloat("playerCount", float((TempOnlineGamesSettings.NumPublicConnections - TempOnlineGamesSettings.NumOpenPublicConnections) - TempOnlineGamesSettings.NumSpectators));
+                PlayerCount = TempOnlineGamesSettings.NumPublicConnections - TempOnlineGamesSettings.NumOpenPublicConnections;
+                if(PlayerCount < 0)
+                {
+                    PlayerCount = 0;
+                }
+                TempObj.SetFloat("playerCount", float(PlayerCount));
                 TempObj.SetFloat("maxPlayerCount", float(TempOnlineGamesSettings.NumPublicConnections));
                 TempObj.SetFloat("waveCount", float(TempOnlineGamesSettings.CurrentWave));
                 TempObj.SetFloat("maxWaveCount", float(((IsEndlessModeIndex(TempOnlineGamesSettings.Mode)) ? -1 : TempOnlineGamesSettings.NumWaves)));
@@ -797,7 +802,7 @@ function UpdateListDataProvider()
             ++ I;
             goto J0x5D;
         }
-        J0xAB4:
+        J0xAC1:
 
         SetObject("dataProvider", DataProvider);
     }

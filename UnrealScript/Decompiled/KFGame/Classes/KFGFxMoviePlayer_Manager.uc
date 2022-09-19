@@ -1870,7 +1870,7 @@ simulated function HidePauseGameVote()
         bSkipTraderVotePopupActive = false;
         UnloadCurrentPopup();
     }
-    SkipTraderVotePRI = none;
+    PauseGameVotePRI = none;
 }
 
 function CastYesVotePauseGame()
