@@ -754,7 +754,7 @@ function bool ClassNameIsInInventory(name ItemClassName, out Inventory out_Inven
  */
 simulated function Weapon GetBestWeapon( optional bool bForceADifferentWeapon, optional bool allow9mm )
 {
-	local KFWeapon	W, BestWeapon;
+	local KFWeapon	W, BestWeapon, BackupGun;
 	local float		Rating, BestRating;
 
 	ForEach InventoryActors( class'KFWeapon', W )
@@ -775,6 +775,7 @@ simulated function Weapon GetBestWeapon( optional bool bForceADifferentWeapon, o
 				{
 					if (W.bIsBackupWeapon && !W.IsMeleeWeapon())
 					{
+						BackupGun = W;
 						continue;
 					}
 				}
@@ -806,6 +807,11 @@ simulated function Weapon GetBestWeapon( optional bool bForceADifferentWeapon, o
 				}
 			}
 		}
+	}
+
+	if (BestWeapon != none && BestWeapon.bIsBackupWeapon && BestWeapon.IsMeleeWeapon() && BackupGun != none)
+	{
+		BestWeapon = BackupGun;
 	}
 
 	return BestWeapon;

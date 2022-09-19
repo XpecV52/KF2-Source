@@ -141,7 +141,7 @@ function SetPickupItemList()
     local KFPickupFactory_Item ItemFactory;
     local int Idx;
     
-    if (OutbreakEvent.ActiveEvent.bOnlyArmorItemPickup)
+    if (MyKFGRI.IsGunGameMode())
     {
         foreach AllActors(class'KFPickupFactory_Item', ItemFactory)
         {

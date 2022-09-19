@@ -193,7 +193,7 @@ function FillWhatsNew()
     WhatsNewItems.Remove(0, WhatsNewItems.Length;
     Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Summer2022_TidalTerror", "LatestUpdate", "http://www.tripwireinteractive.com/redirect/KF2LatestUpdate/");
     WhatsNewItems.AddItem(Item;
-    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Summer2022_UltimateEdition", "FeaturedItemBundle", "https://store.steampowered.com/app/1914560/KF2__Ultimate_Edition_Upgrade_DLC/");
+    Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Summer2022_UltimateEdition_Upgrade", "FeaturedItemBundle", "https://store.steampowered.com/app/1914560/KF2__Ultimate_Edition_Upgrade_DLC/");
     WhatsNewItems.AddItem(Item;
     Item = SetWhatsNewItem("img://UI_WhatsNew.UI_WhatsNew_Summer2022_ArmorySeasonPassII", "ArmorySeasonPass", "https://store.steampowered.com/app/1914490/KF2__Season_Pass_2022");
     WhatsNewItems.AddItem(Item;

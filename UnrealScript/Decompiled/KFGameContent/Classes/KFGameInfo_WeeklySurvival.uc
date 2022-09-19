@@ -115,12 +115,12 @@ function SetPickupItemList()
     local KFPickupFactory_Item ItemFactory;
     local int Idx;
 
-    if(OutbreakEvent.ActiveEvent.bOnlyArmorItemPickup)
+    if(MyKFGRI.IsGunGameMode())
     {
         foreach AllActors(Class'KFPickupFactory_Item', ItemFactory)
         {
             Idx = ItemFactory.ItemPickups.Length - 1;
-            J0x7A:
+            J0x67:
 
             if(Idx >= 0)
             {
@@ -129,7 +129,7 @@ function SetPickupItemList()
                     ItemFactory.ItemPickups.Remove(Idx, 1;
                 }
                 -- Idx;
-                goto J0x7A;
+                goto J0x67;
             }            
         }        
         return;
@@ -147,7 +147,7 @@ function SetPickupItemList()
             foreach OutbreakEvent.ActiveEvent.TraderWeaponList.SaleItems(TraderItem,)
             {
                 Idx = ItemFactory.ItemPickups.Length - 1;
-                J0x28F:
+                J0x27C:
 
                 if(Idx >= 0)
                 {
@@ -156,7 +156,7 @@ function SetPickupItemList()
                         ItemFactory.ItemPickups.Remove(Idx, 1;
                     }
                     -- Idx;
-                    goto J0x28F;
+                    goto J0x27C;
                 }                
             }                        
         }        

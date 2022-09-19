@@ -293,6 +293,18 @@ simulated function PlayFireEffects( byte FireModeNum, optional vector HitLocatio
 	}
 }
 
+/** True if we want to override the looping fire sounds with fire sounds from another firemode */
+simulated function bool ShouldForceSingleFireSound()
+{
+	// If this weapon has a single-shot firemode, disable looping fire sounds during zedtime
+	if ( (Instigator.WorldInfo.TimeDilation < 1.f) && SingleFireSoundIndex != 255 )
+	{
+		return true;
+	}
+
+	return false;
+}
+
 defaultproperties
 {
    PackageKey="AutoTurretWeapon"
@@ -303,6 +315,7 @@ defaultproperties
    MuzzleFlashTemplateName="wep_autoturretWeapon_arch.Wep_AutoTurretWeapon_MuzzleFlash"
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_BulletBurst'
    FireModeIconPaths(1)=()
+   SingleFireSoundIndex=1
    InventorySize=5
    MeshIronSightFOV=52.000000
    PlayerIronSightFOV=70.000000
@@ -317,6 +330,7 @@ defaultproperties
    FireSightedAnims(1)="Shoot_Iron2"
    FireSightedAnims(2)="Shoot_Iron3"
    WeaponFireSnd(0)=(DefaultCue=AkEvent'WW_WEP_Autoturret.Play_WEP_AutoTurret_Shot_LP_3P',FirstPersonCue=AkEvent'WW_WEP_Autoturret.Play_WEP_AutoTurret_Shot_LP_1P')
+   WeaponFireSnd(1)=(DefaultCue=AkEvent'WW_WEP_Autoturret.Play_WEP_AutoTurret_Shoot_3P',FirstPersonCue=AkEvent'WW_WEP_Autoturret.Play_WEP_AutoTurret_Shoot_1P')
    WeaponFireLoopEndSnd(0)=(DefaultCue=AkEvent'WW_WEP_Autoturret.Play_WEP_AutoTurret_Shot_EndLP_3P',FirstPersonCue=AkEvent'WW_WEP_Autoturret.Play_WEP_AutoTurret_Shot_EndLP_1P')
    PlayerViewOffset=(X=9.000000,Y=10.000000,Z=-4.000000)
    Begin Object Class=KFMeleeHelperWeapon Name=MeleeHelper_0 Archetype=KFMeleeHelperWeapon'KFGame.Default__KFWeap_SMGBase:MeleeHelper_0'

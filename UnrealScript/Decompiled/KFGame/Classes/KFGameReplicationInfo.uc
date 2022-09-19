@@ -2131,6 +2131,11 @@ simulated function NotifyWeeklyEventIndex(int EventIndex)
     bNetDirty = true;
 }
 
+simulated function bool IsGunGameMode()
+{
+    return bIsWeeklyMode && CurrentWeeklyIndex == 16;
+}
+
 defaultproperties
 {
     WaveMax=255

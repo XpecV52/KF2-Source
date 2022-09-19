@@ -438,7 +438,7 @@ defaultproperties
                     GoompaStreakMax = 5,
                     GoompaBonusDuration=8.0f, //10.0f,
                     DoshOnKillGlobalModifier=1.0,
-                    SpawnWeaponList=KFGFxObject_TraderItems'GP_Trader_ARCH.AracnophobiaWeeklySpawnList',
+                    //SpawnWeaponList=KFGFxObject_TraderItems'GP_Trader_ARCH.AracnophobiaWeeklySpawnList',
                     bAddSpawnListToLoadout=true,
                     WaveAICountScale=(0.6, 0.6, 0.6, 0.6, 0.6, 0.6),
                     JumpZ=700.f, // 650.0 by default; -1 used for not overriding.

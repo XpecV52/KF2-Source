@@ -209,6 +209,15 @@ simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation
     }
 }
 
+simulated function bool ShouldForceSingleFireSound()
+{
+    if((Instigator.WorldInfo.TimeDilation < 1) && SingleFireSoundIndex != 255)
+    {
+        return true;
+    }
+    return false;
+}
+
 simulated state WeaponFiring
 {
     simulated function EndState(name NextStateName)
@@ -232,6 +241,7 @@ defaultproperties
     AttachmentArchetypeName="WEP_AutoTurretWeapon_ARCH.AutoTurretWeaponAttachment"
     MuzzleFlashTemplateName="wep_autoturretWeapon_arch.Wep_AutoTurretWeapon_MuzzleFlash"
     FireModeIconPaths=/* Array type was not detected. */
+    SingleFireSoundIndex=1
     InventorySize=5
     MeshIronSightFOV=52
     PlayerIronSightFOV=70

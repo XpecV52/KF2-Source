@@ -34,7 +34,7 @@ Parameter name: index
    at System.ThrowHelper.ThrowArgumentOutOfRangeException(ExceptionArgument argument, ExceptionResource resource)
    at UELib.UnrealStreamImplementations.ReadName(IUnrealStream stream)
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    PukeMinesToSpawnOnDeathByDifficulty(1)=.0_2011
+    PukeMinesToSpawnOnDeathByDifficulty(1)=.0_2010
     PukeMinesToSpawnOnDeathByDifficulty(2)=.0
     PukeMinesToSpawnOnDeathByDifficulty(3)=.0_9110
     PukeMinesToSpawnOnDeath_Player_Versus=3
