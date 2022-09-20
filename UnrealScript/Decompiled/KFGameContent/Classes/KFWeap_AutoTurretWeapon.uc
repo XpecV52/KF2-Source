@@ -70,6 +70,18 @@ simulated function InstantFireClient()
     }
 }
 
+simulated function HandleProjectileImpact(byte ProjectileFireMode, ImpactInfo Impact, optional float PenetrationValue)
+{
+    if(Instigator != none)
+    {
+        if(Instigator.Role < ROLE_Authority)
+        {
+            SendClientProjectileImpact(ProjectileFireMode, Impact, PenetrationValue);
+        }
+        ProcessInstantHitEx(ProjectileFireMode, Impact,, PenetrationValue, 0);
+    }
+}
+
 simulated function Projectile ProjectileFire()
 {
     local Vector StartTrace, RealStartLoc, AimDir;
@@ -89,6 +101,39 @@ simulated function Projectile ProjectileFire()
         return SpawnAllProjectiles(MyProjectileClass, RealStartLoc, AimDir);
     }
     return none;
+}
+
+simulated function KFProjectile SpawnProjectile(class<KFProjectile> KFProjClass, Vector RealStartLoc, Vector AimDir)
+{
+    local KFProjectile SpawnedProjectile;
+    local int ProjDamage;
+    local Pawn OriginalInstigator;
+
+    OriginalInstigator = Instigator;
+    Instigator = InstigatorDrone;
+    SpawnedProjectile = Spawn(KFProjClass, self,, RealStartLoc);
+    if((SpawnedProjectile != none) && !SpawnedProjectile.bDeleteMe)
+    {
+        if((InstantHitDamage.Length > CurrentFireMode) && InstantHitDamageTypes.Length > CurrentFireMode)
+        {
+            ProjDamage = GetModifiedDamage(CurrentFireMode);
+            SpawnedProjectile.Damage = float(ProjDamage);
+            SpawnedProjectile.MyDamageType = InstantHitDamageTypes[CurrentFireMode];
+        }
+        SpawnedProjectile.InitialPenetrationPower = GetInitialPenetrationPower(CurrentFireMode);
+        SpawnedProjectile.PenetrationPower = SpawnedProjectile.InitialPenetrationPower;
+        SpawnedProjectile.UpgradeDamageMod = GetUpgradeDamageMod();
+        SpawnedProjectile.Init(AimDir);
+    }
+    if((MedicComp != none) && KFProj_HealingDart(SpawnedProjectile) != none)
+    {
+        if((TargetingComp != none) && TargetingComp.LockedTarget[1] != none)
+        {
+            KFProj_HealingDart(SpawnedProjectile).SeekTarget = TargetingComp.LockedTarget[1];
+        }
+    }
+    Instigator = OriginalInstigator;
+    return SpawnedProjectile;
 }
 
 simulated function IncrementFlashCount()
@@ -205,6 +250,20 @@ simulated function PlayFireEffects(byte FireModeNum, optional Vector HitLocation
             {
                 SetTimer(ForceReloadTimeOnEmpty, false, 'ForceReload');
             }
+        }
+    }
+}
+
+simulated function WeaponPlayFireSound(AkBaseSoundObject DefaultSound, AkBaseSoundObject FirstPersonSound)
+{
+    local Vector SoundLocation;
+
+    if((Owner != none) && !bSuppressSounds)
+    {
+        SoundLocation = KFPawn(Owner).GetPawnViewLocation();
+        if(DefaultSound != none)
+        {
+            Owner.PlaySoundBase(DefaultSound, false, false, false, SoundLocation);
         }
     }
 }

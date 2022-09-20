@@ -175,7 +175,11 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if((((!bSecondary || IsFAMAS(KFW)) && !IsAutoTurret(KFW)) && IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine)
+    if((IsAutoTurret(KFW)) || WeaponClassName == 'KFWeap_AutoTurret')
+    {
+        return;
+    }
+    if(((!bSecondary || IsFAMAS(KFW)) && IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine)
     {
         if(IsLargeMagActive())
         {
@@ -335,7 +339,7 @@ private final function bool IsEatLeadActive()
     return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }
 
-private final function bool IsAmmoVestActive()
+private final simulated function bool IsAmmoVestActive()
 {
     return PerkSkills[5].bActive && IsPerkLevelAllowed(5);
 }

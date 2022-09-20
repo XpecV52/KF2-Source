@@ -18,8 +18,6 @@ var(Animations) const editconst name DetonateAnim;
 var(Animations) const editconst name DetonateLastAnim;
 /** Sound to play upon successful detonation */
 var() AkEvent DetonateAkEvent;
-/** Sound to play upon attempted but unsuccessful detonation */
-var() AkEvent DryFireAkEvent;
 var const float ThrowStrength;
 var const byte MaxTurretsDeployed;
 var transient byte NumDeployedTurrets;
@@ -102,6 +100,7 @@ simulated function Projectile ProjectileFire()
             SpawnedActor.SetTurretState(1);
             KFPC.DeployedTurrets.AddItem(SpawnedActor;
             NumDeployedTurrets = byte(KFPC.DeployedTurrets.Length);
+            bTurretReadyToUse = false;
             bForceNetUpdate = true;
         }
         return none;        
@@ -142,12 +141,22 @@ simulated function GetTurretSpawnLocationAndDir(out Vector SpawnLocation, out Ve
 
 simulated function Detonate()
 {
+    local int I;
+    local array<Actor> TurretsCopy;
+
     if(Role == ROLE_Authority)
     {
-        if(KFPC.DeployedTurrets.Length > 0)
+        TurretsCopy = KFPC.DeployedTurrets;
+        I = 0;
+        J0x47:
+
+        if(I < TurretsCopy.Length)
         {
-            KFPawn_AutoTurret(KFPC.DeployedTurrets[0]).SetTurretState(5);
+            KFPawn_AutoTurret(TurretsCopy[I]).SetTurretState(5);
+            ++ I;
+            goto J0x47;
         }
+        KFPC.DeployedTurrets.Remove(0, KFPC.DeployedTurrets.Length;
         SetReadyToUse(true);
         if(!HasAnyAmmo() && NumDeployedTurrets == 0)
         {
@@ -182,14 +191,15 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
     local int I;
 
     super(KFWeapon).SetOriginalValuesFromPickup(PickedUpWeapon);
-    if((PickedUpWeapon.Instigator.Controller != none) && PickedUpWeapon.Instigator.Controller != KFPC)
+    if((PickedUpWeapon.KFPlayer != none) && PickedUpWeapon.KFPlayer != KFPC)
     {
-        KFPC.DeployedTurrets = KFPlayerController(PickedUpWeapon.Instigator.Controller).DeployedTurrets;
+        KFPC.DeployedTurrets = PickedUpWeapon.KFPlayer.DeployedTurrets;
     }
+    PickedUpWeapon.KFPlayer = none;
     NumDeployedTurrets = byte(KFPC.DeployedTurrets.Length);
     bForceNetUpdate = true;
     I = 0;
-    J0x141:
+    J0x119:
 
     if(I < NumDeployedTurrets)
     {
@@ -200,8 +210,46 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
             KFPawn_AutoTurret(KFPC.DeployedTurrets[I]).InstigatorController = Instigator.Controller;
         }
         ++ I;
-        goto J0x141;
+        goto J0x119;
     }
+}
+
+function DropFrom(Vector StartLocation, Vector StartVelocity)
+{
+    local DroppedPickup P;
+
+    StartLocation.Z += (Instigator.BaseEyeHeight / float(2));
+    if(!CanThrow())
+    {
+        return;
+    }
+    if((DroppedPickupClass == none) || DroppedPickupMesh == none)
+    {
+        Destroy();
+        return;
+    }
+    P = Spawn(DroppedPickupClass,,, StartLocation,,, true);
+    if(P == none)
+    {
+        PlayerController(Instigator.Controller).ReceiveLocalizedMessage(Class'KFLocalMessage_Game', 21);
+        return;
+    }
+    if((Instigator != none) && Instigator.InvManager != none)
+    {
+        Instigator.InvManager.RemoveFromInventory(self);
+        if(Instigator.IsAliveAndWell() && !Instigator.InvManager.bPendingDelete)
+        {
+            if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
+            {
+                KFGameInfo(WorldInfo.Game).DialogManager.PlayDropWeaponDialog(KFPawn(Instigator));
+            }
+        }
+    }
+    SetupDroppedPickup(P, StartVelocity);
+    KFDroppedPickup(P).PreviousOwner = KFPlayerController(Instigator.Controller);
+    Instigator = none;
+    GotoState('None');
+    AIController = none;
 }
 
 static simulated event bool UsesAmmo()
@@ -237,20 +285,13 @@ simulated function BeginFire(byte FireModeNum)
     }
     else
     {
-        if(((FireModeNum == 0) && NumDeployedTurrets >= MaxTurretsDeployed) && HasAmmo(0))
+        if(((FireModeNum == 0) && NumDeployedTurrets >= MaxTurretsDeployed) && HasAnyAmmo())
         {
             if(!bTurretReadyToUse)
             {
                 return;
             }
-            PrepareAndDetonate();            
-        }
-        else
-        {
-            if((HasAmmo(0)) == false)
-            {
-                PlaySoundBase(DryFireAkEvent, true);
-            }
+            PrepareAndDetonate();
         }
         super(KFWeapon).BeginFire(FireModeNum);
     }
@@ -269,11 +310,7 @@ simulated function PrepareAndDetonate()
     {
         if(NumDeployedTurrets > 0)
         {
-            PlaySoundBase(DetonateAkEvent, true);            
-        }
-        else
-        {
-            PlaySoundBase(DryFireAkEvent, true);
+            PlaySoundBase(DetonateAkEvent, true);
         }
         if(bInSprintState)
         {
@@ -322,6 +359,10 @@ function CheckTurretAmmo()
 
     if(Role == ROLE_Authority)
     {
+        if(KFPC == none)
+        {
+            return;
+        }
         if(KFPC.DeployedTurrets.Length > 0)
         {
             Weapon = KFWeapon(KFPawn_AutoTurret(KFPC.DeployedTurrets[0]).Weapon);
@@ -339,7 +380,10 @@ function CheckTurretAmmo()
                     else
                     {
                         KFP = KFPawn(Instigator);
-                        KFP.OnWeaponSpecialAction(int(float(1) + (CurrentAmmoPercentage * float(100))));
+                        if(KFP != none)
+                        {
+                            KFP.OnWeaponSpecialAction(int(float(1) + (CurrentAmmoPercentage * float(100))));
+                        }
                     }
                 }
             }

@@ -57,6 +57,7 @@ var repnotify Rotator ReplicatedRotation;
 var repnotify float CurrentAmmoPercentage;
 var repnotify AkEvent TurretWeaponAmbientSound;
 var repnotify int WeaponSkinId;
+var repnotify int AutoTurretFlashCount;
 var transient Rotator DeployRotation;
 var transient Rotator RotationStart;
 var transient Rotator TargetRotation;
@@ -78,9 +79,10 @@ var export editinline transient ParticleSystemComponent NoAmmoFX;
 replication
 {
      if(bNetDirty)
-        CurrentAmmoPercentage, CurrentState, 
-        EnemyTarget, ReplicatedRotation, 
-        TurretWeaponAmbientSound, WeaponSkinId;
+        AutoTurretFlashCount, CurrentAmmoPercentage, 
+        CurrentState, EnemyTarget, 
+        ReplicatedRotation, TurretWeaponAmbientSound, 
+        WeaponSkinId;
 }
 
 simulated event ReplicatedEvent(name VarName)
@@ -115,7 +117,20 @@ simulated event ReplicatedEvent(name VarName)
                     }
                     else
                     {
-                        super.ReplicatedEvent(VarName);
+                        if(VarName == 'AutoTurretFlashCount')
+                        {
+                            FlashCountUpdated(Weapon, byte(AutoTurretFlashCount), true);                            
+                        }
+                        else
+                        {
+                            if(VarName == 'FlashCount')
+                            {                                
+                            }
+                            else
+                            {
+                                super.ReplicatedEvent(VarName);
+                            }
+                        }
                     }
                 }
             }
@@ -139,6 +154,8 @@ simulated event PreBeginPlay()
         MyKFWeapon = TurretWeapon;
         if(Weapon != none)
         {
+            Weapon.bReplicateInstigator = true;
+            Weapon.bReplicateMovement = true;
             Weapon.Instigator = Instigator;
             TurretWeapon.InstigatorDrone = self;
             Weapon.SetCollision(false, false);
@@ -571,6 +588,20 @@ simulated function SetWeaponAmbientSound(AkEvent NewAmbientSound, optional AkEve
     }
 }
 
+simulated function IncrementFlashCount(Weapon InWeapon, byte InFiringMode)
+{
+    super(Pawn).IncrementFlashCount(InWeapon, InFiringMode);
+    AutoTurretFlashCount = FlashCount;
+    bForceNetUpdate = true;
+}
+
+simulated function ClearFlashCount(Weapon InWeapon)
+{
+    super(Pawn).ClearFlashCount(InWeapon);
+    AutoTurretFlashCount = FlashCount;
+    bForceNetUpdate = true;
+}
+
 auto simulated state Throw
 {
     simulated function BeginState(name PreviousStateName)
@@ -580,15 +611,6 @@ auto simulated state Throw
         if(Role == ROLE_Authority)
         {
             UpdateReadyToUse(false);
-        }
-    }
-
-    simulated function EndState(name NextStateName)
-    {
-        super(Object).EndState(NextStateName);
-        if(Role == ROLE_Authority)
-        {
-            UpdateReadyToUse(true);
         }
     }
 
@@ -1023,6 +1045,7 @@ defaultproperties
     object end
     // Reference: AkComponent'Default__KFPawn_AutoTurret.FlyAkComponent0'
     Components(11)=FlyAkComponent0
+    bAlwaysRelevant=true
     bCanBeDamaged=false
     bCollideComplex=true
     begin object name=CollisionCylinder class=CylinderComponent

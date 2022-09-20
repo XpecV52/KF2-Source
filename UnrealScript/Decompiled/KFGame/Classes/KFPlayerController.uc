@@ -6701,18 +6701,22 @@ function DrawNextSpawnTimeInfo(out Canvas Canvas, float XPos, float YPos, float 
 event Destroyed()
 {
     local KFProjectile KFProj;
+    local int I;
 
     if(StingerAkComponent != none)
     {
         StingerAkComponent.StopEvents();
     }
-    J0x2E:
+    I = 0;
+    J0x39:
 
-    if(DeployedTurrets.Length > 0)
+    if(I < DeployedTurrets.Length)
     {
-        DeployedTurrets[0].Destroy();
-        goto J0x2E;
+        DeployedTurrets[I].Destroy();
+        ++ I;
+        goto J0x39;
     }
+    DeployedTurrets.Remove(0, DeployedTurrets.Length;
     SetRTPCValue('Health', 100, true);
     PostAkEvent(LowHealthStopEvent);
     bPlayingLowHealthSFX = false;

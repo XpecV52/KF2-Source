@@ -9825,6 +9825,7 @@ function DrawNextSpawnTimeInfo( out Canvas Canvas, /*out KFAISpawnManager KFSM,*
 event Destroyed()
 {
 	local KFProjectile KFProj;
+	local int i;
 
     // Stop currently playing stingers when the map is being switched
     if( StingerAkComponent != none )
@@ -9834,10 +9835,11 @@ event Destroyed()
 
 	// Destroy deployed turrets
 	// Destroyed event on Turret calls the KFPlayer to modify the same list, that's why we use a while loop...
-	while (DeployedTurrets.Length > 0)
+	for (i = 0; i < DeployedTurrets.Length; i++)
 	{
-		DeployedTurrets[0].Destroy();
+		DeployedTurrets[i].Destroy();
 	}
+	DeployedTurrets.Remove(0, DeployedTurrets.Length);
 
     SetRTPCValue( 'Health', 100, true );
     PostAkEvent( LowHealthStopEvent );

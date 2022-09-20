@@ -25,6 +25,7 @@ var protectedwrite export editinline CylinderComponent MyCylinderComp;
 var int SkinItemId;
 var protected float PostAuthorityChangeLifeSpan;
 var protected float PickupDelay;
+var KFPlayerController PreviousOwner;
 var LinearColor EmptyPickupColor;
 
 replication
@@ -317,6 +318,10 @@ function GiveTo(Pawn P)
             KFW = KFWeapon(NewInventory);
             if(KFW != none)
             {
+                if(PreviousOwner != none)
+                {
+                    KFW.KFPlayer = PreviousOwner;
+                }
                 KFW.SetOriginalValuesFromPickup(KFWeapon(Inventory));
                 KFW = KFIM.CombineWeaponsOnPickup(KFW);
                 KFW.NotifyPickedUp();
