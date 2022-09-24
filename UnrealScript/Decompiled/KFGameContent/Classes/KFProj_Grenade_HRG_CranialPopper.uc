@@ -96,6 +96,7 @@ state WaveState
         local KFPawn_Monster Victim;
         local TraceHitInfo HitInfo;
         local float Radius, DamageHead;
+        local name HitBoneName;
 
         if(bWaveActive)
         {
@@ -109,6 +110,11 @@ state WaveState
                     DamageHead = Victim.AfflictionHandler.GetBigHeadAfflictionDamageModifier();
                     if(DamageHead > float(0))
                     {
+                        HitBoneName = Victim.HeadBoneName;
+                        if(HitBoneName != 'None')
+                        {
+                            HitInfo.BoneName = HitBoneName;
+                        }
                         Victim.TakeDamage(int(DamageHead * UpgradeDamageMod), InstigatorController, Victim.Location, Normal(Victim.Location - Instigator.Location), MyDamageType, HitInfo, ((Owner != none) ? Owner : self));
                         if(Victim.Health <= 0)
                         {

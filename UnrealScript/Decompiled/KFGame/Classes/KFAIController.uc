@@ -198,6 +198,7 @@ var bool bIamAsClosesToTheEnemyAsICanGet;
 var(Frustration) bool bForceFrustration;
 var transient bool bDefaultCanSprint;
 var const bool bCanDoHeavyBump;
+var bool CanForceEnemy;
 var bool bAllowCombatTransitions;
 var bool bIsProbingMeleeRangeEvents;
 var bool bDebug_DrawAIDebug;
@@ -405,6 +406,12 @@ var const Vector BaseShapeOfProjectileForCalc;
 var float LastShotTime;
 var const int ZedBumpEffectThreshold;
 var const float ZedBumpObliterationEffectChance;
+var Pawn ForcedEnemy;
+var Pawn LastForcedEnemy;
+var float ForcedEnemyLastTime;
+var float DamageRatioToChangeForcedEnemy;
+var float TimeCanRestartForcedEnemy;
+var float TimeCannotChangeFromForcedEnemy;
 var protected array<sDangerEvadeInfo> DangerEvadeSettings;
 var transient sEvadeOnDamageInfo EvadeOnDamageSettings;
 var protected transient int AccumulatedEvadeDamage;
@@ -946,6 +953,30 @@ native function StopAllLatentMoveExecution();
 // Export UKFAIController::execIsTargetedByPlayer(FFrame&, void* const)
 native function bool IsTargetedByPlayer(optional out KFPawn outThreateningPlayer);
 
+function Pawn FindForcedEnemy()
+{
+    local KFGameInfo KFGI;
+    local KFPlayerController_WeeklySurvival KFPC_WS;
+    local class<KFPawn_Monster> MyMonster;
+
+    KFGI = KFGameInfo(WorldInfo.Game);
+    if(((KFGI != none) && KFGI.OutbreakEvent != none) && KFGI.OutbreakEvent.ActiveEvent.bVIPGameMode)
+    {
+        MyMonster = class<KFPawn_Monster>(Pawn.Class);
+        if(KFGI.OutbreakEvent.ActiveEvent.VIPTargetting.Find(MyMonster != -1)
+        {
+            foreach WorldInfo.AllControllers(Class'KFPlayerController_WeeklySurvival', KFPC_WS)
+            {
+                if((KFPC_WS.VIPGameData.IsVIP && KFPC_WS.Pawn.IsAliveAndWell()) && KFPC_WS.Pawn.CanAITargetThisPawn(self))
+                {                    
+                    return KFPC_WS.Pawn;
+                }                
+            }            
+        }
+    }
+    return none;
+}
+
 event bool FindNewEnemy()
 {
     local Pawn PotentialEnemy, BestEnemy;
@@ -958,38 +989,41 @@ event bool FindNewEnemy()
         return false;
     }
     BestEnemy = none;
-    foreach WorldInfo.AllPawns(Class'Pawn', PotentialEnemy)
+    if(BestEnemy == none)
     {
-        if((!PotentialEnemy.IsAliveAndWell() || Pawn.IsSameTeam(PotentialEnemy)) || !PotentialEnemy.CanAITargetThisPawn(self))
+        foreach WorldInfo.AllPawns(Class'Pawn', PotentialEnemy)
         {
-            continue;            
-        }
-        newdist = VSizeSq(PotentialEnemy.Location - Pawn.Location);
-        if((BestEnemy == none) || bestDist > newdist)
-        {
-            BestEnemyZedCount = -1;
-            bUpdateBestEnemy = true;            
-        }
-        else
-        {
-            if(BestEnemyZedCount == -1)
+            if((!PotentialEnemy.IsAliveAndWell() || Pawn.IsSameTeam(PotentialEnemy)) || !PotentialEnemy.CanAITargetThisPawn(self))
             {
-                BestEnemyZedCount = NumberOfZedsTargetingPawn(BestEnemy);
+                continue;                
             }
-            PotentialEnemyZedCount = NumberOfZedsTargetingPawn(PotentialEnemy);
-            if(PotentialEnemyZedCount < BestEnemyZedCount)
+            newdist = VSizeSq(PotentialEnemy.Location - Pawn.Location);
+            if((BestEnemy == none) || bestDist > newdist)
             {
-                BestEnemyZedCount = PotentialEnemyZedCount;
-                bUpdateBestEnemy = true;
+                BestEnemyZedCount = -1;
+                bUpdateBestEnemy = true;                
             }
-        }
-        if(bUpdateBestEnemy)
-        {
-            BestEnemy = PotentialEnemy;
-            bestDist = newdist;
-            bUpdateBestEnemy = false;
+            else
+            {
+                if(BestEnemyZedCount == -1)
+                {
+                    BestEnemyZedCount = NumberOfZedsTargetingPawn(BestEnemy);
+                }
+                PotentialEnemyZedCount = NumberOfZedsTargetingPawn(PotentialEnemy);
+                if(PotentialEnemyZedCount < BestEnemyZedCount)
+                {
+                    BestEnemyZedCount = PotentialEnemyZedCount;
+                    bUpdateBestEnemy = true;
+                }
+            }
+            if(bUpdateBestEnemy)
+            {
+                BestEnemy = PotentialEnemy;
+                bestDist = newdist;
+                bUpdateBestEnemy = false;
+            }            
         }        
-    }    
+    }
     if(((Enemy != none) && BestEnemy != none) && BestEnemy == Enemy)
     {
         return false;
@@ -1185,10 +1219,35 @@ event bool SetEnemy(Pawn NewEnemy)
 
 function ChangeEnemy(Pawn NewEnemy, optional bool bCanTaunt)
 {
-    local Pawn OldEnemy;
+    local Pawn OldEnemy, NewForcedEnemy;
     local KFGameInfo KFGI;
 
     bCanTaunt = true;
+    if(CanForceEnemy)
+    {
+        NewForcedEnemy = FindForcedEnemy();        
+    }
+    else
+    {
+        if(NewEnemy == LastForcedEnemy)
+        {
+            return;
+        }
+    }
+    if(NewForcedEnemy != none)
+    {
+        ForcedEnemy = NewForcedEnemy;
+        if(Enemy != ForcedEnemy)
+        {
+            LastForcedEnemy = ForcedEnemy;
+            ForcedEnemyLastTime = WorldInfo.TimeSeconds;
+        }
+        NewEnemy = NewForcedEnemy;        
+    }
+    else
+    {
+        ForcedEnemy = none;
+    }
     KFGI = KFGameInfo(WorldInfo.Game);
     if(KFGI != none)
     {
@@ -6261,6 +6320,7 @@ defaultproperties
     bCanTeleportCloser=true
     bIgnoreStepAside=true
     bUseDesiredRotationForMelee=true
+    CanForceEnemy=true
     bAllowCombatTransitions=true
     bUseUniqueAILogFile=true
     MeleeCommandClass=Class'AICommand_Base_Zed'
@@ -6356,6 +6416,9 @@ defaultproperties
     BaseShapeOfProjectileForCalc=(X=1,Y=1,Z=1)
     ZedBumpEffectThreshold=270
     ZedBumpObliterationEffectChance=0.4
+    DamageRatioToChangeForcedEnemy=0.5
+    TimeCanRestartForcedEnemy=10
+    TimeCannotChangeFromForcedEnemy=10
     AggroPlayerHealthPercentage=0.1
     AggroPlayerResetTime=10
     MinDistanceToAggroZed=1500

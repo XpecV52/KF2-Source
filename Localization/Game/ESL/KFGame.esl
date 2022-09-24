@@ -22,6 +22,10 @@ ServerTypeStrings[2]="Clasificatoria - Per."
 ServerTypeStrings[3]="No clasificatoria"
 WeaponLevelString="NIVEL DE ARMA"
 GunPointsString="PUNTOS DE ARMA"
+VIPString="OBJETIVO"
+VIPObjectiveAString="PROTEGE AL VIP"
+VIPObjectiveBString="SOBREVIVE"
+VIPObjectiveCString="Eres el VIP"											   
 
 PermissionStrings[0]="Pública"
 PermissionStrings[1]="Privado: contraseña"
@@ -1405,6 +1409,10 @@ AimAssistLockOnString="Ayuda apunt. con zoom"
 AimAssistRotationString="Rotación ayuda apunt."
 AimAssistSlowDownString="Ralentizar ayuda apun."
 ForceFeedbackString="Vibración del control"
+MouseLookUpScaleString="Vertical"
+MouseLookRightScaleString="Horizontal"
+ViewAccelerationString="Aceleración de vista"
+ViewSmoothingString="Suavizado de vista"												
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="MOVIMIENTO"
@@ -1449,6 +1457,7 @@ ShrinkString="Reducir"
 
 [KFInventoryManager]
 FullHealthMsg="Salud llena"
+CannotHealthMsg="No puedes curarte"												  
 
 [KFLocalMessage]
 SystemString="Sistema:"
@@ -1567,6 +1576,7 @@ ScavengeMessage="Carroña"
 YouLostMessage="D E R R O T A"
 YouWonMessage="V I C T O R I A"
 SquadWipedOutMessage="¡Tu escuadrón ha sido eliminado!"
+SquadWipedOutVIPMessage="Han derrotado al VIP"												  
 SquadSurvivedMessage="¡Tu escuadrón ha sobrevivido!"
 ObjectiveStartMessage="OBJETIVO INICIADO"
 ObjectiveWonMessage="OBJETIVO COMPLETADO"
@@ -2915,7 +2925,19 @@ AllCompleteRewardDescriptionString="Fondo marino | Tridente | Precioso"
 
 ChanceDropDescriptionStrings[0]="Boleto Verano"
 ChanceDropDescriptionStrings[1]="Boleto Verano dorado"
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="Un evento especial de tiempo limitado con objetos exclusivos"
 
+SpecialEventObjectiveInfoList[0]=(TitleString="Criaturas de la oscuridad",DescriptionString="Mata a 15 jefes en cualquiera de los mapas y modos")
+SpecialEventObjectiveInfoList[1]=(TitleString="Brujería semanal",DescriptionString="Completa la semanal en el pueblo Barmwich")
+SpecialEventObjectiveInfoList[2]=(TitleString="Medallones elementales",DescriptionString="Abre la sala de armas")
+SpecialEventObjectiveInfoList[3]=(TitleString="Zeds ardiendo",DescriptionString="Haz que 50 zeds pasen por las hogueras de Ciudad de Barmwich")
+SpecialEventObjectiveInfoList[4]=(TitleString="Larga noche de brujas",DescriptionString="Completa la oleada 15 de Sin fin en la dificultad Difícil o superior en pueblo Barmwich")
+
+AllCompleteRewardDescriptionString="Médico de la peste | Mochila | Precioso"
+
+ChanceDropDescriptionStrings[0]="Boleto de Halloween"
+ChanceDropDescriptionStrings[1]="Boleto dorado de Halloween"																		   
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3096,6 +3118,15 @@ ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
 
+[VIPMode KFWeeklyOutBreakInformation]									 
+FriendlyName="Objetivo principal"
+DescriptionStrings[0]="¡Protege al VIP!"
+DescriptionStrings[1]="Duración: Media (7 oleadas)"
+ModifierDescriptions[0]="Se elige un jugador que hará de VIP. El VIP debe sobrevivir o la partida termina. El VIP solo puede recibir curación de otros jugadores. Selecciona el modo de juego Semanal en la página de Matchmaking. Especialización 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"											
 ;============================================
 ; Map Localization
 ;============================================
@@ -3625,6 +3656,8 @@ DisplayName="Caserío del carillón"
 [KF-Rig KFMapSummary]
 DisplayName="Plataforma petrolífera"
 
+[KF-BarmwichTown KFMapSummary]
+DisplayName="Pueblo Barmwich"										 
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% ha encontrado un coleccionable. Quedan %y% por encontrar."

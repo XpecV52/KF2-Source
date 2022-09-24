@@ -241,11 +241,20 @@ ClassicWeaponSkinBundleName="Classic Weapon Skin Bundle Pack"
 DeepSeaSkinWeaponSkinPackName="Deep Sea Weapon Skin Bundle Pack"
 ChameleonWeaponSkinBundleName="Chameleon Weapon Skin Bundle Pack"
 DeepSeaExplorerOutfitName="Deep Sea Explorer Outfit Bundle"
+PlagueDoctorOutfitName="Plague Doctor Outfit Bundle"
 ReductoRayBundleName="Reducto Ray Weapon Bundle"
 SentinelBundleName="Sentinel Weapon Bundle"
 TidalTerrorBundleName="Tidal Terror Weapon Bundle"
 ArmorySeasonPass2022Name="Killing Floor 2 - Armory Season Pass 2"
 UltimateUpgradeName="Killing Floor 2 - Ultimate Edition Upgrade"
+PlagueDoctorWeaponSkinBundleName="Plague Doctor Weapon Skin Bundle Pack"
+XenoWeaponSkinBundleName="Xeno Weapon Skin Bundle Pack"
+ClassicMKIIWeaponSkinBundleName="Classic MKII Weapon Skin Bundle Pack"
+ChameleonMKIIWeaponSkinBundleName="Chameleon MKII Weapon Skin Bundle Pack"
+PlagueDoctorOutfitBundleName="Plague Doctor Outfit Bundle"
+G36CBundleName="G36C Assault Rifle Weapon Bundle"
+BloodSickleBundleName="Blood Sickle Weapon Bundle"
+BloodBonfiresWeaponBundleName="Blood & Bonfires Weapon Bundle"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles)."
@@ -386,9 +395,9 @@ SteampunkEncryptedUSBGoldBundlePackDescription="Contains twenty of the Steampunk
 DragonKoiTier1BundlePackDescription="Includes 10 Tier 1 Precious Rarity Dragon & Koi Skins for All Perks. This includes: Crovel, AR15, HX25, Caulk n Burn, 1858 Revolver, HMTech-101 Pistol, Winchester 1894, SG 500, MP7, and 9MM."
 DragonKoiTier2BundlePackDescription="Includes 10 Tier 2 Precious Rarity Dragon & Koi Skins for All Perks. This includes: Katana, L85A2, M79, Spitfire, M1911, HMTech-201 SMG, Crossbow, Boomstick, Tommy Gun, MP5RAS."
 ClotBackpackBundleDescription="Includes all previously released Seasonal Clot Backpacks accessories including their color variants."
-DragonKoiTier3BundlePackDescription="Includes 10 Tier 3 Precious Rarity Dragon & Koi Skins for All Perks. This includes: M4, P90, Freezethrower, M14EBR, HMTech-301 Shotgun, Desert Eagle, Flamethrower, M16 M203, AK12, and Pulverizer"
+DragonKoiTier3BundlePackDescription="Includes 10 Tier 3 Precious Rarity Dragon & Koi Skins for All Perks. This includes: M4, P90, Freezethrower, M14EBR, HMTech-301 Shotgun, Desert Eagle, Flamethrower, M16 M203, AK-12, and Pulverizer"
 DragonKoiTier4BundlePackDescription="Includes 10 Tier 4 Precious Rarity Dragon & Koi Skins for All Perks. This includes: Scar, RPG-7, Microwave Gun, .500 Magnum Revolver, Railgun, HMTech-01 Assault Rifle, AA-12, Killerwatt, Kriss, and Eviscerator."
-DragonKoiCompleteBundlePackDescription="Includes All 40 Precious Rarity Dragon & Koi Skins for All Perks across Tier 1 through 4. This includes:  Crovel, AR15, HX25, Caulk n Burn, 1858 Revolver, HMTech-101 Pistol, Winchester 1894, SG 500, MP7, and 9MM, Katana, L85A2, M79, Spitfire, M1911, HMTech-201 SMG, Crossbow, Boomstick, Tommy Gun, MP5RAS, M4, P90, Freezethrower, M14EBR, HMTech-301 Shotgun, Desert Eagle, Flamethrower, M16 M203, AK12, Pulverizer, Scar, RPG-7, Microwave Gun, .500 Magnum Revolver, Railgun, HMTech-01 Assault Rifle, AA-12, Killerwatt, Kriss, and Eviscerator."
+DragonKoiCompleteBundlePackDescription="Includes All 40 Precious Rarity Dragon & Koi Skins for All Perks across Tier 1 through 4. This includes:  Crovel, AR15, HX25, Caulk n Burn, 1858 Revolver, HMTech-101 Pistol, Winchester 1894, SG 500, MP7, and 9MM, Katana, L85A2, M79, Spitfire, M1911, HMTech-201 SMG, Crossbow, Boomstick, Tommy Gun, MP5RAS, M4, P90, Freezethrower, M14EBR, HMTech-301 Shotgun, Desert Eagle, Flamethrower, M16 M203, AK-12, Pulverizer, Scar, RPG-7, Microwave Gun, .500 Magnum Revolver, Railgun, HMTech-01 Assault Rifle, AA-12, Killerwatt, Kriss, and Eviscerator."
 HorzineSupplyCosmeticCrateSeries11BronzeBundlePackDescription="Contains five of the Horzine Supply Cosmetic Crate | Series #11 crate along with five of its associated keys."
 HorzineSupplyCosmeticCrateSeries11SilverBundlePackDescription="Contains ten of the Horzine Supply Cosmetic Crate | Series #11 crate along with ten of its associated keys."
 HorzineSupplyCosmeticCrateSeries11GoldBundlePackDescription="Contains twenty of the Horzine Supply Cosmetic Crate | Series #11 crate along with twenty of its associated keys."
@@ -433,7 +442,7 @@ GrimTreatmentsWeaponBundleDescription="Includes the Rhino Revolver and Ion Thrus
 YuletideHorrorWeaponBundleDescription="Includes the Riot Shield & G18 and Mosin Nagant Weapons from the Yuletide Horror update. Each weapon comes with 5 unique skin variants."
 DayOfTheZedWeaponBundleDescription="Includes the Piranha Pistols and Corrupter Carbine Weapons from the Day of the Zed update. Each weapon comes with 5 unique skin variants."
 JaegerWeaponSkinDoublePackBundleDescription="Includes Jaeger themed dynamic and standard weapon skins for the Desert Eagle and P90."
-FostersFavoritesWeaponSkinBundleDescription="Includes 8 Foster themed weapon skins including the AK12, AA12, M14EBR, M4, Desert Eagle, Boomstick, P90, and Kriss."
+FostersFavoritesWeaponSkinBundleDescription="Includes 8 Foster themed weapon skins including the AK-12, AA12, M14EBR, M4, Desert Eagle, Boomstick, P90, and Kriss."
 EmoteCrateSeries3BronzeBundlePackDescription="Contains five of the Emote Crate | Series #3 crate along with five of its associated keys."
 EmoteCrateSeries3SilverBundlePackDescription="Contains ten of the Emote Crate | Series #3 crate along with ten of its associated keys."
 EmoteCrateSeries3GoldBundlePackDescription="Contains twenty of the Emote Crate | Series #3 crate along with twenty of its associated keys."
@@ -446,10 +455,10 @@ HorzineSupplyCrateCosmeticCrateSeries5GoldBundlePackDescription="Contains twenty
 HorzineSupplyCosmeticCrateSeries7BronzeBundlePackDescription="Contains five of the Horzine Supply Cosmetic Crate | Series #7 crate along with five of its associated keys."
 HorzineSupplyCosmeticCrateSeries7SilverBundlePackDescription="Contains ten of the Horzine Supply Cosmetic Crate | Series #7 crate along with ten of its associated keys."
 HorzineSupplyCosmeticCrateSeries7GoldBundlePackDescription="Contains twenty of the Horzine Supply Cosmetic Crate | Series #7 crate along with twenty of its associated keys."
-JaegerMKIIWeaponSkinBundleDescription="Includes 20 Jaeger themed weapon skins (10 RGB and 10 Dynamic) Weapons featured in this set are: AK12, UMP45, MAC10, SW500, Tommy Gun, M16, HM 501, M1911, HZ12, AF2011"
+JaegerMKIIWeaponSkinBundleDescription="Includes 20 Jaeger themed weapon skins (10 RGB and 10 Dynamic) Weapons featured in this set are: AK-12, UMP45, MAC10, SW500, Tommy Gun, M16, HM 501, M1911, HZ12, AF2011"
 JaegerMKIIIWeaponSkinBundleDescription="Includes 20 Jaeger themed weapon skins (10 RGB and 10 Dynamic) Weapons featured in this set are: Dragonsbreath, MKB42H, Seal Squeal, M32, RPG-7, VLAD-1000 Nailgun, M99, Boomstick, Flamethrower, Eviscerator."
 SpectreWeaponSkinBundleDescription="Includes 10 Spectre themed weapons skins for the HRG Weapon Set(5 Dynamic Skins, 5 Chroma Dynamic)  Weapons featured in this set are: HRG Buckshot Revolvers, HRG Nailgun PDW, HRG Healthrower, HRG Incision, HRG Winterbites"
-BeyondHorizonMKIIWeaponSkinBundleDescription="Contains 20 Beyond Horizon themed weapon skins (10 Standard Mint and 10 Space Elite) Weapons featured in this set are: AA12, AK12, Desert Eagle, Doomstick, Hemoclobber, HMTech501 Grenade Rifle, M32, MAC 10, Microwave Gun, and P90."
+BeyondHorizonMKIIWeaponSkinBundleDescription="Contains 20 Beyond Horizon themed weapon skins (10 Standard Mint and 10 Space Elite) Weapons featured in this set are: AA12, AK-12, Desert Eagle, Doomstick, Hemoclobber, HMTech501 Grenade Rifle, M32, MAC 10, Microwave Gun, and P90."
 PremiumCyberpunkTicketBronzeBundlePackDescription="Contains five Premium Cyberpunk Treat Tickets for one low price. Available for a limited time!"
 PremiumCyberpunkTicketSilverBundlePackDescription="Contains ten Premium Cyberpunk Treat Tickets and an additional bonus Cyberpunk Golden Ticket  for one low price. Available for a limited time!"
 PremiumCyberpunkTicketGoldBundlePackDescription="Contains twenty Premium Cyberpunk Treat Tickets and  three bonus Cyberpunk Golden Tickets  for one low price. Available for a limited time!"
@@ -466,7 +475,7 @@ ApocalypseCosmeticBundleDescription="Contains 5 Apocalypse themed cosmetic acces
 WW1PilotCosmeticBundleDescription="Contains 4 WW1 Pilot themed cosmetic accessories each with 7 texture variants in a single bundle. Compatible with most characters."
 SpectreMKIIWeaponSkinBundleDescription="Includes 12 Spectre themed weapons skins for the HRG Weapon Set(6 Dynamic Skins, 6 Chroma Dynamic)  Weapons featured in this set are: HRG Arc Generator, HRG Incendiary Rifle, HRG Kaboomstick, HRG Scorcher, HRG Teslauncher, HRG Vampire"
 WinterCosmeticBundleDescription="Contains 4 Winter themed cosmetic accessories each with 9 texture variants in a single bundle. Compatible with most characters."
-IceBreakerWeaponSkinBundleDescription="Includes 20 Ice Breaker themed weapon skins (10 Dynamic and 10 Precious) Weapons featured in this set are: AK12, Boomstick, Desert Eagle, Dragonsbreath, Kriss, M79, M99, Hemoclobber, Pulverizer, RPG-7."
+IceBreakerWeaponSkinBundleDescription="Includes 20 Ice Breaker themed weapon skins (10 Dynamic and 10 Precious) Weapons featured in this set are: AK-12, Boomstick, Desert Eagle, Dragonsbreath, Kriss, M79, M99, Hemoclobber, Pulverizer, RPG-7."
 NeonMKVIIWeaponSkinBundleDescription="Contains 32 Neon themed weapon skins (10 Standard Neon and 10 RGB Neon) Weapons featured in this set are: Caulk n Burn, Crovel, HX25, MP5RAS, 1858 Revolver, Eviscerator, Berserker Knife, KF-BAR, Demo Knife, Firemans Knife, Gunslinger Knife, HMTech-001 Scalpel, Kukri, Support Knife, Gore Shiv, Tactical Knife."
 ParatrooperGearCosmeticBundleDescription="Contains 4 Paratrooper themed cosmetic accessories each with 8 texture variants in a single bundle. Compatible with most characters."
 ChemicalWarriorGearCosmeticBundleDescription="Contains 3 Chemical Warrior themed cosmetic accessories each with 8 texture variants in a single bundle. Compatible with most characters."
@@ -485,11 +494,20 @@ ClassicWeaponSkinBundleDescription="Contains 8 Classic themed weapon skins (4 Mi
 DeepSeaSkinWeaponSkinBundleDescription="Contains 36 Deep Sea themed weapon skins (6 Antique, 6 Aqua, 6 Coral, 6 Pearl, 6 Black Seal, and 6 Precious). Weapons Featured in this set are: AA12, FN FAL, M14EBR, Mac 10, MP5RAS, RPG-7."
 ChameleonWeaponSkinBundleDescription="Contains 8 Chameleon themed weapon skins (4 Dynamic and 4 Dynamic RBG) Weapons featured in this set are: Desert Eagle, Katana. Kriss SMG, RPG-7."
 DeepSeaExplorerOutfitDescription="Comes with the Deep Sea Explorer Outfit and Helmet (includes 6 of skin styles). Compatible with most characters."
+PlagueDoctorOutfitDescription="Comes with the Plague Doctor Outfit and Hood (includes 6 of skin styles). Compatible with most characters."
 ReductoRayBundleDescription="The power to bring your enemies down to size within the palm of your hand. The Reducto Ray is designed for the Survivalist perk and comes with 5 unique skin variants."
 SentinelBundleDescription="Everyone needs a friend, particularly one that's an autonomous AI with an auto-targeting machine gun. The Sentinel is designed for the Commando perk comes with 5 unique skin variants."
 TidalTerrorBundleDescription="Includes the Sentinel and Reducto Ray Weapons from the Tidal Terror update. Each weapon comes with 5 unique skin variants."
-ArmorySeasonPass2022Description="Expand your repertoire of Zed destruction in Killing Floor 2 with this year’s Armory Season Pass! The most dosh-efficient way to gain immediate access to all 6 upcoming 2022 weapons as they release throughout the year. Purchase immediately includes 2 brand new weapons released with the Summer 2022 Update (Reducto Ray WeaponBundle, Sentinel Weapon Bundle) Both weapon bundles come with 5 unique weapon skins each Additionally, the Killing Floor 2 Armory Season Pass 2 includes access to the upcoming Weapon Bundles scheduled as follows: 2 Weapons for Fall 2022, 2 Weapons for Winter 2022"
+ArmorySeasonPass2022Description="Expand your repertoire of Zed destruction in Killing Floor 2 with this year’s Armory Season Pass! The most dosh-efficient way to gain immediate access to all 6 upcoming 2022 weapons as they release throughout the year. Purchase immediately includes 4 weapons released with the 2022 Seasonal Updates: Reducto Ray Weapon Bundle, Sentinel Weapon Bundle, G36C Assault Rifle Weapon Bundle, Blood Sickle Weapon Bundle. All weapon bundles come with 5 unique weapon skins each. Additionally, the Killing Floor 2 Armory Season Pass 2 includes access to the upcoming Weapon Bundles scheduled as follows: 2 Weapons for Fall 2022, 2 Weapons for Winter 2022.
 UltimateUpgradeDescription="For existing Killing Floor 2 Owners that want to upgrade to the most comprehensive experience of the game at one low price. This upgrade bundle includes: Armory Season Pass 1 & 2, as well as the following cosmetic upgrades. and following standalone Add-ons: Mrs. Foster, Cyberpunk Outfit Bundle, Headshot FX Pack 1 & 2, Wasteland Bundle, Foster Classic Bundle, Briar’s Bobby Bundle, Tanaka’s Biker Bundle, Horzine Mark 7 Bundle, Hazmat Suit Bundle,  DAR Assault Armor Bundle, Commando Chicken Bundle, Pajama Bundle, Clot Backpack Bundle, Dragon & Koi Complete Weapon Skin Set, Badass Santa Bundle, Cardboard Knight Bundle, Witch Hunter Outfit Bundle, Santa’s Helper Outfit Bundle, Foster’s Favorites Weapon Skin Pack, Space Pirate Outfit Bundle, Space Pirate Full Gear Bundle,  Reaper Outfit Bundle, Halloween 2020 Full Gear Bundle, Christmas 2020 Full Gear Bundle, Winter 2020 Gear Cosmetic Bundle"
+PlagueDoctorWeaponSkinBundleDescription="Contains 36 Plague Doctor themed weapon skins (6 Mint, 6 Sterling, 6 Obsidian, 6 Volcanic, 6 Emerald, and 6 Precious). Weapons Featured in this set are: Tommy Gun, M79. Desert Eagle, Crossbow, Doomstick, and Dragonsbreath."  
+XenoWeaponSkinBundleDescription="Contains 8 Xeno Sci-Fi inspired themed weapon skins (4 Dynamic  and 4 Dynamic RGB) Weapons featured in this set are: M16 M203, UMP SMG, Centerfire, and Hemoclobber."
+ClassicMKIIWeaponSkinBundleDescription="Contains 8 Classic themed weapon skins (4 Mint and 4 Precious) Weapons featured in this set are: AK-12, Desert Eagle, M14 EBR, and Kriss SMG."
+ChameleonMKIIWeaponSkinBundleDescription="Contains 8 Chameleon themed weapon skins (4 Dynamic and 4 Dynamic RBG) Weapons featured in this set are: AA12, Flamethrower, M99, SCAR."
+PlagueDoctorOutfitBundleDescription="Comes with the Plague Doctor Outfit  and Hood (includes 6 of skin styles). Compatible with most characters."
+G36CBundleDescription="Armor piercing power within the size of an SMG. The G36C Assault Rifle is designed for the SWAT perk and comes with 5 unique skin variants."
+BloodSickleBundleDescription="The Reaper's favorite now collapsible for narrow hallways. The Blood Sickle is designed for the Berserker perk comes with 5 unique skin variants."
+BloodBonfiresWeaponBundleDescription="Includes the G36C Assault Rifle and Blood Sickle Weapons from the Blood & Bonfires update. Each weapon comes with 5 unique skin variants."
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Get a new classic London Bobby uniform for playable character PC Rob Briar. Comes with Briar's London Uniform (includes 5 skin styles), and Custodian Helmet Cosmetic Accessory (includes 3 skin styles)."
@@ -602,6 +620,7 @@ AstronautO2BackpackName="Astronaut O2 Backpack"
 AstronautSuitName="Astronaut Suit Uniform"
 HolidayShoppingSuitName="Holiday Shopper Outfit"
 DeepSeeExplorerSuitName="Deep Sea Explorer Outfit"
+PlagueDoctorSuitName="Plague Doctor Outfit"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="Lt. Bill Masterson | Cyberpunk | Green"
@@ -986,7 +1005,7 @@ VictorianEncryptedUSBDescription="Requires a Victorian Key to open. Drop chances
 
 ZedKillerEncryptedUSBDescription="Requires a Zed Killer Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">Scar | Clot Commando</font><br><font color="#4b69cd">9MM | Bloated</font><br><font color="#4b69cd">AA-12 | Fleshpounder</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Arachnid</font><br><font color="#6600a1">Crovel | Grave Digger</font><br><font color="#8847ff">SG 500 | Rusted Death</font><br><font color="#8847ff">Pulverizer | Skullcracker</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-TacticalMKIIEncryptedUSBDescription="Requires a Tactical MKII Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">AA12 | Tactical</font><br><font color="#4b69cd">AK12 | Tactical</font><br><font color="#4b69cd">L85A2 | Tactical</font><br><font color="#4b69cd">SG500 | Tactical</font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Tactical</font><br><font color="#4b69cd">Scar | Tactical</font><br><font color="#6600a1">Desert Eagle | Horzine Elite Green</font><br><font color="#6600a1">Desert Eagle | Horzine Elite White</font><br><font color="#8847ff">Desert Eagle | Horzine Elite Blue</font><br><font color="#8847ff">Desert Eagle | Horzine Elite Red</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+TacticalMKIIEncryptedUSBDescription="Requires a Tactical MKII Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">AA12 | Tactical</font><br><font color="#4b69cd">AK-12 | Tactical</font><br><font color="#4b69cd">L85A2 | Tactical</font><br><font color="#4b69cd">SG500 | Tactical</font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Tactical</font><br><font color="#4b69cd">Scar | Tactical</font><br><font color="#6600a1">Desert Eagle | Horzine Elite Green</font><br><font color="#6600a1">Desert Eagle | Horzine Elite White</font><br><font color="#8847ff">Desert Eagle | Horzine Elite Blue</font><br><font color="#8847ff">Desert Eagle | Horzine Elite Red</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
 MaceAndShieldEncryptedUSBDescription="Requires a Bone Crusher Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">Bone Crusher | Circuit</font><br><font color="#4b69cd">Bone Crusher | USA</font><br><font color="#4b69cd">Bone Crusher | Zed Hazard</font><br><font color="#4b69cd">Bone Crusher | Warning</font><br><font color="#6600a1">Bone Crusher | Batcat</font><br><font color="#8847ff">Bone Crusher | Guillotine</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
@@ -996,9 +1015,9 @@ HighVoltageEncryptedUSBDescription="Requires a High Voltage Blueprint Key to ope
 
 FlarePistolEncryptedUSBDescription="Requires a Spitfire Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">Spitfire | Flame Blue</font><br><font color="#4b69cd">Spitfire | Flame Orange</font><br><font color="#4b69cd">Spitfire | Flame Red</font><br><font color="#4b69cd">Spitfire | DigiCam Orange</font><br><font color="#6600a1">Spitfire | Guillotine</font><br><font color="#6600a1">Spitfire | Koi</font><br><font color="#8847ff">Spitfire | Fine China</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-VietnamEncryptedUSBDescription="Requires a Vietnam Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">Winchester 1894 | Vietnam</font><br><font color="#4b69cd">RPG-7 | Vietnam</font><br><font color="#4b69cd">M1911 | Vietnam</font><br><font color="#4b69cd">L85A2 | Vietnam</font><br><font color="#4b69cd">M4 | Vietnam</font><br><font color="#6600a1">AK12 | Vietnam</font><br><font color="#6600a1">M14EBR | Vietnam</font><br><font color="#8847ff">M16 M203 | Vietnam</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+VietnamEncryptedUSBDescription="Requires a Vietnam Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">Winchester 1894 | Vietnam</font><br><font color="#4b69cd">RPG-7 | Vietnam</font><br><font color="#4b69cd">M1911 | Vietnam</font><br><font color="#4b69cd">L85A2 | Vietnam</font><br><font color="#4b69cd">M4 | Vietnam</font><br><font color="#6600a1">AK-12 | Vietnam</font><br><font color="#6600a1">M14EBR | Vietnam</font><br><font color="#8847ff">M16 M203 | Vietnam</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-JunkyardEncryptedUSBDescription="Requires a Junkyard Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">M4 | Junkyard</font><br><font color="#4b69cd">AK12 | Junkyard</font><br><font color="#4b69cd">Kriss SMG | Junkyard</font><br><font color="#4b69cd">MP5RAS | Junkyard</font><br><font color="#4b69cd">Winchester 1894 | Junkyard</font><br><font color="#4b69cd">L85A2 | Junkyard</font><br><font color="#6600a1">M14EBR | Junkyard</font><br><font color="#6600a1">AA12 | Junkyard</font><br><font color="#8847ff">M16 M203 | Junkyard</font><br><font color="#8847ff">Scar | Junkyard</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+JunkyardEncryptedUSBDescription="Requires a Junkyard Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">M4 | Junkyard</font><br><font color="#4b69cd">AK-12 | Junkyard</font><br><font color="#4b69cd">Kriss SMG | Junkyard</font><br><font color="#4b69cd">MP5RAS | Junkyard</font><br><font color="#4b69cd">Winchester 1894 | Junkyard</font><br><font color="#4b69cd">L85A2 | Junkyard</font><br><font color="#6600a1">M14EBR | Junkyard</font><br><font color="#6600a1">AA12 | Junkyard</font><br><font color="#8847ff">M16 M203 | Junkyard</font><br><font color="#8847ff">Scar | Junkyard</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
 NeonEncryptedUSBDescription="Requires a Neon Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">SG 500 | Neon</font><br><font color="#4b69cd">Railgun | Neon</font><br><font color="#4b69cd">RPG-7 | Neon</font><br><font color="#4b69cd">Scar | Neon</font><br><font color="#4b69cd">M1911 | Neon</font><br><font color="#4b69cd">Katana | Neon</font><br><font color="#4b69cd">Dragonsbreath | Neon</font><br><font color="#4b69cd">Kriss SMG | Neon</font><br><font color="#6600a1">MP5RAS | Horzine Elite White</font><br><font color="#6600a1">MP5RAS | Horzine Elite Green</font><br><font color="#8847ff">MP5RAS | Horzine Elite Black</font><br><font color="#8847ff">MP5RAS | Horzine Elite Blue</font><br><font color="#8847ff">MP5RAS | Horzine Elite Red</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
@@ -1006,9 +1025,9 @@ WeaponCollectorPack1EncryptedUSBDescription="Requires a Weapon Collector Pack 1 
 
 NeonMKIIEncryptedUSBDescription="Requires a Neon MKII Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">Hemogoblin | Neon</font><br><font color="#4b69cd">M14EBR | Neon</font><br><font color="#4b69cd">Seeker Six | Neon</font><br><font color="#4b69cd">Stoner 63A | Neon</font><br><font color="#4b69cd">Heckler & Koch UMP | Neon</font><br><font color="#4b69cd">HMTech-101 Pistol | Horzine Elite Blue</font><br><font color="#4b69cd">HMTech-101 Pistol | Horzine Elite Green</font><br><font color="#4b69cd">HMTech-101 Pistol | Horzine Elite White</font><br><font color="#6600a1">Flamethrower | Neon</font><br><font color="#6600a1">Microwave Gun | Neon</font><br><font color="#8847ff">AA12 | Neon</font><br><font color="#8847ff">HMTech-101 Pistol | Horzine Elite Black</font><br><font color="#8847ff">HMTech-101 Pistol | Horzine Elite Red</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-BluefireEncryptedUSBDescription="Requires a Bluefire Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">AK12 | Bluefire</font><br><font color="#4b69cd">M1911 | Bluefire</font><br><font color="#4b69cd">M4 | Bluefire</font><br><font color="#4b69cd">M79 | Bluefire</font><br><font color="#4b69cd">MP7 | Bluefire</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Bluefire</font><br><font color="#4b69cd">Boomstick | Horzine First Encounter</font><br><font color="#4b69cd">HZ12 | Horzine First Encounter</font><br><font color="#4b69cd">M79 | Horzine First Encounter</font><br><font color="#4b69cd">MP5RAS | Horzine First Encounter</font><br><font color="#6600a1">Freeze Thrower | Bluefire</font><br><font color="#6600a1">Railgun | Bluefire</font><br><font color="#6600a1">Seeker Six | Bluefire</font><br><font color="#6600a1">Kriss SMG | Horzine First Encounter</font><br><font color="#6600a1">RPG-7 | Horzine First Encounter</font><br><font color="#6600a1">Scar | Horzine First Encounter</font><br><font color="#8847ff">Centerfire | Bluefire</font><br><font color="#8847ff">Hemogoblin | Bluefire</font><br><font color="#8847ff">RPG-7 | Bluefire</font><br><font color="#8847ff">AK12 | Horzine First Encounter</font><br><font color="#8847ff">Centerfire | Horzine First Encounter</font><br><font color="#8847ff">M14EBR | Horzine First Encounter</font><br><font color="#8847ff">MAC 10 | Horzine First Encounter</font><br><font color="#8847ff">Heckler & Koch UMP | Horzine First Encounter</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+BluefireEncryptedUSBDescription="Requires a Bluefire Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">AK-12 | Bluefire</font><br><font color="#4b69cd">M1911 | Bluefire</font><br><font color="#4b69cd">M4 | Bluefire</font><br><font color="#4b69cd">M79 | Bluefire</font><br><font color="#4b69cd">MP7 | Bluefire</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Bluefire</font><br><font color="#4b69cd">Boomstick | Horzine First Encounter</font><br><font color="#4b69cd">HZ12 | Horzine First Encounter</font><br><font color="#4b69cd">M79 | Horzine First Encounter</font><br><font color="#4b69cd">MP5RAS | Horzine First Encounter</font><br><font color="#6600a1">Freeze Thrower | Bluefire</font><br><font color="#6600a1">Railgun | Bluefire</font><br><font color="#6600a1">Seeker Six | Bluefire</font><br><font color="#6600a1">Kriss SMG | Horzine First Encounter</font><br><font color="#6600a1">RPG-7 | Horzine First Encounter</font><br><font color="#6600a1">Scar | Horzine First Encounter</font><br><font color="#8847ff">Centerfire | Bluefire</font><br><font color="#8847ff">Hemogoblin | Bluefire</font><br><font color="#8847ff">RPG-7 | Bluefire</font><br><font color="#8847ff">AK-12 | Horzine First Encounter</font><br><font color="#8847ff">Centerfire | Horzine First Encounter</font><br><font color="#8847ff">M14EBR | Horzine First Encounter</font><br><font color="#8847ff">MAC 10 | Horzine First Encounter</font><br><font color="#8847ff">Heckler & Koch UMP | Horzine First Encounter</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-NeonMKIIIEncryptedUSBDescription="Requires a Neon MKIII Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">9MM | Neon</font><br><font color="#4b69cd">Centerfire | Neon</font><br><font color="#4b69cd">Husk Cannon | Neon</font><br><font color="#6600a1">AF2011-A1 | Neon</font><br><font color="#6600a1">Doomstick | Neon</font><br><font color="#6600a1">M99 | Neon</font><br><font color="#8847ff">AK12 | Neon</font><br><font color="#8847ff">M16 M203 | Neon</font><br><font color="#8847ff">P90 | Neon</font><br><font color="#8847ff">Static Strikers | Neon</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+NeonMKIIIEncryptedUSBDescription="Requires a Neon MKIII Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">9MM | Neon</font><br><font color="#4b69cd">Centerfire | Neon</font><br><font color="#4b69cd">Husk Cannon | Neon</font><br><font color="#6600a1">AF2011-A1 | Neon</font><br><font color="#6600a1">Doomstick | Neon</font><br><font color="#6600a1">M99 | Neon</font><br><font color="#8847ff">AK-12 | Neon</font><br><font color="#8847ff">M16 M203 | Neon</font><br><font color="#8847ff">P90 | Neon</font><br><font color="#8847ff">Static Strikers | Neon</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
 NeonMKIVEncryptedUSBDescription="Requires a Neon MKIV Blueprint Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">HMTech-101 Pistol | Neon</font><br><font color="#4b69cd">M4 | Neon</font><br><font color="#6600a1">HMTech-301 Shotgun | Neon</font><br><font color="#6600a1">HMTech-401 Assault Rifle | Neon</font><br><font color="#6600a1">HMTech-501 Grenade Rifle | Neon</font><br><font color="#6600a1">Bone Crusher | Neon</font><br><font color="#8847ff">HMTech-201 SMG | Neon</font><br><font color="#8847ff">Mkb.42 | Neonn</font><br><font color="#8847ff">500 Magnum Revolver | Neon</font><br><font color="#8847ff">Freeze Thrower | Neon</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
@@ -1156,11 +1175,11 @@ HorzineSupplyWeaponSkinCrateSeries7Description="Requires a Horzine Supply Crate 
 
 HorzineSupplyWeaponSkinCrateSeries8Description="Requires a Horzine Supply Crate Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">Hemogoblin | Neon</font><br><font color="#4b69cd">M14EBR | Neon</font><br><font color="#4b69cd">Seeker Six | Neon</font><br><font color="#4b69cd">Stoner 63A | Neon</font><br><font color="#4b69cd">Heckler & Koch UMP | Neon</font><br><font color="#4b69cd">HMTech-101 Pistol | Horzine Elite Blue</font><br><font color="#4b69cd">HMTech-101 Pistol | Horzine Elite Green</font><br><font color="#4b69cd">HMTech-101 Pistol | Horzine Elite White</font><br><font color="#6600a1">Flamethrower | Neon</font><br><font color="#6600a1">Microwave Gun | Neon</font><br><font color="#8847ff">AA12 | Neon</font><br><font color="#8847ff">HMTech-101 Pistol | Horzine Elite Black</font><br><font color="#8847ff">HMTech-101 Pistol | Horzine Elite Red</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-HorzineSupplyWeaponSkinCrateSeries9Description="Requires a Horzine Supply Crate Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">AK12 | Bluefire</font><br><font color="#4b69cd">M1911 | Bluefire</font><br><font color="#4b69cd">M4 | Bluefire</font><br><font color="#4b69cd">M79 | Bluefire</font><br><font color="#4b69cd">MP7 | Bluefire</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Bluefire</font><br><font color="#4b69cd">Boomstick | Horzine First Encounter</font><br><font color="#4b69cd">HZ12 | Horzine First Encounter</font><br><font color="#4b69cd">M79 | Horzine First Encounter</font><br><font color="#4b69cd">MP5RAS | Horzine First Encounter</font><br><font color="#6600a1">Freeze Thrower | Bluefire</font><br><font color="#6600a1">Railgun | Bluefire</font><br><font color="#6600a1">Seeker Six | Bluefire</font><br><font color="#6600a1">Kriss SMG | Horzine First Encounter</font><br><font color="#6600a1">RPG-7 | Horzine First Encounter</font><br><font color="#6600a1">Scar | Horzine First Encounter</font><br><font color="#8847ff">Centerfire | Bluefire</font><br><font color="#8847ff">Hemogoblin | Bluefire</font><br><font color="#8847ff">RPG-7 | Bluefire</font><br><font color="#8847ff">AK12 | Horzine First Encounter</font><br><font color="#8847ff">Centerfire | Horzine First Encounter</font><br><font color="#8847ff">M14EBR | Horzine First Encounter</font><br><font color="#8847ff">MAC 10 | Horzine First Encounter</font><br><font color="#8847ff">Heckler & Koch UMP | Horzine First Encounter</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+HorzineSupplyWeaponSkinCrateSeries9Description="Requires a Horzine Supply Crate Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">AK-12 | Bluefire</font><br><font color="#4b69cd">M1911 | Bluefire</font><br><font color="#4b69cd">M4 | Bluefire</font><br><font color="#4b69cd">M79 | Bluefire</font><br><font color="#4b69cd">MP7 | Bluefire</font><br><font color="#4b69cd">VLAD-1000 Nailgun | Bluefire</font><br><font color="#4b69cd">Boomstick | Horzine First Encounter</font><br><font color="#4b69cd">HZ12 | Horzine First Encounter</font><br><font color="#4b69cd">M79 | Horzine First Encounter</font><br><font color="#4b69cd">MP5RAS | Horzine First Encounter</font><br><font color="#6600a1">Freeze Thrower | Bluefire</font><br><font color="#6600a1">Railgun | Bluefire</font><br><font color="#6600a1">Seeker Six | Bluefire</font><br><font color="#6600a1">Kriss SMG | Horzine First Encounter</font><br><font color="#6600a1">RPG-7 | Horzine First Encounter</font><br><font color="#6600a1">Scar | Horzine First Encounter</font><br><font color="#8847ff">Centerfire | Bluefire</font><br><font color="#8847ff">Hemogoblin | Bluefire</font><br><font color="#8847ff">RPG-7 | Bluefire</font><br><font color="#8847ff">AK-12 | Horzine First Encounter</font><br><font color="#8847ff">Centerfire | Horzine First Encounter</font><br><font color="#8847ff">M14EBR | Horzine First Encounter</font><br><font color="#8847ff">MAC 10 | Horzine First Encounter</font><br><font color="#8847ff">Heckler & Koch UMP | Horzine First Encounter</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-HorzineSupplyWeaponSkinCrateSeries10Description="Requires a Horzine Supply Crate Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">AA12 | Tactical</font><br><font color="#4b69cd">AK12 | Tactical</font><br><font color="#4b69cd">L85A2 | Tactical</font><br><font color="#4b69cd">SG500 | Tactical</font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Tactical</font><br><font color="#4b69cd">Scar | Tactical</font><br><font color="#6600a1">Desert Eagle | Horzine Elite Green</font><br><font color="#6600a1">Desert Eagle | Horzine Elite White</font><br><font color="#8847ff">Desert Eagle | Horzine Elite Blue</font><br><font color="#8847ff">Desert Eagle | Horzine Elite Red</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+HorzineSupplyWeaponSkinCrateSeries10Description="Requires a Horzine Supply Crate Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">AA12 | Tactical</font><br><font color="#4b69cd">AK-12 | Tactical</font><br><font color="#4b69cd">L85A2 | Tactical</font><br><font color="#4b69cd">SG500 | Tactical</font><br><font color="#4b69cd">HMTech-401 Assault Rifle | Tactical</font><br><font color="#4b69cd">Scar | Tactical</font><br><font color="#6600a1">Desert Eagle | Horzine Elite Green</font><br><font color="#6600a1">Desert Eagle | Horzine Elite White</font><br><font color="#8847ff">Desert Eagle | Horzine Elite Blue</font><br><font color="#8847ff">Desert Eagle | Horzine Elite Red</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
-HorzineSupplyWeaponSkinCrateSeries11Description="Requires a Horzine Supply Crate Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">9MM | Neon</font><br><font color="#4b69cd">Centerfire | Neon</font><br><font color="#4b69cd">Husk Cannon | Neon</font><br><font color="#6600a1">AF2011-A1 | Neon</font><br><font color="#6600a1">Doomstick | Neon</font><br><font color="#6600a1">M99 | Neon</font><br><font color="#8847ff">AK12 | Neon</font><br><font color="#8847ff">M16 M203 | Neon</font><br><font color="#8847ff">P90 | Neon</font><br><font color="#8847ff">Static Strikers | Neon</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
+HorzineSupplyWeaponSkinCrateSeries11Description="Requires a Horzine Supply Crate Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">9MM | Neon</font><br><font color="#4b69cd">Centerfire | Neon</font><br><font color="#4b69cd">Husk Cannon | Neon</font><br><font color="#6600a1">AF2011-A1 | Neon</font><br><font color="#6600a1">Doomstick | Neon</font><br><font color="#6600a1">M99 | Neon</font><br><font color="#8847ff">AK-12 | Neon</font><br><font color="#8847ff">M16 M203 | Neon</font><br><font color="#8847ff">P90 | Neon</font><br><font color="#8847ff">Static Strikers | Neon</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
 HorzineSupplyWeaponSkinCrateSeries12Description="Requires a Horzine Supply Crate Key to open. Drop chances for each rarity is as follows:<br><font color="#4b69cd">Rare: 40%</font> <font color="#6600a1">Exceptional: 30%</font"> <font color="#8847ff">Master Crafted: 20%</font> <font color="#caab05">Precious: 10%</font><br><font color="#4b69cd">HMTech-101 Pistol | Neon</font><br><font color="#4b69cd">M4 | Neon</font><br><font color="#6600a1">HMTech-301 Shotgun | Neon</font><br><font color="#6600a1">HMTech-401 Assault Rifle | Neon</font><br><font color="#6600a1">HMTech-501 Grenade Rifle | Neon</font><br><font color="#6600a1">Bone Crusher | Neon</font><br><font color="#8847ff">HMTech-201 SMG | Neon</font><br><font color="#8847ff">Mkb.42 | Neonn</font><br><font color="#8847ff">500 Magnum Revolver | Neon</font><br><font color="#8847ff">Freeze Thrower | Neon</font><br><font color="#caab05">or an Exceedingly Rare Precious Skin!</font>"
 
@@ -1542,6 +1561,8 @@ AA12DeepSeaBlackSealName="AA12 | Deep Sea | Black Seal"
 AA12DeepSeaPreciousName="AA12 | Deep Sea | Precious"
 AA12ClassicMintName="AA12 | Classic | Mint"
 AA12ClassicPreciousName="AA12 | Classic | Precious"
+AA12ChameleonDynamicName="AA12 | Chameleon | Dynamic"
+AA12ChameleonDynamicRGBName="AA12 | Chameleon | Dynamic RGB"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Exterior: Mint | Everything is better when you put more barrels on it. It's like adding more bacon."
@@ -1634,14 +1655,16 @@ AK12SynthwaveBattleScarredName="AK-12 | Synthwave | Battle-Scarred"
 AK12PrestigePreciousName="AK-12 | Prestige | Precious"
 AK12DragonKoiPreciousName="AK-12 | Dragon & Koi | Precious"
 AK12FostersFavoritesPreciousName="AK-12 | Foster's Favorites | Precious"
-AK12JaegerDynamicName="AK12 | Jaeger | Dynamic"
-AK12JaegerDynamicRGBName="AK12 | Jaeger | Dynamic RGB"
-AK12StarsName="AK12 | Vault | Stars"
+AK12JaegerDynamicName="AK-12 | Jaeger | Dynamic"
+AK12JaegerDynamicRGBName="AK-12 | Jaeger | Dynamic RGB"
+AK12StarsName="AK-12 | Vault | Stars"
 AK12IceBreakerDynamicName="AK-12 | Ice Breaker | Dynamic"
 AK12IceBreakerDynamicPreciousName="AK-12 | Ice Breaker | Dynamic Precious"
 AK12BeyondHorizonMintName="AK-12 | Beyond Horizon | Mint"
 AK12BeyondHorizonSpaceEliteName="AK-12 | Beyond Horizon | Space Elite"
 AK12ScavengerPreciousName="AK-12 | Scavenger | Precious"
+AK12ClassicMintName="AK-12 | Classic | Mint"
+AK12ClassicPreciousName="AK-12 | Classic | Precious"
 
 ;AR15 Descriptions
 AR15MintDescription="Exterior: Mint | This is for Zeds, not 'varmints.'"
@@ -1818,6 +1841,8 @@ CenterfireNeonFieldTestedName="Centerfire | Neon | Field-Tested"
 CenterfireNeonMintName="Centerfire | Neon | Mint"
 CenterfireNeonRGBPreciousName="Centerfire | Neon RGB | Precious"
 CenterfireVaultVoshPreciousName="Centerfire | Vault | Vosh | Precious"
+CenterfireXenoDynamicName="Centerfire | Xeno | Dynamic"
+CenterfireXenoDynamicRGBName="Centerfire | Xeno | Dynamic RGB"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Exterior: Mint | A high-powered hunting crossbow, giving good penetration and good stopping power!"
@@ -1846,6 +1871,12 @@ CrossbowNeonFieldTestedName="Crossbow | Neon | Field-Tested"
 CrossbowNeonBattleScarredName="Crossbow | Neon | Battle-Scarred"
 CrossbowNeonRGBPreciousName="Crossbow | Neon RGB | Precious"
 CrossbowDragonKoiPreciousName="Crossbow | Dragon & Koi | Precious"
+CrossbowPlagueDoctorMintName="Crossbow | Plague Doctor | Mint"
+CrossbowPlagueDoctorSterlingName="Crossbow | Plague Doctor | Sterling"
+CrossbowPlagueDoctorObsidianName="Crossbow | Plague Doctor | Obsidian"
+CrossbowPlagueDoctorVolcanicName="Crossbow | Plague Doctor | Volcanic"
+CrossbowPlagueDoctorEmeraldName="Crossbow | Plague Doctor | Emerald"
+CrossbowPlagueDoctorPreciousName="Crossbow | Plague Doctor | Precious"
 
 ;Crovel Descriptions
 CrovelMintDescription="Exterior: Mint | Part crowbar, part shovel, all quite deadly."
@@ -1936,6 +1967,14 @@ DesertEagleAlchemistToxicName="Desert Eagle | Alchemist | Toxic"
 DesertEagleAlchemistBlazeName="Desert Eagle | Alchemist | Blaze"
 DesertEagleChameleonDynamicName="Desert Eagle | Chameleon | Dynamic"
 DesertEagleChameleonDynamicRGBName="Desert Eagle | Chameleon | Dynamic RGB"
+DesertEaglePlagueDoctorMintName="Desert Eagle | Plague Doctor | Mint"
+DesertEaglePlagueDoctorSterlingName="Desert Eagle | Plague Doctor | Sterling"
+DesertEaglePlagueDoctorObsidianName="Desert Eagle | Plague Doctor | Obsidian"
+DesertEaglePlagueDoctorVolcanicName="Desert Eagle | Plague Doctor | Volcanic"
+DesertEaglePlagueDoctorEmeraldName="Desert Eagle | Plague Doctor | Emerald"
+DesertEaglePlagueDoctorPreciousName="Desert Eagle | Plague Doctor | Precious"
+DesertEagleClassicMintName="Desert Eagle | Classic | Mint"
+DesertEagleClassicPreciousName="Desert Eagle | Classic | Precious"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Exterior: Mint | When having twice the fun is not enough...let's make it four!"
@@ -1957,6 +1996,12 @@ DoomstickBeyondHorizonMintName="Doomstick | Beyond Horizon | Mint"
 DoomstickBeyondHorizonSpaceEliteName="Doomstick | Beyond Horizon | Space Elite"
 DoomstickHellmarkMagmaName="Doomstick | Hellmark | Magma"
 DoomstickHellmarkThunderName="Doomstick | Hellmark | Thunder"
+DoomstickPlagueDoctorMintName="Doomstick | Plague Doctor | Mint"
+DoomstickPlagueDoctorSterlingName="Doomstick | Plague Doctor | Sterling"
+DoomstickPlagueDoctorObsidianName="Doomstick | Plague Doctor | Obsidian"
+DoomstickPlagueDoctorVolcanicName="Doomstick | Plague Doctor | Volcanic"
+DoomstickPlagueDoctorEmeraldName="Doomstick | Plague Doctor | Emerald"
+DoomstickPlagueDoctorPreciousName="Doomstick | Plague Doctor | Precious"
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="Exterior: Mint | A shotgun using Dragon's Breath Incendiary Rounds. Not only deadly, but looks wonderful too."
@@ -1997,6 +2042,12 @@ DragonsbreathIceBreakerDynamicName="Dragonsbreath | Ice Breaker | Dynamic"
 DragonsbreathIceBreakerDynamicPreciousName="Dragonsbreath | Ice Breaker | Dynamic Precious"
 DragonsbreathHellmarkMagmaName="Dragonsbreath | Hellmark | Magma"
 DragonsbreathHellmarkThunderName="Dragonsbreath | Hellmark | Thunder"
+DragonsbreathPlagueDoctorMintName="Dragonsbreath | Plague Doctor | Mint"
+DragonsbreathPlagueDoctorSterlingName="Dragonsbreath | Plague Doctor | Sterling"
+DragonsbreathPlagueDoctorObsidianName="Dragonsbreath | Plague Doctor | Obsidian"
+DragonsbreathPlagueDoctorVolcanicName="Dragonsbreath | Plague Doctor | Volcanic"
+DragonsbreathPlagueDoctorEmeraldName="Dragonsbreath | Plague Doctor | Emerald"
+DragonsbreathPlagueDoctorPreciousName="Dragonsbreath | Plague Doctor | Precious"
 
 ;Eviscerator Descriptions
 EvisceratorMintDescription="Exterior: Mint | Originally designed by Horzine's SDS group in one of their wilder moments, this beast isn't subtle."
@@ -2071,6 +2122,8 @@ FlamethrowerXMasSweetName="Flamethrower | XMas | Sweet"
 FlamethrowerXMasSourName="Flamethrower | XMas | Sour"
 FlamethrowerAlchemistToxicName="Flamethrower | Alchemist | Toxic"
 FlamethrowerAlchemistBlazeName="Flamethrower | Alchemist | Blaze"
+FlamethrowerChameleonDynamicName="Flamethrower | Chameleon | Dynamic"
+FlamethrowerChameleonDynamicRGBName="Flamethrower | Chameleon | Dynamic RGB"
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="Exterior: Mint | Fire delivery system in a more convenient, travel-sized package."
@@ -2209,6 +2262,8 @@ HKUMPPrestigePreciousName="Heckler & Koch UMP | Prestige | Precious"
 HKUMPVaultVoshPreciousName="Heckler & Koch UMP | Vault | Vosh | Precious"
 HKUMPJaegerDynamicName="Heckler & Koch UMP | Jaeger | Dynamic"
 HKUMPJaegerDynamicRGBName="Heckler & Koch UMP | Jaeger | Dynamic RGB"
+HKUMPXenoDynamicName="Heckler & Koch UMP | Xeno | Dynamic"
+HKUMPXenoDynamicRGBName="Heckler & Koch UMP | Xeno | Dynamic RGB"
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="Exterior: Mint | It's a scalpel. You're a medic, so we're assuming that we do not need to explain to you how to use it."
@@ -2600,6 +2655,8 @@ KrissIceBreakerDynamicPreciousName="Kriss | Ice Breaker | Dynamic Precious"
 KrissInfernalElitePreciousName="Kriss | Infernal Elite | Precious"
 KrissChameleonDynamicName="Kriss SMG | Chameleon | Dynamic"
 KrissChameleonDynamicRGBName="Kriss SMG | Chameleon | Dynamic RGB"
+KrissClassicMintName="Kriss | Classic | Mint"
+KrissClassicPreciousName="Kriss | Classic | Precious"
 
 ;L85A2 Descriptions
 L85A2MintDescription="Exterior: Mint | The SA80 was the British Army's standard weapon, before the Army was, well, eaten."
@@ -2686,6 +2743,8 @@ M14EBRDeepSeaCoralName="M14EBR | Deep Sea | Coral"
 M14EBRDeepSeaPearlName="M14EBR | Deep Sea | Pearl"
 M14EBRDeepSeaBlackSealName="M14EBR | Deep Sea | Black Seal"
 M14EBRDeepSeaPreciousName="M14EBR | Deep Sea | Precious"
+M14EBRClassicMintName="M14EBR | Classic | Mint"
+M14EBRClassicPreciousName="M14EBR | Classic | Precious"
 
 ;M16M203 Descriptions
 M16M203MintDescription="Exterior: Mint | For those who can't decide between bullets and explosives."
@@ -2784,6 +2843,8 @@ M4NeonRGBPreciousName="M4 | Neon RGB | Precious"
 M4PrestigePreciousName="M4 | Prestige | Precious"
 M4DragonKoiPreciousName="M4 | Dragon & Koi | Precious"
 M4FostersFavoritesPreciousName="M4 | Foster's Favorites | Precious"
+M4XenoDynamicName="M4 | Xeno | Dynamic"
+M4XenoDynamicRGBName="M4 | Xeno | Dynamic RGB"
 
 ;M79 Descriptions
 M79MintDescription="Exterior: Mint | Only arms itself a few meters down-range, so you don't blow your own face off."
@@ -2831,6 +2892,12 @@ M79NeonMintName="M79 | Neon | Mint"
 M79NeonRGBPreciousName="M79 | Neon RGB | Precious"
 M79IceBreakerDynamicName="M79 | Ice Breaker | Dynamic"
 M79IceBreakerDynamicPreciousName="M79 | Ice Breaker | Dynamic Precious"
+M79PlagueDoctorMintName="M79 | Plague Doctor | Mint"
+M79PlagueDoctorSterlingName="M79 | Plague Doctor | Sterling"
+M79PlagueDoctorObsidianName="M79 | Plague Doctor | Obsidian"
+M79PlagueDoctorVolcanicName="M79 | Plague Doctor | Volcanic"
+M79PlagueDoctorEmeraldName="M79 | Plague Doctor | Emerald"
+M79PlagueDoctorPreciousName="M79 | Plague Doctor | Precious"
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="Exterior: Mint | Has a powerful Shield Bash attack."
@@ -2862,6 +2929,8 @@ M99JaegerDynamicName="M99 | Jaeger | Dynamic"
 M99JaegerDynamicRGBName="M99 | Jaeger | Dynamic RGB"
 M99IceBreakerDynamicName="M99 | Ice Breaker | Dynamic"
 M99IceBreakerDynamicPreciousName="M99 | Ice Breaker | Dynamic Precious"
+M99ChameleonDynamicName="M99 | Chameleon | Dynamic"
+M99ChameleonDynamicRGBName="M99 | Chameleon | Dynamic RGB"
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="Bone Crusher | Circuit | Mint"
@@ -2939,6 +3008,8 @@ MedicBatBeyondHorizonMintName="Hemoclobber | Beyond Horizon | Mint"
 MedicBatBeyondHorizonSpaceEliteName="Hemoclobber | Beyond Horizon | Space Elite"
 MedicBatHellmarkMagmaName="Hemoclobber | Hellmark | Magma"
 MedicBatHellmarkThunderName="Hemoclobber | Hellmark | Thunder"
+MedicBatXenoDynamicName="Hemoclobber | Xeno | Dynamic"
+MedicBatXenoDynamicRGBName="Hemoclobber | Xeno | Dynamic RGB"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Exterior: Mint | The wonders of modern technology: a handheld Zed-cooker."
@@ -3276,11 +3347,13 @@ ScarDragonKoiPreciousName="Scar | Dragon & Koi | Precious"
 ScarJaegerMintName="Scar | Jaeger | Mint"
 ScarJaegerFieldTestedName="Scar | Jaeger | Field-Tested"
 ScarJaegerBattleScarredName="Scar | Jaeger | Battle-Scarred"
-ScarJaegerDynamicName="SCAR | Jaeger | Dynamic"
+ScarJaegerDynamicName="Scar | Jaeger | Dynamic"
 ScarXMasSweetName="Scar | XMas | Sweet"
 ScarXMasSourName="Scar | XMas | Sour"
 ScarAlchemistToxicName="Scar | Alchemist | Toxic"
 ScarAlchemistBlazeName="Scar | Alchemist | Blaze"
+ScarChameleonDynamicName="Scar | Chameleon | Dynamic"
+ScarChameleonDynamicRGBName="Scar | Chameleon | Dynamic RGB"
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="Exterior: Mint | A versatile, high-explosive weapon that can track and engage multiple targets at once."
@@ -3633,6 +3706,12 @@ TommyGunVaultVoshPreciousName="Tommy Gun| Vault | Vosh | Precious"
 TommyGunJaegerDynamicName="Tommy Gun | Jaeger | Dynamic"
 TommyGunJaegerDynamicRGBName="Tommy Gun | Jaeger | Dynamic RGB"
 TommyGunStarsName="Tommy Gun | Vault | Stars"
+TommyGunPlagueDoctorMintName="Tommy Gun | Plague Doctor | Mint"
+TommyGunPlagueDoctorSterlingName="Tommy Gun | Plague Doctor | Sterling"
+TommyGunPlagueDoctorObsidianName="Tommy Gun | Plague Doctor | Obsidian"
+TommyGunPlagueDoctorVolcanicName="Tommy Gun | Plague Doctor | Volcanic"
+TommyGunPlagueDoctorEmeraldName="Tommy Gun | Plague Doctor | Emerald"
+TommyGunPlagueDoctorPreciousName="Tommy Gun | Plague Doctor | Precious"
 
 ;Laser Cutter Descriptions
 LaserCutterMintDescription="Exterior: Mint | Overcharge mode - Charges up while the fire button is pressed and discharges when the fire button is released."
@@ -4018,6 +4097,35 @@ ReductoRayAtomicLoveName="Reducto Ray | Atomic Love"
 ReductoRayLuckyStrikeName="Reducto Ray | Lucky Strike"
 ReductoRayHeavyMetalName="Reducto Ray | Heavy Metal"
 ReductoRayDestructorName="Reducto Ray | Destructor"
+
+;Blood Sickle Descriptions
+BloodSickleMintDescription="Exterior: Mint | The Reaper's favorite now collapsible for narrow hallways."
+BloodSickleFieldTestedDescription="Exterior: Field-Tested | The Reaper's favorite now collapsible for narrow hallways."
+BloodSickleBattleScarredDescription="Exterior: Battle-Scarred | The Reaper's favorite now collapsible for narrow hallways."
+BloodSicklePreciousDescription="Exterior: Precious | The Reaper's favorite now collapsible for narrow hallways."
+
+;Blood Sickle Names
+BloodSickleStandardName="Blood Sickle | Standard"
+BloodSickleBloodbathName="Blood Sickle | Bloodbath"
+BloodSickleButcheryName="Blood Sickle | Butchery"
+BloodSickleCarouselName="Blood Sickle | Carousel"
+BloodSickleReaperName="Blood Sickle | Reaper"
+BloodSickleHunterName="Blood Sickle | Hunter"
+
+;G36C Descriptions
+G36CMintDescription="Exterior: Mint | Armor piercing power within the size of an SMG."
+G36CFieldTestedDescription="Exterior: Field-Tested | Armor piercing power within the size of an SMG."
+G36CBattleScarredDescription="Exterior: Battle-Scarred | Armor piercing power within the size of an SMG."
+G36CPreciousDescription="Exterior: Precious | Armor piercing power within the size of an SMG."
+
+;G36C Names
+G36CStandardName="G36C Assault Rifle | Standard"
+G36CSaharaName="G36C Assault Rifle | Sahara"
+G36CIcepackName="G36C Assault Rifle | Icepack"
+G36CAftermathName="G36C Assault Rifle | Aftermath"
+G36CJungleName="G36C Assault Rifle | Jungle"
+G36CDazzleName="G36C Assault Rifle | Dazzle"
+
 
 [CosmeticSection]
 
@@ -6407,6 +6515,18 @@ DeepSeaHelmetCoralName="Deep Sea | Helmet | Coral"
 DeepSeaHelmetPearlName="Deep Sea | Helmet | Pearl"
 DeepSeaHelmetBlackSealName="Deep Sea | Helmet | Black Seal"
 DeepSeaHelmetPreciousName="Deep Sea | Helmet | Precious"
+
+;Halloween 2022 Cosmetic Names
+PlagueDoctorBackpackPreciousName="Plague Doctor | Backpack | Precious"
+PlagueDoctorHoodMintName="Plague Doctor | Hood | Mint"
+PlagueDoctorHoodSterlingName="Plague Doctor | Hood | Sterling"
+PlagueDoctorHoodObsidianName="Plague Doctor | Hood | Obsidian"
+PlagueDoctorHoodVolcanicName="Plague Doctor | Hood | Volcanic"
+PlagueDoctorHoodEmeraldName="Plague Doctor | Hood | Emerald"
+PlagueDoctorHoodPreciousName="Plague Doctor | Hood | Precious"
+
+;Weekly Primary Target Cosmetic Name
+PrimaryTargetCrownPreciousName="Primary Target Crown | Precious"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Equippable from the gear menu; Compatible with most characters. This is an exclusive item from the "Summer Sideshow" seasonal event. Recycles into 1 Sideshow Ticket."

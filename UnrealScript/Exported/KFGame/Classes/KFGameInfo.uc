@@ -4210,6 +4210,11 @@ simulated function AddWeaponsFromSpawnList(KFPawn P);
 simulated function OverrideHumanDefaults(KFPawn_Human P);
 
 /***********************************************
+ * @name        Helper for halloween 2022 barmwich bonfire seasonal objective
+ **********************************************/
+function ClearActorFromBonfire(Actor Other);
+
+/***********************************************
  * @name        Damage Modifier for Event
  **********************************************/
 simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx );
@@ -4265,7 +4270,7 @@ defaultproperties
    BossIndex=-1
    ZedTimeSlomoScale=0.200000
    ZedTimeBlendOutTime=0.500000
-   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-CarillonHamlet","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Moonbase","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Netherhold","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Rig","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+   GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-BarmwichTown","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-CarillonHamlet","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Moonbase","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Netherhold","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Rig","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
    DialogManagerClass=Class'KFGame.KFDialogManager'
    ActionMusicDelay=5.000000
    ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

@@ -115,9 +115,55 @@ var int MaxBossMinions;
 var() float MaxBossMinionScaleByPlayers[6];
 var array<Controller> RecentSpawnSelectedHumanControllerList;
 var const int ForcedBossNum;
+var int VIP_CurrentSpawnCounter;
+var int VIP_MaxSpawnCounter;
+var delegate<SortVIPSpawnVolumesDelegate> __SortVIPSpawnVolumesDelegate__Delegate;
 
 // Export UKFAISpawnManager::execSortSpawnVolumes(FFrame&, void* const)
 native function bool SortSpawnVolumes(Controller C, bool bTeleporting, float MinDistSquared);
+
+delegate int SortVIPSpawnVolumesDelegate(KFSpawnVolume A, KFSpawnVolume B)
+{
+    if(A.CurrentRating == B.CurrentRating)
+    {
+        return 0;
+    }
+    if(A.CurrentRating < B.CurrentRating)
+    {
+        return 1;
+    }
+    return -1;
+}
+
+function SortVIPSpawnVolumes()
+{
+    local KFGameReplicationInfo KFGRI;
+    local int VolumeIndex;
+
+    if(VIP_CurrentSpawnCounter < VIP_MaxSpawnCounter)
+    {
+        ++ VIP_CurrentSpawnCounter;
+        return;
+    }
+    VIP_CurrentSpawnCounter = 0;
+    KFGRI = KFGameReplicationInfo(Outer.WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.VIPRepPlayer != none)
+    {
+        VolumeIndex = 0;
+        J0xB5:
+
+        if(VolumeIndex < SpawnVolumes.Length)
+        {
+            if(SpawnVolumes[VolumeIndex].CurrentRating > float(0))
+            {
+                SpawnVolumes[VolumeIndex].CurrentRating = VSizeSq(SpawnVolumes[VolumeIndex].Location - KFGRI.VIPRepPlayer.Location);
+            }
+            ++ VolumeIndex;
+            goto J0xB5;
+        }
+    }
+    SpawnVolumes.Sort(SortVIPSpawnVolumesDelegate;
+}
 
 static function string ZedTypeToString(KFAISpawnManager.EAIType AiTypeToConvert)
 {
@@ -155,9 +201,11 @@ function RegisterSpawnVolumes()
 function SetupNextWave(byte NextWaveIndex, optional int TimeToNextWaveBuffer)
 {
     local KFGameReplicationInfo KFGRI;
+    local bool bIsBossRush;
 
     TimeToNextWaveBuffer = 0;
-    if(Outer.OutbreakEvent.ActiveEvent.bBossRushMode)
+    bIsBossRush = (Outer.OutbreakEvent != none) && Outer.OutbreakEvent.ActiveEvent.bBossRushMode;
+    if(bIsBossRush)
     {
         NextWaveIndex = byte(Outer.MyKFGRI.WaveMax - 1);
     }
@@ -174,7 +222,7 @@ function SetupNextWave(byte NextWaveIndex, optional int TimeToNextWaveBuffer)
         LeftoverSpawnSquad.Length = 0;
         NumSpawnListCycles = 1;
         NumSpecialSquadRecycles = 0;
-        if(Outer.MyKFGRI.IsBossWave() || Outer.OutbreakEvent.ActiveEvent.bBossRushMode)
+        if(Outer.MyKFGRI.IsBossWave() || bIsBossRush)
         {
             WaveTotalAI = 1;            
         }
@@ -1039,6 +1087,7 @@ function KFSpawnVolume GetBestSpawnVolume(optional array< class<KFPawn_Monster> 
 {
     local int VolumeIndex, ControllerIndex;
     local Controller RateController;
+    local KFGameReplicationInfo KFGRI;
 
     if(OverrideController != none)
     {
@@ -1077,8 +1126,13 @@ function KFSpawnVolume GetBestSpawnVolume(optional array< class<KFPawn_Monster> 
         }        
     }
     SortSpawnVolumes(RateController, bTeleporting, MinDistSquared);
+    KFGRI = KFGameReplicationInfo(Outer.WorldInfo.GRI);
+    if((KFGRI != none) && KFGRI.IsVIPMode())
+    {
+        SortVIPSpawnVolumes();
+    }
     VolumeIndex = 0;
-    J0x281:
+    J0x304:
 
     if(VolumeIndex < SpawnVolumes.Length)
     {
@@ -1091,7 +1145,7 @@ function KFSpawnVolume GetBestSpawnVolume(optional array< class<KFPawn_Monster> 
             return SpawnVolumes[VolumeIndex];
         }
         ++ VolumeIndex;
-        goto J0x281;
+        goto J0x304;
     }
     return none;
 }
@@ -1171,4 +1225,5 @@ System.InvalidOperationException: Nullable object must have a value.
     MaxBossMinionScaleByPlayers[4]=1.875
     MaxBossMinionScaleByPlayers[5]=2
     ForcedBossNum=-1
+    VIP_MaxSpawnCounter=5
 }

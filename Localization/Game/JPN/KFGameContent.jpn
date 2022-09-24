@@ -857,6 +857,27 @@ ItemCategory="特殊"
 ItemDescription="•ポジションを監視して敵に向かって撃つドローン。\n•オルトファイアがドローンを起爆させる。\n•また、弾薬切れになって近くにZedがいる場合は自爆をする。"
 SharedUnlockSource="歩哨の武器バンドル"
 
+[KFWeap_HRG_Dragonbreath]
+ItemName="HRGドラゴンブレイズ"
+ItemCategory="ショットガン"
+ItemDescription="•プライマリファイアはシングルバレルによる縦方向の射撃を行う。\n•オルトファイアはシングルバレルによる横方向の射撃を行う。\n•ドラゴンは付属していません。"
+
+[KFWeap_AssaultRifle_G36C]
+ItemName="G36Cアサルトライフル"
+ItemCategory="アサルトライフル"
+ItemDescription="•フルオートまたはセミオートのファイアモードを選択可。\n•アーマー貫通弾を使用する。\n•一般的なアサルトライフルの小型版。"
+SharedUnlockSource="G36Cアサルトライフルの武器バンドル"
+
+[KFWeap_Edged_Scythe]
+ItemName="血鎌"
+ItemCategory="近接"
+ItemDescription="•プライマリ - 単体切り裂き攻撃。プライマリ長押しでコンボ攻撃。\n•セカンダリ - ダブル薙ぎ払い攻撃。\n•リロード - 近接と遠隔の切り替え。\n•オルト - ブロック/受け流し。"
+SharedUnlockSource="血鎌の武器バンドル"
+
+[KFWeap_HRG_Locust]
+ItemName="HRGロカストt"
+ItemCategory="爆発物"
+ItemDescription="•プライマリファイアがロケット弾を発射してZedに襲い掛かるナノボットバッタの大群を生み出す。\n•オルトファイアで狙いを定めると、照準レーザーが起動し誘導ロケットが使用可能になる。\n•Zed退治にピッタリの武器。"
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="ドクター ハンス・ヴォルター"

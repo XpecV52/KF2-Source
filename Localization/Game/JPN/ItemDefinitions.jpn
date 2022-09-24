@@ -241,11 +241,20 @@ ClassicWeaponSkinBundleName="クラシック武器スキンバンドルパック
 DeepSeaSkinWeaponSkinPackName="深海武器スキンバンドルパック"
 ChameleonWeaponSkinBundleName="カメレオン武器スキンバンドルパック"
 DeepSeaExplorerOutfitName="深海探索者の衣装バンドル"
+PlagueDoctorOutfitName="伝染病の医者の衣装バンドル"													
 ReductoRayBundleName="縮小光線の武器バンドル"
 SentinelBundleName="歩哨の武器バンドル"
 TidalTerrorBundleName="津波のホラー武器バンドル"
 ArmorySeasonPass2022Name="Killing Floor 2 - 武器シーズンパス2"
 UltimateUpgradeName="Killing Floor 2 - Ultimate Edition Upgrade"
+PlagueDoctorWeaponSkinBundleName="伝染病の医者武器スキンバンドルパック"
+XenoWeaponSkinBundleName="ゼノ武器スキンバンドルパック"
+ClassicMKIIWeaponSkinBundleName="クラシック MKII武器スキンバンドルパック"
+ChameleonMKIIWeaponSkinBundleName="カメレオン MKII武器スキンバンドルパック"
+PlagueDoctorOutfitBundleName="伝染病の医者の衣装バンドル"
+G36CBundleName="G36Cアサルトライフルの武器バンドル"
+BloodSickleBundleName="血鎌の武器バンドル"
+BloodBonfiresWeaponBundleName="血と篝火の武器バンドル"															  
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="ブライアーの「ロンドン」ユニフォーム（5種類のスキンを含む）と、「守衛ヘルメット」服飾アクセサリー（3種類のスキンを含む）が入っています。"
@@ -483,6 +492,7 @@ HolidayShopperOutfitBundleDescription="ホリデーショッパー衣装が含�
 NeonMKVIIIWeaponSkinBundleDescription="ネオンテーマの武器スキン8種（ネオン4種とネオンRGB4種）を含む。本セットの武器内容：ブームスティック、HZ12, HRG ベルーガビート、ツヴァイヘンダー。"
 ClassicWeaponSkinBundleDescription="クラシックな武器スキン8種（新品4種と希少4種）を含む。本セットの武器内容：ブームスティック、9mm、AA12、M1911。"
 DeepSeaSkinWeaponSkinBundleDescription="深海をテーマにした武器スキン36種（骨董品6種、アクア6種、サンゴ6種、真珠6種、クロアザラシ6種、希少6種）を含む。本セットの武器内容：AA12、FN FAL、M14EBR、Mac 10、MP5RAS、RPG-7。"
+PlagueDoctorOutfitDescription="伝染病の医者の衣装とフードが含まれています(6種類のスキンスタイルを含む)。ほとんどのキャラクターが装備できます。"
 ChameleonWeaponSkinBundleDescription="カメレオンがテーマの武器スキン8種（ダイナミック4種とダイナミックRGB4種）を含む。本セットの武器内容：デザートイーグル、カタナ、クリスSMG、RPG-7。"
 DeepSeaExplorerOutfitDescription="深海探索者の衣装とヘルメットが含まれています（6種類のスキンスタイルを含む）。ほとんどのキャラクターが装備できます。"
 ReductoRayBundleDescription="手に収まる大きさまで敵を小さくする力。縮小光線はサバイバリストperk向けにデザインされており、5種類の独自スキンがついてきます。"
@@ -490,6 +500,14 @@ SentinelBundleDescription="友達を必要としない人はいません。友�
 TidalTerrorBundleDescription="津波のホラーアップデートからのセンチネルと縮小光線武器を含む。それぞれの武器には5種類の独自スキンが付いてきます。"
 ArmorySeasonPass2022Description="今年の武器シーズンパスでKilling Floor 2のZedを破壊するレパートリーを増やそう！ 2022年に発売される全6種類の武器にすぐにアクセスできる、最もdosh効率のいい方法です。購入すると、2022年夏のアップデートでリリースされた2つの新武器（縮小光線武器バンドル、センチネル武器バンドル）がすぐに手に入ります。 両方の武器バンドルには、それぞれ5種類のユニークな武器スキンが付属します。さらに、Killing Floor 2 武器シーズンパス2には、登場予定の武器バンドル-2022年秋の武器2種、2022年冬の武器2種-へのアクセスも含まれています。"
 UltimateUpgradeDescription="Killing Floor 2を既にお持ちの方で、より充実したゲーム体験ができるよう、低価格でアップグレードを希望される方向けです。このアップグレードバンドルには以下が含まれます。武器シーズンパス1＆2、装飾アップグレード、スタンドアロンアドオン（Mrsフォスター、サイバーパンク服バンドル、ヘッドショットFXパック 1 & 2、荒地バンドル、フォスターのクラシックバンドル、ブライアーのボビーバンドル、タナカのバイクバンドル、ボージンMark 7バンドル、防護服バンドル、DARアサルトアーマーバンドル、コマンドーチキンバンドル、パジャマバンドル、Clotリュックバンドル、ドラゴン&鯉 完全武器スキンセット、カッコいいサンタバンドル、ダンボールの騎士バンドル、ウィッチハンター衣装バンドル、サンタのヘルパー衣裳バンドル、フォスターのお気に入り武器スキンパック、スペースパイレーツ衣装バンドル、スペースパイレーツ完全装備バンドル、リーパー服バンドル、ハロウィーン2020完全装備バンドル、クリスマス2020完全装備バンドル、2020冬装備装飾バンドル。"
+PlagueDoctorWeaponSkinBundleDescription="伝染病の医者をテーマにした武器スキン36種（新品6種、スターリングシルバー6種、黒曜石6種、溶岩6種、エメラルド6種と希少6種）を含む。本セットの武器内容：トミーガン、M79、デザートイーグル、クロスボウ、ドゥームスティック、ドラゴンブレス。  "																																																																																																																																																																																																																																									   
+XenoWeaponSkinBundleDescription="ゼノのSFにインスパイアされテーマとした武器スキン8種（ダイナミック4種とダイナミックRGB4種）を含む。本セットの武器内容：M16 M203、UMP SMG、センターファイア、ヘモクロッバー。"																																																																		  
+ClassicMKIIWeaponSkinBundleDescription="クラシックな武器スキン8種（新品4種と希少4種）を含む。本セットの武器内容：AK12、デザートイーグル、M14 EBR、クリスサブマシンガン。"																																																	  
+ChameleonMKIIWeaponSkinBundleDescription="カメレオンがテーマの武器スキン8種（ダイナミック4種とダイナミックRGB4種）を含む。本セットの武器内容： AA12、火炎放射器M99、SCAR。"																																													  
+PlagueDoctorOutfitBundleDescription="伝染病の医者の衣装とフードが含まれています(6種類のスキンスタイルを含む)。ほとんどのキャラクターが装備できます。"																																												  
+G36CBundleDescription="サブマシンガンのサイズに備わったアーマー貫通力。スワットperk向けに設計されたG36Cアサルトライフルに5種類の独自スキンがついてきます。"																																				 
+BloodSickleBundleDescription="リーパーのお気に入りが狭い廊下を通れるように折りたたみ式に。バーサーカーperk向けに設計された血鎌に5種類の独自スキンがついてきます。 "																																								   
+BloodBonfiresWeaponBundleDescription="血と篝火アップデートからのG36Cアサルトライフルと血鎌の武器を含む。それぞれの武器には5種類の独自スキンが付いてきます。"																																																																																								
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="プレイ可能キャラクター、ロブ・ブライアー巡査の新たな定番の「ロンドンボビー」ユニフォームをゲットしよう。ブライアーの「ロンドン」ユニフォーム(5スキンスタイルを含む)と、「守衛ヘルメット」服飾アクセサリー(3スキンスタイルを含む)が入っています。"
@@ -602,6 +620,7 @@ AstronautO2BackpackName="宇宙飛行士O2リュック"
 AstronautSuitName="宇宙飛行士スーツユニフォーム"
 HolidayShoppingSuitName="ホリデーショッピングのユニフォーム"
 DeepSeeExplorerSuitName="深海探索者の衣装"
+PlagueDoctorSuitName="伝染病の医者の衣装"										   
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="マスターソン中尉 | サイバーパンク | 緑"
@@ -1542,6 +1561,8 @@ AA12DeepSeaBlackSealName="AA12 | 深海 | クロアザラシ"
 AA12DeepSeaPreciousName="AA12 | 深海 | 希少"
 AA12ClassicMintName="AA12 | クラシック | 新品"
 AA12ClassicPreciousName="AA12 | クラシック | 希少"
+AA12ChameleonDynamicName="AA12 | カメレオン | Dynamic"
+AA12ChameleonDynamicRGBName="AA12 | カメレオン | Dynamic RGB"															
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="外観：新品 | より多くのバレルを取り付けることで全てが改善されます。たくさんのベーコンを付け足すようなものです。"
@@ -1642,6 +1663,8 @@ AK12IceBreakerDynamicPreciousName="AK-12 | 砕氷船 | ダイナミック希少"
 AK12BeyondHorizonMintName="AK-12 | ビヨンドホライゾン | 新品"
 AK12BeyondHorizonSpaceEliteName="AK-12 | ビヨンドホライゾン | スペースエリート"
 AK12ScavengerPreciousName="AK-12 | スカベンジャー | 希少"
+AK12ClassicMintName="AK-12 | クラシック | 新品"
+AK12ClassicPreciousName="AK-12 | クラシック | 希少"													
 
 ;AR15 Descriptions
 AR15MintDescription="外観：新品 | これはzed用です、「バーミント」用ではありません。"
@@ -1818,6 +1841,8 @@ CenterfireNeonFieldTestedName="センターファイア | ネオン | 実地試�
 CenterfireNeonMintName="センターファイア | ネオン | 新品"
 CenterfireNeonRGBPreciousName="センターファイア | ネオンRGB | 希少"
 CenterfireVaultVoshPreciousName="センターファイア | Vault | Vosh | 希少"
+CenterfireXenoDynamicName="センターファイア | ゼノ | ダイナミック"
+CenterfireXenoDynamicRGBName="センターファイア | ゼノ | ダイナミック RGB"															  
 
 ;Crossbow Descriptions
 CrossbowMintDescription="外観：新品 | 高い貫通力とストッピングパワーを持つ、強力なハンティング用クロスボウです！"
@@ -1846,6 +1871,12 @@ CrossbowNeonFieldTestedName="クロスボウ | ネオン | 実地試験済み"
 CrossbowNeonBattleScarredName="クロスボウ | ネオン | 歴戦"
 CrossbowNeonRGBPreciousName="クロスボウ | ネオン RGB | 希少"
 CrossbowDragonKoiPreciousName="クロスボウ | ドラゴン&鯉 | 希少"
+CrossbowPlagueDoctorMintName="クロスボウ | 伝染病の医者 | 新品"
+CrossbowPlagueDoctorSterlingName="クロスボウ | 伝染病の医者 | スターリングシルバー"
+CrossbowPlagueDoctorObsidianName="クロスボウ | 伝染病の医者 | 黒曜石"
+CrossbowPlagueDoctorVolcanicName="クロスボウ | 伝染病の医者 | 溶岩"
+CrossbowPlagueDoctorEmeraldName="クロスボウ | 伝染病の医者 | エメラルド"
+CrossbowPlagueDoctorPreciousName="クロスボウ | 伝染病の医者 | 希少"																	  
 
 ;Crovel Descriptions
 CrovelMintDescription="外観：新品 | 半分クロウバー、半分シャベル、合わせ技で致命的。"
@@ -1936,6 +1967,14 @@ DesertEagleAlchemistToxicName="デザートイーグル | 錬金術師 | 猛毒"
 DesertEagleAlchemistBlazeName="デザートイーグル | 錬金術師 | 火炎"
 DesertEagleChameleonDynamicName="デザートイーグル | カメレオン | ダイナミック"
 DesertEagleChameleonDynamicRGBName="デザートイーグル | カメレオン | ダイナミックRGB"
+DesertEaglePlagueDoctorMintName="デザートイーグル | 伝染病の医者 | 新品"
+DesertEaglePlagueDoctorSterlingName="デザートイーグル | 伝染病の医者 | スターリングシルバー"
+DesertEaglePlagueDoctorObsidianName="デザートイーグル | 伝染病の医者 | 黒曜石"
+DesertEaglePlagueDoctorVolcanicName="デザートイーグル | 伝染病の医者 | 溶岩"
+DesertEaglePlagueDoctorEmeraldName="デザートイーグル | 伝染病の医者 | エメラルド"
+DesertEaglePlagueDoctorPreciousName="デザートイーグル | 伝染病の医者 | 希少"
+DesertEagleClassicMintName="デザートイーグル | クラシック | 新品"
+DesertEagleClassicPreciousName="デザートイーグル | クラシック | 希少"																  
 
 ;Doomstick Descriptions
 DoomstickMintDescription="外観：新品 | 楽しみが2倍でも物足りない時は...4倍にしよう！"
@@ -1957,6 +1996,12 @@ DoomstickBeyondHorizonMintName="ドゥームスティック | ビヨンドホラ
 DoomstickBeyondHorizonSpaceEliteName="ドゥームスティック | ビヨンドホライゾン | スペースエリート"
 DoomstickHellmarkMagmaName="ドゥームスティック | Hellmark | マグマ"
 DoomstickHellmarkThunderName="ドゥームスティック | Hellmark | 雷"
+DoomstickPlagueDoctorMintName="ドゥームスティック | 伝染病の医者 | 新品"
+DoomstickPlagueDoctorSterlingName="ドゥームスティック | 伝染病の医者 | スターリングシルバー"
+DoomstickPlagueDoctorObsidianName="ドゥームスティック | 伝染病の医者 | 黒曜石"
+DoomstickPlagueDoctorVolcanicName="ドゥームスティック | 伝染病の医者 | 溶岩"
+DoomstickPlagueDoctorEmeraldName="ドゥームスティック | 伝染病の医者 | エメラルド"
+DoomstickPlagueDoctorPreciousName="ドゥームスティック | 伝染病の医者 | 希少"																		
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="外観：新品 | ドラゴンブレス焼夷弾を使用したショットガンです。致命的なだけでなく、見た目も素敵です。"
@@ -1997,6 +2042,12 @@ DragonsbreathIceBreakerDynamicName="ドラゴンブレス | 砕氷船 | ダイ�
 DragonsbreathIceBreakerDynamicPreciousName="ドラゴンブレス | 砕氷船 | ダイナミック希少"
 DragonsbreathHellmarkMagmaName="ドラゴンブレス | Hellmark | マグマ"
 DragonsbreathHellmarkThunderName="ドラゴンブレス | Hellmark | 雷"
+DragonsbreathPlagueDoctorMintName="ドラゴンブレス | 伝染病の医者 | 新品"
+DragonsbreathPlagueDoctorSterlingName="ドラゴンブレス | 伝染病の医者 | スターリングシルバー"
+DragonsbreathPlagueDoctorObsidianName="ドラゴンブレス | 伝染病の医者 | 黒曜石"
+DragonsbreathPlagueDoctorVolcanicName="ドラゴンブレス | 伝染病の医者 | 溶岩"
+DragonsbreathPlagueDoctorEmeraldName="ドラゴンブレス | 伝染病の医者 | エメラルド"
+DragonsbreathPlagueDoctorPreciousName="ドラゴンブレス | 伝染病の医者 | 希少"																				
 
 ;Eviscerator Descriptions
 EvisceratorMintDescription="外観：新品 | 元々はホージンのSDSグループが、荒れ狂っていた時に設計したもので、このケモノは繊細ではありません。"
@@ -2071,6 +2122,8 @@ FlamethrowerXMasSweetName="火炎放射器 | クリスマス | スイート"
 FlamethrowerXMasSourName="火炎放射器 | クリスマス | サワー"
 FlamethrowerAlchemistToxicName="火炎放射器 | 錬金術師 | 猛毒"
 FlamethrowerAlchemistBlazeName="火炎放射器 | 錬金術師 | 火炎"
+FlamethrowerChameleonDynamicName="火炎放射器 | カメレオン | ダイナミック"
+FlamethrowerChameleonDynamicRGBName="火炎放射器 | カメレオン | ダイナミック RGB"																			
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="外観：新品 | 「火」を配達するトラベルサイズの便利な武器と言えるでしょう。"
@@ -2209,6 +2262,8 @@ HKUMPPrestigePreciousName="ヘッケラー＆コッホUMP | 名声 | 希少"
 HKUMPVaultVoshPreciousName="ヘッケラー＆コッホUMP | Vault | Vosh | 希少"
 HKUMPJaegerDynamicName="ヘッケラー＆コッホUMP | イェーガー | ダイナミック"
 HKUMPJaegerDynamicRGBName="ヘッケラー＆コッホUMP | イェーガー | ダイナミック RGB"
+HKUMPXenoDynamicName="ヘッケラー＆コッホUMP | ゼノ | ダイナミック"
+HKUMPXenoDynamicRGBName="ヘッケラー＆コッホUMP | ゼノ | ダイナミック RGB"																 
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="外観：新品 | メスです。あなたはメディックです、これの使い方は説明する必要ないでしょう。"
@@ -2686,6 +2741,8 @@ M14EBRDeepSeaCoralName="M14EBR | 深海 | サンゴ"
 M14EBRDeepSeaPearlName="M14EBR | 深海 | 真珠"
 M14EBRDeepSeaBlackSealName="M14EBR | 深海 | クロアザラシ"
 M14EBRDeepSeaPreciousName="M14EBR | 深海 | 希少"
+M14EBRClassicMintName="M14EBR | クラシック | 新品"
+M14EBRClassicPreciousName="M14EBR | クラシック | 希少"													   
 
 ;M16M203 Descriptions
 M16M203MintDescription="外観：新品 | 銃弾か手榴弾か決められない人向け。"
@@ -2784,6 +2841,8 @@ M4NeonRGBPreciousName="M4 | ネオン RGB | 希少"
 M4PrestigePreciousName="M4 | 名声 | 希少"
 M4DragonKoiPreciousName="M4 | ドラゴン&鯉 | 希少"
 M4FostersFavoritesPreciousName="M4 | フォスターのお気に入り | 希少"
+M4XenoDynamicName="M4 | ゼノ | ダイナミック"
+M4XenoDynamicRGBName="M4 | ゼノ | ダイナミック RGB"											  
 
 ;M79 Descriptions
 M79MintDescription="外観：新品 | 顔を吹き飛ばされないように、射程の数メートル先でのみ作動します。"
@@ -2831,6 +2890,12 @@ M79NeonMintName="M79 | ネオン | 新品"
 M79NeonRGBPreciousName="M79 | ネオンRGB | 希少"
 M79IceBreakerDynamicName="M79 | 砕氷船 | ダイナミック"
 M79IceBreakerDynamicPreciousName="M79 | 砕氷船 | ダイナミック希少"
+M79PlagueDoctorMintName="M79 | 伝染病の医者 | 新品"
+M79PlagueDoctorSterlingName="M79 | 伝染病の医者 | スターリングシルバー"
+M79PlagueDoctorObsidianName="M79 | 伝染病の医者 | 黒曜石"
+M79PlagueDoctorVolcanicName="M79 | 伝染病の医者 | 溶岩"
+M79PlagueDoctorEmeraldName="M79 | 伝染病の医者 | エメラルド"
+M79PlagueDoctorPreciousName="M79 | 伝染病の医者 | 希少"															
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="外観：新品 | 盾を使った強力な殴打が可能。"
@@ -2862,6 +2927,8 @@ M99JaegerDynamicName="M99 | イェーガー | ダイナミック"
 M99JaegerDynamicRGBName="M99 | イェーガー | ダイナミック RGB"
 M99IceBreakerDynamicName="M99 | 砕氷船 | ダイナミック"
 M99IceBreakerDynamicPreciousName="M99 | 砕氷船 | ダイナミック希少"
+M99ChameleonDynamicName="M99 | カメレオン | ダイナミック"
+M99ChameleonDynamicRGBName="M99 | カメレオン | ダイナミック RGB"														  
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="ボーンクラッシャー | サーキット | 新品"
@@ -2939,6 +3006,8 @@ MedicBatBeyondHorizonMintName="ヘモクロッバー | ビヨンドホライゾ�
 MedicBatBeyondHorizonSpaceEliteName="ヘモクロッバー | ビヨンドホライゾン | スペースエリート"
 MedicBatHellmarkMagmaName="ヘモクロッバー | Hellmark | マグマ"
 MedicBatHellmarkThunderName="ヘモクロッバー | Hellmark | 雷"
+MedicBatXenoDynamicName="ヘモクロッバー | ゼノ | ダイナミック"
+MedicBatXenoDynamicRGBName="ヘモクロッバー | ゼノ | ダイナミック RGB"															 
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="外観：新品 | 現代テクノロジーの奇跡：手持ちのzed調理器具です。"
@@ -3281,6 +3350,8 @@ ScarXMasSweetName="SCAR | クリスマス | スイート"
 ScarXMasSourName="SCAR | クリスマス | サワー"
 ScarAlchemistToxicName="SCAR | 錬金術師 | 猛毒"
 ScarAlchemistBlazeName="SCAR | 錬金術師 | 火炎"
+ScarChameleonDynamicName="SCAR | カメレオン | ダイナミック"
+ScarChameleonDynamicRGBName="SCAR | カメレオン | ダイナミック RGB"													 															
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="外観：新品 | 複数のターゲットを追跡して倒すことのできる万能榴弾です。"
@@ -3633,6 +3704,12 @@ TommyGunVaultVoshPreciousName="トミーガン | Vault | Vosh | 希少"
 TommyGunJaegerDynamicName="トミーガン | イェーガー | ダイナミック"
 TommyGunJaegerDynamicRGBName="トミーガン | イェーガー | ダイナミック RGB"
 TommyGunStarsName="トミーガン | Vault | スター"
+TommyGunPlagueDoctorMintName="トミーガン | 伝染病の医者 | 新品"
+TommyGunPlagueDoctorSterlingName="トミーガン | 伝染病の医者 | スターリングシルバー"
+TommyGunPlagueDoctorObsidianName="トミーガン | 伝染病の医者 | 黒曜石"
+TommyGunPlagueDoctorVolcanicName="トミーガン | 伝染病の医者 | 溶岩"
+TommyGunPlagueDoctorEmeraldName="トミーガン | 伝染病の医者 | エメラルド"
+TommyGunPlagueDoctorPreciousName="トミーガン | 伝染病の医者 | 希少"																	   
 
 ;Laser Cutter Descriptions
 LaserCutterMintDescription="外観：新品 | オーバーチャージモード - 発射ボタンを押している間はチャージされ、発射ボタンを離すと解放されます。"
@@ -4015,6 +4092,34 @@ ReductoRayAtomicLoveName="縮小光線 | アトミックラブ"
 ReductoRayLuckyStrikeName="縮小光線 | ラッキーストライク"
 ReductoRayHeavyMetalName="縮小光線 | ヘビーメタル"
 ReductoRayDestructorName="縮小光線 | デストラクター"
+;Blood Sickle Descriptions
+BloodSickleMintDescription="外観： 新品 | リーパーのお気に入りが狭い廊下を通れるように折りたたみ式に。"
+BloodSickleFieldTestedDescription="外観： 実地実験済み | リーパーのお気に入りが狭い廊下を通れるように折りたたみ式に。"
+BloodSickleBattleScarredDescription="外観： 歴戦 | リーパーのお気に入りが狭い廊下を通れるように折りたたみ式に。"
+BloodSicklePreciousDescription="外観： 希少 | リーパーのお気に入りが狭い廊下を通れるように折りたたみ式に。"
+
+;Blood Sickle Names
+BloodSickleStandardName="血鎌 | スタンダード"
+BloodSickleBloodbathName="血鎌 | ブラッドバス"
+BloodSickleButcheryName="血鎌 | 肉屋"
+BloodSickleCarouselName="血鎌 | 回転木馬"
+BloodSickleReaperName="血鎌 | リーパー"
+BloodSickleHunterName="血鎌 | ハンター"
+
+;G36C Descriptions
+G36CMintDescription="外観： 新品 | サブマシンガンのサイズに備わったアーマー貫通力。"
+G36CFieldTestedDescription="外観： 実地実験済み | サブマシンガンのサイズに備わったアーマー貫通力。"
+G36CBattleScarredDescription="外観： 歴戦  | サブマシンガンのサイズに備わったアーマー貫通力。"
+G36CPreciousDescription="外観： 希少 | サブマシンガンのサイズに備わったアーマー貫通力。"
+
+;G36C Names
+G36CStandardName="G36Cアサルトライフル | スタンダード"
+G36CSaharaName="G36Cアサルトライフル | サハラ"
+G36CIcepackName="G36Cアサルトライフル | 氷嚢"
+G36CAftermathName="G36Cアサルトライフル | 余波"
+G36CJungleName="G36Cアサルトライフル | ジャングル"
+G36CDazzleName="G36Cアサルトライフル | きらめき"
+
 
 [CosmeticSection]
 
@@ -6401,6 +6506,17 @@ DeepSeaHelmetCoralName="深海 | ヘルメット | サンゴ"
 DeepSeaHelmetPearlName="深海 | ヘルメット | 真珠"
 DeepSeaHelmetBlackSealName="深海 | ヘルメット | クロアザラシ"
 DeepSeaHelmetPreciousName="深海 | ヘルメット | 希少"
+;Halloween 2022 Cosmetic Names
+PlagueDoctorBackpackPreciousName="伝染病の医者 | バックパック | 希少"
+PlagueDoctorHoodMintName="伝染病の医者 | フード | 新品"
+PlagueDoctorHoodSterlingName="伝染病の医者 | フード | スターリングシルバー"
+PlagueDoctorHoodObsidianName="伝染病の医者 | フード | 黒曜石"
+PlagueDoctorHoodVolcanicName="伝染病の医者 | フード | 溶岩"
+PlagueDoctorHoodEmeraldName="伝染病の医者 | フード | エメラルド"
+PlagueDoctorHoodPreciousName="伝染病の医者 | フード | 希少"
+
+;Weekly Primary Target Cosmetic Name
+PrimaryTargetCrownPreciousName="プライマリターゲットクラウン | 希少"																
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="装備メニューから装備可能です。ほとんどのキャラクターが使用できます。シーズナルイベント「サマーサイドショウ」で手に入る限定アイテムです。サイドショウチケット1枚にリサイクルされます。"

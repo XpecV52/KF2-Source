@@ -49,7 +49,7 @@ defaultproperties
    MeshFOV=81.000000
    MeshIronSightFOV=64.000000
    PlayerIronSightFOV=70.000000
-   IronSightPosition=(X=8.000000,Y=0.000000,Z=0.000000)
+   IronSightPosition=(X=8.000000,Y=0.010000,Z=-0.040000)
    GroupPriority=50.000000
    WeaponSelectTexture=Texture2D'ui_weaponselect_tex.UI_WeaponSelect_MedicSMG'
    SecondaryAmmoTexture=Texture2D'UI_SecondaryAmmo_TEX.MedicDarts'

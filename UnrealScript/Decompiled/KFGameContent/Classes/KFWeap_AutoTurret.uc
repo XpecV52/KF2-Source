@@ -139,24 +139,31 @@ simulated function GetTurretSpawnLocationAndDir(out Vector SpawnLocation, out Ve
     SpawnLocation = RealStartLoc;
 }
 
-simulated function Detonate()
+simulated function Detonate(optional bool bKeepTurret)
 {
     local int I;
     local array<Actor> TurretsCopy;
 
+    bKeepTurret = false;
     if(Role == ROLE_Authority)
     {
         TurretsCopy = KFPC.DeployedTurrets;
         I = 0;
-        J0x47:
+        J0x4C:
 
         if(I < TurretsCopy.Length)
         {
-            KFPawn_AutoTurret(TurretsCopy[I]).SetTurretState(5);
+            if(bKeepTurret && I == 0)
+            {                
+            }
+            else
+            {
+                KFPawn_AutoTurret(TurretsCopy[I]).SetTurretState(5);
+            }
             ++ I;
-            goto J0x47;
+            goto J0x4C;
         }
-        KFPC.DeployedTurrets.Remove(0, KFPC.DeployedTurrets.Length;
+        KFPC.DeployedTurrets.Remove(((bKeepTurret) ? 1 : 0), KFPC.DeployedTurrets.Length;
         SetReadyToUse(true);
         if(!HasAnyAmmo() && NumDeployedTurrets == 0)
         {
@@ -193,13 +200,26 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
     super(KFWeapon).SetOriginalValuesFromPickup(PickedUpWeapon);
     if((PickedUpWeapon.KFPlayer != none) && PickedUpWeapon.KFPlayer != KFPC)
     {
-        KFPC.DeployedTurrets = PickedUpWeapon.KFPlayer.DeployedTurrets;
+        I = 0;
+        J0x70:
+
+        if(I < PickedUpWeapon.KFPlayer.DeployedTurrets.Length)
+        {
+            KFPC.DeployedTurrets.AddItem(PickedUpWeapon.KFPlayer.DeployedTurrets[I];
+            ++ I;
+            goto J0x70;
+        }
+        PickedUpWeapon.KFPlayer.DeployedTurrets.Remove(0, PickedUpWeapon.KFPlayer.DeployedTurrets.Length;
+    }
+    if(KFPC.DeployedTurrets.Length > 1)
+    {
+        Detonate(true);
     }
     PickedUpWeapon.KFPlayer = none;
     NumDeployedTurrets = byte(KFPC.DeployedTurrets.Length);
     bForceNetUpdate = true;
     I = 0;
-    J0x119:
+    J0x21B:
 
     if(I < NumDeployedTurrets)
     {
@@ -210,7 +230,7 @@ function SetOriginalValuesFromPickup(KFWeapon PickedUpWeapon)
             KFPawn_AutoTurret(KFPC.DeployedTurrets[I]).InstigatorController = Instigator.Controller;
         }
         ++ I;
-        goto J0x119;
+        goto J0x21B;
     }
 }
 

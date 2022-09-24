@@ -22,6 +22,10 @@ ServerTypeStrings[2]="Classificato - Custom"
 ServerTypeStrings[3]="Non classificato"
 WeaponLevelString="LIVELLO ARMA"
 GunPointsString="PUNTI ARMA"							   
+VIPString="OBIETTIVO"
+VIPObjectiveAString="PROTEGGI IL VIP"
+VIPObjectiveBString="SOPRAVVIVI"
+VIPObjectiveCString="Sei il VIP"									 
 
 PermissionStrings[0]="Pubblico"
 PermissionStrings[1]="Privacy: Con password"
@@ -1405,6 +1409,10 @@ AimAssistLockOnString="Fissa zoom mira assistita"
 AimAssistRotationString="Rotazione mira assistita"
 AimAssistSlowDownString="Rallenta mira assistita"
 ForceFeedbackString="Vibrazione controller"
+MouseLookUpScaleString="In verticale"
+MouseLookRightScaleString="In orizzontale"
+ViewAccelerationString="Accelerazione visuale"
+ViewSmoothingString="Fluidità visuale"									
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="MOVIMENTO"
@@ -1449,6 +1457,7 @@ ShrinkString="Restringi"
 
 [KFInventoryManager]
 FullHealthMsg="Salute al massimo"
+CannotHealthMsg="Non puoi curarti"										 
 
 [KFLocalMessage]
 SystemString="Sistema:"
@@ -1567,7 +1576,8 @@ ScavengeMessage="Rovista"
 YouLostMessage="S C O N F I T T A"
 YouWonMessage="V I T T O R I A"
 SquadWipedOutMessage="La tua squadra è stata annientata!"
-SquadSurvivedMessage="La tua squadra è sopravvissuta!"
+SquadWipedOutVIPMessage="Il VIP è stato sconfitto"
+SquadSurvivedMessage="La tua squadra è sopravvissuta!"										   
 ObjectiveStartMessage="OBIETTIVO INIZIATO"
 ObjectiveWonMessage="OBIETTIVO COMPLETATO"
 ObjectiveEndedMessage="OBIETTIVO TERMINATO"
@@ -2915,6 +2925,19 @@ AllCompleteRewardDescriptionString="Abissi | Tridente | Prezioso"
 
 ChanceDropDescriptionStrings[0]="Biglietto Estivo"
 ChanceDropDescriptionStrings[1]="Biglietto Estivo Oro"									  
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="Un evento speciale a durata limitata con oggetti esclusivi"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Creature dell'oscurità",DescriptionString="Uccidi 15 boss in qualsiasi mappa o modalità")
+SpecialEventObjectiveInfoList[1]=(TitleString="Stregoneria della settimana",DescriptionString="Completa il Settimanale in Città di Barmwich")
+SpecialEventObjectiveInfoList[2]=(TitleString="Medaglioni elementali",DescriptionString="Apri l'Armeria")
+SpecialEventObjectiveInfoList[3]=(TitleString="Zed in fiamme",DescriptionString="Fai passare 50 Zed attraverso i falò di Città di Barmwich")
+SpecialEventObjectiveInfoList[4]=(TitleString="Lunga notte delle streghe",DescriptionString="Completa l'ondata 15 in modalità difficile Infinito o superiore in Città di Barmwich")
+
+AllCompleteRewardDescriptionString="Medico della peste | Zaino | Prezios"
+
+ChanceDropDescriptionStrings[0]="Biglietto Halloween"
+ChanceDropDescriptionStrings[1]="Biglietto Oro Halloween"														 
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3090,6 +3113,15 @@ FriendlyName="Scalata dell'arsenale"
 DescriptionStrings[0]="Fai salire di livello l'arma!"
 DescriptionStrings[1]="Durata: Speciale"
 ModifierDescriptions[0]="I commercianti non sono disponibili. Inizi con solo un coltello. Guadagna punti arma con le uccisioni per ottenere armi migliori. Disponibile solo per Survivalisti. Seleziona la modalità di gioco Settimanale sulla pagina del matchmaking. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"							   
+[VIPMode KFWeeklyOutBreakInformation]
+FriendlyName="Bersaglio primario"
+DescriptionStrings[0]="Proteggi il VIP!"
+DescriptionStrings[1]="Lunghezza: Media (7 ondate)"
+ModifierDescriptions[0]="Un giocatore è scelto come VIP. Il VIP deve sopravvivere o la partita avrà fine. Il VIP può curare solamente gli altri giocatori. Seleziona la modalità di gioco Settimanale sulla pagina del Matchmaking. Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3622,6 +3654,8 @@ DisplayName="Carillon Hamlet"
 
 [KF-Rig KFMapSummary]
 DisplayName="Piattaforma petrolifera"				 
+[KF-BarmwichTown KFMapSummary]
+DisplayName="Città di Barmwich"						   
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% ha trovato un collezionabile. %y% rimasti da trovare..."

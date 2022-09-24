@@ -22,6 +22,10 @@ ServerTypeStrings[2]="Rankingowy – niestand."
 ServerTypeStrings[3]="Nierankingowy"
 WeaponLevelString="POZIOM BRONI"
 GunPointsString="PUNKTY BRONI"
+VIPString="CEL"
+VIPObjectiveAString="CHROŃ VIP-A"
+VIPObjectiveBString="PRZETRWAJ"
+VIPObjectiveCString="Jesteś VIP-em"									 
 
 PermissionStrings[0]="Gra publiczna"
 PermissionStrings[1]="Prywatna: z hasłem"
@@ -1405,6 +1409,10 @@ AimAssistLockOnString="Wsp. celności – namierzanie"
 AimAssistRotationString="Wsp. celności – obrót"
 AimAssistSlowDownString="Wsp. celności – spowol."
 ForceFeedbackString="Wibracje kontrolera"
+MouseLookUpScaleString="W pionie"
+MouseLookRightScaleString="W poziomie"
+ViewAccelerationString="Przyśpieszenie ruchu kamery"
+ViewSmoothingString="Wygładzanie ruchu kamery"									
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="RUCH"
@@ -1449,6 +1457,7 @@ ShrinkString="Pomniejsz"
 
 [KFInventoryManager]
 FullHealthMsg="Zdrowie pełne"
+CannotHealthMsg="Nie możesz leczyć siebie"										 
 
 [KFLocalMessage]
 SystemString="System:"
@@ -1567,6 +1576,7 @@ ScavengeMessage="Wygrzeb"
 YouLostMessage="P R Z E G R A N A"
 YouWonMessage="Z W Y C I Ę S T W O"
 SquadWipedOutMessage="Twój oddział został zmieciony!"
+SquadWipedOutVIPMessage="VIP został pokonany"												   
 SquadSurvivedMessage="Twój oddział przetrwał!"
 ObjectiveStartMessage="ROZPOCZĘTO CEL"
 ObjectiveWonMessage="ZREALIZOWANO CEL"
@@ -2915,6 +2925,19 @@ AllCompleteRewardDescriptionString="Głębokie morze | Trójząb | Cenne"
 
 ChanceDropDescriptionStrings[0]="Kupon letni"
 ChanceDropDescriptionStrings[1]="Złoty kupon letni"
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="Ograniczone czasowo wydarzenie z ekskluzywnymi przedmiotami"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Stworzenia ciemności",DescriptionString="Zabij 15 bossów na dowolnej mapie i w dowolnym trybie")
+SpecialEventObjectiveInfoList[1]=(TitleString="Cotygodniowe czary",DescriptionString="Ukończ tygodniowy incydent na mapie Miasteczko Barmwich")
+SpecialEventObjectiveInfoList[2]=(TitleString="Żywiołowe medaliony",DescriptionString="Otwórz skład broni")
+SpecialEventObjectiveInfoList[3]=(TitleString="Zety w płomieniach",DescriptionString="Spraw, aby 50 zetów przeszło przez ogniska w Miasteczku Barmwich")
+SpecialEventObjectiveInfoList[4]=(TitleString="Długa noc czarownic",DescriptionString="Ukończ falę 15 w trybie Bez Końca na wysokim lub wyższym poziomie trudności na mapie Barmwich")
+
+AllCompleteRewardDescriptionString="Badacz zarazy | Plecak towarzyszący | Cenne"
+
+ChanceDropDescriptionStrings[0]="Kupon halloweenowy"
+ChanceDropDescriptionStrings[1]="Złoty kupon halloweenowy"														 
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3080,6 +3103,10 @@ FriendlyName="Skurczone Głowy"
 DescriptionStrings[0]="Próby trafienia w głowę są bezcelowe..."
 DescriptionStrings[1]="Długość: Średnia (7 fal)"
 ModifierDescriptions[0]="Może próbują się chronić przed nawykami graczy dotyczącymi strzelania w głowę. No, przynajmniej mają teraz nowe czułe punkty. Wybierz tygodniowy tryb gry na stronie Matchmakingu. Specjalizacja 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"							   
 [GunGame KFWeeklyOutBreakInformation]
 FriendlyName="Rozwój Arsenału"
 DescriptionStrings[0]="Zwiększ poziom swojej broni!"
@@ -3089,6 +3116,11 @@ ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
+[VIPMode KFWeeklyOutBreakInformation]
+FriendlyName="Główny cel"
+DescriptionStrings[0]="Chroń VIP-a!"
+DescriptionStrings[1]="Długość: Średnia (7 fal)"
+ModifierDescriptions[0]="Jeden gracz jest wybierany na VIP-a. VIP musi przetrwać, inaczej gra dobiega końca. VIP-a mogą leczyć tylko inni gracze. Wybierz tygodniowy tryb gry na stronie matchmakingu. Specjalizacja 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3621,6 +3653,8 @@ DisplayName="Netherhold"
 DisplayName="Wioska Dzwonków"
 [KF-Rig KFMapSummary]
 DisplayName="Platforma"
+[KF-BarmwichTown KFMapSummary]
+DisplayName="Miasteczko Barmwich"						   
 
 [KFMapInfo]
 ; defaults

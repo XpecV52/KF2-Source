@@ -856,6 +856,27 @@ ItemName="哨兵"
 ItemCategory="特殊"
 ItemDescription="•監視一個地點並向敵人射擊的無人機。\n•次要攻擊會引爆無人機。\n•彈藥耗盡且附近有 ZED 時也會自行引爆。"
 SharedUnlockSource="哨兵武器同捆包"										   
+[KFWeap_HRG_Dragonbreath]
+ItemName="HRG 巨龍火焰"
+ItemCategory="霰彈槍"
+ItemDescription="•主要攻擊使用單根槍管發射縱向火線。\n•次要攻擊使用單根槍管發射橫向火線。\n•巨龍不包含在內。"
+
+[KFWeap_AssaultRifle_G36C]
+ItemName="G36C 突擊步槍"
+ItemCategory="突擊步槍"
+ItemDescription="•選擇全自動射擊與半自動射擊模式。\n•使用穿甲彈。\n•熱門突擊步槍的便攜版本。"
+SharedUnlockSource="G36C 突擊步槍武器同捆包"
+
+[KFWeap_Edged_Scythe]
+ItemName="血腥鐮刀"
+ItemCategory="近戰"
+ItemDescription="•主要 - 單次斬擊；按住主要攻擊可進行連擊。\n•次要 - 雙重橫掃攻擊。\n•填彈 - 在遠距和近距之間切換。\n•備用 - 防禦 / 格擋。"
+SharedUnlockSource="血腥鐮刀武器同捆包"
+
+[KFWeap_HRG_Locust]
+ItemName="HRG 飛蝗"
+ItemCategory="炸藥"
+ItemDescription="•主要攻擊發射一枚火箭，產生一片由納米機器人蝗蟲組成的雲霧，攻擊Zed。\n•次要攻擊瞄準可啟動照準鐳射，引導火箭飛行。\n•Zed滅殺隊最喜歡的武器。"
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="漢斯華特博士"

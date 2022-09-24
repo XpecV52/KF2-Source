@@ -27,6 +27,7 @@ var bool bHumanDeathsLastWave;
 var protected transient bool bWaveStarted;
 var protected bool bGunGamePlayerOnLastGun;
 var int ObjectiveSpawnDelay;
+var transient array<KFBarmwichBonfireVolume> BonfireVolumes;
 
 static function bool ShouldPlayMusicAtStart()
 {
@@ -50,6 +51,7 @@ event PostBeginPlay()
     super.PostBeginPlay();
     TimeBetweenWaves = int(GetTraderTime());
     bGunGamePlayerOnLastGun = false;
+    UpdateBonfires();
 }
 
 function InitSpawnManager()
@@ -974,6 +976,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     {
         return;
     }
+    ClearAllActorsFromBonfire();
     if(WorldInfo.NetMode == NM_DedicatedServer)
     {
         ScriptTrace();
@@ -983,7 +986,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
     {
         GameSeq.FindSeqObjectsByClass(Class'KFSeqEvent_WaveEnd', true, AllWaveEndEvents);
         I = 0;
-        J0xF5:
+        J0xFF:
 
         if(I < AllWaveEndEvents.Length)
         {
@@ -1003,7 +1006,7 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
                 WaveEndEvt.CheckActivate(self, self,, OutputLinksToActivate);
             }
             ++ I;
-            goto J0xF5;
+            goto J0xFF;
         }
     }
     BroadcastLocalizedMessage(Class'KFLocalMessage_Priority', 1);
@@ -1034,25 +1037,9 @@ function WaveEnded(KFGameInfo_Survival.EWaveEndCondition WinCondition)
                     KFPC.OnWaveComplete(WaveNum);
                 }                
             }            
-            if((OutbreakEvent != none) && OutbreakEvent.ActiveEvent.bGunGameMode)
+            if(OutbreakEvent != none)
             {
-                MyKFGRI.GunGameWavesCurrent += 1;
-                if(bGunGamePlayerOnLastGun)
-                {
-                    MyKFGRI.bWaveGunGameIsFinal = true;
-                    if(WaveNum < WaveMax)
-                    {
-                        WaveNum = WaveMax - 1;
-                    }                    
-                }
-                else
-                {
-                    if(WaveNum >= (WaveMax - 1))
-                    {
-                        WaveNum = WaveMax - 2;
-                    }
-                }
-                MyKFGRI.bNetDirty = true;
+                OnOutbreakWaveWon();
             }
             if(WaveNum < WaveMax)
             {
@@ -1484,6 +1471,38 @@ function DebugKillZeds()
             }            
         }        
     }
+}
+
+function OnOutbreakWaveWon();
+
+function UpdateBonfires()
+{
+    local KFBarmwichBonfireVolume BonfireVolume;
+
+    foreach AllActors(Class'KFBarmwichBonfireVolume', BonfireVolume)
+    {
+        BonfireVolumes.AddItem(BonfireVolume;        
+    }    
+}
+
+function ClearAllActorsFromBonfire()
+{
+    local KFBarmwichBonfireVolume BonfireVolume;
+
+    foreach BonfireVolumes(BonfireVolume,)
+    {
+        BonfireVolume.ClearAllActors();        
+    }    
+}
+
+function ClearActorFromBonfire(Actor Other)
+{
+    local KFBarmwichBonfireVolume BonfireVolume;
+
+    foreach BonfireVolumes(BonfireVolume,)
+    {
+        BonfireVolume.ClearActor(Other);        
+    }    
 }
 
 state PlayingWave

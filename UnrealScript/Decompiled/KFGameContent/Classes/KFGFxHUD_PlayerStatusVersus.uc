@@ -56,7 +56,7 @@ function UpdatePerk();
 
 function UpdateHealer(optional bool bForce);
 
-function ShowActiveIndicators(array<string> IconPathStrings);
+function ShowActiveIndicators(array<ActiveSkill> ActiveSkills);
 
 function ClearBuffIcons();
 

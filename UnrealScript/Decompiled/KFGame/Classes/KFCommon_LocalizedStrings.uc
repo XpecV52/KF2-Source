@@ -15,6 +15,10 @@ var const localized array<localized string> LengthStrings;
 var const localized string SpecialLengthString;
 var const localized string WeaponLevelString;
 var const localized string GunPointsString;
+var const localized string VIPString;
+var const localized string VIPObjectiveAString;
+var const localized string VIPObjectiveBString;
+var const localized string VIPObjectiveCString;
 var const localized array<localized string> ServerTypeStrings;
 var const localized array<localized string> PermissionStrings;
 var const localized array<localized string> ConsolePermissionStrings;
@@ -204,6 +208,10 @@ defaultproperties
     SpecialLengthString="Special"
     WeaponLevelString="WEAPON LEVEL"
     GunPointsString="WEAPON POINTS"
+    VIPString="OBJECTIVE"
+    VIPObjectiveAString="PROTECT THE VIP"
+    VIPObjectiveBString="SURVIVE"
+    VIPObjectiveCString="You are the VIP"
     ServerTypeStrings(0)="Ranked"
     ServerTypeStrings(1)="Ranked - Stock"
     ServerTypeStrings(2)="Ranked - Custom"

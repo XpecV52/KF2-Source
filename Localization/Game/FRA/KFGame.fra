@@ -22,6 +22,10 @@ ServerTypeStrings[2]="Classé - Personnalisé"
 ServerTypeStrings[3]="Non classé"
 WeaponLevelString="NIVEAU D'ARME"
 GunPointsString="POINTS D'ARME"							   
+VIPString="OBJECTIF"
+VIPObjectiveAString="PROTÉGER LE VIP"
+VIPObjectiveBString="SURVIVRE"
+VIPObjectiveCString="Vous êtes le VIP"													 
 
 PermissionStrings[0]="Public"
 PermissionStrings[1]="Privé : mot de passe"
@@ -1405,6 +1409,10 @@ AimAssistLockOnString="Aide visée auto en zoom"
 AimAssistRotationString="Rotation aide visée"
 AimAssistSlowDownString="Ralentissement aide visée"
 ForceFeedbackString="Vibrations manette"
+MouseLookUpScaleString="Vertical"
+MouseLookRightScaleString="Horizontal"
+ViewAccelerationString="Accélération de la vue"
+ViewSmoothingString="Lissage de la vue"												
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="MOUVEMENT"
@@ -1449,6 +1457,7 @@ ShrinkString="Rétrécir"
 
 [KFInventoryManager]
 FullHealthMsg="Santé pleine"
+CannotHealthMsg="Vous ne pouvez pas vous soigner vous-même"																			   
 
 [KFLocalMessage]
 SystemString="Système :"
@@ -1567,6 +1576,7 @@ ScavengeMessage="Récupérer"
 YouLostMessage="D É F A I T E"
 YouWonMessage="V I C T O I R E"
 SquadWipedOutMessage="Votre équipe s'est fait écraser !"
+SquadWipedOutVIPMessage="Le VIP a été vaincu"											   
 SquadSurvivedMessage="Votre équipe a survécu !"
 ObjectiveStartMessage="OBJECTIF COMMENCÉ"
 ObjectiveWonMessage="OBJECTIF RÉUSSI"
@@ -2915,6 +2925,19 @@ AllCompleteRewardDescriptionString="Haute mer | Trident | Doré"
 
 ChanceDropDescriptionStrings[0]="Ticket estival"
 ChanceDropDescriptionStrings[1]="Ticket doré estival"								  
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="Un événement spécial temporaire avec des objets exclusifs"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Créatures des ténèbres",DescriptionString="Tuer 15 boss sur n'importe quelle carte ou dans n'importe quel mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Sorcellerie hebdomadaire",DescriptionString="Terminer l'hebdomadaire de la ville de Barmwich")
+SpecialEventObjectiveInfoList[2]=(TitleString="Médaillons élémentaires",DescriptionString="Ouvrir la salle d'armes")
+SpecialEventObjectiveInfoList[3]=(TitleString="Zeds en feu",DescriptionString="Faites passer 50 Zeds à travers les bûchers de la ville de Barmwich")
+SpecialEventObjectiveInfoList[4]=(TitleString="Longue nuit des sorcières",DescriptionString="Terminer 15 vagues en Infini en mode Difficile ou supérieur à la ville de Barmwich")
+
+AllCompleteRewardDescriptionString="Médecin de peste | Sac à dos | Doré"
+
+ChanceDropDescriptionStrings[0]="Ticket d'Halloween"
+ChanceDropDescriptionStrings[1]="Ticket doré d'Halloween"																			 
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3095,6 +3118,15 @@ ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
 
+[VIPMode KFWeeklyOutBreakInformation]
+FriendlyName="Cible principale"
+DescriptionStrings[0]="Protégez le VIP !"
+DescriptionStrings[1]="Durée : moyenne (7 vagues)"
+ModifierDescriptions[0]="Un joueur est désigné comme VIP. Le VIP doit survivre, sinon la partie se termine. Le VIP ne peut être soigné que par un autre joueur. Sélectionnez le mode de jeu hebdomadaire sur la page Matchmaking. Classe +15."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"											 
 ;============================================
 ; Map Localization
 ;============================================
@@ -3623,6 +3655,8 @@ DisplayName="Carillon Hamlet"
 
 [KF-Rig KFMapSummary]
 DisplayName="Plateforme"				 
+[KF-BarmwichTown KFMapSummary]
+DisplayName="Ville de Barmwich"											
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% a trouvé un objet de collection. Encore %y% à trouver..."

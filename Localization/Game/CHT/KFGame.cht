@@ -22,6 +22,10 @@ ServerTypeStrings[2]="排名 - 自訂"
 ServerTypeStrings[3]="未排名"
 WeaponLevelString="武器等級"
 GunPointsString="武器積分"							   
+VIPString="目標"
+VIPObjectiveAString="保護VIP"
+VIPObjectiveBString="生存"
+VIPObjectiveCString="你是VIP"
 
 PermissionStrings[0]="公開"
 PermissionStrings[1]="私人：已加密"
@@ -1405,6 +1409,10 @@ AimAssistLockOnString="瞄準輔助變焦鎖定"
 AimAssistRotationString="瞄準輔助轉換"
 AimAssistSlowDownString="瞄準輔助遲緩"
 ForceFeedbackString="控制器震動"
+MouseLookUpScaleString="縱向"
+MouseLookRightScaleString="橫向"
+ViewAccelerationString="視角加速度"
+ViewSmoothingString="視角流暢化"
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="動作"
@@ -1449,6 +1457,7 @@ ShrinkString="縮小"
 
 [KFInventoryManager]
 FullHealthMsg="滿血"
+CannotHealthMsg="不可為自己治療"
 
 [KFLocalMessage]
 SystemString="系統："
@@ -1567,6 +1576,7 @@ ScavengeMessage="搜尋"
 YouLostMessage="戰敗"
 YouWonMessage="勝利"
 SquadWipedOutMessage="你的小隊已被殲滅！"
+SquadWipedOutVIPMessage="VIP已被擊敗"
 SquadSurvivedMessage="你的小隊順利存活！"
 ObjectiveStartMessage="目標開始"
 ObjectiveWonMessage="目標完成"
@@ -2915,7 +2925,20 @@ AllCompleteRewardDescriptionString="深海探險家服裝"
 
 ChanceDropDescriptionStrings[0]="夏日票券"
 ChanceDropDescriptionStrings[1]="夏日金色票券"									  
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="附有獨特道具的限時特別活動"
 
+SpecialEventObjectiveInfoList[0]=(TitleString="暗之生物",DescriptionString="在任何地圖或模式中擊殺15個頭目")
+SpecialEventObjectiveInfoList[1]=(TitleString="每週巫術",DescriptionString="完成每週巴姆威治小鎮")
+SpecialEventObjectiveInfoList[2]=(TitleString="元素徽章",DescriptionString="打開武器室")
+SpecialEventObjectiveInfoList[3]=(TitleString="燃燒Zed",DescriptionString="令50只Zed穿過巴姆威治小鎮的篝火")
+SpecialEventObjectiveInfoList[4]=(TitleString="女巫長夜",DescriptionString="在鑽井平台以無盡模式困難或更高難度完成第15波攻勢")
+
+AllCompleteRewardDescriptionString="瘟疫醫生 | 背包 | 珍貴"
+
+ChanceDropDescriptionStrings[0]="萬聖節票券"
+ChanceDropDescriptionStrings[1]="萬聖節金色票券"
+														 
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3095,6 +3118,16 @@ ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"							   
+[VIPMode KFWeeklyOutBreakInformation]
+FriendlyName="主要目標"
+DescriptionStrings[0]="保護VIP！"
+DescriptionStrings[1]="長度：中（7波攻勢）"
+ModifierDescriptions[0]="一名玩家被選為VIP。VIP必須生存，否則遊戲便告結束。VIP只能由其他玩家提供治療。請在配對頁面上選擇「每週」遊戲模式。職業15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -3623,6 +3656,8 @@ DisplayName="鐘琴村"
 [KF-Rig KFMapSummary]
 DisplayName="鑽井平台"				 
 
+[KF-BarmwichTown KFMapSummary]
+DisplayName="巴姆威治小鎮"
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% 找到了可收集物品。剩下 %y% 可以找到"

@@ -577,7 +577,7 @@ function PossessedBy(Controller C, bool bVehicleTransition)
         KFPRI = KFPlayerReplicationInfo(C.PlayerReplicationInfo);
         if(KFPRI != none)
         {
-            KFPRI.PlayerHealth = byte(Health);
+            KFPRI.PlayerHealth = Health;
             KFPRI.PlayerHealthPercent = FloatToByte(float(Health) / float(HealthMax));
             SetCharacterArch(CharacterMonsterArch, true);
         }
@@ -767,10 +767,15 @@ simulated event Bump(Actor Other, PrimitiveComponent OtherComp, Vector HitNormal
 function HandleMonsterBump(KFPawn_Monster Other, Vector HitNormal)
 {
     local KFPlayerController KFPC;
+    local int LocustDoTIndex, IgnoredIndex;
 
     if(!Other.IsNapalmInfected() && CanNapalmInfect(KFPC))
     {
         InfectWithNapalm(Other, KFPC);
+    }
+    if((IsLocustInfected(LocustDoTIndex)) && !Other.IsLocustInfected(IgnoredIndex))
+    {
+        InfectWithLocust(Other, KFPlayerController(DamageOverTimeArray[LocustDoTIndex].InstigatedBy));
     }
 }
 
@@ -1553,7 +1558,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     KFPRI = KFPlayerReplicationInfo(PlayerReplicationInfo);
     if(KFPRI != none)
     {
-        KFPRI.PlayerHealth = byte(Health);
+        KFPRI.PlayerHealth = Health;
         KFPRI.PlayerHealthPercent = FloatToByte(float(Health) / float(HealthMax));
     }
     if(bUseDamageInflation)
@@ -1975,12 +1980,18 @@ simulated function int GetRallyBoostResistance(int NewDamage)
 
 function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLocation)
 {
+    local KFGameInfo KFGI;
     local KFPlayerController KFPC;
     local KFPerk InstigatorPerk;
     local int I;
 
     if(super.Died(Killer, DamageType, HitLocation))
     {
+        KFGI = KFGameInfo(WorldInfo.Game);
+        if(KFGI != none)
+        {
+            KFGI.ClearActorFromBonfire(self);
+        }
         if(((Killer != none) && Killer.Pawn != none) && KFPawn_Human(Killer.Pawn) != none)
         {
             if(((Role == ROLE_Authority) && KFGameInfo(WorldInfo.Game) != none) && KFGameInfo(WorldInfo.Game).DialogManager != none)
@@ -2021,13 +2032,13 @@ function bool Died(Controller Killer, class<DamageType> DamageType, Vector HitLo
         if(ParasiteSeeds.Length > 0)
         {
             I = 0;
-            J0x359:
+            J0x3B9:
 
             if(I < ParasiteSeeds.Length)
             {
                 ParasiteSeeds[I].Explode(Location - (vect(0, 0, 1) * (GetCollisionHeight())), vect(0, 0, 1) >> ParasiteSeeds[I].Rotation);
                 ++ I;
-                goto J0x359;
+                goto J0x3B9;
             }
             ParasiteSeeds.Remove(0, ParasiteSeeds.Length;
         }
@@ -2081,6 +2092,12 @@ simulated function bool IsNapalmInfected()
     return DamageOverTimeArray.Find('DamageType', Class'KFDT_Fire_Napalm' != -1;
 }
 
+simulated function bool IsLocustInfected(out int OutDoTIndex)
+{
+    OutDoTIndex = DamageOverTimeArray.Find('DamageType', Class'KFDT_Toxic_HRG_Locust';
+    return OutDoTIndex != -1;
+}
+
 function bool CanNapalmInfect(out KFPlayerController NapalmInstigator)
 {
     local int DoTIndex;
@@ -2113,6 +2130,14 @@ function InfectWithNapalm(KFPawn_Monster KFPM, KFPlayerController KFPC)
     if(KFPC != none)
     {
         KFPM.TakeDamage(Class'KFPerk_Firebug'.static.GetNapalmDamage(), KFPC, vect(0, 0, 0), vect(0, 0, 0), Class'KFDT_Fire_Napalm',, KFPC);
+    }
+}
+
+function InfectWithLocust(KFPawn_Monster KFPM, KFPlayerController KFPC)
+{
+    if(KFPC != none)
+    {
+        KFPM.TakeDamage(Class'KFDT_Toxic_HRG_Locust'.static.GetSpreadOnTouchDamage(), KFPC, vect(0, 0, 0), vect(0, 0, 0), Class'KFDT_Toxic_HRG_Locust',, KFPC);
     }
 }
 
@@ -2538,7 +2563,10 @@ simulated function PlayTakeHitEffects(Vector HitDirection, Vector HitLocation, o
         }
         if(bPlayedDeath)
         {
-            PlayDeadHitEffects(HitLocation, HitDirection, HitZoneIndex, HitZoneName, HitBoneName, dmgType, bUseHitImpulse);            
+            if(dmgType.static.CanPlayDeadHitEffects())
+            {
+                PlayDeadHitEffects(HitLocation, HitDirection, HitZoneIndex, HitZoneName, HitBoneName, dmgType, bUseHitImpulse);
+            }            
         }
         else
         {

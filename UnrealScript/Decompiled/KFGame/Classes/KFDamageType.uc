@@ -40,6 +40,7 @@ var bool bNoFriendlyFire;
 var bool bNonLethalDamage;
 var bool bConsideredIndirectOrAoE;
 var bool bAllowAIDoorDestruction;
+var bool bCanPlayDeadHitEffects;
 var bool bStackDoT;
 var bool bHasToSpawnMicrowaveFire;
 var bool bAnyPerk;
@@ -98,6 +99,7 @@ var name DeathMaterialEffectParamName;
 var float DeathMaterialEffectDuration;
 var ParticleSystem OverrideImpactEffect;
 var AkEvent OverrideImpactSound;
+var float DamageModifierAP;
 
 static simulated function AddBloodSpread(KFPawn_Monster inPawn, Vector HitDirection, out array<Vector> HitSpread, bool bIsDismemberingHit, bool bWasObliterated)
 {
@@ -228,8 +230,14 @@ static function bool AlwaysPoisons()
 
 static function ApplyKillResults(KFPawn KilledPawn);
 
+static function bool CanPlayDeadHitEffects()
+{
+    return default.bCanPlayDeadHitEffects;
+}
+
 defaultproperties
 {
+    bCanPlayDeadHitEffects=true
     bHasToSpawnMicrowaveFire=true
     HeadDestructionDamageScale=1
     HeadDestructionImpulseForceScale=1

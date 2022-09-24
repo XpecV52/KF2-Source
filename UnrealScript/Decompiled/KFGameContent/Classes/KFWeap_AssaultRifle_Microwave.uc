@@ -83,7 +83,7 @@ defaultproperties
     MeshFOV=70
     MeshIronSightFOV=52
     PlayerIronSightFOV=70
-    IronSightPosition=(X=10,Y=0,Z=0)
+    IronSightPosition=(X=10,Y=-0.015,Z=0.09)
     DOF_FG_FocalRadius=85
     DOF_FG_MaxNearBlurSize=2.5
     GroupPriority=125

@@ -896,7 +896,7 @@ function LoadGunGameWeapons(Controller NewPlayer)
                 Weapon = KFWeapon(Inv);
                 if(Weapon != none)
                 {
-                    Weapon.GunGameRemove();
+                    Weapon.RemoveGun();
                 }
             }
             ++ I;
@@ -1007,29 +1007,35 @@ function ResetGunGame(KFPlayerController_WeeklySurvival KFPC_WS)
 function NotifyKilled(Controller Killer, Controller Killed, Pawn KilledPawn, class<DamageType> DamageType)
 {
     local KFPawn_Monster KFPM;
-    local KFPlayerController_WeeklySurvival KFPC_WS;
+    local KFPlayerController_WeeklySurvival KFPC_WS_Killer, KFPC_WS_Killed;
 
     super(GameInfo).NotifyKilled(Killer, Killed, KilledPawn, DamageType);
-    if(!OutbreakEvent.ActiveEvent.bGunGameMode)
-    {
-        return;
-    }
     KFPM = KFPawn_Monster(KilledPawn);
-    KFPC_WS = KFPlayerController_WeeklySurvival(Killer);
-    if((KFPM != none) && KFPC_WS != none)
+    KFPC_WS_Killer = KFPlayerController_WeeklySurvival(Killer);
+    KFPC_WS_Killed = KFPlayerController_WeeklySurvival(Killed);
+    if(OutbreakEvent.ActiveEvent.bGunGameMode)
     {
-        if(KFPC_WS.Pawn.Health > 0)
+        if((KFPM != none) && KFPC_WS_Killer != none)
         {
-            KFPC_WS.GunGameData.Score += KFPM.GunGameKilledScore;
-            UpdateGunGameLevel(KFPC_WS);
-        }        
+            if(KFPC_WS_Killer.Pawn.Health > 0)
+            {
+                KFPC_WS_Killer.GunGameData.Score += KFPM.GunGameKilledScore;
+                UpdateGunGameLevel(KFPC_WS_Killer);
+            }            
+        }
+        else
+        {
+            if(KFPC_WS_Killed != none)
+            {
+                ResetGunGame(KFPC_WS_Killed);
+            }
+        }
     }
-    else
+    if(OutbreakEvent.ActiveEvent.bVIPGameMode)
     {
-        KFPC_WS = KFPlayerController_WeeklySurvival(Killed);
-        if(KFPC_WS != none)
+        if((KFPC_WS_Killed != none) && KFPC_WS_Killed.VIPGameData.IsVIP)
         {
-            ResetGunGame(KFPC_WS);
+            SetTimer(1.5, false, 'OnVIPDiesEndMatch');
         }
     }
 }
@@ -1111,7 +1117,7 @@ function UpdateGunGameLevel(KFPlayerController_WeeklySurvival KFPC_WS)
         {
             if(((!Class'KFPerk'.static.IsKnife(CurrentWeapon) && !Class'KFPerk_SWAT'.static.Is9mm(CurrentWeapon)) && !Class'KFPerk'.static.IsSyringe(CurrentWeapon)) && !Class'KFPerk'.static.IsWelder(CurrentWeapon))
             {
-                CurrentWeapon.GunGameRemove();
+                CurrentWeapon.RemoveGun();
             }
             if(Class'KFPerk_SWAT'.static.Is9mm(CurrentWeapon))
             {
@@ -1133,6 +1139,178 @@ function UpdateGunGameLevel(KFPlayerController_WeeklySurvival KFPC_WS)
         }
         ToGrantWeaponDefinition = PerkData.GunGameLevels[CurrentLevel - 1].GrantedWeapons[RandomNumber];
         GunGameLevelGrantWeapon(KFPC_WS, ToGrantWeaponDefinition);
+    }
+}
+
+function UnregisterPlayer(PlayerController PC)
+{
+    local KFPlayerController_WeeklySurvival KFPC_WS;
+
+    super(KFGameInfo).UnregisterPlayer(PC);
+    KFPC_WS = KFPlayerController_WeeklySurvival(PC);
+    if(OutbreakEvent.ActiveEvent.bVIPGameMode)
+    {
+        if((KFPC_WS != none) && KFPC_WS.VIPGameData.IsVIP)
+        {
+            ChooseVIP(false, KFPC_WS);
+        }
+    }
+}
+
+function WaveStarted()
+{
+    super.WaveStarted();
+    if(OutbreakEvent.ActiveEvent.bVIPGameMode)
+    {
+        if(WaveNum <= 1)
+        {
+            ChooseVIP(true);
+        }
+    }
+}
+
+function OnVIPDiesEndMatch()
+{
+    local KFPlayerController KFPC;
+
+    foreach WorldInfo.AllControllers(Class'KFPlayerController', KFPC)
+    {
+        KFPC.SetCameraMode('ThirdPerson');        
+    }    
+    WaveEnded(1);
+}
+
+function ChooseVIP_SetupVIP()
+{
+    local KFPlayerController_WeeklySurvival KFPC_WS, NewVIP;
+    local KFGameReplicationInfo KFGRI;
+
+    NewVIP = none;
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    foreach WorldInfo.AllControllers(Class'KFPlayerController_WeeklySurvival', KFPC_WS)
+    {
+        if(KFPC_WS != none)
+        {
+            if(KFPC_WS.VIPGameData.IsVIP)
+            {
+                NewVIP = KFPC_WS;
+                break;
+            }
+        }        
+    }    
+    if(NewVIP != none)
+    {
+        if(NewVIP.Pawn != none)
+        {
+            NewVIP.GetPerk().PerkSetOwnerHealthAndArmor(false);
+            if(NewVIP.VIPGameData.PendingHealthReset)
+            {
+                NewVIP.VIPGameData.PendingHealthReset = false;
+                NewVIP.Pawn.Health = NewVIP.Pawn.HealthMax;
+            }
+            KFGRI.UpdateVIPPlayer(KFPlayerReplicationInfo(NewVIP.PlayerReplicationInfo));
+            KFGRI.UpdateVIPMaxHealth(NewVIP.Pawn.HealthMax);
+            KFGRI.UpdateVIPCurrentHealth(NewVIP.Pawn.Health);
+            NewVIP.PlayVIPGameChosenSound(3.5);
+            ClearTimer('ChooseVIP_SetupVIP');
+        }
+    }
+}
+
+function ChooseVIP(bool ForceAddHealth, optional KFPlayerController_WeeklySurvival PlayerJustLeft)
+{
+    local int RandomNumber;
+    local KFPlayerController_WeeklySurvival KFPC_WS, CurrentVIP, NewVIP;
+    local array<KFPlayerController_WeeklySurvival> PotentialVIP;
+    local KFGameReplicationInfo KFGRI;
+
+    PlayerJustLeft = none;
+    ClearTimer('ChooseVIP_SetupVIP');
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    foreach WorldInfo.AllControllers(Class'KFPlayerController_WeeklySurvival', KFPC_WS)
+    {
+        if(KFPC_WS != none)
+        {
+            if((KFPC_WS.VIPGameData.IsVIP == false) && KFPC_WS.VIPGameData.WasVIP == false)
+            {
+                PotentialVIP.AddItem(KFPC_WS;
+            }
+            if(KFPC_WS.VIPGameData.IsVIP)
+            {
+                CurrentVIP = KFPC_WS;
+            }
+        }        
+    }    
+    if(CurrentVIP != none)
+    {
+        CurrentVIP.VIPGameData.IsVIP = false;
+        CurrentVIP.GetPerk().PerkSetOwnerHealthAndArmor(false);
+    }
+    if(PotentialVIP.Length == 0)
+    {
+        foreach WorldInfo.AllControllers(Class'KFPlayerController_WeeklySurvival', KFPC_WS)
+        {
+            if(KFPC_WS != none)
+            {
+                KFPC_WS.VIPGameData.WasVIP = false;
+                if((PlayerJustLeft == none) || PlayerJustLeft != KFPC_WS)
+                {
+                    PotentialVIP.AddItem(KFPC_WS;
+                }
+            }            
+        }        
+    }
+    if(PotentialVIP.Length > 0)
+    {
+        RandomNumber = Rand(PotentialVIP.Length);
+        NewVIP = PotentialVIP[RandomNumber];
+        NewVIP.VIPGameData.IsVIP = true;
+        NewVIP.VIPGameData.WasVIP = true;
+    }
+    if(NewVIP != none)
+    {
+        if(ForceAddHealth || (KFGRI != none) && KFGRI.bWaveIsActive == false)
+        {
+            NewVIP.VIPGameData.PendingHealthReset = true;
+        }
+        if(NewVIP.Pawn != none)
+        {
+            ChooseVIP_SetupVIP();            
+        }
+        else
+        {
+            SetTimer(0.25, true, 'ChooseVIP_SetupVIP');
+        }
+        ClearTimer('OnVIPDiesEndMatch');
+    }
+}
+
+function OnOutbreakWaveWon()
+{
+    super.OnOutbreakWaveWon();
+    if(OutbreakEvent.ActiveEvent.bGunGameMode)
+    {
+        MyKFGRI.GunGameWavesCurrent += 1;
+        if(bGunGamePlayerOnLastGun)
+        {
+            MyKFGRI.bWaveGunGameIsFinal = true;
+            if(WaveNum < WaveMax)
+            {
+                WaveNum = WaveMax - 1;
+            }            
+        }
+        else
+        {
+            if(WaveNum >= (WaveMax - 1))
+            {
+                WaveNum = WaveMax - 2;
+            }
+        }
+        MyKFGRI.bNetDirty = true;
+    }
+    if(OutbreakEvent.ActiveEvent.bVIPGameMode)
+    {
+        ChooseVIP(true);
     }
 }
 

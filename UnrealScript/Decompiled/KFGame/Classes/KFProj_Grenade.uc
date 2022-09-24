@@ -184,6 +184,9 @@ simulated event GrenadeIsAtRest()
 
 protected simulated function PrepareExplosionTemplate()
 {
+    local Weapon OwnerWeapon;
+    local KFPawn_Human OwnerPawn;
+
     if(bUpgradable)
     {
         super.PrepareExplosionTemplate();        
@@ -191,6 +194,15 @@ protected simulated function PrepareExplosionTemplate()
     else
     {
         GetRadialDamageValues(ExplosionTemplate.Damage, ExplosionTemplate.DamageRadius, ExplosionTemplate.DamageFalloffExponent);
+        OwnerWeapon = Weapon(Owner);
+        if(OwnerWeapon != none)
+        {
+            OwnerPawn = KFPawn_Human(OwnerWeapon.Owner);
+            if(OwnerPawn != none)
+            {
+                ExplosionTemplate.DamageRadius *= OwnerPawn.GetPerk().GetAoERadiusModifier();
+            }
+        }
     }
 }
 

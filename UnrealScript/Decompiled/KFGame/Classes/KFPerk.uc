@@ -126,6 +126,7 @@ const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles = 4060;
 const STATID_ACHIEVE_CarillonHamletCollectibles = 4061;
 const STATID_ACHIEVE_RigCollectibles = 4062;
+const STATID_ACHIEVE_BarmwichCollectibles = 4063;
 const SKILLFLAG = 0x1;
 const SKILLFLAG_1 = 0x2;
 const SKILLFLAG_2 = 0x4;
@@ -786,7 +787,7 @@ event NotifyPerkModified()
     PostLevelUp();
 }
 
-private final simulated function PerkSetOwnerHealthAndArmor(optional bool bModifyHealth)
+final simulated function PerkSetOwnerHealthAndArmor(optional bool bModifyHealth)
 {
     if(Role != ROLE_Authority)
     {
@@ -801,6 +802,10 @@ private final simulated function PerkSetOwnerHealthAndArmor(optional bool bModif
         }
         OwnerPawn.HealthMax = OwnerPawn.default.Health;
         ModifyHealth(OwnerPawn.HealthMax);
+        if(ModifyHealthMaxWeekly(OwnerPawn.HealthMax))
+        {
+            OwnerPawn.Health = OwnerPawn.HealthMax;
+        }
         OwnerPawn.Health = Min(OwnerPawn.Health, OwnerPawn.HealthMax);
         if(OwnerPC == none)
         {
@@ -809,13 +814,39 @@ private final simulated function PerkSetOwnerHealthAndArmor(optional bool bModif
         MyPRI = KFPlayerReplicationInfo(OwnerPC.PlayerReplicationInfo);
         if(MyPRI != none)
         {
-            MyPRI.PlayerHealth = byte(OwnerPawn.Health);
+            MyPRI.PlayerHealth = OwnerPawn.Health;
             MyPRI.PlayerHealthPercent = FloatToByte(float(OwnerPawn.Health) / float(OwnerPawn.HealthMax));
         }
         OwnerPawn.MaxArmor = OwnerPawn.default.MaxArmor;
         ModifyArmor(OwnerPawn.MaxArmor);
         OwnerPawn.Armor = byte(Min(OwnerPawn.Armor, OwnerPawn.MaxArmor));
     }
+}
+
+function bool ModifyHealthMaxWeekly(out int InHealth)
+{
+    local KFGameReplicationInfo KFGRI;
+    local KFPlayerController_WeeklySurvival KFPC_WS;
+    local bool bNeedToFullyHeal;
+
+    KFGRI = KFGameReplicationInfo(Owner.WorldInfo.GRI);
+    bNeedToFullyHeal = false;
+    if(KFGRI.IsVIPMode())
+    {
+        KFPC_WS = KFPlayerController_WeeklySurvival(Owner);
+        if((KFPC_WS != none) && OwnerPawn != none)
+        {
+            if(KFPC_WS.VIPGameData.IsVIP)
+            {
+                InHealth += KFPC_WS.VIPGameData.ExtraHealth;
+                if((KFGRI != none) && KFGRI.bWaveIsActive == false)
+                {
+                    bNeedToFullyHeal = true;
+                }                
+            }
+        }
+    }
+    return bNeedToFullyHeal;
 }
 
 function ApplySkillsToPawn()
@@ -1574,6 +1605,7 @@ function TickRegen(float DeltaTime)
     local int OldHealth;
     local KFPlayerReplicationInfo KFPRI;
     local KFPlayerController KFPC;
+    local KFPlayerController_WeeklySurvival KFPCWS;
     local KFPowerUp PowerUp;
     local bool bCannotBeHealed;
     local KFGameInfo GameInfo;
@@ -1591,6 +1623,11 @@ function TickRegen(float DeltaTime)
             }
             GameInfo = KFGameInfo(WorldInfo.Game);
             bCannotBeHealed = bCannotBeHealed || (GameInfo.OutbreakEvent != none) && GameInfo.OutbreakEvent.ActiveEvent.bCannotBeHealed;
+            KFPCWS = KFPlayerController_WeeklySurvival(OwnerPawn.Controller);
+            if((KFPCWS != none) && KFPCWS.VIPGameData.IsVIP)
+            {
+                bCannotBeHealed = true;
+            }
             if(bCannotBeHealed)
             {
                 return;
@@ -1600,7 +1637,7 @@ function TickRegen(float DeltaTime)
             KFPRI = KFPlayerReplicationInfo(OwnerPawn.PlayerReplicationInfo);
             if(KFPRI != none)
             {
-                KFPRI.PlayerHealth = byte(OwnerPawn.Health);
+                KFPRI.PlayerHealth = OwnerPawn.Health;
                 KFPRI.PlayerHealthPercent = FloatToByte(float(OwnerPawn.Health) / float(OwnerPawn.HealthMax));
             }
             if((float(OldHealth) <= (float(OwnerPawn.HealthMax) * 0.25)) && float(OwnerPawn.Health) >= (float(OwnerPawn.HealthMax) * 0.25))

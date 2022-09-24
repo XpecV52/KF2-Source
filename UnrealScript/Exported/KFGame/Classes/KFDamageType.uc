@@ -686,6 +686,9 @@ var bool bConsideredIndirectOrAoE;
 /** If true, this damagetype will destroy a door if closed and unwelded */
 var bool bAllowAIDoorDestruction;
 
+/** If true can PlayDeadHitEffects the Zeds when killing them */
+var bool bCanPlayDeadHitEffects;
+
 /*********************************************************************************************
 Damage over time
  ********************************************************************************************* */
@@ -879,6 +882,9 @@ var AKEvent OverrideImpactSound;
 //For use on in world trap damage types
 var bool bIsTrapDamage;
 
+//When doing armour piercing damage (this is a % of total damage received, the rest is considered as base if defined)
+var float DamageModifierAP;
+
 /**
  * Take the primary HitDirection and modify it to add more spread.
  * Use the BloodSpread property to calculate the spread amount
@@ -1067,8 +1073,14 @@ static function bool AlwaysPoisons()
 /** Do anything related to killing a pawn */
 static function ApplyKillResults(KFPawn KilledPawn);
 
+static function bool CanPlayDeadHitEffects()
+{
+	return default.bCanPlayDeadHitEffects;
+}
+
 defaultproperties
 {
+   bCanPlayDeadHitEffects=True
    bHasToSpawnMicrowaveFire=True
    HeadDestructionDamageScale=1.000000
    HeadDestructionImpulseForceScale=1.000000

@@ -78,7 +78,7 @@ simulated function ANIMNOTIFY_LockBolt()
 
 defaultproperties
 {
-    ExplosionTemplate=KFGameExplosion'WEP_RPG7_ARCH.Wep_RPG7_BackBlastExplosion'
+    ExplosionTemplate=KFGameExplosion'wep_rpg7_arch.Wep_RPG7_BackBlastExplosion'
     BackBlastOffset=(X=-20,Y=4,Z=-3)
     ForceReloadTime=0.4
     PackageKey="RPG7"

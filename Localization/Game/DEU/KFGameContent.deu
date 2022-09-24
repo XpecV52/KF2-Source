@@ -856,6 +856,27 @@ ItemName="Wächter"
 ItemCategory="Spezial"
 ItemDescription="•Eine Drohne, die eine Position überwacht und auf Gegner schießt.\n•Alt-Feuer lässt die Drohne explodieren.\n•Sie explodiert auch, wenn ihr die Munition ausgeht und Zeds in der Nähe sind."
 SharedUnlockSource="Wächter-Waffen-Paket"										   
+[KFWeap_HRG_Dragonbreath]
+ItemName="HRG-Drachenflamme"
+ItemCategory="Schrotflinte"
+ItemDescription="•Primärfeuer nutzt einen einzelnen Lauf in einer vertikalen Schusslinie.\n•Das Alt-Feuer nutzt einen einzelnen Lauf in einer horizontalen Schusslinie.\n•Drache nicht eingeschlossen."
+
+[KFWeap_AssaultRifle_G36C]
+ItemName="G36C-Sturmgewehr"
+ItemCategory="Sturmgewehr"
+ItemDescription="•Es besteht die Wahl zwischen vollautomatischem und halbautomatischem Feuer-Modus.\n•Es besitzt rüstungsdurchbohrende Munition.\n•Kompakte Version des beliebten Sturmgewehrs."
+SharedUnlockSource="G36C-Sturmgewehr-Waffen-Paket"
+
+[KFWeap_Edged_Scythe]
+ItemName="Blutsichel"
+ItemCategory="Nahkampf"
+ItemDescription="•Primär – einzelner Schlitzangriff; Primär halten für Komboangriff.\n•Sekundär – Doppelfegerangriff.\n•Nachladen – wechseln zwischen langer und kurzer Reichweite.\n•Alt – blocken/parieren."
+SharedUnlockSource="Blutsichel-Waffen-Paket"
+
+[KFWeap_HRG_Locust]
+ItemName="HRG-Heuschrecke"
+ItemCategory="Sprengstoffe"
+ItemDescription="•Das Primärfeuer schießt eine Rakete ab, die eine Wolke von Nanobot-Heuschrecken erschafft, die die Zeds angreifen.\n•Das Zielen mit Alt-Feuer aktiviert einen Ziellaser und ermöglicht das Abfeuern gesteuerter Raketen."
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

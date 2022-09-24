@@ -1132,6 +1132,7 @@ struct native ItemProperties
     var string SignedOfferId;
     var string RequiredKeyId;
     var string Name;
+    var string KeyName;
     var OnlineSubsystem.ItemType Type;
     var OnlineSubsystem.ItemRarity Rarity;
     var string ShortDescription;
@@ -1162,6 +1163,7 @@ struct native ItemProperties
         SignedOfferId=""
         RequiredKeyId=""
         Name=""
+        KeyName=""
         Type=ItemType.ITP_WeaponSkin
         Rarity=ItemRarity.ITR_Common
         ShortDescription=""

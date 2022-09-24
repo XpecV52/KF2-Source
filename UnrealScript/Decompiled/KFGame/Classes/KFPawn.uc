@@ -437,6 +437,7 @@ var bool bLogSpecialMove;
 var bool bLogCustomAnim;
 var repnotify bool bHasStartedFire;
 var const bool bIsTurret;
+var repnotify bool bEnableSwarmVFX;
 var transient float LastHeadShotReceivedTime;
 var() array<HitZoneInfo> HitZones;
 var transient float TimeOfDeath;
@@ -453,6 +454,9 @@ var array<ExplosiveStackInfo> RecentExplosiveStacks;
 var transient float LastTimeDamageHappened;
 var float CrushScale;
 var float VolumeDamageScale;
+/** VFX that need to linger when a specific DamageType starts (those should loop), we stop them when the DamageType ends affecting */
+var() ParticleSystem Toxic_HRG_Locust_LoopingParticleEffect;
+var export editinline transient ParticleSystemComponent Toxic_HRG_Locust_LoopingPSC;
 var array<DamageInfo> DamageHistory;
 var repnotify KFHitFxInfo HitFxInfo;
 var KFRadialHitFxInfo HitFxRadialInfo;
@@ -614,9 +618,10 @@ replication
         KnockdownImpulse, PowerUpAmbientSound, 
         RepFireBurnedAmount, ReplicatedSpecialMove, 
         WeaponClassForAttachmentTemplate, bEmpDisrupted, 
-        bEmpPanicked, bFirePanicked, 
-        bHasStartedFire, bIsSprinting, 
-        bMovesFastInZedTime, bUnaffectedByZedTime;
+        bEmpPanicked, bEnableSwarmVFX, 
+        bFirePanicked, bHasStartedFire, 
+        bIsSprinting, bMovesFastInZedTime, 
+        bUnaffectedByZedTime;
 
      if(bNetDirty && WorldInfo.TimeSeconds < LastTakeHitTimeout)
         HitFxAddedHitCount, HitFxAddedRelativeLocs, 
@@ -793,6 +798,17 @@ simulated event ReplicatedEvent(name VarName)
             break;
         case 'WeaponSpecialAction':
             OnWeaponSpecialAction(WeaponSpecialAction);
+            break;
+        case 'bEnableSwarmVFX':
+            if(bEnableSwarmVFX)
+            {
+                StartLocustVFX();                
+            }
+            else
+            {
+                StopLocustVFX();
+            }
+            break;
         default:
             break;
     }
@@ -2015,6 +2031,7 @@ event TakeDamage(int Damage, Controller InstigatedBy, Vector HitLocation, Vector
     bAllowHeadshot = CanCountHeadshots();
     OldHealth = Health;
     super(Pawn).TakeDamage(Damage, InstigatedBy, HitLocation, Momentum, DamageType, HitInfo, DamageCauser);
+    HandleAfflictionsOnHit(InstigatedBy, Normal(Momentum), class<KFDamageType>(DamageType), DamageCauser);
     actualDamage = OldHealth - Health;
     if(actualDamage > 0)
     {
@@ -2104,6 +2121,17 @@ function AdjustDamage(out int InDamage, out Vector Momentum, Controller Instigat
         InDamage *= HitZones[HitZoneIdx].DmgScale;
     }
     InDamage *= VolumeDamageScale;
+    if(KFPlayerController(Controller) != none)
+    {
+        KFPlayerController(Controller).AdjustDamage(InDamage, InstigatedBy, DamageType, DamageCauser, self);        
+    }
+    else
+    {
+        if(KFPlayerController(InstigatedBy) != none)
+        {
+            KFPlayerController(InstigatedBy).AdjustDamage(InDamage, InstigatedBy, DamageType, DamageCauser, self);
+        }
+    }
     KFDT = class<KFDamageType>(DamageType);
     if(((InDamage >= Health) && KFDT != none) && KFDT.default.bNonLethalDamage)
     {
@@ -2197,6 +2225,26 @@ function AddTakenDamage(Controller DamagerController, int Damage, Actor DamageCa
     }
 }
 
+function TimerRestartForceEnemy()
+{
+    local KFAIController KFAIC;
+    local Pawn ForcedEnemy;
+
+    if(Controller != none)
+    {
+        KFAIC = KFAIController(Controller);
+        if(KFAIC != none)
+        {
+            KFAIC.CanForceEnemy = true;
+            ForcedEnemy = KFAIC.FindForcedEnemy();
+            if(ForcedEnemy != none)
+            {
+                KFAIC.ChangeEnemy(ForcedEnemy);
+            }
+        }
+    }
+}
+
 function UpdateDamageHistory(Controller DamagerController, int Damage, Actor DamageCauser, class<KFDamageType> DamageType)
 {
     local DamageInfo Info;
@@ -2221,16 +2269,32 @@ function UpdateDamageHistory(Controller DamagerController, int Damage, Actor Dam
             {
                 DamageHistory[KFAIC.CurrentEnemysHistoryIndex].Damage = 0;
             }
-            if(((KFAIC.IsAggroEnemySwitchAllowed() && DamagerController.Pawn != KFAIC.Enemy) && Info.Damage >= DamageThreshold) && Info.Damage > DamageHistory[KFAIC.CurrentEnemysHistoryIndex].Damage)
+            if(KFAIC.ForcedEnemy != none)
             {
-                BlockerPawn = KFAIC.GetPawnBlockingPathTo(DamagerController.Pawn, true);
-                if(BlockerPawn == none)
+                if(GetHealthPercentage() < KFAIC.DamageRatioToChangeForcedEnemy)
                 {
-                    bChangedEnemies = KFAIC.SetEnemy(DamagerController.Pawn);                    
-                }
-                else
+                    if((WorldInfo.TimeSeconds - KFAIC.ForcedEnemyLastTime) > KFAIC.TimeCannotChangeFromForcedEnemy)
+                    {
+                        KFAIC.CanForceEnemy = false;
+                        ClearTimer('TimerRestartForceEnemy');
+                        SetTimer(KFAIC.TimeCanRestartForcedEnemy, false, 'TimerRestartForceEnemy');
+                        KFAIC.ChangeEnemy(DamagerController.Pawn);
+                    }
+                }                
+            }
+            else
+            {
+                if(((KFAIC.IsAggroEnemySwitchAllowed() && DamagerController.Pawn != KFAIC.Enemy) && Info.Damage >= DamageThreshold) && Info.Damage > DamageHistory[KFAIC.CurrentEnemysHistoryIndex].Damage)
                 {
-                    bChangedEnemies = KFAIC.SetEnemy(BlockerPawn);
+                    BlockerPawn = KFAIC.GetPawnBlockingPathTo(DamagerController.Pawn, true);
+                    if(BlockerPawn == none)
+                    {
+                        bChangedEnemies = KFAIC.SetEnemy(DamagerController.Pawn);                        
+                    }
+                    else
+                    {
+                        bChangedEnemies = KFAIC.SetEnemy(BlockerPawn);
+                    }
                 }
             }
         }        
@@ -2559,6 +2623,8 @@ simulated function bool IsHeadless();
 
 simulated function TerminateEffectsOnDeath()
 {
+    local int I;
+
     if((WeaponAttachment != none) && !WeaponAttachment.bPendingDelete)
     {
         WeaponAttachment.DetachFrom(self);
@@ -2571,9 +2637,19 @@ simulated function TerminateEffectsOnDeath()
     DialogAkComponent.StopEvents();
     SetPowerUpAmbientSound(none, none, none, none);
     AfflictionHandler.ShutDown();
+    StopLocustVFX();
     if(SoundGroupArch.OnDeathStopEvent != none)
     {
         PostAkEvent(SoundGroupArch.OnDeathStopEvent);
+    }
+    I = 0;
+    J0x169:
+
+    if(I < DamageOverTimeArray.Length)
+    {
+        OnEndDamageType(DamageOverTimeArray[I].DamageType);
+        ++ I;
+        goto J0x169;
     }
 }
 
@@ -3034,11 +3110,11 @@ simulated function KFSkinTypeEffects GetHitZoneSkinTypeEffects(int HitZoneIdx)
 
 simulated function AdjustAffliction(out float AfflictionPower);
 
-function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<DamageType> DamageType, Actor DamageCauser)
+function HandleAfflictionsOnHit(Controller DamageInstigator, Vector HitDir, class<KFDamageType> DamageType, Actor DamageCauser)
 {
     if(AfflictionHandler != none)
     {
-        AfflictionHandler.NotifyTakeHit(DamageInstigator, HitDir, class<KFDamageType>(DamageType), DamageCauser);
+        AfflictionHandler.NotifyTakeHit(DamageInstigator, HitDir, DamageType, DamageCauser);
     }
 }
 
@@ -3062,6 +3138,7 @@ function ApplyDamageOverTime(int Damage, Controller InstigatedBy, class<KFDamage
             DoTInfo.interval = KFDT.default.DoT_Interval;
             DoTInfo.InstigatedBy = InstigatedBy;
             DoTInfo.TimeUntilNextDamage = KFDT.default.DoT_Interval;
+            OnStartDamageType(KFDT);
             DamageOverTimeArray[DamageOverTimeArray.Length] = DoTInfo;
         }        
     }
@@ -3105,10 +3182,35 @@ function TickDamageOverTime(float DeltaTime)
         }
         if((DamageOverTimeArray[I].Duration <= float(0)) || DamageOverTimeArray[I].Duration < DamageOverTimeArray[I].interval)
         {
+            OnEndDamageType(DamageOverTimeArray[I].DamageType);
             DamageOverTimeArray.Remove(I, 1;            
         }
         -- I;
         goto J0x29;
+    }
+}
+
+simulated function OnStartDamageType(class<KFDamageType> DamageType)
+{
+    switch(DamageType.Name)
+    {
+        case 'KFDT_Toxic_HRG_Locust':
+            StartLocustVFX();
+            break;
+        default:
+            break;
+    }
+}
+
+simulated function OnEndDamageType(class<KFDamageType> DamageType)
+{
+    switch(DamageType.Name)
+    {
+        case 'KFDT_Toxic_HRG_Locust':
+            StopLocustVFX();
+            break;
+        default:
+            break;
     }
 }
 
@@ -4058,6 +4160,41 @@ simulated function StopExtraVFX(name FXLabel)
 
 simulated function SetTurretWeaponAttachment(class<KFWeapon> WeaponClass);
 
+simulated function StartLocustVFX()
+{
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        bEnableSwarmVFX = true;
+        bNetDirty = true;
+        return;
+    }
+    if(Toxic_HRG_Locust_LoopingParticleEffect != none)
+    {
+        if(Toxic_HRG_Locust_LoopingPSC == none)
+        {
+            Toxic_HRG_Locust_LoopingPSC = WorldInfo.MyEmitterPool.SpawnEmitter(Toxic_HRG_Locust_LoopingParticleEffect, Location, Rotation, self);            
+        }
+        else
+        {
+            Toxic_HRG_Locust_LoopingPSC.SetStopSpawning(-1, false);
+        }
+    }
+}
+
+simulated function StopLocustVFX()
+{
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        bEnableSwarmVFX = false;
+        bForceNetUpdate = true;
+        return;
+    }
+    if(Toxic_HRG_Locust_LoopingPSC != none)
+    {
+        Toxic_HRG_Locust_LoopingPSC.SetStopSpawning(-1, true);
+    }
+}
+
 state Dying
 {
     ignores Bump, HitWall, HeadVolumeChange, PhysicsVolumeChange, Falling, BreathTimer, 
@@ -4155,6 +4292,7 @@ defaultproperties
     PenetrationResistance=1
     CrushScale=1
     VolumeDamageScale=1
+    Toxic_HRG_Locust_LoopingParticleEffect=ParticleSystem'WEP_HRG_Locust_EMIT.FX_Flying_Bugs_attacking'
     BloodSplatterDecalMaterials(0)=MaterialInstanceConstant'FX_Gore_MAT.FX_CH_BloodSplatter_01_Mic'
     BloodSplatterDecalMaterials(1)=MaterialInstanceConstant'FX_Gore_MAT.FX_CH_BloodSplatter_05_Mic'
     BloodPoolDecalMaterials(0)=MaterialInstanceTimeVarying'FX_Mat_Lib.FX_CH_Bloodpool_DM_TINST'

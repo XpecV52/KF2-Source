@@ -48,6 +48,7 @@ BodyMesh12="太空海盗服装"
 BodyMesh13="死神服装"
 BodyMesh14="节日购物服装"
 BodyMesh15="深海探险家服装"									 
+BodyMesh16="瘟疫医生男性服装"
 HeadMesh0="防毒面具"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -177,6 +178,13 @@ BodySkin2="珊瑚"
 BodySkin3="珍珠"
 BodySkin4="黑色海豹"
 BodySkin5="宝物"					
+[CHR_MrsFoster_archetype.BodyMesh16]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="白色"
 HeadSkin1="绿色"
@@ -401,6 +409,13 @@ BodySkin2="珊瑚"
 BodySkin3="珍珠"
 BodySkin4="黑色海豹"
 BodySkin5="宝物"					
+[CHR_Jagerhorn_archetype.BodyMesh16]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="瑞典金发"
 HeadSkin1="黑唱片"
@@ -629,6 +644,7 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+
 [CHR_DJSkully_archetype.BodyMesh15]								   
 BodySkin0="古董"
 BodySkin1="水蓝色"
@@ -636,6 +652,13 @@ BodySkin2="珊瑚"
 BodySkin3="珍珠"
 BodySkin4="黑色海豹"
 BodySkin5="宝物"				
+[CHR_DJSkully_archetype.BodyMesh16]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="乌黑"
@@ -826,6 +849,13 @@ BodySkin3="珍珠"
 BodySkin4="黑色海豹"
 BodySkin5="宝物"					
 
+[CHR_briar_archetype.BodyMesh17]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="原始"
 HeadSkin1="亮点"
@@ -1014,6 +1044,13 @@ BodySkin3="珍珠"
 BodySkin4="黑色海豹"
 BodySkin5="宝物"					
 
+[CHR_MrFoster_archetype.BodyMesh17]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="原始白"
 HeadSkin1="PCG 红"
@@ -1309,6 +1346,13 @@ BodySkin3="珍珠"
 BodySkin4="黑色海豹"
 BodySkin5="宝物"					
 
+[CHR_Coleman_archetype.BodyMesh16]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="多诺万"
 HeadSkin1="梭织"
@@ -1477,6 +1521,7 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+
 [CHR_Alberts_archetype.BodyMesh15]								  
 BodySkin0="古董"
 BodySkin1="水蓝色"
@@ -1484,6 +1529,13 @@ BodySkin2="珊瑚"
 BodySkin3="珍珠"
 BodySkin4="黑色海豹"
 BodySkin5="宝物"					
+[CHR_Alberts_archetype.BodyMesh16]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="灰色"
@@ -2522,6 +2574,7 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
+
 [CHR_Masterson_archetype.BodyMesh15]									
 BodySkin0="古董"
 BodySkin1="水蓝色"
@@ -2530,6 +2583,13 @@ BodySkin3="珍珠"
 BodySkin4="黑色海豹"
 BodySkin5="宝物"					
 
+[CHR_Masterson_archetype.BodyMesh16]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 [CHR_Tanaka_Archetype]
 CharacterName="田中勇人"
 Description="田中是一个矛盾的个体，因为他有着严重的自杀倾向。他在日本冲绳县出生，在美国军队中长大。和家人搬到日本大陆后，习惯美国文化的田中无法融入社会，于是参加了戏剧班。大学毕业后，他搬到了洛杉矶，在三流电影中演一些小角色，后来搬到欧洲尝试寻找更加“正式”的工作。他总是在法国匪徒电影中演坏人和流氓。现在，在灾难中，他似乎把实际和所扮演的角色搞混了。他觉得自己是在好莱坞电影中扮演一个有着武士道精神的黑帮、恶棍。"
@@ -2700,6 +2760,13 @@ BodySkin2="珊瑚"
 BodySkin3="珍珠"
 BodySkin4="黑色海豹"
 BodySkin5="宝物"					
+[CHR_Tanaka_archetype.BodyMesh17]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="头盔"
 AttachmentSkin0="升起的太阳"
@@ -2824,6 +2891,13 @@ BodySkin4="红雪"
 BodySkin5="树"
 BodySkin6="红色格子"
 
+[CHR_Ana_archetype.BodyMesh16]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="金库图案"
 
@@ -3046,20 +3120,27 @@ BodySkin2="饥荒"
 BodySkin3="瘟疫"
 BodySkin4="战争"
 BodySkin5="混乱"
-					
-[CHR_mark_archetype.BodyMesh15]								   
+
+[CHR_mark_archetype.BodyMesh15]
 BodySkin0="圣诞老人"
 BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
 
-[CHR_mark_archetype.BodyMesh16]							   
+[CHR_mark_archetype.BodyMesh16]
 BodySkin0="古董"
 BodySkin1="水蓝色"
 BodySkin2="珊瑚"
 BodySkin3="珍珠"
 BodySkin4="黑色海豹"
+BodySkin5="宝物"
+[CHR_mark_archetype.BodyMesh17]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
 BodySkin5="宝物"
 
 [chr_mark_archetype.HeadMesh0]
@@ -3226,6 +3307,13 @@ BodySkin2="珊瑚"
 BodySkin3="珍珠"
 BodySkin4="黑色海豹"
 BodySkin5="宝物"					
+[CHR_alan_archetype.BodyMesh16]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="如假包换"
 HeadSkin1="姜！真的吗？"
@@ -3392,6 +3480,13 @@ BodySkin1="水蓝色"
 BodySkin2="珊瑚"
 BodySkin3="珍珠"
 BodySkin4="黑色海豹"
+BodySkin5="宝物"
+[CHR_strasser_archetype.BodyMesh16]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
 BodySkin5="宝物"
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="黑钢"
@@ -3701,13 +3796,21 @@ BodySkin1="精灵"
 BodySkin2="北极点"
 BodySkin3="混乱圣诞节"
 BodySkin4="宝物"
-[CHR_rockabilly_archetype.BodyMesh15]									 
+
+[CHR_rockabilly_archetype.BodyMesh15]
 BodySkin0="古董"
 BodySkin1="水蓝色"
 BodySkin2="珊瑚"
 BodySkin3="珍珠"
 BodySkin4="黑色海豹"
-BodySkin5="宝物					
+BodySkin5="宝物"
+[CHR_rockabilly_archetype.BodyMesh16]
+BodySkin0="硬币"
+BodySkin1="纯银"
+BodySkin2="黑曜石"
+BodySkin3="火山"
+BodySkin4="翡翠"
+BodySkin5="宝物"
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="黑色"
@@ -7265,3 +7368,19 @@ AttachmentSkin2="珊瑚"
 AttachmentSkin3="珍珠"
 AttachmentSkin4="黑色海豹"
 AttachmentSkin5="宝物"						  
+[Cosmetic_PlagueDoctor_Backpack_ARCH]
+Attachment="瘟疫医生背包"
+AttachmentSkin0="宝物"
+
+[Cosmetic_PrimaryTarget_Crown_ARCH]
+Attachment="主要目标肩盖"
+AttachmentSkin0="宝物"
+
+[Cosmetic_PlagueDoctor_Hood_ARCH]
+Attachment="瘟疫医生兜帽"
+AttachmentSkin0="硬币"
+AttachmentSkin1="纯银"
+AttachmentSkin2="黑曜石"
+AttachmentSkin3="火山"
+AttachmentSkin4="翡翠"
+AttachmentSkin5="宝物"

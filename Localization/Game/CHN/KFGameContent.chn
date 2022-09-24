@@ -832,6 +832,7 @@ ItemName="钱币枪"
 ItemCategory="步枪"
 ItemDescription="•可以选择全自动和半自动射击模式。\n•备用射击可以切换射击模式。\n•将塞钱提升到新的层次。"
 SharedUnlockSource="钱币枪武器包"
+
 [KFWeap_HRG_Crossboom]
 ItemName="HRG 爆炸十字弓"
 ItemCategory="爆炸物"
@@ -848,14 +849,35 @@ ItemDescription="•主要 - 发射感染飞镖，令丧尸的头膨胀。\n•�
 ItemName="收缩光线"
 ItemCategory="手枪"
 ItemDescription="•开火模式可放射一束能量光线，伤害敌人并令其收缩。\n•收缩的敌人更易受到伤害。\n•宝贝，我让丧尸收缩了。"
-SharedUnlockSource="收缩光线武器包"
-
+SharedUnlockSource="收缩光线武器包"						   
 
 [KFWeap_AutoTurret]
 ItemName="哨兵"
 ItemCategory="特殊"
 ItemDescription="•监视一个地点并向敌人射击的无人机。\n•备选射击可引爆无人机。\n•耗尽弹药且周围有丧尸时也会自己引爆。"
-SharedUnlockSource="哨兵武器包"										   
+SharedUnlockSource="哨兵武器包"
+										   
+[KFWeap_HRG_Dragonbreath]
+ItemName="HRG 巨龙火焰"
+ItemCategory="霰弹枪"
+ItemDescription="•主要射击使用单根枪管发射纵向火线。\n•备用射击使用单根枪管发射横向火线。\n•巨龙不包含在内。"
+
+[KFWeap_AssaultRifle_G36C]
+ItemName="G36C 突击步枪"
+ItemCategory="突击步枪"
+ItemDescription="•选择全自动射击与半自动射击模式。\n•使用穿甲弹。\n•热门突击步枪的便携版本。"
+SharedUnlockSource="G36C 突击步枪武器包"
+
+[KFWeap_Edged_Scythe]
+ItemName="血腥镰刀"
+ItemCategory="近战"
+ItemDescription="•主要 - 单次斩击；按住主要攻击可进行连击。\n•次要 - 双重横扫攻击。\n•装填 - 在远距和近距之间切换。\n•备用 - 格挡/招架。"
+SharedUnlockSource="血腥镰刀武器包"
+
+[KFWeap_HRG_Locust]
+ItemName="HRG 飞蝗"
+ItemCategory="爆炸物"
+ItemDescription="•主要射击发射一枚火箭，产生一片由纳米机器人蝗虫组成的云雾，攻击丧尸。\n•备用射击瞄准可启动照准激光，引导火箭飞行。\n•丧尸灭杀队最喜欢的武器。"
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

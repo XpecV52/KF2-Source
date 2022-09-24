@@ -31,6 +31,7 @@ struct native TransactionItem
 var transient Weapon PreviousEquippedWeapons[2];
 var transient KFWeap_HealerBase HealerWeapon;
 var const localized string FullHealthMsg;
+var const localized string CannotHealthMsg;
 var byte GrenadeCount;
 var byte CurrentCarryBlocks;
 var byte MaxCarryBlocks;
@@ -1078,7 +1079,16 @@ simulated function AttemptQuickHeal()
 {
     local KFWeap_HealerBase W;
     local KFPlayerController KFPC;
+    local KFPlayerController_WeeklySurvival KFPCWS;
+    local KFGameReplicationInfo KFGRI;
 
+    KFGRI = KFGameReplicationInfo(WorldInfo.GRI);
+    KFPCWS = KFPlayerController_WeeklySurvival(Instigator.Owner);
+    if(((KFGRI != none) && KFGRI.VIPRepPlayer != none) && KFGRI.VIPRepPlayer == KFPlayerReplicationInfo(KFPCWS.PlayerReplicationInfo))
+    {
+        KFPCWS.myGfxHUD.ShowNonCriticalMessage(CannotHealthMsg);
+        return;
+    }
     if(Instigator.Health >= Instigator.HealthMax)
     {
         KFPC = KFPlayerController(Instigator.Owner);
@@ -2475,6 +2485,7 @@ simulated event DiscardInventory()
 defaultproperties
 {
     FullHealthMsg="Health Full"
+    CannotHealthMsg="You can't heal yourself"
     MaxCarryBlocks=15
     AmmoPickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Ammo'
     ItemPickupSound=AkEvent'WW_UI_PlayerCharacter.Play_UI_Pickup_Weapon'

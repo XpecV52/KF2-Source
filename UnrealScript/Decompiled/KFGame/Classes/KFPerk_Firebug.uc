@@ -168,11 +168,7 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if(WeaponClassName == 'KFWeap_Pistol_HRGScorcher')
-    {
-        TempCapacity = TempCapacity;        
-    }
-    else
+    if((WeaponClassName != 'KFWeap_Pistol_HRGScorcher') && WeaponClassName != 'KFWeap_HRG_Dragonbreath')
     {
         if(((IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && IsHighCapFuelTankActive()) && (KFW == none) || !KFW.bNoMagazine)
         {

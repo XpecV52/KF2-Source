@@ -91,7 +91,10 @@ const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178; 
 const KFID_SurvivalStartingWeapIdx=179; 
 const KFID_SurvivalStartingGrenIdx=180; 
-#linenumber 16
+const KFID_MouseLookUpScale=181; 
+const KFID_MouseLookRightScale=182; 
+const KFID_ViewSmoothingEnabled=183; 
+const KFID_ViewAccelerationEnabled=184; #linenumber 16
 
 var string WhatsNewPS;
 var string WhatsNewMS;
@@ -284,7 +287,7 @@ static function class<KFGFxSpecialeventObjectivesContainer> GetSpecialEventClass
 		case SEI_Summer:
 			return class'KFGFxSpecialEventObjectivesContainer_Summer2022';
 		case SEI_Fall:
-			return class'KFGFxSpecialEventObjectivesContainer_Fall2021';
+			return class'KFGFxSpecialEventObjectivesContainer_Fall2022';
 		case SEI_Winter:
 			return class'KFGFXSpecialEventObjectivesContainer_Xmas2021';
 	}
@@ -2059,6 +2062,7 @@ defaultproperties
    StockMaps(35)="kf-netherhold"
    StockMaps(36)="kf-carillonhamlet"
    StockMaps(37)="kf-rig"
+   StockMaps(38)="kf-barmwichtown"
    SubWidgetBindings(0)=(WidgetName="FindGameContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_FindGame')
    SubWidgetBindings(1)=(WidgetName="ServerBrowserOverviewContainer",WidgetClass=Class'KFGame.KFGFxStartContainer_ServerBrowserOverview')
    SubWidgetBindings(2)=(WidgetName="gameOptionsContainer",WidgetClass=Class'KFGame.KFGFxStartGameContainer_Options')

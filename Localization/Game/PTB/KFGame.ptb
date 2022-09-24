@@ -22,6 +22,10 @@ ServerTypeStrings[2]="Ranqueado - Personalizado"
 ServerTypeStrings[3]="Não ranqueado"
 WeaponLevelString="NÍVEL DE ARMA"
 GunPointsString="PONTOS DE ARMAS"
+VIPString="OBJETIVO"
+VIPObjectiveAString="PROTEGER O VIP"
+VIPObjectiveBString="SOBREVIVER"
+VIPObjectiveCString="Você é o VIP"									 
 
 PermissionStrings[0]="Público"
 PermissionStrings[1]="Particular com senha"
@@ -1405,6 +1409,10 @@ AimAssistLockOnString="Trava de amp. para mira"
 AimAssistRotationString="Giro auxiliar de mira"
 AimAssistSlowDownString="Desaceleração de mira"
 ForceFeedbackString="Vibração do controle"
+MouseLookUpScaleString="Vertical"
+MouseLookRightScaleString="Horizontal"
+ViewAccelerationString="Ver Aceleração"
+ViewSmoothingString="Ver Suavização"									
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="MOVIMENTO"
@@ -1449,6 +1457,7 @@ ShrinkString="Diminuir"
 
 [KFInventoryManager]
 FullHealthMsg="Vida cheia"
+CannotHealthMsg="Você não pode curar a si mesmo"										 
 
 [KFLocalMessage]
 SystemString="Sistema:"
@@ -1567,6 +1576,7 @@ ScavengeMessage="Vasculhar"
 YouLostMessage="D E R R O T A"
 YouWonMessage="V I T Ó R I A"
 SquadWipedOutMessage="O pelotão foi derrotado!"
+SquadWipedOutVIPMessage="O VIP foi derrotado"												   
 SquadSurvivedMessage="O pelotão sobreviveu!"
 ObjectiveStartMessage="OBJETIVO INICIADO"
 ObjectiveWonMessage="OBJETIVO CUMPRIDO"
@@ -2915,7 +2925,19 @@ AllCompleteRewardDescriptionString="Mar Profundo | Tridente | Precioso"
 
 ChanceDropDescriptionStrings[0]="Bilhete de Verão"
 ChanceDropDescriptionStrings[1]="Bilhete Dourado de Verão"
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="Evento especial por tempo limitado com itens exclusivos"
 
+SpecialEventObjectiveInfoList[0]=(TitleString="Criaturas da Escuridão",DescriptionString="Mate 15 chefes em qualquer mapa ou modo")
+SpecialEventObjectiveInfoList[1]=(TitleString="Bruxaria da semana",DescriptionString="Conclua o Semanal na Cidade de Barmwich")
+SpecialEventObjectiveInfoList[2]=(TitleString="Medalhões Elementais",DescriptionString="Abra a Sala de Armas")
+SpecialEventObjectiveInfoList[3]=(TitleString="Zeds em chamas",DescriptionString="Faça 50 Zeds passarem pelas fogueiras da Cidade de Barmwich")
+SpecialEventObjectiveInfoList[4]=(TitleString="Longa Noite das Bruxas",DescriptionString="Conclua a 15ª leva no modo Difícil Infinito ou maior na Cidade de Barmwich")
+
+AllCompleteRewardDescriptionString="Médico da Peste | Mochila | Precioso"
+
+ChanceDropDescriptionStrings[0]="Bilhete de Halloween"
+ChanceDropDescriptionStrings[1]="Bilhete Dourado de Halloween"														 
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3091,6 +3113,16 @@ FriendlyName="Ascensão do arsenal"
 DescriptionStrings[0]="Aumente o nível de sua arma!"
 DescriptionStrings[1]="Duração: especial"
 ModifierDescriptions[0]="Os comerciantes não estão operando. Comece apenas com uma faca. Para obter armas melhores, mate e ganhe pontos de armas. Apenas Sobreviventes permitidos. Selecione o modo de jogo Semanal na página Organizar Partida. Classe 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[VIPMode KFWeeklyOutBreakInformation]
+FriendlyName="Alvo principal"
+DescriptionStrings[0]="Proteja o VIP!"
+DescriptionStrings[1]="Duração: média (7 levas)"
+ModifierDescriptions[0]="Um jogador é escolhido como VIP. O VIP deve sobreviver ou o jogo acaba. O VIP só pode ser curado por outros jogadores. Selecione o modo de jogo Semanal na página Organizar partidas. Classe 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3623,6 +3655,8 @@ DisplayName="Carillon Hamlet"
 
 [KF-Rig KFMapSummary]
 DisplayName="Plataforma"
+[KF-BarmwichTown KFMapSummary]
+DisplayName="Cidade de Barmwich"						   
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% encontrou um item coletável. Faltam %y% para encontrar..."

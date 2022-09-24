@@ -18,6 +18,7 @@ var int LastArmor;
 var float LastHealerAmmoPct;
 var int LastEXPValue;
 var const localized string EXPString;
+var float LastUpdateTime;
 
 function InitializeHUD()
 {
@@ -37,9 +38,10 @@ function TickHud(float DeltaTime)
     UpdateArmor();
     UpdateHealer();
     UpdateGlobalDamage();
+    LastUpdateTime = MyPC.WorldInfo.TimeSeconds;
 }
 
-function ShowActiveIndicators(array<string> IconPathStrings)
+function ShowActiveIndicators(array<ActiveSkill> ActiveSkills)
 {
     local byte I;
     local GFxObject DataProvider, TempObj;
@@ -48,10 +50,13 @@ function ShowActiveIndicators(array<string> IconPathStrings)
     I = 0;
     J0x35:
 
-    if(I < IconPathStrings.Length)
+    if(I < ActiveSkills.Length)
     {
         TempObj = Outer.CreateObject("Object");
-        TempObj.SetString("iconPath", "img://" $ IconPathStrings[I]);
+        TempObj.SetString("iconPath", "img://" $ ActiveSkills[I].IconPath);
+        TempObj.SetInt("Multiplier", ActiveSkills[I].Multiplier);
+        TempObj.SetFloat("MaxDuration", ActiveSkills[I].MaxDuration);
+        TempObj.SetFloat("Duration", ActiveSkills[I].Duration);
         DataProvider.SetElementObject(I, TempObj);
         ++ I;
         goto J0x35;

@@ -60,27 +60,38 @@ function SetPerkList()
 {
     local GFxObject PerkObject, DataProvider;
     local KFPlayerController KFPC;
-    local byte I;
+    local byte I, Counter;
     local int PerkPercent;
+    local KFGameReplicationInfo KFGRI;
 
     KFPC = KFPlayerController(Outer.GetPC());
     if(KFPC != none)
     {
         DataProvider = Outer.CreateArray();
+        KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+        Counter = 0;
         I = 0;
-        J0x76:
+        J0xC8:
 
         if(I < KFPC.PerkList.Length)
         {
-            PerkObject = Outer.CreateObject("Object");
-            PerkObject.SetString("name", KFPC.PerkList[I].PerkClass.default.PerkName);
-            PerkObject.SetString("perkIconSource", "img://" $ KFPC.PerkList[I].PerkClass.static.GetPerkIconPath());
-            PerkObject.SetInt("level", KFPC.PerkList[I].PerkLevel);
-            PerkPercent = int(KFPC.GetPerkLevelProgressPercentage(KFPC.PerkList[I].PerkClass));
-            PerkObject.SetInt("perkXP", PerkPercent);
-            DataProvider.SetElementObject(I, PerkObject);
+            if((KFGRI != none) && !KFGRI.IsPerkAllowed(KFPC.PerkList[I].PerkClass))
+            {                
+            }
+            else
+            {
+                PerkObject = Outer.CreateObject("Object");
+                PerkObject.SetString("name", KFPC.PerkList[I].PerkClass.default.PerkName);
+                PerkObject.SetString("perkIconSource", "img://" $ KFPC.PerkList[I].PerkClass.static.GetPerkIconPath());
+                PerkObject.SetInt("level", KFPC.PerkList[I].PerkLevel);
+                PerkPercent = int(KFPC.GetPerkLevelProgressPercentage(KFPC.PerkList[I].PerkClass));
+                PerkObject.SetInt("perkXP", PerkPercent);
+                PerkObject.SetInt("perkIndex", I);
+                DataProvider.SetElementObject(Counter, PerkObject);
+                ++ Counter;
+            }
             ++ I;
-            goto J0x76;
+            goto J0xC8;
         }
         SetObject("perkList", DataProvider);
     }

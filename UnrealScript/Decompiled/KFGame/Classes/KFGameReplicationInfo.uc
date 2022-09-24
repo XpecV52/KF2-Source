@@ -121,6 +121,20 @@ struct native PickupInfo
     }
 };
 
+struct native ReplicatedVIPGameInfo
+{
+    var int CurrentHealth;
+    var int MaxHealth;
+    var KFPlayerReplicationInfo VIPPlayer;
+
+    structdefaultproperties
+    {
+        CurrentHealth=0
+        MaxHealth=0
+        VIPPlayer=none
+    }
+};
+
 var repnotify PreGameServerAdInfo ServerAdInfo;
 var int PrimaryXPAccumulator;
 var int SecondaryXPAccumulator;
@@ -237,6 +251,10 @@ var export editinline AkComponent MusicComp;
 var KFMusicTrackInfo CurrentMusicTrackInfo;
 var repnotify KFMusicTrackInfo ReplicatedMusicTrackInfo;
 var int CurrentWeeklyIndex;
+var transient ReplicatedVIPGameInfo VIPModeData;
+var repnotify int VIPRepCurrentHealth;
+var repnotify int VIPRepMaxHealth;
+var repnotify KFPlayerReplicationInfo VIPRepPlayer;
 var private float SteamHeartbeatAccumulator;
 
 replication
@@ -252,14 +270,15 @@ replication
         PreviousObjective, PreviousObjectiveResult, 
         PreviousObjectiveVoshResult, PreviousObjectiveXPResult, 
         ReplicatedMusicTrackInfo, TraderVolume, 
-        TraderVolumeCheckType, WaveNum, 
-        WaveTotalAICount, bForceSkipTraderUI, 
-        bGlobalDamage, bHidePawnIcons, 
-        bIsBrokenTrader, bIsEndlessPaused, 
-        bIsUnrankedGame, bIsWeeklyMode, 
-        bTraderIsOpen, bWaveGunGameIsFinal, 
-        bWaveIsActive, bWaveIsEndless, 
-        bWaveStarted;
+        TraderVolumeCheckType, VIPRepCurrentHealth, 
+        VIPRepMaxHealth, VIPRepPlayer, 
+        WaveNum, WaveTotalAICount, 
+        bForceSkipTraderUI, bGlobalDamage, 
+        bHidePawnIcons, bIsBrokenTrader, 
+        bIsEndlessPaused, bIsUnrankedGame, 
+        bIsWeeklyMode, bTraderIsOpen, 
+        bWaveGunGameIsFinal, bWaveIsActive, 
+        bWaveIsEndless, bWaveStarted;
 
      if(bNetInitial)
         GameAmmoCostScale, GameLength, 
@@ -481,7 +500,28 @@ simulated event ReplicatedEvent(name VarName)
                                                                             }
                                                                             else
                                                                             {
-                                                                                super.ReplicatedEvent(VarName);
+                                                                                if(VarName == 'VIPRepCurrentHealth')
+                                                                                {
+                                                                                    UpdateVIPCurrentHealth(VIPRepCurrentHealth);                                                                                    
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    if(VarName == 'VIPRepMaxHealth')
+                                                                                    {
+                                                                                        UpdateVIPMaxHealth(VIPRepMaxHealth);                                                                                        
+                                                                                    }
+                                                                                    else
+                                                                                    {
+                                                                                        if(VarName == 'VIPRepPlayer')
+                                                                                        {
+                                                                                            UpdateVIPPlayer(VIPRepPlayer);                                                                                            
+                                                                                        }
+                                                                                        else
+                                                                                        {
+                                                                                            super.ReplicatedEvent(VarName);
+                                                                                        }
+                                                                                    }
+                                                                                }
                                                                             }
                                                                         }
                                                                     }
@@ -2131,9 +2171,84 @@ simulated function NotifyWeeklyEventIndex(int EventIndex)
     bNetDirty = true;
 }
 
+simulated function UpdateVIPMaxHealth(int NewMaxHealth)
+{
+    if(NewMaxHealth != VIPModeData.MaxHealth)
+    {
+        VIPModeData.MaxHealth = NewMaxHealth;
+        if(Role == ROLE_Authority)
+        {
+            VIPRepMaxHealth = NewMaxHealth;
+            bNetDirty = true;
+        }
+        if(WorldInfo.NetMode != NM_DedicatedServer)
+        {
+            UpdateVIPUI();
+        }
+    }
+}
+
+simulated function UpdateVIPCurrentHealth(int NewCurrentHealth)
+{
+    if(NewCurrentHealth != VIPModeData.CurrentHealth)
+    {
+        VIPModeData.CurrentHealth = NewCurrentHealth;
+        if(Role == ROLE_Authority)
+        {
+            VIPRepCurrentHealth = NewCurrentHealth;
+            bNetDirty = true;
+        }
+        if(WorldInfo.NetMode != NM_DedicatedServer)
+        {
+            UpdateVIPUI();
+        }
+    }
+}
+
+simulated function UpdateVIPPlayer(KFPlayerReplicationInfo NewVIPPlayer)
+{
+    if(NewVIPPlayer == none)
+    {
+        return;
+    }
+    if(NewVIPPlayer != VIPModeData.VIPPlayer)
+    {
+        VIPModeData.VIPPlayer = NewVIPPlayer;
+        if(Role == ROLE_Authority)
+        {
+            VIPRepPlayer = NewVIPPlayer;
+            bNetDirty = true;
+        }
+        if(WorldInfo.NetMode != NM_DedicatedServer)
+        {
+            UpdateVIPUI();
+        }
+    }
+}
+
+simulated function UpdateVIPUI()
+{
+    local KFPlayerController_WeeklySurvival KFPC_WS;
+
+    if(WorldInfo.NetMode == NM_DedicatedServer)
+    {
+        return;
+    }
+    KFPC_WS = KFPlayerController_WeeklySurvival(GetALocalPlayerController());
+    if(KFPC_WS != none)
+    {
+        KFPC_WS.UpdateVIPWidget(VIPModeData);
+    }
+}
+
 simulated function bool IsGunGameMode()
 {
     return bIsWeeklyMode && CurrentWeeklyIndex == 16;
+}
+
+simulated function bool IsVIPMode()
+{
+    return bIsWeeklyMode && CurrentWeeklyIndex == 17;
 }
 
 defaultproperties

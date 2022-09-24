@@ -33,7 +33,7 @@ simulated function Explode(GameExplosion NewExplosionTemplate, optional Vector D
     ExplosionTemplate.MyDamageType = Class'KFPerk_Demolitionist'.static.GetLingeringDamageType();
 }
 
-protected simulated function bool ExplodePawns()
+protected simulated function bool ExplodePawns(bool bCauseDamage)
 {
     local Pawn Victim;
     local float CheckRadius;

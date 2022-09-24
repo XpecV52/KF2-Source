@@ -28,6 +28,7 @@ package tripwire.managers
     import tripwire.widgets.NonCriticalGameMessageWidget;
     import tripwire.widgets.PlayerChatWidget;
     import tripwire.widgets.PlayerStatWidget;
+    import tripwire.widgets.VIPWidget;
     import tripwire.widgets.VoipNotificationWidget;
     import tripwire.widgets.WeaponSelectWidget;
     
@@ -92,6 +93,8 @@ package tripwire.managers
         public var GoompaCounter:GoompaCounterWidget;
         
         public var GunGameContainer:GunGameWidget;
+        
+        public var VIPContainer:VIPWidget;
         
         public var ControllerWeaponSelectContainer:ControllerWeaponSelectWidget;
         

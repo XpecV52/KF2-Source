@@ -56,6 +56,7 @@ var const localized string ScavengeMessage;
 var const localized string YouLostMessage;
 var const localized string YouWonMessage;
 var const localized string SquadWipedOutMessage;
+var const localized string SquadWipedOutVIPMessage;
 var const localized string SquadSurvivedMessage;
 var const localized string ObjectiveStartMessage;
 var const localized string ObjectiveWonMessage;
@@ -219,6 +220,8 @@ static function ClientReceive(PlayerController P, optional int Switch, optional 
 
 static function string GetMessageString(int Switch, optional out string SecondaryString, optional byte TeamIndex)
 {
+    local KFGameReplicationInfo KFGRI;
+
     SecondaryString = "";
     switch(Switch)
     {
@@ -266,7 +269,15 @@ static function string GetMessageString(int Switch, optional out string Secondar
         case 3:
             if(Class'WorldInfo'.static.GetWorldInfo().NetMode != NM_Standalone)
             {
-                SecondaryString = default.SquadWipedOutMessage;
+                KFGRI = KFGameReplicationInfo(Class'WorldInfo'.static.GetWorldInfo().GRI);
+                if(((KFGRI != none) && KFGRI.bIsWeeklyMode) && KFGRI.CurrentWeeklyIndex == 17)
+                {
+                    SecondaryString = default.SquadWipedOutVIPMessage;                    
+                }
+                else
+                {
+                    SecondaryString = default.SquadWipedOutMessage;
+                }
             }
             return default.YouLostMessage;
         case 4:
@@ -394,6 +405,7 @@ defaultproperties
     YouLostMessage="D E F E A T"
     YouWonMessage="V I C T O R Y"
     SquadWipedOutMessage="Your squad was wiped out!"
+    SquadWipedOutVIPMessage="The VIP has been defeated"
     SquadSurvivedMessage="Your squad survived!"
     ObjectiveStartMessage="OBJECTIVE STARTED"
     ObjectiveWonMessage="OBJECTIVE COMPLETE"

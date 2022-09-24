@@ -99,6 +99,7 @@ simulated function CustomFire()
         ExploActor.Explode(ExplosionTemplate, vector(SpawnRot));
     }
     IncrementFlashCount();
+    ExplosionTemplate.DamageRadius = StartingDamageRadius;
     if(bDebug)
     {
         DrawDebugCone(SpawnLoc, vector(SpawnRot), ExplosionTemplate.DamageRadius, ExplosionTemplate.DirectionalExplosionAngleDeg * 0.01745329, ExplosionTemplate.DirectionalExplosionAngleDeg * 0.01745329, 16, MakeColor(64, 64, 255, 0), true);
@@ -335,7 +336,7 @@ defaultproperties
 {
     ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'
     ExplosionTemplate=KFGameExplosion'WEP_Pulverizer_ARCH.Wep_Pulverizer_Explosion'
-    AltExploEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion_Concussive_Force'
+    AltExploEffects=KFImpactEffectInfo'wep_rpg7_arch.RPG7_Explosion_Concussive_Force'
     BlastSpawnOffset=-10
     NukeExplosionActorClass=Class'KFGame.KFExplosion_ReplicatedNuke'
     ParryStrength=5

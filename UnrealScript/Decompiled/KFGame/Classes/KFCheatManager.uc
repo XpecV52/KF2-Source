@@ -79,6 +79,10 @@ const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178;
 const KFID_SurvivalStartingWeapIdx = 179;
 const KFID_SurvivalStartingGrenIdx = 180;
+const KFID_MouseLookUpScale = 181;
+const KFID_MouseLookRightScale = 182;
+const KFID_ViewSmoothingEnabled = 183;
+const KFID_ViewAccelerationEnabled = 184;
 
 var bool bDebugSceneEnabled;
 var transient bool bUsingSplatterGun;
@@ -5010,7 +5014,7 @@ exec function SpawnHumanPawn(optional bool bEnemy, optional bool bUseGodMode, op
     if(KFPRI != none)
     {
         KFPRI.PlayerHealthPercent = FloatToByte(float(KFPH.Health) / float(KFPH.HealthMax));
-        KFPRI.PlayerHealth = byte(KFPH.Health);
+        KFPRI.PlayerHealth = KFPH.Health;
     }
     KFPH.AddDefaultInventory();
 }
@@ -6408,7 +6412,7 @@ exec function SpawnHumanPawnV(optional bool bEnemy, optional bool bUseGodMode, o
     if(KFPRI != none)
     {
         KFPRI.PlayerHealthPercent = FloatToByte(float(KFPH.Health) / float(KFPH.HealthMax));
-        KFPRI.PlayerHealth = byte(KFPH.Health);
+        KFPRI.PlayerHealth = KFPH.Health;
     }
     KFPH.AddDefaultInventory();
 }

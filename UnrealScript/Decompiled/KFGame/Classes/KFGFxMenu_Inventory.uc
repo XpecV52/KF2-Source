@@ -50,6 +50,8 @@ struct InventoryHelper
     var int SkinType;
     var Engine.OnlineSubsystem.ItemRarity Rarity;
     var int Quality;
+    var string KeyName;
+    var bool IsKey;
 
     structdefaultproperties
     {
@@ -63,6 +65,18 @@ struct InventoryHelper
         SkinType=0
         Rarity=ItemRarity.ITR_Common
         Quality=0
+        KeyName=""
+        IsKey=false
+    }
+};
+
+struct ByTypeItemsHelper
+{
+    var() array<InventoryHelper> ItemsOnType;
+
+    structdefaultproperties
+    {
+        ItemsOnType=none
     }
 };
 
@@ -145,12 +159,8 @@ var KFGFxMenu_Inventory.EINventory_Filter CurrentInventoryFilter;
 var int CurrentPerkIndexFilter;
 var ExchangeRuleSets RuleToExchange;
 var private int CrcTable[256];
-var delegate<SortByWeaponTypeDefinition> __SortByWeaponTypeDefinition__Delegate;
-var delegate<SortByPrice> __SortByPrice__Delegate;
-var delegate<SortByRarity> __SortByRarity__Delegate;
-var delegate<SortBySkinType> __SortBySkinType__Delegate;
-var delegate<SortByQuality> __SortByQuality__Delegate;
-var delegate<SortByAll> __SortByAll__Delegate;
+var delegate<SortSkinList> __SortSkinList__Delegate;
+var delegate<SortItemList> __SortItemList__Delegate;
 
 function InitializeMenu(KFGFxMoviePlayer_Manager InManager)
 {
@@ -285,44 +295,37 @@ final function int Crc(coerce string Text)
     return CrcValue;
 }
 
-delegate int SortByWeaponTypeDefinition(InventoryHelper A, InventoryHelper B)
-{
-    return ((A.WeaponDef < B.WeaponDef) ? -1 : 1);
-}
-
-delegate int SortByPrice(InventoryHelper A, InventoryHelper B)
-{
-    return ((A.Price > B.Price) ? -1 : 1);
-}
-
-delegate int SortByRarity(InventoryHelper A, InventoryHelper B)
-{
-    return ((A.Rarity > B.Rarity) ? -1 : 1);
-}
-
-delegate int SortBySkinType(InventoryHelper A, InventoryHelper B)
-{
-    return ((A.SkinType > B.SkinType) ? -1 : 1);
-}
-
-delegate int SortByQuality(InventoryHelper A, InventoryHelper B)
-{
-    return ((A.Quality < B.Quality) ? -1 : 1);
-}
-
-delegate int SortByAll(InventoryHelper A, InventoryHelper B)
+delegate int SortSkinList(InventoryHelper A, InventoryHelper B)
 {
     return ((A.Price > B.Price) ? -1 : ((A.Price < B.Price) ? 1 : ((A.WeaponDef < B.WeaponDef) ? -1 : ((A.WeaponDef > B.WeaponDef) ? 1 : ((A.Rarity > B.Rarity) ? -1 : ((A.Rarity < B.Rarity) ? 1 : ((A.SkinType > B.SkinType) ? -1 : ((A.SkinType < B.SkinType) ? 1 : ((A.Quality < B.Quality) ? -1 : 1)))))))));
 }
 
+delegate int SortItemList(InventoryHelper A, InventoryHelper B)
+{
+    if(A.IsKey && B.IsKey)
+    {
+        return 0;
+    }
+    if((A.IsKey == false) && B.IsKey == false)
+    {
+        return 0;
+    }
+    if(A.IsKey)
+    {
+        return 1;
+    }
+    return -1;
+}
+
 function InitInventory()
 {
-    local int I, ItemIndex, HelperIndex, WeaponItemID, SearchWeaponSkinIndex;
+    local int I, J, Z, ItemIndex, HelperIndex, WeaponItemID,
+	    SearchWeaponSkinIndex, SearchKeyKeywordIndex;
 
     local ItemProperties TempItemDetailsHolder;
     local GFxObject ItemArray, ItemObject;
     local bool bActiveItem;
-    local array<InventoryHelper> ActiveItems, ValidSkinItems, FailedSkinItems;
+    local ByTypeItemsHelper ByTypeItems[7];
     local InventoryHelper HelperItem;
     local array<ExchangeRuleSets> ExchangeRules;
     local class<KFWeaponDefinition> WeaponDef;
@@ -347,9 +350,10 @@ function InitInventory()
             if((((CurrentInventoryFilter == 7) || CurrentInventoryFilter == TempItemDetailsHolder.Type) && DoesMatchFilter(TempItemDetailsHolder)) || bool(OnlineSub.CurrentInventory[I].NewlyAdded))
             {
                 ItemObject = Outer.CreateObject("Object");
-                HelperIndex = ActiveItems.Find('ItemDefinition', OnlineSub.CurrentInventory[I].Definition;
+                HelperIndex = ByTypeItems[TempItemDetailsHolder.Type].ItemsOnType.Find('ItemDefinition', OnlineSub.CurrentInventory[I].Definition;
                 if(HelperIndex == -1)
                 {
+                    HelperItem.Type = TempItemDetailsHolder.Type;
                     HelperItem.ItemDefinition = OnlineSub.CurrentInventory[I].Definition;
                     HelperItem.ItemCount = OnlineSub.CurrentInventory[I].Quantity;
                     if(TempItemDetailsHolder.Type == 0)
@@ -386,17 +390,21 @@ function InitInventory()
                                 HelperItem.Price = 0;
                             }
                             SkinListWeaponsSearchCache.AddItem(HelperItem;
-                        }
+                        }                        
                     }
-                    ActiveItems.AddItem(HelperItem;
-                    HelperIndex = ActiveItems.Length - 1;                    
+                    else
+                    {
+                        HelperItem.KeyName = TempItemDetailsHolder.KeyName;
+                    }
+                    ByTypeItems[TempItemDetailsHolder.Type].ItemsOnType.AddItem(HelperItem;
+                    HelperIndex = ByTypeItems[TempItemDetailsHolder.Type].ItemsOnType.Length - 1;                    
                 }
                 else
                 {
-                    ActiveItems[HelperIndex].ItemCount += OnlineSub.CurrentInventory[I].Quantity;
+                    ByTypeItems[TempItemDetailsHolder.Type].ItemsOnType[HelperIndex].ItemCount += OnlineSub.CurrentInventory[I].Quantity;
                 }
                 OnlineSub.IsExchangeable(OnlineSub.CurrentInventory[I].Definition, ExchangeRules);
-                ItemObject.SetInt("count", ActiveItems[HelperIndex].ItemCount);
+                ItemObject.SetInt("count", ByTypeItems[TempItemDetailsHolder.Type].ItemsOnType[HelperIndex].ItemCount);
                 ItemObject.SetString("label", TempItemDetailsHolder.Name);
                 ItemObject.SetString("price", TempItemDetailsHolder.Price);
                 ItemObject.SetString("typeRarity", TempItemDetailsHolder.ShortDescription);
@@ -411,7 +419,7 @@ function InitInventory()
                 ItemObject.SetString("iconURLLarge", "img://" $ TempItemDetailsHolder.IconURLLarge);
                 ItemObject.SetInt("definition", TempItemDetailsHolder.Definition);
                 ItemObject.SetBool("newlyAdded", bool(OnlineSub.CurrentInventory[I].NewlyAdded));
-                ActiveItems[HelperIndex].GfxItemObject = ItemObject;
+                ByTypeItems[TempItemDetailsHolder.Type].ItemsOnType[HelperIndex].GfxItemObject = ItemObject;
                 if(OnlineSub.CurrentInventory[I].Definition == Manager.SelectIDOnOpen)
                 {
                     PendingItem = ItemObject;
@@ -428,61 +436,61 @@ function InitInventory()
         goto J0x67;
     }
     OnlineSub.ClearNewlyAdded();
-    if(CurrentInventoryFilter == 0)
+    if((CurrentInventoryFilter == 7) || CurrentInventoryFilter == 0)
     {
-        NeedToRegenerateSkinList = NeedToRegenerateSkinList || ActiveItems.Length != SkinListOrderedCache.Length;
+        NeedToRegenerateSkinList = NeedToRegenerateSkinList || ByTypeItems[0].ItemsOnType.Length != SkinListOrderedCache.Length;
         if(NeedToRegenerateSkinList)
         {
-            NeedToRegenerateSkinList = false;
-            I = 0;
-            J0xFB6:
-
-            if(I < ActiveItems.Length)
-            {
-                if(ActiveItems[I].WeaponDef != -1)
-                {
-                    ValidSkinItems.AddItem(ActiveItems[I];                    
-                }
-                else
-                {
-                    FailedSkinItems.AddItem(ActiveItems[I];
-                }
-                ++ I;
-                goto J0xFB6;
-            }
-            ValidSkinItems.Sort(SortByAll;
-            SkinListOrderedCache = ValidSkinItems;
-            I = 0;
-            J0x108B:
-
-            if(I < FailedSkinItems.Length)
-            {
-                SkinListOrderedCache.AddItem(FailedSkinItems[I];
-                ++ I;
-                goto J0x108B;
-            }            
+            NeedToRegenerateSkinList = false;            
+            ByTypeItems[0].ItemsOnType.Sort(SortSkinList;
+            SkinListOrderedCache = ByTypeItems[0].ItemsOnType;            
         }
-        I = 0;
-        J0x10DF:
-
-        if(I < SkinListOrderedCache.Length)
+        else
         {
-            ItemArray.SetElementObject(I, SkinListOrderedCache[I].GfxItemObject);
-            ++ I;
-            goto J0x10DF;
-        }        
+            ByTypeItems[0].ItemsOnType = SkinListOrderedCache;
+        }
     }
-    else
+    if((CurrentInventoryFilter == 7) || CurrentInventoryFilter == 2)
     {
         I = 0;
-        J0x1161:
+        J0x123B:
 
-        if(I < ActiveItems.Length)
+        if(I < ByTypeItems[2].ItemsOnType.Length)
         {
-            ItemArray.SetElementObject(I, ActiveItems[I].GfxItemObject);
+            SearchKeyKeywordIndex = InStr(ByTypeItems[2].ItemsOnType[I].KeyName, ":");
+            ByTypeItems[2].ItemsOnType[I].KeyName = Left(ByTypeItems[2].ItemsOnType[I].KeyName, SearchKeyKeywordIndex);
+            SearchKeyKeywordIndex = InStr(ByTypeItems[2].ItemsOnType[I].KeyName, "Key");
+            if(SearchKeyKeywordIndex != -1)
+            {
+                ByTypeItems[2].ItemsOnType[I].IsKey = true;                
+            }
+            else
+            {
+                ByTypeItems[2].ItemsOnType[I].IsKey = false;
+            }
             ++ I;
-            goto J0x1161;
+            goto J0x123B;
+        }        
+        ByTypeItems[2].ItemsOnType.Sort(SortItemList;
+    }
+    Z = 0;
+    I = 0;
+    J0x1480:
+
+    if(I < 7)
+    {
+        J = 0;
+        J0x149B:
+
+        if(J < ByTypeItems[I].ItemsOnType.Length)
+        {
+            ItemArray.SetElementObject(Z, ByTypeItems[I].ItemsOnType[J].GfxItemObject);
+            ++ Z;
+            ++ J;
+            goto J0x149B;
         }
+        ++ I;
+        goto J0x1480;
     }
     SetObject("inventoryList", ItemArray);
     if(Manager.SelectIDOnOpen != -1)

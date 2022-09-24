@@ -39,6 +39,7 @@ KF-Moonbase="Mondbasis wird gespielt"
 KF-Netherhold="Unterweltfestung wird gespielt"
 KF-CarillonHamlet="Carillon Hamlet wird gespielt"
 KF-Rig="Bohrinsel wird gespielt"					
+KF-BarmwichTown="Barmwich Town wird gespielt"									   
 
 [ActivityFeed_CHN]
 BossKillCondensedCaption="玩打败的首领！"

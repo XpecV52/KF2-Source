@@ -181,7 +181,7 @@ defaultproperties
     InventorySize=9
     MeshIronSightFOV=52
     PlayerIronSightFOV=80
-    IronSightPosition=(X=3,Y=0,Z=0)
+    IronSightPosition=(X=3,Y=-0.032,Z=-0.03)
     DOF_FG_FocalRadius=150
     DOF_FG_MaxNearBlurSize=1
     MaxAIWarningDistSQ=2250000

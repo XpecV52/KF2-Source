@@ -21,7 +21,11 @@ ServerTypeStrings[1]="排名——仓库"
 ServerTypeStrings[2]="排名——自定义"
 ServerTypeStrings[3]="非排名"
 WeaponLevelString="武器等级"
-GunPointsString="武器积分"							   
+GunPointsString="武器积分"		
+VIPString="目标"
+VIPObjectiveAString="保护 VIP"
+VIPObjectiveBString="生存"
+VIPObjectiveCString="你是 VIP"					   
 
 PermissionStrings[0]="公开"
 PermissionStrings[1]="私人：加密的"
@@ -1405,6 +1409,10 @@ AimAssistLockOnString="辅助瞄准缩放锁定 - 开"
 AimAssistRotationString="辅助瞄准放置"
 AimAssistSlowDownString="辅助瞄准减速"
 ForceFeedbackString="控制器震动"
+MouseLookUpScaleString="纵向"
+MouseLookRightScaleString="横向"
+ViewAccelerationString="视角加速度"
+ViewSmoothingString="视角平滑"
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="移动"
@@ -1449,6 +1457,7 @@ ShrinkString="缩小"
 
 [KFInventoryManager]
 FullHealthMsg="生命满"
+CannotHealthMsg="不可为自己治疗"
 
 [KFLocalMessage]
 SystemString="系统："
@@ -1567,6 +1576,7 @@ ScavengeMessage="清除"
 YouLostMessage="失败"
 YouWonMessage="胜利"
 SquadWipedOutMessage="你的小队被消灭了！"
+SquadWipedOutVIPMessage="VIP 已被击败"
 SquadSurvivedMessage="你的小队活了下来！"
 ObjectiveStartMessage="目标开始"
 ObjectiveWonMessage="目标达成"
@@ -2914,6 +2924,19 @@ AllCompleteRewardDescriptionString="深海| 三叉戟 |宝物"
 
 ChanceDropDescriptionStrings[0]="夏季奖劵"
 ChanceDropDescriptionStrings[1]="夏季金奖券"									  
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="特殊活动时间有限，提供专属物品。"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="暗之生物",DescriptionString="在任意地图或模式击杀15名首领")
+SpecialEventObjectiveInfoList[1]=(TitleString="每周巫术",DescriptionString="完成每周巴姆威治小镇")
+SpecialEventObjectiveInfoList[2]=(TitleString="元素徽章",DescriptionString="打开武器室")
+SpecialEventObjectiveInfoList[3]=(TitleString="燃烧丧尸",DescriptionString="令 50 只丧尸穿过巴姆威治小镇的篝火")
+SpecialEventObjectiveInfoList[4]=(TitleString="女巫长夜",DescriptionString="在困难无尽或以上难度的巴姆威治小镇中成功抵御15波丧尸")
+
+AllCompleteRewardDescriptionString="瘟疫医生 | 背包 | 宝物"
+
+ChanceDropDescriptionStrings[0]="万圣节奖券"
+ChanceDropDescriptionStrings[1]="万圣节金奖券"
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3092,7 +3115,16 @@ ModifierDescriptions[0]="商人不是特种部队成员。初始仅持有一把�
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
-ModifierDescriptions[4]="test5"							   
+ModifierDescriptions[4]="test5"
+[VIPMode KFWeeklyOutBreakInformation]
+FriendlyName="主要目标"
+DescriptionStrings[0]="保护 VIP！"
+DescriptionStrings[1]="长度：中（7波）"
+ModifierDescriptions[0]="一名玩家被选为 VIP。VIP 必须生存，否则游戏便告结束。VIP 只能由其他玩家提供治疗。请在比赛匹配页面上选择“每周”游戏模式。天赋 15+。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
 ;============================================
 ; Map Localization
 ;============================================
@@ -3621,6 +3653,8 @@ DisplayName="卡利永村庄"
 
 [KF-Rig KFMapSummary]
 DisplayName="油井"				 
+[KF-BarmwichTown KFMapSummary]
+DisplayName="巴姆威治小镇"
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% 找到了一个收藏品。还剩下 %y% 个…"

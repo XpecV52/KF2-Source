@@ -856,6 +856,27 @@ ItemName="Sentinelle"
 ItemCategory="Spéciale"
 ItemDescription="•Un drone qui surveille une certaine position et tire sur les ennemis.\n•Le tir alternatif fait exploser le drone.\n•Il s'autodétruit également lorsqu'il n'a plus de munitions et que des Zeds se trouvent à proximité."
 SharedUnlockSource="Pack d'arme Sentinelle"										   
+[KFWeap_HRG_Dragonbreath]
+ItemName="GRH Brasier du dragon"
+ItemCategory="Fusil à pompe"
+ItemDescription="• Le tir principal utilise un canon pour tirer à la verticale.\n• Le tir alternatif utilise un canon pour tirer à l'horizontale.\n• Le dragon n'est pas inclus."
+
+[KFWeap_AssaultRifle_G36C]
+ItemName="Fusil d'assaut G36C"
+ItemCategory="Fusil d'assaut"
+ItemDescription="• Modes automatique et semi-automatique.\n• Inclut des munitions perforantes.\n• La version compacte du très apprécié fusil d'assaut."
+SharedUnlockSource="Pack d'arme Fusil d'assaut G36C"
+
+[KFWeap_Edged_Scythe]
+ItemName="Faucille de sang"
+ItemCategory="Mêlée"
+ItemDescription="• Principal - attaque tranchante unique, maintenir pour enchaîner.\n• Secondaire - double attaque de balayage.\n• Rechargement - bascule entre longue et courte portée.\n• Alt - bloquer/parer."
+SharedUnlockSource="Pack d'arme Faucille de sang"
+
+[KFWeap_HRG_Locust]
+ItemName="GRH Sauterelle"
+ItemCategory="Explosifs"
+ItemDescription="• Le tir principal lance une roquette créant un nuage de sauterelles nanorobots qui attaquent les Zeds.\n• Le tir alternatif active une visée laser et des roquettes guidées.\n• L'arme favorite pour la lutte contre les Zeds nuisibles."																																																									  
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

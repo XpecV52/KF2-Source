@@ -127,6 +127,8 @@ var(AutoTarget) float ForceLookAtPawnDampenedRotationRate;
 /** Aim distance of autoaim to set head as target. */
 var(AutoTarget) float WeakBoneDistance;
 var const float DoubleTapDelay;
+var float MouseLookUpScale;
+var float MouseLookRightScale;
 
 // Export UKFPlayerInput::execGetKeyBindFromCommand(FFrame&, void* const)
 native function GetKeyBindFromCommand(out KeyBind MyKeyBind, string bindCommand, optional bool bAlt);
@@ -256,7 +258,7 @@ function Engine.Actor.EDoubleClickDir CheckForDoubleClickMove(float DeltaTime)
 
 event PlayerInput(float DeltaTime)
 {
-    local float FOVScale, TimeScale;
+    local float FOVScale, TimeScale, MouseYScale, MouseXScale;
     local Vector RawJoyVector;
 
     RawJoyUp = aBaseY;
@@ -279,8 +281,11 @@ event PlayerInput(float DeltaTime)
     aBaseY *= (TimeScale * MoveForwardSpeed);
     aStrafe *= (TimeScale * MoveStrafeSpeed);
     aUp *= (TimeScale * MoveStrafeSpeed);
-    aTurn *= (TimeScale * LookRightScale);
-    aLookUp *= (TimeScale * LookUpScale);
+    if(Class'WorldInfo'.static.IsConsoleBuild() || bUsingGamepad)
+    {
+        aTurn *= (TimeScale * LookRightScale);
+        aLookUp *= (TimeScale * LookUpScale);
+    }
     PostProcessInput(DeltaTime);
     ProcessInputMatching(DeltaTime);
     CatchDoubleClickInput();
@@ -293,15 +298,17 @@ event PlayerInput(float DeltaTime)
     }
     aLookUp *= FOVScale;
     aTurn *= FOVScale;
+    MouseXScale = (TimeScale * -MouseLookUpScale) / 100;
     if(bStrafe > 0)
     {
-        aStrafe += (aBaseX + aMouseX);        
+        aStrafe += (aBaseX + (aMouseX * ((MouseXScale > 0) ? MouseXScale : 1)));        
     }
     else
     {
-        aTurn += (aBaseX + aMouseX);
+        aTurn += (aBaseX + (aMouseX * ((MouseXScale > 0) ? MouseXScale : 1)));
     }
-    aLookUp += aMouseY;
+    MouseYScale = (TimeScale * -MouseLookUpScale) / 100;
+    aLookUp += (aMouseY * ((MouseYScale > 0) ? MouseYScale : 1));
     if((!bUsingGamepad && bInvertMouse) || bInvertController && bUsingGamepad)
     {
         aLookUp *= -1;

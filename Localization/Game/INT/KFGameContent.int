@@ -838,12 +838,10 @@ ItemName="HRG Crossboom"
 ItemCategory="Explosives"
 ItemDescription="•Primary fire shoots a bolt that explodes after impacting.\n•Secondary fire bolt also makes an explosion, that makes less damage but has a bigger size.\n•Be careful, it punctures and explodes."
 
-
 [KFWeap_HRG_CranialPopper]
 ItemName="HRG Head Hunter"
 ItemCategory="Rifle"
 ItemDescription="•Primary fire shoots infected darts that inflates the Zed heads.\n•Alt-fire triggers a brain hemorrhage in all infected Zeds around the player.\n•Best weapon when the situation comes to a head."
-
 
 [KFWeap_ShrinkRayGun]
 ItemName="Reducto Ray"
@@ -851,13 +849,33 @@ ItemCategory="Hand Gun"
 ItemDescription="•Fire mode emits an energy ray that damages and shrinks enemies.\n•Shrunken enemies are more vulnerable.\n•Honey, I shrunk the ZEDs."
 SharedUnlockSource="Reducto Ray Weapon Bundle"
 
-
 [KFWeap_AutoTurret]
 ItemName="Sentinel"
 ItemCategory="Special"
 ItemDescription="•A drone that watches over a position and shoots at enemies.\n•Alt-fire detonates the drone.\n•It also self-detonates when it runs out of ammo and there are ZEDs nearby."
 SharedUnlockSource="Sentinel Weapon Bundle"
 
+[KFWeap_HRG_Dragonbreath]
+ItemName="HRG Dragonsblaze"
+ItemCategory="Shotgun"
+ItemDescription="•Primary fire uses a single barrel to shoot a vertical line of fire.\n•Alt-fire uses a single barrel to shoot a horizontal line of fire.\n•Dragon not included."
+
+[KFWeap_AssaultRifle_G36C]
+ItemName="G36C Assault Rifle"
+ItemCategory="Assault Rifle"
+ItemDescription="•Choice of full-auto and semi-auto fire modes.\n•It has armor piercing ammo.\n•Compact version of the popular assault rifle."
+SharedUnlockSource="G36C Assault Rifle Weapon Bundle"
+
+[KFWeap_Edged_Scythe]
+ItemName="Blood Sickle"
+ItemCategory="Melee"
+ItemDescription="•Primary - single slash attack; hold Primary for combo attack.\n•Secondary - double sweep attack.\n•Reload - switch between long range and short range.\n•Alt - block/parry."
+SharedUnlockSource="Blood Sickle Weapon Bundle"
+
+[KFWeap_HRG_Locust]
+ItemName="HRG Locust"
+ItemCategory="Explosives"
+ItemDescription="•Primary fire launches a rocket that creates a cloud of nanobot-locusts that attack Zeds.\n•Aiming in Alt-fire activates a targeting laser and enables guided rockets.\n•Favorite weapon for Zed pest control."
 
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]

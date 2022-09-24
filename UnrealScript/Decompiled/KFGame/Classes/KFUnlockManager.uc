@@ -32,6 +32,8 @@ enum ESharedContentUnlock
     SCU_Doshinegun,
     SCU_AutoTurret,
     SCU_ShrinkRayGun,
+    SCU_Scythe,
+    SCU_G36C,
     SCU_MAX
 };
 
@@ -245,4 +247,6 @@ defaultproperties
     SharedContentList(18)=(Name=KFWeap_AssaultRifle_Doshinegun,IconPath="WEP_UI_Doshinegun_TEX.UI_Weapon_Select_Doshinegun",Id=9275)
     SharedContentList(19)=(Name=KFWeap_AutoTurret,IconPath="WEP_UI_AutoTurret_TEX.UI_WeaponSelect_AutoTurret",Id=9284)
     SharedContentList(20)=(Name=KFWeap_ShrinkRayGun,IconPath="WEP_UI_ShrinkRay_Gun_TEX.UI_Weapon_Select_Shrink_Ray_Gun",Id=9290)
+    SharedContentList(21)=(Name=KFWeap_Edged_Scythe,IconPath="WEP_UI_Scythe_TEX.UI_WeaponSelect_Scythe",Id=9478)
+    SharedContentList(22)=(Name=KFWeap_AssaultRifle_G36C,IconPath="WEP_UI_G36C_TEX.UI_WeaponSelect_G36C",Id=9484)
 }

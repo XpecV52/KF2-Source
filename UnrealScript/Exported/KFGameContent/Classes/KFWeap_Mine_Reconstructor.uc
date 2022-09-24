@@ -844,8 +844,8 @@ defaultproperties
    FullChargedTimerInterval=2.000000
    MinScale=0.500000
    MaxScale=1.500000
-   MaxDamageByCharge=300
-   MinDamageByCharge=30
+   MaxDamageByCharge=350
+   MinDamageByCharge=35
    MAX_ACTIVE_MINE_RECONSTRUCTOR_MINES=12
    PackageKey="Mine_Reconstructor"
    FirstPersonMeshName="WEP_1P_Mine_Reconstructor_MESH.Wep_1stP_HMTech_Mine_Reconstructor_Rig"
@@ -859,7 +859,7 @@ defaultproperties
    bAllowClientAmmoTracking=False
    FireModeIconPaths(0)=Texture2D'ui_firemodes_tex.UI_FireModeSelect_MedicDart'
    FireModeIconPaths(1)=()
-   InventorySize=8
+   InventorySize=7
    MeshFOV=80.000000
    MeshIronSightFOV=65.000000
    PlayerIronSightFOV=50.000000

@@ -1477,10 +1477,17 @@ simulated event Bump( Actor Other, PrimitiveComponent OtherComp, Vector HitNorma
 function HandleMonsterBump( KFPawn_Monster Other, Vector HitNormal )
 {
 	local KFPlayerController KFPC;
+	local int LocustDoTIndex;
+	local int IgnoredIndex;
 
 	if( !Other.IsNapalmInfected() && CanNapalmInfect(KFPC) )
 	{
 		InfectWithNapalm( Other, KFPC );
+	}
+
+	if (IsLocustInfected(LocustDoTIndex) && !Other.IsLocustInfected(IgnoredIndex))
+	{
+		InfectWithLocust(Other, KFPlayerController(DamageOverTimeArray[LocustDoTIndex].InstigatedBy));
 	}
 }
 
@@ -2955,12 +2962,19 @@ simulated function int GetRallyBoostResistance( int NewDamage )
 
 function bool Died(Controller Killer, class<DamageType> DamageType, vector HitLocation)
 {
+	local KFGameInfo KFGI;
 	local KFPlayerController KFPC;
 	local KFPerk InstigatorPerk;
 	local int i;
 
 	if ( super.Died(Killer, damageType, HitLocation) )
 	{
+		KFGI = KFGameInfo(WorldInfo.Game);
+		if (KFGI != none)
+		{
+			KFGI.ClearActorFromBonfire(self);
+		}
+
 	 	if( Killer != none && Killer.Pawn != none && KFPawn_Human(Killer.Pawn) != none )
 		{
 			if( Role == ROLE_Authority && KFGameInfo(WorldInfo.Game) != none && KFGameInfo(WorldInfo.Game).DialogManager != none) KFGameInfo(WorldInfo.Game).DialogManager.PlayKilledZedDialog( KFPawn_Human(Killer.Pawn), self, DamageType, IsDoingSpecialMove(SM_Knockdown) || IsDoingSpecialMove(SM_RecoverFromRagdoll) );
@@ -3068,6 +3082,12 @@ simulated function bool IsNapalmInfected()
 	return DamageOverTimeArray.Find('DamageType', class'KFDT_Fire_Napalm') != INDEX_NONE;
 }
 
+simulated function bool IsLocustInfected(out int OutDoTIndex)
+{
+	OutDoTIndex = DamageOverTimeArray.Find('DamageType', class'KFDT_Toxic_HRG_Locust');
+	return OutDoTIndex != INDEX_NONE;
+}
+
 function bool CanNapalmInfect( out KFPlayerController NapalmInstigator )
 {
 	local int DoTIndex;
@@ -3105,6 +3125,19 @@ function InfectWithNapalm( KFPawn_Monster KFPM, KFPlayerController KFPC )
 						 vect(0,0,0),
 						 vect(0,0,0),
 						 class'KFDT_Fire_Napalm',,
+						 KFPC );
+	}
+}
+
+function InfectWithLocust( KFPawn_Monster KFPM, KFPlayerController KFPC )
+{
+	if( KFPC != none )
+	{
+		KFPM.TakeDamage( class'KFDT_Toxic_HRG_Locust'.static.GetSpreadOnTouchDamage(),
+						 KFPC,
+						 vect(0,0,0),
+						 vect(0,0,0),
+						 class'KFDT_Toxic_HRG_Locust',,
 						 KFPC );
 	}
 }
@@ -3594,7 +3627,10 @@ simulated function PlayTakeHitEffects( vector HitDirection, vector HitLocation, 
 
 		if ( bPlayedDeath )
 		{
-			PlayDeadHitEffects(HitLocation, HitDirection, HitZoneIndex, HitZoneName, HitBoneName, DmgType, bUseHitImpulse);
+			if (DmgType.static.CanPlayDeadHitEffects())
+			{
+				PlayDeadHitEffects(HitLocation, HitDirection, HitZoneIndex, HitZoneName, HitBoneName, DmgType, bUseHitImpulse);
+			}
 		}
 		else
 		{

@@ -856,7 +856,28 @@ SharedUnlockSource="Bundle armi Raggio rimpicciolente"
 ItemName="Sentinella"
 ItemCategory="Speciale"
 ItemDescription="•Un drone che osserva una postazione e spara ai nemici.\n•Il fuoco alternativo fa esplodere il drone.\n•Attiva la modalità di autodistruzione se finisce le munizioni ed è circondato dagli ZED."
-SharedUnlockSource="Bundle armi Sentinella"
+SharedUnlockSource="Bundle armi Sentinella"										   
+[KFWeap_HRG_Dragonbreath]
+ItemName="Fiamma di drago HRG"
+ItemCategory="Fucile"
+ItemDescription="• Il fuoco primario usa una canna singola per sparare una linea di fuoco verticale.\n• Il fuoco alternativo usa una canna singola per sparare una linea di fuoco orizzontale.\n• Drago non incluso."
+
+[KFWeap_AssaultRifle_G36C]
+ItemName="Fucile d'assalto G36C"
+ItemCategory="Fucile d'assalto"
+ItemDescription="• Scelta fra modalità automatica o semiautomatica.\n• Ha delle munizioni che perforano l'armatura.\n• Versione compatta del famoso fucile d'assalto."
+SharedUnlockSource="Bundle armi Fucile d'assalto G36C"
+
+[KFWeap_Edged_Scythe]
+ItemName="Falce sanguinante"
+ItemCategory="Mischia"
+ItemDescription="• Primario: fendente singolo; tieni premuto Primario per un attacco in combo.\n• Secondario: doppio attacco rapido.\n• Ricarica: passa da lungo raggio a corto raggio.\n• Alternativo: blocco/parata."
+SharedUnlockSource="Bundle armi Falce sanguinante"
+
+[KFWeap_HRG_Locust]
+ItemName="Locusta HRG"
+ItemCategory="Esplosivi"
+ItemDescription="• Il fuoco primario lancia un missile che crea una nube di locuste-nanobot che attaccano gli Zed.\n• Mirare in fuoco alternativo attiva un laser di puntamento e i missili teleguidati.\n• L'arma adatta alla disinfestazione degli Zed."
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

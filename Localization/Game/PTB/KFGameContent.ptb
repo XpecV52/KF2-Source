@@ -856,7 +856,27 @@ ItemName="Sentinela"
 ItemCategory="Especial"
 ItemDescription="•Drone que vigia uma posição e atira nos inimigos.\n•O tiro alternativo detona o drone.\n•Ele também se autodetona quando fica sem munição e há ZEDs nas proximidades."
 SharedUnlockSource="Conjunto de Armas Sentinela"
+[KFWeap_HRG_Dragonbreath]
+ItemName="Bafo-de-Dragão HRG"
+ItemCategory="Espingarda"
+ItemDescription="•O tiro primário usa um único cano para disparar uma linha vertical de fogo.\n•O tiro alternativo usa um único cano para disparar uma linha horizontal de fogo.\n•Dragão não incluso."
 
+[KFWeap_AssaultRifle_G36C]
+ItemName="Fuzil de assalto G36C"
+ItemCategory="Fuzil de assalto"
+ItemDescription="•Escolha entre modo de tiro automático ou semiautomático.\n•Tem munição de perfuração de armadura.\n•Versão compacta do popular fuzil de assalto."
+SharedUnlockSource="Cj. Armas do Fuzil de Assalto G36C"
+
+[KFWeap_Edged_Scythe]
+ItemName="Foice Sangrenta"
+ItemCategory="Corpo a corpo"
+ItemDescription="•Primário - golpe de corte simples; segure o Primário para ataque sequencial.\n•Secundário - ataque a duplo.\n•Recarregar - troca entre alcance longo e curto.\n•Alt - bloqueio/aparo."
+SharedUnlockSource="Conjunto de Armas de Foice Sangrenta"
+
+[KFWeap_HRG_Locust]
+ItemName="Gafanhoto HRG"
+ItemCategory="Explosivos"
+ItemDescription="•O tiro primário dispara um foguete que cria uma nuvem de gafanhotos nanorrobôs que atacam os Zeds.\n•Mirar o tiro alternativo ativa um laser de mira e habilita foguetes guiados.\n•Arma favorita para controle de pestes de Zed."
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

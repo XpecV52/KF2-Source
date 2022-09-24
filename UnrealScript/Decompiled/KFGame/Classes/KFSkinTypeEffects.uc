@@ -75,12 +75,19 @@ var() array<SkinEffectInfo> CustomEffects;
 var config float ImpactParticleEffectInterval;
 var float ImpactSoundInterval;
 
-function PlayImpactParticleEffect(KFPawn P, Vector HitLocation, Vector HitDirection, byte HitZoneIndex, KFSkinTypeEffects.EEffectDamageGroup EffectGroup)
+function PlayImpactParticleEffect(KFPawn P, Vector HitLocation, Vector HitDirection, byte HitZoneIndex, KFSkinTypeEffects.EEffectDamageGroup EffectGroup, optional ParticleSystem ForceParticleTemplate)
 {
     local ParticleSystem ParticleTemplate;
     local name HitBoneName;
 
-    ParticleTemplate = GetImpactParticleEffect(EffectGroup);
+    if(ForceParticleTemplate != none)
+    {
+        ParticleTemplate = ForceParticleTemplate;        
+    }
+    else
+    {
+        ParticleTemplate = GetImpactParticleEffect(EffectGroup);
+    }
     if(ParticleTemplate == none)
     {
         return;
@@ -184,7 +191,7 @@ function ParticleSystem GetImpactParticleEffect(KFSkinTypeEffects.EEffectDamageG
     return ImpactFXArray[EffectGroup].DefaultParticle;
 }
 
-function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSkinTypeEffects.EEffectDamageGroup EffectGroup)
+function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSkinTypeEffects.EEffectDamageGroup EffectGroup, optional AkEvent ForceImpactSound)
 {
     local AkEvent ImpactSound;
     local float ArmorPct;
@@ -195,7 +202,14 @@ function PlayTakeHitSound(KFPawn P, Vector HitLocation, Pawn DamageCauser, KFSki
         {
             return;
         }
-        ImpactSound = GetImpactSound(EffectGroup, DamageCauser, P);
+        if(ForceImpactSound != none)
+        {
+            ImpactSound = ForceImpactSound;            
+        }
+        else
+        {
+            ImpactSound = GetImpactSound(EffectGroup, DamageCauser, P);
+        }
         if(ShouldSetArmorValue(P, ArmorPct))
         {
             P.Controller.SetRTPCValue('Armor_Level', ArmorPct, true);

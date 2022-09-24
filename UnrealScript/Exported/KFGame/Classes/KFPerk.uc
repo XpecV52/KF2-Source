@@ -171,6 +171,7 @@ const STATID_ACHIEVE_MoonbaseCollectibles           = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles         = 4060;
 const STATID_ACHIEVE_CarillonHamletCollectibles     = 4061;
 const STATID_ACHIEVE_RigCollectibles     			= 4062;
+const STATID_ACHIEVE_BarmwichCollectibles  			= 4063;
  
 #linenumber 15
 
@@ -1049,7 +1050,7 @@ event NotifyPerkModified()
 	PostLevelUp();
 }
 
-private simulated final function PerkSetOwnerHealthAndArmor( optional bool bModifyHealth )
+simulated final function PerkSetOwnerHealthAndArmor( optional bool bModifyHealth )
 {
 	// don't allow clients to set health, since health/healthmax/playerhealth/playerhealthpercent is replicated
 	if( Role != ROLE_Authority )
@@ -1066,7 +1067,15 @@ private simulated final function PerkSetOwnerHealthAndArmor( optional bool bModi
 		}
 
 		OwnerPawn.HealthMax = OwnerPawn.default.Health;
+		
 		ModifyHealth( OwnerPawn.HealthMax );
+
+		if (ModifyHealthMaxWeekly(OwnerPawn.HealthMax))
+		{
+			// Change current health directly, Pawn.HealDamage does a lot of other stuff that can block the healing
+            OwnerPawn.Health = OwnerPawn.HealthMax;
+		}
+
 		OwnerPawn.Health = Min( OwnerPawn.Health, OwnerPawn.HealthMax );
 
 		if( OwnerPC == none )
@@ -1085,6 +1094,49 @@ private simulated final function PerkSetOwnerHealthAndArmor( optional bool bModi
 		ModifyArmor( OwnerPawn.MaxArmor );
 		OwnerPawn.Armor = Min( OwnerPawn.Armor,  OwnerPawn.MaxArmor );
 	}
+}
+
+function bool ModifyHealthMaxWeekly(out int InHealth)
+{
+	local KFGameReplicationInfo KFGRI;
+	local KFPlayerController_WeeklySurvival KFPC_WS;
+	local bool bNeedToFullyHeal;
+
+    KFGRI = KFGameReplicationInfo(Owner.WorldInfo.GRI);
+
+	bNeedToFullyHeal = false;
+
+	//`Log("PerkSetOwnerHealthAndArmor: Max Health Before Weekly " $OwnerPawn.HealthMax);
+
+	if (KFGRI.IsVIPMode())
+	{
+		KFPC_WS = KFPlayerController_WeeklySurvival(Owner);
+
+		if (KFPC_WS != none && OwnerPawn != none)
+		{
+			if (KFPC_WS.VIPGameData.isVIP)
+			{
+				// We don't need to check if already applied as this function resets the HealthMax to the value the Perk says
+
+				InHealth += KFPC_WS.VIPGameData.ExtraHealth;
+
+				// Heal if we are on trader time
+				if (KFGRI != none && KFGRI.bWaveIsActive == false)
+				{						
+					bNeedToFullyHeal = true;
+				}
+			}
+			else
+			{
+				// We don't need to check if already applied as this function resets the HealthMax to the value the Perk says
+				// So no need to further reduce
+			}
+		}
+	}
+
+	//`Log("PerkSetOwnerHealthAndArmor: Max Health " $OwnerPawn.HealthMax);
+
+	return bNeedToFullyHeal;
 }
 
 /** (Server) Modify Instigator settings based on selected perk */
@@ -1579,6 +1631,7 @@ function TickRegen( float DeltaTime )
 	local int OldHealth;
 	local KFPlayerReplicationInfo KFPRI;
 	local KFPlayerController KFPC;
+	local KFPlayerController_WeeklySurvival KFPCWS;
 	local KFPowerUp PowerUp;
 	local bool bCannotBeHealed;
 	local KFGameInfo GameInfo;
@@ -1597,6 +1650,13 @@ function TickRegen( float DeltaTime )
 			
 			GameInfo = KFGameInfo(WorldInfo.Game);
 			bCannotBeHealed = bCannotBeHealed || (GameInfo.OutbreakEvent != none && GameInfo.OutbreakEvent.ActiveEvent.bCannotBeHealed);
+
+			// VIP cannot heal
+			KFPCWS = KFPlayerController_WeeklySurvival(OwnerPawn.Controller);
+			if (KFPCWS != none && KFPCWS.VIPGameData.IsVIP)
+			{
+				bCannotBeHealed = true;
+			}
 
 			// If the Pawn cannot be healed return...
 			if( bCannotBeHealed )

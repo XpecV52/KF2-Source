@@ -20,6 +20,7 @@ var bool bIsSpectating;
 var bool bIsVisible;
 var bool bUsingGamepad;
 var transient bool bLastGunGameVisibility;
+var transient bool bLastVIPVisibility;
 var array<string> SpecialWaveIconPath;
 var array<string> SpecialWaveLocKey;
 var KFGFxHUD_SpectatorInfo SpectatorInfoWidget;
@@ -47,6 +48,7 @@ var KFGFxWidget_BossHealthBar bossHealthBar;
 var KFGFxWidget_MapText MapTextWidget;
 var KFGFxWidget_MapCounterText MapCounterTextWidget;
 var KFGFxWidget_GunGame GunGameWidget;
+var KFGFxWidget_VIP VIPWidget;
 var KFPlayerController KFPC;
 var config float HUDScale;
 var GFxObject KFGXHUDManager;
@@ -309,6 +311,13 @@ event bool WidgetInitialized(name WidgetName, name WidgetPath, GFxObject Widget)
                 SetWidgetPathBinding(Widget, WidgetPath);
             }
             break;
+        case 'VIPContainer':
+            if(VIPWidget == none)
+            {
+                VIPWidget = KFGFxWidget_VIP(Widget);
+                SetWidgetPathBinding(Widget, WidgetPath);
+            }
+            break;
         default:
             break;
     }
@@ -337,7 +346,7 @@ function UpdateWeaponSelect()
 
 function TickHud(float DeltaTime)
 {
-    local bool bGunGameVisibility;
+    local bool bGunGameVisibility, bVIPModeVisibility;
 
     if((KFPC == none) || (KFPC.WorldInfo.TimeSeconds - LastUpdateTime) < UpdateInterval)
     {
@@ -404,6 +413,15 @@ function TickHud(float DeltaTime)
         {
             GunGameWidget.UpdateGunGameVisibility(bGunGameVisibility);
             bLastGunGameVisibility = bGunGameVisibility;
+        }
+    }
+    if(VIPWidget != none)
+    {
+        bVIPModeVisibility = KFPC.CanUseVIP();
+        if(bVIPModeVisibility != bLastVIPVisibility)
+        {
+            VIPWidget.UpdateVIPVisibility(bVIPModeVisibility);
+            bLastVIPVisibility = bVIPModeVisibility;
         }
     }
 }
@@ -1006,6 +1024,28 @@ function UpdateGunGameWidget(int Score, int max_score, int Level, int max_level)
     }
 }
 
+function UpdateVIP(ReplicatedVIPGameInfo VIPInfo, bool bIsVIP)
+{
+    local KFGameReplicationInfo KFGRI;
+
+    KFGRI = KFGameReplicationInfo(KFPC.WorldInfo.GRI);
+    if(((VIPWidget == none) || KFGRI == none) || !KFGRI.IsVIPMode())
+    {
+        return;
+    }
+    if(bIsVIP)
+    {
+        VIPWidget.SetVIP();        
+    }
+    else
+    {
+        if(VIPInfo.VIPPlayer != none)
+        {
+            VIPWidget.SetNOVIP(VIPInfo.VIPPlayer.PlayerName, VIPInfo.CurrentHealth, VIPInfo.MaxHealth);
+        }
+    }
+}
+
 function EatMyInput(bool bValue)
 {
     local byte HUDPriority;
@@ -1147,8 +1187,6 @@ function UpdatePauseGameVoteCount(byte YesVotes, byte NoVotes)
 {
     if(KickVoteWidget != none)
     {
-        LogInternal("UPDATING PAUSE GAME VOTE COUNT - YES: " $ string(YesVotes));
-        LogInternal("UPDATING PAUSE GAME VOTE COUNT - NO: " $ string(NoVotes));
         KickVoteWidget.UpdateVoteCount(YesVotes, NoVotes);
     }
 }
@@ -1311,6 +1349,7 @@ defaultproperties
 {
     ScoreBoardClass=Class'KFGFxMoviePlayer_ScoreBoard'
     bLastGunGameVisibility=true
+    bLastVIPVisibility=true
     SpecialWaveIconPath(0)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Cyst"
     SpecialWaveIconPath(1)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Slasher"
     SpecialWaveIconPath(2)="UI_Endless_TEX.ZEDs.UI_ZED_Endless_Clot"

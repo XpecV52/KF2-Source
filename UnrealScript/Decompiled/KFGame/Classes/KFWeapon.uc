@@ -1185,7 +1185,7 @@ simulated function AttachLaserSight()
     }
 }
 
-function GunGameRemove()
+function RemoveGun()
 {
     if((Instigator != none) && Instigator.InvManager != none)
     {

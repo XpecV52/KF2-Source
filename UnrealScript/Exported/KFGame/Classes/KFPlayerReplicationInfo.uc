@@ -404,7 +404,10 @@ const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178; 
 const KFID_SurvivalStartingWeapIdx=179; 
 const KFID_SurvivalStartingGrenIdx=180; 
-#linenumber 22;
+const KFID_MouseLookUpScale=181; 
+const KFID_MouseLookRightScale=182; 
+const KFID_ViewSmoothingEnabled=183; 
+const KFID_ViewAccelerationEnabled=184; #linenumber 22;
 
 /** The time at which this PRI left the game */
 var float LastQuitTime;
@@ -498,7 +501,7 @@ var private 	byte	ActivePerkLevel;
 var private 	byte	ActivePerkPrestigeLevel;
 /** Kill assists. Need an integer here because it is very easy to exceed 255 assists. */
 var 			int 			Assists;
-var 	byte			PlayerHealth; //represented as a percentage
+var 	int			PlayerHealth;
 var 	byte			PlayerHealthPercent; //represented as a percentage
 /** The firebug range skill increases the range of fire weapons we need to tell other clients if it is on */
 var 			bool 			bExtraFireRange;

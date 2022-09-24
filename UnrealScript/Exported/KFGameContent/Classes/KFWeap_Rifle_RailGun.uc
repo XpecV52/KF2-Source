@@ -508,7 +508,7 @@ defaultproperties
    PenetrationPower(1)=10.000000
    MeshIronSightFOV=27.000000
    PlayerIronSightFOV=70.000000
-   IronSightPosition=(X=-0.250000,Y=0.000000,Z=0.000000)
+   IronSightPosition=(X=-0.250000,Y=0.005000,Z=-0.005000)
    DOF_BlendInSpeed=3.000000
    DOF_FG_FocalRadius=0.000000
    DOF_FG_MaxNearBlurSize=3.500000

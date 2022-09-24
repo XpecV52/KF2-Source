@@ -8,6 +8,7 @@ package tripwire.containers.trader
     import flash.text.TextFormat;
     import scaleform.clik.constants.InputValue;
     import scaleform.clik.constants.NavigationCode;
+    import scaleform.clik.controls.ListItemRenderer;
     import scaleform.clik.controls.UILoader;
     import scaleform.clik.data.DataProvider;
     import scaleform.clik.events.ButtonEvent;
@@ -264,9 +265,11 @@ package tripwire.containers.trader
         
         protected function perkChanged(param1:ListEvent) : *
         {
+            var _loc2_:ListItemRenderer = null;
             if(param1.index != CLOSE_INDEX)
             {
-                ExternalInterface.call("Callback_PerkChanged",param1.index);
+                _loc2_ = this.perkListContainer.perkList.getRendererAt(param1.index) as ListItemRenderer;
+                ExternalInterface.call("Callback_PerkChanged",_loc2_.data.perkIndex);
                 dispatchEvent(new IndexEvent(IndexEvent.INDEX_CHANGE,false,true,CLOSE_INDEX));
                 this.closeList();
             }

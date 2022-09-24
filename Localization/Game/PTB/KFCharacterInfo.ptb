@@ -48,7 +48,8 @@ BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
 BodyMesh15="Traje Explorador do Mar"
-HeadMesh0="Máscara de Gás"
+BodyMesh16="Traje de Médico da Peste"
+HeadMesh0="Máscara de Gás"					
 
 [CHR_MrsFoster_archetype.BodyMesh0]
 BodySkin0="Marrom"
@@ -177,6 +178,13 @@ BodySkin3="Pérola"
 BodySkin4="Foca Preta"
 BodySkin5="Precioso"
 
+[CHR_MrsFoster_archetype.BodyMesh16]									
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Branca"
 HeadSkin1="Verde"
@@ -266,7 +274,8 @@ BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
 BodyMesh15="Traje Explorador do Mar"
-HeadMesh0="Poder da Barba!"
+BodyMesh16="Traje de Médico da Peste"
+HeadMesh0="Poder da Barba!"						
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
 BodySkin0="Guilhotina"
@@ -400,6 +409,13 @@ BodySkin2="Coral"
 BodySkin3="Pérola"
 BodySkin4="Foca Preta"
 BodySkin5="Precioso"
+[CHR_Jagerhorn_archetype.BodyMesh16]									
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"				   					
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Loira Sueca"
@@ -503,7 +519,8 @@ BodyMesh12="Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
 BodyMesh15="Traje Explorador do Mar"
-HeadMesh0="Máscara do Scully"
+BodyMesh16="Traje de Médico da Peste"
+HeadMesh0="Máscara do Scully"					   
 
 [chr_DJSkully_archetype.BodyMesh0]
 BodySkin0="Preto Total"
@@ -637,6 +654,13 @@ BodySkin2="Coral"
 BodySkin3="Pérola"
 BodySkin4="Foca Preta"
 BodySkin5="Precioso"
+[CHR_DJSkully_archetype.BodyMesh16]								   
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Preto Total"
 HeadSkin1="Vermelho Extra"
@@ -686,6 +710,7 @@ BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
 BodyMesh15="Traje de Compras de Feriado"
 BodyMesh16="Traje Explorador do Mar"
+BodyMesh17="Traje de Médico da Peste"								 
 HeadMesh0="Cabelo"
 
 [chr_briar_archetype.BodyMesh0]
@@ -826,6 +851,13 @@ BodySkin2="Coral"
 BodySkin3="Pérola"
 BodySkin4="Foca Preta"
 BodySkin5="Precioso"
+[CHR_briar_archetype.BodyMesh17]								
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Original"
@@ -870,7 +902,8 @@ BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
 BodyMesh15="Traje de Compras de Feriado"
 BodyMesh16="Traje Explorador do Mar"
-HeadMesh0="Máscara de Gás"
+BodyMesh17="Traje de Médico da Peste"
+HeadMesh0="Máscara de Gás"					
 
 [CHR_MrFoster_archetype.BodyMesh0]
 BodySkin0="Azul KF"
@@ -1015,6 +1048,13 @@ BodySkin2="Coral"
 BodySkin3="Pérola"
 BodySkin4="Foca Preta"
 BodySkin5="Precioso"
+[CHR_MrFoster_archetype.BodyMesh17]								   
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Branco Original"
 HeadSkin1="Vermelho PCG"
@@ -1178,6 +1218,7 @@ BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
 BodyMesh15="Traje Explorador do Mar"
+BodyMesh16="Traje de Médico da Peste"								 
 HeadMesh0="Rosto"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1310,6 +1351,13 @@ BodySkin2="Coral"
 BodySkin3="Pérola"
 BodySkin4="Foca Preta"
 BodySkin5="Precioso"
+[CHR_Coleman_archetype.BodyMesh16]								  
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tat"
@@ -1352,6 +1400,7 @@ BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
 BodyMesh15="Traje Explorador do Mar"
+BodyMesh16="Traje de Médico da Peste"								 
 HeadMesh0="Cabelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1486,6 +1535,13 @@ BodySkin2="Coral"
 BodySkin3="Pérola"
 BodySkin4="Foca Preta"
 BodySkin5="Precioso"
+[CHR_Alberts_archetype.BodyMesh16]								  
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Cinza"
 HeadSkin1="Marrom"
@@ -2387,6 +2443,8 @@ BodyMesh11="Traje de Noel"
 BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
+BodyMesh15="Traje Explorador do Mar
+BodyMesh16="Traje de Médico da Peste"							 
 HeadMesh0="Rosto"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2523,6 +2581,20 @@ BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
 
+[CHR_Masterson_archetype.BodyMesh15]									
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"					
+[CHR_Masterson_archetype.BodyMesh16]
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
 Description="Tanaka é um rapaz com sérios problemas pessoais e sério desejo de suicídio. Nascido em Okinawa, ele foi criado em meio a militares norte-americanos. Ao se mudar para a ilha central de Honshu com a família, o americanizado Tanaka não se adequou à nova vida e começou a fazer aulas de teatro. Depois do colegial, mudou-se para Los Angeles e começou a fazer pequenos papéis em filmes ruins até que se mudou para a Europa à procura de um trabalho mais “sério”. Porém, conseguiu apenas alguns papéis de vilão em filmes franceses de gângster e algumas tatuagens. Agora, no apocalipse, ele parece estar confundindo sua própria realidade com a dramaturgia. Com direito a visões de Yakuza, demônios e bushido em Hollywood."
@@ -2542,6 +2614,8 @@ BodyMesh12="Traje de Noel"
 BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
 BodyMesh15="Traje de Compras de Feriado"
+BodyMesh16="Traje Explorador do Mar"
+BodyMesh17="Traje de Médico da Peste"								 
 HeadMesh0="Cabelo"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2685,6 +2759,21 @@ BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
 
+[CHR_Tanaka_archetype.BodyMesh16]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
+
+[CHR_Tanaka_archetype.BodyMesh17]
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"						
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Capacete"
 AttachmentSkin0="Sol Nascente"
@@ -2731,6 +2820,7 @@ BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
 BodyMesh15="Traje Explorador do Mar"
+BodyMesh16="Traje de Médico da Peste"								 
 HeadMesh0="Mohawk"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2809,6 +2899,13 @@ BodySkin4="Neve vermelha"
 BodySkin5="Árvores"
 BodySkin6="Xadrez Vermelho"
 
+[CHR_Ana_archetype.BodyMesh16]							  
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="Estampa de Cofre"
 
@@ -2906,6 +3003,7 @@ BodyMesh13="Traje de Pirata Espacial"
 BodyMesh14="Traje de Ceifeiro"
 BodyMesh15="Traje de Compras de Feriado"
 BodyMesh16="Traje Explorador do Mar"
+BodyMesh17="Traje de Médico da Peste"								 
 HeadMesh0="Cabelo"
 
 [chr_mark_archetype.BodyMesh0]
@@ -3032,12 +3130,28 @@ BodySkin3="Pestilência"
 BodySkin4="Guerra"
 BodySkin5="Anarquia"
 
-
+[CHR_mark_archetype.BodyMesh15]							   
 BodySkin0="Noel"
 BodySkin1="Elfo"
 BodySkin2="Polo Norte"
-BodySkin3="Natal do Caos"
+BodySkin3="Natal do Caos"					
 BodySkin4="Precioso"
+
+[CHR_mark_archetype.BodyMesh16]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
+
+[CHR_mark_archetype.BodyMesh17]
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
@@ -3068,6 +3182,7 @@ BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
 BodyMesh15="Traje Explorador do Mar"
+BodyMesh16="Traje de Médico da Peste"								 
 HeadMesh0="Rosto"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3196,6 +3311,21 @@ BodySkin2="Polo Norte"
 BodySkin3="Natal do Caos"
 BodySkin4="Precioso"
 
+[CHR_alan_archetype.BodyMesh15]
+BodySkin0="Antigo"
+BodySkin1="Azul-piscina"
+BodySkin2="Coral"
+BodySkin3="Pérola"
+BodySkin4="Foca Preta"
+BodySkin5="Precioso"
+
+[CHR_alan_archetype.BodyMesh16]
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="A Verdadeira Coisa"
 HeadSkin1="Ruivo! Sério?"
@@ -3232,6 +3362,7 @@ BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
 BodyMesh15="Traje Explorador do Mar"
+BodyMesh16="Traje de Médico da Peste"								 
 HeadMesh0="Cabelo"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3364,6 +3495,13 @@ BodySkin2="Coral"
 BodySkin3="Pérola"
 BodySkin4="Foca Preta"
 BodySkin5="Precioso"
+[CHR_strasser_archetype.BodyMesh16]								   
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Aço Escuro"
 HeadSkin1="Aço Claro"
@@ -3544,6 +3682,7 @@ BodyMesh12="Traje de Pirata Espacial"
 BodyMesh13="Traje de Ceifeiro"
 BodyMesh14="Traje de Compras de Feriado"
 BodyMesh15="Traje Explorador do Mar"
+BodyMesh16="Traje de Médico da Peste"								 
 HeadMesh0="Cabeça Padrão"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3680,6 +3819,13 @@ BodySkin2="Coral"
 BodySkin3="Pérola"
 BodySkin4="Foca Preta"
 BodySkin5="Precioso"
+[CHR_rockabilly_archetype.BodyMesh16]									 
+BodySkin0="Novo"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Vulcânica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Pretas"
 HeadSkin1="Moreno"
@@ -7237,3 +7383,19 @@ AttachmentSkin2="Coral"
 AttachmentSkin3="Pérola"
 AttachmentSkin4="Foca Preta"
 AttachmentSkin5="Precioso"					   
+[Cosmetic_PlagueDoctor_Backpack_ARCH]
+Attachment="Mochila de Médico da Peste"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_PrimaryTarget_Crown_ARCH]
+Attachment="Coroa de alvo principal"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_PlagueDoctor_Hood_ARCH]
+Attachment="Capuz de Médico da Peste"
+AttachmentSkin0="Novo"
+AttachmentSkin1="Esterlina"
+AttachmentSkin2="Obsidiana"
+AttachmentSkin3="Vulcânica"
+AttachmentSkin4="Esmeralda"
+AttachmentSkin5="Precioso"

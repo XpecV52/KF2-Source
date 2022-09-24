@@ -268,7 +268,9 @@ function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource,
 {
     local int ArmorZoneIdx, ModDmgMax, ModDmgRem, ObliterateDamage;
     local float Modifier;
+    local class<KFDamageType> mykfDamageType;
 
+    mykfDamageType = class<KFDamageType>(DamageType);
     Modifier = GetArmorDamageTypeModifier(DamageType);
     ModDmgMax = int(float(InDamage) * Modifier);
     ModDmgRem = ModDmgMax;
@@ -282,7 +284,17 @@ function AdjustBoneDamage(out int InDamage, name BoneName, Vector DamagerSource,
         }
         else
         {
+            if((mykfDamageType != none) && mykfDamageType.default.DamageModifierAP > 0)
+            {
+                ModDmgRem = int((float(1) - mykfDamageType.default.DamageModifierAP) * float(ModDmgRem));
+            }
             TakeArmorZoneDamage(ArmorZoneIdx, ModDmgRem, ModDmgRem);
+            if((mykfDamageType != none) && mykfDamageType.default.DamageModifierAP > 0)
+            {
+                InDamage = int(float(InDamage) * mykfDamageType.default.DamageModifierAP);
+                InDamage += int(float(ModDmgRem) / Modifier);
+                return;
+            }
         }
     }
     InDamage = int(float(ModDmgRem) / Modifier);

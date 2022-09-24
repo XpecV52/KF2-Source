@@ -88,6 +88,26 @@ package tripwire.containers.optionsControls
         
         public var controllerAccelerationJumpDescription:TextField;
         
+        public var lookUpScaleSliderOption:SliderOption;
+        
+        public var lookUpScaleMinimumText:TextField;
+        
+        public var lookUpScaleMaximumText:TextField;
+        
+        public var lookUpScaleValueText:TextField;
+        
+        public var lookRightScaleSliderOption:SliderOption;
+        
+        public var lookRightScaleMinimumText:TextField;
+        
+        public var lookRightScaleMaximumText:TextField;
+        
+        public var lookRightScaleValueText:TextField;
+        
+        public var viewSmoothingCheckBox:TripCheckBox;
+        
+        public var viewAccelerationCheckBox:TripCheckBox;
+        
         public var bOptionsInit;
         
         public var genericSliderSoundEffect:String = "GEN_Click";
@@ -103,6 +123,10 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivitySliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
                 this.invertYCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
                 this.mouseSmoothingCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
+                this.lookUpScaleSliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
+                this.lookRightScaleSliderOption.slider.addEventListener(SliderEvent.VALUE_CHANGE,this.onSliderValueChanged,false,0,true);
+                this.viewSmoothingCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
+                this.viewAccelerationCheckBox.addEventListener(ButtonEvent.CLICK,this.onCheckBoxClick,false,0,true);
             }
             if(this.forceFeedbackCheckBox)
             {
@@ -122,8 +146,12 @@ package tripwire.containers.optionsControls
             {
                 this.sensitivitySliderOption.tabIndex = _loc1_++;
                 this.zoomSensitivitySliderOption.tabIndex = _loc1_++;
+                this.lookUpScaleSliderOption.tabIndex = _loc1_++;
+                this.lookRightScaleSliderOption.tabIndex = _loc1_++;
                 this.invertYCheckBox.tabIndex = _loc1_++;
                 this.mouseSmoothingCheckBox.tabIndex = _loc1_++;
+                this.viewSmoothingCheckBox.tabIndex = _loc1_++;
+                this.viewAccelerationCheckBox.tabIndex = _loc1_++;
             }
             if(this.forceFeedbackCheckBox)
             {
@@ -154,6 +182,10 @@ package tripwire.containers.optionsControls
                 this.invertYCheckBox.label = !!param1.invertedLabel ? param1.invertedLabel : "";
                 this.mouseSmoothingCheckBox.label = !!param1.mouseSmoothingLabel ? param1.mouseSmoothingLabel : "";
                 this.controllerTextField.text = !!param1.controllerString ? param1.controllerString : "";
+                this.lookUpScaleSliderOption.label = !!param1.lookUpScaleLabel ? param1.lookUpScaleLabel : "";
+                this.lookRightScaleSliderOption.label = !!param1.lookRightScaleLabel ? param1.lookRightScaleLabel : "";
+                this.viewSmoothingCheckBox.label = !!param1.viewSmoothingLabel ? param1.viewSmoothingLabel : "";
+                this.viewAccelerationCheckBox.label = !!param1.viewAccelerationLabel ? param1.viewAccelerationLabel : "";
             }
             if(this.forceFeedbackCheckBox)
             {
@@ -195,6 +227,20 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivityMaximumText.text = this.zoomSensitivitySliderOption.slider.maximum.toFixed(0).toString();
                 this.mouseSmoothingCheckBox.selected = !!param1.mouseSmoothingValue ? Boolean(param1.mouseSmoothingValue) : false;
                 this.invertYCheckBox.selected = !!param1.invertedValue ? Boolean(param1.invertedValue) : false;
+                this.lookUpScaleSliderOption.sliderValue = !!param1.lookUpScaleValue ? int(param1.lookUpScaleValue) : 0;
+                this.lookUpScaleSliderOption.slider.minimum = !!param1.lookUpScaleMin ? Number(param1.lookUpScaleMin) : Number(0);
+                this.lookUpScaleSliderOption.slider.maximum = !!param1.lookUpScaleMax ? Number(param1.lookUpScaleMax) : Number(1);
+                this.lookUpScaleValueText.text = !!param1.lookUpScaleValue ? param1.lookUpScaleValue.toFixed(0).toString() : "0";
+                this.lookUpScaleMinimumText.text = this.lookUpScaleSliderOption.slider.minimum.toFixed(0).toString();
+                this.lookUpScaleMaximumText.text = this.lookUpScaleSliderOption.slider.maximum.toFixed(0).toString();
+                this.lookRightScaleSliderOption.sliderValue = !!param1.lookRightScaleValue ? int(param1.lookRightScaleValue) : 0;
+                this.lookRightScaleSliderOption.slider.minimum = !!param1.lookRightScaleMin ? Number(param1.lookRightScaleMin) : Number(0);
+                this.lookRightScaleSliderOption.slider.maximum = !!param1.lookRightScaleMax ? Number(param1.lookRightScaleMax) : Number(1);
+                this.lookRightScaleValueText.text = !!param1.lookRightScaleValue ? param1.lookRightScaleValue.toFixed(0).toString() : "0";
+                this.lookRightScaleMinimumText.text = this.lookRightScaleSliderOption.slider.minimum.toFixed(0).toString();
+                this.lookRightScaleMaximumText.text = this.lookRightScaleSliderOption.slider.maximum.toFixed(0).toString();
+                this.viewSmoothingCheckBox.selected = !!param1.viewSmoothingValue ? Boolean(param1.viewSmoothingValue) : false;
+                this.viewAccelerationCheckBox.selected = !!param1.viewAccelerationValue ? Boolean(param1.viewAccelerationValue) : false;
             }
             if(this.forceFeedbackCheckBox)
             {
@@ -291,6 +337,16 @@ package tripwire.containers.optionsControls
                         this.zoomSensitivityValueText.text = param1.value.toFixed(1).toString();
                         ExternalInterface.call("Callback_MouseZoomSensitivity",param1.value);
                         break;
+                    case this.lookUpScaleSliderOption.slider:
+                        this.playSound(this.genericSliderSoundEffect);
+                        this.lookUpScaleValueText.text = param1.value.toFixed(0).toString();
+                        ExternalInterface.call("Callback_MouseLookUpScale",param1.value);
+                        break;
+                    case this.lookRightScaleSliderOption.slider:
+                        this.playSound(this.genericSliderSoundEffect);
+                        this.lookRightScaleValueText.text = param1.value.toFixed(0).toString();
+                        ExternalInterface.call("Callback_MouseLookRightScale",param1.value);
+                        break;
                     case this.controllerSensitivitySliderOption.slider:
                         this.playSound(this.genericSliderSoundEffect);
                         this.controllerSensitivityValueText.text = param1.value.toFixed(1).toString();
@@ -366,6 +422,12 @@ package tripwire.containers.optionsControls
                         break;
                     case this.forceFeedbackCheckBox:
                         ExternalInterface.call("Callback_ForceFeedbackChanged",_loc2_.selected);
+                        break;
+                    case this.viewSmoothingCheckBox:
+                        ExternalInterface.call("Callback_ViewSmoothingChanged",_loc2_.selected);
+                        break;
+                    case this.viewAccelerationCheckBox:
+                        ExternalInterface.call("Callback_ViewAccelerationChanged",_loc2_.selected);
                 }
             }
         }

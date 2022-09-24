@@ -855,6 +855,27 @@ ItemCategory="Especial"
 ItemDescription="•Un dron vigila una zona y dispara a los enemigos.\n•Alternativo: detona el dron.\n•También detona automáticamente cuando se queda sin munición y hay zeds cerca."
 SharedUnlockSource="Paquete de armas Centinela"
 
+[KFWeap_HRG_Dragonbreath]
+ItemName="Llamarada de dragón HRG"
+ItemCategory="Escopeta"
+ItemDescription="•El modo principal usa solo un cañón para disparar una línea de fuego vertical.\n•El disparo alternativo usa solo un cañón para disparar una línea de fuego horizontal.\n•Dragón no incluido."
+
+[KFWeap_AssaultRifle_G36C]
+ItemName="Rifle de asalto G36C"
+ItemCategory="Fusil de asalto"
+ItemDescription="•Elige entre dos modos de disparo: automático o semiautomático.\n•Tiene munición perforadora.\n•Versión compacta del popular rifle de asalto."
+SharedUnlockSource="Paquete de armas Rifle de asalto G36C"
+
+[KFWeap_Edged_Scythe]
+ItemName="Hoz sangrienta"
+ItemCategory="Cuerpo a cuerpo"
+ItemDescription="•Principal: un ataque cortante; mantén pulsado el botón de modo principal para realizar un combo.\n•Secundario - ataque de doble barrido.\n•Recargar - cambia entre largo y corto alcance.\n•Alternativo: bloquear/parar."
+SharedUnlockSource="Paquete de armas Hoz sangrienta"
+
+[KFWeap_HRG_Locust]
+ItemName="Langosta HRG"
+ItemCategory="Explosivos"
+ItemDescription="•El modo principal lanza un misil que crea una nube de langostas nanobot que atacan a zeds.\n•Apuntar en el modo de disparo alternativo activa un puntero láser y permite guiar los cohetes.\n•Arma ideal para controlar zeds."
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

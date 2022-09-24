@@ -22,6 +22,10 @@ ServerTypeStrings[2]="ランク―カスタム"
 ServerTypeStrings[3]="非ランク"
 WeaponLevelString="武器レベル"
 GunPointsString="武器ポイント"
+VIPString="任務"
+VIPObjectiveAString="VIPを護衛せよ"
+VIPObjectiveBString="生き延びろ"
+VIPObjectiveCString="VIPは君だ"									 
 
 PermissionStrings[0]="公開"
 PermissionStrings[1]="プライベート：パスワード保護済み"
@@ -1405,6 +1409,10 @@ AimAssistLockOnString="ズームロックオンの照準をアシスト"
 AimAssistRotationString="回転の照準をアシスト"
 AimAssistSlowDownString="スローダウンの照準をアシスト"
 ForceFeedbackString="コントローラーの振動"
+MouseLookUpScaleString="垂直"
+MouseLookRightScaleString="水平"
+ViewAccelerationString="加速照準"
+ViewSmoothingString="スムーズ照準"									
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="移動"
@@ -1449,6 +1457,7 @@ ShrinkString="縮小"
 
 [KFInventoryManager]
 FullHealthMsg="ヘルス満タン"
+CannotHealthMsg="自分自身の治療はできない"										 
 
 [KFLocalMessage]
 SystemString="システム："
@@ -1567,6 +1576,7 @@ ScavengeMessage="スカベンジ"
 YouLostMessage="敗 北"
 YouWonMessage="勝 利"
 SquadWipedOutMessage="あなたの隊は全滅しました！"
+SquadWipedOutVIPMessage="VIPが倒された"												   
 SquadSurvivedMessage="あなたの隊は生存しました！"
 ObjectiveStartMessage="任務開始"
 ObjectiveWonMessage="任務完了"
@@ -2915,6 +2925,19 @@ AllCompleteRewardDescriptionString="深海 | 三つ又 | 希少"
 
 ChanceDropDescriptionStrings[0]="サマーチケット"
 ChanceDropDescriptionStrings[1]="サマー・ゴールデン・チケット"
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="暗闇に蠢く怪物",DescriptionString="マップやモードを問わず、ボスを15人殺す")
+SpecialEventObjectiveInfoList[1]=(TitleString="ウィークリーウィッチクラフト",DescriptionString="Barmwich Townでウィークリーをクリアする")
+SpecialEventObjectiveInfoList[2]=(TitleString="元素のメダリオン",DescriptionString="武器庫を開く")
+SpecialEventObjectiveInfoList[3]=(TitleString="Zedに火をつけろ",DescriptionString="Barmwich Townで50体のZedにかがり火を通過させる")
+SpecialEventObjectiveInfoList[4]=(TitleString="魔女の長い夜",DescriptionString="エンドレスHardかそれ以上の難易度で、Barmwich Townのウェーブ15をクリアする")
+
+AllCompleteRewardDescriptionString="伝染病の医者 | バックパック | 希少"
+
+ChanceDropDescriptionStrings[0]="ハロウィーンチケット"
+ChanceDropDescriptionStrings[1]="ハロウィーンゴールデンチケット"													 
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3094,6 +3117,16 @@ ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"							   
+[VIPMode KFWeeklyOutBreakInformation]
+FriendlyName="プライマリターゲット"
+DescriptionStrings[0]="VIPを護衛せよ！"
+DescriptionStrings[1]="長さ：ミディアム（7 ウェーブ）"
+ModifierDescriptions[0]="一人のプレイヤーがVIPとして選ばれます。VIPは生き延びねばならず、死んでしまうとゲームオーバーです。他のプレイヤーでないとVIPは回復できません。マッチメイキングページでウィークリーゲームモードを選択してください。Perkは15+となります。"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
 ;============================================
 ; Map Localization
 ;============================================
@@ -3622,6 +3655,8 @@ DisplayName="Carillon Hamlet"
 
 [KF-Rig KFMapSummary]
 DisplayName="Rig"
+[KF-BarmwichTown KFMapSummary]
+DisplayName="Barmwich Town"						   
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x%が収集アイテムを発見。%y%は取り残された..."

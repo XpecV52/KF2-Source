@@ -142,11 +142,14 @@ simulated function ModifyMagSizeAndNumber(KFWeapon KFW, out int MagazineCapacity
 
     bSecondary = false;    
     TempCapacity = float(MagazineCapacity);
-    if(((IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine) && !bSecondary)
+    if(WeaponClassName != 'KFWeap_Rifle_HRGIncision')
     {
-        if(IsCombatantActive())
+        if(((IsWeaponOnPerk(KFW, WeaponPerkClass, self.Class)) && (KFW == none) || !KFW.bNoMagazine) && !bSecondary)
         {
-            TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[3])));
+            if(IsCombatantActive())
+            {
+                TempCapacity += (float(MagazineCapacity) * (GetSkillValue(PerkSkills[3])));
+            }
         }
     }
     MagazineCapacity = Round(TempCapacity);

@@ -48,6 +48,7 @@ BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
 BodyMesh15="심해 탐사가 의상"
+BodyMesh16="전염병 의사 의상"								 
 HeadMesh0="가스 마스크"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -178,6 +179,13 @@ BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
 
+[CHR_MrsFoster_archetype.BodyMesh16]
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="화이트"
 HeadSkin1="그린"
@@ -267,6 +275,7 @@ BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
 BodyMesh15="심해 탐사가 의상"
+BodyMesh16="전염병 의사 의상"								 
 HeadMesh0="수염의 힘!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -402,6 +411,13 @@ BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
 
+[CHR_Jagerhorn_archetype.BodyMesh16]									
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="스웨덴 금발"
 HeadSkin1="블랙 앨범"
@@ -504,6 +520,7 @@ BodyMesh12="우주 해적"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
 BodyMesh15="심해 탐사가 의상"
+BodyMesh16="전염병 의사 의상"								 
 HeadMesh0="스컬리 마스크"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -637,6 +654,13 @@ BodySkin2="코랄"
 BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
+[CHR_DJSkully_archetype.BodyMesh16]								   
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="가장 어두운 블랙"
@@ -687,6 +711,7 @@ BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
 BodyMesh15="연휴 쇼핑 의상"
 BodyMesh16="심해 탐사가 의상"
+BodyMesh17="전염병 의사 의상"								 
 HeadMesh0="헤어"
 
 [chr_briar_archetype.BodyMesh0]
@@ -826,6 +851,13 @@ BodySkin2="코랄"
 BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
+[CHR_briar_archetype.BodyMesh17]								
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="오리지널"
@@ -870,6 +902,7 @@ BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
 BodyMesh15="연휴 쇼핑 의상"
 BodyMesh16="심해 탐사가 의상"
+BodyMesh17="전염병 의사 의상"								 
 HeadMesh0="가스 마스크"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -1014,6 +1047,13 @@ BodySkin2="코랄"
 BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
+[CHR_MrFoster_archetype.BodyMesh17]								   
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="오리지널 화이트"
@@ -1178,6 +1218,7 @@ BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
 BodyMesh15="심해 탐사가 의상"
+BodyMesh16="전염병 의사 의상"								 
 HeadMesh0="페이스"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1309,6 +1350,13 @@ BodySkin2="코랄"
 BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
+[CHR_Coleman_archetype.BodyMesh16]								  
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="도노반"
@@ -1351,7 +1399,8 @@ BodyMesh11="산타 복장"
 BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
-BodyMesh15="Deep Sea Explorer Outfit"
+BodyMesh15="심해 탐사가 의상"
+BodyMesh16="전염병 의사 의상"								 
 HeadMesh0="헤어"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1485,6 +1534,13 @@ BodySkin2="코랄"
 BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
+[CHR_Alberts_archetype.BodyMesh16]								  
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="그레이"
@@ -2388,6 +2444,7 @@ BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
 BodyMesh15="심해 탐사가 의상"
+BodyMesh16="전염병 의사 의상"								 
 HeadMesh0="페이스"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2530,6 +2587,13 @@ BodySkin2="코랄"
 BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
+[CHR_Masterson_archetype.BodyMesh16]									
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 
 [CHR_Tanaka_Archetype]
 CharacterName="하야토 타나카"
@@ -2551,6 +2615,7 @@ BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
 BodyMesh15="연휴 쇼핑 의상"
 BodyMesh16="심해 탐사가 의상"
+BodyMesh17="전염병 의사 의상"								 
 HeadMesh0="헤어"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2701,6 +2766,13 @@ BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
 
+[CHR_Tanaka_archetype.BodyMesh17]								 
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="헬멧"
 AttachmentSkin0="라이징 선"
@@ -2747,6 +2819,7 @@ BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
 BodyMesh15="심해 탐사가 의상"
+BodyMesh16="전염병 의사 의상"								 
 HeadMesh0="모호크"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2825,6 +2898,13 @@ BodySkin4="레드 스노우"
 BodySkin5="나무"
 BodySkin6="빨간색 격자무늬"
 
+[CHR_Ana_archetype.BodyMesh16]							  
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"						
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="볼트 패턴"
 
@@ -2921,6 +3001,8 @@ BodyMesh12="산타 복장"
 BodyMesh13="우주 해적 복장"
 BodyMesh14="리퍼 복장"
 BodyMesh15="연휴 쇼핑 의상"
+BodyMesh16="심해 탐사가 의상"									 
+BodyMesh17="전염병 의사 의상"								 
 HeadMesh0="헤어"
 
 [chr_mark_archetype.BodyMesh0]
@@ -3047,12 +3129,27 @@ BodySkin3="역병"
 BodySkin4="전쟁"
 BodySkin5="무정부 상태"
 
-
+[CHR_mark_archetype.BodyMesh15]							   
 BodySkin0="산타"
 BodySkin1="엘프"
 BodySkin2="북극"
 BodySkin3="크리스메스"
 BodySkin4="프레셔스"
+[CHR_mark_archetype.BodyMesh16]
+BodySkin0="안티크"
+BodySkin1="아쿠아"
+BodySkin2="코랄"
+BodySkin3="펄"
+BodySkin4="블랙 씰"
+BodySkin5="프레셔스"
+
+[CHR_mark_archetype.BodyMesh17]							   
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
@@ -3083,6 +3180,7 @@ BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
 BodyMesh15="심해 탐사가 의상"
+BodyMesh16="전염병 의사 의상"								 
 HeadMesh0="페이스"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3218,6 +3316,13 @@ BodySkin2="코랄"
 BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
+[CHR_alan_archetype.BodyMesh16]							   
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="진짜배기"
 HeadSkin1="진저! 정말?"
@@ -3254,6 +3359,7 @@ BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
 BodyMesh15="심해 탐사가 의상"
+BodyMesh16="전염병 의사 의상"								 
 HeadMesh0="헤어"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3385,6 +3491,13 @@ BodySkin2="코랄"
 BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
+[CHR_strasser_archetype.BodyMesh16]								   
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="다크 스틸"
@@ -3566,6 +3679,7 @@ BodyMesh12="우주 해적 복장"
 BodyMesh13="리퍼 복장"
 BodyMesh14="연휴 쇼핑 의상"
 BodyMesh15="심해 탐사가 의상"
+BodyMesh16="전염병 의사 의상"								 
 HeadMesh0="기본 머리"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3702,6 +3816,13 @@ BodySkin2="코랄"
 BodySkin3="펄"
 BodySkin4="블랙 씰"
 BodySkin5="프레셔스"
+[CHR_rockabilly_archetype.BodyMesh16]									 
+BodySkin0="민트"
+BodySkin1="스털링"
+BodySkin2="옵시디안"
+BodySkin3="화산"
+BodySkin4="에메랄드"
+BodySkin5="프레셔스"					
 
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="블랙"
@@ -7259,4 +7380,20 @@ AttachmentSkin1="아쿠아"
 AttachmentSkin2="코랄"
 AttachmentSkin3="펄"
 AttachmentSkin4="블랙 씰"
+AttachmentSkin5="프레셔스"
+[Cosmetic_PlagueDoctor_Backpack_ARCH]
+Attachment="전염병 의사 가방"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_PrimaryTarget_Crown_ARCH]
+Attachment="기본 목표 크라운"
+AttachmentSkin0="프레셔스"
+
+[Cosmetic_PlagueDoctor_Hood_ARCH]
+Attachment="전염병 의사 후드"
+AttachmentSkin0="민트"
+AttachmentSkin1="스털링"
+AttachmentSkin2="옵시디안"
+AttachmentSkin3="화산"
+AttachmentSkin4="에메랄드"
 AttachmentSkin5="프레셔스"

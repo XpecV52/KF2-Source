@@ -24,7 +24,7 @@ defaultproperties
     SingleFireSoundIndex=1
     InventorySize=6
     MeshIronSightFOV=45
-    IronSightPosition=(X=15,Y=0,Z=0)
+    IronSightPosition=(X=15,Y=0.03,Z=0.1)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_KRISS_TEX.UI_WeaponSelect_KRISS'
     MagazineCapacity=33

@@ -126,6 +126,7 @@ const STATID_ACHIEVE_MoonbaseCollectibles = 4059;
 const STATID_ACHIEVE_NetherholdCollectibles = 4060;
 const STATID_ACHIEVE_CarillonHamletCollectibles = 4061;
 const STATID_ACHIEVE_RigCollectibles = 4062;
+const STATID_ACHIEVE_BarmwichCollectibles = 4063;
 const KFID_QuickWeaponSelect = 100;
 const KFID_CurrentLayoutIndex = 101;
 const KFID_ForceFeedbackEnabled = 103;
@@ -196,6 +197,10 @@ const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178;
 const KFID_SurvivalStartingWeapIdx = 179;
 const KFID_SurvivalStartingGrenIdx = 180;
+const KFID_MouseLookUpScale = 181;
+const KFID_MouseLookRightScale = 182;
+const KFID_ViewSmoothingEnabled = 183;
+const KFID_ViewAccelerationEnabled = 184;
 const MapObjectiveIndex = 4;
 const MAX_AIM_CORRECTION_SIZE = 35.f;
 
@@ -1376,6 +1381,10 @@ function OnReadProfileSettingsComplete(byte LocalUserNum, bool bWasSuccessful)
             KFInput.SetGamepadLayout(Profile.GetProfileInt(101));
             KFInput.bToggleToRun = Profile.GetProfileBool(172);
             KFInput.bAllowSwapTo9mm = Profile.GetProfileBool(178);
+            KFInput.MouseLookUpScale = Profile.GetProfileFloat(181);
+            KFInput.MouseLookRightScale = Profile.GetProfileFloat(182);
+            KFInput.bViewSmoothingEnabled = Profile.GetProfileBool(183);
+            KFInput.bViewAccelerationEnabled = Profile.GetProfileBool(184);
             KFInput.ReInitializeControlsUI();
         }
         KFGI = KFGameInfo(WorldInfo.Game);
@@ -2275,6 +2284,19 @@ function bool CanUseGunGame()
     else
     {
         return ((KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode) && KFGameReplicationInfo(WorldInfo.GRI).CurrentWeeklyIndex == 16;
+    }
+    return false;
+}
+
+function bool CanUseVIP()
+{
+    if(Role == ROLE_Authority)
+    {
+        return (KFGameInfo(WorldInfo.Game).OutbreakEvent != none) && KFGameInfo(WorldInfo.Game).OutbreakEvent.ActiveEvent.bVIPGameMode;        
+    }
+    else
+    {
+        return ((KFGameReplicationInfo(WorldInfo.GRI) != none) && KFGameReplicationInfo(WorldInfo.GRI).bIsWeeklyMode) && KFGameReplicationInfo(WorldInfo.GRI).CurrentWeeklyIndex == 17;
     }
     return false;
 }
@@ -7524,6 +7546,8 @@ protected function MotivatePlayerToMove()
     }
     SetTimer(Class'KFVersusNoGoVolume'.static.GetNoGoHurtInterval(), true, 'MotivatePlayerToMove');
 }
+
+function AdjustDamage(out int InDamage, Controller InstigatedBy, class<DamageType> DamageType, Actor DamageCauser, Actor DamageReceiver);
 
 exec function GCF()
 {

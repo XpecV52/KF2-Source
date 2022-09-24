@@ -54,29 +54,33 @@ event bool FindNewEnemy()
     local Controller C;
     local Pawn PotentialEnemy;
 
-    foreach WorldInfo.AllControllers(Class'Controller', C)
+    BestEnemy = none;
+    if(BestEnemy == none)
     {
-        if((((C.Pawn == none) || !C.Pawn.IsAliveAndWell()) || Pawn.IsSameTeam(C.Pawn)) || !C.Pawn.CanAITargetThisPawn(self))
+        foreach WorldInfo.AllControllers(Class'Controller', C)
         {
-            continue;            
-        }
-        PotentialEnemy = C.Pawn;
-        newdist = VSizeSq(PotentialEnemy.Location - Pawn.Location);
-        if(BestEnemy == none)
-        {
-            BestEnemy = PotentialEnemy;
-            bestDist = newdist;
-            continue;
-        }
-        if(BestEnemy != none)
-        {
-            if((bestDist > newdist) || (NumberOfZedsTargetingPawn(PotentialEnemy)) < (NumberOfZedsTargetingPawn(BestEnemy)))
+            if((((C.Pawn == none) || !C.Pawn.IsAliveAndWell()) || Pawn.IsSameTeam(C.Pawn)) || !C.Pawn.CanAITargetThisPawn(self))
+            {
+                continue;                
+            }
+            PotentialEnemy = C.Pawn;
+            newdist = VSizeSq(PotentialEnemy.Location - Pawn.Location);
+            if(BestEnemy == none)
             {
                 BestEnemy = PotentialEnemy;
                 bestDist = newdist;
+                continue;
             }
+            if(BestEnemy != none)
+            {
+                if((bestDist > newdist) || (NumberOfZedsTargetingPawn(PotentialEnemy)) < (NumberOfZedsTargetingPawn(BestEnemy)))
+                {
+                    BestEnemy = PotentialEnemy;
+                    bestDist = newdist;
+                }
+            }            
         }        
-    }    
+    }
     if(((Enemy != none) && BestEnemy != none) && BestEnemy == Enemy)
     {
         return false;

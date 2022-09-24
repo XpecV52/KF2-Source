@@ -1258,7 +1258,7 @@ Parameter name: index
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '0_4923' was not found.
+System.ArgumentException: Requested value '0_4999' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1272,7 +1272,7 @@ System.ArgumentException: Requested value '0_1067030937' was not found.
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,Cooldown=15,ChildAfflictionCooldown=0,Vulnerability=/* Array type was not detected. */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '0_4385' was not found.
+System.ArgumentException: Requested value '0_4459' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1293,7 +1293,7 @@ System.ArgumentException: Requested value 'Cooldown' was not found.
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '__Delegate_OnChangeState__Delegate' was not found.
+System.ArgumentException: Requested value '_' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1321,14 +1321,14 @@ System.ArgumentException: Requested value 'Vulnerability' was not found.
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '__Delegate_OnPawnReachedRouteMarker__Delegate' was not found.
+System.ArgumentException: Requested value '__Delegate_OnPawnReachedGoal__Delegate' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */,0blue_1red=/* Unknown default property type! */,
 /* Exception thrown while deserializing IncapSettings
-System.ArgumentException: Requested value '__Delegate_OnChangeState__Delegate' was not found.
+System.ArgumentException: Requested value '_' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1357,7 +1357,7 @@ System.ArgumentException: Requested value 'ChildAfflictionCooldown' was not foun
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(1)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '__Delegate_OnChangeState__Delegate' was not found.
+System.ArgumentException: Requested value '_' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
@@ -1365,15 +1365,15 @@ System.ArgumentException: Requested value '__Delegate_OnChangeState__Delegate' w
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
     BattlePhases(2)=
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '0_509' was not found.
+System.ArgumentException: Requested value '0_518' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BattlePhases(3)=0_7[9116]=/* Unknown default property type! */,
+    BattlePhases(3)=0_7[9262]=/* Unknown default property type! */,
 /* Exception thrown while deserializing BattlePhases
-System.ArgumentException: Requested value '0_4923' was not found.
+System.ArgumentException: Requested value '0_4999' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)
    at System.Enum.Parse(Type enumType, String value, Boolean ignoreCase)
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()

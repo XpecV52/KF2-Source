@@ -334,7 +334,7 @@ private final function bool IsHealthIncreaseActive()
     return PerkSkills[4].bActive && IsPerkLevelAllowed(4);
 }
 
-private final function bool IsEatLeadActive()
+private final simulated function bool IsEatLeadActive()
 {
     return PerkSkills[7].bActive && IsPerkLevelAllowed(7);
 }

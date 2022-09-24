@@ -1595,7 +1595,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
         if(MonsterPawn != none)
         {
             I = 0;
-            J0x7D7:
+            J0x7D6:
 
             if(I < MonsterPawn.DamageHistory.Length)
             {
@@ -1610,7 +1610,7 @@ function Killed(Controller Killer, Controller KilledPlayer, Pawn KilledPawn, cla
                     }
                 }
                 ++ I;
-                goto J0x7D7;
+                goto J0x7D6;
             }
         }
         if(Killer != none)
@@ -3245,6 +3245,8 @@ simulated function AddWeaponsFromSpawnList(KFPawn P);
 
 simulated function OverrideHumanDefaults(KFPawn_Human P);
 
+function ClearActorFromBonfire(Actor Other);
+
 simulated function ModifyDamageGiven(out int InDamage, optional Actor DamageCauser, optional KFPawn_Monster MyKFPM, optional KFPlayerController DamageInstigator, optional class<KFDamageType> DamageType, optional int HitZoneIdx);
 
 auto state PendingMatch
@@ -3385,7 +3387,7 @@ defaultproperties
     BossIndex=-1
     ZedTimeSlomoScale=0.2
     ZedTimeBlendOutTime=0.5
-    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-CarillonHamlet","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Moonbase","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Netherhold","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Rig","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
+    GameMapCycles(0)=(Maps=("KF-Airship","KF-AshwoodAsylum","KF-BarmwichTown","KF-Biolapse","KF-Bioticslab","KF-BlackForest","KF-BurningParis","KF-CarillonHamlet","KF-Catacombs","KF-ContainmentStation","KF-Desolation","KF-DieSector","KF-Dystopia2029","KF-Moonbase","KF-Elysium","KF-EvacuationPoint","KF-Farmhouse","KF-HellmarkStation","KF-HostileGrounds","KF-InfernalRealm","KF-KrampusLair","KF-Lockdown","KF-MonsterBall","KF-Netherhold","KF-Nightmare","KF-Nuked","KF-Outpost","KF-PowerCore_Holdout","KF-Prison","KF-Rig","KF-Sanitarium","KF-Santasworkshop","KF-ShoppingSpree","KF-Spillway","KF-SteamFortress","KF-TheDescent","KF-TragicKingdom","KF-VolterManor","KF-ZedLanding"))
     DialogManagerClass=Class'KFDialogManager'
     ActionMusicDelay=5
     ForcedMusicTracks(0)=KFMusicTrackInfo'WW_MMNU_Login.TrackInfo'

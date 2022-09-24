@@ -88,7 +88,10 @@ const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178; 
 const KFID_SurvivalStartingWeapIdx=179; 
 const KFID_SurvivalStartingGrenIdx=180; 
-#linenumber 13
+const KFID_MouseLookUpScale=181; 
+const KFID_MouseLookRightScale=182; 
+const KFID_ViewSmoothingEnabled=183; 
+const KFID_ViewAccelerationEnabled=184; #linenumber 13
 
 var KFGFxControlsContainer_Keybinding KeybindingsContainer;
 var KFGFxControlsContainer_Input InputContainer;
@@ -106,6 +109,10 @@ var const float MinMouseLookSensitivity;
 var const float MaxMouseLookSensitivity;
 var const float MinMouseLookZoomSensitivity;
 var const float MaxMouseLookZoomSensitivity;
+var const float MinMouseLookUpScale;
+var const float MaxMouseLookUpScale;
+var const float MinMouseLookRightScale;
+var const float MaxMouseLookRightScale;
 
 var localized array<string> TabStrings;
 var localized string HeaderText;
@@ -408,6 +415,55 @@ function CallBack_ResetInputOptions()
 	}
 }
 
+function Callback_MouseLookUpScale(float NewValue)
+{
+	local KFPlayerInput KFPI;
+
+	NewValue = -NewValue;
+
+	KFPI = KFPlayerInput(GetPC().PlayerInput);
+	KFPI.MouseLookUpScale = NewValue;
+	KFPI.LookUpScale = NewValue;
+	class'PlayerInput'.default.LookUpScale = KFPI.MouseLookUpScale;
+	class'PlayerInput'.static.StaticSaveConfig();
+
+	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_MouseLookUpScale, NewValue);
+}
+
+function Callback_MouseLookRightScale(float NewValue)
+{
+	local KFPlayerInput KFPI;
+
+	KFPI = KFPlayerInput(GetPC().PlayerInput);
+	KFPI.MouseLookRightScale = NewValue;
+	KFPI.LookRightScale = NewValue;
+	class'PlayerInput'.default.LookRightScale = KFPI.MouseLookRightScale;
+	class'PlayerInput'.static.StaticSaveConfig();
+
+	Manager.CachedProfile.SetProfileSettingValueFloat(KFID_MouseLookRightScale, NewValue);
+
+}
+
+function Callback_ViewSmoothingChanged(bool bActive)
+{
+	local KFPlayerInput KFPI;
+	
+	KFPI = KFPlayerInput(GetPC().PlayerInput);
+	KFPI.bViewSmoothingEnabled = bActive;
+	
+	Manager.CachedProfile.SetProfileSettingValueInt(KFID_ViewSmoothingEnabled, bActive ? 1 : 0);
+}
+
+function Callback_ViewAccelerationChanged(bool bActive)
+{
+	local KFPlayerInput KFPI;
+		
+	KFPI = KFPlayerInput(GetPC().PlayerInput);
+	KFPI.bViewAccelerationEnabled = bActive;
+
+	Manager.CachedProfile.SetProfileSettingValueInt(KFID_ViewAccelerationEnabled, bActive ? 1 : 0);
+}
+
 defaultproperties
 {
    MinControllerLookSensitivity=0.400000
@@ -420,6 +476,10 @@ defaultproperties
    MaxMouseLookSensitivity=0.700000
    MinMouseLookZoomSensitivity=0.200000
    MaxMouseLookZoomSensitivity=1.000000
+   MinMouseLookUpScale=20.000000
+   MaxMouseLookUpScale=500.000000
+   MinMouseLookRightScale=20.000000
+   MaxMouseLookRightScale=500.000000
    TabStrings(0)="INPUT"
    TabStrings(1)="KEY BINDINGS"
    TabStrings(2)="BUTTON LAYOUT"

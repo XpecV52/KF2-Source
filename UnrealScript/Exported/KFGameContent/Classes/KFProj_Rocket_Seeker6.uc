@@ -59,7 +59,7 @@ defaultproperties
    SeekStrength=928000.000000
    ArmDistSquared=110000.000000
    ProjDudTemplate=ParticleSystem'WEP_SeekerSix_EMIT.FX_SeekerSix_Projectile_Dud'
-   GrenadeBounceEffectInfo=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Projectile_Impacts'
+   GrenadeBounceEffectInfo=KFImpactEffectInfo'wep_rpg7_arch.RPG7_Projectile_Impacts'
    bWarnAIWhenFired=True
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
       ExplosionEffects=KFImpactEffectInfo'WEP_SeekerSix_ARCH.FX_SeekerSix_Explosion'

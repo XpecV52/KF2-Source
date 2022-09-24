@@ -297,8 +297,10 @@ protected simulated function PrepareExplosion()
         KFPC = KFPlayerController(Instigator.Controller);
         if(KFPC != none)
         {
+            LogInternal("RADIUS BEFORE: " $ string(ExplosionTemplate.DamageRadius));
             InstigatorPerk = KFPC.GetPerk();
             ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
+            LogInternal("RADIUS BEFORE: " $ string(ExplosionTemplate.DamageRadius));
         }
     }
     ExplosionActorClass = default.ExplosionActorClass;
@@ -344,6 +346,7 @@ simulated function SpawnExplosionFromTemplate(KFGameExplosion Template)
         ExploActor.bReplicateInstigator = true;
         ExploActor.Explode(Template, vector(SpawnRot));
     }
+    ExplosionTemplate.DamageRadius = StartingDamageRadius;
 }
 
 simulated function CustomFire()

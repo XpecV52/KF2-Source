@@ -463,7 +463,7 @@ defaultproperties
    InventoryGroup=IG_Primary
    InventorySize=7
    PenetrationPower(1)=2.000000
-   IronSightPosition=(X=-3.000000,Y=0.000000,Z=0.000000)
+   IronSightPosition=(X=-3.000000,Y=0.145000,Z=0.000000)
    GroupPriority=100.000000
    WeaponSelectTexture=Texture2D'WEP_UI_Blunderbuss_TEX.UI_WeaponSelect_BlunderBluss'
    MagazineCapacity(0)=3

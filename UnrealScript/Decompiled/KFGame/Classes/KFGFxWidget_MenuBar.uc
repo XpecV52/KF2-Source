@@ -77,6 +77,10 @@ const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178;
 const KFID_SurvivalStartingWeapIdx = 179;
 const KFID_SurvivalStartingGrenIdx = 180;
+const KFID_MouseLookUpScale = 181;
+const KFID_MouseLookRightScale = 182;
+const KFID_ViewSmoothingEnabled = 183;
+const KFID_ViewAccelerationEnabled = 184;
 
 var const localized array<localized string> MenuStrings;
 var const localized string ExitString;

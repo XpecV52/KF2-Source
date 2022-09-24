@@ -241,11 +241,20 @@ ClassicWeaponSkinBundleName="Zestaw klasycznych skórek broni"
 DeepSeaSkinWeaponSkinPackName="Zestaw skórek broni głębokiego morza"
 ChameleonWeaponSkinBundleName="Zestaw skórek broni kameleon"
 DeepSeaExplorerOutfitName="Zestaw stroju odkrywcy głębin"
-ReductoRayBundleName="Zestaw broni Promień Reducto"
+PlagueDoctorOutfitName="Zestaw stroju badacza zarazy"
+ReductoRayBundleName="Zestaw broni Promień Reducto"												
 SentinelBundleName="Zestaw broni Wartownika"
 TidalTerrorBundleName="Zestaw broni Pływowy Postrach"
 ArmorySeasonPass2022Name="Killing Floor 2 – przepustka zbrojowni 2"
 UltimateUpgradeName="KF2 – ulepszenie do Edycji Ultimate"																
+PlagueDoctorWeaponSkinBundleName="Zestaw skórek broni badacza zarazy"
+XenoWeaponSkinBundleName="Zestaw skórek broni xeno"
+ClassicMKIIWeaponSkinBundleName="Zestaw skórek broni klasyczny MKII"
+ChameleonMKIIWeaponSkinBundleName="Zestaw skórek broni kameleon MKII"
+PlagueDoctorOutfitBundleName="Zestaw stroju badacza zarazy"
+G36CBundleName="Zestaw broni karabinu szturmowego G36C"
+BloodSickleBundleName="Zestaw broni krwawego sierpa"
+BloodBonfiresWeaponBundleName="Zestaw broni Krew i Ogniska"															  
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="W zestawie londyński mundur Briara (wraz z 5 skórkami) i akcesorium hełm policyjny (wraz z 3 skórkami)."
@@ -485,11 +494,20 @@ ClassicWeaponSkinBundleDescription="Zawiera 8 klasycznych skórek broni (4 jak n
 DeepSeaSkinWeaponSkinBundleDescription="Zawiera 36 skórek broni w stylu głębokiego morza (6 antycznych, 6 akwamarynowych, 6 koralowych, 6 perłowych, 6 czarnej foki i 6 cennych). Broń przedstawiona w tym zestawie to: AA12, FN FAL, M14EBR, Mac 10, MP5RAS, RPG-7."																																								  
 ChameleonWeaponSkinBundleDescription="Zawiera 8 skórek broni z motywem kameleona (4 dynamiczne i 4 dynamiczne RGB). Broń przedstawiona w tym zestawie to: Desert Eagle, katana. SMG Kriss, RPG-7."																																																									 
 DeepSeaExplorerOutfitDescription="W zestawie strój i hełm odkrywcy głębin (zawiera 6 stylów skórek). Do wykorzystania przez większość postaci."																																													   
+PlagueDoctorOutfitDescription="W zestawie strój i kaptur badacza zarazy (w tym 6 stylów skórki). Do wykorzystania przez większość postaci."
 ReductoRayBundleDescription="Moc redukowania ambicji wrogów mieszcząca się w dłoni. Promień Reducto został zaprojektowany z myślą o specjalizacji survivalisty i zawiera 5 unikatowych wariantów skórek."																																				   
 SentinelBundleDescription="Każdy potrzebuje przyjaciela, szczególnie takiego, który jest autonomiczną sztuczną inteligencją z karabinem maszynowym z automatycznym namierzaniem. Strażnik jest przeznaczony dla specjalizacji Komandos i ma 5 unikatowych wariantów skórek."																																																
 TidalTerrorBundleDescription="Zawiera bronie Wartownik i Promień Reducto z aktualizacji Pływowy Postrach. Każda broń ma 5 unikatowych wariantów skórek."																																																				   
 ArmorySeasonPass2022Description="Poszerz swój repertuar destrukcji zetów w Killing Floor 2 dzięki tegorocznej przepustce zbrojowni! To najbardziej wydajny sposób pod względem forsy na uzyskiwanie natychmiastowego dostępu do wszystkich 6 broni, które pojawią się kolejno w 2022 roku. Zakup natychmiast obejmuje 2 zupełnie nowe bronie wydane wraz z letnią aktualizacją 2022 (zestaw broni Promień Reducto, zestaw broni Strażnika). Oba zestawy broni zawierają 5 unikatowych skórek broni Ponadto przepustka zbrojowni 2 dla Killing Floor 2 obejmuje dostęp do nadchodzących zestawów broni zaplanowanych w następujący sposób: 2 bronie na jesień 2022, 2 bronie na zimę 2022."																																						 
 UltimateUpgradeDescription="Dla obecnych posiadaczy Killing Floor 2, którzy chcą ulepszyć grę do najpełniejszej wersji gry za jedną niską cenę. Ten pakiet ulepszeń zawiera:\n – Przepustkę zbrojowni 1\n – Przepustkę zbrojowni 2, która zapewnia natychmiastowy dostęp do wszystkich 6 nowych pakietów broni w roku 2022 w miarę ich pojawiania się\n – Mnóstwo przedmiotów kosmetycznych!\n"																																																																																																																																																																																																																																																																																																																																																																																																					   
+PlagueDoctorWeaponSkinBundleDescription="Zawiera 36 skórek z motywem badacza zarazy (6 jak nowych, 6 srebrnych, 6 obsydianowych, 6 skały wulkanicznej, 6 szmaragdowych i 6 cennych). Broń przedstawiona w tym zestawie to: Tommy Gun, M79, Desert Eagle, kusza, pukawka i Smoczy Oddech.  "																																																																																																																																																																																																																																									   
+XenoWeaponSkinBundleDescription="Zawiera 8 skórek broni z motywem sci-fi (4 dynamiczne i 4 dynamiczne RGB). Broń przedstawiona w tym zestawie to: M16 M203, SMG UMP, Centerfire i Hemomaczuga."																																																																		  
+ClassicMKIIWeaponSkinBundleDescription="Zawiera 8 klasycznych skórek broni (4 jak nowe i 4 cenne). Broń przedstawiona w tym zestawie to: AK12, Desert Eagle, M14 EBR oraz SMG Kriss."																																																	  
+ChameleonMKIIWeaponSkinBundleDescription="Zawiera 8 skórek broni z motywem kameleona (4 dynamiczne i 4 dynamiczne RGB). Broń przedstawiona w tym zestawie to: AA12, miotacz ognia, M99, SCAR."																																													 
+PlagueDoctorOutfitBundleDescription="W zestawie strój i kaptur badacza zarazy (w tym 6 stylów skórki). Do wykorzystania przez większość postaci."																																												  
+G36CBundleDescription="Moc przebijania pancerza w broni wielkości pistoletu maszynowego. Karabin szturmowy G36C przeznaczony jest dla specjalizacji SWAT. Zawiera 5 unikatowych wariantów skórki."																																				 
+BloodSickleBundleDescription="Ulubiona broń żniwiarza – teraz można ją złożyć, aby mieściła się w ciasnych miejscach. Krwawy sierp jest przeznaczony dla specjalizacji berserkera. Zawiera 5 unikatowych wariantów skórki. "																																								   
+BloodBonfiresWeaponBundleDescription="Zawiera karabin szturmowy G36C krwawy sierp z aktualizacji Krew i Ogniska. Do każdej z broni dodawane jest 5 unikatowych wariantów skórki."																																												 
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Zgarnij nowy klasyczny mundur londyńskiego policjanta dla grywalnej postaci – posterunkowego Roba Briara. W zestawie londyński mundur Briara (wraz 5 skórkami) i akcesorium hełm policyjny (wraz z 3 skórkami)."
@@ -602,6 +620,7 @@ AstronautO2BackpackName="Plecak: O2 astronauty"
 AstronautSuitName="Mundur skafandra astronauty"
 HolidayShoppingSuitName="Strój Świątecznych Zakupów"
 DeepSeeExplorerSuitName="Strój odkrywcy głębin"										  
+PlagueDoctorSuitName="Strój badacza zarazy"										   
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="Bill Masterson | Cyberpunk | Ziel."
@@ -1542,6 +1561,8 @@ AA12DeepSeaBlackSealName="AA12 | Głębokie morze | Czarna foka"
 AA12DeepSeaPreciousName="AA12 | Głębokie morze | Cenne"
 AA12ClassicMintName="AA12 | Klasyczne | Jak nowe"
 AA12ClassicPreciousName="AA12 | Klasyczne | Cenne"
+AA12ChameleonDynamicName="AA12 | Kameleon | Dynamiczne"
+AA12ChameleonDynamicRGBName="AA12 | Kameleon | Dynamiczne RGB"													 														
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Stan zewnętrzny: Jak nowy | Więcej niż jedna lufa to zawsze dobra wiadomość. To tak jak z bekonem."
@@ -1642,6 +1663,8 @@ AK12IceBreakerDynamicPreciousName="AK-12 | Lodołamacz | Dynamiczne cenne"
 AK12BeyondHorizonMintName="AK-12 | Za Horyzontem | Jak nowe"
 AK12BeyondHorizonSpaceEliteName="AK-12 | Za Horyzontem | Gwiezdna elita"
 AK12ScavengerPreciousName="AK-12 | Zbieracz | Cenne"
+AK12ClassicMintName="AK-12 | Klasyczne | Jak nowe"
+AK12ClassicPreciousName="AK-12 | Klasyczne | Cenne"													
 
 ;AR15 Descriptions
 AR15MintDescription="Stan zewnętrzny: Jak nowy | Wbrew nazwie jest to broń na zetów, nie szkodniki."
@@ -1818,6 +1841,8 @@ CenterfireNeonFieldTestedName="Centerfire | Neon | Przetestowany"
 CenterfireNeonMintName="Centerfire | Neon | Jak nowy"
 CenterfireNeonRGBPreciousName="Centerfire | Neon RGB | Cenny egzemplarz"
 CenterfireVaultVoshPreciousName="Centerfire | Skarbiec | Forsa | Cenny egzemplarz"
+CenterfireXenoDynamicName="Centerfire | Xeno | Dynamiczne"
+CenterfireXenoDynamicRGBName="Centerfire | Xeno | Dynamiczne RGB"															  
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Stan zewnętrzny: Jak nowa | Mocna kusza myśliwska zapewniającą dobrą penetrację i moc obalającą!"
@@ -1846,6 +1871,12 @@ CrossbowNeonFieldTestedName="Kusza | Neon | Przetestowana"
 CrossbowNeonBattleScarredName="Kusza | Neon | Wysłużona"
 CrossbowNeonRGBPreciousName="Kusza | Neon RGB | Cenny egzemplarz"
 CrossbowDragonKoiPreciousName="Kusza | Smok i Koi | Cenny egzemplarz"
+CrossbowPlagueDoctorMintName="Kusza | Badacz zarazy | Jak nowe"
+CrossbowPlagueDoctorSterlingName="Kusza | Badacz zarazy | Srebro"
+CrossbowPlagueDoctorObsidianName="Kusza | Badacz zarazy | Obsydian"
+CrossbowPlagueDoctorVolcanicName="Kusza | Badacz zarazy | Skała wulkaniczna"
+CrossbowPlagueDoctorEmeraldName="Kusza | Badacz zarazy | Szmaragd"
+CrossbowPlagueDoctorPreciousName="Kusza | Badacz zarazy | Cenne"																	  
 
 ;Crovel Descriptions
 CrovelMintDescription="Stan zewnętrzny: Jak nowy | Po części łom, a po części saperka. Śmiercionośne połączenie."
@@ -1936,6 +1967,14 @@ DesertEagleAlchemistToxicName="Desert Eagle | Alchemik | Toksyczne"
 DesertEagleAlchemistBlazeName="Desert Eagle | Alchemik | Pożar"
 DesertEagleChameleonDynamicName="Desert Eagle | Kameleon | Dynamiczne"
 DesertEagleChameleonDynamicRGBName="Desert Eagle | Kameleon | Dynamiczne RGB"
+DesertEaglePlagueDoctorMintName="Desert Eagle | Badacz zarazy | Jak nowe"
+DesertEaglePlagueDoctorSterlingName="Desert Eagle | Badacz zarazy | Srebro"
+DesertEaglePlagueDoctorObsidianName="Desert Eagle | Badacz zarazy | Obsydian"
+DesertEaglePlagueDoctorVolcanicName="Desert Eagle | Badacz zarazy | Skała wulkaniczna"
+DesertEaglePlagueDoctorEmeraldName="Desert Eagle | Badacz zarazy | Szmaragd"
+DesertEaglePlagueDoctorPreciousName="Desert Eagle | Badacz zarazy | Cenne"
+DesertEagleClassicMintName="Desert Eagle | Klasyczne | Jak nowe"
+DesertEagleClassicPreciousName="Desert Eagle | Klasyczne | Cenne"																  
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Stan zewnętrzny: Jak nowy | Kiedy podwójna zabawa nie wystarcza... niech będzie poczwórna!"
@@ -1957,6 +1996,12 @@ DoomstickBeyondHorizonMintName="Pukawka | Za Horyzontem | Jak nowe"
 DoomstickBeyondHorizonSpaceEliteName="Pukawka | Za Horyzontem | Gwiezdna elita"
 DoomstickHellmarkMagmaName="Pukawka | Hellmark | Magma"
 DoomstickHellmarkThunderName="Pukawka | Hellmark | Piorun"
+DoomstickPlagueDoctorMintName="Pukawka | Badacz zarazy | Jak nowe"
+DoomstickPlagueDoctorSterlingName="Pukawka | Badacz zarazy | Srebro"
+DoomstickPlagueDoctorObsidianName="Pukawka | Badacz zarazy | Obsydian"
+DoomstickPlagueDoctorVolcanicName="Pukawka | Badacz zarazy | Skała wulkaniczna"
+DoomstickPlagueDoctorEmeraldName="Pukawka | Badacz zarazy | Szmaragd"
+DoomstickPlagueDoctorPreciousName="Pukawka | Badacz zarazy | Cenne"																		
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="Stan zewnętrzny: Jak nowa | Strzelba na naboje zapalające smoczy oddech. Nie dość, że zabójcza, to jeszcze ładnie wygląda."
@@ -1997,6 +2042,12 @@ DragonsbreathIceBreakerDynamicName="Smoczy Oddech | Lodołamacz | Dynamiczne"
 DragonsbreathIceBreakerDynamicPreciousName="Smoczy Oddech | Lodołamacz | Dynamiczne cenne"
 DragonsbreathHellmarkMagmaName="Smoczy Oddech | Hellmark | Magma"
 DragonsbreathHellmarkThunderName="Smoczy Oddech | Hellmark | Piorun"
+DragonsbreathPlagueDoctorMintName="Smoczy Oddech | Badacz zarazy | Jak nowe"
+DragonsbreathPlagueDoctorSterlingName="Smoczy Oddech | Badacz zarazy | Srebro"
+DragonsbreathPlagueDoctorObsidianName="Smoczy Oddech | Badacz zarazy | Obsydian"
+DragonsbreathPlagueDoctorVolcanicName="Smoczy Oddech | Badacz zarazy | Skała wulkaniczna"
+DragonsbreathPlagueDoctorEmeraldName="Smoczy Oddech | Badacz zarazy | Szmaragd"
+DragonsbreathPlagueDoctorPreciousName="Smoczy Oddech | Badacz zarazy | Cenne"																				
 
 ;Eviscerator Descriptions
 EvisceratorMintDescription="Stan zewnętrzny: Jak nowy | Zaprojektowany przez grupę SDS Horzine w chwili szaleństwa. To niezbyt subtelne narzędzie."
@@ -2071,6 +2122,8 @@ FlamethrowerXMasSweetName="Miotacz ognia | Boże Narodzenie | Słodkie"
 FlamethrowerXMasSourName="Miotacz ognia | Boże Narodzenie | Kwaśne"
 FlamethrowerAlchemistToxicName="Miotacz ognia | Alchemik | Toksyczne"
 FlamethrowerAlchemistBlazeName="Miotacz ognia | Alchemik | Pożar"
+FlamethrowerChameleonDynamicName="Miotacz ognia | Kameleon | Dynamiczne"
+FlamethrowerChameleonDynamicRGBName="Miotacz ognia | Kameleon | Dynamiczne RGB"																			
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="Stan zewnętrzny: Jak nowy | Miotanie ogniem za pomocą wygodnej podręcznej broni."
@@ -2209,6 +2262,8 @@ HKUMPPrestigePreciousName="Heckler & Koch UMP | Prestiż | Cenny egzemplarz"
 HKUMPVaultVoshPreciousName="Heckler & Koch UMP | Skarbiec| Forsa| Cenny egzemplarz"
 HKUMPJaegerDynamicName="Heckler & Koch UMP | Jaeger | Dynamiczny"
 HKUMPJaegerDynamicRGBName="Heckler & Koch UMP | Jaeger | Dynamiczny RGB"
+HKUMPXenoDynamicName="Heckler & Koch UMP | Xeno | Dynamiczne"
+HKUMPXenoDynamicRGBName="Heckler & Koch UMP | Xeno | Dynamiczne RGB"																 
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="Stan zewnętrzny: Jak nowy | To zwykły skalpel. Skoro masz kwalifikacje medyczne, nie musimy wyjaśniać, jak się go używa."
@@ -2600,6 +2655,8 @@ KrissIceBreakerDynamicPreciousName="Kriss | Lodołamacz | Dynamiczne cenne"
 KrissInfernalElitePreciousName="Kriss | Piekielna elita | Cenne"
 KrissChameleonDynamicName="SMG Kriss | Kameleon | Dynamiczne"
 KrissChameleonDynamicRGBName="SMG Kriss | Kameleon | Dynamiczne RGB"
+KrissClassicMintName="SMG Kriss | Klasyczne | Jak nowe"
+KrissClassicPreciousName="SMG Kriss | Klasyczne | Cenne"													 
 
 ;L85A2 Descriptions
 L85A2MintDescription="Stan zewnętrzny: Jak nowy | SA80 był na standardowym wyposażeniu armii brytyjskiej, dopóki nie została, no cóż, zjedzona."
@@ -2686,6 +2743,8 @@ M14EBRDeepSeaCoralName="M14EBR | Głębokie morze | Koral"
 M14EBRDeepSeaPearlName="M14EBR | Głębokie morze | Perła"
 M14EBRDeepSeaBlackSealName="M14EBR | Głębokie morze | Czarna foka"
 M14EBRDeepSeaPreciousName="M14EBR | Głębokie morze | Cenne"
+M14EBRClassicMintName="M14EBR | Klasyczne | Jak nowe"
+M14EBRClassicPreciousName="M14EBR | Klasyczne | Cenne"													   
 
 ;M16M203 Descriptions
 M16M203MintDescription="Stan zewnętrzny: Jak nowy | Dla tych, którzy nie potrafią wybrać między kulami a ładunkami wybuchowymi."
@@ -2784,6 +2843,8 @@ M4NeonRGBPreciousName="M4 | Neon RGB | Cenny egzemplarz"
 M4PrestigePreciousName="M4 | Prestiż | Cenny egzemplarz"
 M4DragonKoiPreciousName="M4 | Smok i Koi | Cenny egzemplarz"
 M4FostersFavoritesPreciousName="M4 | Ulubione Fosterów | Cenny egzemplarz"
+M4XenoDynamicName="M4 | Xeno | Dynamiczne"
+M4XenoDynamicRGBName="M4 | Xeno | Dynamiczne RGB"											  
 
 ;M79 Descriptions
 M79MintDescription="Stan zewnętrzny: Jak nowy | Uzbraja się dopiero po kilku metrach, żeby strzelający nie urwał sobie twarzy."
@@ -2831,6 +2892,12 @@ M79NeonMintName="M79 | Neon | Jak nowy"
 M79NeonRGBPreciousName="M79 | Neon RGB | Cenny egzemplarz"
 M79IceBreakerDynamicName="M79 | Lodołamacz | Dynamiczne"
 M79IceBreakerDynamicPreciousName="M79 | Lodołamacz | Dynamiczne cenne"
+M79PlagueDoctorMintName="M79 | Badacz zarazy | Jak nowe"
+M79PlagueDoctorSterlingName="M79 | Badacz zarazy | Srebro"
+M79PlagueDoctorObsidianName="M79 | Badacz zarazy | Obsydian"
+M79PlagueDoctorVolcanicName="M79 | Badacz zarazy | Skała wulkaniczna"
+M79PlagueDoctorEmeraldName="M79 | Badacz zarazy | Szmaragd"
+M79PlagueDoctorPreciousName="M79 | Badacz zarazy | Cenne"															
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="Stan zewnętrzny: Jak nowy | Potężny atak – uderzenie tarczą."
@@ -2862,6 +2929,8 @@ M99JaegerDynamicName="M99 | Jaeger | Dynamiczne"
 M99JaegerDynamicRGBName="M99 | Jaeger | Dynamiczne RGB"
 M99IceBreakerDynamicName="M99 | Lodołamacz | Dynamiczne"
 M99IceBreakerDynamicPreciousName="M99 | Lodołamacz | Dynamiczne cenne"
+M99ChameleonDynamicName="M99 | Kameleon | Dynamiczne"
+M99ChameleonDynamicRGBName="M99 | Kameleon | Dynamiczne RGB"														  
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="Łamignat | Obwody | Jak nowy"
@@ -2939,6 +3008,8 @@ MedicBatBeyondHorizonMintName="Hemomaczuga | Za Horyzontem | Jak nowe"
 MedicBatBeyondHorizonSpaceEliteName="Hemomaczuga | Za Horyzontem | Gwiezdna elita"
 MedicBatHellmarkMagmaName="Hemomaczuga | Hellmark | Magma"
 MedicBatHellmarkThunderName="Hemomaczuga | Hellmark | Piorun"
+MedicBatXenoDynamicName="Hemomaczuga | Xeno | Dynamiczne"
+MedicBatXenoDynamicRGBName="Hemomaczuga | Xeno | Dynamiczne RGB"															 
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Stan zewnętrzny: Jak nowy | Cud nowoczesnej techniki: przenośny opiekacz zetów."
@@ -3281,6 +3352,8 @@ ScarXMasSweetName="Scar | Boże Narodzenie | Słodkie"
 ScarXMasSourName="Scar | Boże Narodzenie | Kwaśne"
 ScarAlchemistToxicName="Scar | Alchemik | Toksyczne"
 ScarAlchemistBlazeName="Scar | Alchemik | Pożar"
+ScarChameleonDynamicName="Scar | Kameleon | Dynamiczne"
+ScarChameleonDynamicRGBName="Scar | Kameleon | Dynamiczne RGB"															
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="Stan zewnętrzny: Jak nowy | Uniwersalna, wysoce wybuchowa broń, która pozwala namierzać i atakować wiele celów jednocześnie."
@@ -3633,6 +3706,12 @@ TommyGunVaultVoshPreciousName="Tommy Gun | Skarbiec | Forsa | Cenny egzemplarz"
 TommyGunJaegerDynamicName="Tommy Gun | Jaeger | Dynamiczny"
 TommyGunJaegerDynamicRGBName="Tommy Gun | Jaeger | Dynamiczny RGB"
 TommyGunStarsName="Tommy Gun | Skarbiec | Gwiazdki"
+TommyGunPlagueDoctorMintName="Tommy Gun | Badacz zarazy | Jak nowe"
+TommyGunPlagueDoctorSterlingName="Tommy Gun | Badacz zarazy | Srebro"
+TommyGunPlagueDoctorObsidianName="Tommy Gun | Badacz zarazy | Obsydian"
+TommyGunPlagueDoctorVolcanicName="Tommy Gun | Badacz zarazy | Skała wulkaniczna"
+TommyGunPlagueDoctorEmeraldName="Tommy Gun | Badacz zarazy | Szmaragd"
+TommyGunPlagueDoctorPreciousName="Tommy Gun | Badacz zarazy | Cenne"																	 
 
 ;Laser Cutter Descriptions
 LaserCutterMintDescription="Stan zewnętrzny: Jak nowy | Tryb przesterowania – ładowanie odbywa się po naciśnięciu spustu, a rozładowanie po jego puszczeniu."
@@ -4016,6 +4095,33 @@ ReductoRayAtomicLoveName="Promień Reducto | Atomowa miłość"
 ReductoRayLuckyStrikeName="Promień Reducto | Szczęśliwy traf"
 ReductoRayHeavyMetalName="Promień Reducto | Ciężki metal"
 ReductoRayDestructorName="Promień Reducto | Destruktor"												   
+;Blood Sickle Descriptions
+BloodSickleMintDescription="Stan zewnętrzny: jak nowe | Ulubiona broń żniwiarza – teraz można ją złożyć, aby mieściła się w ciasnych miejscach."
+BloodSickleFieldTestedDescription="Stan zewnętrzny: przetestowane | Ulubiona broń żniwiarza – teraz można ją złożyć, aby mieściła się w ciasnych miejscach."
+BloodSickleBattleScarredDescription="Stan zewnętrzny: wysłużone | Ulubiona broń żniwiarza – teraz można ją złożyć, aby mieściła się w ciasnych miejscach."
+BloodSicklePreciousDescription="Stan zewnętrzny: cenne | Ulubiona broń żniwiarza – teraz można ją złożyć, aby mieściła się w ciasnych miejscach."
+
+;Blood Sickle Names
+BloodSickleStandardName="Krwawy sierp | Standard"
+BloodSickleBloodbathName="Krwawy sierp | Jatka"
+BloodSickleButcheryName="Krwawy sierp | Masakra"
+BloodSickleCarouselName="Krwawy sierp | Karuzela"
+BloodSickleReaperName="Krwawy sierp | Reaper"
+BloodSickleHunterName="Krwawy sierp | Łowca"
+
+;G36C Descriptions
+G36CMintDescription="Stan zewnętrzny: jak nowe | Moc przebijania pancerza w broni wielkości pistoletu maszynowego."
+G36CFieldTestedDescription="Stan zewnętrzny: przetestowane | Moc przebijania pancerza w broni wielkości pistoletu maszynowego."
+G36CBattleScarredDescription="Stan zewnętrzny: wysłużone | Moc przebijania pancerza w broni wielkości pistoletu maszynowego."
+G36CPreciousDescription="Stan zewnętrzny: cenne | Moc przebijania pancerza w broni wielkości pistoletu maszynowego."
+
+;G36C Names
+G36CStandardName="Karabin szturmowy G36C | Standard"
+G36CSaharaName="Karabin szturmowy G36C | Sahara"
+G36CIcepackName="Karabin szturmowy G36C | Pakiet lodu"
+G36CAftermathName="Karabin szturmowy G36C | Następstwo"
+G36CJungleName="Karabin szturmowy G36C | Dżungla"
+G36CDazzleName="Karabin szturmowy G36C | Olśnienie"
 
 [CosmeticSection]
 
@@ -6401,6 +6507,18 @@ DeepSeaHelmetCoralName="Głębokie morze | Hełm | Koral"
 DeepSeaHelmetPearlName="Głębokie morze | Hełm | Perła"
 DeepSeaHelmetBlackSealName="Głębokie morze | Hełm | Czarna foka"
 DeepSeaHelmetPreciousName="Głębokie morze | Hełm | Cenne"														
+
+;Halloween 2022 Cosmetic Names
+PlagueDoctorBackpackPreciousName="Plague Doctor | Plecak towarzyszący | Cenne"
+PlagueDoctorHoodMintName="Badacz zarazy | Kaptur | Jak nowe"
+PlagueDoctorHoodSterlingName="Badacz zarazy | Kaptur | Srebro"
+PlagueDoctorHoodObsidianName="Badacz zarazy | Kaptur | Obsydian"
+PlagueDoctorHoodVolcanicName="Badacz zarazy | Kaptur | Skała wulkaniczna"
+PlagueDoctorHoodEmeraldName="Badacz zarazy | Kaptur | Szmaragd"
+PlagueDoctorHoodPreciousName="Badacz zarazy | Kaptur | Cenne"
+
+;Weekly Primary Target Cosmetic Name
+PrimaryTargetCrownPreciousName="Korona głównego celu | Cenne"																
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Dostępne z menu sprzętu; Dla większości postaci. Ekskluzywny przedmiot wydarzenia sezonowego Pokaz Letni. Wymienia się na 1 kupon Pokazu."

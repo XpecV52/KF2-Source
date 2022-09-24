@@ -401,7 +401,7 @@ defaultproperties
     InventoryGroup=EInventoryGroup.IG_Primary
     InventorySize=7
     PenetrationPower=/* Array type was not detected. */
-    IronSightPosition=(X=-3,Y=0,Z=0)
+    IronSightPosition=(X=-3,Y=0.145,Z=0)
     GroupPriority=100
     WeaponSelectTexture=Texture2D'WEP_UI_Blunderbuss_TEX.UI_WeaponSelect_BlunderBluss'
     MagazineCapacity=3

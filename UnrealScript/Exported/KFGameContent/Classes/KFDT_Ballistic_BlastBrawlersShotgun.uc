@@ -33,7 +33,7 @@ static simulated function bool CanDismemberHitZone( name InHitZoneName )
 defaultproperties
 {
    WeaponDef=Class'KFGame.KFWeapDef_HRG_BlastBrawlers'
-   StumblePower=12.000000
+   StumblePower=48.000000
    GunHitPower=12.000000
    BloodSpread=0.400000
    BloodScale=0.600000

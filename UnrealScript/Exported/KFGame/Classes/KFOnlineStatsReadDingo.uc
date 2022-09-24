@@ -70,6 +70,7 @@ defaultproperties
    ColumnIds(106)=4060
    ColumnIds(107)=4061
    ColumnIds(108)=4062
+   ColumnIds(109)=4063
    ColumnMappings(51)=(Id=4001,Name="AchievementMrPerky5")
    ColumnMappings(52)=(Id=4002,Name="AchievementMrPerky10")
    ColumnMappings(53)=(Id=4003,Name="AchievementMrPerky15")
@@ -128,6 +129,7 @@ defaultproperties
    ColumnMappings(106)=(Id=4060,Name="AchievementCollectNetherhold")
    ColumnMappings(107)=(Id=4061,Name="AchievementCollectCarillonHamlet")
    ColumnMappings(108)=(Id=4062,Name="AchievementCollectRig")
+   ColumnMappings(109)=(Id=4063,Name="AchievementCollectBarmwichTown")
    Name="Default__KFOnlineStatsReadDingo"
    ObjectArchetype=KFOnlineStatsRead'KFGame.Default__KFOnlineStatsRead'
 }

@@ -48,6 +48,7 @@ BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
 BodyMesh15="Vestito Esploratore degli abissi"									 
+BodyMesh16="Vestito Medico della Peste"								 
 HeadMesh0="Maschera antigas"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -177,6 +178,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
+[CHR_MrsFoster_archetype.BodyMesh16]									
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Bianca"
 HeadSkin1="Verde"
@@ -266,7 +274,8 @@ BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
 BodyMesh15="Vestito Esploratore degli abissi"										 
-HeadMesh0="Potenza della barba!"
+BodyMesh16="Vestito Medico della Peste"
+HeadMesh0="Potenza della barba!"						
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
 BodySkin0="Ghigliottina"
@@ -401,6 +410,13 @@ BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
 
+[CHR_Jagerhorn_archetype.BodyMesh16]									
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 [CHR_Jagerhorn_Archetype.HeadMesh0]
 HeadSkin0="Bionda Svedese"
 HeadSkin1="Black Album"
@@ -503,7 +519,8 @@ BodyMesh12="Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
 BodyMesh15="Vestito Esploratore degli abissi"	
-HeadMesh0="Maschera di Scully"
+BodyMesh16="Vestito Medico della Peste"
+HeadMesh0="Maschera di Scully"					   
 [chr_DJSkully_archetype.BodyMesh0]
 BodySkin0="Nero totale"
 BodySkin1="Extra rosso"
@@ -636,6 +653,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
+[CHR_DJSkully_archetype.BodyMesh16]								   
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 [chr_DJSkully_archetype.HeadMesh0]
 HeadSkin0="Nero totale"
 HeadSkin1="Extra rosso"
@@ -685,6 +709,7 @@ BodyMesh13="Vestito Pirata spaziale"
 BodyMesh14="Vestito Mietitore"
 BodyMesh15="Vestito Compratore di Natale"
 BodyMesh16="Vestito Esploratore degli abissi"										 
+BodyMesh17="Vestito Medico della Peste"								 
 HeadMesh0="Capelli"
 
 [chr_briar_archetype.BodyMesh0]
@@ -825,6 +850,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
+[CHR_briar_archetype.BodyMesh17]								
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 [chr_briar_archetype.HeadMesh0]
 HeadSkin0="Originale"
 HeadSkin1="Colpi di sole"
@@ -868,6 +900,7 @@ BodyMesh13="Vestito Pirata spaziale"
 BodyMesh14="Vestito Mietitore"
 BodyMesh15="Vestito Compratore di Natale"
 BodyMesh16="Vestito Esploratore degli abissi"										 
+BodyMesh17="Vestito Medico della Peste"								 
 HeadMesh0="Maschera antigas"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -1012,6 +1045,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
+[CHR_MrFoster_archetype.BodyMesh17]								   
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"				   					
 
 [CHR_MrFoster_archetype.HeadMesh0]
 HeadSkin0="Vero bianco"
@@ -1176,6 +1216,7 @@ BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
 BodyMesh15="Vestito Esploratore degli abissi"										 
+BodyMesh16="Vestito Medico della Peste"								 
 HeadMesh0="Viso"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1308,6 +1349,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
+[CHR_Coleman_archetype.BodyMesh16]								  
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tatuaggi"
@@ -1350,6 +1398,7 @@ BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
 BodyMesh15="Vestito Esploratore degli abissi"										 
+BodyMesh16="Vestito Medico della Peste"								 
 HeadMesh0="Capelli"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1484,6 +1533,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
+[CHR_Alberts_archetype.BodyMesh16]								  
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 [CHR_Alberts_archetype.HeadMesh0]
 HeadSkin0="Grigio"
 HeadSkin1="Marrone"
@@ -2386,6 +2442,7 @@ BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
 BodyMesh15="Vestito Esploratore degli abissi"										 
+BodyMesh16="Vestito Medico della Peste"								 
 HeadMesh0="Viso"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2529,6 +2586,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"
+[CHR_Masterson_archetype.BodyMesh16]									
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 
 [CHR_Tanaka_Archetype]
 CharacterName="Hayato Tanaka"
@@ -2550,6 +2614,7 @@ BodyMesh13="Vestito Pirata spaziale"
 BodyMesh14="Vestito Mietitore"
 BodyMesh15="Vestito Compratore di Natale"
 BodyMesh16="Vestito Esploratore degli abissi"										 
+BodyMesh17="Vestito Medico della Peste"								 
 HeadMesh0="Capelli"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2700,6 +2765,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
+[CHR_Tanaka_archetype.BodyMesh17]								 
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
 Attachment="Elmetto"
 AttachmentSkin0="Sole nascente"
@@ -2746,6 +2818,7 @@ BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
 BodyMesh15="Vestito Esploratore degli abissi"										 
+BodyMesh16="Vestito Medico della Peste"								 
 HeadMesh0="Moicano"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2824,6 +2897,13 @@ BodySkin4="Neve rossa"
 BodySkin5="Alberi"
 BodySkin6="Scozzese rosso"
 
+[CHR_Ana_archetype.BodyMesh16]							  
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="Motivo Deposito"
 
@@ -2921,6 +3001,7 @@ BodyMesh13="Vestito Pirata spaziale"
 BodyMesh14="Vestito Mietitore"
 BodyMesh15="Vestito Compratore di Natale"
 BodyMesh16="Vestito Esploratore degli abissi"										 
+BodyMesh17="Vestito Medico della Peste"								 
 HeadMesh0="Capelli"
 
 [chr_mark_archetype.BodyMesh0]
@@ -3060,6 +3141,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"
+[CHR_mark_archetype.BodyMesh17]							   
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 
 [chr_mark_archetype.HeadMesh0]
 HeadSkin0="Vero duro"
@@ -3090,6 +3178,7 @@ BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
 BodyMesh15="Vestito Esploratore degli abissi"										 
+BodyMesh16="Vestito Medico della Peste"								 
 HeadMesh0="Viso"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3225,6 +3314,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
+[CHR_alan_archetype.BodyMesh16]							   
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"				
 [chr_alan_archetype.HeadMesh0]
 HeadSkin0="Vero duro"
 HeadSkin1="Ginger! Davvero?"
@@ -3261,6 +3357,7 @@ BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
 BodyMesh15="Vestito Esploratore degli abissi"									 
+BodyMesh16="Vestito Medico della Peste"								 
 HeadMesh0="Capelli"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3393,6 +3490,13 @@ BodySkin2="Corallo"
 BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
+[CHR_strasser_archetype.BodyMesh16]								   
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acciaio scuro"
 HeadSkin1="Acciaio chiaro"
@@ -3573,6 +3677,7 @@ BodyMesh12="Vestito Pirata spaziale"
 BodyMesh13="Vestito Mietitore"
 BodyMesh14="Vestito Compratore di Natale"
 BodyMesh15="Vestito Esploratore degli abissi"										 
+BodyMesh16="Vestito Medico della Peste"								 
 HeadMesh0="Testa predefinita"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3709,6 +3814,13 @@ BodySkin3="Perla"
 BodySkin4="Foca nera"
 BodySkin5="Prezioso"					
 
+[CHR_rockabilly_archetype.BodyMesh16]									 
+BodySkin0="Perfetto"
+BodySkin1="Argento sterling"
+BodySkin2="Ossidiana"
+BodySkin3="Roccia vulcanica"
+BodySkin4="Smeraldo"
+BodySkin5="Prezios"					
 [chr_rockabilly_archetype.HeadMesh0]
 HeadSkin0="Nera"
 HeadSkin1="Castano"
@@ -7266,3 +7378,19 @@ AttachmentSkin2="Corallo"
 AttachmentSkin3="Perla"
 AttachmentSkin4="Foca nera"
 AttachmentSkin5="Prezioso"							  
+[Cosmetic_PlagueDoctor_Backpack_ARCH]
+Attachment="Zaino Medico della Peste"
+AttachmentSkin0="Prezios"
+
+[Cosmetic_PrimaryTarget_Crown_ARCH]
+Attachment="Corona del Bersaglio primario"
+AttachmentSkin0="Prezios"
+
+[Cosmetic_PlagueDoctor_Hood_ARCH]
+Attachment="Cappuccio Medico della Peste"
+AttachmentSkin0="Perfetto"
+AttachmentSkin1="Argento sterling"
+AttachmentSkin2="Ossidiana"
+AttachmentSkin3="Roccia vulcanica"
+AttachmentSkin4="Smeraldo"
+AttachmentSkin5="Prezios"				  

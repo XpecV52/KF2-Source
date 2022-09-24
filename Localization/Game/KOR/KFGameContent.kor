@@ -857,6 +857,27 @@ ItemName="센티넬"
 ItemCategory="특수"
 ItemDescription="•드론이 위치를 굽어보고 적을 공격합니다.\n•보조 사격으로 드론을 터뜨립니다.\n•탄약이 없고 주변에 제드가 있으면 자폭합니다."
 SharedUnlockSource="센티넬 무기 번들"
+[KFWeap_HRG_Dragonbreath]
+ItemName="HRG 드래곤블레이즈"
+ItemCategory="산탄총"
+ItemDescription="•기본 발사 시 싱글 배럴로 수직으로 발사합니다.\n•보조 발사 시 싱글 배럴로 수직으로 발사합니다.\n•드래곤은 포함되어 있지 않습니다."
+
+[KFWeap_AssaultRifle_G36C]
+ItemName="G36C 돌격소총"
+ItemCategory="돌격소총"
+ItemDescription="•전자동 및 반자동 사격 모드를 선택할 수 있습니다.\n•철갑탄을 보유하고 있습니다.\n•인기 있는 돌격소총의 소형 버전입니다."
+SharedUnlockSource="G36C 돌격소총 무기 번들"
+
+[KFWeap_Edged_Scythe]
+ItemName="피의 낫"
+ItemCategory="백병전"
+ItemDescription="•기본 - 단일 베기 공격, 기본 공격을 길게 누르면 콤보 공격.\n•보조 - 더블 스윕 공격.\n•재장전 - 원거리 또는 근거리로 교체할 수 있습니다.\n•대체 - 차단/회피."
+SharedUnlockSource="피의 낫 무기 번들"
+
+[KFWeap_HRG_Locust]
+ItemName="HRG 로커스트"
+ItemCategory="폭발물"
+ItemDescription="•기본 발사 시 제드를 공격하는 나노봇 로커스트 무리를 생성합니다.\n•Alt-발사로 조준하면 레이저 조준점을 작동하고 유도 로켓을 쓸 수 있습니다.\n•제드 통제 시 가장 유용한 무기입니다."																																																									  
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr. Hans Volter"

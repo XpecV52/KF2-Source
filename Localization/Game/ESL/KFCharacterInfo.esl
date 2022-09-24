@@ -48,6 +48,7 @@ BodyMesh12="Atuendo Pirata espacial"
 BodyMesh13="Atuendo de Parca"
 BodyMesh14="Atuendo Compras festivas"
 BodyMesh15="Atuendo de explorador submarino"
+BodyMesh16="Atuendo de médico de la peste"										   
 HeadMesh0="Máscara de gas"
 
 [CHR_MrsFoster_archetype.BodyMesh0]
@@ -177,6 +178,13 @@ BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
 BodySkin5="Precioso"
+[CHR_MrsFoster_archetype.BodyMesh16]									
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"						 
 
 [CHR_MrsFoster_archetype.HeadMesh0]
 HeadSkin0="Blanco"
@@ -267,6 +275,7 @@ BodyMesh12="Atuendo Pirata espacial"
 BodyMesh13="Atuendo de Parca"
 BodyMesh14="Atuendo Compras festivas"
 BodyMesh15="Atuendo de explorador submarino"
+BodyMesh16="Atuendo de médico de la peste"										   
 HeadMesh0="¡Barbudos al poder!"
 
 [CHR_Jagerhorn_Archetype.BodyMesh0]
@@ -401,6 +410,13 @@ BodySkin1="Agua"
 BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
+BodySkin5="Precioso"					
+[CHR_Jagerhorn_archetype.BodyMesh16]									
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"					 
 BodySkin5="Precioso"
 
 [CHR_Jagerhorn_Archetype.HeadMesh0]
@@ -505,6 +521,7 @@ BodyMesh12="Pirata espacial"
 BodyMesh13="Atuendo de Parca"
 BodyMesh14="Atuendo Compras festivas"
 BodyMesh15="Atuendo de explorador submarino"
+BodyMesh16="Atuendo de médico de la peste"										   
 HeadMesh0="Máscara de Calavera"
 
 [chr_DJSkully_archetype.BodyMesh0]
@@ -638,6 +655,13 @@ BodySkin1="Agua"
 BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
+BodySkin5="Precioso"					
+[CHR_DJSkully_archetype.BodyMesh16]								   
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"					 
 BodySkin5="Precioso"
 
 [chr_DJSkully_archetype.HeadMesh0]
@@ -689,6 +713,7 @@ BodyMesh13="Atuendo Pirata espacial"
 BodyMesh14="Atuendo de Parca"
 BodyMesh15="Atuendo Compras festivas"
 BodyMesh16="Atuendo de explorador submarino"
+BodyMesh17="Atuendo de médico de la peste"														
 HeadMesh0="Pelo"
 
 [chr_briar_archetype.BodyMesh0]
@@ -828,6 +853,13 @@ BodySkin1="Agua"
 BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
+BodySkin5="Precioso"					
+[CHR_briar_archetype.BodyMesh17]								
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"					 
 BodySkin5="Precioso"
 
 [chr_briar_archetype.HeadMesh0]
@@ -873,6 +905,7 @@ BodyMesh13="Atuendo Pirata espacial"
 BodyMesh14="Atuendo de Parca"
 BodyMesh15="Atuendo Compras festivas"
 BodyMesh16="Atuendo de explorador submarino"
+BodyMesh17="Atuendo de médico de la peste"										   
 HeadMesh0="Máscara de gas"
 
 [CHR_MrFoster_archetype.BodyMesh0]
@@ -1017,6 +1050,13 @@ BodySkin1="Agua"
 BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
+BodySkin5="Precioso"					
+[CHR_MrFoster_archetype.BodyMesh17]								   
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"					 
 BodySkin5="Precioso"
 
 [CHR_MrFoster_archetype.HeadMesh0]
@@ -1182,6 +1222,7 @@ BodyMesh12="Atuendo Pirata espacial"
 BodyMesh13="Atuendo de Parca"
 BodyMesh14="Atuendo Compras festivas"
 BodyMesh15="Atuendo de explorador submarino"
+BodyMesh16="Atuendo de médico de la peste"														
 HeadMesh0="Cara"
 
 [CHR_Coleman_archetype.BodyMesh0]
@@ -1315,6 +1356,13 @@ BodySkin3="Perla"
 BodySkin4="Foca negra"
 BodySkin5="Precioso"
 
+[CHR_Coleman_archetype.BodyMesh16]								  
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"						 
 [CHR_Coleman_archetype.HeadMesh0]
 HeadSkin0="Donovan"
 HeadSkin1="Tatu"
@@ -1357,6 +1405,7 @@ BodyMesh12="Atuendo Pirata espacial"
 BodyMesh13="Atuendo de Parca"
 BodyMesh14="Atuendo Compras festivas"
 BodyMesh15="Atuendo de explorador submarino"
+BodyMesh16="Atuendo de médico de la peste"															
 HeadMesh0="Pelo"
 
 [CHR_Alberts_archetype.BodyMesh0]
@@ -1490,6 +1539,13 @@ BodySkin1="Agua"
 BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
+BodySkin5="Precioso"					
+[CHR_Alberts_archetype.BodyMesh16]								  
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"					 
 BodySkin5="Precioso"
 
 [CHR_Alberts_archetype.HeadMesh0]
@@ -2394,6 +2450,7 @@ BodyMesh12="Atuendo Pirata espacial"
 BodyMesh13="Atuendo de Parca"
 BodyMesh14="Atuendo Compras festivas"
 BodyMesh15="Atuendo de explorador submarino"
+BodyMesh16="Atuendo de médico de la peste"															
 HeadMesh0="Cara"
 
 [CHR_Masterson_archetype.HeadMesh0]
@@ -2536,6 +2593,13 @@ BodySkin1="Agua"
 BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
+BodySkin5="Precioso"					
+[CHR_Masterson_archetype.BodyMesh16]									
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"					 
 BodySkin5="Precioso"
 
 [CHR_Tanaka_Archetype]
@@ -2558,6 +2622,7 @@ BodyMesh13="Atuendo Pirata espacial"
 BodyMesh14="Atuendo de Parca"
 BodyMesh15="Atuendo Compras festivas"
 BodyMesh16="Atuendo de explorador submarino"
+BodyMesh17="Atuendo de médico de la peste"														
 HeadMesh0="Pelo"
 
 [CHR_Tanaka_Archetype.HeadMesh0]
@@ -2707,6 +2772,13 @@ BodySkin1="Agua"
 BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
+BodySkin5="Precioso"					
+[CHR_Tanaka_archetype.BodyMesh17]								 
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"					 
 BodySkin5="Precioso"
 
 [Cosmetic_Tanaka_BikerHelmet_ARCH]
@@ -2755,6 +2827,7 @@ BodyMesh12="Atuendo Pirata espacial"
 BodyMesh13="Atuendo de Parca"
 BodyMesh14="Atuendo Compras festivas"
 BodyMesh15="Atuendo de explorador submarino"
+BodyMesh16="Atuendo de médico de la peste"														
 HeadMesh0="Cresta"
 
 [CHR_Ana_Archetype.HeadMesh0]
@@ -2833,6 +2906,13 @@ BodySkin4="Nieve roja"
 BodySkin5="Árboles"
 BodySkin6="Tela roja"
 
+[CHR_Ana_archetype.BodyMesh16]							  
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"					
 [CHR_Ana_Archetype.BodyMesh7]
 BodySkin0="Estampado de cámara"
 
@@ -2931,6 +3011,7 @@ BodyMesh13="Atuendo Pirata espacial"
 BodyMesh14="Atuendo de Parca"
 BodyMesh15="Atuendo Compras festivas"
 BodyMesh16="Atuendo de explorador submarino"
+BodyMesh17="Atuendo de médico de la peste"														
 HeadMesh0="Pelo"
 
 [chr_mark_archetype.BodyMesh0]
@@ -3070,6 +3151,13 @@ BodySkin1="Agua"
 BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
+BodySkin5="Precioso"				
+[CHR_mark_archetype.BodyMesh17]							   
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"					 
 BodySkin5="Precioso"
 
 [chr_mark_archetype.HeadMesh0]
@@ -3101,6 +3189,7 @@ BodyMesh12="Atuendo Pirata espacial"
 BodyMesh13="Atuendo de Parca"
 BodyMesh14="Atuendo Compras festivas"
 BodyMesh15="Atuendo de explorador submarino"
+BodyMesh16="Atuendo de médico de la peste"														
 HeadMesh0="Cara"
 
 [CHR_alan_archetype.BodyMesh0]
@@ -3235,6 +3324,13 @@ BodySkin1="Agua"
 BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
+BodySkin5="Precioso"					
+[CHR_alan_archetype.BodyMesh16]							   
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"					 
 BodySkin5="Precioso"
 
 [chr_alan_archetype.HeadMesh0]
@@ -3273,6 +3369,7 @@ BodyMesh12="Atuendo Pirata espacial"
 BodyMesh13="Atuendo de Parca"
 BodyMesh14="Atuendo Compras festivas"
 BodyMesh15="Atuendo de explorador submarino"
+BodyMesh16="Atuendo de médico de la peste"														
 HeadMesh0="Pelo"
 
 [CHR_strasser_archetype.BodyMesh0]
@@ -3405,6 +3502,13 @@ BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
 BodySkin5="Precioso""
+[CHR_strasser_archetype.BodyMesh16]								   
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"
+BodySkin5="Precioso"						 
 
 [chr_strasser_archetype.HeadMesh0]
 HeadSkin0="Acero oscuro"
@@ -3586,6 +3690,7 @@ BodyMesh12="Atuendo Pirata espacial"
 BodyMesh13="Atuendo de Parca"
 BodyMesh14="Atuendo Compras festivas"
 BodyMesh15="Atuendo de explorador submarino"
+BodyMesh16="Atuendo de médico de la peste"										   
 HeadMesh0="Cabeza por defecto"
 
 [chr_rockabilly_archetype.BodyMesh0]
@@ -3721,6 +3826,13 @@ BodySkin1="Agua"
 BodySkin2="Coral"
 BodySkin3="Perla"
 BodySkin4="Foca negra"
+BodySkin5="Precioso"					  					
+[CHR_rockabilly_archetype.BodyMesh16]									 
+BodySkin0="Impecable"
+BodySkin1="Esterlina"
+BodySkin2="Obsidiana"
+BodySkin3="Volcánica"
+BodySkin4="Esmeralda"					 
 BodySkin5="Precioso"
 
 [chr_rockabilly_archetype.HeadMesh0]
@@ -7282,3 +7394,19 @@ AttachmentSkin2="Coral"
 AttachmentSkin3="Perla"
 AttachmentSkin4="Foca negra"
 AttachmentSkin5="Precioso"
+[Cosmetic_PlagueDoctor_Backpack_ARCH]
+Attachment="Mochila de médico de la peste"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_PrimaryTarget_Crown_ARCH]
+Attachment="Corona de objetivo principal"
+AttachmentSkin0="Precioso"
+
+[Cosmetic_PlagueDoctor_Hood_ARCH]
+Attachment="Capucha de médico de la peste"
+AttachmentSkin0="Impecable"
+AttachmentSkin1="Esterlina"
+AttachmentSkin2="Obsidiana"
+AttachmentSkin3="Volcánica"
+AttachmentSkin4="Esmeralda"
+AttachmentSkin5="Precioso"									  

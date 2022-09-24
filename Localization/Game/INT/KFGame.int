@@ -22,6 +22,10 @@ ServerTypeStrings[2]="Ranked - Custom"
 ServerTypeStrings[3]="Unranked"
 WeaponLevelString="WEAPON LEVEL"
 GunPointsString="WEAPON POINTS"
+VIPString="OBJECTIVE"
+VIPObjectiveAString="PROTECT THE VIP"
+VIPObjectiveBString="SURVIVE"
+VIPObjectiveCString="You are the VIP"
 
 PermissionStrings[0]="Public"
 PermissionStrings[1]="Private: Passworded"
@@ -1405,6 +1409,11 @@ AimAssistLockOnString="Aim Assist Zoom Lock-On"
 AimAssistRotationString="Aim Assist Rotation"
 AimAssistSlowDownString="Aim Assist Slowdown"
 ForceFeedbackString="Controller Vibration"
+MouseLookUpScaleString="Vertical"
+MouseLookRightScaleString="Horizontal"
+ViewAccelerationString="View Acceleration"
+ViewSmoothingString="View Smoothing"
+
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="MOVEMENT"
@@ -1449,6 +1458,7 @@ ShrinkString="Shrink"
 
 [KFInventoryManager]
 FullHealthMsg="Health Full"
+CannotHealthMsg="You can't heal yourself"
 
 [KFLocalMessage]
 SystemString="System:"
@@ -1567,6 +1577,7 @@ ScavengeMessage="Scavenge"
 YouLostMessage="D E F E A T"
 YouWonMessage="V I C T O R Y"
 SquadWipedOutMessage="Your squad was wiped out!"
+SquadWipedOutVIPMessage="The VIP has been defeated"
 SquadSurvivedMessage="Your squad survived!"
 ObjectiveStartMessage="OBJECTIVE STARTED"
 ObjectiveWonMessage="OBJECTIVE COMPLETE"
@@ -2916,6 +2927,20 @@ AllCompleteRewardDescriptionString="Deep Sea | Trident | Precious"
 ChanceDropDescriptionStrings[0]="Summer Ticket"
 ChanceDropDescriptionStrings[1]="Summer Golden Ticket"
 
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="A time-limited special event with exclusive items"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Creatures of Darkness",DescriptionString="Kill 15 Bosses on any map or mode")
+SpecialEventObjectiveInfoList[1]=(TitleString="Weekly Witchcraft",DescriptionString="Complete the Weekly on Barmwich Town")
+SpecialEventObjectiveInfoList[2]=(TitleString="Elemental Medallions",DescriptionString="Open the Weapon Room")
+SpecialEventObjectiveInfoList[3]=(TitleString="Zeds On Fire",DescriptionString="Make 50 Zeds to pass through the bonfires of Barmwich Town")
+SpecialEventObjectiveInfoList[4]=(TitleString="Long Night of Witches",DescriptionString="Complete wave 15 on Endless Hard or higher difficulty on Barmwich Town")
+
+AllCompleteRewardDescriptionString="Plague Doctor | Backpack | Precious"
+
+ChanceDropDescriptionStrings[0]="Halloween Ticket"
+ChanceDropDescriptionStrings[1]="Halloween Golden Ticket"
+
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3091,6 +3116,16 @@ FriendlyName="Arsenal Ascent"
 DescriptionStrings[0]="Level up your weapon!"
 DescriptionStrings[1]="Length: Special"
 ModifierDescriptions[0]="Traders are not operative. Start only with a knife. Earn weapon points by killing to obtain better weapons. Only Survivalists allowed. Select the Weekly game mode on the Matchmaking page. Perk 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"
+
+[VIPMode KFWeeklyOutBreakInformation]
+FriendlyName="Primary Target"
+DescriptionStrings[0]="Protect the VIP!"
+DescriptionStrings[1]="Length: Medium (7 waves)"
+ModifierDescriptions[0]="One player is chosen as VIP. The VIP must survive or the game is over. The VIP can only be healed by other players. Select the Weekly game mode on the Matchmaking page. Perk 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3624,6 +3659,9 @@ DisplayName="Carillon Hamlet"
 
 [KF-Rig KFMapSummary]
 DisplayName="Rig"
+
+[KF-BarmwichTown KFMapSummary]
+DisplayName="Barmwich Town"
 
 [KFMapInfo]
 ; defaults

@@ -87,7 +87,10 @@ const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178; 
 const KFID_SurvivalStartingWeapIdx=179; 
 const KFID_SurvivalStartingGrenIdx=180; 
-#linenumber 12
+const KFID_MouseLookUpScale=181; 
+const KFID_MouseLookRightScale=182; 
+const KFID_ViewSmoothingEnabled=183; 
+const KFID_ViewAccelerationEnabled=184; #linenumber 12
 
 struct native WeaponSkinPairs
 {
@@ -341,6 +344,10 @@ defaultproperties
    DefaultSettings(66)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=178,Data=(Type=SDT_Int32)))
    DefaultSettings(67)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=179,Data=(Type=SDT_Int32)))
    DefaultSettings(68)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=180,Data=(Type=SDT_Int32)))
+   DefaultSettings(69)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=181,Data=(Type=SDT_Float,Value1=-1027080192)))
+   DefaultSettings(70)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=182,Data=(Type=SDT_Float,Value1=1120403456)))
+   DefaultSettings(71)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=183,Data=(Type=SDT_Int32)))
+   DefaultSettings(72)=(Owner=OPPO_Game,ProfileSetting=(PropertyId=184,Data=(Type=SDT_Int32,Value1=1)))
    VersionNumber=6
    ProfileMappings(0)=(Id=100,Name="Quick Weapon Select",MappingType=PVMT_RawValue,ValueMappings=((Id=0),))
    ProfileMappings(1)=(Id=101,Name="Current Layout Index",MappingType=PVMT_RawValue,ValueMappings=(,(Id=0)))
@@ -412,6 +419,10 @@ defaultproperties
    ProfileMappings(67)=(Id=178,Name="AllowSwitchTo9mm")
    ProfileMappings(68)=(Id=179,Name="Survival Starting Weapon Index")
    ProfileMappings(69)=(Id=180,Name="Survival Starting Grenade Index")
+   ProfileMappings(70)=(Id=181,Name="Mouse_Look_Up_Scale")
+   ProfileMappings(71)=(Id=182,Name="Mouse_Look_Right_Scale")
+   ProfileMappings(72)=(Id=183,Name="View_Smoothing_Enabled")
+   ProfileMappings(73)=(Id=184,Name="View_Acceleration_Enabled")
    Name="Default__KFProfileSettings"
    ObjectArchetype=OnlineProfileSettings'Engine.Default__OnlineProfileSettings'
 }

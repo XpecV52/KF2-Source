@@ -278,7 +278,7 @@ static function PrepareExplosive(Pawn ProjOwner, KFProjectile Proj, optional flo
                 }
                 else
                 {
-                    if(InstigatorPRI.bConcussiveActive && Proj.AltExploEffects != none)
+                    if((InstigatorPRI.bConcussiveActive && Proj.AltExploEffects != none) && Class'KFPerk_Demolitionist'.static.ProjectileShouldConcussive(Proj))
                     {
                         Proj.ExplosionTemplate.ExplosionEffects = Proj.AltExploEffects;
                         Proj.ExplosionTemplate.ExplosionSound = Class'KFPerk_Demolitionist'.static.GetConcussiveExplosionSound();
@@ -291,8 +291,12 @@ static function PrepareExplosive(Pawn ProjOwner, KFProjectile Proj, optional flo
             KFPC = KFPlayerController(ProjOwner.Controller);
             if(KFPC != none)
             {
-                InstigatorPerk = KFPC.GetPerk();
-                Proj.ExplosionTemplate.DamageRadius *= (InstigatorPerk.GetAoERadiusModifier() * AuxRadiusMod);
+                Proj.ExplosionTemplate.DamageRadius *= AuxRadiusMod;
+                if(Class'KFPerk_Demolitionist'.static.ProjectileShouldExplosionChangeRadius(Proj))
+                {
+                    InstigatorPerk = KFPC.GetPerk();
+                    Proj.ExplosionTemplate.DamageRadius *= InstigatorPerk.GetAoERadiusModifier();
+                }
             }
         }
     }
@@ -509,6 +513,16 @@ function float GetReactionModifier(optional class<KFDamageType> DamageType)
 static simulated function bool ProjectileShouldNuke(KFProjectile Proj)
 {
     return Proj.AllowNuke();
+}
+
+static simulated function bool ProjectileShouldConcussive(KFProjectile Proj)
+{
+    return Proj.AllowDemolitionistConcussive();
+}
+
+static simulated function bool ProjectileShouldExplosionChangeRadius(KFProjectile Proj)
+{
+    return Proj.AllowDemolitionistExplosionChangeRadius();
 }
 
 simulated function bool DoorShouldNuke()

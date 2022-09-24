@@ -22,6 +22,10 @@ ServerTypeStrings[2]="랭크 - 커스텀"
 ServerTypeStrings[3]="언랭크"
 WeaponLevelString="무기 레벨"
 GunPointsString="무기 포인트"
+VIPString="목표"
+VIPObjectiveAString="VIP 보호하기"
+VIPObjectiveBString="생존하기"
+VIPObjectiveCString="당신이 VIP입니다"									 
 
 PermissionStrings[0]="공개"
 PermissionStrings[1]="비공개: 암호 있음"
@@ -1405,6 +1409,10 @@ AimAssistLockOnString="조준 보조 줌 고정"
 AimAssistRotationString="조준 보조 회전"
 AimAssistSlowDownString="조준 보조 천천히"
 ForceFeedbackString="컨트롤러 진동"
+MouseLookUpScaleString="수직"
+MouseLookRightScaleString="수평"
+ViewAccelerationString="조준 가속"
+ViewSmoothingString="조준 스무딩"									
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="이동"
@@ -1449,6 +1457,7 @@ ShrinkString="축소"
 
 [KFInventoryManager]
 FullHealthMsg="체력 가득 참"
+CannotHealthMsg="자신을 치료할 수 없습니다"										 
 
 [KFLocalMessage]
 SystemString="본체:"
@@ -1567,7 +1576,8 @@ ScavengeMessage="먹이 찾기"
 YouLostMessage="패 배"
 YouWonMessage="승 리"
 SquadWipedOutMessage="플레이어의 부대가 패배했습니다!"
-SquadSurvivedMessage="플레이어의 부대가 생존했습니다!"
+SquadWipedOutVIPMessage="VIP가 패배했습니다"
+SquadSurvivedMessage="플레이어의 부대가 생존했습니다!"										   
 ObjectiveStartMessage="목표 개시"
 ObjectiveWonMessage="목표 완료"
 ObjectiveEndedMessage="목표 종료"
@@ -2915,6 +2925,19 @@ AllCompleteRewardDescriptionString="심해 | 트라이던트 | 프레셔스"
 
 ChanceDropDescriptionStrings[0]="여름 티켓"
 ChanceDropDescriptionStrings[1]="여름 골든 티켓"
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="限定版アイテム付きの期間限定スペシャルイベント"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="어둠의 생물",DescriptionString="아무 지도 혹은 모드에서 보스 15마리 처치하기")
+SpecialEventObjectiveInfoList[1]=(TitleString="주간 요술",DescriptionString="밤위치 타운에서 주간 게임 모드 완료하기")
+SpecialEventObjectiveInfoList[2]=(TitleString="속성 메달",DescriptionString="무기실 열기")
+SpecialEventObjectiveInfoList[3]=(TitleString="불타는 제드",DescriptionString="제드 50마리가 밤위치 타운 모닥불 지나게 하기")
+SpecialEventObjectiveInfoList[4]=(TitleString="마녀들의 긴 밤",DescriptionString="밤위치 타운에서 끝없는 도전 어려움 이상으로 15 웨이브 완료하기")
+
+AllCompleteRewardDescriptionString="전염병 의사 | 백팩 | 프레셔스"
+
+ChanceDropDescriptionStrings[0]="할로윈 티켓"
+ChanceDropDescriptionStrings[1]="할로윈 골든 티켓"													 
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3095,6 +3118,15 @@ ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
 ModifierDescriptions[4]="test5"
 
+[VIPMode KFWeeklyOutBreakInformation]
+FriendlyName="기본 목표"
+DescriptionStrings[0]="VIP를 보호하세요!"
+DescriptionStrings[1]="길이: 중간(7웨이브)"
+ModifierDescriptions[0]="한 명의 플레이어가 VIP가 됩니다. VIP가 살아남지 못하면 게임이 끝납니다. VIP는 다른 플레이어만 치료할 수 있습니다. 매치 메이킹 페이지에서 주간 게임 모드를 선택하세요. 병과 15+."
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"							   
 ;============================================
 ; Map Localization
 ;============================================
@@ -3622,6 +3654,8 @@ DisplayName="네더홀드"
 DisplayName="카릴리온 거주지"
 [KF-Rig KFMapSummary]
 DisplayName="리그"
+[KF-BarmwichTown KFMapSummary]
+DisplayName="밤위치 타운"						   
 
 [KFMapInfo]
 ; defaults

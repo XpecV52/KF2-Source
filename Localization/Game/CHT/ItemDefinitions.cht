@@ -241,11 +241,20 @@ ClassicWeaponSkinBundleName="經典武器造型組合包"
 DeepSeaSkinWeaponSkinPackName="深海武器造型組合包"
 ChameleonWeaponSkinBundleName="變色龍武器造型組合包"
 DeepSeaExplorerOutfitName="深海探險家服飾組合包"
+PlagueDoctorOutfitName="瘟疫醫生服裝同捆包"
 ReductoRayBundleName="收縮射線武器組合包"
 SentinelBundleName="哨兵武器組合包"
 TidalTerrorBundleName="潮汐恐攻武器組合包"
 ArmorySeasonPass2022Name="《Killing Floor 2》- 武器庫季票 2"
 UltimateUpgradeName="《Killing Floor 2》-終極版升級"																
+PlagueDoctorWeaponSkinBundleName="瘟疫醫生武器造型套組"
+XenoWeaponSkinBundleName="異種武器造型同捆包"
+ClassicMKIIWeaponSkinBundleName="經典MKII武器造型同捆包"
+ChameleonMKIIWeaponSkinBundleName="變色龍MKII武器造型同捆包"
+PlagueDoctorOutfitBundleName="瘟疫醫生服裝同捆包"
+G36CBundleName="G36C 突擊步槍武器同捆包"
+BloodSickleBundleName="血腥鐮刀武器同捆包"
+BloodBonfiresWeaponBundleName="血腥篝火武器套組"
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="內含布萊爾的倫敦制服（5 種配色）以及警官帽妝容配件（3 種配色）"
@@ -278,6 +287,7 @@ Christmas2020FullGearBundleDescription="一個同捆包中含有 6 款聖誕節�
 DystopianDevastationFullGearBundleDescription="一個同捆包中含有6款生化人主題妝容配件，每款皆有5種材質的款式。大部分角色皆可使用。"
 InterstellarInsanityFullGearBundleDescription="每一同捆包有6種太空人主題妝容配件，每種配件有5種材質變化。適用於大部分的角色。"
 DayOfTheZedFullGearBundleDescription="每一同捆包有6種死亡之日主題妝容配件，每種配件有5種材質變化。適用於大部分的角色。"
+HeadshotFXBundle1Description="伴隨 5 次爆頭 FX財源滾滾、搞笑動作、派對時間、一見鐘情以及恐怖幽靈"
 HeadshotFXBundle2Description="包括 5 個爆頭 FX。卡通飛濺、煙火、花瓣、干擾以及 Horzine 電路板。"
 RhinoRevolverBundleDescription="削 Zed 如泥。犀牛左輪專為槍砲工職業設計，含 5 種獨特武器飾品可供選擇。"
 IonThrusterBundleDescription="烤肉的絕佳工具。離子推進器的設計，專為狂戰士職業而設，並附帶有 5 種獨特飾品變種可選。"
@@ -286,7 +296,6 @@ MosinNagantBundleDescription="藉助這款經典來福槍，阻擋、戳刺，�
 CompoundBowBundleDescription="改良古代武器的現代版。複合弓專為神射手職業設計，附帶5種獨特飾品變種可選。"
 BlunderbussBundleDescription="木腿和鸚鵡單獨販售。手銃專為殲滅者和支援職業設計，附有5款獨特的造型變種。"
 Glock18cBundleDescription="注意：使用時會無法受控地認同法律。單手和雙持格洛克18C專為槍手職業設計，附有5款獨特的造型變種。"
-
 MinigunBundleDescription="歡樂要用每分鐘發射的子彈數來衡量。小槍專為突擊隊職業而設，並附帶有 5 種獨特飾品變種可選。"
 MineReconstructorBundleDescription="由於衛生守則方面的問題，其基本素材的來源屬於保密資訊。地雷重構者專為戰地軍醫職業而設，並附帶有 5 種獨特飾品變種可選。"
 FrostFangBundleDescription="斧頭非常適合做冰雕！冰霜尖牙針對支援隊和狂戰士職業而設計，隨附 5 種獨特飾品款式。"
@@ -485,11 +494,20 @@ ClassicWeaponSkinBundleDescription="包含 8 個經典主題武器造型（4 個
 DeepSeaSkinWeaponSkinBundleDescription="包含 36 個深海主題武器造型（6 個古董、6 個水藍、6 個珊瑚、6 個 珍珠、6 個黑海豹與 6 個珍貴）。本套裝的武器包括：AA12、FN FAL、M14EBR、Mac 10、MP5RAS、RPG-7。"
 ChameleonWeaponSkinBundleDescription="包含 8 個變色龍武器造型（4 個動態與 4 個動態 RBG）本套裝的武器包括：沙漠之鷹、日本刀、克里斯突擊步槍、RPG-7。"
 DeepSeaExplorerOutfitDescription="包括深海探險家服飾與頭盔（含 6 種配色）。大部分角色皆可使用。"
+PlagueDoctorOutfitDescription="內含瘟疫醫生服裝和頭罩（包含 6 款皮膚風格）。大部分角色皆可使用。"
 ReductoRayBundleDescription="這個能力可將敵人縮小成你的手掌大小。收縮射線是專為生存者職業而設，並附帶 5 種獨特的造型變化。"
 SentinelBundleDescription="人人都需要有朋友，尤其這位朋友還是帶了自動瞄準機關槍的自動駕駛 AI。哨兵是專為突擊隊職業而設，並附帶 5 種獨特的造型變化。"
 TidalTerrorBundleDescription="包含來自「潮汐恐攻」更新的哨兵與收縮射線武器。每種武器附帶 5 種獨特的造型變化。"
-ArmorySeasonPass2022Description="使用今年的武器庫季票，在《Killing Floor 2》擴展消滅 Zed 的所有技能！利用這個最經濟實惠的方法，就能立即取得將在 2022 年一整年推出的全部 6 種武器。 立即購買包括和 2022 年夏季更新一起推出的 2 種全新武器！（收縮射線武器組合包、哨兵武器組合包）兩種武器組合包各附帶 5 種獨特的武器造型。另外，《Killing Floor 2》武器庫季票 2 包含可以使用下列預計推出的武器組合包：2022 年秋季推出的 2 款武器、2022 年冬季推出的 2 款武器。"
+ArmorySeasonPass2022Description="使用今年的武器庫季票，在《Killing Floor 2》擴展消滅Zed的所有技能！利用這個最經濟實惠的方法，就能立即取得將在2022年一整年推出的全部6種武器。立即購買包括和2022年夏季更新一起推出的4種武器（收縮射線武器套組, 哨兵武器套組, G36C突擊步槍武器套組, 血腥鐮刀武器套組）。所有武器套組分別隨附5種獨特的武器飾品。此外，《Killing Floor 2》武器庫季票2還包括即將推出的武器套組，內容安排如下：2022年冬季推出的2款武器, 兩種冬季武器套組分別隨附5種獨特的武器飾品。"
 UltimateUpgradeDescription="適合想以實惠價格升級至最全面遊戲體驗的現有《Killing Floor 2》擁有者。本次升級的組合包內含：武器庫季票 1 與 2，以及下列妝容升級，還有以下的單獨擴充內容：佛斯特夫人、博龐克服飾組合包、爆頭 FX 套組 1 與 2、拓荒組合包、佛斯特經典組合包、布萊爾的警察組合包、田中的機車組合包、Horzine 馬克 7 組合包、災害應變組合包、DAR 突擊護甲組合包、突雞部隊組合包、睡衣組合包、凝塊背包組合包、龍鯉完整武器造型套件、壞聖誕老人組合包、紙板騎士組合包、女巫獵人服飾組合包、聖誕老人助手服飾組合包、佛斯特最愛武器造型組合包、太空海盜服飾組合包、太空海盜全套裝備組合包、死神服飾組合包、2020 年萬聖節全套裝備組合包、2020 年聖誕節全套裝備組合包、2020 年冬季裝備妝容組合包。"																																																																																																																																																																																																																																									   
+PlagueDoctorWeaponSkinBundleDescription="包含36個瘟疫醫生主題武器造型（6個全新、6個純銀、6個黑曜石、6個火山、6個翡翠與6個珍貴）本套裝的武器包括：湯普森衝鋒槍、M79.沙漠之鷹、十字弓、毀滅射手和龍息。"
+XenoWeaponSkinBundleDescription="包含8個異種科幻靈感主題武器造型（4個動態與4個動態RBG）本套裝的武器包括：M16 M203、UMP SMG、中心底火、血腥痛擊者。"
+ClassicMKIIWeaponSkinBundleDescription="包含8個經典主題武器造型（4 個全新與4個珍貴）本套裝的武器包括：AK12、沙漠之鷹、M14 EBR、克里斯突擊步槍。"
+ChameleonMKIIWeaponSkinBundleDescription="包含8個變色龍主題武器造型（4個動態與4個動態RBG）本套裝的武器包括：AA12、火焰噴射器、M99、SCAR。"
+PlagueDoctorOutfitBundleDescription="內含瘟疫醫生服裝和頭罩（包含6款造型樣式）。大部分角色皆可使用。"
+G36CBundleDescription="衝鋒槍大小的破甲能力。「G36C突擊步槍」專為 SWAT 職業而設，隨附5種獨特的造型變化。"
+BloodSickleBundleDescription="死神的最愛，現在碰到狹窄的走廊也可以折疊起來啦；「血腥鐮刀」專為狂戰士職業而設，隨附5種獨特的造型變化。 "
+BloodBonfiresWeaponBundleDescription="包含來自「血腥篝火」更新的G36C突擊步槍與血腥鐮刀武器。每種武器附帶5種獨特的造型變化。"
 
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="取得遊戲角色 PC 羅伯布萊爾的經典倫敦警察制服內含布萊爾的倫敦制服（5 種配色）以及警官帽妝容配件（3 種配色）"
@@ -601,7 +619,8 @@ AstronautHelmetName="太空人頭盔"
 AstronautO2BackpackName="太空人O2背包"
 AstronautSuitName="太空人制服"
 HolidayShoppingSuitName="假期購物制服"
-DeepSeeExplorerSuitName="深海探險家服裝"												  
+DeepSeeExplorerSuitName="深海探險家服裝"
+PlagueDoctorSuitName="瘟疫醫生服裝"
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="麥斯特森中尉 | 賽博龐克 | 綠"
@@ -1468,7 +1487,7 @@ HRGBuckshotRevolversSpectreHRGDynamicChromaName="HRG鹿彈左輪手槍 | 鬼影H
 9MMSynthwaveBattleScarredName="9MM | 合成器浪潮 | 破舊"
 9MMDragonKoiPreciousName="9 毫米 | 龍鯉 | 珍貴"
 9MMClassicMintName="9 釐米 | 經典 | 全新"
-9MMClassicPreciousName="9 釐米 | 經典 | 珍貴"												 
+9MMClassicPreciousName="9 釐米 | 經典 | 珍貴"
 
 ;AA12 Descriptions
 AA12MintDescription="外觀：全新 | AA-12 是把自動霰彈槍。它在短中程具有強大的火力，但彈藥消耗速度也很可觀。"
@@ -1542,6 +1561,8 @@ AA12DeepSeaBlackSealName="AA12 | 深海 | 黑海豹"
 AA12DeepSeaPreciousName="AA12 | 深海 | 珍貴"
 AA12ClassicMintName="AA12 | 經典 | 全新"
 AA12ClassicPreciousName="AA12 | 經典 | 珍貴"												   
+AA12ChameleonDynamicName="AA12 | 經典 | 動態"
+AA12ChameleonDynamicRGBName="AA12 | 經典 | 動態 RGB"
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="外觀：全新 | 你在上面放更多桶，所有事就會變更好。就像加更多培根。"
@@ -1642,6 +1663,8 @@ AK12IceBreakerDynamicPreciousName="AK-12 | 破冰者 | 動態珍貴"
 AK12BeyondHorizonMintName="AK-12 | 超越地平線 | 全新"
 AK12BeyondHorizonSpaceEliteName="AK-12 | 超越地平線 | 太空菁英"
 AK12ScavengerPreciousName="AK-12 | 清道夫 | 珍貴"
+AK12ClassicMintName="AK-12 | 經典 | 全新"
+AK12ClassicPreciousName="AK-12 | 經典 | 珍貴"
 
 ;AR15 Descriptions
 AR15MintDescription="外觀：全新 | 這是打 Zed 用的，不是打惡棍。"
@@ -1818,6 +1841,8 @@ CenterfireNeonFieldTestedName="中心底火 | 霓虹 | 中古"
 CenterfireNeonMintName="中心底火 | 霓虹 | 全新"
 CenterfireNeonRGBPreciousName="中心底火 | 霓虹 RGB | 珍貴"
 CenterfireVaultVoshPreciousName="中心底火 | 金庫 | V 字 | 珍貴"
+CenterfireXenoDynamicName="中心底火 | 異種 | 動態"
+CenterfireXenoDynamicRGBName="中心底火 | 異種 | 動態 RGB"
 
 ;Crossbow Descriptions
 CrossbowMintDescription="外觀：全新 | 強力的狩獵用十字弓，穿透力跟牽制力都極高！"
@@ -1846,6 +1871,12 @@ CrossbowNeonFieldTestedName="十字弓 | 霓虹 | 中古"
 CrossbowNeonBattleScarredName="十字弓 | 霓虹 | 破舊"
 CrossbowNeonRGBPreciousName="十字弓 | 霓虹 RGB | 珍貴"
 CrossbowDragonKoiPreciousName="十字弓 | 龍鯉 | 珍貴"
+CrossbowPlagueDoctorMintName="十字弓 | 瘟疫醫生 | 全新"
+CrossbowPlagueDoctorSterlingName="十字弓 | 瘟疫醫生 | 純銀"
+CrossbowPlagueDoctorObsidianName="十字弓 | 瘟疫醫生 | 黑曜石"
+CrossbowPlagueDoctorVolcanicName="十字弓 | 瘟疫醫生 | 火山"
+CrossbowPlagueDoctorEmeraldName="十字弓 | 瘟疫醫生 | 翡翠"
+CrossbowPlagueDoctorPreciousName="十字弓 | 瘟疫醫生 | 珍貴"
 
 ;Crovel Descriptions
 CrovelMintDescription="外觀：全新 | 一半鐵橇一半鏟子，兩種都很致命。"
@@ -1936,6 +1967,14 @@ DesertEagleAlchemistToxicName="沙漠之鷹 | 煉金術師 | 劇毒"
 DesertEagleAlchemistBlazeName="沙漠之鷹 | 煉金術師 | 火焰"
 DesertEagleChameleonDynamicName="沙漠之鷹 | 變色龍 | 動態"
 DesertEagleChameleonDynamicRGBName="沙漠之鷹 | 變色龍 | 動態 RGB"																																			   
+DesertEaglePlagueDoctorMintName="沙漠之鷹 | 瘟疫醫生 | 全新"
+DesertEaglePlagueDoctorSterlingName="沙漠之鷹 | 瘟疫醫生 | 純銀"
+DesertEaglePlagueDoctorObsidianName="沙漠之鷹 | 瘟疫醫生 | 黑曜石"
+DesertEaglePlagueDoctorVolcanicName="沙漠之鷹 | 瘟疫醫生 | 火山"
+DesertEaglePlagueDoctorEmeraldName="沙漠之鷹 | 瘟疫醫生 | 翡翠"
+DesertEaglePlagueDoctorPreciousName="沙漠之鷹 | 瘟疫醫生 | 珍貴"
+DesertEagleClassicMintName="沙漠之鷹 | 經典 | 全新"
+DesertEagleClassicPreciousName="沙漠之鷹 | 經典 | 珍貴"
 
 ;Doomstick Descriptions
 DoomstickMintDescription="外觀：全新 | 如果雙倍快樂還不夠，那就來四倍的！"
@@ -1957,6 +1996,12 @@ DoomstickBeyondHorizonMintName="末日預言者 | 超越地平線 | 全新"
 DoomstickBeyondHorizonSpaceEliteName="末日預言者 | 超越地平線 | 太空菁英"
 DoomstickHellmarkMagmaName="末日預言者 | 地獄印記 | 岩漿"
 DoomstickHellmarkThunderName="末日預言者 | 地獄印記 | 雷霆"
+DoomstickPlagueDoctorMintName="末日預言者 | 瘟疫醫生 | 全新"
+DoomstickPlagueDoctorSterlingName="末日預言者 | 瘟疫醫生 | 純銀"
+DoomstickPlagueDoctorObsidianName="末日預言者 | 瘟疫醫生 | 黑曜石"
+DoomstickPlagueDoctorVolcanicName="末日預言者 | 瘟疫醫生 | 火山"
+DoomstickPlagueDoctorEmeraldName="末日預言者 | 瘟疫醫生 | 翡翠"
+DoomstickPlagueDoctorPreciousName="末日預言者 | 瘟疫醫生 | 珍貴"
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="外觀：全新 | 會像龍一樣噴出火焰的霰彈槍。除了很致命之外，外型也很讚。"
@@ -1997,6 +2042,12 @@ DragonsbreathIceBreakerDynamicName="龍息 | 破冰者 | 動態"
 DragonsbreathIceBreakerDynamicPreciousName="龍息 | 破冰者 | 動態珍貴"
 DragonsbreathHellmarkMagmaName="龍息 | 地獄印記 | 岩漿"
 DragonsbreathHellmarkThunderName="龍息 | 地獄印記 | 雷霆"
+DragonsbreathPlagueDoctorMintName="龍息 | 瘟疫醫生 | 全新"
+DragonsbreathPlagueDoctorSterlingName="龍息 | 瘟疫醫生 | 純銀"
+DragonsbreathPlagueDoctorObsidianName="龍息 | 瘟疫醫生 | 黑曜石"
+DragonsbreathPlagueDoctorVolcanicName="龍息 | 瘟疫醫生 | 火山"
+DragonsbreathPlagueDoctorEmeraldName="龍息 | 瘟疫醫生 | 翡翠"
+DragonsbreathPlagueDoctorPreciousName="龍息 | 瘟疫醫生 | 珍貴"
 
 ;Eviscerator Descriptions
 EvisceratorMintDescription="外觀：全新 | 原本是 Horzine 的 SDS 團隊設計的，這是頭粗魯的野獸。"
@@ -2071,6 +2122,8 @@ FlamethrowerXMasSweetName="火焰噴射器 | 聖誕節 | 甜味"
 FlamethrowerXMasSourName="火焰噴射器 | 聖誕節 | 酸味"
 FlamethrowerAlchemistToxicName="火焰噴射器 | 煉金術師 | 劇毒"
 FlamethrowerAlchemistBlazeName="火焰噴射器 | 煉金術師 | 火焰"
+FlamethrowerChameleonDynamicName="火焰噴射器 | 經典 | 動態"
+FlamethrowerChameleonDynamicRGBName="火焰噴射器 | 經典 | 動態 RGB"
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="外觀：全新 | 在一個較為便利、可攜式的大小包裝下發射砲火系統。"
@@ -2207,8 +2260,10 @@ HKUMPHorzineFirstEncounterBattleScarredName="黑克勒&科赫 UMP | Horzine 初�
 HKUMPNeonRGBPreciousName="黑克勒&科赫 UMP | 霓虹燈RGB | 珍貴"
 HKUMPPrestigePreciousName="黑克勒&科赫 UMP | 聲望 | 珍貴"
 HKUMPVaultVoshPreciousName="黑克勒&科赫 UMP | 金庫 | V 字 | 珍貴"
-HKUMPJaegerDynamicName="黑克勒&科赫UMP | 獵人 | 動態"
-HKUMPJaegerDynamicRGBName="黑克勒&科赫UMP | 獵人 | 動態RGB"
+HKUMPJaegerDynamicName="黑克勒&科赫 UMP | 獵人 | 動態"
+HKUMPJaegerDynamicRGBName="黑克勒&科赫 UMP | 獵人 | 動態RGB"
+HKUMPXenoDynamicName="黑克勒&科赫 UMP | 異種 | 動態"
+HKUMPXenoDynamicRGBName="黑克勒&科赫 UMP | 異種 | 動態 RGB"
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="外觀：全新 | 是把手術刀你是軍醫，所以我們應該不用再為你說明使用方法。"
@@ -2600,6 +2655,8 @@ KrissIceBreakerDynamicPreciousName="克里斯 | 破冰者 | 動態珍貴"
 KrissInfernalElitePreciousName="克里斯突擊步槍 | 地獄精英 | 珍貴"
 KrissChameleonDynamicName="Kriss 衝鋒槍 | 變色龍 | 動態"
 KrissChameleonDynamicRGBName="Kriss 衝鋒槍 | 變色龍 | 動態 RGB"																  
+KrissClassicMintName="Kriss 衝鋒槍 | 經典 | 全新"
+KrissClassicPreciousName="Kriss 衝鋒槍 | 經典 | 珍貴"
 
 ;L85A2 Descriptions
 L85A2MintDescription="外觀：全新 | SA80是英國陸軍的標準配備，直到陸軍，呃，被吃掉。"
@@ -2686,6 +2743,8 @@ M14EBRDeepSeaCoralName="M14EBR | 深海 | 珊瑚"
 M14EBRDeepSeaPearlName="M14EBR | 深海 | 珍珠"
 M14EBRDeepSeaBlackSealName="M14EBR | 深海 | 黑海豹"
 M14EBRDeepSeaPreciousName="M14EBR | 深海 | 珍貴"														
+M14EBRClassicMintName="M14EBR | 經典 | 全新"
+M14EBRClassicPreciousName="M14EBR | 經典 | 珍貴"
 
 ;M16M203 Descriptions
 M16M203MintDescription="外觀：全新|適合難以決定使用子彈還是炸藥的人。"
@@ -2784,6 +2843,8 @@ M4NeonRGBPreciousName="M4 | 霓虹 RGB | 珍貴"
 M4PrestigePreciousName="M4 | 聲望 | 珍貴"
 M4DragonKoiPreciousName="M4 | 龍鯉 | 珍貴"
 M4FostersFavoritesPreciousName="M4 | 佛斯特最愛 | 珍貴"
+M4XenoDynamicName="M4 | 異種 | 動態"
+M4XenoDynamicRGBName="M4 | 異種 | 動態 RGB"
 
 ;M79 Descriptions
 M79MintDescription="外觀：全新 | 射出後才會解除保險，所以你不會炸爛自己的臉。"
@@ -2831,6 +2892,12 @@ M79NeonMintName="M79 | 霓虹 | 全新"
 M79NeonRGBPreciousName="M79 | 霓虹RGB | 珍貴"
 M79IceBreakerDynamicName="M79 | 破冰者 | 動態"
 M79IceBreakerDynamicPreciousName="M79 | 破冰者 | 動態珍貴"
+M79PlagueDoctorMintName="M79 | 瘟疫醫生 | 全新"
+M79PlagueDoctorSterlingName="M79 | 瘟疫醫生 | 純銀"
+M79PlagueDoctorObsidianName="M79 | 瘟疫醫生 | 黑曜石"
+M79PlagueDoctorVolcanicName="M79 | 瘟疫醫生 | 火山"
+M79PlagueDoctorEmeraldName="M79 | 瘟疫醫生 | 翡翠"
+M79PlagueDoctorPreciousName="M79 | 瘟疫醫生 | 珍貴"
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="外觀：全新 | 擁有強力的盾牌重擊攻擊方式。"
@@ -2862,6 +2929,8 @@ M99JaegerDynamicName="M99 | 獵人 | 動態"
 M99JaegerDynamicRGBName="M99 | 獵人 | 動態 RGB"
 M99IceBreakerDynamicName="M99 | 破冰者 | 動態"
 M99IceBreakerDynamicPreciousName="M99 | 破冰者 | 動態珍貴"
+M99ChameleonDynamicName="M99 | 經典 | 動態"
+M99ChameleonDynamicRGBName="M99 | 經典 | 動態 RGB"
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="碎骨者 | 巡迴 | 全新"
@@ -2939,6 +3008,8 @@ MedicBatBeyondHorizonMintName="血腥痛擊者 | 超越地平線 | 全新"
 MedicBatBeyondHorizonSpaceEliteName="血腥痛擊者 | 超越地平線 | 太空菁英"
 MedicBatHellmarkMagmaName="血腥痛擊者 | 地獄印記 | 岩漿"
 MedicBatHellmarkThunderName="血腥痛擊者 | 地獄印記 | 雷霆"
+MedicBatXenoDynamicName="血腥痛擊者 | 異種 | 動態"
+MedicBatXenoDynamicRGBName="血腥痛擊者 | 異種 | 動態 RGB"
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="外觀：全新 | 高科技的好產物：手拿式 Zed 料理工具。"
@@ -3281,6 +3352,8 @@ ScarXMasSweetName="Scar | 聖誕節 | 甜味"
 ScarXMasSourName="Scar | 聖誕節 | 酸味"
 ScarAlchemistToxicName="Scar | 煉金術師 | 劇毒"
 ScarAlchemistBlazeName="Scar | 煉金術師 | 火焰"
+ScarChameleonDynamicName="Scar | 經典 | 動態"
+ScarChameleonDynamicRGBName="Scar | 經典 | 動態 RGB"
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="外觀：全新 | 一種多功能，高爆炸性的武器，可一次追蹤並打擊多個目標。"
@@ -3633,6 +3706,12 @@ TommyGunVaultVoshPreciousName="湯普森衝鋒槍 | 金庫 | V字 | 珍貴"
 TommyGunJaegerDynamicName="湯普森衝鋒槍 | 獵人 | 動態"
 TommyGunJaegerDynamicRGBName="湯普森衝鋒槍 | 獵人 | 動態RGB"
 TommyGunStarsName="湯普森衝鋒槍 | 金庫 | 星星"
+TommyGunPlagueDoctorMintName="湯普森衝鋒槍 | 瘟疫醫生 | 全新"
+TommyGunPlagueDoctorSterlingName="湯普森衝鋒槍 | 瘟疫醫生 | 純銀"
+TommyGunPlagueDoctorObsidianName="湯普森衝鋒槍 | 瘟疫醫生 | 黑曜石"
+TommyGunPlagueDoctorVolcanicName="湯普森衝鋒槍 | 瘟疫醫生 | 火山"
+TommyGunPlagueDoctorEmeraldName="湯普森衝鋒槍 | 瘟疫醫生 | 翡翠"
+TommyGunPlagueDoctorPreciousName="湯普森衝鋒槍 | 瘟疫醫生 | 珍貴"	   
 
 ;Laser Cutter Descriptions
 LaserCutterMintDescription="外觀：全新 | 過載模式：按下開火按鈕後開始充能，鬆開按鈕後釋放能量。"
@@ -4015,7 +4094,33 @@ ReductoRayAtomicLoveName="收縮射線 | 原子之愛"
 ReductoRayLuckyStrikeName="收縮射線 | 幸運出擊"
 ReductoRayHeavyMetalName="收縮射線 | 重金屬"
 ReductoRayDestructorName="收縮射線 | 破壞者"												   
+;Blood Sickle Descriptions
+BloodSickleMintDescription="外觀：全新 | 死神的最愛，現在碰到狹窄的走廊也可以折疊起來啦。"
+BloodSickleFieldTestedDescription="外觀：中古 | 死神的最愛，現在碰到狹窄的走廊也可以折疊起來啦。"
+BloodSickleBattleScarredDescription="外觀：破舊 | 死神的最愛，現在碰到狹窄的走廊也可以折疊起來啦。"
+BloodSicklePreciousDescription="外觀：珍貴 | 死神的最愛，現在碰到狹窄的走廊也可以折疊起來啦。"
 
+;Blood Sickle Names
+BloodSickleStandardName="血腥鐮刀 | 標準"
+BloodSickleBloodbathName="血腥鐮刀 | 血戰"
+BloodSickleButcheryName="血腥鐮刀 | 屠殺"
+BloodSickleCarouselName="血腥鐮刀 | 迴旋"
+BloodSickleReaperName="血腥鐮刀 | 死神"
+BloodSickleHunterName="血腥鐮刀 | 獵人"
+
+;G36C Descriptions
+G36CMintDescription="外觀：全新 | 衝鋒槍大小的破甲能力。"
+G36CFieldTestedDescription="外觀：中古 | 衝鋒槍大小的破甲能力。"
+G36CBattleScarredDescription="外觀：破舊 | 衝鋒槍大小的破甲能力。"
+G36CPreciousDescription="外觀：珍貴 | 衝鋒槍大小的破甲能力。"
+
+;G36C Names
+G36CStandardName="G36C突擊步槍 | 標準"
+G36CSaharaName="G36C突擊步槍 | 撒哈拉"
+G36CIcepackName="G36C突擊步槍 | 冰袋"
+G36CAftermathName="G36C突擊步槍 | 餘波"
+G36CJungleName="G36C突擊步槍 | 叢林"
+G36CDazzleName="G36C突擊步槍 | 燦爛"
 [CosmeticSection]
 
 ;Cosmetic Names
@@ -6403,7 +6508,17 @@ DeepSeaHelmetPearlName="深海 | 頭盔 | 珍珠"
 DeepSeaHelmetBlackSealName="深海 | 頭盔 | 黑海豹"
 DeepSeaHelmetPreciousName="深海 | 頭盔 | 珍貴"							  
 
-												
+;Halloween 2022 Cosmetic Names
+PlagueDoctorBackpackPreciousName="瘟疫醫生 | 背包 | 珍貴"
+PlagueDoctorHoodMintName="瘟疫醫生 | 頭罩 | 全新"
+PlagueDoctorHoodSterlingName="瘟疫醫生 | 頭罩 | 純銀"
+PlagueDoctorHoodObsidianName="瘟疫醫生 | 頭罩 | 黑曜石"
+PlagueDoctorHoodVolcanicName="瘟疫醫生 | 頭罩 | 火山"
+PlagueDoctorHoodEmeraldName="瘟疫醫生 | 頭罩 | 翡翠"
+PlagueDoctorHoodPreciousName="瘟疫醫生 | 頭罩 | 珍貴"
+
+;Weekly Primary Target Cosmetic Name
+PrimaryTargetCrownPreciousName="主要目標皇冠 | 寶貴"
 
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="可從裝備選單裝備；適用於大部分的角色。這是「夏日餘興節目」季節性活動的特有未解鎖道具。回收換為 1 張餘興節目獎券。"

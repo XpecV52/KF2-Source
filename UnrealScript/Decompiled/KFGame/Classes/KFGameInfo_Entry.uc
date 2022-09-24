@@ -449,7 +449,7 @@ auto state PendingMatch
         local int SystemTimeMinutes;
 
         SystemTimeMinutes = GetSystemTimeMinutes();
-        if((SystemTimeMinutes - LastSystemTimeMinutes) >= 30)
+        if((SystemTimeMinutes - LastSystemTimeMinutes) >= 1)
         {
             Class'KFGameEngine'.static.RefreshOnlineGameData();
             LastSystemTimeMinutes = SystemTimeMinutes;

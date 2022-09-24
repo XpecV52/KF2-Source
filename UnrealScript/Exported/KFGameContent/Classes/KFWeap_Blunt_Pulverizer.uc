@@ -138,6 +138,8 @@ simulated function CustomFire()
 	// tell remote clients that we fired, to trigger effects in third person
 	IncrementFlashCount();
 
+	ExplosionTemplate.DamageRadius = StartingDamageRadius;
+
 	if ( bDebug )
 	{
 		DrawDebugCone(SpawnLoc, vector(SpawnRot), ExplosionTemplate.DamageRadius, ExplosionTemplate.DirectionalExplosionAngleDeg * DegToRad,
@@ -411,7 +413,7 @@ defaultproperties
 {
    ExplosionActorClass=Class'KFGame.KFExplosionActorReplicated'
    ExplosionTemplate=KFGameExplosion'WEP_Pulverizer_ARCH.Wep_Pulverizer_Explosion'
-   AltExploEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion_Concussive_Force'
+   AltExploEffects=KFImpactEffectInfo'wep_rpg7_arch.RPG7_Explosion_Concussive_Force'
    NukeExplosionActorClass=Class'KFGame.KFExplosion_ReplicatedNuke'
    ParryStrength=5
    ParryDamageMitigationPercent=0.400000

@@ -661,8 +661,8 @@ defaultproperties
     FullChargedTimerInterval=2
     MinScale=0.5
     MaxScale=1.5
-    MaxDamageByCharge=300
-    MinDamageByCharge=30
+    MaxDamageByCharge=350
+    MinDamageByCharge=35
     MAX_ACTIVE_MINE_RECONSTRUCTOR_MINES=12
     PackageKey="Mine_Reconstructor"
     FirstPersonMeshName="WEP_1P_Mine_Reconstructor_MESH.Wep_1stP_HMTech_Mine_Reconstructor_Rig"
@@ -675,7 +675,7 @@ defaultproperties
     bReloadFromMagazine=true
     bAllowClientAmmoTracking=false
     FireModeIconPaths=/* Array type was not detected. */
-    InventorySize=8
+    InventorySize=7
     MeshFOV=80
     MeshIronSightFOV=65
     PlayerIronSightFOV=50

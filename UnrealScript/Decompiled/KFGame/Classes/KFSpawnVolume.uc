@@ -96,7 +96,7 @@ var() float MaxHeightDiffToPlayers;
 var() float MinDistanceToPlayer;
 /** Volume rating is partially scaled by its distance from players. Any player beyond this distance (UU) will receive no distance bonus at all, resulting in a lower volume rating. */
 var() float MaxDistanceToPlayer;
-var const transient float CurrentRating;
+var transient float CurrentRating;
 var const transient float CachedVisibilityTime;
 /** How long this spawn volume is derated (gets a lower desireability) after it is spawned in */
 var() float SpawnDerateTime;

@@ -79,6 +79,10 @@ const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178;
 const KFID_SurvivalStartingWeapIdx = 179;
 const KFID_SurvivalStartingGrenIdx = 180;
+const KFID_MouseLookUpScale = 181;
+const KFID_MouseLookRightScale = 182;
+const KFID_ViewSmoothingEnabled = 183;
+const KFID_ViewAccelerationEnabled = 184;
 
 var string WhatsNewPS;
 var string WhatsNewMS;
@@ -222,7 +226,7 @@ static function class<KFGFxSpecialEventObjectivesContainer> GetSpecialEventClass
         case 2:
             return Class'KFGFxSpecialEventObjectivesContainer_Summer2022';
         case 3:
-            return Class'KFGFXSpecialEventObjectivesContainer_Fall2021';
+            return Class'KFGFXSpecialEventObjectivesContainer_Fall2022';
         case 4:
             return Class'KFGFXSpecialEventObjectivesContainer_Xmas2021';
         default:
@@ -1843,5 +1847,6 @@ defaultproperties
     StockMaps(35)="kf-netherhold"
     StockMaps(36)="kf-carillonhamlet"
     StockMaps(37)="kf-rig"
+    StockMaps(38)="kf-barmwichtown"
     SubWidgetBindings=/* Array type was not detected. */
 }

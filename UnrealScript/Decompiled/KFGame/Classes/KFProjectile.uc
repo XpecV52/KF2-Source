@@ -766,6 +766,16 @@ simulated function bool AllowNuke()
     return true;
 }
 
+simulated function bool AllowDemolitionistExplosionChangeRadius()
+{
+    return true;
+}
+
+simulated function bool AllowDemolitionistConcussive()
+{
+    return true;
+}
+
 protected simulated function PrepareExplosionTemplate()
 {
     local KFWeapon KFW;

@@ -81,6 +81,10 @@ const KFID_HasTabbedToStore = 177;
 const KFID_AllowSwapTo9mm = 178;
 const KFID_SurvivalStartingWeapIdx = 179;
 const KFID_SurvivalStartingGrenIdx = 180;
+const KFID_MouseLookUpScale = 181;
+const KFID_MouseLookRightScale = 182;
+const KFID_ViewSmoothingEnabled = 183;
+const KFID_ViewAccelerationEnabled = 184;
 
 struct sHiddenHumanPawnInfo
 {
@@ -153,6 +157,8 @@ var const float PlayerStatusIconSize;
 var float HumanPlayerIconInterpMult;
 var const Texture2D GenericHumanIconTexture;
 var const Texture2D GenericZedIconTexture;
+var const Texture2D VIPIconTexture;
+var const float OriginalVIPIconSize;
 
 // Export UKFHUDBase::execDrawGlowText(FFrame&, void* const)
 native function DrawGlowText(string Text, float X, float Y, optional float MaxHeightInPixels, optional float PulseTime, optional bool bRightJustified)
@@ -632,6 +638,7 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
 	    PerkIconSize;
 
     local Color CurrentArmorColor, CurrentHealthColor;
+    local float VIPIconSize, VIPIconPosX, VIPIconPosY;
 
     ResModifier = WorldInfo.GetResolutionBasedHUDScale() * FriendlyHudScale;
     KFPRI = KFPlayerReplicationInfo(KFPH.PlayerReplicationInfo);
@@ -667,6 +674,13 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     PercentageHealthToRegen = FMin(PercentageHealthToRegen, PercentageHealthMissing);
     CurrentHealthColor = HealthBeingRegeneratedColor;
     DrawKFBar(1, PercentageHealthToRegen * BarLength, BarHeight, ScreenPos.X + (BarLength * (PercentageHealth - 0.5)), (ScreenPos.Y + (BarHeight * float(2))) + ((float(36) * FontScale) * ResModifier), HealthBeingRegeneratedColor);
+    if(((((KFGRI != none) && KFGRI.IsVIPMode()) && KFPH.PlayerReplicationInfo != none) && KFGRI.VIPModeData.VIPPlayer != none) && KFPH.PlayerReplicationInfo == KFGRI.VIPModeData.VIPPlayer)
+    {
+        VIPIconSize = OriginalVIPIconSize * ResModifier;
+        VIPIconPosX = ScreenPos.X - (VIPIconSize * 0.5);
+        VIPIconPosY = ((((ScreenPos.Y - (2.5 * BarHeight)) + ((float(36) * FontScale) * ResModifier)) - (20 * ResModifier)) - (VIPIconSize * 0.5)) - 1;
+        DrawVIPIcon(VIPIconSize, VIPIconPosX, VIPIconPosY);
+    }
     if(KFPRI.CurrentPerkClass == none)
     {
         return false;
@@ -691,6 +705,12 @@ simulated function bool DrawFriendlyHumanPlayerInfo(KFPawn_Human KFPH)
     SupplyIconPosY = PerkIconPosY + (float(4) * ResModifier);
     DrawPerkIcons(KFPH, PerkIconSize, PerkIconPosX, PerkIconPosY, SupplyIconPosX, SupplyIconPosY, false);
     return true;
+}
+
+simulated function DrawVIPIcon(float VIPIconSize, float VIPIconPosX, float VIPIconPosY)
+{
+    Canvas.SetPos(VIPIconPosX, VIPIconPosY);
+    Canvas.DrawTile(VIPIconTexture, VIPIconSize, VIPIconSize, 0, 0, 256, 256);
 }
 
 simulated function bool DrawScriptedPawnInfo(KFPawn_Scripted KFPS, float NormalizedAngle, bool bRendered)
@@ -852,30 +872,31 @@ simulated function CheckAndDrawHiddenPlayerIcons(array<PlayerReplicationInfo> Vi
                     PawnLocation = KFPRI.GetSmoothedPawnIconLocation(HumanPlayerIconInterpMult);
                     if(IsZero(PawnLocation) || KFPRI.PlayerHealth <= 0)
                     {
-                        goto J0x4C3;
+                        goto J0x46B;
                     }                    
                 }
                 else
                 {
-                    goto J0x4C3;
+                    goto J0x46B;
                 }
             }
-            DrawHiddenHumanPlayerIcon(PRI, PawnLocation, Normal((PawnLocation + (Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 2))) - ViewLocation) Dot ViewVector);
+            DrawHiddenHumanPlayerIcon(PRI, PawnLocation, ViewLocation, ViewVector);
         }
-        J0x4C3:
+        J0x46B:
 
         ++ I;
         goto J0xB0;
     }
 }
 
-function DrawHiddenHumanPlayerIcon(PlayerReplicationInfo PRI, Vector IconWorldLocation, float NormalizedAngle)
+function DrawHiddenHumanPlayerIcon(PlayerReplicationInfo PRI, Vector IconWorldLocation, Vector ViewLocation, Vector ViewVector)
 {
-    local Vector ScreenPos;
+    local Vector ReferencePosition, UpVector, ScreenPos, VIPIconPos, ViewLeftVector;
+
     local float IconSizeMult;
     local KFPlayerReplicationInfo KFPRI;
     local Texture2D PlayerIcon;
-    local float ResModifier;
+    local float ResModifier, VIPIconSize, NormalizedAngle, NormalizedAngleWithLeftView;
 
     ResModifier = WorldInfo.GetResolutionBasedHUDScale() * FriendlyHudScale;
     KFPRI = KFPlayerReplicationInfo(PRI);
@@ -883,7 +904,67 @@ function DrawHiddenHumanPlayerIcon(PlayerReplicationInfo PRI, Vector IconWorldLo
     {
         return;
     }
-    ScreenPos = Canvas.Project(IconWorldLocation + (Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 2)));
+    ReferencePosition = IconWorldLocation + (Class'KFPawn_Human'.default.CylinderComponent.CollisionHeight * vect(0, 0, 2));
+    NormalizedAngle = Normal(ReferencePosition - ViewLocation) Dot ViewVector;
+    ScreenPos = Canvas.Project(ReferencePosition);
+    if(((((KFGRI != none) && KFGRI.IsVIPMode()) && KFGRI.VIPModeData.VIPPlayer != none) && PRI != none) && PRI == KFGRI.VIPModeData.VIPPlayer)
+    {
+        VIPIconSize = OriginalVIPIconSize * ResModifier;
+        VIPIconPos = ScreenPos;
+        VIPIconPos.X -= (VIPIconSize * 0.5);
+        if(NormalizedAngle > float(0))
+        {
+            if((ScreenPos.X < float(0)) || ScreenPos.X > (Canvas.ClipX - VIPIconSize))
+            {
+                if(ScreenPos.X < float(0))
+                {
+                    VIPIconPos.X = 0;                    
+                }
+                else
+                {
+                    VIPIconPos.X = Canvas.ClipX - VIPIconSize;
+                }
+            }
+            if((ScreenPos.Y < float(0)) || ScreenPos.Y > (Canvas.ClipY - VIPIconSize))
+            {
+                if(ScreenPos.Y < float(0))
+                {
+                    VIPIconPos.Y = 0;                    
+                }
+                else
+                {
+                    VIPIconPos.Y = Canvas.ClipY - VIPIconSize;
+                }
+            }            
+        }
+        else
+        {
+            UpVector.Z = 1;
+            ViewLeftVector = ViewVector Cross UpVector;
+            NormalizedAngleWithLeftView = Normal(ReferencePosition - ViewLocation) Dot ViewLeftVector;
+            if(NormalizedAngleWithLeftView > float(0))
+            {
+                VIPIconPos.X = 0;                
+            }
+            else
+            {
+                VIPIconPos.X = Canvas.ClipX - VIPIconSize;
+            }
+            if((ScreenPos.Y < float(0)) || ScreenPos.Y > (Canvas.ClipY - VIPIconSize))
+            {
+                if(ScreenPos.Y < float(0))
+                {
+                    VIPIconPos.Y = 0;                    
+                }
+                else
+                {
+                    VIPIconPos.Y = Canvas.ClipY - VIPIconSize;
+                }
+            }
+        }
+        Canvas.SetDrawColorStruct(PlayerBarIconColor);
+        DrawVIPIcon(VIPIconSize, VIPIconPos.X, VIPIconPos.Y);
+    }
     IconSizeMult = (PlayerStatusIconSize * 0.8) * ResModifier;
     ScreenPos.X -= IconSizeMult;
     ScreenPos.Y -= IconSizeMult;
@@ -1091,4 +1172,6 @@ defaultproperties
     HumanPlayerIconInterpMult=0.007
     GenericHumanIconTexture=Texture2D'UI_PerkIcons_TEX.UI_Horzine_H_Logo'
     GenericZedIconTexture=Texture2D'UI_PerkIcons_TEX.UI_PerkIcon_ZED'
+    VIPIconTexture=Texture2D'UI_PerkIcons_TEX.UI_Overscreen_vip_icon_'
+    OriginalVIPIconSize=64
 }

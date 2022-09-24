@@ -15,10 +15,10 @@ defaultproperties
 {
    ArmDistSquared=150000.000000
    ProjDudTemplate=ParticleSystem'WEP_RPG7_EMIT.FX_RPG7_Projectile_Dud'
-   GrenadeBounceEffectInfo=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Projectile_Impacts'
+   GrenadeBounceEffectInfo=KFImpactEffectInfo'wep_rpg7_arch.RPG7_Projectile_Impacts'
    bWarnAIWhenFired=True
    Begin Object Class=KFGameExplosion Name=ExploTemplate0
-      ExplosionEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion'
+      ExplosionEffects=KFImpactEffectInfo'wep_rpg7_arch.RPG7_Explosion'
       Damage=750.000000
       DamageRadius=400.000000
       DamageFalloffExponent=2.000000
@@ -35,7 +35,7 @@ defaultproperties
    End Object
    ExplosionTemplate=KFGameExplosion'kfgamecontent.Default__KFProj_Rocket_RPG7:ExploTemplate0'
    ProjDisintegrateTemplate=ParticleSystem'ZED_Siren_EMIT.FX_Siren_grenade_disable_01'
-   AltExploEffects=KFImpactEffectInfo'WEP_RPG7_ARCH.RPG7_Explosion_Concussive_Force'
+   AltExploEffects=KFImpactEffectInfo'wep_rpg7_arch.RPG7_Explosion_Concussive_Force'
    ProjFlightTemplate=ParticleSystem'WEP_RPG7_EMIT.FX_RPG7_Projectile'
    ProjFlightTemplateZedTime=ParticleSystem'WEP_RPG7_EMIT.FX_RPG7_Projectile_ZED_TIME'
    AmbientSoundPlayEvent=AkEvent'WW_WEP_SA_RPG7.Play_WEP_SA_RPG7_Projectile_Loop'

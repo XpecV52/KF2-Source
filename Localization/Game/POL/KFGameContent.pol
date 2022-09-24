@@ -857,6 +857,27 @@ ItemCategory="Specjalne"
 ItemDescription="•Dron, który czuwa nad wybraną pozycją i strzela do wrogów.\n•Dodatkowy atak detonuje drona.\n•Dron detonuje się samoczynnie, gdy zabraknie mu amunicji, a w pobliżu znajdują się zety."
 SharedUnlockSource="Zestaw broni Wartownika"		   
 
+[KFWeap_HRG_Dragonbreath]
+ItemName="Smoczy Ogień HRG"
+ItemCategory="Strzelba"
+ItemDescription="•Podstawowy atak wystrzeliwuje pionowy płomień z jednej lufy.\n•Alternatywny atak wystrzeliwuje poziomy płomień z jednej lufy.\n•Smok sprzedawany oddzielnie."
+
+[KFWeap_AssaultRifle_G36C]
+ItemName="Karabin szturmowy G36C"
+ItemCategory="Karabin szturmowy"
+ItemDescription="•Tryb strzelania: ogień ciągły lub pojedynczy\n•Strzela pociskami przeciwpancernymi.\n•Kompaktowa wersja popularnego karabinu szturmowego."
+SharedUnlockSource="Zestaw broni karabinu szturmowego G36C"
+
+[KFWeap_Edged_Scythe]
+ItemName="Krwawy sierp"
+ItemCategory="Walka wręcz"
+ItemDescription="•Podstawowy atak – pojedyncze cięcie; przytrzymaj podstawowy atak, aby wykonać combo.\n•Dodatkowy atak – podwójne cięcie.\n•Przeładowanie – przełączanie między dalekim a krótkim zasięgiem.\n•Alternatywny atak – blok/parowanie."
+SharedUnlockSource="Zestaw broni krwawego sierpa"
+
+[KFWeap_HRG_Locust]
+ItemName="Szarańcza HRG"
+ItemCategory="Materiały wybuchowe"
+ItemDescription="•Główny atak wystrzeliwuje rakietę wytwarzającą chmurę nanobotów szarańczy, które atakują zetów.\n•Celowanie w trybie alternatywnego ataku aktywuje laserowy celownik i umożliwia naprowadzanie rakiet.\n•Ulubiona broń do likwidacji zetowych szkodników."
 //BossCaptionStrings[0]="A123456789B123456789C123456789D123456789E123456789F123456789G123456789H123456789I123456789J12345678" 78 characters max
 [KFPawn_ZedHans]
 BossName="Dr Hans Volter"

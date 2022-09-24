@@ -645,8 +645,8 @@ defaultproperties
     MinCollisionRadius=10
     MaxCollisionHeight=20
     MinCollisionHeight=10
-    MaxDamagePerPercentage=350
-    MinDamagePerPercentage=35
+    MaxDamagePerPercentage=400
+    MinDamagePerPercentage=40
     InheritedScale=1
     bSyncToOriginalLocation=true
     bSyncToThirdPersonMuzzleLocation=true

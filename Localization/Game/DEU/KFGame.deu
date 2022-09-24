@@ -22,6 +22,10 @@ ServerTypeStrings[2]="Gewertet – Benutzerdef."
 ServerTypeStrings[3]="Ungewertet"
 WeaponLevelString="WAFFENLEVEL"
 GunPointsString="WAFFENPUNKTE"							   
+VIPString="AUFGABE"
+VIPObjectiveAString="BESCHÜTZE DEN VIP"
+VIPObjectiveBString="ÜBERLEBE"
+VIPObjectiveCString="Du bist der VIP"									 
 
 PermissionStrings[0]="Öffentlich"
 PermissionStrings[1]="Privat: Passwort erf."
@@ -1405,6 +1409,10 @@ AimAssistLockOnString="Ziel Assist Zoom Lock-On"
 AimAssistRotationString="Ziel Assist Rotation"
 AimAssistSlowDownString="Ziel Assist Verlangsmg."
 ForceFeedbackString="Controller-Vibration"
+MouseLookUpScaleString="Vertikal"
+MouseLookRightScaleString="Horizontal"
+ViewAccelerationString="Beschleunigung ansehen"
+ViewSmoothingString="Glättung ansehen"									
 
 [KFGFxControlsContainer_Keybinding]
 SectionHeaders[0]="BEWEGUNG"
@@ -1449,6 +1457,7 @@ ShrinkString="Verkleinern"
 
 [KFInventoryManager]
 FullHealthMsg="Volle Lebenspunkte"
+CannotHealthMsg="Du kannst dich nicht selbst heilen"										 
 
 [KFLocalMessage]
 SystemString="System:"
@@ -1567,7 +1576,8 @@ ScavengeMessage="Plündern"
 YouLostMessage="N I E D E R L A G E"
 YouWonMessage="S I E G"
 SquadWipedOutMessage="Dein Trupp wurde ausgelöscht!"
-SquadSurvivedMessage="Dein Trupp hat überlebt!"
+SquadWipedOutVIPMessage="Der VIP wurde besiegt"
+SquadSurvivedMessage="Dein Trupp hat überlebt!"										   
 ObjectiveStartMessage="AUFGABE BEGONNEN"
 ObjectiveWonMessage="AUFGABE ABGESCHLOSSEN"
 ObjectiveEndedMessage="AUFGABE VORBEI"
@@ -2914,6 +2924,19 @@ AllCompleteRewardDescriptionString="Tiefsee | Dreizack | Edel"
 
 ChanceDropDescriptionStrings[0]="Summer-Schein"
 ChanceDropDescriptionStrings[1]="Summer-Goldschein"								  
+[KFGFxSpecialEventObjectivesContainer_Fall2022]
+CurrentSpecialEventString="Ein zeitlich begrenztes Spezial-Event mit exklusiven Gegenständen"
+
+SpecialEventObjectiveInfoList[0]=(TitleString="Kreaturen der Dunkelheit",DescriptionString="Töte 15 Bosse auf einer beliebigen Karte oder in einem beliebigen Modus")
+SpecialEventObjectiveInfoList[1]=(TitleString="Wöchentliche Hexerei",DescriptionString="Schaffe die wöchentliche Barmwich Town")
+SpecialEventObjectiveInfoList[2]=(TitleString="Elementare Medaillons",DescriptionString="Öffne die Waffenkammer")
+SpecialEventObjectiveInfoList[3]=(TitleString="Die Zeds brennen",DescriptionString="Bringe 50 Zeds dazu, durch die Scheiterhaufen von Barmwich Town zu laufen")
+SpecialEventObjectiveInfoList[4]=(TitleString="Lange Nacht der Hexen",DescriptionString="Schließe Welle 15 in Barmwich Town bei Endlos auf mindestens Schwer ab")
+
+AllCompleteRewardDescriptionString="Seuchenarzt | Rucksack | Edel"
+
+ChanceDropDescriptionStrings[0]="Halloween-Schein"
+ChanceDropDescriptionStrings[1]="Goldener Halloween-Schein"														 
 ;============================================
 ; Daily Localization
 ;============================================
@@ -3089,6 +3112,15 @@ FriendlyName="Arsenalaufstieg"
 DescriptionStrings[0]="Erhöhe das Level deiner Waffe!"
 DescriptionStrings[1]="Dauer: Spezial"
 ModifierDescriptions[0]="Händler sind inaktiv. Beginne mit nichts als einem Messer. Verdiene Waffenpunkte durchs Töten, um bessere Waffen zu erhalten. Nur Überlebenskünstler erlaubt. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+"
+ModifierDescriptions[1]="test2"
+ModifierDescriptions[2]="test3"
+ModifierDescriptions[3]="test4"
+ModifierDescriptions[4]="test5"							   
+[VIPMode KFWeeklyOutBreakInformation]
+FriendlyName="Primärziel"
+DescriptionStrings[0]="Beschütze den VIP!"
+DescriptionStrings[1]="Länge: Mittel (7 Wellen)"
+ModifierDescriptions[0]="Ein Spieler wird als VIP ausgewählt. Der VIP muss überleben, sonst ist das Spiel vorbei. Der VIP kann nur von anderen Spielern geheilt werden. Wähle den wöchentlichen Spielmodus auf der Spielersuche-Seite. Vorteil 15+."
 ModifierDescriptions[1]="test2"
 ModifierDescriptions[2]="test3"
 ModifierDescriptions[3]="test4"
@@ -3621,6 +3653,8 @@ DisplayName="Carillon Hamlet"
 
 [KF-Rig KFMapSummary]
 DisplayName="Bohrinsel"				 
+[KF-BarmwichTown KFMapSummary]
+DisplayName="Barmwich Town"						   
 [KFMapInfo]
 ; defaults
 FoundCollectibleString="%x% hat ein Sammelstück gefunden. %y% sind noch zu finden …"

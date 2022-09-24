@@ -241,11 +241,20 @@ ClassicWeaponSkinBundleName="Pacote de Conjunto de Aparência de Arma Clássica"
 DeepSeaSkinWeaponSkinPackName="Pacote de Conjunto de Aparência de Arma de Fundo do Mar"
 ChameleonWeaponSkinBundleName="Pacote de Conjunto de Aparência de Arma Camaleão"
 DeepSeaExplorerOutfitName="Conjunto de Traje de Explorador do Mar"
+PlagueDoctorOutfitName="Conjunto de Traje de Médico da Peste"
 ReductoRayBundleName="Conjunto de Armas Raio Redutor"
 SentinelBundleName="Conjunto de Armas Sentinela"
 TidalTerrorBundleName="Conjunto de Armas de Terror da Maré"
 ArmorySeasonPass2022Name="Killing Floor 2 — Passe de Temporada do Arsenal 2"
 UltimateUpgradeName="Killing Floor 2 — Atualização Ultimate Edition"																
+PlagueDoctorWeaponSkinBundleName="Pacote de Conjunto de Aparência de Arma de Médico da Peste"
+XenoWeaponSkinBundleName="Pacote de Conjunto de Aparência de Arma de Xeno"
+ClassicMKIIWeaponSkinBundleName="Pacote de Conjunto de Aparência de Arma MKII Clássica"
+ChameleonMKIIWeaponSkinBundleName="Pacote de Conjunto de Aparência de Arma MKII Camaleão"
+PlagueDoctorOutfitBundleName="Conjunto de Traje de Médico da Peste"
+G36CBundleName="Conjunto de Armas do Fuzil de Assalto G36C"
+BloodSickleBundleName="Conjunto de Armas de Foice Sangrenta"
+BloodBonfiresWeaponBundleName="Conjunto de Armas Sangue e Fogueiras"														  
 
 ;Bundle Descriptions
 BriarsBobbyBundleDescription="Vem com Uniforme Londrino de Briar (com 5 estilos de aparência) e o acessório cosmético Capacete de Guarda (com 3 estilos de aparência)."
@@ -485,12 +494,20 @@ ClassicWeaponSkinBundleDescription="Contém 8 aparências de arma clássicas (4 
 DeepSeaSkinWeaponSkinBundleDescription="Contém 36 aparências de arma do Fundo do Mar (6 Antigas, 6 Azul-piscina, 6 Corais, 6 Peroladas, 6 Foca Preta e 6 Preciosas). As armas do conjunto são: AA12, FN FAL, M14EBR, Mac 10, MP5RAS, RPG-7."																																																									 
 ChameleonWeaponSkinBundleDescription="Contém 8 aparências de arma com tema Camaleão (4 Dinâmicas e 4 Dinâmicas RGB). As armas neste conjunto são: Desert Eagle, Katana, Kriss SMG, RPG-7."																																													   
 DeepSeaExplorerOutfitDescription="Vem com o Traje e Capacete de Explorador do Mar (inclui 6 estilos de aparência). Compatível com a maioria dos personagens."																																				   
+PlagueDoctorOutfitDescription="Vem com o Traje e o Capuz de Médico da Peste (inclui 6 estilos de aparência). Compatível com a maioria dos personagens."
 ReductoRayBundleDescription="O poder de reduzir os inimigos até a palma da sua mão. O Raio Redutor foi projetado para a classe Sobrevivente e vem com 5 variantes de aparência exclusivas."																																																	
 SentinelBundleDescription="Todo mundo precisa de amigos, principalmente um que seja uma metralhadora com IA autônoma e mira automática. A Sentinela foi projetada para a classe Comando vem com 5 variantes de aparência exclusivas."																																																				   
 TidalTerrorBundleDescription="Inclui as armas Sentinela e Raio Redutor da atualização Terror da Maré. Cada arma vem com 5 variantes de aparência exclusivas."																																						 
 ArmorySeasonPass2022Description="Expanda o seu repertório de destruição Zed no Killing Floor 2 com o Passe de Temporada do Arsenal deste ano! O jeito mais eficiente de obter acesso imediato a todas as 6 armas de 2022 à medida que forem lançadas pelo ano. No ato da compra, você ganha 2 armas totalmente novas lançadas na atualização do verão de 2022 (Conjuntos de Armas Raio Redutor, Conjunto de Armas Sentinela). Ambos os conjuntos vêm com 5 aparências de arma exclusivas cada um. Além disso, o Passe de Temporada do Arsenal 2 do Killing Floor 2 inclui acesso aos conjuntos de armas programados assim: 2 armas no outono de 2022, 2 armas no inverno de 2022."																																																																																																																																																												
-UltimateUpgradeDescription="Para proprietários de Killing Floor 2 que queiram atualizar para a experiência mais abrangente do jogo a um preço baixo. Esta melhoria inclui:\n - Passe de Temporada do Arsenal 1\n - Passe de Temporada do Arsenal 2 que dá acesso imediato a todos os 6 novos conjuntos de arma de 2022 à medida que forem sendo lançados\n - Muitos itens cosméticos!\n"																																																																																																																																																																																																																																									   
-
+UltimateUpgradeDescription="Para proprietários de Killing Floor 2 que queiram atualizar para a experiência mais abrangente do jogo a um preço baixo. Esta melhoria inclui:\n - Passe de Temporada do Arsenal 1\n - Passe de Temporada do Arsenal 2 que dá acesso imediato a todos os 6 novos conjuntos de arma de 2022 à medida que forem sendo lançados\n - Muitos itens cosméticos!\n"																																																																																																																																																																																																																																									   																																																																																																																																																																																																																																									   
+PlagueDoctorWeaponSkinBundleDescription="Contém 36 aparências de arma temáticas do Médico da Peste (6 Novas, 6 Esterlinas, 6 Obsidianas, 6 Vulcânicas, 6 Esmeraldas e 6 Preciosas). Armas presentes no conjunto: Tommy Gun, M79. Desert Eagle, Besta, Doomstick e Sopro de Dragão.  "  
+XenoWeaponSkinBundleDescription="Contém 8 aparências de arma com tema Xenomorfo de Ficção Científica (4 Dinâmicas e 4 Dinâmicas RGB). As armas neste conjunto são: M16 M203, Submetralhadora UMP, Fogo Central e Hemoagulha."
+ClassicMKIIWeaponSkinBundleDescription="Contém 8 aparências de arma clássicas (4 novas e 4 preciosas). As armas neste conjunto são: AK12, Desert Eagle, M14 EBR e Submetralhadora Kriss."
+ChameleonMKIIWeaponSkinBundleDescription="Contém 8 aparências de arma com tema Camaleão (4 Dinâmicas e 4 Dinâmicas RGB). As armas neste conjunto são: AA12, Lança-chamas, M99, SCAR."
+PlagueDoctorOutfitBundleDescription="Vem com o Traje e o Capuz de Médico da Peste (inclui 6 estilos de aparência). Compatível com a maioria dos personagens."
+G36CBundleDescription="Poder de perfuração de armadura do tamanho de uma submetralhadora. O fuzil de assalto G36C foi projetado para a classe SWAT e vem com 5 variantes de aparência exclusivas."
+BloodSickleBundleDescription="A favorita do Ceifeiro agora dobrável para corredores estreitos. A Foice Sangrenta foi projetada para a classe Berserker e vem com 5 variantes de aparência exclusivas. "
+BloodBonfiresWeaponBundleDescription="Inclui as armas Fuzil de Assalto G36C e Foice Sangrenta da atualização Sangue e Fogueiras. Cada arma vem com 5 variantes de aparência exclusivas."
 ;PSN Bundle Descriptions
 BriarsBobbyBundlePSNDescription="Obtenha o clássico uniforme da polícia londrina para o personagem jogável PC Rob Briar. Vem com Uniforme Londrino de Briar (com 5 estilos de aparência) e o acessório cosmético Capacete de Guarda (com 3 estilos de aparência)."
 FosterClassicBundlePSNDescription="Obtenha o novo uniforme de ciclista para o personagem jogável Hayato Tanaka. Vem com Uniforme de motociclista de Tanaka (com 7 estilos de aparência) e acessório cosmético Capacete (com 7 estilos de aparência)."
@@ -602,6 +619,7 @@ AstronautO2BackpackName="Mochila de O2 de Astronauta"
 AstronautSuitName="Uniforme de Traje de Astronauta"
 HolidayShoppingSuitName="Uniforme de Compras de Feriado"
 DeepSeeExplorerSuitName="Traje Explorador do Mar"
+PlagueDoctorSuitName="Traje de Médico da Peste"										   
 
 ;cyberpunk paint over names
 MastersonCyberPunkGreenName="Ten. Bill Masterson | Ciberpunk | Verde"
@@ -1542,6 +1560,8 @@ AA12DeepSeaBlackSealName="AA12 | Mar Profundo | Foca Preta"
 AA12DeepSeaPreciousName="AA12 | Mar Profundo | Precioso"
 AA12ClassicMintName="AA12 | Clássico | Novo"
 AA12ClassicPreciousName="AA12 | Clássico | Precioso"
+AA12ChameleonDynamicName="AA12 | Chameleon | Dynamic"
+AA12ChameleonDynamicRGBName="AA12 | Chameleon | Dynamic RGB"															
 
 ;AF2011-A1 Descriptions
 AF2011A1MintDescription="Exterior: Novo | Tudo é melhor quando tem mais canos. É tipo adicionar mais bacon."
@@ -1642,6 +1662,8 @@ AK12IceBreakerDynamicPreciousName="AK-12 | Quebra-gelo | Dinâmico Precioso"
 AK12BeyondHorizonMintName="AK-12 | Além do Horizonte | Novo"
 AK12BeyondHorizonSpaceEliteName="AK-12 | Além do Horizonte | Elite Espacial"
 AK12ScavengerPreciousName="AK-12 | Vasculhador | Precioso"
+AK12ClassicMintName="AK-12 | Clássico | Novo"
+AK12ClassicPreciousName="AK-12 | Clássico | Precioso"													
 
 ;AR15 Descriptions
 AR15MintDescription="Exterior: Novo | É para os Zeds, não para animais selvagens."
@@ -1818,6 +1840,8 @@ CenterfireNeonFieldTestedName="Fogo Central | Neon | Testado"
 CenterfireNeonMintName="Fogo Central | Neon | Novo"
 CenterfireNeonRGBPreciousName="Fogo Central | Neon RGB | Precioso"
 CenterfireVaultVoshPreciousName="Fogo central | Cofre | Vosh | Precioso"
+CenterfireXenoDynamicName="Centerfire | Xeno | Dinâmico"
+CenterfireXenoDynamicRGBName="Centerfire | Xeno | Dinâmico RGB"															  
 
 ;Crossbow Descriptions
 CrossbowMintDescription="Exterior: Novo | Uma besta de caça poderosa, com alta perfuração e poder de parada!"
@@ -1846,6 +1870,12 @@ CrossbowNeonFieldTestedName="Besta | Neon | Testado"
 CrossbowNeonBattleScarredName="Besta | Neon | Usado"
 CrossbowNeonRGBPreciousName="Besta | Neon RGB | Precioso"
 CrossbowDragonKoiPreciousName="Besta | Dragão e Carpa | Preciosa"
+CrossbowPlagueDoctorMintName="Besta | Médico da Peste | Novo"
+CrossbowPlagueDoctorSterlingName="Besta | Médico da Peste | Esterlina"
+CrossbowPlagueDoctorObsidianName="Besta | Médico da Peste | Obsidiana"
+CrossbowPlagueDoctorVolcanicName="Besta | Médico da Peste | Vulcânica"
+CrossbowPlagueDoctorEmeraldName="Besta | Médico da Peste | Esmeralda"
+CrossbowPlagueDoctorPreciousName="Besta | Médico da Peste | Precioso"																	  
 
 ;Crovel Descriptions
 CrovelMintDescription="Exterior: Novo | Metade pé-de-cabra, metade pá, mas é mortal"
@@ -1936,6 +1966,14 @@ DesertEagleAlchemistToxicName="Desert Eagle | Alquimista | Tóxico"
 DesertEagleAlchemistBlazeName="Desert Eagle | Alquimista | Chama"
 DesertEagleChameleonDynamicName="Desert Eagle | Camaleão | Dinâmico"
 DesertEagleChameleonDynamicRGBName="Desert Eagle | Camaleão | Dinâmico RGB"
+DesertEaglePlagueDoctorMintName="Desert Eagle | Médico da Peste | Novo"
+DesertEaglePlagueDoctorSterlingName="Desert Eagle | Médico da Peste | Esterlina"
+DesertEaglePlagueDoctorObsidianName="Desert Eagle | Médico da Peste | Obsidiana"
+DesertEaglePlagueDoctorVolcanicName="Desert Eagle | Médico da Peste | Vulcânica"
+DesertEaglePlagueDoctorEmeraldName="Desert Eagle | Médico da Peste | Esmeralda"
+DesertEaglePlagueDoctorPreciousName="Desert Eagle | Médico da Peste | Precioso"
+DesertEagleClassicMintName="Desert Eagle | Clássico | Novo"
+DesertEagleClassicPreciousName="Desert Eagle | Clássico | Precioso"																  
 
 ;Doomstick Descriptions
 DoomstickMintDescription="Exterior: Novo | Se ter o dobro de diversão não for suficiente, quadruplique!"
@@ -1957,6 +1995,12 @@ DoomstickBeyondHorizonMintName="Doomstick | Além do Horizonte | Novo"
 DoomstickBeyondHorizonSpaceEliteName="Doomstick | Além do Horizonte | Elite Espacial"
 DoomstickHellmarkMagmaName="Doomstick | Marca do Inferno | Magma"
 DoomstickHellmarkThunderName="Doomstick | Marca do Inferno | Trovão"
+DoomstickPlagueDoctorMintName="Doomstick | Médico da Peste | Novo"
+DoomstickPlagueDoctorSterlingName="Doomstick | Médico da Peste | Esterlina"
+DoomstickPlagueDoctorObsidianName="Doomstick | Médico da Peste | Obsidiana"
+DoomstickPlagueDoctorVolcanicName="Doomstick | Médico da Peste | Vulcânica"
+DoomstickPlagueDoctorEmeraldName="Doomstick | Médico da Peste | Esmeralda"
+DoomstickPlagueDoctorPreciousName="Doomstick | Médico da Peste | Precioso"
 
 ;Dragonsbreath Descriptions
 DragonsbreathMintDescription="Exterior: Novo | Uma espingarda que usa rodadas incendiárias de Sopro de Dragão. Além de mortal, é muito linda também."
@@ -1997,6 +2041,12 @@ DragonsbreathIceBreakerDynamicName="Sopro de dragão | Quebra-gelo | Dinâmico"
 DragonsbreathIceBreakerDynamicPreciousName="Sopro de dragão | Quebra-gelo | Dinâmico Precioso"
 DragonsbreathHellmarkMagmaName="Sopro de Dragão | Marca do Inferno | Magma"
 DragonsbreathHellmarkThunderName="Sopro de Dragão | Marca do Inferno | Trovão"
+DragonsbreathPlagueDoctorMintName="Sopro de dragão | Médico da Peste | Novo"
+DragonsbreathPlagueDoctorSterlingName="Sopro de dragão | Médico da Peste | Esterlina"
+DragonsbreathPlagueDoctorObsidianName="Sopro de dragão | Médico da Peste | Obsidiana"
+DragonsbreathPlagueDoctorVolcanicName="Sopro de dragão | Médico da Peste | Vulcânica"
+DragonsbreathPlagueDoctorEmeraldName="Sopro de dragão | Médico da Peste | Esmeralda"
+DragonsbreathPlagueDoctorPreciousName="Sopro de dragão | Médico da Peste | Precioso"																				
 
 ;Eviscerator Descriptions
 EvisceratorMintDescription="Exterior: Novo | Originalmente projetado pelo grupo SDS de Horzine num átimo de selvageria. Não é nada sutil."
@@ -2071,6 +2121,8 @@ FlamethrowerXMasSweetName="Lança-chamas | Natal | Doce"
 FlamethrowerXMasSourName="Lança-chamas | Natal | Ácido"
 FlamethrowerAlchemistToxicName="Lança-chamas | Alquimista | Tóxico"
 FlamethrowerAlchemistBlazeName="Lança-chamas | Alquimista | Chama"
+FlamethrowerChameleonDynamicName="Lança-chamas | Camaleão | Dinâmico"
+FlamethrowerChameleonDynamicRGBName="Lança-chamas | Camaleão | Dinâmico RGB"																			
 
 ;Spitfire Descriptions
 FlarePistolMintDescription="Exterior: Novo | Sistema de disparo de rajadas mais distantes e convenientes."
@@ -2209,6 +2261,8 @@ HKUMPPrestigePreciousName="Heckler & Koch UMP | Prestígio | Precioso"
 HKUMPVaultVoshPreciousName="Heckler & Koch UMP | Cofre | Vosh | Precioso"
 HKUMPJaegerDynamicName="Heckler & Koch UMP | Jaeger | Dinâmico"
 HKUMPJaegerDynamicRGBName="Heckler & Koch UMP | Jaeger | Dinâmico RGB"
+HKUMPXenoDynamicName="Heckler & Koch UMP | Xeno | Dinâmico"
+HKUMPXenoDynamicRGBName="Heckler & Koch UMP | Xeno | Dinâmico RGB"																 
 
 ;HMTech-001 Scalpel Descriptions
 HMTech001ScalpelMintDescription="Exterior: Novo | Um bisturi. Como você entende de medicina, presumimos que qualquer explicação seria desnecessária."
@@ -2600,6 +2654,8 @@ KrissIceBreakerDynamicPreciousName="Submetralhadora Kriss | Quebra-gelo | Dinâm
 KrissInfernalElitePreciousName="Submetralhadora Kriss | Elite Infernal | Precioso"
 KrissChameleonDynamicName="Submetralhadora Kriss | Camaleão | Dinâmico"
 KrissChameleonDynamicRGBName="Submetralhadora Kriss | Camaleão | Dinâmico RGB"
+KrissClassicMintName="Submetralhadora Kriss | Clássico | Novo"
+KrissClassicPreciousName="Submetralhadora Kriss | Clássico | Precioso"													 
 
 ;L85A2 Descriptions
 L85A2MintDescription="Exterior: Novo | O SA80 era a arma padrão do exército britânico, antes do exército ser... devorado."
@@ -2686,6 +2742,8 @@ M14EBRDeepSeaCoralName="M14EBR | Mar Profundo | Coral"
 M14EBRDeepSeaPearlName="M14EBR | Mar Profundo | Pérola"
 M14EBRDeepSeaBlackSealName="M14EBR | Mar Profundo | Foca Preta"
 M14EBRDeepSeaPreciousName="M14EBR | Mar Profundo | Precioso"
+M14EBRClassicMintName="M14EBR | Clássico | Novo"
+M14EBRClassicPreciousName="M14EBR | Clássico | Precioso"													   
 
 ;M16M203 Descriptions
 M16M203MintDescription="Exterior: Novo | Para os que não se decidem entre balas e explosivos."
@@ -2784,6 +2842,8 @@ M4NeonRGBPreciousName="M4 | Neon RGB | Precioso"
 M4PrestigePreciousName="M4 | Prestígio | Precioso"
 M4DragonKoiPreciousName="M4 | Dragão e Carpa | Precioso"
 M4FostersFavoritesPreciousName="M4 | Favoritas de Foster | Precioso"
+M4XenoDynamicName="M4 | Xeno | Dinâmico"
+M4XenoDynamicRGBName="M4 | Xeno | Dinâmico RGB"											  
 
 ;M79 Descriptions
 M79MintDescription="Exterior: Novo | Ela se arma a alguns metros de distância do objetivo para que você não exploda junto."
@@ -2831,6 +2891,12 @@ M79NeonMintName="M79 | Neon | Nova"
 M79NeonRGBPreciousName="M79 | Neon RGB | Precioso"
 M79IceBreakerDynamicName="M79 | Quebra-gelo | Dinâmico"
 M79IceBreakerDynamicPreciousName="M79 | Quebra-gelo | Dinâmico Precioso"
+M79PlagueDoctorMintName="M79 | Médico da Peste | Novo"
+M79PlagueDoctorSterlingName="M79 | Médico da Peste | Esterlina"
+M79PlagueDoctorObsidianName="M79 | Médico da Peste | Obsidiana"
+M79PlagueDoctorVolcanicName="M79 | Médico da Peste | Vulcânica"
+M79PlagueDoctorEmeraldName="M79 | Médico da Peste | Esmeralda"
+M79PlagueDoctorPreciousName="M79 | Médico da Peste | Precioso"															
 
 ;Bone Crusher Descriptions
 MaceAndShieldMintDescription="Exterior: Novo | Tem um poderoso ataque de Pancada com Escudo."
@@ -2862,6 +2928,8 @@ M99JaegerDynamicName="M99 | Jaeger | Dinâmico"
 M99JaegerDynamicRGBName="M99 | Jaeger | RGB Dinâmico"
 M99IceBreakerDynamicName="M99 | Quebra-gelo | Dinâmico"
 M99IceBreakerDynamicPreciousName="M99 | Quebra-gelo | Dinâmico Precioso"
+M99ChameleonDynamicName="M99 | Camaleão | Dinâmico"
+M99ChameleonDynamicRGBName="M99 | Camaleão | Dinâmico RGB"														  
 
 ;Bone Crusher Names
 MaceAndShieldCircuitMintName="Esmaga-Osso | Circuito | Novo"
@@ -2939,6 +3007,8 @@ MedicBatBeyondHorizonMintName="Hemoagulha | Além do Horizonte | Novo"
 MedicBatBeyondHorizonSpaceEliteName="Hemoagulha | Além do Horizonte | Elite Espacial"
 MedicBatHellmarkMagmaName="Hemoagulha | Marca do Inferno | Magma"
 MedicBatHellmarkThunderName="Hemoagulha | Marca do Inferno | Trovão"
+MedicBatXenoDynamicName="Hemoagulha | Xeno | Dinâmico"
+MedicBatXenoDynamicRGBName="Hemoagulha | Xeno | Dinâmico RGB"															 
 
 ;Microwave Gun Descriptions
 MicrowaveGunMintDescription="Exterior: Novo | Maravilhas modernas: um tostador de Zeds."
@@ -3281,6 +3351,8 @@ ScarXMasSweetName="Scar | Natal | Doce"
 ScarXMasSourName="Scar | Natal | Ácido"
 ScarAlchemistToxicName="Scar | Alquimista | Tóxico"
 ScarAlchemistBlazeName="Scar | Alquimista | Chama"
+ScarChameleonDynamicName="SCAR | Camaleão | Dinâmico"
+ScarChameleonDynamicRGBName="SCAR | Camaleão | Dinâmico RGB"															
 
 ;Seeker Six Descriptions
 SeekerSixMintDescription="Exterior: Novo | Arma altamente explosiva e versátil que segue e concentra seus disparos a vários alvos de uma vez."
@@ -3633,6 +3705,12 @@ TommyGunVaultVoshPreciousName="Tommy Gun | Cofre | Vosh | Precioso"
 TommyGunJaegerDynamicName="Tommy Gun | Jaeger | Dinâmico"
 TommyGunJaegerDynamicRGBName="Tommy Gun | Jaeger | Dinâmico RGB"
 TommyGunStarsName="Tommy Gun | Cofre | Estrelas"
+TommyGunPlagueDoctorMintName="Tommy Gun | Médico da Peste | Novo"
+TommyGunPlagueDoctorSterlingName="Tommy Gun | Médico da Peste | Esterlina"
+TommyGunPlagueDoctorObsidianName="Tommy Gun | Médico da Peste | Obsidiana"
+TommyGunPlagueDoctorVolcanicName="Tommy Gun | Médico da Peste | Vulcânica"
+TommyGunPlagueDoctorEmeraldName="Tommy Gun | Médico da Peste | Esmeralda"
+TommyGunPlagueDoctorPreciousName="Tommy Gun | Médico da Peste | Precioso"																	   
 
 ;Laser Cutter Descriptions
 LaserCutterMintDescription="Exterior: Novo | Modo sobrecarregado - carrega com o botão de disparo apertado e descarrega ao soltar o botão."
@@ -4016,6 +4094,34 @@ ReductoRayAtomicLoveName="Raio redutor | Amor Atômico"
 ReductoRayLuckyStrikeName="Raio redutor | Golpe de Sorte"
 ReductoRayHeavyMetalName="Raio redutor | Heavy Metal"
 ReductoRayDestructorName="Raio redutor | Destruidor"												   
+;Blood Sickle Descriptions
+BloodSickleMintDescription="Exterior: Nova | A favorita do Ceifeiro agora dobrável para corredores estreitos."
+BloodSickleFieldTestedDescription="Exterior: Testado | A favorita do Ceifeiro agora dobrável para corredores estreitos."
+BloodSickleBattleScarredDescription="Exterior: Usado | A favorita do Ceifeiro agora dobrável para corredores estreitos."
+BloodSicklePreciousDescription="Exterior: Precioso | A favorita do Ceifeiro agora dobrável para corredores estreitos."
+
+;Blood Sickle Names
+BloodSickleStandardName="Foice Sangrenta | Padrão"
+BloodSickleBloodbathName="Foice Sangrenta | Banho de Sangue"
+BloodSickleButcheryName="Foice Sangrenta | Massacre"
+BloodSickleCarouselName="Foice Sangrenta | Carrossel"
+BloodSickleReaperName="Foice Sangrenta | Ceifeiro"
+BloodSickleHunterName="Foice Sangrenta | Caçador"
+
+;G36C Descriptions
+G36CMintDescription="Exterior: Nova | Poder de perfuração de armadura do tamanho de uma submetralhadora."
+G36CFieldTestedDescription="Exterior: Testado | Poder de perfuração de armadura do tamanho de uma submetralhadora."
+G36CBattleScarredDescription="Exterior: Usado | Poder de perfuração de armadura do tamanho de uma submetralhadora."
+G36CPreciousDescription="Exterior: Precioso | Poder de perfuração de armadura do tamanho de uma submetralhadora."
+
+;G36C Names
+G36CStandardName="Fuzil de assalto G36C | Padrão"
+G36CSaharaName="Fuzil de assalto G36C | Saara"
+G36CIcepackName="Fuzil de assalto G36C | Pacote de gelo"
+G36CAftermathName="Fuzil de assalto G36C | Resultado"
+G36CJungleName="Fuzil de assalto G36C | Selva"
+G36CDazzleName="Fuzil de assalto G36C | Ofuscação"
+
 
 [CosmeticSection]
 
@@ -6402,6 +6508,17 @@ DeepSeaHelmetPearlName="Mar Profundo | Capacete | Perolado"
 DeepSeaHelmetBlackSealName="Mar Profundo | Capacete | Foca Preta"
 DeepSeaHelmetPreciousName="Mar Profundo | Capacete | Precioso"														
 
+;Halloween 2022 Cosmetic Names
+PlagueDoctorBackpackPreciousName="Médico da Peste | Mochila | Precious"
+PlagueDoctorHoodMintName="Médico da Peste | Capuz | Mint"
+PlagueDoctorHoodSterlingName="Médico da Peste | Capuz | Sterling"
+PlagueDoctorHoodObsidianName="Médico da Peste | Capuz | Obsidian"
+PlagueDoctorHoodVolcanicName="Médico da Peste | Capuz | Volcanic"
+PlagueDoctorHoodEmeraldName="Médico da Peste | Capuz | Emerald"
+PlagueDoctorHoodPreciousName="Médico da Peste | Capuz | Precious"
+
+;Weekly Primary Target Cosmetic Name
+PrimaryTargetCrownPreciousName="Coroa de alvo primário | Precioso"																
 ;Cosmetic Descriptions
 SummerSideshowAccessoryDescription="Usável no menu equipamento; compatível com a maioria dos personagens. Item exclusivo do evento sazonal “Feira de Verão”. Recicle em 1 Bilhete de Feira."
 SummerSideshowFacePaintDescription="Usável no menu equipamento. Item exclusivo do evento sazonal “Feira de Verão”. Recicle em 1 Bilhete de Feira."
