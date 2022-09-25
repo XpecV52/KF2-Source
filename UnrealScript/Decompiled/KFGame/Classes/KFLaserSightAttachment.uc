@@ -34,6 +34,7 @@ var float AnimWeight;
 var() float AnimBlendRate;
 var transient float LaserSightAimStrength;
 var transient float DesiredAimStrength;
+var transient bool bForceDotToMatch;
 var transient bool IsVisible;
 
 function AttachLaserSight(SkeletalMeshComponent OwnerMesh, bool bFirstPerson, optional name SocketNameOverride)
@@ -209,7 +210,14 @@ function UpdateFirstPersonAImStrength(float DeltaTime, KFWeapon W)
     }
     else
     {
-        DesiredAimStrength = 0;
+        if(bForceDotToMatch && W.IsInState('Reloading') == false)
+        {
+            DesiredAimStrength = 1 - AnimWeight;            
+        }
+        else
+        {
+            DesiredAimStrength = 0;
+        }
     }
     if(LaserSightAimStrength < DesiredAimStrength)
     {

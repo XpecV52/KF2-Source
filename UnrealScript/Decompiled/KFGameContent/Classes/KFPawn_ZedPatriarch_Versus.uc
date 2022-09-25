@@ -407,7 +407,7 @@ System.ArgumentException: Requested value '0_518' was not found.
    at UELib.Core.UDefaultProperty.DeserializeTagUE3()
    at UELib.Core.UDefaultProperty.Deserialize()
    at UELib.Core.UDefaultProperty.DeserializeDefaultPropertyValue(PropertyType type, DeserializeFlags& deserializeFlags) */
-    BattlePhases(1)=0_7[9262]=/* Unknown default property type! */,
+    BattlePhases(1)=0_7[9263]=/* Unknown default property type! */,
 /* Exception thrown while deserializing BattlePhases
 System.ArgumentException: Requested value '0_1614' was not found.
    at System.Enum.TryParseEnum(Type enumType, String value, Boolean ignoreCase, EnumResult& parseResult)

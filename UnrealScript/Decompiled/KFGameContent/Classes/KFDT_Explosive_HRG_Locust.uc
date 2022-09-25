@@ -18,7 +18,7 @@ static function ApplySecondaryDamage(KFPawn Victim, int DamageTaken, optional Co
     }
     if(default.DoTDamageType.default.DoT_Type != 0)
     {
-        Victim.ApplyDamageOverTime(Class'KFDT_Toxic_HRG_Locust'.default.SpreadOnTouchDamage, InstigatedBy, default.DoTDamageType);
+        Victim.ApplyDamageOverTime(DamageTaken, InstigatedBy, default.DoTDamageType);
     }
 }
 

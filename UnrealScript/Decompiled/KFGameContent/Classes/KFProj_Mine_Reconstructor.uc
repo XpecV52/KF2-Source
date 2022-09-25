@@ -670,8 +670,8 @@ defaultproperties
         MomentumTransferScale=45000
         ExplosionSound=AkEvent'WW_WEP_MineReconstructor.Play_WEP_Mine_Reconstructor_Mine_Explosion'
         CamShake=KFCameraShake'WEP_Mine_Reconstructor_Arch.Camera_Shake'
-        CamShakeInnerRadius=200
-        CamShakeOuterRadius=400
+        CamShakeInnerRadius=0
+        CamShakeOuterRadius=0
     object end
     // Reference: KFGameExplosion'Default__KFProj_Mine_Reconstructor.ExploTemplate0'
     ExplosionTemplate=ExploTemplate0

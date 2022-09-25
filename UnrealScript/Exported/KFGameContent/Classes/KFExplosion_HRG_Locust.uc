@@ -9,28 +9,8 @@
 
 class KFExplosion_HRG_Locust extends KFExplosionActorLingering;
 
-var private bool bFirstExplosion;
-
-protected simulated function bool DoExplosionDamage(bool bCauseDamage, bool bCauseEffects)
-{
-	local bool bReturnValue;
-
-	// Only does explosion damage one time
-	if (bCauseDamage && bFirstExplosion == false)
-	{
-		bCauseDamage = false;
-	}
-
-	bReturnValue = super.DoExplosionDamage(bCauseDamage, bCauseEffects);
-
-	bFirstExplosion = false;
-
-	return bReturnValue;
-}
-
 defaultproperties
 {
-   bFirstExplosion=True
    interval=0.500000
    maxTime=3.000000
    LoopStartEvent=AkEvent'WW_WEP_HRG_Locust.Play_WEP_HRG_Locust_Insects'

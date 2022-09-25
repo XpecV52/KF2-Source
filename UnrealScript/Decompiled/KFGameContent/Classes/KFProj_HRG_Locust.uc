@@ -82,8 +82,8 @@ defaultproperties
     ExplosionActorClass=Class'KFExplosion_HRG_Locust'
     begin object name=ExploTemplate0 class=KFGameExplosion
         ExplosionEffects=KFImpactEffectInfo'WEP_HRG_Locust_ARCH.FX_HRG_Locust_Explosion_Concussive_force'
-        Damage=80
-        DamageRadius=300
+        Damage=60
+        DamageRadius=200
         DamageFalloffExponent=0.5
         MyDamageType=Class'KFDT_Explosive_HRG_Locust'
         KnockDownStrength=0

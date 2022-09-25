@@ -157,6 +157,10 @@ simulated function ChangeMode(bool IsFolded, bool bApplyBlend = true)
         InstantHitDamageTypes[HEAVY_ATK_FIREMODE] = FoldedDTAlt;
 
         PlayerViewOffset = OriginalPlayerViewOffset;
+
+        InstantHitDamageTypes[BASH_FIREMODE]=class'KFDT_Piercing_ScytheStabFolded';
+	    InstantHitMomentum[BASH_FIREMODE]=100000.f;
+        InstantHitDamage[BASH_FIREMODE]=40;
     }
     else 
     {
@@ -170,6 +174,10 @@ simulated function ChangeMode(bool IsFolded, bool bApplyBlend = true)
         InstantHitDamageTypes[HEAVY_ATK_FIREMODE] = UnfoldedDTAlt;
     
         PlayerViewOffset = PlayerViewOffsetUnfolded;
+
+        InstantHitDamageTypes[BASH_FIREMODE]=class'KFDT_Piercing_ScytheStab';
+	    InstantHitMomentum[BASH_FIREMODE]=100000.f;
+        InstantHitDamage[BASH_FIREMODE]=60;
     }
 
     NotifyServerMode(bIsFolded);
@@ -338,10 +346,10 @@ defaultproperties
    HitboxChainUnfolded(14)=(BoneOffset=(X=0.000000,Y=0.000000,Z=10.000000))
    MaxHitRangeFolded=220
    MaxHitRangeUnfolded=300
-   FoldedDamage=60
-   FoldedDamageAlt=87
-   UnfoldedDamage=90
-   UnfoldedDamageAlt=150
+   FoldedDamage=70
+   FoldedDamageAlt=120
+   UnfoldedDamage=140
+   UnfoldedDamageAlt=190
    FoldedDT=Class'kfgamecontent.KFDT_Slashing_ScytheShort'
    FoldedDTAlt=Class'kfgamecontent.KFDT_Slashing_ScytheShortAlt'
    UnfoldedDT=Class'kfgamecontent.KFDT_Slashing_ScytheLong'
@@ -392,19 +400,16 @@ defaultproperties
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_Edged_Scythe:MeleeHelper_0'
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_Berserker'
    WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Stat=EWUS_Damage1,Scale=1.150000),(Add=1)))
-   InstantHitDamage(3)=50.000000
-   InstantHitDamage(4)=()
-   InstantHitDamage(5)=()
    InstantHitMomentum(0)=30000.000000
    InstantHitMomentum(1)=()
    InstantHitMomentum(2)=()
-   InstantHitMomentum(3)=100000.000000
+   InstantHitMomentum(3)=()
    InstantHitMomentum(4)=()
    InstantHitMomentum(5)=30000.000000
    InstantHitDamageTypes(0)=Class'kfgamecontent.KFDT_Slashing_ScytheShort'
    InstantHitDamageTypes(1)=()
    InstantHitDamageTypes(2)=()
-   InstantHitDamageTypes(3)=Class'kfgamecontent.KFDT_Piercing_ScytheStab'
+   InstantHitDamageTypes(3)=()
    InstantHitDamageTypes(4)=()
    InstantHitDamageTypes(5)=Class'kfgamecontent.KFDT_Slashing_ScytheShortAlt'
    Begin Object Class=KFSkeletalMeshComponent Name=FirstPersonMesh Archetype=KFSkeletalMeshComponent'KFGame.Default__KFWeap_MeleeBase:FirstPersonMesh'

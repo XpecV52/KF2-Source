@@ -32,5 +32,5 @@ defaultproperties
 
 	WeaponDef=class'KFWeapDef_HRG_Locust'
 
-	SpreadOnTouchDamage=40
+	SpreadOnTouchDamage=30
 }

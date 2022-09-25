@@ -227,15 +227,15 @@ package tripwire.containers.optionsControls
                 this.zoomSensitivityMaximumText.text = this.zoomSensitivitySliderOption.slider.maximum.toFixed(0).toString();
                 this.mouseSmoothingCheckBox.selected = !!param1.mouseSmoothingValue ? Boolean(param1.mouseSmoothingValue) : false;
                 this.invertYCheckBox.selected = !!param1.invertedValue ? Boolean(param1.invertedValue) : false;
-                this.lookUpScaleSliderOption.sliderValue = !!param1.lookUpScaleValue ? int(param1.lookUpScaleValue) : 0;
                 this.lookUpScaleSliderOption.slider.minimum = !!param1.lookUpScaleMin ? Number(param1.lookUpScaleMin) : Number(0);
                 this.lookUpScaleSliderOption.slider.maximum = !!param1.lookUpScaleMax ? Number(param1.lookUpScaleMax) : Number(1);
+                this.lookUpScaleSliderOption.sliderValue = !!param1.lookUpScaleValue ? int(param1.lookUpScaleValue) : 0;
                 this.lookUpScaleValueText.text = !!param1.lookUpScaleValue ? param1.lookUpScaleValue.toFixed(0).toString() : "0";
                 this.lookUpScaleMinimumText.text = this.lookUpScaleSliderOption.slider.minimum.toFixed(0).toString();
                 this.lookUpScaleMaximumText.text = this.lookUpScaleSliderOption.slider.maximum.toFixed(0).toString();
-                this.lookRightScaleSliderOption.sliderValue = !!param1.lookRightScaleValue ? int(param1.lookRightScaleValue) : 0;
                 this.lookRightScaleSliderOption.slider.minimum = !!param1.lookRightScaleMin ? Number(param1.lookRightScaleMin) : Number(0);
                 this.lookRightScaleSliderOption.slider.maximum = !!param1.lookRightScaleMax ? Number(param1.lookRightScaleMax) : Number(1);
+                this.lookRightScaleSliderOption.sliderValue = !!param1.lookRightScaleValue ? int(param1.lookRightScaleValue) : 0;
                 this.lookRightScaleValueText.text = !!param1.lookRightScaleValue ? param1.lookRightScaleValue.toFixed(0).toString() : "0";
                 this.lookRightScaleMinimumText.text = this.lookRightScaleSliderOption.slider.minimum.toFixed(0).toString();
                 this.lookRightScaleMaximumText.text = this.lookRightScaleSliderOption.slider.maximum.toFixed(0).toString();

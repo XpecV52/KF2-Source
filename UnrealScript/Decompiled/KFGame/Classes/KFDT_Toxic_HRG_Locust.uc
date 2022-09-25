@@ -17,7 +17,7 @@ static function int GetSpreadOnTouchDamage()
 
 defaultproperties
 {
-    SpreadOnTouchDamage=40
+    SpreadOnTouchDamage=30
     WeaponDef=Class'KFWeapDef_HRG_Locust'
     DoT_Duration=3
     DoT_Interval=0.5

@@ -78,7 +78,10 @@ simulated function ChangeMode(bool IsFolded, optional bool bApplyBlend)
         InstantHitDamage[5] = float(FoldedDamageAlt);
         InstantHitDamageTypes[0] = FoldedDT;
         InstantHitDamageTypes[5] = FoldedDTAlt;
-        PlayerViewOffset = OriginalPlayerViewOffset;        
+        PlayerViewOffset = OriginalPlayerViewOffset;
+        InstantHitDamageTypes[3] = Class'KFDT_Piercing_ScytheStabFolded';
+        InstantHitMomentum[3] = 100000;
+        InstantHitDamage[3] = 40;        
     }
     else
     {
@@ -89,6 +92,9 @@ simulated function ChangeMode(bool IsFolded, optional bool bApplyBlend)
         InstantHitDamageTypes[0] = UnfoldedDT;
         InstantHitDamageTypes[5] = UnfoldedDTAlt;
         PlayerViewOffset = PlayerViewOffsetUnfolded;
+        InstantHitDamageTypes[3] = Class'KFDT_Piercing_ScytheStab';
+        InstantHitMomentum[3] = 100000;
+        InstantHitDamage[3] = 60;
     }
     NotifyServerMode(bIsFolded);
     if(bApplyBlend)
@@ -289,10 +295,10 @@ defaultproperties
     HitboxChainUnfolded(14)=(BoneOffset=(X=0,Y=0,Z=10),LastLoc=(X=0,Y=0,Z=0))
     MaxHitRangeFolded=220
     MaxHitRangeUnfolded=300
-    FoldedDamage=60
-    FoldedDamageAlt=87
-    UnfoldedDamage=90
-    UnfoldedDamageAlt=150
+    FoldedDamage=70
+    FoldedDamageAlt=120
+    UnfoldedDamage=140
+    UnfoldedDamageAlt=190
     FoldedDT=Class'KFDT_Slashing_ScytheShort'
     FoldedDTAlt=Class'KFDT_Slashing_ScytheShortAlt'
     UnfoldedDT=Class'KFDT_Slashing_ScytheLong'
@@ -334,7 +340,6 @@ defaultproperties
     MeleeAttackHelper=MeleeHelper
     AssociatedPerkClasses=/* Array type was not detected. */
     WeaponUpgrades=/* Array type was not detected. */
-    InstantHitDamage=/* Array type was not detected. */
     InstantHitMomentum=/* Array type was not detected. */
     InstantHitDamageTypes=/* Array type was not detected. */
     begin object name=FirstPersonMesh class=KFSkeletalMeshComponent

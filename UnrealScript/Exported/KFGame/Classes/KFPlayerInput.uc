@@ -246,6 +246,7 @@ var bool    bUsingVersusGamepadScheme;
 ********************************************************************************************* */
 var float MouseLookUpScale;
 var float MouseLookRightScale;
+var const float MaxScaleDeltaTime;
 
 // (cpptext)
 // (cpptext)
@@ -473,7 +474,8 @@ event PlayerInput( float DeltaTime )
 	aLookUp			*= FOVScale;
 	aTurn			*= FOVScale;
 
-	MouseXScale = (TimeScale * -MouseLookUpScale / 100.0f);
+	MouseXScale = (FMin(TimeScale, MaxScaleDeltaTime * 100.0f) * (MouseLookRightScale / 100.0f));
+
 	// Turning and strafing share the same axis.
 	if( bStrafe > 0 )
 		aStrafe		+= aBaseX + aMouseX * ( MouseXScale > 0.0f ? MouseXScale : 1.0f);
@@ -481,7 +483,9 @@ event PlayerInput( float DeltaTime )
 		aTurn		+= aBaseX + aMouseX * ( MouseXScale > 0.0f ? MouseXScale : 1.0f);
 		
 	// Look up/down.
-	MouseYScale = (TimeScale * -MouseLookUpScale / 100.0f);
+
+	MouseYScale = (FMin(TimeScale, MaxScaleDeltaTime * 100.0f) * (-MouseLookUpScale / 100.0f));
+
 	aLookup += aMouseY * ( MouseYScale > 0.0f ? MouseYScale : 1.0f);
 	if ( (!bUsingGamepad && bInvertMouse) || (bInvertController && bUsingGamepad) )
 	{
@@ -2978,6 +2982,7 @@ defaultproperties
    ForceLookAtPawnDampenedRotationRate=8.000000
    WeakBoneDistance=0.020000
    DoubleTapDelay=0.250000
+   MaxScaleDeltaTime=0.050000
    bEnableFOVScaling=True
    Name="Default__KFPlayerInput"
    ObjectArchetype=MobilePlayerInput'GameFramework.Default__MobilePlayerInput'

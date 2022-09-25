@@ -176,9 +176,9 @@ defaultproperties
     IronSightPosition=(X=3,Y=0,Z=0)
     DOF_FG_FocalRadius=65
     GroupPriority=110
-    WeaponSelectTexture=Texture2D'WEP_UI_Quad_Barrel_TEX.UI_WeaponSelect_QuadBarrel'
+    WeaponSelectTexture=Texture2D'WEP_UI_HRG_MegaDragonsbreath_TEX.UI_WeaponSelect_HRG_MegaDragonsbreath'
     MagazineCapacity=4
-    SpareAmmoCapacity=48
+    SpareAmmoCapacity=60
     InitialSpareMags=3
     AmmoPickupScale=2
     ForceReloadTimeOnEmpty=0.3

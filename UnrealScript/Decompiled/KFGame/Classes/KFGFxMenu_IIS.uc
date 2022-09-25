@@ -165,7 +165,7 @@ function OnConfirmPlayOffline()
     ProfileSettings.SetToDefaults();
     ProfileSettings.ExpandExtraFromProfileSettings();
     OnlineSub.SetCachedProfile(ProfileSettings);
-    KFPlayerController(Outer.GetPC()).vect(6.162971E-33, NaN, -2.100694E-18);
+    KFPlayerController(Outer.GetPC()).vect(6.162971E-33, NaN, -8.402778E-18);
     0
     @NULL    
     assert((@NULL != (true != )) != KFGameEngine(Class'Engine'.static.GetEngine()).LocalLoginStatus = 1);

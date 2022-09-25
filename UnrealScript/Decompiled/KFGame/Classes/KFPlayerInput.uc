@@ -129,6 +129,7 @@ var(AutoTarget) float WeakBoneDistance;
 var const float DoubleTapDelay;
 var float MouseLookUpScale;
 var float MouseLookRightScale;
+var const float MaxScaleDeltaTime;
 
 // Export UKFPlayerInput::execGetKeyBindFromCommand(FFrame&, void* const)
 native function GetKeyBindFromCommand(out KeyBind MyKeyBind, string bindCommand, optional bool bAlt);
@@ -298,7 +299,7 @@ event PlayerInput(float DeltaTime)
     }
     aLookUp *= FOVScale;
     aTurn *= FOVScale;
-    MouseXScale = (TimeScale * -MouseLookUpScale) / 100;
+    MouseXScale = FMin(TimeScale, MaxScaleDeltaTime * 100) * (MouseLookRightScale / 100);
     if(bStrafe > 0)
     {
         aStrafe += (aBaseX + (aMouseX * ((MouseXScale > 0) ? MouseXScale : 1)));        
@@ -307,7 +308,7 @@ event PlayerInput(float DeltaTime)
     {
         aTurn += (aBaseX + (aMouseX * ((MouseXScale > 0) ? MouseXScale : 1)));
     }
-    MouseYScale = (TimeScale * -MouseLookUpScale) / 100;
+    MouseYScale = FMin(TimeScale, MaxScaleDeltaTime * 100) * (-MouseLookUpScale / 100);
     aLookUp += (aMouseY * ((MouseYScale > 0) ? MouseYScale : 1));
     if((!bUsingGamepad && bInvertMouse) || bInvertController && bUsingGamepad)
     {
@@ -2321,5 +2322,6 @@ defaultproperties
     ForceLookAtPawnDampenedRotationRate=8
     WeakBoneDistance=0.02
     DoubleTapDelay=0.25
+    MaxScaleDeltaTime=0.05
     bEnableFOVScaling=true
 }

@@ -57,6 +57,9 @@ var() float AnimBlendRate;
 var transient 			float 			LaserSightAimStrength;
 var transient 			float 			DesiredAimStrength;
 
+// Use for automatic weapons, then the Laser Dot will always steer to the hit location no matter what
+var transient			bool			bForceDotToMatch;
+
 var transient bool IsVisible;
 
 /** Create/Attach lasersight components */
@@ -306,8 +309,13 @@ function UpdateFirstPersonAImStrength(float DeltaTime, KFWeapon W)
 	{
 		DesiredAimStrength = 1.f - AnimWeight;
 	}
+	// we are forcing the dot to match, don't do while reloading though
+	else if (bForceDotToMatch && W.IsInstate('Reloading') == false)
+	{
+		DesiredAimStrength = 1.f - AnimWeight;
+	}
 	// follow weapon
-	else 
+	else
 	{
 		DesiredAimStrength = 0.f;
 	}

@@ -12948,10 +12948,3 @@ Begin Object Class=KFSeqEvent_DoshVault Name=KFSeqEvent_DoshVault_0
    Name="KFSeqEvent_DoshVault_0"
    ObjectArchetype=KFSeqEvent_DoshVault'KFGame.Default__KFSeqEvent_DoshVault'
 End Object
-
-Begin Object Class=CameraShake Name=CameraShake_0 Archetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-   OscillationDuration=1.000000
-   RotOscillation=(Pitch=(Amplitude=150.000000,Frequency=40.000000),Yaw=(Amplitude=75.000000,Frequency=30.000000),Roll=(Amplitude=150.000000,Frequency=60.000000))
-   Name="CameraShake_0"
-   ObjectArchetype=CameraShake'Engine.Default__SeqAct_CameraShake:Shake0'
-End Object

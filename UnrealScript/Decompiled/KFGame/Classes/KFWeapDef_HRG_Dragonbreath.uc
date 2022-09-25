@@ -11,7 +11,7 @@ class KFWeapDef_HRG_Dragonbreath extends KFWeaponDefinition
 defaultproperties
 {
     WeaponClassPath="KFGameContent.KFWeap_HRG_Dragonbreath"
-    ImagePath="WEP_UI_Quad_Barrel_TEX.UI_WeaponSelect_QuadBarrel"
+    ImagePath="WEP_UI_HRG_MegaDragonsbreath_TEX.UI_WeaponSelect_HRG_MegaDragonsbreath"
     BuyPrice=1400
     AmmoPricePerMag=25
     UpgradePrice(0)=1500

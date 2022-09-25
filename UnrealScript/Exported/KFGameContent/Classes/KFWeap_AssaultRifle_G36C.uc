@@ -29,6 +29,21 @@ simulated function ZoomOut( bool bAnimateTransition, float ZoomTimeToGo )
 	}
 }
 
+simulated function AttachLaserSight()
+{
+	if( WorldInfo.NetMode == NM_DedicatedServer )
+	{
+        return;
+	}
+
+	super.AttachLaserSight();
+
+	if (LaserSight != none)
+	{
+		LaserSight.bForceDotToMatch = true;
+	}
+}
+
 defaultproperties
 {
    PackageKey="G36C"
@@ -76,10 +91,10 @@ defaultproperties
    End Object
    MeleeAttackHelper=KFMeleeHelperWeapon'kfgamecontent.Default__KFWeap_AssaultRifle_G36C:MeleeHelper_0'
    LaserSightTemplate=KFLaserSightAttachment'FX_LaserSight_ARCH.LaserSight_WithAttachment_1P'
-   maxRecoilPitch=90
-   minRecoilPitch=80
-   maxRecoilYaw=80
-   minRecoilYaw=-80
+   maxRecoilPitch=50
+   minRecoilPitch=40
+   maxRecoilYaw=70
+   minRecoilYaw=-70
    RecoilRate=0.085000
    RecoilMaxYawLimit=500
    RecoilMinYawLimit=65035
@@ -88,7 +103,7 @@ defaultproperties
    RecoilISMaxYawLimit=100
    RecoilISMinYawLimit=65460
    RecoilISMinPitchLimit=65460
-   IronSightMeshFOVCompensationScale=4.000000
+   IronSightMeshFOVCompensationScale=6.000000
    AssociatedPerkClasses(0)=Class'KFGame.KFPerk_SWAT'
    WeaponUpgrades(1)=(Stats=((Stat=EWUS_Damage0,Scale=1.150000),(Stat=EWUS_Damage1,Scale=1.150000),(Add=1)))
    FiringStatesArray(1)="WeaponSingleFiring"
